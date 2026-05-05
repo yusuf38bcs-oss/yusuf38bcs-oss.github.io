@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "Learning Biology for Life"
+author_profile: true
 ---
 
-🚀 Site is now live.
+Welcome to Learning Biology for Life! This is the new home of the Synaptic Bridge.
