@@ -1,0 +1,37 @@
+# 1. TOP NAVIGATION MENU (Horizontal)
+main:
+  - title: "HSC Corner"
+    children:
+      - title: "HSC 1st Paper (Botany)"
+        url: "/categories/botany/"
+      - title: "HSC 2nd Paper (Zoology)"
+        url: "/categories/zoology/"
+        
+  - title: "Higher Zoology Tree"
+    children:
+      - title: "Animal Diversity & Taxonomy"
+        url: "/categories/animal-diversity/"
+      - title: "Ecology & Environment"
+        url: "/categories/ecology/"
+      - title: "Human Physiology"
+        url: "/categories/human-physiology/"
+      - title: "Genetics & Evolution"
+        url: "/categories/genetics/"
+
+  - title: "Life (Practical Approach)"
+    children:
+      - title: "Leadership Management"
+        url: "/categories/leadership/"
+      - title: "Human Behaviour"
+        url: "/categories/human-behaviour/"
+      - title: "Practical Applications"
+        url: "/categories/practical-applications/"
+
+# 2. SIDEBAR NAVIGATION (Vertical - Your MCQ Neuron)
+mcq_sidebar:
+  - title: "Assessment Node"
+    children:
+      - title: "HSC MCQ Arena"
+        url: "/categories/mcq/"
+      - title: "Future Quizzes"
+        url: "#"
