@@ -1,4 +1,30 @@
-remote_theme: "mmistakes/minimal-mistakes"
+# Site Settings
+title: "Learning Biology for Life"
+description: "A Synaptic Bridge Approach where scientific theory will be connected to reality through case studies and leadership insights."
+url: "https://learningbiologyforlife.org" # Your custom domain
+repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 
+# Theme Settings
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+minimal_mistakes_skin: "default" # You can later change this to "air", "mint", "contrast", etc.
+
+# Author Details
+author:
+  name: "MD. YUSUF"
+  bio: "BCS (General Education) Cadre Officer and creator of the Synaptic Bridge."
+
+# Plugins
 plugins:
   - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-redirect-from # We will use this later for SEO protection
+
+# Exclude these files from the build process
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
