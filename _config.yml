@@ -1,20 +1,20 @@
 # Site Settings
 title: "Learning Biology for Life"
-description: "A Synaptic Bridge Approach where scientific theory will be connected to reality through case studies and leadership insights."
-url: "https://learningbiologyforlife.org" 
+description: "A Synaptic Bridge Approach connecting scientific theory to reality through case studies and leadership insights."
+url: "https://learningbiologyforlife.org"
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
-logo: "/assets/images/logo.png" 
+logo: "/assets/images/logo.png"
 
 # Theme Settings
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
-minimal_mistakes_skin: "air" # Changed to the clean, academic white/blue skin
+minimal_mistakes_skin: "air"
 
 # Author Details
 author:
   name: "MD. YUSUF"
-  avatar: "/assets/images/profile.jpg" 
-  bio: "38th BCS (General Education) Cadre Officer. Lecturer of Zoology. Specialist in Wildlife Conservation, Digital Pedagogy, and 4IR Education."
-  location: "Barishal, Bangladesh"
+  avatar: "/assets/images/profile.jpg"
+  bio: "38th BCS (General Education) Cadre Officer & Lecturer of Zoology. Working on Empowering Leadership, Digital Pedagogy, and 4IR Education."
+  location: "Barishal-8200, Bangladesh"
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
@@ -22,9 +22,6 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/yusuf38bcs-oss"
-    - label: "Google Developers"
-      icon: "fab fa-fw fa-google"
-      url: "https://me.developers.google.com/u/101361236563057990215"
 
 # Plugins
 plugins:
@@ -33,35 +30,29 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-redirect-from 
+  - jekyll-redirect-from
 
-# Exclude these files from the build process
+# Exclude from build process
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
 
-# -------------------------------------------------------------------------
-# CRITICAL: The Anatomical Structure (Collections)
-# -------------------------------------------------------------------------
-# This tells Jekyll to process the markdown files inside your _pages folder
+# Allow Jekyll to read the _pages directory
 collections:
   pages:
     output: true
     permalink: /:path/
 
-# -------------------------------------------------------------------------
-# The Nervous System: Global Features & Defaults
-# -------------------------------------------------------------------------
+# Global Features
 search: true
 search_full_content: true
 
-# This links your _data/navigation.yml to the top menu bar
 header:
   overlay_color: "#e6f2f5"
 
-# Default Front Matter to save you time on your 82 Posts
+# Default Front Matter for _posts
 defaults:
   - scope:
       path: ""
