@@ -1,26 +1,32 @@
-# 1. TOP NAVIGATION MENU (Horizontal)
+# ==========================================
+# 1. THE BRAIN STEM (Top Navigation)
+# Controls primary site-wide cognitive routing.
+# ==========================================
 main:
   - title: "HSC Corner"
+    url: "#" # Use "#" if there is no parent landing page, allowing clean dropdown behavior.
     children:
-      - title: "HSC Botany"
+      - title: "HSC 1st Paper (Botany)"
         url: "/categories/botany/"
-      - title: "HSC Zoology"
+      - title: "HSC 2nd Paper (Zoology)"
         url: "/categories/zoology/"
         
-  - title: "Higher Zoology Tree"
+  - title: "Higher Zoology" # Shortened from "Higher Zoology Tree" to save horizontal nav space
+    url: "#"
     children:
-      - title: "Animal Diversity"
+      - title: "Animal Diversity & Taxonomy"
         url: "/categories/animal-diversity/"
-      - title: "Ecology"
-        url: "/categories/ecology/"
-      - title: "Human Physiology"
+      - title: "Human Physiology" # Reordered to group closely related biological functions
         url: "/categories/human-physiology/"
       - title: "Genetics & Evolution"
         url: "/categories/genetics/"
+      - title: "Ecology & Environment"
+        url: "/categories/ecology/"
       - title: "Biostatistics"
         url: "/categories/biostatistics/"
 
-  - title: "Life (Practical Approach)"
+  - title: "Life Practices" # Sharpened from "Life (Practical Approach)"
+    url: "#"
     children:
       - title: "Leadership Management"
         url: "/categories/leadership/"
@@ -30,19 +36,37 @@ main:
         url: "/categories/research-highlights/"
       - title: "Random Thoughts"
         url: "/categories/random-thoughts/"
-
+        
   - title: "Socratic 4.0"
+    url: "#"
     children:
       - title: "MCQ Arena"
         url: "/categories/mcq/"
       - title: "MI Analysis"
         url: "/mi-analysis/"
-      - title: "Personality Test"
+      - title: "Personality Archetypes" # Elevated phrasing
         url: "/personality-test/"
 
-# 2. SIDEBAR NAVIGATION (For your Academic Posts)
-mcq_sidebar:
-  - title: "Assessment Node"
+
+# ==========================================
+# 2. SUPPLEMENTARY PATHWAYS (Contextual Sidebars)
+# Governs the "Socratic Assessment" logic in post layouts.
+# ==========================================
+
+# Active when a user is reading an Academic/Biology post
+academic_sidebar:
+  - title: "Test Your Synapse"
     children:
-      - title: "Enter the MCQ Arena"
+      - title: "Enter MCQ Arena"
         url: "/categories/mcq/"
+      - title: "Upcoming Quizzes"
+        url: "/quizzes/"
+
+# Active when a user is reading a Life/Leadership post
+socratic_sidebar:
+  - title: "Self-Discovery"
+    children:
+      - title: "Find Your Intelligence Zone"
+        url: "/mi-analysis/"
+      - title: "Discover Your Archetype"
+        url: "/personality-test/"
