@@ -2,21 +2,23 @@
 main:
   - title: "HSC Corner"
     children:
-      - title: "HSC 1st Paper (Botany)"
+      - title: "HSC Botany"
         url: "/categories/botany/"
-      - title: "HSC 2nd Paper (Zoology)"
+      - title: "HSC Zoology"
         url: "/categories/zoology/"
         
   - title: "Higher Zoology Tree"
     children:
-      - title: "Animal Diversity & Taxonomy"
+      - title: "Animal Diversity"
         url: "/categories/animal-diversity/"
-      - title: "Ecology & Environment"
+      - title: "Ecology"
         url: "/categories/ecology/"
       - title: "Human Physiology"
         url: "/categories/human-physiology/"
       - title: "Genetics & Evolution"
         url: "/categories/genetics/"
+      - title: "Biostatistics"
+        url: "/categories/biostatistics/"
 
   - title: "Life (Practical Approach)"
     children:
@@ -24,14 +26,23 @@ main:
         url: "/categories/leadership/"
       - title: "Human Behaviour"
         url: "/categories/human-behaviour/"
-      - title: "Practical Applications"
-        url: "/categories/practical-applications/"
+      - title: "Research Highlights"
+        url: "/categories/research-highlights/"
+      - title: "Random Thoughts"
+        url: "/categories/random-thoughts/"
 
-# 2. SIDEBAR NAVIGATION (Vertical - Your MCQ Neuron)
+  - title: "Socratic 4.0"
+    children:
+      - title: "MCQ Arena"
+        url: "/categories/mcq/"
+      - title: "MI Analysis"
+        url: "/mi-analysis/"
+      - title: "Personality Test"
+        url: "/personality-test/"
+
+# 2. SIDEBAR NAVIGATION (For your Academic Posts)
 mcq_sidebar:
   - title: "Assessment Node"
     children:
-      - title: "HSC MCQ Arena"
+      - title: "Enter the MCQ Arena"
         url: "/categories/mcq/"
-      - title: "Future Quizzes"
-        url: "#"
