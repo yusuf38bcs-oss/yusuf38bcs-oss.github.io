@@ -1,20 +1,69 @@
-# Site Settings
-title: "Learning Biology for Life"
-description: "A Synaptic Bridge Approach connecting scientific theory to reality through case studies and leadership insights."
+# =========================================================
+# LEARNING BIOLOGY FOR LIFE
+# Cognitive Education Platform Configuration
+# =========================================================
+
+# =========================================================
+# CORE SITE IDENTITY
+# =========================================================
+title: "Learning Biology For Life"
+subtitle: "The Synaptic Bridge"
+description: >
+  A cognitive biology education platform connecting scientific theory, leadership, human behavior, systems thinking, and reflective intelligence.
 url: "https://learningbiologyforlife.org"
+baseurl: ""
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 logo: "/assets/images/logo.png"
+favicon: "/assets/images/favicon.png"
+locale: "en-US"
+timezone: "Asia/Dhaka"
+encoding: "utf-8"
 
-# Theme Settings
+# =========================================================
+# THEME & BRANDING
+# =========================================================
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 minimal_mistakes_skin: "air"
 
-# Author Details
+name: "Learning Biology For Life"
+tagline: "Where Biology Meets Leadership, Cognition, and Human Growth."
+teaser: "/assets/images/default-teaser.jpg"
+breadcrumbs: true
+words_per_minute: 180
+enable_copy_code_button: true
+
+# =========================================================
+# SEO & SOCIAL
+# =========================================================
+search: true
+search_full_content: true
+atom_feed:
+  hide: false
+
+seo:
+  type: EducationalOrganization
+  name: Learning Biology For Life
+
+twitter:
+  username: ""
+  card: summary_large_image
+
+social:
+  type: Organization
+  links:
+    - "https://github.com/yusuf38bcs-oss"
+    - "https://www.linkedin.com/in/md-yusuf-128b94404"
+
+# =========================================================
+# AUTHOR PROFILE
+# =========================================================
 author:
   name: "MD. YUSUF"
   avatar: "/assets/images/profile.jpg"
-  bio: "38th BCS (General Education) Cadre Officer & Lecturer of Zoology. Working on Empowering Leadership, Digital Pedagogy, and 4IR Education."
-  location: "Barishal-8200, Bangladesh"
+  bio: >
+    Lecturer of Zoology, 38th BCS (General Education) Cadre Officer, and creator of the Synaptic Bridge Framework — integrating biology, leadership, cognition, and digital pedagogy.
+  location: "Bangladesh"
+  employer: "Government Education"
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
@@ -23,7 +72,25 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/yusuf38bcs-oss"
 
-# Plugins
+# =========================================================
+# HEADER & FOOTER OVERRIDES
+# =========================================================
+header:
+  overlay_color: "#081b29"
+  overlay_filter: rgba(8,27,41,0.72)
+
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/yusuf38bcs-oss"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://www.linkedin.com/in/md-yusuf-128b94404"
+
+# =========================================================
+# PLUGINS & SYSTEM SETTINGS
+# =========================================================
 plugins:
   - jekyll-include-cache
   - jekyll-feed
@@ -31,29 +98,38 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-redirect-from
+  - jekyll-archives
 
-# Exclude from build process
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
+paginate: 6
+paginate_path: /page:num/
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
 
-# Allow Jekyll to read the _pages directory
-collections:
-  pages:
-    output: true
-    permalink: /:path/
+# =========================================================
+# ARCHIVES
+# =========================================================
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+    - year
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+    year: archive
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+    year: /archives/:year/
 
-# Global Features
-search: true
-search_full_content: true
-
-header:
-  overlay_color: "#e6f2f5"
-
-# Default Front Matter for _posts
+# =========================================================
+# DEFAULTS (FRONT-MATTER INHERITANCE)
+# =========================================================
 defaults:
+  # -------------------------------------------------------
+  # POSTS (Articles)
+  # -------------------------------------------------------
   - scope:
       path: ""
       type: posts
@@ -63,3 +139,74 @@ defaults:
       read_time: true
       share: true
       related: true
+      comments: false
+      toc: true
+      toc_sticky: true
+      show_date: true
+      classes: wide
+      header:
+        overlay_filter: rgba(8,27,41,0.55)
+      
+      # Default AI Synapses for all posts
+      ai:
+        enabled: true
+        advanced: false
+        podcast: true
+        quiz: true
+        translator: true
+        tutor: false
+        journal: false
+        image: false
+
+  # -------------------------------------------------------
+  # PAGES (Static content like About, Contact)
+  # -------------------------------------------------------
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: false
+      ai:
+        enabled: false # Disable AI on structural pages
+
+# =========================================================
+# COMPILER SETTINGS
+# =========================================================
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  syntax_highlighter: rouge
+
+sass:
+  style: compressed
+
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
+
+# =========================================================
+# BUILD EXCLUSIONS
+# =========================================================
+include:
+  - _pages
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - package.json
+  - package-lock.json
+
+# =========================================================
+# CUSTOM GLOBAL COGNITIVE SYSTEM DATA
+# =========================================================
+synaptic_ai:
+  enabled: true
+  framework: "Synaptic Bridge"
+  architecture: "Modular Cognitive System"
+  lazy_load: true
