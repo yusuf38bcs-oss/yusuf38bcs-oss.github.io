@@ -3,6 +3,7 @@ title: "Learning Biology for Life"
 description: "A Synaptic Bridge Approach where scientific theory will be connected to reality through case studies and leadership insights."
 url: "https://learningbiologyforlife.org" # Your custom domain
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
+logo: "/assets/images/logo.png" # <--- ADD THIS LINE (Make sure the filename matches your uploaded logo exactly)
 
 # Theme Settings
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
@@ -11,6 +12,7 @@ minimal_mistakes_skin: "default" # You can later change this to "air", "mint", "
 # Author Details
 author:
   name: "MD. YUSUF"
+  avatar: "/assets/images/profile.jpg" # <--- OPTIONAL: Add a picture of yourself for the sidebar!
   bio: "BCS (General Education) Cadre Officer and creator of the Synaptic Bridge."
 
 # Plugins
