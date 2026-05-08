@@ -210,3 +210,13 @@ synaptic_ai:
   framework: "Synaptic Bridge"
   architecture: "Modular Cognitive System"
   lazy_load: true
+# Set default front matter for specific folders
+defaults:
+  - scope:
+      path: "_pages" # This targets all files inside your _pages folder
+      type: "pages"
+    values:
+      header:
+        overlay_image: /assets/images/header-bg.jpg
+        overlay_color: "#000"
+        overlay_filter: "0.5" # Adds a slight dark tint so text is readable
