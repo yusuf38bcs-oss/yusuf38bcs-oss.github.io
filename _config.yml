@@ -1,4 +1,3 @@
-``` yaml
 # =========================================================
 # CORE SITE IDENTITY
 # =========================================================
@@ -117,5 +116,3 @@ synaptic_ai:
  enabled: true
  framework: "Synaptic Bridge"
  architecture: "Modular Cognitive System"
-
-```
