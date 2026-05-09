@@ -1,4 +1,3 @@
-```html
 ---
 layout: default
 ---
@@ -22,7 +21,6 @@ layout: default
 <div id="main" role="main">
   {% include sidebar.html %}
 
-  <!-- CONTEXTUAL SOCRATIC SIDEBAR LOGIC -->
   <aside class="sidebar__right sticky">
     {% assign is_academic = false %}
     {% assign is_socratic = false %}
@@ -89,19 +87,13 @@ layout: default
         {% include page__date.html %}
       </footer>
 
-      <!-- THE BREVO NEWSLETTER HOOK (SYNAPTIC CONNECTION) -->
-      <div class="newsletter-hook" style="background: #f2f5f9; padding: 2em; border-radius: 8px; margin: 2em 0; border-left: 4px solid #081b29;">
-        <h3 style="margin-top: 0;"><i class="fas fa-network-wired"></i> Did this lesson bridge a gap for you?</h3>
-        <p>Join the Synaptic Bridge newsletter to connect biological theory to real-world leadership and human behavior.</p>
-        <!-- Replace action URL with your actual Brevo form endpoint -->
-        <form action="YOUR_BREVO_FORM_URL" method="post" target="_blank" style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <input type="email" name="EMAIL" placeholder="Enter your email address" required style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; min-width: 250px;">
-          <button type="submit" class="btn btn--primary">Subscribe for Insights</button>
-        </form>
+      <div class="newsletter-hook" style="background: #f8f9fa; padding: 2em; border-radius: 8px; margin: 3em 0; border-left: 4px solid #081b29; text-align: center;">
+        <h3 style="margin-top: 0; color: #081b29;"><i class="fas fa-network-wired"></i> Did this lesson bridge a gap for you?</h3>
+        <p style="margin-bottom: 20px;">Join the Synaptic Bridge newsletter to connect biological theory to real-world leadership and human behavior.</p>
+        <button class="btn btn--primary btn--large" onclick="openBrevoModal()">Subscribe for Insights</button>
       </div>
 
       {% if page.share %}{% include social-share.html %}{% endif %}
-
       {% include post_pagination.html %}
     </div>
 
@@ -110,8 +102,6 @@ layout: default
     {% endif %}
   </article>
 
-  <!-- RELATED SYNAPSES -->
-  {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
   {% if page.id and page.related and site.related_posts.size > 0 %}
     <div class="page__related">
       <h2 class="page__related-title"><i class="fas fa-project-diagram"></i> Related Synapses</h2>
@@ -121,10 +111,9 @@ layout: default
         {% endfor %}
       </div>
     </div>
-  {% comment %}<!-- otherwise show recent posts if no related when `related: true` -->{% endcomment %}
   {% elsif page.id and page.related %}
     <div class="page__related">
-      <h2 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h2>
+      <h2 class="page__related-title"><i class="fas fa-project-diagram"></i> Related Synapses</h2>
       <div class="grid__wrapper">
         {% for post in site.posts limit:4 %}
           {% if post.id == page.id %}
@@ -136,5 +125,3 @@ layout: default
     </div>
   {% endif %}
 </div>
-
-```
