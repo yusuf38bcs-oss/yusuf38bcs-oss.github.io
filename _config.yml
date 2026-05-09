@@ -65,9 +65,10 @@ highlighter: rouge
 permalink: /:categories/:title/
 
 # =========================================================
-# DEFAULTS (FRONT-MATTER INHERITANCE)
+# DEFAULTS (FRONT-MATTER INHERITANCE & AUTOMATION)
 # =========================================================
 defaults:
+  # --- Global Post Defaults ---
   - scope:
       path: ""
       type: posts
@@ -86,6 +87,67 @@ defaults:
         advanced: false
         podcast: true
         quiz: true
+
+  # --- Academic Sidebars (Zoology/Botany/Science) ---
+  - scope:
+      path: "_posts/botany"
+    values:
+      sidebar:
+        nav: "academic_sidebar"
+  - scope:
+      path: "_posts/zoology"
+    values:
+      sidebar:
+        nav: "academic_sidebar"
+  - scope:
+      path: "_posts/animal-diversity"
+    values:
+      sidebar:
+        nav: "academic_sidebar"
+  - scope:
+      path: "_posts/human-physiology"
+    values:
+      sidebar:
+        nav: "academic_sidebar"
+  - scope:
+      path: "_posts/genetics"
+    values:
+      sidebar:
+        nav: "academic_sidebar"
+  - scope:
+      path: "_posts/ecology"
+    values:
+      sidebar:
+        nav: "academic_sidebar"
+  - scope:
+      path: "_posts/biostatistics"
+    values:
+      sidebar:
+        nav: "academic_sidebar"
+
+  # --- Socratic Sidebars (Leadership/Behavior/Practice) ---
+  - scope:
+      path: "_posts/leadership"
+    values:
+      sidebar:
+        nav: "socratic_sidebar"
+  - scope:
+      path: "_posts/human-behaviour"
+    values:
+      sidebar:
+        nav: "socratic_sidebar"
+  - scope:
+      path: "_posts/research-highlights"
+    values:
+      sidebar:
+        nav: "socratic_sidebar"
+  - scope:
+      path: "_posts/random-thoughts"
+    values:
+      sidebar:
+        nav: "socratic_sidebar"
+
+  # --- Global Page Defaults ---
   - scope:
       path: ""
       type: pages
