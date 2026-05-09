@@ -1,295 +1,21 @@
 ---
-layout: single
-author_profile: true
-sidebar:
-  nav: "synaptic_nav"
 title: "Polymorphims in Cnidaria"
 date: 2026-05-05T08:53:00.002Z
 categories:
-  - Animal Diversity
+  - animal-diversity
 ---
 
+<div class="bio-post-container">
 
-<style>
-  /* --- Premium Educational Platform UI (Modern 2026 Standard) --- */
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap');
-
-  .bio-post-container {
-    font-family: 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
-    color: #334155;
-    line-height: 1.7;
-    font-size: 16px;
-    background-color: #ffffff;
-    max-width: 100%;
-    margin: 0 auto;
-    overflow-x: hidden;
-  }
-
-  .bio-post-container h2, .bio-post-container h3 {
-    color: #0f172a;
-    font-weight: 700;
-    margin-top: 1.5em;
-    margin-bottom: 0.75em;
-  }
-
-  .bio-post-container h2 {
-    font-size: 1.75rem;
-    border-bottom: 3px solid #10b981;
-    display: inline-block;
-    padding-bottom: 5px;
-  }
-
-  .bio-post-container h3 {
-    font-size: 1.4rem;
-    color: #059669;
-  }
-
-  .bio-post-container p {
-    margin-bottom: 1.2em;
-  }
-
-  /* --- Highlight Blocks (Case Study & Thoughts) --- */
-  .edu-quote, .edu-case-study, .edu-critical-thinking {
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin: 24px 0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  }
-
-  .edu-quote {
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-    border-left: 5px solid #10b981;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: #047857;
-  }
-
-  .edu-case-study {
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-left: 5px solid #6366f1;
-  }
-
-  .edu-case-study-title {
-    font-weight: 700;
-    color: #4338ca;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1.25rem;
-  }
-
-  .edu-critical-thinking {
-    background-color: #fffbeb;
-    border: 1px solid #fde68a;
-    border-left: 5px solid #d97706;
-  }
-
-  .edu-critical-title {
-    font-weight: 700;
-    color: #b45309;
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-  }
-
-  /* --- Graphic Presentation & Concept Boxes --- */
-  .concept-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin: 24px 0;
-  }
-
-  .concept-card {
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-  }
-
-  .concept-card:hover {
-    transform: translateY(-5px);
-    border-color: #10b981;
-  }
-
-  .concept-icon {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-
-  .concept-title {
-    font-weight: 700;
-    color: #0f172a;
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-  }
-
-  /* --- Collapsible Smart Sections --- */
-  .smart-accordion {
-    margin: 20px 0;
-  }
-
-  .smart-details {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-  }
-
-  .smart-details[open] {
-    border-color: #10b981;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
-  }
-
-  .smart-summary {
-    padding: 16px 20px;
-    font-weight: 700;
-    color: #0f172a;
-    background-color: #f8fafc;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.2s;
-  }
-
-  .smart-summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .smart-summary:hover {
-    background-color: #f1f5f9;
-  }
-
-  .smart-summary::after {
-    content: '+';
-    font-size: 1.5rem;
-    color: #10b981;
-    transition: transform 0.3s ease;
-  }
-
-  .smart-details[open] .smart-summary::after {
-    transform: rotate(45deg);
-    color: #ef4444;
-  }
-
-  .smart-content {
-    padding: 16px 20px;
-    background-color: #ffffff;
-    border-top: 1px solid #e2e8f0;
-  }
-
-  .smart-content ul {
-    margin-top: 10px;
-    padding-left: 20px;
-  }
-
-  .smart-content li {
-    margin-bottom: 8px;
-  }
-
-  /* --- Formation Timeline Flowchart --- */
-  .edu-timeline {
-    position: relative;
-    padding-left: 30px;
-    margin: 30px 0;
-  }
-
-  .edu-timeline::before {
-    content: '';
-    position: absolute;
-    left: 11px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #cbd5e1;
-  }
-
-  .timeline-step {
-    position: relative;
-    margin-bottom: 24px;
-  }
-
-  .timeline-step::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    top: 4px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #10b981;
-    border: 3px solid #ffffff;
-    box-shadow: 0 0 0 2px #10b981;
-  }
-
-  .timeline-box {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 15px 20px;
-    border-radius: 8px;
-  }
-
-  .timeline-box strong {
-    color: #047857;
-    display: block;
-    margin-bottom: 5px;
-    font-size: 1.1rem;
-  }
-
-  .timeline-result {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background: #ecfdf5;
-    color: #059669;
-    border-radius: 6px;
-    font-weight: 600;
-    display: inline-block;
-  }
-
-  /* --- AdSense Optimized Placeholders --- */
-  .ad-placeholder {
-    margin: 30px 0;
-    padding: 15px;
-    background-color: #f1f5f9;
-    border: 2px dashed #cbd5e1;
-    text-align: center;
-    color: #94a3b8;
-    font-size: 0.9rem;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 120px;
-  }
-
-  /* --- Responsive Design --- */
-  @media (max-width: 600px) {
-    .bio-post-container { font-size: 15px; }
-    .bio-post-container h2 { font-size: 1.5rem; }
-    .bio-post-container h3 { font-size: 1.25rem; }
-    .edu-quote, .edu-case-study, .edu-critical-thinking { padding: 15px; }
-    .concept-grid { grid-template-columns: 1fr; }
-    .timeline-box { padding: 12px 15px; }
-  }
-</style>
-
-<div class="bio-post-container"><div class="edu-quote">পবিত্র কুরআনে মহান আল্লাহ তাআলা বলেন, "আমাদের রব তো তিনিই, যিনি প্রতিটি বস্তুকে তার উপযুক্ত আকৃতি (গঠন ও রূপ) দান করেছেন, অতঃপর তাকে পথনির্দেশ করেছেন (যার যে কাজ, তা শিখিয়েছেন)।" (সূরা ত্বোয়াহা: ৫০)। 
+  <div class="edu-quote">
+    পবিত্র কুরআনে মহান আল্লাহ তাআলা বলেন, "আমাদের রব তো তিনিই, যিনি প্রতিটি বস্তুকে তার উপযুক্ত আকৃতি (গঠন ও রূপ) দান করেছেন, অতঃপর তাকে পথনির্দেশ করেছেন (যার যে কাজ, তা শিখিয়েছেন)।" (সূরা ত্বোয়াহা: ৫০)। 
   </div>
 
   <p>আমাদের মানব সমাজে ডাক্তার চিকিৎসা করেন, কৃষক ফসল ফলান আর সৈনিক দেশকে রক্ষা করেন। এই যে 'শ্রমবণ্টন' (Division of Labor), এটি মানব সমাজের একটি বড় বৈশিষ্ট্য। কিন্তু আপনি জানলে অবাক হবেন, জীববিজ্ঞানে সিলেন্টারেটা (Cnidaria) পর্বের কিছু ক্ষুদ্র প্রাণী লক্ষ কোটি বছর ধরেই এই উন্নত সমাজব্যবস্থা মেনে চলছে! শুধু তাই নয়, কাজের ওপর ভিত্তি করে এদের দেহের রূপ বা আকারও সম্পূর্ণ বদলে যায়। আজ আমরা সমুদ্রের এক ভাসমান শহরের গল্প দিয়ে এই অদ্ভুত বিষয়ের গভীরে ডুব দেব।</p>
 
   <div class="ad-placeholder">
-    [ AdSense Responsive Ad Placeholder 1 ]<br />
-    </div>
+    [ AdSense Responsive Ad Placeholder 1 ]
+  </div>
 
   <div class="edu-case-study">
     <div class="edu-case-study-title">
@@ -300,9 +26,15 @@ categories:
     <p>তারা দেখলেন, এটি আসলে একটি প্রাণী নয়! বরং এটি হাজার হাজার ক্ষুদ্র প্রাণীর একটি কলোনি বা 'শহর'। এই শহরের কেউ শুধু খাদ্য সংগ্রহের কাজ করে (তাদের মুখ আছে), কেউ শুধু সেনাপতির মতো শত্রুর বিরুদ্ধে লড়াই করে (তাদের বিষাক্ত কর্ষিকা আছে, কিন্তু মুখ নেই), আবার কেউ শুধু গ্যাস ভর্তি বেলুনের মতো রূপ ধারণ করে পুরো শহরটিকে পানির ওপর ভাসিয়ে রাখে। পুরো কলোনির স্বার্থে এক একটি জীব নিজেদের আত্মপরিচয় বিসর্জন দিয়ে একটি মাত্র 'অঙ্গ'-এর মতো কাজ করছে। এই যে কাজের ভিত্তিতে দেহের গঠন পরিবর্তন করার ক্ষমতা— জীববিজ্ঞানের ভাষায় একেই বলে <strong>বহুরূপতা (Polymorphism)</strong>।</p>
   </div>
 
+  
+
   <h2>Polymorphism in Cnidaria or Coelenterata</h2>
   <p>সিলেন্টারেটা বা নিডারিয়া (Cnidaria) পর্বের, বিশেষ করে <strong>হাইড্রোজোয়া (Hydrozoa)</strong> শ্রেণীতে এই বহুরূপতা সবচেয়ে বেশি দেখা যায়।</p>
-  <p>সহজ ভাষায়, <strong>বহুরূপতা হলো শ্রমবণ্টনের একটি জাদুকরী পদ্ধতি</strong>। এখানে একটি জীবের বিভিন্ন অঙ্গ দ্বারা ভিন্ন ভিন্ন কাজ করার পরিবর্তে, কলোনির ভিন্ন ভিন্ন 'নমুনাজীব' (যাদের Zooid বা জুয়ড বলা হয়) পৃথক পৃথক কাজ সম্পন্ন করে।</p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7V7yfAs_nkjGtstbqZEq0wh6DyHd-kBsIZMAK4FKW-5I-IW2aJOoRhQFHSJMoH_K_GG5y6kEGfxLfdePxqxabhoEGycI7soERydlMgJhT8Oi8PsR1TfKI7JAQGaOLKx0dzunzJT6MXDKJBZSN_RiWd_0o_7C7lI84cKe-rntge_lpP9FyRkUMEnsJfSQ/s1000/polymorphism.webp" imageanchor="1" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" data-original-height="667" data-original-width="1000" height="213" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7V7yfAs_nkjGtstbqZEq0wh6DyHd-kBsIZMAK4FKW-5I-IW2aJOoRhQFHSJMoH_K_GG5y6kEGfxLfdePxqxabhoEGycI7soERydlMgJhT8Oi8PsR1TfKI7JAQGaOLKx0dzunzJT6MXDKJBZSN_RiWd_0o_7C7lI84cKe-rntge_lpP9FyRkUMEnsJfSQ/s320/polymorphism.webp" width="320" /></a></div><p></p>
+  <p>সহজ ভাষায়, <strong>বহুরূপতা হলো শ্রমবণ্টনের একটি জাদুকরী পদ্ধতি</strong>। এখানে একটি জীবের বিভিন্ন অঙ্গ দ্বারা ভিন্ন ভিন্ন কাজ করার পরিবর্তে, কলোনির ভিন্ন ভিন্ন 'নমুনাজীব' (যাদের Zooid বা জুয়ড বলা হয়) পৃথক পৃথক কাজ সম্পন্ন করে।</p>
+  
+  <div class="text-center">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7V7yfAs_nkjGtstbqZEq0wh6DyHd-kBsIZMAK4FKW-5I-IW2aJOoRhQFHSJMoH_K_GG5y6kEGfxLfdePxqxabhoEGycI7soERydlMgJhT8Oi8PsR1TfKI7JAQGaOLKx0dzunzJT6MXDKJBZSN_RiWd_0o_7C7lI84cKe-rntge_lpP9FyRkUMEnsJfSQ/s1000/polymorphism.webp" alt="Cnidaria Polymorphism" class="edu-diagram-img" />
+  </div>
 
   <h3>প্রাথমিক দুটি রূপ: পলিপ ও মেডুসা</h3>
   <p>কলোনিরূপী হাইড্রোজোয়াতে গঠনের ভিত্তিতে মূলত দু'প্রকার জুয়ড বা রূপ দেখা যায়। নিচের গ্রাফিকাল কার্ডের মাধ্যমে এদের গঠন ও কাজ বুঝে নিই:</p>
@@ -320,9 +52,11 @@ categories:
     </div>
   </div>
 
+  
+
   <div class="ad-placeholder">
-    [ AdSense In-Article Ad Placeholder ]<br />
-    </div>
+    [ AdSense In-Article Ad Placeholder ]
+  </div>
 
   <h3>বহুরূপতার প্রকার (Patterns of Polymorphism)</h3>
   <p>হাইড্রোজোয়া শ্রেণীর বিভিন্ন বর্গে এই পলিপ ও মেডুসা আরও নানা রূপে রূপান্তরিত হয়ে কলোনি তৈরি করে। আসুন দেখি তারা কীভাবে নিজেদের কাজ ভাগ করে নেয়:</p>
@@ -397,9 +131,11 @@ categories:
     </div>
   </div>
 
+  
+
   <div class="ad-placeholder">
-    [ AdSense Matched Content / Multiplex Ad Placeholder ]<br />
-    </div>
+    [ AdSense Matched Content / Multiplex Ad Placeholder ]
+  </div>
 
   <div class="edu-critical-thinking">
     <div class="edu-critical-title">💡 চিন্তার খোরাক (Food for Thought)</div>
