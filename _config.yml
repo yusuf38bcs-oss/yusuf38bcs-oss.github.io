@@ -220,3 +220,11 @@ defaults:
         overlay_image: /assets/images/header-bg.jpg
         overlay_color: "#000"
         overlay_filter: "0.5" # Adds a slight dark tint so text is readable
+        --- --- {% include head.html %} {% include head/custom.html %} {% include skip-links.html %} {% include browser-upgrade.html %} {% include masthead.html %}
+{{ content }}
+{% if site.search == true %}
+{% include_cached search/search_form.html %}
+{% endif %}
+{% include footer/custom.html %} {% include_cached footer.html %}
+{% include scripts.html %}
+
