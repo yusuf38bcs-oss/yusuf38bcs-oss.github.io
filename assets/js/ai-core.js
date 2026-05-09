@@ -29,9 +29,9 @@ window.SynapticAI = (function() {
     modules: {}, // Registry for lazy-loaded UI modules
     sessionMemory: [], // Continuous conversation context
     
-    // Security: Point this to your Netlify/Vercel serverless function!
+    // Security: Point this to your Cloudflare Worker!
     // NEVER expose the raw Google API url or Key here.
-    apiProxyUrl: "/api/gemini-proxy", 
+    apiProxyUrl: "https://synapticai-proxy.yusuf-38bcs.workers.dev", 
 
     /**
      * Bootstraps the environment and loads saved memory
