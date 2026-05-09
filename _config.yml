@@ -1,7 +1,7 @@
 ``` yaml
-\# =========================================================
-\# CORE SITE IDENTITY
-\# =========================================================
+# =========================================================
+# CORE SITE IDENTITY
+# =========================================================
 title: "Learning Biology For Life"
 subtitle: "The Synaptic Bridge"
 description: >
@@ -16,21 +16,21 @@ locale: "en-US"
 timezone: "Asia/Dhaka"
 encoding: "utf-8"
 
-\# =========================================================
-\# THEME & BRANDING
-\# =========================================================
-remote\_theme: "mmistakes/minimal-mistakes@4.24.0"
-minimal\_mistakes\_skin: "air"
+# =========================================================
+# THEME & BRANDING
+# =========================================================
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+minimal_mistakes_skin: "air"
 name: "Learning Biology For Life"
 tagline: "Where Biology Meets Leadership, Cognition, and Human Growth."
 teaser: "/assets/images/default-teaser.jpg"
 breadcrumbs: true
-words\_per\_minute: 180
-enable\_copy\_code\_button: true
+words_per_minute: 180
+enable_copy_code_button: true
 
-\# =========================================================
-\# AUTHOR PROFILE
-\# =========================================================
+# =========================================================
+# AUTHOR PROFILE
+# =========================================================
 author:
  name: "MD. YUSUF"
  avatar: "/assets/images/profile.jpg"
@@ -42,14 +42,14 @@ and creator of the Synaptic Bridge Framework.
  links:
  - label: "LinkedIn"
  icon: "fab fa-fw fa-linkedin"
- url: "\[link removed\]
+ url: "[link removed]"
  - label: "GitHub"
  icon: "fab fa-fw fa-github"
  url: "https://github.com/yusuf38bcs-oss"
 
-\# =========================================================
-\# PLUGINS & SYSTEM SETTINGS
-\# =========================================================
+# =========================================================
+# PLUGINS & SYSTEM SETTINGS
+# =========================================================
 plugins:
  - jekyll-include-cache
  - jekyll-feed
@@ -60,27 +60,27 @@ plugins:
  - jekyll-archives
 
 paginate: 6
-paginate\_path: "/page:num/"
+paginate_path: "/page:num/"
 markdown: kramdown
 highlighter: rouge
 permalink: /:categories/:title/
 
-\# =========================================================
-\# DEFAULTS (FRONT-MATTER INHERITANCE)
-\# =========================================================
+# =========================================================
+# DEFAULTS (FRONT-MATTER INHERITANCE)
+# =========================================================
 defaults:
  - scope:
  path: ""
  type: posts
  values:
  layout: "single"
- author\_profile: true
- read\_time: true
+ author_profile: true
+ read_time: true
  share: true
  related: true
  toc: true
- toc\_sticky: true
- show\_date: true
+ toc_sticky: true
+ show_date: true
  classes: wide
  ai:
  enabled: true
@@ -92,32 +92,30 @@ defaults:
  type: pages
  values:
  layout: "single"
- author\_profile: false
+ author_profile: false
  header:
- overlay\_image: "/assets/images/header-bg.jpg"
- overlay\_color: "\#000"
- overlay\_filter: "0.5"
+ overlay_image: "/assets/images/header-bg.jpg"
+ overlay_color: "#000"
+ overlay_filter: "0.5"
 
-\# =========================================================
-\# BUILD EXCLUSIONS
-\# =========================================================
+# =========================================================
+# BUILD EXCLUSIONS
+# =========================================================
 exclude:
  - Gemfile
  - Gemfile.lock
- - node\_modules
+ - node_modules
  - vendor
  - README.md
  - package.json
  - package-lock.json
 
-\# =========================================================
-\# CUSTOM COGNITIVE DATA
-\# =========================================================
-synaptic\_ai:
+# =========================================================
+# CUSTOM COGNITIVE DATA
+# =========================================================
+synaptic_ai:
  enabled: true
  framework: "Synaptic Bridge"
  architecture: "Modular Cognitive System"
 
 ```
-
-This is the corrected and consolidated content for your `_config.yml` file, which should resolve the YAML syntax errors from previous deployment attempts.
