@@ -108,3 +108,12 @@ ai:
       model: image
       system: "You are a visionary abstract artist."
       prompt: "Abstract digital art, a visual metaphor combining the biological concept of '{title}' with human leadership, personal growth, and the mind. Clean, modern, scientific but artistic, inspiring, deep neural networking aesthetics."
+      
+      --- --- {% include head.html %} {% include head/custom.html %} {% include skip-links.html %} {% include browser-upgrade.html %} {% include masthead.html %}
+{{ content }}
+{% if site.search == true %}
+{% include_cached search/search_form.html %}
+{% endif %}
+{% include footer/custom.html %} {% include_cached footer.html %}
+{% include scripts.html %}
+
