@@ -4,8 +4,8 @@
 title: "Learning Biology For Life"
 subtitle: "The Synaptic Bridge"
 description: >
- A cognitive biology education platform connecting scientific theory,
-leadership, human behavior, systems thinking, and reflective intelligence.
+  A cognitive biology education platform connecting scientific theory,
+  leadership, human behavior, systems thinking, and reflective intelligence.
 url: "https://learningbiologyforlife.org"
 baseurl: ""
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
@@ -31,32 +31,32 @@ enable_copy_code_button: true
 # AUTHOR PROFILE
 # =========================================================
 author:
- name: "MD. YUSUF"
- avatar: "/assets/images/profile.jpg"
- bio: >
- Lecturer of Zoology, 38th BCS (General Education) Cadre Officer,
-and creator of the Synaptic Bridge Framework.
- location: "Bangladesh"
- employer: "Government Education"
- links:
- - label: "LinkedIn"
- icon: "fab fa-fw fa-linkedin"
- url: "[link removed]"
- - label: "GitHub"
- icon: "fab fa-fw fa-github"
- url: "https://github.com/yusuf38bcs-oss"
+  name: "MD. YUSUF"
+  avatar: "/assets/images/profile.jpg"
+  bio: >
+    Lecturer of Zoology, 38th BCS (General Education) Cadre Officer,
+    and creator of the Synaptic Bridge Framework.
+  location: "Bangladesh"
+  employer: "Government Education"
+  links:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "[link removed]"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/yusuf38bcs-oss"
 
 # =========================================================
 # PLUGINS & SYSTEM SETTINGS
 # =========================================================
 plugins:
- - jekyll-include-cache
- - jekyll-feed
- - jekyll-seo-tag
- - jekyll-paginate
- - jekyll-sitemap
- - jekyll-redirect-from
- - jekyll-archives
+  - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jekyll-archives
 
 paginate: 6
 paginate_path: "/page:num/"
@@ -68,51 +68,51 @@ permalink: /:categories/:title/
 # DEFAULTS (FRONT-MATTER INHERITANCE)
 # =========================================================
 defaults:
- - scope:
- path: ""
- type: posts
- values:
- layout: "single"
- author_profile: true
- read_time: true
- share: true
- related: true
- toc: true
- toc_sticky: true
- show_date: true
- classes: wide
- ai:
- enabled: true
- advanced: false
- podcast: true
- quiz: true
- - scope:
- path: ""
- type: pages
- values:
- layout: "single"
- author_profile: false
- header:
- overlay_image: "/assets/images/header-bg.jpg"
- overlay_color: "#000"
- overlay_filter: "0.5"
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: "single"
+      author_profile: true
+      read_time: true
+      share: true
+      related: true
+      toc: true
+      toc_sticky: true
+      show_date: true
+      classes: wide
+      ai:
+        enabled: true
+        advanced: false
+        podcast: true
+        quiz: true
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: "single"
+      author_profile: false
+      header:
+        overlay_image: "/assets/images/header-bg.jpg"
+        overlay_color: "#000"
+        overlay_filter: "0.5"
 
 # =========================================================
 # BUILD EXCLUSIONS
 # =========================================================
 exclude:
- - Gemfile
- - Gemfile.lock
- - node_modules
- - vendor
- - README.md
- - package.json
- - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - package.json
+  - package-lock.json
 
 # =========================================================
 # CUSTOM COGNITIVE DATA
 # =========================================================
 synaptic_ai:
- enabled: true
- framework: "Synaptic Bridge"
- architecture: "Modular Cognitive System"
+  enabled: true
+  framework: "Synaptic Bridge"
+  architecture: "Modular Cognitive System"
