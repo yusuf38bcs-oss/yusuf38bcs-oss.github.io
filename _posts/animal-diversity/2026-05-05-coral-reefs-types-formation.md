@@ -1,255 +1,9 @@
 ---
-layout: single
-author_profile: true
-sidebar:
-  nav: "synaptic_nav"
 title: "Coral Reefs: Types & Formation"
 date: 2026-05-05T08:42:00.003Z
 categories:
-  - Animal Diversity
+  - animal-diversity
 ---
-
-<style>
-  /* --- Premium Educational Platform UI (Modern 2026 Standard) --- */
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap');
-
-  .bio-post-container {
-    font-family: 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
-    color: #334155;
-    line-height: 1.7;
-    font-size: 16px;
-    background-color: #ffffff;
-    max-width: 100%;
-    margin: 0 auto;
-    overflow-x: hidden;
-  }
-
-  .bio-post-container h2, .bio-post-container h3 {
-    color: #0f172a;
-    font-weight: 700;
-    margin-top: 1.5em;
-    margin-bottom: 0.75em;
-  }
-
-  .bio-post-container h2 {
-    font-size: 1.75rem;
-    border-bottom: 3px solid #0ea5e9;
-    display: inline-block;
-    padding-bottom: 5px;
-  }
-
-  .bio-post-container h3 {
-    font-size: 1.4rem;
-    color: #0284c7;
-  }
-
-  .bio-post-container p {
-    margin-bottom: 1.2em;
-  }
-
-  /* --- Highlight Blocks (Case Study & Thoughts) --- */
-  .edu-quote, .edu-case-study, .edu-critical-thinking {
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin: 24px 0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  }
-
-  .edu-quote {
-    background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
-    border-left: 5px solid #0ea5e9;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: #0f766e;
-  }
-
-  .edu-case-study {
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-left: 5px solid #8b5cf6;
-  }
-
-  .edu-case-study-title {
-    font-weight: 700;
-    color: #6d28d9;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .edu-critical-thinking {
-    background-color: #fffbeb;
-    border: 1px solid #fde68a;
-    border-left: 5px solid #d97706;
-  }
-
-  .edu-critical-title {
-    font-weight: 700;
-    color: #b45309;
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-  }
-
-  /* --- Collapsible Smart Sections --- */
-  .smart-accordion {
-    margin: 20px 0;
-  }
-
-  .smart-details {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-  }
-
-  .smart-details[open] {
-    border-color: #0ea5e9;
-    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1);
-  }
-
-  .smart-summary {
-    padding: 16px 20px;
-    font-weight: 700;
-    color: #0f172a;
-    background-color: #f8fafc;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.2s;
-  }
-
-  .smart-summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .smart-summary:hover {
-    background-color: #f1f5f9;
-  }
-
-  .smart-summary::after {
-    content: '+';
-    font-size: 1.5rem;
-    color: #0ea5e9;
-    transition: transform 0.3s ease;
-  }
-
-  .smart-details[open] .smart-summary::after {
-    transform: rotate(45deg);
-    color: #ef4444;
-  }
-
-  .smart-content {
-    padding: 16px 20px;
-    background-color: #ffffff;
-    border-top: 1px solid #e2e8f0;
-  }
-
-  /* --- Formation Timeline Flowchart --- */
-  .edu-timeline {
-    position: relative;
-    padding-left: 30px;
-    margin: 30px 0;
-  }
-
-  .edu-timeline::before {
-    content: '';
-    position: absolute;
-    left: 11px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #cbd5e1;
-  }
-
-  .timeline-step {
-    position: relative;
-    margin-bottom: 24px;
-  }
-
-  .timeline-step::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    top: 4px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #0ea5e9;
-    border: 3px solid #ffffff;
-    box-shadow: 0 0 0 2px #0ea5e9;
-  }
-
-  .timeline-box {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 15px 20px;
-    border-radius: 8px;
-  }
-
-  .timeline-box strong {
-    color: #0369a1;
-    display: block;
-    margin-bottom: 5px;
-    font-size: 1.1rem;
-  }
-
-  .timeline-result {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background: #ecfeff;
-    color: #0891b2;
-    border-radius: 6px;
-    font-weight: 600;
-    display: inline-block;
-  }
-
-  /* --- Inline Diagram Image --- */
-  .edu-diagram-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    margin: 30px 0;
-    display: block;
-  }
-
-  /* --- AdSense Optimized Placeholders --- */
-  .ad-placeholder {
-    margin: 30px 0;
-    padding: 15px;
-    background-color: #f1f5f9;
-    border: 2px dashed #cbd5e1;
-    text-align: center;
-    color: #94a3b8;
-    font-size: 0.9rem;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 120px; /* Standard responsive ad height */
-  }
-
-  /* --- Responsive Design --- */
-  @media (max-width: 600px) {
-    .bio-post-container {
-      font-size: 15px;
-    }
-    .bio-post-container h2 { font-size: 1.5rem; }
-    .bio-post-container h3 { font-size: 1.25rem; }
-    .edu-quote, .edu-case-study, .edu-critical-thinking {
-      padding: 15px;
-    }
-    .timeline-box {
-      padding: 12px 15px;
-    }
-  }
-</style>
 
 <div class="bio-post-container">
 
@@ -260,7 +14,7 @@ categories:
   <p>জীববিদ্যা কেবল বইয়ের পাতায় সীমাবদ্ধ কোনো বিষয় নয়; এটি মহান স্রষ্টার সৃষ্টিজগতের এক জীবন্ত পাঠশালা, যেখানে মানবদেহ থেকে শুরু করে সমুদ্রের তলদেশ—সবখানেই লুকিয়ে আছে বিস্ময়কর সব ইঞ্জিনিয়ারিং। আজ আমরা সমুদ্রের তলদেশের এক রহস্যময় স্থপতিদের নিয়ে এমনভাবে আলোচনা করব, যা আপনাদের কেবল তথ্যই দেবে না, বরং গভীরভাবে ভাবতে শেখাবে।</p>
 
   <div class="ad-placeholder">
-    [ AdSense Responsive Ad Placeholder 1 ]<br />
+    [ AdSense Responsive Ad Placeholder 1 ]
   </div>
 
   <div class="edu-case-study">
@@ -286,7 +40,7 @@ categories:
   <p>বিজ্ঞানী T. W. Vaughan-এর মতে, প্রবাল প্রাচীর হলো সমুদ্র তলদেশের উপর নির্মিত চুনাপাথরের স্তূপ বা চূড়া, যা প্রবাল নামক জীবের ক্রিয়ার ফলে তৈরি হয় এবং এর উপরিভাগ সমুদ্রপৃষ্ঠের কাছাকাছি থাকে। এরা সাধারণত ১৮°C থেকে ২২°C তাপমাত্রার উষ্ণ এবং অগভীর (৩০ মিটারের কম গভীর) পানিতে সবচেয়ে ভালো জন্মায়।</p>
 
   <div class="ad-placeholder">
-    [ AdSense Responsive Ad Placeholder 2 ]<br />
+    [ AdSense Responsive Ad Placeholder 2 ]
   </div>
 
   <h3>প্রবাল প্রাচীরের প্রকারভেদ (Kinds of Coral Reefs)</h3>
@@ -350,15 +104,21 @@ categories:
     </div>
   </div>
 
-  <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhq2StxlsUmGHpeM-xFHi64sGc0MAWqd8JONuSJ2diZ8q-7KtoED04RkWMBgJAXU-ehc95e71rK9c4-hqwRhwi1k-FM8c4-M9vFoDIXEHhlA3zgPWr_hyphenhyphenfgkNlN8LYhRPfDvxRQ1vDFMAT0nMMXmjElzCAEZE4ZYFsPHz8AEJrllsUah8-Pg6iTuU6XjPA/s1500/coral_formation.webp" imageanchor="1" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" data-original-height="818" data-original-width="1500" height="175" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhq2StxlsUmGHpeM-xFHi64sGc0MAWqd8JONuSJ2diZ8q-7KtoED04RkWMBgJAXU-ehc95e71rK9c4-hqwRhwi1k-FM8c4-M9vFoDIXEHhlA3zgPWr_hyphenhyphenfgkNlN8LYhRPfDvxRQ1vDFMAT0nMMXmjElzCAEZE4ZYFsPHz8AEJrllsUah8-Pg6iTuU6XjPA/s320/coral_formation.webp" width="320" /></a><br /><div class="ad-placeholder">
-    [ AdSense Matched Content / Multiplex Ad Placeholder ]<br />
+  <div class="text-center">
+    <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhq2StxlsUmGHpeM-xFHi64sGc0MAWqd8JONuSJ2diZ8q-7KtoED04RkWMBgJAXU-ehc95e71rK9c4-hqwRhwi1k-FM8c4-M9vFoDIXEHhlA3zgPWr_hyphenhyphenfgkNlN8LYhRPfDvxRQ1vDFMAT0nMMXmjElzCAEZE4ZYFsPHz8AEJrllsUah8-Pg6iTuU6XjPA/s1500/coral_formation.webp" target="_blank">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhq2StxlsUmGHpeM-xFHi64sGc0MAWqd8JONuSJ2diZ8q-7KtoED04RkWMBgJAXU-ehc95e71rK9c4-hqwRhwi1k-FM8c4-M9vFoDIXEHhlA3zgPWr_hyphenhyphenfgkNlN8LYhRPfDvxRQ1vDFMAT0nMMXmjElzCAEZE4ZYFsPHz8AEJrllsUah8-Pg6iTuU6XjPA/s1500/coral_formation.webp" alt="Coral Formation Diagram" class="edu-diagram-img" />
+    </a>
+  </div>
+
+  <div class="ad-placeholder">
+    [ AdSense Matched Content / Multiplex Ad Placeholder ]
   </div>
 
   <div class="edu-critical-thinking">
     <div class="edu-critical-title">💡 চিন্তার খোরাক (Food for Thought)</div>
     <p>একবার গভীরভাবে ভেবে দেখুন তো! মাত্র কয়েক মিলিমিটার আকারের একটি প্রাণী, যাদের মস্তিষ্ক বা উন্নত স্নায়ুতন্ত্র নেই, তারা সম্মিলিতভাবে এমন এক বিশাল কাঠামো তৈরি করে, যা মহাকাশ থেকেও দেখা যায় (যেমন গ্রেট ব্যারিয়ার রিফ)। তারা সমুদ্রের তলদেশে গড়ে তোলে এক বিশাল ইকোসিস্টেম বা বাস্তুতন্ত্র, যেখানে আশ্রয় নেয় স্পঞ্জ, সাগর কুসুম, স্টারফিশ, কাঁকড়া, শামুক থেকে শুরু করে অসংখ্য সামুদ্রিক প্রাণী。</p>
-    <p>জীববিজ্ঞানের এই ক্ষুদ্র প্রাণীদের শৃঙ্খলা, একত্রীকরণ এবং সৃষ্টির এই নিখুঁত নকশা কি আমাদের দলবদ্ধ হয়ে কাজ করার, প্রতিকূলতার মাঝেও মাথা উঁচু করে টিকে থাকার শিক্ষা দেয় না? স্রষ্টার সৃষ্টিজগতের এই বিশাল রহস্যের সামনে দাঁড়িয়ে আমাদের অহংকারগুলো কি খুব ক্ষুদ্র মনে হয় না?</p>
+    <p>জীববিজ্ঞানের এই ক্ষুদ্র প্রাণীদের শৃঙ্খলা, একত্রীকরণ এবং সৃষ্টির এই নিখুঁত নকশা কি আমাদের দলবদ্ধ হয়ে কাজ করার, প্রতিকূলতার মাঝেও মাথা উঁচু করে টিকে থাকার শিক্ষা দেয় না? স্রষ্টার সৃষ্টিজগতের এই বিশাল রহস্যের সামনে দাঁড়িয়ে আমাদের অহংকারগুলো কি খুব ক্ষুদ্র মনে হয় পণ্ডিত?</p>
     <p style="font-weight: 600; margin-bottom: 0px;">প্রকৃতির এই বিস্ময়কর স্থপতিদের সম্পর্কে জেনে আপনাদের কী মনে হচ্ছে? মানব জাতি হিসেবে প্রকৃতি সংরক্ষণে আমাদের দায়বদ্ধতা ঠিক কতটা, তা কমেন্ট করে জানান!</p>
   </div>
 
-</div><br /><br /><br /><br />
+</div>
