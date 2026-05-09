@@ -1,0 +1,17 @@
+---
+layout: archive
+author_profile: true
+---
+
+{% assign slug = page.title | slugify %}
+{% assign meta = site.data.category_meta[slug] %}
+
+<h1 id="page-title" class="page__title">
+  {{ meta.title | default: page.title | replace: "-", " " | capitalize }}
+</h1>
+
+<div class="entries-list">
+  {% for post in page.posts %}
+    {% include archive-single.html %}
+  {% endfor %}
+</div>
