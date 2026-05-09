@@ -1,22 +1,22 @@
-# ==========================================
+# =========================================================
 # 1. THE BRAIN STEM (Top Navigation)
 # Controls primary site-wide cognitive routing.
-# ==========================================
+# =========================================================
 main:
   - title: "HSC Corner"
-    url: "#" # Use "#" if there is no parent landing page, allowing clean dropdown behavior.
+    url: "#"
     children:
       - title: "HSC 1st Paper (Botany)"
         url: "/categories/botany/"
       - title: "HSC 2nd Paper (Zoology)"
         url: "/categories/zoology/"
         
-  - title: "Higher Zoology" # Shortened from "Higher Zoology Tree" to save horizontal nav space
+  - title: "Higher Zoology"
     url: "#"
     children:
       - title: "Animal Diversity & Taxonomy"
         url: "/categories/animal-diversity/"
-      - title: "Human Physiology" # Reordered to group closely related biological functions
+      - title: "Human Physiology"
         url: "/categories/human-physiology/"
       - title: "Genetics & Evolution"
         url: "/categories/genetics/"
@@ -25,7 +25,7 @@ main:
       - title: "Biostatistics"
         url: "/categories/biostatistics/"
 
-  - title: "Life Practices" # Sharpened from "Life (Practical Approach)"
+  - title: "Life Practices"
     url: "#"
     children:
       - title: "Leadership Management"
@@ -44,16 +44,13 @@ main:
         url: "/categories/mcq/"
       - title: "MI Analysis"
         url: "/mi-analysis/"
-      - title: "Personality Archetypes" # Elevated phrasing
+      - title: "Personality Archetypes"
         url: "/personality-test/"
 
-
-# ==========================================
+# =========================================================
 # 2. SUPPLEMENTARY PATHWAYS (Contextual Sidebars)
 # Governs the "Socratic Assessment" logic in post layouts.
-# ==========================================
-
-# Active when a user is reading an Academic/Biology post
+# =========================================================
 academic_sidebar:
   - title: "Test Your Synapse"
     children:
@@ -62,7 +59,6 @@ academic_sidebar:
       - title: "Upcoming Quizzes"
         url: "/quizzes/"
 
-# Active when a user is reading a Life/Leadership post
 socratic_sidebar:
   - title: "Self-Discovery"
     children:
