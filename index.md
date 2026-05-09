@@ -10,9 +10,6 @@ header:
     Welcome to the <strong>Synaptic Bridge</strong> — where biology transcends textbooks and becomes a framework for leadership, cognition, human behaviour, self-discovery, and life itself.
   cta_label: "Enter The Cognitive System"
   cta_url: "/categories/zoology/"
-intro:
-  - excerpt: >
-      Biology is not merely the study of life. It is the architecture of adaptation, intelligence, systems, evolution, leadership, and consciousness.
 classes: wide
 ---
 
@@ -131,8 +128,8 @@ classes: wide
       <div class="synaptic-domain-cloud" style="display: flex; flex-wrap: wrap; gap: 8px;">
         <a href="/categories/human-behaviour/" class="btn btn--success btn--small">Human Behaviour</a>
         <a href="/categories/biostatistics/" class="btn btn--success btn--small">Biostatistics</a>
-        <a href="/categories/research-methodology/" class="btn btn--success btn--small">Research</a>
-        <a href="/categories/practical-approaches-life/" class="btn btn--success btn--small">Life Practice</a>
+        <a href="/categories/research-highlights/" class="btn btn--success btn--small">Research</a>
+        <a href="/categories/leadership/" class="btn btn--success btn--small">Leadership</a>
         <a href="/categories/random-thoughts/" class="btn btn--success btn--small">Thoughts</a>
       </div>
     </div>
