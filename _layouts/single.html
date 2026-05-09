@@ -10,6 +10,13 @@ layout: default
   {% include page__hero_video.html %}
 {% endif %}
 
+--- --- {% include head.html %} {% include head/custom.html %} {% include skip-links.html %} {% include browser-upgrade.html %} {% include masthead.html %}
+{{ content }}
+{% if site.search == true %}
+{% include_cached search/search_form.html %}
+{% endif %}
+{% include footer/custom.html %} {% include_cached footer.html %}
+{% include scripts.html %}
 <div id="main" role="main">
 
   {% include sidebar.html %}
