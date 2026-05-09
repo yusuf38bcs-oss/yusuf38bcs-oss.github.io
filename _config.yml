@@ -158,6 +158,16 @@ defaults:
         overlay_image: "/assets/images/header-bg.jpg"
         overlay_color: "#000"
         overlay_filter: "0.5"
+        
+# =========================================================
+# AUTO-GENERATE CATEGORY ARCHIVES
+# =========================================================
+jekyll-archives:
+  enabled:
+    - categories
+  layout: category-archive
+  permalinks:
+    category: /categories/:name/
 
 # =========================================================
 # BUILD EXCLUSIONS
