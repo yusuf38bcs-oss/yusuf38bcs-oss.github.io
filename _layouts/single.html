@@ -1,8 +1,7 @@
+```html
 ---
 layout: default
 ---
-
-{% assign ai = site.data.ai.ai %}
 
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
   {% include page__hero.html %}
@@ -10,160 +9,132 @@ layout: default
   {% include page__hero_video.html %}
 {% endif %}
 
---- --- {% include head.html %} {% include head/custom.html %} {% include skip-links.html %} {% include browser-upgrade.html %} {% include masthead.html %}
-{{ content }}
-{% if site.search == true %}
-{% include_cached search/search_form.html %}
+{% assign breadcrumbs_enabled = site.breadcrumbs %}
+{% if page.breadcrumbs != null %}
+  {% assign breadcrumbs_enabled = page.breadcrumbs %}
 {% endif %}
-{% include footer/custom.html %} {% include_cached footer.html %}
-{% include scripts.html %}
-<div id="main" role="main">
+{% if page.url != "/" and breadcrumbs_enabled %}
+  {% unless paginator %}
+    {% include breadcrumbs.html %}
+  {% endunless %}
+{% endif %}
 
+<div id="main" role="main">
   {% include sidebar.html %}
 
-  <article class="page synaptic-page" itemscope itemtype="https://schema.org/CreativeWork">
+  <!-- CONTEXTUAL SOCRATIC SIDEBAR LOGIC -->
+  <aside class="sidebar__right sticky">
+    {% assign is_academic = false %}
+    {% assign is_socratic = false %}
+    
+    {% for category in page.categories %}
+      {% if category == 'botany' or category == 'zoology' or category == 'animal-diversity' or category == 'human-physiology' or category == 'genetics' or category == 'ecology' or category == 'biostatistics' %}
+        {% assign is_academic = true %}
+      {% endif %}
+      {% if category == 'leadership' or category == 'human-behaviour' or category == 'research-highlights' or category == 'random-thoughts' %}
+        {% assign is_socratic = true %}
+      {% endif %}
+    {% endfor %}
 
-    {% if page.title %}
-      <meta itemprop="headline" content="{{ page.title | strip_html | strip_newlines | escape_once }}">
+    {% if is_academic %}
+      <nav class="toc">
+        <header><h4 class="nav__title"><i class="fas fa-brain"></i> Test Your Synapse</h4></header>
+        <ul class="toc__menu">
+          <li><a href="/categories/mcq/">Enter MCQ Arena</a></li>
+          <li><a href="/quizzes/">Upcoming Quizzes</a></li>
+        </ul>
+      </nav>
+    {% elsif is_socratic %}
+      <nav class="toc">
+        <header><h4 class="nav__title"><i class="fas fa-seedling"></i> Self-Discovery</h4></header>
+        <ul class="toc__menu">
+          <li><a href="/mi-analysis/">Find Your Intelligence Zone</a></li>
+          <li><a href="/personality-test/">Discover Your Archetype</a></li>
+        </ul>
+      </nav>
     {% endif %}
+    
+    {% if page.toc %}
+      {% include toc.html sanitize=true html=content h_min=1 h_max=6 class="toc__menu" skip_no_ids=true %}
+    {% endif %}
+  </aside>
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
+    {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
 
     <div class="page__inner-wrap">
+      {% unless page.header.overlay_color or page.header.overlay_image %}
+        <header>
+          {% if page.title %}<h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="{{ page.url | absolute_url }}" class="u-url" itemprop="url">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
+          </h1>{% endif %}
+          {% include page__meta.html %}
+        </header>
+      {% endunless %}
 
-      {% include custom/breadcrumbs.html %}
-
-      <header class="page__header">
-        {% if page.title %}
-          <h1 id="page-title" class="page__title" itemprop="headline">{{ page.title }}</h1>
-        {% endif %}
-        {% include custom/post-meta.html %}
-      </header>
-
-      <section class="page__content" itemprop="text">
+      <section class="page__content e-content" itemprop="text">
         {{ content }}
-      </section>
-
-      {% if page.ai.enabled != false %}
-      <section class="synaptic-primary-tools">
         
-        {% if page.ai.podcast != false and ai.podcast.enabled %}
-          {% include ai/podcast.html config=ai.podcast %}
-        {% endif %}
-
-        {% if page.ai.quiz != false and ai.quiz.enabled %}
-          {% include ai/quiz.html config=ai.quiz %}
-        {% endif %}
-
-        {% if page.ai.translator != false and ai.translator.enabled %}
-          {% include ai/translator.html config=ai.translator %}
-        {% endif %}
-
+        {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
-      {% endif %}
 
-      {% if page.ai.advanced == true %}
-      <section class="synaptic-advanced-tools margin-top-3">
-        <details class="synaptic-expandable">
-          <summary class="synaptic-expandable__title btn btn--outline btn--block text-left" style="cursor: pointer;">
-            <strong>✨ Explore Advanced Cognitive Tools</strong>
-          </summary>
-          
-          <div class="synaptic-grid margin-top-2">
-            {% if ai.journal.enabled %}{% include ai/journal.html config=ai.journal %}{% endif %}
-            {% if ai.feynman.enabled %}{% include ai/feynman.html config=ai.feynman %}{% endif %}
-            {% if ai.tutor.enabled %}{% include ai/tutor.html config=ai.tutor %}{% endif %}
-            {% if ai.debate.enabled %}{% include ai/debate.html config=ai.debate %}{% endif %}
-            {% if ai.principles.enabled %}{% include ai/principles.html config=ai.principles %}{% endif %}
-            {% if ai.image.enabled %}{% include ai/image.html config=ai.image %}{% endif %}
-          </div>
-        </details>
-      </section>
-      {% endif %}
-
-      <footer class="page__meta margin-top-3">
+      <footer class="page__meta">
+        {% if site.data.ui-text[site.locale].meta_label %}
+          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
+        {% endif %}
         {% include page__taxonomy.html %}
+        {% include page__date.html %}
       </footer>
 
+      <!-- THE BREVO NEWSLETTER HOOK (SYNAPTIC CONNECTION) -->
+      <div class="newsletter-hook" style="background: #f2f5f9; padding: 2em; border-radius: 8px; margin: 2em 0; border-left: 4px solid #081b29;">
+        <h3 style="margin-top: 0;"><i class="fas fa-network-wired"></i> Did this lesson bridge a gap for you?</h3>
+        <p>Join the Synaptic Bridge newsletter to connect biological theory to real-world leadership and human behavior.</p>
+        <!-- Replace action URL with your actual Brevo form endpoint -->
+        <form action="YOUR_BREVO_FORM_URL" method="post" target="_blank" style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <input type="email" name="EMAIL" placeholder="Enter your email address" required style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; min-width: 250px;">
+          <button type="submit" class="btn btn--primary">Subscribe for Insights</button>
+        </form>
+      </div>
+
       {% if page.share %}{% include social-share.html %}{% endif %}
-      
+
       {% include post_pagination.html %}
-
-      <section class="synaptic-newsletter margin-top-3">
-        <div class="notice--info text-center synaptic-retention-box">
-          <h3 class="margin-top-0">Did this lesson bridge a gap for you?</h3>
-          <p>Subscribe to receive biological insights that connect directly to life, leadership, cognition, and human growth.</p>
-          <button class="btn btn--primary btn--large" onclick="openBrevoModal()">Keep the Connection Alive</button>
-        </div>
-      </section>
-
     </div>
 
-    {% if page.ai.sidebar != false %}
-    <aside class="sidebar__right sticky socratic-reflex-sidebar">
-      <div class="socratic-card notice--blank">
-        <h4 class="socratic-title">Socratic Reflex</h4>
-
-        {% assign page_cats = page.categories | join: " " | downcase %}
-
-        {% if page_cats contains "zoology" or page_cats contains "botany" or page_cats contains "ecology" or page_cats contains "genetics" or page_cats contains "physiology" or page_cats contains "biostatistics" %}
-          <p class="small">Master the academic dots of this lesson.</p>
-          <a href="/categories/mcq/" class="btn btn--success btn--block">Enter MCQ Arena</a>
-        {% elsif page_cats contains "leadership" or page_cats contains "human behaviour" %}
-          <p class="small">Explore your behavioral archetype.</p>
-          <a href="/personality-test/" class="btn btn--warning btn--block">Find Your Archetype</a>
-        {% else %}
-          <p class="small">Which neural pathway did this activate?</p>
-          <a href="/mi-analysis/" class="btn btn--info btn--block">Map Your Intelligence</a>
-        {% endif %}
-
-        <hr class="margin-top-2 margin-bottom-2">
-        <div id="ai-socratic-question">
-          <p class="socratic-quote small text-muted"><em>✨ Igniting synapses...</em></p>
-        </div>
-      </div>
-    </aside>
+    {% if jekyll.environment == 'production' and site.comments.provider and page.comments %}
+      {% include comments.html %}
     {% endif %}
-
   </article>
 
-  <div class="page__related">
-    <h4 class="page__related-title">Related Synapses</h4>
-    <div class="grid__wrapper">
-      {% for post in site.related_posts limit:3 %}
-        {% include archive-single.html type="grid" %}
-      {% endfor %}
+  <!-- RELATED SYNAPSES -->
+  {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
+  {% if page.id and page.related and site.related_posts.size > 0 %}
+    <div class="page__related">
+      <h2 class="page__related-title"><i class="fas fa-project-diagram"></i> Related Synapses</h2>
+      <div class="grid__wrapper">
+        {% for post in site.related_posts limit:3 %}
+          {% include archive-single.html type="grid" %}
+        {% endfor %}
+      </div>
     </div>
-  </div>
-
+  {% comment %}<!-- otherwise show recent posts if no related when `related: true` -->{% endcomment %}
+  {% elsif page.id and page.related %}
+    <div class="page__related">
+      <h2 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h2>
+      <div class="grid__wrapper">
+        {% for post in site.posts limit:4 %}
+          {% if post.id == page.id %}
+            {% continue %}
+          {% endif %}
+          {% include archive-single.html type="grid" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
 </div>
 
-<script>
-window.SynapticAI = {
-  config: {{ site.data.ai.ai | jsonify }},
-  page: {
-    title: {{ page.title | jsonify }},
-    excerpt: {{ page.excerpt | strip_html | jsonify }},
-    categories: {{ page.categories | jsonify }},
-    tags: {{ page.tags | jsonify }},
-    author: {{ page.author.name | default: 'MD. Yusuf' | jsonify }}
-  }
-};
-</script>
-
-<script defer src="{{ '/assets/js/ai-core.js' | relative_url }}"></script>
-
-{% if page.ai.enabled != false %}
-  
-  {% if page.ai.quiz != false %}<script defer src="{{ '/assets/js/ai-modules/quiz.js' | relative_url }}"></script>{% endif %}
-  {% if page.ai.podcast != false %}<script defer src="{{ '/assets/js/ai-modules/podcast.js' | relative_url }}"></script>{% endif %}
-  {% if page.ai.translator != false %}<script defer src="{{ '/assets/js/ai-modules/translator.js' | relative_url }}"></script>{% endif %}
-
-  {% if page.ai.advanced == true %}
-    <script defer src="{{ '/assets/js/ai-modules/tutor.js' | relative_url }}"></script>
-    <script defer src="{{ '/assets/js/ai-modules/journal.js' | relative_url }}"></script>
-    <script defer src="{{ '/assets/js/ai-modules/feynman.js' | relative_url }}"></script>
-    <script defer src="{{ '/assets/js/ai-modules/debate.js' | relative_url }}"></script>
-    <script defer src="{{ '/assets/js/ai-modules/principles.js' | relative_url }}"></script>
-    <script defer src="{{ '/assets/js/ai-modules/image.js' | relative_url }}"></script>
-  {% endif %}
-
-{% endif %}
+```
