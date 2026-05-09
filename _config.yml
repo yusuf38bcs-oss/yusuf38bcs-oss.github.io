@@ -10,7 +10,7 @@ title: "Learning Biology For Life"
 subtitle: "The Synaptic Bridge"
 description: >
   A cognitive biology education platform connecting scientific theory, leadership, human behavior, systems thinking, and reflective intelligence.
-url: "https://learningbiologyforlife.org"
+url: "https://learningbiologyforlife.org" # Change to your actual domain
 baseurl: ""
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 logo: "/assets/images/logo.png"
@@ -61,7 +61,7 @@ author:
   name: "MD. YUSUF"
   avatar: "/assets/images/profile.jpg"
   bio: >
-    Lecturer of Zoology, 38th BCS (General Education) Cadre Officer, and creator of the Synaptic Bridge Framework — integrating biology, leadership, cognition, and digital pedagogy.
+    Lecturer of Zoology, 38th BCS (General Education) Cadre Officer, and creator of the Synaptic Bridge Framework.
   location: "Bangladesh"
   employer: "Government Education"
   links:
@@ -78,6 +78,125 @@ author:
 header:
   overlay_color: "#081b29"
   overlay_filter: rgba(8,27,41,0.72)
+
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/yusuf38bcs-oss"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://www.linkedin.com/in/md-yusuf-128b94404"
+
+# =========================================================
+# PLUGINS & SYSTEM SETTINGS
+# =========================================================
+plugins:
+  - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jekyll-archives
+
+paginate: 6
+paginate_path: /page:num/
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+
+# =========================================================
+# ARCHIVES
+# =========================================================
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+    - year
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+    year: archive
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+    year: /archives/:year/
+
+# =========================================================
+# CUSTOM GLOBAL COGNITIVE SYSTEM DATA
+# =========================================================
+synaptic_ai:
+  enabled: true
+  framework: "Synaptic Bridge"
+  architecture: "Modular Cognitive System"
+  lazy_load: true
+
+# =========================================================
+# DEFAULTS (FRONT-MATTER INHERITANCE)
+# =========================================================
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      share: true
+      related: true
+      comments: false
+      toc: true
+      toc_sticky: true
+      show_date: true
+      classes: wide
+      header:
+        overlay_filter: rgba(8,27,41,0.55)
+      ai:
+        enabled: true
+        advanced: false
+        podcast: true
+        quiz: true
+        translator: true
+
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: false
+      header:
+        overlay_image: /assets/images/header-bg.jpg
+        overlay_color: "#000"
+        overlay_filter: "0.5"
+      ai:
+        enabled: false
+
+# =========================================================
+# COMPILER SETTINGS
+# =========================================================
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  syntax_highlighter: rouge
+
+sass:
+  style: compressed
+
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - package.json
+  - package-lock.json  overlay_filter: rgba(8,27,41,0.72)
 
 footer:
   links:
@@ -227,4 +346,3 @@ defaults:
 {% endif %}
 {% include footer/custom.html %} {% include_cached footer.html %}
 {% include scripts.html %}
-
