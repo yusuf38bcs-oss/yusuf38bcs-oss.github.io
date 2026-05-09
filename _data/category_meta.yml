@@ -1,0 +1,19 @@
+# =========================================================
+# CATEGORY METADATA
+# Maps category slugs to clean titles and descriptions
+# =========================================================
+
+animal-diversity:
+  title: "Higher Zoology Tree: Animal Diversity"
+  
+human-physiology:
+  title: "Higher Zoology Tree: Human Physiology"
+  
+mcq:
+  title: "Socratic 4.0: MCQ Arena"
+  
+leadership:
+  title: "Life Practices: Leadership Management"
+  
+# You can add as many as you want here! 
+# If a category isn't listed here, the system will just auto-capitalize the slug.
