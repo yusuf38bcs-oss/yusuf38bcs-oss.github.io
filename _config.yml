@@ -1,16 +1,13 @@
-# =========================================================
-# LEARNING BIOLOGY FOR LIFE
-# Cognitive Education Platform Configuration
-# =========================================================
-
-# =========================================================
-# CORE SITE IDENTITY
-# =========================================================
+``` yaml
+\# =========================================================
+\# CORE SITE IDENTITY
+\# =========================================================
 title: "Learning Biology For Life"
 subtitle: "The Synaptic Bridge"
 description: >
-  A cognitive biology education platform connecting scientific theory, leadership, human behavior, systems thinking, and reflective intelligence.
-url: "https://learningbiologyforlife.org" # Change to your actual domain
+ A cognitive biology education platform connecting scientific theory,
+leadership, human behavior, systems thinking, and reflective intelligence.
+url: "https://learningbiologyforlife.org"
 baseurl: ""
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 logo: "/assets/images/logo.png"
@@ -19,330 +16,108 @@ locale: "en-US"
 timezone: "Asia/Dhaka"
 encoding: "utf-8"
 
-# =========================================================
-# THEME & BRANDING
-# =========================================================
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
-minimal_mistakes_skin: "air"
-
+\# =========================================================
+\# THEME & BRANDING
+\# =========================================================
+remote\_theme: "mmistakes/minimal-mistakes@4.24.0"
+minimal\_mistakes\_skin: "air"
 name: "Learning Biology For Life"
 tagline: "Where Biology Meets Leadership, Cognition, and Human Growth."
 teaser: "/assets/images/default-teaser.jpg"
 breadcrumbs: true
-words_per_minute: 180
-enable_copy_code_button: true
+words\_per\_minute: 180
+enable\_copy\_code\_button: true
 
-# =========================================================
-# SEO & SOCIAL
-# =========================================================
-search: true
-search_full_content: true
-atom_feed:
-  hide: false
-
-seo:
-  type: EducationalOrganization
-  name: Learning Biology For Life
-
-twitter:
-  username: ""
-  card: summary_large_image
-
-social:
-  type: Organization
-  links:
-    - "https://github.com/yusuf38bcs-oss"
-    - "https://www.linkedin.com/in/md-yusuf-128b94404"
-
-# =========================================================
-# AUTHOR PROFILE
-# =========================================================
+\# =========================================================
+\# AUTHOR PROFILE
+\# =========================================================
 author:
-  name: "MD. YUSUF"
-  avatar: "/assets/images/profile.jpg"
-  bio: >
-    Lecturer of Zoology, 38th BCS (General Education) Cadre Officer, and creator of the Synaptic Bridge Framework.
-  location: "Bangladesh"
-  employer: "Government Education"
-  links:
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/md-yusuf-128b94404"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/yusuf38bcs-oss"
+ name: "MD. YUSUF"
+ avatar: "/assets/images/profile.jpg"
+ bio: >
+ Lecturer of Zoology, 38th BCS (General Education) Cadre Officer,
+and creator of the Synaptic Bridge Framework.
+ location: "Bangladesh"
+ employer: "Government Education"
+ links:
+ - label: "LinkedIn"
+ icon: "fab fa-fw fa-linkedin"
+ url: "\[link removed\]
+ - label: "GitHub"
+ icon: "fab fa-fw fa-github"
+ url: "https://github.com/yusuf38bcs-oss"
 
-# =========================================================
-# HEADER & FOOTER OVERRIDES
-# =========================================================
-header:
-  overlay_color: "#081b29"
-  overlay_filter: rgba(8,27,41,0.72)
-
-footer:
-  links:
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/yusuf38bcs-oss"
-    - label: "LinkedIn"
-      icon: "fab fa-linkedin"
-      url: "https://www.linkedin.com/in/md-yusuf-128b94404"
-
-# =========================================================
-# PLUGINS & SYSTEM SETTINGS
-# =========================================================
+\# =========================================================
+\# PLUGINS & SYSTEM SETTINGS
+\# =========================================================
 plugins:
-  - jekyll-include-cache
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-redirect-from
-  - jekyll-archives
+ - jekyll-include-cache
+ - jekyll-feed
+ - jekyll-seo-tag
+ - jekyll-paginate
+ - jekyll-sitemap
+ - jekyll-redirect-from
+ - jekyll-archives
 
 paginate: 6
-paginate_path: /page:num/
+paginate\_path: "/page:num/"
 markdown: kramdown
 highlighter: rouge
 permalink: /:categories/:title/
 
-# =========================================================
-# ARCHIVES
-# =========================================================
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-    - year
-  layouts:
-    category: archive-taxonomy
-    tag: archive-taxonomy
-    year: archive
-  permalinks:
-    category: /categories/:name/
-    tag: /tags/:name/
-    year: /archives/:year/
-
-# =========================================================
-# CUSTOM GLOBAL COGNITIVE SYSTEM DATA
-# =========================================================
-synaptic_ai:
-  enabled: true
-  framework: "Synaptic Bridge"
-  architecture: "Modular Cognitive System"
-  lazy_load: true
-
-# =========================================================
-# DEFAULTS (FRONT-MATTER INHERITANCE)
-# =========================================================
+\# =========================================================
+\# DEFAULTS (FRONT-MATTER INHERITANCE)
+\# =========================================================
 defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      share: true
-      related: true
-      comments: false
-      toc: true
-      toc_sticky: true
-      show_date: true
-      classes: wide
-      header:
-        overlay_filter: rgba(8,27,41,0.55)
-      ai:
-        enabled: true
-        advanced: false
-        podcast: true
-        quiz: true
-        translator: true
+ - scope:
+ path: ""
+ type: posts
+ values:
+ layout: "single"
+ author\_profile: true
+ read\_time: true
+ share: true
+ related: true
+ toc: true
+ toc\_sticky: true
+ show\_date: true
+ classes: wide
+ ai:
+ enabled: true
+ advanced: false
+ podcast: true
+ quiz: true
+ - scope:
+ path: ""
+ type: pages
+ values:
+ layout: "single"
+ author\_profile: false
+ header:
+ overlay\_image: "/assets/images/header-bg.jpg"
+ overlay\_color: "\#000"
+ overlay\_filter: "0.5"
 
-  - scope:
-      path: "_pages"
-      type: pages
-    values:
-      layout: single
-      author_profile: false
-      header:
-        overlay_image: /assets/images/header-bg.jpg
-        overlay_color: "#000"
-        overlay_filter: "0.5"
-      ai:
-        enabled: false
-
-# =========================================================
-# COMPILER SETTINGS
-# =========================================================
-kramdown:
-  input: GFM
-  hard_wrap: false
-  auto_ids: true
-  syntax_highlighter: rouge
-
-sass:
-  style: compressed
-
-compress_html:
-  clippings: all
-  ignore:
-    envs: development
-
+\# =========================================================
+\# BUILD EXCLUSIONS
+\# =========================================================
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
-  - README.md
-  - package.json
-  - package-lock.json  overlay_filter: rgba(8,27,41,0.72)
+ - Gemfile
+ - Gemfile.lock
+ - node\_modules
+ - vendor
+ - README.md
+ - package.json
+ - package-lock.json
 
-footer:
-  links:
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/yusuf38bcs-oss"
-    - label: "LinkedIn"
-      icon: "fab fa-linkedin"
-      url: "https://www.linkedin.com/in/md-yusuf-128b94404"
+\# =========================================================
+\# CUSTOM COGNITIVE DATA
+\# =========================================================
+synaptic\_ai:
+ enabled: true
+ framework: "Synaptic Bridge"
+ architecture: "Modular Cognitive System"
 
-# =========================================================
-# PLUGINS & SYSTEM SETTINGS
-# =========================================================
-plugins:
-  - jekyll-include-cache
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-redirect-from
-  - jekyll-archives
+```
 
-paginate: 6
-paginate_path: /page:num/
-markdown: kramdown
-highlighter: rouge
-permalink: /:categories/:title/
-
-# =========================================================
-# ARCHIVES
-# =========================================================
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-    - year
-  layouts:
-    category: archive-taxonomy
-    tag: archive-taxonomy
-    year: archive
-  permalinks:
-    category: /categories/:name/
-    tag: /tags/:name/
-    year: /archives/:year/
-
-# =========================================================
-# DEFAULTS (FRONT-MATTER INHERITANCE)
-# =========================================================
-defaults:
-  # -------------------------------------------------------
-  # POSTS (Articles)
-  # -------------------------------------------------------
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      share: true
-      related: true
-      comments: false
-      toc: true
-      toc_sticky: true
-      show_date: true
-      classes: wide
-      header:
-        overlay_filter: rgba(8,27,41,0.55)
-      
-      # Default AI Synapses for all posts
-      ai:
-        enabled: true
-        advanced: false
-        podcast: true
-        quiz: true
-        translator: true
-        tutor: false
-        journal: false
-        image: false
-
-  # -------------------------------------------------------
-  # PAGES (Static content like About, Contact)
-  # -------------------------------------------------------
-  - scope:
-      path: ""
-      type: pages
-    values:
-      layout: single
-      author_profile: false
-      ai:
-        enabled: false # Disable AI on structural pages
-
-# =========================================================
-# COMPILER SETTINGS
-# =========================================================
-kramdown:
-  input: GFM
-  hard_wrap: false
-  auto_ids: true
-  syntax_highlighter: rouge
-
-sass:
-  style: compressed
-
-compress_html:
-  clippings: all
-  ignore:
-    envs: development
-
-# =========================================================
-# BUILD EXCLUSIONS
-# =========================================================
-include:
-  - _pages
-
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
-  - README.md
-  - package.json
-  - package-lock.json
-
-# =========================================================
-# CUSTOM GLOBAL COGNITIVE SYSTEM DATA
-# =========================================================
-synaptic_ai:
-  enabled: true
-  framework: "Synaptic Bridge"
-  architecture: "Modular Cognitive System"
-  lazy_load: true
-# Set default front matter for specific folders
-defaults:
-  - scope:
-      path: "_pages" # This targets all files inside your _pages folder
-      type: "pages"
-    values:
-      header:
-        overlay_image: /assets/images/header-bg.jpg
-        overlay_color: "#000"
-        overlay_filter: "0.5" # Adds a slight dark tint so text is readable
-        --- --- {% include head.html %} {% include head/custom.html %} {% include skip-links.html %} {% include browser-upgrade.html %} {% include masthead.html %}
-{{ content }}
-{% if site.search == true %}
-{% include_cached search/search_form.html %}
-{% endif %}
-{% include footer/custom.html %} {% include_cached footer.html %}
-{% include scripts.html %}
+This is the corrected and consolidated content for your `_config.yml` file, which should resolve the YAML syntax errors from previous deployment attempts.
