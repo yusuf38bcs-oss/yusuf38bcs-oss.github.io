@@ -1,190 +1,58 @@
-# =========================================================
-# CORE SITE IDENTITY
-# =========================================================
+```yaml
+# Learning Biology For Life - Core Configuration
 title: "Learning Biology For Life"
-subtitle: "The Synaptic Bridge"
-description: >
-  A cognitive biology education platform connecting scientific theory,
-  leadership, human behavior, systems thinking, and reflective intelligence.
-url: "https://learningbiologyforlife.org"
+name: "Md. Yusuf"
+description: "The Synaptic Bridge — where biology meets leadership, cognition, and life."
+url: "https://yourdomain.com"
 baseurl: ""
-repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
-logo: "/assets/images/logo.png"
-favicon: "/assets/images/favicon.png"
-locale: "en-US"
+repository: "yourusername/learning-biology-for-life"
 timezone: "Asia/Dhaka"
-encoding: "utf-8"
 
-# =========================================================
-# THEME & BRANDING
-# =========================================================
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
-minimal_mistakes_skin: "air"
-name: "Learning Biology For Life"
-tagline: "Where Biology Meets Leadership, Cognition, and Human Growth."
-teaser: "/assets/images/default-teaser.jpg"
+# Theme Settings
+theme: "minimal-mistakes-jekyll"
+minimal_mistakes_skin: "dark"
 breadcrumbs: true
-words_per_minute: 180
-enable_copy_code_button: true
 
-# =========================================================
-# AUTHOR PROFILE
-# =========================================================
+# Author Details
 author:
-  name: "MD. YUSUF"
-  avatar: "/assets/images/profile.jpg"
-  bio: >
-    Lecturer of Zoology, 38th BCS (General Education) Cadre Officer,
-    and creator of the Synaptic Bridge Framework.
-  location: "Bangladesh"
-  employer: "Government Education"
-  links:
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "[link removed]"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/yusuf38bcs-oss"
+  name: "Md. Yusuf"
+  bio: "Cognitive Architect | Bridging Evolution, Mind & Leadership"
+  avatar: "/assets/images/avatar.jpg"
 
-# =========================================================
-# PLUGINS & SYSTEM SETTINGS
-# =========================================================
-plugins:
-  - jekyll-include-cache
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-redirect-from
-  - jekyll-archives
+# Localization & Taxonomy Archives
+locale: "en-US"
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
 
+# Pagination Settings
 paginate: 6
 paginate_path: "/page:num/"
-markdown: kramdown
-highlighter: rouge
-permalink: /:categories/:title/
 
-# =========================================================
-# DEFAULTS (FRONT-MATTER INHERITANCE & AUTOMATION)
-# =========================================================
+# Defaults for Posts
 defaults:
-  # --- Global Post Defaults ---
   - scope:
       path: ""
-      type: posts
-    values:
-      layout: "single"
-      author_profile: true
-      read_time: true
-      share: true
-      related: true
-      toc: true
-      toc_sticky: true
-      show_date: true
-      classes: wide
-      ai:
-        enabled: true
-        advanced: false
-        podcast: true
-        quiz: true
-
-  # --- Academic Sidebars (Zoology/Botany/Science) ---
-  - scope:
-      path: "_posts/botany"
-    values:
-      sidebar:
-        nav: "academic_sidebar"
-  - scope:
-      path: "_posts/zoology"
-    values:
-      sidebar:
-        nav: "academic_sidebar"
-  - scope:
-      path: "_posts/animal-diversity"
-    values:
-      sidebar:
-        nav: "academic_sidebar"
-  - scope:
-      path: "_posts/human-physiology"
-    values:
-      sidebar:
-        nav: "academic_sidebar"
-  - scope:
-      path: "_posts/genetics"
-    values:
-      sidebar:
-        nav: "academic_sidebar"
-  - scope:
-      path: "_posts/ecology"
-    values:
-      sidebar:
-        nav: "academic_sidebar"
-  - scope:
-      path: "_posts/biostatistics"
-    values:
-      sidebar:
-        nav: "academic_sidebar"
-
-  # --- Socratic Sidebars (Leadership/Behavior/Practice) ---
-  - scope:
-      path: "_posts/leadership"
-    values:
-      sidebar:
-        nav: "socratic_sidebar"
-  - scope:
-      path: "_posts/human-behaviour"
-    values:
-      sidebar:
-        nav: "socratic_sidebar"
-  - scope:
-      path: "_posts/research-highlights"
-    values:
-      sidebar:
-        nav: "socratic_sidebar"
-  - scope:
-      path: "_posts/random-thoughts"
-    values:
-      sidebar:
-        nav: "socratic_sidebar"
-
-  # --- Global Page Defaults ---
-  - scope:
-      path: ""
-      type: pages
+      type: "posts"
     values:
       layout: "single"
       author_profile: false
-      header:
-        overlay_image: "/assets/images/header-bg.jpg"
-        overlay_color: "#000"
-        overlay_filter: "0.5"
-        
-# =========================================================
-# AUTO-GENERATE CATEGORY ARCHIVES
-# =========================================================
-jekyll-archives:
-  enabled:
-    - categories
-  layout: category-archive
-  permalinks:
-    category: /categories/:name/
 
-# =========================================================
-# BUILD EXCLUSIONS
-# =========================================================
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
-  - README.md
-  - package.json
-  - package-lock.json
+# Integrations
+newsletter:
+  provider: "brevo"
+  action: "https://example-brevo-link.com/subscribe"
+formspree_id: "your-id"
 
-# =========================================================
-# CUSTOM COGNITIVE DATA
-# =========================================================
-synaptic_ai:
-  enabled: true
-  framework: "Synaptic Bridge"
-  architecture: "Modular Cognitive System"
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-archives
+
+```
