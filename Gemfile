@@ -1,9 +1,7 @@
 source "https://rubygems.org"
 
-# This gem is required for GitHub Pages
-gem "github-pages", group: :jekyll
+gem "minimal-mistakes-jekyll"
 
-# These are the specific "reflexes" (plugins) your site needs
 group :jekyll_plugins do
   gem "jekyll-include-cache"
   gem "jekyll-feed"
