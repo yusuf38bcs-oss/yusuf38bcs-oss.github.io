@@ -8,7 +8,7 @@ repository: "yourusername/learning-biology-for-life"
 timezone: "Asia/Dhaka"
 
 # Theme Settings
-theme: "minimal-mistakes-jekyll"
+remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: "dark"
 breadcrumbs: true
 
