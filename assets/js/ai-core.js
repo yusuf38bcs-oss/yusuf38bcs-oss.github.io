@@ -1,229 +1,354 @@
 /**
- * ====================================================================
- * THE SYNAPTIC BRIDGE: AI MIDDLEWARE ENGINE (v4.0)
- * File: assets/js/ai-core.js
- * Description: Elite orchestration, persistent caching, async queues,
- * secure proxy routing, and self-registering module architecture.
- * ====================================================================
+ * Synaptic Bridge AI Core
+ * Static frontend AI middleware for Jekyll + Cloudflare Worker + Gemini.
  */
 
-window.SynapticAI = (function() {
-  'use strict';
+(function () {
+  "use strict";
 
-  // ------------------------------------------------------------------
-  // 1. PRIVATE STATE & CONSTANTS
-  // ------------------------------------------------------------------
-  const CACHE_PREFIX = 'synaptic_cache_';
-  const MEMORY_KEY = 'synaptic_session_memory';
-  
-  let requestQueue = [];
-  let isProcessing = false;
-  let lastCallTime = 0;
+  const DEFAULT_CONFIG = {
+    endpoint: "https://synaptic-bridge-gemini-proxy.yusuf-38bcs.workers.dev",
+    cooldownMs: 1200,
+    maxRetries: 3,
+    cacheEnabled: true,
+    memoryEnabled: true,
+    analytics: false,
+    memoryKey: "synaptic_session_memory",
+    cachePrefix: "synaptic_cache_",
+    maxMemoryTurns: 3
+  };
 
-  // ------------------------------------------------------------------
-  // 2. CORE SYSTEM OBJECT
-  // ------------------------------------------------------------------
-  const Core = {
+  const SynapticAI = {
     config: {},
     page: {},
-    modules: {}, // Registry for lazy-loaded UI modules
-    sessionMemory: [], // Continuous conversation context
-    
-    // Security: Point this to your Cloudflare Worker!
-    // NEVER expose the raw Google API url or Key here.
-    apiProxyUrl: "https://synapticai-proxy.yusuf-38bcs.workers.dev", 
+    modules: {},
+    requestQueue: [],
+    isProcessing: false,
+    lastCallTime: 0,
+    booted: false,
 
-    /**
-     * Bootstraps the environment and loads saved memory
-     */
-    init: function() {
-      if (!window.SynapticAI_Data) {
-        this.log('error', "Initialization failed: Global data payload missing.");
+    init() {
+      const data = window.SynapticAI_Data || {};
+
+      this.config = {
+        ...DEFAULT_CONFIG,
+        ...(data.config || {})
+      };
+
+      this.page = data.page || {
+        title: document.title || "",
+        excerpt: "",
+        categories: []
+      };
+
+      this.booted = true;
+
+      Object.keys(this.modules).forEach((id) => {
+        const mod = this.modules[id];
+        if (!mod.initialized && typeof mod.initFn === "function") {
+          mod.initFn(this);
+          mod.initialized = true;
+        }
+      });
+
+      this.track("ai_core_booted", {
+        page: this.page.title
+      });
+    },
+
+    registerModule(id, initFn) {
+      if (!id || typeof initFn !== "function") {
+        console.warn("[SynapticAI] Invalid module registration.");
         return;
       }
-      this.config = window.SynapticAI_Data.config;
-      this.page = window.SynapticAI_Data.page;
-      this.cooldownMs = (this.config.orchestration.cooldown_seconds || 5) * 1000;
-      
-      // Load continuous memory
-      const savedMemory = sessionStorage.getItem(MEMORY_KEY);
-      if (savedMemory) this.sessionMemory = JSON.parse(savedMemory);
 
-      this.log('info', `Middleware Online (v${this.config.version}). Environment secured.`);
-      
-      // Initialize any modules that registered before core loaded
-      Object.values(this.modules).forEach(mod => mod.initFn());
+      this.modules[id] = {
+        initFn,
+        initialized: false
+      };
+
+      if (this.booted) {
+        initFn(this);
+        this.modules[id].initialized = true;
+      }
     },
 
-    // ------------------------------------------------------------------
-    // 3. PLUGIN ARCHITECTURE (Lazy Registration)
-    // ------------------------------------------------------------------
-    registerModule: function(id, initFn) {
-      this.modules[id] = { initFn, active: true };
-      this.log('info', `Module Registered: [${id}]`);
-      // If core is already initialized, run it immediately
-      if (this.config.version) initFn();
-    },
-
-    // ------------------------------------------------------------------
-    // 4. OBSERVABILITY, ANALYTICS & ERRORS
-    // ------------------------------------------------------------------
-    log: function(level, msg, data = null) {
-      const timestamp = new Date().toISOString();
-      const format = `[SynapticAI:${level.toUpperCase()}] ${msg}`;
-      if (level === 'error') console.error(format, data || '');
-      else if (level === 'warn') console.warn(format, data || '');
-      else console.log(format, data || '');
-    },
-
-    track: function(event, data) {
-      if (!this.config.orchestration.analytics) return;
-      // Hook this into Google Analytics, Plausible, or Mixpanel
-      this.log('analytics', `Event: ${event}`, data);
-    },
-
-    handleError: function(err, context) {
-      this.log('error', `Failure in [${context}]: ${err.message}`, err);
-      this.track('ai_error', { context, error: err.message });
-      return { error: true, message: "Synaptic misfire. Please try again." };
-    },
-
-    // ------------------------------------------------------------------
-    // 5. ASYNC QUEUE & ORCHESTRATION
-    // ------------------------------------------------------------------
-    generate: function(moduleId, dynamicInput = "", useMemory = false) {
+    generate(options = {}) {
       return new Promise((resolve, reject) => {
-        requestQueue.push({ moduleId, dynamicInput, useMemory, resolve, reject });
+        this.requestQueue.push({
+          options,
+          resolve,
+          reject
+        });
+
         this._processQueue();
       });
     },
 
-    _processQueue: async function() {
-      if (isProcessing || requestQueue.length === 0) return;
-      
+    async _processQueue() {
+      if (this.isProcessing || this.requestQueue.length === 0) return;
+
       const now = Date.now();
-      if (now - lastCallTime < this.cooldownMs) {
-        setTimeout(() => this._processQueue(), 500); // Wait and retry
+      const elapsed = now - this.lastCallTime;
+
+      if (elapsed < this.config.cooldownMs) {
+        setTimeout(() => this._processQueue(), this.config.cooldownMs - elapsed);
         return;
       }
 
-      isProcessing = true;
-      const request = requestQueue.shift();
+      this.isProcessing = true;
+
+      const job = this.requestQueue.shift();
 
       try {
-        const result = await this._executeMiddleware(request);
-        request.resolve(result);
-      } catch (err) {
-        request.reject(this.handleError(err, request.moduleId));
+        const result = await this._execute(job.options);
+        job.resolve(result);
+      } catch (error) {
+        const fallback = this.handleError(error, job.options);
+        job.reject(fallback);
       } finally {
-        isProcessing = false;
-        lastCallTime = Date.now();
-        this._processQueue(); // Process next in line
+        this.lastCallTime = Date.now();
+        this.isProcessing = false;
+
+        if (this.requestQueue.length > 0) {
+          this._processQueue();
+        }
       }
     },
 
-    // ------------------------------------------------------------------
-    // 6. MIDDLEWARE EXECUTION & CACHING
-    // ------------------------------------------------------------------
-    _executeMiddleware: async function({ moduleId, dynamicInput, useMemory }) {
-      const moduleConfig = this.config.modules[moduleId];
-      if (!moduleConfig || !moduleConfig.enabled) throw new Error("Module misconfigured.");
+    async _execute(options) {
+      const {
+        model = "fast",
+        type = "text",
+        prompt = "",
+        systemInstruction = "",
+        useMemory = false,
+        responseSchema = null,
+        temperature = 0.7
+      } = options;
 
-      // A. Prompt Assembly & Memory Injection
-      let prompt = moduleConfig.prompt.replace('{title}', this.page.title).replace('{excerpt}', this.page.excerpt);
-      if (useMemory && this.sessionMemory.length > 0) {
-        prompt += `\n\nPrior Context: ${JSON.stringify(this.sessionMemory.slice(-3))}`; // Pass last 3 interactions
-      }
-      if (dynamicInput) prompt += `\n\nUser Input: ${dynamicInput}`;
+      const memory = useMemory ? this.getMemoryText() : "";
 
-      // B. Persistent Cache Check (localStorage)
-      // Hash prompt to create a safe cache key
-      const cacheHash = btoa(unescape(encodeURIComponent(prompt))).substring(0, 32);
-      const cacheKey = `${CACHE_PREFIX}${moduleId}_${cacheHash}`;
-      
-      if (this.config.orchestration.cache_enabled) {
-        const cached = localStorage.getItem(cacheKey);
+      const enrichedPrompt = [
+        `Page title: ${this.page.title || ""}`,
+        this.page.excerpt ? `Page summary: ${this.page.excerpt}` : "",
+        memory ? `Recent conversation:\n${memory}` : "",
+        `User task:\n${prompt}`
+      ]
+        .filter(Boolean)
+        .join("\n\n");
+
+      const cacheKey = this._makeCacheKey({
+        model,
+        type,
+        prompt: enrichedPrompt,
+        systemInstruction,
+        responseSchema,
+        temperature
+      });
+
+      if (this.config.cacheEnabled) {
+        const cached = this._getCache(cacheKey);
         if (cached) {
-          this.track('cache_hit', { module: moduleId });
-          this.log('info', `Cache Hit: [${moduleId}]`);
-          return JSON.parse(cached);
+          this.track("cache_hit", { model, type });
+          return cached;
         }
       }
 
-      // C. Routing & API Call with Retry Logic
-      const modelAlias = moduleConfig.model;
-      const actualModel = this.config.routing[modelAlias];
-      
-      this.track('ai_request_started', { module: moduleId, model: actualModel });
-      const result = await this._fetchWithRetry(actualModel, prompt, moduleConfig.system, modelAlias, moduleConfig);
+      this.track("ai_request_started", { model, type });
 
-      // D. Memory & Cache Storage
-      if (useMemory && dynamicInput && !result.error) {
-        this.sessionMemory.push({ role: 'user', content: dynamicInput });
-        this.sessionMemory.push({ role: 'model', content: result });
-        sessionStorage.setItem(MEMORY_KEY, JSON.stringify(this.sessionMemory));
+      const payload = {
+        model,
+        type,
+        prompt: enrichedPrompt,
+        systemInstruction,
+        responseSchema,
+        temperature
+      };
+
+      const result = await this._fetchWithRetry(this.config.endpoint, payload);
+
+      if (useMemory && result && !result.error) {
+        this.remember(prompt, result.text || result.output || "");
       }
 
-      if (this.config.orchestration.cache_enabled && !result.error) {
-        try {
-          localStorage.setItem(cacheKey, JSON.stringify(result));
-        } catch (e) {
-          this.log('warn', "localStorage quota exceeded. Clearing old cache.");
-          // Basic cache eviction could go here
-        }
+      if (this.config.cacheEnabled) {
+        this._setCache(cacheKey, result);
       }
 
-      this.track('ai_request_success', { module: moduleId });
+      this.track("ai_request_completed", { model, type });
+
       return result;
     },
 
-    // ------------------------------------------------------------------
-    // 7. EXPONENTIAL BACKOFF RETRY LOGIC
-    // ------------------------------------------------------------------
-    _fetchWithRetry: async function(modelName, prompt, systemInstruction, modelType, moduleConfig, retries = 3) {
-      let payload = { model: modelName, type: modelType, prompt, systemInstruction };
-      if (modelType === "audio") payload.voice = moduleConfig.voice;
+    async _fetchWithRetry(url, payload) {
+      let lastError = null;
 
-      for (let i = 0; i < retries; i++) {
+      for (let attempt = 0; attempt <= this.config.maxRetries; attempt++) {
         try {
-          // Sending request to YOUR secure backend proxy, NOT Google directly.
-          const response = await fetch(this.apiProxyUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
             body: JSON.stringify(payload)
           });
 
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          const data = await response.json();
-          return data.result; // Proxy should standardize response format to { result: "..." }
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status}: ${errorText}`);
+          }
 
-        } catch (err) {
-          this.log('warn', `Fetch attempt ${i + 1} failed.`, err);
-          if (i === retries - 1) throw new Error("Maximum retries reached.");
-          // Exponential backoff: 1s, 2s, 4s...
-          await new Promise(res => setTimeout(res, 1000 * Math.pow(2, i))); 
+          return await response.json();
+        } catch (error) {
+          lastError = error;
+
+          if (attempt < this.config.maxRetries) {
+            const delay = Math.pow(2, attempt) * 1000;
+            await this.sleep(delay);
+          }
         }
+      }
+
+      throw lastError;
+    },
+
+    remember(userPrompt, modelResponse) {
+      if (!this.config.memoryEnabled) return;
+
+      const memory = this.getMemory();
+
+      memory.push({
+        user: userPrompt,
+        assistant: modelResponse,
+        timestamp: new Date().toISOString()
+      });
+
+      const sliced = memory.slice(-this.config.maxMemoryTurns);
+
+      sessionStorage.setItem(this.config.memoryKey, JSON.stringify(sliced));
+    },
+
+    getMemory() {
+      try {
+        return JSON.parse(sessionStorage.getItem(this.config.memoryKey)) || [];
+      } catch {
+        return [];
       }
     },
 
-    // ------------------------------------------------------------------
-    // 8. ROBUST FORMATTING (marked.js Integration)
-    // ------------------------------------------------------------------
-    formatHTML: function(text) {
+    getMemoryText() {
+      const memory = this.getMemory().slice(-this.config.maxMemoryTurns);
+
+      return memory
+        .map((turn, index) => {
+          return `Turn ${index + 1}\nUser: ${turn.user}\nAssistant: ${turn.assistant}`;
+        })
+        .join("\n\n");
+    },
+
+    clearMemory() {
+      sessionStorage.removeItem(this.config.memoryKey);
+      this.track("memory_cleared", {});
+    },
+
+    _makeCacheKey(input) {
+      const raw = JSON.stringify(input);
+
+      try {
+        return (
+          this.config.cachePrefix +
+          btoa(unescape(encodeURIComponent(raw))).substring(0, 48)
+        );
+      } catch {
+        return this.config.cachePrefix + String(raw.length) + "_" + Date.now();
+      }
+    },
+
+    _getCache(key) {
+      try {
+        const item = localStorage.getItem(key);
+        if (!item) return null;
+
+        const parsed = JSON.parse(item);
+
+        if (parsed.expiresAt && Date.now() > parsed.expiresAt) {
+          localStorage.removeItem(key);
+          return null;
+        }
+
+        return parsed.value;
+      } catch {
+        return null;
+      }
+    },
+
+    _setCache(key, value, ttlMs = 1000 * 60 * 60 * 24) {
+      try {
+        localStorage.setItem(
+          key,
+          JSON.stringify({
+            value,
+            expiresAt: Date.now() + ttlMs
+          })
+        );
+      } catch {
+        // Ignore storage quota errors.
+      }
+    },
+
+    renderMarkdown(text) {
       if (!text) return "";
-      // If marked.js is loaded via CDN in your layout, use it! Otherwise fallback.
-      if (window.marked) {
+
+      if (window.marked && typeof window.marked.parse === "function") {
         return window.marked.parse(text);
       }
-      this.log('warn', "marked.js not found. Falling back to basic regex formatting.");
-      return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br/>');
+
+      return String(text)
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\*(.*?)\*/g, "<em>$1</em>")
+        .replace(/^### (.*$)/gim, "<h3>$1</h3>")
+        .replace(/^## (.*$)/gim, "<h2>$1</h2>")
+        .replace(/^# (.*$)/gim, "<h1>$1</h1>")
+        .replace(/\n/g, "<br>");
+    },
+
+    handleError(error, context = {}) {
+      console.error("[SynapticAI] Error:", error);
+
+      this.track("ai_error", {
+        message: error.message || "Unknown error",
+        context
+      });
+
+      return {
+        error: true,
+        message: "Synaptic misfire. Please try again."
+      };
+    },
+
+    track(eventName, payload = {}) {
+      if (!this.config.analytics) return;
+
+      window.dispatchEvent(
+        new CustomEvent("synaptic-ai-event", {
+          detail: {
+            event: eventName,
+            payload,
+            timestamp: new Date().toISOString()
+          }
+        })
+      );
+    },
+
+    sleep(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
     }
   };
 
-  return Core;
-})();
+  window.SynapticAI = SynapticAI;
 
-// Bootstrap the system
-document.addEventListener("DOMContentLoaded", () => {
-  window.SynapticAI.init();
-});
+  document.addEventListener("DOMContentLoaded", () => {
+    SynapticAI.init();
+  });
+})();
