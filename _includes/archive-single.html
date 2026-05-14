@@ -1,0 +1,31 @@
+﻿{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = "" %}
+{% endif %}
+
+<article class="post-card">
+  {% if teaser %}
+    <img src="{{ teaser | relative_url }}" alt="{{ post.title }}">
+  {% endif %}
+
+  <div class="post-card__body">
+    {% if post.categories %}
+      <span class="card-badge">{{ post.categories | first }}</span>
+    {% endif %}
+
+    <h3>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h3>
+
+    {% if post.excerpt %}
+      <p>{{ post.excerpt | strip_html | truncate: 140 }}</p>
+    {% endif %}
+
+    <small>
+      {% assign words = post.content | number_of_words %}
+      {% assign minutes = words | divided_by: 180 | plus: 1 %}
+      {{ minutes }} min read
+    </small>
+  </div>
+</article>
