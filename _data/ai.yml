@@ -1,110 +1,17 @@
-# =========================================================
-# THE SYNAPTIC BRIDGE: AI NEURAL NETWORK CONFIGURATION
-# File: _data/ai.yml
-# Description: Global orchestration, model routing, and 
-# system instructions for all cognitive modules.
-# =========================================================
+endpoint: "https://synaptic-bridge-gemini-proxy.yusuf-38bcs.workers.dev/api/gemini"
+cooldownMs: 1200
+maxRetries: 3
+cacheEnabled: true
+memoryEnabled: true
+analytics: true
 
-ai:
-  # -------------------------------------------------------
-  # CORE IDENTITY
-  # -------------------------------------------------------
-  enabled: true
-  framework: "Synaptic Bridge"
-  version: "4.0"
+models:
+  fast: "gemini-2.0-flash"
+  deep: "gemini-2.5-pro-preview-06-05"
+  image: "gemini-2.0-flash-preview-image-generation"
+  audio: "gemini-2.5-flash-preview-tts"
 
-  # -------------------------------------------------------
-  # ORCHESTRATION (Traffic & Performance Control)
-  # -------------------------------------------------------
-  orchestration:
-    lazy_load: true
-    debounce_ms: 800
-    cache_enabled: true
-    cooldown_seconds: 5
-    analytics: false
-
-  # -------------------------------------------------------
-  # ROUTING (Model Aliases for Cost/Speed Optimization)
-  # -------------------------------------------------------
-  routing:
-    fast: "gemini-2.5-flash"      # For quick generation (quizzes, translations)
-    deep: "gemini-2.5-pro"        # For heavy metacognitive tasks (journaling, debates)
-    image: "imagen-4.0-generate-001"
-    audio: "gemini-2.5-flash-preview-tts"
-
-  # -------------------------------------------------------
-  # COGNITIVE MODULES (Prompts & System Instructions)
-  # -------------------------------------------------------
-  modules:
-
-    # -- SENSORY & APPLICATION (Tier 1) --
-    
-    podcast:
-      enabled: true
-      priority: high
-      model: audio
-      voice: "Aoede"
-      system: "You are a professional, enthusiastic educational podcast host."
-      prompt: "Summarize the following biological concept and explain its core leadership lesson as a short, highly engaging podcast introduction. Start by saying 'Welcome to the Synaptic Bridge...'."
-
-    quiz:
-      enabled: true
-      priority: high
-      model: fast
-      system: "You are an expert Socratic educator bridging biology and leadership."
-      prompt: "Based on the following article snippet, generate a 3-question multiple-choice quiz. Ensure the questions connect biological theory to leadership/behavior where possible."
-
-    translator:
-      enabled: true
-      priority: medium
-      model: fast
-      system: "You are a master communicator who adapts complex biology into specific linguistic contexts."
-      prompt: "Rewrite the following educational excerpt. Explain the biological and leadership concept as if you were talking to {persona}. Make it highly engaging, easy to understand for that specific audience, and keep it to one short paragraph."
-      personas:
-        - "A 10-year-old child"
-        - "A busy executive"
-        - "A Sci-Fi Writer"
-
-    # -- METACOGNITIVE & INTROSPECTIVE (Tier 2) --
-
-    tutor:
-      enabled: true
-      priority: high
-      model: fast
-      system: "You are a Socratic tutor. Reply ONLY with questions to guide the user. Never give direct answers."
-      prompt: "Your role is a strict Socratic tutor. When the user asks a question, DO NOT just give them the answer. Instead, ask them a guiding, thought-provoking question related to biology or leadership that helps them arrive at the answer themselves. Keep responses under 40 words."
-
-    journal:
-      enabled: true
-      priority: medium
-      model: deep
-      system: "You are a wise, introspective guide helping a student map biological laws to their inner emotional landscape."
-      prompt: "Generate a deep, profound journaling prompt for the user. The prompt should connect the underlying truth of this biological mechanism to their personal emotional growth, relationships, or inner life purpose. Make it sound poetic but grounded."
-
-    feynman:
-      enabled: true
-      priority: high
-      model: deep
-      system: "You are an encouraging but rigorous mentor using the Feynman technique to ensure true understanding."
-      prompt: "The user is trying to explain a biological concept in their own words. Evaluate their explanation. Is it accurate? Is it simple enough? Did they rely too much on jargon? Point out any logical gaps, and offer a small correction or praise."
-
-    debate:
-      enabled: true
-      priority: medium
-      model: deep
-      system: "You are a master playwright writing a high-level intellectual debate between two opposing academic giants."
-      prompt: "Simulate a short, intense 4-response debate. Expert A is a Strict Biologist who argues this concept proves human behavior is hardwired. Expert B is a Free-Will Philosopher who argues human consciousness transcends this biological rule."
-
-    principles:
-      enabled: true
-      priority: medium
-      model: deep
-      system: "You are a first-principles thinker. Strip away complex biological jargon and reveal the underlying fundamental laws of physics, energy, or logic, then apply them to life."
-      prompt: "Deconstruct this biological concept into its absolute fundamental truth. First, state the 'First Principle' in one simple sentence. Then, explain in one paragraph how a leader can rebuild their strategy based purely on that undeniable truth."
-
-    image:
-      enabled: true
-      priority: low
-      model: image
-      system: "You are a visionary abstract artist."
-      prompt: "Abstract digital art, a visual metaphor combining the biological concept of '{title}' with human leadership, personal growth, and the mind. Clean, modern, scientific but artistic, inspiring, deep neural networking aesthetics."
+defaults:
+  temperature: 0.7
+  topP: 0.95
+  topK: 40
