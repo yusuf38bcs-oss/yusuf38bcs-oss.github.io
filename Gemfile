@@ -1,17 +1,12 @@
-source "https://rubygems.org"
+﻿source "https://rubygems.org"
 
-gem "jekyll-remote-theme"
-gem "tzinfo"
-gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw]
-gem "wdm", ">= 0.1.0"
+gem "jekyll", "~> 4.3"
 
 group :jekyll_plugins do
-  gem "jekyll-include-cache"
-  gem "jekyll-feed"
-  gem "jekyll-seo-tag"
-  gem "jekyll-paginate"
-  gem "jekyll-sitemap"
-  gem "jekyll-redirect-from"
-  gem "jekyll-remote-theme"
-  gem "jekyll-archives"
+  gem "jekyll-feed", "~> 0.17"
+  gem "jekyll-seo-tag", "~> 2.8"
+  gem "jekyll-sitemap", "~> 1.4"
+  gem "jekyll-paginate", "~> 1.1"
+  gem "jekyll-remote-theme", "~> 0.4"
+  gem "jekyll-include-cache", "~> 0.2"
 end

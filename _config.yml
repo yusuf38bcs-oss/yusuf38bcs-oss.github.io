@@ -6,6 +6,8 @@ baseurl: ""
 lang: "en"
 timezone: "Asia/Dhaka"
 
+remote_theme: mmistakes/minimal-mistakes
+
 author:
   name: "Yusuf"
   title: "Biology Educator & Learning Designer"
@@ -36,6 +38,12 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-remote-theme
+  - jekyll-include-cache
+
+paginate: 10
+paginate_path: /page:num/
 
 sass:
   style: compressed
