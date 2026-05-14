@@ -1,22 +1,30 @@
-main:
+﻿main:
   - title: Home
     url: /
 
   - title: Biology
     url: /biology/
     children:
-      - title: Higher Zoology
+      - title: HSC Corner
+        url: /biology/hsc-corner/
+        children:
+          - title: Botany
+            url: /biology/hsc-corner/botany/
+          - title: Zoology
+            url: /biology/hsc-corner/zoology/
+      - title: Higher Zoology Tree
         url: /biology/higher-zoology/
-      - title: Animal Diversity & Taxonomy
-        url: /biology/animal-diversity-taxonomy/
-      - title: Human Physiology
-        url: /biology/human-physiology/
-      - title: Ecology
-        url: /biology/ecology/
-      - title: Genetics & Evolution
-        url: /biology/genetics-evolution/
-      - title: Biostatistics
-        url: /biology/biostatistics/
+        children:
+          - title: Animal Diversity & Taxonomy
+            url: /biology/animal-diversity-taxonomy/
+          - title: Human Physiology
+            url: /biology/human-physiology/
+          - title: Ecology
+            url: /biology/ecology/
+          - title: Genetics & Evolution
+            url: /biology/genetics-evolution/
+          - title: Biostatistics
+            url: /biology/biostatistics/
 
   - title: Life Practices
     url: /life-practices/
