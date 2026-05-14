@@ -36,24 +36,5 @@
   </div>
 </aside>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var panel = document.querySelector("[data-sidebar-socratic-ai]");
-    if (!panel || !window.SynapticAI) return;
-    var button = panel.querySelector("[data-socratic-sidebar-generate]");
-    var output = panel.querySelector("[data-socratic-sidebar-output]");
-    button.addEventListener("click", async function () {
-      output.innerHTML = "<p>Thinking through the bridge...</p>";
-      button.disabled = true;
-      try {
-        var result = await window.SynapticAI.generate({
-          model: "deep", type: "text", useMemory: true,
-          systemInstruction: "You are a Socratic mentor for Learning Biology for Life. Generate reflective, practical, non-clinical questions that connect biology, human behaviour, leadership, and self-awareness.",
-          prompt: "From the current page context, create 5 Socratic questions. Each question should help the learner connect the topic with behaviour, leadership, or life practice. Keep it concise."
-        });
-        output.innerHTML = window.SynapticAI.renderMarkdown(result.text || result.output || "No response generated.");
-      } catch (error) {
-        output.innerHTML = "<p>Synaptic misfire. Please try again.</p>";
-      } finally { button.disabled = false; }
-    });
-  });
+  document.addEventListener("DOMContentLoaded",function(){var p=document.querySelector("[data-sidebar-socratic-ai]");if(!p||!window.SynapticAI)return;var b=p.querySelector("[data-socratic-sidebar-generate]"),o=p.querySelector("[data-socratic-sidebar-output]");b.addEventListener("click",async function(){o.innerHTML="<p>Thinking through the bridge...</p>";b.disabled=true;try{var r=await window.SynapticAI.generate({model:"deep",type:"text",useMemory:true,systemInstruction:"You are a Socratic mentor for Learning Biology for Life. Generate reflective, practical, non-clinical questions that connect biology, human behaviour, leadership, and self-awareness.",prompt:"From the current page context, create 5 Socratic questions. Each question should help the learner connect the topic with behaviour, leadership, or life practice. Keep it concise."});o.innerHTML=window.SynapticAI.renderMarkdown(r.text||r.output||"No response generated.")}catch(e){o.innerHTML="<p>Synaptic misfire. Please try again.</p>"}finally{b.disabled=false}})});
 </script>

@@ -2,7 +2,7 @@
   <div class="sidebar__inner">
     <section class="sidebar-card sidebar-card--glow">
       <p class="eyebrow">Academic Pathway</p>
-      <h2 id="academic-sidebar-title">Dots &rarr; Lines &rarr; Circle</h2>
+      <h2 id="academic-sidebar-title">Dots &amp;rarr; Lines &amp;rarr; Circle</h2>
       <p>Study the concept as a biological dot, connect it with related systems, then complete the circle through application and assessment.</p>
       <div class="sidebar-actions">
         <a class="btn btn-primary btn-small" href="{{ '/socratic/mcq-arena/' | relative_url }}">Practice MCQs</a>
@@ -14,47 +14,17 @@
     <section class="sidebar-card">
       <h3>Study Lens</h3>
       {% if page_cats contains "physiology" or page_tags contains "physiology" %}
-        <ul class="sidebar-question-list">
-          <li>What is the structure?</li>
-          <li>What is the function?</li>
-          <li>How is it regulated?</li>
-          <li>What happens when regulation fails?</li>
-        </ul>
+        <ul class="sidebar-question-list"><li>What is the structure?</li><li>What is the function?</li><li>How is it regulated?</li><li>What happens when regulation fails?</li></ul>
       {% elsif page_cats contains "ecology" or page_tags contains "ecology" %}
-        <ul class="sidebar-question-list">
-          <li>What are the interacting components?</li>
-          <li>Where does energy flow?</li>
-          <li>Which feedback loop maintains balance?</li>
-          <li>How does the system respond to disturbance?</li>
-        </ul>
+        <ul class="sidebar-question-list"><li>What are the interacting components?</li><li>Where does energy flow?</li><li>Which feedback loop maintains balance?</li><li>How does the system respond to disturbance?</li></ul>
       {% elsif page_cats contains "biostatistics" or page_tags contains "biostatistics" %}
-        <ul class="sidebar-question-list">
-          <li>What is being measured?</li>
-          <li>How variable is the data?</li>
-          <li>What pattern appears?</li>
-          <li>How confident is the conclusion?</li>
-        </ul>
+        <ul class="sidebar-question-list"><li>What is being measured?</li><li>How variable is the data?</li><li>What pattern appears?</li><li>How confident is the conclusion?</li></ul>
       {% elsif page_cats contains "genetics" or page_tags contains "genetics" %}
-        <ul class="sidebar-question-list">
-          <li>What information is inherited?</li>
-          <li>How is variation produced?</li>
-          <li>How is expression regulated?</li>
-          <li>How does this affect evolution?</li>
-        </ul>
+        <ul class="sidebar-question-list"><li>What information is inherited?</li><li>How is variation produced?</li><li>How is expression regulated?</li><li>How does this affect evolution?</li></ul>
       {% elsif page_cats contains "taxonomy" or page_tags contains "taxonomy" %}
-        <ul class="sidebar-question-list">
-          <li>What characters define this group?</li>
-          <li>How is it classified?</li>
-          <li>What evolutionary relationships appear?</li>
-          <li>How does structure support survival?</li>
-        </ul>
+        <ul class="sidebar-question-list"><li>What characters define this group?</li><li>How is it classified?</li><li>What evolutionary relationships appear?</li><li>How does structure support survival?</li></ul>
       {% else %}
-        <ul class="sidebar-question-list">
-          <li>What is the core concept?</li>
-          <li>What mechanism explains it?</li>
-          <li>What example makes it memorable?</li>
-          <li>How does it connect to life?</li>
-        </ul>
+        <ul class="sidebar-question-list"><li>What is the core concept?</li><li>What mechanism explains it?</li><li>What example makes it memorable?</li><li>How does it connect to life?</li></ul>
       {% endif %}
     </section>
     <section class="sidebar-card">
@@ -84,24 +54,5 @@
   </div>
 </aside>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var panel = document.querySelector("[data-sidebar-academic-ai]");
-    if (!panel || !window.SynapticAI) return;
-    var button = panel.querySelector("[data-academic-sidebar-generate]");
-    var output = panel.querySelector("[data-academic-sidebar-output]");
-    button.addEventListener("click", async function () {
-      output.innerHTML = "<p>Building study prompts...</p>";
-      button.disabled = true;
-      try {
-        var result = await window.SynapticAI.generate({
-          model: "fast", type: "text", useMemory: false,
-          systemInstruction: "You are an expert biology teacher for Learning Biology for Life. Create concise, exam-friendly, concept-focused study prompts.",
-          prompt: "From the current page context, create: 1) three recall questions, 2) three application questions, 3) one life-bridge reflection. Keep the output compact."
-        });
-        output.innerHTML = window.SynapticAI.renderMarkdown(result.text || result.output || "No response generated.");
-      } catch (error) {
-        output.innerHTML = "<p>Synaptic misfire. Please try again.</p>";
-      } finally { button.disabled = false; }
-    });
-  });
+  document.addEventListener("DOMContentLoaded",function(){var p=document.querySelector("[data-sidebar-academic-ai]");if(!p||!window.SynapticAI)return;var b=p.querySelector("[data-academic-sidebar-generate]"),o=p.querySelector("[data-academic-sidebar-output]");b.addEventListener("click",async function(){o.innerHTML="<p>Building study prompts...</p>";b.disabled=true;try{var r=await window.SynapticAI.generate({model:"fast",type:"text",useMemory:false,systemInstruction:"You are an expert biology teacher for Learning Biology for Life. Create concise, exam-friendly, concept-focused study prompts.",prompt:"From the current page context, create: 1) three recall questions, 2) three application questions, 3) one life-bridge reflection. Keep the output compact."});o.innerHTML=window.SynapticAI.renderMarkdown(r.text||r.output||"No response generated.")}catch(e){o.innerHTML="<p>Synaptic misfire. Please try again.</p>"}finally{b.disabled=false}})});
 </script>
