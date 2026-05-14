@@ -435,3 +435,9 @@ th {
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.dropdown-nested {
+  margin-left: 1rem;
+  border-left: 2px solid rgba(62, 231, 182, 0.3);
+  padding-left: 0.5rem;
+}
