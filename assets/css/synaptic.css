@@ -429,3 +429,9 @@ th {
     padding-right: 1.25rem;
   }
 }
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
