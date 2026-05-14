@@ -1,9 +1,9 @@
----
+layout: biostatistics
+description: "Understanding range, variance, standard deviation, and coefficient of variation in biological data."
 title: "বিস্তারের পরিমাপ (Measures of Dispersion)"
 date: 2026-04-05T20:01:00.008Z
 categories:
   - biostatistics
----
 
 <div class="bio-post-container">
 

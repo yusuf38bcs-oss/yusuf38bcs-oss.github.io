@@ -1,10 +1,10 @@
----
+layout: single
+description: "HSC Biology 2nd Paper Chapter 3 MCQ practice with detailed explanations."
 title: "HSC Biology 2nd Paper 3rd Chapter MCQ"
 date: 2026-04-26T11:48:00.009Z
 categories:
   - mcq
   - zoology
----
 
 <div class="synaptic-quiz-app">
   <div class="quiz-card">

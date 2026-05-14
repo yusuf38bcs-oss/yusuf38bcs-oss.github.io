@@ -1,9 +1,9 @@
----
+layout: single
+description: "Exploring leadership and management skills for 21st century learners through biological analogies."
 title: "Leadership Management & 21st Century Learners"
 date: 2026-04-06T08:26:00.009Z
 categories:
   - leadership
----
 
 <div class="synaptic-framework-container">
 

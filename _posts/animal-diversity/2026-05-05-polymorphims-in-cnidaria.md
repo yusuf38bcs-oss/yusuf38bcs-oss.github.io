@@ -1,9 +1,9 @@
----
+layout: single
+description: "Understanding polymorphism in Cnidaria and its adaptive significance."
 title: "Polymorphims in Cnidaria"
 date: 2026-05-05T08:53:00.002Z
 categories:
   - animal-diversity
----
 
 <div class="bio-post-container">
 

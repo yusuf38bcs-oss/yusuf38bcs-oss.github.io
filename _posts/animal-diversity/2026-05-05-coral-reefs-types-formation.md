@@ -1,9 +1,9 @@
----
+layout: ecology
+description: "Understanding coral reef types, formation processes, and ecological significance."
 title: "Coral Reefs: Types & Formation"
 date: 2026-05-05T08:42:00.003Z
 categories:
   - animal-diversity
----
 
 <div class="bio-post-container">
 
