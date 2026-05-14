@@ -1,4 +1,4 @@
----
+ï»¿---
 layout: default
 title: Synaptic Bridge
 description: Mapping biological mechanisms to human behaviour, leadership, and reflective intelligence.
@@ -7,7 +7,7 @@ permalink: /
 
 <section class="hero hero-synaptic">
   <div class="hero__content">
-    <p class="eyebrow">Biology × Behaviour × Leadership</p>
+    <p class="eyebrow">Biology &times; Behaviour &times; Leadership</p>
 
     <h1>Build a living bridge between science and self-mastery.</h1>
 
@@ -43,7 +43,7 @@ permalink: /
         Study zoology, physiology, genetics, evolution, ecology, taxonomy,
         and biostatistics through clear conceptual pathways.
       </p>
-      <a href="/biology/">Start learning ?</a>
+      <a href="/biology/">Start learning &rarr;</a>
     </article>
 
     <article class="feature-card">
@@ -53,7 +53,7 @@ permalink: /
         Translate biological mechanisms into leadership, human behaviour,
         productivity, creativity, and life design.
       </p>
-      <a href="/life-practices/">Apply concepts ?</a>
+      <a href="/life-practices/">Apply concepts &rarr;</a>
     </article>
 
     <article class="feature-card">
@@ -63,7 +63,7 @@ permalink: /
         Use MCQs, Multiple Intelligences analysis, personality reflection,
         and Socratic dialogue to deepen self-understanding.
       </p>
-      <a href="/socratic/">Begin reflection ?</a>
+      <a href="/socratic/">Begin reflection &rarr;</a>
     </article>
   </div>
 </section>
