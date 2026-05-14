@@ -1,68 +1,51 @@
-# =========================================================
-# 1. THE BRAIN STEM (Top Navigation)
-# Controls primary site-wide cognitive routing.
-# =========================================================
 main:
-  - title: "HSC Corner"
-    url: "#"
-    children:
-      - title: "HSC 1st Paper (Botany)"
-        url: "/categories/botany/"
-      - title: "HSC 2nd Paper (Zoology)"
-        url: "/categories/zoology/"
-        
-  - title: "Higher Zoology"
-    url: "#"
-    children:
-      - title: "Animal Diversity & Taxonomy"
-        url: "/categories/animal-diversity/"
-      - title: "Human Physiology"
-        url: "/categories/human-physiology/"
-      - title: "Genetics & Evolution"
-        url: "/categories/genetics/"
-      - title: "Ecology & Environment"
-        url: "/categories/ecology/"
-      - title: "Biostatistics"
-        url: "/categories/biostatistics/"
+  - title: Home
+    url: /
 
-  - title: "Life Practices"
-    url: "#"
+  - title: Biology
+    url: /biology/
     children:
-      - title: "Leadership Management"
-        url: "/categories/leadership/"
-      - title: "Human Behaviour"
-        url: "/categories/human-behaviour/"
-      - title: "Research Highlights"
-        url: "/categories/research-highlights/"
-      - title: "Random Thoughts"
-        url: "/categories/random-thoughts/"
-        
-  - title: "Socratic 4.0"
-    url: "#"
-    children:
-      - title: "MCQ Arena"
-        url: "/categories/mcq/"
-      - title: "MI Analysis"
-        url: "/mi-analysis/"
-      - title: "Personality Archetypes"
-        url: "/personality-test/"
+      - title: Higher Zoology
+        url: /biology/higher-zoology/
+      - title: Animal Diversity & Taxonomy
+        url: /biology/animal-diversity-taxonomy/
+      - title: Human Physiology
+        url: /biology/human-physiology/
+      - title: Ecology
+        url: /biology/ecology/
+      - title: Genetics & Evolution
+        url: /biology/genetics-evolution/
+      - title: Biostatistics
+        url: /biology/biostatistics/
 
-# =========================================================
-# 2. SUPPLEMENTARY PATHWAYS (Contextual Sidebars)
-# Governs the "Socratic Assessment" logic in post layouts.
-# =========================================================
-academic_sidebar:
-  - title: "Test Your Synapse"
+  - title: Life Practices
+    url: /life-practices/
     children:
-      - title: "Enter MCQ Arena"
-        url: "/categories/mcq/"
-      - title: "Upcoming Quizzes"
-        url: "/quizzes/"
+      - title: Leadership Management
+        url: /life-practices/leadership-management/
+      - title: Human Behaviour
+        url: /life-practices/human-behaviour/
+      - title: Research Highlights
+        url: /life-practices/research-highlights/
+      - title: Random Thoughts
+        url: /life-practices/random-thoughts/
 
-socratic_sidebar:
-  - title: "Self-Discovery"
+  - title: Socratic 4.0
+    url: /socratic/
     children:
-      - title: "Find Your Intelligence Zone"
-        url: "/mi-analysis/"
-      - title: "Discover Your Archetype"
-        url: "/personality-test/"
+      - title: MCQ Arena
+        url: /socratic/mcq-arena/
+      - title: Multiple Intelligences
+        url: /socratic/multiple-intelligences/
+      - title: Personality Archetypes
+        url: /socratic/personality-archetypes/
+      - title: Socratic Journal
+        url: /socratic/journal/
+
+footer:
+  - title: About
+    url: /about/
+  - title: Contact
+    url: /contact/
+  - title: Privacy
+    url: /privacy/
