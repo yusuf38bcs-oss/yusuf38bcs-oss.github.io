@@ -6,9 +6,6 @@ baseurl: ""
 lang: "en"
 timezone: "Asia/Dhaka"
 
-remote_theme: mmistakes/minimal-mistakes
-minimal_mistakes_skin: false
-minimal_mistakes_skin: false
 
 author:
   name: "Yusuf"
@@ -41,8 +38,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
-  - jekyll-remote-theme
-  - jekyll-include-cache
+  -   - jekyll-include-cache
 
 paginate: 10
 paginate_path: /page:num/
