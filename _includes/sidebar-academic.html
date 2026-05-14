@@ -1,0 +1,107 @@
+﻿<aside class="sidebar sidebar-academic" aria-labelledby="academic-sidebar-title">
+  <div class="sidebar__inner">
+    <section class="sidebar-card sidebar-card--glow">
+      <p class="eyebrow">Academic Pathway</p>
+      <h2 id="academic-sidebar-title">Dots &rarr; Lines &rarr; Circle</h2>
+      <p>Study the concept as a biological dot, connect it with related systems, then complete the circle through application and assessment.</p>
+      <div class="sidebar-actions">
+        <a class="btn btn-primary btn-small" href="{{ '/socratic/mcq-arena/' | relative_url }}">Practice MCQs</a>
+        <a class="btn btn-secondary btn-small" href="{{ '/biology/' | relative_url }}">Biology Map</a>
+      </div>
+    </section>
+    {% assign page_cats = page.categories | join: "," | downcase %}
+    {% assign page_tags = page.tags | join: "," | downcase %}
+    <section class="sidebar-card">
+      <h3>Study Lens</h3>
+      {% if page_cats contains "physiology" or page_tags contains "physiology" %}
+        <ul class="sidebar-question-list">
+          <li>What is the structure?</li>
+          <li>What is the function?</li>
+          <li>How is it regulated?</li>
+          <li>What happens when regulation fails?</li>
+        </ul>
+      {% elsif page_cats contains "ecology" or page_tags contains "ecology" %}
+        <ul class="sidebar-question-list">
+          <li>What are the interacting components?</li>
+          <li>Where does energy flow?</li>
+          <li>Which feedback loop maintains balance?</li>
+          <li>How does the system respond to disturbance?</li>
+        </ul>
+      {% elsif page_cats contains "biostatistics" or page_tags contains "biostatistics" %}
+        <ul class="sidebar-question-list">
+          <li>What is being measured?</li>
+          <li>How variable is the data?</li>
+          <li>What pattern appears?</li>
+          <li>How confident is the conclusion?</li>
+        </ul>
+      {% elsif page_cats contains "genetics" or page_tags contains "genetics" %}
+        <ul class="sidebar-question-list">
+          <li>What information is inherited?</li>
+          <li>How is variation produced?</li>
+          <li>How is expression regulated?</li>
+          <li>How does this affect evolution?</li>
+        </ul>
+      {% elsif page_cats contains "taxonomy" or page_tags contains "taxonomy" %}
+        <ul class="sidebar-question-list">
+          <li>What characters define this group?</li>
+          <li>How is it classified?</li>
+          <li>What evolutionary relationships appear?</li>
+          <li>How does structure support survival?</li>
+        </ul>
+      {% else %}
+        <ul class="sidebar-question-list">
+          <li>What is the core concept?</li>
+          <li>What mechanism explains it?</li>
+          <li>What example makes it memorable?</li>
+          <li>How does it connect to life?</li>
+        </ul>
+      {% endif %}
+    </section>
+    <section class="sidebar-card">
+      <h3>Academic Navigation</h3>
+      <nav class="sidebar-link-list" aria-label="Academic biology navigation">
+        <a href="{{ '/biology/human-physiology/' | relative_url }}"><span>Human Physiology</span><small>Function, regulation, homeostasis</small></a>
+        <a href="{{ '/biology/ecology/' | relative_url }}"><span>Ecology</span><small>Systems, energy, adaptation</small></a>
+        <a href="{{ '/biology/genetics-evolution/' | relative_url }}"><span>Genetics &amp; Evolution</span><small>Inheritance, variation, selection</small></a>
+        <a href="{{ '/biology/animal-diversity-taxonomy/' | relative_url }}"><span>Animal Diversity &amp; Taxonomy</span><small>Classification and comparative biology</small></a>
+        <a href="{{ '/biology/biostatistics/' | relative_url }}"><span>Biostatistics</span><small>Data, probability, inference</small></a>
+      </nav>
+    </section>
+    <section class="sidebar-card">
+      <h3>Assessment Bridge</h3>
+      <nav class="sidebar-link-list" aria-label="Academic assessment tools">
+        <a href="{{ '/socratic/mcq-arena/' | relative_url }}"><span>MCQ Arena</span><small>Generate topic-wise practice questions</small></a>
+        <a href="{{ '/socratic/principles-deconstructor/' | relative_url }}"><span>Principles Deconstructor</span><small>Convert facts into first principles</small></a>
+        <a href="{{ '/socratic/journal/' | relative_url }}"><span>Socratic Journal</span><small>Reflect and retain through questioning</small></a>
+      </nav>
+    </section>
+    <section class="sidebar-card ai-mini-panel" data-sidebar-academic-ai>
+      <h3>Generate Study Prompts</h3>
+      <p>Create compact revision prompts from this page.</p>
+      <button class="btn btn-primary btn-small" type="button" data-academic-sidebar-generate>Generate Prompts</button>
+      <div class="sidebar-ai-output" data-academic-sidebar-output aria-live="polite"></div>
+    </section>
+  </div>
+</aside>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var panel = document.querySelector("[data-sidebar-academic-ai]");
+    if (!panel || !window.SynapticAI) return;
+    var button = panel.querySelector("[data-academic-sidebar-generate]");
+    var output = panel.querySelector("[data-academic-sidebar-output]");
+    button.addEventListener("click", async function () {
+      output.innerHTML = "<p>Building study prompts...</p>";
+      button.disabled = true;
+      try {
+        var result = await window.SynapticAI.generate({
+          model: "fast", type: "text", useMemory: false,
+          systemInstruction: "You are an expert biology teacher for Learning Biology for Life. Create concise, exam-friendly, concept-focused study prompts.",
+          prompt: "From the current page context, create: 1) three recall questions, 2) three application questions, 3) one life-bridge reflection. Keep the output compact."
+        });
+        output.innerHTML = window.SynapticAI.renderMarkdown(result.text || result.output || "No response generated.");
+      } catch (error) {
+        output.innerHTML = "<p>Synaptic misfire. Please try again.</p>";
+      } finally { button.disabled = false; }
+    });
+  });
+</script>

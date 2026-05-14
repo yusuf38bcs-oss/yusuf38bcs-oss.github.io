@@ -1,57 +1,214 @@
-# Learning Biology For Life - Core Configuration
-title: "Learning Biology For Life"
-name: "Md. Yusuf"
-description: "The Synaptic Bridge — where biology meets leadership, cognition, and life."
-baseurl: ""
+﻿title: "Learning Biology for Life"
+tagline: "Read - Reflect - Seek Knowledge"
+description: "A Synaptic Bridge approach to biology, behaviour, leadership, and lifelong learning."
 url: "https://yusuf38bcs-oss-github-io.pages.dev"
-repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
+baseurl: ""
+lang: "en"
 timezone: "Asia/Dhaka"
 
-# Theme Settings
-remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "dark"
-breadcrumbs: true
-
-# Author Details
 author:
-  name: "Md. Yusuf"
-  bio: "Cognitive Architect | Bridging Evolution, Mind & Leadership"
-  avatar: "/assets/images/avatar.jpg"
+  name: "Yusuf"
+  title: "Biology Educator & Learning Designer"
+  bio: "Exploring biology as a living bridge between scientific understanding, human behaviour, leadership, and reflective intelligence."
+  email: "yusuf.38bcs@gmail.com"
+  image: "/assets/images/profile.jpg"
 
-# Localization & Taxonomy Archives
-locale: "en-US"
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
+logo: "/assets/images/logo.png"
+banner: "/assets/images/header-bg.jpg"
 
-# Pagination Settings
-paginate: 6
-paginate_path: "/page:num/"
+copyright:
+  year: 2026
+  owner: "Learning Biology for Life"
+  text: "All rights reserved."
 
-# Defaults for Posts
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "single"
-      author_profile: false
+markdown: kramdown
+highlighter: rouge
 
-# Integrations
-newsletter:
-  provider: "brevo"
-  action: "https://example-brevo-link.com/subscribe"
-formspree_id: "your-id"
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  math_engine: mathjax
 
-# Plugins
+permalink: /:categories/:title/
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-paginate
-  - jekyll-archives
 
+sass:
+  style: compressed
 
+exclude:
+  - README.md
+  - node_modules
+  - vendor
+  - package.json
+  - package-lock.json
+  - cloudflare-worker
+  - Gemfile.lock
+  - .wrangler
+  - .env
+  - "*.gdoc"
+  - "*.gsheet"
+
+include:
+  - _pages
+  - ads.txt
+
+collections:
+  biology:
+    output: true
+    permalink: /biology/:path/
+  life_practices:
+    output: true
+    permalink: /life-practices/:path/
+  socratic:
+    output: true
+    permalink: /socratic/:path/
+  legal:
+    output: true
+    permalink: /:path/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+      image: "/assets/images/header-bg.jpg"
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author: "Learning Biology for Life"
+      comments: false
+      toc: true
+  - scope:
+      path: ""
+      type: biology
+    values:
+      layout: single
+      author: "Learning Biology for Life"
+      toc: true
+      sidebar: academic
+  - scope:
+      path: "human-physiology"
+      type: biology
+    values:
+      layout: physiology
+      categories: [Biology, "Human Physiology"]
+      sidebar: academic
+  - scope:
+      path: "ecology"
+      type: biology
+    values:
+      layout: ecology
+      categories: [Biology, Ecology]
+      sidebar: academic
+  - scope:
+      path: "biostatistics"
+      type: biology
+    values:
+      layout: biostatistics
+      categories: [Biology, Biostatistics]
+      sidebar: academic
+  - scope:
+      path: ""
+      type: life_practices
+    values:
+      layout: single
+      author: "Learning Biology for Life"
+      toc: true
+      sidebar: socratic
+  - scope:
+      path: ""
+      type: socratic
+    values:
+      layout: single
+      author: "Learning Biology for Life"
+      toc: false
+      sidebar: socratic
+  - scope:
+      path: ""
+      type: legal
+    values:
+      layout: page
+      author: "Learning Biology for Life"
+      toc: false
+
+navigation:
+  main_data_file: "navigation"
+
+ai:
+  enabled: true
+  endpoint: "https://synaptic-bridge-gemini-proxy.yusuf-38bcs.workers.dev/api/gemini"
+  cooldownMs: 1200
+  maxRetries: 3
+  cacheEnabled: true
+  memoryEnabled: true
+  analytics: false
+
+analytics:
+  gtm_id: "GTM-WPZ6MPK4"
+
+adsense:
+  enabled: false
+  client: ""
+
+brevo:
+  enabled: true
+  form_url: "https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ=="
+  list_name: "Synaptic Bridge Newsletter"
+
+cookie_policy:
+  enabled: true
+  consent_key: "lbfl_cookie_consent_v1"
+
+search:
+  enabled: true
+  placeholder: "Search biology, behaviour, leadership..."
+
+social:
+  facebook: ""
+  youtube: ""
+  linkedin: ""
+  x: ""
+  github: "https://github.com/yusuf38bcs-oss"
+
+footer:
+  description: "Learning Biology for Life connects biological concepts with reflection, leadership, behaviour, and practical wisdom through a Synaptic Bridge learning model."
+  columns:
+    - title: "Learn"
+      links:
+        - title: "Biology"
+          url: "/biology/"
+        - title: "Human Physiology"
+          url: "/biology/human-physiology/"
+        - title: "Ecology"
+          url: "/biology/ecology/"
+        - title: "Biostatistics"
+          url: "/biology/biostatistics/"
+    - title: "Reflect"
+      links:
+        - title: "Socratic 4.0"
+          url: "/socratic/"
+        - title: "MCQ Arena"
+          url: "/socratic/mcq-arena/"
+        - title: "Multiple Intelligences"
+          url: "/socratic/multiple-intelligences/"
+        - title: "Personality Archetypes"
+          url: "/socratic/personality-archetypes/"
+    - title: "Legal"
+      links:
+        - title: "About & Author"
+          url: "/about/"
+        - title: "Privacy Policy"
+          url: "/privacy-policy/"
+        - title: "Cookie Policy"
+          url: "/cookie-policy/"
+        - title: "Terms & Conditions"
+          url: "/terms-and-conditions/"
+        - title: "Disclaimer"
+          url: "/disclaimer/"

@@ -1,0 +1,59 @@
+﻿<aside class="sidebar sidebar-socratic" aria-labelledby="socratic-sidebar-title">
+  <div class="sidebar__inner">
+    <section class="sidebar-card sidebar-card--glow">
+      <p class="eyebrow">Socratic 4.0</p>
+      <h2 id="socratic-sidebar-title">Reflect. Analyse. Transform.</h2>
+      <p>Convert this idea into self-knowledge through guided questioning, behavioural reflection, and applied intelligence.</p>
+      <div class="sidebar-actions">
+        <a class="btn btn-primary btn-small" href="{{ '/socratic/mcq-arena/' | relative_url }}">MCQ Arena</a>
+        <a class="btn btn-secondary btn-small" href="{{ '/socratic/journal/' | relative_url }}">Socratic Journal</a>
+      </div>
+    </section>
+    <section class="sidebar-card">
+      <h3>Bridge Questions</h3>
+      <ul class="sidebar-question-list">
+        <li>What biological principle is hidden inside this life situation?</li>
+        <li>Which behaviour is adaptive, and which one is maladaptive?</li>
+        <li>Where is the feedback loop?</li>
+        <li>What would homeostasis look like here?</li>
+      </ul>
+    </section>
+    <section class="sidebar-card">
+      <h3>Self-Analysis Tools</h3>
+      <nav class="sidebar-link-list" aria-label="Socratic analysis tools">
+        <a href="{{ '/socratic/multiple-intelligences/' | relative_url }}"><span>Multiple Intelligences</span><small>Gardner-based learning reflection</small></a>
+        <a href="{{ '/socratic/personality-archetypes/' | relative_url }}"><span>Personality Archetypes</span><small>Behavioural pattern reflection</small></a>
+        <a href="{{ '/socratic/debate-simulator/' | relative_url }}"><span>Debate Simulator</span><small>Argument, counterargument, synthesis</small></a>
+        <a href="{{ '/socratic/principles-deconstructor/' | relative_url }}"><span>Principles Deconstructor</span><small>Break concepts into first principles</small></a>
+      </nav>
+    </section>
+    <section class="sidebar-card ai-mini-panel" data-sidebar-socratic-ai>
+      <h3>Ask the Socratic Tutor</h3>
+      <p>Generate reflective questions from this page using the Synaptic AI layer.</p>
+      <button class="btn btn-primary btn-small" type="button" data-socratic-sidebar-generate>Generate Questions</button>
+      <div class="sidebar-ai-output" data-socratic-sidebar-output aria-live="polite"></div>
+    </section>
+  </div>
+</aside>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var panel = document.querySelector("[data-sidebar-socratic-ai]");
+    if (!panel || !window.SynapticAI) return;
+    var button = panel.querySelector("[data-socratic-sidebar-generate]");
+    var output = panel.querySelector("[data-socratic-sidebar-output]");
+    button.addEventListener("click", async function () {
+      output.innerHTML = "<p>Thinking through the bridge...</p>";
+      button.disabled = true;
+      try {
+        var result = await window.SynapticAI.generate({
+          model: "deep", type: "text", useMemory: true,
+          systemInstruction: "You are a Socratic mentor for Learning Biology for Life. Generate reflective, practical, non-clinical questions that connect biology, human behaviour, leadership, and self-awareness.",
+          prompt: "From the current page context, create 5 Socratic questions. Each question should help the learner connect the topic with behaviour, leadership, or life practice. Keep it concise."
+        });
+        output.innerHTML = window.SynapticAI.renderMarkdown(result.text || result.output || "No response generated.");
+      } catch (error) {
+        output.innerHTML = "<p>Synaptic misfire. Please try again.</p>";
+      } finally { button.disabled = false; }
+    });
+  });
+</script>
