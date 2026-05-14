@@ -1,0 +1,59 @@
+﻿<section class="ai-panel" data-ai-widget>
+  <h2>{{ include.title | default: "Synaptic AI Tutor" }}</h2>
+
+  <p>
+    {{ include.description | default: "Ask a Socratic question about this page." }}
+  </p>
+
+  <textarea
+    data-ai-prompt
+    rows="5"
+    placeholder="Ask your question..."
+    style="width:100%; border-radius:12px; padding:1rem;"
+  ></textarea>
+
+  <button class="btn btn-primary" data-ai-submit>
+    Generate Response
+  </button>
+
+  <button class="btn btn-secondary" data-ai-clear-memory>
+    Clear Memory
+  </button>
+
+  <div class="ai-output" data-ai-output></div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const widget = document.querySelector("[data-ai-widget]");
+    if (!widget || !window.SynapticAI) return;
+
+    const input = widget.querySelector("[data-ai-prompt]");
+    const output = widget.querySelector("[data-ai-output]");
+    const submit = widget.querySelector("[data-ai-submit]");
+    const clear = widget.querySelector("[data-ai-clear-memory]");
+
+    submit.addEventListener("click", async function () {
+      output.innerHTML = "Thinking...";
+
+      try {
+        const result = await window.SynapticAI.generate({
+          model: "deep",
+          type: "text",
+          useMemory: true,
+          systemInstruction: "You are a Socratic biology tutor. Ask thoughtful questions before giving direct answers.",
+          prompt: input.value
+        });
+
+        output.innerHTML = window.SynapticAI.renderMarkdown(result.text || result.output || "");
+      } catch (err) {
+        output.textContent = err.message || "Synaptic misfire. Please try again.";
+      }
+    });
+
+    clear.addEventListener("click", function () {
+      window.SynapticAI.clearMemory();
+      output.textContent = "Memory cleared for this session.";
+    });
+  });
+</script>
