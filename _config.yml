@@ -1,11 +1,13 @@
-﻿remote_theme: mmistakes/minimal-mistakes
-title: "Learning Biology for Life"
+﻿title: "Learning Biology for Life"
 tagline: "Read - Reflect - Seek Knowledge"
 description: "A Synaptic Bridge approach to biology, behaviour, leadership, and lifelong learning."
 url: "https://yusuf38bcs-oss-github-io.pages.dev"
 baseurl: ""
 lang: "en"
 timezone: "Asia/Dhaka"
+
+remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: false
 
 author:
   name: "Yusuf"
@@ -16,11 +18,6 @@ author:
 
 logo: "/assets/images/logo.png"
 banner: "/assets/images/header-bg.jpg"
-
-copyright:
-  year: 2026
-  owner: "Learning Biology for Life"
-  text: "All rights reserved."
 
 markdown: kramdown
 highlighter: rouge
@@ -38,6 +35,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
+  - jekyll-remote-theme
   - jekyll-include-cache
 
 paginate: 10
@@ -141,7 +139,6 @@ analytics:
 brevo:
   enabled: true
   form_url: "https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ=="
-  list_name: "Synaptic Bridge Newsletter"
 
 cookie_policy:
   enabled: true
