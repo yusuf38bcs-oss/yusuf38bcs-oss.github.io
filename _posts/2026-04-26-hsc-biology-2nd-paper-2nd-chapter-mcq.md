@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -8,8 +8,8 @@ date: 2026-04-26T11:29:00.001Z
 categories:
   - MCQ
   - Zoology
+description: "Learning Biology for Life - 2026-04-26-hsc-biology-2nd-paper-2nd-chapter-mcq.md"
 ---
-
 <issue identifier="MCQ-6-ADV">
   <title>Hydra Quiz Test 6 Advanced</title>
   <description><![CDATA[

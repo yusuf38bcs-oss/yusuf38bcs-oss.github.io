@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -8,8 +8,8 @@ date: 2026-04-26T10:38:00.004Z
 categories:
   - MCQ
   - Botany
+description: "Learning Biology for Life - 2026-04-26-botany-1st-2nd-chapter-quiz-test.md"
 ---
-
 <issue identifier="MCQ-5">
   <title>Chromosome & Cell Division Quiz</title>
   <description><![CDATA[

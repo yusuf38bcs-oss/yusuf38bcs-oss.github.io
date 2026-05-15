@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -7,8 +7,8 @@ title: "ECOLOGY: HISTORY, SCOPES & AREA (ইকোলজি: সংজ্ঞা,
 date: 2026-05-04T08:27:00.001Z
 categories:
   - ECOLOGY
+description: "Learning Biology for Life - 2026-05-04-ecology-history-scopes-area.md"
 ---
-
 <div style="max-width:920px;margin:auto;padding:18px;font-family:'Hind Siliguri',sans-serif;line-height:1.9;color:#222;background:#fff;">
 
   <!-- 🔥 THUMBNAIL -->

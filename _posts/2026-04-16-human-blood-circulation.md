@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -8,8 +8,8 @@ date: 2026-04-16T15:23:00.001Z
 categories:
   - Zoology
   - Human Physiology
+description: "Learning Biology for Life - 2026-04-16-human-blood-circulation.md"
 ---
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>

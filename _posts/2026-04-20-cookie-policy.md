@@ -1,12 +1,12 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
 title: "Cookie Policy"
 date: 2026-04-20T21:12:00Z
+description: "Learning Biology for Life - 2026-04-20-cookie-policy.md"
 ---
-
 <h1>Cookie Policy</h1>
 
 <p>This Cookie Policy explains how <strong>Learning Biology for Life</strong> (https://www.learningbiologyforlife.org) uses cookies and similar technologies.</p>

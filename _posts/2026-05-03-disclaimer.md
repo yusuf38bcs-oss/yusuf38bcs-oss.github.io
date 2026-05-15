@@ -1,12 +1,12 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
 title: "DISCLAIMER"
 date: 2026-05-03T13:33:00Z
+description: "Learning Biology for Life - 2026-05-03-disclaimer.md"
 ---
-
 <style>
 .disclaimer-container {
   max-width: 900px;

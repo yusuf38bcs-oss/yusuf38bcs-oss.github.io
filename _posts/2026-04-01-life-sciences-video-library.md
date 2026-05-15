@@ -1,12 +1,12 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
 title: "LIFE SCIENCES VIDEO LIBRARY"
 date: 2026-04-01T10:53:00Z
+description: "Learning Biology for Life - 2026-04-01-life-sciences-video-library.md"
 ---
-
 <p>&nbsp;</p>
 <div style="display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); padding: 10px;">
 

@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -7,8 +7,8 @@ title: "Protozoa: Nutrion & Locomotion (প্রোটোজোয়ার বি
 date: 2026-04-13T16:26:00.008Z
 categories:
   - Animal Diversity
+description: "Learning Biology for Life - 2026-04-13-protozoa-nutrion-locomotion.md"
 ---
-
 <div class="synaptic-lecture-container">
   
   <div class="lecture-header">

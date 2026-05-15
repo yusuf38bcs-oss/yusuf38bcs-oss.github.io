@@ -1,12 +1,12 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
 title: "Privacy Policy"
 date: 2026-04-13T06:57:00Z
+description: "Learning Biology for Life - 2026-04-13-privacy-policy.md"
 ---
-
 <h1>Privacy Policy for Learning Biology For Life</h1>
 
 <p>At Learning Biology For Life, accessible from www.learningbiologyforlife.org, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Learning Biology For Life and how we use it.</p>

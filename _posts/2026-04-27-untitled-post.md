@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -7,8 +7,8 @@ title: "এলোমেলো ভাবনার অশরীরী জলসি
 date: 2026-04-27T16:20:00.013Z
 categories:
   - Random Thoughts
+description: "Learning Biology for Life - 2026-04-27-untitled-post.md"
 ---
-
 <div style="max-width:720px;margin:auto;background:#f9f3e7;color:#3e2f1c;border-radius:12px;overflow:hidden;font-family:Georgia,serif;box-shadow:0 6px 20px rgba(0,0,0,.15)">
 
   <!-- HEADER IMAGE -->

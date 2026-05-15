@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -7,8 +7,8 @@ title: "Astropecten: Water Vascular System (পানি সংবহনতন�
 date: 2026-04-17T18:10:00.010Z
 categories:
   - Animal Diversity
+description: "Learning Biology for Life - 2026-04-17-astropecten-water-vascular-system.md"
 ---
-
 <!DOCTYPE html>
 <html lang="bn">
   <head>

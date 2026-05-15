@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -8,8 +8,8 @@ date: 2026-04-25T20:27:00.004Z
 categories:
   - MCQ
   - Botany
+description: "Learning Biology for Life - 2026-04-25-botany-1st-chapter-mcq.md"
 ---
-
 <issue identifier="MCQ-4">
   <title>Import your data</title>
   <description><![CDATA[

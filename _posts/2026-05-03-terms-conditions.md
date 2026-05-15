@@ -1,12 +1,12 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
 title: "Terms & Conditions"
 date: 2026-05-03T13:29:00Z
+description: "Learning Biology for Life - 2026-05-03-terms-conditions.md"
 ---
-
 <h1>Terms and Conditions</h1>
 
 <p>Welcome to <strong>Learning Biology for Life</strong> (https://www.learningbiologyforlife.org). By accessing and using this website, you agree to comply with and be bound by the following Terms and Conditions. If you do not agree, please do not use this website.</p>

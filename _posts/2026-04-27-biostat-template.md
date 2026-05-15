@@ -1,12 +1,12 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
 title: "Biostat Template"
 date: 2026-04-27T10:09:00.001Z
+description: "Learning Biology for Life - 2026-04-27-biostat-template.md"
 ---
-
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&family=Roboto+Mono&display=swap');
 
