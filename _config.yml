@@ -6,7 +6,6 @@ baseurl: ""
 lang: "en"
 timezone: "Asia/Dhaka"
 
-
 author:
   name: "Yusuf"
   title: "Biology Educator & Learning Designer"
@@ -38,7 +37,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
-    - jekyll-include-cache
+  - jekyll-include-cache
 
 paginate: 10
 paginate_path: /page:num/
@@ -100,27 +99,6 @@ defaults:
       toc: true
       sidebar: academic
   - scope:
-      path: "human-physiology"
-      type: biology
-    values:
-      layout: physiology
-      categories: [Biology, "Human Physiology"]
-      sidebar: academic
-  - scope:
-      path: "ecology"
-      type: biology
-    values:
-      layout: ecology
-      categories: [Biology, Ecology]
-      sidebar: academic
-  - scope:
-      path: "biostatistics"
-      type: biology
-    values:
-      layout: biostatistics
-      categories: [Biology, Biostatistics]
-      sidebar: academic
-  - scope:
       path: ""
       type: life_practices
     values:
@@ -159,10 +137,6 @@ ai:
 analytics:
   gtm_id: "GTM-WPZ6MPK4"
 
-adsense:
-  enabled: false
-  client: ""
-
 brevo:
   enabled: true
   form_url: "https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ=="
@@ -177,10 +151,6 @@ search:
   placeholder: "Search biology, behaviour, leadership..."
 
 social:
-  facebook: ""
-  youtube: ""
-  linkedin: ""
-  x: ""
   github: "https://github.com/yusuf38bcs-oss"
 
 footer:
