@@ -1,6 +1,4 @@
-﻿remote_theme: mmistakes/minimal-mistakes
-minimal_mistakes_skin: false
-title: "Learning Biology for Life"
+﻿title: "Learning Biology for Life"
 tagline: "Read - Reflect - Seek Knowledge"
 description: "A Synaptic Bridge approach to biology, behaviour, leadership, and lifelong learning."
 url: "https://yusuf38bcs-oss-github-io.pages.dev"
@@ -8,6 +6,8 @@ baseurl: ""
 lang: "en"
 timezone: "Asia/Dhaka"
 
+remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: false
 
 author:
   name: "Yusuf"
@@ -40,7 +40,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
-  -   - jekyll-include-cache
+  - jekyll-remote-theme
+  - jekyll-include-cache
 
 paginate: 10
 paginate_path: /page:num/
@@ -187,36 +188,3 @@ social:
 
 footer:
   description: "Learning Biology for Life connects biological concepts with reflection, leadership, behaviour, and practical wisdom through a Synaptic Bridge learning model."
-  columns:
-    - title: "Learn"
-      links:
-        - title: "Biology"
-          url: "/biology/"
-        - title: "Human Physiology"
-          url: "/biology/human-physiology/"
-        - title: "Ecology"
-          url: "/biology/ecology/"
-        - title: "Biostatistics"
-          url: "/biology/biostatistics/"
-    - title: "Reflect"
-      links:
-        - title: "Socratic 4.0"
-          url: "/socratic/"
-        - title: "MCQ Arena"
-          url: "/socratic/mcq-arena/"
-        - title: "Multiple Intelligences"
-          url: "/socratic/multiple-intelligences/"
-        - title: "Personality Archetypes"
-          url: "/socratic/personality-archetypes/"
-    - title: "Legal"
-      links:
-        - title: "About & Author"
-          url: "/about/"
-        - title: "Privacy Policy"
-          url: "/privacy-policy/"
-        - title: "Cookie Policy"
-          url: "/cookie-policy/"
-        - title: "Terms & Conditions"
-          url: "/terms-and-conditions/"
-        - title: "Disclaimer"
-          url: "/disclaimer/"
