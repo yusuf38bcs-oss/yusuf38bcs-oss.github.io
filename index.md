@@ -1,5 +1,5 @@
 ﻿---
-layout: home
+layout: default
 title: "Learning Biology For Life"
 header:
   overlay_image: /assets/images/header-bg.jpg
