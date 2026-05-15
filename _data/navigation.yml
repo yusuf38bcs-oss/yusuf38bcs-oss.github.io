@@ -1,59 +1,13 @@
 ﻿main:
-  - title: Home
+  - title: "Home"
     url: /
-
-  - title: Biology
+  - title: "Biology"
     url: /biology/
-    children:
-      - title: HSC Corner
-        url: /biology/hsc-corner/
-        children:
-          - title: Botany
-            url: /biology/hsc-corner/botany/
-          - title: Zoology
-            url: /biology/hsc-corner/zoology/
-      - title: Higher Zoology Tree
-        url: /biology/higher-zoology/
-        children:
-          - title: Animal Diversity & Taxonomy
-            url: /biology/animal-diversity-taxonomy/
-          - title: Human Physiology
-            url: /biology/human-physiology/
-          - title: Ecology
-            url: /biology/ecology/
-          - title: Genetics & Evolution
-            url: /biology/genetics-evolution/
-          - title: Biostatistics
-            url: /biology/biostatistics/
-
-  - title: Life Practices
+  - title: "Life Practices"
     url: /life-practices/
-    children:
-      - title: Leadership Management
-        url: /life-practices/leadership-management/
-      - title: Human Behaviour
-        url: /life-practices/human-behaviour/
-      - title: Research Highlights
-        url: /life-practices/research-highlights/
-      - title: Random Thoughts
-        url: /life-practices/random-thoughts/
-
-  - title: Socratic 4.0
+  - title: "Socratic"
     url: /socratic/
-    children:
-      - title: MCQ Arena
-        url: /socratic/mcq-arena/
-      - title: Multiple Intelligences
-        url: /socratic/multiple-intelligences/
-      - title: Personality Archetypes
-        url: /socratic/personality-archetypes/
-      - title: Socratic Journal
-        url: /socratic/journal/
-
-footer:
-  - title: About
+  - title: "About"
     url: /about/
-  - title: Contact
-    url: /contact/
-  - title: Privacy
-    url: /privacy/
+  - title: "Contact"
+    url: /contact-us/
