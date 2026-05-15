@@ -6,8 +6,8 @@ baseurl: ""
 lang: "en"
 timezone: "Asia/Dhaka"
 
-remote_theme: mmistakes/minimal-mistakes
-minimal_mistakes_skin: false
+remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: "default"
 
 author:
   name: "Yusuf"
