@@ -1,19 +1,19 @@
 ﻿<header class="site-header">
   <nav class="site-nav" aria-label="Main navigation">
-    <a class="logo" href="{{ '/' | relative_url }}">Synaptic Bridge</a>
-
+    <a class="logo" href="{{ '/' | relative_url }}">
+      <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}" style="height:40px;vertical-align:middle;margin-right:0.5rem;">
+      {{ site.title }}
+    </a>
     <ul class="nav-list">
       {% for item in site.data.navigation.main %}
         <li class="nav-item">
           <a class="nav-link" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-
           {% if item.children %}
             <div class="dropdown">
               {% for child in item.children %}
                 <a href="{{ child.url | relative_url }}">{{ child.title }}</a>
-
                 {% if child.children %}
-                  <div class="dropdown dropdown-nested">
+                  <div class="dropdown-nested">
                     {% for grandchild in child.children %}
                       <a href="{{ grandchild.url | relative_url }}">{{ grandchild.title }}</a>
                     {% endfor %}
