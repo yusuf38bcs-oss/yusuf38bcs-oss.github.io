@@ -1,0 +1,31 @@
+﻿---
+layout: default
+---
+
+<article class="article-layout">
+  <div>
+    <header class="article-header">
+      {% if page.categories %}
+        <span class="card-badge">{{ page.categories | first }}</span>
+      {% endif %}
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}
+        <p class="hero__lead">{{ page.description }}</p>
+      {% endif %}
+    </header>
+
+    <div class="article-content">
+      {% assign entries = site.posts %}
+      {% if page.categories %}
+        {% assign entries = entries | where_exp: "post", "post.categories contains page.categories.first" %}
+      {% endif %}
+
+      {% for post in entries %}
+        {% include archive-single.html %}
+      {% endfor %}
+    </div>
+  </div>
+  <aside>
+    {% include sidebar-academic.html %}
+  </aside>
+</article>
