@@ -8,23 +8,18 @@ layout: default
       {% if page.categories %}
         <span class="card-badge">{{ page.categories | first }}</span>
       {% endif %}
-
       <h1>{{ page.title }}</h1>
-
       {% if page.description %}
         <p class="hero__lead">{{ page.description }}</p>
       {% endif %}
     </header>
-
     <div class="article-content">
       {{ content }}
     </div>
   </div>
-
   <aside>
-    {% assign cats = page.categories | join: ',' | downcase %}
-
-    {% if cats contains 'leadership' or cats contains 'behaviour' or cats contains 'human behavior' %}
+    {% assign cats = page.categories | join: "," | downcase %}
+    {% if cats contains "leadership" or cats contains "behaviour" or cats contains "human behavior" %}
       {% include sidebar-socratic.html %}
     {% else %}
       {% include sidebar-academic.html %}
