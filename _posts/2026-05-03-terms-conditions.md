@@ -6,6 +6,8 @@ sidebar:
 title: "Terms & Conditions"
 date: 2026-05-03T13:29:00Z
 description: "Learning Biology for Life - 2026-05-03-terms-conditions.md"
+categories:
+  - legal
 ---
 <h1>Terms and Conditions</h1>
 

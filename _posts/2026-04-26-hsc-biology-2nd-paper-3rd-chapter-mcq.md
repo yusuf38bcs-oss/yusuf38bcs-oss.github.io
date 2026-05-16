@@ -1,30 +1,12 @@
 ﻿---
 layout: single
-description: "HSC Biology 2nd Paper Chapter 3 MCQ practice with detailed explanations."
-layout: single
-description: "Exploring leadership and management skills for 21st century learners through biological analogies."
-layout: biostatistics
-description: "Understanding measures of dispersion in biological data."
-layout: single
-description: "Understanding polymorphism in Cnidaria and its adaptive significance."
-layout: single
-description: "Exploring coral reef types and formation."
 title: "HSC Biology 2nd Paper 3rd Chapter MCQ"
 date: 2026-04-26T11:48:00.009Z
+description: "HSC Biology 2nd Paper Chapter 3 MCQ practice with detailed explanations."
 categories:
   - mcq
   - zoology
 ---
-layout: single
-description: "HSC Biology 2nd Paper Chapter 3 MCQ practice with detailed explanations."
-layout: single
-description: "Exploring leadership and management skills for 21st century learners through biological analogies."
-layout: biostatistics
-description: "Understanding measures of dispersion in biological data."
-layout: single
-description: "Understanding polymorphism in Cnidaria and its adaptive significance."
-layout: single
-description: "Exploring coral reef types and formation."
 
 <div class="synaptic-quiz-app">
   <div class="quiz-card">

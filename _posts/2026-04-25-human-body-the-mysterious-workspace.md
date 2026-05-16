@@ -6,8 +6,8 @@ sidebar:
 title: "Human Body: The Mysterious Workspace"
 date: 2026-04-25T17:35:00.002Z
 categories:
-  - Botany
-  - Genetics
+  - human-physiology
+  - zoology
 description: "Learning Biology for Life - 2026-04-25-human-body-the-mysterious-workspace.md"
 ---
 <!DOCTYPE html>

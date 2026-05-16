@@ -1,15 +1,10 @@
 ﻿---
 layout: biostatistics
+title: "Measures of Dispersion"
+date: 2026-04-05T08:00:00Z
 description: "Understanding measures of dispersion in biological data."
-layout: single
-description: "Understanding polymorphism in Cnidaria and its adaptive significance."
-layout: single
-description: "Exploring coral reef types and formation."
-title: "HSC Biology 2nd Paper 3rd Chapter MCQ"
-date: 2026-04-26T11:48:00.009Z
 categories:
-  - mcq
-  - zoology
+  - biostatistics
 ---
 layout: biostatistics
 description: "Understanding measures of dispersion in biological data."

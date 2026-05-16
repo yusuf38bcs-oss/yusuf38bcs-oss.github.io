@@ -3,11 +3,12 @@ layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
-title: "Measures of Central Tendency "
+title: "Measures of Central Tendency"
 date: 2026-05-05T06:20:00.002Z
 categories:
-  - Biostatistics
+  - biostatistics
 description: "Learning Biology for Life - 2026-05-05-measures-of-central-tendency.md"
+---
 ---
 <div id="bio-statistics-pro">
 

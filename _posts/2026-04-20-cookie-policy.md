@@ -6,6 +6,8 @@ sidebar:
 title: "Cookie Policy"
 date: 2026-04-20T21:12:00Z
 description: "Learning Biology for Life - 2026-04-20-cookie-policy.md"
+categories:
+  - legal
 ---
 <h1>Cookie Policy</h1>
 
