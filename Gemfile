@@ -10,3 +10,6 @@ group :jekyll_plugins do
   gem "jekyll-paginate", "~> 1.1"
   gem "jekyll-include-cache", "~> 0.2"
 end
+
+gem "tzinfo"
+gem "tzinfo-data"
