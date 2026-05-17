@@ -1,5 +1,5 @@
-﻿---
-layout: default
+---
+layout: archive
 title: "Learning Biology For Life"
 header:
   overlay_image: /assets/images/header-bg.jpg
