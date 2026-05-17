@@ -42,12 +42,9 @@ img { max-width: 100%; display: block; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(7, 17, 31, 0.82);
+  background: rgba(7, 17, 31, 0.95);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background-image: url("/assets/images/header-bg.jpg");
-  background-size: cover;
-  background-position: center;
 }
 
 .site-nav {
@@ -59,9 +56,21 @@ img { max-width: 100%; display: block; }
   justify-content: space-between;
 }
 
-.logo { font-weight: 800; letter-spacing: -0.04em; color: var(--color-text); }
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--color-text) !important;
+  text-decoration: none !important;
+}
+.logo img {
+  height: 40px;
+  margin-right: 0.5rem;
+}
+
 .nav-list { display: flex; gap: 1.25rem; list-style: none; padding: 0; margin: 0; }
-.nav-item { position: relative; }
+.nav-item { position: relative; list-style: none; }
 .nav-link { color: var(--color-muted); font-weight: 600; }
 .nav-link:hover { color: var(--color-text); }
 
@@ -81,6 +90,23 @@ img { max-width: 100%; display: block; }
 .dropdown a { display: block; padding: 0.65rem 0.75rem; color: var(--color-muted); border-radius: var(--radius-sm); }
 .dropdown a:hover { background: rgba(255, 255, 255, 0.06); color: var(--color-text); text-decoration: none; }
 .dropdown-nested { margin-left: 1rem; border-left: 2px solid rgba(62, 231, 182, 0.3); padding-left: 0.5rem; }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 5px 0;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
 
 .hero {
   max-width: var(--content-width);
@@ -199,58 +225,15 @@ td, th { padding: 0.85rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
   .hero, .article-layout { grid-template-columns: 1fr; }
   .hero__visual { min-height: 280px; }
   .card-grid, .post-grid { grid-template-columns: 1fr; }
-  .nav-list { display: none; }
   .section-muted { padding-left: 1.25rem; padding-right: 1.25rem; }
   .sidebar__inner { position: static; }
   .brevo-modal-window { width: 95%; margin: 15% auto; padding: 10px; }
   .close-x { top: -12px; right: -5px; }
-}
-/* ── Override Minimal Mistakes header conflicts ── */
-.masthead { display: none !important; }
-.site-header { display: block !important; }
-.site-nav { display: flex !important; }
-.nav-list { display: flex !important; list-style: none !important; padding: 0 !important; margin: 0 !important; }
-.nav-item { list-style: none !important; }
-.nav-link { display: inline-block !important; color: var(--color-muted) !important; font-weight: 600 !important; }
-.nav-link:hover { color: var(--color-text) !important; }
-
-/* ── Mobile menu toggle (three dots) ── */
-.nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-.nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  margin: 5px 0;
-  background: var(--color-text);
-  border-radius: 2px;
-  transition: transform 0.3s ease;
-}
-
-@media (max-width: 860px) {
   .nav-toggle { display: block; }
-  .nav-list { display: none !important; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--color-surface); padding: 1rem !important; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .nav-list.nav-open { display: flex !important; }
+  .nav-list:not(.nav-open) { display: none !important; }
+  .nav-list.nav-open { display: flex !important; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--color-surface); padding: 1rem !important; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .nav-item { padding: 0.5rem 0; }
 }
 
-/* ── Fix logo over header-bg ── */
-.site-header .logo {
-  display: flex;
-  align-items: center;
-  color: var(--color-text) !important;
-  text-decoration: none !important;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-.site-header .logo img {
-  height: 40px;
-  vertical-align: middle;
-  margin-right: 0.5rem;
-}
+.masthead { display: none !important; }
 
