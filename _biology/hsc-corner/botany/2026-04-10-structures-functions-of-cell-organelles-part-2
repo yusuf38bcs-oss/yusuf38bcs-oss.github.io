@@ -1,0 +1,349 @@
+---
+layout: single
+title: "Structures & Functions of Cell Organelles - Part 2 (কোষীয় বিভিন্ন অঙ্গাণুর গঠন ও কাজ - ২)"
+date: 2026-04-10T22:20:00+06:00
+categories: [biology, hsc-corner, botany]
+tags: [nucleus, chromosome, cell-biology, genetics]
+toc: true
+toc_label: "এই পাঠে যা আছে"
+toc_icon: "dna"
+excerpt: "নিউক্লিয়াস, ক্রোমোসোম, সেন্ট্রোমিয়ার ও বংশগতির গাঠনিক ভিত্তির পূর্ণাঙ্গ আলোচনা।"
+header:
+  overlay_image: /assets/images/cell-organelles-part2-cover.jpg
+  overlay_filter: 0.45
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/accordion.css' | relative_url }}">
+
+<div class="accordion-hero">
+  <h1>🧠 নিউক্লিয়াস ও ক্রোমোসোম</h1>
+  <p>কোষের নিয়ন্ত্রণ কেন্দ্র ও বংশগতির গাঠনিক ভিত্তি</p>
+</div>
+
+![Nucleus Structure]({{ '/assets/images/nucleus-structure.jpg' | relative_url }})
+
+<p class="image-caption">
+Nucleus: The Control Centre of Cellular Life
+</p>
+
+<button class="accordion accordion-lolo">
+🎯 ১. শিখন উদ্দেশ্য (Learning Objectives - LOLO)
+</button>
+
+<div class="accordion-panel panel-lolo">
+
+<p>এই পাঠটি সম্পন্ন করার পর তোমরা:</p>
+
+<ul>
+  <li>নিউক্লিয়াসের গাঠনিক অংশসমূহ ব্যাখ্যা করতে পারবে।</li>
+
+  <li>ক্রোমোসোমের ভৌত ও রাসায়নিক গঠন বিশ্লেষণ করতে পারবে।</li>
+
+  <li>সেন্ট্রোমিয়ারের অবস্থানের ভিত্তিতে ক্রোমোসোমের প্রকারভেদ শনাক্ত করতে পারবে।</li>
+
+  <li>টেলোমিয়ার ও জরা (Ageing)-এর সম্পর্ক ব্যাখ্যা করতে পারবে।</li>
+</ul>
+
+</div>
+
+<button class="accordion accordion-lolo">
+🌑 ২. নিউক্লিয়াস: কোষের নিয়ন্ত্রণ কেন্দ্র
+</button>
+
+<div class="accordion-panel panel-lolo">
+
+<p>
+নিউক্লিয়াস হলো কোষের সকল জৈবিক কার্যক্রম নিয়ন্ত্রণকারী প্রধান অঙ্গাণু।
+১৮৩১ সালে <strong>রবার্ট ব্রাউন</strong> এটি আবিষ্কার করেন।
+</p>
+
+<div class="flowchart">
+
+কোষীয় নিয়ন্ত্রণ → জিনগত তথ্য সংরক্ষণ → RNA সংশ্লেষণ → প্রোটিন উৎপাদন নিয়ন্ত্রণ
+
+</div>
+
+<h4>নিউক্লিয়াসের প্রধান অংশসমূহ</h4>
+
+<ol>
+
+<li>
+<strong>নিউক্লিয়ার এনভেলপ (Nuclear Envelope)</strong><br>
+দ্বিস্তরী ঝিল্লি যা নিউক্লিয়াসকে সাইটোপ্লাজম থেকে পৃথক রাখে।
+এতে নিউক্লিয়ার পোর থাকে যা পদার্থ আদান-প্রদান নিয়ন্ত্রণ করে।
+</li>
+
+<li>
+<strong>নিউক্লিওপ্লাজম (Nucleoplasm)</strong><br>
+স্বচ্ছ দানাদার তরল যা ক্যারিওলিম্ফ নামেও পরিচিত।
+এখানে ক্রোমাটিন তন্তু ও নিউক্লিওলাস অবস্থান করে।
+</li>
+
+<li>
+<strong>নিউক্লিওলাস (Nucleolus)</strong><br>
+RNA ও রাইবোসোম উৎপাদনের কেন্দ্র।
+এটি সাধারণত SAT ক্রোমোসোমের সাথে যুক্ত থাকে।
+</li>
+
+<li>
+<strong>ক্রোমাটিন তন্তু (Chromatin Fibre)</strong><br>
+বিশ্রামরত কোষে জালিকাকার অবস্থায় থাকে এবং কোষ বিভাজনের সময় ঘনীভূত হয়ে ক্রোমোসোম তৈরি করে।
+</li>
+
+</ol>
+
+<p class="highlight">
+বিশেষ তথ্য: নিউক্লিয়াসকে কোষের “মস্তিষ্ক” বলা হয় কারণ এটি কোষের সব কার্যকলাপ নিয়ন্ত্রণ করে।
+</p>
+
+</div>
+
+<button class="accordion accordion-lolo">
+🧬 ৩. ক্রোমোসোম: বংশগতির বাহক
+</button>
+
+<div class="accordion-panel panel-lolo">
+
+<p>
+ক্রোমোসোম হলো বংশগত বৈশিষ্ট্য বহনকারী অনুলিপনক্ষম গাঠনিক উপাদান।
+১৮৮৮ সালে <strong>ডাব্লিউ. ওয়ালডেয়ার</strong> “Chromosome” শব্দটি প্রবর্তন করেন।
+</p>
+
+<div class="flowchart">
+
+DNA + Histone Protein → Chromatin → Condensed Chromosome
+
+</div>
+
+<h4>ক্রোমোসোমের ভৌত গঠন</h4>
+
+<ul>
+
+<li>
+<strong>ক্রোমাটিড:</strong>
+মেটাফেজ অবস্থায় দৃশ্যমান সমদৈর্ঘ্যের দুটি অংশ।
+</li>
+
+<li>
+<strong>সেন্ট্রোমিয়ার:</strong>
+দুটি ক্রোমাটিডকে যুক্তকারী সংকুচিত অংশ।
+</li>
+
+<li>
+<strong>টেলোমিয়ার:</strong>
+ক্রোমোসোমের প্রান্তীয় অঞ্চল যা জরা নিয়ন্ত্রণে ভূমিকা রাখে।
+</li>
+
+<li>
+<strong>স্যাটেলাইট:</strong>
+গৌণ কুঞ্চনের ফলে সৃষ্ট ক্ষুদ্র অংশ।
+</li>
+
+</ul>
+
+<h4>রাসায়নিক গঠন</h4>
+
+<div class="flowchart">
+
+DNA ≈ 45% <br>
+Protein ≈ 55% <br>
+RNA ≈ 0.2–1.4%
+
+</div>
+
+<h4>হিস্টোন প্রোটিনের কাজ</h4>
+
+<ul>
+
+<li>DNA কে সংগঠিত রাখা</li>
+
+<li>নিউক্লিওসম গঠন করা</li>
+
+<li>জিন প্রকাশ নিয়ন্ত্রণ করা</li>
+
+</ul>
+
+</div>
+
+<button class="accordion accordion-lolo">
+📐 ৪. সেন্ট্রোমিয়ারের অবস্থান অনুযায়ী ক্রোমোসোমের প্রকারভেদ
+</button>
+
+<div class="accordion-panel panel-lolo">
+
+<p>
+সেন্ট্রোমিয়ারের অবস্থানের ভিত্তিতে ক্রোমোসোমের আকৃতি নির্ধারিত হয়।
+বিশেষত অ্যানাফেজ পর্যায়ে এগুলো স্পষ্ট দেখা যায়।
+</p>
+
+<table>
+
+<thead>
+<tr>
+<th>প্রকার</th>
+<th>সেন্ট্রোমিয়ারের অবস্থান</th>
+<th>আকৃতি</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>মেটাসেন্ট্রিক</td>
+<td>মাঝখানে</td>
+<td>V আকৃতি</td>
+</tr>
+
+<tr>
+<td>সাব-মেটাসেন্ট্রিক</td>
+<td>মাঝখানের একটু পাশে</td>
+<td>L আকৃতি</td>
+</tr>
+
+<tr>
+<td>অ্যাক্রোসেন্ট্রিক</td>
+<td>প্রান্তের কাছাকাছি</td>
+<td>J আকৃতি</td>
+</tr>
+
+<tr>
+<td>টেলোসেন্ট্রিক</td>
+<td>একেবারে প্রান্তে</td>
+<td>I আকৃতি</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<p class="highlight">
+মানুষের কোষে টেলোসেন্ট্রিক ক্রোমোসোম অনুপস্থিত।
+</p>
+
+</div>
+
+<button class="accordion accordion-lolo">
+🧪 ৫. ইউক্রোমাটিন ও হেটেরোক্রোমাটিন
+</button>
+
+<div class="accordion-panel panel-lolo">
+
+<table>
+
+<thead>
+<tr>
+<th>বৈশিষ্ট্য</th>
+<th>ইউক্রোমাটিন</th>
+<th>হেটেরোক্রোমাটিন</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ঘনত্ব</td>
+<td>কম ঘন</td>
+<td>অত্যন্ত ঘন</td>
+</tr>
+
+<tr>
+<td>রঞ্জন ক্ষমতা</td>
+<td>হালকা</td>
+<td>গাঢ়</td>
+</tr>
+
+<tr>
+<td>জিন কার্যকারিতা</td>
+<td>সক্রিয়</td>
+<td>নিষ্ক্রিয়</td>
+</tr>
+
+<tr>
+<td>ট্রান্সক্রিপশন</td>
+<td>ঘটে</td>
+<td>সাধারণত ঘটে না</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="flowchart">
+
+ইউক্রোমাটিন → সক্রিয় জিন <br>
+হেটেরোক্রোমাটিন → সুপ্ত জিন
+
+</div>
+
+</div>
+
+<div class="lala-section">
+
+মূল্যায়ন ও সারসংক্ষেপ (LALA)
+
+</div>
+
+<button class="accordion accordion-lala">
+📝 ৬. শিখন মূল্যায়ন (Learning Assessment)
+</button>
+
+<div class="accordion-panel panel-lala">
+
+<h4>ধারণাভিত্তিক প্রশ্ন</h4>
+
+<ul>
+
+<li>কেন নিউক্লিয়াসকে কোষের “মস্তিষ্ক” বলা হয়?</li>
+
+<li>টেলোমিয়ার কীভাবে বার্ধক্যের সাথে সম্পর্কিত?</li>
+
+<li>হিস্টোন প্রোটিনের গুরুত্ব কী?</li>
+
+<li>মানুষের দেহে টেলোসেন্ট্রিক ক্রোমোসোম অনুপস্থিত কেন গুরুত্বপূর্ণ?</li>
+
+</ul>
+
+<div class="flowchart">
+
+চিন্তা করো:<br>
+যদি কোষে নিউক্লিয়াস না থাকতো তবে কোষের কী কী কার্যক্রম বন্ধ হয়ে যেত?
+
+</div>
+
+</div>
+
+<button class="accordion accordion-lala">
+📌 ৭. সারাংশ ও বাড়ির কাজ (Last Action)
+</button>
+
+<div class="accordion-panel panel-lala">
+
+<p>
+
+<strong>সারাংশ:</strong><br>
+
+নিউক্লিয়াস হলো কোষের তথ্যভান্ডার ও নিয়ন্ত্রণ কেন্দ্র।
+এর অভ্যন্তরে থাকা ক্রোমোসোম DNA বহন করে যা বংশগত বৈশিষ্ট্য সংরক্ষণ করে।
+টেলোমিয়ার, সেন্ট্রোমিয়ার ও হিস্টোন প্রোটিন — প্রতিটি উপাদান কোষ বিভাজন ও জিন নিয়ন্ত্রণে গুরুত্বপূর্ণ ভূমিকা পালন করে।
+
+</p>
+
+<p>
+
+<strong>বাড়ির কাজ:</strong>
+
+</p>
+
+<ol>
+
+<li>একটি আদর্শ ক্রোমোসোমের চিহ্নিত চিত্র আঁকো।</li>
+
+<li>মেটাসেন্ট্রিক ও অ্যাক্রোসেন্ট্রিক ক্রোমোসোমের পার্থক্য লিখো।</li>
+
+<li>টেলোমিয়ার ও বার্ধক্যের সম্পর্ক ব্যাখ্যা করো।</li>
+
+</ol>
+
+</div>
+
+<script src="{{ '/assets/js/accordion.js' | relative_url }}"></script>
