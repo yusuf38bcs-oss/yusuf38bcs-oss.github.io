@@ -1,0 +1,239 @@
+/* =========================================================
+   Learning Biology For Life
+   Accordion Lesson System
+   Dark Theme Compatible
+========================================================= */
+
+.lesson-shell {
+    max-width: 1100px;
+    margin: auto;
+    padding: 1.5rem;
+    color: var(--color-text, #edf6ff);
+}
+
+/* =========================================================
+   Header
+========================================================= */
+
+.lesson-header {
+    background: linear-gradient(
+        135deg,
+        rgba(63, 81, 181, 0.95),
+        rgba(0, 188, 212, 0.9)
+    );
+    padding: 2rem;
+    border-radius: 18px;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.lesson-header h1 {
+    margin-bottom: 0.7rem;
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.lesson-header p {
+    color: rgba(255,255,255,0.85);
+    font-size: 1rem;
+}
+
+/* =========================================================
+   Cover Image
+========================================================= */
+
+.lesson-cover {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.lesson-cover img {
+    width: 100%;
+    border-radius: 16px;
+    max-height: 420px;
+    object-fit: cover;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* =========================================================
+   Accordion Base
+========================================================= */
+
+.accordion {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 1.2rem 1.4rem;
+    margin-top: 1rem;
+    border-radius: 14px;
+    text-align: left;
+    font-size: 1.05rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+/* =========================================================
+   LOLO Theme
+========================================================= */
+
+.accordion-lolo {
+    background: rgba(63, 81, 181, 0.15);
+    color: #c7d2fe;
+    border-left: 6px solid #6366f1;
+}
+
+.accordion-lolo:hover,
+.accordion-lolo.active {
+    background: rgba(99, 102, 241, 0.25);
+}
+
+/* =========================================================
+   LALA Theme
+========================================================= */
+
+.accordion-lala {
+    background: rgba(0, 188, 212, 0.12);
+    color: #a5f3fc;
+    border-left: 6px solid #06b6d4;
+}
+
+.accordion-lala:hover,
+.accordion-lala.active {
+    background: rgba(6, 182, 212, 0.22);
+}
+
+/* =========================================================
+   Panels
+========================================================= */
+
+.panel {
+    display: none;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    border-radius: 0 0 16px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    line-height: 1.8;
+}
+
+.panel-lolo {
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+.panel-lala {
+    border-color: rgba(6, 182, 212, 0.2);
+}
+
+/* =========================================================
+   Highlight
+========================================================= */
+
+.highlight {
+    color: #67e8f9;
+    font-weight: 700;
+}
+
+/* =========================================================
+   Flowchart Box
+========================================================= */
+
+.flowchart {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: 5px solid #818cf8;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+/* =========================================================
+   Organelle Cards
+========================================================= */
+
+.organelle-box {
+    margin: 1.5rem 0;
+    padding: 1.2rem;
+    border-radius: 14px;
+    border: 1px solid rgba(129,140,248,0.4);
+    background: rgba(255,255,255,0.03);
+}
+
+.organelle-box img {
+    width: 100%;
+    border-radius: 12px;
+    margin: 1rem 0;
+}
+
+/* =========================================================
+   Table
+========================================================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table th,
+table td {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.9rem;
+}
+
+table th {
+    background: rgba(99,102,241,0.25);
+    color: #e0e7ff;
+}
+
+table td {
+    background: rgba(255,255,255,0.03);
+}
+
+/* Scoped table styling (prevents leaking to other pages) */
+.accordion-post table th {
+    background: rgba(99, 102, 241, 0.25);
+    color: #e0e7ff;
+}
+
+.accordion-post table td {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-text, #edf6ff);
+}
+
+/* =========================================================
+   LALA Section
+========================================================= */
+
+.lala-section {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 14px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+}
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media (max-width: 768px) {
+    .lesson-shell {
+        padding: 1rem;
+    }
+
+    .lesson-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .accordion {
+        font-size: 0.95rem;
+    }
+}
