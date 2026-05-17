@@ -1,36 +1,112 @@
+# =========================================================
+# Learning Biology for Life
+# Jekyll Configuration
+# =========================================================
+
 title: "Learning Biology for Life"
-tagline: "Read - Reflect - Seek Knowledge"
-description: "A Synaptic Bridge approach to biology, behaviour, leadership, and lifelong learning."
-url: "https://yusuf38bcs-oss-github-io.pages.dev"
+
+tagline: "Read • Reflect • Seek Knowledge"
+
+description: >
+  A Synaptic Bridge approach to biology,
+  behaviour, leadership, reflective intelligence,
+  and lifelong learning.
+
+url: "https://yusuf38bcs-oss.github.io"
 baseurl: ""
+
 lang: "en"
 timezone: "Asia/Dhaka"
 
+# =========================================================
+# THEME
+# =========================================================
+
 remote_theme: "mmistakes/minimal-mistakes"
+
 minimal_mistakes_skin: "dark"
 
-author:
-  name: "Yusuf"
-  title: "Biology Educator & Learning Designer"
-  bio: "Exploring biology as a living bridge between scientific understanding, human behaviour, leadership, and reflective intelligence."
-  email: "yusuf.38bcs@gmail.com"
-  avatar: "/assets/images/profile.jpg"
+locale: "en-BD"
+
+# =========================================================
+# SITE BRANDING
+# =========================================================
 
 logo: "/assets/images/logo.png"
+
 masthead_title: "Learning Biology for Life"
 
+teaser: "/assets/images/site/default-teaser.webp"
+
+og_image: "/assets/images/site/social-preview.webp"
+
+# =========================================================
+# AUTHOR
+# =========================================================
+
+author:
+  name: "MD. Yusuf"
+  avatar: "/assets/images/profile.jpg"
+
+  bio: >
+    Biology Educator, Learning Designer,
+    Civil Service Officer, and lifelong learner
+    exploring biology through systems thinking,
+    leadership, behaviour, and digital pedagogy.
+
+  location: "Bangladesh"
+
+  email: "yusuf.38bcs@gmail.com"
+
+  links:
+
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/yusuf38bcs-oss"
+
+# =========================================================
+# MARKDOWN
+# =========================================================
+
 markdown: kramdown
+
 highlighter: rouge
 
 kramdown:
   input: GFM
   hard_wrap: false
+  auto_ids: true
   syntax_highlighter: rouge
   math_engine: mathjax
 
+# =========================================================
+# URL STRUCTURE
+# =========================================================
+
 permalink: /:categories/:title/
 
+category_archive:
+  type: liquid
+  path: /categories/
+
+tag_archive:
+  type: liquid
+  path: /tags/
+
+# =========================================================
+# PAGINATION
+# =========================================================
+
+paginate: 10
+
+paginate_path: /page:num/
+
+# =========================================================
+# PLUGINS
+# =========================================================
+
 plugins:
+
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
@@ -38,113 +114,377 @@ plugins:
   - jekyll-remote-theme
   - jekyll-include-cache
 
-paginate: 10
-paginate_path: /page:num/
+# =========================================================
+# SASS
+# =========================================================
 
 sass:
   style: compressed
 
-exclude:
-  - README.md
-  - node_modules
-  - vendor
-  - package.json
-  - package-lock.json
-  - cloudflare-worker
-  - Gemfile.lock
-  - .wrangler
-  - .env
-  - "*.gdoc"
-  - "*.gsheet"
-  - feed_restore.py
+# =========================================================
+# INCLUDE / EXCLUDE
+# =========================================================
 
 include:
   - _pages
   - ads.txt
 
+exclude:
+
+  - README.md
+  - LICENSE
+  - node_modules
+  - vendor
+  - package.json
+  - package-lock.json
+  - Gemfile.lock
+  - .sass-cache
+  - .jekyll-cache
+  - .wrangler
+  - cloudflare-worker
+  - "*.gdoc"
+  - "*.gsheet"
+  - "*.tmp"
+  - feed_restore.py
+  - .env
+
+# =========================================================
+# COLLECTIONS
+# =========================================================
+
 collections:
+
   biology:
     output: true
     permalink: /biology/:path/
-  life_practices:
+
+  life-practices:
     output: true
     permalink: /life-practices/:path/
+
   socratic:
     output: true
     permalink: /socratic/:path/
+
+  mcq-arena:
+    output: true
+    permalink: /mcq-arena/:path/
+
+  synaptic-bridge:
+    output: true
+    permalink: /synaptic-bridge/:path/
+
+  research-node:
+    output: true
+    permalink: /research-node/:path/
+
+  life-philosophy:
+    output: true
+    permalink: /life-philosophy/:path/
+
   legal:
     output: true
     permalink: /:path/
 
+# =========================================================
+# DEFAULTS
+# =========================================================
+
 defaults:
+
+  # -------------------------------------------------------
+  # Global Defaults
+  # -------------------------------------------------------
+
   - scope:
       path: ""
+
     values:
+
       layout: single
-      image: "/assets/images/header-bg.jpg"
+
+      image: "/assets/images/site/header-bg.webp"
+
+      author_profile: false
+
+      read_time: true
+
+      related: true
+
+      share: false
+
+      toc_sticky: true
+
+      classes: wide
+
+  # -------------------------------------------------------
+  # Blog Posts
+  # -------------------------------------------------------
+
   - scope:
       path: ""
       type: posts
+
     values:
+
       layout: single
+
       author: "Learning Biology for Life"
+
       comments: false
+
       toc: true
+
+      toc_label: "এই পাঠে যা আছে"
+
+      toc_icon: "list"
+
+  # -------------------------------------------------------
+  # Biology Collection
+  # -------------------------------------------------------
+
   - scope:
       path: ""
       type: biology
+
     values:
+
       layout: single
+
       author: "Learning Biology for Life"
+
       toc: true
+
+      toc_label: "এই পাঠে যা আছে"
+
+      toc_icon: "microscope"
+
+      classes: wide
+
+  # -------------------------------------------------------
+  # Life Practices
+  # -------------------------------------------------------
+
   - scope:
       path: ""
-      type: life_practices
+      type: life-practices
+
     values:
+
       layout: single
+
       author: "Learning Biology for Life"
+
       toc: true
+
+      toc_icon: "brain"
+
+  # -------------------------------------------------------
+  # Socratic
+  # -------------------------------------------------------
+
   - scope:
       path: ""
       type: socratic
+
     values:
+
       layout: single
+
       author: "Learning Biology for Life"
+
       toc: false
+
+      classes: wide
+
+  # -------------------------------------------------------
+  # MCQ Arena
+  # -------------------------------------------------------
+
+  - scope:
+      path: ""
+      type: mcq-arena
+
+    values:
+
+      layout: single
+
+      author: "Learning Biology for Life"
+
+      toc: false
+
+      classes: wide
+
+  # -------------------------------------------------------
+  # Synaptic Bridge
+  # -------------------------------------------------------
+
+  - scope:
+      path: ""
+      type: synaptic-bridge
+
+    values:
+
+      layout: single
+
+      author: "Learning Biology for Life"
+
+      toc: true
+
+      toc_icon: "project-diagram"
+
+  # -------------------------------------------------------
+  # Research Node
+  # -------------------------------------------------------
+
+  - scope:
+      path: ""
+      type: research-node
+
+    values:
+
+      layout: single
+
+      author: "Learning Biology for Life"
+
+      toc: true
+
+      toc_icon: "flask"
+
+  # -------------------------------------------------------
+  # Life Philosophy
+  # -------------------------------------------------------
+
+  - scope:
+      path: ""
+      type: life-philosophy
+
+    values:
+
+      layout: single
+
+      author: "Learning Biology for Life"
+
+      toc: true
+
+      toc_icon: "lightbulb"
+
+  # -------------------------------------------------------
+  # Legal Pages
+  # -------------------------------------------------------
+
   - scope:
       path: ""
       type: legal
+
     values:
+
       layout: page
+
       author: "Learning Biology for Life"
+
       toc: false
 
-ai:
-  enabled: true
-  endpoint: "https://synaptic-bridge-gemini-proxy.yusuf-38bcs.workers.dev/api/gemini"
-  cooldownMs: 1200
-  maxRetries: 3
-  cacheEnabled: true
-  memoryEnabled: true
-  analytics: false
+# =========================================================
+# SEARCH
+# =========================================================
+
+search: true
+
+search_full_content: true
+
+# =========================================================
+# ANALYTICS
+# =========================================================
 
 analytics:
-  gtm_id: "GTM-WPZ6MPK4"
+  provider: "google-gtag"
+
+  google:
+    tracking_id: "GTM-WPZ6MPK4"
+
+# =========================================================
+# AI SYSTEM
+# =========================================================
+
+ai:
+
+  enabled: true
+
+  endpoint: "https://synaptic-bridge-gemini-proxy.yusuf-38bcs.workers.dev/api/gemini"
+
+  cooldownMs: 1200
+
+  maxRetries: 3
+
+  cacheEnabled: true
+
+  memoryEnabled: true
+
+  analytics: false
+
+# =========================================================
+# NEWSLETTER
+# =========================================================
 
 brevo:
+
   enabled: true
+
   form_url: "https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ=="
 
+# =========================================================
+# COOKIE POLICY
+# =========================================================
+
 cookie_policy:
+
   enabled: true
+
   consent_key: "lbfl_cookie_consent_v1"
 
-search:
-  enabled: true
-  placeholder: "Search biology, behaviour, leadership..."
-
-social:
-  github: "https://github.com/yusuf38bcs-oss"
+# =========================================================
+# FOOTER
+# =========================================================
 
 footer:
-  description: "Learning Biology for Life connects biological concepts with reflection, leadership, behaviour, and practical wisdom through a Synaptic Bridge learning model."
+  links:
+
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/yusuf38bcs-oss"
+
+# =========================================================
+# FEED
+# =========================================================
+
+feed:
+  path: atom.xml
+
+# =========================================================
+# SEO
+# =========================================================
+
+twitter:
+  username: ""
+  card: summary_large_image
+
+facebook:
+  app_id:
+  publisher:
+  admins:
+
+social:
+  type: Organization
+  name: "Learning Biology for Life"
+  links:
+    - "https://github.com/yusuf38bcs-oss"
+
+# =========================================================
+# COMPRESS HTML
+# =========================================================
+
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
