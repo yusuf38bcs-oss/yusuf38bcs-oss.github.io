@@ -1,4 +1,4 @@
-﻿title: "Learning Biology for Life"
+title: "Learning Biology for Life"
 tagline: "Read - Reflect - Seek Knowledge"
 description: "A Synaptic Bridge approach to biology, behaviour, leadership, and lifelong learning."
 url: "https://yusuf38bcs-oss-github-io.pages.dev"
@@ -7,17 +7,17 @@ lang: "en"
 timezone: "Asia/Dhaka"
 
 remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "default"
+minimal_mistakes_skin: "dark"
 
 author:
   name: "Yusuf"
   title: "Biology Educator & Learning Designer"
   bio: "Exploring biology as a living bridge between scientific understanding, human behaviour, leadership, and reflective intelligence."
   email: "yusuf.38bcs@gmail.com"
-  image: "/assets/images/profile.jpg"
+  avatar: "/assets/images/profile.jpg"
 
 logo: "/assets/images/logo.png"
-banner: "/assets/images/header-bg.jpg"
+masthead_title: "Learning Biology for Life"
 
 markdown: kramdown
 highlighter: rouge
@@ -56,6 +56,7 @@ exclude:
   - .env
   - "*.gdoc"
   - "*.gsheet"
+  - feed_restore.py
 
 include:
   - _pages
@@ -79,7 +80,7 @@ defaults:
   - scope:
       path: ""
     values:
-      layout: default
+      layout: single
       image: "/assets/images/header-bg.jpg"
   - scope:
       path: ""
@@ -96,7 +97,6 @@ defaults:
       layout: single
       author: "Learning Biology for Life"
       toc: true
-      sidebar: academic
   - scope:
       path: ""
       type: life_practices
@@ -104,7 +104,6 @@ defaults:
       layout: single
       author: "Learning Biology for Life"
       toc: true
-      sidebar: socratic
   - scope:
       path: ""
       type: socratic
@@ -112,7 +111,6 @@ defaults:
       layout: single
       author: "Learning Biology for Life"
       toc: false
-      sidebar: socratic
   - scope:
       path: ""
       type: legal
@@ -120,9 +118,6 @@ defaults:
       layout: page
       author: "Learning Biology for Life"
       toc: false
-
-navigation:
-  main_data_file: "navigation"
 
 ai:
   enabled: true
