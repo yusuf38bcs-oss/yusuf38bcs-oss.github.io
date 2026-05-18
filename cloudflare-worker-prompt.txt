@@ -1,0 +1,36 @@
+My domain: learningbiologyforlife.org
+
+GitHub Pages URL:
+yusuf38bcs-oss.github.io
+
+Current Setup:
+- GitHub Pages for hosting
+- Cloudflare for DNS, SSL, CDN & Security
+- Jekyll static site
+- Custom domain connection
+- Professional email routing
+
+Need Full Production Setup:
+
+1. Configure DNS records for GitHub Pages
+2. Configure root domain + www
+3. Configure HTTPS/SSL correctly
+4. Configure redirect from www → non-www
+5. Configure Cloudflare security settings
+6. Configure caching + optimization
+7. Configure email routing for:
+   admin@learningbiologyforlife.org
+   info@learningbiologyforlife.org
+   support@learningbiologyforlife.org
+8. Prepare low-cost production architecture
+9. Verify GitHub Pages deployment compatibility
+10. Configure best settings for educational website
+
+GitHub Pages IPs:
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+
+CNAME target:
+yusuf38bcs-oss.github.io
