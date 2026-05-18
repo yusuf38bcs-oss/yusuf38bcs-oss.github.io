@@ -7,7 +7,7 @@
   "use strict";
 
   const DEFAULT_CONFIG = {
-    endpoint: "https://synapticai-proxy.yusuf-38bcs.workers.dev",
+    endpoint: "https://api.learningbiologyforlife.org",
     cooldownMs: 1200,
     maxRetries: 3,
     cacheEnabled: true,
