@@ -1,6 +1,12 @@
 ---
+# only the main Sass file needs front matter
 ---
 
+@charset "utf-8";
+
+/* Minimal Mistakes Core */
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
+
+/* Synaptic System */
 @import "synaptic";
