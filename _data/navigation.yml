@@ -7,9 +7,45 @@ main:
 
   - title: "Life Practices"
     url: /life-practices/
+    children:
+      - title: "Human Behaviour"
+        url: /life-practices/human-behaviour/
+
+      - title: "Leadership Skills"
+        url: /life-practices/leadership-skills/
+
+      - title: "Reflective Thinking"
+        url: /life-practices/reflective-thinking/
+
+      - title: "Random Thoughts"
+        url: /life-practices/random-thoughts/
+
+      - title: "Emotional Intelligence"
+        url: /life-practices/emotional-intelligence/
+
+      - title: "Subconscious Mind"
+        url: /life-practices/subconscious-mind/
+
+      - title: "Biology & Life"
+        url: /life-practices/biology-and-life/
 
   - title: "Socratic"
     url: /socratic/
+    children:
+      - title: "MCQ Arena"
+        url: /socratic/mcq-arena/
+
+      - title: "MI Q/A"
+        url: /socratic/multiple-intelligence/
+
+      - title: "Personality Test"
+        url: /socratic/personality-test/
+
+      - title: "Critical Thinking"
+        url: /socratic/critical-thinking/
+
+      - title: "Reflective Journal"
+        url: /socratic/journal/
 
   - title: "About"
     url: /about/
