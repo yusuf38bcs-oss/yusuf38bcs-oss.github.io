@@ -1,0 +1,76 @@
+# STEP 1 — GitHub Pages Custom Domain
+
+learningbiologyforlife.org
+
+
+# STEP 2 — CNAME File Content
+
+learningbiologyforlife.org
+
+
+# STEP 3 — Cloudflare DNS Records
+
+A     @     185.199.108.153
+A     @     185.199.109.153
+A     @     185.199.110.153
+A     @     185.199.111.153
+
+CNAME  www  yusuf38bcs-oss.github.io
+
+
+# STEP 4 — Redirect Rule Expression
+
+http.host eq "www.learningbiologyforlife.org"
+
+
+# STEP 5 — Redirect Destination URL
+
+https://learningbiologyforlife.org/$1
+
+
+# STEP 6 — SSL SETTINGS
+
+SSL/TLS Mode:
+Full
+
+Enable:
+Always Use HTTPS
+Automatic HTTPS Rewrites
+Minimum TLS Version 1.2
+
+
+# STEP 7 — SPEED OPTIMIZATION
+
+Enable:
+Auto Minify CSS
+Auto Minify JS
+Auto Minify HTML
+Brotli
+Early Hints
+
+
+# STEP 8 — SECURITY SETTINGS
+
+Security Level:
+Medium
+
+Enable:
+Bot Fight Mode
+Browser Integrity Check
+
+
+# STEP 9 — EMAIL ROUTING
+
+admin@learningbiologyforlife.org
+info@learningbiologyforlife.org
+support@learningbiologyforlife.org
+
+
+# STEP 10 — FINAL PRODUCTION STRUCTURE
+
+GitHub → Repository + Jekyll
+Cloudflare → DNS + CDN + SSL + Security
+Custom Domain → learningbiologyforlife.org
+Gemini/OpenAI → AI Layer
+Brevo → Newsletter
+Google Workspace → Professional Email
