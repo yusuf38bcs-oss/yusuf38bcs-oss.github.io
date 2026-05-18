@@ -1,6 +1,6 @@
 # =========================================================
 # Learning Biology for Life
-# Jekyll Configuration
+# Final Optimized Jekyll + Cloudflare Configuration
 # =========================================================
 
 title: "Learning Biology for Life"
@@ -13,10 +13,16 @@ description: >
   and lifelong learning.
 
 url: "https://yusuf38bcs-oss.github.io"
+
 baseurl: ""
 
 lang: "en"
+
+locale: "en-BD"
+
 timezone: "Asia/Dhaka"
+
+encoding: "utf-8"
 
 # =========================================================
 # THEME
@@ -25,8 +31,6 @@ timezone: "Asia/Dhaka"
 remote_theme: "mmistakes/minimal-mistakes"
 
 minimal_mistakes_skin: "dark"
-
-locale: "en-BD"
 
 # =========================================================
 # SITE BRANDING
@@ -41,11 +45,33 @@ teaser: "/assets/images/site/default-teaser.webp"
 og_image: "/assets/images/site/social-preview.webp"
 
 # =========================================================
+# SITE SETTINGS
+# =========================================================
+
+breadcrumbs: true
+
+search: true
+
+search_full_content: true
+
+atom_feed:
+  hide: false
+
+future: true
+
+show_date: true
+
+read_more: "disabled"
+
+words_per_minute: 180
+
+# =========================================================
 # AUTHOR
 # =========================================================
 
 author:
   name: "MD. Yusuf"
+
   avatar: "/assets/images/profile.jpg"
 
   bio: >
@@ -85,6 +111,10 @@ kramdown:
 
 permalink: /:categories/:title/
 
+paginate: 10
+
+paginate_path: /page:num/
+
 category_archive:
   type: liquid
   path: /categories/
@@ -94,24 +124,21 @@ tag_archive:
   path: /tags/
 
 # =========================================================
-# PAGINATION
-# =========================================================
-
-paginate: 10
-
-paginate_path: /page:num/
-
-# =========================================================
 # PLUGINS
 # =========================================================
 
 plugins:
 
   - jekyll-feed
+
   - jekyll-seo-tag
+
   - jekyll-sitemap
+
   - jekyll-paginate
+
   - jekyll-remote-theme
+
   - jekyll-include-cache
 
 # =========================================================
@@ -119,34 +146,75 @@ plugins:
 # =========================================================
 
 sass:
+  sass_dir: _sass
   style: compressed
+
+# =========================================================
+# COMPRESS HTML
+# =========================================================
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
 
 # =========================================================
 # INCLUDE / EXCLUDE
 # =========================================================
 
 include:
+
   - _pages
+
   - ads.txt
+
+  - .htaccess
 
 exclude:
 
   - README.md
+
   - LICENSE
+
   - node_modules
+
   - vendor
+
   - package.json
+
   - package-lock.json
+
   - Gemfile.lock
+
   - .sass-cache
+
   - .jekyll-cache
+
+  - .jekyll-metadata
+
+  - .bundle
+
   - .wrangler
+
   - cloudflare-worker
+
+  - worker
+
+  - workers
+
   - "*.gdoc"
+
   - "*.gsheet"
+
   - "*.tmp"
+
   - feed_restore.py
+
   - .env
+
+  - .DS_Store
 
 # =========================================================
 # COLLECTIONS
@@ -203,8 +271,6 @@ defaults:
 
       layout: single
 
-      image: "/assets/images/site/header-bg.webp"
-
       author_profile: false
 
       read_time: true
@@ -215,7 +281,13 @@ defaults:
 
       toc_sticky: true
 
+      comments: false
+
       classes: wide
+
+      header:
+        overlay_image: "/assets/images/site/header-bg.webp"
+        overlay_filter: 0.45
 
   # -------------------------------------------------------
   # Blog Posts
@@ -231,13 +303,13 @@ defaults:
 
       author: "Learning Biology for Life"
 
-      comments: false
-
       toc: true
 
       toc_label: "এই পাঠে যা আছে"
 
       toc_icon: "list"
+
+      classes: wide
 
   # -------------------------------------------------------
   # Biology Collection
@@ -278,6 +350,8 @@ defaults:
       toc: true
 
       toc_icon: "brain"
+
+      classes: wide
 
   # -------------------------------------------------------
   # Socratic
@@ -333,6 +407,8 @@ defaults:
 
       toc_icon: "project-diagram"
 
+      classes: wide
+
   # -------------------------------------------------------
   # Research Node
   # -------------------------------------------------------
@@ -350,6 +426,8 @@ defaults:
       toc: true
 
       toc_icon: "flask"
+
+      classes: wide
 
   # -------------------------------------------------------
   # Life Philosophy
@@ -369,6 +447,8 @@ defaults:
 
       toc_icon: "lightbulb"
 
+      classes: wide
+
   # -------------------------------------------------------
   # Legal Pages
   # -------------------------------------------------------
@@ -386,14 +466,6 @@ defaults:
       toc: false
 
 # =========================================================
-# SEARCH
-# =========================================================
-
-search: true
-
-search_full_content: true
-
-# =========================================================
 # ANALYTICS
 # =========================================================
 
@@ -401,27 +473,35 @@ analytics:
   provider: "google-gtag"
 
   google:
-    tracking_id: "GTM-WPZ6MPK4"
+    tracking_id: "G-GQ4LENQ3R7"
+    anonymize_ip: true
 
 # =========================================================
-# AI SYSTEM
+# SEO
 # =========================================================
 
-ai:
+twitter:
+  username: ""
+  card: summary_large_image
 
-  enabled: true
+facebook:
+  app_id:
+  publisher:
+  admins:
 
-  endpoint: "https://synaptic-bridge-gemini-proxy.yusuf-38bcs.workers.dev/api/gemini"
+social:
+  type: Organization
+  name: "Learning Biology for Life"
 
-  cooldownMs: 1200
+  links:
+    - "https://github.com/yusuf38bcs-oss"
 
-  maxRetries: 3
+# =========================================================
+# FEED
+# =========================================================
 
-  cacheEnabled: true
-
-  memoryEnabled: true
-
-  analytics: false
+feed:
+  path: atom.xml
 
 # =========================================================
 # NEWSLETTER
@@ -448,6 +528,7 @@ cookie_policy:
 # =========================================================
 
 footer:
+
   links:
 
     - label: "GitHub"
@@ -455,36 +536,48 @@ footer:
       url: "https://github.com/yusuf38bcs-oss"
 
 # =========================================================
-# FEED
+# AI SYSTEM
 # =========================================================
 
-feed:
-  path: atom.xml
+ai:
+
+  enabled: true
+
+  endpoint: "https://synaptic-bridge-gemini-proxy.yusuf-38bcs.workers.dev/api/gemini"
+
+  cooldownMs: 1200
+
+  maxRetries: 3
+
+  cacheEnabled: true
+
+  memoryEnabled: true
+
+  analytics: false
 
 # =========================================================
-# SEO
+# SECURITY + PERFORMANCE
 # =========================================================
 
-twitter:
-  username: ""
-  card: summary_large_image
+strict_front_matter: false
 
-facebook:
-  app_id:
-  publisher:
-  admins:
+liquid:
+  error_mode: warn
+  strict_filters: false
+  strict_variables: false
 
-social:
-  type: Organization
-  name: "Learning Biology for Life"
-  links:
-    - "https://github.com/yusuf38bcs-oss"
+incremental: false
+
+lsi: false
+
+safe: false
 
 # =========================================================
-# COMPRESS HTML
+# DEVELOPMENT
 # =========================================================
 
-compress_html:
-  clippings: all
-  ignore:
-    envs: development
+keep_files:
+
+  - assets
+
+  - images
