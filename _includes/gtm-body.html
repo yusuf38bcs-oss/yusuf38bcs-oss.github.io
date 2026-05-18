@@ -1,1 +1,3 @@
-﻿<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPZ6MPK4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{% if site.analytics.google.gtm_id %}
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.analytics.google.gtm_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{% endif %}

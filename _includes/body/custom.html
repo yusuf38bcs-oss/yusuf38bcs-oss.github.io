@@ -1,5 +1,3 @@
 <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}" dir="{% if site.rtl %}rtl{% else %}ltr{% endif %}">
-  
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPZ6MPK4"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  {% include gtm-body.html %}
   {% include skip-links.html %}
