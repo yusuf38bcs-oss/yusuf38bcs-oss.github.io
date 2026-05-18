@@ -7,7 +7,7 @@
   "use strict";
 
   const DEFAULT_CONFIG = {
-    endpoint: "https://synaptic-bridge-gemini-proxy.yusuf-38bcs.workers.dev/api/gemini",
+    endpoint: "https://synapticai-proxy.yusuf-38bcs.workers.dev",
     cooldownMs: 1200,
     maxRetries: 3,
     cacheEnabled: true,

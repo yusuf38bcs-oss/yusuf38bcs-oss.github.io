@@ -1,11 +1,18 @@
 ﻿<div class="site-footer">
   <div class="footer-inner">
-    <div class="footer-section">
+    <div class="footer-brand">
       <h3>Join the Synaptic Bridge</h3>
       <p>Get the latest biology notes and pedagogical insights delivered straight to your inbox.</p>
       <button class="btn btn-primary" onclick="openBrevoModal()">Subscribe to Newsletter</button>
     </div>
-    <div class="footer-section">
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="{{ '/biology/' | relative_url }}">Biology</a>
+      <a href="{{ '/life-practices/' | relative_url }}">Life Practices</a>
+      <a href="{{ '/socratic/' | relative_url }}">Socratic</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      <a href="{{ '/contact-us/' | relative_url }}">Contact</a>
+    </nav>
+    <div class="footer-section footer-reflection">
       <h4>Learn through Learning Others</h4>
       <p class="footer-quote">"To understand the world, we first have to understand each other. Stepping into someone else's shoes and seeing life through their eyes is the fastest way to expand our own minds."</p>
     </div>

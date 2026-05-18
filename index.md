@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: home
 title: "Learning Biology For Life"
 header:
   overlay_image: /assets/images/header-bg.jpg
@@ -8,4 +8,4 @@ header:
 excerpt: "Explore the wonders of biology - from cells to ecosystems."
 ---
 
-Welcome to **Learning Biology For Life** - your gateway to understanding the living world.
+Biology becomes meaningful when it connects structure, function, behaviour, and life practice.

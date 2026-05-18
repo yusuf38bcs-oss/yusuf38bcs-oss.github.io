@@ -1,5 +1,75 @@
-﻿---
+---
 layout: default
 ---
 
-{{ content }}
+<section class="home-hero" aria-labelledby="home-title">
+  <div class="home-hero__inner">
+    <div class="home-hero__content">
+      <p class="eyebrow">Synaptic Bridge Learning</p>
+      <h1 id="home-title">{{ page.title }}</h1>
+      <p class="home-hero__lead">{{ page.excerpt | default: site.description }}</p>
+      <div class="home-hero__actions">
+        <a class="btn btn-primary" href="{{ '/biology/' | relative_url }}">Start Biology Map</a>
+        <a class="btn btn-secondary" href="{{ '/socratic/' | relative_url }}">Explore Socratic Tools</a>
+      </div>
+    </div>
+
+    <aside class="home-rail" aria-label="Learning pathways">
+      <section class="home-rail__card home-rail__card--primary">
+        <span class="card-badge">Today</span>
+        <h2>Read. Reflect. Seek Knowledge.</h2>
+        <p>Move from facts to systems, then from systems to practice.</p>
+      </section>
+      <section class="home-rail__card">
+        <h3>Fast Routes</h3>
+        <nav class="home-link-list" aria-label="Homepage quick links">
+          <a href="{{ '/biology/human-physiology/' | relative_url }}"><span>Human Physiology</span><small>Homeostasis and regulation</small></a>
+          <a href="{{ '/biology/biostatistics/' | relative_url }}"><span>Biostatistics</span><small>Data, variation, inference</small></a>
+          <a href="{{ '/socratic/mcq-arena/' | relative_url }}"><span>MCQ Arena</span><small>Practice through retrieval</small></a>
+        </nav>
+      </section>
+    </aside>
+  </div>
+</section>
+
+<section class="section home-section">
+  <div class="section-heading">
+    <p class="eyebrow">Core Pathways</p>
+    <h2>Choose a learning lane</h2>
+  </div>
+
+  <div class="card-grid">
+    <a class="feature-card" href="{{ '/biology/' | relative_url }}">
+      <span class="card-badge">Biology</span>
+      <h3>Concept Maps</h3>
+      <p>Study cells, physiology, ecology, genetics, taxonomy, and data through connected questions.</p>
+    </a>
+    <a class="feature-card" href="{{ '/life-practices/' | relative_url }}">
+      <span class="card-badge">Practice</span>
+      <h3>Life Applications</h3>
+      <p>Turn biological thinking into reflection, leadership, productivity, and behaviour insight.</p>
+    </a>
+    <a class="feature-card" href="{{ '/socratic/' | relative_url }}">
+      <span class="card-badge">Tools</span>
+      <h3>Socratic Lab</h3>
+      <p>Use prompts, MCQs, deconstruction, and journals to make learning active and memorable.</p>
+    </a>
+  </div>
+</section>
+
+<section class="section section-muted home-split">
+  <div>
+    <p class="eyebrow">Why This Site Exists</p>
+    <h2>Biology is not isolated information.</h2>
+    <p>{{ content | strip }}</p>
+  </div>
+  <aside class="home-note" aria-label="Study method">
+    <h3>Study Method</h3>
+    <ol>
+      <li>Start with the biological structure.</li>
+      <li>Ask what function it performs.</li>
+      <li>Trace the feedback loop.</li>
+      <li>Apply the pattern to real life.</li>
+    </ol>
+  </aside>
+</section>

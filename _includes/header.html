@@ -1,8 +1,10 @@
 <header class="site-header">
   <nav class="site-nav" aria-label="Main navigation">
     <a class="logo" href="{{ '/' | relative_url }}">
-      <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}" style="height:40px;vertical-align:middle;margin-right:0.5rem;">
-      {{ site.masthead_title }}
+      <span class="logo__mark">
+        <img src="{{ site.logo | relative_url }}" alt="">
+      </span>
+      <span class="logo__text">{{ site.masthead_title }}</span>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-list').classList.toggle('nav-open')">
       <span></span><span></span><span></span>
