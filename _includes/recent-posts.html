@@ -1,0 +1,116 @@
+<!-- ===================================================== -->
+<!-- RECENT POSTS SECTION -->
+<!-- Latest 6 Posts with Dynamic Jekyll Loop -->
+<!-- ===================================================== -->
+
+<section class="section recent-posts-section">
+
+  <div class="section-header">
+
+    <div class="eyebrow">
+      Latest Content
+    </div>
+
+    <h2>
+      Recent Posts
+    </h2>
+
+    <p class="section-lead">
+      Stay updated with the latest biology notes, reflective insights, and pedagogical explorations.
+    </p>
+
+  </div>
+
+  <!-- Posts Grid -->
+  <div class="posts-grid">
+
+    {% assign recent_posts = site.posts | where_exp: "item", "item.categories != nil" | limit: 6 %}
+
+    {% if recent_posts.size > 0 %}
+
+      {% for post in recent_posts %}
+
+      <article class="post-card" role="article">
+
+        <!-- Featured Image -->
+        {% if post.image %}
+        <a class="post-image" href="{{ post.url | relative_url }}" aria-hidden="true">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+        </a>
+        {% else %}
+        <div class="post-image post-image--placeholder" aria-hidden="true">
+          <span class="placeholder-icon">📖</span>
+        </div>
+        {% endif %}
+
+        <!-- Post Content -->
+        <div class="post-body">
+
+          <!-- Category Badge -->
+          {% if post.categories.size > 0 %}
+          <div class="post-categories">
+            {% for category in post.categories limit: 2 %}
+            <a class="category-tag" href="{{ '/category-' | append: category | relative_url }}">
+              {{ category | replace: '-', ' ' | capitalize }}
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <!-- Post Title -->
+          <h3 class="post-title">
+            <a href="{{ post.url | relative_url }}">
+              {{ post.title }}
+            </a>
+          </h3>
+
+          <!-- Post Excerpt -->
+          <p class="post-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 25 }}
+          </p>
+
+          <!-- Post Meta -->
+          <div class="post-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%b %d, %Y" }}
+            </time>
+            <span class="meta-divider">·</span>
+            <span class="post-read-time">
+              {% capture word_count %}{{ post.content | strip_html | number_of_words }}{% endcapture %}
+              {% if word_count > 0 %}
+                {{ word_count | divided_by: 200 | plus: 1 }} min read
+              {% endif %}
+            </span>
+          </div>
+
+          <!-- Read More Link -->
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            <span>Read More</span>
+            <span class="link-icon" aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+      </article>
+
+      {% endfor %}
+
+    {% else %}
+
+      <!-- No Posts State -->
+      <div class="no-posts-state">
+        <p>No posts yet. Check back soon for new content!</p>
+      </div>
+
+    {% endif %}
+
+  </div>
+
+  <!-- View All Posts CTA -->
+  <div class="posts-footer">
+    <a class="btn btn-tertiary" href="{{ '/archive/' | relative_url }}">
+      View All Posts
+    </a>
+  </div>
+
+</section>

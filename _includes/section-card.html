@@ -1,0 +1,36 @@
+<!-- ===================================================== -->
+<!-- REUSABLE SECTION CARD COMPONENT -->
+<!-- Parameters: card_title, card_description, card_link, card_icon -->
+<!-- ===================================================== -->
+
+<a class="section-card" href="{{ include.card_link | relative_url }}" aria-label="{{ include.card_title }}">
+
+  <!-- Card Icon/Badge -->
+  {% if include.card_icon %}
+  <div class="card-icon" aria-hidden="true">
+    {{ include.card_icon }}
+  </div>
+  {% endif %}
+
+  <!-- Card Content -->
+  <div class="card-content">
+
+    <h3 class="card-title">
+      {{ include.card_title }}
+    </h3>
+
+    <p class="card-description">
+      {{ include.card_description }}
+    </p>
+
+    <!-- Interactive Indicator -->
+    <div class="card-indicator" aria-hidden="true">
+      <span class="indicator-arrow">→</span>
+    </div>
+
+  </div>
+
+  <!-- Glassmorphism Glow -->
+  <div class="card-glow-accent" aria-hidden="true"></div>
+
+</a>

@@ -10,36 +10,54 @@ layout: default
 
   <section class="home-hero" aria-labelledby="home-title">
 
+    <!-- Neural Overlay Symbols (Atmospheric Depth) -->
+    <div class="hero-overlay-symbols" aria-hidden="true">
+      <span class="symbol symbol--realization" title="Realization">●</span>
+      <span class="symbol symbol--connection" title="Connection">━</span>
+      <span class="symbol symbol--completion" title="Completion">◯</span>
+    </div>
+
     <div class="home-hero__inner">
 
-      <!-- LEFT -->
-      <div class="home-hero__content">
+      <!-- LEFT: Glassmorphism Card Wrapper -->
+      <div class="hero-synaptic-card">
 
-        <p class="eyebrow">
-          Synaptic Bridge Learning
-        </p>
+        <div class="hero-synaptic-card__inner">
 
-        <h1 id="home-title">
-          {{ page.title | default: site.title }}
-        </h1>
+          <div class="home-hero__content">
 
-        <p class="home-hero__lead">
-          {{ page.excerpt | default: site.description }}
-        </p>
+            <p class="eyebrow">
+              Synaptic Bridge Learning
+            </p>
 
-        <div class="home-hero__actions">
+            <h1 id="home-title">
+              {{ page.title | default: site.title }}
+            </h1>
 
-          <a class="btn btn-primary"
-             href="{{ '/biology/' | relative_url }}">
-            Start Biology Map
-          </a>
+            <p class="home-hero__lead">
+              {{ page.excerpt | default: site.description }}
+            </p>
 
-          <a class="btn btn-secondary"
-             href="{{ '/socratic/' | relative_url }}">
-            Explore Socratic Tools
-          </a>
+            <div class="home-hero__actions">
+
+              <a class="btn btn-primary"
+                 href="{{ '/biology/' | relative_url }}">
+                Start Biology Map
+              </a>
+
+              <a class="btn btn-secondary"
+                 href="{{ '/socratic/' | relative_url }}">
+                Explore Socratic Tools
+              </a>
+
+            </div>
+
+          </div>
 
         </div>
+
+        <!-- Glassmorphism Glow Accent -->
+        <div class="card-glow" aria-hidden="true"></div>
 
       </div>
 
