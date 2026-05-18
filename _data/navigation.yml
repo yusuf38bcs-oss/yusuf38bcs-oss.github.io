@@ -1,13 +1,31 @@
-﻿main:
+main:
   - title: "Home"
     url: /
+
   - title: "Biology"
     url: /biology/
+
   - title: "Life Practices"
     url: /life-practices/
+
   - title: "Socratic"
     url: /socratic/
+
   - title: "About"
     url: /about/
+
   - title: "Contact"
-    url: /contact-us/
+    url: /contact/
+
+footer:
+  - title: "Privacy Policy"
+    url: /privacy-policy/
+
+  - title: "Terms & Conditions"
+    url: /terms-and-conditions/
+
+  - title: "Disclaimer"
+    url: /disclaimer/
+
+  - title: "About"
+    url: /about/
