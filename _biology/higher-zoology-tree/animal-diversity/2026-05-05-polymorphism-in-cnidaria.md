@@ -1,5 +1,5 @@
 ---
-title: "Polymorphims in Cnidaria"
+title: "Polymorphism in Cnidaria"
 date: 2026-05-05T08:53:00.002Z
 categories:
   - animal-diversity

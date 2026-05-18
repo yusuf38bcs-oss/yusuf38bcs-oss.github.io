@@ -3,7 +3,7 @@ layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
-title: "Building Bridges in the Brain: When dots are meet with the Line"
+title: "Building Bridges in the Brain: When Dots Meet the Line"
 date: 2026-04-11T01:24:00.002Z
 categories:
   - Practical Applications

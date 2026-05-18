@@ -3,7 +3,7 @@ layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
-title: "Protozoa: Nutrion & Locomotion (প্রোটোজোয়ার বিভিন্ন প্রকার পুষ্টিগ্রহণ ও চলন)"
+title: "Protozoa: Nutrition & Locomotion (প্রোটোজোয়ার বিভিন্ন প্রকার পুষ্টিগ্রহণ ও চলন)"
 date: 2026-04-13T16:26:00.008Z
 categories:
   - Animal Diversity

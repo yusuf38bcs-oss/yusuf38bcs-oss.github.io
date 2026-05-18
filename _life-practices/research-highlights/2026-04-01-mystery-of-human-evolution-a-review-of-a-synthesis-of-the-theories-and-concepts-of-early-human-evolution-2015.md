@@ -3,7 +3,7 @@ layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
-title: "Mystery of Human Evolution: A Review of A synthesis of the theories and concepts of early human evolution (2015)"
+title: "Mystery of Human Evolution: A Review of a Synthesis of the theories and concepts of early human evolution (2015)"
 date: 2026-04-01T12:57:00.003Z
 categories:
   - Research Highlights
