@@ -1,289 +1,509 @@
 ---
-layout: default
+layout: home
+author_profile: false
+classes: wide
+permalink: /
+
+header:
+  overlay_image: /assets/images/header-bg.webp
+  overlay_filter: 0.55
+  caption: "Learning Biology For Life"
+
+excerpt: >
+  Where Biology Meets Life —
+  A Neural Educational Ecosystem Integrating
+  Biology, Reflective Learning,
+  Behavioural Science, Leadership,
+  Systems Thinking & Socratic 4.0.
 ---
 
-<main class="home-page">
+<style>
 
-  <!-- ===================================================== -->
-  <!-- HERO -->
-  <!-- ===================================================== -->
+/* =========================================================
+   GLOBAL FOUNDATION
+========================================================= */
 
-  <section class="home-hero" aria-labelledby="home-title">
+html,
+body{
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
 
-    <!-- Neural Overlay Symbols (Atmospheric Depth) -->
-    <div class="hero-overlay-symbols" aria-hidden="true">
-      <span class="symbol symbol--realization" title="Realization">●</span>
-      <span class="symbol symbol--connection" title="Connection">━</span>
-      <span class="symbol symbol--completion" title="Completion">◯</span>
-    </div>
+body{
+  background:
+    radial-gradient(circle at top left,
+    rgba(0,255,170,.05), transparent 35%),
 
-    <div class="home-hero__inner">
+    radial-gradient(circle at bottom right,
+    rgba(0,170,255,.05), transparent 40%),
 
-      <!-- LEFT: Glassmorphism Card Wrapper -->
-      <div class="hero-synaptic-card">
+    #04111d;
 
-        <div class="hero-synaptic-card__inner">
+  color:#eef6ff;
+}
 
-          <div class="home-hero__content">
+/* =========================================================
+   HERO LAYER
+========================================================= */
 
-            <p class="eyebrow">
-              Synaptic Bridge Learning
-            </p>
+.page__hero--overlay{
+  min-height:92vh;
 
-            <h1 id="home-title">
-              {{ page.title | default: site.title }}
-            </h1>
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-            <p class="home-hero__lead">
-              {{ page.excerpt | default: site.description }}
-            </p>
+  position:relative;
+}
 
-            <div class="home-hero__actions">
+.page__hero--overlay::before{
+  content:"";
 
-              <a class="btn btn-primary"
-                 href="{{ '/biology/' | relative_url }}">
-                Start Biology Map
-              </a>
+  position:absolute;
+  inset:0;
 
-              <a class="btn btn-secondary"
-                 href="{{ '/socratic/' | relative_url }}">
-                Explore Socratic Tools
-              </a>
+  background:
+    radial-gradient(circle at center,
+    rgba(0,255,170,.12), transparent 40%),
 
-            </div>
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.03),
+      rgba(255,255,255,.01)
+    );
 
-          </div>
+  pointer-events:none;
+}
 
-        </div>
+.page__title{
+  font-size:clamp(2.6rem, 6vw, 5.8rem);
 
-        <!-- Glassmorphism Glow Accent -->
-        <div class="card-glow" aria-hidden="true"></div>
+  line-height:1.05;
 
-      </div>
+  font-weight:800;
 
-      <!-- CENTER / VISUAL -->
-      <div class="hero__visual" aria-hidden="true">
+  text-shadow:
+    0 0 18px rgba(0,255,170,.22),
+    0 0 32px rgba(0,170,255,.12);
+}
 
-        <canvas id="neural-network"></canvas>
+.page__lead{
+  font-size:clamp(1rem, 2vw, 1.4rem);
 
-        <div class="neuron-orb"></div>
+  max-width:900px;
 
-        <div class="synapse-line synapse-line--one"></div>
+  margin:auto;
 
-        <div class="synapse-line synapse-line--two"></div>
+  line-height:1.8;
+}
 
-      </div>
+/* =========================================================
+   SYMBOLIC DIVIDER
+========================================================= */
 
-      <!-- RIGHT -->
-      <aside class="home-rail"
-             aria-label="Learning pathways">
+.neural-divider{
+  width:92%;
+  height:1px;
 
-        <section class="home-rail__card home-rail__card--primary">
+  margin:5rem auto;
 
-          <span class="card-badge">
-            Today
-          </span>
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0,255,170,.75),
+      transparent
+    );
+}
 
-          <h2>
-            Read. Reflect. Seek Knowledge.
-          </h2>
+/* =========================================================
+   SECTION TITLES
+========================================================= */
 
-          <p>
-            Move from facts to systems,
-            then from systems to practice.
-          </p>
+.section-title{
+  text-align:center;
 
-        </section>
+  margin-bottom:3rem;
+}
 
-        <section class="home-rail__card">
+.section-title h2{
+  font-size:clamp(2rem,4vw,3.2rem);
 
-          <h3>
-            Fast Routes
-          </h3>
+  margin-bottom:1rem;
+}
 
-          <nav class="home-link-list"
-               aria-label="Homepage quick links">
+.section-title p{
+  max-width:900px;
 
-            <a href="{{ '/biology/human-physiology/' | relative_url }}">
+  margin:auto;
 
-              <span>Human Physiology</span>
+  line-height:1.8;
 
-              <small>
-                Homeostasis and regulation
-              </small>
+  opacity:.92;
+}
 
-            </a>
+/* =========================================================
+   FEATURED GRID
+========================================================= */
 
-            <a href="{{ '/biology/biostatistics/' | relative_url }}">
+.synaptic-grid{
+  display:grid;
 
-              <span>Biostatistics</span>
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
 
-              <small>
-                Data, variation, inference
-              </small>
+  gap:2rem;
 
-            </a>
+  margin-top:3rem;
+}
 
-            <a href="{{ '/socratic/mcq-arena/' | relative_url }}">
+.synaptic-card{
+  background:rgba(255,255,255,.05);
 
-              <span>MCQ Arena</span>
+  backdrop-filter:blur(14px);
 
-              <small>
-                Practice through retrieval
-              </small>
+  border:
+    1px solid rgba(255,255,255,.08);
 
-            </a>
+  border-radius:28px;
 
-          </nav>
+  padding:2rem;
 
-        </section>
+  transition:.35s ease;
+}
 
-      </aside>
+.synaptic-card:hover{
+  transform:translateY(-6px);
 
-    </div>
+  border-color:
+    rgba(0,255,170,.4);
 
-  </section>
+  box-shadow:
+    0 0 28px rgba(0,255,170,.16);
+}
 
-  <!-- ===================================================== -->
-  <!-- CORE PATHWAYS -->
-  <!-- ===================================================== -->
+.synaptic-card h3{
+  margin-top:0;
 
-  <section class="section home-section">
+  color:#7fffd4;
+}
 
-    <div class="section-heading">
+.synaptic-card p{
+  line-height:1.8;
+}
 
-      <p class="eyebrow">
-        Core Pathways
-      </p>
+.synaptic-card a{
+  color:#9ad8ff;
 
-      <h2>
-        Choose a learning lane
-      </h2>
+  text-decoration:none;
 
-    </div>
+  font-weight:600;
+}
 
-    <div class="card-grid">
+.synaptic-card a:hover{
+  color:#7fffd4;
+}
 
-      <a class="feature-card"
-         href="{{ '/biology/' | relative_url }}">
+/* =========================================================
+   LEARNING PHILOSOPHY FLOW
+========================================================= */
 
-        <span class="card-badge">
-          Biology
-        </span>
+.learning-flow{
+  text-align:center;
 
-        <h3>
-          Concept Maps
-        </h3>
+  padding:4rem 1rem;
 
-        <p>
-          Study cells, physiology,
-          ecology, genetics, taxonomy,
-          and data through connected questions.
-        </p>
+  line-height:2.3;
+}
 
-      </a>
+.learning-flow h2{
+  margin-bottom:2rem;
+}
 
-      <a class="feature-card"
-         href="{{ '/life-practices/' | relative_url }}">
+.flow-map{
+  font-size:clamp(1.2rem,3vw,2rem);
 
-        <span class="card-badge">
-          Practice
-        </span>
+  opacity:.92;
+}
 
-        <h3>
-          Life Applications
-        </h3>
+/* =========================================================
+   SYMBOLIC SYSTEM
+========================================================= */
 
-        <p>
-          Turn biological thinking into reflection,
-          leadership, productivity,
-          and behaviour insight.
-        </p>
+.symbolic-layer{
+  position:relative;
+}
 
-      </a>
+.symbolic-layer::after{
+  content:"◯ ━━ ● ━━ ◯";
 
-      <a class="feature-card"
-         href="{{ '/socratic/' | relative_url }}">
+  display:block;
 
-        <span class="card-badge">
-          Tools
-        </span>
+  text-align:center;
 
-        <h3>
-          Socratic Lab
-        </h3>
+  opacity:.16;
 
-        <p>
-          Use prompts, MCQs,
-          deconstruction, and journals
-          to make learning active and memorable.
-        </p>
+  letter-spacing:1rem;
 
-      </a>
+  margin-top:2rem;
+}
 
-    </div>
+/* =========================================================
+   NEWSLETTER CTA
+========================================================= */
 
-  </section>
+.newsletter-panel{
+  background:
+    rgba(255,255,255,.05);
 
-  <!-- ===================================================== -->
-  <!-- PHILOSOPHY -->
-  <!-- ===================================================== -->
+  border:
+    1px solid rgba(255,255,255,.08);
 
-  <section class="section section-muted home-split">
+  border-radius:28px;
 
-    <div class="home-split__content">
+  padding:3rem;
 
-      <p class="eyebrow">
-        Why This Site Exists
-      </p>
+  text-align:center;
 
-      <h2>
-        Biology is not isolated information.
-      </h2>
+  margin-top:4rem;
 
-      <div class="home-rich-content">
-        {{ content }}
-      </div>
+  backdrop-filter:blur(12px);
+}
 
-    </div>
+.newsletter-panel input{
+  width:min(420px,100%);
 
-    <aside class="home-note"
-           aria-label="Study method">
+  padding:1rem;
 
-      <h3>
-        Study Method
-      </h3>
+  border:none;
 
-      <ol>
+  border-radius:14px;
 
-        <li>
-          Start with the biological structure.
-        </li>
+  margin-top:1rem;
 
-        <li>
-          Ask what function it performs.
-        </li>
+  background:rgba(255,255,255,.12);
 
-        <li>
-          Trace the feedback loop.
-        </li>
+  color:white;
+}
 
-        <li>
-          Apply the pattern to real life.
-        </li>
+.newsletter-panel button{
+  margin-top:1rem;
 
-      </ol>
+  padding:1rem 2rem;
 
-    </aside>
+  border:none;
 
-  </section>
+  border-radius:14px;
 
-</main>
+  background:#0dd7b8;
 
-<!-- ===================================================== -->
-<!-- SCRIPTS -->
-<!-- ===================================================== -->
+  color:#03131f;
 
-<script src="{{ '/assets/js/neural-bg.js' | relative_url }}" defer></script>
+  font-weight:700;
 
-<script src="{{ '/assets/js/synapse-effects.js' | relative_url }}" defer></script>
+  cursor:pointer;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+  .page__hero--overlay{
+    min-height:78vh;
+
+    padding:2rem 1rem;
+  }
+
+  .synaptic-card{
+    padding:1.5rem;
+  }
+
+  .symbolic-layer::after{
+    letter-spacing:.4rem;
+  }
+}
+
+</style>
+
+<div class="symbolic-layer">
+
+# Where Biology Meets Life
+
+Academic biology connected with:
+- reflective learning
+- behavioural science
+- systems thinking
+- leadership
+- human development
+- Socratic intelligence
+
+</div>
+
+<div class="neural-divider"></div>
+
+<div class="section-title">
+
+## Featured Learning Ecosystem
+
+A neural interdisciplinary educational ecosystem integrating
+biology, cognition, reflection, leadership, and human growth.
+
+</div>
+
+<div class="synaptic-grid">
+
+<div class="synaptic-card">
+
+### 🧬 HSC Corner
+
+Foundational biology for:
+- Botany
+- Zoology
+- HSC learners
+- Conceptual clarity
+
+<a href="/biology/hsc-corner/">
+Explore HSC Corner →
+</a>
+
+</div>
+
+<div class="synaptic-card">
+
+### 🌍 Higher Zoology Tree
+
+Advanced biological systems:
+- Animal Diversity
+- Ecology
+- Human Physiology
+- Genetics
+- Biostatistics
+
+<a href="/biology/higher-zoology/">
+Enter Higher Zoology →
+</a>
+
+</div>
+
+<div class="synaptic-card">
+
+### 🌱 Human Behaviour
+
+Biology applied to:
+- behaviour
+- emotions
+- habits
+- reflection
+- leadership
+
+<a href="/life-practices/human-behaviour/">
+Explore Human Behaviour →
+</a>
+
+</div>
+
+<div class="synaptic-card">
+
+### 🧠 Leadership & Reflection
+
+Integrating:
+- leadership
+- reflective thinking
+- emotional intelligence
+- subconscious awareness
+
+<a href="/life-practices/leadership-skills/">
+Enter Life Practices →
+</a>
+
+</div>
+
+<div class="synaptic-card">
+
+### 🎯 MCQ Arena
+
+Interactive reflective learning through:
+- conceptual MCQs
+- reasoning
+- cognitive reinforcement
+- active recall
+
+<a href="/socratic/mcq-arena/">
+Enter MCQ Arena →
+</a>
+
+</div>
+
+<div class="synaptic-card">
+
+### 🔍 Critical Thinking
+
+Socratic learning ecosystem:
+- questioning
+- reflection
+- self discovery
+- intelligence pathways
+
+<a href="/socratic/critical-thinking/">
+Explore Socratic →
+</a>
+
+</div>
+
+</div>
+
+<div class="neural-divider"></div>
+
+<div class="learning-flow symbolic-layer">
+
+## Learning Philosophy Bridge
+
+<div class="flow-map">
+
+Biology  
+↓  
+Life Practices  
+↓  
+Socratic Reflection  
+↓  
+Human Development
+
+</div>
+
+</div>
+
+<div class="neural-divider"></div>
+
+<div class="newsletter-panel">
+
+## Join the Learning Network
+
+Connect scientific theory with life through:
+- biology
+- reflective learning
+- systems thinking
+- leadership
+- Socratic intelligence
+
+<input type="email"
+placeholder="Enter your email to cross the bridge...">
+
+<br>
+
+<button>
+Join the Network
+</button>
+
+</div>
+
+<div class="neural-divider"></div>
+
+## Vision
+
+> “Learning Biology For Life is evolving into
+> a living neural educational ecosystem integrating
+> biology, systems thinking, reflective learning,
+> behavioural science, leadership,
+> spirituality & AI-assisted pedagogy.”
