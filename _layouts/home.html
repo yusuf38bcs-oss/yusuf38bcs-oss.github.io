@@ -10,7 +10,7 @@ layout: default
 
     <div class="page__inner-wrap">
 
-      <section class="page__content" itemprop="text">
+      <section class="page__content home-shell" itemprop="text">
 
         {{ content }}
 
@@ -21,3 +21,114 @@ layout: default
   </article>
 
 </div>
+
+<style>
+
+/* =========================================================
+   HOME LAYOUT FOUNDATION
+========================================================= */
+
+.home-shell{
+  width:100%;
+  max-width:100%;
+  padding:0;
+}
+
+.page{
+  float:none;
+  width:100%;
+}
+
+.page__inner-wrap{
+  width:100%;
+  max-width:100%;
+}
+
+.layout--home .initial-content,
+.layout--home #main{
+  width:100%;
+  max-width:100%;
+}
+
+/* =========================================================
+   HERO REFINEMENT
+========================================================= */
+
+.page__hero--overlay{
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+
+  position:relative;
+}
+
+.page__hero--overlay::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.15),
+      rgba(0,7,18,.82)
+    );
+
+  z-index:1;
+}
+
+.page__hero-caption,
+.page__hero-content{
+  position:relative;
+  z-index:2;
+}
+
+.page__title{
+  font-size:clamp(3rem,8vw,6.5rem);
+
+  font-weight:800;
+
+  line-height:1.05;
+
+  text-shadow:
+    0 0 24px rgba(0,255,180,.22);
+}
+
+.page__lead{
+  max-width:920px;
+
+  font-size:clamp(1rem,2vw,1.35rem);
+
+  line-height:1.9;
+}
+
+/* =========================================================
+   GLOBAL BACKGROUND
+========================================================= */
+
+body{
+  background:
+    radial-gradient(circle at top,#0b2133,#020812 65%);
+
+  color:#eef7ff;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width:768px){
+
+  .page__hero--overlay{
+    min-height:92vh;
+  }
+
+  .page__title{
+    font-size:3rem;
+  }
+
+}
+
+</style>
