@@ -1,0 +1,194 @@
+<!-- ========================= -->
+<!-- SECTION 1 : CORE PILLARS -->
+<!-- ========================= -->
+<section class="home-pillars">
+  <div class="wrapper">
+    <h2 class="section-title">The Synaptic Learning Ecosystem</h2>
+    <p class="section-subtitle">
+      Biology is not merely a subject — it is the architecture of life, systems, cognition and evolution.
+    </p>
+
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🧬</div>
+        <h3>Biology</h3>
+        <p>
+          Molecular biology, ecology, physiology, genetics and interdisciplinary life sciences.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">🌍</div>
+        <h3>Life Practices</h3>
+        <p>
+          Connecting academic knowledge with human civilization, ethics, sustainability and reality.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">🧠</div>
+        <h3>Socratic Learning</h3>
+        <p>
+          Reflective questioning, critical reasoning and deep conceptual understanding.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= -->
+<!-- SECTION 2 : FEATURED POSTS -->
+<!-- ========================= -->
+<section class="featured-posts-section">
+  <div class="wrapper">
+    <h2 class="section-title">Featured Explorations</h2>
+
+    <div class="feature-grid">
+      {% for post in site.posts limit:6 %}
+      <article class="feature-card">
+        {% if post.header.overlay_image %}
+        <div class="feature-image">
+          <img src="{{ post.header.overlay_image | relative_url }}" alt="{{ post.title }}">
+        </div>
+        {% endif %}
+
+        <div class="feature-content">
+          <h3>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h3>
+
+          <p>
+            {{ post.excerpt | strip_html | truncate: 120 }}
+          </p>
+
+          <a class="feature-btn" href="{{ post.url | relative_url }}">
+            Explore
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ========================= -->
+<!-- SECTION 3 : VISION -->
+<!-- ========================= -->
+<section class="vision-section">
+  <div class="wrapper vision-wrapper">
+    <h2>Vision & Philosophy</h2>
+
+    <p>
+      Learning Biology For Life is an evolving digital ecosystem dedicated to scientific literacy,
+      reflective learning, interdisciplinary understanding and educational transformation.
+    </p>
+
+    <p>
+      The platform integrates biology, cognition, systems thinking, pedagogy and digital architecture
+      to cultivate deep learning for the Fourth Industrial Revolution.
+    </p>
+  </div>
+</section>
+
+<style>
+.home-pillars,
+.featured-posts-section,
+.vision-section {
+  padding: 5rem 1.5rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  opacity: 0.85;
+}
+
+.pillar-grid,
+.feature-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.pillar-card,
+.feature-card {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+
+.pillar-card:hover,
+.feature-card:hover {
+  transform: translateY(-6px);
+}
+
+.pillar-card {
+  text-align: center;
+  padding: 2rem;
+}
+
+.pillar-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.feature-content {
+  padding: 1.5rem;
+}
+
+.feature-content h3 {
+  margin-bottom: 1rem;
+}
+
+.feature-content a {
+  text-decoration: none;
+}
+
+.feature-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.vision-wrapper {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.vision-wrapper p {
+  margin-top: 1.5rem;
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .home-pillars,
+  .featured-posts-section,
+  .vision-section {
+    padding: 4rem 1.2rem;
+  }
+}
+</style>
