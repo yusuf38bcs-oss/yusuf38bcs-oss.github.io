@@ -2,12 +2,28 @@ main:
   - title: "Home"
     url: /
 
+  # =====================================================
+  # BIOLOGY
+  # =====================================================
+
   - title: "Biology"
     url: /biology/
+    children:
+
+      - title: "HSC Corner"
+        url: /biology/hsc-corner/
+
+      - title: "Higher Zoology"
+        url: /biology/higher-zoology/
+
+  # =====================================================
+  # LIFE PRACTICES
+  # =====================================================
 
   - title: "Life Practices"
     url: /life-practices/
     children:
+
       - title: "Human Behaviour"
         url: /life-practices/human-behaviour/
 
@@ -29,9 +45,14 @@ main:
       - title: "Biology & Life"
         url: /life-practices/biology-and-life/
 
+  # =====================================================
+  # SOCRATIC
+  # =====================================================
+
   - title: "Socratic"
     url: /socratic/
     children:
+
       - title: "MCQ Arena"
         url: /socratic/mcq-arena/
 
@@ -47,11 +68,19 @@ main:
       - title: "Reflective Journal"
         url: /socratic/journal/
 
+  # =====================================================
+  # CORE PAGES
+  # =====================================================
+
   - title: "About"
     url: /about/
 
   - title: "Contact"
     url: /contact/
+
+# =======================================================
+# FOOTER
+# =======================================================
 
 footer:
   - title: "Privacy Policy"
