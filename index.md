@@ -1,300 +1,302 @@
 ---
-layout: splash
-permalink: /
-title: "Learning Biology For Life"
+layout: home
+author_profile: false
 classes: wide
+permalink: /
+
 header:
-  overlay_image: /assets/images/site/header-bg.png
-  overlay_filter: 0.18
-excerpt: "Connecting biology, AI, leadership, and life through Synaptic Bridge Learning."
+  overlay_image: /assets/images/header-bg.webp
+  overlay_filter: 0.45
+  caption: "Learning Biology For Life"
+
+excerpt: >
+  A Living Neural Educational Ecosystem Integrating Biology,
+  Systems Thinking, Reflective Learning,
+  Behavioural Science, Leadership,
+  Spirituality & AI-assisted Pedagogy.
 ---
 
 <style>
-.page__hero,
-.page__hero--overlay {
-  display: none !important;
+
+/* =========================================================
+   GLOBAL STABILITY LAYER
+========================================================= */
+
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-.synaptic-hero-section {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
+body {
+  background:
+    radial-gradient(circle at top left,
+    rgba(0,255,170,0.05), transparent 40%),
+
+    radial-gradient(circle at bottom right,
+    rgba(0,170,255,0.05), transparent 40%),
+
+    #07111a;
+
+  color: #eaf4ff;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.page__hero--overlay {
+  min-height: 92vh;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  overflow: hidden;
+  position: relative;
+}
 
-  padding: 60px 20px;
+.page__hero--overlay::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
 
   background:
+    radial-gradient(circle at center,
+    rgba(0,255,170,0.12), transparent 45%),
+
     linear-gradient(
       135deg,
-      rgba(1,10,25,0.90),
-      rgba(2,22,42,0.84)
-    ),
-    url('/assets/images/site/header-bg.png') center/cover no-repeat;
-}
-
-.synaptic-hero-section::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at top left,
-      rgba(0,255,255,0.22),
-      transparent 35%),
-    radial-gradient(circle at bottom right,
-      rgba(0,170,255,0.18),
-      transparent 42%);
-
-  z-index: 1;
-}
-
-.synaptic-grid {
-  position: absolute;
-  inset: 0;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-
-  background-size: 60px 60px;
-
-  opacity: 0.20;
-
-  z-index: 0;
-}
-
-.glass-card {
-  position: relative;
-  z-index: 3;
-
-  background: rgba(10, 20, 35, 0.36);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  border: 1px solid rgba(255,255,255,0.16);
-
-  box-shadow:
-    0 8px 32px rgba(0,0,0,0.38),
-    0 0 42px rgba(0,255,220,0.10);
-
-  border-radius: 30px;
-
-  padding: 60px 44px;
-
-  max-width: 900px;
-
-  text-align: center;
-
-  color: #ffffff;
-}
-
-.glass-card::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  border-radius: 30px;
-
-  background: linear-gradient(
-    145deg,
-    rgba(255,255,255,0.08),
-    transparent 48%
-  );
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.01)
+    );
 
   pointer-events: none;
 }
 
-.synaptic-label {
-  color: #4cf6d2;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.24em;
-
-  font-weight: 700;
-
-  margin-bottom: 22px;
-
-  font-size: 0.95rem;
-}
-
-.glass-card h1 {
-  font-size: clamp(2.8rem, 7vw, 6rem);
+.page__title {
+  font-size: clamp(2.3rem, 6vw, 5rem);
 
   font-weight: 800;
 
-  line-height: 0.94;
+  line-height: 1.08;
 
-  margin-bottom: 28px;
-
-  letter-spacing: -2px;
-
-  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+  text-shadow:
+    0 0 12px rgba(0,255,170,0.3),
+    0 0 24px rgba(0,170,255,0.15);
 }
 
-.glass-card p {
-  font-size: 1.16rem;
+.page__lead {
+  font-size: clamp(1rem, 2vw, 1.35rem);
 
-  line-height: 1.9;
+  max-width: 900px;
 
-  color: rgba(255,255,255,0.88);
+  margin: auto;
 
-  max-width: 760px;
-
-  margin: 0 auto 38px;
+  line-height: 1.8;
 }
 
-.subscribe-form {
-  display: flex;
+/* =========================================================
+   NEURAL DIVIDER
+========================================================= */
 
-  justify-content: center;
+.neural-divider {
+  height: 1px;
 
-  align-items: center;
+  margin: 4rem auto;
 
-  gap: 14px;
+  width: 90%;
 
-  flex-wrap: wrap;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0,255,170,0.7),
+      transparent
+    );
 }
 
-.glass-input {
-  background: rgba(255,255,255,0.10);
+/* =========================================================
+   GLASS CARDS
+========================================================= */
 
-  border: 1px solid rgba(255,255,255,0.22);
+.synaptic-grid {
+  display: grid;
 
-  padding: 16px 22px;
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
 
-  border-radius: 999px;
+  gap: 2rem;
 
-  color: #ffffff;
-
-  width: min(100%, 360px);
-
-  outline: none;
-
-  font-size: 1rem;
-
-  transition: all 0.3s ease;
+  margin-top: 3rem;
 }
 
-.glass-input::placeholder {
-  color: rgba(255,255,255,0.68);
+.synaptic-card {
+  background: rgba(255,255,255,0.05);
+
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 24px;
+
+  padding: 2rem;
+
+  transition: all 0.35s ease;
 }
 
-.glass-input:focus {
-  border-color: #49f7e1;
+.synaptic-card:hover {
+  transform: translateY(-6px);
 
-  background: rgba(255,255,255,0.16);
+  border-color: rgba(0,255,170,0.4);
 
-  box-shadow: 0 0 20px rgba(73,247,225,0.18);
+  box-shadow:
+    0 0 25px rgba(0,255,170,0.15);
 }
 
-.glass-button {
-  background: linear-gradient(
-    135deg,
-    #49f7e1 0%,
-    #59b7ff 100%
-  );
+.synaptic-card h2 {
+  margin-top: 0;
 
-  border: none;
-
-  padding: 16px 30px;
-
-  border-radius: 999px;
-
-  color: #04111f;
-
-  font-weight: 800;
-
-  font-size: 1rem;
-
-  cursor: pointer;
-
-  transition: all 0.3s ease;
-
-  box-shadow: 0 6px 22px rgba(73,247,225,0.22);
+  color: #7fffd4;
 }
 
-.glass-button:hover {
-  transform: translateY(-3px);
-
-  box-shadow: 0 12px 32px rgba(73,247,225,0.34);
+.synaptic-card p {
+  line-height: 1.7;
 }
+
+.synaptic-card a {
+  color: #9ad8ff;
+
+  text-decoration: none;
+}
+
+.synaptic-card a:hover {
+  color: #7fffd4;
+}
+
+/* =========================================================
+   SYMBOLIC OVERLAYS
+========================================================= */
+
+.symbolic-layer {
+  position: relative;
+}
+
+.symbolic-layer::after {
+  content: "◯  ──  ●  ──  ◯";
+
+  display: block;
+
+  text-align: center;
+
+  opacity: 0.18;
+
+  margin-top: 2rem;
+
+  letter-spacing: 1rem;
+}
+
+/* =========================================================
+   MOBILE STABILIZATION
+========================================================= */
 
 @media (max-width: 768px) {
 
-  .synaptic-hero-section {
-    padding: 90px 18px;
+  .page__hero--overlay {
+    min-height: 78vh;
+
+    padding: 2rem 1rem;
   }
 
-  .glass-card {
-    padding: 42px 24px;
-    border-radius: 24px;
+  .synaptic-card {
+    padding: 1.5rem;
   }
 
-  .glass-card h1 {
-    line-height: 1.02;
-    letter-spacing: -1px;
-  }
-
-  .glass-card p {
-    font-size: 1rem;
-  }
-
-  .subscribe-form {
-    flex-direction: column;
-  }
-
-  .glass-input,
-  .glass-button {
-    width: 100%;
+  .symbolic-layer::after {
+    letter-spacing: 0.5rem;
   }
 }
+
 </style>
 
-<div class="synaptic-hero-section">
+<div class="symbolic-layer">
 
-  <div class="synaptic-grid"></div>
+# Learning Biology For Life
 
-  <div class="glass-card">
+A living neural educational ecosystem integrating:
 
-    <div class="synaptic-label">
-      Synaptic Bridge Learning
-    </div>
-
-    <h1>
-      Learning<br>
-      Biology For<br>
-      Life
-    </h1>
-
-    <p>
-      Connecting scientific theory to real life through biology,
-      leadership, AI-driven learning, multidisciplinary exploration,
-      and the Socratic 4.0 educational framework.
-    </p>
-
-    <div class="subscribe-form">
-
-      <input
-        type="email"
-        class="glass-input"
-        placeholder="Enter your email to cross the bridge..."
-      >
-
-      <button class="glass-button">
-        Join the Network
-      </button>
-
-    </div>
-
-  </div>
+- Biology
+- Systems Thinking
+- Reflective Learning
+- Behavioural Science
+- Leadership
+- Spirituality
+- AI-assisted Pedagogy
 
 </div>
+
+<div class="neural-divider"></div>
+
+<div class="synaptic-grid">
+
+<div class="synaptic-card">
+
+## 🧬 Biology
+
+Explore biology from HSC foundations to advanced zoology,
+including:
+
+- Animal Diversity
+- Human Physiology
+- Ecology
+- Genetics
+- Biostatistics
+
+<a href="/biology/">Enter Biology →</a>
+
+</div>
+
+<div class="synaptic-card">
+
+## 🌱 Life Practices
+
+Integrating:
+
+- Human Behaviour
+- Reflective Thinking
+- Emotional Intelligence
+- Leadership
+- Biology & Life
+
+<a href="/life-practices/">Explore Life Practices →</a>
+
+</div>
+
+<div class="synaptic-card">
+
+## 🧠 Socratic
+
+Interactive reflective learning ecosystem:
+
+- MCQ Arena
+- Personality Systems
+- Critical Thinking
+- Reflective Journaling
+- Multiple Intelligence
+
+<a href="/socratic/">Enter Socratic →</a>
+
+</div>
+
+</div>
+
+<div class="neural-divider"></div>
+
+## Vision
+
+Learning Biology For Life evolves toward:
+
+> "A Living Neural Educational Ecosystem Integrating Biology,
+> Systems Thinking, Reflective Learning,
+> Behavioural Science, Leadership,
+> Spirituality & AI-assisted Pedagogy."
