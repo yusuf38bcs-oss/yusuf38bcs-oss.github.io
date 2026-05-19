@@ -6,7 +6,7 @@ permalink: /
 
 header:
   overlay_image: /assets/images/header-bg.webp
-  overlay_filter: 0.55
+  overlay_filter: 0.28
   caption: "Learning Biology For Life"
 
 excerpt: >
@@ -30,29 +30,16 @@ body{
 }
 
 body{
-  background:
-    radial-gradient(circle at top left,
-    rgba(0,255,170,.05), transparent 35%),
-
-    radial-gradient(circle at bottom right,
-    rgba(0,170,255,.05), transparent 40%),
-
-    #04111d;
-
+  background:#03111d;
   color:#eef6ff;
 }
 
 /* =========================================================
-   HERO LAYER
+   HERO
 ========================================================= */
 
 .page__hero--overlay{
-  min-height:92vh;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
+  min-height:100vh;
   position:relative;
 }
 
@@ -63,46 +50,53 @@ body{
   inset:0;
 
   background:
-    radial-gradient(circle at center,
-    rgba(0,255,170,.12), transparent 40%),
-
     linear-gradient(
-      135deg,
-      rgba(255,255,255,.03),
-      rgba(255,255,255,.01)
+      to bottom,
+      rgba(1,7,14,.35),
+      rgba(1,7,14,.72)
     );
 
-  pointer-events:none;
+  z-index:0;
+}
+
+.page__hero-caption,
+.page__hero-content{
+  position:relative;
+  z-index:2;
 }
 
 .page__title{
-  font-size:clamp(2.6rem, 6vw, 5.8rem);
-
+  font-size:clamp(2.7rem,7vw,6rem);
   line-height:1.05;
-
   font-weight:800;
 
   text-shadow:
-    0 0 18px rgba(0,255,170,.22),
-    0 0 32px rgba(0,170,255,.12);
+    0 0 18px rgba(0,255,170,.18);
 }
 
 .page__lead{
-  font-size:clamp(1rem, 2vw, 1.4rem);
+  font-size:clamp(1rem,2vw,1.45rem);
 
   max-width:900px;
-
-  margin:auto;
 
   line-height:1.8;
 }
 
 /* =========================================================
-   SYMBOLIC DIVIDER
+   MAIN CONTENT
+========================================================= */
+
+.page__content{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* =========================================================
+   DIVIDER
 ========================================================= */
 
 .neural-divider{
-  width:92%;
+  width:90%;
   height:1px;
 
   margin:5rem auto;
@@ -111,39 +105,13 @@ body{
     linear-gradient(
       90deg,
       transparent,
-      rgba(0,255,170,.75),
+      rgba(0,255,170,.7),
       transparent
     );
 }
 
 /* =========================================================
-   SECTION TITLES
-========================================================= */
-
-.section-title{
-  text-align:center;
-
-  margin-bottom:3rem;
-}
-
-.section-title h2{
-  font-size:clamp(2rem,4vw,3.2rem);
-
-  margin-bottom:1rem;
-}
-
-.section-title p{
-  max-width:900px;
-
-  margin:auto;
-
-  line-height:1.8;
-
-  opacity:.92;
-}
-
-/* =========================================================
-   FEATURED GRID
+   GRID
 ========================================================= */
 
 .synaptic-grid{
@@ -158,9 +126,8 @@ body{
 }
 
 .synaptic-card{
-  background:rgba(255,255,255,.05);
-
-  backdrop-filter:blur(14px);
+  background:
+    rgba(255,255,255,.04);
 
   border:
     1px solid rgba(255,255,255,.08);
@@ -168,6 +135,8 @@ body{
   border-radius:28px;
 
   padding:2rem;
+
+  backdrop-filter:blur(12px);
 
   transition:.35s ease;
 }
@@ -179,12 +148,11 @@ body{
     rgba(0,255,170,.4);
 
   box-shadow:
-    0 0 28px rgba(0,255,170,.16);
+    0 0 24px rgba(0,255,170,.12);
 }
 
-.synaptic-card h3{
+.synaptic-card h2{
   margin-top:0;
-
   color:#7fffd4;
 }
 
@@ -193,55 +161,31 @@ body{
 }
 
 .synaptic-card a{
-  color:#9ad8ff;
-
+  color:#7fcfff;
   text-decoration:none;
-
   font-weight:600;
 }
 
-.synaptic-card a:hover{
-  color:#7fffd4;
-}
-
 /* =========================================================
-   LEARNING PHILOSOPHY FLOW
+   SECTION TITLE
 ========================================================= */
 
-.learning-flow{
+.section-title{
   text-align:center;
-
-  padding:4rem 1rem;
-
-  line-height:2.3;
+  margin-bottom:3rem;
 }
 
-.learning-flow h2{
-  margin-bottom:2rem;
-}
-
-.flow-map{
-  font-size:clamp(1.2rem,3vw,2rem);
-
-  opacity:.92;
+.section-title h2{
+  font-size:clamp(2rem,4vw,3rem);
 }
 
 /* =========================================================
    SYMBOLIC SYSTEM
 ========================================================= */
 
-.symbolic-layer{
-  position:relative;
-}
-
-.symbolic-layer::after{
-  content:"◯ ━━ ● ━━ ◯";
-
-  display:block;
-
+.symbolic{
   text-align:center;
-
-  opacity:.16;
+  opacity:.18;
 
   letter-spacing:1rem;
 
@@ -249,59 +193,40 @@ body{
 }
 
 /* =========================================================
-   NEWSLETTER CTA
+   ACADEMIC POSTS
 ========================================================= */
 
-.newsletter-panel{
+.post-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+  gap:2rem;
+
+  margin-top:3rem;
+}
+
+.post-card{
   background:
-    rgba(255,255,255,.05);
+    rgba(255,255,255,.03);
 
   border:
     1px solid rgba(255,255,255,.08);
 
-  border-radius:28px;
+  border-radius:24px;
 
-  padding:3rem;
-
-  text-align:center;
-
-  margin-top:4rem;
-
-  backdrop-filter:blur(12px);
+  overflow:hidden;
 }
 
-.newsletter-panel input{
-  width:min(420px,100%);
-
-  padding:1rem;
-
-  border:none;
-
-  border-radius:14px;
-
-  margin-top:1rem;
-
-  background:rgba(255,255,255,.12);
-
-  color:white;
+.post-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
 }
 
-.newsletter-panel button{
-  margin-top:1rem;
-
-  padding:1rem 2rem;
-
-  border:none;
-
-  border-radius:14px;
-
-  background:#0dd7b8;
-
-  color:#03131f;
-
-  font-weight:700;
-
-  cursor:pointer;
+.post-card-content{
+  padding:1.5rem;
 }
 
 /* =========================================================
@@ -311,33 +236,106 @@ body{
 @media(max-width:768px){
 
   .page__hero--overlay{
-    min-height:78vh;
-
-    padding:2rem 1rem;
+    min-height:85vh;
   }
 
   .synaptic-card{
     padding:1.5rem;
   }
 
-  .symbolic-layer::after{
-    letter-spacing:.4rem;
+  .post-card img{
+    height:180px;
   }
 }
 
 </style>
 
-<div class="symbolic-layer">
+<div class="section-title">
 
-# Where Biology Meets Life
+## Where Biology Meets Life
 
 Academic biology connected with:
 - reflective learning
 - behavioural science
 - systems thinking
 - leadership
-- human development
 - Socratic intelligence
+
+<div class="symbolic">
+◯ ━━ ● ━━ ◯
+</div>
+
+</div>
+
+<div class="neural-divider"></div>
+
+<div class="synaptic-grid">
+
+<div class="synaptic-card">
+
+<h2>🧬 Biology</h2>
+
+<p>
+Explore biology from HSC foundations
+to advanced zoology:
+</p>
+
+<ul>
+<li>Animal Diversity</li>
+<li>Human Physiology</li>
+<li>Ecology</li>
+<li>Genetics</li>
+<li>Biostatistics</li>
+</ul>
+
+<a href="/biology/">
+Enter Biology →
+</a>
+
+</div>
+
+<div class="synaptic-card">
+
+<h2>🌱 Life Practices</h2>
+
+<p>
+Integrating:
+</p>
+
+<ul>
+<li>Human Behaviour</li>
+<li>Reflective Thinking</li>
+<li>Emotional Intelligence</li>
+<li>Leadership</li>
+<li>Biology & Life</li>
+</ul>
+
+<a href="/life-practices/">
+Explore Life Practices →
+</a>
+
+</div>
+
+<div class="synaptic-card">
+
+<h2>🧠 Socratic</h2>
+
+<p>
+Interactive reflective learning ecosystem:
+</p>
+
+<ul>
+<li>MCQ Arena</li>
+<li>Critical Thinking</li>
+<li>Reflective Journaling</li>
+<li>Multiple Intelligence</li>
+</ul>
+
+<a href="/socratic/">
+Enter Socratic →
+</a>
+
+</div>
 
 </div>
 
@@ -345,156 +343,39 @@ Academic biology connected with:
 
 <div class="section-title">
 
-## Featured Learning Ecosystem
+## Featured Academic Explorations
 
-A neural interdisciplinary educational ecosystem integrating
-biology, cognition, reflection, leadership, and human growth.
+Latest interdisciplinary educational insights.
 
 </div>
 
-<div class="synaptic-grid">
+<div class="post-grid">
 
-<div class="synaptic-card">
+{% for post in site.posts limit:6 %}
 
-### 🧬 HSC Corner
+<div class="post-card">
 
-Foundational biology for:
-- Botany
-- Zoology
-- HSC learners
-- Conceptual clarity
+{% if post.header.teaser %}
+<img src="{{ post.header.teaser }}" alt="{{ post.title }}">
+{% endif %}
 
-<a href="/biology/hsc-corner/">
-Explore HSC Corner →
+<div class="post-card-content">
+
+<h3>
+<a href="{{ post.url }}">
+{{ post.title }}
 </a>
+</h3>
 
-</div>
-
-<div class="synaptic-card">
-
-### 🌍 Higher Zoology Tree
-
-Advanced biological systems:
-- Animal Diversity
-- Ecology
-- Human Physiology
-- Genetics
-- Biostatistics
-
-<a href="/biology/higher-zoology/">
-Enter Higher Zoology →
-</a>
-
-</div>
-
-<div class="synaptic-card">
-
-### 🌱 Human Behaviour
-
-Biology applied to:
-- behaviour
-- emotions
-- habits
-- reflection
-- leadership
-
-<a href="/life-practices/human-behaviour/">
-Explore Human Behaviour →
-</a>
-
-</div>
-
-<div class="synaptic-card">
-
-### 🧠 Leadership & Reflection
-
-Integrating:
-- leadership
-- reflective thinking
-- emotional intelligence
-- subconscious awareness
-
-<a href="/life-practices/leadership-skills/">
-Enter Life Practices →
-</a>
-
-</div>
-
-<div class="synaptic-card">
-
-### 🎯 MCQ Arena
-
-Interactive reflective learning through:
-- conceptual MCQs
-- reasoning
-- cognitive reinforcement
-- active recall
-
-<a href="/socratic/mcq-arena/">
-Enter MCQ Arena →
-</a>
-
-</div>
-
-<div class="synaptic-card">
-
-### 🔍 Critical Thinking
-
-Socratic learning ecosystem:
-- questioning
-- reflection
-- self discovery
-- intelligence pathways
-
-<a href="/socratic/critical-thinking/">
-Explore Socratic →
-</a>
+<p>
+{{ post.excerpt | strip_html | truncate: 120 }}
+</p>
 
 </div>
 
 </div>
 
-<div class="neural-divider"></div>
-
-<div class="learning-flow symbolic-layer">
-
-## Learning Philosophy Bridge
-
-<div class="flow-map">
-
-Biology  
-↓  
-Life Practices  
-↓  
-Socratic Reflection  
-↓  
-Human Development
-
-</div>
-
-</div>
-
-<div class="neural-divider"></div>
-
-<div class="newsletter-panel">
-
-## Join the Learning Network
-
-Connect scientific theory with life through:
-- biology
-- reflective learning
-- systems thinking
-- leadership
-- Socratic intelligence
-
-<input type="email"
-placeholder="Enter your email to cross the bridge...">
-
-<br>
-
-<button>
-Join the Network
-</button>
+{% endfor %}
 
 </div>
 
@@ -502,7 +383,7 @@ Join the Network
 
 ## Vision
 
-> “Learning Biology For Life is evolving into
+> “Learning Biology For Life evolves toward
 > a living neural educational ecosystem integrating
 > biology, systems thinking, reflective learning,
 > behavioural science, leadership,
