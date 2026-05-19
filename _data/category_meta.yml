@@ -1,19 +1,187 @@
 # =========================================================
 # CATEGORY METADATA
-# Maps category slugs to clean titles and descriptions
+# Semantic Educational Ontology Layer
 # =========================================================
 
 animal-diversity:
   title: "Higher Zoology Tree: Animal Diversity"
-  
+
+  description: >
+    Explore taxonomy, biodiversity, phylogeny,
+    evolutionary systems, and classification
+    of animals.
+
+  section: "higher-zoology"
+
+  icon: "🧬"
+
+  symbol: "circle"
+
+  tags:
+    - evolution
+    - taxonomy
+    - biodiversity
+    - systems-thinking
+
+  translations:
+    en: "Animal Diversity"
+    bn: "প্রাণী বৈচিত্র্য"
+
+# =========================================================
+
 human-physiology:
   title: "Higher Zoology Tree: Human Physiology"
-  
+
+  description: >
+    Understand organ systems, physiological regulation,
+    homeostasis, and integrated human biology.
+
+  section: "higher-zoology"
+
+  icon: "❤️"
+
+  symbol: "line"
+
+  tags:
+    - physiology
+    - systems-biology
+    - health
+    - integration
+
+  translations:
+    en: "Human Physiology"
+    bn: "মানব শারীরতত্ত্ব"
+
+# =========================================================
+
+ecology:
+  title: "Higher Zoology Tree: Ecology"
+
+  description: >
+    Explore ecosystems, energy flow,
+    biodiversity interactions,
+    environmental systems,
+    and sustainability.
+
+  section: "higher-zoology"
+
+  icon: "🌍"
+
+  symbol: "circle"
+
+  tags:
+    - ecology
+    - ecosystems
+    - sustainability
+    - systems-thinking
+
+  translations:
+    en: "Ecology"
+    bn: "বাস্তুবিদ্যা"
+
+# =========================================================
+
+genetics:
+  title: "Higher Zoology Tree: Genetics"
+
+  description: >
+    Study heredity, molecular genetics,
+    inheritance systems,
+    and biological information flow.
+
+  section: "higher-zoology"
+
+  icon: "🧬"
+
+  symbol: "line"
+
+  tags:
+    - genetics
+    - inheritance
+    - molecular-biology
+    - information-systems
+
+  translations:
+    en: "Genetics"
+    bn: "জেনেটিক্স"
+
+# =========================================================
+
+biostatistics:
+  title: "Higher Zoology Tree: Biostatistics"
+
+  description: >
+    Apply quantitative reasoning,
+    statistical interpretation,
+    and analytical thinking
+    in biological sciences.
+
+  section: "higher-zoology"
+
+  icon: "📊"
+
+  symbol: "dot"
+
+  tags:
+    - statistics
+    - data-analysis
+    - biology
+    - scientific-thinking
+
+  translations:
+    en: "Biostatistics"
+    bn: "জীবপরিসংখ্যান"
+
+# =========================================================
+
 mcq:
   title: "Socratic 4.0: MCQ Arena"
-  
+
+  description: >
+    AI-assisted reflective assessment
+    and conceptual reinforcement
+    through interactive MCQs.
+
+  section: "socratic"
+
+  icon: "🧠"
+
+  symbol: "dot"
+
+  tags:
+    - assessment
+    - cognition
+    - reflection
+    - active-learning
+
+  translations:
+    en: "MCQ Arena"
+    bn: "এমসিকিউ এরিনা"
+
+# =========================================================
+
 leadership:
   title: "Life Practices: Leadership Management"
-  
-# You can add as many as you want here! 
-# If a category isn't listed here, the system will just auto-capitalize the slug.
+
+  description: >
+    Leadership development integrating
+    behavioural science,
+    reflective thinking,
+    systems awareness,
+    and human growth.
+
+  section: "life-practices"
+
+  icon: "🌱"
+
+  symbol: "line"
+
+  tags:
+    - leadership
+    - behavioural-science
+    - reflective-learning
+    - systems-thinking
+
+  translations:
+    en: "Leadership Management"
+    bn: "নেতৃত্ব ব্যবস্থাপনা"
