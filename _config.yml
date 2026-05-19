@@ -1,6 +1,6 @@
 # =========================================================
 # Learning Biology for Life
-# Final Optimized Jekyll + Cloudflare Configuration
+# Final Production Configuration
 # =========================================================
 
 title: "Learning Biology for Life"
@@ -8,9 +8,10 @@ title: "Learning Biology for Life"
 tagline: "Read • Reflect • Seek Knowledge"
 
 description: >
-  A Synaptic Bridge approach to biology,
-  behaviour, leadership, reflective intelligence,
-  and lifelong learning.
+  A Neural Educational Ecosystem integrating
+  biology, systems thinking, reflective learning,
+  behavioural science, leadership,
+  spirituality and AI-assisted pedagogy.
 
 url: "https://learningbiologyforlife.org"
 
@@ -44,6 +45,8 @@ teaser: "/assets/images/site/default-teaser.webp"
 
 og_image: "/assets/images/site/social-preview.webp"
 
+favicon: "/assets/images/favicon.png"
+
 # =========================================================
 # SITE SETTINGS
 # =========================================================
@@ -54,9 +57,6 @@ search: true
 
 search_full_content: true
 
-atom_feed:
-  hide: false
-
 future: true
 
 show_date: true
@@ -65,20 +65,25 @@ read_more: "disabled"
 
 words_per_minute: 180
 
+atom_feed:
+  hide: false
+
 # =========================================================
 # AUTHOR
 # =========================================================
 
 author:
+
   name: "MD. Yusuf"
 
   avatar: "/assets/images/profile.jpg"
 
   bio: >
     Biology Educator, Learning Designer,
-    Civil Service Officer, and lifelong learner
+    Civil Service Officer and lifelong learner
     exploring biology through systems thinking,
-    leadership, behaviour, and digital pedagogy.
+    reflective intelligence, behaviour,
+    leadership and digital pedagogy.
 
   location: "Bangladesh"
 
@@ -99,10 +104,15 @@ markdown: kramdown
 highlighter: rouge
 
 kramdown:
+
   input: GFM
+
   hard_wrap: false
+
   auto_ids: true
+
   syntax_highlighter: rouge
+
   math_engine: mathjax
 
 # =========================================================
@@ -146,18 +156,25 @@ plugins:
 # =========================================================
 
 sass:
+
   sass_dir: _sass
+
   style: compressed
 
 # =========================================================
-# COMPRESS HTML
+# HTML COMPRESSION
 # =========================================================
 
 compress_html:
+
   clippings: all
+
   comments: all
+
   endings: all
+
   startings: []
+
   blanklines: false
 
 # =========================================================
@@ -260,30 +277,95 @@ collections:
 
 defaults:
 
-  # Homepage hero - CORRECTED PATH
+  # =====================================================
+  # HOMEPAGE HERO
+  # =====================================================
+
   - scope:
       path: "index.md"
-    values:
-      layout: home
-      header:
-        overlay_image: "/assets/images/header-bg.webp"
-        overlay_filter: "linear-gradient(to bottom, rgba(2,6,23,0.22) 0%, rgba(2,6,23,0.72) 60%, rgba(1,7,14,0.88) 100%)"
 
-  # All other pages - standard header
+    values:
+
+      layout: home
+
+      classes: wide
+
+      author_profile: false
+
+      page_class: hero-immersive
+
+      header:
+
+        overlay_image: "/assets/images/header-bg.webp"
+
+        overlay_filter: 0.24
+
+        caption: null
+
+  # =====================================================
+  # STANDARD PAGES
+  # =====================================================
+
   - scope:
       path: ""
       type: pages
+
     values:
+
       layout: single
+
       author_profile: false
+
       read_time: true
+
       related: true
+
       share: false
-      toc_sticky: true
+
       comments: false
+
+      toc_sticky: true
+
       classes: wide
+
       header:
+
         overlay_image: "/assets/images/header-bg.webp"
+
+        overlay_filter: 0.42
+
+  # =====================================================
+  # POSTS
+  # =====================================================
+
+  - scope:
+      path: ""
+      type: posts
+
+    values:
+
+      layout: single
+
+      author_profile: false
+
+      read_time: true
+
+      related: true
+
+      share: false
+
+      comments: false
+
+      classes: wide
+
+      toc: true
+
+      toc_sticky: true
+
+      header:
+
+        overlay_image: "/assets/images/header-bg.webp"
+
         overlay_filter: 0.45
 
 # =========================================================
@@ -291,8 +373,35 @@ defaults:
 # =========================================================
 
 analytics:
+
   provider: "google-gtag"
 
   google:
+
     tracking_id: "G-GQ4LENQ3R7"
+
     anonymize_ip: true
+
+# =========================================================
+# SEO
+# =========================================================
+
+twitter:
+  username: ""
+
+facebook:
+  username: ""
+
+social:
+  type: Organization
+  name: "Learning Biology for Life"
+
+# =========================================================
+# PERFORMANCE
+# =========================================================
+
+lsi: false
+
+incremental: false
+
+strict_front_matter: false
