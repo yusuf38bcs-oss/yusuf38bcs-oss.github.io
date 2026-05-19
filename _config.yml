@@ -260,29 +260,30 @@ collections:
 
 defaults:
 
+  # Homepage hero - CORRECTED PATH
+  - scope:
+      path: "index.md"
+    values:
+      layout: home
+      header:
+        overlay_image: "/assets/images/header-bg.webp"
+        overlay_filter: "linear-gradient(to bottom, rgba(2,6,23,0.22) 0%, rgba(2,6,23,0.72) 60%, rgba(1,7,14,0.88) 100%)"
+
+  # All other pages - standard header
   - scope:
       path: ""
-
+      type: pages
     values:
-
       layout: single
-
       author_profile: false
-
       read_time: true
-
       related: true
-
       share: false
-
       toc_sticky: true
-
       comments: false
-
       classes: wide
-
       header:
-        overlay_image: "/assets/images/site/header-bg.webp"
+        overlay_image: "/assets/images/header-bg.webp"
         overlay_filter: 0.45
 
 # =========================================================
