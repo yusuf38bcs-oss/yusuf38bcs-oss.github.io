@@ -1,18 +1,19 @@
 ---
-layout: splash
+layout: home
+author_profile: false
+classes: wide wide-container
 permalink: /
-title: "Where Biology Meets Life"
-excerpt: "A Neural Educational Ecosystem for Reflective Scientific Learning."
-classes: wide cinematic-hero-override
 
 header:
   overlay_image: /assets/images/header-bg.webp
-  overlay_filter: 0.36
+  overlay_filter: 0.24
   caption: null
-  actions:
-    - label: "Explore the Ecosystem"
-      url: "#ecosystem-intro"
-      class: "btn--light-outline btn--large"
+
+excerpt: >
+  A Neural Educational Ecosystem
+  for Reflective Scientific Learning.
+
+page_class: hero-immersive
 ---
 
 <style>
@@ -22,196 +23,137 @@ header:
 ========================================================= */
 
 html,
-body {
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+body{
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
 
-body {
+body{
   background:
-    radial-gradient(circle at top, #07111f 0%, #020812 70%);
+    radial-gradient(circle at top,#07111f,#020812 70%);
 
-  color: #eef7ff;
+  color:#eef7ff;
 }
 
 /* =========================================================
-   HERO FOUNDATION
+   HERO SYSTEM
 ========================================================= */
 
-.cinematic-hero-override .page__hero--overlay {
+.hero-immersive .page__hero--overlay{
 
-  position: relative;
-  overflow: hidden;
+  min-height:88svh;
 
-  display: flex;
-  align-items: center;
+  display:flex;
+  align-items:center;
 
-  min-height: 88svh;
+  position:relative;
 
-  padding: 7rem 0 6rem;
+  overflow:hidden;
 
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-
-  text-align: left !important;
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
 }
 
 /* =========================================================
    CINEMATIC OVERLAY
 ========================================================= */
 
-.cinematic-hero-override .page__hero--overlay::before {
+.hero-immersive .page__hero--overlay::before{
 
-  content: "";
+  content:"";
 
-  position: absolute;
-  inset: 0;
+  position:absolute;
+  inset:0;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(2, 6, 23, 0.12) 0%,
-      rgba(2, 6, 23, 0.46) 45%,
-      rgba(1, 7, 14, 0.86) 100%
+      rgba(2,6,23,.16) 0%,
+      rgba(2,6,23,.48) 45%,
+      rgba(1,7,14,.84) 100%
     );
 
-  z-index: 0;
+  z-index:0;
 }
 
 /* =========================================================
-   CONTENT WRAPPER
+   HERO CONTENT
 ========================================================= */
 
-.cinematic-hero-override .page__hero--overlay .wrapper {
+.hero-immersive .wrapper{
 
-  position: relative;
-  z-index: 2;
-
-  width: 100%;
-  max-width: 1280px;
-
-  margin: 0 auto;
-
-  padding-left: 2rem;
-  padding-right: 2rem;
+  position:relative;
+  z-index:2;
 }
 
-/* =========================================================
-   HERO CONTENT BLOCK
-========================================================= */
+.hero-immersive .page__title{
 
-.cinematic-hero-override .page__hero--overlay .page__hero-caption,
-.cinematic-hero-override .page__hero--overlay .page__hero-content {
+  max-width:700px;
 
-  max-width: 760px;
-}
+  font-size:
+    clamp(3rem,7vw,6rem);
 
-/* =========================================================
-   TITLE FIX
-========================================================= */
+  line-height:1.02;
 
-.cinematic-hero-override .page__title {
+  font-weight:800;
 
-  position: relative;
-  z-index: 3;
-
-  display: block;
-
-  max-width: 680px;
-
-  margin: 0 0 1.2rem 0 !important;
-
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 800;
-  line-height: 0.96;
-  letter-spacing: -0.05em;
-
-  color: #ffffff !important;
+  margin-bottom:1.2rem;
 
   text-shadow:
-    0 4px 28px rgba(0, 0, 0, 0.55),
-    0 0 22px rgba(0, 255, 180, 0.16);
-
-  animation: heroFade 1s ease forwards;
+    0 0 24px rgba(0,255,170,.18);
 }
 
 /* =========================================================
-   REMOVE DUPLICATED GENERATED TITLE EFFECTS
+   REMOVE DUPLICATION
 ========================================================= */
 
-.cinematic-hero-override .page__title::before,
-.cinematic-hero-override .page__title::after {
-  display: none !important;
-  content: none !important;
+.hero-immersive .page__title::after{
+  content:"";
 }
 
 /* =========================================================
-   SUBTITLE FIX
+   SUBTITLE
 ========================================================= */
 
-.cinematic-hero-override .page__lead {
+.hero-immersive .page__lead{
 
-  position: relative;
-  z-index: 3;
+  max-width:620px;
 
-  max-width: 640px;
+  font-size:
+    clamp(1rem,2vw,1.35rem);
 
-  margin-top: 1rem !important;
-  margin-bottom: 2rem !important;
+  line-height:1.8;
 
-  font-size: clamp(1.05rem, 2vw, 1.42rem);
-  font-weight: 400;
-  line-height: 1.7;
+  color:
+    rgba(235,245,255,.92);
 
-  color: rgba(240, 248, 255, 0.94) !important;
-
-  text-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.45);
-
-  animation: heroFade 1.25s ease forwards;
+  margin-top:1rem;
 }
 
 /* =========================================================
-   CTA BUTTON
+   HERO ENTRANCE
 ========================================================= */
 
-.cinematic-hero-override .btn--light-outline {
+.hero-immersive .page__title,
+.hero-immersive .page__lead{
 
-  border-radius: 999px;
-
-  padding: 0.9rem 1.7rem;
-
-  border: 1px solid rgba(255,255,255,0.35);
-
-  backdrop-filter: blur(10px);
-
-  background: rgba(255,255,255,0.05);
-
-  transition: all .3s ease;
+  animation:
+    heroFade 1.1s ease forwards;
 }
 
-.cinematic-hero-override .btn--light-outline:hover {
+@keyframes heroFade{
 
-  transform: translateY(-2px);
-
-  background: rgba(255,255,255,0.12);
-}
-
-/* =========================================================
-   HERO ANIMATION
-========================================================= */
-
-@keyframes heroFade {
-
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  from{
+    opacity:0;
+    transform:
+      translateY(18px);
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  to{
+    opacity:1;
+    transform:
+      translateY(0);
   }
 }
 
@@ -219,135 +161,71 @@ body {
    MAIN CONTENT
 ========================================================= */
 
-.page__content {
+.page__content{
 
-  max-width: 1280px;
-  margin: auto;
-}
+  max-width:1280px;
 
-.neural-intro-section {
-
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  margin:auto;
 }
 
 /* =========================================================
-   TABLET OPTIMIZATION
+   MOBILE OPTIMIZATION
 ========================================================= */
 
-@media (max-width: 768px) {
+@media (max-width:768px){
 
-  .cinematic-hero-override .page__hero--overlay {
+  .hero-immersive .page__hero--overlay{
 
-    min-height: 76svh;
+    min-height:78svh;
 
-    align-items: flex-end;
+    align-items:flex-end;
 
-    padding-top: 7rem;
-    padding-bottom: 4rem;
+    background-position:
+      62% center;
 
-    background-position: 62% center;
+    padding-bottom:4rem;
   }
 
-  .cinematic-hero-override .page__hero--overlay .wrapper {
+  .hero-immersive .page__title{
 
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    font-size:3.3rem;
+
+    max-width:90%;
   }
 
-  .cinematic-hero-override .page__title {
+  .hero-immersive .page__lead{
 
-    max-width: 92%;
+    font-size:1.08rem;
 
-    font-size: 3.25rem;
+    line-height:1.7;
 
-    line-height: 0.98;
+    max-width:92%;
   }
 
-  .cinematic-hero-override .page__lead {
-
-    max-width: 94%;
-
-    font-size: 1.08rem;
-
-    line-height: 1.65;
-  }
 }
 
 /* =========================================================
-   MOBILE FIXES
+   SMALL DEVICES
 ========================================================= */
 
-@media (max-width: 480px) {
+@media (max-width:480px){
 
-  .cinematic-hero-override .page__hero--overlay {
+  .hero-immersive .page__hero--overlay{
 
-    min-height: 72svh;
+    min-height:72svh;
 
-    padding-top: 6.5rem;
-    padding-bottom: 3rem;
-
-    background-position: 68% center;
+    padding-bottom:3rem;
   }
 
-  .cinematic-hero-override .page__hero--overlay .wrapper {
+  .hero-immersive .page__title{
 
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    font-size:2.8rem;
   }
 
-  .cinematic-hero-override .page__title {
-
-    font-size: 2.7rem;
-
-    max-width: 95%;
-
-    margin-bottom: 1rem !important;
-  }
-
-  .cinematic-hero-override .page__lead {
-
-    font-size: 1rem;
-
-    line-height: 1.7;
-
-    max-width: 95%;
-  }
-
-  .cinematic-hero-override .btn--light-outline {
-
-    width: 100%;
-
-    text-align: center;
-  }
-}
-
-/* =========================================================
-   ACCESSIBILITY
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .cinematic-hero-override .page__title,
-  .cinematic-hero-override .page__lead {
-
-    animation: none !important;
-  }
 }
 
 </style>
 
-<div id="ecosystem-intro" class="neural-intro-section" markdown="1">
+# Where Biology Meets Life
 
-## A Systems Approach to Biology
-
-Welcome to **Learning Biology For Life** — an interdisciplinary educational ecosystem integrating biology, reflective learning, behavioural science, leadership, and systems thinking.
-
-### Core Learning Architecture
-
-* **Systems Thinking** — Understanding biological interconnections rather than isolated facts.
-* **Reflective Learning** — Connecting scientific concepts with real-world human behaviour.
-* **Socratic Pedagogy** — Inquiry-driven frameworks that cultivate deep thinking.
-* **Interdisciplinary Integration** — Bridging biology with cognition, leadership, and digital pedagogy.
-
-</div>
+{% include home-sections.html %}
