@@ -6,7 +6,7 @@ permalink: /
 
 header:
   overlay_image: /assets/images/header-bg.webp
-  overlay_filter: 0.24
+  overlay_filter: 0.22
   caption: null
 
 excerpt: >
@@ -44,14 +44,21 @@ body{
   min-height:88svh;
 
   display:flex;
-  align-items:center;
+
+  align-items:flex-start;
+
+  justify-content:center;
 
   position:relative;
 
   overflow:hidden;
 
+  padding-top:12vh;
+
   background-position:center center;
+
   background-size:cover;
+
   background-repeat:no-repeat;
 }
 
@@ -69,47 +76,54 @@ body{
   background:
     linear-gradient(
       to bottom,
-      rgba(2,6,23,.16) 0%,
-      rgba(2,6,23,.48) 45%,
-      rgba(1,7,14,.84) 100%
+      rgba(2,6,23,.08) 0%,
+      rgba(2,6,23,.36) 40%,
+      rgba(1,7,14,.82) 100%
     );
 
   z-index:0;
 }
 
 /* =========================================================
-   HERO CONTENT
+   HERO CONTENT WRAPPER
 ========================================================= */
 
 .hero-immersive .wrapper{
 
   position:relative;
+
   z-index:2;
+
+  width:100%;
+
+  max-width:1280px;
+
+  padding-left:2rem;
+
+  padding-right:2rem;
 }
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
 
 .hero-immersive .page__title{
 
-  max-width:700px;
+  max-width:680px;
 
   font-size:
     clamp(3rem,7vw,6rem);
 
-  line-height:1.02;
+  line-height:0.96;
 
   font-weight:800;
 
-  margin-bottom:1.2rem;
+  letter-spacing:-0.04em;
+
+  margin-bottom:1.3rem;
 
   text-shadow:
-    0 0 24px rgba(0,255,170,.18);
-}
-
-/* =========================================================
-   REMOVE DUPLICATION
-========================================================= */
-
-.hero-immersive .page__title::after{
-  content:"";
+    0 0 24px rgba(0,255,170,.16);
 }
 
 /* =========================================================
@@ -118,10 +132,10 @@ body{
 
 .hero-immersive .page__lead{
 
-  max-width:620px;
+  max-width:560px;
 
   font-size:
-    clamp(1rem,2vw,1.35rem);
+    clamp(1rem,2vw,1.28rem);
 
   line-height:1.8;
 
@@ -129,6 +143,9 @@ body{
     rgba(235,245,255,.92);
 
   margin-top:1rem;
+
+  text-shadow:
+    0 2px 12px rgba(0,0,0,.45);
 }
 
 /* =========================================================
@@ -146,12 +163,14 @@ body{
 
   from{
     opacity:0;
+
     transform:
-      translateY(18px);
+      translateY(20px);
   }
 
   to{
     opacity:1;
+
     transform:
       translateY(0);
   }
@@ -176,30 +195,33 @@ body{
 
   .hero-immersive .page__hero--overlay{
 
-    min-height:78svh;
+    min-height:82svh;
 
-    align-items:flex-end;
+    align-items:flex-start;
 
-    background-position:
-      62% center;
+    justify-content:flex-start;
 
-    padding-bottom:4rem;
+    padding-top:16vh;
+
+    padding-bottom:3rem;
+
+    background-position:64% center;
   }
 
   .hero-immersive .page__title{
 
     font-size:3.3rem;
 
-    max-width:90%;
+    max-width:92%;
   }
 
   .hero-immersive .page__lead{
 
     font-size:1.08rem;
 
-    line-height:1.7;
+    line-height:1.75;
 
-    max-width:92%;
+    max-width:95%;
   }
 
 }
@@ -212,20 +234,44 @@ body{
 
   .hero-immersive .page__hero--overlay{
 
-    min-height:72svh;
+    min-height:78svh;
 
-    padding-bottom:3rem;
+    padding-top:14vh;
+
+    padding-bottom:2rem;
   }
 
   .hero-immersive .page__title{
 
-    font-size:2.8rem;
+    font-size:2.9rem;
+
+    line-height:0.98;
+  }
+
+  .hero-immersive .page__lead{
+
+    font-size:1rem;
+  }
+
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce){
+
+  .hero-immersive .page__title,
+  .hero-immersive .page__lead{
+
+    animation:none;
   }
 
 }
 
 </style>
 
-# Where Biology Meets Life
+# Where Biology
+# Meets Life
 
 {% include home-sections.html %}
