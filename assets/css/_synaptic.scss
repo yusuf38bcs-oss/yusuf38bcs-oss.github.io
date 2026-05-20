@@ -2826,3 +2826,21 @@ th{
     height:160px;
   }
 }
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   HERO BACKGROUND STABILIZATION
+========================================================= */
+
+.page__hero,
+.masthead,
+.hero-section {
+  background-image: url("/assets/images/header-bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
