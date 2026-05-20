@@ -1,231 +1,156 @@
 ---
 layout: home
-author_profile: false
-classes: wide wide-container
 permalink: /
+author_profile: false
+
+# Direct layout variables passed cleanly to page__hero.html
+title: "Where Biology Meets Life"
+excerpt: "A Neural Educational Ecosystem for Reflective Scientific Learning."
 
 header:
   overlay_image: /assets/images/header-bg.webp
-  overlay_filter: 0.24
   caption: null
-
-excerpt: >
-  A Neural Educational Ecosystem
-  for Reflective Scientific Learning.
-
-page_class: hero-immersive
 ---
 
 <style>
-
 /* =========================================================
-   GLOBAL FOUNDATION
+   GLOBAL FOUNDATION & ECOSYSTEM THEME
 ========================================================= */
-
 html,
-body{
-  overflow-x:hidden;
-  scroll-behavior:smooth;
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-body{
-  background:
-    radial-gradient(circle at top,#07111f,#020812 70%);
+body {
+  background: radial-gradient(circle at top, #0b2133, #020812 65%) !important;
+  color: #eef7ff !important;
+}
 
-  color:#eef7ff;
+/* Hard shutdown for the theme's automatic read-time meta injection */
+.page__meta {
+  display: none !important;
 }
 
 /* =========================================================
    HERO SYSTEM
 ========================================================= */
+.page__hero--overlay {
+  min-height: 88svh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  position: relative !important;
+  text-align: left !important;
+}
 
-.hero-immersive .page__hero--overlay{
+/* Cinematic Darkening Layer */
+.page__hero--overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 8, 18, 0.2) 0%,
+    rgba(2, 8, 18, 0.55) 50%,
+    rgba(2, 8, 18, 0.92) 100%
+  ) !important;
+  z-index: 1;
+}
 
-  min-height:88svh;
-
-  display:flex;
-  align-items:center;
-
-  position:relative;
-
-  overflow:hidden;
-
-  background-position:center center;
-  background-size:cover;
-  background-repeat:no-repeat;
+/* Elevating the content container over the image overlay filters */
+.page__hero-caption,
+.page__hero-content {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem !important;
 }
 
 /* =========================================================
-   CINEMATIC OVERLAY
+   SINGLE HERO TITLE & SUBTITLE DESIGN
 ========================================================= */
-
-.hero-immersive .page__hero--overlay::before{
-
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(2,6,23,.16) 0%,
-      rgba(2,6,23,.48) 45%,
-      rgba(1,7,14,.84) 100%
-    );
-
-  z-index:0;
+.page__hero-content .page__title {
+  font-size: clamp(2.5rem, 7.5vw, 5.8rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.05 !important;
+  color: #ffffff !important;
+  margin-top: 0 !important;
+  margin-bottom: 1.25rem !important;
+  text-align: left !important;
+  text-shadow: 0 0 30px rgba(0, 255, 180, 0.18) !important;
 }
 
-/* =========================================================
-   HERO CONTENT
-========================================================= */
-
-.hero-immersive .wrapper{
-
-  position:relative;
-  z-index:2;
+.page__hero-content .page__lead {
+  max-width: 720px !important;
+  font-size: clamp(1.05rem, 2vw, 1.35rem) !important;
+  line-height: 1.75 !important;
+  color: rgba(235, 247, 255, 0.9) !important;
+  text-align: left !important;
+  margin-bottom: 0 !important;
 }
 
-.hero-immersive .page__title{
-
-  max-width:700px;
-
-  font-size:
-    clamp(3rem,7vw,6rem);
-
-  line-height:1.02;
-
-  font-weight:800;
-
-  margin-bottom:1.2rem;
-
-  text-shadow:
-    0 0 24px rgba(0,255,170,.18);
+/* Subtle cinematic fading intro animation */
+.page__hero-content > * {
+  animation: immersiveFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* =========================================================
-   REMOVE DUPLICATION
-========================================================= */
-
-.hero-immersive .page__title::after{
-  content:"";
-}
-
-/* =========================================================
-   SUBTITLE
-========================================================= */
-
-.hero-immersive .page__lead{
-
-  max-width:620px;
-
-  font-size:
-    clamp(1rem,2vw,1.35rem);
-
-  line-height:1.8;
-
-  color:
-    rgba(235,245,255,.92);
-
-  margin-top:1rem;
-}
-
-/* =========================================================
-   HERO ENTRANCE
-========================================================= */
-
-.hero-immersive .page__title,
-.hero-immersive .page__lead{
-
-  animation:
-    heroFade 1.1s ease forwards;
-}
-
-@keyframes heroFade{
-
-  from{
-    opacity:0;
-    transform:
-      translateY(18px);
+@keyframes immersiveFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  to{
-    opacity:1;
-    transform:
-      translateY(0);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 /* =========================================================
-   MAIN CONTENT
+   MOBILE RESPONSIVE SYSTEM (SHOWN IN YOUR SCREENSHOT)
 ========================================================= */
+@media (max-width: 768px) {
+  .page__hero--overlay {
+    min-height: 82svh !important;
+    align-items: flex-end !important; /* Drop content gracefully on small viewports */
+    background-position: 65% center !important; /* Focus on the neural node visuals */
+    padding-bottom: 4.5rem !important;
+  }
 
-.page__content{
+  .page__hero-caption,
+  .page__hero-content {
+    padding: 0 1.5rem !important;
+  }
 
-  max-width:1280px;
+  .page__hero-content .page__title {
+    font-size: clamp(2.2rem, 8.5vw, 3.4rem) !important;
+    margin-bottom: 1rem !important;
+  }
 
-  margin:auto;
+  .page__hero-content .page__lead {
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .page__hero--overlay {
+    min-height: 75svh !important;
+    padding-bottom: 3.5rem !important;
+  }
 }
 
 /* =========================================================
-   MOBILE OPTIMIZATION
+   MAIN CONTENT ARCHITECTURE
 ========================================================= */
-
-@media (max-width:768px){
-
-  .hero-immersive .page__hero--overlay{
-
-    min-height:78svh;
-
-    align-items:flex-end;
-
-    background-position:
-      62% center;
-
-    padding-bottom:4rem;
-  }
-
-  .hero-immersive .page__title{
-
-    font-size:3.3rem;
-
-    max-width:90%;
-  }
-
-  .hero-immersive .page__lead{
-
-    font-size:1.08rem;
-
-    line-height:1.7;
-
-    max-width:92%;
-  }
-
+.page__content {
+  max-width: 1280px;
+  margin: auto;
+  padding: 2rem 1rem;
 }
-
-/* =========================================================
-   SMALL DEVICES
-========================================================= */
-
-@media (max-width:480px){
-
-  .hero-immersive .page__hero--overlay{
-
-    min-height:72svh;
-
-    padding-bottom:3rem;
-  }
-
-  .hero-immersive .page__title{
-
-    font-size:2.8rem;
-  }
-
-}
-
 </style>
-
-# Where Biology Meets Life
 
 {% include home-sections.html %}
