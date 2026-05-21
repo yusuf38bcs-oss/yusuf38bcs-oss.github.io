@@ -162,3 +162,35 @@ html,body{
 .page__hero-content{
   overflow:hidden;
 }
+
+/* =========================================================
+   HERO STRUCTURE STABILITY
+========================================================= */
+
+.page__hero--overlay {
+
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+
+  isolation: isolate;
+}
+
+.page__hero--overlay .wrapper {
+
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+}
+
+.page__hero-caption {
+
+  position: relative;
+
+  z-index: 3;
+}
