@@ -1,0 +1,179 @@
+/* =========================================================
+   NEURAL UI SYSTEM
+   Learning Biology For Life
+========================================================= */
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
+:root{
+
+  --neural-bg:#020812;
+  --neural-bg-soft:#07111f;
+
+  --neural-surface:
+    rgba(255,255,255,.06);
+
+  --neural-border:
+    rgba(255,255,255,.10);
+
+  --neural-text:#eef7ff;
+
+  --neural-muted:
+    rgba(235,245,255,.72);
+
+  --neural-accent:#00ffd5;
+
+  --neural-shadow:
+    0 10px 40px rgba(0,0,0,.35);
+
+  --neural-radius:24px;
+}
+
+/* =========================================================
+   GLOBAL FOUNDATION
+========================================================= */
+
+html,
+body{
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+body{
+
+  background:
+    radial-gradient(
+      circle at top,
+      #07111f,
+      #020812 72%
+    );
+
+  color:var(--neural-text);
+}
+
+/* =========================================================
+   GLASS PANELS
+========================================================= */
+
+.neural-panel{
+
+  background:
+    var(--neural-surface);
+
+  border:
+    1px solid var(--neural-border);
+
+  border-radius:
+    var(--neural-radius);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
+  box-shadow:
+    var(--neural-shadow);
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+.neural-title{
+
+  font-weight:800;
+
+  letter-spacing:-.03em;
+
+  line-height:1.04;
+
+  text-wrap:balance;
+}
+
+.neural-lead{
+
+  color:
+    var(--neural-muted);
+
+  line-height:1.8;
+}
+
+/* =========================================================
+   SECTION SYSTEM
+========================================================= */
+
+.neural-section{
+
+  padding:
+    6rem 0;
+
+  position:relative;
+}
+
+.neural-section__inner{
+
+  width:min(1200px,92%);
+
+  margin:auto;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.neural-btn{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:
+    .95rem 1.5rem;
+
+  border-radius:
+    999px;
+
+  border:
+    1px solid rgba(255,255,255,.14);
+
+  color:white;
+
+  text-decoration:none;
+
+  transition:
+    all .28s ease;
+
+  backdrop-filter:
+    blur(12px);
+}
+
+.neural-btn:hover{
+
+  transform:
+    translateY(-2px);
+
+  border-color:
+    var(--neural-accent);
+
+  box-shadow:
+    0 0 24px rgba(0,255,213,.22);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:768px){
+
+  .neural-section{
+
+    padding:
+      4rem 0;
+  }
+
+}
