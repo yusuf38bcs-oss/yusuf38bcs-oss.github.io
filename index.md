@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: null
 author_profile: false
 classes: wide
 permalink: /
