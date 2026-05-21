@@ -2,131 +2,109 @@
 layout: default
 ---
 
-{% include page__hero.html %}
-
-<div id="main" role="main">
-
-  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-
-    <div class="page__inner-wrap">
-
-      <section class="page__content home-shell" itemprop="text">
-
-        {{ content }}
-
-      </section>
-
-    </div>
-
-  </article>
-
+<div class="synaptic-home-layout">
+  {{ content }}
 </div>
 
 <style>
 
 /* =========================================================
-   HOME LAYOUT FOUNDATION
+   GLOBAL HOME RESET
 ========================================================= */
 
-.home-shell{
-  width:100%;
-  max-width:100%;
-  padding:0;
-}
-
-.page{
-  float:none;
-  width:100%;
-}
-
-.page__inner-wrap{
-  width:100%;
-  max-width:100%;
-}
-
+.layout--home,
+.layout--home body,
+.layout--home #main,
 .layout--home .initial-content,
-.layout--home #main{
+.layout--home .page,
+.layout--home .page__inner-wrap,
+.layout--home .page__content{
+
   width:100%;
   max-width:100%;
+  margin:0;
+  padding:0;
+  float:none;
 }
 
 /* =========================================================
-   HERO REFINEMENT
+   REMOVE MINIMAL MISTAKES ARTICLE CONSTRAINTS
 ========================================================= */
 
-.page__hero--overlay{
-  min-height:100vh;
-
-  display:flex;
-  align-items:center;
-
-  position:relative;
+.layout--home .page{
+  margin:0 !important;
 }
 
-.page__hero--overlay::after{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,.15),
-      rgba(0,7,18,.82)
-    );
-
-  z-index:1;
+.layout--home .page__inner-wrap{
+  margin:0 !important;
+  padding:0 !important;
 }
 
-.page__hero-caption,
-.page__hero-content{
-  position:relative;
-  z-index:2;
-}
-
-.page__title{
-  font-size:clamp(3rem,8vw,6.5rem);
-
-  font-weight:800;
-
-  line-height:1.05;
-
-  text-shadow:
-    0 0 24px rgba(0,255,180,.22);
-}
-
-.page__lead{
-  max-width:920px;
-
-  font-size:clamp(1rem,2vw,1.35rem);
-
-  line-height:1.9;
+.layout--home .page__content{
+  margin:0 !important;
+  padding:0 !important;
 }
 
 /* =========================================================
-   GLOBAL BACKGROUND
+   GLOBAL BODY FOUNDATION
 ========================================================= */
 
-body{
+body.layout--home{
+
   background:
-    radial-gradient(circle at top,#0b2133,#020812 65%);
+    radial-gradient(circle at top,#07111d,#020812 65%);
 
   color:#eef7ff;
+
+  overflow-x:hidden;
+
+  scroll-behavior:smooth;
 }
 
 /* =========================================================
-   RESPONSIVE
+   HOME ROOT
+========================================================= */
+
+.synaptic-home-layout{
+
+  position:relative;
+
+  width:100%;
+
+  min-height:100vh;
+
+  isolation:isolate;
+}
+
+/* =========================================================
+   FIX STICKY HEADER LAYERING
+========================================================= */
+
+.synaptic-home-layout header{
+  z-index:999;
+}
+
+/* =========================================================
+   IMAGE SAFETY
+========================================================= */
+
+.synaptic-home-layout img{
+  max-width:100%;
+  height:auto;
+}
+
+/* =========================================================
+   MOBILE OPTIMIZATION
 ========================================================= */
 
 @media (max-width:768px){
 
-  .page__hero--overlay{
-    min-height:92vh;
+  html{
+    font-size:15px;
   }
 
-  .page__title{
-    font-size:3rem;
+  .synaptic-home-layout{
+    overflow:hidden;
   }
 
 }
