@@ -1,179 +1,39 @@
-/* =========================================================
-   NEURAL UI SYSTEM
-   Learning Biology For Life
-========================================================= */
+/* ==========================================================================
+   NEURAL UI CORE: Color System & Typographic Foundations
+   ========================================================================== */
 
-/* =========================================================
-   ROOT VARIABLES
-========================================================= */
-
-:root{
-
-  --neural-bg:#020812;
-  --neural-bg-soft:#07111f;
-
-  --neural-surface:
-    rgba(255,255,255,.06);
-
-  --neural-border:
-    rgba(255,255,255,.10);
-
-  --neural-text:#eef7ff;
-
-  --neural-muted:
-    rgba(235,245,255,.72);
-
-  --neural-accent:#00ffd5;
-
-  --neural-shadow:
-    0 10px 40px rgba(0,0,0,.35);
-
-  --neural-radius:24px;
+:root {
+  // Color System
+  --color-deep-navy: #0a0f18;
+  --color-neural-cyan: #00f0ff;
+  --color-bio-emerald: #00ff88;
+  --color-text-primary: #e0e6ed;
+  --color-text-muted: #8b9bb4;
+  --color-bg-panel: rgba(10, 15, 24, 0.7);
+  
+  // Cinematic Typography
+  --font-hero: 'Inter', system-ui, sans-serif; // Swap with actual cinematic font
+  --fluid-h1: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+  --fluid-h2: clamp(2rem, 4vw + 1rem, 3.5rem);
+  --fluid-p: clamp(1rem, 1.5vw + 0.5rem, 1.125rem);
+  
+  // Animation Timings
+  --transition-cinematic: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* =========================================================
-   GLOBAL FOUNDATION
-========================================================= */
-
-html,
-body{
-  overflow-x:hidden;
-  scroll-behavior:smooth;
+// Ensure base background overrides MM default gracefully
+body {
+  background-color: var(--color-deep-navy);
+  color: var(--color-text-primary);
+  font-family: var(--font-hero);
+  -webkit-font-smoothing: antialiased;
 }
 
-body{
-
-  background:
-    radial-gradient(
-      circle at top,
-      #07111f,
-      #020812 72%
-    );
-
-  color:var(--neural-text);
-}
-
-/* =========================================================
-   GLASS PANELS
-========================================================= */
-
-.neural-panel{
-
-  background:
-    var(--neural-surface);
-
-  border:
-    1px solid var(--neural-border);
-
-  border-radius:
-    var(--neural-radius);
-
-  backdrop-filter:
-    blur(18px);
-
-  -webkit-backdrop-filter:
-    blur(18px);
-
-  box-shadow:
-    var(--neural-shadow);
-}
-
-/* =========================================================
-   TYPOGRAPHY
-========================================================= */
-
-.neural-title{
-
-  font-weight:800;
-
-  letter-spacing:-.03em;
-
-  line-height:1.04;
-
-  text-wrap:balance;
-}
-
-.neural-lead{
-
-  color:
-    var(--neural-muted);
-
-  line-height:1.8;
-}
-
-/* =========================================================
-   SECTION SYSTEM
-========================================================= */
-
-.neural-section{
-
-  padding:
-    6rem 0;
-
-  position:relative;
-}
-
-.neural-section__inner{
-
-  width:min(1200px,92%);
-
-  margin:auto;
-}
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.neural-btn{
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:
-    .95rem 1.5rem;
-
-  border-radius:
-    999px;
-
-  border:
-    1px solid rgba(255,255,255,.14);
-
-  color:white;
-
-  text-decoration:none;
-
-  transition:
-    all .28s ease;
-
-  backdrop-filter:
-    blur(12px);
-}
-
-.neural-btn:hover{
-
-  transform:
-    translateY(-2px);
-
-  border-color:
-    var(--neural-accent);
-
-  box-shadow:
-    0 0 24px rgba(0,255,213,.22);
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width:768px){
-
-  .neural-section{
-
-    padding:
-      4rem 0;
-  }
-
+// The Glassmorphic Header Override
+.masthead {
+  background: var(--color-bg-panel) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+  transition: var(--transition-cinematic);
 }
