@@ -1,39 +1,292 @@
 /* ==========================================================================
-   NEURAL UI CORE: Color System & Typographic Foundations
+   SYNAPTIC AI — PRODUCTION UI SYSTEM
    ========================================================================== */
 
-:root {
-  // Color System
-  --color-deep-navy: #0a0f18;
-  --color-neural-cyan: #00f0ff;
-  --color-bio-emerald: #00ff88;
-  --color-text-primary: #e0e6ed;
-  --color-text-muted: #8b9bb4;
-  --color-bg-panel: rgba(10, 15, 24, 0.7);
-  
-  // Cinematic Typography
-  --font-hero: 'Inter', system-ui, sans-serif; // Swap with actual cinematic font
-  --fluid-h1: clamp(2.5rem, 5vw + 1rem, 4.5rem);
-  --fluid-h2: clamp(2rem, 4vw + 1rem, 3.5rem);
-  --fluid-p: clamp(1rem, 1.5vw + 0.5rem, 1.125rem);
-  
-  // Animation Timings
-  --transition-cinematic: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+body.layout--home {
+  background:
+    radial-gradient(circle at top, #07111d, #020812 70%) !important;
+
+  color: #eef7ff !important;
+
+  overflow-x: hidden;
 }
 
-// Ensure base background overrides MM default gracefully
-body {
-  background-color: var(--color-deep-navy);
-  color: var(--color-text-primary);
-  font-family: var(--font-hero);
-  -webkit-font-smoothing: antialiased;
+/* ==========================================================================
+   HERO SYSTEM
+   ========================================================================== */
+
+.synaptic-hero-shell {
+  position: relative;
+  width: 100%;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 2rem 5rem;
+  overflow: hidden;
+  background: 
+    linear-gradient(90deg, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.75) 50%, rgba(2, 6, 23, 0.5) 100%),
+    url('/assets/images/header-bg.webp') no-repeat center center/cover;
 }
 
-// The Glassmorphic Header Override
-.masthead {
-  background: var(--color-bg-panel) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-  transition: var(--transition-cinematic);
+@media (min-width: 769px) {
+  .synaptic-hero-shell {
+    background-attachment: fixed;
+  }
+}
+
+.synaptic-hero-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
+}
+
+.synaptic-hero-title {
+  font-size: clamp(3rem, 8vw, 6.5rem) !important;
+  line-height: .95 !important;
+  font-weight: 900 !important;
+  letter-spacing: -3px !important;
+  margin-bottom: 2rem !important;
+  color: #ffffff !important;
+  text-align: left !important;
+  text-shadow: 0 0 30px rgba(0, 255, 180, 0.15) !important;
+}
+
+.synaptic-hero-subtitle {
+  max-width: 900px !important;
+  font-size: clamp(1.1rem, 2vw, 1.45rem) !important;
+  line-height: 1.8 !important;
+  color: rgba(220,230,240,.82) !important;
+  margin-bottom: 3rem !important;
+  text-align: left !important;
+}
+
+/* ==========================================================================
+   BUTTON SYSTEM
+   ========================================================================== */
+
+.synaptic-hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.neural-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.2rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      135deg,
+      #00d2ff,
+      #7cf7c9
+    );
+  color: #031018 !important;
+  text-decoration: none;
+  font-weight: 700;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.neural-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,255,200,.22);
+}
+
+/* ==========================================================================
+   SECTION SYSTEM
+   ========================================================================== */
+
+.neural-section {
+  position: relative;
+  padding: 5rem 2rem;
+}
+
+.neural-section__inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.synaptic-intro {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 4rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  margin-bottom: 1rem !important;
+  color: #ffffff !important;
+}
+
+.section-description {
+  max-width: 760px;
+  margin-inline: auto;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: rgba(220,230,240,.82);
+}
+
+/* ==========================================================================
+   GRID SYSTEM
+   ========================================================================== */
+
+.neural-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.neural-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 28px;
+  padding: 3rem 2rem;
+  backdrop-filter: blur(14px);
+  transition: all .35s ease;
+}
+
+.neural-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0,255,200,.24);
+  box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.neural-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.neural-card h3 {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.neural-card p {
+  line-height: 1.8;
+  color: rgba(220,230,240,.82);
+}
+
+/* ==========================================================================
+   COMPACT SECTION
+   ========================================================================== */
+
+.neural-section--compact {
+  padding-top: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.vision-text {
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  font-size: 1.15rem;
+  line-height: 2;
+  color: rgba(220,230,240,.82);
+}
+
+/* ==========================================================================
+   ATMOSPHERIC NEURAL SYMBOLS
+   ========================================================================== */
+
+.synaptic-hero-symbols {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.synaptic-symbol {
+  position: absolute;
+  opacity: 0.04;
+  font-weight: 900;
+  user-select: none;
+}
+
+.symbol-dot {
+  top: 15%;
+  right: 15%;
+  font-size: 8rem;
+  color: #3ee7b6;
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+.symbol-line {
+  bottom: 15%;
+  left: 10%;
+  font-size: 9rem;
+  color: #7c5cff;
+  animation: floatSlowReverse 14s ease-in-out infinite;
+}
+
+.symbol-circle {
+  top: 45%;
+  right: 30%;
+  font-size: 6rem;
+  color: #ffcc66;
+  animation: floatMedium 10s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2rem) scale(1.03); }
+}
+
+@keyframes floatSlowReverse {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(2rem) scale(0.97); }
+}
+
+@keyframes floatMedium {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.5rem); }
+}
+
+/* ==========================================================================
+   REMOVE MINIMAL MISTAKES CONSTRAINTS
+   ========================================================================== */
+
+.archive,
+.initial-content,
+.page,
+.page__inner-wrap,
+.page__content {
+  margin-top: 0 !important;
+}
+
+/* ==========================================================================
+   MOBILE OPTIMIZATION
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .synaptic-hero-shell {
+    min-height: auto;
+    padding: 6rem 1.5rem 4rem;
+  }
+
+  .synaptic-hero-title {
+    letter-spacing: -2px !important;
+  }
+
+  .synaptic-hero-actions {
+    flex-direction: column;
+  }
+
+  .neural-btn {
+    width: 100%;
+  }
+
+  .neural-section {
+    padding: 4rem 1.5rem;
+  }
 }

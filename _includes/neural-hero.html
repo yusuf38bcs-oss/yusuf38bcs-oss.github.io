@@ -1,0 +1,52 @@
+<div class="neural-hero">
+  <div class="neural-hero__bg-gradient"></div>
+  <div class="neural-hero__content wrapper">
+    <h1 class="neural-hero__title">Where Biology <br><span class="highlight-cyan">Meets Life</span></h1>
+    <p class="neural-hero__subtitle">A Neural Educational Ecosystem for Reflective Scientific Learning.</p>
+  </div>
+</div>
+
+<style>
+  .neural-hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .neural-hero__bg-gradient {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% 120%, rgba(0, 240, 255, 0.15) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .neural-hero__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .neural-hero__title {
+    font-size: var(--fluid-h1);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: #ffffff;
+  }
+
+  .highlight-cyan {
+    color: var(--color-neural-cyan);
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  }
+
+  .neural-hero__subtitle {
+    font-size: var(--fluid-p);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>
