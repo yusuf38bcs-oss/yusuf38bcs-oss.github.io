@@ -194,3 +194,87 @@ html,body{
 
   z-index: 3;
 }
+
+/* =========================================================
+   EMERGENCY HERO HOTFIX
+========================================================= */
+
+/* Hide default MM title */
+
+.page__hero--overlay .page__title {
+  display: none;
+}
+
+/* Hero caption structure */
+
+.page__hero-caption {
+
+  position: relative;
+  z-index: 5;
+
+  max-width: 100%;
+
+  padding: 7rem 1.5rem 4rem;
+
+  min-height: 82vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Custom hero title */
+
+.synaptic-hero-title {
+
+  font-size: clamp(2.2rem, 8vw, 5rem);
+
+  line-height: 1.05;
+
+  font-weight: 800;
+
+  margin-bottom: 1.4rem;
+
+  color: #edf6ff;
+
+  max-width: 760px;
+
+  text-shadow:
+    0 2px 10px rgba(0,0,0,0.55),
+    0 0 30px rgba(62,231,182,0.12);
+}
+
+/* Subtitle */
+
+.synaptic-hero-subtitle {
+
+  font-size: clamp(1rem, 2vw, 1.25rem);
+
+  line-height: 1.85;
+
+  max-width: 760px;
+
+  color: rgba(237,246,255,0.88);
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+  .page__hero-caption {
+
+    padding-top: 8rem;
+
+    min-height: 75vh;
+  }
+
+  .synaptic-hero-title {
+
+    font-size: clamp(1.9rem, 9vw, 3.2rem);
+  }
+
+  .synaptic-hero-subtitle {
+
+    font-size: 1rem;
+  }
+}
