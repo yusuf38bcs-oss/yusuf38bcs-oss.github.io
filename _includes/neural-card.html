@@ -1,0 +1,116 @@
+{% comment %}
+  NEURAL CARD COMPONENT
+  Supports: Automated Post Loops (paginate-v2) & Manual Includes
+  Parameters: post (optional), card_title, card_description, card_link, card_icon
+{% endcomment %}
+
+{% assign title = include.post.title | default: include.card_title %}
+{% assign excerpt = include.post.excerpt | default: include.card_description %}
+{% assign link = include.post.url | default: include.card_link %}
+{% assign category = include.post.categories | first %}
+
+<article class="neural-card-wrapper" data-aos="fade-up">
+  <a class="section-card" href="{{ link | relative_url }}" aria-label="{{ title }}">
+    
+    <!-- Card Header: Category or Icon -->
+    <div class="card-header-meta">
+      {% if include.card_icon %}
+        <div class="card-icon" aria-hidden="true">{{ include.card_icon }}</div>
+      {% elsif category %}
+        <span class="card-category-tag u-text-glow">{{ category }}</span>
+      {% endif %}
+      <div class="neural-pulse-dot"></div>
+    </div>
+
+    <!-- Card Content -->
+    <div class="card-content">
+      <h3 class="card-title">{{ title }}</h3>
+      <p class="card-description">
+        {{ excerpt | strip_html | truncate: 120 }}
+      </p>
+
+      <!-- Interactive Indicator -->
+      <div class="card-footer-action" aria-hidden="true">
+        <span class="action-text">Initiate Inquiry</span>
+        <span class="indicator-arrow">→</span>
+      </div>
+    </div>
+
+    <!-- Glassmorphism & Neural Glow (Controlled by assets/js/synapse-effects.js) -->
+    <div class="card-glow-accent" aria-hidden="true"></div>
+  </a>
+</article>
+
+<style>
+  .neural-card-wrapper {
+    height: 100%;
+    display: flex;
+  }
+
+  .section-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    text-decoration: none !important;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .section-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 255, 170, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .card-category-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #00ffaa;
+    font-weight: 700;
+  }
+
+  .card-title {
+    margin: 1.5rem 0 0.75rem;
+    color: #ffffff;
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+
+  .card-description {
+    color: rgba(237, 246, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .card-footer-action {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #00ffaa;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .neural-pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ffaa;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ffaa;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+</style>

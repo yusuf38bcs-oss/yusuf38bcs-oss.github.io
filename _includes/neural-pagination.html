@@ -1,0 +1,120 @@
+{% comment %}
+  NEURAL PAGINATION SYSTEM
+  Designed for Paginate-V2 Engine
+  Visual Style: Immersive Socratic Navigation
+{% endcomment %}
+
+{% if paginator.total_pages > 1 %}
+<nav class="neural-pagination" aria-label="Expedition Navigation" data-aos="fade-up">
+  <div class="pagination-wrapper">
+    
+    <!-- Previous Node -->
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-btn prev" aria-label="Previous Expedition Page">
+        <span class="icon">←</span>
+        <span class="label">Previous</span>
+      </a>
+    {% else %}
+      <span class="pagination-btn disabled">
+        <span class="icon">←</span>
+      </span>
+    {% endif %}
+
+    <!-- Neural Progress Indicator -->
+    <div class="pagination-progress">
+      <span class="progress-label">Cognitive Node</span>
+      <div class="progress-nodes">
+        <span class="current-node u-text-glow">{{ paginator.page }}</span>
+        <span class="node-divider">/</span>
+        <span class="total-nodes">{{ paginator.total_pages }}</span>
+      </div>
+    </div>
+
+    <!-- Next Node -->
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-btn next" aria-label="Next Expedition Page">
+        <span class="label">Next</span>
+        <span class="icon">→</span>
+      </a>
+    {% else %}
+      <span class="pagination-btn disabled">
+        <span class="icon">→</span>
+      </span>
+    {% endif %}
+
+  </div>
+</nav>
+
+<style>
+  .neural-pagination {
+    margin: clamp(3rem, 10vw, 6rem) 0;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(0, 255, 170, 0.1);
+  }
+
+  .pagination-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .pagination-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.8rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid transparent;
+  }
+
+  .pagination-btn:not(.disabled):hover {
+    color: #00ffaa;
+    border-color: rgba(0, 255, 170, 0.2);
+    background: rgba(0, 255, 170, 0.03);
+    box-shadow: 0 0 20px rgba(0, 255, 170, 0.1);
+  }
+
+  .pagination-btn.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+
+  .pagination-progress {
+    text-align: center;
+  }
+
+  .progress-label {
+    display: block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-nodes {
+    font-family: var(--sans-serif, system-ui);
+    font-weight: 800;
+    font-size: 1.2rem;
+  }
+
+  .current-node { color: #00ffaa; }
+  .node-divider { margin: 0 0.5rem; opacity: 0.3; }
+  .total-nodes { color: rgba(255, 255, 255, 0.6); }
+
+  @media (max-width: 480px) {
+    .pagination-btn .label { display: none; }
+    .pagination-btn { padding: 1rem; }
+    .pagination-wrapper { gap: 1rem; }
+  }
+</style>
+{% endif %}

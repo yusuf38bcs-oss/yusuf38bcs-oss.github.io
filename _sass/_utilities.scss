@@ -1,0 +1,45 @@
+scss
+/* =========================================================
+   NEURAL UTILITY ENGINE
+   High-performance global helper classes
+========================================================= */
+
+// Text & Visibility
+.u-text-glow { @include socratic-glow; }
+.u-text-center { text-align: center; }
+.u-text-reflective { font-family: $serif-font-family; font-style: italic; }
+
+// Backgrounds
+.u-bg-dark { background-color: $neural-black; }
+.u-bg-glass { @include neural-glass; }
+
+// Spacing
+.u-mt-sm { margin-top: 1rem; }
+.u-mt-md { margin-top: 2rem; }
+.u-mt-lg { margin-top: $space-unit; }
+.u-mb-lg { margin-bottom: $space-unit; }
+
+// Layout
+.container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @include mobile {
+    padding: 0 1rem;
+  }
+}
+
+// Interactive
+.u-no-select { user-select: none; }
+.u-pointer { cursor: pointer; }
+
+// Display
+.u-hide-mobile {
+  @include mobile { display: none !important; }
+}
+
+.u-show-mobile {
+  display: none;
+  @include mobile { display: block !important; }
+}

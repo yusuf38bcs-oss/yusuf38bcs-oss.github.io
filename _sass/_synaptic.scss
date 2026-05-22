@@ -1,0 +1,122 @@
+scss
+/* =========================================================
+   SYNAPTIC BRIDGE & COMPONENT LOGIC
+   Core interactivity and visual transitions for the 
+   neural educational ecosystem.
+========================================================= */
+
+// 1. THE SYNAPTIC BRIDGE (Sticky Sub-Navigation)
+.synaptic-bridge-shell {
+  background: rgba(10, 10, 12, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($synapse-glow, 0.1);
+  padding: 0.75rem 0;
+  position: sticky;
+  top: $nav-height; // Stays below the main navbar
+  z-index: 900;
+  transition: $neural-transition;
+
+  .synaptic-bridge-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+  }
+}
+
+.bridge-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: $synapse-glow;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.bridge-links {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .bridge-link {
+    font-size: 0.85rem;
+    color: $text-muted;
+    text-decoration: none;
+    transition: $neural-transition;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+      color: $synapse-glow;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// 2. NEURAL BUTTONS (Ecosystem-wide)
+.neural-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: $neural-transition;
+  cursor: pointer;
+
+  &--primary {
+    background: $synapse-glow;
+    color: $neural-black !important;
+    border: 2px solid $synapse-glow;
+
+    &:hover {
+      background: transparent;
+      color: $synapse-glow !important;
+      box-shadow: 0 0 20px rgba($synapse-glow, 0.3);
+    }
+  }
+
+  &--secondary {
+    background: transparent;
+    border: 2px solid rgba($synapse-glow, 0.3);
+    color: $text-primary !important;
+
+    &:hover {
+      border-color: $synapse-glow;
+      color: $synapse-glow !important;
+    }
+  }
+}
+
+// 3. REFLECTIVE INQUIRY STYLING
+.reflective-inquiry-container {
+  padding: $space-unit 0;
+  background: radial-gradient(circle at center, rgba($synapse-glow, 0.03), transparent);
+
+  .socratic-prompt {
+    font-family: $serif-font-family;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: #fff;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+    border: none;
+  }
+}
+
+// 4. ANIMATIONS
+[data-aos] {
+  pointer-events: none;
+  &.aos-animate {
+    pointer-events: auto;
+  }
+}

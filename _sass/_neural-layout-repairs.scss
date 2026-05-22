@@ -1,0 +1,82 @@
+scss
+/* =========================================================
+   GLOBAL NEURAL RESET & SPACING REPAIRS
+   Fixes Minimal Mistakes' default constraints for a 
+   full-width immersive experience.
+========================================================= */
+
+.layout--home,
+.layout--synaptic-home {
+  #main {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+  }
+
+  .initial-content,
+  .page,
+  .page__inner-wrap,
+  .page__content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  // Remove the default MMistakes margin that breaks Hero sections
+  .page__hero--overlay {
+    margin-top: 0 !important;
+  }
+}
+
+/* =========================================================
+   BODY - THE NEURAL CANVAS
+========================================================= */
+
+body.layout--home,
+body.layout--synaptic-home {
+  background: radial-gradient(circle at top, #07111d, #020812 75%) !important;
+  color: #eef7ff !important;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* =========================================================
+   HOME LAYOUT WRAPPER
+========================================================= */
+
+.synaptic-home-layout {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   RESPONSIVE COGNITIVE SCALING
+========================================================= */
+
+@media (max-width: 768px) {
+  .synaptic-home-layout {
+    overflow-x: hidden;
+  }
+  
+  // Ensure the AI widget doesn't block the mobile footer
+  .ai-floating-ecosystem {
+    bottom: 1rem;
+    right: 1rem;
+    transform: scale(0.85);
+  }
+}
+
+// Full-screen refinement for large biological displays
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}

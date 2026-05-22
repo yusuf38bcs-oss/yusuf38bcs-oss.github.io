@@ -1,299 +1,107 @@
-/* =========================================================
-   Learning Biology For Life
-   Theme Controller Engine
-   Synaptic UI System
-========================================================= */
+/**
+ * Learning Biology For Life - Synaptic Theme Engine
+ * Manages cognitive visual modes and system synchronization.
+ */
 
-(function () {
-
+(function() {
   "use strict";
 
-  const STORAGE_KEY = "lbfl-theme";
-
-  const THEMES = [
-    "dark",
-    "light",
-    "midnight",
-    "biology"
-  ];
-
+  const STORAGE_KEY = "lbfl-neural-theme";
+  const THEMES = ["dark", "light", "midnight", "biology"];
   const DEFAULT_THEME = "dark";
+  const ROOT = document.documentElement;
 
-  const root = document.documentElement;
+  const ThemeEngine = {
+    init() {
+      this.applyInitialTheme();
+      this.bindEvents();
+      this.watchSystemPreference();
+    },
 
-  /* ======================================================
-     INITIALIZE
-  ====================================================== */
+    applyInitialTheme() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      const initial = THEMES.includes(stored) ? stored : DEFAULT_THEME;
+      this.setTheme(initial);
+    },
 
-  document.addEventListener(
-    "DOMContentLoaded",
-    initThemeController
-  );
+    /**
+     * Set active neural theme
+     * @param {string} theme - One of THEMES
+     */
+    setTheme(theme) {
+      if (!THEMES.includes(theme)) theme = DEFAULT_THEME;
 
-  function initThemeController() {
+      ROOT.setAttribute("data-theme", theme);
+      localStorage.setItem(STORAGE_KEY, theme);
+      
+      this.updateBrowserUI(theme);
+      this.notifyEcosystem(theme);
+    },
 
-    applyStoredTheme();
+    toggle() {
+      const current = ROOT.getAttribute("data-theme") || DEFAULT_THEME;
+      const next = current === "dark" ? "light" : "dark";
+      this.setTheme(next);
+    },
 
-    setupThemeButtons();
+    updateBrowserUI(theme) {
+      // Colors mapped to the neural-variables system
+      const colors = {
+        dark: "#0a0a0c",
+        light: "#ffffff",
+        midnight: "#020617",
+        biology: "#052e16"
+      };
 
-    setupSystemThemeWatcher();
+      let meta = document.querySelector('meta[name="theme-color"]');
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.name = "theme-color";
+        document.head.appendChild(meta);
+      }
+      meta.content = colors[theme] || colors.dark;
+    },
 
-    setupKeyboardShortcut();
-
-  }
-
-  /* ======================================================
-     APPLY STORED THEME
-  ====================================================== */
-
-  function applyStoredTheme() {
-
-    const stored =
-      localStorage.getItem(STORAGE_KEY);
-
-    if (
-      stored &&
-      THEMES.includes(stored)
-    ) {
-
-      setTheme(stored);
-
-    } else {
-
-      setTheme(DEFAULT_THEME);
-
-    }
-
-  }
-
-  /* ======================================================
-     SET THEME
-  ====================================================== */
-
-  function setTheme(theme) {
-
-    if (!THEMES.includes(theme)) {
-
-      theme = DEFAULT_THEME;
-
-    }
-
-    root.setAttribute(
-      "data-theme",
-      theme
-    );
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      theme
-    );
-
-    updateThemeMeta(theme);
-
-    dispatchThemeEvent(theme);
-
-  }
-
-  /* ======================================================
-     TOGGLE THEME
-  ====================================================== */
-
-  function toggleTheme() {
-
-    const current =
-      root.getAttribute("data-theme") ||
-      DEFAULT_THEME;
-
-    const next =
-      current === "dark"
-        ? "light"
-        : "dark";
-
-    setTheme(next);
-
-  }
-
-  /* ======================================================
-     META THEME COLOR
-  ====================================================== */
-
-  function updateThemeMeta(theme) {
-
-    let color = "#0f172a";
-
-    switch (theme) {
-
-      case "light":
-        color = "#ffffff";
-        break;
-
-      case "midnight":
-        color = "#020617";
-        break;
-
-      case "biology":
-        color = "#052e16";
-        break;
-
-    }
-
-    let meta =
-      document.querySelector(
-        'meta[name="theme-color"]'
-      );
-
-    if (!meta) {
-
-      meta = document.createElement("meta");
-
-      meta.name = "theme-color";
-
-      document.head.appendChild(meta);
-
-    }
-
-    meta.content = color;
-
-  }
-
-  /* ======================================================
-     BUTTONS
-  ====================================================== */
-
-  function setupThemeButtons() {
-
-    document
-      .querySelectorAll("[data-set-theme]")
-      .forEach((button) => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            const theme =
-              button.dataset.setTheme;
-
-            setTheme(theme);
-
-          }
-        );
-
+    bindEvents() {
+      // Toggle buttons
+      document.querySelectorAll("[data-theme-toggle]").forEach(btn => {
+        btn.addEventListener("click", () => this.toggle());
       });
 
-    document
-      .querySelectorAll("[data-theme-toggle]")
-      .forEach((button) => {
-
-        button.addEventListener(
-          "click",
-          toggleTheme
-        );
-
+      // Specific theme selectors
+      document.querySelectorAll("[data-set-theme]").forEach(btn => {
+        btn.addEventListener("click", () => this.setTheme(btn.dataset.setTheme));
       });
 
-  }
+      // Keyboard Shortcut: Alt + T
+      document.addEventListener("keydown", (e) => {
+        if (e.altKey && e.key.toLowerCase() === "t") this.toggle();
+      });
+    },
 
-  /* ======================================================
-     SYSTEM PREFERENCE
-  ====================================================== */
-
-  function setupSystemThemeWatcher() {
-
-    if (
-      !window.matchMedia
-    ) return;
-
-    const media =
-      window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
-
-    media.addEventListener(
-      "change",
-      (event) => {
-
-        const stored =
-          localStorage.getItem(STORAGE_KEY);
-
-        if (!stored) {
-
-          setTheme(
-            event.matches
-              ? "dark"
-              : "light"
-          );
-
+    watchSystemPreference() {
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
+      media.addEventListener("change", (e) => {
+        if (!localStorage.getItem(STORAGE_KEY)) {
+          this.setTheme(e.matches ? "dark" : "light");
         }
+      });
+    },
 
-      }
-    );
-
-  }
-
-  /* ======================================================
-     KEYBOARD SHORTCUT
-  ====================================================== */
-
-  function setupKeyboardShortcut() {
-
-    document.addEventListener(
-      "keydown",
-      (event) => {
-
-        if (
-          event.altKey &&
-          event.key.toLowerCase() === "t"
-        ) {
-
-          toggleTheme();
-
-        }
-
-      }
-    );
-
-  }
-
-  /* ======================================================
-     CUSTOM EVENT
-  ====================================================== */
-
-  function dispatchThemeEvent(theme) {
-
-    document.dispatchEvent(
-
-      new CustomEvent(
-        "lbfl:theme-changed",
-        {
-          detail: {
-            theme
-          }
-        }
-      )
-
-    );
-
-  }
-
-  /* ======================================================
-     PUBLIC API
-  ====================================================== */
-
-  window.ThemeController = {
-
-    setTheme,
-
-    toggleTheme,
-
-    getCurrentTheme() {
-
-      return (
-        root.getAttribute("data-theme") ||
-        DEFAULT_THEME
-      );
-
+    notifyEcosystem(theme) {
+      document.dispatchEvent(new CustomEvent("lbfl:theme-changed", { 
+        detail: { theme } 
+      }));
     }
-
   };
 
+  // Immediate execution for Flash of Unstyled Content (FOUC) prevention
+  ThemeEngine.init();
+
+  // Export for Global Access
+  window.SynapticTheme = {
+    set: (t) => ThemeEngine.setTheme(t),
+    toggle: () => ThemeEngine.toggle(),
+    current: () => ROOT.getAttribute("data-theme") || DEFAULT_THEME
+  };
 })();

@@ -1,0 +1,103 @@
+scss
+/* =========================================================
+   NEURAL NAVIGATION SYSTEM
+   Sticky Masthead & Socratic Dropdown Architecture
+========================================================= */
+
+.masthead {
+  background: rgba($neural-black, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba($synapse-glow, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  transition: $neural-transition;
+
+  &__inner {
+    max-width: $container-max;
+    height: $nav-height;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mobile {
+      padding: 0 1rem;
+    }
+  }
+}
+
+.site-title {
+  font-weight: 800;
+  color: #fff !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  @include socratic-glow;
+}
+
+.grep-nav {
+  ul {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+
+    @include tablet {
+      display: none; // Handled by mobile toggle
+    }
+  }
+
+  .nav-item {
+    position: relative;
+    
+    a {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: $text-muted !important;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      transition: $neural-transition;
+
+      &:hover {
+        color: $synapse-glow !important;
+        text-shadow: 0 0 10px rgba($synapse-glow, 0.5);
+      }
+    }
+
+    // Dropdown Logic
+    &:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  background: $neural-dark;
+  border: 1px solid rgba($synapse-glow, 0.2);
+  min-width: 220px;
+  border-radius: 12px;
+  padding: 1rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: $neural-transition;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+
+  a {
+    padding: 0.6rem 1.5rem;
+    display: block;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-size: 0.9rem !important;
+
+    &:hover {
+      background: rgba($synapse-glow, 0.05);
+    }
+  }
+}

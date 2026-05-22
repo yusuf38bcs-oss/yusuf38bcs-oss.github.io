@@ -1,0 +1,172 @@
+scss
+/* ==========================================================================
+   NEURAL UI — PRODUCTION SYSTEM
+   Integrates Dynamic Viewports (SVH), Parallax, and Grid logic
+   ========================================================================== */
+
+// 1. HERO SYSTEM — Dynamic Viewport Tracking
+.synaptic-hero-shell {
+  position: relative;
+  width: 100%;
+  min-height: 85vh; // Fallback
+  min-height: 85svh; // Prevents mobile address bar layout shifts
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  // Premium Background Pipeline: Left-Leaning Vignette
+  background: 
+    linear-gradient(
+      90deg, 
+      rgba(2, 6, 19, 0.95) 0%, 
+      rgba(2, 6, 19, 0.8) 40%, 
+      rgba(2, 6, 19, 0.4) 100%
+    ),
+    url('/assets/images/header-bg.webp') no-repeat center center/cover;
+}
+
+// Parallax isolated to desktop for performance optimization
+@media (min-width: 769px) {
+  .synaptic-hero-shell {
+    background-attachment: fixed !important;
+    padding: 8rem 4rem;
+  }
+}
+
+.synaptic-hero-content {
+  width: 100%;
+  max-width: $container-max;
+  margin: 0 auto;
+  z-index: 10;
+  position: relative;
+}
+
+.synaptic-hero-title {
+  font-size: $type-h1 !important;
+  line-height: 0.98 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.04em !important;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  text-align: left;
+  text-shadow: 0 4px 24px rgba(2, 6, 19, 0.6);
+}
+
+.synaptic-hero-subtitle {
+  max-width: 760px !important;
+  font-size: clamp(1rem, 2vw, 1.3rem) !important;
+  line-height: 1.75 !important;
+  color: rgba($text-primary, 0.85) !important;
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+/* ==========================================================================
+   MOBILE VIEWPORT RECONSTRUCTION
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .synaptic-hero-shell {
+    min-height: 82svh !important;
+    align-items: flex-end !important;
+    padding: 6rem 1.5rem 4.5rem 1.5rem !important;
+    
+    // CRITICAL: Offset background to keep neural graphic visible
+    background-position: 38% center !important;
+    background-attachment: scroll !important;
+    
+    background-image: 
+      linear-gradient(
+        180deg,
+        rgba(2, 6, 19, 0.4) 0%,
+        rgba(2, 6, 19, 0.7) 50%,
+        rgba(2, 6, 19, 0.98) 100%
+      ),
+      url('/assets/images/header-bg.webp') !important;
+  }
+
+  .synaptic-hero-title {
+    letter-spacing: -0.02em !important;
+    margin-bottom: 1rem;
+  }
+
+  .synaptic-hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .neural-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   NEURAL CARD GRID
+   ========================================================================== */
+
+.neural-section {
+  position: relative;
+  padding: $space-unit 2rem;
+}
+
+.neural-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.neural-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 3rem 2rem;
+  backdrop-filter: blur(14px);
+  transition: $neural-transition;
+
+  &:hover {
+    transform: translateY(-8px);
+    border-color: rgba($synapse-glow, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  h3 {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+  }
+
+  p {
+    line-height: 1.8;
+    color: $text-muted;
+  }
+}
+
+/* ==========================================================================
+   ATMOSPHERIC SYMBOLS (Animated)
+   ========================================================================== */
+
+.synaptic-hero-symbols {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+
+  .synaptic-symbol {
+    position: absolute;
+    opacity: 0.04;
+    user-select: none;
+    animation: floatSlow 12s ease-in-out infinite;
+
+    &.symbol-dot { top: 15%; right: 15%; font-size: 8rem; color: $synapse-glow; }
+    &.symbol-line { bottom: 15%; left: 10%; font-size: 9rem; color: #7c5cff; animation-delay: -2s; }
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2rem); }
+}

@@ -1,0 +1,171 @@
+scss
+/* =========================================================
+   NEURAL ACCORDION LESSON SYSTEM
+   Optimized for Cognitive Flow & Dark Ecosystem
+========================================================= */
+
+.lesson-shell {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    color: $text-primary;
+}
+
+/* --- Header Architecture --- */
+.lesson-header {
+    background: linear-gradient(135deg, rgba($neural-black, 0.8), rgba($synapse-glow, 0.1));
+    padding: clamp(1.5rem, 5vw, 3rem);
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba($synapse-glow, 0.2);
+    box-shadow: $shadow-neural;
+
+    h1 {
+        margin-bottom: 0.7rem;
+        color: #ffffff;
+        font-size: $type-h2;
+        letter-spacing: -1px;
+    }
+
+    p {
+        color: $text-muted;
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+}
+
+/* --- Cover Image: Neural Depth --- */
+.lesson-cover {
+    margin-bottom: 3rem;
+    
+    img {
+        width: 100%;
+        border-radius: 16px;
+        max-height: 450px;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        filter: brightness(0.9);
+        transition: $neural-transition;
+
+        &:hover {
+            filter: brightness(1.1);
+            border-color: $synapse-glow;
+        }
+    }
+}
+
+/* --- Accordion Interactivity --- */
+.accordion {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 1.2rem 1.5rem;
+    margin-top: 1rem;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 1.05rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: $neural-transition;
+    background: rgba(255, 255, 255, 0.03);
+    color: $text-primary;
+    border-left: 4px solid rgba($text-muted, 0.3);
+
+    &:hover, &.active {
+        background: rgba($synapse-glow, 0.08);
+        border-left-color: $synapse-glow;
+        color: #fff;
+        padding-left: 2rem; // Cognitive focus shift
+    }
+
+    &::after {
+        content: '\2b'; // Plus sign
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        transition: transform 0.3s;
+    }
+
+    &.active::after {
+        content: '\2212'; // Minus sign
+        transform: rotate(180deg);
+    }
+}
+
+/* --- Panel Logic --- */
+.panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 0.5rem;
+
+    &.show {
+        max-height: 2000px; // Dynamic height fix
+        padding: 1.5rem;
+        border: 1px solid rgba($synapse-glow, 0.1);
+        border-top: none;
+    }
+
+    p {
+        line-height: 1.8;
+        color: $text-muted;
+    }
+}
+
+/* --- Instructional UI Components --- */
+.flowchart {
+    margin: 1.5rem 0;
+    padding: 1.2rem;
+    border-left: 4px solid $synapse-glow;
+    background: rgba($synapse-glow, 0.03);
+    border-radius: 8px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.organelle-box {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba($synapse-glow, 0.15);
+    background: $neural-card-bg;
+    
+    img {
+        border-radius: 12px;
+        margin: 1rem 0;
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+}
+
+/* --- Data Presentation --- */
+.accordion-post table {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+
+    th {
+        background: rgba($synapse-glow, 0.15);
+        color: $synapse-glow;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+
+    td {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* --- Socratic Highlight --- */
+.highlight {
+    color: $synapse-glow;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba($synapse-glow, 0.3);
+}

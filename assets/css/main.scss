@@ -1,16 +1,24 @@
+scss
 ---
-# only the main Sass file needs front matter
+# Critical: Front matter must stay
 ---
-
 @charset "utf-8";
 
-/* Minimal Mistakes Core */
+// 1. Core Framework & Base
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
 
-/* Synaptic System */
-@import "synaptic";
+// 2. Design System Tokens (The Source of Truth)
+@import "variables"; 
+@import "mixins";
+@import "utilities";
 
-/* Hero Production Layer */
-@import "hero-enhancements";
-@import "neural-ui";
+// 3. Layout Repairs (Resetting MMistakes constraints)
+@import "neural-layout-repairs";
+
+// 4. Isolated Component Modules
+@import "neural-navbar";
+@import "neural-hero";
+@import "synaptic";
+@import "accordion-system";
+@import "neural-ui"; // Put this last to allow overrides

@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<div class="synaptic-home-layout">
+  
+  {% comment %} 
+    The 'content' variable pulls from index.md.
+  {% endcomment %}
+  
+  <main id="main" class="neural-main-container" role="main">
+    {{ content }}
+    
+    <!-- Academic Expeditions Grid -->
+    <div class="container">
+      <div class="neural-grid">
+        {% for post in paginator.posts %}
+          {% include neural-card.html post=post %}
+        {% endfor %}
+      </div>
+      
+      {% include neural-pagination.html %}
+    </div>
+  </main>
+
+  {% include synaptic-ai.html %}
+  
+</div>
