@@ -1,389 +1,104 @@
-/* =========================================================
-   Learning Biology For Life
-   Synaptic Accordion Engine
-   Production Version
-   Dark Theme Compatible
-========================================================= */
+/**
+ * Learning Biology For Life - Synaptic Accordion Engine
+ * Optimized for Socratic Educational Flow & Accessibility
+ */
 
-(function () {
-
+(function() {
   "use strict";
 
-  /* ======================================================
-     CONFIG
-  ====================================================== */
-
   const CONFIG = {
-
     accordionSelector: ".accordion",
-
-    panelSelector: ".accordion-panel",
-
+    panelSelector: ".panel", // Matches your SCSS class
     activeClass: "active",
-
-    animationDuration: 250,
-
-    allowMultipleOpen: false,
-
-    persistState: true
-
+    animationDuration: 400, // Matches SCSS transition
+    persistState: true,
+    allowMultipleOpen: false // Better for cognitive focus
   };
 
-  /* ======================================================
-     UTILITIES
-  ====================================================== */
-
-  function qs(selector, scope = document) {
-
-    return scope.querySelector(selector);
-
-  }
-
-  function qsa(selector, scope = document) {
-
-    return [...scope.querySelectorAll(selector)];
-
-  }
-
-  function escapeId(id) {
-
-    return String(id).replace(/[^a-zA-Z0-9_-]/g, "");
-
-  }
-
-  /* ======================================================
-     STORAGE
-  ====================================================== */
-
-  function saveState(id, state) {
-
-    if (!CONFIG.persistState) return;
-
-    try {
-
-      localStorage.setItem(
-        `accordion-${id}`,
-        state ? "open" : "closed"
-      );
-
-    } catch (err) {
-
-      console.warn(
-        "Accordion state save failed",
-        err
-      );
-
-    }
-
-  }
-
-  function loadState(id) {
-
-    if (!CONFIG.persistState) return false;
-
-    try {
-
-      return (
-        localStorage.getItem(
-          `accordion-${id}`
-        ) === "open"
-      );
-
-    } catch {
-
-      return false;
-
-    }
-
-  }
-
-  /* ======================================================
-     ANIMATION
-  ====================================================== */
-
-  function openPanel(panel) {
-
-    panel.hidden = false;
-
-    panel.style.maxHeight =
-      panel.scrollHeight + "px";
-
-  }
-
-  function closePanel(panel) {
-
-    panel.style.maxHeight = "0px";
-
-    setTimeout(() => {
-
-      panel.hidden = true;
-
-    }, CONFIG.animationDuration);
-
-  }
-
-  /* ======================================================
-     INITIALIZER
-  ====================================================== */
-
-  function initialiseAccordion(accordion, index) {
-
-    const panel =
-      accordion.nextElementSibling;
-
-    if (!panel) return;
-
-    /* --------------------------------------------------
-       IDs
-    -------------------------------------------------- */
-
-    const accordionId =
-      accordion.id ||
-      `accordion-${index}`;
-
-    const panelId =
-      panel.id ||
-      `panel-${index}`;
-
-    accordion.id = escapeId(accordionId);
-
-    panel.id = escapeId(panelId);
-
-    /* --------------------------------------------------
-       ACCESSIBILITY
-    -------------------------------------------------- */
-
-    accordion.setAttribute(
-      "role",
-      "button"
-    );
-
-    accordion.setAttribute(
-      "tabindex",
-      "0"
-    );
-
-    accordion.setAttribute(
-      "aria-controls",
-      panel.id
-    );
-
-    panel.setAttribute(
-      "role",
-      "region"
-    );
-
-    panel.setAttribute(
-      "aria-labelledby",
-      accordion.id
-    );
-
-    /* --------------------------------------------------
-       ICON
-    -------------------------------------------------- */
-
-    let icon =
-      accordion.querySelector(
-        "[data-accordion-icon]"
-      );
-
-    if (!icon) {
-
-      icon = document.createElement("span");
-
-      icon.className =
-        "accordion-icon";
-
-      icon.dataset.accordionIcon = "";
-
-      icon.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-      accordion.appendChild(icon);
-
-    }
-
-    /* --------------------------------------------------
-       INITIAL STATE
-    -------------------------------------------------- */
-
-    panel.classList.add(
-      CONFIG.panelSelector.replace(".", "")
-    );
-
-    panel.style.overflow = "hidden";
-
-    panel.style.transition =
-      `max-height ${CONFIG.animationDuration}ms ease`;
-
-    const shouldOpen =
-      loadState(accordion.id);
-
-    if (shouldOpen) {
-
-      accordion.classList.add(
-        CONFIG.activeClass
-      );
-
-      accordion.setAttribute(
-        "aria-expanded",
-        "true"
-      );
-
-      icon.textContent = "−";
-
-      panel.hidden = false;
-
-      panel.style.maxHeight =
-        panel.scrollHeight + "px";
-
-    } else {
-
-      accordion.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-
-      icon.textContent = "+";
-
-      panel.hidden = true;
-
-      panel.style.maxHeight = "0px";
-
-    }
-
-    /* --------------------------------------------------
-       TOGGLE
-    -------------------------------------------------- */
-
-    function toggleAccordion() {
-
-      const isOpen =
-        accordion.classList.contains(
-          CONFIG.activeClass
-        );
-
-      /* ----------------------------------------------
-         SINGLE OPEN MODE
-      ---------------------------------------------- */
-
-      if (!CONFIG.allowMultipleOpen) {
-
-        qsa(CONFIG.accordionSelector)
-          .forEach((item) => {
-
-            if (item === accordion) return;
-
-            const sibling =
-              item.nextElementSibling;
-
-            const siblingIcon =
-              item.querySelector(
-                "[data-accordion-icon]"
-              );
-
-            item.classList.remove(
-              CONFIG.activeClass
-            );
-
-            item.setAttribute(
-              "aria-expanded",
-              "false"
-            );
-
-            if (siblingIcon) {
-
-              siblingIcon.textContent = "+";
-
-            }
-
-            if (sibling) {
-
-              closePanel(sibling);
-
-            }
-
-            saveState(item.id, false);
-
-          });
-
+  const AccordionEngine = {
+    init() {
+      const accordions = document.querySelectorAll(CONFIG.accordionSelector);
+      if (!accordions.length) return;
+
+      accordions.forEach((el, index) => this.setupAccordion(el, index));
+      this.handleResize();
+    },
+
+    setupAccordion(el, index) {
+      const panel = el.nextElementSibling;
+      if (!panel || !panel.classList.contains('panel')) return;
+
+      // 1. Accessibility & IDs
+      const id = el.id || `synaptic-acc-${index}`;
+      const panelId = `synaptic-panel-${index}`;
+      el.id = id;
+      panel.id = panelId;
+      
+      el.setAttribute('role', 'button');
+      el.setAttribute('aria-expanded', 'false');
+      el.setAttribute('aria-controls', panelId);
+      el.setAttribute('tabindex', '0');
+      panel.setAttribute('role', 'region');
+      panel.setAttribute('aria-labelledby', id);
+
+      // 2. State Persistence Logic
+      if (CONFIG.persistState && localStorage.getItem(id) === 'open') {
+        this.toggle(el, panel, true);
       }
 
-      /* ----------------------------------------------
-         TOGGLE CURRENT
-      ---------------------------------------------- */
-
-      accordion.classList.toggle(
-        CONFIG.activeClass
-      );
-
-      const nowOpen = !isOpen;
-
-      accordion.setAttribute(
-        "aria-expanded",
-        String(nowOpen)
-      );
-
-      icon.textContent =
-        nowOpen ? "−" : "+";
-
-      if (nowOpen) {
-
-        openPanel(panel);
-
-      } else {
-
-        closePanel(panel);
-
-      }
-
-      saveState(accordion.id, nowOpen);
-
-    }
-
-    /* --------------------------------------------------
-       EVENTS
-    -------------------------------------------------- */
-
-    accordion.addEventListener(
-      "click",
-      toggleAccordion
-    );
-
-    accordion.addEventListener(
-      "keydown",
-      (event) => {
-
-        if (
-          event.key === "Enter" ||
-          event.key === " "
-        ) {
-
-          event.preventDefault();
-
-          toggleAccordion();
-
+      // 3. Event Listeners
+      el.addEventListener('click', () => this.toggle(el, panel));
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.toggle(el, panel);
         }
+      });
+    },
 
+    toggle(el, panel, forceOpen = false) {
+      const isOpen = el.classList.contains(CONFIG.activeClass) && !forceOpen;
+
+      // Close others if single-open mode is active
+      if (!CONFIG.allowMultipleOpen && !isOpen) {
+        document.querySelectorAll(CONFIG.accordionSelector).forEach(otherEl => {
+          if (otherEl !== el) {
+            const otherPanel = otherEl.nextElementSibling;
+            otherEl.classList.remove(CONFIG.activeClass);
+            otherEl.setAttribute('aria-expanded', 'false');
+            otherPanel.style.maxHeight = null;
+            otherPanel.classList.remove('show');
+            if (CONFIG.persistState) localStorage.removeItem(otherEl.id);
+          }
+        });
       }
-    );
 
-  }
+      // Toggle Current State
+      if (isOpen) {
+        el.classList.remove(CONFIG.activeClass);
+        el.setAttribute('aria-expanded', 'false');
+        panel.style.maxHeight = null;
+        panel.classList.remove('show');
+        if (CONFIG.persistState) localStorage.removeItem(el.id);
+      } else {
+        el.classList.add(CONFIG.activeClass);
+        el.setAttribute('aria-expanded', 'true');
+        panel.classList.add('show');
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        if (CONFIG.persistState) localStorage.setItem(el.id, 'open');
+      }
+    },
 
-  /* ======================================================
-     INIT
-  ====================================================== */
-
-  document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-      qsa(CONFIG.accordionSelector)
-        .forEach(initialiseAccordion);
-
+    handleResize() {
+      // Recalculate max-height on window resize for responsive stability
+      window.addEventListener('resize', () => {
+        const activePanels = document.querySelectorAll(`${CONFIG.panelSelector}.show`);
+        activePanels.forEach(panel => {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        });
+      });
     }
-  );
+  };
 
+  document.addEventListener('DOMContentLoaded', () => AccordionEngine.init());
 })();

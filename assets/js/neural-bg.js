@@ -1,175 +1,110 @@
 /**
- * =========================================================
- * SYNAPTIC NEURAL BACKGROUND SYSTEM
- * File: assets/js/neural-bg.js
- * =========================================================
+ * Learning Biology For Life - Neural Background Engine
+ * High-performance synaptic particle system with Retina support.
  */
 
-document.addEventListener("DOMContentLoaded", () => {
+(function() {
+  "use strict";
 
-  const canvas = document.getElementById("neural-network");
+  const NeuralEngine = {
+    init() {
+      this.canvas = document.getElementById("neural-network");
+      if (!this.canvas) return;
 
-  if (!canvas) return;
+      this.ctx = this.canvas.getContext("2d");
+      this.particles = [];
+      this.ratio = window.devicePixelRatio || 1;
+      
+      // Dynamic Density Scaling
+      this.settings = {
+        count: window.innerWidth < 768 ? 40 : 85,
+        dist: 150,
+        speed: 0.5,
+        dotColor: "rgba(62, 231, 182, 0.8)", // Synapse Glow
+        lineColor: "rgba(124, 92, 255, 0.2)" // Neural Link
+      };
 
-  const ctx = canvas.getContext("2d");
+      this.resize();
+      this.createParticles();
+      this.animate();
 
-  let width;
-  let height;
-  let particles = [];
+      window.addEventListener("resize", () => this.debouncedResize());
+    },
 
-  const PARTICLE_COUNT = window.innerWidth < 768 ? 45 : 90;
-  const MAX_DISTANCE = 140;
+    resize() {
+      this.width = this.canvas.parentElement.offsetWidth;
+      this.height = this.canvas.parentElement.offsetHeight;
 
-  // -------------------------------------------------------
-  // Resize Canvas
-  // -------------------------------------------------------
+      // Normalize for high-DPI displays
+      this.canvas.width = this.width * this.ratio;
+      this.canvas.height = this.height * this.ratio;
+      this.canvas.style.width = `${this.width}px`;
+      this.canvas.style.height = `${this.height}px`;
+      this.ctx.scale(this.ratio, this.ratio);
+    },
 
-  function resizeCanvas() {
-    width = canvas.parentElement.offsetWidth;
-    height = canvas.parentElement.offsetHeight;
+    debouncedResize() {
+      clearTimeout(this.resizeTimeout);
+      this.resizeTimeout = setTimeout(() => {
+        this.resize();
+        this.createParticles();
+      }, 250);
+    },
 
-    canvas.width = width;
-    canvas.height = height;
-  }
-
-  resizeCanvas();
-
-  window.addEventListener("resize", resizeCanvas);
-
-  // -------------------------------------------------------
-  // Particle Class
-  // -------------------------------------------------------
-
-  class Particle {
-
-    constructor() {
-      this.reset();
-    }
-
-    reset() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-
-      this.vx = (Math.random() - 0.5) * 0.6;
-      this.vy = (Math.random() - 0.5) * 0.6;
-
-      this.radius = Math.random() * 2.2 + 1;
-    }
-
-    update() {
-
-      this.x += this.vx;
-      this.y += this.vy;
-
-      if (this.x < 0 || this.x > width) {
-        this.vx *= -1;
+    createParticles() {
+      this.particles = [];
+      for (let i = 0; i < this.settings.count; i++) {
+        this.particles.push({
+          x: Math.random() * this.width,
+          y: Math.random() * this.height,
+          vx: (Math.random() - 0.5) * this.settings.speed,
+          vy: (Math.random() - 0.5) * this.settings.speed,
+          r: Math.random() * 2 + 1
+        });
       }
+    },
 
-      if (this.y < 0 || this.y > height) {
-        this.vy *= -1;
-      }
-    }
+    animate() {
+      this.ctx.clearRect(0, 0, this.width, this.height);
 
-    draw() {
+      for (let i = 0; i < this.particles.length; i++) {
+        let p = this.particles[i];
 
-      ctx.beginPath();
+        // Update Position
+        p.x += p.vx;
+        p.y += p.vy;
 
-      ctx.arc(
-        this.x,
-        this.y,
-        this.radius,
-        0,
-        Math.PI * 2
-      );
+        // Boundary Logic
+        if (p.x < 0 || p.x > this.width) p.vx *= -1;
+        if (p.y < 0 || p.y > this.height) p.vy *= -1;
 
-      ctx.fillStyle = "rgba(62, 231, 182, 0.9)";
+        // Draw Neural Node
+        this.ctx.beginPath();
+        this.ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        this.ctx.fillStyle = this.settings.dotColor;
+        this.ctx.fill();
 
-      ctx.shadowColor = "rgba(62, 231, 182, 0.9)";
-      ctx.shadowBlur = 10;
+        // Connect Synapses
+        for (let j = i + 1; j < this.particles.length; j++) {
+          let p2 = this.particles[j];
+          let dx = p.x - p2.x;
+          let dy = p.y - p2.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
 
-      ctx.fill();
-
-      ctx.closePath();
-    }
-  }
-
-  // -------------------------------------------------------
-  // Create Particles
-  // -------------------------------------------------------
-
-  function createParticles() {
-
-    particles = [];
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push(new Particle());
-    }
-  }
-
-  createParticles();
-
-  // -------------------------------------------------------
-  // Draw Synaptic Connections
-  // -------------------------------------------------------
-
-  function connectParticles() {
-
-    for (let a = 0; a < particles.length; a++) {
-
-      for (let b = a + 1; b < particles.length; b++) {
-
-        const dx = particles[a].x - particles[b].x;
-        const dy = particles[a].y - particles[b].y;
-
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < MAX_DISTANCE) {
-
-          const opacity = 1 - distance / MAX_DISTANCE;
-
-          ctx.beginPath();
-
-          ctx.moveTo(
-            particles[a].x,
-            particles[a].y
-          );
-
-          ctx.lineTo(
-            particles[b].x,
-            particles[b].y
-          );
-
-          ctx.strokeStyle =
-            `rgba(124, 92, 255, ${opacity * 0.5})`;
-
-          ctx.lineWidth = 1;
-
-          ctx.stroke();
-
-          ctx.closePath();
+          if (dist < this.settings.dist) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(p.x, p.y);
+            this.ctx.lineTo(p2.x, p2.y);
+            this.ctx.strokeStyle = `rgba(124, 92, 255, ${1 - dist / this.settings.dist})`;
+            this.ctx.lineWidth = 0.5;
+            this.ctx.stroke();
+          }
         }
       }
+
+      requestAnimationFrame(() => this.animate());
     }
-  }
+  };
 
-  // -------------------------------------------------------
-  // Animation Loop
-  // -------------------------------------------------------
-
-  function animate() {
-
-    ctx.clearRect(0, 0, width, height);
-
-    particles.forEach((particle) => {
-      particle.update();
-      particle.draw();
-    });
-
-    connectParticles();
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
-});
+  document.addEventListener("DOMContentLoaded", () => NeuralEngine.init());
+})();

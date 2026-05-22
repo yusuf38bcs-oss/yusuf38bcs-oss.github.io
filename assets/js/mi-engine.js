@@ -1,87 +1,124 @@
-﻿(function () {
+﻿/**
+ * Learning Biology For Life - MI Analysis Engine
+ * Maps cognitive profiles to biological study strategies.
+ */
+
+(function() {
   "use strict";
 
-  const MI_ITEMS = [
-    {
-      intelligence: "Linguistic",
-      prompt: "I understand ideas best through words, reading, writing, or discussion."
-    },
-    {
-      intelligence: "Logical-Mathematical",
-      prompt: "I enjoy patterns, reasoning, experiments, numbers, and problem solving."
-    },
-    {
-      intelligence: "Spatial",
-      prompt: "I learn well through diagrams, images, maps, and visual organization."
-    },
-    {
-      intelligence: "Bodily-Kinesthetic",
-      prompt: "I understand better when movement, models, hands-on practice, or physical activity is involved."
-    },
-    {
-      intelligence: "Musical",
-      prompt: "Rhythm, sound, tone, or music helps me remember and understand ideas."
-    },
-    {
-      intelligence: "Interpersonal",
-      prompt: "I learn strongly through teamwork, teaching others, debate, or social interaction."
-    },
-    {
-      intelligence: "Intrapersonal",
-      prompt: "Reflection, journaling, solitude, and self-analysis help me learn deeply."
-    },
-    {
-      intelligence: "Naturalistic",
-      prompt: "I notice patterns in nature, organisms, ecosystems, and classification systems."
-    }
+  const MI_SCHEMA = [
+    { type: "Linguistic", prompt: "I internalize biological concepts best through structured reading, writing, and verbal debate." },
+    { type: "Logical-Mathematical", prompt: "I excel at mapping metabolic pathways, analyzing data sets, and identifying causal links." },
+    { type: "Spatial", prompt: "I recall biological structures better through diagrams, 3D models, and mental visualization." },
+    { type: "Bodily-Kinesthetic", prompt: "I learn biological mechanisms effectively through physical modeling, dissections, and lab practice." },
+    { type: "Musical", prompt: "Rhythmic patterns, auditory mnemonics, and structural harmony help me retain complex terminology." },
+    { type: "Interpersonal", prompt: "I synthesize knowledge best through peer teaching, collaborative inquiry, and group discussions." },
+    { type: "Intrapersonal", prompt: "Reflection, journaling, and connecting biology to my own life practice facilitate deep learning." },
+    { type: "Naturalistic", prompt: "I naturally categorize organisms, observe ecological patterns, and notice environmental systems." }
   ];
 
-  window.SynapticAI?.registerModule("mi-engine", function () {
-    document.querySelectorAll("[data-mi-analysis]").forEach((root) => {
+  const MIEngine = {
+    init() {
+      this.roots = document.querySelectorAll("[data-mi-analysis]");
+      if (!this.roots.length) return;
+
+      this.roots.forEach(root => this.setupAnalyzer(root));
+    },
+
+    setupAnalyzer(root) {
       const form = root.querySelector("[data-mi-form]");
-      const result = root.querySelector("[data-mi-result]");
+      const resultBox = root.querySelector("[data-mi-result]");
+      if (!form) return;
 
-      renderForm();
+      this.renderSurvey(form);
 
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        this.processAnalysis(form, resultBox);
+      });
+    },
 
-        const scores = {};
+    renderSurvey(form) {
+      form.innerHTML = `
+        <div class="mi-survey-grid">
+          ${MI_SCHEMA.map((item, index) => `
+            <div class="neural-card mi-card" data-aos="fade-up">
+              <span class="mi-label">${item.type} Channel</span>
+              <p class="mi-prompt">${item.prompt}</p>
+              <div class="mi-options">
+                ${[1, 2, 3, 4, 5].map(val => `
+                  <label class="mi-radio">
+                    <input type="radio" name="mi_${index}" value="${val}" required>
+                    <span class="radio-dot">${val}</span>
+                  </label>
+                `).join('')}
+              </div>
+              <div class="mi-scale-labels">
+                <span>Rarely</span>
+                <span>Always</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="u-text-center u-mt-lg">
+          <button type="submit" class="neural-btn neural-btn--primary">Analyze Cognitive Profile</button>
+        </div>
+      `;
+    },
 
-        MI_ITEMS.forEach((item, index) => {
-          const value = Number(
-            form.querySelector('input[name="mi_' + index + '"]:checked')?.value || 0
-          );
-
-          scores[item.intelligence] = value;
-        });
-
-        const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-        const top = sorted.slice(0, 3);
-
-        result.innerHTML = renderResult(scores, top);
+    processAnalysis(form, resultBox) {
+      const scores = {};
+      MI_SCHEMA.forEach((item, index) => {
+        const val = parseInt(form.querySelector(`input[name="mi_${index}"]:checked`)?.value || 0);
+        scores[item.type] = val;
       });
 
-      function renderForm() {
-        form.innerHTML = MI_ITEMS.map(function (item, index) {
-          return '<fieldset class="quiz-card" style="padding:1rem; margin-bottom:1rem;"><legend><strong>' + item.intelligence + '</strong></legend><p>' + item.prompt + '</p><label><input type="radio" name="mi_' + index + '" value="1" required> Rarely</label> <label><input type="radio" name="mi_' + index + '" value="2"> Sometimes</label> <label><input type="radio" name="mi_' + index + '" value="3"> Often</label> <label><input type="radio" name="mi_' + index + '" value="4"> Very often</label> <label><input type="radio" name="mi_' + index + '" value="5"> Almost always</label></fieldset>';
-        }).join("") + '<button class="btn btn-primary" type="submit">Analyse My Learning Pattern</button>';
-      }
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const topThree = sorted.slice(0, 3);
 
-      function renderResult(scores, top) {
-        const recommendations = {
-          Linguistic: "Use summaries, analogies, debate notes, flashcards, and teaching scripts.",
-          "Logical-Mathematical": "Use flowcharts, formulas, causal chains, data tables, and problem sets.",
-          Spatial: "Use diagrams, mind maps, labelled sketches, colour coding, and visual memory palaces.",
-          "Bodily-Kinesthetic": "Use models, lab activities, gesture-based recall, and real-world demonstrations.",
-          Musical: "Use rhythm, mnemonics, recitation, and audio summaries.",
-          Interpersonal: "Use group discussion, peer teaching, oral quizzes, and collaborative projects.",
-          Intrapersonal: "Use reflection journals, private questioning, goal tracking, and self-testing.",
-          Naturalistic: "Use classification, field examples, organism comparisons, and ecological analogies."
-        };
+      this.renderResults(resultBox, scores, topThree);
+      
+      // Notify Analytics Engine
+      document.dispatchEvent(new CustomEvent("lbfl:mi-profile-generated", {
+        detail: { top: topThree, all: scores }
+      }));
+    },
 
-        return '<div class="quiz-card" style="padding:1.25rem;"><h3>Your Dominant Learning Channels</h3><ol>' + top.map(function (entry) { return '<li><strong>' + entry[0] + '</strong>: ' + entry[1] + '/5<br>' + recommendations[entry[0]] + '</li>'; }).join("") + '</ol><h4>All Scores</h4><ul>' + Object.entries(scores).map(function (entry) { return '<li>' + entry[0] + ': ' + entry[1] + '/5</li>'; }).join("") + '</ul><p>This is a reflective learning profile, not a fixed label. Strong learners often combine several intelligences depending on the task.</p></div>';
-      }
-    });
-  });
+    renderResults(box, all, top) {
+      const strategies = {
+        Linguistic: "Synthesize summaries, analogies, and teaching scripts.",
+        "Logical-Mathematical": "Build flowcharts, causal systems, and data tables.",
+        Spatial: "Construct mind maps, labeled sketches, and visual palaces.",
+        "Bodily-Kinesthetic": "Engage in physical modeling and lab-based simulations.",
+        Musical: "Create mnemonic rhythms and auditory structural maps.",
+        Interpersonal: "Lead peer discussions and collaborative socratic inquiry.",
+        Intrapersonal: "Use reflective journals and connect biology to life practice.",
+        Naturalistic: "Focus on classification and ecosystem system patterns."
+      };
+
+      box.innerHTML = `
+        <div class="neural-card results-card" data-aos="zoom-in">
+          <h2 class="u-text-glow">Your Neural Learning Profile</h2>
+          <div class="top-channels">
+            ${top.map(channel => `
+              <div class="channel-result">
+                <div class="channel-header">
+                  <strong>${channel[0]}</strong>
+                  <span class="score-tag">${channel[1]}/5</span>
+                </div>
+                <p class="strategy"><strong>Strategy:</strong> ${strategies[channel[0]]}</p>
+              </div>
+            `).join('')}
+          </div>
+          <div class="ai-bridge-note">
+            <p><i class="fas fa-brain"></i> <strong>AI Insight:</strong> Your ${top[0][0]} dominance suggests you will master the "Systems Thinking" expeditions best through ${strategies[top[0][0]].toLowerCase()}</p>
+          </div>
+          <button class="neural-btn neural-btn--secondary u-mt-md" onclick="location.reload()">Retake Analysis</button>
+        </div>
+      `;
+      box.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", () => MIEngine.init());
 })();

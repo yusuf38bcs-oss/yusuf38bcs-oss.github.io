@@ -1,345 +1,149 @@
-/* =========================================================
-   Learning Biology For Life
-   Analytics & Learning Intelligence Engine
-   Synaptic Learning Analytics
-========================================================= */
+/**
+ * Learning Biology For Life - Cognitive Intelligence Engine
+ * Tracks Socratic engagement, conceptual depth, and learner behavior.
+ */
 
-(function () {
-
+(function() {
   "use strict";
 
-  const STORAGE_KEY =
-    "lbfl-learning-analytics";
-
-  const SESSION_KEY =
-    "lbfl-session";
-
-  let analytics = loadAnalytics();
-
-  /* ======================================================
-     INIT
-  ====================================================== */
-
-  document.addEventListener(
-    "DOMContentLoaded",
-    initAnalytics
-  );
-
-  function initAnalytics() {
-
-    trackPageVisit();
-
-    trackReadingProgress();
-
-    trackClicks();
-
-    trackScrollDepth();
-
-    setupQuizTracking();
-
-    saveSession();
-
-  }
-
-  /* ======================================================
-     STORAGE
-  ====================================================== */
-
-  function loadAnalytics() {
-
-    try {
-
-      return JSON.parse(
-        localStorage.getItem(STORAGE_KEY)
-      ) || {};
-
-    } catch {
-
-      return {};
-
-    }
-
-  }
-
-  function saveAnalytics() {
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(analytics)
-    );
-
-  }
-
-  /* ======================================================
-     SESSION
-  ====================================================== */
-
-  function saveSession() {
-
-    sessionStorage.setItem(
-      SESSION_KEY,
-      Date.now()
-    );
-
-  }
-
-  /* ======================================================
-     PAGE VISIT
-  ====================================================== */
-
-  function trackPageVisit() {
-
-    const path =
-      window.location.pathname;
-
-    if (!analytics.pages) {
-
-      analytics.pages = {};
-
-    }
-
-    if (!analytics.pages[path]) {
-
-      analytics.pages[path] = {
-        visits: 0,
-        lastVisited: null
-      };
-
-    }
-
-    analytics.pages[path].visits++;
-
-    analytics.pages[path].lastVisited =
-      new Date().toISOString();
-
-    saveAnalytics();
-
-  }
-
-  /* ======================================================
-     SCROLL DEPTH
-  ====================================================== */
-
-  function trackScrollDepth() {
-
-    let maxDepth = 0;
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        const scrollTop =
-          window.scrollY;
-
-        const docHeight =
-          document.body.scrollHeight -
-          window.innerHeight;
-
-        const percent =
-          Math.round(
-            (scrollTop / docHeight) * 100
-          );
-
-        if (percent > maxDepth) {
-
-          maxDepth = percent;
-
-          analytics.maxScrollDepth =
-            maxDepth;
-
-          saveAnalytics();
-
-        }
-
-      },
-      { passive: true }
-    );
-
-  }
-
-  /* ======================================================
-     READING PROGRESS
-  ====================================================== */
-
-  function trackReadingProgress() {
-
-    const startTime = Date.now();
-
-    window.addEventListener(
-      "beforeunload",
-      () => {
-
-        const duration =
-          Math.round(
-            (Date.now() - startTime) / 1000
-          );
-
-        if (!analytics.readingTime) {
-
-          analytics.readingTime = 0;
-
-        }
-
-        analytics.readingTime += duration;
-
-        saveAnalytics();
-
-      }
-    );
-
-  }
-
-  /* ======================================================
-     CLICK TRACKING
-  ====================================================== */
-
-  function trackClicks() {
-
-    document.addEventListener(
-      "click",
-      (event) => {
-
-        const target =
-          event.target.closest(
-            "[data-track]"
-          );
-
-        if (!target) return;
-
-        const label =
-          target.dataset.track;
-
-        if (!analytics.clicks) {
-
-          analytics.clicks = {};
-
-        }
-
-        analytics.clicks[label] =
-          (analytics.clicks[label] || 0) + 1;
-
-        saveAnalytics();
-
-      }
-    );
-
-  }
-
-  /* ======================================================
-     QUIZ TRACKING
-  ====================================================== */
-
-  function setupQuizTracking() {
-
-    document.addEventListener(
-      "lbfl:quiz-finished",
-      (event) => {
-
-        const detail =
-          event.detail || {};
-
-        if (!analytics.quiz) {
-
-          analytics.quiz = [];
-
-        }
-
-        analytics.quiz.push({
-
-          score:
-            detail.score || 0,
-
-          total:
-            detail.total || 0,
-
-          percentage:
-            detail.percentage || 0,
-
-          weakConcepts:
-            detail.weakConcepts || [],
-
-          timestamp:
-            new Date().toISOString()
-
-        });
-
-        saveAnalytics();
-
-      }
-    );
-
-  }
-
-  /* ======================================================
-     LEARNING PROFILE
-  ====================================================== */
-
-  function generateLearningProfile() {
-
-    const quizzes =
-      analytics.quiz || [];
-
-    const avg =
-      quizzes.length
-        ? Math.round(
-
-            quizzes.reduce(
-              (sum, q) =>
-                sum + q.percentage,
-              0
-            ) / quizzes.length
-
-          )
-        : 0;
-
-    return {
-
-      totalVisits:
-        Object.keys(
-          analytics.pages || {}
-        ).length,
-
-      totalReadingTime:
-        analytics.readingTime || 0,
-
-      averageQuizPerformance:
-        avg,
-
-      maxScrollDepth:
-        analytics.maxScrollDepth || 0
-
-    };
-
-  }
-
-  /* ======================================================
-     EXPORT API
-  ====================================================== */
-
-  window.LearningAnalytics = {
-
-    getData() {
-
-      return analytics;
-
+  const STORAGE_KEY = "lbfl-neural-analytics";
+  const SESSION_START = Date.now();
+
+  let analytics = loadStorage();
+
+  const SynapticAnalytics = {
+    init() {
+      this.trackPageContext();
+      this.initScrollDepth();
+      this.initEngagementTimer();
+      this.bindNeuralInteractions();
+      this.setupQuizListener();
+      
+      // Heartbeat: Persistence every 30 seconds
+      setInterval(() => this.saveStorage(), 30000);
     },
 
-    getProfile() {
-
-      return generateLearningProfile();
-
+    /* --- Neural Context Tracking --- */
+    trackPageContext() {
+      const path = window.location.pathname;
+      if (!analytics.pathway) analytics.pathway = {};
+      
+      if (!analytics.pathway[path]) {
+        analytics.pathway[path] = {
+          entries: 0,
+          depthReached: 0,
+          timeInvested: 0,
+          lastEngaged: null
+        };
+      }
+      
+      analytics.pathway[path].entries++;
+      analytics.pathway[path].lastEngaged = new Date().toISOString();
+      this.saveStorage();
     },
 
-    clear() {
+    /* --- Socratic Engagement Metrics --- */
+    initEngagementTimer() {
+      window.addEventListener("beforeunload", () => {
+        const sessionDuration = Math.round((Date.now() - SESSION_START) / 1000);
+        const path = window.location.pathname;
+        
+        if (analytics.pathway[path]) {
+          analytics.pathway[path].timeInvested += sessionDuration;
+        }
+        
+        analytics.totalExpeditionTime = (analytics.totalExpeditionTime || 0) + sessionDuration;
+        this.saveStorage();
+      });
+    },
 
-      localStorage.removeItem(
-        STORAGE_KEY
-      );
+    /* --- Cognitive Depth (Scroll) --- */
+    initScrollDepth() {
+      let maxDepth = 0;
+      window.addEventListener("scroll", () => {
+        const scrollH = document.documentElement.scrollHeight - window.innerHeight;
+        const currentDepth = Math.round((window.scrollY / scrollH) * 100);
 
-      analytics = {};
+        if (currentDepth > maxDepth) {
+          maxDepth = currentDepth;
+          const path = window.location.pathname;
+          if (analytics.pathway[path]) {
+            analytics.pathway[path].depthReached = maxDepth;
+          }
+        }
+      }, { passive: true });
+    },
 
+    /* --- Bind Ecosystem Components --- */
+    bindNeuralInteractions() {
+      document.addEventListener("click", (e) => {
+        const trigger = e.target.closest("[data-neural-track]");
+        if (!trigger) return;
+
+        const action = trigger.dataset.neuralTrack;
+        if (!analytics.interactions) analytics.interactions = {};
+        
+        analytics.interactions[action] = (analytics.interactions[action] || 0) + 1;
+        this.saveStorage();
+      });
+    },
+
+    /* --- Knowledge Retrieval (Quiz) --- */
+    setupQuizListener() {
+      document.addEventListener("lbfl:quiz-completed", (e) => {
+        const { score, total, topic } = e.detail;
+        if (!analytics.conceptualMastery) analytics.conceptualMastery = {};
+        
+        if (!analytics.conceptualMastery[topic]) {
+          analytics.conceptualMastery[topic] = { attempts: 0, bestScore: 0 };
+        }
+        
+        const mastery = analytics.conceptualMastery[topic];
+        mastery.attempts++;
+        const percent = Math.round((score / total) * 100);
+        if (percent > mastery.bestScore) mastery.bestScore = percent;
+        
+        this.saveStorage();
+      });
+    },
+
+    /* --- State Management --- */
+    saveStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(analytics));
+      } catch (err) {
+        console.warn("Neural Storage Failure", err);
+      }
     }
-
   };
 
+  function loadStorage() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    } catch {
+      return {};
+    }
+  }
+
+  // Global API for the Educational UI
+  window.CognitiveIntelligence = {
+    getStats: () => analytics,
+    getMastery: (topic) => analytics.conceptualMastery?.[topic] || null,
+    getExpeditionSummary: () => {
+      const paths = Object.keys(analytics.pathway || {});
+      return {
+        uniquePathsExplored: paths.length,
+        totalTime: analytics.totalExpeditionTime || 0,
+        averageEngagement: Math.round(
+          paths.reduce((acc, p) => acc + analytics.pathway[p].depthReached, 0) / paths.length
+        ) || 0
+      };
+    },
+    resetExpedition: () => {
+      localStorage.removeItem(STORAGE_KEY);
+      analytics = {};
+    }
+  };
+
+  SynapticAnalytics.init();
 })();

@@ -1,1 +1,150 @@
-﻿(function () {"use strict";var Q=[{text:"When facing a complex problem, I first try to understand the underlying principle.",trait:"Architect"},{text:"I naturally guide people toward a shared goal.",trait:"Catalyst"},{text:"I observe quietly before acting.",trait:"Observer"},{text:"I enjoy experimenting with unconventional ideas.",trait:"Explorer"},{text:"I feel responsible for maintaining harmony and support.",trait:"Steward"},{text:"I prefer clear systems, plans, and measurable progress.",trait:"Architect"},{text:"I energize others during uncertainty.",trait:"Catalyst"},{text:"I notice subtle emotional and behavioural patterns.",trait:"Observer"},{text:"I learn by trying, failing, and adapting quickly.",trait:"Explorer"},{text:"I protect the wellbeing of the group.",trait:"Steward"}];var D={Architect:"You prefer structure, principles, systems, and long-range clarity. Your growth edge is acting before every variable is perfectly known.",Catalyst:"You mobilize energy, people, and momentum. Your growth edge is slowing down enough to listen deeply and refine direction.",Observer:"You detect patterns others miss. Your growth edge is sharing your insight before the moment passes.",Explorer:"You are adaptive, curious, and experimental. Your growth edge is sustaining focus after novelty fades.",Steward:"You create safety, continuity, and trust. Your growth edge is protecting your own needs while supporting others."};window.SynapticAI?.registerModule("personality-engine",function(){document.querySelectorAll("[data-personality-analysis]").forEach(function(root){var form=root.querySelector("[data-personality-form]"),result=root.querySelector("[data-personality-result]");rF();form.addEventListener("submit",function(e){e.preventDefault();var sc={Architect:0,Catalyst:0,Observer:0,Explorer:0,Steward:0};Q.forEach(function(q,i){var v=Number(form.querySelector('input[name="p_'+i+'"]:checked')?.value||0);sc[q.trait]+=v});var sorted=Object.entries(sc).sort(function(a,b){return b[1]-a[1]}),dom=sorted[0],sec=sorted[1];result.innerHTML='<div class="quiz-card" style="padding:1.25rem"><h3>Your Reflective Archetype</h3><p><strong>Primary:</strong> '+dom[0]+' ('+dom[1]+' points)</p><p>'+D[dom[0]]+'</p><p><strong>Secondary influence:</strong> '+sec[0]+' ('+sec[1]+' points)</p><h4>Trait Scores</h4><ul>'+sorted.map(function(e){return '<li>'+e[0]+': '+e[1]+'</li>'}).join("")+'</ul><p>This is a reflective archetype tool for learning and self-awareness. It is not a psychological diagnosis.</p></div>'});function rF(){form.innerHTML=Q.map(function(q,i){return '<fieldset class="quiz-card" style="padding:1rem;margin-bottom:1rem"><legend>'+(i+1)+'. '+q.text+'</legend><label><input type="radio" name="p_'+i+'" value="1" required> Strongly disagree</label> <label><input type="radio" name="p_'+i+'" value="2"> Disagree</label> <label><input type="radio" name="p_'+i+'" value="3"> Neutral</label> <label><input type="radio" name="p_'+i+'" value="4"> Agree</label> <label><input type="radio" name="p_'+i+'" value="5"> Strongly agree</label></fieldset>'}).join("")+'<button class="btn btn-primary" type="submit">Reveal My Archetype</button>'}})})})();
+﻿/**
+ * Learning Biology For Life - Personality Archetype Engine
+ * Maps behavioral intelligence to biological learning pathways.
+ */
+
+(function() {
+  "use strict";
+
+  const ARCHETYPES = {
+    Architect: {
+      desc: "You prioritize structure, principles, and long-range systems clarity.",
+      edge: "Your growth edge is acting before every variable is perfectly quantified.",
+      path: "Focus on Systems Thinking and Molecular Architectures."
+    },
+    Catalyst: {
+      desc: "You mobilize energy, momentum, and collective action.",
+      edge: "Your growth edge is slowing down to refine direction through deep listening.",
+      path: "Explore Evolutionary Dynamics and Behavioral Intelligence."
+    },
+    Observer: {
+      desc: "You detect subtle patterns and biological signals others miss.",
+      edge: "Your growth edge is externalizing your insights before the window of action closes.",
+      path: "Study Ecological Monitoring and Reflective Cognition."
+    },
+    Explorer: {
+      desc: "You are adaptive, experimental, and driven by biological curiosity.",
+      edge: "Your growth edge is sustaining metabolic focus after the novelty fades.",
+      path: "Dive into Genetic Engineering and Field Expeditions."
+    },
+    Steward: {
+      desc: "You cultivate safety, continuity, and systemic trust.",
+      edge: "Your growth edge is protecting your own homeostasis while supporting the group.",
+      path: "Investigate Homeostatic Systems and Collaborative Ecology."
+    }
+  };
+
+  const QUESTIONS = [
+    { text: "I naturally seek to understand the underlying principles of a system.", trait: "Architect" },
+    { text: "I find myself energizing others during periods of uncertainty.", trait: "Catalyst" },
+    { text: "I prefer to observe a biological pattern quietly before intervening.", trait: "Observer" },
+    { text: "I learn best by experimenting with unconventional methods.", trait: "Explorer" },
+    { text: "I feel responsible for the harmony and health of my environment.", trait: "Steward" },
+    { text: "I am drawn to clear systems, measurable data, and structural logic.", trait: "Architect" },
+    { text: "I notice subtle behavioral changes in a group dynamic instantly.", trait: "Observer" },
+    { text: "I am quick to adapt my learning strategy when new data emerges.", trait: "Explorer" }
+  ];
+
+  const PersonalityEngine = {
+    init() {
+      this.roots = document.querySelectorAll("[data-personality-analysis]");
+      if (!this.roots.length) return;
+
+      this.roots.forEach(root => this.setupAnalyzer(root));
+    },
+
+    setupAnalyzer(root) {
+      const form = root.querySelector("[data-personality-form]");
+      const resultBox = root.querySelector("[data-personality-result]");
+      if (!form) return;
+
+      this.renderSurvey(form);
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        this.processArchetype(form, resultBox);
+      });
+    },
+
+    renderSurvey(form) {
+      form.innerHTML = `
+        <div class="archetype-survey-container">
+          ${QUESTIONS.map((q, i) => `
+            <fieldset class="neural-card archetype-card" data-aos="fade-up">
+              <legend class="archetype-question">${i + 1}. ${q.text}</legend>
+              <div class="archetype-options">
+                ${[1, 2, 3, 4, 5].map(v => `
+                  <label class="archetype-radio">
+                    <input type="radio" name="p_${i}" value="${v}" required>
+                    <span class="radio-label">${this.getLabel(v)}</span>
+                  </label>
+                `).join('')}
+              </div>
+            </fieldset>
+          `).join('')}
+        </div>
+        <div class="u-text-center u-mt-lg">
+          <button type="submit" class="neural-btn neural-btn--primary">Reveal My Archetype</button>
+        </div>
+      `;
+    },
+
+    getLabel(v) {
+      return ["Disagree", "", "Neutral", "", "Agree"][v - 1] || v;
+    },
+
+    processArchetype(form, resultBox) {
+      const scores = { Architect: 0, Catalyst: 0, Observer: 0, Explorer: 0, Steward: 0 };
+      
+      QUESTIONS.forEach((q, i) => {
+        const val = parseInt(form.querySelector(`input[name="p_${i}"]:checked`)?.value || 0);
+        scores[q.trait] += val;
+      });
+
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const primary = sorted[0];
+      const secondary = sorted[1];
+
+      this.renderResults(resultBox, primary, secondary, sorted);
+      
+      // Dispatch to Analytics Engine
+      document.dispatchEvent(new CustomEvent("lbfl:archetype-revealed", {
+        detail: { primary: primary[0], scores: scores }
+      }));
+    },
+
+    renderResults(box, primary, secondary, all) {
+      const data = ARCHETYPES[primary[0]];
+      
+      box.innerHTML = `
+        <div class="neural-card results-card" data-aos="zoom-in">
+          <header class="results-header">
+            <span class="eyebrow">Your Neural Archetype</span>
+            <h2 class="u-text-glow">${primary[0]}</h2>
+          </header>
+          
+          <div class="results-body">
+            <p class="description">${data.desc}</p>
+            <div class="growth-box">
+              <strong><i class="fas fa-seedling"></i> Growth Edge:</strong>
+              <p>${data.edge}</p>
+            </div>
+            <div class="path-box">
+              <strong><i class="fas fa-map-signs"></i> Recommended Pathway:</strong>
+              <p>${data.path}</p>
+            </div>
+          </div>
+
+          <div class="secondary-influence">
+            <p>Secondary Influence: <strong>${secondary[0]}</strong></p>
+          </div>
+
+          <button class="neural-btn neural-btn--secondary u-mt-md" onclick="location.reload()">Reflect Again</button>
+        </div>
+      `;
+      box.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", () => PersonalityEngine.init());
+})();
