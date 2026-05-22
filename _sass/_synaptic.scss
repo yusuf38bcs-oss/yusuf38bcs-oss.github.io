@@ -1,8 +1,6 @@
-scss
-   SYNAPTIC BRIDGE & COMPONENT LOGIC
-   Core interactivity and visual transitions for the 
-   neural educational ecosystem.
-========================================================= //
+﻿/* =========================================================
+   Neural Educational Ecosystem
+========================================================= */
 
 // 1. THE SYNAPTIC BRIDGE (Sticky Sub-Navigation)
 .synaptic-bridge-shell {
@@ -102,7 +100,7 @@ scss
   background: radial-gradient(circle at center, rgba($synapse-glow, 0.03), transparent);
 
   .socratic-prompt {
-    font-family: $serif-font-family;
+    font-family: $serif;
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     color: #fff;
     font-style: italic;
@@ -119,3 +117,7 @@ scss
     pointer-events: auto;
   }
 }
+
+
+
+

@@ -1,11 +1,9 @@
-scss
-   NEURAL HERO ARCHITECTURE
-   Cinematic Educational Entry Point
-========================================================= //
+﻿/* =========================================================
+   Neural Educational Ecosystem
+========================================================= */
 
 .neural-hero-shell {
-  position: relative;
-  width: 100%;
+  position: relative;  width: 100%;
   min-height: 85vh;
   min-height: 85svh; // Dynamic viewport prevents mobile address bar jumps
   display: flex;
@@ -95,3 +93,5 @@ scss
   z-index: 5;
   pointer-events: none;
 }
+
+

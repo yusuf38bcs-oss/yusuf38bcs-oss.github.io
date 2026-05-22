@@ -1,4 +1,4 @@
-// NEURAL DESIGN MIXINS
+﻿// NEURAL DESIGN MIXINS
 // Functional logic for the Synaptic UI components.
 
 // 1. Neural Glassmorphism
@@ -43,3 +43,4 @@
 @mixin mobile {
   @media (max-width: 768px) { @content; }
 }
+

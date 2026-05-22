@@ -5,52 +5,68 @@
 # Neural Educational Ecosystem
 # =========================================================
 ---
+
 @charset "utf-8";
 
 /* =========================================================
-   1. MINIMAL MISTAKES CORE
-   Foundation Framework
+   1. MINIMAL MISTAKES FOUNDATION
+   Core framework must load FIRST
 ========================================================= */
+
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
 
 /* =========================================================
    2. SYNAPTIC DESIGN TOKENS
-   Global Variables + Utilities
+   Variables, Mixins & Utilities
 ========================================================= */
+
 @import "variables";
 @import "mixins";
 @import "utilities";
 
 /* =========================================================
-   3. STRUCTURAL LAYOUT REPAIRS
-   Remove MM default width constraints
+   3. CORE STRUCTURAL REPAIRS
+   Removes MM layout constraints
 ========================================================= */
+
 @import "neural-layout-repairs";
 
 /* =========================================================
-   4. NAVIGATION SYSTEM
+   4. GLOBAL HOME FOUNDATION
+   Root layout stabilization layer
 ========================================================= */
+
+@import "home-layout";
+
+/* =========================================================
+   5. NAVIGATION SYSTEM
+========================================================= */
+
 @import "neural-navbar";
 
 /* =========================================================
-   5. HERO + LANDING EXPERIENCE
+   6. HERO + LANDING EXPERIENCE
 ========================================================= */
+
 @import "neural-hero";
 @import "hero-enhancements";
 
 /* =========================================================
-   6. INTERACTIVE SYSTEMS
+   7. INTERACTIVE LEARNING SYSTEMS
 ========================================================= */
+
 @import "accordion";
 
 /* =========================================================
-   7. CORE SYNAPTIC ECOSYSTEM
+   8. CORE SYNAPTIC ECOSYSTEM
 ========================================================= */
+
 @import "synaptic";
 
 /* =========================================================
-   8. FINAL UI OVERRIDES
-   Keep LAST for controlled specificity
+   9. FINAL UI LAYER
+   Keep LAST for controlled override specificity
 ========================================================= */
+
 @import "neural-ui";
