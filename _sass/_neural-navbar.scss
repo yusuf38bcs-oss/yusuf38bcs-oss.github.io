@@ -1,27 +1,27 @@
-scss
+/* =========================================================
    NEURAL NAVIGATION SYSTEM
    Sticky Masthead & Socratic Dropdown Architecture
-========================================================= //
+========================================================= */
 
 .masthead {
-  background: rgba($neural-black, 0.95);
+  background: rgba($background-color, 0.95);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba($synapse-glow, 0.15);
+  border-bottom: 1px solid rgba(0, 255, 188, 0.15); /* Synapse glow */
   position: sticky;
   top: 0;
   z-index: 2000;
-  transition: $neural-transition;
+  transition: all 0.3s ease;
 
   &__inner {
-    max-width: $container-max;
-    height: $nav-height;
+    max-width: 1280px;
+    height: 70px;
     padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    @include mobile {
+    @include breakpoint($small) {
       padding: 0 1rem;
     }
   }
@@ -32,7 +32,8 @@ scss
   color: #fff !important;
   text-transform: uppercase;
   letter-spacing: 1px;
-  @include socratic-glow;
+  /* socratic glow fallback */
+  text-shadow: 0 0 10px rgba(0, 255, 188, 0.4); 
 }
 
 .grep-nav {
@@ -42,7 +43,7 @@ scss
     align-items: center;
     list-style: none;
 
-    @include tablet {
+    @include breakpoint($medium) {
       display: none; // Handled by mobile toggle
     }
   }
@@ -53,14 +54,14 @@ scss
     a {
       font-size: 0.85rem;
       font-weight: 600;
-      color: $text-muted !important;
+      color: $text-color !important;
       text-transform: uppercase;
       letter-spacing: 1.2px;
-      transition: $neural-transition;
+      transition: all 0.3s ease;
 
       &:hover {
-        color: $synapse-glow !important;
-        text-shadow: 0 0 10px rgba($synapse-glow, 0.5);
+        color: #3ee7b6 !important;
+        text-shadow: 0 0 10px rgba(62, 231, 182, 0.5);
       }
     }
 
@@ -77,15 +78,15 @@ scss
   position: absolute;
   top: 100%;
   left: -20px;
-  background: $neural-dark;
-  border: 1px solid rgba($synapse-glow, 0.2);
+  background: #07111d;
+  border: 1px solid rgba(62, 231, 182, 0.2);
   min-width: 220px;
   border-radius: 12px;
   padding: 1rem 0;
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: $neural-transition;
+  transition: all 0.3s ease;
   box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 
   a {
@@ -96,7 +97,7 @@ scss
     font-size: 0.9rem !important;
 
     &:hover {
-      background: rgba($synapse-glow, 0.05);
+      background: rgba(62, 231, 182, 0.05);
     }
   }
 }
