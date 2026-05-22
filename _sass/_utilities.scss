@@ -6,25 +6,26 @@
 // Text & Visibility
 .u-text-glow { @include socratic-glow; }
 .u-text-center { text-align: center; }
-.u-text-reflective { font-family: $font-serif; font-style: italic; }
+
+// FIXED: Changed undefined $font-serif to the correct Minimal Mistakes $serif variable
+.u-text-reflective { font-family: $serif; font-style: italic; }
 
 // Backgrounds
-.u-bg-dark { background-color: $neural-black; }
+.u-bg-dark { background-color: $background-color; }
 .u-bg-glass { @include neural-glass; }
 
 // Spacing
 .u-mt-sm { margin-top: 1rem; }
 .u-mt-md { margin-top: 2rem; }
-.u-mt-lg { margin-top: $space-unit; }
-.u-mb-lg { margin-bottom: $space-unit; }
+.u-mb-lg { margin-bottom: 2rem; }
 
 // Layout
 .container {
-  max-width: $container-max;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 2rem;
 
-  @include mobile {
+  @include breakpoint($small) {
     padding: 0 1rem;
   }
 }
@@ -35,10 +36,10 @@
 
 // Display
 .u-hide-mobile {
-  @include mobile { display: none !important; }
+  @include breakpoint($small) { display: none !important; }
 }
 
 .u-show-mobile {
   display: none;
-  @include mobile { display: block !important; }
+  @include breakpoint($small) { display: block !important; }
 }
