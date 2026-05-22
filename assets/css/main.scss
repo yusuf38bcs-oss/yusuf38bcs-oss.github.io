@@ -1,73 +1,42 @@
----
-# =========================================================
-# MAIN SCSS ENTRY PIPELINE
-# Learning Biology For Life
-# Neural Educational Ecosystem
-# =========================================================
----
-
-@charset "utf-8";
-
 /* =========================================================
-   1. MINIMAL MISTAKES FOUNDATION
-   Core framework must load FIRST
+   SYNAPTIC DESIGN TOKENS
 ========================================================= */
 
-@import "minimal-mistakes/skins/dark";
-@import "minimal-mistakes";
+:root {
+  ...
+}
 
 /* =========================================================
-   2. SYNAPTIC DESIGN TOKENS
-   Variables, Mixins & Utilities
+   HOMEPAGE CINEMATIC SYSTEM
 ========================================================= */
 
-@import "variables";
-@import "mixins";
-@import "utilities";
+.synaptic-home-layout {
 
-/* =========================================================
-   3. CORE STRUCTURAL REPAIRS
-   Removes MM layout constraints
-========================================================= */
+  * {
+    box-sizing: border-box;
+  }
 
-@import "neural-layout-repairs";
+  .section-shell {
+    ...
+  }
 
-/* =========================================================
-   4. GLOBAL HOME FOUNDATION
-   Root layout stabilization layer
-========================================================= */
+  .section-grid {
+    display: grid;
+    gap: 2rem;
+  }
 
-@import "home-layout";
+  .glass-card,
+  .neural-panel,
+  .synaptic-card,
+  .rail-card {
+    ...
+  }
 
-/* =========================================================
-   5. NAVIGATION SYSTEM
-========================================================= */
+  .section-heading {
+    ...
+  }
 
-@import "neural-navbar";
-
-/* =========================================================
-   6. HERO + LANDING EXPERIENCE
-========================================================= */
-
-@import "neural-hero";
-@import "hero-enhancements";
-
-/* =========================================================
-   7. INTERACTIVE LEARNING SYSTEMS
-========================================================= */
-
-@import "accordion";
-
-/* =========================================================
-   8. CORE SYNAPTIC ECOSYSTEM
-========================================================= */
-
-@import "synaptic";
-
-/* =========================================================
-   9. FINAL UI LAYER
-   Keep LAST for controlled override specificity
-========================================================= */
-
-@import "neural-ui";
-@import "cinematic-overrides";
+  .section-lead {
+    ...
+  }
+}
