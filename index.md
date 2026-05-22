@@ -9,9 +9,10 @@ pagination:
   enabled: true
   collection: posts
   per_page: 4
+  sort_field: "date"
+  sort_reverse: true
 ---
 
-<!-- HERO SECTION -->
 <div class="synaptic-hero-layout-wrapper">
   <h1 class="synaptic-hero-title">
     Where Biology<br>
@@ -33,7 +34,6 @@ pagination:
   </div>
 </div>
 
-<!-- INTRODUCTION -->
 <div class="synaptic-intro">
   <h2 class="section-title">
     The Synaptic Learning Ecosystem
@@ -43,7 +43,6 @@ pagination:
   </p>
 </div>
 
-<!-- PILLARS GRID -->
 <div class="neural-grid">
   <article class="neural-card" onclick="focusPillar('biology')">
     <div class="neural-icon">🧬</div>
@@ -64,14 +63,12 @@ pagination:
   </article>
 </div>
 
-<!-- CINEMATIC GENERATOR BUTTON -->
 <div class="pt-4 border-t border-white/5 flex justify-end">
   <button onclick="generateCinematicConceptArt('lesson')" class="px-4 py-2 bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/30 text-purple-200 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all flex items-center space-x-1.5">
     <span>✨ Generate Cinematic Illustration</span>
   </button>
 </div>
 
-<!-- IQRA HARMONY SANCTUM -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-12">
   <div class="lg:col-span-7 space-y-6">
     <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/25">
@@ -151,7 +148,6 @@ pagination:
   <div id="iqraSynthesisContent" class="text-sm text-slate-300 leading-relaxed space-y-3"></div>
 </div>
 
-<!-- SOCRATIC COACH COACHING BOX INTERACTIVE CARD -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
   <div class="p-6 md:p-8 rounded-3xl border border-teal-500/10 bg-slate-950/20">
     <h3 id="mcqQuestion" class="text-lg md:text-xl font-bold text-white leading-relaxed">
@@ -211,7 +207,6 @@ pagination:
   </div>
 </div>
 
-<!-- TOPICAL CORE DOMAINS -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
   <div id="human-physiology" class="p-6 md:p-8 rounded-3xl bg-slate-900/40 border border-white/10 transition-all duration-300 flex flex-col justify-between hover:border-emerald-500/30">
     <div>
@@ -288,7 +283,6 @@ pagination:
   </div>
 </div>
 
-<!-- INTROSPECTIVE DEPTH GRID -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
   <div id="subconsciousness" class="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-[#0c0516] to-[#040108] border border-purple-500/20 hover:border-purple-500/35 transition-all">
     <span class="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-3">Introspective Depth</span>
@@ -324,7 +318,6 @@ pagination:
   </div>
 </div>
 
-<!-- SANDBOX CONTROL BOARD -->
 <div id="systems-sandbox" class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12 items-start">
   <div class="lg:col-span-5 p-6 md:p-8 rounded-3xl bg-slate-900/40 border border-white/10 space-y-6">
     <div>
@@ -365,7 +358,6 @@ pagination:
     </div>
   </div>
 
-  <!-- NETWORK DISPLAY MATRIX -->
   <div class="lg:col-span-7 w-full h-[350px] md:h-[450px] rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between border border-white/10 bg-slate-950/40">
     <div class="absolute top-0 left-0 w-full h-full bg-slate-900/40 pointer-events-none"></div>
     
@@ -407,7 +399,6 @@ pagination:
   </div>
 </div>
 
-<!-- REFLECTIVE JOURNAL LEDGER SYSTEM -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
   <div class="p-6 md:p-8 rounded-3xl bg-slate-900/40 border border-white/10 space-y-6">
     <div>
@@ -463,7 +454,6 @@ pagination:
         {% endfor %}
       </div>
       
-      <!-- Jekyll Paginate V2 Controls -->
       {% if paginator.total_pages > 1 %}
       <div class="flex items-center justify-between mt-3 px-1">
         {% if paginator.previous_page %}
@@ -482,7 +472,6 @@ pagination:
       </div>
       {% endif %}
     </div>
-
     <div class="pt-4 border-t border-white/5 mt-4 space-y-2 font-sans">
       <button id="synthesizeJournalBtn" onclick="synthesizeJournalLogs()" class="w-full py-2.5 bg-[#00ffbc]/10 hover:bg-[#00ffbc]/20 text-[#00ffbc] text-xs font-semibold rounded-xl border border-[#00ffbc]/20 transition-all flex items-center justify-center space-x-1.5">
         <span>✨ Synthesize Systems Connections</span>
@@ -491,7 +480,6 @@ pagination:
   </div>
 </div>
 
-<!-- CALL TO ACTIONS (EVALUATIONS) -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
   <div class="p-8 rounded-3xl bg-slate-900/40 border border-[#3ee7b6]/20 flex flex-col justify-between items-start space-y-6">
     <div>
@@ -520,7 +508,6 @@ pagination:
   </div>
 </div>
 
-<!-- SOCRATIC CORE DIALOGUE CONSOLE -->
 <div id="socratic-dialogue" class="mt-12 p-6 md:p-8 rounded-3xl bg-slate-950/20 border border-white/5 relative">
   <div class="relative z-10 flex flex-col space-y-6">
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -589,7 +576,6 @@ pagination:
   </div>
 </div>
 
-<!-- SYSTEM ANALYSIS CORE DIALOGUE MODAL POPUPS -->
 <div id="synthesisModal" class="hidden fixed inset-0 z-[10000] flex flex-col justify-between p-6 bg-slate-950/90 border border-white/10 max-w-xl mx-auto my-12 rounded-3xl">
   <div class="flex items-center justify-between border-b border-white/10 pb-4">
     <div class="flex items-center space-x-2">
@@ -608,7 +594,6 @@ pagination:
   </div>
 </div>
 
-<!-- SYSTEM ENGINE CONTEXT GRAPH VISUALIZATION MODAL POPUPS -->
 <div id="illustrationModal" class="hidden fixed inset-0 z-[10000] flex flex-col justify-between p-6 bg-slate-950/90 border border-white/10 max-w-xl mx-auto my-12 rounded-3xl">
   <div class="flex items-center justify-between border-b border-white/10 pb-4">
     <div class="flex items-center space-x-2">
