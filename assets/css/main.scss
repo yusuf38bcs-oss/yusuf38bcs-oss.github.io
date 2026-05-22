@@ -5,14 +5,12 @@
 # Neural Educational Ecosystem
 # =========================================================
 ---
-
 @charset "utf-8";
 
 /* =========================================================
    1. MINIMAL MISTAKES CORE
    Foundation Framework
 ========================================================= */
-
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
 
@@ -20,7 +18,6 @@
    2. SYNAPTIC DESIGN TOKENS
    Global Variables + Utilities
 ========================================================= */
-
 @import "variables";
 @import "mixins";
 @import "utilities";
@@ -29,37 +26,31 @@
    3. STRUCTURAL LAYOUT REPAIRS
    Remove MM default width constraints
 ========================================================= */
-
 @import "neural-layout-repairs";
 
 /* =========================================================
    4. NAVIGATION SYSTEM
 ========================================================= */
-
 @import "neural-navbar";
 
 /* =========================================================
    5. HERO + LANDING EXPERIENCE
 ========================================================= */
-
 @import "neural-hero";
 @import "hero-enhancements";
 
 /* =========================================================
    6. INTERACTIVE SYSTEMS
 ========================================================= */
-
 @import "accordion";
 
 /* =========================================================
    7. CORE SYNAPTIC ECOSYSTEM
 ========================================================= */
-
 @import "synaptic";
 
 /* =========================================================
    8. FINAL UI OVERRIDES
    Keep LAST for controlled specificity
 ========================================================= */
-
 @import "neural-ui";
