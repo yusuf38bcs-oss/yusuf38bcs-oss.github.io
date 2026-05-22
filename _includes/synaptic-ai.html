@@ -2,18 +2,18 @@
 <div id="synaptic-floating-ai" class="synaptic-floating-ai">
 
   <button id="socraticTriggerBtn" class="synaptic-trigger-btn" aria-label="Open AI Assistant" onclick="window.toggleAI()">
-    <svg class="synaptic-trigger-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <svg class="synaptic-trigger-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="width: 28px; height: 28px; color: #020812;">
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
     </svg>
   </button>
 
   <div id="ai-panel" class="socratic-panel hidden">
-    <div class="socratic-panel-header">
+    <div class="socratic-panel-header" style="padding: 1rem; border-bottom: 1px solid rgba(0, 255, 170, 0.2); display: flex; justify-content: space-between; align-items: center;">
       <div>
-        <h3 class="socratic-panel-title">✨ Synaptic AI Tutor</h3>
-        <p class="socratic-panel-subtitle">Reflective Scientific Inquiry Engine</p>
+        <h3 class="socratic-panel-title" style="margin: 0; font-size: 1.1rem; color: #00ffaa;">✨ Synaptic AI Tutor</h3>
+        <p class="socratic-panel-subtitle" style="margin: 0; font-size: 0.75rem; color: #88a0b0;">Reflective Scientific Inquiry Engine</p>
       </div>
-      <button class="socratic-close-btn" onclick="window.toggleAI()">&times;</button>
+      <button class="socratic-close-btn" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;" onclick="window.toggleAI()">&times;</button>
     </div>
 
     <div id="ai-chat" class="socratic-chat-box">
@@ -22,11 +22,11 @@
       </div>
     </div>
 
-    <div class="socratic-input-shell">
+    <div class="socratic-input-shell" style="padding: 1rem; border-top: 1px solid rgba(255,255,255,0.05);">
       <textarea id="ai-query" rows="2" placeholder="Ask a Socratic question..." class="socratic-input"></textarea>
-      <div class="socratic-actions">
-        <button class="socratic-secondary-btn" onclick="document.getElementById('ai-chat').innerHTML=''">Clear</button>
-        <button class="socratic-submit-btn" onclick="window.triggerInquiry()">Generate Response</button>
+      <div class="socratic-actions" style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
+        <button class="socratic-secondary-btn" style="background: rgba(255,255,255,0.05); border: none; color: #fff; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer;" onclick="document.getElementById('ai-chat').innerHTML=''">Clear</button>
+        <button class="socratic-submit-btn" style="background: #00ffaa; border: none; color: #020812; padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: bold; cursor: pointer;" onclick="window.triggerInquiry()">Generate Response</button>
       </div>
     </div>
   </div>
@@ -52,5 +52,28 @@
 .ai-message, .user-message { padding: 0.8rem 1rem; border-radius: 15px; font-size: 0.88rem; line-height: 1.5; }
 .ai-message { align-self: flex-start; background: rgba(255,255,255,0.05); color: #e0e0e0; }
 .user-message { align-self: flex-end; background: rgba(0, 255, 170, 0.1); border: 1px solid rgba(0, 255, 170, 0.2); color: #fff; }
-.socratic-input { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; padding: 0.8rem; }
+.socratic-input { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; padding: 0.8rem; resize: none; }
 </style>
+
+<script>
+// Base operational UI handling logic
+window.toggleAI = function() {
+  const panel = document.getElementById('ai-panel');
+  if(panel) panel.classList.toggle('hidden');
+};
+
+window.triggerInquiry = function() {
+  const queryInput = document.getElementById('ai-query');
+  const chatBox = document.getElementById('ai-chat');
+  if(!queryInput || !queryInput.value.trim()) return;
+
+  // Append user message
+  const userMsg = document.createElement('div');
+  userMsg.className = 'user-message';
+  userMsg.textContent = queryInput.value;
+  chatBox.appendChild(userMsg);
+  
+  queryInput.value = '';
+  chatBox.scrollTop = chatBox.scrollHeight;
+};
+</script>
