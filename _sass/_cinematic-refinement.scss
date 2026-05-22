@@ -1,0 +1,479 @@
+/* =========================================================
+   CINEMATIC REFINEMENT SYSTEM
+   Production Safe + Homepage Scoped
+========================================================= */
+
+/* =========================================================
+   GLOBAL DESIGN TOKENS
+========================================================= */
+
+:root {
+
+  --synaptic-bg:
+    #020812;
+
+  --synaptic-surface:
+    rgba(15,23,42,0.72);
+
+  --synaptic-border:
+    rgba(255,255,255,0.08);
+
+  --synaptic-glow:
+    rgba(62,231,182,0.18);
+
+  --synaptic-text:
+    #eef7ff;
+
+  --synaptic-muted:
+    rgba(255,255,255,0.68);
+
+  --synaptic-radius:
+    28px;
+
+  --section-spacing:
+    clamp(4rem, 10vw, 8rem);
+
+  --container-max:
+    1400px;
+}
+
+/* =========================================================
+   HOMEPAGE FOUNDATION
+========================================================= */
+
+.synaptic-home-layout {
+
+  position: relative;
+
+  isolation: isolate;
+
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(62,231,182,0.08),
+      transparent 50%
+    ),
+    linear-gradient(
+      to bottom,
+      #07111d,
+      #020812
+    );
+
+  color:
+    var(--synaptic-text);
+}
+
+/* =========================================================
+   GLOBAL SAFETY
+========================================================= */
+
+.synaptic-home-layout * {
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   SECTION SYSTEM
+========================================================= */
+
+.synaptic-home-layout .section-shell {
+
+  position: relative;
+
+  width: 100%;
+  max-width: var(--container-max);
+
+  margin-inline: auto;
+
+  padding:
+    var(--section-spacing)
+    1.5rem;
+}
+
+/* =========================================================
+   RESPONSIVE GRID SYSTEM
+========================================================= */
+
+.synaptic-home-layout .section-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 2rem;
+
+  align-items: stretch;
+}
+
+/* =========================================================
+   GLASS CARD SYSTEM
+========================================================= */
+
+.synaptic-home-layout .glass-card,
+.synaptic-home-layout .neural-panel,
+.synaptic-home-layout .synaptic-card,
+.synaptic-home-layout .rail-card {
+
+  position: relative;
+
+  background:
+    var(--synaptic-surface);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(180%);
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(180%);
+
+  border:
+    1px solid var(--synaptic-border);
+
+  border-radius:
+    var(--synaptic-radius);
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.28);
+
+  transition:
+    transform 0.45s cubic-bezier(0.23,1,0.32,1),
+    box-shadow 0.35s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+/* =========================================================
+   CARD HOVER PHYSICS
+========================================================= */
+
+.synaptic-home-layout .glass-card:hover,
+.synaptic-home-layout .neural-panel:hover,
+.synaptic-home-layout .synaptic-card:hover,
+.synaptic-home-layout .rail-card:hover {
+
+  transform:
+    translateY(-6px)
+    scale(1.01);
+
+  border-color:
+    rgba(62,231,182,0.18);
+
+  background:
+    rgba(18,28,48,0.82);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.38),
+    0 0 40px rgba(62,231,182,0.10);
+}
+
+/* =========================================================
+   HERO SYSTEM
+========================================================= */
+
+.synaptic-home-layout .home-hero,
+.synaptic-home-layout .neural-hero-shell {
+
+  position: relative;
+
+  min-height:
+    clamp(650px, 85vh, 980px);
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   HERO OVERLAY
+========================================================= */
+
+.synaptic-home-layout .home-hero::before,
+.synaptic-home-layout .neural-hero-shell::before {
+
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(62,231,182,0.10),
+      transparent 55%
+    );
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+/* =========================================================
+   HERO CONTENT SAFETY
+========================================================= */
+
+.synaptic-home-layout .home-hero > *,
+.synaptic-home-layout .neural-hero-shell > * {
+
+  position: relative;
+
+  z-index: 2;
+}
+
+/* =========================================================
+   VISUAL CONTAINMENT SYSTEM
+========================================================= */
+
+.synaptic-home-layout .iqra-reflection,
+.synaptic-home-layout .hero-visual,
+.synaptic-home-layout .synaptic-visual,
+.synaptic-home-layout .canvas-shell {
+
+  position: relative;
+
+  width: 100%;
+  max-width: 100%;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   SVG / CANVAS SAFETY
+========================================================= */
+
+.synaptic-home-layout .iqra-reflection svg,
+.synaptic-home-layout .hero-visual svg,
+.synaptic-home-layout .synaptic-visual svg,
+.synaptic-home-layout .canvas-shell canvas,
+.synaptic-home-layout .canvas-shell svg {
+
+  width: 100%;
+  max-width: 680px;
+
+  height: auto !important;
+
+  display: block;
+
+  object-fit: contain;
+
+  margin-inline: auto;
+}
+
+/* =========================================================
+   TYPOGRAPHY SYSTEM
+========================================================= */
+
+.synaptic-home-layout .section-heading {
+
+  font-size:
+    clamp(2.4rem, 5vw, 4.8rem);
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: -0.04em;
+
+  margin-bottom: 1.5rem;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255,255,255,0.72) 100%
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================================
+   LEAD TEXT
+========================================================= */
+
+.synaptic-home-layout .section-lead {
+
+  font-size:
+    clamp(1.05rem, 1.6vw, 1.3rem);
+
+  line-height: 1.8;
+
+  color:
+    var(--synaptic-muted);
+
+  max-width: 68ch;
+
+  margin-bottom: 3rem;
+}
+
+/* =========================================================
+   BUTTON REFINEMENT
+========================================================= */
+
+.synaptic-home-layout .btn,
+.synaptic-home-layout button {
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.synaptic-home-layout .btn:hover,
+.synaptic-home-layout button:hover {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 12px 24px rgba(62,231,182,0.16);
+}
+
+/* =========================================================
+   IMAGE SAFETY
+========================================================= */
+
+.synaptic-home-layout img {
+
+  max-width: 100%;
+
+  height: auto;
+
+  display: block;
+}
+
+/* =========================================================
+   MOBILE NAVBAR FIX
+========================================================= */
+
+.greedy-nav__toggle {
+
+  display: flex !important;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  margin-left: auto;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255,255,255,0.04) !important;
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.greedy-nav__toggle .navicon,
+.greedy-nav__toggle .navicon::before,
+.greedy-nav__toggle .navicon::after {
+
+  background:
+    #edf6ff !important;
+}
+
+.greedy-nav__toggle:hover {
+
+  background:
+    rgba(62,231,182,0.08) !important;
+
+  border-color:
+    rgba(62,231,182,0.18);
+
+  transform:
+    scale(1.03);
+}
+
+/* =========================================================
+   MOBILE MENU PANEL
+========================================================= */
+
+.hidden-links {
+
+  right: 0;
+
+  min-width: 240px;
+
+  padding:
+    0.75rem;
+
+  border-radius:
+    18px;
+}
+
+/* =========================================================
+   MOBILE REFINEMENT
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .synaptic-home-layout .section-shell {
+
+    padding:
+      3.5rem
+      1.2rem;
+  }
+
+  .synaptic-home-layout .glass-card,
+  .synaptic-home-layout .neural-panel,
+  .synaptic-home-layout .synaptic-card,
+  .synaptic-home-layout .rail-card {
+
+    border-radius: 22px;
+
+    padding: 1.5rem;
+  }
+
+  .synaptic-home-layout .section-heading {
+
+    line-height: 1.05;
+  }
+
+  .synaptic-home-layout .home-hero,
+  .synaptic-home-layout .neural-hero-shell {
+
+    min-height:
+      auto;
+  }
+
+  .synaptic-home-layout .iqra-reflection svg,
+  .synaptic-home-layout .hero-visual svg,
+  .synaptic-home-layout .canvas-shell canvas {
+
+    max-width: 92vw;
+
+    max-height: 420px;
+  }
+
+  .site-logo img {
+
+    width: 40px;
+    height: 40px;
+  }
+
+  .site-title {
+
+    font-size:
+      0.92rem;
+  }
+}
