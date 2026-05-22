@@ -5,6 +5,10 @@ author_profile: false
 classes: wide
 title: "Learning Biology For Life"
 description: "A Neural Educational Ecosystem for Reflective Scientific Learning, Biology, Systems Thinking, Behavioural Science & Socratic Inquiry."
+pagination:
+  enabled: true
+  collection: posts
+  per_page: 4
 ---
 
 <!-- HERO SECTION -->
@@ -448,7 +452,7 @@ description: "A Neural Educational Ecosystem for Reflective Scientific Learning,
     <div class="space-y-4 mt-6 border-t border-white/10 pt-6">
       <h3 class="text-sm font-bold text-white uppercase tracking-wider text-teal-400">Latest Academic Expeditions</h3>
       <div class="space-y-3 max-h-[250px] overflow-y-auto pr-1">
-        {% for post in site.posts limit: 4 %}
+        {% for post in paginator.posts %}
         <a href="{{ post.url | relative_url }}" class="block p-3.5 rounded-xl bg-white/5 border border-white/5 text-xs space-y-1 hover:border-emerald-500/20 cursor-pointer transition-all group">
           <div class="flex justify-between font-bold text-white group-hover:text-emerald-400 transition-colors">
             <span class="truncate pr-2">{{ post.title }}</span>
@@ -458,6 +462,25 @@ description: "A Neural Educational Ecosystem for Reflective Scientific Learning,
         </a>
         {% endfor %}
       </div>
+      
+      <!-- Jekyll Paginate V2 Controls -->
+      {% if paginator.total_pages > 1 %}
+      <div class="flex items-center justify-between mt-3 px-1">
+        {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}" class="text-[10px] uppercase tracking-widest text-[#3ee7b6] hover:text-emerald-300 font-bold transition-all">&larr; Newer</a>
+        {% else %}
+        <span class="text-[10px] uppercase tracking-widest text-slate-600 font-bold cursor-not-allowed">&larr; Newer</span>
+        {% endif %}
+        
+        <span class="text-[10px] text-slate-400 font-mono">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+        
+        {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}" class="text-[10px] uppercase tracking-widest text-[#3ee7b6] hover:text-emerald-300 font-bold transition-all">Older &rarr;</a>
+        {% else %}
+        <span class="text-[10px] uppercase tracking-widest text-slate-600 font-bold cursor-not-allowed">Older &rarr;</span>
+        {% endif %}
+      </div>
+      {% endif %}
     </div>
 
     <div class="pt-4 border-t border-white/5 mt-4 space-y-2 font-sans">
