@@ -1,12 +1,12 @@
-scss
+/* =========================================================
    NEURAL UTILITY ENGINE
    High-performance global helper classes
-========================================================= //
+========================================================= */
 
 // Text & Visibility
 .u-text-glow { @include socratic-glow; }
 .u-text-center { text-align: center; }
-.u-text-reflective { font-family: $serif-font-family; font-style: italic; }
+.u-text-reflective { font-family: $font-serif; font-style: italic; }
 
 // Backgrounds
 .u-bg-dark { background-color: $neural-black; }
