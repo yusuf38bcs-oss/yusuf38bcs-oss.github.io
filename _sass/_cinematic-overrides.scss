@@ -90,7 +90,7 @@ body {
   will-change: transform;
 }
 
-/* Prevent old overlays from blocking image */
+/* Prevent overlays from blocking background */
 
 .neural-hero-shell::before,
 .neural-hero-shell::after {
