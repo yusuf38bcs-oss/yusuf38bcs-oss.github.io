@@ -1,195 +1,95 @@
-/* =========================================================
-   HEADER + STICKY FIX
-========================================================= */
-
-.site-header{
-    position:sticky !important;
-    top:0 !important;
-    z-index:9999 !important;
-
-    height:60px !important;
-
-    display:flex !important;
-    align-items:center !important;
-
-    background:#07111f !important;
-
-    backdrop-filter:blur(18px) !important;
-
-    transition:
-        background .3s ease,
-        padding .3s ease,
-        box-shadow .3s ease !important;
-
-    border-bottom:
-        1px solid rgba(255,255,255,.06) !important;
+/* --- HEADER + STICKY FIX --- */
+.site-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    background: #07111f !important;
+    backdrop-filter: blur(18px) !important;
+    transition: all 0.3s ease !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
 
-/* =========================================================
-   NAVIGATION LAYOUT
-========================================================= */
-
-.site-nav{
-    width:100% !important;
-
-    display:flex !important;
-
-    justify-content:space-between !important;
-
-    align-items:center !important;
-
-    gap:2rem !important;
-
-    padding:0 1.5rem !important;
-
-    background:transparent !important;
-
-    max-width:1400px !important;
-
-    margin:0 auto !important;
+/* --- NAVIGATION LAYOUT --- */
+.site-nav {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 2rem !important;
+    padding: 0 1.5rem !important;
+    background: transparent !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
 }
 
-/* =========================================================
-   NAV LIST
-========================================================= */
-
-.nav-list{
-    display:flex !important;
-
-    align-items:center !important;
-
-    gap:1.2rem !important;
-
-    margin:0 !important;
-
-    padding:0 !important;
-
-    list-style:none !important;
+/* --- LOGO SYSTEM --- */
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    text-decoration: none !important;
+    flex-shrink: 0 !important;
 }
 
-/* =========================================================
-   LOGO SYSTEM
-========================================================= */
-
-.logo{
-    display:flex !important;
-
-    align-items:center !important;
-
-    gap:.75rem !important;
-
-    text-decoration:none !important;
-
-    flex-shrink:0 !important;
+.logo__mark img {
+    width: auto !important;
+    height: 42px !important;
+    object-fit: contain !important;
+    display: block !important;
 }
 
-.logo__mark img{
-    width:auto !important;
-
-    height:42px !important;
-
-    object-fit:contain !important;
-
-    display:block !important;
+.logo__text {
+    white-space: nowrap !important;
+    color: #edf6ff !important;
+    font-weight: 800 !important;
+    font-size: 1.05rem !important;
 }
 
-.logo__text{
-    white-space:nowrap !important;
-
-    color:#edf6ff !important;
-
-    font-weight:800 !important;
-
-    font-size:1.05rem !important;
-
-    letter-spacing:-0.02em !important;
+/* --- NAV LIST & LINKS --- */
+.nav-list {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.2rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
 }
 
-/* =========================================================
-   NAV LINKS
-========================================================= */
-
-.nav-link,
-.nav-item a{
-    color:#edf6ff !important;
-
-    text-decoration:none !important;
-
-    font-weight:600 !important;
-
-    transition:
-        color .2s ease,
-        opacity .2s ease !important;
+.nav-link, .nav-item a {
+    color: #edf6ff !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
 }
 
-.nav-link:hover,
-.nav-item a:hover{
-    color:#3ee7b6 !important;
+.nav-link:hover, .nav-item a:hover {
+    color: #3ee7b6 !important;
 }
 
-/* =========================================================
-   DROPDOWNS
-========================================================= */
-
-.nav-item{
-    position:relative !important;
+/* --- DROPDOWNS --- */
+.nav-item { position: relative !important; }
+.dropdown {
+    display: none;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    min-width: 220px !important;
+    padding: 0.75rem !important;
+    border-radius: 12px !important;
+    background: #111f35 !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3) !important;
 }
 
-.dropdown{
-    display:none;
+.nav-item:hover .dropdown { display: block !important; }
 
-    position:absolute !important;
+/* --- CLEANUP --- */
+.nav-toggle { display: none !important; }
 
-    top:100% !important;
-    left:0 !important;
-
-    min-width:220px !important;
-
-    padding:.75rem !important;
-
-    border-radius:14px !important;
-
-    background:#111f35 !important;
-
-    border:
-        1px solid rgba(255,255,255,.06) !important;
-
-    box-shadow:
-        0 12px 40px rgba(0,0,0,.28) !important;
-
-    z-index:99999 !important;
+/* --- RESPONSIVE --- */
+@media(max-width: 768px) {
+    .nav-list { gap: 0.7rem !important; flex-wrap: wrap !important; }
+    .logo__text { font-size: 0.9rem !important; }
 }
-
-.nav-item:hover .dropdown{
-    display:block !important;
-}
-
-/* =========================================================
-   MOBILE TOGGLE FIX
-========================================================= */
-
-.nav-toggle{
-    display:none !important;
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:768px){
-
-    .site-nav{
-        padding:0 1rem !important;
-        gap:1rem !important;
-    }
-
-    .nav-list{
-        gap:.7rem !important;
-        flex-wrap:wrap !important;
-    }
-
-    .logo__text{
-        font-size:.92rem !important;
-    }
-}
-
