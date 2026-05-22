@@ -1,8 +1,8 @@
-scss
-/* =========================================================
+﻿scss
+// =========================================================
    NEURAL ACCORDION LESSON SYSTEM
    Optimized for Cognitive Flow & Dark Ecosystem
-========================================================= */
+========================================================= //
 
 .lesson-shell {
     max-width: 1100px;
@@ -11,7 +11,7 @@ scss
     color: $text-primary;
 }
 
-/* --- Header Architecture --- */
+// --- Header Architecture --- //
 .lesson-header {
     background: linear-gradient(135deg, rgba($neural-black, 0.8), rgba($synapse-glow, 0.1));
     padding: clamp(1.5rem, 5vw, 3rem);
@@ -36,7 +36,7 @@ scss
     }
 }
 
-/* --- Cover Image: Neural Depth --- */
+// --- Cover Image: Neural Depth --- //
 .lesson-cover {
     margin-bottom: 3rem;
     
@@ -56,7 +56,7 @@ scss
     }
 }
 
-/* --- Accordion Interactivity --- */
+// --- Accordion Interactivity --- //
 .accordion {
     width: 100%;
     border: none;
@@ -95,7 +95,7 @@ scss
     }
 }
 
-/* --- Panel Logic --- */
+// --- Panel Logic --- //
 .panel {
     max-height: 0;
     overflow: hidden;
@@ -117,7 +117,7 @@ scss
     }
 }
 
-/* --- Instructional UI Components --- */
+// --- Instructional UI Components --- //
 .flowchart {
     margin: 1.5rem 0;
     padding: 1.2rem;
@@ -142,7 +142,7 @@ scss
     }
 }
 
-/* --- Data Presentation --- */
+// --- Data Presentation --- //
 .accordion-post table {
     width: 100%;
     margin: 1.5rem 0;
@@ -163,7 +163,7 @@ scss
     }
 }
 
-/* --- Socratic Highlight --- */
+// --- Socratic Highlight --- //
 .highlight {
     color: $synapse-glow;
     font-weight: 700;
