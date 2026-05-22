@@ -1,12 +1,134 @@
-﻿<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-<meta name="description" content="{{ page.description | default: site.description }}">
+<meta charset="utf-8">
 
-<!-- Theme CSS -->
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<!-- Professional Layout Fixes (Your New File) -->
+<title>
+  {% if page.title %}
+    {{ page.title }} |
+  {% endif %}
+  {{ site.title }}
+</title>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+<meta
+  name="description"
+  content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+
+<meta
+  name="theme-color"
+  content="#07111d">
+
+<meta
+  name="color-scheme"
+  content="dark">
+
+<meta
+  http-equiv="X-UA-Compatible"
+  content="IE=edge">
+
+<meta
+  name="format-detection"
+  content="telephone=no">
+
+<!-- =========================================================
+     FAVICON SYSTEM
+========================================================= -->
+
+<link
+  rel="icon"
+  type="image/x-icon"
+  href="{{ '/assets/icons/favicon.ico' | relative_url }}">
+
+<link
+  rel="shortcut icon"
+  href="{{ '/assets/icons/favicon.ico' | relative_url }}">
+
+<!-- =========================================================
+     TYPOGRAPHY + PERFORMANCE
+========================================================= -->
+
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com">
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin>
+
+<!-- =========================================================
+     MAIN STYLESHEET
+========================================================= -->
+
+<link
+  rel="stylesheet"
+  href="{{ '/assets/css/main.css' | relative_url }}">
+
+<!-- =========================================================
+     PRELOAD HERO BACKGROUND
+========================================================= -->
+
+<link
+  rel="preload"
+  as="image"
+  href="{{ '/assets/images/backgrounds/header-bg.webp' | relative_url }}">
+
+<!-- =========================================================
+     OPEN GRAPH FOUNDATION
+========================================================= -->
+
+<meta
+  property="og:title"
+  content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
+
+<meta
+  property="og:description"
+  content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+
+<meta
+  property="og:type"
+  content="website">
+
+<meta
+  property="og:image"
+  content="{{ '/assets/images/branding/logo-main.png' | absolute_url }}">
+
+<meta
+  property="og:url"
+  content="{{ page.url | absolute_url }}">
+
+<!-- =========================================================
+     TWITTER / X CARD
+========================================================= -->
+
+<meta
+  name="twitter:card"
+  content="summary_large_image">
+
+<meta
+  name="twitter:title"
+  content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
+
+<meta
+  name="twitter:description"
+  content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+
+<meta
+  name="twitter:image"
+  content="{{ '/assets/images/branding/logo-main.png' | absolute_url }}">
+
+<!-- =========================================================
+     MARKED.JS
+========================================================= -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"
+  defer>
+</script>
+
+<!-- =========================================================
+     CUSTOM HEAD SCRIPTS
+========================================================= -->
+
 {% include head-scripts.html %}
