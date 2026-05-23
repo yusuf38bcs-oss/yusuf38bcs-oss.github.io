@@ -1,19 +1,12 @@
 <meta charset="utf-8">
 
 <meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-<title>
-  {% if page.title %}
-    {{ page.title }} |
-  {% endif %}
-  {{ site.title }}
-</title>
+  http-equiv="X-UA-Compatible"
+  content="IE=edge">
 
 <meta
-  name="description"
-  content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+  name="viewport"
+  content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <meta
   name="theme-color"
@@ -24,12 +17,43 @@
   content="dark">
 
 <meta
-  http-equiv="X-UA-Compatible"
-  content="IE=edge">
-
-<meta
   name="format-detection"
   content="telephone=no">
+
+<meta
+  name="robots"
+  content="index, follow">
+
+<meta
+  name="author"
+  content="{{ site.author.name | default: site.title }}">
+
+<meta
+  name="generator"
+  content="Jekyll">
+
+<meta
+  name="description"
+  content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+
+<!-- =========================================================
+     TITLE
+========================================================= -->
+
+<title>
+  {% if page.title %}
+    {{ page.title }} |
+  {% endif %}
+  {{ site.title }}
+</title>
+
+<!-- =========================================================
+     CANONICAL
+========================================================= -->
+
+<link
+  rel="canonical"
+  href="{{ page.url | absolute_url }}">
 
 <!-- =========================================================
      FAVICON SYSTEM
@@ -44,8 +68,20 @@
   rel="shortcut icon"
   href="{{ '/assets/icons/favicon.ico' | relative_url }}">
 
+<link
+  rel="apple-touch-icon"
+  href="{{ '/assets/icons/apple-touch-icon.png' | relative_url }}">
+
 <!-- =========================================================
-     TYPOGRAPHY + PERFORMANCE
+     PWA / MANIFEST
+========================================================= -->
+
+<link
+  rel="manifest"
+  href="{{ '/site.webmanifest' | relative_url }}">
+
+<!-- =========================================================
+     PERFORMANCE OPTIMIZATION
 ========================================================= -->
 
 <link
@@ -56,6 +92,10 @@
   rel="preconnect"
   href="https://fonts.gstatic.com"
   crossorigin>
+
+<link
+  rel="dns-prefetch"
+  href="//cdn.jsdelivr.net">
 
 <!-- =========================================================
      MAIN STYLESHEET
@@ -79,6 +119,14 @@
 ========================================================= -->
 
 <meta
+  property="og:type"
+  content="website">
+
+<meta
+  property="og:site_name"
+  content="{{ site.title }}">
+
+<meta
   property="og:title"
   content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
 
@@ -87,16 +135,16 @@
   content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
 
 <meta
-  property="og:type"
-  content="website">
-
-<meta
   property="og:image"
   content="{{ '/assets/images/branding/logo-main.png' | absolute_url }}">
 
 <meta
   property="og:url"
   content="{{ page.url | absolute_url }}">
+
+<meta
+  property="og:locale"
+  content="en_US">
 
 <!-- =========================================================
      TWITTER / X CARD
@@ -117,6 +165,24 @@
 <meta
   name="twitter:image"
   content="{{ '/assets/images/branding/logo-main.png' | absolute_url }}">
+
+<!-- =========================================================
+     EDUCATIONAL / SEMANTIC IDENTITY
+========================================================= -->
+
+<meta
+  name="subject"
+  content="Biology, Reflective Learning, Socratic Education">
+
+<meta
+  name="keywords"
+  content="Biology, Education, Reflective Thinking, Leadership, Human Behaviour, Learning, Socratic">
+
+<!-- =========================================================
+     STRUCTURED DATA
+========================================================= -->
+
+{% include seo/structured-data.html %}
 
 <!-- =========================================================
      MARKED.JS

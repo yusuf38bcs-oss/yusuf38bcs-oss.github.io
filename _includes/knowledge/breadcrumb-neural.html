@@ -1,0 +1,25 @@
+<nav class="breadcrumb-neural">
+
+  <a href="{{ '/' | relative_url }}">
+    Home
+  </a>
+
+  {% if page.categories %}
+    {% for category in page.categories %}
+      <span class="breadcrumb-divider">→</span>
+
+      <span>
+        {{ category }}
+      </span>
+    {% endfor %}
+  {% endif %}
+
+  {% if page.title %}
+    <span class="breadcrumb-divider">→</span>
+
+    <span>
+      {{ page.title }}
+    </span>
+  {% endif %}
+
+</nav>

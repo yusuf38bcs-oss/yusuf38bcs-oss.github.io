@@ -1,0 +1,77 @@
+.concept-engine {
+  margin-top: 6rem;
+}
+
+.concept-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 2rem;
+}
+
+.concept-card {
+  position: relative;
+
+  padding: 2rem;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+}
+
+.concept-card h3 {
+  margin-top: 1rem;
+
+  font-size: 1.2rem;
+
+  line-height: 1.5;
+}
+
+.concept-card p {
+  margin-top: 1rem;
+
+  opacity: 0.85;
+}
+
+.concept-meta {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.75rem;
+}
+
+.concept-tag {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 0.4rem 0.9rem;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,0.08);
+
+  font-size: 0.8rem;
+
+  letter-spacing: 0.04em;
+}
+
+.concept-link {
+  display: inline-flex;
+
+  margin-top: 1.5rem;
+
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+
+  .concept-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

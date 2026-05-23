@@ -1,0 +1,41 @@
+.topic-cluster {
+  position: relative;
+
+  margin-top: 6rem;
+}
+
+.topic-cluster-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 2rem;
+}
+
+.topic-node {
+  padding: 2rem;
+
+  border-radius: 24px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:
+    blur(18px);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.topic-node:hover {
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(62,231,182,0.35);
+}

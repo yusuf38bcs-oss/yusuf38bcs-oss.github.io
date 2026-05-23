@@ -1,0 +1,75 @@
+<section class="concept-engine reveal-section">
+
+  <div class="section-heading">
+
+    <span class="section-kicker">
+      Concept Intelligence
+    </span>
+
+    <h2>
+      Connected Knowledge Architecture
+    </h2>
+
+    <p>
+      Discover how biology, cognition,
+      behaviour, leadership,
+      reflection, and learning connect
+      through interdisciplinary pathways.
+    </p>
+
+  </div>
+
+  {% assign related_posts =
+     site.posts
+     | where_exp: "post", "post.url != page.url"
+     | limit: 6 %}
+
+  <div class="concept-grid">
+
+    {% for post in related_posts %}
+
+      <article class="concept-card glass-panel neural-hover">
+
+        <div class="concept-meta">
+
+          {% if post.categories %}
+            <span class="concept-tag">
+              {{ post.categories | first }}
+            </span>
+          {% endif %}
+
+        </div>
+
+        <h3>
+          <a href="{{ post.url | relative_url }}">
+            {{ post.title }}
+          </a>
+        </h3>
+
+        {% if post.description %}
+          <p>
+            {{ post.description
+               | strip_html
+               | truncate: 120 }}
+          </p>
+        {% endif %}
+
+        <div class="concept-footer">
+
+          <a
+            href="{{ post.url | relative_url }}"
+            class="concept-link">
+
+            Continue Learning →
+
+          </a>
+
+        </div>
+
+      </article>
+
+    {% endfor %}
+
+  </div>
+
+</section>

@@ -1,0 +1,23 @@
+.learning-pathway {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  margin: 6rem 0;
+
+  flex-wrap: wrap;
+}
+
+.pathway-node {
+  padding: 1rem 1.5rem;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+}
