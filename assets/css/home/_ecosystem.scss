@@ -1,0 +1,59 @@
+.featured-ecosystem {
+  padding: 6rem 1.5rem;
+
+  background: #0b1420;
+}
+
+.featured-ecosystem__grid {
+  width: min(1300px, 100%);
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 2rem;
+}
+
+.neural-card {
+  position: relative;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
+
+  border-radius: 24px;
+
+  padding: 2rem;
+
+  backdrop-filter: blur(14px);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.neural-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(76, 201, 240, 0.35);
+}
+
+.neural-card__title {
+  font-size: 1.35rem;
+
+  margin-bottom: 1rem;
+
+  color: #ffffff;
+}
+
+.neural-card__meta {
+  color: rgba(255,255,255,0.62);
+
+  font-size: 0.95rem;
+}

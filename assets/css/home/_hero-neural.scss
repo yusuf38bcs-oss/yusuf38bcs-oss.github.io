@@ -1,0 +1,84 @@
+.hero-neural__symbol {
+  margin-bottom: 1rem;
+
+  font-size: 1.2rem;
+
+  letter-spacing: 0.5rem;
+
+  color: rgba(255,255,255,0.5);
+}
+
+.hero-neural__eyebrow {
+  margin-bottom: 1rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.2em;
+
+  font-size: 0.85rem;
+
+  color: rgba(255,255,255,0.6);
+}
+
+.btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 190px;
+
+  padding: 1rem 1.6rem;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn--biology {
+  background: #1f9d73;
+  color: #ffffff;
+}
+
+.btn--socratic {
+  background: #6d28d9;
+  color: #ffffff;
+}
+
+.btn--glass {
+  background: rgba(255,255,255,0.08);
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  color: #ffffff;
+
+  backdrop-filter: blur(10px);
+}
+
+.hero-neural__flow {
+  margin-top: 4rem;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+  align-items: center;
+
+  color: rgba(255,255,255,0.62);
+
+  font-size: 0.95rem;
+
+  letter-spacing: 0.08em;
+}

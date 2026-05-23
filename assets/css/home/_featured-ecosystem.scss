@@ -1,0 +1,57 @@
+.featured-ecosystem {
+  position: relative;
+
+  padding: 7rem 1.5rem;
+
+  background:
+    linear-gradient(
+      180deg,
+      #0b1420 0%,
+      #101827 100%
+    );
+
+  border-top:
+    1px solid rgba(255,255,255,0.05);
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.featured-ecosystem__container {
+  width: min(1300px, 100%);
+
+  margin: 0 auto;
+}
+
+.featured-ecosystem__header {
+  text-align: center;
+
+  margin-bottom: 4rem;
+}
+
+.featured-ecosystem__title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+
+  color: #ffffff;
+
+  margin-bottom: 1rem;
+}
+
+.featured-ecosystem__subtitle {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  line-height: 1.9;
+
+  color: rgba(255,255,255,0.7);
+}
+
+.featured-ecosystem__grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 2rem;
+}
