@@ -1,0 +1,15 @@
+.reduced-motion * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+.tab-hidden * {
+  animation-play-state: paused !important;
+}
+
+.is-scrolling .neural-glow,
+.is-scrolling .glass-panel::before,
+.is-scrolling .glass-panel::after {
+  opacity: 0.4;
+}

@@ -34,6 +34,7 @@
 @import "components/cards";
 @import "components/buttons";
 @import "components/panels";
+@import "components/mobile-nav-fix";
 
 /* =========================================================
    UTILITIES
@@ -41,6 +42,7 @@
 
 @import "utilities/animations";
 @import "utilities/helpers";
+@import "utilities/performance";
 @import "home/hero-neural";
 @import "home/ecosystem";
 @import "home/philosophy-bridge";
@@ -52,3 +54,7 @@
 @import "home/life-practices";
 @import "home/socratic-layer";
 @import "home/neural-footer";
+@import "home/responsive-mobile";
+@import "home/responsive-tablet";
+@import "home/responsive-desktop";
+@import "home/neural-interactions";
