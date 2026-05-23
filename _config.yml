@@ -1,129 +1,152 @@
 # =========================================================
-# Learning Biology for Life
-# Final Production Configuration
+# LEARNING BIOLOGY FOR LIFE
+# Neural Educational Ecosystem
 # =========================================================
 
-title: "Learning Biology for Life"
-
-tagline: "Read • Reflect • Seek Knowledge"
+title: "Learning Biology For Life"
 
 description: >
-  A Neural Educational Ecosystem integrating
-  biology, systems thinking, reflective learning,
-  behavioural science, leadership,
-  spirituality and AI-assisted pedagogy.
+  An educational neural network that harmonizes
+  the foundational laws of biology
+  with cognitive behavior
+  through the contemplative mirror of Tafakkur.
 
 url: "https://learningbiologyforlife.org"
-
 baseurl: ""
-
-lang: "en"
-
-locale: "en-BD"
-
-timezone: "Asia/Dhaka"
-
-encoding: "utf-8"
+locale: en-US
+timezone: Asia/Dhaka
+repository: yusuf38bcs-oss/yusuf38bcs-oss.github.io
 
 # =========================================================
-# THEME
+# THEME SYSTEM
 # =========================================================
 
 remote_theme: "mmistakes/minimal-mistakes"
-
 minimal_mistakes_skin: "dark"
 
-# =========================================================
-# SITE BRANDING
-# =========================================================
-
-logo: "/assets/images/branding/nav-bar.png"
-
-masthead_title: "Learning Biology for Life"
-
-teaser: "/assets/images/site/default-teaser.webp"
-
-og_image: "/assets/images/site/social-preview.webp"
-
-favicon: "/assets/icons/favicon.ico"
-
-# =========================================================
-# SITE SETTINGS
-# =========================================================
-
-breadcrumbs: true
+logo: "/assets/images/branding/logo-main.png"
 
 search: true
-
-search_full_content: true
-
-future: true
-
-show_date: true
-
-read_more: "disabled"
-
+breadcrumbs: true
 words_per_minute: 180
+future: false
+read_more: "enabled"
 
-atom_feed:
-  hide: false
+# =========================================================
+# ANALYTICS + TELEMETRY
+# =========================================================
+
+analytics:
+  provider: "google-gtag"
+
+  google:
+    tracking_id: "G-2SCLLF93NS"
+    anonymize_ip: true
+
+# =========================================================
+# GOOGLE TAG MANAGER
+# =========================================================
+
+gtm: "GT-PBNRG22C"
+
+# =========================================================
+# GOOGLE ADS / VERIFICATION
+# =========================================================
+
+google_site_verification: "AW-18047859733"
+
+# =========================================================
+# MARKDOWN + RENDERING
+# =========================================================
+
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# =========================================================
+# PAGINATION
+# =========================================================
+
+paginate: 6
+paginate_path: /page:num/
+
+# =========================================================
+# PLUGINS
+# =========================================================
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-remote-theme
+
+pagination:
+  enabled: true
+
+
+# =========================================================
+# DEFAULTS
+# =========================================================
+
+defaults:
+
+  - scope:
+      path: ""
+      type: posts
+
+    values:
+      layout: single
+      author_profile: false
+      read_time: true
+      share: true
+      related: true
+      toc: true
+      toc_sticky: true
+      classes: wide
+
+  - scope:
+      path: "_pages"
+
+    values:
+      layout: single
+      author_profile: false
+      classes: wide
 
 # =========================================================
 # AUTHOR
 # =========================================================
 
 author:
+  name: "MD. YUSUF"
 
-  name: "MD. Yusuf"
-
-  avatar: "/assets/images/profile.jpg"
+  avatar: "/assets/images/branding/logo-main.png"
 
   bio: >
-    Biology Educator, Learning Designer,
-    Civil Service Officer and lifelong learner
-    exploring biology through systems thinking,
-    reflective intelligence, behaviour,
-    leadership and digital pedagogy.
+    BCS Education Cadre Officer,
+    multidisciplinary learner,
+    systems thinker,
+    reflective educator,
+    and builder of neural educational ecosystems.
 
-  location: "Bangladesh"
+# =========================================================
+# SOCIAL + KNOWLEDGE IDENTITY
+# =========================================================
 
-  email: "yusuf.38bcs@gmail.com"
+social:
+  name: "Learning Biology For Life"
 
   links:
-
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/yusuf38bcs-oss"
+    - "https://github.com/yusuf38bcs-oss"
 
 # =========================================================
-# MARKDOWN
+# SEO + KNOWLEDGE ARCHITECTURE
 # =========================================================
-
-markdown: kramdown
-
-highlighter: rouge
-
-kramdown:
-
-  input: GFM
-
-  hard_wrap: false
-
-  auto_ids: true
-
-  syntax_highlighter: rouge
-
-  math_engine: mathjax
-
-# =========================================================
-# URL STRUCTURE
-# =========================================================
-
-permalink: /:categories/:title/
-
-paginate: 10
-
-paginate_path: /page:num/
 
 category_archive:
   type: liquid
@@ -134,274 +157,32 @@ tag_archive:
   path: /tags/
 
 # =========================================================
-# PLUGINS
-# =========================================================
-
-plugins:
-
-  - jekyll-feed
-
-  - jekyll-seo-tag
-
-  - jekyll-sitemap
-
-  - jekyll-paginate
-
-  - jekyll-remote-theme
-
-  - jekyll-include-cache
-
-# =========================================================
-# SASS
-# =========================================================
-
-sass:
-
-  sass_dir: _sass
-
-  style: compressed
-
-# =========================================================
-# HTML COMPRESSION
-# =========================================================
-
-compress_html:
-
-  clippings: all
-
-  comments: all
-
-  endings: all
-
-  startings: []
-
-  blanklines: false
-
-# =========================================================
-# INCLUDE / EXCLUDE
+# EDUCATIONAL KNOWLEDGE LAYER
 # =========================================================
 
 include:
-
   - _pages
-
-  - ads.txt
-
-  - .htaccess
+  - knowledge
+  - assets
 
 exclude:
-
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
   - README.md
 
-  - LICENSE
-
-  - node_modules
-
-  - vendor
-
-  - package.json
-
-  - package-lock.json
-
-  - Gemfile.lock
-
-  - .sass-cache
-
-  - .jekyll-cache
-
-  - .jekyll-metadata
-
-  - .bundle
-
-  - .wrangler
-
-  - cloudflare-worker
-
-  - worker
-
-  - workers
-
-  - "*.gdoc"
-
-  - "*.gsheet"
-
-  - "*.tmp"
-
-  - feed_restore.py
-
-  - .env
-
-  - .DS_Store
-
 # =========================================================
-# COLLECTIONS
+# PERFORMANCE + BUILD STABILITY
 # =========================================================
 
-collections:
+sass:
+  style: compressed
 
-  biology:
-    output: true
-    permalink: /biology/:path/
+compress_html:
+  clippings: all
 
-  life-practices:
-    output: true
-    permalink: /life-practices/:path/
-
-  socratic:
-    output: true
-    permalink: /socratic/:path/
-
-  mcq-arena:
-    output: true
-    permalink: /mcq-arena/:path/
-
-  synaptic-bridge:
-    output: true
-    permalink: /synaptic-bridge/:path/
-
-  research-node:
-    output: true
-    permalink: /research-node/:path/
-
-  life-philosophy:
-    output: true
-    permalink: /life-philosophy/:path/
-
-  legal:
-    output: true
-    permalink: /:path/
-
-# =========================================================
-# DEFAULTS
-# =========================================================
-
-defaults:
-
-  # =====================================================
-  # HOMEPAGE HERO
-  # =====================================================
-
-  - scope:
-      path: "index.md"
-
-    values:
-
-      layout: home
-
-      classes: wide
-
-      author_profile: false
-
-      page_class: hero-immersive
-
-      header:
-
-        overlay_image: "/assets/images/header-bg.webp"
-
-        overlay_filter: 0.24
-
-        caption: null
-
-  # =====================================================
-  # STANDARD PAGES
-  # =====================================================
-
-  - scope:
-      path: ""
-      type: pages
-
-    values:
-
-      layout: single
-
-      author_profile: false
-
-      read_time: true
-
-      related: true
-
-      share: false
-
-      comments: false
-
-      toc_sticky: true
-
-      classes: wide
-
-      header:
-
-        overlay_image: "/assets/images/header-bg.webp"
-
-        overlay_filter: 0.42
-
-  # =====================================================
-  # POSTS
-  # =====================================================
-
-  - scope:
-      path: ""
-      type: posts
-
-    values:
-
-      layout: single
-
-      author_profile: false
-
-      read_time: true
-
-      related: true
-
-      share: false
-
-      comments: false
-
-      classes: wide
-
-      toc: true
-
-      toc_sticky: true
-
-      header:
-
-        overlay_image: "/assets/images/header-bg.webp"
-
-        overlay_filter: 0.45
-
-# =========================================================
-# ANALYTICS
-# =========================================================
-
-analytics:
-
-  provider: "google-gtag"
-
-  google:
-
-    tracking_id: "G-GQ4LENQ3R7"
-
-    anonymize_ip: true
-
-# =========================================================
-# SEO
-# =========================================================
-
-twitter:
-  username: ""
-
-facebook:
-  username: ""
-
-social:
-  type: Organization
-  name: "Learning Biology for Life"
-
-# =========================================================
-# PERFORMANCE
-# =========================================================
-
-lsi: false
-
-incremental: false
-
-strict_front_matter: false
+  ignore:
+    envs: development
