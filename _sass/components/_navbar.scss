@@ -1,20 +1,25 @@
-﻿/* =========================================================
-   CINEMATIC MINIMAL MISTAKES NAVBAR
-   Stable + Framework Compatible
+/* =========================================================
+   STABILIZED CINEMATIC NAVBAR SYSTEM
+   Learning Biology for Life
+   Production Safe + Minimal Mistakes Compatible
 ========================================================= */
 
 /* =========================================================
-   MASTHEAD FOUNDATION
+   HEADER FOUNDATION
 ========================================================= */
 
+.site-header,
 .masthead {
 
   position: sticky;
   top: 0;
-  z-index: 9999;
+
+  z-index: 1000;
+
+  width: 100%;
 
   background:
-    rgba(7, 17, 31, 0.78);
+    rgba(7, 17, 31, 0.82);
 
   backdrop-filter:
     blur(18px)
@@ -28,12 +33,26 @@
     1px solid rgba(255,255,255,0.06);
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.22);
+    0 10px 30px rgba(0,0,0,0.18);
 
   transition:
     background 0.3s ease,
     border-color 0.3s ease,
     box-shadow 0.3s ease;
+}
+
+/* =========================================================
+   SCROLLED STATE
+========================================================= */
+
+.site-header.scrolled,
+.masthead.scrolled {
+
+  background:
+    rgba(6, 14, 26, 0.94);
+
+  box-shadow:
+    0 14px 38px rgba(0,0,0,0.28);
 }
 
 /* =========================================================
@@ -44,28 +63,37 @@
 
   max-width: 1400px;
 
+  min-height: 72px;
+
   margin-inline: auto;
 
   padding:
-    0.85rem 1.5rem;
+    0.8rem 1.5rem;
+
+  display: flex;
+  align-items: center;
 }
 
 /* =========================================================
-   NAVBAR CORE
+   GREEDY NAV CORE
 ========================================================= */
 
 .greedy-nav {
 
-  background: transparent !important;
+  width: 100%;
 
   display: flex;
   align-items: center;
 
-  gap: 1.4rem;
+  gap: 1rem;
+
+  background: transparent;
+
+  min-height: 72px;
 }
 
 /* =========================================================
-   LOGO
+   LOGO SYSTEM
 ========================================================= */
 
 .site-logo {
@@ -88,7 +116,7 @@
   display: block;
 
   box-shadow:
-    0 0 18px rgba(62,231,182,0.15);
+    0 0 18px rgba(62,231,182,0.14);
 
   transition:
     transform 0.3s ease,
@@ -100,7 +128,7 @@
   transform: scale(1.04);
 
   box-shadow:
-    0 0 24px rgba(62,231,182,0.25);
+    0 0 24px rgba(62,231,182,0.24);
 }
 
 /* =========================================================
@@ -130,11 +158,11 @@
   color: #3ee7b6 !important;
 
   text-shadow:
-    0 0 12px rgba(62,231,182,0.4);
+    0 0 12px rgba(62,231,182,0.35);
 }
 
 /* =========================================================
-   NAV LINKS
+   VISIBLE NAV LINKS
 ========================================================= */
 
 .visible-links {
@@ -142,7 +170,9 @@
   display: flex;
   align-items: center;
 
-  gap: 0.75rem;
+  gap: 0.55rem;
+
+  margin-left: auto;
 }
 
 .visible-links li {
@@ -153,6 +183,9 @@
 .visible-links a {
 
   position: relative;
+
+  display: inline-flex;
+  align-items: center;
 
   color: #edf6ff !important;
 
@@ -173,7 +206,7 @@
 }
 
 /* =========================================================
-   LINK HOVER EFFECT
+   NAV HOVER
 ========================================================= */
 
 .visible-links a:hover {
@@ -188,7 +221,7 @@
 }
 
 /* =========================================================
-   ACTIVE PAGE
+   ACTIVE NAV ITEM
 ========================================================= */
 
 .visible-links .active a {
@@ -201,37 +234,85 @@
 }
 
 /* =========================================================
-   MOBILE TOGGLE
+   MOBILE TOGGLE BUTTON
 ========================================================= */
 
 .greedy-nav__toggle {
 
-  background: transparent !important;
+  display: flex !important;
 
-  border: none;
+  align-items: center;
+  justify-content: center;
 
-  color: #edf6ff;
+  width: 44px;
+  height: 44px;
+
+  margin-left: auto;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  cursor: pointer;
 
   transition:
-    opacity 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
     transform 0.25s ease;
 }
 
-.greedy-nav__toggle:hover {
+/* =========================================================
+   HAMBURGER ICON
+========================================================= */
 
-  opacity: 0.8;
+.greedy-nav__toggle .navicon,
+.greedy-nav__toggle .navicon::before,
+.greedy-nav__toggle .navicon::after {
 
-  transform: scale(1.05);
+  background:
+    #edf6ff !important;
+
+  transition:
+    all 0.25s ease;
 }
 
 /* =========================================================
-   DROPDOWN PANEL
+   TOGGLE HOVER
+========================================================= */
+
+.greedy-nav__toggle:hover {
+
+  background:
+    rgba(62,231,182,0.08);
+
+  border-color:
+    rgba(62,231,182,0.18);
+
+  transform:
+    scale(1.03);
+}
+
+/* =========================================================
+   DROPDOWN / HIDDEN LINKS PANEL
 ========================================================= */
 
 .hidden-links {
 
+  right: 0;
+
+  min-width: 240px;
+
+  padding:
+    0.75rem;
+
+  overflow: hidden;
+
   background:
-    rgba(11, 22, 40, 0.95);
+    rgba(11, 22, 40, 0.96);
 
   backdrop-filter:
     blur(16px);
@@ -242,9 +323,8 @@
   border:
     1px solid rgba(255,255,255,0.08);
 
-  border-radius: 18px;
-
-  overflow: hidden;
+  border-radius:
+    18px;
 
   box-shadow:
     0 20px 40px rgba(0,0,0,0.35);
@@ -276,117 +356,18 @@
 
   .masthead__inner-wrap {
 
-    padding:
-      0.75rem 1rem;
-  }
-
-  .site-logo img {
-
-    width: 42px;
-    height: 42px;
-  }
-
-  .site-title {
-
-    font-size: 0.94rem;
-  }
-
-  .visible-links a {
-
-    font-size: 0.9rem;
+    min-height: 64px;
 
     padding:
-      0.5rem 0.75rem;
+      0.7rem 1rem;
   }
-}
 
-/* =========================================================
-   MOBILE MENU TOGGLE FIX
-========================================================= */
+  .greedy-nav {
 
-.greedy-nav__toggle {
+    min-height: 64px;
 
-  display: flex !important;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 44px;
-  height: 44px;
-
-  margin-left: auto;
-
-  border-radius: 12px;
-
-  background:
-    rgba(255,255,255,0.04) !important;
-
-  border:
-    1px solid rgba(255,255,255,0.08);
-
-  cursor: pointer;
-
-  transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease;
-}
-
-/* =========================================================
-   HAMBURGER ICON
-========================================================= */
-
-.greedy-nav__toggle .navicon,
-.greedy-nav__toggle .navicon::before,
-.greedy-nav__toggle .navicon::after {
-
-  background:
-    #edf6ff !important;
-}
-
-/* =========================================================
-   TOGGLE HOVER
-========================================================= */
-
-.greedy-nav__toggle:hover {
-
-  background:
-    rgba(62,231,182,0.08) !important;
-
-  border-color:
-    rgba(62,231,182,0.18);
-
-  transform:
-    scale(1.03);
-}
-
-/* =========================================================
-   MOBILE NAV PANEL
-========================================================= */
-
-.hidden-links {
-
-  right: 0;
-
-  min-width: 240px;
-
-  padding:
-    0.75rem;
-
-  border-radius:
-    18px;
-}
-
-/* =========================================================
-   MOBILE BREAKPOINT
-========================================================= */
-
-@media (max-width: 768px) {
-
-  .site-title {
-
-    font-size:
-      0.92rem;
+    gap:
+      0.75rem;
   }
 
   .site-logo img {
@@ -395,9 +376,39 @@
     height: 40px;
   }
 
-  .greedy-nav {
+  .site-title {
 
-    gap:
-      0.75rem;
+    font-size:
+      0.92rem;
+  }
+
+  .visible-links a {
+
+    font-size:
+      0.9rem;
+
+    padding:
+      0.5rem 0.72rem;
+  }
+
+  .hidden-links {
+
+    width: min(92vw, 280px);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .site-header,
+  .masthead,
+  .visible-links a,
+  .greedy-nav__toggle,
+  .site-logo img {
+
+    transition: none !important;
   }
 }
