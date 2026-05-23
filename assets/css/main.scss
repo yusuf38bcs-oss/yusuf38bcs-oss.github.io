@@ -1,44 +1,43 @@
-/* =========================================================
-   SYNAPTIC DESIGN TOKENS
-========================================================= */
+---
+# Only the main Sass file needs front matter
+---
 
-:root {
-  ...
-}
+@charset "utf-8";
 
 /* =========================================================
-   HOMEPAGE CINEMATIC SYSTEM
+   MINIMAL MISTAKES FOUNDATION
 ========================================================= */
 
-.synaptic-home-layout {
+@import "minimal-mistakes/skins/dark";
+@import "minimal-mistakes";
 
-  * {
-    box-sizing: border-box;
-  }
+/* =========================================================
+   CORE
+========================================================= */
 
-  .section-shell {
-    ...
-  }
+@import "core/variables";
+@import "core/mixins";
 
-  .section-grid {
-    display: grid;
-    gap: 2rem;
-  }
+/* =========================================================
+   LAYOUT
+========================================================= */
 
-  .glass-card,
-  .neural-panel,
-  .synaptic-card,
-  .rail-card {
-    ...
-  }
+@import "layout/home-layout";
+@import "layout/cinematic-refinement";
 
-  .section-heading {
-    ...
-  }
+/* =========================================================
+   COMPONENTS
+========================================================= */
 
-  .section-lead {
-    ...
-  }
-}
-@import "home-layout";
-@import "cinematic-refinement";
+@import "components/navbar";
+@import "components/hero";
+@import "components/cards";
+@import "components/buttons";
+@import "components/panels";
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+@import "utilities/animations";
+@import "utilities/helpers";
