@@ -1,90 +1,6 @@
-.hero-neural__symbol {
-  margin-bottom: 1rem;
-
-  font-size: 1.2rem;
-
-  letter-spacing: 0.5rem;
-
-  color: rgba(255,255,255,0.5);
-}
-
-.hero-neural__eyebrow {
-  margin-bottom: 1rem;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.2em;
-
-  font-size: 0.85rem;
-
-  color: rgba(255,255,255,0.6);
-}
-
-.btn {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  min-width: 190px;
-
-  padding: 1rem 1.6rem;
-
-  border-radius: 999px;
-
-  text-decoration: none;
-
-  font-weight: 700;
-
-  transition:
-    transform 0.25s ease,
-    opacity 0.25s ease;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-}
-
-.btn--biology {
-  background: #1f9d73;
-  color: #ffffff;
-}
-
-.btn--socratic {
-  background: #6d28d9;
-  color: #ffffff;
-}
-
-.btn--glass {
-  background: rgba(255,255,255,0.08);
-
-  border: 1px solid rgba(255,255,255,0.1);
-
-  color: #ffffff;
-
-  backdrop-filter: blur(10px);
-}
-
-.hero-neural__flow {
-  margin-top: 4rem;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 0.5rem;
-
-  align-items: center;
-
-  color: rgba(255,255,255,0.62);
-
-  font-size: 0.95rem;
-
-  letter-spacing: 0.08em;
-}
-
 /* =========================================================
-   HERO SPACING FIX
+   HERO NEURAL SYSTEM
+   Learning Biology For Life
 ========================================================= */
 
 .hero-neural {
@@ -95,16 +11,17 @@
 
   align-items: center;
 
-  padding-top: 10rem;
+  min-height: 100vh;
 
-  min-height: 92vh;
+  padding:
+    10rem 2rem 6rem;
 
   overflow: hidden;
 
   background:
     linear-gradient(
-      rgba(4,10,18,0.78),
-      rgba(4,10,18,0.92)
+      rgba(4, 8, 16, 0.82),
+      rgba(6, 12, 22, 0.92)
     ),
     url("/assets/images/backgrounds/header-bg.webp");
 
@@ -113,24 +30,190 @@
   background-position: center;
 
   background-repeat: no-repeat;
-
 }
 
-/* HERO CONTENT */
+
+/* =========================================================
+   CONTENT CONTAINER
+========================================================= */
 
 .hero-neural__content {
+
   position: relative;
+
   z-index: 5;
+
+  width: 100%;
 
   max-width: 760px;
 }
 
 
-/* SVG / VISUAL CONTROL */
+/* =========================================================
+   SYMBOL + EYEBROW
+========================================================= */
+
+.hero-neural__symbol {
+
+  margin-bottom: 1rem;
+
+  font-size: 1.1rem;
+
+  letter-spacing: 0.45rem;
+
+  color: rgba(255,255,255,0.45);
+}
+
+.hero-neural__eyebrow {
+
+  margin-bottom: 1.2rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.18em;
+
+  font-size: 0.85rem;
+
+  color: rgba(255,255,255,0.62);
+}
+
+
+/* =========================================================
+   HERO TYPOGRAPHY
+========================================================= */
+
+.hero-neural h1 {
+
+  margin-bottom: 1.5rem;
+
+  font-size: clamp(2.8rem, 6vw, 5rem);
+
+  line-height: 1.05;
+
+  font-weight: 800;
+}
+
+.hero-neural p {
+
+  max-width: 720px;
+
+  margin-bottom: 2rem;
+
+  font-size: 1.1rem;
+
+  line-height: 1.75;
+
+  color: rgba(255,255,255,0.88);
+}
+
+
+/* =========================================================
+   CTA ACTIONS
+========================================================= */
+
+.hero-neural__actions {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 1rem;
+
+  margin-top: 2rem;
+
+  margin-bottom: 3rem;
+}
+
+
+/* =========================================================
+   BUTTON SYSTEM
+========================================================= */
+
+.btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 190px;
+
+  padding: 1rem 1.7rem;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    background 0.25s ease;
+}
+
+.btn:hover {
+
+  transform: translateY(-3px);
+}
+
+.btn--biology {
+
+  background: #1f9d73;
+
+  color: #ffffff;
+}
+
+.btn--socratic {
+
+  background: #5b5ff5;
+
+  color: #ffffff;
+}
+
+.btn--glass {
+
+  background: rgba(255,255,255,0.08);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  color: #ffffff;
+
+  backdrop-filter: blur(12px);
+}
+
+
+/* =========================================================
+   LEARNING FLOW
+========================================================= */
+
+.hero-neural__flow {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.6rem;
+
+  margin-top: 2rem;
+
+  color: rgba(255,255,255,0.65);
+
+  font-size: 0.95rem;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* =========================================================
+   VISUAL SYSTEM
+========================================================= */
 
 .hero-neural svg,
 .hero-neural__visual,
 .hero-neural__graphic {
+
   max-width: 100%;
 
   height: auto;
@@ -139,15 +222,58 @@
 }
 
 
-/* LARGE DESKTOP SVG FIX */
+/* =========================================================
+   DESKTOP REFINEMENT
+========================================================= */
 
 @media (min-width: 1200px) {
 
+  .hero-neural {
+
+    padding-left: 6rem;
+
+    padding-right: 6rem;
+  }
+
   .hero-neural__visual,
   .hero-neural svg {
-    transform: scale(0.88);
+
+    transform: scale(0.92);
 
     transform-origin: center;
   }
+}
 
+
+/* =========================================================
+   MOBILE REFINEMENT
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .hero-neural {
+
+    padding-top: 8rem;
+
+    padding-left: 1.25rem;
+
+    padding-right: 1.25rem;
+  }
+
+  .hero-neural h1 {
+
+    font-size: 2.5rem;
+  }
+
+  .hero-neural__actions {
+
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .btn {
+
+    width: 100%;
+  }
 }
