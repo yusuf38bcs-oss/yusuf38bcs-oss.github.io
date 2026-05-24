@@ -1,0 +1,222 @@
+/* =========================================================
+   INSTITUTIONAL NAVIGATION SYSTEM
+========================================================= */
+
+
+/* =========================================================
+   HEADER FOUNDATION
+========================================================= */
+
+.site-header,
+.masthead {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 9999;
+
+  backdrop-filter: blur(18px);
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(5, 12, 20, 0.94),
+      rgba(5, 12, 20, 0.82)
+    );
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.06);
+}
+
+
+/* =========================================================
+   NAV CONTAINER
+========================================================= */
+
+.greedy-nav {
+  position: relative;
+
+  z-index: 9999;
+
+  min-height: 78px;
+
+  padding-inline: 1.2rem;
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   BRAND SYSTEM
+========================================================= */
+
+.site-title {
+  font-size: 1.3rem;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.site-title:hover {
+  opacity: 0.92;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DESKTOP NAV LINKS
+========================================================= */
+
+.greedy-nav .visible-links {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.4rem;
+}
+
+.greedy-nav .visible-links a {
+  font-weight: 700;
+
+  font-size: 0.96rem;
+
+  opacity: 0.92;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.greedy-nav .visible-links a:hover {
+  opacity: 1;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MOBILE TOGGLE
+========================================================= */
+
+.greedy-nav__toggle {
+  display: flex !important;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 99999;
+
+  border-radius: 12px;
+
+  padding: 0.55rem 0.7rem;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.greedy-nav__toggle:hover {
+  transform: scale(1.05);
+
+  background:
+    rgba(255,255,255,0.10);
+}
+
+
+/* =========================================================
+   MOBILE MENU PANEL
+========================================================= */
+
+.hidden-links,
+.greedy-nav .hidden-links {
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  background:
+    rgba(10,18,30,0.96);
+
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.35);
+}
+
+
+/* =========================================================
+   MOBILE MENU LINKS
+========================================================= */
+
+.hidden-links a {
+  display: block;
+
+  padding: 0.85rem 1rem;
+
+  border-radius: 12px;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.hidden-links a:hover {
+  background:
+    rgba(255,255,255,0.06);
+
+  transform: translateX(2px);
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .greedy-nav {
+    min-height: 72px;
+  }
+
+  .greedy-nav .hidden-links {
+    right: 0;
+
+    width: 260px;
+
+    padding: 1rem;
+  }
+
+  .greedy-nav .visible-links {
+    gap: 0.2rem;
+  }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP REFINEMENT
+========================================================= */
+
+@media (min-width: 1200px) {
+
+  .greedy-nav {
+    padding-inline: 2rem;
+  }
+
+}
