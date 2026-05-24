@@ -82,3 +82,59 @@
 
   letter-spacing: 0.08em;
 }
+
+/* =========================================================
+   HERO SPACING FIX
+========================================================= */
+
+.hero-neural {
+  position: relative;
+
+  padding-top: 10rem;
+
+  min-height: 92vh;
+
+  overflow: hidden;
+}
+
+
+/* HERO CONTENT */
+
+.hero-neural__content {
+  position: relative;
+  z-index: 5;
+
+  max-width: 760px;
+}
+
+
+/* SVG / VISUAL CONTROL */
+
+.hero-neural svg,
+.hero-neural__visual,
+.hero-neural__graphic {
+  max-width: 100%;
+
+  height: auto;
+
+  opacity: 0.82;
+}
+
+
+/* LARGE DESKTOP SVG FIX */
+
+@media (min-width: 1200px) {
+
+  .hero-neural__visual,
+  .hero-neural svg {
+    transform: scale(0.88);
+
+    transform-origin: center;
+  }
+
+}
+
+.hero-neural {
+  display: flex;
+  align-items: center;
+}
