@@ -11,7 +11,7 @@
 
   align-items: center;
 
-  min-height: 100vh;
+  min-height: clamp(600px, 85vh, 900px);
 
   padding:
     10rem 2rem 6rem;
@@ -277,3 +277,4 @@
     width: 100%;
   }
 }
+

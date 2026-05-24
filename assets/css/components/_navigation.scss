@@ -10,12 +10,14 @@
 .site-header,
 .masthead {
   position: sticky;
-
   top: 0;
 
-  z-index: $z-navbar;
+  z-index: var(--z-header);
 
-  backdrop-filter: blur(18px);
+  isolation: isolate;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   background:
     linear-gradient(
@@ -36,11 +38,11 @@
 .greedy-nav {
   position: relative;
 
-  z-index: 9999;
+  z-index: var(--z-header);
 
-  min-height: 78px;
+  min-height: 72px;
 
-  padding-inline: 1.2rem;
+  padding-inline: 1rem;
 
   background: transparent;
 }
@@ -51,7 +53,7 @@
 ========================================================= */
 
 .site-title {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
 
   font-weight: 800;
 
@@ -78,23 +80,30 @@
 
   align-items: center;
 
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .greedy-nav .visible-links a {
-  font-weight: 700;
+  font-weight: 650;
 
-  font-size: 0.96rem;
+  font-size: 0.94rem;
 
   opacity: 0.92;
 
+  padding: 0.55rem 0.75rem;
+
+  border-radius: 10px;
+
   transition:
     opacity 0.25s ease,
+    background 0.25s ease,
     transform 0.25s ease;
 }
 
 .greedy-nav .visible-links a:hover {
   opacity: 1;
+
+  background: rgba(255,255,255,0.04);
 
   transform: translateY(-1px);
 }
@@ -111,18 +120,24 @@
 
   justify-content: center;
 
+  width: 46px;
+  height: 46px;
+
   cursor: pointer;
 
-  z-index: $z-dropdown;
+  z-index: var(--z-mobile-nav);
 
   border-radius: 12px;
 
-  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(255,255,255,0.06);
+
+  padding: 0;
 
   background:
     rgba(255,255,255,0.06);
 
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   transition:
     transform 0.25s ease,
@@ -130,10 +145,15 @@
 }
 
 .greedy-nav__toggle:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 
   background:
     rgba(255,255,255,0.10);
+}
+
+.greedy-nav__toggle:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.35);
+  outline-offset: 2px;
 }
 
 
@@ -145,18 +165,21 @@
 .greedy-nav .hidden-links {
   overflow: hidden;
 
-  border-radius: 18px;
+  z-index: var(--z-dropdown);
+
+  border-radius: 16px;
 
   border:
     1px solid rgba(255,255,255,0.08);
 
   background:
-    rgba(10,18,30,0.96);
+    rgba(10,18,30,0.94);
 
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   box-shadow:
-    0 12px 40px rgba(0,0,0,0.35);
+    0 10px 30px rgba(0,0,0,0.28);
 }
 
 
@@ -169,7 +192,7 @@
 
   padding: 0.85rem 1rem;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   transition:
     background 0.25s ease,
@@ -178,7 +201,7 @@
 
 .hidden-links a:hover {
   background:
-    rgba(255,255,255,0.06);
+    rgba(255,255,255,0.05);
 
   transform: translateX(2px);
 }
@@ -191,19 +214,19 @@
 @media (max-width: 768px) {
 
   .greedy-nav {
-    min-height: 72px;
+    min-height: 68px;
   }
 
   .greedy-nav .hidden-links {
     right: 0;
 
-    width: 260px;
+    width: min(260px, 92vw);
 
-    padding: 1rem;
+    padding: 0.9rem;
   }
 
   .greedy-nav .visible-links {
-    gap: 0.2rem;
+    gap: 0.15rem;
   }
 
 }
@@ -216,7 +239,7 @@
 @media (min-width: 1200px) {
 
   .greedy-nav {
-    padding-inline: 2rem;
+    padding-inline: 1.8rem;
   }
 
 }

@@ -1,7 +1,7 @@
 .featured-ecosystem {
   position: relative;
 
-  padding: 7rem 1.5rem;
+  padding: clamp(3rem, 5vw, 5rem) 1.5rem;
 
   background:
     linear-gradient(
@@ -96,3 +96,4 @@
     rgba(114,230,255,0.24);
 
 }
+
