@@ -1,9 +1,13 @@
 ﻿---
-layout: default
-title: Homepage
+layout: home
+title: "Learning Biology For Life"
+permalink: /
 ---
 
 {% include hero-neural.html %}
+
 {% include synaptic-bridge.html %}
 
-{% include recent-posts.html %}
+<main class="ecosystem-fluid-container">
+  {% include home-sections.html %}
+</main>
