@@ -30,6 +30,7 @@
 ========================================================= */
 
 @import "core/base";
+@import "components/navbar";
 @import "components/navigation";
 @import "components/hero";
 @import "components/cards";
@@ -43,6 +44,7 @@
 @import "utilities/animations";
 @import "utilities/helpers";
 @import "utilities/performance";
+@import "utilities/accessibility";
 @import "seo/knowledge-system";
 @import "seo/semantic-navigation";
 @import "knowledge/related-posts";
