@@ -70,9 +70,13 @@
     border-color 0.3s ease;
 }
 
-.biology-card:hover {
-  transform: translateY(-6px);
+.biology-card {
 
-  border-color:
-    rgba(74,222,128,0.4);
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+  }
+
+  @include interactive-focus;
+
 }

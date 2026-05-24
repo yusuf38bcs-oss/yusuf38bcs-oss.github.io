@@ -153,9 +153,15 @@
     background 0.25s ease;
 }
 
-.btn:hover {
+.btn {
 
-  transform: translateY(-3px);
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+  }
+
+  @include interactive-focus;
+
 }
 
 .btn--biology {

@@ -88,11 +88,13 @@
 
 }
 
-.ecosystem-card:hover {
+.ecosystem-card {
 
-  transform: translateY(-6px);
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+  }
 
-  border-color:
-    rgba(114,230,255,0.24);
+  @include interactive-focus;
 
 }
