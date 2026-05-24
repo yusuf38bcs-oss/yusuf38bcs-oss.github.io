@@ -1,0 +1,408 @@
+<style>
+.synaptic-footer {
+  position: relative;
+
+  margin-top: 5rem;
+
+  padding: 5rem 1.5rem 2rem;
+
+  background:
+    linear-gradient(
+      180deg,
+      #07111f 0%,
+      #020814 100%
+    );
+
+  border-top: 1px solid rgba(255,255,255,0.08);
+
+  overflow: hidden;
+}
+
+.synaptic-footer::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at top left,
+      rgba(0,255,220,0.10),
+      transparent 30%),
+    radial-gradient(circle at bottom right,
+      rgba(0,140,255,0.12),
+      transparent 36%);
+
+  pointer-events: none;
+}
+
+.synaptic-footer-grid {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 2rem;
+}
+
+.synaptic-footer-card {
+  background: rgba(255,255,255,0.04);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-radius: 24px;
+
+  padding: 1.8rem;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.25);
+}
+
+.synaptic-footer-title {
+  color: #4cf6d2;
+
+  font-size: 0.95rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.16em;
+
+  margin-bottom: 1rem;
+
+  font-weight: 700;
+}
+
+.synaptic-footer-brand {
+  font-size: 1.9rem;
+
+  line-height: 1.1;
+
+  font-weight: 800;
+
+  color: #ffffff;
+
+  margin-bottom: 1rem;
+}
+
+.synaptic-footer-text {
+  color: rgba(255,255,255,0.74);
+
+  line-height: 1.8;
+
+  font-size: 0.98rem;
+}
+
+.synaptic-footer-links {
+  list-style: none;
+
+  padding: 0;
+
+  margin: 0;
+}
+
+.synaptic-footer-links li {
+  margin-bottom: 0.85rem;
+}
+
+.synaptic-footer-links a {
+  color: rgba(255,255,255,0.82);
+
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+}
+
+.synaptic-footer-links a:hover {
+  color: #4cf6d2;
+
+  padding-left: 4px;
+}
+
+.newsletter-trigger-btn {
+  width: 100%;
+
+  margin-top: 1rem;
+
+  background: linear-gradient(
+    135deg,
+    #49f7e1 0%,
+    #59b7ff 100%
+  );
+
+  border: none;
+
+  border-radius: 999px;
+
+  padding: 14px 18px;
+
+  color: #02101f;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.newsletter-trigger-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 28px rgba(73,247,225,0.22);
+}
+
+.synaptic-footer-divider {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1280px;
+
+  margin: 3rem auto 2rem;
+
+  height: 1px;
+
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.12),
+    transparent
+  );
+}
+
+.synaptic-footer-bottom {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  flex-wrap: wrap;
+}
+
+.synaptic-footer-copyright {
+  color: rgba(255,255,255,0.62);
+
+  font-size: 0.95rem;
+}
+
+.synaptic-footer-tagline {
+  color: #4cf6d2;
+
+  font-weight: 600;
+
+  letter-spacing: 0.03em;
+}
+
+.brevo-overlay-container {
+  display: none;
+
+  position: fixed;
+
+  z-index: 999999;
+
+  inset: 0;
+
+  background: rgba(0,0,0,0.82);
+
+  backdrop-filter: blur(4px);
+}
+
+.brevo-modal-window {
+  position: relative;
+
+  width: min(92%, 620px);
+
+  margin: 8vh auto;
+
+  padding: 1rem;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  box-shadow: 0 24px 60px rgba(0,0,0,0.42);
+}
+
+.close-x {
+  position: absolute;
+
+  top: -12px;
+  right: -12px;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: #000;
+
+  color: #fff;
+
+  text-align: center;
+
+  line-height: 34px;
+
+  cursor: pointer;
+
+  font-size: 20px;
+
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+
+  .synaptic-footer {
+    padding: 4rem 1rem 2rem;
+  }
+
+  .synaptic-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+
+<footer class="synaptic-footer">
+
+  <div class="synaptic-footer-grid">
+
+    <div class="synaptic-footer-card">
+
+      <div class="synaptic-footer-title">
+        Synaptic Bridge Learning
+      </div>
+
+      <div class="synaptic-footer-brand">
+        Learning Biology For Life
+      </div>
+
+      <div class="synaptic-footer-text">
+        A multidisciplinary educational ecosystem integrating
+        biology, AI, leadership, behavioural science,
+        systems thinking, digital pedagogy, and life-long learning.
+      </div>
+
+    </div>
+
+    <div class="synaptic-footer-card">
+
+      <div class="synaptic-footer-title">
+        Explore
+      </div>
+
+      <ul class="synaptic-footer-links">
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/socratic/">Socratic Tools</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+        <li><a href="/mcq-arena/">MCQ Arena</a></li>
+        <li><a href="/research-node/">Research Node</a></li>
+      </ul>
+
+    </div>
+
+    <div class="synaptic-footer-card">
+
+      <div class="synaptic-footer-title">
+        Legal
+      </div>
+
+      <ul class="synaptic-footer-links">
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms-and-conditions/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/about/">About & Author</a></li>
+      </ul>
+
+    </div>
+
+    <div class="synaptic-footer-card">
+
+      <div class="synaptic-footer-title">
+        Join the Synaptic Bridge
+      </div>
+
+      <div class="synaptic-footer-text">
+        Receive biology notes, educational insights,
+        AI learning updates, and interdisciplinary reflections.
+      </div>
+
+      <button class="newsletter-trigger-btn" onclick="openBrevoModal()">
+        Subscribe to Newsletter
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="synaptic-footer-divider"></div>
+
+  <div class="synaptic-footer-bottom">
+
+    <div class="synaptic-footer-copyright">
+      © 2026 Learning Biology For Life. All Rights Reserved.
+    </div>
+
+    <div class="synaptic-footer-tagline">
+      Empowering learning through biology, systems thinking, and AI.
+    </div>
+
+  </div>
+
+</footer>
+
+<div id="brevoPopup" class="brevo-overlay-container">
+
+  <div class="brevo-modal-window">
+
+    <span class="close-x" onclick="closeBrevoModal()">&times;</span>
+
+    <iframe
+      width="100%"
+      height="380"
+      src="{{ site.brevo.form_url }}"
+      frameborder="0"
+      scrolling="auto"
+      allowfullscreen
+      style="display:block;border:none;border-radius:12px;"
+    ></iframe>
+
+  </div>
+
+</div>
+
+<script>
+function openBrevoModal() {
+  document.getElementById('brevoPopup').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBrevoModal() {
+  document.getElementById('brevoPopup').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById('brevoPopup');
+
+  if (event.target === modal) {
+    closeBrevoModal();
+  }
+}
+</script>

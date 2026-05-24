@@ -32,8 +32,9 @@ body.layout--home {
   position: relative;
 
   width: 100%;
-  min-height: 100vh;
+  min-height: clamp(600px, 85vh, 900px);
 
   isolation: isolate;
   overflow-x: hidden;
 }
+

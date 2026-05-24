@@ -1,70 +1,20 @@
+﻿---
+# Jekyll Front Matter Compiler Block
 ---
-# Only the main Sass file needs front matter
----
+@import "components/variables";
+@import "components/hero-neural";
+@import "components/ecosystem";
 
-@charset "utf-8";
-
-/* =========================================================
-   MINIMAL MISTAKES FOUNDATION
-========================================================= */
-
-@import "minimal-mistakes/skins/dark";
-@import "minimal-mistakes";
-
-/* =========================================================
-   CORE
-========================================================= */
-
-@import "core/variables";
-@import "core/mixins";
-
-/* =========================================================
-   LAYOUT
-========================================================= */
-
-@import "layout/home-layout";
-@import "layout/cinematic-refinement";
-
-/* =========================================================
-   COMPONENTS
-========================================================= */
-
-@import "core/base";
-@import "components/navigation";
-@import "components/hero";
-@import "components/cards";
-@import "components/buttons";
-@import "components/panels";
-
-/* =========================================================
-   UTILITIES
-========================================================= */
-
-@import "utilities/animations";
-@import "utilities/helpers";
-@import "utilities/performance";
-@import "utilities/accessibility";
-@import "seo/knowledge-system";
-@import "seo/semantic-navigation";
-@import "knowledge/related-posts";
-@import "knowledge/concept-engine";
-@import "knowledge/learning-pathway";
-@import "knowledge/semantic-sidebar";
-@import "knowledge/breadcrumb-neural";
-@import "knowledge/topic-cluster";
-@import "knowledge/knowledge-flow";
-@import "home/hero-neural";
-@import "home/ecosystem";
-@import "home/philosophy-bridge";
-@import "home/glassmorphism";
-@import "home/neural-effects";
-@import "home/institutional-depth";
-@import "home/featured-ecosystem";
-@import "home/biology-pillar";
-@import "home/life-practices";
-@import "home/socratic-layer";
-@import "home/neural-footer";
-@import "home/responsive-mobile";
-@import "home/responsive-tablet";
-@import "home/responsive-desktop";
-@import "home/neural-interactions";
+/* গ্লোবাল রিসেট এবং সাইডওয়ে স্ক্রোল বন্ধের মূল মেকানিজম */
+html, body {
+  background-color: #070b12;
+  color: #f8fafc;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Guaranteed no code breaks/sideways scroll */
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}

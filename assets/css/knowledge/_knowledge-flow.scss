@@ -34,13 +34,10 @@
     border-color 0.3s ease;
 }
 
-.knowledge-node:card {
+.knowledge-node:hover {
+  transform:
+    translateY(-4px);
 
-  &:hover,
-  &:focus-visible {
-    transform: translateY(-4px);
-  }
-
-  @include interactive-focus;
-
+  border-color:
+    rgba(62,231,182,0.35);
 }

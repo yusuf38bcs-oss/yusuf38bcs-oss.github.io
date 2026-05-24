@@ -1,446 +1,186 @@
-<footer class="site-footer">
-
-  <div class="footer-shell">
-
-    <!-- ===================================== -->
-    <!-- BRAND -->
-    <!-- ===================================== -->
-
-    <div class="footer-brand">
-
-      <h2>Learning Biology For Life</h2>
-
-      <p>
-        A living neural educational ecosystem integrating
-        biology, systems thinking, reflective learning,
-        behavioural science, leadership,
-        spirituality & AI-assisted pedagogy.
+﻿<footer class="neural-footer">
+  <div class="footer-container">
+    
+    <div class="footer-segment branding-segment">
+      <h3>Neural Educational Ecosystem</h3>
+      <p class="institution-meta">
+        BCS Education Cadre Framework.<br>
+        Multidisciplinary systems thinking,<br>
+        reflective educational design.
       </p>
-
-      <button class="footer-btn"
-      onclick="openBrevoModal()">
-
-        Join the Synaptic Bridge
-
-      </button>
-
+      <div class="institutional-symbol">● ━ ◯</div>
     </div>
 
-    <!-- ===================================== -->
-    <!-- NAVIGATION -->
-    <!-- ===================================== -->
-
-    <div class="footer-nav">
-
-      <h3>Explore</h3>
-
-      <a href="{{ '/biology/' | relative_url }}">
-        Biology
-      </a>
-
-      <a href="{{ '/life-practices/' | relative_url }}">
-        Life Practices
-      </a>
-
-      <a href="{{ '/socratic/' | relative_url }}">
-        Socratic
-      </a>
-
-      <a href="{{ '/about/' | relative_url }}">
-        About
-      </a>
-
-      <a href="{{ '/contact/' | relative_url }}">
-        Contact
-      </a>
-
+    <div class="footer-segment philosophy-segment">
+      <h4>System Flow Architecture</h4>
+      <div class="philosophical-mapping-flow">
+        <span>Biology (Academic Pillar)</span>
+        <span class="flow-arrow">↓</span>
+        <span>Life Practices (Applied Behavior)</span>
+        <span class="flow-arrow">↓</span>
+        <span>Socratic Reflection (Critical Thinking)</span>
+        <span class="flow-arrow">↓</span>
+        <span class="ultimate-destination">Ultimate Academy: AL-QURAN</span>
+      </div>
     </div>
 
-    <!-- ===================================== -->
-    <!-- REFLECTION -->
-    <!-- ===================================== -->
-
-    <div class="footer-reflection">
-
-      <h3>Reflective Learning</h3>
-
-      <blockquote>
-
-        “To understand the world,
-        we first have to understand each other.
-        Learning through others expands
-        the architecture of our own mind.”
-
-      </blockquote>
-
+    <div class="footer-segment link-segment">
+      <h4>Ecosystem Resources</h4>
+      <ul>
+        <li><a href="/">Platform Home</a></li>
+        <li><a href="/biology/">Biology Field Array</a></li>
+        <li><a href="/life-practices/">Applied Behavioral Science</a></li>
+        <li><a href="/socratic/">Socratic 4.0 Assessment</a></li>
+      </ul>
     </div>
 
   </div>
 
-  <!-- ===================================== -->
-  <!-- BOTTOM -->
-  <!-- ===================================== -->
-
-  <div class="footer-bottom">
-
-    <p>
-      © 2026 Learning Biology For Life.
-      All Rights Reserved.
-    </p>
-
-    <div class="footer-legal">
-
-      <a href="{{ '/privacy-policy/' | relative_url }}">
-        Privacy
-      </a>
-
-      <a href="{{ '/terms-and-conditions/' | relative_url }}">
-        Terms
-      </a>
-
-      <a href="{{ '/disclaimer/' | relative_url }}">
-        Disclaimer
-      </a>
-
+  <div class="footer-meta-strip">
+    <div class="meta-strip-content">
+      <p class="copyright">&copy; {{ site.time | date: '%Y' }} Learning Biology For Life</p>
+      <p class="disclaimer">Keep the site live first, then improve iteratively.</p>
     </div>
-
   </div>
-
 </footer>
 
-<!-- ===================================== -->
-<!-- BREVO POPUP -->
-<!-- ===================================== -->
-
-<div id="brevoPopup"
-class="brevo-overlay-container">
-
-  <div class="brevo-modal-window">
-
-    <span class="close-x"
-    onclick="closeBrevoModal()">
-
-      &times;
-
-    </span>
-
-    <iframe
-      width="100%"
-      height="420"
-      src="{{ site.brevo.form_url }}"
-      frameborder="0"
-      scrolling="auto"
-      allowfullscreen>
-
-    </iframe>
-
-  </div>
-
-</div>
-
-<script>
-
-function openBrevoModal() {
-
-  document.getElementById("brevoPopup")
-  .style.display = "flex";
-
-  document.body.style.overflow = "hidden";
-}
-
-function closeBrevoModal() {
-
-  document.getElementById("brevoPopup")
-  .style.display = "none";
-
-  document.body.style.overflow = "auto";
-}
-
-window.onclick = function(e){
-
-  if(e.target ===
-  document.getElementById("brevoPopup")){
-
-    closeBrevoModal();
-  }
-}
-
-</script>
-
 <style>
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.site-footer{
-
-  background:
-    linear-gradient(
-      to bottom,
-      #04111d,
-      #020812
-    );
-
-  border-top:
-    1px solid rgba(255,255,255,.08);
-
-  margin-top:6rem;
-
-  color:#e9f6ff;
-}
-
-/* =========================================================
-   SHELL
-========================================================= */
-
-.footer-shell{
-
-  max-width:1280px;
-
-  margin:auto;
-
-  padding:5rem 2rem;
-
-  display:grid;
-
-  gap:3rem;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-}
-
-/* =========================================================
-   BRAND
-========================================================= */
-
-.footer-brand h2{
-
-  margin-top:0;
-
-  font-size:2rem;
-
-  color:#7fffd4;
-}
-
-.footer-brand p{
-
-  line-height:1.9;
-
-  opacity:.9;
-}
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-.footer-btn{
-
-  margin-top:1.5rem;
-
-  background:
-    linear-gradient(
-      135deg,
-      #00d2a8,
-      #7fffd4
-    );
-
-  color:#021018;
-
-  border:none;
-
-  padding:1rem 2rem;
-
-  border-radius:999px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-  transition:.3s ease;
-}
-
-.footer-btn:hover{
-
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 0 20px rgba(0,255,170,.28);
-}
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.footer-nav{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:1rem;
-}
-
-.footer-nav h3{
-
-  margin-top:0;
-
-  color:#7fffd4;
-}
-
-.footer-nav a{
-
-  color:#cce6ff;
-
-  text-decoration:none;
-
-  transition:.25s ease;
-}
-
-.footer-nav a:hover{
-
-  color:#7fffd4;
-}
-
-/* =========================================================
-   REFLECTION
-========================================================= */
-
-.footer-reflection h3{
-
-  margin-top:0;
-
-  color:#7fffd4;
-}
-
-.footer-reflection blockquote{
-
-  margin:0;
-
-  padding-left:1rem;
-
-  border-left:
-    3px solid rgba(0,255,170,.5);
-
-  line-height:2;
-
-  opacity:.92;
-}
-
-/* =========================================================
-   BOTTOM
-========================================================= */
-
-.footer-bottom{
-
-  border-top:
-    1px solid rgba(255,255,255,.08);
-
-  padding:1.5rem 2rem;
-
-  display:flex;
-
-  justify-content:space-between;
-
-  flex-wrap:wrap;
-
-  gap:1rem;
-
-  max-width:1280px;
-
-  margin:auto;
-}
-
-.footer-legal{
-
-  display:flex;
-
-  gap:1.5rem;
-}
-
-.footer-legal a{
-
-  color:#9ad8ff;
-
-  text-decoration:none;
-}
-
-/* =========================================================
-   BREVO
-========================================================= */
-
-.brevo-overlay-container{
-
-  display:none;
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-    rgba(0,0,0,.72);
-
-  z-index:9999;
-
-  justify-content:center;
-
-  align-items:center;
-
-  padding:1rem;
-}
-
-.brevo-modal-window{
-
-  width:min(720px,100%);
-
-  background:#071521;
-
-  border-radius:24px;
-
-  overflow:hidden;
-
-  position:relative;
-}
-
-.close-x{
-
-  position:absolute;
-
-  top:12px;
-  right:18px;
-
-  font-size:2rem;
-
-  cursor:pointer;
-
-  color:white;
-
-  z-index:10;
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:768px){
-
-  .footer-shell{
-
-    padding:4rem 1.5rem;
+  /* =========================================================
+     UNIFIED FOOTER STRUCTURAL DESIGN SYSTEM
+     ========================================================= */
+  .neural-footer {
+    background-color: #070b12; 
+    color: #f8fafc;
+    padding: clamp(3rem, 6vw, 5rem) 0 2rem 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  .footer-bottom{
-
-    flex-direction:column;
-
-    text-align:center;
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(2rem, 4vw, 3.5rem);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
   }
 
-  .footer-legal{
-
-    justify-content:center;
+  .footer-segment {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
   }
 
-}
+  .neural-footer h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+  }
 
+  .neural-footer h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #94a3b8;
+    margin: 0;
+  }
+
+  .institution-meta {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin: 0;
+  }
+
+  .institutional-symbol {
+    font-size: 1.2rem;
+    color: #00d4b2;
+    letter-spacing: 4px;
+    margin-top: 0.5rem;
+  }
+
+  /* Philosophical Flow Element Mapping */
+  .philosophical-mapping-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #e2e8f0;
+  }
+
+  .flow-arrow {
+    color: #d4a373;
+    font-weight: 700;
+    padding-left: 0.75rem;
+  }
+
+  .ultimate-destination {
+    color: #ffffff;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    margin-top: 0.4rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* High-Contrast Accessible Navigation Links */
+  .link-segment ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .link-segment ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+    width: fit-content;
+  }
+
+  .link-segment ul li a:hover {
+    color: #00d4b2;
+  }
+
+  /* Base Horizontal Closure Strip */
+  .footer-meta-strip {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 4rem;
+    padding-top: 2rem;
+    width: 100%;
+  }
+
+  .meta-strip-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    box-sizing: border-box;
+  }
+
+  .copyright { font-size: 0.85rem; color: #64748b; margin: 0; }
+  .disclaimer { font-size: 0.85rem; color: #475569; font-style: italic; margin: 0; }
+
+  /* RESPONSIVE LAYOUT MATRIX ADAPTATION */
+  @media (max-width: 768px) {
+    .philosophical-mapping-flow { align-items: center; }
+    .meta-strip-content { flex-direction: column; text-align: center; }
+  }
 </style>

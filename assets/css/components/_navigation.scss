@@ -1,124 +1,245 @@
 /* =========================================================
-   NEURAL NAVIGATION SYSTEM
+   INSTITUTIONAL NAVIGATION SYSTEM
 ========================================================= */
 
-.greedy-nav,
-.site-nav,
-.masthead,
-.navigation-wrapper {
-  position: relative;
-  z-index: 1200;
-}
 
 /* =========================================================
-   REMOVE DUPLICATE VISUAL CHAOS
+   HEADER FOUNDATION
 ========================================================= */
 
-.hidden-links {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
+.site-header,
+.masthead {
+  position: sticky;
+  top: 0;
+
+  z-index: var(--z-header);
+
+  isolation: isolate;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(5, 12, 20, 0.94),
+      rgba(5, 12, 20, 0.82)
+    );
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.06);
 }
+
 
 /* =========================================================
-   PRIMARY MENU SYSTEM
+   NAV CONTAINER
 ========================================================= */
 
-.nav__list,
-.menu,
-.greedy-nav .visible-links {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+.greedy-nav {
+  position: relative;
+
+  z-index: var(--z-header);
+
+  min-height: 72px;
+
+  padding-inline: 1rem;
+
+  background: transparent;
 }
 
-.nav__list a,
-.menu a,
-.greedy-nav a {
-  position: relative;
-  text-decoration: none;
+
+/* =========================================================
+   BRAND SYSTEM
+========================================================= */
+
+.site-title {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
 
   transition:
-    color 0.25s ease,
     opacity 0.25s ease,
     transform 0.25s ease;
 }
 
-.nav__list a:hover,
-.menu a:hover,
-.greedy-nav a:hover {
-  transform: translateY(-1px);
+.site-title:hover {
   opacity: 0.92;
+
+  transform: translateY(-1px);
 }
 
+
 /* =========================================================
-   MOBILE TOGGLE STABILIZATION
+   DESKTOP NAV LINKS
 ========================================================= */
 
-.greedy-nav__toggle,
-.navicon,
-.nav-toggle {
+.greedy-nav .visible-links {
   display: flex;
+
   align-items: center;
-  justify-content: center;
 
-  z-index: 1400;
-  position: relative;
+  gap: 0.35rem;
 }
 
-.greedy-nav__toggle {
-  min-width: 44px;
-  min-height: 44px;
+.greedy-nav .visible-links a {
+  font-weight: 650;
+
+  font-size: 0.94rem;
+
+  opacity: 0.92;
+
+  padding: 0.55rem 0.75rem;
+
+  border-radius: 10px;
+
+  transition:
+    opacity 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
 }
+
+.greedy-nav .visible-links a:hover {
+  opacity: 1;
+
+  background: rgba(255,255,255,0.04);
+
+  transform: translateY(-1px);
+}
+
 
 /* =========================================================
-   MOBILE NAVIGATION
+   MOBILE TOGGLE
+========================================================= */
+
+.greedy-nav__toggle {
+  display: flex !important;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  cursor: pointer;
+
+  z-index: var(--z-mobile-nav);
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  padding: 0;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.greedy-nav__toggle:hover {
+  transform: scale(1.03);
+
+  background:
+    rgba(255,255,255,0.10);
+}
+
+.greedy-nav__toggle:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.35);
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   MOBILE MENU PANEL
+========================================================= */
+
+.hidden-links,
+.greedy-nav .hidden-links {
+  overflow: hidden;
+
+  z-index: var(--z-dropdown);
+
+  border-radius: 16px;
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  background:
+    rgba(10,18,30,0.94);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.28);
+}
+
+
+/* =========================================================
+   MOBILE MENU LINKS
+========================================================= */
+
+.hidden-links a {
+  display: block;
+
+  padding: 0.85rem 1rem;
+
+  border-radius: 10px;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.hidden-links a:hover {
+  background:
+    rgba(255,255,255,0.05);
+
+  transform: translateX(2px);
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
 ========================================================= */
 
 @media (max-width: 768px) {
 
-  .nav__list,
-  .menu,
-  .greedy-nav .visible-links {
-    gap: 0.55rem;
-    font-size: 0.95rem;
+  .greedy-nav {
+    min-height: 68px;
   }
+
+  .greedy-nav .hidden-links {
+    right: 0;
+
+    width: min(260px, 92vw);
+
+    padding: 0.9rem;
+  }
+
+  .greedy-nav .visible-links {
+    gap: 0.15rem;
+  }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP REFINEMENT
+========================================================= */
+
+@media (min-width: 1200px) {
 
   .greedy-nav {
-    overflow: visible !important;
+    padding-inline: 1.8rem;
   }
 
-  .masthead {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  .greedy-nav__toggle {
-    display: flex !important;
-  }
-}
-
-/* =========================================================
-   PERFORMANCE PROTECTION
-========================================================= */
-
-.nav__list *,
-.menu *,
-.greedy-nav * {
-  will-change: auto;
-}
-
-/* =========================================================
-   ACCESSIBILITY
-========================================================= */
-
-.nav__list a:focus-visible,
-.menu a:focus-visible,
-.greedy-nav a:focus-visible {
-  outline: 2px solid $neural-accent;
-
-  outline-offset: 3px;
-
-  border-radius: 6px;
 }

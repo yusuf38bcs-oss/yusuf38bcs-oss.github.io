@@ -7,7 +7,7 @@
       #121826
     );
 
-  min-height: 100vh;
+  min-height: clamp(600px, 85vh, 900px);
 }
 
 .section-divider {
@@ -64,3 +64,4 @@
   margin-inline: auto;
 
 }
+

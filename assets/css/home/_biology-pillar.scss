@@ -1,5 +1,5 @@
 .biology-pillar {
-  padding: 7rem 1.5rem;
+  padding: clamp(3rem, 5vw, 5rem) 1.5rem;
 
   background:
     linear-gradient(
@@ -70,13 +70,10 @@
     border-color 0.3s ease;
 }
 
-.biology-card {
+.biology-card:hover {
+  transform: translateY(-6px);
 
-  &:hover,
-  &:focus-visible {
-    transform: translateY(-4px);
-  }
-
-  @include interactive-focus;
-
+  border-color:
+    rgba(74,222,128,0.4);
 }
+
