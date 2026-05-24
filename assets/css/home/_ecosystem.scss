@@ -37,18 +37,21 @@
     border-color 0.3s ease;
 }
 
-.neural-card:hover {
-  transform: translateY(-6px);
+.neural-card {
 
-  border-color:
-    rgba(76, 201, 240, 0.35);
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+  }
+
+  @include interactive-focus;
+
 }
 
 .neural-card__title {
   font-size: 1.35rem;
 
   margin-bottom: 1rem;
-
   color: #ffffff;
 }
 

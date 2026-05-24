@@ -74,9 +74,13 @@
     border-color 0.3s ease;
 }
 
-.life-card:hover {
-  transform: translateY(-6px);
+.life-card {
 
-  border-color:
-    rgba(245,158,11,0.35);
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+  }
+
+  @include interactive-focus;
+
 }
