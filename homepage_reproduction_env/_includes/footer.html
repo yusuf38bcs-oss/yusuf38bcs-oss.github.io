@@ -1,0 +1,84 @@
+﻿<footer class="neural-footer">
+  <div class="footer-container">
+    
+    <div class="footer-segment branding-segment">
+      <h3>Neural Educational Ecosystem</h3>
+      <p class="institution-meta">
+        BCS Education Cadre Framework.<br>
+        multidisciplinary, systems thinking,<br>
+        reflective learning.
+      </p>
+      <div class="institutional-symbol">
+        ● ━ ◯
+      </div>
+    </div>
+
+    <div class="footer-segment philosophy-segment">
+      <h4>Philosophy Bridge Center</h4>
+      <div class="philosophical-mapping-flow">
+        <span>Biology Academic Pillar</span>
+        <span>↓</span>
+        <span>Life Practices Reflection</span>
+        <span>↓</span>
+        <span>Socratic Thinking Pathways</span>
+        <span>↓</span>
+        <span class="ultimate-destination">Ultimate Academy: AL-Quran</span>
+      </div>
+    </div>
+
+    <div class="footer-segment link-segment">
+      <h4>Knowledge Hub</h4>
+      <ul>
+        <li><a href="/">Neural Ecosystem Home</a></li>
+        <li><a href="/biology/">Biology (HSC/Higher Tree)</a></li>
+        <li><a href="/life-practices/">Applied Life Practices</a></li>
+        <li><a href="/socratic-4.0/">Socratic 4.0 Engine</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-segment footer-meta-block">
+      <p class="copyright">&copy; {{ site.time | date: '%Y' }} Institutional Educational Hub</p>
+      <p class="disclaimer">Keep site live first, then improve iteratively.</p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+    /* ========================================================= */
+    /* GOAL #Visual Identity: Curation for Institutional Spacing */
+    /* ========================================================= */
+    /* Dark, immersive, high-contrast footer ready for Google monetization. */
+    .neural-footer { background-color: #111; color: #ddd; padding: 5rem 0; font-family: 'Open Sans', sans-serif; border-top: 1px solid #333; }
+    .footer-container { display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; flex-wrap: wrap; gap: 40px; }
+    .footer-segment { flex: 1 1 280px; min-width: 250px; }
+    .neural-footer h3 { font-size: 1.5rem; color: #fff; font-weight: 700; margin-top: 0; }
+    .neural-footer h4 { font-size: 1rem; color: #bbb; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0; margin-bottom: 1.5rem; }
+    .neural-footer p { font-size: 0.9rem; line-height: 1.6; color: #aaa; margin-bottom: 1rem; }
+    
+    .institutional-symbol { font-size: 1.2rem; color: #444; margin-top: 1rem; text-align: center; width: 100%; }
+
+    /* Philosophy Flow Styling (Reflective Rhythm & Calm tones) */
+    .philosophical-mapping-flow { display: flex; flex-direction: column; align-items: center; font-size: 0.95rem; gap: 5px; color: #999; }
+    .philosophical-mapping-flow span { padding: 4px 10px; border-radius: 4px; }
+    /* Adhering to Goal Step 13: Immersive final destination */
+    .ultimate-destination { color: #fff; font-weight: 700; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 8px 15px !important; margin-top: 10px; }
+    
+    /* Standard Link Styling (Accessible High Contrast) */
+    .link-segment ul { list-style: none; padding: 0; margin: 0; }
+    .link-segment ul li { margin-bottom: 10px; }
+    .link-segment ul li a { text-decoration: none; color: #ccc; font-size: 0.95rem; transition: color 0.2s; }
+    .link-segment ul li a:hover { color: #1e88e5; }
+    
+    /* Performance Check (Sideways scroll eliminated proof) */
+    .footer-meta-block { text-align: center; width: 100%; border-top: 1px solid #333; padding-top: 1.5rem; margin-top: 1.5rem; flex: none; }
+    .copyright { font-size: 0.8rem; color: #888; margin-bottom: 0.5rem; }
+    .disclaimer { font-size: 0.8rem; color: #666; font-style: italic; }
+
+    /* RESPONSIVE LOGIC: MOBILE FIRST (Stack on narrow screens) */
+    @media (max-width: 768px) {
+        .footer-container { flex-direction: column; align-items: center; text-align: center; }
+        .footer-segment { flex: 1 1 100%; }
+        .branding-segment h3 { text-align: center; }
+    }
+</style>

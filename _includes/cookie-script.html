@@ -1,0 +1,178 @@
+﻿<div id="cookie-consent-banner" class="cookie-consent-modal" style="display: none;">
+  <div class="cookie-modal-content">
+    <div class="cookie-text-area">
+      <span class="cookie-icon">🍪</span>
+      <p>
+        We use cookies to optimize your learning experience across our neural ecosystem. By clicking <strong>"Accept All"</strong>, you consent to our data metrics and support compliance tracking for Google AdSense. 
+        Read our <a href="/privacy-policy/" class="cookie-privacy-link">Privacy Policy</a>.
+      </p>
+    </div>
+    <div class="cookie-action-area">
+      <button id="cookie-accept-btn" class="cookie-btn cookie-btn--accept">ACCEPT ALL</button>
+      <button id="cookie-decline-btn" class="cookie-btn cookie-btn--decline">DECLINE</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-consent-modal {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    max-width: 1152px;
+    margin: 0 auto;
+    background: rgba(15, 23, 42, 0.85); /* Slate 900 with Fluid transparency */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 999999; /* Absolute foreground layer lock */
+    padding: 1.25rem 2rem;
+    box-sizing: border-box;
+    animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .cookie-modal-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .cookie-text-area {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-align: left;
+  }
+
+  .cookie-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .cookie-text-area p {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #e2e8f0;
+    margin: 0;
+  }
+
+  .cookie-privacy-link {
+    color: #00d4b2;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cookie-privacy-link:hover {
+    text-decoration: underline;
+  }
+
+  .cookie-action-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cookie-btn--accept {
+    background-color: #00d4b2;
+    color: #020617;
+    box-shadow: 0 4px 12px rgba(0, 212, 178, 0.2);
+  }
+
+  .cookie-btn--accept:hover {
+    background-color: #00f2cc;
+    transform: translateY(-1px);
+  }
+
+  .cookie-btn--decline {
+    background-color: transparent;
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .cookie-btn--decline:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+  }
+
+  @keyframes slideUpFade {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* রেসপন্সিভ মোবাইল এডাপ্টেশন */
+  @media (max-width: 768px) {
+    .cookie-consent-modal {
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      padding: 1.5rem;
+    }
+    .cookie-modal-content {
+      flex-direction: column;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .cookie-text-area {
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .cookie-action-area {
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var consentBanner = document.getElementById("cookie-consent-banner");
+    var acceptBtn = document.getElementById("cookie-accept-btn");
+    var declineBtn = document.getElementById("cookie-decline-btn");
+
+    // ইউজারের আগের কোনো চয়েস মেমোরিতে আছে কিনা চেক করা
+    var userConsent = localStorage.getItem("neural-ecosystem-consent");
+
+    if (!userConsent) {
+      // যদি কোনো চয়েস না থাকে, তবে ব্যানারটি প্রদর্শন করা হবে
+      consentBanner.style.display = "block";
+    }
+
+    // Accept All বাটনের ইভেন্ট লিসেনার
+    acceptBtn.addEventListener("click", function () {
+      localStorage.setItem("neural-ecosystem-consent", "granted");
+      consentBanner.style.display = "none";
+      // এখানে ইচ্ছা করলে আপনার গুগল অ্যানালিটিক্স ট্রিগার রি-লোড করতে পারেন
+    });
+
+    // Decline বাটনের ইভেন্ট লিসেনার
+    declineBtn.addEventListener("click", function () {
+      localStorage.setItem("neural-ecosystem-consent", "declined");
+      consentBanner.style.display = "none";
+    });
+  });
+</script>

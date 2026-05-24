@@ -1,7 +1,6 @@
 ﻿---
-layout: home
-title: "Learning Biology For Life"
-permalink: /
+layout: default
+title: Homepage
 ---
 
 {% include hero-neural.html %}
