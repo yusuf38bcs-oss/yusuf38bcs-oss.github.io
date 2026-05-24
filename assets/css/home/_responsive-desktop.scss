@@ -19,3 +19,31 @@
   }
 
 }
+
+
+/* =========================================================
+   DESKTOP INSTITUTIONAL REFINEMENT
+========================================================= */
+
+@media (min-width: 1200px) {
+
+  .hero-neural__visual,
+  .hero-neural svg {
+    max-width: 720px;
+
+    margin-inline: auto;
+  }
+
+  .neural-section {
+    padding-block: 7rem;
+  }
+
+  .knowledge-grid {
+    gap: 2rem;
+  }
+
+  .glass-panel {
+    border-radius: 24px;
+  }
+
+}
