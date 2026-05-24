@@ -45,3 +45,22 @@
 
   -webkit-text-fill-color: transparent;
 }
+
+/* =========================================================
+   INSTITUTIONAL CONTENT WIDTH
+========================================================= */
+
+.neural-section__inner,
+.featured-ecosystem__inner,
+.biology-pillar__inner,
+.life-practices__inner,
+.socratic-layer__inner,
+.philosophy-bridge__inner {
+
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin-inline: auto;
+
+}

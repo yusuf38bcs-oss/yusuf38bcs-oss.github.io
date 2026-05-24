@@ -88,15 +88,33 @@
 ========================================================= */
 
 .hero-neural {
+
   position: relative;
+
+  display: flex;
+
+  align-items: center;
 
   padding-top: 10rem;
 
   min-height: 92vh;
 
   overflow: hidden;
-}
 
+  background:
+    linear-gradient(
+      rgba(4,10,18,0.78),
+      rgba(4,10,18,0.92)
+    ),
+    url("/assets/images/backgrounds/header-bg.webp");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+}
 
 /* HERO CONTENT */
 
@@ -132,9 +150,4 @@
     transform-origin: center;
   }
 
-}
-
-.hero-neural {
-  display: flex;
-  align-items: center;
 }
