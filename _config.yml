@@ -1,189 +1,64 @@
-﻿# =========================================================
-# LEARNING BIOLOGY FOR LIFE
-# Neural Educational Ecosystem
-# =========================================================
-
+# --- SITE CONFIGURATION PLATFORM ENGINE ---
 title: "Learning Biology For Life"
-
-description: >
-  An educational neural network that harmonizes
-  the foundational laws of biology
-  with cognitive behavior
-  through the contemplative mirror of Tafakkur.
-
-url: "https://learningbiologyforlife.org"
-baseurl: ""
-locale: en-US
-timezone: Asia/Dhaka
-repository: yusuf38bcs-oss/yusuf38bcs-oss.github.io
-
-# =========================================================
-# THEME SYSTEM
-# =========================================================
-
-remote_theme: "mmistakes/minimal-mistakes"
+locale: "en-US"
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 minimal_mistakes_skin: "dark"
 
-logo: "/assets/images/logo-main.png"assets/images/branding/logo-main.png"
+# --- ABSOLUTE BRAND ASSET MAPPING ---
+logo: "/assets/images/logo-main.png"
+favicon: "/assets/images/favicon.ico"
 
-search: true
-breadcrumbs: true
-words_per_minute: 180
-future: false
-read_more: "enabled"
-
-# =========================================================
-# ANALYTICS + TELEMETRY
-# =========================================================
-
-analytics:
-  provider: "google-gtag"
-
-  google:
-    tracking_id: "G-2SCLLF93NS"
-    anonymize_ip: true
-
-# =========================================================
-# GOOGLE TAG MANAGER
-# =========================================================
-
-gtm: "GT-PBNRG22C"
-
-# =========================================================
-# GOOGLE ADS / VERIFICATION
-# =========================================================
-
-google_site_verification: "AW-18047859733"
-
-# =========================================================
-# MARKDOWN + RENDERING
-# =========================================================
-
-markdown: kramdown
-highlighter: rouge
-permalink: /:categories/:title/
-
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-
-# =========================================================
-# PAGINATION
-# =========================================================
-
-paginate: 6
-paginate_path: /page:num/
-
-# =========================================================
-# PLUGINS
-# =========================================================
-
+# --- SITE INTERACTIVE NAVIGATION PARAMETERS ---
 plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-include-cache
   - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
   - jekyll-remote-theme
 
-pagination:
-  enabled: true
+# --- PAGINATION ARCHITECTURE ---
+paginate: 5
+paginate_path: "/page:num/"
 
+# --- CUSTOM COLLECTIONS ROUTING BLUEPRINT ---
+collections:
+  biology:
+    output: true
+    permalink: /biology/:title/
+  socratic:
+    output: true
+    permalink: /socratic/:title/
+  life-practices:
+    output: true
+    permalink: /life-practices/:title/
 
-# =========================================================
-# DEFAULTS
-# =========================================================
-
+# --- DEFAULT MANIFEST HEADER SETTINGS ---
 defaults:
-
   - scope:
       path: ""
-      type: posts
-
+      type: "posts"
     values:
-      layout: single
-      author_profile: false
+      layout: "single"
       read_time: true
+      comments: false
       share: true
       related: true
-      toc: true
-      toc_sticky: true
-      classes: wide
 
-  - scope:
-      path: "_pages"
-
-    values:
-      layout: single
-      author_profile: false
-      classes: wide
-
-# =========================================================
-# AUTHOR
-# =========================================================
-
+# --- AUTHOR BIO DATA METRIC ---
 author:
-  name: "MD. YUSUF"
+  name: "Md. Yusuf"
+  avatar: "/assets/images/prolile.jpg"
+  bio: "Lecturer, Dept of Zoology | 38th BCS Education Cadre Officer"
+  location: "Bangladesh"
 
-  avatar: "/assets/images/prolile.jpg"assets/images/branding/logo-main.png"
-
-  bio: >
-    BCS Education Cadre Officer,
-    multidisciplinary learner,
-    systems thinker,
-    reflective educator,
-    and builder of neural educational ecosystems.
-
-# =========================================================
-# SOCIAL + KNOWLEDGE IDENTITY
-# =========================================================
-
-social:
-  name: "Learning Biology For Life"
-
-  links:
-    - "https://github.com/yusuf38bcs-oss"
-
-# =========================================================
-# SEO + KNOWLEDGE ARCHITECTURE
-# =========================================================
-
-category_archive:
-  type: liquid
-  path: /categories/
-
-tag_archive:
-  type: liquid
-  path: /tags/
-
-# =========================================================
-# EDUCATIONAL KNOWLEDGE LAYER
-# =========================================================
-
-include:
-  - _pages
-  - knowledge
-  - assets
-
+# --- DEFENSIVE ENGINE EXCLUSION MATRIX ---
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-  - vendor
-  - .sass-cache
-  - .jekyll-cache
+  - vendor/
+  - .jekyll-cache/
   - homepage_reproduction_env/
-  - README.md
-
-# =========================================================
-# PERFORMANCE + BUILD STABILITY
-# =========================================================
-
-sass:
-  style: compressed
-
-compress_html:
-  clippings: all
-
-  ignore:
-    envs: development
+  - .git/
+  - .github/
