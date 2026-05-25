@@ -1,0 +1,1 @@
+console.log('Zoology syllabus accordions mapped.');

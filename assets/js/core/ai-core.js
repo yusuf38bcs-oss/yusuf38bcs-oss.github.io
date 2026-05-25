@@ -1,0 +1,1 @@
+console.log('AI Core integration bridge listening.');

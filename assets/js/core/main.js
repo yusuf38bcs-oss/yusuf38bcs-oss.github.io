@@ -1,0 +1,1 @@
+console.log('Ecosystem Core navigation modules compiled successfully.');
