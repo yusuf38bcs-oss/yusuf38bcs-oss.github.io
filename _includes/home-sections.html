@@ -1,194 +1,41 @@
-<!-- ========================= -->
-<!-- SECTION 1 : CORE PILLARS -->
-<!-- ========================= -->
-<section class="home-pillars">
-  <div class="wrapper">
-    <h2 class="section-title">The Synaptic Learning Ecosystem</h2>
-    <p class="section-subtitle">
-      Biology is not merely a subject — it is the architecture of life, systems, cognition and evolution.
-    </p>
-
-    <div class="pillar-grid">
-      <div class="pillar-card">
-        <div class="pillar-icon">🧬</div>
-        <h3>Biology</h3>
-        <p>
-          Molecular biology, ecology, physiology, genetics and interdisciplinary life sciences.
-        </p>
-      </div>
-
-      <div class="pillar-card">
-        <div class="pillar-icon">🌍</div>
-        <h3>Life Practices</h3>
-        <p>
-          Connecting academic knowledge with human civilization, ethics, sustainability and reality.
-        </p>
-      </div>
-
-      <div class="pillar-card">
-        <div class="pillar-icon">🧠</div>
-        <h3>Socratic Learning</h3>
-        <p>
-          Reflective questioning, critical reasoning and deep conceptual understanding.
-        </p>
-      </div>
+<section style="padding: 5rem 2rem; background: #020617;">
+  <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+    <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.04); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+      <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🧬</span>
+      <h3 style="color: #fff; font-size: 1.4rem; margin: 0 0 0.5rem 0;">Biology</h3>
+      <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0;">Molecular biology, ecology, physiology, genetics and interdisciplinary life sciences.</p>
+    </div>
+    <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.04); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+      <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🌍</span>
+      <h3 style="color: #fff; font-size: 1.4rem; margin: 0 0 0.5rem 0;">Life Practices</h3>
+      <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0;">Connecting academic knowledge with human civilization, ethics, sustainability and reality.</p>
+    </div>
+    <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.04); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+      <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🧠</span>
+      <h3 style="color: #fff; font-size: 1.4rem; margin: 0 0 0.5rem 0;">Socratic Learning</h3>
+      <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0;">Reflective questioning, critical reasoning and deep conceptual understanding.</p>
     </div>
   </div>
 </section>
 
-<!-- ========================= -->
-<!-- SECTION 2 : FEATURED POSTS -->
-<!-- ========================= -->
-<section class="featured-posts-section">
-  <div class="wrapper">
-    <h2 class="section-title">Featured Explorations</h2>
-
-    <div class="feature-grid">
-      {% for post in site.posts limit:6 %}
-      <article class="feature-card">
-        {% if post.header.overlay_image %}
-        <div class="feature-image">
-          <img src="{{ post.header.overlay_image | relative_url }}" alt="{{ post.title }}">
+<section style="padding: 5rem 2rem; background: #080c14; border-top: 1px solid rgba(255,255,255,0.05);">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 style="color: #fff; font-size: 2rem; border-left: 4px solid #00d4b2; padding-left: 12px; margin: 0 0 2.5rem 0; font-weight: 800;">Featured Explorations</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+      {% assign items = site.biology | concat: site.socratic | concat: site.life-practices | sort: 'date' | reverse %}
+      {% for entry in items limit: 3 %}
+        <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.04); padding: 2rem; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+          <div>
+            <h3 style="margin: 0 0 0.75rem 0;"><a href="{{ entry.url | relative_url }}" style="color: #00d4b2; text-decoration: none; font-size: 1.3rem; font-weight: 700;">{{ entry.title }}</a></h3>
+            <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin: 0 0 1.5rem 0;">{{ entry.excerpt | strip_html | truncate: 130 }}</p>
+          </div>
+          <a href="{{ entry.url | relative_url }}" style="color: #fff; text-decoration: none; font-weight: 600; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; display: block;">Read Entry Track →</a>
         </div>
-        {% endif %}
-
-        <div class="feature-content">
-          <h3>
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </h3>
-
-          <p>
-            {{ post.excerpt | strip_html | truncate: 120 }}
-          </p>
-
-          <a class="feature-btn" href="{{ post.url | relative_url }}">
-            Explore
-          </a>
+      {% else %}
+        <div style="grid-column: 1/-1; text-align: center; color: #4b5563; padding: 2rem;">
+          <p>Ecosystem content loops syncing. Add new markdown files inside your collections directory to display them here.</p>
         </div>
-      </article>
       {% endfor %}
     </div>
   </div>
 </section>
-
-<!-- ========================= -->
-<!-- SECTION 3 : VISION -->
-<!-- ========================= -->
-<section class="vision-section">
-  <div class="wrapper vision-wrapper">
-    <h2>Vision & Philosophy</h2>
-
-    <p>
-      Learning Biology For Life is an evolving digital ecosystem dedicated to scientific literacy,
-      reflective learning, interdisciplinary understanding and educational transformation.
-    </p>
-
-    <p>
-      The platform integrates biology, cognition, systems thinking, pedagogy and digital architecture
-      to cultivate deep learning for the Fourth Industrial Revolution.
-    </p>
-  </div>
-</section>
-
-<style>
-.home-pillars,
-.featured-posts-section,
-.vision-section {
-  padding: 5rem 1.5rem;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-}
-
-.section-subtitle {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto 3rem;
-  opacity: 0.85;
-}
-
-.pillar-grid,
-.feature-grid {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-
-.pillar-card,
-.feature-card {
-  backdrop-filter: blur(12px);
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 24px;
-  overflow: hidden;
-  transition: all 0.35s ease;
-}
-
-.pillar-card:hover,
-.feature-card:hover {
-  transform: translateY(-6px);
-}
-
-.pillar-card {
-  text-align: center;
-  padding: 2rem;
-}
-
-.pillar-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.feature-image img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.feature-content {
-  padding: 1.5rem;
-}
-
-.feature-content h3 {
-  margin-bottom: 1rem;
-}
-
-.feature-content a {
-  text-decoration: none;
-}
-
-.feature-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.75rem 1.4rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-.vision-wrapper {
-  max-width: 900px;
-  margin: auto;
-  text-align: center;
-}
-
-.vision-wrapper p {
-  margin-top: 1.5rem;
-  line-height: 1.9;
-  font-size: 1.05rem;
-}
-
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 1.8rem;
-  }
-
-  .home-pillars,
-  .featured-posts-section,
-  .vision-section {
-    padding: 4rem 1.2rem;
-  }
-}
-</style>

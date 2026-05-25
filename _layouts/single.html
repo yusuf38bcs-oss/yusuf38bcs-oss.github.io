@@ -1,92 +1,27 @@
-﻿---
+---
 layout: default
 ---
 
-<article class="article-layout neural-article-layout">
-
-  <div class="article-main-column">
-
-    <!-- =====================================================
-         NEURAL BREADCRUMB
-    ====================================================== -->
-
-    {% include knowledge/breadcrumb-neural.html %}
-
-    <!-- =====================================================
-         ARTICLE HEADER
-    ====================================================== -->
-
-    <header class="article-header">
-
-      {% if page.categories %}
-        <span class="card-badge">
-          {{ page.categories | first }}
-        </span>
-      {% endif %}
-
-      <h1>
-        {{ page.title }}
-      </h1>
-
-      {% if page.description %}
-        <p class="hero__lead">
-          {{ page.description }}
-        </p>
-      {% endif %}
-
-    </header>
-
-    <!-- =====================================================
-         ARTICLE CONTENT
-    ====================================================== -->
-
-    <div class="article-content">
-      {{ content }}
-    </div>
-
-    <!-- =====================================================
-         LEARNING PATHWAY
-    ====================================================== -->
-
-    {% include knowledge/learning-pathway.html %}
-
-    <!-- =====================================================
-         RELATED POSTS
-    ====================================================== -->
-
-    {% include knowledge/related-posts.html %}
-    {% include knowledge/concept-engine.html %}
-
-  </div>
-
-  <!-- =====================================================
-       CONTEXTUAL SIDEBAR
-  ====================================================== -->
-
-  <aside class="article-sidebar">
-
-    {% assign cats = page.categories | join: "," | downcase %}
-
-    {% if cats contains "leadership"
-       or cats contains "behaviour"
-       or cats contains "human behavior"
-       or cats contains "emotional intelligence"
-       or cats contains "life practices" %}
-
-      {% include sidebar-socratic.html %}
-
-    {% else %}
-
-      {% include sidebar-academic.html %}
-
+<article style="max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; color: #f3f4f6; font-family: sans-serif;">
+  
+  <header style="margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 2rem;">
+    {% if page.collection %}
+      <span style="color: #00d4b2; text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; display: inline-block; margin-bottom: 0.5rem;">
+        {{ page.collection }} Array Tracker
+      </span>
     {% endif %}
+    <h1 style="font-size: 2.8rem; color: #ffffff; font-weight: 800; margin: 0 0 1rem 0; line-height: 1.2; letter-spacing: -0.02em;">
+      {{ page.title }}
+    </h1>
+    {% if page.excerpt %}
+      <p style="font-size: 1.15rem; color: #94a3b8; line-height: 1.6; margin: 0;">
+        {{ page.excerpt }}
+      </p>
+    {% endif %}
+  </header>
 
-    <!-- =====================================================
-         SEMANTIC KNOWLEDGE SIDEBAR
-    ====================================================== -->
-
-    {% include knowledge/semantic-sidebar.html %}
-
-  </aside>
+  <div class="inner-article-markdown-text" style="line-height: 1.75; font-size: 1.1rem; color: #d1d5db;">
+    {{ content }}
+  </div>
 
 </article>

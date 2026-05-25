@@ -7,6 +7,7 @@ title: "Measures of Dispersion: বিচ্যুতি"
 date: 2026-04-11T09:22:00.007Z
 categories:
   - Biostatistics
+permalink: /biology/higher/measures-of-dispersion-advanced/
 ---
 
 <!DOCTYPE html>

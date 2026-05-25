@@ -1,83 +1,23 @@
-﻿---
-# Jekyll Front Matter Compiler Block
 ---
-@import "components/variables";
-@import "components/hero-neural";
-@import "components/ecosystem";
+---
+@import "minimal-mistakes/skins/dark";
+@import "minimal-mistakes";
 
-/* গ্লোবাল রিসেট এবং সাইডওয়ে স্ক্রোল বন্ধের মূল মেকানিজম */
-html, body {
-  background-color: #070b12;
-  color: #f8fafc;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Guaranteed no code breaks/sideways scroll */
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+#main {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
+.page {
+  width: 100% !important;
+  padding-right: 0 !important;
+  margin: 0 !important;
 }
-
-/* ==========================================================================
-   CUSTOM INTERDISCIPLINARY DESIGN SYSTEM OVERRIDES
-   ========================================================================== */
-
-/* 1. Global Layout & Deep Space Canvas Background */
-body {
-  background-color: #030712 !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-  color: #f3f4f6 !important;
+.page__content {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
-
-/* 2. Premium Neural Hero Section Configuration */
-.hero-neural-canvas {
-  position: relative;
-  background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
-  border-bottom: 1px solid rgba(0, 212, 178, 0.15);
-  overflow: hidden;
-}
-
-/* 3. High-Contrast Typography & Glow Effects */
-.hero-neural-title {
-  font-size: 3.5rem !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.05em !important;
-  background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
-}
-
-/* 4. Synaptic Interactive Grid Cards */
-.pillar-card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  padding: 2rem 0;
-}
-
-.synaptic-card {
-  background: linear-gradient(145deg, #0f172a, #070a13) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
-  border-radius: 12px !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-}
-
-.synaptic-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(0, 212, 178, 0.4) !important;
-  box-shadow: 0 12px 40px rgba(0, 212, 178, 0.1);
-}
-
-/* 5. Safe Utility Navigation Trimming */
-.site-title {
-  color: #00d4b2 !important;
-  font-weight: 700 !important;
-}
-
-.custom-bullet-list {
-  list-style: none !important;
-  padding-left: 0 !important;
+.initial-content {
+  width: 100% !important;
 }

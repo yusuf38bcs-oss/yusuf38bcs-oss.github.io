@@ -16,6 +16,7 @@ tags:
   - Human Body
 toc: true
 classes: wide
+permalink: /biology/hsc/human-blood-circulation/
 ---
 
 <style>

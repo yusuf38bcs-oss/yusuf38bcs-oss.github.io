@@ -1,0 +1,21 @@
+---
+layout: default
+permalink: /biology/
+title: "Biology Stream Array"
+---
+<div style="background: #020617; min-height: 80vh; padding: 5rem 2rem; font-family: sans-serif; color: #fff;">
+  <div style="max-width: 1000px; margin: 0 auto;">
+    <h1 style="font-size: 2.5rem; color: #00d4b2; margin-bottom: 1rem;">Academic Biology Pillar</h1>
+    <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 3rem;">Explore the foundational core and advanced biological modules.</p>
+    <div style="display: grid; gap: 1.5rem;">
+      {% for entry in site.biology %}
+        <div style="background: #0f172a; padding: 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+          <h2 style="margin: 0 0 0.5rem 0;"><a href="{{ entry.url | relative_url }}" style="color: #fff; text-decoration: none;">{{ entry.title }}</a></h2>
+          <p style="color: #94a3b8; margin: 0;">{{ entry.excerpt | strip_html | truncate: 180 }}</p>
+        </div>
+      {% else %}
+        <p style="color: #64748b; text-align: center; padding: 2rem;">New biology modules are currently queued for compilation.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>

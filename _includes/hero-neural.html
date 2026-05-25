@@ -1,28 +1,16 @@
-<div class="hero-neural-canvas" style="position: relative; background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.95) 0%, #020617 100%), url('{{ "/assets/images/header-bg.webp" | relative_url }}') no-repeat center center; background-size: cover; padding: 6rem 2rem; border-bottom: 2px solid #00d4b2;">
-  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;">
-    
-    <div style="flex: 1; min-width: 300px;">
-      <img src="{{ '/assets/images/logo-main.png' | relative_url }}" alt="Learning Biology For Life Logo" style="max-width: 180px; height: auto; margin-bottom: 1.5rem; filter: drop-shadow(0 0 15px rgba(0,212,178,0.2));">
-      <h1 style="font-size: 3.2rem; color: #fff; font-weight: 800; margin: 0 0 1rem 0; line-height: 1.1;">Where Biology<br><span style="color: #00d4b2;">Meets Life</span></h1>
-      <p style="font-size: 1.25rem; color: #94a3b8; line-height: 1.6; margin-bottom: 2rem;">Academic biology connected with reflective human development, Socratic questioning, critical thinking, and interdisciplinary educational transformation.</p>
-      
+<div style="background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.98) 0%, #020617 100%), url('{{ '/assets/images/header-bg.webp' | relative_url }}') no-repeat center center; background-size: cover; padding: 6rem 2rem; border-bottom: 1px solid rgba(0, 212, 178, 0.15);">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 4rem; flex-wrap: wrap;">
+    <div style="flex: 1.3; min-width: 300px; text-align: left;">
+      <span style="color: #00d4b2; text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; display: block; margin-bottom: 0.5rem;">Neural Interdisciplinary Learning Ecosystem</span>
+      <h1 style="color: #fff; font-size: 3.5rem; font-weight: 800; margin: 0 0 1rem 0; line-height: 1.15; letter-spacing: -0.03em;">Where Biology<br><span style="color: #00d4b2;">Meets Life</span></h1>
+      <p style="color: #94a3b8; font-size: 1.2rem; line-height: 1.65; margin-bottom: 2.5rem; max-width: 600px;">Academic biology connected with reflective human development, Socratic questioning, critical thinking, and interdisciplinary educational transformation.</p>
       <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="{{ '/biology/' | relative_url }}" style="background: #00d4b2; color: #020617; padding: 0.8rem 1.6rem; border-radius: 6px; font-weight: 700; text-decoration: none; transition: background 0.3s;">Explore Biology</a>
-        <a href="{{ '/socratic/' | relative_url }}" style="background: rgba(255,255,255,0.05); color: #fff; padding: 0.8rem 1.6rem; border-radius: 6px; font-weight: 600; text-decoration: none; border: 1px solid rgba(255,255,255,0.1);">Socratic 4.0 Portal</a>
+        <a href="{{ '/biology/' | relative_url }}" style="background: #00d4b2; color: #020617; padding: 0.85rem 1.8rem; border-radius: 6px; font-weight: 700; text-decoration: none; display: inline-block;">Explore Biology</a>
+        <a href="{{ '/socratic/' | relative_url }}" style="background: rgba(255,255,255,0.04); color: #fff; padding: 0.85rem 1.8rem; border-radius: 6px; font-weight: 600; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); display: inline-block;">Socratic 4.0 Portal</a>
       </div>
     </div>
-
-    <div style="flex: 1; min-width: 300px; text-align: center;">
-      <img src="{{ '/assets/images/logo-symbol.png' | relative_url }}" alt="Ecosystem Symbol" style="max-width: 320px; height: auto; animation: float 6s ease-in-out infinite;">
+    <div style="flex: 0.7; min-width: 260px; text-align: center;">
+      <img src="{{ '/assets/images/logo-symbol.png' | relative_url }}" style="max-width: 280px; height: auto; filter: drop-shadow(0 0 25px rgba(0,212,178,0.2));">
     </div>
-
   </div>
 </div>
-
-<style>
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-  }
-</style>
