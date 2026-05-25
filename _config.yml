@@ -1,4 +1,4 @@
-# =========================================================
+﻿# =========================================================
 # LEARNING BIOLOGY FOR LIFE
 # Neural Educational Ecosystem
 # =========================================================
@@ -24,7 +24,7 @@ repository: yusuf38bcs-oss/yusuf38bcs-oss.github.io
 remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: "dark"
 
-logo: "/assets/images/branding/logo-main.png"
+logo: "/assets/images/logo-main.png"assets/images/branding/logo-main.png"
 
 search: true
 breadcrumbs: true
@@ -125,7 +125,7 @@ defaults:
 author:
   name: "MD. YUSUF"
 
-  avatar: "/assets/images/branding/logo-main.png"
+  avatar: "/assets/images/prolile.jpg"assets/images/branding/logo-main.png"
 
   bio: >
     BCS Education Cadre Officer,
@@ -172,6 +172,7 @@ exclude:
   - vendor
   - .sass-cache
   - .jekyll-cache
+  - homepage_reproduction_env/
   - README.md
 
 # =========================================================
