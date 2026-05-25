@@ -16,6 +16,7 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
   - jekyll-remote-theme
+  - jekyll-seo-tag
 
 # --- PAGINATION ARCHITECTURE ---
 paginate: 5
