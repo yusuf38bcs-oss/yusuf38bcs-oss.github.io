@@ -5,7 +5,7 @@ sidebar:
   nav: "synaptic_nav"
 title: "POPULATION ECOLOGY: A Science of Life & Motion of a Species (পপুলেশন ইকোলজি: একটি প্রজাতির জীবন ও গতির বিজ্ঞান)"
 date: 2026-03-30T20:57:00.047Z
-permalink: /biology/hsc-corner/ecology/population-dynamics/
+permalink: /biology/higher-zoology-tree/ecology/population-dynamics/
 categories:
   - ECOLOGY
 tags:
