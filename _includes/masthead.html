@@ -1,19 +1,25 @@
-<header style="background: #0f172a; border-bottom: 1px solid rgba(0, 212, 178, 0.15); padding: 0.85rem 1.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+<header style="background: #090d16; border-bottom: 1px solid rgba(0, 212, 178, 0.15); padding: 1rem 1.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; position: relative; z-index: 99999;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
     
     <div style="display: flex; align-items: center; gap: 12px;">
       <a href="{{ '/' | relative_url }}" style="display: flex; align-items: center;">
-        <img src="{{ '/assets/images/logo-main.png' | relative_url }}" alt="Learning Biology For Life Logo" style="height: 42px; width: 42px; border-radius: 50%; border: 2px solid #00d4b2; object-fit: cover; box-shadow: 0 0 12px rgba(0,212,178,0.25);">
+        <img src="{{ '/assets/images/logo-main.png' | relative_url }}" alt="Ecosystem Identifier" style="height: 40px; width: 40px; border-radius: 50%; border: 2px solid #00d4b2; object-fit: cover; box-shadow: 0 0 10px rgba(0,212,178,0.25);">
       </a>
-      <a href="{{ '/' | relative_url }}" style="color: #ffffff; font-weight: 800; font-size: 1.35rem; text-decoration: none; letter-spacing: -0.02em;">
+      <a href="{{ '/' | relative_url }}" style="color: #ffffff; font-weight: 800; font-size: 1.25rem; text-decoration: none; letter-spacing: -0.02em;">
         Learning Biology <span style="color: #00d4b2;">For Life</span>
       </a>
     </div>
 
-    <nav>
+    <button id="mobile-toggle-btn" aria-label="Expand Responsive Menu" style="background: none; border: none; color: #00d4b2; cursor: pointer; display: none; padding: 4px; outline: none;">
+      <svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2H24M2 10H24M2 18H24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <nav id="desktop-links-nav">
       <ul style="display: flex; gap: 1.75rem; list-style: none !important; margin: 0; padding: 0;">
         <li><a href="{{ '/' | relative_url }}" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.95rem;">Home</a></li>
-        <li><a href="{{ '/biology/' | relative_url }}" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.2s;">Biology</a></li>
+        <li><a href="{{ '/biology/' | relative_url }}" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 0.95rem;">Biology</a></li>
         <li><a href="{{ '/life-practices/' | relative_url }}" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 0.95rem;">Life Practices</a></li>
         <li><a href="{{ '/socratic/' | relative_url }}" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 0.95rem;">Socratic 4.0</a></li>
         <li><a href="{{ '/contact/' | relative_url }}" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 0.95rem;">Contact</a></li>
@@ -21,4 +27,46 @@
     </nav>
 
   </div>
+
+  <div id="mobile-dropdown-drawer" style="display: none; background: #0f172a; border-top: 1px solid rgba(0, 212, 178, 0.15); position: absolute; top: 100%; left: 0; width: 100%; box-shadow: 0 10px 20px rgba(0,0,0,0.6); z-index: 99999;">
+    <ul style="list-style: none !important; margin: 0; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
+      <li><a href="{{ '/' | relative_url }}" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 1.05rem; display: block;">Home</a></li>
+      <li><a href="{{ '/biology/' | relative_url }}" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 1.05rem; display: block;">Biology</a></li>
+      <li><a href="{{ '/life-practices/' | relative_url }}" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 1.05rem; display: block;">Life Practices</a></li>
+      <li><a href="{{ '/socratic/' | relative_url }}" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 1.05rem; display: block;">Socratic 4.0</a></li>
+      <li><a href="{{ '/contact/' | relative_url }}" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 1.05rem; display: block;">Contact</a></li>
+    </ul>
+  </div>
 </header>
+
+<style>
+  /* Screen breakpoint orchestration */
+  @media (max-width: 768px) {
+    #desktop-links-nav { display: none !important; }
+    #mobile-toggle-btn { display: block !important; }
+  }
+</style>
+
+<script>
+  /* Local isolation trigger thread to run menu slide events cleanly */
+  document.addEventListener("DOMContentLoaded", function() {
+    var toggleBtn = document.getElementById("mobile-toggle-btn");
+    var menuDrawer = document.getElementById("mobile-dropdown-drawer");
+    
+    if (toggleBtn && menuDrawer) {
+      toggleBtn.addEventListener("click", function(event) {
+        event.stopPropagation();
+        if (menuDrawer.style.display === "none" || menuDrawer.style.display === "") {
+          menuDrawer.style.display = "block";
+        } else {
+          menuDrawer.style.display = "none";
+        }
+      });
+      
+      // Auto close menu drawer if a user clicks outside the selection track
+      document.addEventListener("click", function() {
+        menuDrawer.style.display = "none";
+      });
+    }
+  });
+</script>
