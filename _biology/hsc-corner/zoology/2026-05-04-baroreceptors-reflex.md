@@ -5,6 +5,7 @@ sidebar:
   nav: "synaptic_nav"
 title: "Baroreceptor Reflex: Neural Control of Blood Pressure"
 date: 2026-05-04T04:08:00.004Z
+permalink: /biology/hsc-corner/zoology/
 categories:
   - Zoology
   - Human Physiology
@@ -14,7 +15,10 @@ tags:
   - Physiology
   - Nervous System
 toc: true
+toc_label: "চিন্তার মানচিত্র"
+toc_icon: "brain"
 classes: wide
+excerpt: "মানবদেহ কীভাবে প্রতি সেকেন্ডে রক্তচাপ নিয়ন্ত্রণ করে? ক্যারোটিড সাইনাস, অ্যাওর্টিক আর্চ এবং মেডুলা অবলংগাটার নিখুঁত নিউরাল ফিডব্যাক লুপ ও ব্যারোরেসেপ্টর রিফ্লেক্সের এক রোমাঞ্চকর আণবিক বিশ্লেষণ।"
 ---
 
 <style>
@@ -141,11 +145,9 @@ classes: wide
 }
 
 @media(max-width:768px){
-
   .activity-grid{
     grid-template-columns:1fr;
   }
-
 }
 </style>
 
@@ -157,10 +159,17 @@ classes: wide
 ## Neural Control of Blood Pressure
 
 <p class="hero-subtitle">
-মানবদেহ কীভাবে প্রতি সেকেন্ডে রক্তচাপ নিয়ন্ত্রণ করে এবং মস্তিষ্ক কীভাবে হৃদস্পন্দন ও রক্তনালিকে নিয়ন্ত্রণ করে — তার গভীর বিশ্লেষণ।
+মানবদেহ কীভাবে প্রতি সেকেন্ডে রক্তচাপ নিয়ন্ত্রণ করে এবং মস্তিষ্ক কীভাবে হৃদস্পন্দন ও রক্তনালিকে পরিচালনা করে — তার গভীর ও বহুমাত্রিক বিশ্লেষণ।
 </p>
 
 </div>
+
+<blockquote>
+  <strong>মনোযোগ দাও, হে চিন্তাশীল অভিযাত্রী (Active Thinkers):</strong><br>
+  জীববিজ্ঞান হলো সমস্ত অ্যাকাডেমিক ক্ষেত্রের মূল স্তম্ভ, আর আমাদের এই জীবন হলো সেই সত্যগুলোর প্রায়োগিক রণাঙ্গন। আমাদের এই মানবদেহ হলো সমস্ত কৃত্রিম আবিষ্কার ও ইঞ্জিনিয়ারিংয়ের আদি রহস্য। এই সুনিপুণ এবং স্বয়ংক্রিয় ভারসাম্য ব্যবস্থার পরম গাইডলাইন ও আলটিমেট রেফারেন্স আমরা খুঁজে পাই পবিত্র কুরআনে, যেখানে মহান আল্লাহ এরশাদ করেছেন: <em>"যিনি তোমাকে সৃষ্টি করেছেন, অতঃপর তোমাকে সুবিন্যস্ত করেছেন এবং তোমাকে সুপরিমিত ও ভারসাম্যপূর্ণ করেছেন।" (সূরা আল-ইনফিতার: ৭)</em>। 
+  <br><br>
+  আমাদের রক্তনালীর ভেতরের চাপ প্রতি মুহূর্তে পরিবর্তিত হচ্ছে—আপনি যখন ঘুমাচ্ছেন, দৌড়াচ্ছেন কিংবা হঠাৎ চেয়ার থেকে দাঁড়াচ্ছেন। এই চাপের আকস্মিক পরিবর্তনকে সেকেন্ডের ভগ্নাংশে নিউরাল ফিডব্যাক লুপের মাধ্যমে ঠিক করার যে স্বয়ংক্রিয় ব্যালেন্সিং মেকানিজম, তাকেই বলে <strong>Baroreceptor Reflex</strong>। আসুন, একে কন্ট্রোল সিস্টেম ইঞ্জিনিয়ারিং এবং নিউরো-ফিজিওলজির বহুমাত্রিক চশমা দিয়ে ব্যবচ্ছেদ করি।
+</blockquote>
 
 <div class="hero-image">
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Baroreflex.png"
@@ -177,99 +186,65 @@ decoding="async">
 
 ## 🎯 Learning Objectives
 
-### ১. Blood Pressure Regulation (রক্তচাপ নিয়ন্ত্রণ)
+### ১. Blood Pressure Regulation: শারীরিক সমীকরণের মেকানিক্স
 
 <div class="highlight-box">
-
-**Academic Perspective:**  
-Blood Pressure (BP) নির্ধারিত হয়:
-
+  <strong>Academic Perspective:</strong> মলিকিউলার ও মেকানিক্যাল স্তরে রক্তের চাপ বা Blood Pressure ($BP$) প্রধানত দুটি ভ্যারিয়েবলের ওপর নির্ভর করে নির্ধারিত হয়:
 </div>
 
 <div class="formula-box">
 
-BP = Cardiac Output × Peripheral Resistance
+$$BP = \text{Cardiac Output (CO)} \times \text{Total Peripheral Resistance (TPR)}$$
 
 </div>
 
 <p>
-Cardiac Output নির্ভর করে heart rate ও stroke volume এর উপর এবং Peripheral Resistance নির্ভর করে blood vessel diameter এর উপর।
+এখানে, $\text{Cardiac Output (CO)} = \text{Heart Rate (HR)} \times \text{Stroke Volume (SV)}$। অর্থাৎ, হৃৎপিণ্ড প্রতি মিনিটে কী পরিমাণ রক্ত পাম্প করছে এবং রক্তনালীগুলোর ব্যাস সংকুচিত নাকি প্রসারিত অবস্থায় আছে ($\text{TPR}$), তার গুণফলই হলো রক্তচাপ।
 </p>
 
 <div class="highlight-box">
-
-**Practical Perspective:**  
-যখন তুমি ভয় পাও বা দৌড়াও → sympathetic nervous system activate হয় → heart rate বাড়ে → BP বাড়ে।  
-অন্যদিকে ঘুম বা বিশ্রামের সময় parasympathetic system কাজ করে → BP কমে।
-
+  <strong>Practical Perspective (Sympathetic vs Parasympathetic):</strong> যখন আপনি কোনো তাড়া খান বা তীব্র ভয় পান, তখন আপনার শরীরের <em>Sympathetic Nervous System</em> সক্রিয় হয়ে ওঠে (Fight-or-Flight)। এটি মুহূর্তের মধ্যে $\text{Heart Rate}$ এবং রক্তনালীর সংকোচন ($\text{Vasoconstriction}$) বাড়িয়ে দেয়, ফলে $BP$ বৃদ্ধি পায়। আবার শান্ত বা বিশ্রামের সময় <em>Parasympathetic System</em> (Rest-and-Digest) সক্রিয় হয়ে হৃদস্পন্দন কমিয়ে রক্তচাপকে স্বাভাবিক অবস্থায় ফিরিয়ে আনে।
 </div>
 
 ---
 
-### ২. Baroreceptor Reflex Mechanism
-
+### ২. Baroreceptor Reflex Mechanism: সেলুলার প্রেশার গেজ
 <p>
-<b>Baroreceptor</b> হলো stretch receptor যা <b>Carotid sinus</b> এবং <b>Aortic arch</b>-এ থাকে।
+<strong>Baroreceptor</strong> হলো একধরণের বিশেষ মেকানোরেসেপ্টর (Stretch Receptor), যা রক্তনালীর প্রাচীরের প্রসারণ বা টান অনুভব করতে পারে। এরা মূলত প্রধান দুটি স্ট্র্যাটেজিক পয়েন্টে অবস্থান করে: **Carotid Sinus** (যা মস্তিষ্কে রক্ত সরবরাহের ধমনীতে থাকে) এবং **Aortic Arch** (যা মহাধমনীর বাঁকে থাকে)।
 </p>
 
+[attachment_0](attachment)
+
 <div class="flow-box">
-
-BP বাড়ে → arterial wall stretch বাড়ে → baroreceptor বেশি signal পাঠায়
-
+  রক্তচাপ বৃদ্ধি ($BP \uparrow$) ➔ ধমনীর প্রাচীরের টান বৃদ্ধি ➔ ব্যারোরেসেপ্টর থেকে দ্রুত গতিতে অ্যাকশন পটেনশিয়াল সংকেত মস্তিষ্কে প্রেরণ
 </div>
 
 <div class="flow-box">
-
-BP কমে → stretch কমে → signal কমে যায়
-
+  রক্তচাপ হ্রাস ($BP \downarrow$) ➔ ধমনীর প্রাচীরের টান হ্রাস ➔ ব্যারোরেসেপ্টর থেকে সংকেত প্রেরণের হার কমে যাওয়া
 </div>
 
 <div class="highlight-box">
-
-**Practical Perspective:**  
-তুমি যখন হঠাৎ দাঁড়াও → BP সাময়িকভাবে কমে → baroreceptor detect করে → brain দ্রুত response দেয় → মাথা ঘোরা প্রতিরোধ হয়।
-
+  <strong>বাস্তব জীবনের রূপক (Metaphor):</strong> ব্যারোরেসেপ্টর হলো আপনার বাড়ির পানির লাইনে থাকা 'প্রেসার ভালভ' বা ওয়াটার প্রেশার গেজের মতো। চাপ বাড়লে বা কমলে সে সাথে সাথে মেইন কন্ট্রোল রুমে সিগন্যাল পাঠিয়ে পাম্পের স্পিড নিয়ন্ত্রণ করে।
 </div>
 
 ---
 
-### ৩. Autonomic Nervous System (ANS)
-
-| System | Function |
-|---|---|
-| Sympathetic | Fight or Flight → heart rate বাড়ায় |
-| Parasympathetic | Rest and Digest → heart rate কমায় |
-
-<div class="highlight-box">
-
-Deep breathing, meditation এবং vagus nerve stimulation → heart rate কমায় → BP কমে।
-
-</div>
-
----
-
-### ৪. Failure of Regulation
-
-<div class="highlight-box">
-
-Chronic hypertension এ baroreceptor “reset” হয়ে যায় এবং দীর্ঘদিনের উচ্চ BP কে normal হিসেবে ধরে নেয়।
-
-</div>
-
+### ৩. Failure of Regulation: যখন সিস্টেম হ্যাক হয়
 <p>
-দীর্ঘদিন অতিরিক্ত লবণ, মানসিক চাপ, অনিয়মিত জীবনযাপন এবং inactivity → BP স্থায়ীভাবে বাড়িয়ে দেয়।
+যদি এই রিফ্লেক্স এতটা নিখুঁত হয়, তবে মানুষের উচ্চ রক্তচাপ বা ক্রনিক হাইপারটেনশন কেন হয়? 
 </p>
+<div class="highlight-box">
+  <strong>The Resetting Phenomenon:</strong> দীর্ঘদিন অতিরিক্ত লবণ গ্রহণ, স্থূলতা, মানসিক চাপ এবং কায়িক শ্রম না করার ফলে যখন রক্তচাপ অনবরত বেশি থাকে, তখন ব্যারোরেসেপ্টরগুলো তাদের সেন্সিটিভিটি হারিয়ে ফেলে। তারা এই উচ্চ রক্তচাপকেই নতুন 'Normal Set-point' হিসেবে "Reset" করে নেয়। ফলে সিস্টেমটি আর উচ্চ রক্তচাপ কমাতে রেসপন্স করে না।
+</div>
 
 ---
 
 ## ✅ Learning Outcomes
 
 <ul>
-<li>Baroreceptor reflex কে একটি <b>Negative Feedback Control System</b> হিসেবে ব্যাখ্যা করতে পারবে</li>
-
-<li>Blood pressure পরিবর্তনের সাথে brain ও nervous system-এর সম্পর্ক বুঝতে পারবে</li>
-
-<li>নিজের lifestyle modify করে BP control করার ধারণা অর্জন করবে</li>
+  <li>Baroreceptor reflex কে একটি নিখুঁত <strong>Negative Feedback Control System</strong> হিসেবে গ্রাফ ও ফ্লোচার্টের সাহায্যে ব্যাখ্যা করতে পারবে।</li>
+  <li>রক্তচাপের তাৎক্ষণিক পরিবর্তনে ক্রেনিয়াল নার্ভ (Cranial Nerves) এবং অটোনমিক নার্ভাস সিস্টেমের নিউরাল পাথওয়ে ডিকোড করতে পারবে।</li>
+  <li>অ্যানাফাইল্যাক্সিস বা শক-এর সময় কীভাবে শরীর রক্তচাপ ধরে রাখার আপ্রাণ চেষ্টা করে, তা চিকিৎসাবিজ্ঞানের আলোকে বিশ্লেষণ করতে পারবে।</li>
 </ul>
 
 </div>
@@ -278,52 +253,32 @@ Chronic hypertension এ baroreceptor “reset” হয়ে যায় এবং 
 
 <div class="section-card">
 
-# 🧠 Neural Control of Blood Pressure
+# 🧠 Neural Control of Blood Pressure: কন্ট্রোল রুমের ভেতরের গল্প
 
 <p>
-রক্তচাপ নিয়ন্ত্রণের প্রধান কেন্দ্র হলো <b>Medulla Oblongata</b>, যা brainstem-এর অংশ।
-</p>
-
-<p>
-এখানে একটি বিশেষ কেন্দ্র থাকে যাকে বলা হয়:
+রক্তচাপ নিয়ন্ত্রণের মূল প্রসেসর বা সুপ্রিম কন্ট্রোল রুমটি হলো আমাদের ব্রেনস্টেমের <strong>Medulla Oblongata</strong>। এর ভেতরে একটি বিশেষ নেটওয়ার্ক থাকে, যাকে বলা হয়:
 </p>
 
 <div class="formula-box">
 
-Cardiovascular Center
+Cardiovascular Center (CVC)
 
 </div>
+
+[attachment_1](attachment)
 
 ---
 
 ## 🔄 Step-by-Step Neural Pathway
 
-### 📍 Step 1: Detection (Baroreceptors)
-
-<ul>
-<li>Carotid sinus → Glossopharyngeal nerve (CN IX)</li>
-<li>Aortic arch → Vagus nerve (CN X)</li>
-</ul>
-
-<div class="flow-box">
-
-BP বাড়লে → stretch বাড়ে → বেশি signal
-
-</div>
-
-<div class="flow-box">
-
-BP কমলে → stretch কমে → কম signal
-
-</div>
+### 📍 Step 1: Detection & Sensation (তথ্য সংগ্রহ)
+* **Carotid Sinus** থেকে সংকেত নিয়ে রওনা দেয় **Glossopharyngeal Nerve (IX ক্রেনিয়াল নার্ভ)**।
+* **Aortic Arch** থেকে সংকেত নিয়ে রওনা দেয় **Vagus Nerve (X ক্রেনিয়াল নার্ভ)**।
 
 ---
 
-### 📍 Step 2: Signal Transmission
-
-<p>
-Baroreceptor থেকে signal যায়:
-</p>
+### 📍 Step 2: Signal Integration (তথ্য বিশ্লেষণ)
+এই দুই স্নায়ু দিয়ে আসা সমস্ত ডেটা বা অ্যাকশন পটেনশিয়াল মেডুলার একটি বিশেষ নিউক্লিয়াসে জমা হয়, যার নাম:
 
 <div class="formula-box">
 
@@ -331,42 +286,28 @@ Nucleus Tractus Solitarius (NTS)
 
 </div>
 
+এখানেই সিদ্ধান্ত নেওয়া হয় যে বর্তমান রক্তচাপ শরীরের জন্য বেশি নাকি কম।
+
+---
+
+### 📍 Step 3: Effector Response (বাস্তবায়ন)
+
+[attachment_2](attachment)
+
+#### 🔻 পরিস্থিতি ক: যখন রক্তচাপ হঠাৎ বেড়ে যায় ($BP \uparrow$)
 <p>
-এটি medulla-তে অবস্থিত integration center।
+মস্তিষ্ক রক্তচাপ কমাতে দুটি সমান্তরাল আদেশ জারি করে:
 </p>
+1. **Parasympathetic Activation:** ভেগাস স্নায়ুর মাধ্যমে হৃদপিণ্ডের SA নোডে <em>Acetylcholine</em> হরমোন রিলিজ করে, ফলে হৃদস্পন্দন কমে যায় (**Bradycardia**)।
+2. **Sympathetic Inhibition:** রক্তনালীর চারপাশের মসৃণ পেশির ওপর থেকে সিমপ্যাথেটিক টান সরিয়ে নেওয়া হয়, ফলে রক্তনালী প্রসারিত হয় (**Vasodilation**)। 
+<br> 결과적으로, রক্তচাপ দ্রুত হ্রাস পেয়ে স্বাভাবিক হয়ে আসে।
 
----
-
-### 📍 Step 3: Brain Integration
-
-| BP Condition | Brain Response |
-|---|---|
-| BP বাড়লে | Parasympathetic activate + Sympathetic inhibit |
-| BP কমলে | Sympathetic activate + Parasympathetic inhibit |
-
----
-
-### 📍 Step 4: Effector Response
-
-## 🔻 BP বাড়লে
-
-<ul>
-<li>Vagus nerve activate হয়</li>
-<li>Heart rate কমে (Bradycardia)</li>
-<li>Blood vessel dilate হয়</li>
-<li>BP কমে যায়</li>
-</ul>
-
----
-
-## 🔺 BP কমলে
-
-<ul>
-<li>Sympathetic nerve activate হয়</li>
-<li>Heart rate বাড়ে (Tachycardia)</li>
-<li>Vasoconstriction হয়</li>
-<li>BP বাড়ে</li>
-</ul>
+#### 🔺 পরিস্থিতি খ: যখন রক্তচাপ হঠাৎ কমে যায় ($BP \downarrow$)
+<p>
+যেমন আপনি শোয়া থেকে হঠাৎ উঠে দাঁড়ালে অভিকর্ষের টানে রক্ত নিচের দিকে নেমে যায় এবং ক্ষণস্থায়ী $BP$ ড্রপ করে। তখন মস্তিষ্ক উল্টো ব্যবস্থা নেয়:
+</p>
+1. **Sympathetic Activation:** এটি হৃদস্পন্দন ও স্ট্রোক ভলিউম বাড়িয়ে দেয় (**Tachycardia**)।
+2. **Vasoconstriction:** পেরিফেরাল রক্তনালীগুলোকে সংকুচিত করে রক্তকে দ্রুত ওপরের দিকে অর্থাৎ মস্তিষ্ক ও হার্টে পুশ করে।
 
 </div>
 
@@ -376,71 +317,25 @@ Nucleus Tractus Solitarius (NTS)
 
 # 🧪 LALA: Learning Activities & Learning Applications
 
-## 🔍 Learning Activities
+## 🔍 Learning Activities (ক্রিটিক্যাল ল্যাব জোন)
 
 <div class="activity-grid">
 
-<div class="activity-card">
+  <div class="activity-card">
+    <h3>🧍 Orthostatic Self-Experiment</h3>
+    <p>৫ মিনিট শান্ত হয়ে বিছানায় শুয়ে থাকো। এবার নিজের Pulse Rate মাপো। এরপর হঠাৎ করে বিছানা থেকে সোজা দাঁড়িয়ে যাও এবং তাৎক্ষণিক Pulse Rate নাও। দাঁড়িয়ে যাওয়ার প্রথম কয়েক সেকেন্ডে হৃদস্পন্দন কেন হঠাৎ বেড়ে গেল? এটিই হলো তোমার ব্যারোরেসেপ্টর রিফ্লেক্সের লাইভ মেকানিক্যাল ডেমোনেস্ট্রেশন!</p>
+  </div>
 
-### 🧍 Self Experiment
+  <div class="activity-card">
+    <h3>🚑 ক্লিনিক্যাল কেস অ্যানালাইসিস</h3>
+    <p>একজন ব্যক্তি সড়ক দুর্ঘটনায় প্রচুর রক্ত হারালে (Hypovolemic Shock) তার নাড়ির স্পন্দন বা Pulse কেন অত্যন্ত দ্রুত (Thready Pulse) কিন্তু দুর্বল হয়ে যায়? কারণ শরীর রক্তচাপ ধরে রাখতে সিমপ্যাথেটিক ওভারড্রাইভ তৈরি করে হার্ট রেট সর্বোচ্চ বাড়িয়ে দেয়।</p>
+  </div>
 
-৫ মিনিট বসে pulse count করো → হঠাৎ দাঁড়াও → আবার pulse measure করো → পার্থক্য observe করো।
-
-👉 এটি baroreceptor reflex-এর live demonstration।
-
-</div>
-
-<div class="activity-card">
-
-### 🚑 Case Analysis
-
-একজন ব্যক্তি accident-এ রক্ত হারালে কেন BP হঠাৎ পড়ে যায়?
-
-👉 কারণ blood volume কমে যায় এবং sympathetic overdrive তৈরি হয়।
-
-</div>
-
-<div class="activity-card">
-
-### 🧠 Concept Mapping
-
-নিজে একটি flow chart তৈরি করো:
-
-Stimulus → Receptor → Brain → Effector → Response
-
-</div>
-
-</div>
-
----
-
-## ⚙️ Learning Applications
-
-<div class="activity-grid">
-
-<div class="activity-card">
-
-### 🏃 Exercise Physiology
-
-Exercise-এর সময় sympathetic system BP বাড়ায় এবং exercise শেষে parasympathetic system BP restore করে।
-
-</div>
-
-<div class="activity-card">
-
-### 🏥 Clinical Insight
-
-Hypertension রোগীদের baroreceptor sensitivity কম থাকে।
-
-</div>
-
-<div class="activity-card">
-
-### 🌿 Lifestyle Medicine
-
-Sleep, stress management, healthy diet এবং meditation → ANS balance করে → BP control করতে সাহায্য করে।
-
-</div>
+  <div class="activity-card">
+    <h3>🧠 অ্যালগরিদম ম্যাপিং</h3>
+    <p>তোমার খাতায় একটি সিস্টেম বা ইঞ্জিনিয়ারিং অ্যালগরিদম ডিজাইন করো:<br>
+    <code>Stimulus (চাপ) ➔ Sensor (Baroreceptor) ➔ Input Cable (CN IX, X) ➔ Processor (Medulla) ➔ Output Cable (ANS) ➔ Target (Heart/Vessels)</code></p>
+  </div>
 
 </div>
 
@@ -450,18 +345,17 @@ Sleep, stress management, healthy diet এবং meditation → ANS balance ক�
 
 <div class="section-card">
 
-# 💡 Synaptic Bridge Thinking
+# 💡 Synaptic Bridge Thinking (উচ্চতর চিন্তার খোরাক)
 
-## 🧠 Critical Thinking
+### ১. ক্যারোটিড সাইনাস ম্যাসাজ (Carotid Sinus Massage) কীভাবে একজন রোগীকে অজ্ঞান করে দিতে পারে?
+<p>
+গলার দুই পাশে থাকা ক্যারোটিড ধমনীর ওপর যদি হাত দিয়ে জোরে চেপে ধরে রাখা বা ম্যাসাজ করা হয়, তবে ব্যারোরেসেপ্টরগুলো যান্ত্রিক চাপের কারণে মনে করে শরীরের রক্তচাপ বুঝি আকাশচুম্বী হয়ে গেছে! তারা ভুল সংকেত পাঠায় মেডুলায়। মস্তিষ্ক তৎক্ষণাৎ হার্ট রেট ও রক্তচাপ মারাত্মকভাবে কমিয়ে দেয়। এর ফলে মস্তিষ্কে হঠাৎ রক্ত সরবরাহ কমে যায় এবং ব্যক্তি সাময়িকভাবে জ্ঞান হারিয়ে ফেলতে পারে (Syncope)।
+</p>
 
-### ১.
-যদি baroreceptor reflex সম্পূর্ণভাবে বন্ধ হয়ে যায়, তাহলে হঠাৎ দাঁড়ানোর সময় কী সমস্যা হতে পারে?
-
-### ২.
-কেন দীর্ঘদিন hypertension থাকলে baroreceptor sensitivity কমে যায়?
-
-### ৩.
-Meditation এবং breathing exercise কীভাবে vagus nerve-এর মাধ্যমে heart rate কমায়?
+### ২. ধীর ও গভীর শ্বাস-প্রশ্বাস (Deep Breathing) কীভাবে রক্তচাপ কমায়?
+<p>
+যখন আমরা গভীর এবং দীর্ঘ শ্বাস নিই, তখন তা আমাদের ফুসফুসের স্ট্রেচ রেসেপ্টর এবং ভেগাস স্নায়ুকে উদ্দীপিত করে। এটি পরোক্ষভাবে মেডুলার প্যারাসিমপ্যাথেটিক সিস্টেমকে ট্রিগার করে এবং সিমপ্যাথেটিক সিস্টেমকে শান্ত করে। ফলে হৃদস্পন্দন ও রক্তচাপ কমে যায়। এই কারণেই ধ্যান বা মেডিটেশন হাইপারটেনশন নিয়ন্ত্রণে এত কার্যকর।
+</p>
 
 </div>
 
@@ -472,68 +366,27 @@ Meditation এবং breathing exercise কীভাবে vagus nerve-এর �
 # 📊 Quick Summary Table
 
 <table class="summary-table">
-
-<tr>
-<th>Component</th>
-<th>Function</th>
-</tr>
-
-<tr>
-<td>Baroreceptor</td>
-<td>Stretch detect করে</td>
-</tr>
-
-<tr>
-<td>Carotid sinus</td>
-<td>BP sensing region</td>
-</tr>
-
-<tr>
-<td>Aortic arch</td>
-<td>BP monitoring</td>
-</tr>
-
-<tr>
-<td>Medulla oblongata</td>
-<td>Integration center</td>
-</tr>
-
-<tr>
-<td>Sympathetic system</td>
-<td>BP বাড়ায়</td>
-</tr>
-
-<tr>
-<td>Parasympathetic system</td>
-<td>BP কমায়</td>
-</tr>
-
-</table>
-
-</div>
-
----
-
-<div class="section-card">
-
-# 📚 References
-
-<ul>
-
-<li>Guyton and Hall Textbook of Medical Physiology</li>
-
-<li>Ganong’s Review of Medical Physiology</li>
-
-<li>Biology 2nd Paper — Gazi Azmal & Asmat</li>
-
-<li>Principles of Neural Science — Eric Kandel</li>
-
-</ul>
-
-</div>
-
-<p class="footer-line">
-🧠 Learning Biology for Life | Synaptic Series
-</p>
-
-</div>
+  <thead>
+    <tr style="background-color: #dbeafe;">
+      <th>শারীরবৃত্তীয় উপাদান</th>
+      <th>ট্যাক্সোনমিক ও কন্ট্রোল সিস্টেম ফাংশন</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Baroreceptor</strong></td>
+      <td>রক্তনালীর প্রাচীরের যান্ত্রিক টান ও প্রসারন (Stretch) পরিমাপক সেন্সর।</td>
+    </tr>
+    <tr>
+      <td><strong>Carotid Sinus</strong></td>
+      <td>মস্তিষ্কে যাওয়ার প্রধান রক্তনালীর গোড়ায় অবস্থিত $BP$ মনিটরিং স্টেশন।</td>
+    </tr>
+    <tr>
+      <td><strong>Aortic Arch</strong></td>
+      <td>সিস্টেমিক সংবহনের শুরুতে মহাধমনীর বাঁকে অবস্থিত মূল প্রেসার গেজ।</td>
+    </tr>
+    <tr>
+      <td><strong>CN IX & CN X</strong></td>
+      <td>গ্লসোফ্যারেঞ্জিয়াল ও ভেগাস স্নায়ু—যা তথ্য বহনের নিউরাল ক্যাবল।</td>
+    </tr>
+    <tr>
