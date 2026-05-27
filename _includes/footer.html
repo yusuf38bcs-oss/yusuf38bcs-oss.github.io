@@ -1,30 +1,48 @@
-<footer style="background:#020617;padding:5rem 2rem;border-top:1px solid rgba(255,255,255,0.05);color:#64748b;font-size:0.95rem;">
+<footer style="background:#020617;padding:5rem 2rem;border-top:1px solid rgba(255,255,255,0.05);color:#64748b;font-size:0.95rem;position:relative;overflow:hidden;">
 
-  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:3rem;">
+  <!-- Neural Background Layer -->
+  <div style="position:absolute;inset:0;background:
+    radial-gradient(circle at top left, rgba(0,255,220,0.06), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(0,120,255,0.08), transparent 35%);
+    pointer-events:none;">
+  </div>
+
+  <div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:3rem;">
 
     <!-- Brand / Mission -->
-    <div style="max-width:420px;text-align:left;">
-      <h3 style="color:#ffffff;margin:0 0 0.85rem 0;font-size:1.2rem;font-weight:700;">
+    <div style="max-width:420px;text-align:left;flex:1 1 280px;">
+
+      <h3 style="color:#ffffff;margin:0 0 0.85rem 0;font-size:1.3rem;font-weight:800;line-height:1.2;">
         Neural Educational Ecosystem
       </h3>
 
-      <p style="line-height:1.7;margin:0;color:#94a3b8;">
-        BCS Education Cadre Management Blueprint focused on multidisciplinary systems thinking,
-        behavioral alignment, reflective pedagogy, digital learning architecture,
+      <p style="line-height:1.8;margin:0;color:#94a3b8;">
+        BCS Education Cadre Management Blueprint focused on
+        multidisciplinary systems thinking,
+        behavioral alignment,
+        reflective pedagogy,
+        digital learning architecture,
         and AI-assisted educational transformation.
       </p>
+
+      <div style="margin-top:1rem;color:rgba(255,255,255,0.25);font-size:1.1rem;">
+        ● ━ ◯
+      </div>
+
     </div>
 
     <!-- Ecosystem Navigation -->
-    <div style="text-align:left;min-width:220px;">
-      <h4 style="color:#ffffff;margin:0 0 0.85rem 0;text-transform:uppercase;font-size:0.78rem;letter-spacing:0.08em;">
+    <div style="text-align:left;min-width:220px;flex:1 1 220px;">
+
+      <h4 style="color:#4cf6d2;margin:0 0 0.85rem 0;text-transform:uppercase;font-size:0.78rem;letter-spacing:0.08em;font-weight:700;">
         Ecosystem Resources
       </h4>
 
       <ul style="list-style:none;padding:0;margin:0;line-height:2.2;">
+
         <li>
           <a href="{{ '/' | relative_url }}"
-             style="color:#94a3b8;text-decoration:none;">
+             style="color:#94a3b8;text-decoration:none;transition:0.2s;">
              Platform Home Hub
           </a>
         </li>
@@ -44,17 +62,27 @@
         </li>
 
         <li>
+          <a href="{{ '/socratic/' | relative_url }}"
+             style="color:#94a3b8;text-decoration:none;">
+             Socratic Thinking Systems
+          </a>
+        </li>
+
+        <li>
           <a href="{{ '/about/' | relative_url }}"
              style="color:#94a3b8;text-decoration:none;">
              About & Author
           </a>
         </li>
+
       </ul>
+
     </div>
 
     <!-- Legal Section -->
-    <div style="text-align:left;min-width:220px;">
-      <h4 style="color:#ffffff;margin:0 0 0.85rem 0;text-transform:uppercase;font-size:0.78rem;letter-spacing:0.08em;">
+    <div style="text-align:left;min-width:220px;flex:1 1 220px;">
+
+      <h4 style="color:#4cf6d2;margin:0 0 0.85rem 0;text-transform:uppercase;font-size:0.78rem;letter-spacing:0.08em;font-weight:700;">
         Legal & Policies
       </h4>
 
@@ -87,16 +115,46 @@
              Disclaimer
           </a>
         </li>
+
       </ul>
+
+    </div>
+
+    <!-- Newsletter -->
+    <div style="text-align:left;min-width:240px;flex:1 1 240px;">
+
+      <h4 style="color:#4cf6d2;margin:0 0 0.85rem 0;text-transform:uppercase;font-size:0.78rem;letter-spacing:0.08em;font-weight:700;">
+        Neural Learning Network
+      </h4>
+
+      <p style="line-height:1.8;margin:0 0 1.2rem 0;color:#94a3b8;">
+        Receive biology notes, AI learning updates,
+        reflective educational insights,
+        and interdisciplinary knowledge systems.
+      </p>
+
+      <button onclick="openBrevoModal()"
+        style="background:linear-gradient(135deg,#49f7e1 0%,#59b7ff 100%);
+               border:none;
+               border-radius:999px;
+               padding:14px 22px;
+               color:#02101f;
+               font-weight:800;
+               cursor:pointer;
+               transition:0.3s ease;">
+        Subscribe to Newsletter
+      </button>
+
     </div>
 
   </div>
 
   <!-- Bottom Copyright -->
-  <div style="max-width:1200px;margin:3rem auto 0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.05);text-align:center;font-size:0.82rem;">
+  <div style="position:relative;z-index:2;max-width:1200px;margin:3rem auto 0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.05);text-align:center;font-size:0.82rem;">
 
     <p style="margin:0;color:#64748b;line-height:1.8;">
-      &copy; 2026 Learning Biology For Life —
+      &copy; {{ site.time | date: '%Y' }}
+      Learning Biology For Life —
       Powered by Structured Educational Architecture,
       AI-Assisted Knowledge Systems,
       and Reflective Digital Pedagogy.
@@ -105,3 +163,57 @@
   </div>
 
 </footer>
+
+<!-- Brevo Popup Modal -->
+<div id="brevoPopup"
+     style="display:none;position:fixed;z-index:999999;inset:0;background:rgba(0,0,0,0.82);backdrop-filter:blur(4px);">
+
+  <div style="position:relative;width:min(92%,620px);margin:8vh auto;padding:1rem;background:#ffffff;border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,0.42);">
+
+    <span onclick="closeBrevoModal()"
+      style="position:absolute;top:-12px;right:-12px;width:34px;height:34px;border-radius:50%;background:#000;color:#fff;text-align:center;line-height:34px;cursor:pointer;font-size:20px;font-weight:bold;">
+      &times;
+    </span>
+
+    <iframe
+      width="100%"
+      height="380"
+      src="{{ site.brevo.form_url }}"
+      frameborder="0"
+      scrolling="auto"
+      allowfullscreen
+      style="display:block;border:none;border-radius:12px;">
+    </iframe>
+
+  </div>
+
+</div>
+
+<script>
+
+function openBrevoModal() {
+
+  document.getElementById('brevoPopup').style.display = 'block';
+
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBrevoModal() {
+
+  document.getElementById('brevoPopup').style.display = 'none';
+
+  document.body.style.overflow = 'auto';
+}
+
+window.onclick = function(event) {
+
+  const modal =
+    document.getElementById('brevoPopup');
+
+  if (event.target === modal) {
+
+    closeBrevoModal();
+  }
+}
+
+</script>
