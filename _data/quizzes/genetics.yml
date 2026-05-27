@@ -1,0 +1,22 @@
+quiz_title: "Genetics & Laws of Inheritance Quiz"
+time_limit_mins: 15
+questions:
+  - id: 1
+    question_text: "Which phenotypic ratio represents dominant epistasis in classical genetic inheritance interactions?"
+    options:
+      - a: "9:3:3:1"
+      - b: "12:3:1"
+      - c: "9:7"
+      - d: "15:1"
+    correct_key: "b"
+    explanation: "Dominant epistasis occurs when a dominant allele at one genetic locus actively masks the phenotypic expression of alleles at a completely separate locus, changing the standard Mendelian F2 ratio from 9:3:3:1 to 12:3:1."
+
+  - id: 2
+    question_text: "During DNA replication, which enzyme is responsible for relieving torsional strain and structural overwinding ahead of the replication fork?"
+    options:
+      - a: "DNA Polymerase III"
+      - b: "RNA Primase"
+      - c: "DNA Topoisomerase (Gyrase)"
+      - d: "DNA Ligase"
+    correct_key: "c"
+    explanation: "Topoisomerases introduce temporary single or double-stranded breaks into the phosphodiester backbone of the DNA helix ahead of the replication fork to safely relieve structural torsional strain caused by helicase unwinding."
