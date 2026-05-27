@@ -53,6 +53,10 @@ author:
   bio: "Lecturer, Dept of Zoology | 38th BCS Education Cadre Officer"
   location: "Bangladesh"
 
+# --- BREVO NEWSLETTER ENGINE ---
+brevo:
+  form_url: "https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ=="
+
 # --- DEFENSIVE ENGINE EXCLUSION MATRIX ---
 exclude:
   - Gemfile
