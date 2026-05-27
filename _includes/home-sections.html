@@ -1,22 +1,22 @@
-<section aria-label="Ecosystem Core Pillars" style="padding: 5rem 1.5rem; background: #030712;">
+<section aria-label="Ecosystem Core Pillars" style="padding: 5rem 1rem; background: #030712;">
   <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="color: #ffffff; font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 3rem; letter-spacing: -0.03em;">Ecosystem <span style="color: #00d4b2;">Core Pillars</span></h2>
+    <h2 style="color: #ffffff; font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 3.5rem; letter-spacing: -0.03em;">Ecosystem <span style="color: #00d4b2;">Core Pillars</span></h2>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; width: 100%;">
-      <div style="background: #0f172a; border: 1px solid rgba(0, 212, 178, 0.15); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
-        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;" aria-hidden="true">🧬</span>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2rem; width: 100%;">
+      <div class="pillar-card" style="background: #0f172a; border: 1px solid rgba(0, 212, 178, 0.15); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); transition: transform 0.3s ease;">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1.25rem;" aria-hidden="true">🧬</span>
         <h3 style="color: #ffffff; font-size: 1.35rem; margin: 0 0 0.75rem 0; font-weight: 700;">Biology Pillar</h3>
         <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0;">Molecular systems, ecology, functional physiology, genetics, and modern zoological tracking structures.</p>
       </div>
 
-      <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.03); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
-        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;" aria-hidden="true">🌍</span>
+      <div class="pillar-card" style="background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.03); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); transition: transform 0.3s ease;">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1.25rem;" aria-hidden="true">🌍</span>
         <h3 style="color: #ffffff; font-size: 1.35rem; margin: 0 0 0.75rem 0; font-weight: 700;">Life Practices</h3>
         <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0;">Weaving professional biological models directly into structural civilization frameworks, active ethics, and reality systems.</p>
       </div>
 
-      <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.03); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
-        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;" aria-hidden="true">🧠</span>
+      <div class="pillar-card" style="background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.03); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); transition: transform 0.3s ease;">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1.25rem;" aria-hidden="true">🧠</span>
         <h3 style="color: #ffffff; font-size: 1.35rem; margin: 0 0 0.75rem 0; font-weight: 700;">Socratic Learning</h3>
         <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0;">Reflective questioning schemas, analytical critical thinking tracks, and deeper logic generation platforms.</p>
       </div>
@@ -24,65 +24,67 @@
   </div>
 </section>
 
-<section aria-label="Latest Publications Feed" style="padding: 5rem 1.5rem; background: #070a13; border-top: 1px solid rgba(255,255,255,0.02);">
+<section aria-label="Latest Publications Feed" style="padding: 5rem 1rem; background: #070a13; border-top: 1px solid rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.02);">
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
       <h2 style="color: #ffffff; font-size: 1.8rem; font-weight: 800; border-left: 4px solid #00d4b2; padding-left: 12px; margin: 0; letter-spacing: -0.02em;">Latest Explorations</h2>
-      <a href="{{ '/biology/' | relative_url }}" style="color: #00d4b2; text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Master Arrays →</a>
+      <a href="{{ '/biology/' | relative_url }}" style="color: #00d4b2; text-decoration: none; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.02em;">View Master Arrays →</a>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 2rem;">
       {% assign elements = site.biology | concat: site.socratic | concat: site.life-practices | sort: 'date' | reverse %}
       {% for entry in elements limit: 3 %}
-        <article style="background: #0f172a; padding: 2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.02); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-          <div>
-            <span style="color: #64748b; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 0.5rem; letter-spacing: 0.05em;">{{ entry.collection }} Stream</span>
-            <h3 style="margin: 0 0 0.75rem 0;"><a href="{{ entry.url | relative_url }}" style="color: #00d4b2; text-decoration: none; font-size: 1.25rem; font-weight: 700;">{{ entry.title }}</a></h3>
-            <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin: 0 0 1.5rem 0;">{{ entry.excerpt | strip_html | truncate: 130 }}</p>
+        <article style="background: #0f172a; padding: 2.25rem 2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.02); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 25px rgba(0,0,0,0.2); transition: box-shadow 0.2s ease;">
+          <div style="margin-bottom: 1.5rem;">
+            <span style="color: #64748b; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 0.6rem; letter-spacing: 0.08em;">{{ entry.collection | replace: '-', ' ' }} Stream</span>
+            <h3 style="margin: 0 0 0.85rem 0; line-height: 1.35;"><a href="{{ entry.url | relative_url }}" style="color: #00d4b2; text-decoration: none; font-size: 1.3rem; font-weight: 700;">{{ entry.title }}</a></h3>
+            <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.55; margin: 0;">{{ entry.excerpt | strip_html | truncate: 130 }}</p>
           </div>
-          <a href="{{ entry.url | relative_url }}" aria-label="Explore read folder string: {{ entry.title }}" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; display: block;">Read Document Track →</a>
+          <a href="{{ entry.url | relative_url }}" aria-label="Explore document track: {{ entry.title }}" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.25rem; display: inline-flex; align-items: center; gap: 6px;">Read Document Track <span style="color: #00d4b2;">→</span></a>
         </article>
       {% else %}
-        <div style="grid-column: 1/-1; text-align: center; color: #4b5563; padding: 2rem 0;">
-          <p>Ecosystem archive indexes updating. Active post parameters compilation running.</p>
+        <div style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 3rem 0; background: #0f172a; border-radius: 8px; border: 1px dashed rgba(255,255,255,0.05);">
+          <p style="margin: 0; font-size: 1rem;">Ecosystem archive indexes updating. Active post parameters compilation running.</p>
         </div>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<section aria-label="Interactive Learning Toolsets Hub" style="padding: 5rem 1.5rem; background: #030712; border-top: 1px solid rgba(255,255,255,0.02);">
+<section aria-label="Interactive Learning Toolsets Hub" style="padding: 5rem 1rem; background: #030712;">
   <div style="max-width: 1200px; margin: 0 auto;">
     <h2 style="color: #ffffff; font-size: 1.8rem; font-weight: 800; text-align: center; margin-bottom: 0.75rem; letter-spacing: -0.02em;">Cognitive <span style="color: #00d4b2;">AI Lab Track</span></h2>
-    <p style="color: #94a3b8; font-size: 1.05rem; text-align: center; margin: 0 auto 3.5rem auto; max-width: 600px; line-height: 1.6;">Deploy clean evaluation instruments locally mapped to processing files.</p>
+    <p style="color: #94a3b8; font-size: 1.05rem; text-align: center; margin: 0 auto 3.5rem auto; max-width: 600px; line-height: 1.6;">Deploy clean evaluation instruments locally mapped to production asset scripts.</p>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-      <div style="background: linear-gradient(145deg, #0f172a, #090d16); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); text-align: center; box-shadow: 0 4px 25px rgba(0,0,0,0.2);">
-        <div style="background: rgba(0, 212, 178, 0.1); width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem auto; color: #00d4b2; font-weight: 800; font-size: 1.1rem;">MI</div>
-        <h3 style="color: #ffffff; font-size: 1.2rem; margin: 0 0 0.5rem 0; font-weight: 700;">Multiple Intelligences</h3>
-        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0 0 1.5rem 0;">Examine variation limits across learning spectra to optimize alignment maps.</p>
-        <a href="{{ '/socratic/assessments/mi-explorer/' | relative_url }}" style="color: #00d4b2; font-weight: 600; text-decoration: none; font-size: 0.9rem;">Launch Evaluation Model →</a>
+      <div style="background: linear-gradient(145deg, #0f172a, #090d16); padding: 2.25rem 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); text-align: center; box-shadow: 0 4px 25px rgba(0,0,0,0.25);">
+        <div style="background: rgba(0, 212, 178, 0.08); width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; color: #00d4b2; font-weight: 800; font-size: 1.1rem; border: 1px solid rgba(0, 212, 178, 0.15);">MI</div>
+        <h3 style="color: #ffffff; font-size: 1.25rem; margin: 0 0 0.5rem 0; font-weight: 700;">Multiple Intelligences</h3>
+        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.55; margin: 0 0 1.75rem 0;">Examine variation limits across learning spectra to optimize alignment maps.</p>
+        <a href="{{ '/socratic/assessments/mi-explorer/' | relative_url }}" style="color: #00d4b2; font-weight: 700; text-decoration: none; font-size: 0.9rem; letter-spacing: 0.01em;">Launch Evaluation Model →</a>
       </div>
 
-      <div style="background: linear-gradient(145deg, #0f172a, #090d16); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); text-align: center; box-shadow: 0 4px 25px rgba(0,0,0,0.2);">
-        <div style="background: rgba(0, 212, 178, 0.1); width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem auto; color: #00d4b2; font-weight: 800; font-size: 1.1rem;">📊</div>
-        <h3 style="color: #ffffff; font-size: 1.2rem; margin: 0 0 0.5rem 0; font-weight: 700;">Zoology Lecture Syllabus</h3>
-        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0 0 1.5rem 0;">Access expandable, high-speed breakdown paths tracking cadre study items.</p>
-        <span style="color: #4b5563; font-weight: 600; font-size: 0.9rem; cursor: not-allowed;">Matrix Syncing</span>
+      <div style="background: linear-gradient(145deg, #0f172a, #090d16); padding: 2.25rem 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); text-align: center; box-shadow: 0 4px 25px rgba(0,0,0,0.25);">
+        <div style="background: rgba(0, 212, 178, 0.08); width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; color: #00d4b2; font-weight: 800; font-size: 1.1rem; border: 1px solid rgba(0, 212, 178, 0.15);">📊</div>
+        <h3 style="color: #ffffff; font-size: 1.25rem; margin: 0 0 0.5rem 0; font-weight: 700;">Zoology Lecture Syllabus</h3>
+        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.55; margin: 0 0 1.75rem 0;">Access expandable, high-speed breakdown paths tracking cadre study items.</p>
+        <span style="color: #4b5563; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.02em;">Matrix Syncing Active</span>
       </div>
     </div>
   </div>
 </section>
 
-<section aria-label="Ecosystem Dispatch Subscription Hub" style="padding: 4.5rem 1.5rem; background: linear-gradient(180deg, #070a13 0%, #030712 100%); border-top: 1px solid rgba(0, 212, 178, 0.12);">
-  <div style="max-width: 650px; margin: 0 auto; text-align: center;">
+<section aria-label="Ecosystem Dispatch Subscription Hub" style="padding: 5rem 1.25rem; background: #070a13; border-top: 1px solid rgba(0, 212, 178, 0.12);">
+  <div style="max-width: 550px; margin: 0 auto; text-align: center;">
     <h2 style="color: #ffffff; font-size: 1.75rem; font-weight: 800; margin: 0 0 0.75rem 0; letter-spacing: -0.02em;">Join the Neural <span style="color: #00d4b2;">Learning Network</span></h2>
-    <p style="color: #94a3b8; font-size: 1rem; margin-bottom: 2rem; line-height: 1.6;">Receive Zoology lesson guides, Socratic models, and structural update tracks directly.</p>
+    <p style="color: #94a3b8; font-size: 1rem; margin-bottom: 2.25rem; line-height: 1.6;">Receive Zoology lesson guides, Socratic models, and structural update tracks directly.</p>
     
-    <form action="#" method="POST" style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; width: 100%;">
-      <label for="newsletter-email-field" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Secure Email Input Area</label>
-      <input type="email" id="newsletter-email-field" required placeholder="Enter secure electronic mailing point" style="background: #0f172a; border: 1px solid rgba(0, 212, 178, 0.25); color: #ffffff; padding: 0.8rem 1.2rem; border-radius: 6px; flex: 1; min-width: 260px; outline: none; font-size: 0.95rem;">
-      <button type="submit" style="background: #00d4b2; color: #020617; font-weight: 700; border: none; padding: 0.8rem 1.75rem; border-radius: 6px; cursor: pointer; font-size: 0.95rem;">Subscribe Hub</button>
+    <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 0.85rem; width: 100%; align-items: center;">
+      <label for="newsletter-email-field" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Secure Email Input Field</label>
+      
+      <input type="email" id="newsletter-email-field" required placeholder="Enter secure electronic mailing point" style="background: #0f172a; border: 1px solid rgba(0, 212, 178, 0.3); color: #ffffff; padding: 0.9rem 1.2rem; border-radius: 6px; width: 100%; max-width: 420px; outline: none; font-size: 0.95rem; text-align: center; box-shadow: inset 0 2px 4px rgba(0,0,0,0.3); -webkit-appearance: none; box-sizing: border-box;">
+      
+      <button type="submit" style="background: #00d4b2; color: #020617; font-weight: 700; border: none; padding: 0.9rem 2.5rem; border-radius: 6px; cursor: pointer; font-size: 0.95rem; width: 100%; max-width: 420px; box-shadow: 0 4px 15px rgba(0,212,178,0.2); transition: background 0.2s; box-sizing: border-box;">Subscribe Hub</button>
     </form>
   </div>
 </section>
