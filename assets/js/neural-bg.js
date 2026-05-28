@@ -1,6 +1,7 @@
 /**
- * Learning Biology For Life - Neural Background Engine
- * High-performance synaptic particle system with Retina support.
+ * Learning Biology For Life - Neural Background Engine (Ecosystem Edition)
+ * High-performance synaptic particle system with Retina optimization,
+ * advanced requestAnimationFrame lifecycle management, and active core power-saving hooks.
  */
 
 (function() {
@@ -14,28 +15,34 @@
       this.ctx = this.canvas.getContext("2d");
       this.particles = [];
       this.ratio = window.devicePixelRatio || 1;
+      this.animationId = null;
+      this.isSuspended = false; // Flag tracking performance state shifts
       
-      // Dynamic Density Scaling
+      // Premium Quantum Vector Settings aligned with your Neon Cyan Accent (#00d4b2)
       this.settings = {
-        count: window.innerWidth < 768 ? 40 : 85,
-        dist: 150,
-        speed: 0.5,
-        dotColor: "rgba(62, 231, 182, 0.8)", // Synapse Glow
-        lineColor: "rgba(124, 92, 255, 0.2)" // Neural Link
+        count: window.innerWidth < 768 ? 25 : 75, // Strict count throttling to secure mobile frames
+        dist: 135,
+        speed: 0.3, // Ultra-slow organic drifting speed for deep reading comfort
+        dotColor: "rgba(0, 212, 178, 0.55)", // Signature Neon Cyan
+        lineColor: "rgba(0, 212, 178, 0.05)"  // Delicate wireframe connect nodes
       };
 
       this.resize();
       this.createParticles();
-      this.animate();
+      this.setupPerformanceHooks();
+      
+      // Trigger native initial layout paint loop
+      this.kickstartRenderLoop();
 
-      window.addEventListener("resize", () => this.debouncedResize());
+      window.addEventListener("resize", () => this.debouncedResize(), { passive: true });
     },
 
     resize() {
+      if (!this.canvas.parentElement) return;
       this.width = this.canvas.parentElement.offsetWidth;
       this.height = this.canvas.parentElement.offsetHeight;
 
-      // Normalize for high-DPI displays
+      // High-DPI Display Normalization Matrix (Retina Shields)
       this.canvas.width = this.width * this.ratio;
       this.canvas.height = this.height * this.ratio;
       this.canvas.style.width = `${this.width}px`;
@@ -48,63 +55,106 @@
       this.resizeTimeout = setTimeout(() => {
         this.resize();
         this.createParticles();
-      }, 250);
+      }, 200);
     },
 
     createParticles() {
       this.particles = [];
-      for (let i = 0; i < this.settings.count; i++) {
+      const particleCount = this.settings.count;
+      
+      for (let i = 0; i < particleCount; i++) {
         this.particles.push({
           x: Math.random() * this.width,
           y: Math.random() * this.height,
           vx: (Math.random() - 0.5) * this.settings.speed,
           vy: (Math.random() - 0.5) * this.settings.speed,
-          r: Math.random() * 2 + 1
+          r: Math.random() * 1.5 + 1 // Micro-geometry tracking dots
         });
       }
     },
 
-    animate() {
-      this.ctx.clearRect(0, 0, this.width, this.height);
+    /**
+     * Integrates directly with performance-guard.js broadcast network
+     * Suspends canvas recalculations to achieve 0% CPU consumption when tab is hidden
+     */
+    setupPerformanceHooks() {
+      document.addEventListener("synaptic:core-performance-suspend", (e) => {
+        const suspendRequested = e.detail.suspendActive;
 
-      for (let i = 0; i < this.particles.length; i++) {
+        if (suspendRequested) {
+          this.isSuspended = true;
+          cancelAnimationFrame(this.animationId); // Drops frame calculation immediately
+        } else {
+          if (this.isSuspended) {
+            this.isSuspended = false;
+            this.kickstartRenderLoop(); // Re-ignites node tracking organically
+          }
+        }
+      });
+    },
+
+    kickstartRenderLoop() {
+      // Prevent loop branching and duplicate thread leaks
+      cancelAnimationFrame(this.animationId);
+      this.animate();
+    },
+
+    animate() {
+      if (this.isSuspended) return;
+
+      this.ctx.clearRect(0, 0, this.width, this.height);
+      
+      const pLen = this.particles.length;
+      const connectionMaxDist = this.settings.dist;
+
+      // 1. Position Evaluation Matrix
+      for (let i = 0; i < pLen; i++) {
         let p = this.particles[i];
 
-        // Update Position
         p.x += p.vx;
         p.y += p.vy;
 
-        // Boundary Logic
+        // Fluid Boundary Elasticity Locks
         if (p.x < 0 || p.x > this.width) p.vx *= -1;
         if (p.y < 0 || p.y > this.height) p.vy *= -1;
 
-        // Draw Neural Node
+        // Draw Synaptic Node Points
         this.ctx.beginPath();
         this.ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         this.ctx.fillStyle = this.settings.dotColor;
         this.ctx.fill();
 
-        // Connect Synapses
-        for (let j = i + 1; j < this.particles.length; j++) {
+        // 2. Proportional Relational Line Connecting Matrix
+        for (let j = i + 1; j < pLen; j++) {
           let p2 = this.particles[j];
           let dx = p.x - p2.x;
           let dy = p.y - p2.y;
           let dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < this.settings.dist) {
+          if (dist < connectionMaxDist) {
             this.ctx.beginPath();
             this.ctx.moveTo(p.x, p.y);
             this.ctx.lineTo(p2.x, p2.y);
-            this.ctx.strokeStyle = `rgba(124, 92, 255, ${1 - dist / this.settings.dist})`;
-            this.ctx.lineWidth = 0.5;
+            
+            // Dynamic alpha gradient scaling based on spatial proximity
+            const alphaFactor = (1 - (dist / connectionMaxDist)) * 0.15;
+            this.ctx.strokeStyle = `rgba(0, 212, 178, ${alphaFactor})`;
+            this.ctx.lineWidth = 0.6;
             this.ctx.stroke();
           }
         }
       }
 
-      requestAnimationFrame(() => this.animate());
+      this.animationId = requestAnimationFrame(() => this.animate());
     }
   };
 
-  document.addEventListener("DOMContentLoaded", () => NeuralEngine.init());
+  // Safe Global Context Binding for template controllers
+  window.NeuralBackgroundEngine = NeuralEngine;
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => NeuralEngine.init());
+  } else {
+    NeuralEngine.init();
+  }
 })();
