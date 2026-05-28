@@ -1,0 +1,109 @@
+<section class="premium-personality-arena" data-personality-analysis>
+  
+  <div class="personality-header-node">
+    <div class="personality-status-badge">
+      <span class="status-dot"></span>
+      <span class="status-text">Behavioral Architecture Node</span>
+    </div>
+    <h2 class="personality-arena-title">Personality Archetype Assessment</h2>
+    <p class="personality-arena-desc">
+      Move beyond superficial behavioral labels. This introspective analytical engine charts your psychological traits, cognitive resilience thresholds, and growth vectors, directly mapping your personality profile to optimized biological learning pathways.
+    </p>
+  </div>
+
+  <form class="personality-interactive-form" data-personality-form id="personality-assessment-form">
+    </form>
+
+  <div class="personality-result-viewport" data-personality-result style="display: none;">
+    </div>
+
+</section>
+
+{% unless jekyll_personality_arena_styles_loaded %}
+<style>
+  .premium-personality-arena {
+    background: #0d1527 !important; /* Premium unified elements dark slot */
+    border: 1px solid rgba(0, 212, 178, 0.12) !important;
+    border-radius: 12px !important; /* Uniform ecosystem geometry tracking */
+    padding: 2.5rem !important;
+    margin: 3rem auto !important;
+    max-width: 850px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    box-sizing: border-box;
+  }
+
+  .personality-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 212, 178, 0.04);
+    border: 1px solid rgba(0, 212, 178, 0.15);
+    padding: 6px 14px;
+    border-radius: 30px;
+    margin-bottom: 1.25rem;
+  }
+
+  .personality-status-badge .status-dot {
+    width: 6px; height: 6px;
+    background-color: #00d4b2;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00d4b2;
+  }
+
+  .personality-status-badge .status-text {
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #00d4b2 !important;
+    font-weight: 700;
+  }
+
+  .personality-arena-title {
+    color: #ffffff !important;
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 0.5rem 0 !important;
+    letter-spacing: -0.02em;
+    text-align: left;
+  }
+
+  /* TYPOGRAPHY OVERRIDE: ERADICATED MOBILE Whitespace FORCED GAPS */
+  .personality-arena-desc {
+    color: #94a3b8 !important;
+    font-size: 0.98rem !important;
+    line-height: 1.6 !important;
+    margin: 0 0 2.5rem 0 !important;
+    text-align: left !important; /* Strict Left alignment anchors natural tracking */
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+  }
+
+  /* Structural UI Hook-ups for Inline Elements injected by Engine */
+  .personality-interactive-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  /* Responsive Display System Overrides for iPhones & Small Displays */
+  @media (max-width: 480px) {
+    .premium-personality-arena {
+      padding: 1.5rem !important;
+      margin: 1.5rem 0 !important;
+    }
+    .personality-arena-title {
+      font-size: 1.45rem !important;
+    }
+    .personality-arena-desc {
+      font-size: 0.92rem !important;
+      text-align: center !important; /* Visual center balance configuration for narrow displays */
+    }
+    .personality-status-badge {
+      margin: 0 auto 1.25rem auto !important;
+    }
+  }
+</style>
+{% assign jekyll_personality_arena_styles_loaded = true %}
+{% endunless %}
