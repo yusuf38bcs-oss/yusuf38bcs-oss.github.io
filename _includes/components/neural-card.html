@@ -1,0 +1,188 @@
+{% comment %}
+  PREMIUM NEURAL CARD COMPONENT - REFINED ECOSYSTEM EDITION
+  Supports: Automated Post Loops (paginate-v2), Collection Feeds & Manual Layout Includes
+  Parameters: post (optional), card_title, card_description, card_link, card_icon, action_text
+{% endcomment %}
+
+{% assign title = include.post.title | default: include.card_title %}
+{% assign excerpt = include.post.excerpt | default: include.card_description %}
+{% assign link = include.post.url | default: include.card_link %}
+{% assign category = include.post.categories | first %}
+{% assign fallback_action = include.action_text | default: "Read Document Track" %}
+
+<article class="neural-card-wrapper" data-aos="fade-up">
+  <a class="section-card" href="{{ link | relative_url }}" aria-label="{{ title }}">
+    
+    <div class="card-header-meta">
+      {% if include.card_icon %}
+        <div class="card-icon-node" aria-hidden="true">{{ include.card_icon }}</div>
+      {% elsif category %}
+        <span class="card-category-tag u-text-glow">{{ category | replace: '-', ' ' }}</span>
+      {% endif %}
+      <div class="neural-pulse-dot"></div>
+    </div>
+
+    <div class="card-content-body">
+      <h3 class="card-title-node">{{ title }}</h3>
+      <p class="card-description-node">
+        {{ excerpt | strip_html | truncate: 130 }}
+      </p>
+
+      <div class="card-footer-action-trigger" aria-hidden="true">
+        <span class="action-text-node">{{ fallback_action }}</span>
+        <span class="indicator-arrow-node">→</span>
+      </div>
+    </div>
+
+    <div class="card-glow-accent-layer" aria-hidden="true"></div>
+  </a>
+</article>
+
+{% unless neural_card_styles_loaded %}
+<style>
+  .neural-card-wrapper {
+    height: 100%;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .section-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2.5rem 2.25rem !important;
+    background: #0d1527 !important; 
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border-radius: 12px !important; 
+    text-decoration: none !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .section-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(0, 212, 178, 0.25) !important;
+    background: #0f172a !important;
+    box-shadow: 0 20px 40px rgba(0, 212, 178, 0.04) !important;
+  }
+
+  .card-header-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .card-icon-node {
+    font-size: 2.25rem;
+    line-height: 1;
+    display: block;
+  }
+
+  .card-category-tag {
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    color: #64748b !important;
+    font-weight: 700 !important;
+    transition: color 0.25s ease;
+  }
+
+  .section-card:hover .card-category-tag {
+    color: #00d4b2 !important;
+  }
+
+  .card-content-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 1.25rem;
+  }
+
+  .card-title-node {
+    margin: 0 0 0.85rem 0 !important;
+    color: #ffffff !important;
+    font-size: 1.35rem !important;
+    line-height: 1.4 !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em;
+  }
+
+  /* PREMIUM TYPOGRAPHY FIX: ELIMINATED IRREGULAR WORD GAPS */
+  .card-description-node {
+    color: #94a3b8 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin: 0 0 2rem 0 !important;
+    text-align: left !important; /* Fixed forced padding whitespace */
+    word-spacing: normal !important;
+    letter-spacing: -0.005em !important;
+  }
+
+  .card-footer-action-trigger {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.25rem;
+    width: 100%;
+    transition: color 0.2s ease;
+  }
+
+  .card-footer-action-trigger .indicator-arrow-node {
+    color: #00d4b2 !important;
+    transition: transform 0.2s ease;
+  }
+
+  .section-card:hover .card-footer-action-trigger {
+    color: #00d4b2 !important;
+  }
+
+  .section-card:hover .indicator-arrow-node {
+    transform: translateX(4px);
+  }
+
+  .neural-pulse-dot {
+    width: 6px;
+    height: 6px;
+    background: #00d4b2;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00d4b2;
+    position: absolute;
+    top: 2.5rem;
+    right: 2.25rem;
+  }
+
+  /* Responsive Multi-Device Adaptations */
+  @media (max-width: 480px) {
+    .section-card {
+      padding: 2rem 1.5rem !important;
+      align-items: center !important;
+      text-align: center !important;
+    }
+    .card-title-node {
+      font-size: 1.25rem !important;
+    }
+    .card-description-node {
+      text-align: center !important; /* Harmonized layout on small smartphone views */
+      font-size: 0.92rem !important;
+    }
+    .card-footer-action-trigger {
+      justify-content: center !important;
+    }
+    .neural-pulse-dot {
+      top: 2rem;
+      right: 1.5rem;
+    }
+  }
+</style>
+{% assign neural_card_styles_loaded = true %}
+{% endunless %}
