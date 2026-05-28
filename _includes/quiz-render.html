@@ -1,0 +1,49 @@
+{% assign quiz_data = site.data.quizzes[include.quiz_id] %}
+{% if quiz_data %}
+<div class="quiz-engine-card" data-quiz="{{ include.quiz_id }}" style="background: #0f172a; border: 1px solid rgba(0, 212, 178, 0.2); border-radius: 12px; padding: 2.5rem; margin: 2rem auto; max-width: 800px; font-family: sans-serif; color: #ffffff; box-shadow: 0 10px 25px rgba(0,0,0,0.4);">
+  
+  <div style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1.25rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <span style="color: #00d4b2; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Diagnostic Module</span>
+      <h2 style="margin: 0.25rem 0 0 0; font-size: 1.6rem; color: #fff;">{{ quiz_data.quiz_title }}</h2>
+    </div>
+    <div style="background: rgba(0, 212, 178, 0.1); color: #00d4b2; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">
+      Target Time: {{ quiz_data.time_limit_mins }} Mins
+    </div>
+  </div>
+
+  <form class="quiz-form">
+    {% for q in quiz_data.questions %}
+      <div class="question-node" data-q-id="{{ q.id }}" data-correct="{{ q.correct_key }}" style="margin-bottom: 2.5rem;">
+        <p style="font-size: 1.1rem; font-weight: 600; line-height: 1.5; margin: 0 0 1.25rem 0; color: #ffffff;">
+          <span style="color: #00d4b2; margin-right: 4px;">Q{{ forloop.index }}.</span> {{ q.question_text }}
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          {% for option in q.options %}
+            {% for pair in option %}
+              <label style="display: flex; align-items: center; gap: 12px; background: #1e293b; border: 1px solid rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; cursor: pointer; transition: background 0.2s;">
+                <input type="radio" name="q-{{ q.id }}" value="{{ pair[0] }}" style="accent-color: #00d4b2; width: 18px; height: 18px; margin: 0;">
+                <span style="color: #e2e8f0; font-size: 0.95rem; line-height: 1.4;"><strong style="color: #00d4b2; text-transform: uppercase;">{{ pair[0] }}.</strong> {{ pair[1] }}</span>
+              </label>
+            {% endfor %}
+          {% endfor %}
+        </div>
+
+        <div class="feedback-box" style="display: none; margin-top: 1rem; padding: 1rem 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.5;">
+          <p class="result-string" style="margin: 0 0 0.5rem 0; font-weight: 700;"></p>
+          <p style="margin: 0; color: #94a3b8;"><strong style="color: #fff;">Explanation:</strong> {{ q.explanation }}</p>
+        </div>
+      </div>
+    {% endfor %}
+
+    <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+      <button type="submit" style="background: #00d4b2; color: #020617; border: none; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 1rem;">Evaluate Metrics</button>
+      <div class="score-display-track" style="font-size: 1.2rem; font-weight: 700; color: #ffffff; display: none;"></div>
+    </div>
+  </form>
+
+</div>
+{% else %}
+  <p style="color: #ef4444; padding: 1rem; text-align: center; background: rgba(239,68,68,0.1); border-radius: 6px;">Error: Quiz Database ID '{{ include.quiz_id }}' unmapped inside repo _data layer.</p>
+{% endif %}
