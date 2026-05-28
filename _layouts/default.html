@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.lang | default: 'en-US' }}" data-theme="dark" style="background-color: #020617 !important;">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <style>
+    html, body {
+      background-color: #020617 !important;
+      opacity: 0; /* Coordinated reveal via performance-guard / main.js */
+    }
+    .synaptic-runtime-loaded {
+      opacity: 1 !important;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+  </style>
+
   {% include head/head.html %}
   {% include head/head-scripts.html %}
+  {% include head/cookie-script.html %}
   
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title | default: 'Learning Biology For Life' }}</title>
 </head>
+
 <body class="unified-ecosystem-dark-body">
 
   {% if site.gtm_id %}
@@ -14,7 +30,11 @@
 
   {% include navigation/masthead.html %}
 
-  <div class="main-content-render-viewport">
+  <div class="global-ambient-matrix-backdrop" aria-hidden="true">
+    <canvas id="neural-network"></canvas>
+  </div>
+
+  <div class="main-content-render-viewport" id="synaptic-viewport-root">
     {{ content }}
   </div>
 
@@ -22,44 +42,84 @@
 
   {% include footer/neural-footer.html %}
 
-  <script defer src="{{ '/assets/js/core/ai-core.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/core/theme-controller.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/core/performance-guard.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/core/menu-scroll.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/core/semantic-linker.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/core/analytics-engine.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/core/socratic-component.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/core/synapse-effects.js' | relative_url }}"></script>
   
+  <script defer src="{{ '/assets/js/core/main.js' | relative_url }}"></script>
+
   {% if page.url == "/" %}
+    <script defer src="{{ '/assets/js/core/neural-bg.js' | relative_url }}"></script>
     <script defer src="{{ '/assets/js/home/hero-effects.js' | relative_url }}"></script>
     <script defer src="{{ '/assets/js/home/neural-flow.js' | relative_url }}"></script>
     <script defer src="{{ '/assets/js/home/neural-interactions.js' | relative_url }}"></script>
     <script defer src="{{ '/assets/js/home/section-transitions.js' | relative_url }}"></script>
-<script defer src="{{ '/assets/js/core/semantic-linker.js' | relative_url }}"></script>
-
   {% endif %}
 
 </body>
 </html>
 
 <style>
-  /* Global Core Spec Rules - Eradicating any white flashes or mobile shifts */
+  /* ==========================================================================
+     GLOBAL ECOSYSTEM LAYOUT SHEETS & COMPOSITING RULES
+     ========================================================================== */
   html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: #020617 !important; /* Locks theme canvas comfort dark */
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #cbd5e1;
     overflow-x: hidden;
     scroll-behavior: smooth;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .unified-ecosystem-dark-body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    position: relative;
+    z-index: 1;
   }
 
+  /* Structural Viewport Layout Config */
   .main-content-render-viewport {
     flex: 1 0 auto;
     width: 100%;
-    box-sizing: border-box;
     position: relative;
-    z-index: 10;
+    z-index: 5; /* Sits cleanly above background animations but under floating panels */
+    box-sizing: border-box;
+  }
+
+  /* Fixed Backdrop Layer for the Neural Background Particle Canvas */
+  .global-ambient-matrix-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Sits perfectly underneath text contents */
+    pointer-events: none; /* Passes clicks directly through to content maps */
+    overflow: hidden;
+    background-color: #020617;
+  }
+
+  #neural-network {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Universal Left-Alignment Reset protecting responsive mobile viewport flows */
+  p, li, article, h1, h2, h3, h4, span, a {
+    text-align: left;
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
   }
 </style>
