@@ -1,252 +1,309 @@
-<!-- ===================================================== -->
-<!-- ACADEMIC SECTIONS -->
-<!-- HSC MCQ Arena, Physiology, Genetics, Ecology -->
-<!-- ===================================================== -->
-
-<!-- ===== HSC MCQ ARENA ===== -->
-<section class="section academic-section academic-section--hsc">
-
-  <div class="section-header-with-image">
-
-    <!-- Featured Image Background -->
-    <div class="section-featured-bg" style="background-image: url('/assets/images/hsc-mcq-bg.webp')" aria-hidden="true"></div>
-
-    <!-- Content Overlay -->
-    <div class="section-header-content">
-
-      <div class="eyebrow">
-        Socratic 4.0
-      </div>
-
-      <h2>
-        HSC MCQ Arena
-      </h2>
-
-      <p class="section-lead">
-        Master Botany and Zoology through mixed practice questions, concept testing, and rapid retrieval.
+<section class="premium-academic-block academic-block--hsc">
+  <div class="academic-banner-header">
+    <div class="academic-featured-blur-bg" style="background-image: url('/assets/images/hsc-mcq-bg.webp')" aria-hidden="true"></div>
+    <div class="academic-banner-overlay-tint"></div>
+    
+    <div class="academic-banner-inner-content">
+      <div class="academic-eyebrow-node">Socratic 4.0 Portal</div>
+      <h2 class="academic-header-title">The Academic <span class="accent-cyan">MCQ Arena</span></h2>
+      <p class="academic-header-lead">
+        The Synaptic Checkpoint: Core Validation. An adaptive self-assessment platform based on the foundational academic pillars of biology to challenge your cognitive memory and analytical thinking.
       </p>
-
-      <a class="btn btn-primary" href="{{ '/mcq-arena-academic/' | relative_url }}">
+      <a class="academic-action-btn" href="{{ '/mcq-arena-academic/' | relative_url }}">
         Enter MCQ Arena
       </a>
-
     </div>
-
   </div>
 
-  <!-- HSC Cards Grid -->
-  <div class="cards-grid cards-grid--3col">
-
-    <!-- Botany Card -->
-    {% include section-card.html
-      card_title="Botany"
-      card_description="Plant classification, anatomy, physiology, reproduction, and ecology through connected concept maps."
+  <div class="academic-cards-matrix-grid">
+    {% include neural-card.html
+      card_title="Botany Core"
+      card_description="Plant classification, bio-energetics, structural anatomy, and cellular replication through connected concept maps."
       card_link="/biology/botany/"
       card_icon="🌿"
+      action_text="Initiate Botany Track"
     %}
 
-    <!-- Zoology Card -->
-    {% include section-card.html
-      card_title="Zoology"
-      card_description="Animal diversity, classification, evolution, and adaptation patterns with interactive learning."
+    {% include neural-card.html
+      card_title="Zoology Tree"
+      card_description="Animal diversity, evolutionary paradigms, functional classification, and adaptive structural tracking lines."
       card_link="/biology/zoology/"
       card_icon="🦁"
+      action_text="Initiate Zoology Track"
     %}
 
-    <!-- MCQ Practice Card -->
-    {% include section-card.html
-      card_title="Mixed Practice"
-      card_description="Combined Botany + Zoology questions designed to test synthesis and deep understanding."
+    {% include neural-card.html
+      card_title="Mixed Validation"
+      card_description="Combined Botany + Zoology synaptical questions designed to test cognitive synthesis and rapid retrieval parameters."
       card_link="/mcq-arena/"
       card_icon="📝"
+      action_text="Launch Mixed Arena"
     %}
-
   </div>
-
 </section>
 
-<!-- ===== HUMAN PHYSIOLOGY ===== -->
-<section class="section academic-section academic-section--physiology">
-
-  <div class="section-header-with-image">
-
-    <!-- Featured Image Background -->
-    <div class="section-featured-bg" style="background-image: url('/assets/images/physiology-bg.webp')" aria-hidden="true"></div>
-
-    <!-- Content Overlay -->
-    <div class="section-header-content">
-
-      <div class="eyebrow">
-        Higher Zoology Tree
-      </div>
-
-      <h2>
-        Human Physiology
-      </h2>
-
-      <p class="section-lead">
-        Understand homeostasis, regulation, and integration through systems-level thinking and feedback loops.
+<section class="premium-academic-block academic-block--physiology">
+  <div class="academic-banner-header">
+    <div class="academic-featured-blur-bg" style="background-image: url('/assets/images/physiology-bg.webp')" aria-hidden="true"></div>
+    <div class="academic-banner-overlay-tint"></div>
+    
+    <div class="academic-banner-inner-content">
+      <div class="academic-eyebrow-node">Higher Zoology Tree</div>
+      <h2 class="academic-header-title">Human <span class="accent-cyan">Physiology & Behavior</span></h2>
+      <p class="academic-header-lead">
+        Connecting structural human physiology to clinical healthcare metrics, biochemical nutrition, neuro-leadership lines, and deep psychological behavior.
       </p>
-
-      <a class="btn btn-primary" href="{{ '/biology/human-physiology/' | relative_url }}">
+      <a class="academic-action-btn" href="{{ '/biology/human-physiology/' | relative_url }}">
         Explore Physiology
       </a>
-
     </div>
-
   </div>
 
-  <!-- Physiology Cards Grid -->
-  <div class="cards-grid cards-grid--3col">
-
-    <!-- Nervous System Card -->
-    {% include section-card.html
+  <div class="academic-cards-matrix-grid">
+    {% include neural-card.html
       card_title="Nervous System"
-      card_description="Neural organization, signal transmission, integration, and behavioral control mechanisms."
+      card_description="The Neural Commander: Synapses of Consciousness. Mapping neural network organization to human feelings, decision-making, and visionary leadership."
       card_link="/biology/human-physiology/"
       card_icon="🧠"
     %}
 
-    <!-- Endocrine System Card -->
-    {% include section-card.html
+    {% include neural-card.html
       card_title="Endocrine System"
-      card_description="Hormonal regulation, feedback loops, and systemic integration for homeostasis."
+      card_description="The Endocrine Orchestra: Chemical Directives. Tracing molecular signals and hormone feedback loops that guide subconscious emotions and systemic homeostasis."
       card_link="/biology/human-physiology/"
       card_icon="⚖️"
     %}
 
-    <!-- Homeostasis Card -->
-    {% include section-card.html
-      card_title="Homeostasis"
-      card_description="Dynamic balance, regulation mechanisms, and adaptive responses to environmental change."
+    {% include neural-card.html
+      card_title="Metabolic Nutrition"
+      card_description="The Metabolic Engine: Chemistry of Fuel. Analyzing digestive biochemical mechanisms regulating human nutrition, cellular respiration, and daily energy dynamics."
       card_link="/biology/human-physiology/"
-      card_icon="🔄"
+      card_icon="🔋"
     %}
-
   </div>
-
 </section>
 
-<!-- ===== GENETICS ===== -->
-<section class="section academic-section academic-section--genetics">
-
-  <div class="section-header-with-image">
-
-    <!-- Featured Image Background -->
-    <div class="section-featured-bg" style="background-image: url('/assets/images/genetics-bg.webp')" aria-hidden="true"></div>
-
-    <!-- Content Overlay -->
-    <div class="section-header-content">
-
-      <div class="eyebrow">
-        Molecular Biology & Inheritance
-      </div>
-
-      <h2>
-        Genetics
-      </h2>
-
-      <p class="section-lead">
-        Explore DNA structure, inheritance patterns, variation, and the molecular basis of heredity.
+<section class="premium-academic-block academic-block--genetics">
+  <div class="academic-banner-header">
+    <div class="academic-featured-blur-bg" style="background-image: url('/assets/images/genetics-bg.webp')" aria-hidden="true"></div>
+    <div class="academic-banner-overlay-tint"></div>
+    
+    <div class="academic-banner-inner-content">
+      <div class="academic-eyebrow-node">Molecular Biology & Data Science</div>
+      <h2 class="academic-header-title">Genetics & <span class="accent-cyan">Bio-Analytics</span></h2>
+      <p class="academic-header-lead">
+        Decoding the informational lineages of heredity, nucleotide source codes, and inferential statistical filters that reveal natural variances.
       </p>
-
-      <a class="btn btn-primary" href="{{ '/biology/genetics/' | relative_url }}">
+      <a class="academic-action-btn" href="{{ '/biology/genetics/' | relative_url }}">
         Study Genetics
       </a>
-
     </div>
-
   </div>
 
-  <!-- Genetics Cards Grid -->
-  <div class="cards-grid cards-grid--3col">
-
-    <!-- DNA & Chromosomes Card -->
-    {% include section-card.html
-      card_title="DNA & Chromosomes"
-      card_description="Structure, organization, replication, and the storage of genetic information."
+  <div class="academic-cards-matrix-grid">
+    {% include neural-card.html
+      card_title="Genetics Archive"
+      card_description="The Source Code: Biological Blueprints. Deep molecular analysis of DNA/RNA frameworks steering lineage transmission and systemic life vectors."
       card_link="/biology/genetics/"
       card_icon="🧬"
     %}
 
-    <!-- Inheritance Card -->
-    {% include section-card.html
-      card_title="Inheritance Patterns"
-      card_description="Mendelian genetics, pedigree analysis, and prediction of trait transmission."
+    {% include neural-card.html
+      card_title="Biostatistics Node"
+      card_description="The Inferential Filter: Decoding Natural Variance. Utilizing probability metrics and descriptive statistical modeling to extract objective truth from bio-data."
       card_link="/biology/genetics/"
       card_icon="📊"
     %}
 
-    <!-- Variation Card -->
-    {% include section-card.html
+    {% include neural-card.html
       card_title="Genetic Variation"
-      card_description="Mutation, recombination, genetic diversity, and evolution drivers."
+      card_description="Mutation parameters, crossing-over matrices, and biochemical recombination vectors driving evolutionary diversity across ecosystems."
       card_link="/biology/genetics/"
       card_icon="🌈"
     %}
-
   </div>
-
 </section>
 
-<!-- ===== ECOLOGY ===== -->
-<section class="section academic-section academic-section--ecology">
-
-  <div class="section-header-with-image">
-
-    <!-- Featured Image Background -->
-    <div class="section-featured-bg" style="background-image: url('/assets/images/ecology-bg.webp')" aria-hidden="true"></div>
-
-    <!-- Content Overlay -->
-    <div class="section-header-content">
-
-      <div class="eyebrow">
-        Environmental Systems & Relationships
-      </div>
-
-      <h2>
-        Ecology
-      </h2>
-
-      <p class="section-lead">
-        Understand ecosystem dynamics, population biology, succession, and environmental interconnection.
+<section class="premium-academic-block academic-block--ecology">
+  <div class="academic-banner-header">
+    <div class="academic-featured-blur-bg" style="background-image: url('/assets/images/ecology-bg.webp')" aria-hidden="true"></div>
+    <div class="academic-banner-overlay-tint"></div>
+    
+    <div class="academic-banner-inner-content">
+      <div class="academic-eyebrow-node">Environmental Systems & Interconnection</div>
+      <h2 class="academic-header-title">Ecology & <span class="accent-cyan">Cosmic Order</span></h2>
+      <p class="academic-header-lead">
+        Tracing population dynamics, biospheric thermodynamics, and environmental networks that reflect profound spiritual empathy and macro-level design.
       </p>
-
-      <a class="btn btn-primary" href="{{ '/biology/ecology/' | relative_url }}">
+      <a class="academic-action-btn" href="{{ '/biology/ecology/' | relative_url }}">
         Learn Ecology
       </a>
-
     </div>
-
   </div>
 
-  <!-- Ecology Cards Grid -->
-  <div class="cards-grid cards-grid--3col">
-
-    <!-- Populations Card -->
-    {% include section-card.html
+  <div class="academic-cards-matrix-grid">
+    {% include neural-card.html
       card_title="Population Biology"
-      card_description="Growth dynamics, regulation, carrying capacity, and demographic changes."
+      card_description="Demographic variances, mathematical carrying capacities, growth curves, and regulatory threshold dynamics within species communities."
       card_link="/biology/ecology/"
       card_icon="👥"
     %}
 
-    <!-- Ecosystems Card -->
-    {% include section-card.html
-      card_title="Ecosystems"
-      card_description="Energy flow, nutrient cycling, community interactions, and ecosystem services."
+    {% include neural-card.html
+      card_title="Ecosystem Dynamics"
+      card_description="The Cosmic Balance: Ecology & Spiritual Empathy. Deciphering biogeochemical cycles and energy flow tracking lines mirroring universal integration."
       card_link="/biology/ecology/"
       card_icon="🌍"
     %}
 
-    <!-- Succession Card -->
-    {% include section-card.html
-      card_title="Ecological Succession"
-      card_description="Primary & secondary succession, habitat change, and ecosystem recovery."
+    {% include neural-card.html
+      card_title="Succession Paths"
+      card_description="Primary and secondary ecosystem transitions steering habitat recovery trajectories, active environmental ethics, and biospheric safety nodes."
       card_link="/biology/ecology/"
       card_icon="🌱"
     %}
-
   </div>
-
 </section>
+
+<style>
+  .premium-academic-block {
+    padding: 3rem 0;
+    margin-bottom: 4rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Frosted Visual Banner Design Layer */
+  .academic-banner-header {
+    position: relative;
+    width: 100%;
+    min-height: 340px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 3rem;
+    box-sizing: border-box;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+  }
+
+  .academic-featured-blur-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transform: scale(1.02);
+    filter: brightness(0.6) contrast(1.05);
+  }
+
+  .academic-banner-overlay-tint {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, #020617 30%, rgba(2, 6, 23, 0.85) 60%, rgba(13, 21, 39, 0.4) 100%);
+    z-index: 2;
+  }
+
+  .academic-banner-inner-content {
+    position: relative;
+    z-index: 3;
+    max-width: 650px;
+    text-align: left;
+  }
+
+  .academic-eyebrow-node {
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.12em !important;
+    color: #00d4b2;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .academic-header-title {
+    color: #ffffff !important;
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 1rem 0 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.25 !important;
+  }
+
+  .academic-header-title .accent-cyan {
+    color: #00d4b2;
+  }
+
+  .academic-header-lead {
+    color: #cbd5e1 !important;
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+    margin: 0 0 1.75rem 0 !important;
+    text-align: justify;
+  }
+
+  /* High Contrast Action Triggers */
+  .academic-action-btn {
+    background: transparent !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    padding: 11px 24px !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    font-size: 0.88rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    display: inline-block;
+    transition: all 0.2s ease-in-out !important;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .academic-action-btn:hover {
+    background: #00d4b2 !important;
+    color: #020617 !important;
+    border-color: #00d4b2 !important;
+    box-shadow: 0 0 15px rgba(0, 212, 178, 0.35);
+  }
+
+  /* Optimized 3-Column Layout Matrix Grid */
+  .academic-cards-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Multi-Viewport Device Adaptations */
+  @media (max-width: 768px) {
+    .academic-banner-header {
+      padding: 2.5rem 1.5rem !important;
+      min-height: auto !important;
+    }
+    .academic-banner-overlay-tint {
+      background: rgba(2, 6, 23, 0.92) !important; /* Higher tint logic for screens */
+    }
+    .academic-banner-inner-content {
+      max-width: 100%;
+      text-align: center;
+    }
+    .academic-header-title {
+      font-size: 1.65rem !important;
+    }
+    .academic-header-lead {
+      text-align: center;
+      font-size: 0.92rem !important;
+    }
+    .academic-action-btn {
+      width: 100%;
+      max-width: 280px;
+      box-sizing: border-box;
+    }
+    .academic-cards-matrix-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem;
+    }
+  }
+</style>
