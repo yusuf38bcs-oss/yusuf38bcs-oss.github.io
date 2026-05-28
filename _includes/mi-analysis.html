@@ -1,6 +1,362 @@
-﻿<section class="ai-panel" data-mi-analysis>
-  <h2>Multiple Intelligences Reflection</h2>
-  <p>Based on Gardner's theory, this tool helps you reflect on your preferred learning channels.</p>
-  <form data-mi-form></form>
-  <div data-mi-result></div>
+<section class="premium-mi-analysis" data-mi-analysis>
+  
+  <div class="mi-analysis-header">
+    <div class="mi-status-badge">
+      <span class="status-dot"></span>
+      <span class="status-text">Cognitive Mapping Node</span>
+    </div>
+    <h2 class="mi-analysis-title">Multiple Intelligences Reflection</h2>
+    <p class="mi-analysis-desc">
+      Based on Howard Gardner's Multiple Intelligences theory, this analytical tool maps your preferred cognitive processing networks. Identify your dominant intelligence channel to optimize your interdisciplinary learning vectors.
+    </p>
+  </div>
+
+  <form class="mi-interactive-form" data-mi-form id="mi-assessment-form">
+    </form>
+
+  <div class="mi-action-control-panel" id="mi-control-strip">
+    <button type="button" class="mi-btn-calculate" id="calculate-mi-profile">
+      Analyze Cognitive Profile
+    </button>
+  </div>
+
+  <div class="mi-result-viewport" data-mi-result style="display: none;"></div>
+
 </section>
+
+<style>
+  .premium-mi-analysis {
+    background: #0d1527 !important; /* Premium system element slot matching ecosystem layout */
+    border: 1px solid rgba(0, 212, 178, 0.12) !important;
+    border-radius: 12px !important;
+    padding: 2.5rem !important;
+    margin: 3rem auto !important;
+    max-width: 850px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    box-sizing: border-box;
+  }
+
+  .mi-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 212, 178, 0.04);
+    border: 1px solid rgba(0, 212, 178, 0.15);
+    padding: 6px 14px;
+    border-radius: 30px;
+    margin-bottom: 1.25rem;
+  }
+
+  .mi-status-badge .status-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #00d4b2;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00d4b2;
+  }
+
+  .mi-status-badge .status-text {
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #00d4b2 !important;
+    font-weight: 700;
+  }
+
+  .mi-analysis-title {
+    color: #ffffff !important;
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 0.5rem 0 !important;
+    letter-spacing: -0.02em;
+    text-align: left;
+  }
+
+  /* TYPOGRAPHY OVERRIDE: ERADICATED MOBILE WHITESPACE */
+  .mi-analysis-desc {
+    color: #94a3b8 !important;
+    font-size: 0.98rem !important;
+    line-height: 1.6 !important;
+    margin: 0 0 2.5rem 0 !important;
+    text-align: left !important;
+    word-spacing: normal !important;
+  }
+
+  .mi-interactive-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .mi-question-card {
+    background: #020617 !important;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 1.75rem !important;
+    border-radius: 8px;
+    text-align: left;
+  }
+
+  .mi-question-text {
+    color: #ffffff !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin: 0 0 1.25rem 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  .mi-options-vertical-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mi-radio-label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 16px !important;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #cbd5e1 !important;
+    font-size: 0.95rem !important;
+    transition: all 0.2s ease;
+  }
+
+  .mi-radio-label-wrapper:hover {
+    border-color: rgba(0, 212, 178, 0.3);
+    background: rgba(0, 212, 178, 0.02);
+    color: #ffffff !important;
+  }
+
+  .mi-radio-input {
+    accent-color: #00d4b2 !important;
+  }
+
+  /* BUTTON STYLING CONFIG */
+  .mi-action-control-panel {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .mi-btn-calculate {
+    background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%) !important;
+    color: #020617 !important;
+    font-weight: 700 !important;
+    padding: 14px 32px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: 100%;
+    max-width: 320px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    box-shadow: 0 4px 14px rgba(0, 212, 178, 0.2);
+  }
+
+  .mi-btn-calculate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 178, 0.4) !important;
+  }
+
+  /* RESULTS VIEWPORT MATRIX CARD */
+  .mi-result-viewport {
+    margin-top: 2.5rem;
+    padding: 2.25rem !important;
+    background: rgba(0, 212, 178, 0.04) !important;
+    border: 1px dashed rgba(0, 212, 178, 0.25);
+    border-radius: 8px;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  .mi-result-title {
+    color: #ffffff !important;
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 1rem 0 !important;
+    text-align: center;
+  }
+
+  .mi-dominant-badge {
+    background: #020617;
+    border: 1px solid rgba(0, 212, 178, 0.3);
+    padding: 1rem !important;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .mi-dominant-type {
+    font-size: 1.5rem !important;
+    font-weight: 800;
+    color: #00d4b2 !important;
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  /* Responsive Display Overrides for iPhones & Touch Screens */
+  @media (max-width: 480px) {
+    .premium-mi-analysis {
+      padding: 1.5rem !important;
+      margin: 1.5rem 0 !important;
+    }
+    .mi-analysis-title {
+      font-size: 1.45rem !important;
+    }
+    .mi-analysis-desc {
+      font-size: 0.92rem !important;
+      text-align: center !important;
+    }
+    .mi-question-card {
+      padding: 1.25rem !important;
+    }
+    .mi-question-text {
+      font-size: 1rem !important;
+    }
+    .mi-radio-label-wrapper {
+      padding: 10px 12px !important;
+      font-size: 0.88rem !important;
+    }
+    .mi-btn-calculate {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const rootEngine = document.querySelector("[data-mi-analysis]");
+    if (!rootEngine) return;
+
+    const formNode = rootEngine.querySelector("[data-mi-form]");
+    const resultNode = rootEngine.querySelector("[data-mi-result]");
+    const actionBtn = document.getElementById("calculate-mi-profile");
+    const controlStrip = document.getElementById("mi-control-strip");
+
+    // Unified Socratic Intelligence Mapping Questionnaire
+    const miQuestionBank = [
+      {
+        q: "When encountering a complex biological tracking mechanism (like an endocrine feedback axis), how do you best conceptualize its functions?",
+        options: [
+          { text: "By breaking it down into mathematical flowcharts, loops, and data metrics.", channel: "Logical-Mathematical" },
+          { text: "By reading structural text definitions or writing comparative notes.", channel: "Linguistic" },
+          { text: "By constructing a 3D mental architecture or visualization chart of nodes.", channel: "Spatial" },
+          { text: "By contemplating how this internal balance influences my personal focus and calm.", channel: "Intrapersonal" }
+        ]
+      },
+      {
+        q: "Which specific channel triggers the fastest acceleration in your intellectual retrieval speeds?",
+        options: [
+          { text: "Analyzing statistical variance vectors and hypothesis error filters.", channel: "Logical-Mathematical" },
+          { text: "Formulating deep dialectic questions during group or individual Socratic practice.", channel: "Linguistic" },
+          { text: "Scanning proportional graphic charts, images, and visual ecosystem assets.", channel: "Spatial" },
+          { text: "Isolating my thoughts inside a quiet room to evaluate my long-term life trajectory.", channel: "Intrapersonal" }
+        ]
+      },
+      {
+        q: "When you encounter complex ecological data conflicts (such as balancing human interference with universal balance), what is your natural reaction?",
+        options: [
+          { text: "Calculating probability curves and structural threshold limitations.", channel: "Logical-Mathematical" },
+          { text: "Engaging in detailed narrative analysis or arguing the exact etymology of definitions.", channel: "Linguistic" },
+          { text: "Mapping the spatial layouts of the landscape and geographic clusters.", channel: "Spatial" },
+          { text: "Connecting the system design to my inner values and universal moral duty.", channel: "Intrapersonal" }
+        ]
+      }
+    ];
+
+    function buildFormElements() {
+      formNode.innerHTML = "";
+      miQuestionBank.forEach((item, qIndex) => {
+        const questionCard = document.createElement("div");
+        questionCard.className = "mi-question-card";
+
+        let optionsHTML = "";
+        item.options.forEach((opt, optIndex) => {
+          optionsHTML += `
+            <label class="mi-radio-label-wrapper">
+              <input type="radio" name="mi_question_${qIndex}" value="${opt.channel}" class="mi-radio-input" ${optIndex === 0 ? "checked" : ""}>
+              <span>${opt.text}</span>
+            </label>
+          `;
+        });
+
+        questionCard.innerHTML = `
+          <h4 class="mi-question-text">${qIndex + 1}. ${item.q}</h4>
+          <div class="mi-options-vertical-stack">${optionsHTML}</div>
+        `;
+        formNode.appendChild(questionCard);
+      });
+    }
+
+    function computeIntelligenceProfile() {
+      const scoreMatrix = {
+        "Logical-Mathematical": 0,
+        "Linguistic": 0,
+        "Spatial": 0,
+        "Intrapersonal": 0
+      };
+
+      miQuestionBank.forEach((_, qIndex) => {
+        const checkedNode = formNode.querySelector(`input[name="mi_question_${qIndex}"]:checked`);
+        if (checkedNode && scoreMatrix[checkedNode.value] !== undefined) {
+          scoreMatrix[checkedNode.value]++;
+        }
+      });
+
+      // Identifying the supreme highest cognitive value
+      let dominantChannel = "Logical-Mathematical";
+      let highestScore = -1;
+
+      for (const [channel, score] of Object.entries(scoreMatrix)) {
+        if (score > highestScore) {
+          highestScore = score;
+          dominantChannel = channel;
+        }
+      }
+
+      // Contextual feedback narratives based on user profile targets
+      const feedbackMap = {
+        "Logical-Mathematical": "Your mind handles data metrics with extraordinary precision. Focus your energy on the Biostatistics Nodes, genetic code analysis, and mathematical structural tracking across our biological systems.",
+        "Linguistic": "You process systems via advanced contextual frameworks. Optimize your learning loop by engaging with our Socratic 4.0 dialectic models and detailed evolutionary narrative archives.",
+        "Spatial": "You capture structural relationships layout-first. Leverage the ecosystem conceptual diagrams, neural network graphs, and multi-device matrix grids to rapidly index knowledge maps.",
+        "Intrapersonal": "Your intelligence is firmly anchored within ethical and ontological alignment. Focus on our Life Practices portfolio to connect empirical biology metrics with deep individual purpose and cosmic truth."
+      };
+
+      // Masking the interactive form to print the dashboard
+      formNode.style.display = "none";
+      controlStrip.style.display = "none";
+      resultNode.style.display = "block";
+
+      resultNode.innerHTML = `
+        <h3 class="mi-result-title">Cognitive Spectrum Assessment</h3>
+        <div class="mi-dominant-badge">
+          <span style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; font-weight:700; letter-spacing:0.05em;">Dominant Learning Channel</span>
+          <span class="mi-dominant-type">${dominantChannel} Network</span>
+        </div>
+        <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.65; margin: 0 0 1.5rem 0; text-align: justify;">
+          ${feedbackMap[dominantChannel]}
+        </p>
+        <div style="text-align: center;">
+          <button type="button" class="mi-btn-calculate" id="reset-mi-assessment" style="background: transparent !important; color: #64748b !important; border: 1px solid rgba(255,255,255,0.08) !important; max-width: 200px; box-shadow: none;">
+            Restart Audit
+          </button>
+        </div>
+      `;
+
+      document.getElementById("reset-mi-assessment").addEventListener("click", function() {
+        resultNode.style.display = "none";
+        formNode.style.display = "flex";
+        controlStrip.style.display = "block";
+        buildFormElements();
+      });
+    }
+
+    actionBtn.addEventListener("click", computeIntelligenceProfile);
+    buildFormElements();
+  });
+</script>
