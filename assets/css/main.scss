@@ -122,3 +122,45 @@ body.viewport-scrolling-active {
     box-shadow: none !important;
   }
 }
+
+/* ==========================================================================
+   PREMIUM MOUSE-TRACKING GLOW RADIAL MASK MAPPING
+   ========================================================================== */
+.neural-card, .question-item-card, .mi-question-card {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-radius: inherit;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+      rgba(0, 212, 178, 0.07), // Soft 7% signature cyan wash
+      transparent 80%
+    ) !important;
+    pointer-events: none !important;
+    z-index: 0;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Micro Scroll Reveal Scaffold Structural Ingress Rules */
+.synapse-micro-reveal-scaffold {
+  opacity: 0;
+  transform: translateY(12px) scale(0.99);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
+}
+
+.synapse-micro-reveal--active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
