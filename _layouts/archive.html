@@ -1,31 +1,100 @@
-﻿---
+---
 layout: default
 ---
 
-<article class="article-layout">
-  <div>
-    <header class="article-header">
-      {% if page.categories %}
-        <span class="card-badge">{{ page.categories | first }}</span>
-      {% endif %}
-      <h1>{{ page.title }}</h1>
-      {% if page.description %}
-        <p class="hero__lead">{{ page.description }}</p>
-      {% endif %}
-    </header>
+<div class="synaptic-page-container">
+  <div class="page-layout-grid">
+    
+    <main class="page-main-article" role="main">
+      <header class="page-content-header">
+        <h1 class="page-main-title u-text-glow">{{ page.title | default: "Knowledge Archive" }}</h1>
+        {% if page.description %}
+          <p class="page-subtitle-lead">{{ page.description }}</p>
+        {% endif %}
+        <div class="header-matrix-line"></div>
+      </header>
 
-    <div class="article-content">
-      {% assign entries = site.posts %}
-      {% if page.categories %}
-        {% assign entries = entries | where_exp: "post", "post.categories contains page.categories.first" %}
-      {% endif %}
+      <div class="archive-matrix-grid-stream">
+        {% if paginator %}
+          {% assign posts_target = paginator.posts %}
+        {% else %}
+          {% assign posts_target = site.posts %}
+        {% endif %}
 
-      {% for post in entries %}
-        {% include archive-single.html %}
-      {% endfor %}
-    </div>
+        {% if posts_target.size > 0 %}
+          {% for post in posts_target %}
+            <div class="archive-grid-item-card">
+              {% include components/archive-single.html %}
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="archive-empty-fallback">
+            <p>No analytical publication tracks found in this node timeline.</p>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if paginator.total_pages > 1 %}
+        <div class="archive-pagination-wrapper">
+          {% include components/neural-pagination.html %}
+        </div>
+      {% endif %}
+    </main>
+
+    <aside class="page-sidebar-viewport">
+      {% include navigation/contextual-sidebar.html %}
+    </aside>
+
   </div>
-  <aside>
-    {% include sidebar-academic.html %}
-  </aside>
-</article>
+</div>
+
+<style>
+  /* Sharing variables with page.html layout grid system */
+  .archive-matrix-grid-stream {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    align-items: stretch;
+    box-sizing: border-box;
+    margin-top: 1.5rem;
+  }
+
+  .archive-grid-item-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  .archive-empty-fallback {
+    grid-column: 1 / -1;
+    background: #0d1527 !important;
+    border: 1px dashed rgba(0, 212, 178, 0.15);
+    padding: 3rem 1.5rem !important;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .archive-empty-fallback p {
+    color: #64748b !important;
+    font-size: 0.95rem !important;
+    margin: 0 !important;
+  }
+
+  .archive-pagination-wrapper {
+    margin-top: 3.5rem;
+    width: 100%;
+  }
+
+  /* Multi-Device Smartphone/Tablet Display Symmetries */
+  @media (max-width: 768px) {
+    .archive-matrix-grid-stream {
+      grid-template-columns: 1fr !important; /* Forces absolute full-width stack on iPhones */
+      gap: 1.5rem;
+    }
+    .archive-pagination-wrapper {
+      margin-top: 2.5rem;
+    }
+  }
+</style>
