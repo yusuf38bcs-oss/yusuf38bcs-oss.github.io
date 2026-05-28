@@ -1,17 +1,101 @@
-﻿---
+---
 layout: default
 ---
 
-<article class="article-layout">
-  <div>
-    <header class="article-header">
-      <h1>{{ page.title }}</h1>
-      {% if page.description %}
-        <p class="hero__lead">{{ page.description }}</p>
-      {% endif %}
-    </header>
-    <div class="article-content">
-      {{ content }}
-    </div>
+<div class="synaptic-page-container">
+  <div class="page-layout-grid">
+    
+    <main class="page-main-article" role="main">
+      <header class="page-content-header">
+        <h1 class="page-main-title u-text-glow">{{ page.title }}</h1>
+        {% if page.description %}
+          <p class="page-subtitle-lead">{{ page.description }}</p>
+        {% endif %}
+        <div class="header-matrix-line"></div>
+      </header>
+
+      <div class="page-rendered-markdown-body">
+        {{ content }}
+      </div>
+    </main>
+
+    <aside class="page-sidebar-viewport">
+      {% include navigation/contextual-sidebar.html %}
+    </aside>
+
   </div>
-</article>
+</div>
+
+<style>
+  .synaptic-page-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4rem) 1.5rem !important;
+    box-sizing: border-box;
+  }
+
+  .page-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px; /* Locked premium symmetry proportions */
+    gap: 3.5rem;
+    align-items: flex-start;
+  }
+
+  .page-content-header {
+    margin-bottom: 2.5rem;
+    text-align: left;
+  }
+
+  .page-main-title {
+    color: #ffffff !important;
+    font-size: clamp(1.8rem, 4vw, 2.6rem) !important;
+    font-weight: 800 !important;
+    margin: 0 0 0.5rem 0 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.2 !important;
+  }
+
+  .page-subtitle-lead {
+    color: #64748b !important;
+    font-size: 1.1rem !important;
+    margin: 0 !important;
+    line-height: 1.5;
+  }
+
+  .header-matrix-line {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, #00d4b2 0%, transparent 100%);
+    margin-top: 1.5rem;
+  }
+
+  /* TYPOGRAPHY PROTECTION STRIP: PREVENTS FORCED WORD GAPS ON MOBILES */
+  .page-rendered-markdown-body {
+    color: #cbd5e1 !important;
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+    text-align: left !important; /* Forces natural word flow tracking */
+    word-spacing: normal !important;
+  }
+
+  .page-rendered-markdown-body p {
+    margin: 0 0 1.5rem 0 !important;
+  }
+
+  /* Responsive Constraints (Tablet and iPhone Symmetries) */
+  @media (max-width: 992px) {
+    .page-layout-grid {
+      grid-template-columns: 1fr !important; /* Collapses sidebar into single fluid stream */
+      gap: 3rem;
+    }
+    .page-content-header {
+      text-align: center !important;
+    }
+    .header-matrix-line {
+      margin: 1.5rem auto 0 auto !important;
+      background: linear-gradient(90deg, transparent 0%, #00d4b2 50%, transparent 100%) !important;
+    }
+    .page-rendered-markdown-body {
+      font-size: 1rem !important;
+    }
+  }
+</style>
