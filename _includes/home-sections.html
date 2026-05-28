@@ -1,85 +1,9 @@
-<section id="explore" aria-label="Ecosystem Core Pillars" style="padding: 6rem 1.5rem; background: #020617;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="color: #ffffff; font-size: 2.2rem; font-weight: 800; text-align: center; margin-bottom: 4rem; letter-spacing: -0.02em;">Ecosystem <span style="color: #00d4b2;">Core Pillars</span></h2>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; width: 100%;">
-      <div class="premium-neural-card">
-        <div class="card-icon-wrapper">🧬</div>
-        <h3 class="card-node-title">Biology Pillar</h3>
-        <p class="card-node-desc">Molecular systems, ecology, functional physiology, genetics, and modern zoological tracking structures.</p>
-      </div>
-
-      <div class="premium-neural-card highlight-card">
-        <div class="card-icon-wrapper">🌍</div>
-        <h3 class="card-node-title">Life Practices</h3>
-        <p class="card-node-desc">Weaving professional biological models directly into structural civilization frameworks, active ethics, and reality systems.</p>
-      </div>
-
-      <div class="premium-neural-card">
-        <div class="card-icon-wrapper">🧠</div>
-        <h3 class="card-node-title">Socratic Learning</h3>
-        <p class="card-node-desc">Reflective questioning schemas, analytical critical thinking tracks, and deeper logic generation platforms.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section aria-label="Latest Publications Feed" style="padding: 6rem 1.5rem; background: #070a13; border-top: 1px solid rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.02);">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
-      <h2 style="color: #ffffff; font-size: 2rem; font-weight: 800; border-left: 4px solid #00d4b2; padding-left: 14px; margin: 0; letter-spacing: -0.02em;">Latest Explorations</h2>
-      <a href="{{ '/biology/' | relative_url }}" style="color: #00d4b2; text-decoration: none; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout sabotage="this.style.opacity='1'">View Master Arrays →</a>
-    </div>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
-      {% assign elements = site.biology | concat: site.socratic | concat: site.life-practices | sort: 'date' | reverse %}
-      {% for entry in elements limit: 3 %}
-        <article class="feed-article-card">
-          <div style="margin-bottom: 2rem;">
-            <span class="stream-badge">{{ entry.collection | replace: '-', ' ' }} Stream</span>
-            <h3 style="margin: 0 0 1rem 0; line-height: 1.4;"><a href="{{ entry.url | relative_url }}" class="article-anchor-link">{{ entry.title }}</a></h3>
-            <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0; text-align: justify;">{{ entry.excerpt | strip_html | truncate: 140 }}</p>
-          </div>
-          <a href="{{ entry.url | relative_url }}" aria-label="Explore document track: {{ entry.title }}" class="article-footer-trigger">Read Document Track <span style="color: #00d4b2;">→</span></a>
-        </article>
-      {% else %}
-        <div style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 4rem 0; background: #0d1527; border-radius: 12px; border: 1px dashed rgba(0,212,178,0.15);">
-          <p style="margin: 0; font-size: 1rem;">Ecosystem archive indexes updating. Active post parameters compilation running.</p>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section aria-label="Interactive Learning Toolsets Hub" style="padding: 6rem 1.5rem; background: #020617;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="color: #ffffff; font-size: 2.2rem; font-weight: 800; text-align: center; margin-bottom: 0.75rem; letter-spacing: -0.02em;">Cognitive <span style="color: #00d4b2;">AI Lab Track</span></h2>
-    <p style="color: #94a3b8; font-size: 1.05rem; text-align: center; margin: 0 auto 4rem auto; max-width: 630px; line-height: 1.65;">Deploy clean evaluation instruments locally mapped to production asset scripts.</p>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
-      <div class="lab-interface-card">
-        <div class="lab-badge-icon">MI</div>
-        <h3 class="lab-title-node">Multiple Intelligences</h3>
-        <p class="lab-desc-node">Examine variation limits across learning spectra to optimize alignment maps.</p>
-        <a href="{{ '/socratic/assessments/mi-explorer/' | relative_url }}" class="lab-action-link">Launch Evaluation Model →</a>
-      </div>
-
-      <div class="lab-interface-card">
-        <div class="lab-badge-icon accent-charts">📊</div>
-        <h3 class="lab-title-node">Zoology Lecture Syllabus</h3>
-        <p class="lab-desc-node">Access expandable, high-speed breakdown paths tracking cadre study items.</p>
-        <span class="lab-sync-status">Matrix Syncing Active</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <style>
   /* Core Premium Card Overrides - Soft Eye Comfort Architecture */
   .premium-neural-card, .feed-article-card, .lab-interface-card {
     background: #0d1527 !important;
     border: 1px solid rgba(255, 255, 255, 0.03) !important;
-    padding: 3rem 2.25rem !important;
+    padding: 2.5rem 2rem !important;
     border-radius: 12px !important;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -98,25 +22,28 @@
   }
 
   .card-icon-wrapper {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     display: block;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .card-node-title, .lab-title-node {
     color: #ffffff !important;
-    font-size: 1.4rem !important;
-    margin: 0 0 0.85rem 0 !important;
+    font-size: 1.35rem !important;
+    margin: 0 0 0.75rem 0 !important;
     font-weight: 700 !important;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.01em !important;
   }
 
+  /* PREMIUM TYPOGRAPHY CORRECTION ENGINE (FIXED WORD GAPS) */
   .card-node-desc {
     color: #94a3b8 !important;
     font-size: 0.95rem !important;
-    line-height: 1.65 !important;
+    line-height: 1.6 !important; /* Perfect proportional line spacing */
     margin: 0 !important;
-    text-align: justify;
+    text-align: left !important; /* Changed from justify to left to eliminate forced spaces */
+    letter-spacing: -0.005em !important; /* Tight elegant kerning */
+    word-spacing: normal !important; /* Resets abnormal browser word gaps */
   }
 
   /* Article Publication Elements */
@@ -200,6 +127,7 @@
     line-height: 1.6 !important;
     margin: 0 0 2rem 0 !important;
     max-width: 280px;
+    text-align: center !important;
   }
 
   .lab-action-link {
@@ -220,5 +148,18 @@
     font-weight: 700;
     font-size: 0.9rem;
     letter-spacing: 0.02em;
+  }
+
+  /* Multi-Device Alignment Fixes */
+  @media (max-width: 480px) {
+    .premium-neural-card, .feed-article-card, .lab-interface-card {
+      padding: 2rem 1.5rem !important;
+      align-items: center !important;
+      text-align: center !important;
+    }
+    .card-node-desc {
+      text-align: center !important; /* Perfect center symmetry for mobile viewports */
+      font-size: 0.92rem !important;
+    }
   }
 </style>
