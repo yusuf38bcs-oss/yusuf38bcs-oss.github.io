@@ -33,6 +33,9 @@ collections:
   life-practices:
     output: true
     permalink: /life-practices/:title/
+  synaptic-bridge:
+    output: true
+    permalink: /synaptic-bridge/:path/
 
 # --- DEFAULT MANIFEST HEADER SETTINGS ---
 defaults:
