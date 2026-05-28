@@ -1,0 +1,134 @@
+<aside class="sidebar-matrix-engine sidebar-academic" aria-labelledby="academic-sidebar-title">
+  <div class="sidebar-inner-scroll-box">
+    
+    <section class="sidebar-neural-card highlight-glow-slot">
+      <p class="sidebar-eyebrow-node">Academic Pathway</p>
+      <h2 id="academic-sidebar-title" class="sidebar-symbolic-flow">● Dots ➔ ━ Lines ➔ ◯ Circle</h2>
+      <p class="sidebar-card-desc">Study the concept as a biological dot, connect it with related systems, then complete the circle through application and assessment.</p>
+      <div class="sidebar-action-control-row">
+        <a class="sidebar-mini-btn btn-cyan" href="{{ '/mcq-arena/' | relative_url }}">Practice MCQs</a>
+        <a class="sidebar-mini-btn btn-dark" href="{{ '/biology/' | relative_url }}">Biology Map</a>
+      </div>
+    </section>
+
+    {% assign page_cats = page.categories | join: "," | downcase %}
+    {% assign page_tags = page.tags | join: "," | downcase %}
+    <section class="sidebar-neural-card">
+      <h3 class="sidebar-card-heading">Study Lens Checkpoint</h3>
+      {% if page_cats contains "physiology" or page_tags contains "physiology" %}
+        <ul class="sidebar-question-vector-list">
+          <li>What is the exact biomechanical structure?</li>
+          <li>What is the homeostatic core function?</li>
+          <li>How is it regulated via biochemical feedback loops?</li>
+          <li>What pathological state happens when regulation fails?</li>
+        </ul>
+      {% elsif page_cats contains "ecology" or page_tags contains "ecology" %}
+        <ul class="sidebar-question-vector-list">
+          <li>What are the interacting biotic and abiotic components?</li>
+          <li>Where does energy flow and thermodynamically dissipate?</li>
+          <li>Which systemic feedback loop maintains cosmic balance?</li>
+          <li>How does the biosphere ecosystem respond to human disturbance?</li>
+        </ul>
+      {% elsif page_cats contains "biostatistics" or page_tags contains "biostatistics" %}
+        <ul class="sidebar-question-vector-list">
+          <li>What sample parameters are being measured?</li>
+          <li>How variable is the bio-data distribution profile?</li>
+          <li>What correlation pattern appears through statistical matrices?</li>
+          <li>How confident is the inferential conclusion ($p$-value score)?</li>
+        </ul>
+      {% elsif page_cats contains "genetics" or page_tags contains "genetics" %}
+        <ul class="sidebar-question-vector-list">
+          <li>What nucleotide informational code is inherited?</li>
+          <li>How is genetic variation produced via crossing-over?</li>
+          <li>How is protein gene expression transcriptionally regulated?</li>
+          <li>How does this macro-level variance affect long-term evolution?</li>
+        </ul>
+      {% else %}
+        <ul class="sidebar-question-vector-list">
+          <li>What is the core biological concept or blueprint?</li>
+          <li>What molecular mechanism explains this observation?</li>
+          <li>What functional example makes it deeply memorable?</li>
+          <li>How does it connect directly to life practices and truth?</li>
+        </ul>
+      {% endif %}
+    </section>
+
+    <section class="sidebar-neural-card">
+      <h3 class="sidebar-card-heading">Academic Navigation</h3>
+      <nav class="sidebar-link-matrix-list" aria-label="Academic biology navigation">
+        <a href="{{ '/synaptic-bridge/systems-biology/' | relative_url }}" class="matrix-nav-link">
+          <span class="link-title">Human Physiology</span>
+          <span class="link-meta-desc">Function, endocrine axes, homeostasis</span>
+        </a>
+        <a href="{{ '/biology/ecology/' | relative_url }}" class="matrix-nav-link">
+          <span class="link-title">Ecology Systems</span>
+          <span class="link-meta-desc">Biosphere balance, energy flow, ethics</span>
+        </a>
+        <a href="{{ '/biology/genetics/' | relative_url }}" class="matrix-nav-link">
+          <span class="link-title">Genetics &amp; Analytics</span>
+          <span class="link-meta-desc">Inheritance tracking, variation, code</span>
+        </a>
+        <a href="{{ '/biology/zoology/' | relative_url }}" class="matrix-nav-link">
+          <span class="link-title">Animal Diversity &amp; Taxonomy</span>
+          <span class="link-meta-desc">Classification and comparative biology</span>
+        </a>
+      </nav>
+    </section>
+
+    <section class="sidebar-neural-card">
+      <h3 class="sidebar-card-heading">Assessment Bridge</h3>
+      <nav class="sidebar-link-matrix-list" aria-label="Academic assessment tools">
+        <a href="{{ '/mcq-arena/' | relative_url }}" class="matrix-nav-link">
+          <span class="link-title">MCQ Arena Hub</span>
+          <span class="link-meta-desc">Generate adaptive practice matrices</span>
+        </a>
+        <a href="{{ '/socratic/principles-deconstructor/' | relative_url }}" class="matrix-nav-link">
+          <span class="link-title">Principles Deconstructor</span>
+          <span class="link-meta-desc">Convert rigid facts into first principles</span>
+        </a>
+      </nav>
+    </section>
+
+    <section class="sidebar-neural-card mini-ai-console-wrapper" data-sidebar-academic-ai>
+      <div class="mini-console-status-strip">
+        <div class="console-pulse-indicator"></div>
+        <span class="console-status-lbl">Synaptic AI Prompter</span>
+      </div>
+      <p class="sidebar-card-desc">Create compact revision prompts from this page context instantly.</p>
+      <button class="sidebar-mini-btn btn-cyan u-full-width" type="button" data-academic-sidebar-generate>Generate Study Prompts</button>
+      <div class="sidebar-ai-console-output" data-academic-sidebar-output aria-live="polite"></div>
+    </section>
+
+  </div>
+</aside>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const aiPanel = document.querySelector("[data-sidebar-academic-ai]");
+    if (!aiPanel || !window.SynapticAI) return;
+    
+    const triggerBtn = aiPanel.querySelector("[data-academic-sidebar-generate]");
+    const monitorBox = aiPanel.querySelector("[data-academic-sidebar-output]");
+    
+    triggerBtn.addEventListener("click", async function() {
+      monitorBox.style.display = "block";
+      monitorBox.innerHTML = '<p class="console-loading-text">⚡ Indexing context & compiling prompts...</p>';
+      triggerBtn.disabled = true;
+      
+      try {
+        const payload = await window.SynapticAI.generate({
+          model: "fast",
+          type: "text",
+          useMemory: false,
+          systemInstruction: "You are an expert biology teacher for Learning Biology for Life. Create concise, exam-friendly, concept-focused study prompts aligned with objective left-aligned layout aesthetics.",
+          prompt: "From the current page context, generate: 1) three core recall questions, 2) three practical application questions, 3) one life-bridge reflection query. Keep output ultra-compact and avoid verbose sentences."
+        });
+        monitorBox.innerHTML = window.SynapticAI.renderMarkdown(payload.text || payload.output || "No data tracks generated.");
+      } catch (err) {
+        monitorBox.innerHTML = '<p style="color: #ef4444; font-weight: 600; margin: 0;">⚠️ Synaptic misfire. Re-check network array.</p>';
+      } finally {
+        triggerBtn.disabled = false;
+      }
+    });
+  });
+</script>
