@@ -2,26 +2,33 @@
 layout: default
 ---
 
-<article style="max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; color: #f3f4f6; font-family: sans-serif;">
-  
-  <header style="margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 2rem;">
-    {% if page.collection %}
-      <span style="color: #00d4b2; text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; display: inline-block; margin-bottom: 0.5rem;">
-        {{ page.collection }} Array Tracker
-      </span>
-    {% endif %}
-    <h1 style="font-size: 2.8rem; color: #ffffff; font-weight: 800; margin: 0 0 1rem 0; line-height: 1.2; letter-spacing: -0.02em;">
-      {{ page.title }}
-    </h1>
-    {% if page.excerpt %}
-      <p style="font-size: 1.15rem; color: #94a3b8; line-height: 1.6; margin: 0;">
-        {{ page.excerpt }}
-      </p>
-    {% endif %}
-  </header>
+<article class="synaptic-single-post-container" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="page-layout-grid">
+    
+    <main class="page-main-article">
+      <header class="page-content-header">
+        
+        <div class="post-meta-strip-specs" style="display:flex; gap:12px; font-size:0.82rem; color:#64748b; font-weight:700; text-transform:uppercase; margin-bottom:0.75rem;">
+          <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">⚡ {{ page.date | date: "%B %d, %Y" }}</time>
+          <span>•</span>
+          <span>
+            {% assign words = content | number_of_words %}
+            {{ words | divided_by: 180 | plus: 1 }} Min Read
+          </span>
+        </div>
 
-  <div class="inner-article-markdown-text" style="line-height: 1.75; font-size: 1.1rem; color: #d1d5db;">
-    {{ content }}
+        <h1 class="page-main-title" itemprop="headline">{{ page.title }}</h1>
+        <div class="header-matrix-line"></div>
+      </header>
+
+      <div class="page-rendered-markdown-body" itemprop="articleBody">
+        {{ content }}
+      </div>
+    </main>
+
+    <aside class="page-sidebar-viewport">
+      {% include navigation/contextual-sidebar.html %}
+    </aside>
+
   </div>
-
 </article>
