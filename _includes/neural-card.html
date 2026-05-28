@@ -38,6 +38,7 @@
   </a>
 </article>
 
+{% unless neural_card_styles_loaded %}
 <style>
   .neural-card-wrapper {
     height: 100%;
@@ -52,9 +53,9 @@
     flex-direction: column;
     width: 100%;
     padding: 2.5rem 2.25rem !important;
-    background: #0d1527 !important; /* Premium unified dark comfort slot */
+    background: #0d1527 !important; 
     border: 1px solid rgba(255, 255, 255, 0.03) !important;
-    border-radius: 12px !important; /* Matches home sections blueprint */
+    border-radius: 12px !important; 
     text-decoration: none !important;
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
     overflow: hidden;
@@ -111,12 +112,15 @@
     letter-spacing: -0.01em;
   }
 
+  /* PREMIUM TYPOGRAPHY FIX: ELIMINATED IRREGULAR WORD GAPS */
   .card-description-node {
     color: #94a3b8 !important;
     font-size: 0.95rem !important;
     line-height: 1.6 !important;
     margin: 0 0 2rem 0 !important;
-    text-align: justify;
+    text-align: left !important; /* Fixed forced padding whitespace */
+    word-spacing: normal !important;
+    letter-spacing: -0.005em !important;
   }
 
   .card-footer-action-trigger {
@@ -146,7 +150,6 @@
     transform: translateX(4px);
   }
 
-  /* Fixed Pulse Dot to Match platform aesthetics */
   .neural-pulse-dot {
     width: 6px;
     height: 6px;
@@ -162,9 +165,18 @@
   @media (max-width: 480px) {
     .section-card {
       padding: 2rem 1.5rem !important;
+      align-items: center !important;
+      text-align: center !important;
     }
     .card-title-node {
       font-size: 1.25rem !important;
+    }
+    .card-description-node {
+      text-align: center !important; /* Harmonized layout on small smartphone views */
+      font-size: 0.92rem !important;
+    }
+    .card-footer-action-trigger {
+      justify-content: center !important;
     }
     .neural-pulse-dot {
       top: 2rem;
@@ -172,3 +184,5 @@
     }
   }
 </style>
+{% assign neural_card_styles_loaded = true %}
+{% endunless %}
