@@ -1,23 +1,99 @@
----
----
+/* ==========================================================================
+   PREMIUM UNIFIED ECOSYSTEM MASTER CSS CORE
+   Designed for Jekyll Minimal Mistakes Engine (Socratic Matrix Edition)
+   ========================================================================== */
+
+/* 1. MINIMAL MISTAKES VARIABLE OVERRIDES (Must be declared BEFORE imports) */
+$background-color: #020617 !important; // Core dark matrix void
+$text-color: #cbd5e1 !important;       // Soft read-optimized slate text
+$primary-color: #00d4b2 !important;    // Premium signature neon cyan
+$link-color: #00d4b2 !important;
+$link-color-hover: #3b82f6 !important; // Quantum blue glow acceleration
+
+// Masthead & Structural Overrides
+$masthead-link-color: #ffffff !important;
+$masthead-link-color-hover: #00d4b2 !important;
+
+/* 2. CORE THEME SKINS & PLUGINS IMPORTS */
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
 
+/* 3. HARDWARE-ACCELERATED FULL-WIDTH STRUCTURAL LAYOUT RULES */
 #main {
   max-width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
+  background-color: #020617 !important;
 }
+
 .page {
   width: 100% !important;
   padding-right: 0 !important;
   margin: 0 !important;
+  background-color: #020617 !important;
 }
+
 .page__content {
   max-width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
 }
+
 .initial-content {
   width: 100% !important;
+}
+
+/* 4. ANTI-FORCED MOBILE WORD GAPS & READABILITY SPECS */
+p, li, article, h1, h2, h3, h4 {
+  text-align: left; // Eradicates messy browser-forced justifications on iPhones
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+}
+
+/* 5. RUNTIME RENDERING PERFORMANCE UTILITIES (Linked with main.js) */
+body.viewport-scrolling-active {
+  // Freezes expensive pointer events on structural nodes during rapid scrolls
+  :not(.synaptic-floating-ai-shell):not(.synaptic-core-bubble-btn):not(.socratic-floating-panel) {
+    pointer-events: none !important;
+  }
+}
+
+/* 6. PLATFORM GLOW & TEXT SYMETRY ATOMS */
+.u-text-glow {
+  color: #ffffff !important;
+  text-shadow: 0 0 15px rgba(0, 212, 178, 0.3) !important;
+}
+
+.u-mt-lg { margin-top: 2.5rem !important; }
+.u-mt-md { margin-top: 1.5rem !important; }
+.u-text-center { text-align: center !important; }
+
+/* Global Socratic Loading Component Animation Trigger */
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* 7. HIGH-CONTRASS INTERACTIVE SYSTEM BUTTONS MATRIX */
+.mi-btn-calculate, .mcq-btn-generate {
+  background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%) !important;
+  color: #020617 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+  border: none !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
+  
+  &:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(0, 212, 178, 0.35) !important;
+  }
+  
+  &:disabled {
+    background: #1e293b !important;
+    color: #475569 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
 }
