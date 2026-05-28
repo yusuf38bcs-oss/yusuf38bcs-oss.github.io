@@ -3,8 +3,8 @@ layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
-title: "Astropecten: Water Vascular System (à¦…à§à¦¯à¦¾à¦¸à§à¦Ÿà§à¦°à§‹à¦ªà§‡à¦•à¦Ÿà§‡à¦¨-à¦à¦° à¦ªà¦¾à¦¨à¦¿ à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦°)"
-date: 2026-04-17T18:10:00.010Z
+title: "Astropecten: Water Vascular System (অ্যাস্ট্রোপেকটেন-এর পানি সংবহনতন্ত্র)"
+date: 2026-04-17T18:10:00.000Z
 categories:
   - Animal Diversity
 tags:
@@ -14,409 +14,265 @@ tags:
   - Zoology
   - Bio-mimicry
 toc: true
+toc_label: "পদ্ধতিগত মানচিত্র"
+toc_icon: "water"
 classes: wide
-excerpt: "à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›à§‡à¦° (Astropecten) à¦…à¦¨à¦¨à§à¦¯ à¦ªà¦¾à¦¨à¦¿ à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦°à§‡à¦° à¦à¦• à¦°à§‹à¦®à¦¾à¦žà§à¦šà¦•à¦° à¦†à¦£à¦¬à¦¿à¦• à¦“ à¦¯à¦¾à¦¨à§à¦¤à§à¦°à¦¿à¦• à¦¬à§à¦¯à¦¬à¦šà§à¦›à§‡à¦¦à¥¤ à¦œà¦¾à¦¨à§à¦¨ à¦•à§€à¦­à¦¾à¦¬à§‡ à¦¸à¦®à§à¦¦à§à¦°à§‡à¦° à¦œà¦²à¦šà¦¾à¦ªà¦•à§‡ à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à§‡ à¦à¦‡ à¦ªà§à¦°à¦¾à¦£à§€à¦Ÿà¦¿ à¦¤à¦¾à¦° à¦²à§‹à¦•à§‹à¦®à§‹à¦¶à¦¨ à¦“ à¦¹à¦¾à¦‡à¦¡à§à¦°à§‹à¦²à¦¿à¦• à¦®à§‡à¦•à¦¾à¦¨à¦¿à¦œà¦® à¦ªà¦°à¦¿à¦šà¦¾à¦²à¦¨à¦¾ à¦•à¦°à§‡à¥¤"
+excerpt: "তারামাছের (Astropecten) অনন্য পানি সংবহনতন্ত্রের এক রোমাঞ্চকর আণবিক ও যান্ত্রিক ব্যবচ্ছেদ। জানুন কীভাবে সমুদ্রের জলচাপকে ব্যবহার করে এই প্রাণীটি তার লোকোমোশন ও হাইড্রোলিক মেকানিজম পরিচালনা করে।"
 ---
 
-<!DOCTYPE html>
-<html lang="bn">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiRef92V6BMS8BJsjN9iv2K4NBGGC0dA-2edTcgEBwu-B3LB3QwV6FqzLl3Q" alt="Astropecten Echinodermata Marine Biology Systems Banner" style="width: 100%; height: auto; display: block; object-fit: cover;">
+</div>
 
-    <style>
-      :root{
-        --primary:#6c5ce7;
-        --secondary:#4834d4;
-        --glass:rgba(255,255,255,0.75);
-        --dark:#2d3436;
-      }
+<div class="quote-box" style="background: rgba(255,255,255,0.02); border-left: 4px solid #64748b; padding: 20px; border-radius: 0 8px 8px 0; margin: 25px 0; color: #cbd5e1; line-height: 1.8;">
+  <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">হে চিন্তাশীল মন (Active Thinkers):</strong>
+  জীববিজ্ঞান কোনো মুখস্থবিদ্যার খাতা নয়, এটি মহাবিশ্বের সুনিপুণ প্রকৌশলের এক জীবন্ত দলিল। মানবদেহ যেমন সমস্ত মেকানিক্যাল আবিষ্কারের আদি রহস্য, ঠিক তেমনি সমুদ্রের অতল গভীরে থাকা এই <em>Astropecten</em> (তারামাছ) হলো ফ্লুইড ডায়নামিকসের এক অলৌকিক উদাহরণ। 
+  <br><br>
+  পবিত্র কুরআনে মহান আল্লাহ এরশাদ করেছেন: 
+  <blockquote>"তিনিই সমুদ্রকে অধীন করেছেন, যাতে তোমরা তা থেকে তাজা মাংস (খাদ্য) খেতে পারো এবং তা থেকে বের করতে পারো অলঙ্কার..." (সূরা আন-নাহল: ১৪)</blockquote> 
+  সমুদ্রের এই অধীনস্থ ইকোসিস্টেমের দিকে তাকালে আমরা এক অনন্য জলবাহী মেকানিজম দেখতে পাই, যা আজকের আধুনিক ন্যানো-রোবটিক্সকেও হার মানায়। আসুন, এই ইন্টারেক্টিভ অ্যাপ-ভিত্তিক লেকচারের মাধ্যমে তারামাছের <strong>Water Vascular System</strong>-এর ইঞ্জিনিয়ারিং ডিকোড করি।
+</div>
 
-      .app-wrapper {
-        font-family: 'Segoe UI', 'Kalpurush', system-ui, sans-serif;
-        line-height: 1.8;
-        color: var(--dark);
-      }
+<div class="glass header" style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); padding: 30px 20px; text-align: center; border-radius: 12px; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+  <h2 style="color: #ffffff; margin: 0 0 10px 0; font-weight: 800; font-size: 2rem; letter-spacing: -0.02em;">🌊 Astropecten: পানি সংবহনতন্ত্র</h2>
+  <p style="margin: 5px 0 0 0; opacity: 0.9; font-weight: 600; color: #00d4b2; font-size: 1rem; letter-spacing: 0.05em;">Constructive Alignment ভিত্তিক ইন্টারঅ্যাকটিভ লার্নিং ফ্রেমওয়ার্ক</p>
+  <div class="progress-wrap" style="height: 10px; background: rgba(255,255,255,0.05); border-radius: 20px; overflow: hidden; margin: 20px auto 0 auto; max-width: 80%; border: 1px solid rgba(255,255,255,0.02);">
+    <div class="progress-bar" id="bar" style="height: 100%; width: 0%; background: #00d4b2; transition: .4s cubic-bezier(0.1, 0.8, 0.25, 1);"></div>
+  </div>
+  <div class="progress-text" id="txt" style="font-size: .95rem; margin-top: 10px; font-weight: 700; color: #ffffff;">0% সম্পন্ন হয়েছে</div>
+</div>
 
-      /* APP WRAPPER */
-      .app{
-        max-width:850px;
-        margin:20px auto;
-        padding:15px;
-      }
+<div class="glass img-box" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.03); margin-top: 25px; padding: 20px; text-align: center; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKtR7-myVqx39NwOzzViOLrvpA-TkGeANMj3qE7kZssaoLxI1GjU892IWfy5ynN_PiWQFrTFHqoq_cgw1BZc3z6Bo4_5wvSOqNa0YLW8tGL43lUwjHIW1t-2Srx_VGSKWEoCqhA-jeeIGLTleJNWAgZrDPOdgyKLU61IcXez0Zfr4PfcUeMgj2gYnRTgk/s1408/%E0%A6%AA%E0%A6%BE%E0%A6%A8%E0%A6%BF%20%E0%A6%B8%E0%A6%82%E0%A6%AC%E0%A6%B9%E0%A6%A8%E0%A6%A4%E0%A6%A%E0%A7%8D%E0%A6%B0%E0%A6%83%20%E0%A6%A4%E0%A6%BE%E0%A6%B0%E0%A6%BE%20%E0%A6%AE%E0%A6%BE%E0%A6%9B.webp" alt="Water Vascular System of Starfish" style="width: 100%; max-width: 750px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+  <p class="image-caption" style="font-style: italic; color: #94a3b8; margin-top: 12px; font-size: 0.9rem; font-weight: 500;">🔎 ডায়াগ্রাম: তারামাছের অভ্যন্তরীণ পানি সংবহনতন্ত্রের জটিল হাইড্রোস্ট্যাটিক আর্কিটেকচার</p>
+</div>
 
-      /* GLASS */
-      .glass{
-        backdrop-filter:blur(16px);
-        background:var(--glass);
-        border-radius:18px;
-        box-shadow:0 8px 30px rgba(0,0,0,.08);
-        border: 1px solid rgba(255,255,255,0.4);
-      }
-
-      /* HEADER */
-      .header{
-        padding:30px 20px;
-        text-align:center;
-        background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
-        color: white;
-      }
-      .header h2 {
-        color: white;
-        margin: 0 0 10px 0;
-        font-size: 2.2em;
-      }
-
-      /* PROGRESS */
-      .progress-wrap{
-        height:10px;
-        background:rgba(255,255,255,0.35);
-        border-radius:20px;
-        overflow:hidden;
-        margin: 15px auto 0 auto;
-        max-width: 80%;
-      }
-      .progress-bar{
-        height:100%;
-        width:0%;
-        background:#00b894;
-        transition:.4s cubic-bezier(0.1, 0.8, 0.25, 1);
-      }
-      .progress-text{
-        font-size:.9em;
-        margin-top:8px;
-        font-weight: 600;
-      }
-
-      /* IMAGE */
-      .img-box{
-        margin-top:20px;
-        padding:12px;
-        text-align: center;
-      }
-      .img-box img{
-        width:100%;
-        border-radius:12px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      }
-      .image-caption {
-        font-style: italic;
-        color: #555;
-        margin-top: 8px;
-        font-size: 0.95rem;
-      }
-
-      /* ACCORDION */
-      .acc{
-        margin-top:20px;
-      }
-      .acc-item{
-        margin-bottom:12px;
-        border-radius:14px;
-        overflow:hidden;
-        background:#fff;
-        border: 1px solid #e1e8ed;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        transition: 0.3s;
-      }
-      .acc-head{
-        padding:16px 20px;
-        font-weight:700;
-        cursor:pointer;
-        background: #f8fafc;
-        color: #2d3748;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        user-select: none;
-      }
-      .acc-head::after {
-        content: 'â–¼';
-        font-size: 0.8em;
-        color: var(--primary);
-        transition: 0.3s;
-      }
-      .acc-body{
-        max-height:0;
-        overflow:hidden;
-        transition:max-height .4s cubic-bezier(0.1, 0.8, 0.25, 1);
-        background:#fafbff;
-      }
-      .acc-body-inner{
-        padding:20px;
-        line-height:1.8;
-      }
-
-      /* ACTIVE */
-      .acc-item.active {
-        box-shadow: 0 4px 15px rgba(108, 92, 231, 0.1);
-        border-color: #a29bfe;
-      }
-      .acc-item.active .acc-body{
-        max-height:1500px;
-      }
-      .acc-item.active .acc-head::after {
-        transform: rotate(180deg);
-      }
-
-      /* DONE */
-      .acc-item.done .acc-head{
-        border-left:5px solid #00b894;
-      }
-
-      /* HIGHLIGHT */
-      .highlight{
-        background:#eef2ff;
-        color: #3730a3;
-        padding:2px 8px;
-        border-radius:6px;
-        font-weight:600;
-        display: inline-block;
-      }
-
-      /* FLOW BOX */
-      .flow-box {
-        background: #f0fdf4;
-        border-left: 5px solid #16a34a;
-        padding: 12px 15px;
-        border-radius: 8px;
-        margin: 15px 0;
-        font-family: monospace;
-        font-weight: 600;
-        font-size: 0.95em;
-        text-align: center;
-      }
-
-      /* QUOTE BOX */
-      .quote-box {
-        background: #fffbeb;
-        border-left: 5px solid #d97706;
-        padding: 15px;
-        border-radius: 8px;
-        margin: 15px 0;
-        font-style: italic;
-      }
-
-      /* NAV */
-      .nav{
-        position:fixed;
-        bottom:0;
-        left:0;
-        width:100%;
-        display:flex;
-        justify-content:space-around;
-        background:#fff;
-        padding:12px 0;
-        box-shadow:0 -4px 15px rgba(0,0,0,.08);
-        z-index: 1000;
-      }
-      .nav-item {
-        font-size: 1.4em;
-        cursor: pointer;
-        transition: 0.2s;
-      }
-      .nav-item:hover {
-        transform: scale(1.2);
-      }
-
-      /* SPACING */
-      .spacer{height:80px;}
-    </style>
-  </head>
-
-  <body>
-    <div class="app-wrapper app">
-      
-      <blockquote class="quote-box" style="margin-bottom: 25px;">
-        <strong>à¦¹à§‡ à¦šà¦¿à¦¨à§à¦¤à¦¾à¦¶à§€à¦² à¦®à¦¨ (Active Thinkers):</strong><br>
-        à¦œà§€à¦¬à¦¬à¦¿à¦œà§à¦žà¦¾à¦¨ à¦•à§‹à¦¨à§‹ à¦®à§à¦–à¦¸à§à¦¥à¦¬à¦¿à¦¦à§à¦¯à¦¾à¦° à¦–à¦¾à¦¤à¦¾ à¦¨à§Ÿ, à¦à¦Ÿà¦¿ à¦®à¦¹à¦¾à¦¬à¦¿à¦¶à§à¦¬à§‡à¦° à¦¸à§à¦¨à¦¿à¦ªà§à¦£ à¦ªà§à¦°à¦•à§Œà¦¶à¦²à§‡à¦° à¦à¦• à¦œà§€à¦¬à¦¨à§à¦¤ à¦¦à¦²à¦¿à¦²à¥¤ à¦®à¦¾à¦¨à¦¬à¦¦à§‡à¦¹ à¦¯à§‡à¦®à¦¨ à¦¸à¦®à¦¸à§à¦¤ à¦®à§‡à¦•à¦¾à¦¨à¦¿à¦•à§à¦¯à¦¾à¦² à¦†à¦¬à¦¿à¦·à§à¦•à¦¾à¦°à§‡à¦° à¦†à¦¦à¦¿ à¦°à¦¹à¦¸à§à¦¯, à¦ à¦¿à¦• à¦¤à§‡à¦®à¦¨à¦¿ à¦¸à¦®à§à¦¦à§à¦°à§‡à¦° à¦…à¦¤à¦² à¦—à¦­à§€à¦°à§‡ à¦¥à¦¾à¦•à¦¾ à¦à¦‡ <em>Astropecten</em> (à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›) à¦¹à¦²à§‹ à¦«à§à¦²à§à¦‡à¦¡ à¦¡à¦¾à¦‡à¦¨à¦¾à¦®à¦¿à¦•à¦¸à§‡à¦° à¦à¦• à¦…à¦²à§Œà¦•à¦¿à¦• à¦‰à¦¦à¦¾à¦¹à¦°à¦£à¥¤ 
-        <br><br>
-        à¦ªà¦¬à¦¿à¦¤à§à¦° à¦•à§à¦°à¦†à¦¨à§‡ à¦®à¦¹à¦¾à¦¨ à¦†à¦²à§à¦²à¦¾à¦¹ à¦à¦°à¦¶à¦¾à¦¦ à¦•à¦°à§‡à¦›à§‡à¦¨: <em>"à¦¤à¦¿à¦¨à¦¿à¦‡ à¦¸à¦®à§à¦¦à§à¦°à¦•à§‡ à¦…à¦§à§€à¦¨ à¦•à¦°à§‡à¦›à§‡à¦¨, à¦¯à¦¾à¦¤à§‡ à¦¤à§‹à¦®à¦°à¦¾ à¦¤à¦¾ à¦¥à§‡à¦•à§‡ à¦¤à¦¾à¦œà¦¾ à¦®à¦¾à¦‚à¦¸ (à¦–à¦¾à¦¦à§à¦¯) à¦–à§‡à¦¤à§‡ à¦ªà¦¾à¦°à§‹ à¦à¦¬à¦‚ à¦¤à¦¾ à¦¥à§‡à¦•à§‡ à¦¬à§‡à¦° à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à§‹ à¦…à¦²à¦™à§à¦•à¦¾à¦°..." (à¦¸à§‚à¦°à¦¾ à¦†à¦¨-à¦¨à¦¾à¦¹à¦²: à§§à§ª)</em>à¥¤ à¦¸à¦®à§à¦¦à§à¦°à§‡à¦° à¦à¦‡ à¦…à¦§à§€à¦¨à¦¸à§à¦¥ à¦‡à¦•à§‹à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦®à§‡à¦° à¦¦à¦¿à¦•à§‡ à¦¤à¦¾à¦•à¦¾à¦²à§‡ à¦†à¦®à¦°à¦¾ à¦à¦• à¦…à¦¨à¦¨à§à¦¯ à¦œà¦²à¦¬à¦¾à¦¹à§€ à¦®à§‡à¦•à¦¾à¦¨à¦¿à¦œà¦® à¦¦à§‡à¦–à¦¤à§‡ à¦ªà¦¾à¦‡, à¦¯à¦¾ à¦†à¦œà¦•à§‡à¦° à¦†à¦§à§à¦¨à¦¿à¦• à¦¨à§à¦¯à¦¾à¦¨à§‹-à¦°à§‹à¦¬à§‹à¦Ÿà¦¿à¦•à§à¦¸à¦•à§‡à¦“ à¦¹à¦¾à¦° à¦®à¦¾à¦¨à¦¾à§Ÿà¥¤ à¦†à¦¸à§à¦¨, à¦à¦‡ à¦‡à¦¨à§à¦Ÿà¦¾à¦°à§‡à¦•à§à¦Ÿà¦¿à¦­ à¦…à§à¦¯à¦¾à¦ª-à¦­à¦¿à¦¤à§à¦¤à¦¿à¦• à¦²à§‡à¦•à¦šà¦¾à¦°à§‡à¦° à¦®à¦¾à¦§à§à¦¯à¦®à§‡ à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›à§‡à¦° <strong>Water Vascular System</strong>-à¦à¦° à¦‡à¦žà§à¦œà¦¿à¦¨à¦¿à§Ÿà¦¾à¦°à¦¿à¦‚ à¦¡à¦¿à¦•à§‹à¦¡ à¦•à¦°à¦¿à¥¤
-      </blockquote>
-
-      <div class="glass header">
-        <h2>ðŸŒŠ Astropecten: à¦ªà¦¾à¦¨à¦¿ à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦°</h2>
-        <p style="margin: 5px 0 0 0; opacity: 0.9; font-weight: 500;">Constructive Alignment à¦­à¦¿à¦¤à§à¦¤à¦¿à¦• à¦‡à¦¨à§à¦Ÿà¦¾à¦°à¦…à§à¦¯à¦¾à¦•à¦Ÿà¦¿à¦­ à¦²à¦¾à¦°à§à¦¨à¦¿à¦‚ à¦«à§à¦°à§‡à¦®à¦“à§Ÿà¦¾à¦°à§à¦•</p>
-        <div class="progress-wrap">
-          <div class="progress-bar" id="bar"></div>
-        </div>
-        <div class="progress-text" id="txt">0% à¦¸à¦®à§à¦ªà¦¨à§à¦¨ à¦¹à§Ÿà§‡à¦›à§‡</div>
+<div class="acc" style="margin-top: 25px;">
+  
+  <div class="acc-item">
+    <div class="acc-head">🎯 ১. শিখন উদ্দেশ্য (Learning Objectives - LOLO)</div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        এই পাঠটি মনোযোগ দিয়ে সম্পন্ন করার পর তোমরা:
+        <ul style="padding-left: 1.25rem; margin-top: 10px; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li><span class="highlight">Echinodermata</span> পর্বের প্রাণীদের অনন্য বৈশিষ্ট্য ব্যাখ্যা করতে পারবে।</li>
+          <li>অ্যাস্ট্রোপেকটেন-এর <span class="highlight">Water Vascular System</span> বা পানি সংবহনতন্ত্রের প্রতিটি গাঠনিক উপাদান চিহ্নিত করতে পারবে।</li>
+          <li>হাইড্রোলিক চাপের মাধ্যমে কীভাবে তারামাছ লোকোমোশন (চলন) ও খাদ্য গ্রহণ সম্পন্ন করে তা বিশ্লেষণ করতে পারবে।</li>
+          <li>এই প্রাকৃতিক মেকানিজমকে ব্যবহার করে আধুনিক <span class="highlight">Soft Robotics</span>-এর বায়ো-মিমিক্রি ফ্রেমওয়ার্ক মূল্যায়ন করতে পারবে।</li>
+        </ul>
       </div>
-
-      <div class="glass img-box">
-        <img
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKtR7-myVqx39NwOzzViOLrvpA-TkGeANMj3qE7kZssaoLxI1GjU892IWfy5ynN_PiWQFrTFHqoq_cgw1BZc3z6Bo4_5wvSOqNa0YLW8tGL43lUwjHIW1t-2Srx_VGSKWEoCqhA-jeeIGLTleJNWAgZrDPOdgyKLU61IcXez0Zfr4PfcUeMgj2gYnRTgk/s1408/%E0%A6%AA%E0%A6%BE%E0%A6%A8%E0%A6%BF%20%E0%A6%B8%E0%A6%82%E0%A6%AC%E0%A6%B9%E0%A6%A8%E0%A6%A4%E0%A6%A%E0%A7%8D%E0%A6%B0%E0%A6%83%20%E0%A6%A4%E0%A6%BE%E0%A6%B0%E0%A6%BE%20%E0%A6%AE%E0%A6%BE%E0%A6%9B.webp"
-          alt="Water Vascular System of Starfish"
-        />
-        <p class="image-caption">ðŸ” à¦¡à¦¾à¦¯à¦¼à¦¾à¦—à§à¦°à¦¾à¦®: à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›à§‡à¦° à¦…à¦­à§à¦¯à¦¨à§à¦¤à¦°à§€à¦£ à¦ªà¦¾à¦¨à¦¿ à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦°à§‡à¦° à¦œà¦Ÿà¦¿à¦² à¦¹à¦¾à¦‡à¦¡à§à¦°à§‹à¦¸à§à¦Ÿà§à¦¯à¦¾à¦Ÿà¦¿à¦• à¦†à¦°à§à¦•à¦¿à¦Ÿà§‡à¦•à¦šà¦¾à¦°</p>
-      </div>
-
-      <div class="acc">
-        
-        <div class="acc-item">
-          <div class="acc-head">ðŸŽ¯ à§§. à¦¶à¦¿à¦–à¦¨ à¦‰à¦¦à§à¦¦à§‡à¦¶à§à¦¯ (Learning Objectives - LOLO)</div>
-          <div class="acc-body">
-            <div class="acc-body-inner">
-              à¦à¦‡ à¦ªà¦¾à¦ à¦Ÿà¦¿ à¦®à¦¨à§‹à¦¯à§‹à¦— à¦¦à¦¿à§Ÿà§‡ à¦¸à¦®à§à¦ªà¦¨à§à¦¨ à¦•à¦°à¦¾à¦° à¦ªà¦° à¦¤à§‹à¦®à¦°à¦¾:
-              <ul>
-                <li><span class="highlight">Echinodermata</span> à¦ªà¦°à§à¦¬à§‡à¦° à¦ªà§à¦°à¦¾à¦£à§€à¦¦à§‡à¦° à¦…à¦¨à¦¨à§à¦¯ à¦¬à§ˆà¦šà¦¿à¦¤à§à¦°à§à¦¯ à¦¬à§à¦¯à¦¾à¦–à§à¦¯à¦¾ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡à¥¤</li>
-                <li>à¦…à§à¦¯à¦¾à¦¸à§à¦Ÿà§à¦°à§‹à¦ªà§‡à¦•à¦Ÿà§‡à¦¨-à¦à¦° <span class="highlight">Water Vascular System</span> à¦¬à¦¾ à¦ªà¦¾à¦¨à¦¿ à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦°à§‡à¦° à¦ªà§à¦°à¦¤à¦¿à¦Ÿà¦¿ à¦—à¦¾à¦ à¦¨à¦¿à¦• à¦‰à¦ªà¦¾à¦¦à¦¾à¦¨ à¦šà¦¿à¦¹à§à¦¨à¦¿à¦¤ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡à¥¤</li>
-                <li>à¦¹à¦¾à¦‡à¦¡à§à¦°à§‹à¦²à¦¿à¦• à¦šà¦¾à¦ªà§‡à¦° à¦®à¦¾à¦§à§à¦¯à¦®à§‡ à¦•à§€à¦­à¦¾à¦¬à§‡ à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦› à¦²à§‹à¦•à§‹à¦®à§‹à¦¶à¦¨ (à¦šà¦²à¦¨) à¦“ à¦–à¦¾à¦¦à§à¦¯ à¦—à§à¦°à¦¹à¦£ à¦¸à¦®à§à¦ªà¦¨à§à¦¨ à¦•à¦°à§‡ à¦¤à¦¾ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡à¥¤</li>
-                <li>à¦à¦‡ à¦ªà§à¦°à¦¾à¦•à§ƒà¦¤à¦¿à¦• à¦®à§‡à¦•à¦¾à¦¨à¦¿à¦œà¦®à¦•à§‡ à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à§‡ à¦†à¦§à§à¦¨à¦¿à¦• <span class="highlight">Soft Robotics</span>-à¦à¦° à¦¬à¦¾à§Ÿà§‹-à¦®à¦¿à¦®à¦¿à¦•à§à¦°à¦¿ à¦«à§à¦°à§‡à¦®à¦“à§Ÿà¦¾à¦°à§à¦• à¦®à§‚à¦²à§à¦¯à¦¾à¦¯à¦¼à¦¨ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡à¥¤</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="acc-item">
-          <div class="acc-head">ðŸ§¬ à§¨. à¦ªà¦¦à§à¦§à¦¤à¦¿à¦—à¦¤ à¦¶à§à¦°à§‡à¦£à¦¿à¦¬à¦¿à¦¨à§à¦¯à¦¾à¦¸ (Systematic Position)</div>
-          <div class="acc-body">
-            <div class="acc-body-inner">
-              <p>à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›à§‡à¦° à¦Ÿà§à¦¯à¦¾à¦•à§à¦¸à§‹à¦¨à¦®à¦¿à¦• à¦¡à¦¾à¦Ÿà¦¾à¦¬à§‡à¦œ à¦¬à¦¾ à¦¸à§‹à¦°à§à¦¸ à¦•à§‹à¦¡ à¦¨à¦¿à¦šà§‡ à¦¦à§‡à¦“à§Ÿà¦¾ à¦¹à¦²à§‹, à¦¯à¦¾ à¦¤à¦¾à¦¦à§‡à¦° à¦…à¦¨à¦¨à§à¦¯ à¦¬à§ˆà¦¶à¦¿à¦·à§à¦Ÿà§à¦¯à§‡à¦° à¦ªà¦°à¦¿à¦šà¦¯à¦¼ à¦¬à¦¹à¦¨ à¦•à¦°à§‡:</p>
-              <table style="width:100%; border-collapse:collapse; margin-top:10px;">
-                <tr style="background:#f1f5f9;"><td style="padding:10px; border:1px solid #ddd; font-weight:bold;">Phylum (à¦ªà¦°à§à¦¬)</td><td style="padding:10px; border:1px solid #ddd; font-style:italic;">Echinodermata (à¦•à¦£à§à¦Ÿà¦•à¦¤à§à¦¬à¦• à¦ªà§à¦°à¦¾à¦£à§€)</td></tr>
-                <tr><td style="padding:10px; border:1px solid #ddd; font-weight:bold;">Class (à¦¶à§à¦°à§‡à¦£à¦¿)</td><td style="padding:10px; border:1px solid #ddd; font-style:italic;">Asteroidea</td></tr>
-                <tr style="background:#f1f5f9;"><td style="padding:10px; border:1px solid #ddd; font-weight:bold;">Genus (à¦—à¦£)</td><td style="padding:10px; border:1px solid #ddd; font-style:italic; font-weight:bold; color:var(--primary);">Astropecten</td></tr>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="acc-item">
-          <div class="acc-head">ðŸ’§ à§©. à¦ªà¦¾à¦¨à¦¿ à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦°: à¦ªà§à¦°à¦¾à¦•à§ƒà¦¤à¦¿à¦• à¦¹à¦¾à¦‡à¦¡à§à¦°à§‹à¦²à¦¿à¦• à¦‡à¦žà§à¦œà¦¿à¦¨à¦¿à¦¯à¦¼à¦¾à¦°à¦¿à¦‚</div>
-          <div class="acc-body">
-            <div class="acc-body-inner">
-              <p>
-                à¦à¦•à¦¾à¦‰à¦¨à§‹à¦¡à¦¾à¦°à§à¦®à¦¾à¦Ÿà¦¾ à¦ªà¦°à§à¦¬à§‡à¦° à¦ªà§à¦°à¦¾à¦£à§€à¦¦à§‡à¦° à¦ªà§à¦°à¦•à§ƒà¦¤ à¦°à¦•à§à¦¤à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦° à¦¨à§‡à¦‡à¥¤ à¦à¦¦à§‡à¦° à¦¶à¦°à§€à¦°à§‡à¦° à¦¸à¦¿à¦²à§‹à¦® (Coelom) à¦°à§‚à¦ªà¦¾à¦¨à§à¦¤à¦°à¦¿à¦¤ à¦¹à§Ÿà§‡ à¦¦à§‡à¦¹à§‡à¦° à¦¸à¦°à§à¦¬à¦¤à§à¦° à¦¬à¦¿à¦¸à§à¦¤à§ƒà¦¤ à¦•à¦¤à¦—à§à¦²à§‹ à¦œà¦Ÿà¦¿à¦² à¦¨à¦¾à¦²à§€à¦ªà¦¥ à¦¤à§ˆà¦°à¦¿ à¦•à¦°à§‡à¥¤ à¦à¦‡ à¦¸à¦¿à¦²à¦¿à§Ÿà¦¾à¦¯à§à¦•à§à¦¤ à¦“ à¦ªà§‡à¦¶à¦¿à¦®à§Ÿ à¦¨à¦¾à¦²à§€à¦—à§à¦²à§‹à¦° à¦¸à¦®à¦¨à§à¦¬à§Ÿà§‡ à¦—à¦ à¦¿à¦¤ à¦¬à¦¿à¦¶à§‡à¦· à¦¹à¦¾à¦‡à¦¡à§à¦°à§‹à¦¸à§à¦Ÿà§à¦¯à¦¾à¦Ÿà¦¿à¦• à¦¨à§‡à¦Ÿà¦“à§Ÿà¦¾à¦°à§à¦•à¦•à§‡à¦‡ <strong>à¦ªà¦¾à¦¨à¦¿ à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦° (Water Vascular System)</strong> à¦¬à¦²à§‡à¥¤
-              </p>
-
-              [attachment_0](attachment)
-
-              <p>à¦à¦° à¦®à§‚à¦² à¦ªà§à¦°à¦¬à¦¾à¦¹à¦ªà¦¥ à¦¬à¦¾ à¦²à¦œà¦¿à¦¸à§à¦Ÿà¦¿à¦• à¦šà§‡à¦‡à¦¨à¦Ÿà¦¿ à¦²à¦•à§à¦·à§à¦¯ à¦•à¦°à§‹:</p>
-              <div class="flow-box">
-                Madreporite âž” Stone Canal âž” Ring Canal âž” Radial Canal âž” Lateral Canal âž” Tube Feet
-              </div>
-
-              <h4>ðŸ—ï¸ à¦—à¦¾à¦ à¦¨à¦¿à¦• à¦…à¦‚à¦¶à¦¸à¦®à§‚à¦¹à§‡à¦° à¦¬à§à¦¯à¦¬à¦šà§à¦›à§‡à¦¦:</h4>
-              <ul>
-                <li>
-                  <span class="highlight">à¦®à§‡à¦¡à§à¦°à¦¿à¦ªà§‹à¦°à¦¾à¦‡à¦Ÿ (Madreporite):</span> à¦à¦Ÿà¦¿ à¦¹à¦²à§‹ à¦à¦‡ à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦®à§‡à¦° 'à¦ªà§à¦°à¦§à¦¾à¦¨ à¦ªà§à¦°à¦¬à§‡à¦¶à¦¦à§à¦¬à¦¾à¦°' à¦¬à¦¾ à¦šà¦¾à¦²à¦¨à¦¿ (Sieve plate)à¥¤ à¦à¦° à¦ªà§ƒà¦·à§à¦ à¦­à¦¾à¦—à§‡ à¦…à¦¸à¦‚à¦–à§à¦¯ à¦¸à§‚à¦•à§à¦·à§à¦® à¦°à¦¨à§à¦§à§à¦° à¦¬à¦¾ à¦›à¦¿à¦¦à§à¦° à¦¥à¦¾à¦•à§‡, à¦¯à¦¾ à¦¦à¦¿à§Ÿà§‡ à¦¸à¦®à§à¦¦à§à¦°à§‡à¦° à¦ªà¦¾à¦¨à¦¿ à¦«à¦¿à¦²à§à¦Ÿà¦¾à¦° à¦¹à§Ÿà§‡ à¦­à§‡à¦¤à¦°à§‡ à¦¢à§‹à¦•à§‡à¥¤
-                </li>
-                <li>
-                  <span class="highlight">à¦ªà¦¾à¦¥à¦° à¦¨à¦¾à¦²à§€ (Stone Canal):</span> à¦®à§‡à¦¡à§à¦°à¦¿à¦ªà§‹à¦°à¦¾à¦‡à¦Ÿ à¦¥à§‡à¦•à§‡ à¦à¦•à¦Ÿà¦¿ à¦‡à¦‚à¦°à§‡à¦œà¦¿ 'S' à¦†à¦•à§ƒà¦¤à¦¿à¦° à¦šà§à¦¨à¦®à§Ÿ à¦¶à¦•à§à¦¤ à¦¨à¦¾à¦²à§€ à¦…à¦™à§à¦•à§€à§Ÿ à¦¦à§‡à¦¶à§‡à¦° à¦¦à¦¿à¦•à§‡ à¦¨à§‡à¦®à§‡ à¦¯à¦¾à§Ÿà¥¤ à¦•à§à¦¯à¦¾à¦²à¦¸à¦¿à§Ÿà¦¾à¦® à¦•à¦¾à¦°à§à¦¬à¦¨à§‡à¦Ÿ à¦¯à§à¦•à§à¦¤ à¦¥à¦¾à¦•à¦¾à§Ÿ à¦à¦Ÿà¦¿ à¦¶à¦•à§à¦¤ à¦ªà¦¾à¦¥à¦°à§‡à¦° à¦®à¦¤à§‹ à¦¦à§‡à¦–à¦¾à§Ÿ, à¦¤à¦¾à¦‡ à¦à¦•à§‡ à¦¸à§à¦Ÿà§‹à¦¨ à¦•à§à¦¯à¦¾à¦¨à§‡à¦² à¦¬à¦²à§‡à¥¤
-                </li>
-                <li>
-                  <span class="highlight">à¦¬à¦²à§Ÿ à¦¨à¦¾à¦²à§€ (Ring Canal):</span> à¦à¦Ÿà¦¿ à¦®à§à¦–à¦›à¦¿à¦¦à§à¦°à§‡à¦° à¦šà¦¾à¦°à¦ªà¦¾à¦¶à§‡ à¦…à¦¬à¦¸à§à¦¥à¦¿à¦¤ à¦à¦•à¦Ÿà¦¿ à¦ªà¦žà§à¦šà¦•à§‹à¦£à¦¾à¦•à¦¾à¦° à¦¬à¦²à§Ÿ à¦¸à¦¦à§ƒà¦¶ à¦¨à¦¾à¦²à§€, à¦¯à¦¾ à¦¸à§à¦Ÿà§‹à¦¨ à¦•à§à¦¯à¦¾à¦¨à§‡à¦² à¦¥à§‡à¦•à§‡ à¦ªà¦¾à¦¨à¦¿ à¦—à§à¦°à¦¹à¦£ à¦•à¦°à§‡ à¦šà¦¾à¦°à¦¦à¦¿à¦•à§‡à¦° à¦¬à¦¾à¦¹à§à¦—à§à¦²à§‹à¦¤à§‡ à¦¡à¦¿à¦¸à§à¦Ÿà§à¦°à¦¿à¦¬à¦¿à¦‰à¦Ÿ à¦•à¦°à§‡à¥¤
-                </li>
-                <li>
-                  <span class="highlight">à¦…à¦°à¦¿à§Ÿ à¦¨à¦¾à¦²à§€ (Radial Canal):</span> à¦¬à¦²à§Ÿ à¦¨à¦¾à¦²à§€ à¦¥à§‡à¦•à§‡ à¦ªà¦¾à¦à¦šà¦Ÿà¦¿ à¦¦à§€à¦°à§à¦˜ à¦¨à¦¾à¦²à§€ à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›à§‡à¦° à¦ªà¦¾à¦à¦šà¦Ÿà¦¿ à¦¬à¦¾à¦¹à§à¦° à¦¶à§‡à¦· à¦ªà§à¦°à¦¾à¦¨à§à¦¤ à¦ªà¦°à§à¦¯à¦¨à§à¦¤ à¦¬à¦¿à¦¸à§à¦¤à§ƒà¦¤ à¦¥à¦¾à¦•à§‡à¥¤
-                </li>
-                <li>
-                  <span class="highlight">à¦¨à¦¾à¦²à¦¿à¦ªà¦¦ (Tube Feet):</span> à¦…à¦°à¦¿à§Ÿ à¦¨à¦¾à¦²à§€ à¦¥à§‡à¦•à§‡ à¦²à§à¦¯à¦¾à¦Ÿà¦¾à¦°à¦¾à¦² à¦•à§à¦¯à¦¾à¦¨à§‡à¦²à§‡à¦° à¦®à¦¾à¦§à§à¦¯à¦®à§‡ à¦ªà¦¾à¦¨à¦¿ à¦ªà§à¦°à¦¤à¦¿à¦Ÿà¦¿ à¦Ÿà¦¿à¦‰à¦¬ à¦«à¦¿à¦Ÿà§‡ à¦ªà§Œà¦à¦›à¦¾à§Ÿà¥¤ à¦Ÿà¦¿à¦‰à¦¬ à¦«à¦¿à¦Ÿà§‡à¦° à¦®à¦¾à¦¥à¦¾à§Ÿ à¦à¦•à¦Ÿà¦¿ à¦¬à¦¾à¦²à§à¦¬à§‡à¦° à¦®à¦¤à§‹ à¦…à¦‚à¦¶ à¦¥à¦¾à¦•à§‡ à¦¯à¦¾à¦•à§‡ <strong>à¦…à§à¦¯à¦¾à¦®à§à¦ªà§à¦²à¦¾ (Ampulla)</strong> à¦¬à¦²à§‡ à¦à¦¬à¦‚ à¦¨à¦¿à¦šà§‡ à¦šà§‹à¦·à¦• à¦¬à¦¾ **Sucker** à¦¥à¦¾à¦•à§‡à¥¤
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="acc-item">
-          <div class="acc-head">ðŸ“˜ à§ª. à¦¸à¦®à§à¦ªà§‚à¦°à§à¦£ à¦•à¦¾à¦°à§à¦¯à¦ªà¦¦à§à¦§à¦¤à¦¿ (Hydrostatic Pressure Dynamics)</div>
-          <div class="acc-body">
-            <div class="acc-body-inner">
-              <p>
-                à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦› à¦•à§€à¦­à¦¾à¦¬à§‡ à¦šà¦²à§‡? à¦à¦° à¦ªà§à¦°à§‹ à¦®à§‡à¦•à¦¾à¦¨à¦¿à¦œà¦®à¦Ÿà¦¿ à¦¦à¦¾à¦à§œà¦¿à§Ÿà§‡ à¦†à¦›à§‡ à¦ªà¦¦à¦¾à¦°à§à¦¥à¦¬à¦¿à¦œà§à¦žà¦¾à¦¨à§‡à¦° <strong>à¦¹à¦¾à¦‡à¦¡à§à¦°à§‹à¦¸à§à¦Ÿà§à¦¯à¦¾à¦Ÿà¦¿à¦• à¦šà¦¾à¦ªà§‡à¦° (Hydrostatic Pressure)</strong> à¦“à¦ªà¦°à¥¤ 
-              </p>
-              <p>
-                à¦¯à¦–à¦¨ à¦®à§‡à¦¡à§à¦°à¦¿à¦ªà§‹à¦°à¦¾à¦‡à¦Ÿ à¦¦à¦¿à§Ÿà§‡ à¦ªà¦¾à¦¨à¦¿ à¦­à§‡à¦¤à¦°à§‡ à¦¢à§‹à¦•à§‡, à¦¤à¦–à¦¨ à¦¸à¦¿à¦²à¦¿à¦¯à¦¼à¦¾à¦° à¦…à¦¨à¦¬à¦°à¦¤ à¦¸à§à¦ªà¦¨à§à¦¦à¦¨à§‡à¦° à¦•à¦¾à¦°à¦£à§‡ à¦ªà¦¾à¦¨à¦¿ à¦¸à§à¦Ÿà§‹à¦¨ à¦•à§à¦¯à¦¾à¦¨à§‡à¦² à¦¹à§Ÿà§‡ à¦¬à¦²à§Ÿ à¦“ à¦…à¦°à¦¿à§Ÿ à¦¨à¦¾à¦²à§€à¦¤à§‡ à¦ªà§Œà¦à¦›à¦¾à§Ÿà¥¤ à¦à¦°à¦ªà¦° à¦Ÿà¦¿à¦‰à¦¬ à¦«à¦¿à¦Ÿà§‡à¦° à¦…à§à¦¯à¦¾à¦®à§à¦ªà§à¦²à¦¾à¦—à§à¦²à§‹ à¦¯à¦–à¦¨ à¦¸à¦‚à¦•à§à¦šà¦¿à¦¤ à¦¹à§Ÿ, à¦¤à¦–à¦¨ à¦­à§‡à¦¤à¦°à§‡à¦° à¦ªà¦¾à¦¨à¦¿ à¦ªà§à¦°à¦šà¦£à§à¦¡ à¦šà¦¾à¦ªà§‡ à¦¨à¦¿à¦šà§‡à¦° à¦¦à¦¿à¦•à§‡ à¦¨à¦¾à¦²à¦¿à¦ªà¦¦à¦•à§‡ à¦ªà§à¦°à¦¸à¦¾à¦°à¦¿à¦¤ à¦•à¦°à§‡à¥¤ à¦šà§‹à¦·à¦• à¦¬à¦¾ à¦¸à¦¾à¦•à¦¾à¦°à¦Ÿà¦¿ à¦¤à¦–à¦¨ à¦¸à¦®à§à¦¦à§à¦°à§‡à¦° à¦¤à¦²à¦¦à§‡à¦¶à§‡à¦° à¦ªà¦¾à¦¥à¦°à§‡à¦° à¦¸à¦¾à¦¥à§‡ à¦¶à¦•à§à¦¤à¦­à¦¾à¦¬à§‡ à¦†à¦Ÿà¦•à§‡ à¦¯à¦¾à§Ÿ (Vacuum Lock)à¥¤ 
-              </p>
-              <p>
-                à¦ªà¦°à¦¬à¦°à§à¦¤à§€à¦¤à§‡, à¦¨à¦¾à¦²à¦¿à¦ªà¦¦à§‡à¦° à¦²à¦®à§à¦¬à¦¾à¦²à¦®à§à¦¬à¦¿ à¦ªà§‡à¦¶à¦¿ à¦¸à¦‚à¦•à§à¦šà¦¿à¦¤ à¦¹à¦²à§‡ à¦­à§‡à¦¤à¦°à§‡à¦° à¦ªà¦¾à¦¨à¦¿ à¦ªà§à¦¨à¦°à¦¾à§Ÿ à¦…à§à¦¯à¦¾à¦®à§à¦ªà§à¦²à¦¾à§Ÿ à¦«à¦¿à¦°à§‡ à¦¯à¦¾à§Ÿ à¦à¦¬à¦‚ à¦ªà¦¾ à¦›à§‹à¦Ÿ à¦¹à§Ÿà§‡ à¦†à¦¸à§‡à¥¤ à¦à¦‡ à¦¸à¦‚à¦•à§‹à¦šà¦¨ à¦“ à¦ªà§à¦°à¦¸à¦¾à¦°à¦£à§‡à¦° à¦•à§à¦°à¦®à¦¾à¦—à¦¤ à¦›à¦¾à¦¨à§à¦¦à¦¿à¦• à¦¤à¦°à¦™à§à¦—à§‡ à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦› à¦¸à¦¾à¦®à¦¨à§‡à¦° à¦¦à¦¿à¦•à§‡ à¦à¦—à¦¿à§Ÿà§‡ à¦šà¦²à§‡à¥¤ à¦à¦•à¦‡ à¦ªà¦¦à§à¦§à¦¤à¦¿à¦¤à§‡ à¦¤à¦¾à¦°à¦¾ à¦¶à¦•à§à¦¤ à¦à¦¿à¦¨à§à¦•à§‡à¦° à¦–à§‹à¦²à¦¸ à¦Ÿà§‡à¦¨à§‡ à¦–à§à¦²à§‡ à¦­à§‡à¦¤à¦°à§‡à¦° à¦¨à¦°à¦® à¦®à¦¾à¦‚à¦¸ à¦†à¦¹à¦¾à¦° à¦•à¦°à§‡ (Feeding Mechanism)à¥¤
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="acc-item">
-          <div class="acc-head">ðŸ§ª à§«. à¦®à¦¾à¦²à§à¦Ÿà¦¿à¦¡à¦¿à¦¸à¦¿à¦ªà§à¦²à¦¿à¦¨à¦¾à¦°à¦¿ à¦ªà§à¦°à¦¯à¦¼à§‹à¦—: à¦¸à¦«à¦Ÿ à¦°à§‹à¦¬à§‹à¦Ÿà¦¿à¦•à§à¦¸ à¦“ à¦¬à¦¾à§Ÿà§‹-à¦®à¦¿à¦®à¦¿à¦•à§à¦°à¦¿</div>
-          <div class="acc-body">
-            <div class="acc-body-inner">
-              <p>
-                à¦¬à¦°à§à¦¤à¦®à¦¾à¦¨ à¦†à¦§à§à¦¨à¦¿à¦• à¦ªà§à¦°à¦¯à§à¦•à§à¦¤à¦¿à¦° à¦¯à§à¦—à§‡ à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›à§‡à¦° à¦à¦‡ à¦ªà¦¾à¦¨à¦¿ à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦° à¦‡à¦žà§à¦œà¦¿à¦¨à¦¿à§Ÿà¦¾à¦°à¦¦à§‡à¦° à¦œà¦¨à§à¦¯ à¦à¦• à¦¬à¦¿à¦¶à¦¾à¦² à¦…à¦¨à§à¦ªà§à¦°à§‡à¦°à¦£à¦¾à¥¤ à¦à¦•à§‡ à¦¬à¦²à¦¾ à¦¹à§Ÿ <strong>Bio-mimicry (à¦ªà§à¦°à¦¾à¦•à§ƒà¦¤à¦¿à¦• à¦¨à¦•à¦¶à¦¾à¦° à¦…à¦¨à§à¦•à¦°à¦£)</strong>à¥¤ 
-              </p>
-              <p>
-                à¦†à¦œà¦•à§‡à¦° à¦¦à¦¿à¦¨à§‡ à¦šà¦¿à¦•à¦¿à§Žà¦¸à¦¾ à¦•à§à¦·à§‡à¦¤à§à¦° à¦¬à¦¾ à¦‰à¦¦à§à¦§à¦¾à¦°à¦•à¦¾à¦œà§‡ à¦¯à§‡ <strong>Soft Robotics (à¦¨à¦®à¦¨à§€à§Ÿ à¦°à§‹à¦¬à¦Ÿ)</strong> à¦¤à§ˆà¦°à¦¿ à¦•à¦°à¦¾ à¦¹à¦šà§à¦›à§‡, à¦¯à§‡à¦–à¦¾à¦¨à§‡ à¦•à§‹à¦¨à§‹ à¦¶à¦•à§à¦¤ à¦§à¦¾à¦¤à¦¬ à¦¹à¦¾à§œ à¦¬à¦¾ à¦šà¦¾à¦•à¦¾ à¦¥à¦¾à¦•à§‡ à¦¨à¦¾; à¦¤à¦¾à¦°à¦¾ à¦¹à§à¦¬à¦¹à§ à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›à§‡à¦° à¦à¦‡ à¦“à§Ÿà¦¾à¦Ÿà¦¾à¦° à¦­à§à¦¯à¦¾à¦¸à¦•à§à¦²à¦¾à¦° à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦®à§‡à¦° à¦®à¦¤à§‹ à¦‡à¦¨à§à¦Ÿà¦¾à¦°à¦¨à¦¾à¦² à¦¹à¦¾à¦‡à¦¡à§à¦°à§‹à¦²à¦¿à¦• à¦¬à¦¾ à¦¨à¦¿à¦‰à¦®à§‡à¦Ÿà¦¿à¦• à¦«à§à¦²à§à¦‡à¦¡ à¦ªà§à¦°à§‡à¦¶à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à§‡ à¦†à¦à¦•à¦¾à¦¬à¦¾à¦à¦•à¦¾ à¦“ à¦¦à§à¦°à§à¦—à¦® à¦œà¦¾à§Ÿà¦—à¦¾à§Ÿ à¦šà¦²à¦¾à¦šà¦² à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à§‡à¥¤ à¦•à§‹à¦Ÿà¦¿ à¦¬à¦›à¦° à¦†à¦—à§‡à¦° à¦à¦• à¦†à¦¦à¦¿à¦® à¦ªà§à¦°à¦¾à¦£à§€à¦° à¦†à¦°à§à¦•à¦¿à¦Ÿà§‡à¦•à¦šà¦¾à¦° à¦†à¦œ à¦®à¦¾à¦¨à§à¦·à§‡à¦° à¦šà¦¤à§à¦°à§à¦¥ à¦¶à¦¿à¦²à§à¦ªà¦¬à¦¿à¦ªà§à¦²à¦¬à§‡à¦° (4IR) à¦…à¦¨à§à¦¯à¦¤à¦® à¦šà¦¾à¦²à¦¿à¦•à¦¾à¦¶à¦•à§à¦¤à¦¿!
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="acc-item">
-          <div class="acc-head">ðŸ’¡ à§¬. à¦¸à¦¿à¦¨à§à¦¯à¦¾à¦ªà¦Ÿà¦¿à¦• à¦¥à¦¿à¦‚à¦•à¦¿à¦‚ à¦“ à¦¬à§à¦°à§‡à¦¨à¦¸à§à¦Ÿà¦°à§à¦®à¦¿à¦‚ (Critical Thinking)</div>
-          <div class="acc-body">
-            <div class="acc-body-inner">
-              <h4>ðŸ” à¦¦à§ƒà¦¶à§à¦¯à¦•à¦²à§à¦ªà¦­à¦¿à¦¤à§à¦¤à¦¿à¦• à¦ªà§à¦°à¦¶à§à¦¨ (Scenario-based Analysis):</h4>
-              <p>
-                à¦•à¦²à§à¦ªà¦¨à¦¾ à¦•à¦°à§‹, à¦¸à¦®à§à¦¦à§à¦°à§‡à¦° à¦¤à¦²à¦¦à§‡à¦¶à§‡ à¦•à§‹à¦¨à§‹ à¦¤à§‡à¦²à§‡à¦° à¦Ÿà§à¦¯à¦¾à¦‚à¦•à¦¾à¦° à¦²à¦¿à¦• à¦¹à§Ÿà§‡ à¦¸à¦¾à¦¨à§à¦¦à§à¦° à¦…à¦ªà¦°à¦¿à¦¶à§‹à¦§à¦¿à¦¤ à¦¤à§‡à¦² (Crude Oil) à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›à§‡à¦° à¦†à¦¬à¦¾à¦¹à¦¨ à¦…à¦žà§à¦šà¦²à§‡à¦° à¦“à¦ªà¦° à¦›à§œà¦¿à§Ÿà§‡ à¦ªà§œà¦²à¥¤ à¦à¦° à¦«à¦²à§‡ à¦à¦•à¦Ÿà¦¿ <em>Astropecten</em>-à¦à¦° à¦®à§‡à¦¡à§à¦°à¦¿à¦ªà§‹à¦°à¦¾à¦‡à¦Ÿà§‡à¦° (Madreporite) à¦¸à§‚à¦•à§à¦·à§à¦® à¦°à¦¨à§à¦§à§à¦°à¦—à§à¦²à§‹ à¦¸à¦®à§à¦ªà§‚à¦°à§à¦£ à¦¬à§à¦²à¦• à¦¬à¦¾ à¦œà§à¦¯à¦¾à¦® à¦¹à§Ÿà§‡ à¦—à§‡à¦²à¥¤
-              </p>
-              <p>
-                <strong>à¦à¦•à¦Ÿà¦¿à¦­ à¦¥à¦¿à¦‚à¦•à¦¿à¦‚ à¦šà§à¦¯à¦¾à¦²à§‡à¦žà§à¦œ:</strong> à¦à¦‡ à¦¬à§à¦²à¦•à§‡à¦œà§‡à¦° à¦«à¦²à§‡ à¦¤à¦¾à¦°à¦¾à¦®à¦¾à¦›à¦Ÿà¦¿à¦° à¦²à§‹à¦•à§‹à¦®à§‹à¦¶à¦¨ (à¦šà¦²à¦¨) à¦à¦¬à¦‚ à¦«à¦¿à¦¡à¦¿à¦‚ (à¦–à¦¾à¦¦à§à¦¯ à¦—à§à¦°à¦¹à¦£) à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦®à§‡ à¦¤à¦¾à§Žà¦•à§à¦·à¦£à¦¿à¦• à¦•à§€ à¦¬à¦¿à¦ªà¦°à§à¦¯à§Ÿ à¦˜à¦Ÿà¦¬à§‡? à¦®à§‡à¦•à¦¾à¦¨à¦¿à¦•à§à¦¯à¦¾à¦² à¦¹à¦¾à¦‡à¦¡à§à¦°à§‹à¦²à¦¿à¦• à¦«à§‡à¦‡à¦²à¦¿à¦“à¦°à§‡à¦° à¦†à¦²à§‹à¦•à§‡ à¦¤à§‹à¦®à¦¾à¦° à¦‰à¦¤à§à¦¤à¦°à§‡à¦° à¦¯à§Œà¦•à§à¦¤à¦¿à¦•à¦¤à¦¾ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦•à¦°à§‹à¥¤
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="spacer"></div>
     </div>
+  </div>
 
-    <div class="nav">
-      <div class="nav-item">ðŸ </div>
-      <div class="nav-item">ðŸ“š</div>
-      <div class="nav-item">ðŸ§ </div>
-      <div class="nav-item">ðŸ‘¤</div>
+  <div class="acc-item">
+    <div class="acc-head">🧬 ২. পদ্ধতিগত শ্রেণিবিন্যাস (Systematic Position)</div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        <p>তারামাছের ট্যাক্সোনোমিক ডেটাবেজ বা সোর্স কোড নিচে দেওয়া হলো, যা তাদের অনন্য বৈশিষ্ট্যের পরিচয় বহন করে:</p>
+        <table style="width:100%; border-collapse:collapse; margin-top:10px; font-size: 0.95rem;">
+          <tr style="background: rgba(255,255,255,0.02);"><td style="padding:12px; border:1px solid rgba(255,255,255,0.05); font-weight:bold; color: #ffffff;">Phylum (পর্ব)</td><td style="padding:12px; border:1px solid rgba(255,255,255,0.05); font-style:italic; color: #94a3b8;">Echinodermata (কণ্টকত্বক প্রাণী)</td></tr>
+          <tr><td style="padding:12px; border:1px solid rgba(255,255,255,0.05); font-weight:bold; color: #ffffff;">Class (শ্রেণি)</td><td style="padding:12px; border:1px solid rgba(255,255,255,0.05); font-style:italic; color: #94a3b8;">Asteroidea</td></tr>
+          <tr style="background: rgba(255,255,255,0.02);"><td style="padding:12px; border:1px solid rgba(255,255,255,0.05); font-weight:bold; color: #ffffff;">Genus (গণ)</td><td style="padding:12px; border:1px solid rgba(255,255,255,0.05); font-style:italic; font-weight:bold; color: #00d4b2;">Astropecten</td></tr>
+        </table>
+      </div>
     </div>
+  </div>
 
-    <script>
-      const items = document.querySelectorAll('.acc-item');
-      const bar = document.getElementById('bar');
-      const txt = document.getElementById('txt');
+  <div class="acc-item">
+    <div class="acc-head">💧 ৩. পানি সংবহনতন্ত্র: প্রাকৃতিক হাইড্রোলিক ইঞ্জিনিয়ারিং</div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        <p>
+          একাউনোডার্মাটা পর্বের প্রাণীদের প্রকৃত রক্তসংবহনতন্ত্র নেই। এদের শরীরের সিলোম (Coelom) রূপান্তরিত হয়ে দেহের সর্বত্র বিস্তৃত কতগুলো জটিল নালীপথ তৈরি করে। এই সিলিয়াবদ্ধ ও পেশিময় নালীগুলোর সমন্বয়ে গঠিত বিশেষ হাইড্রোস্ট্যাটিক নেটওয়ার্ককেই <strong>পানি সংবহনতন্ত্র (Water Vascular System)</strong> বলে।
+        </p>
 
-      let done = JSON.parse(localStorage.getItem('astro_done') || "[]");
+        <p>এর মূল প্রবাহপথ বা লজিস্টিক চেইনটি লক্ষ্য করো:</p>
+        <div class="flow-box" style="background: #131c2e; border-left: 5px solid #00d4b2; padding: 14px; border-radius: 8px; margin: 15px 0; font-family: monospace; font-weight: 700; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.02); border-left: 5px solid #00d4b2;">
+          Madreporite ➔ Stone Canal ➔ Ring Canal ➔ Radial Canal ➔ Lateral Canal ➔ Tube Feet
+        </div>
 
-      function update(){
-        const percent = (done.length/items.length)*100;
-        bar.style.width = percent+"%";
-        txt.innerText = Math.round(percent)+"% à¦¸à¦®à§à¦ªà¦¨à§à¦¨ à¦¹à§Ÿà§‡à¦›à§‡";
-      }
+        <h4 style="color: #ffffff; font-weight: 700; margin-top: 1.5rem;">🏗️ গাঠনিক অংশসমূহের ব্যবচ্ছেদ:</h4>
+        <ul style="padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem;">
+          <li>
+            <span class="highlight" style="background: rgba(0, 212, 178, 0.08); color: #00d4b2; padding: 2px 8px; border-radius: 4px; font-weight: 700;">মেড্রিপ্রোরাইট (Madreporite):</span> এটি হলো এই সিস্টেমের 'প্রধান প্রবেশদ্বার' বা চালনি (Sieve plate)। এর পৃষ্ঠভাগে অসংখ্য সূক্ষ্ম রন্ধ্র বা ছিদ্র থাকে, যা দিয়ে সমুদ্রের পানি ফিল্টার হয়ে ভেতরে ঢোকে।
+          </li>
+          <li>
+            <span class="highlight" style="background: rgba(0, 212, 178, 0.08); color: #00d4b2; padding: 2px 8px; border-radius: 4px; font-weight: 700;">পাথর নালী (Stone Canal):</span> মেড্রিপ্রোরাইট থেকে একটি ইংরেজি 'S' আকৃতির চুনময় শক্ত নালী অংকীয় দেশের দিকে নেমে যায়। ক্যালসিয়াম কার্বোনেট যুক্ত থাকায় এটি শক্ত পাথরের মতো দেখায়, তাই একে স্টোন ক্যানাল বলে।
+          </li>
+          <li>
+            <span class="highlight" style="background: rgba(0, 212, 178, 0.08); color: #00d4b2; padding: 2px 8px; border-radius: 4px; font-weight: 700;">বলয় নালী (Ring Canal):</span> এটি মুখছিদ্রের চারপাশে অবস্থিত একটি পঞ্চকোণাকার বলয় সদৃশ নালী, যা স্টোন ক্যানাল থেকে পানি গ্রহণ করে চারদিকের বাহুগুলোতে ডিস্ট্রিবিউট করে।
+          </li>
+          <li>
+            <span class="highlight" style="background: rgba(0, 212, 178, 0.08); color: #00d4b2; padding: 2px 8px; border-radius: 4px; font-weight: 700;">অরিয় নালী (Radial Canal):</span> বলয় নালী থেকে পাঁচটি দীর্ঘ নালী তারামাছের পাঁচটি বাহুর শেষ প্রান্ত পর্যন্ত বিস্তৃত থাকে।
+          </li>
+          <li>
+            <span class="highlight" style="background: rgba(0, 212, 178, 0.08); color: #00d4b2; padding: 2px 8px; border-radius: 4px; font-weight: 700;">নালিপদ (Tube Feet):</span> অরিয় নালী থেকে ল্যাটারাল ক্যানালের মাধ্যমে পানি প্রতিটি টিউব ফিটে পৌঁছায়। টিউব ফিটের মাথায় একটি বাল্বের মতো অংশ থাকে যাকে <strong>অ্যাম্পুলা (Ampulla)</strong> বলে এবং নিচে চোষক বা **Sucker** থাকে।
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-      items.forEach((item,i)=>{
+  <div class="acc-item">
+    <div class="acc-head">📖 ৪. সম্পূর্ণ কার্যপদ্ধতি (Hydrostatic Pressure Dynamics)</div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        <p>
+          তারামাছ কীভাবে চলে? এর পুরো মেকানিজমটি দাঁড়িয়ে আছে পদার্থবিজ্ঞানের <strong>হাইড্রোস্ট্যাটিক চাপের (Hydrostatic Pressure)</strong> ওপর। 
+        </p>
+        <p>
+          যখন মেড্রিপ্রোরাইট দিয়ে পানি ভেতরে ঢোকে, তখন সিলিয়ার অনবরত স্পন্দনের কারণে পানি স্টোন ক্যানাল হয়ে বলয় ও অরিয় নালীতে পৌঁছায়। এরপর টিউব ফিটের অ্যাম্পুলাগুলো যখন সংকুচিত হয়, তখন ভেতরের পানি প্রচন্ড চাপে নিচের দিকে নালিপদকে প্রসারিত করে। চোষক বা সাকারটি তখন সমুদ্রের তলদেশের পাথরের সাথে শক্তভাবে আটকে যায় (Vacuum Lock)। 
+        </p>
+        <p>
+          পরবর্তীতে, নালিপদের লম্বালম্বি পেশি সংকুচিত হলে ভেতরের পানি পুনরায় অ্যাম্পুলায় ফিরে যায় এবং পা ছোট হয়ে আসে। এই সংকোচন ও প্রসারণের ক্রমাগত ছান্দিক তরঙ্গে তারামাছ সামনের দিকে এগিয়ে চলে। একই পদ্ধতিতে তারা শক্ত ঝিনুকের খোলস টেনে খুলে ভেতরের নরম মাংস আহার করে (Feeding Mechanism)।
+        </p>
+      </div>
+    </div>
+  </div>
 
-        if(done.includes(i)) item.classList.add('done');
+  <div class="acc-item">
+    <div class="acc-head">🧪 ৫. মাল্টিডিসিপ্লিনারি প্রয়োগ: সফট রোবটিক্স ও বায়ো-মিমিক্রি</div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        <p>
+          বর্তমান আধুনিক প্রযুক্তির যুগে তারামাছের এই পানি সংবহনতন্ত্র ইঞ্জিনিয়ারদের জন্য এক বিশাল অনুপ্রেরণা। একে বলা হয় <strong>Bio-mimicry (প্রাকৃতিক নকশার অনুকরণ)</strong>। 
+        </p>
+        <p>
+          আজকের দিনে চিকিৎসা ক্ষেত্র বা উদ্ধারকাজে যে <strong>Soft Robotics (নমনীয় রোবট)</strong> তৈরি করা হচ্ছে, যেখানে কোনো শক্ত ধাতব হাড় বা চাকা থাকে না; তারা হুবহু তারামাছের এই ওয়াটার ভাস্কুলার সিস্টেমের মতো ইন্টারনাল হাইড্রোলিক বা নিউমেটিক ফ্লুইড প্রেশার ব্যবহার করে আঁকাবাঁকা ও দুর্গম জায়গায় চলাচল করতে পারে। কোটি বছর আগের এক আদিম প্রাণীর আর্কিটেকচার আজ মানুষের চতুর্থ শিল্পবিপ্লবের (4IR) অন্যতম চালিকাশক্তি!
+        </p>
+      </div>
+    </div>
+  </div>
 
-        item.querySelector('.acc-head').onclick = ()=>{
+  <div class="acc-item">
+    <div class="acc-head">💡 ৬. সিন্যাপটিক থিংকিং ও ব্রেনস্টর্মিং (Critical Thinking Zone)</div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        <h4 style="color: #ffffff; font-weight: 700; margin-top: 0;">🔎 দৃশ্যকল্পভিত্তিক প্রশ্ন (Scenario-based Analysis):</h4>
+        <p>
+          কল্পনা করো, সমুদ্রের তলদেশে কোনো তেলের ট্যাংকার লিক হয়ে সান্দ্র অপরিশোধিত তেল (Crude Oil) তারামাছের আবাহন অঞ্চলের ওপর ছড়িয়ে পড়ল। এর ফলে একটি <em>Astropecten</em>-এর মেড্রিপ্রোরাইটের (Madreporite) সূক্ষ্ম রন্ধ্রগুলো সম্পূর্ণ ব্লক বা জ্যাম হয়ে গেল।
+        </p>
+        <p style="background: rgba(0, 212, 178, 0.04); border-left: 4px solid #00d4b2; padding: 15px; border-radius: 4px; color: #cbd5e1;">
+          <strong>অ্যাক্টিভ থিংকিং চ্যালেঞ্জ:</strong> এই ব্লকেজের ফলে তারামাছটির লোকোমোশন (চলন) এবং ফিডিং (খাদ্য গ্রহণ) সিস্টেমে তাৎক্ষণিক কী বিপর্যয় ঘটবে? মেকানিক্যাল হাইড্রোলিক ফেইলিওরের আলোকে তোমার উত্তরের যৌক্তিকতা বিশ্লেষণ করো।
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
-          // Close other active items for smooth layout
-          items.forEach((el, index) => {
+<div class="spacer" style="height: 40px;"></div>
+
+{% include quiz-render.html quiz_id="animal-diversity" %}
+
+<script>
+  (function() {
+    var items = document.querySelectorAll('.acc-item');
+    var bar = document.getElementById('bar');
+    var txt = document.getElementById('txt');
+
+    let done = JSON.parse(localStorage.getItem('astro_done') || "[]");
+
+    function update() {
+      if(!items.length) return;
+      var percent = (done.length / items.length) * 100;
+      if(bar) bar.style.width = percent + "%";
+      if(txt) txt.innerText = Math.round(percent) + "% সম্পন্ন হয়েছে";
+    }
+
+    items.forEach(function(item, i) {
+      if(done.includes(i)) item.classList.add('done');
+
+      var head = item.querySelector('.acc-head');
+      if(head) {
+        head.onclick = function() {
+          items.forEach(function(el, index) {
             if(index !== i) el.classList.remove('active');
           });
 
           item.classList.toggle('active');
 
-          if(!done.includes(i)){
+          if(!done.includes(i)) {
             done.push(i);
             localStorage.setItem('astro_done', JSON.stringify(done));
             item.classList.add('done');
             update();
           }
 
-          setTimeout(()=>{
-            item.scrollIntoView({behavior:'smooth',block:'center'});
-          },300);
-        }
+          setTimeout(function() {
+            item.scrollIntoView({behavior: 'smooth', block: 'center'});
+          }, 300);
+        };
+      }
+    });
 
-      });
+    update();
+  })();
+</script>
 
-      update();
-    </script>
-  </body>
-</html>
+<style>
+  /* Premium Dark Skin Engine Core Overrides */
+  .acc-item {
+    margin-bottom: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #0f172a;
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s cubic-bezier(0.1, 0.8, 0.25, 1);
+  }
+  .acc-head {
+    padding: 18px 22px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #131c2e;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+  }
+  .acc-head:hover {
+    color: #00d4b2;
+    background: #17233a;
+  }
+  .acc-head::after {
+    content: "▼";
+    font-size: 0.75rem;
+    color: #00d4b2;
+    transition: transform 0.3s;
+  }
+  .acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.1, 0.8, 0.25, 1);
+    background: #090d16;
+  }
+  .acc-body-inner {
+    padding: 22px;
+    line-height: 1.85;
+    color: #cbd5e1;
+    font-size: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.03);
+  }
+  
+  /* Trigger Framework States */
+  .acc-item.active {
+    border-color: rgba(0, 212, 178, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 212, 178, 0.1);
+  }
+  .acc-item.active .acc-body {
+    max-height: 1200px;
+  }
+  .acc-item.active .acc-head::after {
+    transform: rotate(180deg);
+  }
+  .acc-item.done {
+    border-left: 4px solid #00d4b2;
+  }
+</style>
+
+<p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
+    🌊 Learning Biology for Life | Higher Zoology Tree Series 2026
+</p>
