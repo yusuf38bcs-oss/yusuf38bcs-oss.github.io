@@ -1,7 +1,33 @@
 ---
 layout: default
+title: Home
 permalink: /
 ---
-{% include hero-neural.html %}
-{% include synaptic-bridge.html %}
-{% include home-sections.html %}
+
+<main class="synaptic-homepage-matrix">
+
+  {% include home/hero-neural.html %}
+
+  {% include home/neural-flow.html %}
+
+  {% include home/academic-sections.html %}
+
+  {% include home/neural-divider.html %}
+
+  {% include home/tests-cta.html %}
+
+  {% include home/recent-posts.html %}
+
+</main>
+
+<style>
+  /* Base Architecture Setup for the Dark Matrix Canvas */
+  .synaptic-homepage-matrix {
+    width: 100%;
+    background-color: #020617 !important;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+</style>
