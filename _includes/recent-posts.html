@@ -1,116 +1,172 @@
-<!-- ===================================================== -->
-<!-- RECENT POSTS SECTION -->
-<!-- Latest 6 Posts with Dynamic Jekyll Loop -->
-<!-- ===================================================== -->
+<section class="premium-recent-posts-block" aria-label="Recent publications grid">
 
-<section class="section recent-posts-section">
-
-  <div class="section-header">
-
-    <div class="eyebrow">
-      Latest Content
-    </div>
-
-    <h2>
-      Recent Posts
-    </h2>
-
-    <p class="section-lead">
-      Stay updated with the latest biology notes, reflective insights, and pedagogical explorations.
+  <div class="recent-posts-header-node">
+    <div class="posts-status-eyebrow">Latest Updates Track</div>
+    <h2 class="posts-main-title">Recent Publications</h2>
+    <p class="posts-lead-specification">
+      Stay synchronized with the latest biology core field arrays, reflective analytical insights, applied behavioral frameworks, and Socratic pedagogical models.
     </p>
-
+    <div class="posts-header-accent-bar"></div>
   </div>
 
-  <!-- Posts Grid -->
-  <div class="posts-grid">
-
+  <div class="recent-posts-grid-matrix">
     {% assign recent_posts = site.posts | where_exp: "item", "item.categories != nil" | limit: 6 %}
 
     {% if recent_posts.size > 0 %}
-
       {% for post in recent_posts %}
-
-      <article class="post-card" role="article">
-
-        <!-- Featured Image -->
-        {% if post.image %}
-        <a class="post-image" href="{{ post.url | relative_url }}" aria-hidden="true">
-          <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
-        </a>
-        {% else %}
-        <div class="post-image post-image--placeholder" aria-hidden="true">
-          <span class="placeholder-icon">📖</span>
+        <div class="grid-card-item-holder">
+          {% include archive-single.html %}
         </div>
-        {% endif %}
-
-        <!-- Post Content -->
-        <div class="post-body">
-
-          <!-- Category Badge -->
-          {% if post.categories.size > 0 %}
-          <div class="post-categories">
-            {% for category in post.categories limit: 2 %}
-            <a class="category-tag" href="{{ '/category-' | append: category | relative_url }}">
-              {{ category | replace: '-', ' ' | capitalize }}
-            </a>
-            {% endfor %}
-          </div>
-          {% endif %}
-
-          <!-- Post Title -->
-          <h3 class="post-title">
-            <a href="{{ post.url | relative_url }}">
-              {{ post.title }}
-            </a>
-          </h3>
-
-          <!-- Post Excerpt -->
-          <p class="post-excerpt">
-            {{ post.excerpt | strip_html | truncatewords: 25 }}
-          </p>
-
-          <!-- Post Meta -->
-          <div class="post-meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">
-              {{ post.date | date: "%b %d, %Y" }}
-            </time>
-            <span class="meta-divider">·</span>
-            <span class="post-read-time">
-              {% capture word_count %}{{ post.content | strip_html | number_of_words }}{% endcapture %}
-              {% if word_count > 0 %}
-                {{ word_count | divided_by: 200 | plus: 1 }} min read
-              {% endif %}
-            </span>
-          </div>
-
-          <!-- Read More Link -->
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            <span>Read More</span>
-            <span class="link-icon" aria-hidden="true">→</span>
-          </a>
-
-        </div>
-
-      </article>
-
       {% endfor %}
-
     {% else %}
-
-      <!-- No Posts State -->
-      <div class="no-posts-state">
-        <p>No posts yet. Check back soon for new content!</p>
+      <div class="empty-posts-fallback-card">
+        <p class="fallback-message-text">No active document tracks found in this timeline. Check back soon for synchronized content updates.</p>
       </div>
-
     {% endif %}
-
   </div>
 
-  <!-- View All Posts CTA -->
-  <div class="posts-footer">
-    <a class="btn btn-tertiary" href="{{ '/archive/' | relative_url }}">
-      View All Posts
+  <div class="recent-posts-footer-panel">
+    <a class="archive-hub-action-trigger" href="{{ '/archive/' | relative_url }}">
+      View All Document Tracks
     </a>
   </div>
 
 </section>
+
+{% unless jekyll_recent_posts_styles_loaded %}
+<style>
+  .premium-recent-posts-block {
+    padding: clamp(3rem, 8vw, 6rem) 0 !important;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+
+  .recent-posts-header-node {
+    text-align: left;
+    max-width: 800px;
+    margin-bottom: 3.5rem;
+  }
+
+  .posts-status-eyebrow {
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.12em !important;
+    color: #00d4b2;
+    margin-bottom: 0.6rem !important;
+  }
+
+  .posts-main-title {
+    color: #ffffff !important;
+    font-size: clamp(1.8rem, 5vw, 2.4rem) !important;
+    font-weight: 800 !important;
+    margin: 0 0 1rem 0 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.2 !important;
+  }
+
+  /* TYPOGRAPHY PROTECTION FILTER: DESTROYS UNNATURAL forced WHITESPACES */
+  .posts-lead-specification {
+    color: #94a3b8 !important;
+    font-size: 1.02rem !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    text-align: left !important;
+    word-spacing: normal !important;
+  }
+
+  .posts-header-accent-bar {
+    width: 45px;
+    height: 2px;
+    background: linear-gradient(90deg, #00d4b2 0%, transparent 100%);
+    margin-top: 1.25rem;
+  }
+
+  /* Premium Responsive 3-Column Adaptive Grid System */
+  .recent-posts-grid-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: stretch;
+  }
+
+  .grid-card-item-holder {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* Fallback Card Configuration */
+  .empty-posts-fallback-card {
+    grid-column: 1 / -1;
+    background: #0d1527 !important;
+    border: 1px dashed rgba(0, 212, 178, 0.2);
+    padding: 3rem 2rem !important;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .fallback-message-text {
+    color: #64748b !important;
+    font-size: 0.95rem !important;
+    margin: 0 !important;
+  }
+
+  /* High-Contrast Interactive CTA Button */
+  .recent-posts-footer-panel {
+    text-align: center;
+    margin-top: 4rem;
+    width: 100%;
+  }
+
+  .archive-hub-action-trigger {
+    background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%) !important;
+    color: #020617 !important;
+    font-weight: 700 !important;
+    padding: 14px 32px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em !important;
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
+    box-shadow: 0 4px 14px rgba(0, 212, 178, 0.2);
+  }
+
+  .archive-hub-action-trigger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 178, 0.4) !important;
+  }
+
+  /* Responsive Display System Overrides for iPhones & Small Displays */
+  @media (max-width: 768px) {
+    .recent-posts-header-node {
+      text-align: center !important;
+      margin-bottom: 2.5rem;
+    }
+    .posts-lead-specification {
+      text-align: center !important;
+      font-size: 0.95rem !important;
+    }
+    .posts-header-accent-bar {
+      margin: 1.25rem auto 0 auto !important;
+      background: linear-gradient(90deg, transparent 0%, #00d4b2 50%, transparent 100%) !important;
+    }
+    .recent-posts-grid-matrix {
+      grid-template-columns: 1fr !important; /* Forces perfect full span on narrow mobile viewports */
+      gap: 1.5rem;
+    }
+    .archive-hub-action-trigger {
+      width: 100%;
+      max-width: 290px;
+      box-sizing: border-box;
+    }
+  }
+</style>
+{% assign jekyll_recent_posts_styles_loaded = true %}
+{% endunless %}
