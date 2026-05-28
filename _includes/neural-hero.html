@@ -1,52 +1,133 @@
 <div class="neural-hero">
-  <div class="neural-hero__bg-gradient"></div>
+  <div class="neural-hero__bg-mesh"></div>
   <div class="neural-hero__content wrapper">
-    <h1 class="neural-hero__title">Where Biology <br><span class="highlight-cyan">Meets Life</span></h1>
-    <p class="neural-hero__subtitle">A Neural Educational Ecosystem for Reflective Scientific Learning.</p>
+    <p class="hero-top-eyebrow">NEURAL INTERDISCIPLINARY LEARNING ECOSYSTEM</p>
+    <h1 class="neural-hero__title">Learning Biology <br><span class="highlight-neon">For Life</span></h1>
+    <p class="neural-hero__subtitle">
+      Connecting the Dots of Physiology, the Lines of Behavior, and the Circles of Wisdom back to Divine Revelation.
+    </p>
+    <div class="hero-cta-button-strip">
+      <a href="#explore" class="hero-primary-btn" onclick="document.getElementById('explore').scrollIntoView({behavior: 'smooth'}); return false;">Explore Biology</a>
+      <a href="{{ '/socratic/' | relative_url }}" class="hero-secondary-btn">Socratic 4.0 Portal</a>
+    </div>
   </div>
 </div>
 
 <style>
+  /* Enforcing Absolute Logo Styling (Removes Circular Masks/Bands from Theme Layout) */
+  .masthead__logo img, .site-logo, img.site-logo, .author__avatar img {
+    border-radius: 0px !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    object-fit: contain !important;
+  }
+
   .neural-hero {
     position: relative;
-    min-height: 60vh;
+    min-height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     text-align: center;
-    padding: 2rem;
+    padding: 4rem 2rem;
+    background-color: #020617;
   }
   
-  .neural-hero__bg-gradient {
+  .neural-hero__bg-mesh {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 120%, rgba(0, 240, 255, 0.15) 0%, transparent 60%);
+    background: radial-gradient(circle at 50% 40%, rgba(0, 212, 178, 0.07) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.04) 0%, transparent 40%);
     z-index: 1;
   }
 
   .neural-hero__content {
     position: relative;
     z-index: 2;
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .hero-top-eyebrow {
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.15em !important;
+    color: #00d4b2;
+    margin-bottom: 1.5rem !important;
+    text-transform: uppercase;
   }
 
   .neural-hero__title {
-    font-size: var(--fluid-h1);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    color: #ffffff;
+    font-size: clamp(2.5rem, 5vw, 4rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
   }
 
-  .highlight-cyan {
-    color: var(--color-neural-cyan);
-    text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  .highlight-neon {
+    color: #00d4b2;
+    text-shadow: 0 0 40px rgba(0, 212, 178, 0.25);
   }
 
   .neural-hero__subtitle {
-    font-size: var(--fluid-p);
-    color: var(--color-text-muted);
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: clamp(1.05rem, 2vw, 1.25rem) !important;
+    color: #cbd5e1 !important;
+    max-width: 720px;
+    margin: 0 auto 3rem auto !important;
+    line-height: 1.6 !important;
+    font-weight: 400;
+  }
+
+  .hero-cta-button-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-primary-btn {
+    background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%);
+    color: #020617 !important;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none !important;
+    font-size: 0.95rem;
+    transition: 0.2s all ease-in-out;
+    box-shadow: 0 4px 20px rgba(0, 212, 178, 0.25);
+  }
+
+  .hero-primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 212, 178, 0.4);
+  }
+
+  .hero-secondary-btn {
+    background: transparent;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 13px 32px;
+    border-radius: 8px;
+    text-decoration: none !important;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: 0.2s all ease-in-out;
+  }
+
+  .hero-secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: #00d4b2;
+    color: #00d4b2 !important;
+  }
+
+  @media(max-width: 768px) {
+    .neural-hero { min-height: 60vh; padding: 3rem 1rem; }
+    .hero-cta-button-strip { width: 100%; flex-direction: column; gap: 1rem; }
+    .hero-primary-btn, .hero-secondary-btn { width: 100%; max-width: 320px; text-align: center; }
   }
 </style>
