@@ -22,32 +22,41 @@
       </nav>
     </div>
 
-    <div class="footer-links-column">
-      <h3 class="footer-section-heading">Legal & Policies</h3>
-      <nav class="footer-nav-list">
-        <a href="{{ '/privacy-policy/' | relative_url }}" class="footer-nav-link">Privacy Policy</a>
-        <a href="{{ '/terms/' | relative_url }}" class="footer-nav-link">Terms & Conditions</a>
-        <a href="{{ '/cookies/' | relative_url }}" class="footer-nav-link">Cookie Policy</a>
-        <a href="{{ '/disclaimer/' | relative_url }}" class="footer-nav-link">Disclaimer Liability</a>
-      </nav>
-    </div>
-
     <div class="footer-dispatch-column">
-      <h3 class="footer-section-heading">Neural Learning Network</h3>
+      <h3 class="footer-section-heading">Join the Synaptic Bridge</h3>
       <p class="footer-dispatch-desc">
-        Receive advanced biology notes, cognitive optimization metrics, and interdisciplinary syllabus updates.
+        Get the latest biology notes and pedagogical insights delivered straight to your inbox.
       </p>
-      <a href="#subscribe" class="footer-cta-button">Subscribe to Dispatch</a>
+      <button class="newsletter-trigger-btn" onclick="openBrevoModal()">
+        Subscribe to Newsletter
+      </button>
     </div>
 
+  </div>
+
+  <div class="footer-quote-container">
+    <h4 class="footer-quote-title">Learn through Learning Others</h4>
+    <p class="footer-quote-text">
+      "To understand the world, we first have to understand each other. Stepping into someone else's shoes and seeing life through their eyes is the fastest way to expand our own minds. Let’s celebrate the beautiful lessons we gain just by connecting with the people around us."
+    </p>
   </div>
 
   <div class="footer-bottom-strip">
     <p class="footer-copyright-text">
-      &copy; 2026 <span class="white-text">Learning Biology For Life</span>. Engineered via Structured Educational Architecture, AI-Assisted Pedagogy, and Reflective Systems Design.
+      &copy; 2026 <span class="white-text">Learning Biology For Life</span>. All Rights Reserved.
     </p>
+    <div class="footer-cookie-node">
+      <a href="#" id="open_preferences_center" class="footer-cookie-link">Update cookies preferences</a>
+    </div>
   </div>
 </footer>
+
+<div id="brevoPopup" class="brevo-overlay-container">
+  <div class="brevo-modal-window">
+    <span class="close-x" onclick="closeBrevoModal()">&times;</span>
+    <iframe class="brevo-iframe" src="https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ==" frameborder="0" scrolling="auto" allowfullscreen></iframe>
+  </div>
+</div>
 
 <style>
   .neural-core-footer {
@@ -62,12 +71,11 @@
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2.5rem;
     align-items: start;
   }
 
-  /* Brand Column Custom Overrides */
   .footer-brand-column {
     display: flex;
     flex-direction: column;
@@ -87,7 +95,7 @@
     color: #00d4b2 !important;
   }
 
-  .footer-brand-desc {
+  .footer-brand-desc, .footer-dispatch-desc {
     font-size: 0.9rem !important;
     line-height: 1.6 !important;
     color: #64748b !important;
@@ -95,17 +103,14 @@
     text-align: justify;
   }
 
-  /* Clean Neural Line Divider (Replaced Broken Symbols) */
   .neural-divider-line {
     width: 60px;
     height: 2px;
     background: linear-gradient(90deg, #00d4b2 0%, transparent 100%);
     margin-top: 0.5rem;
-    border-radius: 2px;
   }
 
-  /* List & Links Column (Horizontal Optimization Architecture) */
-  .footer-links-column {
+  .footer-links-column, .footer-dispatch-column {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
@@ -120,20 +125,17 @@
     margin: 0 !important;
   }
 
-  /* Fixed Excess Vertical Padding - Ultra Tight Clean Spacing */
   .footer-nav-list {
     display: flex;
     flex-direction: column;
-    gap: 0.65rem; /* Tight line spacing */
+    gap: 0.65rem;
   }
 
   .footer-nav-link {
     color: #94a3b8 !important;
     font-size: 0.95rem !important;
     text-decoration: none !important;
-    transition: 0.2s color ease-in-out, 0.2s padding-left ease-in-out !important;
-    display: inline-block;
-    width: fit-content;
+    transition: 0.2s color ease, 0.2s padding-left ease !important;
   }
 
   .footer-nav-link:hover {
@@ -141,87 +143,192 @@
     padding-left: 4px;
   }
 
-  /* Dispatch Column */
-  .footer-dispatch-column {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .footer-dispatch-desc {
-    font-size: 0.9rem !important;
-    line-height: 1.5 !important;
-    color: #94a3b8 !important;
-    margin: 0 !important;
-  }
-
-  /* Premium High-Contrast Neon Gradient CTA Button */
-  .footer-cta-button {
+  /* Premium High-Contrast Neon Trigger Button */
+  .newsletter-trigger-btn {
     background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%) !important;
     color: #020617 !important;
     font-weight: 700 !important;
-    text-align: center !important;
-    padding: 12px 24px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    padding: 14px 28px !important;
+    border: none !important;
     border-radius: 8px !important;
-    text-decoration: none !important;
-    font-size: 0.95rem !important;
+    cursor: pointer !important;
+    font-size: 0.9rem !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease !important;
     box-shadow: 0 4px 14px rgba(0, 212, 178, 0.2);
-    display: inline-block;
     width: 100%;
-    max-width: 220px;
+    max-width: 280px;
   }
 
-  .footer-cta-button:hover {
+  .newsletter-trigger-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 212, 178, 0.35);
+    box-shadow: 0 6px 20px rgba(0, 212, 178, 0.4);
+  }
+
+  /* Inspirational Quote Inner Banner Section */
+  .footer-quote-container {
+    max-width: 800px;
+    margin: 3.5rem auto 0 auto;
+    padding: 2rem 1.5rem;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px dashed rgba(0, 212, 178, 0.15);
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .footer-quote-title {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #00d4b2 !important;
+    margin: 0 0 0.75rem 0 !important;
+    letter-spacing: 0.02em;
+  }
+
+  .footer-quote-text {
+    font-size: 0.95rem !important;
+    font-style: italic !important;
+    color: #94a3b8 !important;
+    line-height: 1.65 !important;
+    margin: 0 !important;
   }
 
   /* Copyright Bottom Strip */
   .footer-bottom-strip {
     max-width: 1200px;
-    margin: 3.5rem auto 0 auto;
+    margin: 3rem auto 0 auto;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.03);
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .footer-copyright-text {
-    font-size: 0.8rem !important;
+    font-size: 0.85rem !important;
     color: #475569 !important;
-    line-height: 1.6 !important;
     margin: 0 !important;
   }
 
   .footer-copyright-text .white-text {
     color: #64748b !important;
-    font-weight: 600;
   }
 
-  /* Responsive Grid Structural Tuning */
+  .footer-cookie-link {
+    color: #64748b !important;
+    font-size: 0.85rem !important;
+    text-decoration: underline !important;
+    transition: color 0.2s ease !important;
+  }
+
+  .footer-cookie-link:hover {
+    color: #94a3b8 !important;
+  }
+
+  /* Modal System Panels Styling */
+  .brevo-overlay-container {
+    display: none;
+    position: fixed;
+    z-index: 9999999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .brevo-modal-window {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 24px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 560px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+  }
+
+  .close-x {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background: #000000;
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-size: 22px;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-sizing: border-box;
+    transition: transform 0.2s ease;
+  }
+
+  .close-x:hover {
+    transform: scale(1.1);
+  }
+
+  .brevo-iframe {
+    width: 100%;
+    height: 360px;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  /* Responsive Matrix Adaptation Layout */
   @media (max-width: 768px) {
     .neural-core-footer {
       padding: 3rem 1.5rem 1.5rem 1.5rem !important;
     }
     .footer-matrix-container {
-      grid-template-columns: 1fr; /* Fallback column wrap on smaller screens */
+      grid-template-columns: 1fr;
       gap: 2rem;
     }
-    .footer-brand-column, .footer-links-column, .footer-dispatch-column {
+    .footer-brand-column, .footer-links-column, .footer-dispatch-column, .footer-bottom-strip {
       align-items: center;
       text-align: center;
+      justify-content: center;
     }
     .footer-brand-desc {
       text-align: center;
     }
-    .footer-nav-list {
-      align-items: center;
-    }
-    .footer-nav-link:hover {
-      padding-left: 0;
+    .newsletter-trigger-btn {
+      max-width: 100%;
     }
     .neural-divider-line {
+      margin: 0.5rem auto 0 auto;
       background: linear-gradient(90deg, transparent 0%, #00d4b2 50%, transparent 100%);
+    }
+    .brevo-modal-window {
+      width: 92%;
+      margin: 20% auto;
+      padding: 16px;
     }
   }
 </style>
+
+<script>
+function openBrevoModal() {
+  document.getElementById("brevoPopup").style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function closeBrevoModal() {
+  document.getElementById("brevoPopup").style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+window.addEventListener('click', function(event) {
+  var modal = document.getElementById("brevoPopup");
+  if (event.target === modal) {
+    closeBrevoModal();
+  }
+});
+</script>
