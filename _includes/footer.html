@@ -15,10 +15,10 @@
       <h3 class="footer-matrix-heading">Ecosystem Resources</h3>
       <nav class="footer-matrix-nav">
         <a href="{{ '/' | relative_url }}" class="footer-matrix-link">Platform Home Hub</a>
-        <a href="{{ '/biology-core/' | relative_url }}" class="footer-matrix-link">Biology Core Field Array</a>
-        <a href="{{ '/behavioral-science/' | relative_url }}" class="footer-matrix-link">Applied Behavioral Science</a>
-        <a href="{{ '/socratic-thinking/' | relative_url }}" class="footer-matrix-link">Socratic Thinking Systems</a>
-        <a href="{{ '/about/' | relative_url }}" class="footer-matrix-link">About & Author</a>
+        <a href="{{ '/synaptic-bridge/systems-biology/' | relative_url }}" class="footer-matrix-link">Systems Biology Core</a>
+        <a href="{{ '/synaptic-bridge/interdisciplinary-science/' | relative_url }}" class="footer-matrix-link">Interdisciplinary Science</a>
+        <a href="{{ '/synaptic-bridge/4ir-education/' | relative_url }}" class="footer-matrix-link">4IR Cognitive Education</a>
+        <a href="{{ '/synaptic-bridge/knowledge-network/' | relative_url }}" class="footer-matrix-link">Knowledge Network Hub</a>
       </nav>
     </div>
 
@@ -329,20 +329,20 @@
 </style>
 
 <script>
-function openBrevoModal() {
-  document.getElementById("brevoPopup").style.display = "block";
-  document.body.style.overflow = "hidden";
-}
-
-function closeBrevoModal() {
-  document.getElementById("brevoPopup").style.display = "none";
-  document.body.style.overflow = "auto";
-}
-
-window.addEventListener('click', function(event) {
-  var modal = document.getElementById("brevoPopup");
-  if (event.target === modal) {
-    closeBrevoModal();
+  function openBrevoModal() {
+    document.getElementById("brevoPopup").style.display = "block";
+    document.body.style.overflow = "hidden";
   }
-});
+
+  function closeBrevoModal() {
+    document.getElementById("brevoPopup").style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+  window.addEventListener('click', function(event) {
+    var modal = document.getElementById("brevoPopup");
+    if (event.target === modal) {
+      closeBrevoModal();
+    }
+  });
 </script>
