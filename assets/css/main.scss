@@ -1,18 +1,19 @@
 /* ==========================================================================
-   PREMIUM UNIFIED ECOSYSTEM MASTER CSS CORE
+   PREMIUM UNIFIED ECOSYSTEM MASTER CSS CORE (FINAL PRODUCTION EDITION)
    Designed for Jekyll Minimal Mistakes Engine (Socratic Matrix Edition)
    ========================================================================== */
 
-/* 1. MINIMAL MISTAKES VARIABLE OVERRIDES (Must be declared BEFORE imports) */
-$background-color: #020617 !important; // Core dark matrix void
-$text-color: #cbd5e1 !important;       // Soft read-optimized slate text
-$primary-color: #00d4b2 !important;    // Premium signature neon cyan
-$link-color: #00d4b2 !important;
-$link-color-hover: #3b82f6 !important; // Quantum blue glow acceleration
+/* 1. MINIMAL MISTAKES VARIABLE OVERRIDES (Must be declared BEFORE imports)
+   Note: Removed explicit !important constraints from bare variables to prevent Jekyll build crashes. */
+$background-color: #020617; // Core dark matrix void
+$text-color: #cbd5e1;       // Soft read-optimized slate text
+$primary-color: #00d4b2;    // Premium signature neon cyan
+$link-color: #00d4b2;
+$link-color-hover: #3b82f6; // Quantum blue glow acceleration
 
-// Masthead & Structural Overrides
-$masthead-link-color: #ffffff !important;
-$masthead-link-color-hover: #00d4b2 !important;
+// Masthead & Structural Component Variables
+$masthead-link-color: #ffffff;
+$masthead-link-color-hover: #00d4b2;
 
 /* 2. CORE THEME SKINS & PLUGINS IMPORTS */
 @import "minimal-mistakes/skins/dark";
@@ -44,49 +45,73 @@ $masthead-link-color-hover: #00d4b2 !important;
 }
 
 /* 4. ANTI-FORCED MOBILE WORD GAPS & READABILITY SPECS */
-p, li, article, h1, h2, h3, h4 {
+p, li, article, h1, h2, h3, h4, span, a {
   text-align: left; // Eradicates messy browser-forced justifications on iPhones
   word-spacing: normal !important;
   letter-spacing: normal !important;
 }
 
-/* 5. RUNTIME RENDERING PERFORMANCE UTILITIES (Linked with main.js) */
+/* 5. RUNTIME RENDERING PERFORMANCE UTILITIES (Linked with main.js & performance-guard.js) */
 body.viewport-scrolling-active {
-  // Freezes expensive pointer events on structural nodes during rapid scrolls
-  :not(.synaptic-floating-ai-shell):not(.synaptic-core-bubble-btn):not(.socratic-floating-panel) {
+  // Freezes expensive pointer events on structural nodes during rapid viewport scrolls
+  :not(.synaptic-floating-ai-shell):not(.synaptic-core-bubble-btn):not(.socratic-floating-panel):not(.site-header):not(.masthead) {
     pointer-events: none !important;
   }
 }
 
-/* 6. PLATFORM GLOW & TEXT SYMETRY ATOMS */
+/* 6. PREMIUM GLASSMORPHISM NAVIGATION (Linked with menu-scroll.js) */
+.site-header, .masthead {
+  background-color: #020617 !important;
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              backdrop-filter 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease !important;
+  will-change: background-color, backdrop-filter;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02) !important;
+}
+
+// Scrolled state dynamic switch injected smoothly via runtime animation ticks
+.site-header.scrolled, .masthead.scrolled {
+  background-color: rgba(2, 6, 23, 0.75) !important; // Alpha blend over dark void
+  backdrop-filter: blur(12px) -webkit-backdrop-filter: blur(12px) !important; // Luxury frosting
+  border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important; // Micro cyan accent wireframe
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 7. PLATFORM GLOW & HELPER ATOMS */
 .u-text-glow {
   color: #ffffff !important;
-  text-shadow: 0 0 15px rgba(0, 212, 178, 0.3) !important;
+  text-shadow: 0 0 15px rgba(0, 212, 178, 0.35) !important;
 }
 
 .u-mt-lg { margin-top: 2.5rem !important; }
 .u-mt-md { margin-top: 1.5rem !important; }
 .u-text-center { text-align: center !important; }
 
-/* Global Socratic Loading Component Animation Trigger */
+/* Global Socratic Module Synthesis Loading Frame */
 @keyframes flash {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  50% { opacity: 0.35; }
 }
 
-/* 7. HIGH-CONTRASS INTERACTIVE SYSTEM BUTTONS MATRIX */
-.mi-btn-calculate, .mcq-btn-generate {
+/* 8. HIGH-CONTRAST INTERACTIVE SYSTEM BUTTONS MATRIX */
+.mi-btn-calculate, .mcq-btn-generate, .mcq-btn-generate-alt {
   background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%) !important;
   color: #020617 !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-weight: 700 !important;
   border-radius: 6px !important;
   border: none !important;
+  padding: 12px 24px !important;
+  cursor: pointer !important;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
+  display: inline-block;
+  text-align: center !important;
+  text-decoration: none !important;
   
   &:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 20px rgba(0, 212, 178, 0.35) !important;
+    box-shadow: 0 8px 25px rgba(0, 212, 178, 0.4) !important;
   }
   
   &:disabled {
