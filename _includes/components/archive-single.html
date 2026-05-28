@@ -1,0 +1,186 @@
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = "" %}
+{% endif %}
+
+<article class="archive-single-node" data-aos="fade-up">
+  <div class="archive-card-canvas">
+    
+    {% if teaser %}
+      <div class="archive-teaser-frame">
+        <a href="{{ post.url | relative_url }}" aria-label="{{ post.title }}">
+          <img src="{{ teaser | relative_url }}" alt="Teaser for {{ post.title }}" class="archive-teaser-img" loading="lazy">
+        </a>
+      </div>
+    {% endif %}
+
+    <div class="archive-card-content">
+      
+      <div class="archive-card-meta-strip">
+        {% if post.categories %}
+          <span class="archive-category-badge">{{ post.categories | first | replace: '-', ' ' }}</span>
+        {% endif %}
+        
+        <span class="archive-read-time-node">
+          {% assign words = post.content | number_of_words %}
+          {% assign minutes = words | divided_by: 180 | plus: 1 %}
+          ⚡ {{ minutes }} min read
+        </span>
+      </div>
+
+      <h3 class="archive-node-title">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h3>
+
+      {% if post.excerpt %}
+        <p class="archive-node-excerpt">
+          {{ post.excerpt | strip_html | truncate: 135 }}
+        </p>
+      {% endif %}
+
+    </div>
+
+  </div>
+</article>
+
+{% unless archive_single_styles_loaded %}
+<style>
+  .archive-single-node {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1.5rem;
+  }
+
+  .archive-card-canvas {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: #0d1527 !important; /* Premium system dark layer */
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border-radius: 12px !important; /* Uniform ecosystem radius mapping */
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .archive-card-canvas:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(0, 212, 178, 0.2) !important;
+    box-shadow: 0 15px 35px rgba(0, 212, 178, 0.03) !important;
+  }
+
+  /* Aspect Ratio Locker for Thumbnails */
+  .archive-teaser-frame {
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    position: relative;
+    background-color: #020617;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  }
+
+  .archive-teaser-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important; /* Destroys stretched dimensions */
+    transition: transform 0.4s ease !important;
+  }
+
+  .archive-card-canvas:hover .archive-teaser-img {
+    transform: scale(1.04);
+  }
+
+  .archive-card-content {
+    padding: 1.75rem 1.5rem !important;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  .archive-card-meta-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.85rem;
+  }
+
+  .archive-category-badge {
+    font-size: 0.72rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em !important;
+    color: #64748b !important;
+    font-weight: 700 !important;
+    transition: color 0.2s ease;
+  }
+
+  .archive-card-canvas:hover .archive-category-badge {
+    color: #00d4b2 !important;
+  }
+
+  .archive-read-time-node {
+    font-size: 0.75rem !important;
+    color: #475569 !important;
+    font-weight: 600;
+  }
+
+  .archive-node-title {
+    margin: 0 0 0.75rem 0 !important;
+    font-size: 1.25rem !important;
+    line-height: 1.35 !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em;
+  }
+
+  .archive-node-title a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+  }
+
+  .archive-node-title a:hover {
+    color: #00d4b2 !important;
+  }
+
+  /* EXCERPT CRITICAL TYPOGRAPHY FIX (ERADICATED ABNORMAL MOBILE WORD SPACES) */
+  .archive-node-excerpt {
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+    text-align: left !important; /* Strict Left alignment anchors natural tracking */
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+  }
+
+  /* Responsive Adaptive Enhancements for iPhones & Small Displays */
+  @media (max-width: 480px) {
+    .archive-card-content {
+      padding: 1.5rem 1.25rem !important;
+    }
+    .archive-node-title {
+      font-size: 1.15rem !important;
+    }
+    .archive-node-excerpt {
+      text-align: center !important; /* Smooth visual balance for narrow mobile canvasses */
+      font-size: 0.88rem !important;
+    }
+    .archive-card-meta-strip {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .archive-teaser-frame {
+      height: 160px; /* Compact framework reduction for mobile viewports */
+    }
+  }
+</style>
+{% assign archive_single_styles_loaded = true %}
+{% endunless %}
