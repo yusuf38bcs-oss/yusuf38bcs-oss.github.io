@@ -17,30 +17,61 @@
 
 <style>
   /* ==========================================================================
-     ১. SITE BRANDING LOGO OVERRIDES (REMOVES CIRCULAR BANDS)
+     ১. LOGO STRIP REPAIR (TOTAL DESTRUCTION OF THE CIRCULAR BAND)
      ========================================================================== */
-  .masthead__logo img, 
-  .site-logo, 
-  img.site-logo, 
-  .author__avatar img {
+  /* Targetting every possible wrapper in the masthead to force a flat layout */
+  header.masthead .masthead__inner .masthead__logo,
+  header.masthead .masthead__inner .masthead__logo img,
+  .masthead__logo,
+  .masthead__logo img,
+  img.site-logo {
     border-radius: 0px !important;
     border: none !important;
     background: transparent !important;
+    background-color: transparent !important;
     box-shadow: none !important;
-    object-fit: contain !important;
+    padding: 0 !important;
+    outline: none !important;
   }
 
   /* ==========================================================================
-     ২. MOBILE TOGGLE (HAMBURGER MENU) & MASTHEAD ULTRA-RESPONSIVE FIX
+     ২. CROWDED HERO TITLE CORRECTION (MOBILE VIEWPORT BREATHING ROOM)
      ========================================================================== */
-  
-  /* Ensuring the mobile menu toggle button is prominently visible against the dark canvas */
+  .neural-hero__title {
+    font-size: clamp(1.8rem, 7.5vw, 3.5rem) !important; /* Reduced base scaling to prevent layout crowding */
+    line-height: 1.3 !important; /* Increased line gap for exceptional comfort */
+    letter-spacing: -0.02em !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 800 !important;
+  }
+
+  /* ==========================================================================
+     ৩. WORD & LINE SPACING CORRECTION (ERADICATION OF UNEVEN GAPS)
+     ========================================================================== */
+  /* Globally forcing left-alignment on all card vectors to destroy forced justification gaps */
+  .premium-neural-card p,
+  .feed-article-card p,
+  .lab-interface-card p,
+  .card-node-desc,
+  .section-card p,
+  .card-description-node,
+  .archive__item-excerpt p,
+  .archive__item-excerpt {
+    text-align: left !important;
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    line-height: 1.65 !important; /* Balanced vertical tracking */
+  }
+
+  /* ==========================================================================
+     ৪. MOBILE TOGGLE (HAMBURGER MENU) & NAVIGATION PARAMETERS
+     ========================================================================== */
   .masthead__menu-toggle {
     background-color: transparent !important;
     border: 1px solid rgba(0, 212, 178, 0.25) !important;
     border-radius: 6px !important;
     padding: 0.5rem !important;
-    color: #00d4b2 !important; /* Premium Neon Glow for Hamburger Icon */
+    color: #00d4b2 !important;
     transition: all 0.2s ease-in-out !important;
   }
 
@@ -50,14 +81,12 @@
     color: #ffffff !important;
   }
 
-  /* Fixing the mobile navigation slide-out pane for iPhones and Tablets */
   .masthead__menu-items {
-    background-color: #020617 !important; /* Deep dark palette consistency */
+    background-color: #020617 !important;
     border-top: 1px solid rgba(0, 212, 178, 0.1) !important;
     padding-top: 0.5rem !important;
   }
 
-  /* Aligning dropdown children links smoothly inside the mobile layout tracking viewports */
   .masthead__menu-item {
     font-weight: 500 !important;
   }
@@ -70,7 +99,6 @@
     color: #00d4b2 !important;
   }
 
-  /* Formatting multi-level dropdown children lists on responsive triggers */
   .masthead__menu-item ul {
     background-color: #070a13 !important;
     border-left: 2px solid #00d4b2 !important;
@@ -80,35 +108,20 @@
   }
 
   /* ==========================================================================
-     ৩. DEVICE-SPECIFIC ADAPTIVE VIEWPORTS ENGINE (CSS CLAMP & GRIDS)
+     ৫. MULTI-DEVICE STRUCTURAL RE-GRIDDING PARAMETERS
      ========================================================================== */
-
-  /* Global Container Auto-Wrapping to block any Horizontal Overflows */
   body, html {
     max-width: 100% !important;
     overflow-x: hidden !important;
     background-color: #020617 !important;
   }
 
-  /* 📱 PREMIUM IPHONE & SMARTPHONE OPTIMIZATION LAYOUT (Width <= 480px) */
   @media (max-width: 480px) {
     .neural-hero {
-      padding: 4rem 1rem !important;
-      min-height: 55vh !important;
-    }
-    
-    .neural-hero__title {
-      font-size: 2.1rem !important;
-      line-height: 1.2 !important;
+      padding: 4rem 1.25rem !important;
+      min-height: 50vh !important;
     }
 
-    .neural-hero__subtitle {
-      font-size: 0.95rem !important;
-      line-height: 1.55 !important;
-      margin-bottom: 2rem !important;
-    }
-
-    /* Transforming Grid Systems into fluid Single-Column Formats (Fixed Duplicate Selector Line) */
     .footer-matrix-container {
       grid-template-columns: 1fr !important;
       gap: 2rem !important;
@@ -116,17 +129,20 @@
     }
 
     .premium-neural-card, .feed-article-card, .lab-interface-card {
-      padding: 2.25rem 1.5rem !important; /* Compact padding for smaller screens */
+      padding: 2.25rem 1.5rem !important;
+      align-items: center !important;
+      text-align: center !important;
+    }
+
+    /* Transforming card summaries to a balanced center track on small smartphones */
+    .premium-neural-card p, .card-node-desc {
+      text-align: center !important;
+      font-size: 0.92rem !important;
     }
 
     .footer-pedagogy-card {
       padding: 1.75rem 1.25rem !important;
       margin: 3rem 1rem 0 1rem !important;
-    }
-
-    .footer-pedagogy-text {
-      font-size: 0.9rem !important;
-      line-height: 1.6 !important;
     }
 
     .footer-base-strip {
@@ -135,7 +151,6 @@
       text-align: center !important;
     }
 
-    /* Center layout elements automatically for mobile symmetry */
     .footer-matrix-column, .footer-matrix-nav {
       align-items: center !important;
       text-align: center !important;
@@ -146,15 +161,14 @@
     }
   }
 
-  /* 📟 MID-RANGE TABLET & IPAD STRUCTURAL VIEWPORT (481px <= Width <= 768px) */
   @media (min-width: 481px) and (max-width: 768px) {
     .footer-matrix-container {
-      grid-template-columns: repeat(2, 1fr) !important; /* Beautiful dual-column matrix grid */
+      grid-template-columns: repeat(2, 1fr) !important;
       gap: 2.5rem !important;
     }
     
     .brand-profile-node, .dispatch-engine-node {
-      grid-column: span 2 !important; /* Spreading primary content boxes nicely across the layout width */
+      grid-column: span 2 !important;
       text-align: center !important;
       align-items: center !important;
     }
@@ -170,20 +184,16 @@
     }
   }
 
-  /* 💻 ULTRA-WIDE LANDSCAPE & DESKTOP ADJUSTMENTS (Width >= 1024px) */
   @media (min-width: 1024px) {
-    /* Enforcing flawless horizontal expansion for multi-column configurations */
     .footer-matrix-container {
-      grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr !important; /* Perfect structural proportion balance */
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr !important;
       gap: 3.5rem !important;
     }
     
-    /* Activating smooth desktop sub-navigation items behavior */
     .masthead__menu-item {
       position: relative !important;
     }
     
-    /* Ensuring desktop dropdown alignments display flawlessly without tracking bugs */
     .masthead__menu-item:hover ul {
       display: block !important;
       position: absolute !important;
