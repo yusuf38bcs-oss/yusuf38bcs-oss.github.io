@@ -1,20 +1,63 @@
----
----
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    {% include head.html %}
-  </head>
-  <body style="background: #030712; color: #f3f4f6; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head/head.html %}
+  {% include head/head-scripts.html %}
+  
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+</head>
+<body class="unified-ecosystem-dark-body">
 
-    {% include masthead.html %}
+  {% if site.gtm_id %}
+    {% include body/gtm-body.html %}
+  {% endif %}
 
-    <main id="main" role="main" style="width: 100% !important; clear: both; min-height: 75vh;">
-      {{ content }}
-    </main>
+  {% include navigation/masthead.html %}
 
-    {% include footer.html %}
+  <div class="main-content-render-viewport">
+    {{ content }}
+  </div>
 
-    {% include scripts.html %}
-  </body>
+  {% include body/synaptic-ai.html %}
+
+  {% include footer/neural-footer.html %}
+
+  <script defer src="{{ '/assets/js/core/ai-core.js' | relative_url }}"></script>
+  
+  {% if page.url == "/" %}
+    <script defer src="{{ '/assets/js/home/hero-effects.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/home/neural-flow.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/home/neural-interactions.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/home/section-transitions.js' | relative_url }}"></script>
+  {% endif %}
+
+</body>
 </html>
+
+<style>
+  /* Global Core Spec Rules - Eradicating any white flashes or mobile shifts */
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #020617 !important; /* Locks theme canvas comfort dark */
+    color: #cbd5e1;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+  }
+
+  .unified-ecosystem-dark-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .main-content-render-viewport {
+    flex: 1 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+  }
+</style>
