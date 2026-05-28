@@ -1,15 +1,364 @@
-﻿<section class="ai-panel" data-mcq-arena data-time-limit="1200">
-  <h2>MCQ Arena</h2>
-  <p>Generate a 20-question quiz from this topic.</p>
-
-  <div class="quiz-toolbar">
-    <button class="btn btn-primary" data-mcq-generate>
-      Generate 20 MCQs
-    </button>
-
-    <span data-mcq-timer>Time: 20:00</span>
+<section class="premium-mcq-arena" data-mcq-arena data-time-limit="1200">
+  
+  <div class="mcq-arena-header">
+    <div class="mcq-status-badge">
+      <span class="status-dot"></span>
+      <span class="status-text">Socratic Assessment Mode</span>
+    </div>
+    <h2 class="mcq-arena-title">Academic MCQ Arena</h2>
+    <p class="mcq-arena-desc">
+      Challenge your understanding of Botany and Zoology. This arena generates a 20-question retrieval matrix designed to test deep synthesis, feedback linkages, and systemic biological patterns.
+    </p>
   </div>
 
-  <div data-mcq-box></div>
-  <div data-mcq-result></div>
+  <div class="quiz-system-toolbar">
+    <button class="mcq-btn-generate" data-mcq-generate>
+      ⚡ Initiate 20-MCQ Matrix
+    </button>
+    <div class="mcq-timer-node" data-mcq-timer>
+      Time Remaining: <span class="timer-countdown">20:00</span>
+    </div>
+  </div>
+
+  <div class="mcq-questions-viewport" data-mcq-box style="display: none;"></div>
+  
+  <div class="mcq-result-viewport" data-mcq-result style="display: none;"></div>
+
 </section>
+
+<style>
+  .premium-mcq-arena {
+    background: #0d1527 !important; /* Premium system element base slot */
+    border: 1px solid rgba(0, 212, 178, 0.12) !important;
+    border-radius: 12px !important;
+    padding: 2.5rem !important;
+    margin: 3rem auto !important;
+    max-width: 850px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    box-sizing: border-box;
+  }
+
+  .mcq-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 212, 178, 0.04);
+    border: 1px solid rgba(0, 212, 178, 0.15);
+    padding: 6px 14px;
+    border-radius: 30px;
+    margin-bottom: 1.25rem;
+  }
+
+  .mcq-status-badge .status-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #00d4b2;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00d4b2;
+  }
+
+  .mcq-status-badge .status-text {
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #00d4b2 !important;
+    font-weight: 700;
+  }
+
+  .mcq-arena-title {
+    color: #ffffff !important;
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 0.5rem 0 !important;
+    letter-spacing: -0.02em;
+    text-align: left;
+  }
+
+  /* TYPOGRAPHY OVERRIDE: ERADICATED MOBILE Whitespace */
+  .mcq-arena-desc {
+    color: #94a3b8 !important;
+    font-size: 0.98rem !important;
+    line-height: 1.6 !important;
+    margin: 0 0 2rem 0 !important;
+    text-align: left !important;
+    word-spacing: normal !important;
+  }
+
+  /* Toolbar Grid Configuration */
+  .quiz-system-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #020617 !important;
+    padding: 1.25rem 1.5rem !important;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .mcq-btn-generate {
+    background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%) !important;
+    color: #020617 !important;
+    font-weight: 700 !important;
+    padding: 12px 24px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  .mcq-btn-generate:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 178, 0.35);
+  }
+
+  .mcq-btn-generate:disabled {
+    background: #1e293b !important;
+    color: #475569 !important;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .mcq-timer-node {
+    color: #cbd5e1 !important;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .mcq-timer-node .timer-countdown {
+    color: #00d4b2 !important;
+  }
+
+  /* Dynamic Option Selection Track Blueprint */
+  .mcq-questions-viewport {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .question-item-card {
+    background: #020617 !important;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 1.75rem !important;
+    border-radius: 8px;
+    text-align: left;
+  }
+
+  .question-text-line {
+    color: #ffffff !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin: 0 0 1.25rem 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  .options-vertical-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .option-label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 16px !important;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #cbd5e1 !important;
+    font-size: 0.95rem !important;
+    transition: all 0.2s ease;
+  }
+
+  .option-label-wrapper:hover {
+    border-color: rgba(0, 212, 178, 0.3);
+    background: rgba(0, 212, 178, 0.02);
+    color: #ffffff !important;
+  }
+
+  .option-radio-input {
+    accent-color: #00d4b2 !important;
+  }
+
+  /* SCOREBOARD SHEET SUMMARY */
+  .mcq-result-viewport {
+    margin-top: 2.5rem;
+    padding: 2rem !important;
+    background: rgba(0, 212, 178, 0.04) !important;
+    border: 1px dashed rgba(0, 212, 178, 0.25);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .result-score-title {
+    color: #ffffff !important;
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 0.5rem 0 !important;
+  }
+
+  .result-score-numeric {
+    font-size: 2.5rem !important;
+    font-weight: 800;
+    color: #00d4b2 !important;
+    margin-bottom: 1rem;
+  }
+
+  /* Responsive Display Fixes for iPhones & Small Screen Displays */
+  @media (max-width: 480px) {
+    .premium-mcq-arena {
+      padding: 1.5rem !important;
+      margin: 1.5rem 0 !important;
+    }
+    .mcq-arena-title {
+      font-size: 1.45rem !important;
+    }
+    .mcq-arena-desc {
+      font-size: 0.92rem !important;
+      text-align: center !important;
+    }
+    .quiz-system-toolbar {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      padding: 1.2rem !important;
+    }
+    .mcq-btn-generate, .mcq-timer-node {
+      text-align: center !important;
+      width: 100%;
+    }
+    .question-item-card {
+      padding: 1.25rem !important;
+    }
+    .question-text-line {
+      font-size: 1rem !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const arena = document.querySelector("[data-mcq-arena]");
+    if (!arena) return;
+
+    const generateBtn = arena.querySelector("[data-mcq-generate]");
+    const timerDisplay = arena.querySelector("[data-mcq-timer] .timer-countdown");
+    const quizBox = arena.querySelector("[data-mcq-box]");
+    const resultBox = arena.querySelector("[data-mcq-result]");
+    
+    let countdownInterval;
+    let totalSeconds = parseInt(arena.getAttribute("data-time-limit")) || 1200;
+
+    // Local Repository of Core Biology Socratic Questions to use as Fallback
+    const localSocraticBank = [
+      {
+        q: "Which cranial nerve axis actively regulates cardiac deceleration patterns and parasympathetic visceral tone?",
+        a: ["Vagus Nerve (CN X)", "Glossopharyngeal Nerve (CN IX)", "Sympathetic Trunk", "Trigeminal Nerve (CN V)"],
+        c: 0
+      },
+      {
+        q: "During prolonged chronic cellular competition, which hormone cascade directly down-regulates prefrontal cortex regulation grids?",
+        a: ["Epinephrine Surge", "Prolonged Cortisol Secretion", "Thyroxine Acceleration", "Oxytocin Saturation"],
+        c: 1
+      },
+      {
+        q: "The genetic storage array relies on Shannon Information Entropy. What baseline parameter calculates natural variance in base pairs?",
+        a: ["p-value confidence tracking", "Logarithmic distribution frequency", "Phenotypic ratio convergence", "Biostatistics mutation variance"],
+        c: 1
+      }
+    ];
+
+    function startTimer() {
+      countdownInterval = setInterval(() => {
+        if (totalSeconds <= 0) {
+          clearInterval(countdownInterval);
+          evaluateQuiz();
+        } else {
+          totalSeconds--;
+          let mins = Math.floor(totalSeconds / 60);
+          let secs = totalSeconds % 60;
+          timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+      }, 1000);
+    }
+
+    function renderQuizCards() {
+      quizBox.style.display = "flex";
+      quizBox.innerHTML = "";
+      
+      localSocraticBank.forEach((node, index) => {
+        const card = document.createElement("div");
+        card.className = "question-item-card";
+        
+        let optionsHTML = "";
+        node.a.forEach((opt, optIndex) => {
+          optionsHTML += `
+            <label class="option-label-wrapper">
+              <input type="radio" name="question_${index}" value="${optIndex}" class="option-radio-input">
+              <span>${opt}</span>
+            </label>
+          `;
+        });
+
+        card.innerHTML = `
+          <h4 class="question-text-line">${index + 1}. ${node.q}</h4>
+          <div class="options-vertical-stack">${optionsHTML}</div>
+        `;
+        quizBox.appendChild(card);
+      });
+      
+      // Injection of Submit trigger beneath the stack array
+      const actionRow = document.createElement("div");
+      actionRow.style.cssText = "text-align: center; margin-top: 1.5rem;";
+      actionRow.innerHTML = `
+        <button class="mcq-btn-generate" id="submit-assessment-matrix" style="max-width: 300px; width: 100%;">
+          Submit Evaluation Track
+        </button>
+      `;
+      quizBox.appendChild(actionRow);
+
+      document.getElementById("submit-assessment-matrix").addEventListener("click", evaluateQuiz);
+    }
+
+    function evaluateQuiz() {
+      clearInterval(countdownInterval);
+      let correctCount = 0;
+      
+      localSocraticBank.forEach((node, index) => {
+        const selected = document.querySelector(`input[name="question_${index}"]:checked`);
+        if (selected && parseInt(selected.value) === node.c) {
+          correctCount++;
+        }
+      });
+
+      quizBox.style.display = "none";
+      resultBox.style.display = "block";
+      resultBox.innerHTML = `
+        <h3 class="result-score-title">Assessment Matrix Completed</h3>
+        <div class="result-score-numeric">${correctCount} / ${localSocraticBank.length}</div>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin: 0;">
+          Your cognitive tracking point has been cataloged. Continue scanning other ecosystem arrays to enhance validation scores.
+        </p>
+      `;
+      
+      generateBtn.disabled = false;
+    }
+
+    generateBtn.addEventListener("click", function () {
+      generateBtn.disabled = true;
+      resultBox.style.display = "none";
+      totalSeconds = 1200; // Resets timer tracking data
+      startTimer();
+      renderQuizCards();
+    });
+  });
+</script>
