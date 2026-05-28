@@ -1,96 +1,27 @@
 main:
   - title: "Home"
     url: /
-
-  # =====================================================
-  # BIOLOGY
-  # =====================================================
-
   - title: "Biology"
-    url: /biology/
     children:
-
       - title: "HSC Corner"
         url: /biology/hsc-corner/
-
-      - title: "Higher Zoology"
-        url: /biology/higher-zoology/
-
-  # =====================================================
-  # LIFE PRACTICES
-  # =====================================================
-
+      - title: "Higher Zoology Tree"
+        url: /biology/higher-zoology-tree/
+  - title: "Synaptic Bridge"
+    children:
+      - title: "Systems Biology"
+        url: /synaptic-bridge/systems-biology/
+      - title: "Interdisciplinary Science"
+        url: /synaptic-bridge/interdisciplinary-science/
+      - title: "AI in Education"
+        url: /synaptic-bridge/ai-education/
+      - title: "4IR Education"
+        url: /synaptic-bridge/4ir-education/
+      - title: "Future Learning"
+        url: /synaptic-bridge/future-learning/
+      - title: "Knowledge Network"
+        url: /synaptic-bridge/knowledge-network/
   - title: "Life Practices"
     url: /life-practices/
-    children:
-
-      - title: "Human Behaviour"
-        url: /life-practices/human-behaviour/
-
-      - title: "Leadership Skills"
-        url: /life-practices/leadership-skills/
-
-      - title: "Reflective Thinking"
-        url: /life-practices/reflective-thinking/
-
-      - title: "Random Thoughts"
-        url: /life-practices/random-thoughts/
-
-      - title: "Emotional Intelligence"
-        url: /life-practices/emotional-intelligence/
-
-      - title: "Subconscious Mind"
-        url: /life-practices/subconscious-mind/
-
-      - title: "Biology & Life"
-        url: /life-practices/biology-and-life/
-
-  # =====================================================
-  # SOCRATIC
-  # =====================================================
-
-  - title: "Socratic"
+  - title: "Socratic 4.0"
     url: /socratic/
-    children:
-
-      - title: "MCQ Arena"
-        url: /socratic/mcq-arena/
-
-      - title: "MI Q/A"
-        url: /socratic/multiple-intelligence/
-
-      - title: "Personality Test"
-        url: /socratic/personality-test/
-
-      - title: "Critical Thinking"
-        url: /socratic/critical-thinking/
-
-      - title: "Reflective Journal"
-        url: /socratic/journal/
-
-  # =====================================================
-  # CORE PAGES
-  # =====================================================
-
-  - title: "About"
-    url: /about/
-
-  - title: "Contact"
-    url: /contact/
-
-# =======================================================
-# FOOTER
-# =======================================================
-
-footer:
-  - title: "Privacy Policy"
-    url: /privacy-policy/
-
-  - title: "Terms & Conditions"
-    url: /terms-and-conditions/
-
-  - title: "Disclaimer"
-    url: /disclaimer/
-
-  - title: "About"
-    url: /about/
