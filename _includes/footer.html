@@ -1,116 +1,227 @@
-<footer style="background: #020617; padding: 5rem 1.5rem 2.5rem 1.5rem; border-top: 1px solid rgba(0, 212, 178, 0.15); color: #94a3b8; font-size: 0.95rem; position: relative; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-
-  <div style="position: absolute; inset: 0; background: radial-gradient(circle at 15% 0%, rgba(0, 212, 178, 0.05) 0%, transparent 35%), radial-gradient(circle at 85% 100%, rgba(59, 130, 246, 0.06) 0%, transparent 40%); pointer-events: none;"></div>
-
-  <div style="position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem;">
-
-    <div style="max-width: 400px; text-align: left; flex: 1 1 280px; display: flex; flex-direction: column; gap: 1rem;">
-      <h3 style="color: #ffffff; margin: 0; font-size: 1.35rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.02em;">
-        Neural Educational<br><span style="color: #00d4b2;">Ecosystem</span>
-      </h3>
-      <p style="line-height: 1.7; margin: 0; color: #94a3b8; font-size: 0.92rem;">
+<footer class="neural-core-footer">
+  <div class="footer-matrix-container">
+    
+    <div class="footer-brand-column">
+      <h2 class="footer-brand-title">
+        Neural Educational <br><span class="accent-neon">Ecosystem</span>
+      </h2>
+      <p class="footer-brand-desc">
         BCS Education Cadre Management Blueprint focused on multidisciplinary systems thinking, behavioral alignment, reflective pedagogy, digital learning architecture, and AI-assisted educational transformation.
       </p>
-      <div style="color: rgba(0, 212, 178, 0.3); font-size: 0.85rem; letter-spacing: 0.2em; font-weight: 700; margin-top: 0.25rem;">
-        ● ━━ ◯ ━━ ✕
-      </div>
+      <div class="neural-divider-line"></div>
     </div>
 
-    <div style="text-align: left; min-width: 200px; flex: 1 1 200px;">
-      <h4 style="color: #00d4b2; margin: 0 0 1.25rem 0; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.12em; font-weight: 700;">
-        Ecosystem Resources
-      </h4>
-      <ul style="list-style: none !important; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem;">
-        <li><a href="{{ '/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.92rem; transition: color 0.2s;">Platform Home Hub</a></li>
-        <li><a href="{{ '/biology/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.92rem;">Biology Core Field Array</a></li>
-        <li><a href="{{ '/life-practices/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.92rem;">Applied Behavioral Science</a></li>
-        <li><a href="{{ '/socratic/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.92rem;">Socratic Thinking Systems</a></li>
-        <li><a href="{{ '/about/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.92rem;">About & Author</a></li>
-      </ul>
+    <div class="footer-links-column">
+      <h3 class="footer-section-heading">Ecosystem Resources</h3>
+      <nav class="footer-nav-list">
+        <a href="{{ '/' | relative_url }}" class="footer-nav-link">Platform Home Hub</a>
+        <a href="{{ '/biology-core/' | relative_url }}" class="footer-nav-link">Biology Core Field Array</a>
+        <a href="{{ '/behavioral-science/' | relative_url }}" class="footer-nav-link">Applied Behavioral Science</a>
+        <a href="{{ '/socratic-thinking/' | relative_url }}" class="footer-nav-link">Socratic Thinking Systems</a>
+        <a href="{{ '/about/' | relative_url }}" class="footer-nav-link">About & Author</a>
+      </nav>
     </div>
 
-    <div style="text-align: left; min-width: 200px; flex: 1 1 200px;">
-      <h4 style="color: #00d4b2; margin: 0 0 1.25rem 0; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.12em; font-weight: 700;">
-        Legal & Policies
-      </h4>
-      <ul style="list-style: none !important; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem;">
-        <li><a href="{{ '/privacy-policy/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.92rem;">Privacy Policy</a></li>
-        <li><a href="{{ '/terms-and-conditions/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.92rem;">Terms & Conditions</a></li>
-        <li><a href="{{ '/cookie-policy/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.92rem;">Cookie Policy</a></li>
-        <li><a href="{{ '/disclaimer/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.92rem;">Disclaimer Liability</a></li>
-      </ul>
+    <div class="footer-links-column">
+      <h3 class="footer-section-heading">Legal & Policies</h3>
+      <nav class="footer-nav-list">
+        <a href="{{ '/privacy-policy/' | relative_url }}" class="footer-nav-link">Privacy Policy</a>
+        <a href="{{ '/terms/' | relative_url }}" class="footer-nav-link">Terms & Conditions</a>
+        <a href="{{ '/cookies/' | relative_url }}" class="footer-nav-link">Cookie Policy</a>
+        <a href="{{ '/disclaimer/' | relative_url }}" class="footer-nav-link">Disclaimer Liability</a>
+      </nav>
     </div>
 
-    <div style="text-align: left; min-width: 240px; flex: 1 1 240px; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;">
-      <h4 style="color: #00d4b2; margin: 0; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.12em; font-weight: 700;">
-        Neural Learning Network
-      </h4>
-      <p style="line-height: 1.6; margin: 0; color: #94a3b8; font-size: 0.92rem;">
+    <div class="footer-dispatch-column">
+      <h3 class="footer-section-heading">Neural Learning Network</h3>
+      <p class="footer-dispatch-desc">
         Receive advanced biology notes, cognitive optimization metrics, and interdisciplinary syllabus updates.
       </p>
-      <button onclick="openBrevoModal()" style="background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%); border: none; border-radius: 6px; padding: 0.85rem 1.5rem; color: #020617; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: transform 0.2s; width: 100%; max-width: 260px; box-shadow: 0 4px 15px rgba(0,212,178,0.25);">
-        Subscribe to Dispatch
-      </button>
+      <a href="#subscribe" class="footer-cta-button">Subscribe to Dispatch</a>
     </div>
 
   </div>
 
-  <div style="position: relative; z-index: 2; max-width: 1200px; margin: 4rem auto 0 auto; padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; font-size: 0.85rem;">
-    <p style="margin: 0; color: #64748b; line-height: 1.7;">
-      &copy; {{ site.time | date: '%Y' }} <strong>Learning Biology For Life</strong>. 
-      Engineered via Structured Educational Architecture, AI-Assisted Pedagogy, and Reflective Systems Design.
+  <div class="footer-bottom-strip">
+    <p class="footer-copyright-text">
+      &copy; 2026 <span class="white-text">Learning Biology For Life</span>. Engineered via Structured Educational Architecture, AI-Assisted Pedagogy, and Reflective Systems Design.
     </p>
   </div>
-
 </footer>
 
-<div id="brevoPopup" style="display: none; position: fixed; z-index: 999999; inset: 0; background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
-
-  <div style="position: relative; width: min(92%, 580px); background: #0f172a; border-radius: 16px; border: 1px solid rgba(0, 212, 178, 0.25); box-shadow: 0 25px 60px rgba(0,0,0,0.6); padding: 1.5rem 1rem 1rem 1rem; box-sizing: border-box; transform: scale(0.95); transition: transform 0.3s ease;">
-
-    <button onclick="closeBrevoModal()" aria-label="Close Modal" style="position: absolute; top: -14px; right: -14px; width: 32px; height: 32px; border-radius: 50%; background: #00d4b2; border: 2px solid #020617; color: #020617; text-align: center; font-size: 20px; font-weight: 700; line-height: 26px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); outline: none;">
-      &times;
-    </button>
-
-    <iframe width="100%" height="390" src="{{ site.brevo.form_url }}" frameborder="0" scrolling="auto" allowfullscreen style="display: block; border: none; border-radius: 10px; background: #ffffff;"></iframe>
-
-  </div>
-
-</div>
-
-<script>
-function openBrevoModal() {
-  const modal = document.getElementById('brevoPopup');
-  if (modal) {
-    modal.style.display = 'flex';
-    // Small timeout to allow transition opacity trigger to render cleanly
-    setTimeout(() => {
-      modal.style.opacity = '1';
-      modal.style.pointerEvents = 'auto';
-      modal.children[0].style.transform = 'scale(1)';
-    }, 20);
-    document.body.style.overflow = 'hidden';
+<style>
+  .neural-core-footer {
+    background-color: #020617 !important;
+    border-top: 1px solid rgba(0, 212, 178, 0.1) !important;
+    padding: 4rem 2rem 2rem 2rem !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    color: #94a3b8 !important;
   }
-}
 
-function closeBrevoModal() {
-  const modal = document.getElementById('brevoPopup');
-  if (modal) {
-    modal.style.opacity = '0';
-    modal.style.pointerEvents = 'none';
-    modal.children[0].style.transform = 'scale(0.95)';
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 300);
-    document.body.style.overflow = 'auto';
+  .footer-matrix-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2.5rem;
+    align-items: start;
   }
-}
 
-// Auto close if user taps directly outside container path parameters
-window.onclick = function(event) {
-  const modal = document.getElementById('brevoPopup');
-  if (event.target === modal) {
-    closeBrevoModal();
+  /* Brand Column Custom Overrides */
+  .footer-brand-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
-}
-</script>
+
+  .footer-brand-title {
+    color: #ffffff !important;
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    line-height: 1.25 !important;
+    margin: 0 !important;
+    letter-spacing: -0.02em;
+  }
+
+  .footer-brand-title .accent-neon {
+    color: #00d4b2 !important;
+  }
+
+  .footer-brand-desc {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    color: #64748b !important;
+    margin: 0 !important;
+    text-align: justify;
+  }
+
+  /* Clean Neural Line Divider (Replaced Broken Symbols) */
+  .neural-divider-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #00d4b2 0%, transparent 100%);
+    margin-top: 0.5rem;
+    border-radius: 2px;
+  }
+
+  /* List & Links Column (Horizontal Optimization Architecture) */
+  .footer-links-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .footer-section-heading {
+    color: #00d4b2 !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    margin: 0 !important;
+  }
+
+  /* Fixed Excess Vertical Padding - Ultra Tight Clean Spacing */
+  .footer-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem; /* Tight line spacing */
+  }
+
+  .footer-nav-link {
+    color: #94a3b8 !important;
+    font-size: 0.95rem !important;
+    text-decoration: none !important;
+    transition: 0.2s color ease-in-out, 0.2s padding-left ease-in-out !important;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .footer-nav-link:hover {
+    color: #ffffff !important;
+    padding-left: 4px;
+  }
+
+  /* Dispatch Column */
+  .footer-dispatch-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-dispatch-desc {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    color: #94a3b8 !important;
+    margin: 0 !important;
+  }
+
+  /* Premium High-Contrast Neon Gradient CTA Button */
+  .footer-cta-button {
+    background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%) !important;
+    color: #020617 !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-size: 0.95rem !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    box-shadow: 0 4px 14px rgba(0, 212, 178, 0.2);
+    display: inline-block;
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .footer-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 178, 0.35);
+  }
+
+  /* Copyright Bottom Strip */
+  .footer-bottom-strip {
+    max-width: 1200px;
+    margin: 3.5rem auto 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    text-align: center;
+  }
+
+  .footer-copyright-text {
+    font-size: 0.8rem !important;
+    color: #475569 !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+  }
+
+  .footer-copyright-text .white-text {
+    color: #64748b !important;
+    font-weight: 600;
+  }
+
+  /* Responsive Grid Structural Tuning */
+  @media (max-width: 768px) {
+    .neural-core-footer {
+      padding: 3rem 1.5rem 1.5rem 1.5rem !important;
+    }
+    .footer-matrix-container {
+      grid-template-columns: 1fr; /* Fallback column wrap on smaller screens */
+      gap: 2rem;
+    }
+    .footer-brand-column, .footer-links-column, .footer-dispatch-column {
+      align-items: center;
+      text-align: center;
+    }
+    .footer-brand-desc {
+      text-align: center;
+    }
+    .footer-nav-list {
+      align-items: center;
+    }
+    .footer-nav-link:hover {
+      padding-left: 0;
+    }
+    .neural-divider-line {
+      background: linear-gradient(90deg, transparent 0%, #00d4b2 50%, transparent 100%);
+    }
+  }
+</style>
