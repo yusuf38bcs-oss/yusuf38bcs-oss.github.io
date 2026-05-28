@@ -3,19 +3,13 @@
 
 {% seo %}
 
-<!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
 
-<!-- Main Stylesheet -->
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-<!-- Google AdSense -->
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352"
   crossorigin="anonymous">
@@ -23,7 +17,21 @@
 
 <style>
   /* ==========================================================================
-     ১. MOBILE TOGGLE (HAMBURGER MENU) & MASTHEAD ULTRA-RESPONSIVE FIX
+     ১. SITE BRANDING LOGO OVERRIDES (REMOVES CIRCULAR BANDS)
+     ========================================================================== */
+  .masthead__logo img, 
+  .site-logo, 
+  img.site-logo, 
+  .author__avatar img {
+    border-radius: 0px !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    object-fit: contain !important;
+  }
+
+  /* ==========================================================================
+     ২. MOBILE TOGGLE (HAMBURGER MENU) & MASTHEAD ULTRA-RESPONSIVE FIX
      ========================================================================== */
   
   /* Ensuring the mobile menu toggle button is prominently visible against the dark canvas */
@@ -72,7 +80,7 @@
   }
 
   /* ==========================================================================
-     ২. DEVICE-SPECIFIC ADAPTIVE VIEWPORTS ENGINE (CSS CLAMP & GRIDS)
+     ৩. DEVICE-SPECIFIC ADAPTIVE VIEWPORTS ENGINE (CSS CLAMP & GRIDS)
      ========================================================================== */
 
   /* Global Container Auto-Wrapping to block any Horizontal Overflows */
@@ -100,8 +108,7 @@
       margin-bottom: 2rem !important;
     }
 
-    /* Transforming Grid Systems into fluid Single-Column Formats */
-    .footer-matrix-container, 
+    /* Transforming Grid Systems into fluid Single-Column Formats (Fixed Duplicate Selector Line) */
     .footer-matrix-container {
       grid-template-columns: 1fr !important;
       gap: 2rem !important;
@@ -191,4 +198,3 @@
     }
   }
 </style>
-
