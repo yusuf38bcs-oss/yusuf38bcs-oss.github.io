@@ -1,9 +1,146 @@
-{% include seo/organization-schema.html %}
+{% comment %}
+  PREMIUM MASTER UNIFIED STRUCTURED DATA ENGINE
+  Consolidates Organization, Breadcrumbs, Articles, Educational Blueprints, and Knowledge Graphs into a Flawless Unified JSON-LD Graph.
+{% endcomment %}
 
-{% include seo/breadcrumbs-schema.html %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    /* 1. MASTER EDUCATIONAL ORGANIZATION SCHEMA */
+    {
+      "@type": "EducationalOrganization",
+      "@id": "{{ site.url | absolute_url }}/#organization",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url | absolute_url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "{{ site.url | absolute_url }}/#logo",
+        "url": "{{ site.logo | absolute_url }}",
+        "caption": "{{ site.title }} Logo"
+      },
+      "image": {
+        "@id": "{{ site.url | absolute_url }}/#logo"
+      },
+      "description": "Connecting the Dots of Physiology, the Lines of Behavior, and the Circles of Wisdom back to Divine Revelation.",
+      "founder": {
+        "@type": "Person",
+        "name": "{{ site.author.name }}",
+        "jobTitle": "{{ site.author.bio }}",
+        "knowsAbout": ["Zoology", "Systems Biology", "Pedagogy", "Behavioral Science"],
+        "nationality": {
+          "@type": "Country",
+          "name": "{{ site.author.location }}"
+        }
+      }
+    },
 
-{% include seo/article-schema.html %}
+    /* 2. WEBSITE METRIC ANCHOR */
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url | absolute_url }}/#website",
+      "url": "{{ site.url | absolute_url }}",
+      "name": "{{ site.title }}",
+      "publisher": {
+        "@id": "{{ site.url | absolute_url }}/#organization"
+      }
+    },
 
-{% include seo/educational-schema.html %}
+    /* 3. DYNAMIC BREADCRUMB SCHEMA (TRACKS MULTI-DEVICE NAVIGATION) */
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ page.url | absolute_url }}/#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ '/' | absolute_url }}"
+        }
+        {% if page.collection and page.url != '/' %}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ page.collection | replace: '-', ' ' | capitalize }}",
+          "item": "{{ '/' | append: page.collection | append: '/' | absolute_url }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ page.title | jsonify }},
+          "item": "{{ page.url | absolute_url }}"
+        }
+        {% elsif page.url != '/' %}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ page.title | jsonify }},
+          "item": "{{ page.url | absolute_url }}"
+        }
+        {% endif %}
+      ]
+    },
 
-{% include seo/knowledge-graph.html %}
+    /* 4. CURRENT WEBPAGE ONTOLOGY */
+    {
+      "@type": "WebPage",
+      "@id": "{{ page.url | absolute_url }}/#webpage",
+      "url": "{{ page.url | absolute_url }}",
+      "name": {{ page.title | jsonify }},
+      "isPartOf": {
+        "@id": "{{ site.url | absolute_url }}/#website"
+      },
+      "breadcrumb": {
+        "@id": "{{ page.url | absolute_url }}/#breadcrumbs"
+      },
+      "description": {{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 150 | jsonify }}
+    }
+
+    /* 5. DYNAMIC ACADEMIC ARTICLE SCHEMA (FOR LATEST EXPLORATIONS & POSTS) */
+    {% if page.layout == "single" or page.collection %}
+    ,{
+      "@type": "Article",
+      "@id": "{{ page.url | absolute_url }}/#article",
+      "isPartOf": {
+        "@id": "{{ page.url | absolute_url }}/#webpage"
+      },
+      "headline": {{ page.title | jsonify }},
+      "datePublished": "{{ page.date | default: site.time | date_to_xmlschema }}",
+      "dateModified": "{{ page.last_modified_at | default: page.date | default: site.time | date_to_xmlschema }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ site.author.name }}",
+        "jobTitle": "{{ site.author.bio }}"
+      },
+      "publisher": {
+        "@id": "{{ site.url | absolute_url }}/#organization"
+      },
+      "description": {{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 200 | jsonify }}
+    }
+    {% endif %}
+
+    /* 6. DYNAMIC KNOWLEDGE GRAPH & COURSE SCHEMA MAPPING FOR SYNAPTIC ARRAYS */
+    {% if page.collection == "biology" or page.collection == "synaptic-bridge" or page.collection == "socratic" or page.collection == "life-practices" %}
+    ,{
+      "@type": "Course",
+      "@id": "{{ page.url | absolute_url }}/#course",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.excerpt | strip_html | strip_newlines | truncate: 250 | jsonify }},
+      "provider": {
+        "@id": "{{ site.url | absolute_url }}/#organization"
+      },
+      "educationalCredentialAwarded": "Reflective Interdisciplinary Competency Map",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "Online",
+        "instructor": {
+          "@type": "Person",
+          "name": "{{ site.author.name }}",
+          "jobTitle": "{{ site.author.bio }}"
+        }
+      }
+    }
+    {% endif %}
+  ]
+}
+</script>
