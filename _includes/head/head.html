@@ -1,31 +1,29 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 {% seo %}
 
-<link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+<link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">
 
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352"
-  crossorigin="anonymous">
-</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352" crossorigin="anonymous"></script>
 
 <style>
   /* ==========================================================================
      ১. LOGO STRIP REPAIR (TOTAL DESTRUCTION OF THE CIRCULAR BAND)
      ========================================================================== */
-  /* Targetting every possible wrapper in the masthead to force a flat layout */
+  #main .masthead__inner .masthead__logo,
+  #main .masthead__inner .masthead__logo img,
   header.masthead .masthead__inner .masthead__logo,
   header.masthead .masthead__inner .masthead__logo img,
-  .masthead__logo,
-  .masthead__logo img,
-  img.site-logo {
+  .masthead__logo, .masthead__logo img, img.site-logo {
     border-radius: 0px !important;
+    border-radius: 0 !important;
     border: none !important;
     background: transparent !important;
     background-color: transparent !important;
@@ -37,18 +35,17 @@
   /* ==========================================================================
      ২. CROWDED HERO TITLE CORRECTION (MOBILE VIEWPORT BREATHING ROOM)
      ========================================================================== */
-  .neural-hero__title {
-    font-size: clamp(1.8rem, 7.5vw, 3.5rem) !important; /* Reduced base scaling to prevent layout crowding */
-    line-height: 1.3 !important; /* Increased line gap for exceptional comfort */
-    letter-spacing: -0.02em !important;
+  .neural-hero__title, .synaptic-hero-title {
+    font-size: clamp(1.8rem, 7.5vw, 3.5rem) !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.03em !important;
     margin-bottom: 1.5rem !important;
-    font-weight: 800 !important;
+    font-weight: 900 !important;
   }
 
   /* ==========================================================================
      ৩. WORD & LINE SPACING CORRECTION (ERADICATION OF UNEVEN GAPS)
      ========================================================================== */
-  /* Globally forcing left-alignment on all card vectors to destroy forced justification gaps */
   .premium-neural-card p,
   .feed-article-card p,
   .lab-interface-card p,
@@ -56,23 +53,29 @@
   .section-card p,
   .card-description-node,
   .archive__item-excerpt p,
-  .archive__item-excerpt {
+  .archive__item-excerpt,
+  .section-lead {
     text-align: left !important;
+    text-justify: none !important;
     word-spacing: normal !important;
     letter-spacing: normal !important;
-    line-height: 1.65 !important; /* Balanced vertical tracking */
+    line-height: 1.65 !important;
   }
 
   /* ==========================================================================
      ৪. MOBILE TOGGLE (HAMBURGER MENU) & NAVIGATION PARAMETERS
      ========================================================================== */
+  .masthead, .site-header {
+    overflow: visible !important; /* Essential fallback for absolute dropdown tracking */
+  }
+
   .masthead__menu-toggle {
     background-color: transparent !important;
     border: 1px solid rgba(0, 212, 178, 0.25) !important;
     border-radius: 6px !important;
     padding: 0.5rem !important;
     color: #00d4b2 !important;
-    transition: all 0.2s ease-in-out !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .masthead__menu-toggle:hover, .masthead__menu-toggle:focus {
@@ -88,23 +91,29 @@
   }
 
   .masthead__menu-item {
-    font-weight: 500 !important;
+    font-weight: 600 !important;
   }
   
   .masthead__menu-item a {
     color: #cbd5e1 !important;
+    transition: color 0.2s ease;
   }
 
   .masthead__menu-item a:hover {
     color: #00d4b2 !important;
   }
 
-  .masthead__menu-item ul {
-    background-color: #070a13 !important;
-    border-left: 2px solid #00d4b2 !important;
-    padding-left: 1rem !important;
-    margin-top: 0.25rem !important;
-    margin-bottom: 0.5rem !important;
+  /* --- MOBILE-SCOPED ACCORDION SUBMENU EXTENSION --- */
+  @media (max-width: 1023px) {
+    .masthead__menu-item ul {
+      background-color: #070a13 !important;
+      border-left: 2px solid #00d4b2 !important;
+      padding-left: 1rem !important;
+      margin-top: 0.25rem !important;
+      margin-bottom: 0.5rem !important;
+      display: block !important;
+      width: 100% !important;
+    }
   }
 
   /* ==========================================================================
@@ -116,8 +125,9 @@
     background-color: #020617 !important;
   }
 
+  /* --- SMARTPHONE TARGET MESH --- */
   @media (max-width: 480px) {
-    .neural-hero {
+    .neural-hero, .home-hero {
       padding: 4rem 1.25rem !important;
       min-height: 50vh !important;
     }
@@ -128,16 +138,15 @@
       text-align: center !important;
     }
 
-    .premium-neural-card, .feed-article-card, .lab-interface-card {
+    .premium-neural-card, .feed-article-card, .lab-interface-card, .glass-card, .neural-panel {
       padding: 2.25rem 1.5rem !important;
       align-items: center !important;
       text-align: center !important;
     }
 
-    /* Transforming card summaries to a balanced center track on small smartphones */
-    .premium-neural-card p, .card-node-desc {
+    .premium-neural-card p, .card-node-desc, .glass-card p {
       text-align: center !important;
-      font-size: 0.92rem !important;
+      font-size: 0.94rem !important;
     }
 
     .footer-pedagogy-card {
@@ -161,7 +170,8 @@
     }
   }
 
-  @media (min-width: 481px) and (max-width: 768px) {
+  /* --- TABLET MEDIA BOUNDARIES --- */
+  @media (min-width: 481px) and (max-width: 1023px) {
     .footer-matrix-container {
       grid-template-columns: repeat(2, 1fr) !important;
       gap: 2.5rem !important;
@@ -176,6 +186,7 @@
     .footer-matrix-desc {
       text-align: center !important;
       max-width: 580px;
+      margin: 0 auto;
     }
 
     .hero-cta-button-strip {
@@ -184,6 +195,7 @@
     }
   }
 
+  /* --- PREMIUM DESKTOP MATRIX --- */
   @media (min-width: 1024px) {
     .footer-matrix-container {
       grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr !important;
@@ -194,17 +206,31 @@
       position: relative !important;
     }
     
+    /* PURE ISOLATED DESKTOP DROPDOWN BLUEPRINT */
+    .masthead__menu-item ul {
+      display: none; /* Ingress default protection */
+    }
+
     .masthead__menu-item:hover ul {
       display: block !important;
       position: absolute !important;
       top: 100% !important;
       left: 0 !important;
-      min-width: 200px !important;
-      background: #0d1527 !important;
+      min-width: 210px !important;
+      background: #0d1527 !important; /* Unified dark slot token backing */
       border: 1px solid rgba(0, 212, 178, 0.15) !important;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6) !important;
       border-radius: 6px !important;
+      padding: 0.75rem !important;
+      margin: 0 !important;
       z-index: 99999 !important;
+      border-left: none !important; /* Stripped mobile left framing line */
+    }
+
+    .masthead__menu-item:hover ul li {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 4px 0 !important;
     }
   }
 </style>
