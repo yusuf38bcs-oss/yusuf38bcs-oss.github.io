@@ -1,0 +1,203 @@
+/* ==========================================================================
+   PREMIUM SOVEREIGN NAVIGATION MATRIX (OMNIPOTENT EDITION)
+   Fully Synchronized with Minimal Mistakes Greedy-Nav Engine & Neon Cyan Void
+   ========================================================================== */
+
+/* ==========================================================================
+   1. HEADER FOUNDATION (Insulated Viewport Anchor)
+   ========================================================================== */
+.site-header,
+.masthead {
+  position: sticky !important;
+  top: 0;
+  /* Hardcoded numeric fallbacks injected to protect layout depth if token fails */
+  z-index: var(--z-header, 2000) !important;
+  
+  // CRITICAL: Forces browser to allow absolutely positioned dropdowns to cascade downwards
+  overflow: visible !important; 
+  isolation: isolate;
+
+  backdrop-filter: blur(12px) -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 6, 23, 0.96),
+    rgba(2, 6, 23, 0.88)
+  ) !important;
+
+  border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important; // Micro cyan accent wireframe
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   2. GREEDY NAV GRID CONTAINER
+   ========================================================================== */
+.greedy-nav {
+  position: relative;
+  z-index: var(--z-header, 2000) !important;
+  min-height: 72px;
+  padding-inline: 1rem;
+  background: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: visible !important; // Protects dynamic overflow calculations
+}
+
+/* ==========================================================================
+   3. BRAND IDENTITY SYSTEM
+   ========================================================================== */
+.site-title {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(1.05rem, 2vw, 1.35rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+
+  &:hover {
+    color: #00d4b2 !important;
+    text-shadow: 0 0 15px rgba(0, 212, 178, 0.4);
+    transform: translateY(-1px);
+  }
+}
+
+/* ==========================================================================
+   4. DESKTOP HORIZONTAL LINK MATRIX
+   ========================================================================== */
+.greedy-nav .visible-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: visible !important;
+}
+
+.greedy-nav .visible-links a {
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+  padding: 0.5rem 0.8rem !important;
+  border-radius: 6px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+  &:hover {
+    color: #00d4b2 !important;
+    background: rgba(0, 212, 178, 0.04) !important;
+    transform: translateY(-1px);
+  }
+}
+
+/* ==========================================================================
+   5. MOBILE HAMBURGER TOGGLE SYSTEM
+   ========================================================================== */
+.greedy-nav__toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  z-index: var(--z-mobile-nav, 2500) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 212, 178, 0.2) !important;
+  padding: 0 !important;
+  background: rgba(2, 6, 23, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #00d4b2 !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+  &:hover {
+    background: rgba(0, 212, 178, 0.08) !important;
+    border-color: #00d4b2 !important;
+    color: #ffffff !important;
+    transform: scale(1.02);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #00d4b2;
+    outline-offset: 2px;
+  }
+}
+
+/* ==========================================================================
+   6. DYNAMIC DROPDOWN PANEL OVERHAUL (The Ultimate Fix)
+   ========================================================================== */
+.hidden-links,
+.greedy-nav .hidden-links {
+  position: absolute !important;
+  top: 100% !important;
+  right: 1rem !important;
+  /* Allows inner elements to render beyond panel boundaries safely */
+  overflow: visible !important; 
+  z-index: var(--z-dropdown, 3000) !important;
+  
+  min-width: 220px;
+  padding: 0.75rem !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 212, 178, 0.15) !important;
+  background: #0d1527 !important; // High-contrast premium dark card block
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+  
+  /* Micro animation setup for dynamic state entries */
+  transform-origin: top right;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+
+  // Natively forces layout hidden state if triggered by Minimal Mistakes engine
+  &.hidden {
+    display: none !important;
+    opacity: 0;
+    transform: scale(0.96) translateY(-5px);
+  }
+
+  li {
+    width: 100% !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 2px 0 !important;
+  }
+
+  a {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.65rem 0.85rem !important;
+    color: #cbd5e1 !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    box-sizing: border-box;
+    text-align: left !important;
+    transition: all 0.18s ease !important;
+
+    &:hover {
+      color: #00d4b2 !important;
+      background: rgba(0, 212, 178, 0.05) !important;
+      transform: translateX(3px);
+    }
+  }
+}
+
+/* ==========================================================================
+   7. MULTI-DEVICE RESPONSIVE BREAKPOINTS CONFIG
+   ========================================================================== */
+@media (max-width: 768px) {
+  .greedy-nav {
+    min-height: 66px;
+  }
+
+  .hidden-links,
+  .greedy-nav .hidden-links {
+    right: 0.75rem !important;
+    width: min(250px, 92vw) !important;
+  }
+
+  .greedy-nav .visible-links {
+    gap: 0.25rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .greedy-nav {
+    padding-inline: 2rem;
+  }
+}
