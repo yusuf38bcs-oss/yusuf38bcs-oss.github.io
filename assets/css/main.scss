@@ -4,12 +4,12 @@
 ---
 
 /* ==========================================================================
-   PREMIUM UNIFIED ECOSYSTEM MASTER SASS COMPILER (FINAL PRODUCTION)
+   PREMIUM UNIFIED ECOSYSTEM MASTER SASS COMPILER (FINAL PRO-LOCKED)
    Core Architecture: High-Performance Hardware-Accelerated Layouts
    ========================================================================== */
 
 /* -------------------------------------------------------------------------
-   1. CORE LAYER (Global Design Tokens & Functional Mixins)
+   1. CORE LAYER (Global Design Tokens & Functional Mixins from _sass/core/)
    ------------------------------------------------------------------------- */
 @import "core/variables";
 @import "core/mixins";
@@ -23,8 +23,9 @@
 /* -------------------------------------------------------------------------
    3. LAYOUT GRID MATRIX (Structural Blueprints from _sass/layout/)
    ------------------------------------------------------------------------- */
-@import "layout/home-layout";
-@import "layout/synaptic";
+@import "layout/home-layout";            // Maps seamlessly to _sass/layout/_home-layout.scss
+@import "layout/synaptic";               // Maps seamlessly to _sass/layout/_synaptic.scss
+@import "layout/cinematic-refinement";   // Maps seamlessly to _sass/layout/_cinematic-refinement.scss
 
 #main {
   max-width: 100% !important;
@@ -49,14 +50,15 @@
 /* -------------------------------------------------------------------------
    4. MODULAR COMPONENTS MATRIX (Tactile Widgets from _sass/components/)
    ------------------------------------------------------------------------- */
-@import "components/accordion";
-@import "components/buttons";
-@import "components/cards";
-@import "components/neural-hero";
-@import "components/hero-enhancements";
-@import "components/navigation"; // Pulls directly from your updated _navigation.scss
-@import "components/panels";
-@import "components/neural-ui";
+@import "components/accordion";          // Pulls from _sass/components/_accordion.scss
+@import "components/buttons";            // Pulls from _sass/components/_buttons.scss
+@import "components/cards";              // Pulls from _sass/components/_cards.scss
+@import "components/hero";               // Pulls from _sass/components/_hero.scss
+@import "components/neural-hero";        // Pulls from _sass/components/_neural-hero.scss
+@import "components/hero-enhancements";  // Pulls from _sass/components/_hero-enhancements.scss
+@import "components/navigation";         // Pulls from your newly placed _navigation.scss
+@import "components/panels";             // Pulls from _sass/components/_panels.scss
+@import "components/neural-ui";           // Pulls from _sass/components/_neural-ui.scss
 
 /* -------------------------------------------------------------------------
    5. UTILITIES LAYER (Helper Atoms from _sass/utilities/)
@@ -67,7 +69,6 @@
 
 /* ==========================================================================
    6. CRITICAL ECOSYSTEM PATCH: SPECIFICITY OVERRIDES & ANTI-THEME COLLISION
-   Forces strict visual alignment across devices while protecting navigation grids.
    ========================================================================== */
 
 /* --- A. SCOPED CONTENT TEXT ALIGNMENT (Crushes Forced Mobile Word Gaps) --- */
@@ -93,7 +94,6 @@ html, body, #main,
   width: 100% !important;
 }
 
-/* Transforming card summaries on small smartphone viewports safely */
 @media (max-width: 480px) {
   .premium-neural-card p, .card-node-desc, .glass-card p, .feed-article-card p {
     text-align: left !important;
@@ -127,7 +127,7 @@ header.masthead .masthead__inner .masthead__logo img,
 .site-footer__copyright,
 .footer-base-copyright,
 footer p {
-  color: #64748b !important; // Premium high-visibility slate gray conforming to WCAG standards
+  color: #64748b !important;
   font-weight: 600 !important;
   font-size: 0.88rem !important;
 
@@ -137,7 +137,7 @@ footer p {
   }
 
   a {
-    color: #00d4b2 !important; // Highlights core biology domain links in Neon Cyan
+    color: #00d4b2 !important;
     text-decoration: none !important;
     display: inline !important;
     font-weight: 700 !important;
