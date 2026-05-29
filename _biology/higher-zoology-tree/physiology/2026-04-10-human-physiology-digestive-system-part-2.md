@@ -8,143 +8,146 @@ date: 2026-04-10T20:38:00.007Z
 categories:
   - Zoology
   - Human Physiology
+tags:
+  - Digestive System
+  - Human Physiology
+  - Liver Metabolism
+  - Gastrointestinal Hormones
 ---
 
-<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/a/AVvXsEhGwY3zzmUDHlniBJ62mdlyyrfVxK8zjBcIRQXddg0kdqVx3VZIZGpYHLRXvCze7Y2cKOzRAMoO4-UPiztYHUMPOkH6NJWfFj6wwe_-nJyR2Zr4WVSEtAow64D9Zic0Zv2qCHm5pRR57zcHeG-YzlnTmU54VA-6FmOIRVv3oAnbs5C0gjA1OX_J48f7lnU" style="margin-left: 1em; margin-right: 1em;"><img alt="" data-original-height="3999" data-original-width="3999" height="240" src="https://blogger.googleusercontent.com/img/a/AVvXsEhGwY3zzmUDHlniBJ62mdlyyrfVxK8zjBcIRQXddg0kdqVx3VZIZGpYHLRXvCze7Y2cKOzRAMoO4-UPiztYHUMPOkH6NJWfFj6wwe_-nJyR2Zr4WVSEtAow64D9Zic0Zv2qCHm5pRR57zcHeG-YzlnTmU54VA-6FmOIRVv3oAnbs5C0gjA1OX_J48f7lnU" width="240" /></a></div><br />
-
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 950px; margin: auto; padding: 20px; background-color: #f4f7f9; }
-    
-    /* Indigo Theme for LOLO (Learning Objectives & Activities) */
-    .lolo-header { background-color: #3f51b5; color: white; padding: 25px; border-radius: 12px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(63, 81, 181, 0.2); }
-    .accordion-lolo { background-color: #e8eaf6; color: #1a237e; border-left: 6px solid #3f51b5; }
-    .active-lolo, .accordion-lolo:hover { background-color: #3f51b5 !important; color: white !important; }
-    .panel-lolo { border: 1px solid #3f51b5; border-top: none; padding: 20px; background-color: white; display: none; border-radius: 0 0 8px 8px; margin-bottom: 10px; }
-
-    /* Cyan Theme for LALA (Assessment & Summary) */
-    .lala-section { background-color: #00bcd4; color: white; padding: 15px; border-radius: 10px; margin-top: 30px; margin-bottom: 10px; text-align: center; font-weight: bold; font-size: 22px; }
-    .accordion-lala { background-color: #e0f7fa; color: #006064; border-left: 6px solid #00bcd4; }
-    .active-lala, .accordion-lala:hover { background-color: #00bcd4 !important; color: white !important; }
-    .panel-lala { border: 1px solid #00bcd4; border-top: none; padding: 20px; background-color: white; display: none; border-radius: 0 0 8px 8px; margin-bottom: 10px; }
-
-    /* General Styles */
-    .accordion { cursor: pointer; padding: 18px; width: 100%; border: none; text-align: left; outline: none; font-size: 18px; font-weight: bold; transition: 0.3s; border-radius: 8px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; }
-    .flowchart { background-color: #f1f3f4; padding: 15px; border-left: 5px solid #3f51b5; margin: 15px 0; border-radius: 5px; font-weight: 500; }
-    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-    table, th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-    th { background-color: #f5f5f5; color: #3f51b5; }
-    .highlight { color: #d32f2f; font-weight: bold; }
-</style>
-</head>
-<body>
-
-<div class="lolo-header">
-    <h1>🍕 পরিপাক ও শোষণ: খাদ্যের রূপান্তর গাথা</h1>
-    <p>Indigo & Cyan থিম ভিত্তিক ইন্টারেক্টিভ লেকচার</p>
+<div class="neural-banner-card" style="margin: 1.5em 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); background: #0b1329; padding: 10px;">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhGwY3zzmUDHlniBJ62mdlyyrfVxK8zjBcIRQXddg0kdqVx3VZIZGpYHLRXvCze7Y2cKOzRAMoO4-UPiztYHUMPOkH6NJWfFj6wwe_-nJyR2Zr4WVSEtAow64D9Zic0Zv2qCHm5pRR57zcHeG-YzlnTmU54VA-6FmOIRVv3oAnbs5C0gjA1OX_J48f7lnU" alt="Human Digestive System Master Core Banner" style="width: 100%; height: auto; display: block; border-radius: 8px;">
 </div>
 
-<button class="accordion accordion-lolo">🎯 ১. শিখন উদ্দেশ্য (Learning Objectives - LOLO) <span>+</span></button>
-<div class="panel-lolo">
-    <p>এই পাঠটি সম্পন্ন করার পর তোমরা:</p>
+<div class="notice--info" style="background: rgba(63, 81, 181, 0.05); border-left: 4px solid #3f51b5; padding: 15px; border-radius: 0 8px 8px 0; margin-bottom: 2em; text-align: center;">
+  <h2 style="margin: 0; color: #3f51b5; font-family: 'Tiro Bangla', serif;"><i class="fas fa-utensils"></i> পরিপাক ও শোষণ: খাদ্যের রূপান্তর গাথা</h2>
+  <p style="margin: 5px 0 0 0; color: #abb2bf;">Indigo & Cyan মেমব্রেন ভিত্তিক শতভাগ স্যানিটাইজড প্রডাকশন লেকচার নোড</p>
+</div>
+
+---
+
+### 🌐 অধ্যায় বিশ্লেষণ: পরিপাক মেকানিক্স (Interactive Matrix)
+
+<details style="background: rgba(63, 81, 181, 0.03); border: 1px solid rgba(63, 81, 181, 0.15); border-radius: 8px; padding: 10px 15px; margin-bottom: 12px;" open>
+  <summary style="font-weight: 700; color: #3f51b5; cursor: pointer; font-size: 1.1em;"><i class="target-icon"></i> 🎯 ১. শিখন উদ্দেশ্য (Learning Objectives - LOLO)</summary>
+  <div style="margin-top: 10px; padding-left: 10px; border-left: 2px dashed rgba(63, 81, 181, 0.3);">
+    <p>এই পাঠটি সফলভাবে সম্পন্ন করার পর তোমরা:</p>
     <ul>
-        <li>পরিপাক ও পরিপাক গ্রন্থির ভূমিকা ব্যাখ্যা করতে পারবে।</li>
-        <li>যকৃতের বিপাকীয় ও সঞ্চয়ী কাজ বর্ণনা করতে পারবে।</li>
-        <li>পরিপাক প্রক্রিয়ায় স্নায়ু ও হরমোনের প্রভাব বিশ্লেষণ করতে পারবে।</li>
+      <li>পরিপাক নালী এবং কাস্টম পরিপাক গ্রন্থির জৈবিক ভূমিকা নিখুঁতভাবে ব্যাখ্যা করতে পারবে।</li>
+      <li>মানবদেহের জৈব-রসায়নাগার হিসেবে যকৃতের বিপাকীয় ও সঞ্চয়ী কার্যাবলী বর্ণনা করতে পারবে।</li>
+      <li>পরিপাক নালীর পেরিস্টালসিস প্রক্রিয়ায় স্নায়ুতন্ত্র ও এন্ডোক্রাইন হরমোনের প্রভাব বিশ্লেষণ করতে পারবে।</li>
     </ul>
-</div>
+  </div>
+</details>
 
-<button class="accordion accordion-lolo">🧪 ২. পরিপাক ও গ্রন্থির ভূমিকা <span>+</span></button>
-<div class="panel-lolo">
-    <p><b>পরিপাক:</b> যে প্রক্রিয়ায় জটিল খাদ্যবস্তু এনজাইম ও হরমোনের উপস্থিতিতে ভেঙে শোষণ উপযোগী হয়। এটি যান্ত্রিক ও রাসায়নিকভাবে ঘটে।</p>
-    
-    
+<details style="background: rgba(63, 81, 181, 0.03); border: 1px solid rgba(63, 81, 181, 0.15); border-radius: 8px; padding: 10px 15px; margin-bottom: 12px;">
+  <summary style="font-weight: 700; color: #3f51b5; cursor: pointer; font-size: 1.1em;"><i class="flask-icon"></i> 🧪 ২. পরিপাক ও গ্রন্থির শারীরবৃত্তীয় ভূমিকা</summary>
+  <div style="margin-top: 10px; padding-left: 10px; border-left: 2px dashed rgba(63, 81, 181, 0.3);">
+    <p><strong>পরিপাক (Digestion):</strong> যে শারীরবৃত্তীয় ও জৈব-রাসায়নিক প্রক্রিয়ায় জটিল, অদ্রবণীয় খাদ্যবস্তু নির্দিষ্ট এনজাইম ও হরমোনের উপস্থিতিতে ভেঙে কোষের গ্রহণোপযোগী সরল, তরল ও দ্রবণীয় উপাদানে রূপান্তরিত হয়। এটি মূলত যান্ত্রিক (Mechanical) ও রাসায়নিক (Chemical)—এই দুই স্তরে ঘটে।</p>
 
-[Image of the human digestive system]
+    <div class="neural-diagram-holder" style="margin: 1.5em 0; padding: 12px; background: rgba(0,0,0,0.2); border: 1px dashed rgba(63, 81, 181, 0.25); border-radius: 8px; text-align: center;">
+      <p style="margin: 0; color: #888; font-size: 0.9em; font-style: italic;"><i class="fas fa-project-diagram"></i> Anatomy Visual Blueprint: Human Digestive System Systemic Map</p>
+    </div>
 
-
-    <h4>প্রধান পরিপাক গ্রন্থিসমূহ:</h4>
+    <h4 style="color: #3f51b5; margin-top: 15px;">🔬 প্রধান পরিপাক গ্রন্থিসমূহ ও তাদের এনজাইম প্রোফাইল:</h4>
     <ul>
-        <li><b>লালাগ্রন্থি:</b> টায়ালিন ও মল্টেজ নিঃসৃত করে শর্করা পরিপাক শুরু করে।</li>
-        <li><b>যকৃত:</b> পিত্তরস তৈরি করে চর্বিকে ক্ষুদ্র দানায় রূপান্তর করে (ইমালসিফিকেশন)।</li>
-        <li><b>অগ্ন্যাশয়:</b> একে 'পূর্ণ পাচক রস' বলা হয় কারণ এতে শর্করা, আমিষ ও স্নেহ তিনটিরই এনজাইম থাকে।</li>
-        <li><b>গ্যাস্ট্রিক গ্রন্থি:</b> HCl ও পেপসিনোজেন নিঃসরণ করে আমিষ পরিপাকে মুখ্য ভূমিকা রাখে।</li>
+      <li><strong>লালাগ্রন্থি (Salivary Glands):</strong> মুখগহ্বরে টায়ালিন ও মল্টেজ নিঃসৃত করে শর্করার প্রাথমিক পরিপাক সম্পন্ন করে।</li>
+      <li><strong>যকৃত (Liver):</strong> পিত্তরস (Bile Juice) তৈরি করে পিত্তথলিতে জমা রাখে, যা চর্বিকে ভেঙে ক্ষুদ্র দানায় রূপান্তর করে (Emulsification)।</li>
+      <li><strong>অগ্ন্যাশয় (Pancreas):</strong> একে 'পূর্ণ পাচক রস গ্রন্থি' বলা হয়; কারণ এর রসে শর্করা, আমিষ ও স্নেহ—তিনটি প্রধান খাদ্য উপাদান পরিপাকের জন্যই এনজাইম (অ্যামাইলেজ, ট্রিপসিন, লাইপেজ) বিদ্যমান।</li>
+      <li><strong>গ্যাস্ট্রিক গ্রন্থি (Gastric Glands):</strong> পাকস্থলী প্রাচীরে অবস্থিত এই গ্রন্থি তীব্র অম্লীয় $\text{HCl}$ এবং নিষ্ক্রিয় পেপসিনোজেন নিঃসরণ করে আমিষ পরিপাকে মুখ্য ভূমিকা পালন করে।</li>
     </ul>
-</div>
+  </div>
+</details>
 
-<button class="accordion accordion-lolo">⚖️ ৩. যকৃতের সঞ্চয়ী ও বিপাকীয় ভূমিকা <span>+</span></button>
-<div class="panel-lolo">
-    <h4>সঞ্চয়ী ভূমিকা:</h4>
-    <p>যকৃত গ্লুকোজকে <b>গ্লাইকোজেন</b> হিসেবে, আয়রনকে <b>ফেরিটিন</b> হিসেবে এবং ভিটামিন A, D, E, K সঞ্চয় করে।</p>
+<details style="background: rgba(63, 81, 181, 0.03); border: 1px solid rgba(63, 81, 181, 0.15); border-radius: 8px; padding: 10px 15px; margin-bottom: 12px;">
+  <summary style="font-weight: 700; color: #3f51b5; cursor: pointer; font-size: 1.1em;"><i class="scale-icon"></i> ⚖️ ৩. যকৃতের সঞ্চয়ী ও বিপাকীয় ভূমিকা (The Liver Laboratory)</summary>
+  <div style="margin-top: 10px; padding-left: 10px; border-left: 2px dashed rgba(63, 81, 181, 0.3);">
     
+    <h4 style="color: #3f51b5; margin-top: 0;">📦 ক. সঞ্চয়ী ভূমিকা (Storage Functions):</h4>
+    <p>যকৃত অতিরিক্ত রক্ত-গ্লুকোজকে <strong>গ্লাইকোজেন</strong> হিসেবে (গ্লাইকোজেনেসিস প্রক্রিয়া), অতিরিক্ত আয়রনকে <strong>ফেরিটিন</strong> অণু হিসেবে এবং ফ্যাট-দ্রবণীয় ভিটামিন (A, D, E, K) তার হেপাটোসাইট কোষে সঞ্চয় করে রাখে।</p>
+
+    <div class="neural-diagram-holder" style="margin: 1.5em 0; padding: 12px; background: rgba(0,0,0,0.2); border: 1px dashed rgba(63, 81, 181, 0.25); border-radius: 8px; text-align: center;">
+      <p style="margin: 0; color: #888; font-size: 0.9em; font-style: italic;"><i class="fas fa-microscope"></i> Metabolic Flowchart: Multi-channel Storage and Filtration Sub-systems of the Human Liver</p>
+    </div>
+
+    <h4 style="color: #3f51b5; margin-top: 15px;">🧬 খ. বিপাকীয় ভূমিকা (Metabolic Functions):</h4>
+    <p>অ্যামিনো এসিডের ডিঅ্যামিনেশনের ফলে উৎপন্ন বিষাক্ত অ্যামোনিয়াকে ($\text{NH}_3$) যকৃত তার বিখ্যাত <strong>অরনিথিন চক্রের (Ornithine Cycle)</strong> মাধ্যমে অপেক্ষাকৃত কম ক্ষতিকর ইউরিয়ায় রূপান্তর করে, যা পরে রেচনতন্ত্র দিয়ে নিষ্কাশিত হয়।</p>
     
+    <div class="language-text highlighter-rouge" style="background: #020617; padding: 12px; border-radius: 6px; margin: 10px 0; border: 1px solid rgba(0, 212, 178, 0.15); color: #00d4b2; font-family: monospace; font-size: 0.9em;">
+      গ্লুকোজ ➔ [ ইনসুলিন হরমোন স্টিমুলেশন ] ➔ গ্লাইকোজেনেসিস পাথওয়ে ➔ গ্লাইকোজেন (যকৃতে সঞ্চিত)
+    </div>
+  </div>
+</details>
 
-[Image of the functions of the liver in human body]
-
-
-    <h4>বিপাকীয় ভূমিকা:</h4>
-    <p>বিষাক্ত অ্যামোনিয়াকে <b>অরনিথিন চক্রের</b> মাধ্যমে ইউরিয়ায় রূপান্তর করে। এটি রক্তে গ্লুকোজের মাত্রা নিয়ন্ত্রণ এবং তাপ উৎপাদন করে।</p>
-    <div class="flowchart">গ্লুকোজ ➔ (ইনসুলিন হরমোন) ➔ গ্লাইকোজেনেসিস ➔ গ্লাইকোজেন (সঞ্চিত)</div>
-</div>
-
-<button class="accordion accordion-lolo">🧠 ৪. পরিপাকে স্নায়ু ও হরমোনের ভূমিকা <span>+</span></button>
-<div class="panel-lolo">
-    <h4>স্নায়বিক নিয়ন্ত্রণ:</h4>
-    <p>গ্যাস্ট্রিক রস নিঃসরণ ৩টি পর্যায়ে ঘটে:</p>
+<details style="background: rgba(63, 81, 181, 0.03); border: 1px solid rgba(63, 81, 181, 0.15); border-radius: 8px; padding: 10px 15px; margin-bottom: 12px;">
+  <summary style="font-weight: 700; color: #3f51b5; cursor: pointer; font-size: 1.1em;"><i class="brain-icon"></i> 🧠 ৪. পরিপাক প্রক্রিয়ায় স্নায়ু ও হরমোনের নিউরো-এন্ডোক্রাইন নেটওয়ার্ক</summary>
+  <div style="margin-top: 10px; padding-left: 10px; border-left: 2px dashed rgba(63, 81, 181, 0.3);">
+    
+    <h4 style="color: #3f51b5; margin-top: 0;">⚡ ক. স্নায়বিক নিয়ন্ত্রণ (Neural Control):</h4>
+    <p>پাকস্থলীতে গ্যাস্ট্রিক রস নিঃসরণ মূলত ৩টি স্বতন্ত্র স্নায়বিক পর্যায় বা ফেজে বিভক্ত:</p>
     <ul>
-        <li><b>সেফালিক পর্যায় (২০%):</b> ঘ্রাণ বা স্বাদের কারণে শুরু হয়।</li>
-        <li><b>গ্যাস্ট্রিক পর্যায় (৭০%):</b> খাবার পাকস্থলীতে প্রবেশ করলে।</li>
-        <li><b>আন্ত্রিক পর্যায়:</b> খাবার অন্ত্রে প্রবেশের পর।</li>
+      <li><strong>সেফালিক পর্যায় (Cephalic Phase - ২০%):</strong> খাদ্যের দর্শন, ঘ্রাণ বা স্বাদের উদ্দীপনা সরাসরি মস্তিষ্ক হয়ে ভেগাস স্নায়ুর মাধ্যমে পাকস্থলীতে পৌঁছালে খাবার প্রবেশের পূর্বেই ২০% রস ক্ষরিত হয়।</li>
+      <li><strong>গ্যাস্ট্রিক পর্যায় (Gastric Phase - ৭০%):</strong> খাদ্যবস্তু শারীরিকভাবে পাকস্থলীর অভ্যন্তরে প্রবেশ করে এর প্রাচীরকে প্রসারিত করলে লোকাল রিফ্লেক্সের মাধ্যমে সর্বোচ্চ ৭০% রস নিঃসৃত হয়।</li>
+      <li><strong>আন্ত্রিক পর্যায় (Intestinal Phase):</strong> আংশিক পরিপাকৃত অম্লীয় কাইম (Chyme) ক্ষুদ্রান্ত্রের ডুওডেনামে প্রবেশের পর এই উদ্দীপনা শুরু হয়।</li>
     </ul>
-    <div class="flowchart">খাদ্যের ঘ্রাণ ➔ মস্তিষ্ক ➔ ভেগাস স্নায়ু ➔ পাচক রস ক্ষরণ শুরু </div>
 
-    <h4>হরমোনের ভূমিকা:</h4>
-    <table>
-        <tr><th>হরমোন</th><th>কাজ</th></tr>
-        <tr><td><b>গ্যাস্ট্রিন</b></td><td>গ্যাস্ট্রিক রস নিঃসরণ উদ্দীপিত করে।</td></tr>
-        <tr><td><b>সিক্রেটিন</b></td><td>অগ্ন্যাশয় রস ও পিত্তরস ক্ষরণে সাহায্য করে।</td></tr>
-        <tr><td><b>কোলেসিস্টোকাইনিন</b></td><td>পিত্তথলি থেকে পিত্তরস ক্ষরণে উদ্দীপনা দেয়।</td></tr>
+    <div class="language-text highlighter-rouge" style="background: #020617; padding: 12px; border-radius: 6px; margin: 10px 0; border: 1px solid rgba(0, 212, 178, 0.15); color: #00d4b2; font-family: monospace; font-size: 0.9em;">
+      খাদ্যের সুঘ্রাণ/দর্শন ➔ কেন্দ্রীয় স্নায়ুতন্ত্র (CNS) ➔ ১০ম করোটিক (ভেগাস) স্নায়ু ➔ গ্যাস্ট্রিক রস ক্ষরণ
+    </div>
+
+    <h4 style="color: #3f51b5; margin-top: 15px;">🩸 খ. হরমোনের ভূমিকা (Local Endocrine Shield):</h4>
+    
+    <table style="width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em;">
+      <thead>
+        <tr style="background-color: #0b1329; color: #00d4b2;">
+          <th style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);">স্থানীয় হরমোন</th>
+          <th style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);">নিঃসরণকারী উৎস</th>
+          <th style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);">প্রধান শারীরবৃত্তীয় কাজ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);"><strong>গ্যাস্ট্রিন (Gastrin)</strong></td>
+          <td style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);">পাকস্থলীর G-কোষ</td>
+          <td style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);">প্যারাইটাল কোষ থেকে তীব্র $\text{HCl}$ ও গ্যাস্ট্রিক রস নিঃসরণ উদ্দীপিত করে।</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);"><strong>সিক্রেটিন (Secretin)</strong></td>
+          <td style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);">ডুওডেনামের S-কোষ</td>
+          <td style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);">অগ্ন্যাশয়কে ক্ষারীয় বাইকার্বোনেট সমৃদ্ধ রস এবং যকৃতকে পিত্ত ক্ষরণে বাধ্য করে (আবিষ্কৃত প্রথম হরমোন)।</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);"><strong>কোলেসিস্টোকাইনিন (CCK)</strong></td>
+          <td style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);">ক্ষুদ্রান্ত্র প্রাচীর</td>
+          <td style="padding: 10px; border: 1px solid rgba(0, 212, 178, 0.15);">পিত্তথলির সংকোচন ঘটিয়ে পিত্তরস ডুওডেনামে মুক্ত করে এবং অগ্ন্যাশয়ের এনজাইম ক্ষরণ বাড়ায়।</td>
+        </tr>
+      </tbody>
     </table>
+  </div>
+</details>
+
+---
+
+<div class="notice--success" style="background: rgba(0, 188, 212, 0.05); border-left: 4px solid #00bcd4; padding: 15px; border-radius: 0 8px 8px 0; margin-top: 30px;">
+  <h3 style="margin: 0; color: #006064; font-family: 'Tiro Bangla', serif;"><i class="fas fa-check-circle"></i> মূল্যায়ন ও সারসংক্ষেপ (LALA Segment)</h3>
 </div>
 
-<div class="lala-section">মূল্যায়ন ও সারসংক্ষেপ (LALA)</div>
+<details style="background: rgba(0, 188, 212, 0.03); border: 1px solid rgba(0, 188, 212, 0.15); border-radius: 8px; padding: 10px 15px; margin-bottom: 12px; margin-top: 15px;">
+  <summary style="font-weight: 700; color: #00838f; cursor: pointer; font-size: 1.1em;"><i class="edit-icon"></i> 📝 ৫. শিখন মূল্যায়ন (Learning Assessment)</summary>
+  <div style="margin-top: 10px; padding-left: 10px; border-left: 2px dashed rgba(0, 188, 212, 0.3);">
+    <p>লেকচার নোডের গভীরতা যাচাইয়ের জন্য নিচের উচ্চ-জ্ঞানমূলক প্রশ্নগুলোর সমাধান খাতায় নোট করো:</p>
+    <ol>
+      <li>পাকস্থলীতে খাদ্য প্রবেশের পূর্বেই কোনো উদ্দীপনায় <strong>২০% গ্যাস্ট্রিক রস</strong> ক্ষरित হয় এবং এর নিউরাল পাথওয়েটি কী?</li>
+      <li>ডুওডেনামের অম্লত্ব প্রশমনে <strong>সিক্রেটিন হরমোনের</strong> ফিডব্যাক মেকানিজম ব্যাখ্যা করো।</li>
+      <li>যকৃত তার মেটাবলিক পাথওয়েতে বিষাক্ত অ্যামোনিয়াকে মুক্ত করতে যে চক্র ব্যবহার করে, তার সম্পূর্ণ রেখাচিত্র অঙ্কন করো।</li>
+    </ol>
+  </div>
+</details>
 
-<button class="accordion accordion-lala">📝 ৫. শিখন মূল্যায়ন (Learning Assessment) <span>+</span></button>
-<div class="panel-lala">
-    <p>নিচের প্রশ্নগুলো সমাধান করার চেষ্টা করো:</p>
-    <ul>
-        <li>সেফালিক পর্যায়ে কত শতাংশ গ্যাস্ট্রিক রস ক্ষরিত হয়?</li>
-        <li>কোন হরমোন অগ্ন্যাশয় রস নিঃসরণে উদ্দীপনা দেয়?</li>
-        <li>যকৃত কীভাবে বিষাক্ত অ্যামোনিয়া দূর করে?</li>
-    </ul>
-</div>
-
-<button class="accordion accordion-lala">📌 ৬. সারাংশ ও শেষ কথা (Summary) <span>+</span></button>
-<div class="panel-lala">
-    <p><b>সারাংশ:</b> পরিপাক কেবল খাবার খাওয়া নয়, এটি এনজাইম, হরমোন এবং স্নায়ুতন্ত্রের এক নিখুঁত সমন্বয়। যকৃত যেমন শরীরের ল্যাবরেটরি হিসেবে কাজ করে, ক্ষুদ্রান্ত্র তেমনি শোষণের মাধ্যমে পুষ্টি রক্তে পৌঁছে দেয়।</p>
-    <p><i>পরবর্তী কাজ: পরিপাকতন্ত্রের একটি চিহ্নিত চিত্র অঙ্কন করো।</i></p>
-</div>
-
-<script>
-    var acc = document.getElementsByClassName("accordion");
-    for (var i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            this.classList.toggle("active-lolo");
-            this.classList.toggle("active-lala");
-            var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-                this.querySelector('span').innerHTML = "+";
-            } else {
-                panel.style.display = "block";
-                this.querySelector('span').innerHTML = "-";
-            }
-        });
-    }
-</script>
-
-</body>
-</html>
+<details style="background: rgba(0, 188, 212, 0.03); border: 1px solid rgba(0, 188, 212, 0.15); border-radius: 8px; padding: 10px 15px; margin-bottom: 12px;">
+  <summary style="font-weight: 700; color: #00838f; cursor: pointer; font-size: 1.1em;"><i class="bookmark-icon"></i> 📌 ৬. সারাংশ ও সমাপনী নোড (Summary)</summary>
+  <div style="margin-top: 10px; padding-left: 10px; border-left: 2px dashed rgba(0, 188, 212, 0.3);">
+    <p><strong>কোর মেসেজ:</strong> মানবদেহের পরিপাক ও শোষণ প্রক্রিয়া কোনো বিচ্ছিন্ন ঘটনা নয়; এটি এনজাইমের ক্যাটালিটিক পাওয়ার, স্থানীয় এন্ডোক্রائن হরমোনের সিগন্যালিং এবং ১০ম করোটিক স্নায়ুর (Vagus Nerve) এক বিস্ময়কর ও নিখুঁত জৈবিক অর্কেস্ট্রেশন। যকৃত যেমন মেটাবলিক ল্যাবরেটরি হিসেবে কাজ করে হোমওস্ট্যাসিস বজায় রাখে, ক্ষুদ্রান্ত্র তেমনি তার ভিলাই নোডের মাধ্যমে পুষ্টি উপাদান রক্তে শোষণ করে কোষীয় বিপাকের পথ সুগম করে।</p>
+    <p style="font-weight: 600; color: #006064; margin-top: 10px;"><i class="fas fa-tasks"></i> অ্যাসাইনমেন্ট: মানব পরিপাকতন্ত্রের একটি রেসপনসিভ মেকানিক্যাল ফ্লোচার্ট এবং যকৃতের লবিউল (Lobule) এর চিহ্নিত চিত্র অঙ্কন করে সাবমিট করবে।</p>
+  </div>
+</details>

@@ -1,8 +1,3 @@
-# =========================================================================
-# SOVEREIGN JEKYLL MASTER BUILD ENGINE (MODERN RUBY BUNDLER PIPELINE)
-# Fully sanitized to eradicate invisible Non-Breaking Space (NBSP) errors.
-# =========================================================================
-
 name: Deploy Jekyll Site
 
 on:
@@ -29,8 +24,8 @@ jobs:
       - name: Setup Ruby Environment
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
-          bundler-cache: true # Automatically runs bundle install and caches gems
+          ruby-version: '3.4' # Synchronized perfectly with your local Ruby 3.4 engine
+          bundler-cache: true
 
       - name: Setup GitHub Pages Deployment Metadata
         uses: actions/configure-pages@v5
