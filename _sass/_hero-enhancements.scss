@@ -1,115 +1,120 @@
-/* =========================================================
-   Neural Educational Ecosystem
-========================================================= */
+/* ==========================================================================
+   CINEMATIC HERO ENHANCEMENTS ENGINE
+   Manages top-level course cover overrides and fluid text matrices.
+   ========================================================================== */
 
-// 1. DYNAMIC BACKGROUND PIPELINE
 .page__hero--overlay {
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
+  @include flex-center;
   isolation: isolate;
-  min-height: 85vh;
-  min-height: 85svh;
+  min-height: 75vh;
+  min-height: 75svh;
 
-  // Layered rendering for depth and legibility
+  // Multi-layered visual rendering for extreme deep contrast locks
   background-image:
     linear-gradient(
       to bottom,
-      rgba($neural-black, 0.2) 0%,
-      rgba($neural-black, 0.7) 50%,
-      rgba($neural-black, 0.95) 100%
-    ),
-    url('/assets/images/header-bg.webp');
+      rgba($neural-black, 0.3) 0%,
+      rgba($neural-black, 0.6) 60%,
+      $neural-black 100__percent
+    ) !important;
     
   background-size: cover;
-  background-position: center 25%;
+  background-position: center 30%;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-color: $neural-black !important;
 
-  @media (max-width: 768px) {
-    background-attachment: scroll;
-    min-height: 80svh;
+  // Eradicate desktop parallax freezing on mobile webviews
+  @include mobile {
+    background-attachment: scroll !important;
+    min-height: 65svh;
   }
 
-  // Fallback state
   &.image-failed {
-    background: linear-gradient(135deg, $neural-dark 0%, $neural-black 100%);
+    background: linear-gradient(135deg, $neural-dark 0%, $neural-black 100%) !important;
   }
 
-  // Cleanup: Hide default MM header elements to allow for Synaptic components
+  // Clear out default Minimal Mistakes structural strings to anchor our components safely
   .page__title, .page__meta, .page__lead {
     display: none !important; 
   }
 }
 
-// 2. SYNAPTIC HERO COMPONENTS
+/* --- CAPTION STRUCTURE OVERLAYS --- */
 .page__hero-caption {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: $container-max;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: clamp(5rem, 10vw, 8rem) 2rem;
+  padding: clamp(4rem, 8vw, 7rem) 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: left; // Cognitive focus is stronger with left-alignment
+  text-align: left !important; // Strict layout alignment rule
 
-  @media (max-width: 768px) {
-    padding-top: 8rem;
-    text-align: center;
+  @include mobile {
+    padding-top: 7.5rem;
+    text-align: center !important;
     align-items: center;
   }
 }
 
-// 3. CINEMATIC TYPOGRAPHY
+/* --- SYSTEM TYPOGRAPHY BRANDING --- */
 .synaptic-hero-title {
-  font-family: $sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  font-size: $type-h1;
-  line-height: 1.05;
-  margin-bottom: 1.5rem;
-  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
+  font-size: $type-h1 !important;
+  line-height: 1.1;
+  margin: 0 0 1.25rem 0 !important;
+  color: #ffffff !important;
   max-width: 850px;
+  text-align: left !important;
   
-  // High-performance hardware accelerated text shadow
-  text-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.5),
-    0 0 25px rgba($synapse-glow, 0.15);
-  
+  // High-performance shadow compositing via standard variable configurations
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), $glow-text !important;
   will-change: transform;
+
+  @include mobile {
+    text-align: center !important;
+  }
 }
 
 .synaptic-hero-subtitle {
-  font-family: $sans-serif;
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  line-height: 1.7;
-  max-width: 760px;
-  color: rgba($text-primary, 0.9);
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.01em;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+  line-height: 1.65;
+  max-width: 740px;
+  color: #cbd5e1 !important;
+  margin: 0 0 2rem 0 !important;
+  letter-spacing: normal !important;
+  text-align: left !important;
 
   strong {
-    color: $synapse-glow;
+    color: $synapse-glow !important;
     font-weight: 700;
   }
-}
 
-// 4. ACCESSIBILITY & MOTION
-@media (prefers-reduced-motion: reduce) {
-  .synaptic-hero-title, .page__hero--overlay {
-    animation: none !important;
-    transition: none !important;
+  @include mobile {
+    text-align: center !important;
   }
 }
 
-// 5. PRODUCTION SAFETY: HIDE OVERFLOW
+/* --- MOTION ACCESSIBILITY SAFETY CAPS --- */
 .neural-ecosystem {
   overflow-x: hidden;
   width: 100%;
   position: relative;
 }
 
-
+@media (prefers-reduced-motion: reduce) {
+  .synaptic-hero-title, 
+  .page__hero--overlay {
+    animation: none !important;
+    transition: none !important;
+    background-attachment: scroll !important;
+  }
+}
