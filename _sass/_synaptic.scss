@@ -1,38 +1,47 @@
-/* =========================================================
-   Neural Educational Ecosystem
-========================================================= */
+/* ==========================================================================
+   SYNAPTIC BRIDGE SYSTEM & INTERACTIVE COGNITIVE LAYOUTS
+   ========================================================================== */
 
-// 1. THE SYNAPTIC BRIDGE (Sticky Sub-Navigation)
+/* --- 1. THE SYNAPTIC BRIDGE (Sticky Content Sub-Navigation Bar) --- */
 .synaptic-bridge-shell {
-  background: rgba(10, 10, 12, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba($synapse-glow, 0.1);
-  padding: 0.75rem 0;
-  position: sticky;
-  top: $nav-height; // Stays below the main navbar
-  z-index: 900;
-  transition: $neural-transition;
+  @include neural-glass(0.75, 12px);
+  border-bottom: 1px solid rgba($synapse-glow, 0.08) !important;
+  padding: 0.85rem 1.5rem !important;
+  position: sticky !important;
+  top: 70px; // Standardized synchronized offset from variables
+  z-index: 900 !important;
+  width: 100%;
+  box-sizing: border-box;
 
   .synaptic-bridge-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1.5rem;
+    max-width: $container-max;
+    margin: 0 auto;
+    width: 100%;
 
-    @media (max-width: 768px) {
-      flex-direction: column;
-      gap: 0.8rem;
+    @include mobile {
+      flex-direction: column !important;
+      gap: 0.75rem;
+      text-align: center;
     }
   }
 }
 
 .bridge-label {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.15em;
   color: $synapse-glow;
-  font-weight: 700;
-  opacity: 0.8;
+  font-weight: 800;
+  @include socratic-glow($synapse-glow);
+  text-align: left !important;
+
+  @include mobile {
+    text-align: center !important;
+  }
 }
 
 .bridge-links {
@@ -40,84 +49,51 @@
   gap: clamp(1rem, 3vw, 2.5rem);
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 
   .bridge-link {
-    font-size: 0.85rem;
-    color: $text-muted;
-    text-decoration: none;
+    font-size: 0.88rem;
+    color: $text-primary !important;
+    text-decoration: none !important;
     transition: $neural-transition;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    font-weight: 600;
 
     &:hover {
-      color: $synapse-glow;
+      color: #ffffff !important;
       transform: translateY(-2px);
+      text-shadow: 0 0 8px rgba(0, 212, 178, 0.4);
     }
   }
 }
 
-// 2. NEURAL BUTTONS (Ecosystem-wide)
-.neural-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: $neural-transition;
-  cursor: pointer;
-
-  &--primary {
-    background: $synapse-glow;
-    color: $neural-black !important;
-    border: 2px solid $synapse-glow;
-
-    &:hover {
-      background: transparent;
-      color: $synapse-glow !important;
-      box-shadow: 0 0 20px rgba($synapse-glow, 0.3);
-    }
-  }
-
-  &--secondary {
-    background: transparent;
-    border: 2px solid rgba($synapse-glow, 0.3);
-    color: $text-primary !important;
-
-    &:hover {
-      border-color: $synapse-glow;
-      color: $synapse-glow !important;
-    }
-  }
-}
-
-// 3. REFLECTIVE INQUIRY STYLING
+/* --- 2. SOCRATIC REFLECTIVE INQUIRY ENGINE --- */
 .reflective-inquiry-container {
-  padding: $space-unit 0;
-  background: radial-gradient(circle at center, rgba($synapse-glow, 0.03), transparent);
+  padding: $space-unit 1.5rem;
+  background: radial-gradient(circle at center, rgba($synapse-glow, 0.03), transparent) !important;
+  width: 100%;
+  box-sizing: border-box;
 
   .socratic-prompt {
-    font-family: $serif;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    color: #fff;
+    font-family: $serif !important; // Inherited from Minimal Mistakes base config
+    font-size: clamp(1.4rem, 4vw, 2.3rem) !important;
+    color: #ffffff !important;
     font-style: italic;
-    line-height: 1.4;
-    margin-bottom: 2rem;
-    border: none;
+    line-height: 1.4 !important;
+    margin: 0 0 2rem 0 !important;
+    border: none !important;
+    text-align: left !important;
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
   }
 }
 
-// 4. ANIMATIONS
+/* --- 3. CORE FRAMEWORK INTERACTION ANCHORS --- */
 [data-aos] {
   pointer-events: none;
   &.aos-animate {
     pointer-events: auto;
   }
 }
-
-
-
-
