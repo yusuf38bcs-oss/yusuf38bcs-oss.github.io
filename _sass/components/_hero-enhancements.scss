@@ -1,6 +1,7 @@
 /* ==========================================================================
-   CINEMATIC HERO ENHANCEMENTS ENGINE
+   CINEMATIC HERO ENHANCEMENTS ENGINE (FINAL MASTER EDITION)
    Manages top-level course cover overrides and fluid text matrices.
+   Fully synchronized with assets/images/header-bg.webp track.
    ========================================================================== */
 
 .page__hero--overlay {
@@ -11,25 +12,34 @@
   min-height: 75vh;
   min-height: 75svh;
 
-  // Multi-layered visual rendering for extreme deep contrast locks
+  // Multi-layered visual rendering - FIXED: Resolved 100__percent typo & Restored Image Token
   background-image:
     linear-gradient(
       to bottom,
       rgba($neural-black, 0.3) 0%,
       rgba($neural-black, 0.6) 60%,
-      $neural-black 100__percent
-    ) !important;
+      $neural-black 100% // Fixed syntax bug safely
+    ),
+    url("/assets/images/header-bg.webp") !important; // Absolute short-path track injected cleanly
     
-  background-size: cover;
-  background-position: center 30%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-size: cover !important;
+  background-position: center 30% !important;
+  background-repeat: no-repeat !important;
   background-color: $neural-black !important;
 
-  // Eradicate desktop parallax freezing on mobile webviews
+  // Eradicate desktop parallax freezing on mobile webviews smoothly
   @include mobile {
     background-attachment: scroll !important;
     min-height: 65svh;
+    
+    background-image:
+      linear-gradient(
+        to bottom,
+        rgba($neural-black, 0.4) 0%,
+        rgba($neural-black, 0.7) 60%,
+        $neural-black 100%
+      ),
+      url('/assets/images/header-bg.webp') !important; // Preserves high-contrast overlay mesh on phones
   }
 
   &.image-failed {
