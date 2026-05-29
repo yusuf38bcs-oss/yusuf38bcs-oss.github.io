@@ -4,18 +4,18 @@
 # =========================================================================
 
 title: "Learning Biology For Life"
-description: "A Neural Cognitive Lifelong Learning Ecosystem Where Biology Meets Life in a Synaptic Approach"
+description: "Biology, Zoology, Ecology, Human Behaviour, Leadership, Digital Pedagogy and Lifelong Learning Ecosystem"
 bio: "38th BCS Education Cadre Officer | Zoology Educator | Digital Pedagogy Researcher"
 
 # CORE SITE LOGISTICS
 locale: "en-US"
 timezone: "Asia/Dhaka"
-url: "https://learningbiologyforlife.org" # Synced explicitly with Cloudflare Production DNS
+url: "https://learningbiologyforlife.org"
 baseurl: ""
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 
 # THEME MEMBRANE OVERLAY (Minimal Mistakes Architecture)
-remote_theme: "mmistakes/minimal-mistakes@4.24.4" # Upgraded to stable sub-version for absolute security
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 minimal_mistakes_skin: "dark"
 logo: "/assets/images/logo-main.png"
 
@@ -83,7 +83,7 @@ collections:
     output: true
     permalink: /life-philosophy/:path/
 
-# GLOBAL SITE SCHEMAS & DEFAULT NODE VALUES (INDENTATION LOCKED)
+# GLOBAL SITE SCHEMAS & DEFAULT NODE VALUES (STRICT INDEX LOCK)
 defaults:
   - scope:
       path: ""
