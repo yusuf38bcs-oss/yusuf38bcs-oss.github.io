@@ -2,9 +2,11 @@
 layout: default
 title: Home
 permalink: /
+# Injects structural hints to break out of theme container paddings
+classes: wide  
 ---
 
-<main class="synaptic-homepage-matrix">
+<main class="synaptic-homepage-matrix" id="synaptic-home-root">
 
   {% include home/hero-neural.html %}
 
@@ -21,13 +23,45 @@ permalink: /
 </main>
 
 <style>
-  /* Base Architecture Setup for the Dark Matrix Canvas */
+  /* ==========================================================================
+     RUN-TIME HARDWARE OVRERIDES FOR HOMEPAGE MATRIX
+     Guarantees zero margin leaks and obliterates Safari forced text gaps.
+     ========================================================================== */
+  
   .synaptic-homepage-matrix {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     background-color: #020617 !important;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* --- FOOLPROOF INFANTRY SHIELD FOR TYPOGRAPHY ---
+     Forces every include file nested inside this page to respect left alignment */
+  .synaptic-homepage-matrix,
+  .synaptic-homepage-matrix *,
+  .synaptic-homepage-matrix p,
+  .synaptic-homepage-matrix span,
+  .synaptic-homepage-matrix li,
+  .synaptic-homepage-matrix h1,
+  .synaptic-homepage-matrix h2,
+  .synaptic-homepage-matrix h3,
+  .synaptic-homepage-matrix h4,
+  .synaptic-homepage-matrix a {
+    text-align: left !important;
+    text-justify: none !important;
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+  }
+
+  /* Structural adjustment to ensure sections stack beautifully without spacing collisions */
+  .synaptic-homepage-matrix > div, 
+  .synaptic-homepage-matrix > section {
+    width: 100% !important;
     box-sizing: border-box;
   }
 </style>
