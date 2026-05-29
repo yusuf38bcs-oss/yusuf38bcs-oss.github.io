@@ -115,3 +115,72 @@ footer p,
   }
 }
 
+/* ==========================================================================
+   ULTRA-SPECIFIC ECOSYSTEM SYSTEM OVERRIDES (CRITICAL PRODUCTION PATCH)
+   Forces alignment rules, smashes container borders, and fixes footer color.
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   FIX 1: CRUSHING MOBILE WORD-SPACING GAPS & JUSTIFICATION
+   Targets every possible Minimal Mistakes text layer directly from #main node.
+   ------------------------------------------------------------------------- */
+html, body, #main, 
+#main .page__content p, 
+#main .page__content li, 
+#main .archive__item-excerpt,
+.synaptic-homepage-matrix p,
+.glass-card p, .neural-panel p, .synaptic-card p, .rail-card p,
+.section-lead, p, span, li, a {
+  text-align: left !important;
+  text-justify: none !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+}
+
+// Blocks theme layout blocks from expanding word matrices horizontally
+#main .page__content, 
+.page__content {
+  text-align: left !important;
+}
+
+/* -------------------------------------------------------------------------
+   FIX 2: COMPLETE REMOVAL OF LOGO CIRCULAR BAND
+   Striops all borders, clips, shapes and circular frames from the site logo asset.
+   ------------------------------------------------------------------------- */
+#main .masthead__inner .masthead__logo,
+#main .masthead__inner .masthead__logo img,
+.masthead__logo, .masthead__logo img,
+.site-logo, .site-logo img,
+.logo-container, .logo-container img {
+  border-radius: 0% !important;
+  border-radius: 0 !important;         // Completely flattens the circle shape
+  border: none !important;             // Eradicates ghost borders/lines
+  background: transparent !important;  // Destroys any white background base plate
+  background-color: transparent !important;
+  box-shadow: none !important;         // Drops gray shadow rings
+  padding: 0 !important;               // Removes spatial padding forming the ring
+}
+
+/* -------------------------------------------------------------------------
+   FIX 3: FOOTER COPYRIGHT VISIBILITY & BRIGHTNESS UPDATE
+   Forces the low-contrast muted gray into a high-visibility premium slate tone.
+   ------------------------------------------------------------------------- */
+#main .page__footer,
+.page__footer-copyright,
+.site-footer__copyright,
+footer p, .site-footer span {
+  color: #94a3b8 !important; // High-contrast crisp read-optimized slate grey
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+
+  a {
+    color: #00d4b2 !important; // Illuminates the active biology domain line
+    text-decoration: none !important;
+    display: inline !important;
+    font-weight: 700 !important;
+    
+    &:hover {
+      text-shadow: 0 0 10px rgba(0, 212, 178, 0.5) !important;
+    }
+  }
+}
