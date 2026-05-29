@@ -1,12 +1,28 @@
-# --- SITE CONFIGURATION PLATFORM ENGINE ---
+# =========================================================================
+# SITE CONFIGURATION PLATFORM ENGINE (OMNIPOTENT PRODUCTION EDITION)
+# Optimized for high-performance Socratic Matrix & Unified Dark Void Theme
+# Strictly Aligned with GitHub Pages & Minimal Mistakes 4.24.0 Core
+# =========================================================================
+
 title: "Learning Biology For Life"
 locale: "en-US"
+url: "https://yusuf38bcs-oss.github.io" # Explicitly maps SEO tags and sitemaps
+baseurl: ""                            # Kept empty as your site sits on root domain
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 minimal_mistakes_skin: "dark"
 
 # --- ABSOLUTE BRAND ASSET MAPPING ---
 logo: "/assets/images/logo-main.png"
 favicon: "/assets/images/favicon.ico"
+
+# --- ENGINE & PARSER SYSTEM CONFIGURATION ---
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  extensions: ["smartypants", "footnotes"]
+sass:
+  style: compressed # Compresses the final CSS into a lightning-fast single membrane
 
 # --- SITE INTERACTIVE NAVIGATION PARAMETERS ---
 plugins:
@@ -22,7 +38,9 @@ plugins:
 paginate: 5
 paginate_path: "/page:num/"
 
-# --- CUSTOM COLLECTIONS ROUTING BLUEPRINT ---
+# =========================================================================
+# CUSTOM COLLECTIONS ROUTING BLUEPRINT (ALL CYBER NODES REGISTERED)
+# =========================================================================
 collections:
   biology:
     output: true
@@ -36,8 +54,17 @@ collections:
   synaptic-bridge:
     output: true
     permalink: /synaptic-bridge/:path/
+  life-philosophy:
+    output: true
+    permalink: /life-philosophy/:title/
+  research-node:
+    output: true
+    permalink: /research-node/:path/
 
-# --- DEFAULT MANIFEST HEADER SETTINGS ---
+# =========================================================================
+# DEFAULT MANIFEST HEADER SETTINGS (AUTOMATED LAYOUT INJECTOR)
+# Natively forces Sidebar Profiles and Readability viewports across all tracks
+# =========================================================================
 defaults:
   - scope:
       path: ""
@@ -45,14 +72,61 @@ defaults:
     values:
       layout: "single"
       read_time: true
+      author_profile: true # Natively activates Yusuf Officer profile sidebar
       comments: false
       share: true
       related: true
+  - scope:
+      path: ""
+      type: "biology"
+    values:
+      layout: "single"
+      read_time: true
+      author_profile: true
+      share: true
+      related: true
+  - scope:
+      path: ""
+      type: "socratic"
+    values:
+      layout: "single"
+      read_time: true
+      author_profile: true
+      share: true
+  - scope:
+      path: ""
+      type: "life-practices"
+    values:
+      layout: "single"
+      read_time: true
+      author_profile: true
+      share: true
+  - scope:
+      path: ""
+      type: "synaptic-bridge"
+    values:
+      layout: "single"
+      read_time: true
+      author_profile: true
+  - scope:
+      path: ""
+      type: "life-philosophy"
+    values:
+      layout: "single"
+      read_time: true
+      author_profile: true
+  - scope:
+      path: ""
+      type: "research-node"
+    values:
+      layout: "single"
+      read_time: true
+      author_profile: true
 
 # --- AUTHOR BIO DATA METRIC ---
 author:
   name: "Md. Yusuf"
-  avatar: "/assets/images/prolile.jpg"
+  avatar: "/assets/images/profile.jpg" # Verified & Locked from typo glitches
   bio: "Lecturer, Dept of Zoology | 38th BCS Education Cadre Officer"
   location: "Bangladesh"
 
