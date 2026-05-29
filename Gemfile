@@ -1,55 +1,16 @@
-# =========================================================================
-# SOVEREIGN JEKYLL MASTER BUILD ENGINE (MODERN RUBY BUNDLER PIPELINE)
-# Forces GitHub to compile via Jekyll 4.x to support deep nested collections.
-# =========================================================================
+source "https://rubygems.org"
 
-name: Deploy Jekyll Site
+# Sovereign Jekyll 4.x Core Engine
+gem "jekyll", "~> 4.3.3"
 
-on:
-  push:
-    branches: ["main"]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Ruby Environment
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2'
-          bundler-cache: true # Automatically runs bundle install and caches gems
-
-      - name: Setup GitHub Pages Deployment Metadata
-        uses: actions/configure-pages@v5
-
-      - name: Compile Sovereign Production Site (Jekyll 4.x Force)
-        run: bundle exec jekyll build
-        env:
-          JEKYLL_ENV: production
-
-      - name: Upload Clean Compiled Artifacts
-        uses: actions/upload-pages-artifact@v3
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy Artifacts to Live Server Nodes
-        id: deployment
-        uses: actions/deploy-pages@v4
+# Compliant Plugin Matrix for Minimal Mistakes & Cloud Compilations
+group :jekyll_plugins do
+  gem "jekyll-paginate"
+  gem "jekyll-feed"
+  gem "jekyll-sitemap"
+  gem "jekyll-gist"
+  gem "jekyll-seo-tag"
+  gem "jekyll-include-cache"
+  gem "jekyll-remote-theme"
+  gem "faraday-retry"
+end
