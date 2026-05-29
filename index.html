@@ -24,7 +24,7 @@ classes: wide
 
 <style>
   /* ==========================================================================
-     RUN-TIME HARDWARE OVRERIDES FOR HOMEPAGE MATRIX
+     RUN-TIME HARDWARE OVERRIDES FOR HOMEPAGE MATRIX
      Guarantees zero margin leaks and obliterates Safari forced text gaps.
      ========================================================================== */
   
@@ -35,15 +35,19 @@ classes: wide
     overflow-x: hidden !important;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
     margin: 0 !important;
     padding: 0 !important;
+    
+    /* Hardware acceleration layer to ensure smooth 60fps scrolling over canvas */
+    isolation: isolate;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
   }
 
-  /* --- FOOLPROOF INFANTRY SHIELD FOR TYPOGRAPHY ---
-     Forces every include file nested inside this page to respect left alignment */
-  .synaptic-homepage-matrix,
-  .synaptic-homepage-matrix *,
+  /* --- TARGETED TYPOGRAPHY DEFENSE (FINAL INSULATED SHIELD) ---
+     Forces textual elements and embedded links inside includes to respect strict 
+     left alignment without breaking dropdowns, button positions, or flex layouts. */
   .synaptic-homepage-matrix p,
   .synaptic-homepage-matrix span,
   .synaptic-homepage-matrix li,
@@ -51,6 +55,7 @@ classes: wide
   .synaptic-homepage-matrix h2,
   .synaptic-homepage-matrix h3,
   .synaptic-homepage-matrix h4,
+  .synaptic-homepage-matrix article,
   .synaptic-homepage-matrix a {
     text-align: left !important;
     text-justify: none !important;
@@ -58,10 +63,14 @@ classes: wide
     letter-spacing: normal !important;
   }
 
-  /* Structural adjustment to ensure sections stack beautifully without spacing collisions */
-  .synaptic-homepage-matrix > div, 
-  .synaptic-homepage-matrix > section {
+  /* --- UNIVERSAL CHILD STRUCTURAL EDGE SAFEGUARD ---
+     Ensures every single include block stacks flawlessly without shrinking 
+     or spilling out of the screen bounds on older smartphones. */
+  .synaptic-homepage-matrix > * {
     width: 100% !important;
-    box-sizing: border-box;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 </style>
