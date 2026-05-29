@@ -1,187 +1,193 @@
-# =========================================================
-# CATEGORY METADATA
-# Semantic Educational Ontology Layer
-# =========================================================
+# =========================================================================
+# CATEGORY METADATA MATRIX
+# Semantic Educational Ontology & Taxonomy Layer
+# Aligned with the High-Performance Synaptic Architecture Engine
+# =========================================================================
 
 animal-diversity:
   title: "Higher Zoology Tree: Animal Diversity"
-
   description: >
-    Explore taxonomy, biodiversity, phylogeny,
-    evolutionary systems, and classification
-    of animals.
-
+    Explore taxonomy, biodiversity, molecular phylogeny, evolutionary 
+    systems, and the complex structural classification of animals.
   section: "higher-zoology"
-
   icon: "🧬"
-
   symbol: "circle"
-
   tags:
     - evolution
     - taxonomy
     - biodiversity
     - systems-thinking
-
   translations:
     en: "Animal Diversity"
     bn: "প্রাণী বৈচিত্র্য"
 
-# =========================================================
+# =========================================================================
 
 human-physiology:
   title: "Higher Zoology Tree: Human Physiology"
-
   description: >
-    Understand organ systems, physiological regulation,
-    homeostasis, and integrated human biology.
-
+    Understand advanced organ systems, complex cellular regulation, 
+    homeostasis thresholds, and integrated mammalian systems biology.
   section: "higher-zoology"
-
   icon: "❤️"
-
   symbol: "line"
-
   tags:
     - physiology
     - systems-biology
     - health
     - integration
-
   translations:
     en: "Human Physiology"
     bn: "মানব শারীরতত্ত্ব"
 
-# =========================================================
+# =========================================================================
 
 ecology:
   title: "Higher Zoology Tree: Ecology"
-
   description: >
-    Explore ecosystems, energy flow,
-    biodiversity interactions,
-    environmental systems,
-    and sustainability.
-
+    Explore ecosystem dynamics, thermodynamic energy flows, global 
+    biodiversity interactions, environmental stress vectors, and sustainability.
   section: "higher-zoology"
-
   icon: "🌍"
-
   symbol: "circle"
-
   tags:
     - ecology
     - ecosystems
     - sustainability
     - systems-thinking
-
   translations:
     en: "Ecology"
     bn: "বাস্তুবিদ্যা"
 
-# =========================================================
+# =========================================================================
 
 genetics:
   title: "Higher Zoology Tree: Genetics"
-
   description: >
-    Study heredity, molecular genetics,
-    inheritance systems,
-    and biological information flow.
-
+    Study hereditary mechanics, molecular genetics, replication sequences, 
+    and the foundational biological information flow templates.
   section: "higher-zoology"
-
   icon: "🧬"
-
   symbol: "line"
-
   tags:
     - genetics
     - inheritance
     - molecular-biology
     - information-systems
-
   translations:
     en: "Genetics"
     bn: "জেনেটিক্স"
 
-# =========================================================
+# =========================================================================
 
 biostatistics:
   title: "Higher Zoology Tree: Biostatistics"
-
   description: >
-    Apply quantitative reasoning,
-    statistical interpretation,
-    and analytical thinking
-    in biological sciences.
-
+    Apply advanced quantitative reasoning, mathematical modeling, data 
+    visualization, and statistical interpretation to biological research.
   section: "higher-zoology"
-
   icon: "📊"
-
   symbol: "dot"
-
   tags:
     - statistics
     - data-analysis
     - biology
     - scientific-thinking
-
   translations:
     en: "Biostatistics"
     bn: "জীবপরিসংখ্যান"
 
-# =========================================================
+# =========================================================================
+
+research-node:
+  title: "Higher Zoology Tree: Research Node"
+  description: >
+    Analyze cutting-edge biological literature, meta-analyses, methodology 
+    frameworks, and emerging discoveries in scientific inquiry.
+  section: "higher-zoology"
+  icon: "🔬"
+  symbol: "dot"
+  tags:
+    - research
+    - methodology
+    - evidence
+    - academic-writing
+  translations:
+    en: "Research Node"
+    bn: "গবেষণা নোড"
+
+# =========================================================================
 
 mcq:
   title: "Socratic 4.0: MCQ Arena"
-
   description: >
-    AI-assisted reflective assessment
-    and conceptual reinforcement
-    through interactive MCQs.
-
+    AI-assisted reflective self-assessment, cognitive benchmarking, and 
+    conceptual reinforcement through interactive retrieval testing loops.
   section: "socratic"
-
   icon: "🧠"
-
   symbol: "dot"
-
   tags:
     - assessment
     - cognition
     - reflection
     - active-learning
-
   translations:
     en: "MCQ Arena"
     bn: "এমসিকিউ এরিনা"
 
-# =========================================================
+# =========================================================================
+
+synaptic-bridge:
+  title: "Socratic 4.0: Synaptic Bridge"
+  description: >
+    Cross-disciplinary neural connection maps linking abstract academic biology 
+    principles directly to cognitive psychological archetypes.
+  section: "socratic"
+  icon: "🌉"
+  symbol: "circle"
+  tags:
+    - integration
+    - synapse
+    - psychology
+    - neural-mapping
+  translations:
+    en: "Synaptic Bridge"
+    bn: "সিন্যাপটিক ব্রিজ"
+
+# =========================================================================
 
 leadership:
   title: "Life Practices: Leadership Management"
-
   description: >
-    Leadership development integrating
-    behavioural science,
-    reflective thinking,
-    systems awareness,
-    and human growth.
-
+    Develop strategic personal sovereignty, emotional architectures, systems 
+    awareness, and optimized pathways for collaborative human growth.
   section: "life-practices"
-
   icon: "🌱"
-
   symbol: "line"
-
   tags:
     - leadership
     - behavioural-science
     - reflective-learning
     - systems-thinking
-
   translations:
     en: "Leadership Management"
     bn: "নেতৃত্ব ব্যবস্থাপনা"
+
+# =========================================================================
+
+life-philosophy:
+  title: "Life Practices: Philosophical Systems"
+  description: >
+    Examine the deep ethical substrates, philosophical inquiry frameworks, 
+    and existential logic models built upon biological realities.
+  section: "life-practices"
+  icon: "🌌"
+  symbol: "circle"
+  tags:
+    - philosophy
+    - ethics
+    - logic
+    - existential-biology
+  translations:
+    en: "Life Philosophy"
+    bn: "জীবন দর্শন"
