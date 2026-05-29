@@ -1,0 +1,53 @@
+/* ==========================================================================
+   HARDWARE-ACCELERATED NEURAL ANIMATIONS CORE
+   ========================================================================== */
+
+/* 1. Quantum Fade & Rise Reveal */
+@keyframes synapticFadeRise {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 2. Socratic Subtle Shimmer/Blink (Used for Loading Nodes) */
+@keyframes neuralShimmer {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px rgba(0, 212, 178, 0.2));
+  }
+  50% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 12px rgba(0, 212, 178, 0.5));
+  }
+}
+
+/* 3. Smooth Organic Float (Used for AI Assistant / Floating Badges) */
+@keyframes socraticFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* --- GLOBAL ANIMATION CLASSES UTILITIES --- */
+.u-anim-reveal {
+  animation: synapticFadeRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.u-anim-shimmer {
+  animation: neuralShimmer 2.5s infinite ease-in-out !important;
+}
+
+.u-anim-float {
+  animation: socraticFloat 4s infinite ease-in-out !important;
+}
