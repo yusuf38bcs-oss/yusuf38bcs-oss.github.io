@@ -1,46 +1,73 @@
-/* =========================================================
-   NEURAL UTILITY ENGINE
-   High-performance global helper classes
-========================================================= */
+/* ==========================================================================
+   NEURAL UTILITY ENGINE (GLOBAL HELPER CLASSES & ATOMS)
+   Eradicates Layout Shifts and Locks Premium Typography Trajectories.
+   ========================================================================== */
 
-// Text & Visibility
-.u-text-glow { @include socratic-glow; }
-.u-text-center { text-align: center; }
+/* --- 1. GLOBAL TYPOGRAPHY SHIELD (Destroys Forced Word Gaps Across Ecosystem) --- */
+.u-text-left, 
+p, span, li, a, h1, h2, h3, h4,
+.synaptic-homepage-matrix p,
+.page-rendered-markdown-body p {
+  text-align: left !important;
+  text-justify: none !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+}
 
-// FIXED: Changed undefined $font-serif to the correct Minimal Mistakes $serif variable
-.u-text-reflective { font-family: $serif; font-style: italic; }
+.u-text-center { 
+  text-align: center !important; 
+}
 
-// Backgrounds
-.u-bg-dark { background-color: $background-color; }
-.u-bg-glass { @include neural-glass; }
+.u-text-reflective { 
+  font-family: $serif !important; 
+  font-style: italic !important; 
+}
 
-// Spacing
-.u-mt-sm { margin-top: 1rem; }
-.u-mt-md { margin-top: 2rem; }
-.u-mb-lg { margin-bottom: 2rem; }
+/* --- 2. VISUAL ATOMS & ACCENTS --- */
+.u-text-glow { 
+  @include socratic-glow($synapse-glow); 
+  color: #ffffff !important;
+}
 
-// Layout
+.u-bg-dark { 
+  background-color: $neural-black !important; 
+}
+
+.u-bg-glass { 
+  @include neural-glass(0.7, 12px); 
+}
+
+.u-no-select { 
+  user-select: none; 
+}
+
+.u-pointer { 
+  cursor: pointer; 
+}
+
+/* --- 3. STRUCTURAL BOUNDING CONTAINERS --- */
 .container {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 2rem;
+  box-sizing: border-box;
 
-  @include breakpoint($small) {
-    padding: 0 1rem;
+  @include mobile {
+    padding: 0 1.25rem !important;
   }
 }
 
-// Interactive
-.u-no-select { user-select: none; }
-.u-pointer { cursor: pointer; }
-
-// Display
+/* --- 4. RESPONSIVE TRANSITION VISIBILITY --- */
 .u-hide-mobile {
-  @include breakpoint($small) { display: none !important; }
+  @include mobile { 
+    display: none !important; 
+  }
 }
 
 .u-show-mobile {
   display: none;
-  @include breakpoint($small) { display: block !important; }
+  @include mobile { 
+    display: block !important; 
+  }
 }
-
