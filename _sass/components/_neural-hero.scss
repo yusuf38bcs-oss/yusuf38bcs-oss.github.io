@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NEURAL HERO ARCHITECTURE (FINAL EDITION)
+   NEURAL HERO ARCHITECTURE (FINAL MASTER EDITION)
    Cinematic Educational Entry Point Aligned with the Neon Cyan Void
    ========================================================================== */
 
@@ -14,7 +14,7 @@
   padding: clamp(5rem, 10vw, 8rem) 1.5rem;
   box-sizing: border-box;
 
-  // Layered Rendering Matrix for Depth and High Contrast Content Safety
+  // Layered Rendering Matrix - RESTORED & CORRECTED header-bg.webp Asset Path
   background-image:
     linear-gradient(
       to bottom,
@@ -26,7 +26,11 @@
       circle at center,
       rgba(0, 212, 178, 0.05),
       transparent 65%
-    ) !important;
+    ),
+    url("/assets/images/header-bg.webp") !important; // Absolute path fix without backgrounds/ folder
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
   background-color: $neural-black !important;
 
   // Cinematic Atmospheric Bottom Overlay
