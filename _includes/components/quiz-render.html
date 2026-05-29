@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <form class="quiz-form">
+  <form class="quiz-form" onsubmit="event.preventDefault();">
     {% for q in quiz_data.questions %}
       <div class="question-node" data-q-id="{{ q.id }}" data-correct="{{ q.correct_key }}" style="margin-bottom: 2.5rem;">
         <p style="font-size: 1.1rem; font-weight: 600; line-height: 1.5; margin: 0 0 1.25rem 0; color: #ffffff;">
@@ -44,6 +44,43 @@
   </form>
 
 </div>
+
+<script>
+(function() {
+  var forms = document.querySelectorAll('.quiz-form');
+  forms.forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var score = 0;
+      var total = 0;
+      form.querySelectorAll('.question-node').forEach(function(node) {
+        var correct = node.getAttribute('data-correct');
+        var selected = node.querySelector('input[type="radio"]:checked');
+        var feedback = node.querySelector('.feedback-box');
+        var result = feedback.querySelector('.result-string');
+        total++;
+        if (selected && selected.value === correct) {
+          score++;
+          feedback.style.background = 'rgba(0, 212, 178, 0.1)';
+          feedback.style.border = '1px solid rgba(0, 212, 178, 0.3)';
+          feedback.style.display = 'block';
+          result.textContent = '✓ Correct';
+          result.style.color = '#00d4b2';
+        } else {
+          feedback.style.background = 'rgba(239, 68, 68, 0.1)';
+          feedback.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+          feedback.style.display = 'block';
+          result.textContent = '✗ Incorrect. Correct answer: ' + correct.toUpperCase();
+          result.style.color = '#ef4444';
+        }
+      });
+      var track = form.querySelector('.score-display-track');
+      track.style.display = 'block';
+      track.textContent = 'Score: ' + score + ' / ' + total;
+    });
+  });
+})();
+</script>
 {% else %}
   <p style="color: #ef4444; padding: 1rem; text-align: center; background: rgba(239,68,68,0.1); border-radius: 6px;">Error: Quiz Database ID '{{ include.quiz_id }}' unmapped inside repo _data layer.</p>
 {% endif %}
