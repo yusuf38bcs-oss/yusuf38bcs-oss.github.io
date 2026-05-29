@@ -1,146 +1,193 @@
 # =========================================================================
-# SITE CONFIGURATION PLATFORM ENGINE (OMNIPOTENT PRODUCTION EDITION)
-# Optimized for high-performance Socratic Matrix & Unified Dark Void Theme
-# Strictly Aligned with GitHub Pages & Minimal Mistakes 4.24.0 Core
+# LEARNING BIOLOGY FOR LIFE - SOVEREIGN CONFIGURATION MATRIX
+# Fully Optimized for Jekyll 4.x, GitHub Actions, and Cloudflare Pages
 # =========================================================================
 
 title: "Learning Biology For Life"
+description: "Biology, Zoology, Ecology, Human Behaviour, Leadership, Digital Pedagogy and Lifelong Learning Ecosystem"
+bio: "38th BCS Education Cadre Officer | Zoology Educator | Digital Pedagogy Researcher"
+
+# CORE SITE LOGISTICS
 locale: "en-US"
-url: "https://yusuf38bcs-oss.github.io" # Explicitly maps SEO tags and sitemaps
-baseurl: ""                            # Kept empty as your site sits on root domain
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+timezone: "Asia/Dhaka"
+url: "https://learningbiologyforlife.org" # FIXED: Synced explicitly with Cloudflare Production DNS
+baseurl: ""
+repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
+
+# THEME MEMBRANE OVERLAY (Minimal Mistakes Architecture)
+remote_theme: "mmistakes/minimal-mistakes@4.24.4"
 minimal_mistakes_skin: "dark"
-
-# --- ABSOLUTE BRAND ASSET MAPPING ---
 logo: "/assets/images/logo-main.png"
-favicon: "/assets/images/favicon.ico"
 
-# --- ENGINE & PARSER SYSTEM CONFIGURATION ---
+# SIDEBAR & SEARCH UTILITIES
+search: true
+breadcrumbs: true
+
+# ENGINE COMPILER MATRIX
 markdown: kramdown
+highlighter: rouge
+permalink: "/:categories/:title/"
+
 kramdown:
   input: GFM
   hard_wrap: false
-  extensions: ["smartypants", "footnotes"]
+  syntax_highlighter: rouge
+
 sass:
-  style: compressed # Compresses the final CSS into a lightning-fast single membrane
+  style: compressed
 
-# --- SITE INTERACTIVE NAVIGATION PARAMETERS ---
-plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jekyll-include-cache
-  - jekyll-remote-theme
-  - jekyll-seo-tag
-
-# --- PAGINATION ARCHITECTURE ---
+# PAGINATION TUNNEL CONTROL
 paginate: 5
 paginate_path: "/page:num/"
 
-# =========================================================================
-# CUSTOM COLLECTIONS ROUTING BLUEPRINT (ALL CYBER NODES REGISTERED)
-# =========================================================================
+# ACTIVE CORE INCLUSION PLUGINS (W3C & CLOUD COMPLIANT)
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-seo-tag
+  - jekyll-include-cache
+  - jekyll-remote-theme
+
+# CORE ARCHIVE ROUTING NODES
+category_archive:
+  type: liquid
+  path: /categories/
+
+tag_archive:
+  type: liquid
+  path: /tags/
+
+atom_feed:
+  path: feed.xml
+
+# CUSTOM COLLECTIONS VECTOR MATRIX
 collections:
   biology:
     output: true
     permalink: /biology/:path/
   socratic:
     output: true
-    permalink: /socratic/:title/
-  life-practices:
-    output: true
-    permalink: /life-practices/:title/
+    permalink: /socratic/:path/
   synaptic-bridge:
     output: true
     permalink: /synaptic-bridge/:path/
-  life-philosophy:
-    output: true
-    permalink: /life-philosophy/:title/
   research-node:
     output: true
     permalink: /research-node/:path/
+  life-practices:
+    output: true
+    permalink: /life-practices/:path/
+  life-philosophy:
+    output: true
+    permalink: /life-philosophy/:path/
 
-# =========================================================================
-# DEFAULT MANIFEST HEADER SETTINGS (AUTOMATED LAYOUT INJECTOR)
-# Natively forces Sidebar Profiles and Readability viewports across all tracks
-# =========================================================================
+# GLOBAL SITE SCHEMAS & DEFAULT NODE VALUES
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "single"
+      author_profile: true
       read_time: true
-      author_profile: true # Natively activates Yusuf Officer profile sidebar
       comments: false
       share: true
       related: true
+      toc: true
   - scope:
       path: ""
       type: "biology"
     values:
       layout: "single"
-      read_time: true
       author_profile: true
+      read_time: true
       share: true
       related: true
+      toc: true
   - scope:
       path: ""
       type: "socratic"
     values:
       layout: "single"
-      read_time: true
       author_profile: true
-      share: true
-  - scope:
-      path: ""
-      type: "life-practices"
-    values:
-      layout: "single"
       read_time: true
-      author_profile: true
-      share: true
+      toc: true
   - scope:
       path: ""
       type: "synaptic-bridge"
     values:
       layout: "single"
-      read_time: true
       author_profile: true
-  - scope:
-      path: ""
-      type: "life-philosophy"
-    values:
-      layout: "single"
       read_time: true
-      author_profile: true
+      toc: true
   - scope:
       path: ""
       type: "research-node"
     values:
       layout: "single"
-      read_time: true
       author_profile: true
+      read_time: true
+      toc: true
+  - scope:
+      path: ""
+      type: "life-practices"
+    values:
+      layout: "single"
+      author_profile: true
+      read_time: true
+      toc: true
+  - scope:
+      path: ""
+      type: "life-philosophy"
+    values:
+      layout: "single"
+      author_profile: true
+      read_time: true
+      toc: true
 
-# --- AUTHOR BIO DATA METRIC ---
+# GLOBAL AUTHOR ID MEMBRANE
 author:
   name: "Md. Yusuf"
-  avatar: "/assets/images/profile.jpg" # Verified & Locked from typo glitches
-  bio: "Lecturer, Dept of Zoology | 38th BCS Education Cadre Officer"
+  avatar: "/assets/images/profile.jpg"
+  bio: "38th BCS Education Cadre Officer | Zoology Educator | Digital Pedagogy Researcher"
   location: "Bangladesh"
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://learningbiologyforlife.org"
 
-# --- BREVO NEWSLETTER ENGINE ---
-brevo:
-  form_url: "https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ=="
+# FOOTER INTERACTIVE NODE MAPPING
+footer:
+  links:
+    - label: "Sovereign Portal"
+      icon: "fas fa-fw fa-globe"
+      url: "https://learningbiologyforlife.org"
+  social:
+    type: "Person"
+    name: "Md. Yusuf"
+  brevo:
+    form_url: "https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ=="
 
-# --- DEFENSIVE ENGINE EXCLUSION MATRIX ---
+# HTML MINIFICATION COMPRESSION LAYER
+compress_html:
+  clippings: all
+  ignore:
+    envs: ["development"]
+
+# STRICT SYSTEM COMPILER EXCLUSION SHIELD
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-  - vendor/
-  - .jekyll-cache/
-  - homepage_reproduction_env/
-  - .git/
-  - .github/
+  - vendor
+  - vendor/bundle
+  - vendor/cache
+  - vendor/gems
+  - vendor/ruby
+  - .sass-cache
+  - .jekyll-cache
+  - .git
+  - .github
+  - README.md
