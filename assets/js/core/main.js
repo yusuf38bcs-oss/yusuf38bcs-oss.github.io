@@ -1,110 +1,67 @@
-/**
- * Learning Biology For Life - Global Synaptic Controller Hub
- * Master Orchestrator for the Educational Ecosystem Runtime.
- * Aligns interaction telemetry, verifies cloud proxies, and manages multi-device rendering health safely.
- */
+/* ==========================================================================
+   OMNIPOTENT RUNTIME ORCHESTRATOR & FAILSAFE GUARD (FINAL PRODUCTION)
+   Designed for Learning Biology For Life Ecosystem | Socratic Matrix 4.0
+   ========================================================================== */
 
-(function() {
-  "use strict";
+(function () {
+  'use strict';
 
-  const SynapticHub = {
-    // Core telemetry registry parameters
-    version: "3.5.0",
-    isReady: false,
+  // SECURE INITIALIZATION GATEWAY: Forces execution ONLY when DOM is fully compiled
+  function initializeEcosystem() {
+    const htmlNode = document.documentElement;
+    const bodyNode = document.body;
+    const canvasNode = document.getElementById('neural-network');
+    const viewportRoot = document.getElementById('synaptic-viewport-root');
 
-    init() {
-      console.log(`🧠 Synaptic Core Hub [v${this.version}]: Aligning ecosystem arrays...`);
+    console.log("🧬 Neural Ecosystem: DOM Core verified. Initiating hardware acceleration layers...");
 
-      // 1. Core Structural Theme Verification
-      if (window.ThemeController && typeof window.ThemeController.init === "function") {
-        window.ThemeController.init();
-      }
-
-      // 2. Scan and Register Live Independent Functional Nodules
-      this.verifyEcosystemTelemetry();
-
-      // 3. Hardware Accelerated Layout Fixes
-      this.optimizeViewportPerformance();
+    /* --- 1. CANVAS RUNTIME PROTECTION LAYER --- */
+    if (canvasNode) {
+      // Force hardware acceleration and prevent pointer trapping on touchscreens explicitly
+      canvasNode.style.pointerEvents = 'none';
+      canvasNode.style.transform = 'translate3d(0,0,0)';
       
-      this.isReady = true;
-      document.dispatchEvent(new CustomEvent("synaptic:core-hub-active"));
-    },
-
-    /**
-     * Cross-verifies active modular instances without forcing double-initialization crashes
-     */
-    verifyEcosystemTelemetry() {
-      // Synchronizing core interface hooks with your updated window.SynapticAI class singleton
-      if (window.SynapticAI) {
-        console.log("🔗 Synaptic AI Pedagogy Matrix: Link Verified and Active.");
-      } else {
-        console.warn("⚠️ Synaptic AI Layer offline: Proxy validation network unresolved.");
-      }
-
-      // Contextual telemetry reporting for diagnostics logs
-      const interactiveModules = {
-        "Accordion System": document.querySelector(".accordion"),
-        "MCQ Arena Dashboard": document.querySelector("[data-mcq-arena]"),
-        "Multiple Intelligences Console": document.querySelector("[data-mi-analysis]"),
-        "Personality Archetype Canvas": document.querySelector("[data-personality-analysis]")
-      };
-
-      for (const [moduleName, domNode] of Object.entries(interactiveModules)) {
-        if (domNode) {
-          console.log(`📍 Active Interface Node Captured: ${moduleName}`);
-        }
-      }
-    },
-
-    /**
-     * Calibrates scrolling dynamics for fluid 60 FPS viewport transitions 
-     * without freezing interactive floating conversational widgets on mobile devices
-     */
-    optimizeViewportPerformance() {
-      // Appends loading state completion tokens to body layer for css transition reveals
-      if (document.body) {
-        document.body.classList.add("synaptic-runtime-loaded");
-      }
-
-      let passiveScrollTimeout;
-      const floatingAssistantRoot = document.getElementById("synaptic-floating-ai-root");
-
-      window.addEventListener("scroll", function() {
-        // Safe context: If user is interacting with the floating AI, bypass pointer modifications
-        if (floatingAssistantRoot && floatingAssistantRoot.contains(document.activeElement)) return;
-
-        // Apply light performance smoothing filters safely
-        if (document.body && !document.body.classList.contains("viewport-scrolling-active")) {
-          document.body.classList.add("viewport-scrolling-active");
-        }
-
-        clearTimeout(passiveScrollTimeout);
-        passiveScrollTimeout = setTimeout(() => {
-          if (document.body) {
-            document.body.classList.remove("viewport-scrolling-active");
-          }
-        }, 200);
-      }, { passive: true });
-    },
-
-    /**
-     * Emergency Blueprint Fallback Trigger
-     * Enables explicit runtime boots if nodes are loaded via async layout shifts or template injections
-     */
-    rebootEcosystemContext() {
-      console.log("🔄 Synaptic Hub Trigger: Re-evaluating environment nodes...");
-      this.verifyEcosystemTelemetry();
+      // Trigger a custom event to notify neural-bg.js that it is 100% safe to ignite
+      window.dispatchEvent(new CustomEvent('synaptic-canvas-ready'));
+    } else {
+      console.warn("⚠️ Neural Ecosystem Warning: Active Canvas Node missing from current viewport.");
     }
-  };
 
-  // Global Multi-Device Boot Ingress Selector
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => SynapticHub.init());
-  } else {
-    // Failsafe anchor: Run instantly if page modules are compiled ahead of this script thread
-    SynapticHub.init();
+    /* --- 2. TOUCH-SCREEN POINTER EVENTS INSULATION --- */
+    if (viewportRoot) {
+      viewportRoot.style.position = 'relative';
+      viewportRoot.style.zIndex = '5';
+      // Ensures content layers completely ignore any latent canvas traps underneath
+      viewportRoot.style.pointerEvents = 'auto'; 
+    }
+
+    /* --- 3. PREMIUM REVEAL TICK ORCHESTRATION --- */
+    // Synchronized phase reveal that completely eliminates accidental white flashes
+    requestAnimationFrame(() => {
+      htmlNode.classList.add('synaptic-runtime-loaded');
+      bodyNode.classList.add('synaptic-runtime-loaded');
+      htmlNode.style.opacity = '1';
+      bodyNode.style.opacity = '1';
+    });
   }
 
-  // Export for emergency context evaluations inside dynamic archive routes
-  window.SynapticCoreControl = SynapticHub;
+  /* ==========================================================================
+     ROBUST LIFECYCLE ANCHOR: Handles Multi-Browser Async & Cached States Safely
+     ========================================================================== */
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    // If browser loaded the assets blindingly fast from cache, execute instantly
+    initializeEcosystem();
+  } else {
+    // Standard asynchronous structural pipeline anchor
+    document.addEventListener('DOMContentLoaded', initializeEcosystem);
+  }
+
+  // GLOBAL FALLBACK UNBLIND: Ultimate protection against any script freezing
+  window.addEventListener('load', () => {
+    if (!document.documentElement.classList.contains('synaptic-runtime-loaded')) {
+      document.documentElement.classList.add('synaptic-runtime-loaded');
+      document.body.classList.add('synaptic-runtime-loaded');
+    }
+  });
+
 })();
