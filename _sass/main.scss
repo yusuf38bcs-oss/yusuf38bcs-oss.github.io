@@ -34,3 +34,84 @@
    5. UTILITIES LAYER (Helper Atoms & System Keyframes)
    ------------------------------------------------------------------------- */
 @import "utilities/utilities";
+
+/* ==========================================================================
+   FINAL CRITICAL PATCH: OVERRIDING MINIMAL MISTAKES DEFAULT CONFLCTS
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   FIX 1: ERADICATING FORCED WORD GAPS & JUSTIFICATION JANK
+   Forces absolute left alignment and destroys ugly word stretching on screens.
+   ------------------------------------------------------------------------- */
+.synaptic-homepage-matrix,
+.synaptic-home-layout,
+.glass-card,
+.neural-panel,
+.synaptic-card,
+.rail-card,
+.section-shell,
+.section-lead,
+p, span, li, a {
+  text-align: left !important;
+  text-justify: none !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  display: inline-block; // Blocks layout engine from spreading inline fragments
+  width: 100%;
+}
+
+// Ensure layout flex properties don't stretch standalone text elements
+.glass-card p, 
+.neural-panel p, 
+.synaptic-card p, 
+.rail-card p,
+.section-lead {
+  display: block !important;
+  text-align: left !important;
+  word-spacing: normal !important;
+}
+
+/* -------------------------------------------------------------------------
+   FIX 2: LOGO CIRCULAR BAND REMOVAL
+   Shatters the forced circular border-radius mask, background plates, and shadows.
+   ------------------------------------------------------------------------- */
+.masthead__logo,
+.masthead__logo img,
+.site-logo,
+.site-logo img,
+.author__avatar,
+.author__avatar img {
+  border-radius: 0% !important;        // Eradicates the circular shape mask
+  border: none !important;             // Smashes any ghost white/gray outer line bands
+  background: transparent !important;  // Removes any hidden circular plate backing
+  box-shadow: none !important;         // Removes outer glow rings
+  background-color: transparent !important;
+  padding: 0 !important;               // Kills any padding that forms an artificial band
+}
+
+/* -------------------------------------------------------------------------
+   FIX 3: FOOTER COPYRIGHT VISIBILITY & COLOR UPGRADE
+   Transforms the low-contrast dark gray copyright string into a premium slate tone.
+   ------------------------------------------------------------------------- */
+.page__footer-copyright,
+.site-footer__copyright,
+footer p,
+.site-footer {
+  color: #94a3b8 !important; // Premium readable high-contrast slate gray
+  font-weight: 500 !important;
+  font-size: 0.85rem !important;
+  
+  // Custom link highlight inside the footer block
+  a {
+    color: #00d4b2 !important; // Highlights core biology domain in Neon Cyan
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    display: inline !important; // Keeps inline copyright intact
+    width: auto !important;
+    
+    &:hover {
+      text-shadow: 0 0 8px rgba(0, 212, 178, 0.4) !important;
+    }
+  }
+}
+
