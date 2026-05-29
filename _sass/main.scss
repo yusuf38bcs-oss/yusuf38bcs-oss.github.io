@@ -1,0 +1,36 @@
+/* ==========================================================================
+   PREMIUM UNIFIED ECOSYSTEM MASTER SASS COMPILER
+   Designed for Jekyll Minimal Mistakes Engine (Socratic Matrix Edition)
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   1. CORE LAYER (Global Tokens & Variable System)
+   ------------------------------------------------------------------------- */
+@import "core/variables";
+@import "core/mixins";
+
+/* -------------------------------------------------------------------------
+   2. THEME CORE INGRESS (Minimal Mistakes Skins Setup)
+   ------------------------------------------------------------------------- */
+@import "minimal-mistakes/skins/dark";
+@import "minimal-mistakes";
+
+/* -------------------------------------------------------------------------
+   3. LAYOUT SHEETS MATRIX (Structural Viewport Blueprint)
+   ------------------------------------------------------------------------- */
+@import "layout/home-layout";
+@import "layout/synaptic";
+
+/* -------------------------------------------------------------------------
+   4. MODULAR COMPONENTS MATRIX (Tactile Interactive Widgets)
+   ------------------------------------------------------------------------- */
+@import "components/accordion";
+@import "components/neural-hero";
+@import "components/hero-enhancements";
+@import "components/neural-ui";
+@import "components/cinematic-overrides";
+
+/* -------------------------------------------------------------------------
+   5. UTILITIES LAYER (Helper Atoms & System Keyframes)
+   ------------------------------------------------------------------------- */
+@import "utilities/utilities";
