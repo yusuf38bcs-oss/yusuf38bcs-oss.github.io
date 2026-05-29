@@ -1,0 +1,56 @@
+/* ==========================================================================
+   ACCELERATED HERO INTELLECT SHELL
+   ========================================================================== */
+
+.home-hero, 
+.neural-hero-shell {
+  position: relative;
+  min-height: clamp(600px, 80vh, 900px);
+  @include flex-center;
+  overflow: hidden;
+  width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba($synapse-glow, 0.04), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  > * {
+    position: relative;
+    z-index: 5;
+  }
+
+  /* --- HERO GRAPHIC/SVG REFINEMENT CONTAINERS --- */
+  .hero-visual, 
+  .canvas-shell {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    @include flex-center;
+    z-index: 4;
+
+    canvas, svg {
+      width: 100%;
+      max-width: 650px;
+      height: auto !important;
+      display: block;
+      object-fit: contain;
+      margin-inline: auto;
+    }
+  }
+
+  @include mobile {
+    min-height: auto;
+    padding: 4rem 0;
+    
+    .hero-visual canvas, 
+    .canvas-shell canvas {
+      max-width: 95vw;
+      max-height: 380px;
+    }
+  }
+}
