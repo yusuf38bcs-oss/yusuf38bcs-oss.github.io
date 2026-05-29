@@ -14,14 +14,14 @@ layout: default
         <div class="header-matrix-line"></div>
       </header>
 
-      <div class="page-rendered-markdown-body" id="synaptic-chapter-body">
+      <div class="page-rendered-markdown-body" id="synaptic-page-body">
         {{ content }}
       </div>
     </main>
 
-    <aside class="page-sidebar-viewport" role="complementary" aria-label="Chapter Navigation">
+    <aside class="page-sidebar-viewport" role="complementary" aria-label="Page Navigation">
       <div class="sticky-sidebar-wrapper">
-        {% include navigation/contextual-sidebar.html %}
+        {% include contextual-sidebar.html %}
       </div>
     </aside>
 
@@ -30,7 +30,7 @@ layout: default
 
 <style>
   /* ==========================================================================
-     PREMIUM INNER-PAGE BLUEPRINT MATRIX
+     PREMIUM INNER-PAGE BLUEPRINT MATRIX (HTML5 VALIDATED)
      Strictly synchronized with the Neon Cyan Socratic Architecture.
      ========================================================================== */
 
@@ -66,7 +66,6 @@ layout: default
   .sticky-sidebar-wrapper {
     position: sticky;
     top: calc(var(--nav-height, 70px) + 20px);
-    /* FIXED: Replaced Sass token with native CSS-parsed hardware transition curve */
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
     will-change: transform;
   }
