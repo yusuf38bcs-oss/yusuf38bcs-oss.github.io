@@ -1,6 +1,6 @@
 # =========================================================================
 # SOVEREIGN JEKYLL MASTER BUILD ENGINE (MODERN RUBY BUNDLER PIPELINE)
-# Forces GitHub to compile via Jekyll 4.x to support deep nested collections.
+# Fully sanitized to eradicate invisible Non-Breaking Space (NBSP) errors.
 # =========================================================================
 
 name: Deploy Jekyll Site
@@ -42,6 +42,8 @@ jobs:
 
       - name: Upload Clean Compiled Artifacts
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
 
   deploy:
     environment:
