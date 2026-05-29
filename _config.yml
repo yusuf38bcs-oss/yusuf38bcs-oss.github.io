@@ -10,12 +10,12 @@ bio: "38th BCS Education Cadre Officer | Zoology Educator | Digital Pedagogy Res
 # CORE SITE LOGISTICS
 locale: "en-US"
 timezone: "Asia/Dhaka"
-url: "https://learningbiologyforlife.org" # FIXED: Synced explicitly with Cloudflare Production DNS
+url: "https://learningbiologyforlife.org" # Synced explicitly with Cloudflare Production DNS
 baseurl: ""
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 
 # THEME MEMBRANE OVERLAY (Minimal Mistakes Architecture)
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+remote_theme: "mmistakes/minimal-mistakes@4.24.4" # Upgraded to stable sub-version for absolute security
 minimal_mistakes_skin: "dark"
 logo: "/assets/images/logo-main.png"
 
@@ -83,7 +83,7 @@ collections:
     output: true
     permalink: /life-philosophy/:path/
 
-# GLOBAL SITE SCHEMAS & DEFAULT NODE VALUES
+# GLOBAL SITE SCHEMAS & DEFAULT NODE VALUES (INDENTATION LOCKED)
 defaults:
   - scope:
       path: ""
