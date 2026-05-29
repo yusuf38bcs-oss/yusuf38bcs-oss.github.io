@@ -1,0 +1,58 @@
+# =========================================================================
+# SOVEREIGN JEKYLL MASTER BUILD ENGINE (OMNIPOTENT ACTIONS PIPELINE)
+# Fully optimized to prevent workspace padding errors and compiler drops.
+# =========================================================================
+
+name: Deploy Jekyll Site
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build Jekyll Site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Verify Build Output
+        run: |
+          echo "== Jekyll Build Lifecycle Complete =="
+          ls -la _site
+          find _site | head -n 50
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy Site
+        id: deployment
+        uses: actions/deploy-pages@v4
