@@ -68,7 +68,8 @@ html, body, #main,
   z-index: 2000 !important;
   overflow: visible !important; 
   isolation: isolate;
-  backdrop-filter: blur(12px);`n  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   background: linear-gradient(to bottom, rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.88)) !important;
   border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important;
 }

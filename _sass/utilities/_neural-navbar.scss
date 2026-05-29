@@ -20,7 +20,8 @@
   /* --- Dynamic Scrolled Context State Triggered via menu-scroll.js --- */
   &.scrolled {
     background-color: rgba(2, 6, 23, 0.75) !important; // Alpha dark void blend
-    backdrop-filter: blur(12px) -webkit-backdrop-filter: blur(12px) !important; // Frosted premium glass
+    backdrop-filter: blur(12px)!important;
+  -webkit-backdrop-filter: blur(12px)!important; // Frosted premium glass
     border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important; // Micro cyan wireframe edge
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
   }
