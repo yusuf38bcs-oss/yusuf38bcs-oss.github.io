@@ -2,33 +2,127 @@
 layout: default
 ---
 
-<article class="synaptic-single-post-container" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="page-layout-grid">
+<div class="synaptic-page-container u-anim-reveal">
+  <article class="page-layout-grid h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape }}">
+    {% if page.description %}<meta itemprop="description" content="{{ page.description | markdownify | strip_html | strip_newlines | escape }}">{% endif %}
     
-    <main class="page-main-article">
+    <main class="page-main-article e-content" itemprop="text">
       <header class="page-content-header">
-        
-        <div class="post-meta-strip-specs" style="display:flex; gap:12px; font-size:0.82rem; color:#64748b; font-weight:700; text-transform:uppercase; margin-bottom:0.75rem;">
-          <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">⚡ {{ page.date | date: "%B %d, %Y" }}</time>
-          <span>•</span>
-          <span>
-            {% assign words = content | number_of_words %}
-            {{ words | divided_by: 180 | plus: 1 }} Min Read
-          </span>
-        </div>
-
-        <h1 class="page-main-title" itemprop="headline">{{ page.title }}</h1>
+        <h1 class="page-main-title u-text-glow p-name" itemprop="name">
+          {{ page.title }}
+        </h1>
+        {% if page.description %}
+          <p class="page-subtitle-lead">{{ page.description }}</p>
+        {% endif %}
         <div class="header-matrix-line"></div>
       </header>
 
-      <div class="page-rendered-markdown-body" itemprop="articleBody">
+      <div class="page-rendered-markdown-body" id="synaptic-single-body">
         {{ content }}
       </div>
     </main>
 
-    <aside class="page-sidebar-viewport">
-      {% include navigation/contextual-sidebar.html %}
+    <aside class="page-sidebar-viewport" role="complementary" aria-label="Article Navigation">
+      <div class="sticky-sidebar-wrapper">
+        {% include contextual-sidebar.html %}
+      </div>
     </aside>
 
-  </div>
-</article>
+  </article>
+</div>
+
+<style>
+  /* Synchronized Core Membrane for Single Lecture Nodes to prevent visual shifting */
+  .synaptic-page-container {
+    max-width: var(--container-max, 1250px);
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem !important;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .page-layout-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3.5rem;
+    width: 100%;
+  }
+
+  .page-main-article {
+    flex: 1 1 650px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .page-sidebar-viewport {
+    flex: 0 0 340px;
+    width: 340px;
+    box-sizing: border-box;
+  }
+
+  .sticky-sidebar-wrapper {
+    position: sticky;
+    top: calc(var(--nav-height, 70px) + 20px);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: transform;
+  }
+
+  .page-content-header {
+    margin-bottom: 2.8rem;
+    text-align: left !important;
+  }
+
+  .page-main-title {
+    color: #ffffff !important;
+    font-size: clamp(2rem, 5vw, 2.8rem) !important;
+    font-weight: 900 !important;
+    margin: 0 0 0.75rem 0 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.15 !important;
+  }
+
+  .page-subtitle-lead {
+    color: #64748b !important;
+    font-size: clamp(1.05rem, 2vw, 1.18rem) !important;
+    margin: 0 !important;
+    line-height: 1.6 !important;
+    max-width: 68ch;
+  }
+
+  .header-matrix-line {
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, #00d4b2 0%, transparent 100%) !important;
+    margin-top: 1.5rem;
+  }
+
+  .page-rendered-markdown-body {
+    color: #cbd5e1 !important;
+    font-size: 1.05rem !important;
+    line-height: 1.75 !important;
+    text-align: left !important;
+  }
+
+  .page-rendered-markdown-body p,
+  .page-rendered-markdown-body li,
+  .page-rendered-markdown-body blockquote {
+    text-align: left !important;
+    word-spacing: normal !important;
+    margin-bottom: 1.6rem !important;
+  }
+
+  @media (max-width: 1024px) {
+    .page-layout-grid {
+      flex-direction: column !important;
+      gap: 3rem;
+    }
+    .page-sidebar-viewport {
+      width: 100% !important;
+      flex: 1 1 auto !important;
+    }
+    .page-content-header { text-align: left !important; }
+    .header-matrix-line { margin-left: 0 !important; }
+  }
+</style>
+-
