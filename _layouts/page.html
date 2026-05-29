@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="synaptic-page-container">
+<div class="synaptic-page-container u-anim-reveal">
   <div class="page-layout-grid">
     
     <main class="page-main-article" role="main">
@@ -14,88 +14,151 @@ layout: default
         <div class="header-matrix-line"></div>
       </header>
 
-      <div class="page-rendered-markdown-body">
+      <div class="page-rendered-markdown-body" id="synaptic-chapter-body">
         {{ content }}
       </div>
     </main>
 
-    <aside class="page-sidebar-viewport">
-      {% include navigation/contextual-sidebar.html %}
+    <aside class="page-sidebar-viewport" role="complementary" aria-label="Chapter Navigation">
+      <div class="sticky-sidebar-wrapper">
+        {% include navigation/contextual-sidebar.html %}
+      </div>
     </aside>
 
   </div>
 </div>
 
 <style>
+  /* ==========================================================================
+     PREMIUM INNER-PAGE BLUEPRINT MATRIX
+     Strictly synchronized with the Neon Cyan Socratic Architecture.
+     ========================================================================== */
+
   .synaptic-page-container {
-    max-width: 1250px;
+    max-width: var(--container-max, 1250px);
     margin: 0 auto;
-    padding: clamp(2rem, 5vw, 4rem) 1.5rem !important;
+    padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem !important;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  /* HARDWARE-ACCELERATED FLEXIBLE GRID ENGINE
+     Prevents empty grid leaks on standalone document views automatically */
+  .page-layout-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3.5rem;
+    width: 100%;
+  }
+
+  .page-main-article {
+    flex: 1 1 650px; /* Automatically claims the maximum layout share safely */
+    max-width: 100%;
     box-sizing: border-box;
   }
 
-  .page-layout-grid {
-    display: grid;
-    grid-template-columns: 1fr 340px; /* Locked premium symmetry proportions */
-    gap: 3.5rem;
-    align-items: flex-start;
+  .page-sidebar-viewport {
+    flex: 0 0 340px;
+    width: 340px;
+    box-sizing: border-box;
   }
 
+  .sticky-sidebar-wrapper {
+    position: sticky;
+    top: calc(var(--nav-height, 70px) + 20px);
+    /* FIXED: Replaced Sass token with native CSS-parsed hardware transition curve */
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: transform;
+  }
+
+  /* --- HEADER METRICS MATRIX --- */
   .page-content-header {
-    margin-bottom: 2.5rem;
-    text-align: left;
+    margin-bottom: 2.8rem;
+    text-align: left !important;
   }
 
   .page-main-title {
     color: #ffffff !important;
-    font-size: clamp(1.8rem, 4vw, 2.6rem) !important;
-    font-weight: 800 !important;
-    margin: 0 0 0.5rem 0 !important;
-    letter-spacing: -0.02em !important;
-    line-height: 1.2 !important;
+    font-size: clamp(2rem, 5vw, 2.8rem) !important;
+    font-weight: 900 !important;
+    margin: 0 0 0.75rem 0 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.15 !important;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
   }
 
   .page-subtitle-lead {
-    color: #64748b !important;
-    font-size: 1.1rem !important;
+    color: #64748b !important; /* Optimized readable secondary slate gray */
+    font-size: clamp(1.05rem, 2vw, 1.18rem) !important;
     margin: 0 !important;
-    line-height: 1.5;
+    line-height: 1.6 !important;
+    max-width: 68ch;
   }
 
   .header-matrix-line {
-    width: 60px; height: 2px;
-    background: linear-gradient(90deg, #00d4b2 0%, transparent 100%);
+    width: 70px; 
+    height: 2px;
+    background: linear-gradient(90deg, #00d4b2 0%, transparent 100%) !important;
     margin-top: 1.5rem;
   }
 
-  /* TYPOGRAPHY PROTECTION STRIP: PREVENTS FORCED WORD GAPS ON MOBILES */
+  /* ==========================================================================
+     TYPOGRAPHY DEFENSE MEMBRANE (Anti-Forced Word Stretching Engine)
+     ========================================================================== */
   .page-rendered-markdown-body {
     color: #cbd5e1 !important;
     font-size: 1.05rem !important;
-    line-height: 1.7 !important;
-    text-align: left !important; /* Forces natural word flow tracking */
+    line-height: 1.75 !important;
+    text-align: left !important;
     word-spacing: normal !important;
+    letter-spacing: normal !important;
   }
 
-  .page-rendered-markdown-body p {
-    margin: 0 0 1.5rem 0 !important;
+  /* Markdown Child Node Enforcements preventing text anomalies */
+  .page-rendered-markdown-body p,
+  .page-rendered-markdown-body li,
+  .page-rendered-markdown-body blockquote {
+    text-align: left !important;
+    word-spacing: normal !important;
+    margin-bottom: 1.6rem !important;
   }
 
-  /* Responsive Constraints (Tablet and iPhone Symmetries) */
-  @media (max-width: 992px) {
+  .page-rendered-markdown-body h2,
+  .page-rendered-markdown-body h3,
+  .page-rendered-markdown-body h4 {
+    color: #ffffff !important;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 2.5rem !important;
+    margin-bottom: 1.25rem !important;
+    text-align: left !important;
+  }
+
+  /* ==========================================================================
+     RESPONSIVE INTERACTIVE CONSTRICTION MESH (Tablets & Mobile Symmetries)
+     ========================================================================== */
+  @media (max-width: 1024px) {
     .page-layout-grid {
-      grid-template-columns: 1fr !important; /* Collapses sidebar into single fluid stream */
+      flex-direction: column !important; /* Collapses elegantly into one streamlined reading track */
       gap: 3rem;
     }
+
+    .page-sidebar-viewport {
+      width: 100% !important;
+      flex: 1 1 auto !important;
+    }
+    
     .page-content-header {
-      text-align: center !important;
+      text-align: left !important; /* Maintains visual harmony with text bodies */
     }
+
     .header-matrix-line {
-      margin: 1.5rem auto 0 auto !important;
-      background: linear-gradient(90deg, transparent 0%, #00d4b2 50%, transparent 100%) !important;
+      margin-left: 0 !important;
     }
+
     .page-rendered-markdown-body {
-      font-size: 1rem !important;
+      font-size: 1.02rem !important;
+      line-height: 1.7 !important;
     }
   }
 </style>
