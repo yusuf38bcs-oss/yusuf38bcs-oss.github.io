@@ -1,29 +1,28 @@
 ---
-# Learning Biology For Life - Master Asset Core Compiler
-# Only the main Sass file needs front matter block to ignite Jekyll processing
+# Learning Biology For Life - Supreme Master Asset Core Compiler
+# Front matter blocks must remain intact here to ignite Jekyll Sass compilation
 ---
 
 /* ==========================================================================
-   PREMIUM UNIFIED ECOSYSTEM MASTER CSS CORE (FINAL PRODUCTION EDITION)
+   PREMIUM UNIFIED ECOSYSTEM MASTER CSS CORE (OMNIPOTENT PRODUCTION EDITION)
    Designed for Jekyll Minimal Mistakes Engine (Socratic Matrix Edition)
    ========================================================================== */
 
-/* 1. MINIMAL MISTAKES VARIABLE OVERRIDES (Must be declared BEFORE imports) */
-$background-color: #020617; // Core premium dark matrix void
-$text-color: #cbd5e1;       // Soft read-optimized slate text matrix
-$primary-color: #00d4b2;    // Premium signature neon cyan accent
-$link-color: #00d4b2;
-$link-color-hover: #3b82f6; // Quantum blue glow acceleration state
+/* -------------------------------------------------------------------------
+   1. CORE LAYER (Global Tokens & Variable Systems from _sass/core/)
+   ------------------------------------------------------------------------- */
+@import "core/variables";
+@import "core/mixins";
 
-// Masthead & Structural Component Variables
-$masthead-link-color: #ffffff;
-$masthead-link-color-hover: #00d4b2;
-
-/* 2. CORE THEME SKINS & PLUGINS IMPORTS */
+/* -------------------------------------------------------------------------
+   2. VENDOR SKIN INGRESS (Minimal Mistakes Skins Framework)
+   ------------------------------------------------------------------------- */
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
 
-/* 3. HARDWARE-ACCELERATED FULL-WIDTH STRUCTURAL LAYOUT RULES */
+/* -------------------------------------------------------------------------
+   3. STRUCTURAL LAYOUT RULES (Full-Width Grid Viewports from _sass/layout/)
+   ------------------------------------------------------------------------- */
 #main {
   max-width: 100% !important;
   padding: 0 !important;
@@ -48,7 +47,43 @@ $masthead-link-color-hover: #00d4b2;
   width: 100% !important;
 }
 
-/* 4. ANTI-FORCED MOBILE WORD GAPS & READABILITY SPECS (Scoped Content Protected) */
+// Custom Layout Matrix Imports
+@import "layout/home-layout";
+@import "layout/synaptic";
+
+/* -------------------------------------------------------------------------
+   4. MODULAR COMPONENTS MATRIX (Tactile Widgets from _sass/components/)
+   ------------------------------------------------------------------------- */
+@import "components/accordion";
+@import "components/buttons";
+@import "components/cards";
+@import "components/neural-hero";
+@import "components/hero-enhancements";
+@import "components/navbar";
+@import "components/panels";
+@import "components/neural-ui";
+
+/* -------------------------------------------------------------------------
+   5. UTILITIES LAYER (Helper Atoms & System Keyframes from _sass/utilities/)
+   ------------------------------------------------------------------------- */
+@import "utilities/animations";
+@import "utilities/helpers";
+@import "utilities/neural-navbar";
+
+// Runtime scrolling performance utility locks
+body.viewport-scrolling-active {
+  :not(.synaptic-floating-ai-shell):not(.synaptic-core-bubble-btn):not(.socratic-floating-panel):not(.site-header):not(.masthead) {
+    pointer-events: none !important;
+  }
+}
+
+/* ==========================================================================
+   6. CRITICAL SPECIFICITY OVERRIDES & ANTI-THEME COLLISION MASK
+   Forces crisp visual execution while completely insulating dropdown contexts.
+   ========================================================================== */
+
+/* --- A. SCOPED CONTENT TEXT ALIGNMENT (Smashes Forced Word Gaps) --- */
+html, body, #main, 
 #main .page__content p, 
 #main .page__content li, 
 #main .archive__item-excerpt,
@@ -63,44 +98,48 @@ $masthead-link-color-hover: #00d4b2;
   letter-spacing: normal !important;
 }
 
-// Rigid structural bounding blocks for specific content matrices
 .glass-card p, .neural-panel p, .synaptic-card p, .rail-card p, .section-lead {
   display: block !important;
   width: 100% !important;
 }
 
-/* 5. RUNTIME RENDERING PERFORMANCE UTILITIES (Linked with main.js) */
-body.viewport-scrolling-active {
-  // Freezes expensive pointer events on structural nodes during rapid viewport scrolls
-  :not(.synaptic-floating-ai-shell):not(.synaptic-core-bubble-btn):not(.socratic-floating-panel):not(.site-header):not(.masthead) {
-    pointer-events: none !important;
+/* --- B. SITE LOGO CIRCULAR BAND ANNIHILATION (Fully Isolated Shield) --- */
+#main .masthead__inner .masthead__logo,
+#main .masthead__inner .masthead__logo img,
+.masthead__logo, .masthead__logo img,
+.site-logo, .site-logo img {
+  border-radius: 0% !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* --- C. FOOTER COPYRIGHT VISIBILITY MATRIX --- */
+#main .page__footer,
+.page__footer-copyright,
+.site-footer__copyright,
+footer p {
+  color: #94a3b8 !important; 
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+
+  a {
+    color: #00d4b2 !important;
+    text-decoration: none !important;
+    display: inline !important;
+    font-weight: 700 !important;
+    width: auto !important;
   }
 }
 
-/* 6. PREMIUM GLASSMORPHISM NAVIGATION WITH DROPDOWN OVERFLOW INSULATION */
-.site-header, .masthead {
-  background-color: #020617 !important;
-  position: fixed !important;
-  top: 0; left: 0; width: 100%;
-  z-index: 1000 !important;
-  overflow: visible !important; // CRITICAL: Allows absolute positioned dropdown menus to cascade downwards
-  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-              backdrop-filter 0.3s ease, 
-              border-color 0.3s ease,
-              box-shadow 0.3s ease !important;
-  will-change: background-color, backdrop-filter;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.02) !important;
+/* --- D. DROPDOWN OVERFLOW & NAVIGATION PROTECTION MATRIX --- */
+.masthead, .site-header {
+  overflow: visible !important; 
 }
 
-// Scrolled state dynamic switch injected smoothly via menu-scroll.js
-.site-header.scrolled, .masthead.scrolled {
-  background-color: rgba(2, 6, 23, 0.75) !important; // Alpha blend over dark void
-  backdrop-filter: blur(12px) -webkit-backdrop-filter: blur(12px) !important; // Luxury frosting
-  border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important; // Micro cyan accent wireframe
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
-}
-
-// Fluid restoration blueprint protecting navigation submenu elements
 .masthead__menu-item,
 .masthead__submenu,
 .masthead__submenu li,
@@ -109,120 +148,4 @@ body.viewport-scrolling-active {
   text-align: left !important;
   word-spacing: normal !important;
   letter-spacing: normal !important;
-}
-
-/* 7. SITE LOGO CIRCULAR BAND REMOVAL SHIELD */
-#main .masthead__inner .masthead__logo,
-#main .masthead__inner .masthead__logo img,
-.masthead__logo, .masthead__logo img,
-.site-logo, .site-logo img {
-  border-radius: 0% !important;
-  border-radius: 0 !important;         // Flattens legacy circular clipping frames
-  border: none !important;             // Smashes outer line ghost borders
-  background: transparent !important;  // Eliminates white container backings
-  background-color: transparent !important;
-  box-shadow: none !important;         // Removes drop-shadow rings
-  padding: 0 !important;               // Kills padding that creates ghost bands
-}
-
-/* 8. PLATFORM GLOW & HELPER ATOMS */
-.u-text-glow {
-  color: #ffffff !important;
-  text-shadow: 0 0 15px rgba(0, 212, 178, 0.35) !important;
-}
-
-.u-mt-lg { margin-top: 2.5rem !important; }
-.u-mt-md { margin-top: 1.5rem !important; }
-.u-text-center { text-align: center !important; }
-
-/* Global Socratic Module Synthesis Loading Animation Frame */
-@keyframes flash {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
-
-/* 9. HIGH-CONTRAST INTERACTIVE SYSTEM BUTTONS MATRIX */
-.mi-btn-calculate, .mcq-btn-generate, .mcq-btn-generate-alt {
-  background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%) !important;
-  color: #020617 !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  font-weight: 700 !important;
-  border-radius: 6px !important;
-  border: none !important;
-  padding: 12px 24px !important;
-  cursor: pointer !important;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
-  display: inline-block;
-  text-align: center !important;
-  text-decoration: none !important;
-  
-  &:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 25px rgba(0, 212, 178, 0.4) !important;
-  }
-  
-  &:disabled {
-    background: #1e293b !important;
-    color: #475569 !important;
-    cursor: not-allowed !important;
-    transform: none !important;
-    box-shadow: none !important;
-  }
-}
-
-/* 10. PREMIUM MOUSE-TRACKING GLOW RADIAL MASK MAPPING */
-.neural-card, .question-item-card, .mi-question-card {
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    border-radius: inherit;
-    background: radial-gradient(
-      400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
-      rgba(0, 212, 178, 0.07), // Soft 7% signature cyan wash
-      transparent 80%
-    ) !important;
-    pointer-events: none !important;
-    z-index: 0;
-    transition: opacity 0.5s ease;
-    opacity: 0;
-  }
-
-  &:hover::before {
-    opacity: 1;
-  }
-}
-
-/* Micro Scroll Reveal Scaffold Structural Ingress Rules */
-.synapse-micro-reveal-scaffold {
-  opacity: 0;
-  transform: translateY(12px) scale(0.99);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
-}
-
-.synapse-micro-reveal--active {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* 11. FOOTER COPYRIGHT VISIBILITY MATRIX OVERRIDE */
-#main .page__footer,
-.page__footer-copyright,
-.site-footer__copyright,
-footer p {
-  color: #94a3b8 !important; // Crisp read-optimized slate grey
-  font-weight: 600 !important;
-  font-size: 0.85rem !important;
-
-  a {
-    color: #00d4b2 !important; // Highlights core biology domain in Neon Cyan
-    text-decoration: none !important;
-    display: inline !important;
-    font-weight: 700 !important;
-    width: auto !important;
-  }
 }
