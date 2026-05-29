@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PREMIUM SOVEREIGN NAVIGATION MATRIX (OMNIPOTENT EDITION)
+   PREMIUM SOVEREIGN NAVIGATION MATRIX (OMNIPOTENT PRODUCTION EDITION)
    Fully Synchronized with Minimal Mistakes Greedy-Nav Engine & Neon Cyan Void
    ========================================================================== */
 
@@ -10,10 +10,9 @@
 .masthead {
   position: sticky !important;
   top: 0;
-  /* Hardcoded numeric fallbacks injected to protect layout depth if token fails */
   z-index: var(--z-header, 2000) !important;
   
-  // CRITICAL: Forces browser to allow absolutely positioned dropdowns to cascade downwards
+  // CRITICAL: Forces browser to allow absolute positioned dropdowns to cascade downwards
   overflow: visible !important; 
   isolation: isolate;
 
@@ -40,14 +39,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  overflow: visible !important; // Protects dynamic overflow calculations
+  overflow: visible !important; // Protects dynamic hamburger overflow calculations
 }
 
 /* ==========================================================================
    3. BRAND IDENTITY SYSTEM
    ========================================================================== */
 .site-title {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: clamp(1.05rem, 2vw, 1.35rem) !important;
   font-weight: 900 !important;
   letter-spacing: -0.03em !important;
@@ -122,29 +121,27 @@
 }
 
 /* ==========================================================================
-   6. DYNAMIC DROPDOWN PANEL OVERHAUL (The Ultimate Fix)
+   6. DYNAMIC DROPDOWN PANEL OVERHAUL (The Foolproof Toggle Fix)
    ========================================================================== */
 .hidden-links,
 .greedy-nav .hidden-links {
   position: absolute !important;
   top: 100% !important;
   right: 1rem !important;
-  /* Allows inner elements to render beyond panel boundaries safely */
-  overflow: visible !important; 
+  overflow: visible !important; /* Allows nested elements to bleed out safely if required */
   z-index: var(--z-dropdown, 3000) !important;
   
   min-width: 220px;
   padding: 0.75rem !important;
   border-radius: 8px !important;
   border: 1px solid rgba(0, 212, 178, 0.15) !important;
-  background: #0d1527 !important; // High-contrast premium dark card block
+  background: #0d1527 !important; // High-contrast premium slot panel backing
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
   
-  /* Micro animation setup for dynamic state entries */
   transform-origin: top right;
   transition: opacity 0.2s ease, transform 0.2s ease !important;
 
-  // Natively forces layout hidden state if triggered by Minimal Mistakes engine
+  // Seamless compliance hook synced directly with Minimal Mistakes JS engine states
   &.hidden {
     display: none !important;
     opacity: 0;
