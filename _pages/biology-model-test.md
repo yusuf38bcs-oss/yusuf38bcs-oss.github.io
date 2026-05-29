@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Model Test"
 layout: archive
 permalink: /biology/hsc-corner/model-test/

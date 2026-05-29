@@ -162,7 +162,7 @@ excerpt: "তারামাছের (Astropecten) অনন্য পানি
 
 <div class="spacer" style="height: 40px;"></div>
 
-{% include quiz-render.html quiz_id="animal-diversity" %}
+{% include components/quiz-render.html quiz_id="animal-diversity" %}
 
 <script>
   (function() {

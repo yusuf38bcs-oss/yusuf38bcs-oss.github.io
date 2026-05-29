@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Zoology"
 layout: archive
 permalink: /biology/hsc-corner/zoology/

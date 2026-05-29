@@ -1,4 +1,4 @@
-﻿---
+---
 title: "HSC Corner"
 layout: archive
 permalink: /biology/hsc-corner/

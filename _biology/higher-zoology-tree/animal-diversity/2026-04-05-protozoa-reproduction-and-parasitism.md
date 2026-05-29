@@ -139,7 +139,7 @@ excerpt: "এককোষী প্রোটোজোয়ার বৈচি�
   </p>
 </div>
 
-{% include quiz-render.html quiz_id="animal-diversity" %}
+{% include components/quiz-render.html quiz_id="animal-diversity" %}
 
 <div class="insight-box" style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); border: 1px solid rgba(0, 212, 178, 0.15); color: white; padding: 25px; border-radius: 12px; margin-top: 35px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
   <h3 style="color: #00d4b2; margin-top: 0; font-weight: 700;">🌱 শেষ ভাবনা</h3>

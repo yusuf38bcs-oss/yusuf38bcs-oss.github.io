@@ -1,4 +1,4 @@
-﻿---
+---
 title: "MCQ Arena"
 layout: archive
 permalink: /mcq-arena/

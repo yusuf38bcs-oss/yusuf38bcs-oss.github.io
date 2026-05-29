@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Competitive Exam"
 layout: single
 permalink: /mcq-arena/competitive-exam/

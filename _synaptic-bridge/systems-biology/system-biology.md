@@ -142,7 +142,7 @@ classes: wide
   </p>
 </div>
 
-{% include quiz-render.html quiz_id="systems-biology-core" %}
+{% include components/quiz-render.html quiz_id="systems-biology-core" %}
 
 <p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
   🧬 Synaptic Bridge: Systems Biology Core Matrix 2026 | learningbiologyforlife.org

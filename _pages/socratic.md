@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Socratic 4.0"
 layout: archive
 permalink: /socratic/

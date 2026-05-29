@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Research Node"
 layout: archive
 permalink: /research-node/

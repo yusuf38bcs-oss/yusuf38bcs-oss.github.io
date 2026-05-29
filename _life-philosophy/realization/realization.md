@@ -294,7 +294,7 @@ permalink: /life-philosophy/ethics-psychology-realization/
   </p>
 </div>
 
-{% include quiz-render.html quiz_id="ethics-psychology-realization" %}
+{% include components/quiz-render.html quiz_id="ethics-psychology-realization" %}
 
 <p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
   🧠 Life Philosophy & Psychology Matrix 2026 | Synaptic Core Ecosystem | learningbiologyforlife.org

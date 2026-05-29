@@ -201,7 +201,7 @@ classes: wide
             <li>যোজিত প্রকট প্রভাবের (Cumulative Effect) কারণে গ্রীষ্মকালীন স্কোয়াশের ক্ষেত্রে কীভাবে ৯:৬:১ অনুপাত তৈরি হয় তা আণবিক স্তরে বিশ্লেষণ করো।</li>
         </ol>
 
-        {% include quiz-render.html quiz_id="genetics" %}
+        {% include components/quiz-render.html quiz_id="genetics" %}
     </div>
 </div>
 

@@ -205,7 +205,7 @@ excerpt: "এককোষী প্রোটোজোয়ার শারী�
 * *Biology 2nd Paper (Zoology)* — গাজী আজমল ও গাজী আসমত (HSC সংস্করণ).
 * *Protozoology* — Karl G. Grell.
 
-{% include quiz-render.html quiz_id="animal-diversity" %}
+{% include components/quiz-render.html quiz_id="animal-diversity" %}
 
 <p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
   🦠 Learning Biology for Life | Higher Zoology Tree Series 2026

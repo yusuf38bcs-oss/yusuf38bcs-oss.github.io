@@ -195,7 +195,7 @@ tags:
   </p>
 </div>
 
-{% include quiz-render.html quiz_id="biostatistics" %}
+{% include components/quiz-render.html quiz_id="biostatistics" %}
 
 <p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
     📊 Biostatistics & Research Methodology Series 2026 | Learning Biology For Life | learningbiologyforlife.org

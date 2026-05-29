@@ -1,7 +1,7 @@
-﻿<div id="cookie-consent-banner" class="cookie-consent-modal" style="display: none;">
+<div id="cookie-consent-banner" class="cookie-consent-modal" style="display: none;">
   <div class="cookie-modal-content">
     <div class="cookie-text-area">
-      <span class="cookie-icon">🍪</span>
+      <span class="cookie-icon">??</span>
       <p>
         We use cookies to optimize your learning experience across our neural ecosystem. By clicking <strong>"Accept All"</strong>, you consent to our data metrics and support compliance tracking for Google AdSense. 
         Read our <a href="/privacy-policy/" class="cookie-privacy-link">Privacy Policy</a>.
@@ -124,7 +124,7 @@
     }
   }
 
-  /* রেসপন্সিভ মোবাইল এডাপ্টেশন */
+  /* ????????? ?????? ????????? */
   @media (max-width: 768px) {
     .cookie-consent-modal {
       bottom: 16px;
@@ -154,22 +154,22 @@
     var acceptBtn = document.getElementById("cookie-accept-btn");
     var declineBtn = document.getElementById("cookie-decline-btn");
 
-    // ইউজারের আগের কোনো চয়েস মেমোরিতে আছে কিনা চেক করা
+    // ??????? ???? ???? ???? ???????? ??? ???? ??? ???
     var userConsent = localStorage.getItem("neural-ecosystem-consent");
 
     if (!userConsent) {
-      // যদি কোনো চয়েস না থাকে, তবে ব্যানারটি প্রদর্শন করা হবে
+      // ??? ???? ???? ?? ????, ??? ????????? ???????? ??? ???
       consentBanner.style.display = "block";
     }
 
-    // Accept All বাটনের ইভেন্ট লিসেনার
+    // Accept All ?????? ?????? ???????
     acceptBtn.addEventListener("click", function () {
       localStorage.setItem("neural-ecosystem-consent", "granted");
       consentBanner.style.display = "none";
-      // এখানে ইচ্ছা করলে আপনার গুগল অ্যানালিটিক্স ট্রিগার রি-লোড করতে পারেন
+      // ????? ????? ???? ????? ???? ????????????? ??????? ??-??? ???? ?????
     });
 
-    // Decline বাটনের ইভেন্ট লিসেনার
+    // Decline ?????? ?????? ???????
     declineBtn.addEventListener("click", function () {
       localStorage.setItem("neural-ecosystem-consent", "declined");
       consentBanner.style.display = "none";

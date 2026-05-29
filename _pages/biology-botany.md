@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Botany"
 layout: archive
 permalink: /biology/hsc-corner/botany/

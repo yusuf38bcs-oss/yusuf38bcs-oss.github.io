@@ -128,7 +128,7 @@ classes: wide
   </p>
 </div>
 
-{% include quiz-render.html quiz_id="4ir-education-core" %}
+{% include components/quiz-render.html quiz_id="4ir-education-core" %}
 
 <p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
   🤖 Synaptic Bridge: 4IR Education Matrix 2026 | learningbiologyforlife.org

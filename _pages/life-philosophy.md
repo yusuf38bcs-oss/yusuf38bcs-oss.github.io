@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Life Philosophy"
 layout: archive
 permalink: /life-philosophy/
