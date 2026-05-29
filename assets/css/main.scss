@@ -1,32 +1,17 @@
 ---
-# Learning Biology For Life - Sovereign Master Compiler Membrane
-# Front matter block must remain intact here to ignite remote Jekyll compilation
+# Learning Biology For Life - Monolithic Sovereign Cloud Membrane
+# Front matter block intact to trigger flawless remote actions compilation
 ---
 
 /* ==========================================================================
-   PREMIUM UNIFIED ECOSYSTEM MASTER SASS COMPILER (FINAL PRO-LOCKED)
-   Core Architecture: High-Performance Hardware-Accelerated Layouts
+   1. CORE VENDOR INGRESS (Minimal Mistakes Skins Framework)
    ========================================================================== */
-
-/* -------------------------------------------------------------------------
-   1. CORE LAYER (Global Design Tokens & Functional Mixins from _sass/core/)
-   ------------------------------------------------------------------------- */
-@import "core/variables";
-@import "core/mixins";
-
-/* -------------------------------------------------------------------------
-   2. VENDOR CORE INGRESS (Minimal Mistakes Skins Framework)
-   ------------------------------------------------------------------------- */
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
 
-/* -------------------------------------------------------------------------
-   3. LAYOUT GRID MATRIX (Structural Blueprints from _sass/layout/)
-   ------------------------------------------------------------------------- */
-@import "layout/home-layout";            // Maps seamlessly to _sass/layout/_home-layout.scss
-@import "layout/synaptic";               // Maps seamlessly to _sass/layout/_synaptic.scss
-@import "layout/cinematic-refinement";   // Maps seamlessly to _sass/layout/_cinematic-refinement.scss
-
+/* ==========================================================================
+   2. HARDWARE-ACCELERATED STRUCTURAL VIEWPORT MATRIX
+   ========================================================================== */
 #main {
   max-width: 100% !important;
   padding: 0 !important;
@@ -47,31 +32,9 @@
   margin: 0 !important;
 }
 
-/* -------------------------------------------------------------------------
-   4. MODULAR COMPONENTS MATRIX (Tactile Widgets from _sass/components/)
-   ------------------------------------------------------------------------- */
-@import "components/accordion";          // Pulls from _sass/components/_accordion.scss
-@import "components/buttons";            // Pulls from _sass/components/_buttons.scss
-@import "components/cards";              // Pulls from _sass/components/_cards.scss
-@import "components/hero";               // Pulls from _sass/components/_hero.scss
-@import "components/neural-hero";        // Pulls from _sass/components/_neural-hero.scss
-@import "components/hero-enhancements";  // Pulls from _sass/components/_hero-enhancements.scss
-@import "components/navigation";         // Pulls from your newly placed _navigation.scss
-@import "components/panels";             // Pulls from _sass/components/_panels.scss
-@import "components/neural-ui";           // Pulls from _sass/components/_neural-ui.scss
-
-/* -------------------------------------------------------------------------
-   5. UTILITIES LAYER (Helper Atoms from _sass/utilities/)
-   ------------------------------------------------------------------------- */
-@import "utilities/animations";
-@import "utilities/helpers";
-@import "utilities/neural-navbar";
-
 /* ==========================================================================
-   6. CRITICAL ECOSYSTEM PATCH: SPECIFICITY OVERRIDES & ANTI-THEME COLLISION
+   3. ANTI-FORCED MOBILE WORD GAPS & READABILITY SHIELD
    ========================================================================== */
-
-/* --- A. SCOPED CONTENT TEXT ALIGNMENT (Crushes Forced Mobile Word Gaps) --- */
 html, body, #main, 
 #main .page__content p, 
 #main .page__content li, 
@@ -88,12 +51,7 @@ html, body, #main,
   letter-spacing: normal !important;
 }
 
-/* Fluid block enforcements for structural text layout cards */
-.glass-card p, .neural-panel p, .synaptic-card p, .rail-card p, .section-lead {
-  display: block !important;
-  width: 100% !important;
-}
-
+/* Transforming card summaries on small mobile screen viewports safely */
 @media (max-width: 480px) {
   .premium-neural-card p, .card-node-desc, .glass-card p, .feed-article-card p {
     text-align: left !important;
@@ -101,7 +59,123 @@ html, body, #main,
   }
 }
 
-/* --- B. SITE LOGO CIRCULAR BAND ANNIHILATION SHIELD --- */
+/* ==========================================================================
+   4. OMNIPOTENT GREEDY-NAV OVERHAUL (The Ultimate Dropdown Fix)
+   ========================================================================== */
+.site-header, .masthead {
+  position: sticky !important;
+  top: 0;
+  z-index: 2000 !important;
+  overflow: visible !important; 
+  isolation: isolate;
+  backdrop-filter: blur(12px) -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(to bottom, rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.88)) !important;
+  border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important;
+}
+
+.greedy-nav {
+  position: relative;
+  z-index: 2000 !important;
+  min-height: 72px;
+  padding-inline: 1rem;
+  background: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: visible !important;
+}
+
+.greedy-nav .visible-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: visible !important;
+}
+
+.greedy-nav .visible-links a {
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+  padding: 0.5rem 0.8rem !important;
+  border-radius: 6px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+  &:hover {
+    color: #00d4b2 !important;
+    background: rgba(0, 212, 178, 0.04) !important;
+    transform: translateY(-1px);
+  }
+}
+
+.greedy-nav__toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  z-index: 2500 !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 212, 178, 0.2) !important;
+  padding: 0 !important;
+  background: rgba(2, 6, 23, 0.6) !important;
+  color: #00d4b2 !important;
+  transition: all 0.2s ease !important;
+
+  &:hover {
+    background: rgba(0, 212, 178, 0.08) !important;
+    border-color: #00d4b2 !important;
+    color: #ffffff !important;
+  }
+}
+
+.hidden-links,
+.greedy-nav .hidden-links {
+  position: absolute !important;
+  top: 100% !important;
+  right: 1rem !important;
+  overflow: visible !important; 
+  z-index: 3000 !important;
+  min-width: 220px;
+  padding: 0.75rem !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 212, 178, 0.15) !important;
+  background: #0d1527 !important; 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+
+  &.hidden {
+    display: none !important;
+  }
+
+  li {
+    width: 100% !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 2px 0 !important;
+  }
+
+  a {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.65rem 0.85rem !important;
+    color: #cbd5e1 !important;
+    text-align: left !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    transition: all 0.18s ease !important;
+
+    &:hover {
+      color: #00d4b2 !important;
+      background: rgba(0, 212, 178, 0.05) !important;
+      transform: translateX(3px);
+    }
+  }
+}
+
+/* ==========================================================================
+   5. SITE LOGO CIRCULAR BAND ANNIHILATION SHIELD
+   ========================================================================== */
 #main .masthead__inner .masthead__logo,
 #main .masthead__inner .masthead__logo img,
 header.masthead .masthead__inner .masthead__logo,
@@ -116,42 +190,30 @@ header.masthead .masthead__inner .masthead__logo img,
   padding: 0 !important;
 }
 
-/* --- C. HIGH-CONTRAST ACCESSIBLE FOOTER METRICS --- */
+/* ==========================================================================
+   6. HIGH-CONTRAST ACCESSIBLE FOOTER METRICS
+   ========================================================================== */
 .neural-core-footer {
   background-color: #020617 !important;
   border-top: 1px solid rgba(0, 212, 178, 0.08) !important;
 }
 
-#main .page__footer,
-.page__footer-copyright,
-.site-footer__copyright,
-.footer-base-copyright,
-footer p {
-  color: #64748b !important;
-  font-weight: 600 !important;
+.footer-base-copyright {
   font-size: 0.88rem !important;
+  color: #64748b !important; 
+}
 
-  .bright-text {
-    color: #94a3b8 !important;
-    font-weight: 700;
-  }
-
-  a {
-    color: #00d4b2 !important;
-    text-decoration: none !important;
-    display: inline !important;
-    font-weight: 700 !important;
-    width: auto !important;
-  }
+.footer-base-copyright .bright-text {
+  color: #94a3b8 !important;
+  font-weight: 600;
 }
 
 .footer-base-link {
   color: #64748b !important;
   font-size: 0.88rem !important;
   text-decoration: none !important;
-  transition: color 0.2s ease !important;
-  
-  &:hover {
-    color: #00d4b2 !important;
-  }
+}
+
+.footer-base-link:hover {
+  color: #00d4b2 !important;
 }
