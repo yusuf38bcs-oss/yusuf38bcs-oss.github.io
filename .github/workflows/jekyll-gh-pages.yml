@@ -1,3 +1,8 @@
+# =========================================================================
+# SOVEREIGN JEKYLL MASTER BUILD ENGINE (ADVANCED DIAGNOSTIC PIPELINE)
+# Forces Jekyll 4.x compilation with strict trace debugging enabled.
+# =========================================================================
+
 name: Deploy Jekyll Site
 
 on:
@@ -24,21 +29,21 @@ jobs:
       - name: Setup Ruby Environment
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4' # Synchronized perfectly with your local Ruby 3.4 engine
+          ruby-version: '3.2'
           bundler-cache: true
 
       - name: Setup GitHub Pages Deployment Metadata
         uses: actions/configure-pages@v5
 
-      - name: Compile Sovereign Production Site (Jekyll 4.x Force)
-        run: bundle exec jekyll build
+      - name: Compile Sovereign Production Site (With Trace Debugger)
+        run: bundle exec jekyll build --trace
         env:
           JEKYLL_ENV: production
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Prevents GitHub API 403 Rate Limit Blocks
 
       - name: Upload Clean Compiled Artifacts
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./_site
 
   deploy:
     environment:
