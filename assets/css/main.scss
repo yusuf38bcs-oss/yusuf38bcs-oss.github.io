@@ -149,3 +149,49 @@ p, span, li, a, h1, h2, h3, h4, article {
 .footer-base-link:hover {
   color: #00d4b2 !important;
 }
+// ==========================================================================
+// EMERGENCY FOOTER & NAV VISIBILITY PATCH
+// ==========================================================================
+
+/* Force ANY footer to render */
+footer, .page__footer, .neural-footer, .neural-core-footer, [neural-core-footer] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  min-height: 100px !important;
+}
+
+/* Hide mobile toggle on desktop */
+@media (min-width: 768px) {
+  .greedy-nav__toggle,
+  .hidden-links {
+    display: none !important;
+  }
+  .visible-links {
+    display: flex !important;
+  }
+}
+
+/* Show mobile toggle only on mobile */
+@media (max-width: 767px) {
+  .greedy-nav__toggle {
+    display: flex !important;
+  }
+  .visible-links {
+    display: none !important;
+  }
+}
+
+/* Ensure body stretches to push footer down */
+body {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+.main-content-render-viewport,
+#main,
+.page {
+  flex: 1 0 auto !important;
+}
