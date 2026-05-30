@@ -1,6 +1,151 @@
 ---
-# Minimal Mistakes CSS Matrix
+# =========================================================================
+# LEARNING BIOLOGY FOR LIFE - COMPLETE MASTER STYLESHEET
+# Imports all neural modules + fixes nav/footer visibility
+# =========================================================================
 ---
 
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@charset "UTF-8";
+
+// 1. MINIMAL MISTAKES BASE THEME
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
 @import "minimal-mistakes";
+
+// 2. CORE ARCHITECTURE
+@import "core/variables";
+@import "core/mixins";
+
+// 3. UI COMPONENTS
+@import "components/buttons";
+@import "components/cards";
+@import "components/hero";
+@import "components/panels";
+@import "components/accordion";
+@import "components/neural-ui";
+@import "components/neural-hero";
+@import "components/hero-enhancements";
+
+// 4. LAYOUT SYSTEM
+@import "layout/home-layout";
+@import "layout/synaptic";
+
+// 5. UTILITIES & NAVIGATION
+@import "utilities/animations";
+@import "utilities/helpers";
+@import "utilities/utilities";
+@import "utilities/neural-navbar";
+
+// ==========================================================================
+// CRITICAL: NAVIGATION & FOOTER VISIBILITY FIXES
+// ==========================================================================
+
+.masthead,
+.greedy-nav,
+.site-nav,
+.visible-links,
+.hidden-links,
+.masthead__inner,
+.masthead__menu {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.neural-core-footer,
+.page__footer,
+footer {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.sidebar,
+.sidebar-academic,
+.sidebar-socratic {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.page__title,
+.page__meta,
+.page__lead {
+  display: block !important;
+  visibility: visible !important;
+}
+
+// ==========================================================================
+// CRITICAL: BODY OPACITY FIX
+// ==========================================================================
+
+html, body {
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+// ==========================================================================
+// GLOBAL DARK THEME OVERRIDES (Neural Matrix)
+// ==========================================================================
+
+#main {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: #020617 !important;
+}
+
+.page {
+  width: 100% !important;
+  padding-right: 0 !important;
+  margin: 0 !important;
+  background-color: #020617 !important;
+}
+
+.page__content {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+html, body, #main, 
+#main .page__content p, 
+#main .page__content li, 
+#main .archive__item-excerpt,
+p, span, li, a, h1, h2, h3, h4, article {
+  text-align: left !important;
+  text-justify: none !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+}
+
+.masthead {
+  position: sticky !important;
+  top: 0;
+  z-index: 2000 !important;
+  overflow: visible !important;
+  isolation: isolate;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(to bottom, rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.88)) !important;
+  border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important;
+}
+
+.neural-core-footer {
+  background-color: #020617 !important;
+  border-top: 1px solid rgba(0, 212, 178, 0.08) !important;
+}
+
+.footer-base-copyright {
+  font-size: 0.88rem !important;
+  color: #64748b !important;
+}
+
+.footer-base-link {
+  color: #64748b !important;
+  font-size: 0.88rem !important;
+  text-decoration: none !important;
+}
+
+.footer-base-link:hover {
+  color: #00d4b2 !important;
+}

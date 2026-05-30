@@ -7,20 +7,9 @@
   <style>
     html, body {
       background-color: #020617 !important;
-      opacity: 0; /* Coordinated premium reveal handled via theme controllers */
-    }
-    .synaptic-runtime-loaded {
-      opacity: 1 !important;
-      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      opacity: 1 !important; /* Always visible */
     }
   </style>
-
-  <script>
-    setTimeout(function() {
-      document.documentElement.classList.add('synaptic-runtime-loaded');
-      document.body.classList.add('synaptic-runtime-loaded');
-    }, 1500); // Forced safety unblind trigger at maximum 1.5 seconds
-  </script>
 
   {% include head/head.html %}
   {% include head/head-scripts.html %}
