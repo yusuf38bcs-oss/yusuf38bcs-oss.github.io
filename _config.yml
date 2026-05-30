@@ -4,11 +4,13 @@
 
 title: "Learning Biology For Life"
 subtitle: "Biology, Philosophy & Future Sciences"
-name: "Yusuf BCS"
+name: "Md Yusuf"
 email: yusuf.38bcs@gmail.com
-description: "An educational bridge connecting biology, philosophy, and future sciences."
-url: "https://yusuf38bcs-oss.github.io"
+description: "A Neural Network of Education System: Where Biology Meets Life in a Synaptic Approach."
+url: "https://learningbiologyforlife.org"
 baseurl: ""
+logo: "/assets/images/logo.png"
+favicon: "/assets/images/favicon.ico"
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 
 # Theme
