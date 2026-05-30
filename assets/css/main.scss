@@ -63,6 +63,37 @@ footer {
   }
 }
 
+/* FIX 2: Mobile toggle - BULLETPROOF */
+@media (min-width: 768px) {
+  body .masthead .greedy-nav__toggle,
+  body .site-header .greedy-nav__toggle,
+  .masthead .greedy-nav .greedy-nav__toggle {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+  body .masthead .visible-links,
+  body .site-header .visible-links,
+  .masthead .greedy-nav .visible-links {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+@media (max-width: 767px) {
+  body .masthead .greedy-nav__toggle,
+  body .site-header .greedy-nav__toggle {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: 2rem !important;
+  }
+}
+
 /* FIX 3: Mobile toggle MUST show on mobile */
 @media (max-width: 767px) {
   .greedy-nav__toggle {
@@ -115,4 +146,15 @@ body {
 p, li, span, a, h1, h2, h3, h4 {
   word-spacing: normal !important;
   letter-spacing: normal !important;
+}
+/* FIX 9: Make header background image visible */
+.neural-hero-shell,
+.page__hero--overlay,
+.hero-neural,
+.home-hero {
+  background-image: linear-gradient(to bottom, rgba(2,6,23,0.15) 0%, rgba(2,6,23,0.35) 50%, #020617 100%), url("/assets/images/header-bg.webp") !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  min-height: 400px !important;
 }
