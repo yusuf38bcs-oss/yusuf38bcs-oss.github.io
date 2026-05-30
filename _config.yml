@@ -1,46 +1,21 @@
 # =========================================================================
-# LEARNING BIOLOGY FOR LIFE - SOVEREIGN CONFIGURATION MATRIX
-# Fully Optimized for Jekyll 4.x, GitHub Actions, and Cloudflare Pages
+# LEARNING BIOLOGY FOR LIFE - SOVEREIGN CONFIGURATION
 # =========================================================================
 
 title: "Learning Biology For Life"
-description: "Biology, Zoology, Ecology, Human Behaviour, Leadership, Digital Pedagogy and Lifelong Learning Ecosystem"
-bio: "38th BCS Education Cadre Officer | Zoology Educator | Digital Pedagogy Researcher"
-
-# CORE SITE LOGISTICS
-locale: "en-US"
-timezone: "Asia/Dhaka"
-url: "https://learningbiologyforlife.org"
+subtitle: "Biology, Philosophy & Future Sciences"
+name: "Yusuf BCS"
+email: yusuf.38bcs@gmail.com
+description: "An educational bridge connecting biology, philosophy, and future sciences."
+url: "https://yusuf38bcs-oss.github.io"
 baseurl: ""
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 
-# THEME MEMBRANE OVERLAY (Minimal Mistakes Architecture)
+# Theme
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 minimal_mistakes_skin: "dark"
-logo: "/assets/images/logo-main.png"
 
-# SIDEBAR & SEARCH UTILITIES
-search: true
-breadcrumbs: true
-
-# ENGINE COMPILER MATRIX
-markdown: kramdown
-highlighter: rouge
-permalink: "/:categories/:title/"
-
-kramdown:
-  input: GFM
-  hard_wrap: false
-  syntax_highlighter: rouge
-
-sass:
-  style: compressed
-
-# PAGINATION TUNNEL CONTROL
-paginate: 5
-paginate_path: "/page:num/"
-
-# ACTIVE CORE INCLUSION PLUGINS (W3C & CLOUD COMPLIANT)
+# Plugins
 plugins:
   - jekyll-paginate
   - jekyll-feed
@@ -50,144 +25,67 @@ plugins:
   - jekyll-include-cache
   - jekyll-remote-theme
 
-# CORE ARCHIVE ROUTING NODES
-category_archive:
-  type: liquid
-  path: /categories/
+# Pagination
+paginate: 10
+paginate_path: /page:num/
 
-tag_archive:
-  type: liquid
-  path: /tags/
-
-atom_feed:
-  path: feed.xml
-
-# CUSTOM COLLECTIONS VECTOR MATRIX
+# Collections
 collections:
   biology:
     output: true
-    permalink: /biology/:path/
-  socratic:
-    output: true
-    permalink: /socratic/:path/
+    permalink: /:collection/:path/
   synaptic-bridge:
     output: true
-    permalink: /synaptic-bridge/:path/
-  research-node:
-    output: true
-    permalink: /research-node/:path/
-  life-practices:
-    output: true
-    permalink: /life-practices/:path/
+    permalink: /:collection/:path/
   life-philosophy:
     output: true
-    permalink: /life-philosophy/:path/
+    permalink: /:collection/:path/
+  life-practices:
+    output: true
+    permalink: /:collection/:path/
+  socratic:
+    output: true
+    permalink: /:collection/:path/
 
-# GLOBAL SITE SCHEMAS & DEFAULT NODE VALUES (STRICT INDEX LOCK)
+# Defaults
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
-      layout: "single"
+      layout: single
       author_profile: true
-      read_time: true
-      comments: false
-      share: true
-      related: true
-      toc: true
+      sidebar:
+        nav: "synaptic_nav"
   - scope:
       path: ""
       type: "biology"
     values:
-      layout: "single"
+      layout: single
       author_profile: true
-      read_time: true
-      share: true
-      related: true
-      toc: true
+      sidebar:
+        nav: "synaptic_nav"
   - scope:
-      path: ""
-      type: "socratic"
+      path: "_pages"
+      type: "pages"
     values:
-      layout: "single"
-      author_profile: true
-      read_time: true
-      toc: true
-  - scope:
-      path: ""
-      type: "synaptic-bridge"
-    values:
-      layout: "single"
-      author_profile: true
-      read_time: true
-      toc: true
-  - scope:
-      path: ""
-      type: "research-node"
-    values:
-      layout: "single"
-      author_profile: true
-      read_time: true
-      toc: true
-  - scope:
-      path: ""
-      type: "life-practices"
-    values:
-      layout: "single"
-      author_profile: true
-      read_time: true
-      toc: true
-  - scope:
-      path: ""
-      type: "life-philosophy"
-    values:
-      layout: "single"
-      author_profile: true
-      read_time: true
-      toc: true
+      layout: single
+      author_profile: false
 
-# GLOBAL AUTHOR ID MEMBRANE
-author:
-  name: "Md. Yusuf"
-  avatar: "/assets/images/profile.jpg"
-  bio: "38th BCS Education Cadre Officer | Zoology Educator | Digital Pedagogy Researcher"
-  location: "Bangladesh"
-  links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://learningbiologyforlife.org"
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+timezone: Asia/Dhaka
 
-# FOOTER INTERACTIVE NODE MAPPING
-footer:
-  links:
-    - label: "Sovereign Portal"
-      icon: "fas fa-fw fa-globe"
-      url: "https://learningbiologyforlife.org"
-  social:
-    type: "Person"
-    name: "Md. Yusuf"
-  brevo:
-    form_url: "https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ=="
-
-# HTML MINIFICATION COMPRESSION LAYER
-compress_html:
-  clippings: all
-  ignore:
-    envs: ["development"]
-
-# STRICT SYSTEM COMPILER EXCLUSION SHIELD
+# Exclude
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
-  - vendor/bundle
-  - vendor/cache
-  - vendor/gems
-  - vendor/ruby
   - .sass-cache
   - .jekyll-cache
-  - .git
-  - .github
+  - .jekyll-metadata
   - README.md
+  - LICENSE

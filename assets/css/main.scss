@@ -1,13 +1,13 @@
 ---
 # =========================================================================
-# LEARNING BIOLOGY FOR LIFE - COMPLETE MASTER STYLESHEET
-# Imports all neural modules + fixes nav/footer visibility
+# LEARNING BIOLOGY FOR LIFE - CLEAN MASTER STYLESHEET
+# Organized, deduplicated, and responsive-ready
 # =========================================================================
 ---
 
 @charset "UTF-8";
 
-// 1. MINIMAL MISTAKES BASE THEME
+// 1. THEME BASE
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
 @import "minimal-mistakes";
 
@@ -15,7 +15,7 @@
 @import "core/variables";
 @import "core/mixins";
 
-// 3. UI COMPONENTS
+// 3. COMPONENTS
 @import "components/buttons";
 @import "components/cards";
 @import "components/hero";
@@ -25,173 +25,191 @@
 @import "components/neural-hero";
 @import "components/hero-enhancements";
 
-// 4. LAYOUT SYSTEM
+// 4. LAYOUT
 @import "layout/home-layout";
 @import "layout/synaptic";
 
-// 5. UTILITIES & NAVIGATION
+// 5. UTILITIES
 @import "utilities/animations";
 @import "utilities/helpers";
 @import "utilities/utilities";
 @import "utilities/neural-navbar";
 
 // ==========================================================================
-// CRITICAL: NAVIGATION & FOOTER VISIBILITY FIXES
+// 6. GLOBAL OVERRIDES (Clean, no !important soup)
 // ==========================================================================
 
-.masthead,
-.greedy-nav,
-.site-nav,
-.visible-links,
-.hidden-links,
-.masthead__inner,
-.masthead__menu {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+:root {
+  --synaptic-bg: #020617;
+  --synaptic-surface: rgba(13,21,39,0.65);
+  --synaptic-border: rgba(0, 212, 178, 0.08);
+  --synaptic-glow: rgba(0, 212, 178, 0.15);
+  --synaptic-text: #cbd5e1;
+  --synaptic-muted: #64748b;
+  --synaptic-accent: #00d4b2;
+  --synaptic-radius: 12px;
+  --nav-height: 70px;
 }
+
+html, body {
+  background-color: var(--synaptic-bg);
+  color: var(--synaptic-text);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+// Main content wrapper must stretch to push footer down
+#main,
+.page,
+.main-content-render-viewport {
+  flex: 1 0 auto;
+  width: 100%;
+  background-color: var(--synaptic-bg);
+}
+
+// ==========================================================================
+// 7. NAVIGATION (Desktop vs Mobile)
+// ==========================================================================
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  background: linear-gradient(to bottom, rgba(2,6,23,0.96), rgba(2,6,23,0.88));
+  border-bottom: 1px solid var(--synaptic-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.greedy-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--nav-height);
+}
+
+// Desktop: show links, hide toggle
+@media (min-width: 768px) {
+  .greedy-nav__toggle {
+    display: none;
+  }
+  .visible-links {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .hidden-links {
+    display: none;
+  }
+}
+
+// Mobile: hide links, show toggle
+@media (max-width: 767px) {
+  .greedy-nav__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .visible-links {
+    display: none;
+  }
+  .hidden-links {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    background: #0d1527;
+    border: 1px solid var(--synaptic-border);
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    z-index: 3000;
+    min-width: 220px;
+    padding: 0.75rem;
+  }
+  .hidden-links.hidden {
+    display: none;
+  }
+}
+
+// ==========================================================================
+// 8. FOOTER (Always visible, sticks to bottom via flex)
+// ==========================================================================
 
 .neural-core-footer,
 .page__footer,
 footer {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-.sidebar,
-.sidebar-academic,
-.sidebar-socratic {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-.page__title,
-.page__meta,
-.page__lead {
-  display: block !important;
-  visibility: visible !important;
-}
-
-// ==========================================================================
-// CRITICAL: BODY OPACITY FIX
-// ==========================================================================
-
-html, body {
-  opacity: 1 !important;
-  transition: none !important;
-}
-
-// ==========================================================================
-// GLOBAL DARK THEME OVERRIDES (Neural Matrix)
-// ==========================================================================
-
-#main {
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  background-color: #020617 !important;
-}
-
-.page {
-  width: 100% !important;
-  padding-right: 0 !important;
-  margin: 0 !important;
-  background-color: #020617 !important;
-}
-
-.page__content {
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-html, body, #main, 
-#main .page__content p, 
-#main .page__content li, 
-#main .archive__item-excerpt,
-p, span, li, a, h1, h2, h3, h4, article {
-  text-align: left !important;
-  text-justify: none !important;
-  word-spacing: normal !important;
-  letter-spacing: normal !important;
-}
-
-.masthead {
-  position: sticky !important;
-  top: 0;
-  z-index: 2000 !important;
-  overflow: visible !important;
-  isolation: isolate;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: linear-gradient(to bottom, rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.88)) !important;
-  border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important;
-}
-
-.neural-core-footer {
-  background-color: #020617 !important;
-  border-top: 1px solid rgba(0, 212, 178, 0.08) !important;
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  z-index: 10;
+  background-color: var(--synaptic-bg);
+  border-top: 1px solid var(--synaptic-border);
+  padding: 2em 1em;
+  margin-top: auto; // Pushes footer to bottom in flex container
 }
 
 .footer-base-copyright {
-  font-size: 0.88rem !important;
-  color: #64748b !important;
+  font-size: 0.88rem;
+  color: var(--synaptic-muted);
 }
 
 .footer-base-link {
-  color: #64748b !important;
-  font-size: 0.88rem !important;
-  text-decoration: none !important;
+  color: var(--synaptic-muted);
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .footer-base-link:hover {
-  color: #00d4b2 !important;
+  color: var(--synaptic-accent);
 }
+
 // ==========================================================================
-// EMERGENCY FOOTER & NAV VISIBILITY PATCH
+// 9. TYPOGRAPHY DEFENSE (Left-align, no forced gaps)
 // ==========================================================================
 
-/* Force ANY footer to render */
-footer, .page__footer, .neural-footer, .neural-core-footer, [neural-core-footer] {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 10 !important;
-  min-height: 100px !important;
+p, li, span, a, h1, h2, h3, h4, article {
+  text-align: left;
+  text-justify: none;
+  word-spacing: normal;
+  letter-spacing: normal;
 }
 
-/* Hide mobile toggle on desktop */
-@media (min-width: 768px) {
-  .greedy-nav__toggle,
-  .hidden-links {
-    display: none !important;
+pre, code, pre *, code * {
+  text-align: initial;
+}
+
+// ==========================================================================
+// 10. LAYOUT FIXES
+// ==========================================================================
+
+.page__content {
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+// Ensure sidebar is visible on desktop
+@media (min-width: 64em) {
+  .sidebar {
+    display: block;
+    opacity: 0.75;
+    transition: opacity 0.2s ease-in-out;
   }
-  .visible-links {
-    display: flex !important;
+  .sidebar:hover {
+    opacity: 1;
   }
 }
 
-/* Show mobile toggle only on mobile */
-@media (max-width: 767px) {
-  .greedy-nav__toggle {
-    display: flex !important;
+// Hide sidebar on mobile (optional, theme default)
+@media (max-width: 63.9375em) {
+  .sidebar {
+    display: none;
   }
-  .visible-links {
-    display: none !important;
-  }
-}
-
-/* Ensure body stretches to push footer down */
-body {
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 100vh !important;
-}
-.main-content-render-viewport,
-#main,
-.page {
-  flex: 1 0 auto !important;
 }
