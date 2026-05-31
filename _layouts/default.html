@@ -5,105 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   
   <style>
-    html, body {
-      background-color: #020617 !important;
-      opacity: 1 !important; /* Always visible */
-    }
+  html, body { background-color: #020617; }
   </style>
-
-  {% include head/head.html %}
-  {% include head/head-scripts.html %}
-  {% include head/cookie-script.html %}
-
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">
-  
-  {% unless site.plugins contains "jekyll-seo-tag" %}
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title | default: 'Learning Biology For Life' }}</title>
-  {% endunless %}
-
-  <style>
-    /* ==========================================================================
-       GLOBAL ECOSYSTEM LAYOUT SHEETS & COMPOSITING RULES (HTML5 VALIDATED)
-       ========================================================================== */
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #cbd5e1;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    .unified-ecosystem-dark-body {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-    }
-
-    /* Structural Viewport Layout Config */
-    .main-content-render-viewport {
-      flex: 1 0 auto;
-      width: 100%;
-      position: relative;
-      z-index: 5; /* Sits cleanly above background animations but under floating panels */
-      box-sizing: border-box;
-    }
-
-    /* Fixed Backdrop Layer for the Neural Background Particle Canvas */
-    .global-ambient-matrix-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2; /* Sits perfectly underneath text contents */
-      pointer-events: none; /* Passes clicks directly through to content maps */
-      overflow: hidden;
-      background-color: #020617;
-    }
-
-    #neural-network {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* 1. Universal Left-Alignment Reset protecting responsive mobile viewport flows */
-    #synaptic-viewport-root p,
-    #synaptic-viewport-root li,
-    #synaptic-viewport-root span,
-    #synaptic-viewport-root a,
-    #synaptic-viewport-root h1,
-    #synaptic-viewport-root h2,
-    #synaptic-viewport-root h3,
-    #synaptic-viewport-root h4,
-    p, li, article, h1, h2, h3, h4, span, a {
-      text-align: left !important;
-      text-justify: none !important;
-      word-spacing: normal !important;
-      letter-spacing: normal !important;
-    }
-
-    /* 2. RIGID EXCLUSION OVERRIDE: Insulates syntax highlighting, pre-tags, and raw code snippets */
-    #synaptic-viewport-root pre,
-    #synaptic-viewport-root code,
-    #synaptic-viewport-root pre *,
-    #synaptic-viewport-root code *,
-    pre, code, pre *, code * {
-      text-align: initial !important;
-      text-justify: initial !important;
-      word-spacing: initial !important;
-      letter-spacing: initial !important;
-    }
-  </style>
-</head>
+    
+   </head>
 
 <body class="unified-ecosystem-dark-body">
 
@@ -125,6 +30,7 @@
 
   {% include footer/neural-footer.html %}
 
+  <script src="{{ '/assets/js/core/synaptic-guard.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/js/core/theme-controller.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
   <script defer src="{{ '/assets/js/core/performance-guard.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
   <script defer src="{{ '/assets/js/core/menu-scroll.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>

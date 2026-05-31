@@ -2,13 +2,12 @@
 layout: default
 title: Home
 permalink: /
-# Injects structural hints to break out of theme container paddings
 classes: wide  
 ---
 
 <main class="synaptic-homepage-matrix" id="synaptic-home-root">
 
-  {% include home/hero-neural.html %}
+  {% include home/neural-hero.html %}
 
   {% include home/neural-flow.html %}
 
@@ -21,56 +20,3 @@ classes: wide
   {% include home/recent-posts.html %}
 
 </main>
-
-<style>
-  /* ==========================================================================
-     RUN-TIME HARDWARE OVERRIDES FOR HOMEPAGE MATRIX
-     Guarantees zero margin leaks and obliterates Safari forced text gaps.
-     ========================================================================== */
-  
-  .synaptic-homepage-matrix {
-    width: 100% !important;
-    max-width: 100% !important;
-    background-color: #020617 !important;
-    overflow-x: hidden !important;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    
-    /* Hardware acceleration layer to ensure smooth 60fps scrolling over canvas */
-    isolation: isolate;
-    transform: translate3d(0, 0, 0);
-    will-change: transform;
-  }
-
-  /* --- TARGETED TYPOGRAPHY DEFENSE (FINAL INSULATED SHIELD) ---
-     Forces textual elements and embedded links inside includes to respect strict 
-     left alignment without breaking dropdowns, button positions, or flex layouts. */
-  .synaptic-homepage-matrix p,
-  .synaptic-homepage-matrix span,
-  .synaptic-homepage-matrix li,
-  .synaptic-homepage-matrix h1,
-  .synaptic-homepage-matrix h2,
-  .synaptic-homepage-matrix h3,
-  .synaptic-homepage-matrix h4,
-  .synaptic-homepage-matrix article,
-  .synaptic-homepage-matrix a {
-    text-align: left !important;
-    text-justify: none !important;
-    word-spacing: normal !important;
-    letter-spacing: normal !important;
-  }
-
-  /* --- UNIVERSAL CHILD STRUCTURAL EDGE SAFEGUARD ---
-     Ensures every single include block stacks flawlessly without shrinking 
-     or spilling out of the screen bounds on older smartphones. */
-  .synaptic-homepage-matrix > * {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-</style>

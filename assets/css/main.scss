@@ -1,160 +1,43 @@
 ---
-# =========================================================================
-# LEARNING BIOLOGY FOR LIFE - MASTER STYLESHEET
-# Neural Design Restored + Bug Fixes
-# =========================================================================
+# Only the main Sass file needs front matter (the dashes are enough)
 ---
 
-@charset "UTF-8";
-
-// 1. THEME BASE
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
-@import "minimal-mistakes";
-
-// 2. CORE ARCHITECTURE
+/* ==========================================================================
+   CORE TOKENS & MIXINS
+   Must load first so all downstream partials can use variables and functions.
+   ========================================================================== */
 @import "core/variables";
 @import "core/mixins";
 
-// 3. COMPONENTS (Your Neural UI)
-@import "components/buttons";
-@import "components/cards";
-@import "components/hero";
-@import "components/panels";
-@import "components/accordion";
-@import "components/neural-ui";
-@import "components/neural-hero";
-@import "components/hero-enhancements";
-
-// 4. LAYOUT
-@import "layout/home-layout";
-@import "layout/synaptic";
-
-// 5. UTILITIES
+/* ==========================================================================
+   UTILITIES & GLOBAL HELPERS
+   Low-specificity atoms, keyframes, and helper classes used everywhere.
+   ========================================================================== */
 @import "utilities/animations";
 @import "utilities/helpers";
 @import "utilities/utilities";
 @import "utilities/neural-navbar";
 
-// ==========================================================================
-// CRITICAL FIXES (Appended after all imports to override)
-// ==========================================================================
+/* ==========================================================================
+   LAYOUT SYSTEMS
+   Structural grids, homepage wrappers, and page-level skeletons.
+   ========================================================================== */
+@import "layout/cinematic-refinement";
+@import "layout/home-layout";
+@import "layout/synaptic";
+@import "layout/page-layouts";        /* NEW: unified page/single/archive grid */
 
-/* FIX 1: Footer must be visible and stick to bottom */
-.neural-core-footer,
-.page__footer,
-footer {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-/* FIX 2: Mobile toggle MUST hide on desktop */
-@media (min-width: 768px) {
-  .greedy-nav__toggle {
-    display: none !important;
-  }
-  .visible-links {
-    display: flex !important;
-  }
-  .hidden-links {
-    display: none !important;
-  }
-}
-
-/* FIX 2: Mobile toggle - BULLETPROOF */
-@media (min-width: 768px) {
-  body .masthead .greedy-nav__toggle,
-  body .site-header .greedy-nav__toggle,
-  .masthead .greedy-nav .greedy-nav__toggle {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-  }
-  body .masthead .visible-links,
-  body .site-header .visible-links,
-  .masthead .greedy-nav .visible-links {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-}
-@media (max-width: 767px) {
-  body .masthead .greedy-nav__toggle,
-  body .site-header .greedy-nav__toggle {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: auto !important;
-    height: 2rem !important;
-  }
-}
-
-/* FIX 3: Mobile toggle MUST show on mobile */
-@media (max-width: 767px) {
-  .greedy-nav__toggle {
-    display: flex !important;
-  }
-  .visible-links {
-    display: none !important;
-  }
-}
-
-/* FIX 4: Body flex to push footer down */
-body {
-  min-height: 100vh !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-#main,
-.page,
-.main-content-render-viewport {
-  flex: 1 0 auto !important;
-}
-
-/* FIX 5: Remove duplicate/extra title bleed on homepage */
-.home .page__title,
-.home .page__meta,
-.synaptic-homepage-matrix .page__title,
-.synaptic-homepage-matrix .page__meta {
-  display: none !important;
-}
-
-/* FIX 6: Ensure logo area renders */
-.site-logo img,
-.masthead__logo img {
-  display: block !important;
-  max-height: 2.5rem !important;
-  opacity: 1 !important;
-}
-
-/* FIX 7: Header background image fallback */
-.neural-hero-shell,
-.page__hero--overlay {
-  background-color: #020617 !important;
-}
-.neural-hero-shell[style*="header-bg"],
-.page__hero--overlay[style*="header-bg"] {
-  min-height: 400px !important;
-}
-
-/* FIX 8: Typography defense without breaking your design */
-p, li, span, a, h1, h2, h3, h4 {
-  word-spacing: normal !important;
-  letter-spacing: normal !important;
-}
-/* FIX 9: Make header background image visible */
-.neural-hero-shell,
-.page__hero--overlay,
-.hero-neural,
-.home-hero {
-  background-image: linear-gradient(to bottom, rgba(2,6,23,0.15) 0%, rgba(2,6,23,0.35) 50%, #020617 100%), url("/assets/images/header-bg.webp") !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  min-height: 400px !important;
-}
+/* ==========================================================================
+   COMPONENTS
+   Self-contained UI blocks: hero, cards, footer, navigation, etc.
+   ========================================================================== */
+@import "components/hero";
+@import "components/hero-enhancements";
+@import "components/neural-hero";
+@import "components/neural-ui";
+@import "components/cards";
+@import "components/panels";
+@import "components/accordion";
+@import "components/buttons";
+@import "components/footer";          /* NEW: neural footer system */
+@import "components/navigation";

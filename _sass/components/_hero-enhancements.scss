@@ -4,7 +4,9 @@
    Fully synchronized with assets/images/header-bg.webp track.
    ========================================================================== */
 
-.page__hero--overlay {
+.home-hero,
+.neural-hero,
+.neural-hero-shell {
   position: relative;
   overflow: hidden;
   @include flex-center;
@@ -12,26 +14,26 @@
   min-height: 75vh;
   min-height: 75svh;
 
-  // Multi-layered visual rendering - FIXED: Resolved 100__percent typo & Restored Image Token
+  // Multi-layered visual rendering - gradient overlay + image
   background-image:
     linear-gradient(
       to bottom,
       rgba($neural-black, 0.3) 0%,
       rgba($neural-black, 0.6) 60%,
-      $neural-black 100% // Fixed syntax bug safely
+      $neural-black 100%
     ),
-    url("/assets/images/header-bg.webp") !important; // Absolute short-path track injected cleanly
-    
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-  background-color: $neural-black !important;
+    url("/assets/images/header-bg.webp");
 
-  // Eradicate desktop parallax freezing on mobile webviews smoothly
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  background-color: $neural-black;
+
+  // Eradicate desktop parallax freezing on mobile webviews
   @include mobile {
-    background-attachment: scroll !important;
+    background-attachment: scroll;
     min-height: 65svh;
-    
+
     background-image:
       linear-gradient(
         to bottom,
@@ -39,77 +41,175 @@
         rgba($neural-black, 0.7) 60%,
         $neural-black 100%
       ),
-      url('/assets/images/header-bg.webp') !important; // Preserves high-contrast overlay mesh on phones
+      url('/assets/images/header-bg.webp');
   }
 
   &.image-failed {
-    background: linear-gradient(135deg, $neural-dark 0%, $neural-black 100%) !important;
+    background: linear-gradient(135deg, $neural-dark 0%, $neural-black 100%);
   }
 
-  // Clear out default Minimal Mistakes structural strings to anchor our components safely
+  // Clear out default Minimal Mistakes structural strings
   .page__title, .page__meta, .page__lead {
-    display: none !important; 
+    display: none;
   }
 }
 
-/* --- CAPTION STRUCTURE OVERLAYS --- */
+/* --- CONTENT VIEWPORT MATRIX --- */
+.neural-hero__content,
 .page__hero-caption {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   width: 100%;
-  max-width: var(--container-max);
+  max-width: var(--container-max, 1250px);
   margin: 0 auto;
   padding: clamp(4rem, 8vw, 7rem) 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: left !important; // Strict layout alignment rule
+  text-align: left;
 
   @include mobile {
     padding-top: 7.5rem;
-    text-align: center !important;
+    text-align: center;
     align-items: center;
   }
 }
 
-/* --- SYSTEM TYPOGRAPHY BRANDING --- */
-.synaptic-hero-title {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-weight: 900 !important;
-  letter-spacing: -0.03em !important;
-  font-size: $type-h1 !important;
-  line-height: 1.1;
-  margin: 0 0 1.25rem 0 !important;
-  color: #ffffff !important;
-  max-width: 850px;
-  text-align: left !important;
-  
-  // High-performance shadow compositing via standard variable configurations
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), $glow-text !important;
-  will-change: transform;
+.neural-hero__content {
+  // Specific override for the homepage hero to match legacy inline centering
+  text-align: center;
+  align-items: center;
+  padding: 4rem 2rem;
 
   @include mobile {
-    text-align: center !important;
+    padding: 3rem 1rem;
   }
 }
 
-.synaptic-hero-subtitle {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+/* --- EYEBROW --- */
+.hero-top-eyebrow {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: $synapse-glow;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+/* --- TYPOGRAPHY: Unified selectors for both naming conventions --- */
+.synaptic-hero-title,
+.neural-hero__title {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-size: $type-h1;
+  line-height: 1.1;
+  margin: 0 0 1.25rem 0;
+  color: #ffffff;
+  max-width: 850px;
+  text-align: left;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), $glow-text;
+  will-change: transform;
+
+  .highlight-neon {
+    color: $synapse-glow;
+    text-shadow: 0 0 40px rgba(0, 212, 178, 0.25);
+  }
+
+  @include mobile {
+    text-align: center;
+  }
+}
+
+// Homepage specific override since its container is centered
+.neural-hero__title {
+  text-align: center;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.synaptic-hero-subtitle,
+.neural-hero__subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.65;
   max-width: 740px;
-  color: #cbd5e1 !important;
-  margin: 0 0 2rem 0 !important;
-  letter-spacing: normal !important;
-  text-align: left !important;
+  color: #cbd5e1;
+  margin: 0 0 2rem 0;
+  letter-spacing: normal;
+  text-align: left;
 
   strong {
-    color: $synapse-glow !important;
+    color: $synapse-glow;
     font-weight: 700;
   }
 
   @include mobile {
-    text-align: center !important;
+    text-align: center;
+  }
+}
+
+// Homepage specific override
+.neural-hero__subtitle {
+  text-align: center;
+  margin: 0 auto 3rem auto;
+  max-width: 720px;
+}
+
+/* --- CTA BUTTON STRIP --- */
+.hero-cta-button-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @include mobile {
+    flex-direction: column;
+    gap: 1rem;
+
+    a, .btn, button {
+      width: 100%;
+      max-width: 320px;
+      text-align: center;
+    }
+  }
+}
+
+.hero-primary-btn {
+  background: linear-gradient(135deg, $synapse-glow 0%, $quantum-blue 100%);
+  color: $neural-black;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 20px rgba(0, 212, 178, 0.25);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 212, 178, 0.4);
+  }
+}
+
+.hero-secondary-btn {
+  background: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 13px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: $synapse-glow;
+    color: $synapse-glow;
   }
 }
 
@@ -121,10 +221,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .synaptic-hero-title, 
-  .page__hero--overlay {
-    animation: none !important;
-    transition: none !important;
-    background-attachment: scroll !important;
+  .synaptic-hero-title,
+  .neural-hero__title,
+  .home-hero,
+  .neural-hero,
+  .neural-hero-shell {
+    animation: none;
+    transition: none;
+    background-attachment: scroll;
   }
 }

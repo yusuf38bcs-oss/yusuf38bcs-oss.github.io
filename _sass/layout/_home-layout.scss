@@ -22,22 +22,25 @@
    ========================================================================== */
 .synaptic-homepage-matrix,
 .synaptic-home-layout {
+  width: 100%;
+  margin: 0;
+  padding: 0;
   position: relative;
   isolation: isolate;
   overflow-x: hidden;
-  background-color: $neural-black !important;
-  color: var(--synaptic-text) !important;
+  background-color: $neural-black;
+  color: var(--synaptic-text);
 
   // Cinematic Top Ambient Lighting Filter Mesh
   &::after {
-    content: "" !important;
-    position: absolute !important;
+    content: "";
+    position: absolute;
     top: 0; left: 50%;
     transform: translateX(-50%);
     width: 100%; max-width: var(--container-max);
     height: 600px;
-    background: radial-gradient(circle at top, rgba(0, 212, 178, 0.06), transparent 60%) !important;
-    pointer-events: none !important;
+    background: radial-gradient(circle at top, rgba(0, 212, 178, 0.06), transparent 60%);
+    pointer-events: none;
     z-index: 1;
   }
 
@@ -53,7 +56,7 @@
     margin-inline: auto;
     padding: var(--section-spacing) 1.5rem;
     z-index: 5;
-    text-align: left !important;
+    text-align: left;
   }
 
   /* --- RESPONSIVE INTELLECTUAL GRID --- */
@@ -73,22 +76,22 @@
   .synaptic-card,
   .rail-card {
     position: relative;
-    @include neural-glass(0.65, 16px); // Directly calls our optimized mixin
-    border-radius: var(--synaptic-radius) !important;
+    @include neural-glass(0.65, 16px);
+    border-radius: var(--synaptic-radius);
     overflow: hidden;
     padding: 2.25rem;
-    box-shadow: $shadow-neural !important;
-    transition: $neural-transition !important;
+    box-shadow: $shadow-neural;
+    transition: $neural-transition;
     will-change: transform, background-color, border-color;
     z-index: 3;
 
     /* --- HOVER KINETIC PHYSICS ENGINE --- */
     &:hover {
-      transform: translateY(-5px) scale(1.01) !important;
-      border-color: rgba(0, 212, 178, 0.25) !important;
-      background-color: rgba(13, 21, 39, 0.85) !important;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 
-                  0 0 30px rgba(0, 212, 178, 0.08) !important;
+      transform: translateY(-5px) scale(1.01);
+      border-color: rgba(0, 212, 178, 0.25);
+      background-color: rgba(13, 21, 39, 0.85);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45),
+                  0 0 30px rgba(0, 212, 178, 0.08);
     }
   }
 
@@ -96,6 +99,7 @@
      HERO SYSTEM SPECS
      ========================================================================== */
   .home-hero,
+  .neural-hero,          /* ADDED */
   .neural-hero-shell {
     position: relative;
     min-height: clamp(600px, 80vh, 900px);
@@ -135,7 +139,7 @@
     canvas, svg {
       width: 100%;
       max-width: 650px;
-      height: auto !important;
+      height: auto;
       display: block;
       object-fit: contain;
       margin-inline: auto;
@@ -149,21 +153,21 @@
     font-size: var(--type-h2);
     line-height: 1.1;
     font-weight: 900;
-    letter-spacing: -0.03em !important;
+    letter-spacing: -0.03em;
     margin-bottom: 1.25rem;
-    color: #ffffff !important;
+    color: #ffffff;
     text-shadow: 0 0 20px rgba(0, 212, 178, 0.15);
-    text-align: left !important;
+    text-align: left;
   }
 
   .section-lead {
     font-size: 1.05rem;
     line-height: 1.7;
-    color: var(--synaptic-muted) !important;
+    color: var(--synaptic-muted);
     max-width: 65ch;
     margin-bottom: 2.5rem;
-    text-align: left !important;
-    word-spacing: normal !important;
+    text-align: left;
+    word-spacing: normal;
   }
 
   /* --- FLUID IMAGE SAFETY RETAINER --- */
@@ -179,14 +183,14 @@
      ========================================================================== */
   @include mobile {
     .section-shell {
-      padding: 3.5rem 1.2rem !important;
+      padding: 3.5rem 1.2rem;
     }
 
     .glass-card,
     .neural-panel,
     .synaptic-card,
     .rail-card {
-      border-radius: 12px !important; // Keeps symmetry unified on small displays
+      border-radius: 12px;
       padding: 1.75rem;
     }
 
@@ -195,6 +199,7 @@
     }
 
     .home-hero,
+    .neural-hero,
     .neural-hero-shell {
       min-height: auto;
       padding: 4rem 0;
