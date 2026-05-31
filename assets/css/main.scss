@@ -140,108 +140,139 @@ p, li, span, a, h1, h2, h3, h4 {
   word-spacing: normal !important;
   letter-spacing: normal !important;
 }
-
 // ==========================================================================
-// ULTIMATE SOVEREIGN DARK DEFENSE ENGINE (COMPREHENSIVE CONTRAST SHIELD)
-// Overrides the entire theme hierarchy to force a deep cinematic space dark theme.
+// THE SOVEREIGN MASTHEAD (HEADER) & FOOTER TOTAL OVERRIDE MATRIX
+// Completely isolates and rebuilds navigation and footer contrast vectors.
 // ==========================================================================
 
-/* 1. Force Absolute Page Background to Cinematic Void */
-body, 
-html, 
-#main, 
-.page, 
-.initial-content, 
-.page__content,
-.archive {
-  background-color: #020617 !important; // Deep Space Dark Blue/Black
-  color: #cbd5e1 !important; // Readable soft white
-}
-
-/* 2. Masthead & Header Navigation Contrast Sync */
-.masthead, 
-.site-masthead, 
+/* 1. THE MASTHEAD / SITE HEADER CORE */
+.masthead,
+header,
 .site-header,
 .masthead__inner {
-  background-color: #020617 !important;
-  border-bottom: 1px solid rgba(0, 212, 178, 0.15) !important;
+  background-color: #020617 !important; /* Force Cinematic Dark Space Background */
+  border-bottom: 1px solid rgba(0, 212, 178, 0.25) !important; /* Neon Cyan Synaptic Border Line */
+  padding: 0.75rem 0 !important;
+}
+
+/* Site Brand Title / Logo Text */
+.site-title {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  text-shadow: 0 0 10px rgba(0, 212, 178, 0.3) !important;
   
-  a, .site-title, .site-subtitle {
-    color: #ffffff !important;
+  &:hover {
+    color: #00d4b2 !important; /* Neon Cyan Glow on Brand Hover */
+  }
+}
+
+/* Greedy Nav Base Wrapper */
+.greedy-nav {
+  background-color: transparent !important;
+  
+  a {
+    color: #cbd5e1 !important; /* Read-Optimized Soft White Link */
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    background: transparent !important;
+    
     &:hover {
-      color: #00d4b2 !important;
+      color: #00d4b2 !important; /* High Contrast Neon Glow */
+      text-shadow: 0 0 8px rgba(0, 212, 178, 0.6) !important;
     }
   }
 }
 
-/* 3. High Contrast Typography Matrix for the Entire Viewport */
-.synaptic-homepage-matrix,
-#synaptic-home-root,
-.main-content-render-viewport {
+/* Eradicate Broken Vertical Lists/Dots in Navigation Links */
+.visible-links,
+.hidden-links,
+.greedy-nav ul,
+.masthead__menu-item {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
   
-  h1, h2, h3, h4, h5, h6, 
-  .page__title, .entries-layout {
-    color: #ffffff !important;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.8) !important;
-  }
-  
-  p, li, span, small, time, label, em, strong {
-    color: #cbd5e1 !important;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6) !important;
-  }
-}
-
-/* 4. Synaptic Cards - Light Reflection Over Dark Matter */
-.neural-card-shell, 
-.neural-card,
-[class*="neural-card"] {
-  background: rgba(15, 23, 42, 0.75) !important; // Glassmorphism dark panel
-  border: 1px solid rgba(0, 212, 178, 0.25) !important; // Neon Cyan Edge Glow
-  border-radius: 12px !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
-  
-  h3, h4 {
-    color: #00d4b2 !important; // Force Neon Cyan Title for outstanding contrast
-  }
-  
-  p, span, li {
-    color: #e2e8f0 !important; // Super clean crisp text inside panels
-  }
-}
-
-/* 5. Recent Scientific Logs Section Purge */
-.recent-posts-viewport {
-  background-color: #090d16 !important;
-  
-  article {
-    background: rgba(15, 23, 42, 0.6) !important;
-    border-left: 4px solid #00d4b2 !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
+  li {
+    margin: 0 5px !important;
+    padding: 0 !important;
+    list-style-type: none !important;
+    background: transparent !important;
     
-    h3 a {
+    &::before, &::after {
+      content: "" !important; /* Strips legacy bullet point markers */
+      display: none !important;
+    }
+  }
+}
+
+/* 2. THE TOTAL SITE FOOTER ISOLATION ARCHITECTURE */
+.page__footer,
+footer,
+.neural-core-footer,
+.site-footer {
+  background-color: #010409 !important; /* Absolute Deep Midnight Black */
+  border-top: 1px solid rgba(0, 212, 178, 0.15) !important; /* Neon Synaptic Top Rule */
+  padding: 4rem 0 !important;
+  margin-top: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+
+  /* Reset all content inside the footer framework */
+  p, span, div, li, small, .footer__program {
+    color: #94a3b8 !important; /* Clean readable slate gray */
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Footer Headers */
+  h3, h4, .footer__title {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  /* Footer Hyperlinks */
+  a {
+    color: #00d4b2 !important; /* Dynamic Cyan Links */
+    text-decoration: none !important;
+    
+    &:hover {
       color: #ffffff !important;
-      &:hover {
-        color: #00d4b2 !important;
+      text-decoration: underline !important;
+    }
+  }
+  
+  /* Social Follow Icon Layout Alignment */
+  .social-icons {
+    display: flex !important;
+    gap: 15px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 1rem 0 !important;
+    
+    li {
+      list-style-type: none !important;
+      margin: 0 !important;
+      
+      &::before {
+        display: none !important;
       }
     }
     
-    p {
-      color: #94a3b8 !important;
-    }
-  }
-}
-
-/* 6. Footer Total Architecture Sync */
-.page__footer, 
-footer, 
-.neural-core-footer {
-  background-color: #020617 !important;
-  border-top: 1px solid rgba(255,255,255,0.05) !important;
-  
-  p, a, span, .footer__links {
-    color: #64748b !important; // Elegant muted gray for footer links
-    &:hover {
-      color: #00d4b2 !important;
+    a {
+      color: #64748b !important;
+      font-size: 1.25rem !important;
+      
+      &:hover {
+        color: #00d4b2 !important;
+      }
     }
   }
 }
