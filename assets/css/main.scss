@@ -38,12 +38,15 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 @import "components/neural-ui";
 @import "components/neural-hero";
 @import "components/hero-enhancements";
+@import "components/navigation";  /* ADDED: renamed from .sass to .scss */
+@import "components/footer";      /* ADDED: extracted footer styles */
 
 // --------------------------------------------------------------------------
 // ৫. কাস্টম লেআউট ও রুটিং ম্যাট্রিক্স
 // --------------------------------------------------------------------------
 @import "layout/home-layout";
 @import "layout/synaptic";
+@import "layout/page-layouts";   /* ADDED: unified page/single/archive grid */
 
 // --------------------------------------------------------------------------
 // ৬. ইকোসিস্টেম ইউটিলিটি মডিউলস
@@ -139,140 +142,4 @@ body {
 p, li, span, a, h1, h2, h3, h4 {
   word-spacing: normal !important;
   letter-spacing: normal !important;
-}
-// ==========================================================================
-// THE SOVEREIGN MASTHEAD (HEADER) & FOOTER TOTAL OVERRIDE MATRIX
-// Completely isolates and rebuilds navigation and footer contrast vectors.
-// ==========================================================================
-
-/* 1. THE MASTHEAD / SITE HEADER CORE */
-.masthead,
-header,
-.site-header,
-.masthead__inner {
-  background-color: #020617 !important; /* Force Cinematic Dark Space Background */
-  border-bottom: 1px solid rgba(0, 212, 178, 0.25) !important; /* Neon Cyan Synaptic Border Line */
-  padding: 0.75rem 0 !important;
-}
-
-/* Site Brand Title / Logo Text */
-.site-title {
-  color: #ffffff !important;
-  font-weight: 800 !important;
-  font-family: 'Inter', -apple-system, sans-serif !important;
-  text-shadow: 0 0 10px rgba(0, 212, 178, 0.3) !important;
-  
-  &:hover {
-    color: #00d4b2 !important; /* Neon Cyan Glow on Brand Hover */
-  }
-}
-
-/* Greedy Nav Base Wrapper */
-.greedy-nav {
-  background-color: transparent !important;
-  
-  a {
-    color: #cbd5e1 !important; /* Read-Optimized Soft White Link */
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    background: transparent !important;
-    
-    &:hover {
-      color: #00d4b2 !important; /* High Contrast Neon Glow */
-      text-shadow: 0 0 8px rgba(0, 212, 178, 0.6) !important;
-    }
-  }
-}
-
-/* Eradicate Broken Vertical Lists/Dots in Navigation Links */
-.visible-links,
-.hidden-links,
-.greedy-nav ul,
-.masthead__menu-item {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  
-  li {
-    margin: 0 5px !important;
-    padding: 0 !important;
-    list-style-type: none !important;
-    background: transparent !important;
-    
-    &::before, &::after {
-      content: "" !important; /* Strips legacy bullet point markers */
-      display: none !important;
-    }
-  }
-}
-
-/* 2. THE TOTAL SITE FOOTER ISOLATION ARCHITECTURE */
-.page__footer,
-footer,
-.neural-core-footer,
-.site-footer {
-  background-color: #010409 !important; /* Absolute Deep Midnight Black */
-  border-top: 1px solid rgba(0, 212, 178, 0.15) !important; /* Neon Synaptic Top Rule */
-  padding: 4rem 0 !important;
-  margin-top: auto !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-
-  /* Reset all content inside the footer framework */
-  p, span, div, li, small, .footer__program {
-    color: #94a3b8 !important; /* Clean readable slate gray */
-    font-size: 0.9rem !important;
-    line-height: 1.6 !important;
-  }
-
-  /* Footer Headers */
-  h3, h4, .footer__title {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    margin-bottom: 1.25rem !important;
-  }
-
-  /* Footer Hyperlinks */
-  a {
-    color: #00d4b2 !important; /* Dynamic Cyan Links */
-    text-decoration: none !important;
-    
-    &:hover {
-      color: #ffffff !important;
-      text-decoration: underline !important;
-    }
-  }
-  
-  /* Social Follow Icon Layout Alignment */
-  .social-icons {
-    display: flex !important;
-    gap: 15px !important;
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 1rem 0 !important;
-    
-    li {
-      list-style-type: none !important;
-      margin: 0 !important;
-      
-      &::before {
-        display: none !important;
-      }
-    }
-    
-    a {
-      color: #64748b !important;
-      font-size: 1.25rem !important;
-      
-      &:hover {
-        color: #00d4b2 !important;
-      }
-    }
-  }
 }
