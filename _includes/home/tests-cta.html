@@ -3,7 +3,7 @@
 
     <a class="neural-cta-interactive-card cta-card--mi" href="{{ '/socratic/multiple-intelligences/' | relative_url }}" aria-label="Multiple Intelligences Analysis Test Track">
       <div class="neural-cta-content-shield">
-        
+
         <div class="cta-badge-indicator">
           <span class="badge-pulse-dot"></span>
           <span class="badge-lbl-text">Cognitive Audit</span>
@@ -19,7 +19,7 @@
 
         <div class="neural-cta-action-trigger">
           <span class="cta-action-text">Take MI Analysis</span>
-          <span class="cta-indicator-arrow">→</span>
+          <span class="cta-indicator-arrow">&#8594;</span>
         </div>
 
       </div>
@@ -28,7 +28,7 @@
 
     <a class="neural-cta-interactive-card cta-card--personality" href="{{ '/socratic/personality-archetypes/' | relative_url }}" aria-label="Personality Assessment Test Track">
       <div class="neural-cta-content-shield">
-        
+
         <div class="cta-badge-indicator indicator--blue">
           <span class="badge-pulse-dot"></span>
           <span class="badge-lbl-text">Behavioral Axis</span>
@@ -44,7 +44,7 @@
 
         <div class="neural-cta-action-trigger">
           <span class="cta-action-text">Begin Self-Discovery</span>
-          <span class="cta-indicator-arrow">→</span>
+          <span class="cta-indicator-arrow">&#8594;</span>
         </div>
 
       </div>
@@ -63,7 +63,7 @@
 {% unless jekyll_tests_cta_styles_loaded %}
 <style>
   .premium-tests-cta-block {
-    padding: clamp(3rem, 6vw, 5rem) 0 !important;
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 3vw, 1.5rem) !important;
     width: 100%;
     box-sizing: border-box;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
@@ -71,23 +71,33 @@
 
   .tests-matrix-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     width: 100%;
     align-items: stretch;
     box-sizing: border-box;
   }
 
-  /* Core Interactive Grid Card Parameters */
+  @media (min-width: 768px) {
+    .tests-matrix-grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .tests-matrix-grid-container { gap: 2.5rem; }
+  }
+
   .neural-cta-interactive-card {
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 3rem 2.5rem !important;
-    background: #0d1527 !important; /* Premium system dark element canvas */
+    padding: clamp(2rem, 3vw, 3rem) clamp(1.5rem, 2.5vw, 2.5rem) !important;
+    background: #0d1527 !important;
     border: 1px solid rgba(255, 255, 255, 0.03) !important;
-    border-radius: 12px !important; /* Uniform structural ecosystem mapping */
+    border-radius: 12px !important;
     text-decoration: none !important;
     overflow: hidden;
     box-sizing: border-box;
@@ -111,7 +121,6 @@
     width: 100%;
   }
 
-  /* Micro Status Tags Architecture */
   .cta-badge-indicator {
     display: inline-flex;
     align-items: center;
@@ -156,24 +165,20 @@
   .neural-cta-title-node {
     margin: 0 0 1rem 0 !important;
     color: #ffffff !important;
-    font-size: 1.5rem !important;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem) !important;
     line-height: 1.35 !important;
     font-weight: 800 !important;
     letter-spacing: -0.02em;
   }
 
-  /* TYPOGRAPHY ANCHOR FILTER: ERADICATED ABNORMAL WORD SPACES ON SMARTPHONES */
   .neural-cta-desc-node {
     color: #94a3b8 !important;
-    font-size: 0.95rem !important;
+    font-size: clamp(0.88rem, 1.5vw, 0.95rem) !important;
     line-height: 1.6 !important;
-    margin: 0 0 2.5rem 0 !important;
-    text-align: left !important; /* Strict Left alignment prevents spacing bugs */
-    word-spacing: normal !important;
-    letter-spacing: normal !important;
+    margin: 0 0 2rem 0 !important;
+    text-align: left !important;
   }
 
-  /* Interactive Footer Action Strips */
   .neural-cta-action-trigger {
     margin-top: auto;
     display: inline-flex;
@@ -203,14 +208,13 @@
     transform: translateX(4px);
   }
 
-  /* Pure CSS Geometrical Divider (Replaced Raw Texts Elements) */
   .tests-unified-geometric-divider {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
     width: 100%;
-    margin-top: 4rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
     user-select: none;
   }
 
@@ -225,23 +229,13 @@
     background: rgba(0, 212, 178, 0.1);
   }
 
-  /* Multi-Device Dynamic Responsive Overrides (iPhone Symmetries) */
   @media (max-width: 480px) {
-    .tests-matrix-grid-container {
-      grid-template-columns: 1fr !important;
-      gap: 1.5rem;
-    }
     .neural-cta-interactive-card {
-      padding: 2.25rem 1.5rem !important;
       align-items: center !important;
       text-align: center !important;
     }
-    .neural-cta-title-node {
-      font-size: 1.3rem !important;
-    }
     .neural-cta-desc-node {
-      text-align: center !important; /* Perfect center symmetry configuration for smartphones */
-      font-size: 0.9rem !important;
+      text-align: center !important;
     }
     .cta-badge-indicator {
       margin: 0 auto 1.25rem auto !important;
