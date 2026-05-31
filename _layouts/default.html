@@ -1,15 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}" data-theme="dark" style="background-color: #020617 !important;">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  
-  <style>
-  html, body { background-color: #020617; }
-  </style>
-    
-   </head>
-
+  {% include head/head.html %}
+</head>
 <body class="unified-ecosystem-dark-body">
 
   {% if site.gtm_id %}
@@ -38,7 +31,6 @@
   <script defer src="{{ '/assets/js/core/analytics-engine.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
   <script defer src="{{ '/assets/js/core/socratic-component.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
   <script defer src="{{ '/assets/js/core/synapse-effects.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  
   <script defer src="{{ '/assets/js/core/main.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
 
   {% if page.url == "/" %}
