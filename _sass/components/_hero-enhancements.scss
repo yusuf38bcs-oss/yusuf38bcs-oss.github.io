@@ -178,3 +178,44 @@
     background-attachment: scroll !important;
   }
 }
+
+/* ==========================================================================
+   MOBILE TOGGLE DESKTOP HIDE FIX
+   ========================================================================== */
+
+.greedy-nav .navicon,
+.greedy-nav__toggle,
+.masthead__menu-toggle,
+.nav__toggle,
+button[aria-label*="menu"],
+button[aria-label*="toggle"],
+button[aria-label*="navigation"] {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .greedy-nav .navicon,
+  .greedy-nav__toggle,
+  .masthead__menu-toggle,
+  .nav__toggle,
+  button[aria-label*="menu"],
+  button[aria-label*="toggle"],
+  button[aria-label*="navigation"] {
+    display: block !important;
+  }
+  
+  .greedy-nav .hidden-links {
+    display: block;
+  }
+}
+
+.greedy-nav .visible-links {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .greedy-nav .visible-links {
+    display: none !important;
+  }
+}
