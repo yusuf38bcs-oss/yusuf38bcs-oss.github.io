@@ -1,24 +1,40 @@
-<section class="recent-posts-viewport" style="padding: clamp(3rem, 6vw, 5rem) 1.5rem; background: #090d16; border-top: 1px solid rgba(255,255,255,0.05);">
-  <div style="max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box;">
-    <h2 style="font-size: clamp(1.35rem, 4vw, 1.75rem); color: #ffffff; margin-bottom: 2.5rem; text-align: left;">⚡ Latest Scientific Logs</h2>
-    <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-      {% assign filtered_docs = site.documents | where_exp: "doc", "doc.collection != 'posts'" %}
-      {% for doc in filtered_docs limit: 6 %}
-        <article style="background: #0f172a; padding: 1.25rem; border-radius: 8px; border-left: 4px solid #00d4b2; box-shadow: 0 4px 20px rgba(0,0,0,0.2); box-sizing: border-box;">
-          <span style="font-size: 0.75rem; color: #00d4b2; text-transform: uppercase; font-weight: bold; letter-spacing: 0.05em;">{{ doc.collection }}</span>
-          <h3 style="margin: 0.35rem 0; font-size: clamp(1.05rem, 3vw, 1.25rem); line-height: 1.3;">
-            <a href="{{ doc.url | relative_url }}" style="color: #ffffff; text-decoration: none;">{{ doc.title }}</a>
-          </h3>
-          <p style="color: #94a3b8; margin: 0; font-size: 0.9rem; line-height: 1.5;">{{ doc.excerpt | strip_html | truncatewords: 20 }}</p>
-        </article>
-      {% endfor %}
+﻿<section class="neural-section-wrapper" id="latest-logs-matrix">
+  <div class="section-container">
+    <div class="ecosystem-section-header">
+      <h2 class="ecosystem-section-title"><span class="accent-neon">⚡</span> Latest Scientific Logs</h2>
+      <div class="neural-accent-bar"></div>
+    </div>
+
+    <div class="neural-cards-grid">
+      {% assign sorted_docs = filtered_docs | default: site.posts | sort: 'date' | reverse %}
+      {% assign posts_count = sorted_docs | size %}
+
+      {% if posts_count > 0 %}
+        {% for doc in sorted_docs limit: 6 %}
+          <article class="premium-neural-card feed-article-card" data-aos="fade-up">
+            <div class="card-glow-layer"></div>
+            <div class="card-content-node">
+              <span class="card-tag-node">{% if doc.categories %}{{ doc.categories | first }}{% else %}Biology{% endif %}</span>
+              <h3 class="card-title-node">
+                <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
+              </h3>
+              {% if doc.excerpt %}
+                <p class="card-description-node">
+                  {{ doc.excerpt | strip_html | truncate: 120 }}
+                </p>
+              {% endif %}
+              <div class="card-footer-node">
+                <span class="card-date-node">{{ doc.date | date: "%B %d, %Y" }}</span>
+                <a href="{{ doc.url | relative_url }}" class="card-action-link" aria-label="Explore log vector: {{ doc.title }}">Explore Vector →</a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <div class="fallback-empty-card">
+          <p>Awaiting fresh scientific logs. Synaptic synchronization in progress...</p>
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
-
-<style>
-  @media (max-width: 480px) {
-    .recent-posts-viewport { padding-left: 1rem !important; padding-right: 1rem !important; }
-    .recent-posts-viewport article { padding: 1rem !important; }
-  }
-</style>
