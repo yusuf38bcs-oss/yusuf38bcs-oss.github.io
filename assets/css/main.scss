@@ -143,3 +143,250 @@ p, li, span, a, h1, h2, h3, h4 {
   word-spacing: normal !important;
   letter-spacing: normal !important;
 }
+
+/* ==========================================================================
+   HERO DESCRIPTION REFINEMENT
+   ========================================================================== */
+
+.neural-hero-shell {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.neural-hero-shell h1,
+.neural-hero-shell .hero-title,
+.neural-hero-shell .page__title,
+.neural-hero-shell .site-title {
+  color: #ffffff !important;
+  font-size: clamp(2rem, 5vw, 4rem) !important;
+  line-height: 1.15 !important;
+  margin: 0 auto 1rem auto !important;
+  max-width: 18ch !important;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6) !important;
+  font-weight: 800 !important;
+}
+
+.neural-hero-shell p,
+.neural-hero-shell .hero-description,
+.neural-hero-shell .page__lead,
+.neural-hero-shell .site-description {
+  color: #e2e8f0 !important;
+  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+  line-height: 1.65 !important;
+  margin: 0 auto !important;
+  max-width: 55ch !important;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Ensure text sits above any overlay */
+.neural-hero-shell > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+/* ==========================================================================
+   PROPER FIXES — Replacing JS Injection Hacks
+   ========================================================================== */
+
+/* --- GAP ELIMINATION (Replaces JS backdrop + padding hacks) --- */
+.masthead,
+.site-header,
+.page__header {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+.synaptic-homepage-matrix,
+.initial-content,
+#main,
+main,
+.page__content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* If a pseudo-element or backdrop is creating dead space, force hero to top */
+.neural-hero-shell,
+.neural-hero {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+  position: relative !important;
+  top: auto !important;
+}
+
+/* Internal breathing room for hero content (replaces JS padding-top: 30px) */
+.neural-hero-shell .hero-content {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+/* --- TOGGLE SUPPRESSION (Replaces broken JS toggle logic) --- */
+@media (min-width: 768px) {
+  .greedy-nav__toggle,
+  .masthead__menu-toggle,
+  .navicon,
+  .nav__toggle {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+  .visible-links,
+  .greedy-nav .visible-links {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* --- HERO TYPOGRAPHY (Replaces JS white-space hack) --- */
+.neural-hero-shell {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  min-height: 75svh !important;
+}
+
+.neural-hero-shell h1 {
+  color: #ffffff !important;
+  font-size: clamp(1.75rem, 5vw, 3.5rem) !important;
+  line-height: 1.15 !important;
+  margin: 0 auto 1rem !important;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.6) !important;
+  /* white-space: nowrap REMOVED — dangerous on mobile */
+}
+
+.neural-hero-shell p {
+  color: #e2e8f0 !important;
+  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+  line-height: 1.65 !important;
+  margin: 0 auto 2rem !important;
+  max-width: 55ch !important;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.7) !important;
+}
+
+.neural-hero-shell .hero-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+  justify-content: center !important;
+}
+
+/* --- CARDS GRID (Replaces JS-injected grid logic) --- */
+.neural-cards-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-items: stretch !important;
+  gap: 1.5rem !important;
+}
+@media (min-width: 768px) {
+  .neural-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .neural-cards-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+.premium-neural-card,
+.feed-article-card {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+.card-content-node {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* --- FOOTER PREMIUM + MOBILE (Replaces any JS footer logic) --- */
+.neural-core-footer {
+  background: linear-gradient(180deg, #020617 0%, #01040a 100%) !important;
+  border-top: 1px solid rgba(0, 212, 178, 0.15) !important;
+  padding: 5rem 1.5rem 2.5rem !important;
+}
+.footer-matrix-container {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 2.5rem !important;
+  grid-template-columns: 1fr !important;
+}
+.footer-matrix-title {
+  font-size: clamp(1.25rem, 3vw, 1.6rem) !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+}
+.footer-matrix-heading {
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  color: #00d4b2 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+.footer-base-strip {
+  max-width: 1400px !important;
+  margin: 2rem auto 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.05) !important;
+  padding-top: 1.5rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+}
+@media (max-width: 767px) {
+  .footer-matrix-container {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 2rem !important;
+  }
+  .footer-base-strip {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+}
+@media (min-width: 768px) {
+  .footer-matrix-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .brand-profile-node,
+  .dispatch-engine-node {
+    grid-column: 1 / -1 !important;
+  }
+}
+@media (min-width: 1024px) {
+  .footer-matrix-container {
+    grid-template-columns: 1.4fr 0.9fr 0.9fr 1.4fr !important;
+    gap: 3rem !important;
+  }
+  .brand-profile-node,
+  .dispatch-engine-node {
+    grid-column: auto !important;
+  }
+}
+
+/* --- ACCESSIBILITY --- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px dashed #00d4b2 !important;
+  outline-offset: 4px !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
