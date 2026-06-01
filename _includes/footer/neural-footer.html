@@ -1,99 +1,71 @@
-<footer class="neural-core-footer" role="contentinfo">
+﻿<footer class="neural-core-footer" role="contentinfo">
   <div class="footer-matrix-container">
-
+    
+    <!-- Column 1: Brand Identity -->
     <div class="footer-matrix-column brand-profile-node">
-      <h2 class="footer-matrix-title">
-        Neural Educational <span class="accent-neon">Ecosystem</span>
-      </h2>
+      <h2 class="footer-matrix-title">Learning Biology <span class="accent-neon">For Life</span></h2>
       <p class="footer-matrix-desc">
-        BCS Education Cadre Management Blueprint focused on multidisciplinary systems thinking, behavioral alignment, reflective pedagogy, digital learning architecture, and AI-assisted educational transformation.
+        A premium educational ecosystem dedicated to multidisciplinary systems thinking, AI-assisted pedagogy, and the advancement of biological sciences in the 4IR era.
       </p>
       <div class="neural-accent-bar"></div>
     </div>
 
+    <!-- Column 2: Explore -->
     <div class="footer-matrix-column">
-      <h3 class="footer-matrix-heading">Ecosystem Resources</h3>
-      <nav class="footer-matrix-nav" aria-label="Ecosystem Footer Navigation">
-        <a href="{{ '/' | relative_url }}" class="footer-matrix-link">Platform Home Hub</a>
-        <a href="{{ '/synaptic-bridge/systems-biology/' | relative_url }}" class="footer-matrix-link">Systems Biology Core</a>
-        <a href="{{ '/synaptic-bridge/interdisciplinary-science/' | relative_url }}" class="footer-matrix-link">Interdisciplinary Science</a>
-        <a href="{{ '/synaptic-bridge/4ir-education/' | relative_url }}" class="footer-matrix-link">4IR Cognitive Education</a>
-        <a href="{{ '/synaptic-bridge/knowledge-network/' | relative_url }}" class="footer-matrix-link">Knowledge Network Hub</a>
+      <h3 class="footer-matrix-heading">Explore</h3>
+      <nav class="footer-matrix-nav" aria-label="Explore Navigation">
+        <a href="{{ '/biology/' | relative_url }}" class="footer-matrix-link">Biology Matrix</a>
+        <a href="{{ '/socratic/' | relative_url }}" class="footer-matrix-link">Socratic Portal</a>
+        <a href="{{ '/research-hub/' | relative_url }}" class="footer-matrix-link">Research Hub</a>
+        <a href="{{ '/life-practices/' | relative_url }}" class="footer-matrix-link">Life Philosophy</a>
+        <a href="{{ '/knowledge-network/' | relative_url }}" class="footer-matrix-link">Knowledge Network</a>
       </nav>
     </div>
 
+    <!-- Column 3: Resources -->
     <div class="footer-matrix-column">
-      <h3 class="footer-matrix-heading">Legal & Policies</h3>
-      <nav class="footer-matrix-nav" aria-label="Legal Policy Footer Navigation">
+      <h3 class="footer-matrix-heading">Resources</h3>
+      <nav class="footer-matrix-nav" aria-label="Resources Navigation">
+        <a href="{{ '/about/' | relative_url }}" class="footer-matrix-link">About Ecosystem</a>
         <a href="{{ '/privacy-policy/' | relative_url }}" class="footer-matrix-link">Privacy Policy</a>
         <a href="{{ '/terms/' | relative_url }}" class="footer-matrix-link">Terms & Conditions</a>
+        <a href="{{ '/disclaimer/' | relative_url }}" class="footer-matrix-link">Disclaimer</a>
         <a href="{{ '/cookies/' | relative_url }}" class="footer-matrix-link">Cookie Policy</a>
-        <a href="{{ '/disclaimer/' | relative_url }}" class="footer-matrix-link">Disclaimer Liability</a>
       </nav>
     </div>
 
+    <!-- Column 4: Connect -->
     <div class="footer-matrix-column dispatch-engine-node">
-      <h3 class="footer-matrix-heading">Join the Neural Learning Network</h3>
-      <p class="footer-matrix-desc">
-        Receive Zoology lesson guides, Socratic models, and structural update tracks directly.
-      </p>
-      <button class="newsletter-action-trigger" onclick="openBrevoModal()" aria-haspopup="dialog" aria-controls="brevoPopup">
-        Subscribe Hub
+      <h3 class="footer-matrix-heading">Connect</h3>
+      <p class="footer-matrix-desc">Subscribe to the Brevo Learning Network for trackable updates.</p>
+      <button type="button" class="newsletter-action-trigger" 
+              onclick="if(typeof openBrevoModal==='function')openBrevoModal()" 
+              aria-label="Subscribe to Newsletter"
+              aria-haspopup="dialog">
+        Subscription Hub
       </button>
+      <a href="{{ '/contact/' | relative_url }}" class="footer-matrix-link contact-trigger">Contact Core Hub</a>
     </div>
 
   </div>
 
-  <div class="footer-pedagogy-card">
-    <h4 class="footer-pedagogy-title">Learn through Learning Others</h4>
-    <p class="footer-pedagogy-text">
-      "To understand the world, we first have to understand each other. Stepping into someone else's shoes and seeing life through their eyes is the fastest way to expand our own minds."
-    </p>
+  <!-- Pedagogy Card Section -->
+  <div class="footer-pedagogy-wrapper">
+    <div class="footer-pedagogy-card">
+      <h4 class="footer-pedagogy-title">The Pedagogical Core</h4>
+      <p class="footer-pedagogy-text">
+        "To understand the world, we must first bridge the gap between biological systems and human experience."
+      </p>
+    </div>
   </div>
 
+  <!-- Base Strip -->
   <div class="footer-base-strip">
     <p class="footer-base-copyright">
-      &copy; {{ "now" | date: "%Y" }} <span class="bright-text">Learning Biology For Life</span>. All Rights Reserved.
+      © {{ site.time | date: '%Y' }} <span class="bright-text">Learning Biology For Life</span>. Academic Excellence Array.
     </p>
     <div class="footer-base-preferences">
-      <a href="#" id="open_preferences_center" class="footer-base-link">Update cookies preferences</a>
+      <a href="#" id="open_preferences_center" class="footer-base-link">Cookie Preferences</a>
     </div>
   </div>
 </footer>
-
-<div id="brevoPopup" class="brevo-overlay-backdrop" role="dialog" aria-modal="true" aria-label="Newsletter Subscription Form">
-  <div class="brevo-modal-surface">
-    <button class="brevo-close-button" onclick="closeBrevoModal()" aria-label="Close subscription modal">&times;</button>
-    <iframe class="brevo-embedded-iframe" src="{{ site.brevo.form_url }}" title="Brevo Email Subscription Form" frameborder="0" scrolling="auto" allowfullscreen></iframe>
-  </div>
-</div>
-
-<script>
-  function openBrevoModal() {
-    var modal = document.getElementById("brevoPopup");
-    modal.style.display = "flex";
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeBrevoModal() {
-    var modal = document.getElementById("brevoPopup");
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-  }
-
-  window.addEventListener('click', function(event) {
-    var modal = document.getElementById("brevoPopup");
-    if (event.target === modal) {
-      closeBrevoModal();
-    }
-  });
-
-  window.addEventListener('keydown', function(event) {
-    if (event.key === "Escape" || event.keyCode === 27) {
-      var modal = document.getElementById("brevoPopup");
-      if (modal.style.display === "flex") {
-        closeBrevoModal();
-      }
-    }
-  });
-</script>
