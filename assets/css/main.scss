@@ -169,6 +169,11 @@ main {
   justify-content: center !important;
   text-align: center !important;
   min-height: 75svh !important;
+  padding-top: 0 !important;
+}
+
+.neural-hero-shell .hero-content {
+  transform: translateY(-50px);
 }
 .neural-hero-shell h1 {
   color: #ffffff !important;
@@ -181,7 +186,7 @@ main {
   color: #e2e8f0 !important;
   font-size: clamp(1rem, 2vw, 1.25rem) !important;
   line-height: 1.65 !important;
-  margin: 0 auto 2rem !important;
+  margin: 0 auto 1.25rem !important;
   max-width: 55ch !important;
   text-shadow: 0 1px 10px rgba(0,0,0,0.7) !important;
 }
