@@ -1,12 +1,14 @@
-﻿<section class="neural-section-wrapper" id="latest-logs-matrix">
+<section class="neural-section-wrapper" id="latest-logs-matrix">
   <div class="section-container">
     <div class="ecosystem-section-header">
       <h2 class="ecosystem-section-title"><span class="accent-neon">⚡</span> Latest Scientific Logs</h2>
       <div class="neural-accent-bar"></div>
     </div>
+
     <div class="neural-cards-grid">
       {% assign sorted_docs = filtered_docs | default: site.posts | sort: 'date' | reverse %}
       {% assign posts_count = sorted_docs | size %}
+
       {% if posts_count > 0 %}
         {% for doc in sorted_docs limit: 6 %}
           <article class="premium-neural-card feed-article-card" data-aos="fade-up">
