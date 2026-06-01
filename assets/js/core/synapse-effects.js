@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Learning Biology For Life - Synapse Effects Engine
  * Controls hardware-accelerated UI micro-interactions, cursor-tracking glows, 
  * and Web Animations API (WAAPI) routines with strict thread decoupling.
@@ -25,14 +25,7 @@
       if (!targetCards.length) return;
 
       targetCards.forEach(card => {
-        // Strict mobile typography guard injected to crush forced alignment splits
-        const textNodes = card.querySelectorAll("p, span, li");
-        textNodes.forEach(node => {
-          node.style.textAlign = "left";
-          node.style.wordSpacing = "normal";
-        });
-
-        // Inject performance composition layering hints directly into browser engine
+// Inject performance composition layering hints directly into browser engine
         card.style.willChange = "transform, background";
 
         card.addEventListener("mousemove", (e) => {

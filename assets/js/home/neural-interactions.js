@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Learning Biology For Life - Neural Interaction Core System
  * Manages premium tactile haptics, glow synchronizations, and button states across home layout nodes
  */
@@ -20,14 +20,7 @@
       if (!interactionContext.cards.length) return;
 
       interactionContext.cards.forEach(card => {
-        // Enforce strict left text tracking parameters to stop any text blitting errors
-        const descText = card.querySelector("p");
-        if (descText) {
-          descText.style.textAlign = "left";
-          descText.style.wordSpacing = "normal";
-        }
-
-        card.addEventListener("mouseenter", function() {
+card.addEventListener("mouseenter", function() {
           const pulseDot = card.querySelector(".neural-pulse-dot, .badge-pulse-dot");
           if (pulseDot) {
             pulseDot.style.transform = "scale(1.4)";
@@ -62,15 +55,7 @@
           }, 100);
         });
 
-        // Accessibility focus tracking support
-        btn.addEventListener("focus", function() {
-          btn.style.outline = "2px solid rgba(0, 212, 178, 0.4)";
-          btn.style.outlineOffset = "2px";
-        });
 
-        btn.addEventListener("blur", function() {
-          btn.style.outline = "none";
-        });
       });
     }
 

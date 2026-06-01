@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    OMNIPOTENT RUNTIME ORCHESTRATOR & FAILSAFE GUARD (FINAL PRODUCTION)
    Designed for Learning Biology For Life Ecosystem | Socratic Matrix 4.0
    ========================================================================== */
@@ -13,7 +13,7 @@
     const canvasNode = document.getElementById('neural-network');
     const viewportRoot = document.getElementById('synaptic-viewport-root');
 
-    console.log("🧬 Neural Ecosystem: DOM Core verified. Initiating hardware acceleration layers...");
+    console.log("ðŸ§¬ Neural Ecosystem: DOM Core verified. Initiating hardware acceleration layers...");
 
     /* --- 1. CANVAS RUNTIME PROTECTION LAYER --- */
     if (canvasNode) {
@@ -24,7 +24,7 @@
       // Trigger a custom event to notify neural-bg.js that it is 100% safe to ignite
       window.dispatchEvent(new CustomEvent('synaptic-canvas-ready'));
     } else {
-      console.warn("⚠️ Neural Ecosystem Warning: Active Canvas Node missing from current viewport.");
+      console.warn("âš ï¸ Neural Ecosystem Warning: Active Canvas Node missing from current viewport.");
     }
 
     /* --- 2. TOUCH-SCREEN POINTER EVENTS INSULATION --- */
@@ -40,8 +40,7 @@
     requestAnimationFrame(() => {
       htmlNode.classList.add('synaptic-runtime-loaded');
       bodyNode.classList.add('synaptic-runtime-loaded');
-      htmlNode.style.opacity = '1';
-      bodyNode.style.opacity = '1';
+      // Opacity controlled by CSS to prevent FOUC
     });
   }
 

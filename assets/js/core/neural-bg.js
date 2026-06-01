@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Learning Biology For Life - Neural Background Engine (Ecosystem Edition)
  * High-performance synaptic particle system with Retina optimization,
  * advanced requestAnimationFrame lifecycle management, and active core power-saving hooks.
@@ -9,8 +9,7 @@
 
   const NeuralEngine = {
     init() {
-      this.canvas = document.getElementById("neural-network");
-      if (!this.canvas) return;
+      this.canvas = document.getElementById("neural-network");\n      if (!this.canvas) return;\n      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       this.ctx = this.canvas.getContext("2d");
       this.particles = [];

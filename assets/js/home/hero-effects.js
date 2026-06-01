@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Learning Biology For Life - Hero Interactive Canvas Particles
  * Optimized for High-Performance 60 FPS Rendering, Mobile Battery Protection & Safe Memory Disposal
  */
@@ -7,8 +7,7 @@
   "use strict";
 
   document.addEventListener("DOMContentLoaded", function() {
-    const canvas = document.getElementById("synaptic-hero-canvas");
-    if (!canvas) return;
+    const canvas = document.getElementById("synaptic-hero-canvas");\n    if (!canvas) return;\n    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = canvas.getContext("2d");
     let particlesArray = [];
@@ -136,7 +135,6 @@
       }, 150);
     });
 
-    resizeCanvas();
-    animateEngineLoop();
+    document.addEventListener("visibilitychange", () => {\n      if (document.hidden) { cancelAnimationFrame(animationFrameId); }\n      else { resizeCanvas(); animateEngineLoop(); }\n    });\n    resizeCanvas();\n    animateEngineLoop();
   });
 })();

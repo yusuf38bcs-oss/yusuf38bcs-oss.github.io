@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Learning Biology For Life - Synaptic Theme Engine
  * Manages cognitive visual modes, state persistence, and cross-platform system UI synchronizations.
  * Built-in FOUC insulation safeguards and fully synchronized with core main.js telemetry.
@@ -41,7 +41,7 @@
       if (!THEMES.includes(theme)) theme = DEFAULT_THEME;
 
       ROOT.setAttribute("data-theme", theme);
-      localStorage.setItem(STORAGE_KEY, theme);
+      try { localStorage.setItem(STORAGE_KEY, theme); } catch(e) { console.warn("[ThemeEngine] Storage blocked in private mode."); }
       
       this.updateBrowserUI(theme);
       this.notifyEcosystem(theme);
