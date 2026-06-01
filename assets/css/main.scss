@@ -156,12 +156,11 @@ main {
 }
 .neural-hero-shell {
   margin-top: 0 !important;
-  padding-top: 0 !important;
+  padding-top: 100px !important; /* Push this down to clear your fixed header */
   border-top: none !important;
   position: relative !important;
   top: auto !important;
 }
-
 /* --- HERO TEXT POLISH --- */
 .neural-hero-shell {
   display: flex !important;
