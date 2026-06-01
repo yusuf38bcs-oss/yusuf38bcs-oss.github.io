@@ -64,7 +64,7 @@
         };
 
       } catch (error) {
-        console.error("🔒 Synaptic AI Core Misfire Trace:", error);
+        console.error(" Synaptic AI Core Misfire Trace:", error);
         throw error;
       } finally {
         this.isProcessing = false;
@@ -99,7 +99,7 @@
       html = html.replace(/\*\*([\s\S]*?)\*\*/g, '<strong style="color:#00d4b2; font-weight:700;">$1</strong>');
 
       // 3. Process Bullet Lists Framework
-      html = html.replace(/^\*\s+(.*)$/gim, '<li class="console-li-item" style="text-align:left; color:#cbd5e1; margin-bottom:4px; padding-left:4px;">➔ $1</li>');
+      html = html.replace(/^\*\s+(.*)$/gim, '<li class="console-li-item" style="text-align:left; color:#cbd5e1; margin-bottom:4px; padding-left:4px;"> $1</li>');
 
       // 4. Wrap Isolated Text Rows Into Beautiful, Strict Left-Aligned Paragraph blocks
       const rows = html.split("\n\n");

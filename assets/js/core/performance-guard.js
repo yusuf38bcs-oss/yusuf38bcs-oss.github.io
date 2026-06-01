@@ -22,7 +22,7 @@
       
       if (prefersReducedMotion) {
         document.documentElement.classList.add('reduced-motion');
-        console.log("⚙️ Performance Guard: Reduced motion profiles enforced. Complex transitions suspended.");
+        console.log(" Performance Guard: Reduced motion profiles enforced. Complex transitions suspended.");
       }
     },
 
@@ -43,9 +43,9 @@
         }));
 
         if (isTabHidden) {
-          console.log("🌙 Synaptic Guard: Tab thread suspended. Background canvas loops frozen to protect battery.");
+          console.log(" Synaptic Guard: Tab thread suspended. Background canvas loops frozen to protect battery.");
         } else {
-          console.log("☀️ Synaptic Guard: Tab thread activated. Re-aligning layout rendering matrices.");
+          console.log(" Synaptic Guard: Tab thread activated. Re-aligning layout rendering matrices.");
         }
       });
     }

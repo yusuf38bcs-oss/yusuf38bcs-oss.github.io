@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Learning Biology For Life - Socratic Component System (Final Edition)
  * Manages reflective UI states, analytical thinking nodes, and secure Shadow DOM Web Components.
  * Fully optimized for mobile typography and synchronized with the core theme controller.
@@ -30,15 +30,15 @@
         // Aligned perfectly with your premium main.scss button atoms
         trigger.className = "mi-btn-calculate socratic-trigger";
         trigger.style.cssText = "padding: 8px 18px !important; font-size: 0.85rem !important; margin-top: 1rem; display: inline-flex; align-items: center; gap: 8px;";
-        trigger.innerHTML = `<span>âš¡ Initiate Reflection</span>`;
+        trigger.innerHTML = `<span> Initiate Reflection</span>`;
         
         trigger.addEventListener("click", () => {
           block.classList.toggle("is-active");
           const isActive = block.classList.contains("is-active");
           
           trigger.innerHTML = isActive 
-            ? `<span>ðŸ‘ï¸ Hide Reflection</span>` 
-            : `<span>âš¡ Initiate Reflection</span>`;
+            ? `<span> Hide Reflection</span>` 
+            : `<span> Initiate Reflection</span>`;
 
           // Adjust soft toggle scaling properties on runtime click loops
           trigger.style.transform = "scale(0.97)";

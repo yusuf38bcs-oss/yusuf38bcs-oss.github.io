@@ -142,13 +142,13 @@
 
           <div style="background:#020617; border:1px solid rgba(255,255,255,0.03); padding:1.25rem; border-radius:6px; text-align:left;">
             <p style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin:0; text-align:left; word-spacing:normal;">
-              <strong style="color:#00d4b2;">🌱 Growth Edge Parameter:</strong> ${data.edge}
+              <strong style="color:#00d4b2;"> Growth Edge Parameter:</strong> ${data.edge}
             </p>
           </div>
 
           <div style="background:#020617; border:1px solid rgba(0,212,178,0.08); padding:1.25rem; border-radius:6px; text-align:left;">
             <p style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin:0; text-align:left; word-spacing:normal;">
-              <strong style="color:#3b82f6;">🧭 Recommended Learning Pathway:</strong> ${data.path}
+              <strong style="color:#3b82f6;"> Recommended Learning Pathway:</strong> ${data.path}
             </p>
           </div>
 

@@ -41,7 +41,7 @@
       const cacheKey = MCQ_CONFIG.cachePrefix + btoa(encodeURIComponent(state.topic));
       
       if (!window.SynapticAI) {
-        console.error("🔒 Synaptic AI Global Layer Missing.");
+        console.error(" Synaptic AI Global Layer Missing.");
         return;
       }
 
@@ -49,7 +49,7 @@
       if (generateBtn) generateBtn.disabled = true;
       resultBox.style.display = "none";
       box.style.display = "block";
-      box.innerHTML = `<p style="color:#00d4b2; font-weight:600; text-align:left; animation:flash 1.5s infinite;">⚡ Compiling neural evaluation track from proxy storage network...</p>`;
+      box.innerHTML = `<p style="color:#00d4b2; font-weight:600; text-align:left; animation:flash 1.5s infinite;"> Compiling neural evaluation track from proxy storage network...</p>`;
 
       // 1. Attempt Performance Caching Retrieval
       const cached = localStorage.getItem(cacheKey);
@@ -90,7 +90,7 @@
 
       } catch (error) {
         console.error("MCQ Matrix Generation Misfire:", error);
-        box.innerHTML = `<p style="color:#ef4444; font-weight:600; text-align:left;">⚠️ Synaptic loop timeout. Could not compile data charts. Please try re-initiating.</p>`;
+        box.innerHTML = `<p style="color:#ef4444; font-weight:600; text-align:left;"> Synaptic loop timeout. Could not compile data charts. Please try re-initiating.</p>`;
         if (generateBtn) generateBtn.disabled = false;
       }
     },

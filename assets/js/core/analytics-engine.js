@@ -177,7 +177,7 @@
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(analytics));
       } catch (err) {
-        console.warn("🔒 Synaptic Analytics: Local storage packet serialization blocked.", err);
+        console.warn(" Synaptic Analytics: Local storage packet serialization blocked.", err);
       }
     }
   };
@@ -219,7 +219,7 @@
         cognitiveProfile: { miTopChannels: [], archetype: null },
         totalExpeditionTime: 0
       };
-      console.log("🧹 Synaptic Analytics: Cognitive database registry cleared successfully.");
+      console.log(" Synaptic Analytics: Cognitive database registry cleared successfully.");
     }
   };
 

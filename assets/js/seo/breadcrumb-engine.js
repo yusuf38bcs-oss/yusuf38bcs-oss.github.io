@@ -55,7 +55,7 @@
       html += `
         <li style="display:inline-flex; align-items:center; font-size:0.85rem; font-weight:600;">
           <a href="${window.location.origin}/" style="color:#64748b; text-decoration:none; transition:color 0.2s ease;">Home</a>
-          <span style="margin:0 8px; color:#475569; opacity:0.5; font-size:0.75rem; user-select:none;">➔</span>
+          <span style="margin:0 8px; color:#475569; opacity:0.5; font-size:0.75rem; user-select:none;"></span>
         </li>
       `;
 
@@ -74,7 +74,7 @@
           // Parent node: High contrast interactive pointer link
           html += `
             <a href="${window.location.origin}${relativeAccumulatedPath}/" style="color:#cbd5e1; text-decoration:none; transition:color 0.2s ease;">${cleanTitle}</a>
-            <span style="margin:0 8px; color:#475569; opacity:0.5; font-size:0.75rem; user-select:none;">➔</span>
+            <span style="margin:0 8px; color:#475569; opacity:0.5; font-size:0.75rem; user-select:none;"></span>
           `;
         }
         

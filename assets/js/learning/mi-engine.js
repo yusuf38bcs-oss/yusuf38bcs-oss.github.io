@@ -118,7 +118,7 @@
 
         <div class="mi-dominant-badge" style="background:#020617; border:1px solid rgba(0,212,178,0.15); padding:1.25rem; border-radius:6px; margin-bottom:2rem; text-align:left;">
           <p style="color:#cbd5e1; font-size:0.92rem; line-height:1.6; margin:0; text-align:left; word-spacing:normal;">
-            ⚡ <strong style="color:#00d4b2;">Core Ecosystem Insight:</strong> Your high affinity toward the <strong style="color:#ffffff;">${top[0][0]} Matrix</strong> indicates your neural paths process life sciences best via structural networks. Avoid flat text cramming; instead, optimize your retention cycle by prioritizing ${top[0][0].toLowerCase()} metrics during study sessions.
+             <strong style="color:#00d4b2;">Core Ecosystem Insight:</strong> Your high affinity toward the <strong style="color:#ffffff;">${top[0][0]} Matrix</strong> indicates your neural paths process life sciences best via structural networks. Avoid flat text cramming; instead, optimize your retention cycle by prioritizing ${top[0][0].toLowerCase()} metrics during study sessions.
           </p>
         </div>
 

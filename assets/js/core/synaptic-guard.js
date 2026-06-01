@@ -6,7 +6,7 @@
   window.SynapticAI = {
     generate: async function() {
       return {
-        text: "⚡ AI module is initializing. If this message persists, verify that `socratic-component.js` is present in `assets/js/core/` and loads before this script."
+        text: " AI module is initializing. If this message persists, verify that `socratic-component.js` is present in `assets/js/core/` and loads before this script."
       };
     },
     renderMarkdown: function(text) {
