@@ -1,0 +1,13 @@
+/* ==========================================================================
+   OMEGA PRODUCTION OVERRIDES (THE CRITICAL FINAL CASCADING LAYER)
+   ========================================================================== */
+
+.neural-core-footer,
+.page__footer,
+footer {
+   display: block !important;
+   visibility: visible !important;
+   opacity: 1 !important;
+   position: relative !important;
+   z-index: 10 !important;
+}

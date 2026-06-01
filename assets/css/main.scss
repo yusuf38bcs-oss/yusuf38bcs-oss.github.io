@@ -1,4 +1,4 @@
-﻿---
+---
 # =========================================================================
 # LEARNING BIOLOGY FOR LIFE - ULTIMATE MASTER PRODUCTION STYLESHEET
 # Optimized for Jekyll 4.x, Bundler, and Cloudflare Pages Run-Time Nodes
@@ -8,28 +8,20 @@
 
 @charset "UTF-8";
 
-// --------------------------------------------------------------------------
-// à§§. à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦­à§à¦¯à¦¾à¦°à¦¿à¦¯à¦¼à§‡à¦¬à¦² à¦¸à§‡à¦«à¦—à¦¾à¦°à§à¦¡ (Sass Variable Scope Armor)
-// --------------------------------------------------------------------------
+/* --- 1. SYSTEM VARIABLE PROTECTION LAYER (Sass Variable Scope Armor) --- */
 $serif: Georgia, Times, serif !default;
 $sans-serif: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Arial, sans-serif !default;
 $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 
-// --------------------------------------------------------------------------
-// à§¨. à¦¥à¦¿à¦® à¦¸à§à¦•à¦¿à¦¨ à¦“ à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦“à¦­à¦¾à¦°à¦°à¦¾à¦‡à¦¡ (MUST LOAD BEFORE CORE CORE MAIN)
-// --------------------------------------------------------------------------
+/* --- 2. CORE SKIN AND VARIABLE INITIALIZATION --- */
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
-@import "core/variables"; // Loaded here so your custom values override theme defaults!
+@import "core/variables"; 
 @import "core/mixins";
 
-// --------------------------------------------------------------------------
-// à§©. à¦®à§‚à¦² à¦¥à¦¿à¦® à¦†à¦°à§à¦•à¦¿à¦Ÿà§‡à¦•à¦šà¦¾à¦° à¦²à§‹à¦¡à¦¾à¦°
-// --------------------------------------------------------------------------
+/* --- 3. THEME ENGINE LOADING LAYER --- */
 @import "minimal-mistakes";
 
-// --------------------------------------------------------------------------
-// à§ª. à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦¨à¦¿à¦‰à¦°à¦¾à¦² à¦‡à¦‰à¦†à¦‡ à¦•à¦®à§à¦ªà§‹à¦¨à§‡à¦¨à§à¦Ÿà¦¸ (Safe Injection Manifolds)
-// --------------------------------------------------------------------------
+/* --- 4. MODULAR CORE UI COMPONENTS (Safe Injection Manifolds) --- */
 @import "components/buttons";
 @import "components/cards";
 @import "components/hero";
@@ -38,27 +30,23 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 @import "components/neural-ui";
 @import "components/neural-hero";
 @import "components/hero-enhancements";
-@import "components/navigation";  /* ADDED: renamed from .sass to .scss */
-@import "components/footer";      /* ADDED: extracted footer styles */
+@import "components/navigation";  
+@import "components/footer";      
 
-// --------------------------------------------------------------------------
-// à§«. à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦²à§‡à¦†à¦‰à¦Ÿ à¦“ à¦°à§à¦Ÿà¦¿à¦‚ à¦®à§à¦¯à¦¾à¦Ÿà§à¦°à¦¿à¦•à§à¦¸
-// --------------------------------------------------------------------------
+/* --- 5. STRUCTURED ECOSYSTEM LAYOUT SYSTEMS --- */
 @import "layout/home-layout";
 @import "layout/synaptic";
-@import "layout/page-layouts";   /* ADDED: unified page/single/archive grid */
+@import "layout/page-layouts";   
 
-// --------------------------------------------------------------------------
-// à§¬. à¦‡à¦•à§‹à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦‡à¦‰à¦Ÿà¦¿à¦²à¦¿à¦Ÿà¦¿ à¦®à¦¡à¦¿à¦‰à¦²à¦¸
-// --------------------------------------------------------------------------
+/* --- 6. UTILITY PIPELINES --- */
 @import "utilities/animations";
 @import "utilities/helpers";
 @import "utilities/utilities";
 @import "utilities/neural-navbar";
 
-// ==========================================================================
-// ðŸ’¡ à¦•à§à¦°à¦¿à¦ªà§à¦Ÿà§‹-à¦«à¦¿à¦•à§à¦¸à§‡à¦¸ à¦à¦¬à¦‚ à¦¡à¦¿à¦«à§‡à¦¨à§à¦¸à¦¿à¦­ à¦¸à¦¿à¦à¦¸à¦à¦¸ à¦°à§à¦²à¦¸ (Appended for Absolute Priority)
-// ==========================================================================
+/* ==========================================================================
+   FIXES AND DEFENSIVE CSS RULES (Appended for Absolute Priority)
+   ========================================================================== */
 
 /* FIX 1: Footer Visibility Policy */
 .neural-core-footer,
@@ -71,11 +59,12 @@ footer {
   z-index: 10 !important;
 }
 
-/* FIX 2: Mobile Toggle Desktop Hiding Rules (Bulletproof) */
-@media (min-width: 768px) {
+/* FIX 2: Mobile Toggle Desktop Hiding Rules (Bulletproof Breakpoint Matrix) */
+@media (min-width: 1024px) {
   body .masthead .greedy-nav__toggle,
   body .site-header .greedy-nav__toggle,
-  .masthead .greedy-nav .greedy-nav__toggle {
+  .masthead .greedy-nav .greedy-nav__toggle,
+  .greedy-nav__toggle {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -89,16 +78,18 @@ footer {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   body .masthead .greedy-nav__toggle,
   body .site-header .greedy-nav__toggle {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
     width: auto !important;
-    height: 2rem !important;
+    height: 2.5rem !important;
   }
   .visible-links {
     display: none !important;
@@ -133,7 +124,7 @@ body {
   opacity: 1 !important;
 }
 
-/* FIX 6: Clean Hero Fallbacks (Allows your _neural-hero.scss vectors to shine) */
+/* FIX 6: Clean Hero Fallbacks */
 .page__hero--overlay {
   background-color: #020617 !important;
 }
@@ -145,7 +136,7 @@ p, li, span, a, h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   SURGICAL FIXES — Gap, Hero Text, Cards (NO FOOTER — handled by _footer.scss)
+   SURGICAL FIXES - Gap, Hero Text, Cards (NO FOOTER - handled by _footer.scss)
    ========================================================================== */
 
 /* --- GAP ELIMINATION --- */
@@ -230,3 +221,6 @@ main {
   display: flex !important;
   flex-direction: column !important;
 }
+
+/* --- THE ABSOLUTE FINAL OVERRIDES MATRIX IMPORT --- */
+@import "layout/omega-overrides";
