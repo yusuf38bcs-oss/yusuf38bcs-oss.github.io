@@ -1,4 +1,4 @@
----
+﻿---
 # =========================================================================
 # LEARNING BIOLOGY FOR LIFE - ULTIMATE MASTER PRODUCTION STYLESHEET
 # Optimized for Jekyll 4.x, Bundler, and Cloudflare Pages Run-Time Nodes
@@ -9,26 +9,26 @@
 @charset "UTF-8";
 
 // --------------------------------------------------------------------------
-// ১. সিস্টেম ভ্যারিয়েবল সেফগার্ড (Sass Variable Scope Armor)
+// à§§. à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦­à§à¦¯à¦¾à¦°à¦¿à¦¯à¦¼à§‡à¦¬à¦² à¦¸à§‡à¦«à¦—à¦¾à¦°à§à¦¡ (Sass Variable Scope Armor)
 // --------------------------------------------------------------------------
 $serif: Georgia, Times, serif !default;
 $sans-serif: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Arial, sans-serif !default;
 $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 
 // --------------------------------------------------------------------------
-// ২. থিম স্কিন ও কাস্টম ওভাররাইড (MUST LOAD BEFORE CORE CORE MAIN)
+// à§¨. à¦¥à¦¿à¦® à¦¸à§à¦•à¦¿à¦¨ à¦“ à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦“à¦­à¦¾à¦°à¦°à¦¾à¦‡à¦¡ (MUST LOAD BEFORE CORE CORE MAIN)
 // --------------------------------------------------------------------------
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
 @import "core/variables"; // Loaded here so your custom values override theme defaults!
 @import "core/mixins";
 
 // --------------------------------------------------------------------------
-// ৩. মূল থিম আর্কিটেকচার লোডার
+// à§©. à¦®à§‚à¦² à¦¥à¦¿à¦® à¦†à¦°à§à¦•à¦¿à¦Ÿà§‡à¦•à¦šà¦¾à¦° à¦²à§‹à¦¡à¦¾à¦°
 // --------------------------------------------------------------------------
 @import "minimal-mistakes";
 
 // --------------------------------------------------------------------------
-// ৪. কাস্টম নিউরাল ইউআই কম্পোনেন্টস (Safe Injection Manifolds)
+// à§ª. à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦¨à¦¿à¦‰à¦°à¦¾à¦² à¦‡à¦‰à¦†à¦‡ à¦•à¦®à§à¦ªà§‹à¦¨à§‡à¦¨à§à¦Ÿà¦¸ (Safe Injection Manifolds)
 // --------------------------------------------------------------------------
 @import "components/buttons";
 @import "components/cards";
@@ -42,14 +42,14 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 @import "components/footer";      /* ADDED: extracted footer styles */
 
 // --------------------------------------------------------------------------
-// ৫. কাস্টম লেআউট ও রুটিং ম্যাট্রিক্স
+// à§«. à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦²à§‡à¦†à¦‰à¦Ÿ à¦“ à¦°à§à¦Ÿà¦¿à¦‚ à¦®à§à¦¯à¦¾à¦Ÿà§à¦°à¦¿à¦•à§à¦¸
 // --------------------------------------------------------------------------
 @import "layout/home-layout";
 @import "layout/synaptic";
 @import "layout/page-layouts";   /* ADDED: unified page/single/archive grid */
 
 // --------------------------------------------------------------------------
-// ৬. ইকোসিস্টেম ইউটিলিটি মডিউলস
+// à§¬. à¦‡à¦•à§‹à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦‡à¦‰à¦Ÿà¦¿à¦²à¦¿à¦Ÿà¦¿ à¦®à¦¡à¦¿à¦‰à¦²à¦¸
 // --------------------------------------------------------------------------
 @import "utilities/animations";
 @import "utilities/helpers";
@@ -57,7 +57,7 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 @import "utilities/neural-navbar";
 
 // ==========================================================================
-// 💡 ক্রিপ্টো-ফিক্সেস এবং ডিফেন্সিভ সিএসএস রুলস (Appended for Absolute Priority)
+// ðŸ’¡ à¦•à§à¦°à¦¿à¦ªà§à¦Ÿà§‹-à¦«à¦¿à¦•à§à¦¸à§‡à¦¸ à¦à¦¬à¦‚ à¦¡à¦¿à¦«à§‡à¦¨à§à¦¸à¦¿à¦­ à¦¸à¦¿à¦à¦¸à¦à¦¸ à¦°à§à¦²à¦¸ (Appended for Absolute Priority)
 // ==========================================================================
 
 /* FIX 1: Footer Visibility Policy */
@@ -145,71 +145,25 @@ p, li, span, a, h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   HERO DESCRIPTION REFINEMENT
+   SURGICAL FIXES — Gap, Hero Text, Cards (NO FOOTER — handled by _footer.scss)
    ========================================================================== */
 
-.neural-hero-shell {
-  text-align: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.neural-hero-shell h1,
-.neural-hero-shell .hero-title,
-.neural-hero-shell .page__title,
-.neural-hero-shell .site-title {
-  color: #ffffff !important;
-  font-size: clamp(2rem, 5vw, 4rem) !important;
-  line-height: 1.15 !important;
-  margin: 0 auto 1rem auto !important;
-  max-width: 18ch !important;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6) !important;
-  font-weight: 800 !important;
-}
-
-.neural-hero-shell p,
-.neural-hero-shell .hero-description,
-.neural-hero-shell .page__lead,
-.neural-hero-shell .site-description {
-  color: #e2e8f0 !important;
-  font-size: clamp(1rem, 2vw, 1.25rem) !important;
-  line-height: 1.65 !important;
-  margin: 0 auto !important;
-  max-width: 55ch !important;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7) !important;
-}
-
-/* Ensure text sits above any overlay */
-.neural-hero-shell > * {
-  position: relative !important;
-  z-index: 2 !important;
-}
-/* ==========================================================================
-   PROPER FIXES — Replacing JS Injection Hacks
-   ========================================================================== */
-
-/* --- GAP ELIMINATION (Replaces JS backdrop + padding hacks) --- */
+/* --- GAP ELIMINATION --- */
 .masthead,
 .site-header,
 .page__header {
   margin-bottom: 0 !important;
   border-bottom: none !important;
 }
-
 .synaptic-homepage-matrix,
+#synaptic-home-root,
 .initial-content,
 #main,
-main,
-.page__content {
+main {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
-
-/* If a pseudo-element or backdrop is creating dead space, force hero to top */
-.neural-hero-shell,
-.neural-hero {
+.neural-hero-shell {
   margin-top: 0 !important;
   padding-top: 0 !important;
   border-top: none !important;
@@ -217,35 +171,7 @@ main,
   top: auto !important;
 }
 
-/* Internal breathing room for hero content (replaces JS padding-top: 30px) */
-.neural-hero-shell .hero-content {
-  padding-top: 2rem !important;
-  padding-bottom: 2rem !important;
-}
-
-/* --- TOGGLE SUPPRESSION (Replaces broken JS toggle logic) --- */
-@media (min-width: 768px) {
-  .greedy-nav__toggle,
-  .masthead__menu-toggle,
-  .navicon,
-  .nav__toggle {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
-  }
-  .visible-links,
-  .greedy-nav .visible-links {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-}
-
-/* --- HERO TYPOGRAPHY (Replaces JS white-space hack) --- */
+/* --- HERO TEXT POLISH --- */
 .neural-hero-shell {
   display: flex !important;
   align-items: center !important;
@@ -253,16 +179,13 @@ main,
   text-align: center !important;
   min-height: 75svh !important;
 }
-
 .neural-hero-shell h1 {
   color: #ffffff !important;
   font-size: clamp(1.75rem, 5vw, 3.5rem) !important;
   line-height: 1.15 !important;
   margin: 0 auto 1rem !important;
   text-shadow: 0 2px 16px rgba(0,0,0,0.6) !important;
-  /* white-space: nowrap REMOVED — dangerous on mobile */
 }
-
 .neural-hero-shell p {
   color: #e2e8f0 !important;
   font-size: clamp(1rem, 2vw, 1.25rem) !important;
@@ -271,7 +194,6 @@ main,
   max-width: 55ch !important;
   text-shadow: 0 1px 10px rgba(0,0,0,0.7) !important;
 }
-
 .neural-hero-shell .hero-actions {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -279,7 +201,7 @@ main,
   justify-content: center !important;
 }
 
-/* --- CARDS GRID (Replaces JS-injected grid logic) --- */
+/* --- CARDS GRID --- */
 .neural-cards-grid {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -307,154 +229,4 @@ main,
   flex: 1 1 auto !important;
   display: flex !important;
   flex-direction: column !important;
-}
-
-/* --- FOOTER PREMIUM + MOBILE (Replaces any JS footer logic) --- */
-.neural-core-footer {
-  background: linear-gradient(180deg, #020617 0%, #01040a 100%) !important;
-  border-top: 1px solid rgba(0, 212, 178, 0.15) !important;
-  padding: 5rem 1.5rem 2.5rem !important;
-}
-.footer-matrix-container {
-  max-width: 1400px !important;
-  margin: 0 auto !important;
-  display: grid !important;
-  gap: 2.5rem !important;
-  grid-template-columns: 1fr !important;
-}
-.footer-matrix-title {
-  font-size: clamp(1.25rem, 3vw, 1.6rem) !important;
-  font-weight: 800 !important;
-  color: #ffffff !important;
-}
-.footer-matrix-heading {
-  font-size: 0.85rem !important;
-  font-weight: 800 !important;
-  color: #00d4b2 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
-}
-.footer-base-strip {
-  max-width: 1400px !important;
-  margin: 2rem auto 0 !important;
-  border-top: 1px solid rgba(255,255,255,0.05) !important;
-  padding-top: 1.5rem !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 1rem !important;
-}
-@media (max-width: 767px) {
-  .footer-matrix-container {
-    grid-template-columns: 1fr !important;
-    text-align: center !important;
-    gap: 2rem !important;
-  }
-  .footer-base-strip {
-    flex-direction: column !important;
-    text-align: center !important;
-  }
-}
-@media (min-width: 768px) {
-  .footer-matrix-container {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  .brand-profile-node,
-  .dispatch-engine-node {
-    grid-column: 1 / -1 !important;
-  }
-}
-@media (min-width: 1024px) {
-  .footer-matrix-container {
-    grid-template-columns: 1.4fr 0.9fr 0.9fr 1.4fr !important;
-    gap: 3rem !important;
-  }
-  .brand-profile-node,
-  .dispatch-engine-node {
-    grid-column: auto !important;
-  }
-}
-
-/* --- ACCESSIBILITY --- */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px dashed #00d4b2 !important;
-  outline-offset: 4px !important;
-}
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* ==========================================================================
-   GAP ELIMINATION — Backdrop Out of Flow + Wrapper Padding Zeroed
-   ========================================================================== */
-
-/* Remove backdrop from document flow to collapse the 238px gap */
-.global-ambient-matrix-backdrop {
-  position: absolute !important;
-  top: 61px !important;
-  left: 0 !important;
-  width: 100% !important;
-  z-index: -1 !important;
-  pointer-events: none !important;
-}
-
-/* Collapse wrapper padding that was pushing hero down */
-.synaptic-homepage-matrix,
-#synaptic-home-root,
-.initial-content,
-#main,
-main {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
-}
-
-/* Hero internal breathing room (replaces JS padding) */
-.neural-hero-shell {
-  padding-top: 80px !important;
-  padding-bottom: 120px !important;
-  min-height: 75svh !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-  position: relative !important;
-  margin-top: 0 !important;
-  border-top: none !important;
-}
-
-.neural-hero-shell .hero-content {
-  position: relative !important;
-  z-index: 2 !important;
-}
-
-.neural-hero-shell h1 {
-  color: #ffffff !important;
-  font-size: clamp(1.75rem, 5vw, 3.5rem) !important;
-  line-height: 1.15 !important;
-  margin: 0 auto 1rem !important;
-  text-shadow: 0 2px 16px rgba(0,0,0,0.6) !important;
-}
-
-.neural-hero-shell p {
-  color: #e2e8f0 !important;
-  font-size: clamp(1rem, 2vw, 1.25rem) !important;
-  line-height: 1.65 !important;
-  margin: 0 auto 2rem !important;
-  max-width: 55ch !important;
-  text-shadow: 0 1px 10px rgba(0,0,0,0.7) !important;
-}
-
-.neural-hero-shell .hero-actions {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 1rem !important;
-  justify-content: center !important;
 }

@@ -1,227 +1,175 @@
 ﻿/* ==========================================================================
-   NEURAL FOOTER SYSTEM — Refined & Specificity-Safe
+   NEURAL FOOTER SYSTEM — Authoritative with !important
    ========================================================================== */
 
 .neural-core-footer {
-  background: radial-gradient(circle at top right, #0a0f1e, #020617);
-  padding: 5rem 5% 2.5rem;
-  border-top: 1px solid rgba(0, 212, 178, 0.15);
-  color: #cbd5e1;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  position: relative;
-  z-index: 10;
+  background: radial-gradient(circle at top right, #0a0f1e, #020617) !important;
+  padding: 5rem 5% 2.5rem !important;
+  border-top: 1px solid rgba(0, 212, 178, 0.15) !important;
+  color: #cbd5e1 !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  position: relative !important;
+  z-index: 10 !important;
+  display: block !important;
 }
-
 .footer-matrix-container {
-  display: grid;
-  max-width: 1400px;
-  margin: 0 auto;
-  gap: 2.5rem;
-  grid-template-columns: 1fr;
+  display: grid !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  gap: 2.5rem !important;
+  grid-template-columns: 1fr !important;
 }
-
 .footer-matrix-column {
-  min-width: 0;
+  min-width: 0 !important;
 }
-
 .footer-matrix-title {
-  color: #ffffff;
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
-  margin: 0 0 1rem 0;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  color: #ffffff !important;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem) !important;
+  margin: 0 0 1rem 0 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
 }
-
 .footer-matrix-title .accent-neon {
-  color: #00d4b2;
-  text-shadow: 0 0 15px rgba(0, 212, 178, 0.3);
+  color: #00d4b2 !important;
+  text-shadow: 0 0 15px rgba(0, 212, 178, 0.3) !important;
 }
-
 .footer-matrix-heading {
-  color: #f8fafc;
-  font-size: 0.85rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0 0 1.5rem 0;
-  position: relative;
+  color: #f8fafc !important;
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  margin: 0 0 1.5rem 0 !important;
+  position: relative !important;
 }
-
 .footer-matrix-heading::after {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: #00d4b2;
-  margin-top: 8px;
+  content: '' !important;
+  display: block !important;
+  width: 20px !important;
+  height: 2px !important;
+  background: #00d4b2 !important;
+  margin-top: 8px !important;
 }
-
 .footer-matrix-desc {
-  color: #94a3b8;
-  line-height: 1.65;
-  font-size: 0.95rem;
-  margin: 0 0 1.5rem 0;
+  color: #94a3b8 !important;
+  line-height: 1.65 !important;
+  font-size: 0.95rem !important;
+  margin: 0 0 1.5rem 0 !important;
 }
-
 .footer-matrix-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
 }
-
 .footer-matrix-link {
-  color: #cbd5e1;
-  text-decoration: none;
-  transition: color 0.2s ease, padding-left 0.2s ease;
-  font-size: 0.95rem;
-  display: inline-block;
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease, padding-left 0.2s ease !important;
+  font-size: 0.95rem !important;
+  display: inline-block !important;
 }
-
 .footer-matrix-link:hover,
 .footer-matrix-link:focus-visible {
-  color: #00d4b2;
-  padding-left: 5px;
-  outline: 2px dashed #00d4b2;
-  outline-offset: 2px;
-  border-radius: 2px;
+  color: #00d4b2 !important;
+  padding-left: 5px !important;
+  outline: 2px dashed #00d4b2 !important;
+  outline-offset: 2px !important;
+  border-radius: 2px !important;
 }
-
 .newsletter-action-trigger {
-  background: linear-gradient(135deg, #00d4b2, #0055ff);
-  color: #020617;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  margin-bottom: 1rem;
-  display: inline-block;
+  background: linear-gradient(135deg, #00d4b2, #0055ff) !important;
+  color: #020617 !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  margin-bottom: 1rem !important;
+  display: inline-block !important;
 }
-
 .newsletter-action-trigger:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 212, 178, 0.2);
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 20px rgba(0, 212, 178, 0.2) !important;
 }
-
-.newsletter-action-trigger:focus-visible {
-  outline: 2px dashed #ffffff;
-  outline-offset: 3px;
-}
-
-.contact-trigger {
-  display: inline-block;
-  margin-top: 0.5rem;
-}
-
-/* Pedagogy Card */
 .footer-pedagogy-wrapper {
-  max-width: 1400px;
-  margin: 4rem auto 2.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 2.5rem;
+  max-width: 1400px !important;
+  margin: 4rem auto 2.5rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding-top: 2.5rem !important;
 }
-
 .footer-pedagogy-card {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 12px;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.02) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 2rem !important;
+  border-radius: 12px !important;
+  text-align: center !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
 }
-
 .footer-pedagogy-title {
-  color: #00d4b2;
-  margin: 0 0 0.5rem 0;
-  font-weight: 700;
-  font-size: 1.1rem;
+  color: #00d4b2 !important;
+  margin: 0 0 0.5rem 0 !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
 }
-
 .footer-pedagogy-text {
-  color: #cbd5e1;
-  font-style: italic;
-  line-height: 1.6;
-  margin: 0;
-  font-size: 0.95rem;
+  color: #cbd5e1 !important;
+  font-style: italic !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  font-size: 0.95rem !important;
 }
-
-/* Base Strip */
 .footer-base-strip {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1400px;
-  margin: 2.5rem auto 0;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 0.88rem;
-  color: #64748b;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  max-width: 1400px !important;
+  margin: 2.5rem auto 0 !important;
+  padding-top: 1.5rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  font-size: 0.88rem !important;
+  color: #64748b !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
 }
-
-.footer-base-copyright {
-  margin: 0;
-}
-
 .bright-text {
-  color: #94a3b8;
-  font-weight: 600;
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
 }
-
 .footer-base-link {
-  color: #94a3b8;
-  text-decoration: none;
-  transition: color 0.2s ease;
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
 }
-
-.footer-base-link:hover,
-.footer-base-link:focus-visible {
-  color: #00d4b2;
-  outline: 2px dashed #00d4b2;
-  outline-offset: 2px;
-  border-radius: 2px;
+.footer-base-link:hover {
+  color: #00d4b2 !important;
 }
-
-/* Tablet */
 @media (min-width: 768px) {
   .footer-matrix-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }
-
-/* Desktop */
 @media (min-width: 1024px) {
   .footer-matrix-container {
-    grid-template-columns: 1.4fr 0.9fr 0.9fr 1.4fr;
-    gap: 3rem;
+    grid-template-columns: 1.4fr 0.9fr 0.9fr 1.4fr !important;
+    gap: 3rem !important;
   }
 }
-
-/* Small Mobile */
-@media (max-width: 480px) {
-  .neural-core-footer {
-    padding: 2.5rem 1rem 1.5rem;
-  }
+@media (max-width: 767px) {
   .footer-matrix-container {
-    gap: 2rem;
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 2rem !important;
   }
-  .footer-matrix-title {
-    font-size: 1.35rem;
-  }
-  .footer-matrix-desc {
-    font-size: 0.9rem;
-  }
-  .footer-pedagogy-card {
-    padding: 1.5rem 1rem;
+  .footer-matrix-nav {
+    align-items: center !important;
   }
   .footer-base-strip {
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
+    flex-direction: column !important;
+    text-align: center !important;
+    justify-content: center !important;
   }
 }
