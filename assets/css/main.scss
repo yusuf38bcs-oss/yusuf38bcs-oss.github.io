@@ -229,3 +229,234 @@ main {
 
 /* --- THE ABSOLUTE FINAL OVERRIDES MATRIX IMPORT --- */
 @import "layout/omega-overrides";
+
+$FixBlock = @'
+
+/* ==========================================================================
+   ISSUE FIXES 8-14 — APPENDED TO MAIN.SCSS (Raw CSS, no @import)
+   ========================================================================== */
+
+/* ISSUE 1: Desktop Toggle Still Visible */
+@media (min-width: 768px) {
+  .greedy-nav__toggle,
+  .masthead__menu-toggle,
+  .nav__toggle,
+  .navicon,
+  button[aria-label*="menu"],
+  button[aria-label*="toggle"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    position: absolute !important;
+  }
+  .visible-links,
+  .masthead__inner .visible-links,
+  .greedy-nav .visible-links {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+  }
+}
+
+/* ISSUE 2: Gap Above Hero */
+.masthead,
+.site-header,
+.neural-site-masthead,
+.page__header {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+.synaptic-homepage-matrix,
+#synaptic-home-root,
+main,
+.initial-content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+.neural-hero-shell,
+.neural-hero,
+.page__hero,
+.home-hero {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+}
+
+/* ISSUE 3: Hero Background Lock */
+.neural-hero-shell,
+.neural-hero {
+  background-image: url('/assets/images/header-bg.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  min-height: 75svh !important;
+}
+/* Remove any pseudo-element overlay that hides the image */
+.neural-hero-shell::before,
+.neural-hero::before,
+.page__hero--overlay::before {
+  background: transparent !important;
+  opacity: 0 !important;
+  display: none !important;
+}
+
+/* ISSUE 6: Equal-Height Neural Cards */
+.neural-cards-grid,
+.cards-grid,
+.academic-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-items: stretch !important;
+  gap: 1.5rem !important;
+}
+@media (min-width: 768px) {
+  .neural-cards-grid,
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .neural-cards-grid,
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+.premium-neural-card,
+.feed-article-card,
+.neural-card-shell,
+.section-card {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+.card-content-node {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* ISSUE 4 & 7: Premium Footer + Mobile Layout */
+.neural-core-footer {
+  background: linear-gradient(180deg, #020617 0%, #01040a 100%) !important;
+  border-top: 1px solid rgba(0, 212, 178, 0.15) !important;
+  padding: 5rem 1.5rem 2.5rem 1.5rem !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+.footer-matrix-container {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 2.5rem !important;
+  grid-template-columns: 1fr !important;
+}
+.footer-matrix-title {
+  font-size: clamp(1.25rem, 3vw, 1.6rem) !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  line-height: 1.25 !important;
+  margin: 0 0 1rem 0 !important;
+}
+.footer-matrix-heading {
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  color: #00d4b2 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin: 0 0 1.25rem 0 !important;
+}
+.footer-matrix-link {
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+  font-size: 0.95rem !important;
+  transition: color 0.2s ease !important;
+}
+.footer-matrix-link:hover {
+  color: #00d4b2 !important;
+}
+.footer-base-strip {
+  max-width: 1400px !important;
+  margin: 2rem auto 0 auto !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding-top: 1.5rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+}
+.footer-base-copyright,
+.footer-base-link {
+  font-size: 0.88rem !important;
+  color: #94a3b8 !important;
+}
+.footer-base-link:hover {
+  color: #00d4b2 !important;
+}
+
+/* Footer Mobile */
+@media (max-width: 767px) {
+  .footer-matrix-container {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    text-align: center !important;
+  }
+  .brand-profile-node,
+  .dispatch-engine-node {
+    grid-column: auto !important;
+  }
+  .footer-matrix-desc {
+    text-align: center !important;
+  }
+  .footer-matrix-nav {
+    align-items: center !important;
+  }
+  .footer-base-strip {
+    flex-direction: column !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+@media (min-width: 768px) {
+  .footer-matrix-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .brand-profile-node,
+  .dispatch-engine-node {
+    grid-column: 1 / -1 !important;
+  }
+}
+@media (min-width: 1024px) {
+  .footer-matrix-container {
+    grid-template-columns: 1.4fr 0.9fr 0.9fr 1.4fr !important;
+    gap: 3rem !important;
+  }
+  .brand-profile-node,
+  .dispatch-engine-node {
+    grid-column: auto !important;
+  }
+}
+
+/* ISSUE 8: Architecture Safety */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px dashed #00d4b2 !important;
+  outline-offset: 4px !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
