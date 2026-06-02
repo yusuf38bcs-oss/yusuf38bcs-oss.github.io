@@ -984,3 +984,28 @@ header,.navbar,.site-header{
   flex-direction: column !important;
   justify-content: flex-start !important;
 }
+
+/* Menu bar spacing */
+.menu-bar {
+  margin-bottom: 0.5rem;   /* keep tight but not zero */
+  padding-bottom: 0;       
+}
+
+/* Hero title positioning */
+.hero-title {
+  margin-top: 2rem;        /* give breathing room below menu */
+  font-size: 2rem;         /* adjust size for balance */
+  line-height: 1.3;        /* prevent overlap with description */
+  text-align: center;
+}
+
+/* Hero description spacing */
+.hero-description {
+  margin-top: 1rem;        /* separate from title */
+  font-size: 1.1rem;
+  line-height: 1.5;        /* ensure readability */
+  text-align: center;
+  max-width: 800px;        /* prevent text stretching too wide */
+  margin-left: auto;
+  margin-right: auto;
+}
