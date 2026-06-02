@@ -154,13 +154,6 @@ main {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
-.neural-hero-shell {
-  margin-top: 0 !important;
-  padding-top: 100px !important; /* Push this down to clear your fixed header */
-  border-top: none !important;
-  position: relative !important;
-  top: auto !important;
-}
 /* --- HERO TEXT POLISH --- */
 .neural-hero-shell {
   display: flex !important;
@@ -456,4 +449,374 @@ button:focus-visible {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ==================================================
+   HERO + DESKTOP NAVBAR FINAL OVERRIDE
+   ================================================== */
+
+:root{
+  --navbar-height: 90px;
+}
+
+/* Push homepage below navbar */
+body.home .neural-hero-shell,
+body.home .neural-hero,
+body.home .page__hero,
+body.home .home-hero{
+  padding-top: var(--navbar-height) !important;
+  margin-top: 0 !important;
+}
+
+/* Hide desktop toggle */
+@media (min-width:1024px){
+
+  .greedy-nav__toggle,
+  .masthead__menu-toggle,
+  .menu-toggle,
+  .nav-toggle,
+  .mobile-menu-toggle{
+    display:none !important;
+  }
+
+  .visible-links{
+    display:flex !important;
+  }
+}
+
+/* ==========================================================
+   FINAL NAVIGATION OVERRIDE MATRIX
+   Sanitized - No BOM - No UTF-8 Artifacts
+   ========================================================== */
+
+/* Desktop */
+@media (min-width: 1024px) {
+
+  #neural-mobile-toggle {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .masthead-desktop-navigation {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 1023px) {
+
+  #neural-mobile-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .masthead-desktop-navigation {
+    display: none !important;
+  }
+}
+/* ==========================================================================
+   UNIFIED INTERFACE MATRIX: THEME CORRECTIONS & COGNITIVE VISUALS
+   ========================================================================== */
+
+/* --- ISSUE 1: HARD DESKTOP TOGGLE REMOVAL & FLUID TYPOGRAPHY --- */
+@media (min-width: 992px) {
+    /* Completely dismantle toggle/hamburger components on desktop viewports */
+    .menu-toggle, 
+    .navbar-toggler, 
+    .toggle-bar, 
+    .nav-toggle,
+    [class*="toggle"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+
+    /* Enforce explicit rendering of the desktop navigation grid */
+    .nav-links, 
+    .desktop-menu, 
+    .navbar-collapse, 
+    .main-nav {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+/* Fluid Typography Engine (Agnostic Scaling across Ultra-wides & Mobile) */
+html {
+    font-size: clamp(14px, 1.1vw, 17px) !important;
+}
+
+h1, .hero-title, .hero-section h1 {
+    font-size: clamp(2.2rem, 4.5vw + 1rem, 4.2rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.03em !important;
+}
+
+h2, .section-title {
+    font-size: clamp(1.7rem, 3vw + 1rem, 2.8rem) !important;
+    letter-spacing: -0.02em !important;
+}
+
+p, .card-content, .knowledge-manifold-card p {
+    font-size: clamp(0.95rem, 0.4vw + 0.8rem, 1.12rem) !important;
+    line-height: 1.65 !important;
+}
+
+/* --- ISSUE 2: ZERO-GAP HEADER-TO-HERO COLLAPSE --- */
+header, .navbar, .site-header {
+    margin-bottom: 0px !important;
+    padding-bottom: clamp(0.5rem, 1vw, 1.2rem) !important;
+}
+
+.hero-section, #hero, .hero-wave, main > section:first-of-type {
+    margin-top: 0px !important;
+    padding-top: clamp(1.5rem, 4vw, 4rem) !important;
+}
+
+/* --- DESIGN MATRIX: CYBER-NEUROMORPHIC MANIFOLD CARDS --- */
+.card, .knowledge-manifold-card, .scientific-log, .assessment-card {
+    background: rgba(10, 15, 30, 0.75) !important; /* Cyber-dark translucent base */
+    backdrop-filter: blur(14px) saturate(190%);
+    -webkit-backdrop-filter: blur(14px) saturate(190%);
+    border: 1px solid rgba(0, 242, 254, 0.18) !important; /* Faint Cyan processing boundary */
+    border-radius: 16px !important;
+    padding: 2.2rem 2rem !important;
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Synaptic Flare Trigger Event */
+.card:hover, .knowledge-manifold-card:hover, .scientific-log:hover {
+    transform: translateY(-5px) scale(1.008);
+    border-color: rgba(157, 78, 221, 0.65) !important; /* Synaptic Purple Focus shift */
+    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.08), 
+                0 0 20px rgba(157, 78, 221, 0.25) !important;
+}
+
+/* Monospace Node Data Overlay */
+.card::before, .knowledge-manifold-card::before, .scientific-log::before {
+    content: "SYSTEM // COGNITION";
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: rgba(0, 242, 254, 0.35);
+    letter-spacing: 0.18em;
+}
+
+.card h3, .card-title, .knowledge-manifold-card h3 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    color: #ffffff !important;
+    margin-bottom: 0.85rem;
+}
+
+/* --- IDENTIFIER MATRIX: NEURAL CORE ARCHITECTURE --- */
+/* ==========================================================================
+   PRODUCTION FINALIZATION: NEURAL COGNITIVE INTERFACE OVERRIDES
+   ========================================================================== */
+
+/* --- 1. RESPONSIVE NAVIGATION VISIBILITY MATRIX --- */
+@media (min-width: 1024px) {
+  #neural-mobile-toggle {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .masthead-desktop-navigation {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  #neural-mobile-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .masthead-desktop-navigation {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}
+
+/* --- 2. FLUID TYPOGRAPHY ENGINE (SASS COMPILER SAFE CALC ESCAPES) --- */
+html {
+  font-size: clamp(14px, 1.1vw, 17px) !important;
+}
+
+h1, .hero-title, .hero-section h1 {
+  font-size: clamp(2.2rem, calc(4.5vw + 1rem), 4.2rem) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.03em !important;
+}
+
+h2, .section-title {
+  font-size: clamp(1.7rem, calc(3vw + 1rem), 2.8rem) !important;
+  letter-spacing: -0.02em !important;
+}
+
+p, .card-content, .knowledge-manifold-card p {
+  font-size: clamp(0.95rem, calc(0.4vw + 0.8rem), 1.12rem) !important;
+  line-height: 1.65 !important;
+}
+
+/* --- 3. TRANSITIONAL LAYOUT MARGIN GAP CORRECTIONS --- */
+header, .navbar, .site-header, #neural-navbar, .neural-navbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  margin-bottom: 0px !important;
+  padding-bottom: clamp(0.5rem, 1vw, 1.2rem) !important;
+}
+
+.hero-section, #hero, .hero-wave, main > section:first-of-type {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+.neural-hero-shell {
+  padding-top: clamp(80px, 8vw, 110px) !important; /* Contextual fluid responsive padding */
+}
+
+/* --- 4. CYBER-NEUROMORPHIC COGNITIVE CARDS --- */
+.card, .knowledge-manifold-card, .scientific-log, .assessment-card {
+  background: rgba(10, 15, 30, 0.75) !important;
+  backdrop-filter: blur(14px) saturate(190%);
+  -webkit-backdrop-filter: blur(14px) saturate(190%);
+  border: 1px solid rgba(0, 242, 254, 0.18) !important;
+  border-radius: 16px !important;
+  padding: 2.2rem 2rem !important;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Synaptic Flare Activation Vector */
+.card:hover, .knowledge-manifold-card:hover, .scientific-log:hover, .assessment-card:hover {
+  transform: translateY(-5px) scale(1.008);
+  border-color: rgba(157, 78, 221, 0.65) !important; /* Synaptic purple focus shift */
+  box-shadow: 0 20px 40px rgba(0, 242, 254, 0.08), 
+              0 0 20px rgba(157, 78, 221, 0.25) !important;
+}
+
+/* System Monospace Context Identification Tag */
+.card::before, .knowledge-manifold-card::before, .scientific-log::before, .assessment-card::before {
+  content: "SYSTEM // COGNITION";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.62rem;
+  color: rgba(0, 242, 254, 0.35);
+  letter-spacing: 0.18em;
+}
+
+.card h3, .card-title, .knowledge-manifold-card h3 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  color: #ffffff !important;
+  margin-bottom: 0.85rem;
+}
+/* --- UNIFIED NEURAL FIX PATCH --- */
+/* ================================================================
+   FINALIZED NEURAL INTERFACE FIXES
+   ================================================================ */
+
+/* 1. Desktop Toggle Removal + Mobile Retention */
+@media (min-width:1024px){
+  .greedy-nav__toggle,
+  .masthead__menu-toggle,
+  .menu-toggle,
+  .nav-toggle,
+  .mobile-menu-toggle{
+    display:none !important;
+    visibility:hidden !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+  }
+  .visible-links{
+    display:flex !important;
+    visibility:visible !important;
+    opacity:1 !important;
+  }
+}
+@media (max-width:1023px){
+  .greedy-nav__toggle,
+  .masthead__menu-toggle{
+    display:flex !important;
+    visibility:visible !important;
+    opacity:1 !important;
+  }
+  .visible-links{display:none !important;}
+}
+
+/* 2. Fluid Typography (Sass-safe calc) */
+html{font-size:clamp(14px,1.1vw,17px) !important;}
+h1,.hero-title,.hero-section h1{
+  font-size:clamp(2.2rem,calc(4.5vw + 1rem),4.2rem) !important;
+  line-height:1.15 !important;
+  letter-spacing:-0.03em !important;
+}
+h2,.section-title{
+  font-size:clamp(1.7rem,calc(3vw + 1rem),2.8rem) !important;
+  letter-spacing:-0.02em !important;
+}
+p,.card-content,.knowledge-manifold-card p{
+  font-size:clamp(0.95rem,calc(0.4vw + 0.8rem),1.12rem) !important;
+  line-height:1.65 !important;
+}
+
+/* 3. Header-to-Hero Gap Fix */
+header,.navbar,.site-header{
+  margin-bottom:0 !important;
+  padding-bottom:clamp(0.5rem,1vw,1.2rem) !important;
+}
+.hero-section,#hero,.hero-wave,main>section:first-of-type{
+  margin-top:0 !important;
+  padding-top:clamp(80px,8vw,110px) !important;
+}
+
+/* 4. Neural Cognitive Card Design */
+.card,.knowledge-manifold-card,.scientific-log,.assessment-card{
+  background:rgba(10,15,30,0.75) !important;
+  backdrop-filter:blur(14px) saturate(190%);
+  -webkit-backdrop-filter:blur(14px) saturate(190%);
+  border:1px solid rgba(0,242,254,0.18) !important;
+  border-radius:16px !important;
+  padding:2.2rem 2rem !important;
+  transition:all 0.45s cubic-bezier(0.16,1,0.3,1) !important;
+  position:relative;overflow:hidden;
+}
+.card:hover,.knowledge-manifold-card:hover,.scientific-log:hover,.assessment-card:hover{
+  transform:translateY(-5px) scale(1.008);
+  border-color:rgba(157,78,221,0.65) !important;
+  box-shadow:0 20px 40px rgba(0,242,254,0.08),
+             0 0 20px rgba(157,78,221,0.25) !important;
+}
+.card::before,.knowledge-manifold-card::before,.scientific-log::before,.assessment-card::before{
+  content:"SYSTEM // COGNITION";
+  position:absolute;top:14px;right:18px;
+  font-family:'JetBrains Mono','Courier New',monospace;
+  font-size:0.62rem;color:rgba(0,242,254,0.35);
+  letter-spacing:0.18em;
+}
+.card h3,.card-title,.knowledge-manifold-card h3{
+  font-family:'Inter',system-ui,sans-serif;
+  font-weight:700;color:#fff !important;
+  margin-bottom:0.85rem;
 }

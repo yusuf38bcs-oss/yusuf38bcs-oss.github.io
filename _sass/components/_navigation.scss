@@ -198,3 +198,23 @@
     padding-inline: 2rem;
   }
 }
+
+/* ==================================================
+   DESKTOP NAVIGATION FINAL OVERRIDE
+   ================================================== */
+
+@media (min-width: 1024px) {
+
+  .greedy-nav__toggle,
+  .masthead__menu-toggle {
+    display: none !important;
+  }
+
+  .greedy-nav .visible-links {
+    display: flex !important;
+  }
+
+  .greedy-nav .hidden-links {
+    display: none !important;
+  }
+}
