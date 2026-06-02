@@ -350,7 +350,7 @@ main,
   grid-template-columns: 1fr !important;
 }
 .footer-matrix-title {
-  font-size: clamp(1.25rem, 3vw, 1.6rem) !important;
+  font-size: clamp(1.25rem, calc(3vw), 1.6rem) !important;
   font-weight: 800 !important;
   color: #ffffff !important;
   line-height: 1.25 !important;
@@ -553,18 +553,18 @@ html {
 }
 
 h1, .hero-title, .hero-section h1 {
-    font-size: clamp(2.2rem, 4.5vw + 1rem, 4.2rem) !important;
+    font-size: clamp(2.2rem, calc(4.5vw + 1rem), 4.2rem) !important;
     line-height: 1.15 !important;
     letter-spacing: -0.03em !important;
 }
 
 h2, .section-title {
-    font-size: clamp(1.7rem, 3vw + 1rem, 2.8rem) !important;
+    font-size: clamp(1.7rem, calc(3vw + 1rem), 2.8rem) !important;
     letter-spacing: -0.02em !important;
 }
 
 p, .card-content, .knowledge-manifold-card p {
-    font-size: clamp(0.95rem, 0.4vw + 0.8rem, 1.12rem) !important;
+    font-size: clamp(0.95rem, calc(0.4vw + 0.8rem), 1.12rem) !important;
     line-height: 1.65 !important;
 }
 
