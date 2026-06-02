@@ -820,3 +820,167 @@ header,.navbar,.site-header{
   font-weight:700;color:#fff !important;
   margin-bottom:0.85rem;
 }
+/* ==========================================================================
+   LEARNING BIOLOGY FOR LIFE - AMBIENT PRODUCTION APPREHEND BLOCK
+   ========================================================================== */
+
+/* --- 1. ABSOLUTE DESKTOP TOGGLE DEMOLITION (Viewport ≥ 1024px) --- */
+@media (min-width: 1024px) {
+  .greedy-nav__toggle,
+  .masthead__menu-toggle,
+  .menu-toggle,
+  .nav-toggle,
+  .mobile-menu-toggle,
+  #neural-mobile-toggle,
+  button[aria-label*="menu"],
+  button[aria-label*="toggle"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+  }
+
+  .visible-links,
+  .masthead-desktop-navigation,
+  .masthead__inner .visible-links,
+  .greedy-nav .visible-links {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+  }
+}
+
+/* --- 2. STRATEGY B: BACKGROUND PROTECTION & FLUID BREATHING SPACE --- */
+.neural-hero-shell,
+.neural-hero,
+.page__hero,
+.page__hero--overlay,
+.home-hero {
+  /* Multi-layered CSS background: Layers Strategy B radial masking directly over the asset URL */
+  background: radial-gradient(circle at 25% 50%, rgba(3, 7, 18, 0.95) 0%, rgba(3, 7, 18, 0.8) 45%, rgba(3, 7, 18, 0.1) 100%), 
+              url('/assets/images/header-bg.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  min-height: 80svh !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Fluid responsive padding layout for title spacing typography */
+.neural-hero-shell .hero-content {
+  transform: none !important; /* Remove legacy position translation gaps */
+  padding: 4rem 2rem !important;
+  text-align: left !important; /* Forces layout readability to align smoothly against the dark radial focal point */
+}
+
+@media (max-width: 1023px) {
+  .neural-hero-shell,
+  .neural-hero,
+  .page__hero,
+  .page__hero--overlay {
+    background: linear-gradient(180deg, rgba(3, 7, 18, 0.95) 0%, rgba(3, 7, 18, 0.85) 65%, rgba(3, 7, 18, 0.4) 100%), 
+                url('/assets/images/header-bg.webp') !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+  .neural-hero-shell .hero-content {
+    text-align: center !important;
+    padding: 3rem 1rem !important;
+  }
+}
+
+/* --- 3. HARD DEVICE-LOCKED BUTTON ARCHITECTURE --- */
+.hero-actions, 
+.btn-container {
+  display: flex !important;
+  gap: 1.25rem !important;
+  align-items: center !important;
+  margin-top: 2rem !important;
+  width: 100% !important;
+}
+
+/* Desktop Sizing Profile */
+@media (min-width: 768px) {
+  .hero-actions, .btn-container {
+    justify-content: flex-start !important; /* Flawless composition alignment on Left-to-Right layout grids */
+    flex-direction: row !important;
+  }
+  .hero-actions .btn, .btn-container .btn,
+  .hero-actions a, .btn-container a,
+  .custom-neural-btn {
+    flex: 0 1 auto !important;
+    min-width: 210px !important;
+    text-align: center !important;
+    padding: 14px 28px !important;
+    font-size: 0.95rem !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Mobile Sizing Profile */
+@media (max-width: 767px) {
+  .hero-actions, .btn-container {
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  .hero-actions .btn, .btn-container .btn,
+  .hero-actions a, .btn-container a,
+  .custom-neural-btn {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 16px 20px !important;
+    font-size: 1rem !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* --- 4. RELIABLE COGNITIVE NEURAL CARD GRID HARMONIZATION --- */
+.neural-cards-grid, 
+.cards-grid, 
+.academic-grid, 
+.matrix-card-container {
+  display: grid !important;
+  align-items: stretch !important; /* Strict structural enforcement: Locks all sibling card heights uniformly */
+  gap: 1.75rem !important;
+}
+
+/* Apply comprehensive styling across all card component selectors used inside your theme files */
+.premium-neural-card,
+.feed-article-card,
+.knowledge-manifold-card,
+.scientific-log,
+.assessment-card,
+.card {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  background: rgba(10, 15, 30, 0.75) !important;
+  backdrop-filter: blur(14px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(190%) !important;
+  border: 1px solid rgba(0, 242, 254, 0.18) !important;
+  border-radius: 16px !important;
+  padding: 2.2rem 2rem !important;
+}
+
+/* Ensures layout body nodes inside the cards expand fluidly to fill empty spaces cleanly */
+.card-content-node,
+.card-body,
+.knowledge-manifold-card p,
+.premium-neural-card .content {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
