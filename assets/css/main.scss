@@ -1009,3 +1009,10 @@ header,.navbar,.site-header{
   margin-left: auto;
   margin-right: auto;
 }
+/* === Life Philosophy Page Styling === */
+.life-philosophy .hero-title { margin-top:2rem; font-size:2.2rem; line-height:1.3; text-align:center; }
+.life-philosophy .hero-description { margin-top:1rem; font-size:1.1rem; line-height:1.5; text-align:center; max-width:800px; margin-left:auto; margin-right:auto; }
+.life-philosophy .card { border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15); font-family:'Roboto',sans-serif; font-size:1rem; transition:transform 0.3s ease; margin:1rem auto; max-width:700px; }
+.life-philosophy .card:hover { transform:scale(1.05); }
+.life-philosophy .footer { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem; }
+@media (max-width:768px){ .life-philosophy .footer{ grid-template-columns:1fr; } }
