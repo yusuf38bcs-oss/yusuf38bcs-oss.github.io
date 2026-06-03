@@ -1,73 +1,71 @@
 /* ==========================================================================
-   NEURAL UTILITY ENGINE (GLOBAL HELPER CLASSES & ATOMS)
-   Eradicates Layout Shifts and Locks Premium Typography Trajectories.
+   ECOSYSTEM ATOMIC HELPERS & TYPOGRAPHY SHIELDS
+   Consolidated File: Replaces helpers.scss & utilities.scss
    ========================================================================== */
 
-/* --- 1. GLOBAL TYPOGRAPHY SHIELD (Destroys Forced Word Gaps Across Ecosystem) --- */
-.u-text-left, 
-p, span, li, a, h1, h2, h3, h4,
+/* --- 1. SAFE TYPOGRAPHY REFINEMENT (Eradicates Mobile Alignment Bugs) --- */
+/* CRITICAL: Never globally target `a` or `span` with text-align rules! */
+.u-text-left,
+p, li, blockquote, h1, h2, h3, h4,
 .synaptic-homepage-matrix p,
-.page-rendered-markdown-body p {
+.page-rendered-markdown-body p,
+.page-rendered-markdown-body li {
   text-align: left !important;
-  text-justify: none !important;
   word-spacing: normal !important;
   letter-spacing: normal !important;
+  text-justify: none !important;
 }
 
-.u-text-center { 
-  text-align: center !important; 
+.u-text-center { text-align: center !important; }
+
+.u-text-reflective {
+  font-family: $serif !important;
+  font-style: italic !important;
 }
 
-.u-text-reflective { 
-  font-family: $serif !important; 
-  font-style: italic !important; 
-}
-
-/* --- 2. VISUAL ATOMS & ACCENTS --- */
-.u-text-glow { 
-  @include socratic-glow($synapse-glow); 
+/* --- 2. SIGNATURE NEON GLOW ATOMS --- */
+.u-text-glow {
   color: #ffffff !important;
+  @include socratic-glow($synapse-glow);
 }
 
-.u-bg-dark { 
-  background-color: $neural-black !important; 
-}
+.u-cyan-accent { color: $synapse-glow !important; }
+.u-bg-dark { background-color: $neural-black !important; }
+.u-bg-glass { @include neural-glass(0.7, 12px); }
 
-.u-bg-glass { 
-  @include neural-glass(0.7, 12px); 
-}
+/* --- 3. QUICK SPACING & ALIGNMENT MATRIX --- */
+.u-mt-none { margin-top: 0 !important; }
+.u-mb-none { margin-bottom: 0 !important; }
 
-.u-no-select { 
-  user-select: none; 
-}
+.u-mt-sm { margin-top: 0.75rem !important; }
+.u-mb-sm { margin-bottom: 0.75rem !important; }
 
-.u-pointer { 
-  cursor: pointer; 
-}
+.u-mt-md { margin-top: 1.5rem !important; }
+.u-mb-md { margin-bottom: 1.5rem !important; }
 
-/* --- 3. STRUCTURAL BOUNDING CONTAINERS --- */
+.u-mt-lg { margin-top: 3rem !important; }
+.u-mb-lg { margin-bottom: 3rem !important; }
+
+.u-flex-center { @include flex-center; }
+.u-no-select { user-select: none !important; }
+.u-pointer { cursor: pointer !important; }
+
+/* --- 4. RESPONSIVE STRUCTURAL BOUNDARIES --- */
 .container {
   width: 100%;
-  max-width: 1280px;
+  max-width: var(--container-max, 1280px);
   margin: 0 auto;
-  padding: 0 2rem;
+  /* Fluid padding: scales smoothly between mobile and desktop */
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem); 
   box-sizing: border-box;
-
-  @include mobile {
-    padding: 0 1.25rem !important;
-  }
 }
 
-/* --- 4. RESPONSIVE TRANSITION VISIBILITY --- */
+/* --- 5. RESPONSIVE VISIBILITY --- */
 .u-hide-mobile {
-  @include mobile { 
-    display: none !important; 
-  }
+  @media (max-width: 768px) { display: none !important; }
 }
 
 .u-show-mobile {
-  display: none;
-  @include mobile { 
-    display: block !important; 
-  }
+  display: none !important;
+  @media (max-width: 768px) { display: block !important; }
 }

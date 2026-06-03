@@ -6,7 +6,7 @@
 @keyframes synapticFadeRise {
   0% {
     opacity: 0;
-    transform: translateY(12px) scale(0.99);
+    transform: translateY(16px) scale(0.98);
   }
   100% {
     opacity: 1;
@@ -14,40 +14,45 @@
   }
 }
 
-/* 2. Socratic Subtle Shimmer/Blink (Used for Loading Nodes) */
+/* 2. Socratic Subtle Shimmer/Blink (For Loading & Processing Nodes) */
 @keyframes neuralShimmer {
   0%, 100% {
     opacity: 1;
     filter: drop-shadow(0 0 4px rgba(0, 212, 178, 0.2));
   }
   50% {
-    opacity: 0.4;
-    filter: drop-shadow(0 0 12px rgba(0, 212, 178, 0.5));
+    opacity: 0.5;
+    filter: drop-shadow(0 0 14px rgba(0, 212, 178, 0.6));
   }
 }
 
-/* 3. Smooth Organic Float (Used for AI Assistant / Floating Badges) */
+/* 3. Smooth Organic Float (For Floating Badges & Avatars) */
 @keyframes socraticFloat {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-/* --- GLOBAL ANIMATION CLASSES UTILITIES --- */
+/* --- GLOBAL ANIMATION UTILITY CLASSES --- */
 .u-anim-reveal {
-  animation: synapticFadeRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  will-change: transform, opacity;
+  animation: synapticFadeRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
 }
 
 .u-anim-shimmer {
+  will-change: filter, opacity;
   animation: neuralShimmer 2.5s infinite ease-in-out !important;
 }
 
 .u-anim-float {
+  will-change: transform;
   animation: socraticFloat 4s infinite ease-in-out !important;
+}
+
+/* Accessibility: Respect OS-level motion reduction preferences */
+@media (prefers-reduced-motion: reduce) {
+  .u-anim-reveal, .u-anim-shimmer, .u-anim-float {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }

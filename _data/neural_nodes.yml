@@ -1,0 +1,52 @@
+# ==========================
+# ZOOLOGY
+# ==========================
+
+- id: astropecten_water_vascular_system
+  title: Astropecten Water Vascular System
+  pillar: zoology
+  difficulty: intermediate
+  xp: 50
+  estimated_time: 20
+  status: published
+
+- id: echinodermata_introduction
+  title: Introduction to Echinodermata
+  pillar: zoology
+  difficulty: foundation
+  xp: 25
+  estimated_time: 10
+  status: planned
+
+- id: starfish_morphology
+  title: Starfish Morphology
+  pillar: zoology
+  difficulty: foundation
+  xp: 25
+  estimated_time: 15
+  status: planned
+
+- id: hydrostatic_pressure
+  title: Hydrostatic Pressure
+  pillar: interdisciplinary
+  difficulty: foundation
+  xp: 25
+  estimated_time: 10
+  status: planned
+
+- id: soft_robotics
+  title: Soft Robotics
+  pillar: interdisciplinary
+  difficulty: advanced
+  xp: 100
+  estimated_time: 30
+  status: planned
+
+- id: astropecten_water_vascular_system
+  title: Astropecten Water Vascular System
+  pillar: zoology
+  difficulty: intermediate
+  url: /animal-diversity/astropecten-water-vascular-system/
+  xp: 50
+  estimated_time: 20
+  status: published

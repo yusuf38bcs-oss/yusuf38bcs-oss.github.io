@@ -1,13 +1,193 @@
 /* ==========================================================================
    OMEGA PRODUCTION OVERRIDES (THE CRITICAL FINAL CASCADING LAYER)
+   Consolidated Hotfixes for Navigation, Typography, Cards, and Footer
    ========================================================================== */
 
-.neural-core-footer,
-.page__footer,
-footer {
-   display: block !important;
-   visibility: visible !important;
-   opacity: 1 !important;
-   position: relative !important;
-   z-index: 10 !important;
+/* --- 1. UNIVERSAL TYPOGRAPHY & FLUID ENGINE --- */
+html {
+  font-size: clamp(14px, 1.1vw, 17px) !important;
+}
+
+h1, .hero-title, .hero-section h1 {
+  font-size: clamp(2.2rem, calc(4.5vw + 1rem), 4.2rem) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.03em !important;
+}
+
+h2, .section-title {
+  font-size: clamp(1.7rem, calc(3vw + 1rem), 2.8rem) !important;
+  letter-spacing: -0.02em !important;
+}
+
+p, li, span, a, h3, h4, .card-content, .knowledge-manifold-card p {
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  line-height: 1.65 !important;
+}
+
+/* --- 2. GLOBAL LAYOUT SPACING CURES (No-Gap Header) --- */
+:root {
+  --navbar-height: 90px;
+}
+
+.masthead, .site-header, .page__header, .neural-navbar, header, .navbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+  padding-bottom: clamp(0.5rem, 1vw, 1.2rem) !important;
+}
+
+.synaptic-homepage-matrix, #synaptic-home-root, .initial-content, #main, main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+body.home .neural-hero-shell,
+body.home .neural-hero,
+body.home .page__hero,
+body.home .home-hero {
+  padding-top: var(--navbar-height) !important;
+  margin-top: 0 !important;
+}
+
+/* Remove Title Bleed on Homepage Nodes */
+.home .page__title, .home .page__meta,
+.synaptic-homepage-matrix .page__title,
+.synaptic-homepage-matrix .page__meta {
+  display: none !important;
+}
+
+/* --- 3. RESPONSIVE NAVIGATION VISIBILITY MATRIX --- */
+@media (min-width: 1024px) {
+  .greedy-nav__toggle, .masthead__menu-toggle, .nav__toggle, .navicon,
+  .menu-toggle, .mobile-menu-toggle, #neural-mobile-toggle,
+  button[aria-label*="menu"], button[aria-label*="toggle"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    position: absolute !important;
+  }
+  
+  .visible-links, .masthead__inner .visible-links, .greedy-nav .visible-links,
+  .masthead-desktop-navigation {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .greedy-nav__toggle, .masthead__menu-toggle, #neural-mobile-toggle {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: 2.5rem !important;
+  }
+  .visible-links, .masthead-desktop-navigation {
+    display: none !important;
+  }
+}
+
+/* --- 4. CYBER-NEUROMORPHIC COGNITIVE CARDS & GRIDS --- */
+.neural-cards-grid, .cards-grid, .academic-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-items: stretch !important;
+  gap: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+  .neural-cards-grid, .cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (min-width: 1024px) {
+  .neural-cards-grid, .cards-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+.premium-neural-card, .feed-article-card, .section-card,
+.card, .knowledge-manifold-card, .scientific-log, .assessment-card {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  
+  background: rgba(10, 15, 30, 0.75) !important;
+  backdrop-filter: blur(14px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(190%) !important;
+  border: 1px solid rgba(0, 242, 254, 0.18) !important;
+  border-radius: 16px !important;
+  padding: 2.2rem 2rem !important;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover, .knowledge-manifold-card:hover, .scientific-log:hover, .assessment-card:hover {
+  transform: translateY(-5px) scale(1.008);
+  border-color: rgba(157, 78, 221, 0.65) !important;
+  box-shadow: 0 20px 40px rgba(0, 242, 254, 0.08), 0 0 20px rgba(157, 78, 221, 0.25) !important;
+}
+
+.card::before, .knowledge-manifold-card::before, .scientific-log::before, .assessment-card::before {
+  content: "SYSTEM // COGNITION";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.62rem;
+  color: rgba(0, 242, 254, 0.35);
+  letter-spacing: 0.18em;
+}
+
+.card h3, .card-title, .knowledge-manifold-card h3 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  color: #ffffff !important;
+  margin-bottom: 0.85rem;
+}
+
+.card-content-node {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* --- 5. FOOTER VISIBILITY & FLEX PUSH LENS --- */
+body {
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#main, .page, .main-content-render-viewport {
+  flex: 1 0 auto !important;
+}
+
+.neural-core-footer, .page__footer, footer {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* --- 6. ACCESSIBILITY & MOTION SAFETY --- */
+a:focus-visible, button:focus-visible {
+  outline: 2px dashed #00d4b2 !important;
+  outline-offset: 4px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

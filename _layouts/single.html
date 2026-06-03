@@ -17,6 +17,9 @@ layout: default
         {% endif %}
         <div class="header-matrix-line"></div>
       </header>
+    {% if page.node_id %}
+    {% include neural-node-panel.html %}
+    {% endif %}
 
       <div class="page-rendered-markdown-body" id="synaptic-single-body">
         {{ content }}

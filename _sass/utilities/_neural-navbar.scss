@@ -2,43 +2,59 @@
    ACCELERATED NEURAL NAVBAR UTILITY LAYER
    ========================================================================== */
 
+:root {
+  --nav-height: 90px;
+  
+  @media (max-width: 768px) {
+    --nav-height: 70px; /* Slimmer footprint on mobile screens */
+  }
+}
+
 .site-header, .masthead {
   position: sticky !important;
-  top: 0; left: 0;
+  top: 0; 
+  left: 0;
   width: 100%;
-  height: $nav-height;
-  background-color: transparent !important; // Translucent startup state
+  height: var(--nav-height);
+  background-color: transparent !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.01) !important;
   z-index: 1000 !important;
-  padding-top: env(safe-area-inset-top); // Notch safety padding for premium smartphones
-  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-              backdrop-filter 0.3s ease, 
+  
+  /* Notch safety for iOS/Android */
+  padding-top: env(safe-area-inset-top); 
+  
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.3s ease,
               border-color 0.3s ease,
               box-shadow 0.3s ease !important;
   will-change: background-color, backdrop-filter;
 
-  /* --- Dynamic Scrolled Context State Triggered via menu-scroll.js --- */
+  /* --- Dynamic Scrolled State (Triggered by JS) --- */
   &.scrolled {
-    background-color: rgba(2, 6, 23, 0.75) !important; // Alpha dark void blend
-    backdrop-filter: blur(12px)!important;
-  -webkit-backdrop-filter: blur(12px)!important; // Frosted premium glass
-    border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important; // Micro cyan wireframe edge
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    background-color: rgba(2, 6, 23, 0.85) !important; 
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border-bottom: 1px solid rgba(0, 212, 178, 0.12) !important; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
   }
 
-  /* --- Navigation Link Telemetry Overrides --- */
+  /* --- Masthead Content Alignments --- */
   .site-title {
     font-weight: 800 !important;
     letter-spacing: -0.02em;
     color: #ffffff !important;
-    @include socratic-glow($synapse-glow);
+    transition: text-shadow 0.2s ease;
+    
+    &:hover {
+      @include socratic-glow($synapse-glow);
+    }
   }
 
   .masthead__menu-item a {
     color: $text-primary !important;
     font-weight: 600 !important;
-    font-size: 0.92rem;
-    transition: color 0.2s ease;
+    font-size: 0.95rem;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
 
     &:hover {
       color: $synapse-glow !important;
@@ -47,9 +63,15 @@
   }
 }
 
-/* Layout spacer adjustment ensuring markdown content doesn't get trapped underneath the fixed navbar */
-#main-content-render-viewport, 
+/* --- Layout Spacer Cures --- 
+   Ensures markdown headers and standard page bodies clear the sticky header */
+#main-content-render-viewport,
 .synaptic-page-container,
 .synaptic-homepage-matrix {
-  padding-top: $nav-height !important;
+  padding-top: var(--nav-height) !important;
+}
+
+/* Scroll margin ensures anchor links don't jump underneath the frosted navbar */
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: calc(var(--nav-height) + 20px);
 }

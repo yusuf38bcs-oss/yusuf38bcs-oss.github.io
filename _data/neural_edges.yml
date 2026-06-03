@@ -1,0 +1,15 @@
+- source: echinodermata_introduction
+  target: starfish_morphology
+  type: prerequisite
+
+- source: starfish_morphology
+  target: astropecten_water_vascular_system
+  type: prerequisite
+
+- source: astropecten_water_vascular_system
+  target: hydrostatic_pressure
+  type: concept
+
+- source: astropecten_water_vascular_system
+  target: soft_robotics
+  type: application
