@@ -3,7 +3,7 @@
 <div class="neural-node-panel">
 
   <div class="neural-node-header">
-    🧠 Neural Node Profile
+    Neural Node Profile
   </div>
 
   <div class="neural-node-grid">
@@ -40,30 +40,24 @@
 
   </div>
 
-  {% if page.prerequisites %}
-  <div class="neural-node-section">
-    <h4>Prerequisites</h4>
-
-    <ul>
-      {% for item in page.prerequisites %}
-      <li>{{ item }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
-
   {% if page.connects_to %}
-  <div class="neural-node-section">
-    <h4>Connected Concepts</h4>
+<div class="neural-node-section">
+  <h4>Connected Concepts</h4>
 
-    <ul>
-      {% for item in page.connects_to %}
-      <li>{{ item }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
+  <ul>
+    {% for item in page.connects_to %}
 
+      {% assign node = site.data.neural_nodes | where: "id", item | first %}
+
+      <li>
+        {% if node %}
+          {{ node.title }}
+        {% else %}
+          {{ item }}
+        {% endif %}
+      </li>
+
+    {% endfor %}
+  </ul>
 </div>
-
 {% endif %}

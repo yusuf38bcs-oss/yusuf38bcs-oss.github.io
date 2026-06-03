@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -7,84 +7,87 @@ title: "Frequency distribution, Histogram and Polygon"
 date: 2026-04-05T15:59:00.012Z
 categories:
   - Biostatistics
+
+node_id: frequency_distribution_histogram_and_polygon
 ---
 
 <div style="font-family: 'Arial', sans-serif; max-width: 900px; margin: auto; line-height: 1.8; color: #333;">
 
   <div style="text-align: center; border-bottom: 3px solid #34495e; padding-bottom: 20px; margin-bottom: 30px;">
-    <h1 style="color: #2c3e50;">📊 উপাত্তের উপস্থাপন ও বিশ্লেষণ: পূর্ণাঙ্গ গাইড</h1>
-    <p>জীবপরিসংখ্যানে উপাত্তকে অর্থবহ করার জন্য চিত্রায়ন ও সারণিবদ্ধকরণের বিস্তারিত আলোচনা।</p>
+    <h1 style="color: #2c3e50;">ðŸ“Š à¦‰à¦ªà¦¾à¦¤à§à¦¤à§‡à¦° à¦‰à¦ªà¦¸à§à¦¥à¦¾à¦ªà¦¨ à¦“ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£: à¦ªà§‚à¦°à§à¦£à¦¾à¦™à§à¦— à¦—à¦¾à¦‡à¦¡</h1>
+    <p>à¦œà§€à¦¬à¦ªà¦°à¦¿à¦¸à¦‚à¦–à§à¦¯à¦¾à¦¨à§‡ à¦‰à¦ªà¦¾à¦¤à§à¦¤à¦•à§‡ à¦…à¦°à§à¦¥à¦¬à¦¹ à¦•à¦°à¦¾à¦° à¦œà¦¨à§à¦¯ à¦šà¦¿à¦¤à§à¦°à¦¾à§Ÿà¦¨ à¦“ à¦¸à¦¾à¦°à¦£à¦¿à¦¬à¦¦à§à¦§à¦•à¦°à¦£à§‡à¦° à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦†à¦²à§‹à¦šà¦¨à¦¾à¥¤</p>
   </div>
 
   <details style="margin-bottom: 15px; border: 1px solid #dcdde1; border-radius: 8px; overflow: hidden;">
-    <summary style="cursor: pointer; padding: 15px; background: #34495e; color: white; font-weight: bold;">🎯 ১. শিখন উদ্দেশ্য ও ফলাফল (Objectives & Outcomes)</summary>
+    <summary style="cursor: pointer; padding: 15px; background: #34495e; color: white; font-weight: bold;">ðŸŽ¯ à§§. à¦¶à¦¿à¦–à¦¨ à¦‰à¦¦à§à¦¦à§‡à¦¶à§à¦¯ à¦“ à¦«à¦²à¦¾à¦«à¦² (Objectives & Outcomes)</summary>
     <div style="padding: 20px; background: #f5f6fa;">
       <h4 style="margin-top: 0;">Learning Objectives:</h4>
       <ul>
-        <li>এলোমেলো উপাত্ত বা <strong>Raw Data</strong> থেকে ফ্রিকোয়েন্সি টেবিল তৈরি করা।</li>
-        <li><strong>Histogram</strong> ও <strong>Polygon</strong> অঙ্কনের গাণিতিক ভিত্তি বোঝা।</li>
+        <li>à¦à¦²à§‹à¦®à§‡à¦²à§‹ à¦‰à¦ªà¦¾à¦¤à§à¦¤ à¦¬à¦¾ <strong>Raw Data</strong> à¦¥à§‡à¦•à§‡ à¦«à§à¦°à¦¿à¦•à§‹à§Ÿà§‡à¦¨à§à¦¸à¦¿ à¦Ÿà§‡à¦¬à¦¿à¦² à¦¤à§ˆà¦°à¦¿ à¦•à¦°à¦¾à¥¤</li>
+        <li><strong>Histogram</strong> à¦“ <strong>Polygon</strong> à¦…à¦™à§à¦•à¦¨à§‡à¦° à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦­à¦¿à¦¤à§à¦¤à¦¿ à¦¬à§‹à¦à¦¾à¥¤</li>
       </ul>
       <h4>Learning Outcomes:</h4>
-      <p>এই পাঠ শেষে আপনি যেকোনো স্বাস্থ্য গবেষণার উপাত্তকে সঠিকভাবে চিত্রায়িত করতে পারবেন এবং উপাত্তের ধারা (Trend) বিশ্লেষণ করতে পারবেন।</p>
+      <p>à¦à¦‡ à¦ªà¦¾à¦  à¦¶à§‡à¦·à§‡ à¦†à¦ªà¦¨à¦¿ à¦¯à§‡à¦•à§‹à¦¨à§‹ à¦¸à§à¦¬à¦¾à¦¸à§à¦¥à§à¦¯ à¦—à¦¬à§‡à¦·à¦£à¦¾à¦° à¦‰à¦ªà¦¾à¦¤à§à¦¤à¦•à§‡ à¦¸à¦ à¦¿à¦•à¦­à¦¾à¦¬à§‡ à¦šà¦¿à¦¤à§à¦°à¦¾à§Ÿà¦¿à¦¤ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡à¦¨ à¦à¦¬à¦‚ à¦‰à¦ªà¦¾à¦¤à§à¦¤à§‡à¦° à¦§à¦¾à¦°à¦¾ (Trend) à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡à¦¨à¥¤</p>
     </div>
   </details>
 
   <details style="margin-bottom: 15px; border: 1px solid #dcdde1; border-radius: 8px; overflow: hidden;">
-    <summary style="cursor: pointer; padding: 15px; background: #27ae60; color: white; font-weight: bold;">📝 ২. গণসংখ্যা নিবেশন (Frequency Distribution)</summary>
+    <summary style="cursor: pointer; padding: 15px; background: #27ae60; color: white; font-weight: bold;">ðŸ“ à§¨. à¦—à¦£à¦¸à¦‚à¦–à§à¦¯à¦¾ à¦¨à¦¿à¦¬à§‡à¦¶à¦¨ (Frequency Distribution)</summary>
     <div style="padding: 20px; background: #f5f6fa;">
-      <p>সংগৃহীত বিপুল পরিমাণ উপাত্তকে যখন নির্দিষ্ট কিছু শ্রেণীতে ভাগ করে উপস্থাপন করা হয়, তখন তাকে <strong>Frequency Distribution</strong> বলে।</p>
+      <p>à¦¸à¦‚à¦—à§ƒà¦¹à§€à¦¤ à¦¬à¦¿à¦ªà§à¦² à¦ªà¦°à¦¿à¦®à¦¾à¦£ à¦‰à¦ªà¦¾à¦¤à§à¦¤à¦•à§‡ à¦¯à¦–à¦¨ à¦¨à¦¿à¦°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦•à¦¿à¦›à§ à¦¶à§à¦°à§‡à¦£à§€à¦¤à§‡ à¦­à¦¾à¦— à¦•à¦°à§‡ à¦‰à¦ªà¦¸à§à¦¥à¦¾à¦ªà¦¨ à¦•à¦°à¦¾ à¦¹à§Ÿ, à¦¤à¦–à¦¨ à¦¤à¦¾à¦•à§‡ <strong>Frequency Distribution</strong> à¦¬à¦²à§‡à¥¤</p>
       <ul>
-        <li><strong>Class Interval:</strong> উপাত্তের পরিধি অনুযায়ী ছোট ছোট ভাগ (যেমন: ৫০-৬০ কেজি)।</li>
-        <li><strong>Tallying:</strong> প্রতিটি ডাটা পয়েন্ট কোন শ্রেণীতে পড়ছে তা দাগ কেটে গণনা করা।</li>
+        <li><strong>Class Interval:</strong> à¦‰à¦ªà¦¾à¦¤à§à¦¤à§‡à¦° à¦ªà¦°à¦¿à¦§à¦¿ à¦…à¦¨à§à¦¯à¦¾à§Ÿà§€ à¦›à§‹à¦Ÿ à¦›à§‹à¦Ÿ à¦­à¦¾à¦— (à¦¯à§‡à¦®à¦¨: à§«à§¦-à§¬à§¦ à¦•à§‡à¦œà¦¿)à¥¤</li>
+        <li><strong>Tallying:</strong> à¦ªà§à¦°à¦¤à¦¿à¦Ÿà¦¿ à¦¡à¦¾à¦Ÿà¦¾ à¦ªà§Ÿà§‡à¦¨à§à¦Ÿ à¦•à§‹à¦¨ à¦¶à§à¦°à§‡à¦£à§€à¦¤à§‡ à¦ªà§œà¦›à§‡ à¦¤à¦¾ à¦¦à¦¾à¦— à¦•à§‡à¦Ÿà§‡ à¦—à¦£à¦¨à¦¾ à¦•à¦°à¦¾à¥¤</li>
       </ul>
       <div style="text-align: center; margin: 20px 0;">
         <p><em></em></p>
-        <div style="background: #eee; padding: 20px; border: 2px dashed #bdc3c7;">ডায়াগ্রাম: গণসংখ্যা নিবেশন সারণি</div>
+        <div style="background: #eee; padding: 20px; border: 2px dashed #bdc3c7;">à¦¡à¦¾à§Ÿà¦¾à¦—à§à¦°à¦¾à¦®: à¦—à¦£à¦¸à¦‚à¦–à§à¦¯à¦¾ à¦¨à¦¿à¦¬à§‡à¦¶à¦¨ à¦¸à¦¾à¦°à¦£à¦¿</div>
       </div>
     </div>
   </details>
 
   <details style="margin-bottom: 15px; border: 1px solid #dcdde1; border-radius: 8px; overflow: hidden;">
-    <summary style="cursor: pointer; padding: 15px; background: #2980b9; color: white; font-weight: bold;">📊 ৩. আয়তলেখ (Histogram)</summary>
+    <summary style="cursor: pointer; padding: 15px; background: #2980b9; color: white; font-weight: bold;">ðŸ“Š à§©. à¦†à¦¯à¦¼à¦¤à¦²à§‡à¦– (Histogram)</summary>
     <div style="padding: 20px; background: #f5f6fa;">
-      <p>এটি একটি গ্রাফিকাল রিপ্রেজেন্টেশন যেখানে প্রতিটি শ্রেণীর জন্য একটি করে আয়তাকার স্তম্ভ তৈরি করা হয়।</p>
+      <p>à¦à¦Ÿà¦¿ à¦à¦•à¦Ÿà¦¿ à¦—à§à¦°à¦¾à¦«à¦¿à¦•à¦¾à¦² à¦°à¦¿à¦ªà§à¦°à§‡à¦œà§‡à¦¨à§à¦Ÿà§‡à¦¶à¦¨ à¦¯à§‡à¦–à¦¾à¦¨à§‡ à¦ªà§à¦°à¦¤à¦¿à¦Ÿà¦¿ à¦¶à§à¦°à§‡à¦£à§€à¦° à¦œà¦¨à§à¦¯ à¦à¦•à¦Ÿà¦¿ à¦•à¦°à§‡ à¦†à§Ÿà¦¤à¦¾à¦•à¦¾à¦° à¦¸à§à¦¤à¦®à§à¦­ à¦¤à§ˆà¦°à¦¿ à¦•à¦°à¦¾ à¦¹à§Ÿà¥¤</p>
       <ul>
-        <li><strong>X-axis:</strong> শ্রেণীর প্রকৃত সীমানা (Class Boundaries)।</li>
-        <li><strong>Y-axis:</strong> গণসংখ্যা (Frequency)।</li>
+        <li><strong>X-axis:</strong> à¦¶à§à¦°à§‡à¦£à§€à¦° à¦ªà§à¦°à¦•à§ƒà¦¤ à¦¸à§€à¦®à¦¾à¦¨à¦¾ (Class Boundaries)à¥¤</li>
+        <li><strong>Y-axis:</strong> à¦—à¦£à¦¸à¦‚à¦–à§à¦¯à¦¾ (Frequency)à¥¤</li>
       </ul>
-      <p><strong>টেকনিক্যাল পয়েন্ট:</strong> আয়তলেখের স্তম্ভগুলোর মাঝে কোনো ফাঁকা থাকে না, কারণ এটি অবিচ্ছিন্ন উপাত্ত (Continuous Data) প্রকাশ করে।</p>
+      <p><strong>à¦Ÿà§‡à¦•à¦¨à¦¿à¦•à§à¦¯à¦¾à¦² à¦ªà§Ÿà§‡à¦¨à§à¦Ÿ:</strong> à¦†à§Ÿà¦¤à¦²à§‡à¦–à§‡à¦° à¦¸à§à¦¤à¦®à§à¦­à¦—à§à¦²à§‹à¦° à¦®à¦¾à¦à§‡ à¦•à§‹à¦¨à§‹ à¦«à¦¾à¦à¦•à¦¾ à¦¥à¦¾à¦•à§‡ à¦¨à¦¾, à¦•à¦¾à¦°à¦£ à¦à¦Ÿà¦¿ à¦…à¦¬à¦¿à¦šà§à¦›à¦¿à¦¨à§à¦¨ à¦‰à¦ªà¦¾à¦¤à§à¦¤ (Continuous Data) à¦ªà§à¦°à¦•à¦¾à¦¶ à¦•à¦°à§‡à¥¤</p>
       <div style="text-align: center; margin: 20px 0;">
         <p><em>
 
 [Image of histogram chart]
 </em></p>
-        <div style="background: #eee; padding: 20px; border: 2px dashed #bdc3c7;">ডায়াগ্রাম: বায়োস্ট্যাটিকস আয়তলেখ</div>
+        <div style="background: #eee; padding: 20px; border: 2px dashed #bdc3c7;">à¦¡à¦¾à§Ÿà¦¾à¦—à§à¦°à¦¾à¦®: à¦¬à¦¾à§Ÿà§‹à¦¸à§à¦Ÿà§à¦¯à¦¾à¦Ÿà¦¿à¦•à¦¸ à¦†à§Ÿà¦¤à¦²à§‡à¦–</div>
       </div>
     </div>
   </details>
 
   <details style="margin-bottom: 15px; border: 1px solid #dcdde1; border-radius: 8px; overflow: hidden;">
-    <summary style="cursor: pointer; padding: 15px; background: #8e44ad; color: white; font-weight: bold;">📈 ৪. গণসংখ্যা বহুভুজ (Frequency Polygon)</summary>
+    <summary style="cursor: pointer; padding: 15px; background: #8e44ad; color: white; font-weight: bold;">ðŸ“ˆ à§ª. à¦—à¦£à¦¸à¦‚à¦–à§à¦¯à¦¾ à¦¬à¦¹à§à¦­à§à¦œ (Frequency Polygon)</summary>
     <div style="padding: 20px; background: #f5f6fa;">
-      <p>এটি একটি রেখাচিত্র যা উপাত্তের হ্রাস-বৃদ্ধি বা ট্রেন্ড খুব স্পষ্টভাবে তুলে ধরে।</p>
-      <p><strong>অঙ্কন পদ্ধতি:</strong> আয়তলেখের প্রতিটি স্তম্ভের শীর্ষবিন্দুর মধ্যবিন্দু (Mid-points) বের করে সেগুলো সরলরেখা দ্বারা যোগ করতে হয়।</p>
+      <p>à¦à¦Ÿà¦¿ à¦à¦•à¦Ÿà¦¿ à¦°à§‡à¦–à¦¾à¦šà¦¿à¦¤à§à¦° à¦¯à¦¾ à¦‰à¦ªà¦¾à¦¤à§à¦¤à§‡à¦° à¦¹à§à¦°à¦¾à¦¸-à¦¬à§ƒà¦¦à§à¦§à¦¿ à¦¬à¦¾ à¦Ÿà§à¦°à§‡à¦¨à§à¦¡ à¦–à§à¦¬ à¦¸à§à¦ªà¦·à§à¦Ÿà¦­à¦¾à¦¬à§‡ à¦¤à§à¦²à§‡ à¦§à¦°à§‡à¥¤</p>
+      <p><strong>à¦…à¦™à§à¦•à¦¨ à¦ªà¦¦à§à¦§à¦¤à¦¿:</strong> à¦†à§Ÿà¦¤à¦²à§‡à¦–à§‡à¦° à¦ªà§à¦°à¦¤à¦¿à¦Ÿà¦¿ à¦¸à§à¦¤à¦®à§à¦­à§‡à¦° à¦¶à§€à¦°à§à¦·à¦¬à¦¿à¦¨à§à¦¦à§à¦° à¦®à¦§à§à¦¯à¦¬à¦¿à¦¨à§à¦¦à§ (Mid-points) à¦¬à§‡à¦° à¦•à¦°à§‡ à¦¸à§‡à¦—à§à¦²à§‹ à¦¸à¦°à¦²à¦°à§‡à¦–à¦¾ à¦¦à§à¦¬à¦¾à¦°à¦¾ à¦¯à§‹à¦— à¦•à¦°à¦¤à§‡ à¦¹à§Ÿà¥¤</p>
       <div style="text-align: center; margin: 20px 0;">
         <p><em></em></p>
-        <div style="background: #eee; padding: 20px; border: 2px dashed #bdc3c7;">ডায়াগ্রাম: গণসংখ্যা বহুভুজ</div>
+        <div style="background: #eee; padding: 20px; border: 2px dashed #bdc3c7;">à¦¡à¦¾à§Ÿà¦¾à¦—à§à¦°à¦¾à¦®: à¦—à¦£à¦¸à¦‚à¦–à§à¦¯à¦¾ à¦¬à¦¹à§à¦­à§à¦œ</div>
       </div>
     </div>
   </details>
 
   <details style="margin-bottom: 15px; border: 1px solid #dcdde1; border-radius: 8px; overflow: hidden;">
-    <summary style="cursor: pointer; padding: 15px; background: #f39c12; color: white; font-weight: bold;">🧠 ৫. অনুশীলন ও প্রয়োগ (Activities & Application)</summary>
+    <summary style="cursor: pointer; padding: 15px; background: #f39c12; color: white; font-weight: bold;">ðŸ§  à§«. à¦…à¦¨à§à¦¶à§€à¦²à¦¨ à¦“ à¦ªà§à¦°à§Ÿà§‹à¦— (Activities & Application)</summary>
     <div style="padding: 20px; background: #f5f6fa;">
-      <p>ধরা যাক, একটি হাসপাতালে ১০ জন রোগীর ওজন (কেজি) যথাক্রমে: ৬০, ৬২, ৫০, ৫৫, ৫৮, ৭০, ৬৫, ৫২, ৫৩, ৬৩।</p>
-      <p><strong>আপনার জন্য কাজ:</strong> এই উপাত্ত থেকে ৫ ব্যবধানে একটি ফ্রিকোয়েন্সি টেবিল তৈরি করার চেষ্টা করুন।</p>
+      <p>à¦§à¦°à¦¾ à¦¯à¦¾à¦•, à¦à¦•à¦Ÿà¦¿ à¦¹à¦¾à¦¸à¦ªà¦¾à¦¤à¦¾à¦²à§‡ à§§à§¦ à¦œà¦¨ à¦°à§‹à¦—à§€à¦° à¦“à¦œà¦¨ (à¦•à§‡à¦œà¦¿) à¦¯à¦¥à¦¾à¦•à§à¦°à¦®à§‡: à§¬à§¦, à§¬à§¨, à§«à§¦, à§«à§«, à§«à§®, à§­à§¦, à§¬à§«, à§«à§¨, à§«à§©, à§¬à§©à¥¤</p>
+      <p><strong>à¦†à¦ªà¦¨à¦¾à¦° à¦œà¦¨à§à¦¯ à¦•à¦¾à¦œ:</strong> à¦à¦‡ à¦‰à¦ªà¦¾à¦¤à§à¦¤ à¦¥à§‡à¦•à§‡ à§« à¦¬à§à¦¯à¦¬à¦§à¦¾à¦¨à§‡ à¦à¦•à¦Ÿà¦¿ à¦«à§à¦°à¦¿à¦•à§‹à§Ÿà§‡à¦¨à§à¦¸à¦¿ à¦Ÿà§‡à¦¬à¦¿à¦² à¦¤à§ˆà¦°à¦¿ à¦•à¦°à¦¾à¦° à¦šà§‡à¦·à§à¦Ÿà¦¾ à¦•à¦°à§à¦¨à¥¤</p>
     </div>
   </details>
 
   <div style="margin-top: 30px; padding: 20px; border-left: 5px solid #34495e; background: #ecf0f1;">
-    <p><strong>গাইড প্রশ্ন:</strong> আমরা উপাত্ত চিত্রায়নের মূল বিষয়গুলো শেষ করেছি। আমরা কি এখন একটি বাস্তব উপাত্ত সেট (Data Set) নিয়ে হাতে-কলমে সারণি এবং মধ্যবিন্দু (Mid-point) নির্ণয় করা শিখবো, নাকি আপনি পরবর্তী মডিউল <strong>Central Tendency</strong> (গড়, মধ্যমা) শুরু করতে চান? 😊</p>
+    <p><strong>à¦—à¦¾à¦‡à¦¡ à¦ªà§à¦°à¦¶à§à¦¨:</strong> à¦†à¦®à¦°à¦¾ à¦‰à¦ªà¦¾à¦¤à§à¦¤ à¦šà¦¿à¦¤à§à¦°à¦¾à§Ÿà¦¨à§‡à¦° à¦®à§‚à¦² à¦¬à¦¿à¦·à§Ÿà¦—à§à¦²à§‹ à¦¶à§‡à¦· à¦•à¦°à§‡à¦›à¦¿à¥¤ à¦†à¦®à¦°à¦¾ à¦•à¦¿ à¦à¦–à¦¨ à¦à¦•à¦Ÿà¦¿ à¦¬à¦¾à¦¸à§à¦¤à¦¬ à¦‰à¦ªà¦¾à¦¤à§à¦¤ à¦¸à§‡à¦Ÿ (Data Set) à¦¨à¦¿à§Ÿà§‡ à¦¹à¦¾à¦¤à§‡-à¦•à¦²à¦®à§‡ à¦¸à¦¾à¦°à¦£à¦¿ à¦à¦¬à¦‚ à¦®à¦§à§à¦¯à¦¬à¦¿à¦¨à§à¦¦à§ (Mid-point) à¦¨à¦¿à¦°à§à¦£à§Ÿ à¦•à¦°à¦¾ à¦¶à¦¿à¦–à¦¬à§‹, à¦¨à¦¾à¦•à¦¿ à¦†à¦ªà¦¨à¦¿ à¦ªà¦°à¦¬à¦°à§à¦¤à§€ à¦®à¦¡à¦¿à¦‰à¦² <strong>Central Tendency</strong> (à¦—à§œ, à¦®à¦§à§à¦¯à¦®à¦¾) à¦¶à§à¦°à§ à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨? ðŸ˜Š</p>
   </div>
 
 </div>
+

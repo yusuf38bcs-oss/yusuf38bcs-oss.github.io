@@ -9,14 +9,7 @@ categories:
   - Practical Applications
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparative Anatomy: Evolution of the Vertebrate Heart | Learning Biology</title>
-    <meta name="description" content="A comprehensive guide to the evolutionary transition of the vertebrate heart from two-chambered to four-chambered structures. Perfect for HSC and Zoology Honours students.">
-    <style>
+<style>
         :root {
             --primary-indigo: #3f51b5;
             --accent-cyan: #00bcd4;
@@ -140,9 +133,6 @@ categories:
             h1 { font-size: 1.8rem; }
         }
     </style>
-</head>
-<body>
-
 <div class="post-container">
     <header>
         <span class="category-tag">Comparative Anatomy</span>
@@ -225,5 +215,3 @@ categories:
     </footer>
 </div>
 
-</body>
-</html>

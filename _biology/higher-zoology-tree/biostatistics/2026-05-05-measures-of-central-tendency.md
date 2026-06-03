@@ -1,4 +1,4 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
@@ -15,6 +15,7 @@ tags:
   - Mode
   - Data-Types
 classes: wide
+node_id: measures_of_central_tendency
 ---
 
 <div class="summary-master-block" style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
@@ -27,20 +28,20 @@ classes: wide
 
 <div class="guideline-quote-block" style="background: rgba(255,255,255,0.02); border-left: 4px solid #64748b; padding: 1.5rem; margin: 2.5rem 0; border-radius: 0 8px 8px 0; color: #cbd5e1; line-height: 1.75;">
   <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">হে প্রখর চিন্তাশীল গবেষক (Active Thinkers):</strong>
-  ল্যাবরেটরির টেস্টটিউব কিংবা মাঠ পর্যায়ের বাস্তুতন্ত্র থেকে আমরা যে বিপুল তথ্য বা ডেটা সংগ্রহ করি, তার গভীরে লুকিয়ে থাকে প্রকৃতির সুনির্দিষ্ট গাণিতিক শৃঙ্খলা। কোনো ডেটাসেটের মানগুলো কোন কেন্দ্রের দিকে পুঞ্জীভূত হওয়ার প্রবণতা দেখায়—তা নির্ণয় করাই জীবপরিসংখ্যানের (Biostatistics) অন্যতম প্রধান কাজ। আসুন, ডেটার ভেতরের সেই কাঠামোগত ভাষাটিকে নিখুঁত মডুলার ব্লকের মাধ্যমে ডিকোড করি।
+  ল্যাবরেটরির টেস্টটিউব কিংবা মাঠ পর্যায়ের বাস্তুতন্ত্র থেকে আমরা যে বিপুল তথ্য বা ডেটা সংগ্রহ করি, তার গভীরে লুকিয়ে থাকে প্রকৃতির সুনির্দিষ্ট গাণিতিক শৃঙ্খলা। কোনো ডেটাসেটের মানগুলো কোন কেন্দ্রের দিকে পুঞ্জীভূত হওয়ার প্রবণতা দেখায়—তা নির্ণয় করাই জীবপরিসংখ্যানের (Biostatistics) অন্যতম প্রধান কাজ। আসুন, ডেটার ভেতরের সেই কাঠামোগত ভাষাকে নিখুঁত মডুলার ব্লকের মাধ্যমে ডিকোড করি।
 </div>
 
 ---
 
 <div class="system-block-layer" style="background: #090d16; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
-  <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1.25rem;"><span style="color: #00d4b2;">১️⃣</span> ডেটা আর্কিটেকচারের মৌলিক উপাদানসমূহ</h3>
+  <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1.25rem;"><span style="color: #00d4b2;">1️⃣</span> ডেটা আর্কিটেকচারের মৌলিক উপাদানসমূহ</h3>
   
   <p style="color: #cbd5e1; margin-bottom: 1.25rem;">কেন্দ্রীয় প্রবণতা পরিমাপের পূর্বে জীবপরিসংখ্যানের প্রাথমিক ডেটা এলিমেন্টগুলো জানা আবশ্যক:</p>
 
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
     <div style="background: #131c2e; padding: 1.25rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); border-left: 4px solid #00d4b2;">
       <strong style="color: #ffffff; font-size: 1.05rem; display: block; margin-bottom: 0.5rem;">চলক (Variable)</strong>
-      <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin: 0;">জীবের যেকোনো পরিমাপযোগ্য বৈশিষ্ট্য যা একক থেকে এককে পরিবর্তিত হয়। যেমন: রক্তচাপ, উদ্ভিদের উচ্চতা, হৃৎস্পন্দন হার।</p>
+      <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin: 0;">জীবের যেকোনো পরিমাপযোগ্য বৈশিষ্ট্য যা একক থেকে এককে পরিবর্তিত হয়। যেমন: রক্তচাপ, উদ্ভিদের উচ্চতা, হৃদস্পন্দন হার।</p>
     </div>
     <div style="background: #131c2e; padding: 1.25rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); border-left: 4px solid #00d4b2;">
       <strong style="color: #ffffff; font-size: 1.05rem; display: block; margin-bottom: 0.5rem;">উপাত্ত (Data)</strong>
@@ -123,8 +124,8 @@ classes: wide
         <tr style="background-color: #131c2e;">
           <th style="color: #00d4b2; padding: 14px; font-weight: 700; border: 1px solid rgba(255,255,255,0.05);">পরিমাপক</th>
           <th style="color: #ffffff; padding: 14px; border: 1px solid rgba(255,255,255,0.05); font-weight: 700; border: 1px solid rgba(255,255,255,0.05);">গাণিতিক ব্যাখ্যা</th>
-          <th style="color: #00d4b2; padding: 14px; border: 1px solid rgba(255,255,255,0.05); font-weight: 700; border: 1px solid rgba(255,255,255,0.05);">আউটলায়ার সংবেদনশীলতা</th>
-          <th style="color: #ffffff; padding: 14px; border: 1px solid rgba(255,255,255,0.05); font-weight: 700; border: 1px solid rgba(255,255,255,0.05);">সবচেয়ে উপযোগী ক্ষেত্র</th>
+          <th style="color: #00d4b2; padding: 14px; border: 1px solid rgba(255,255,255,0.05); font-weight: 700; border: 1px solid rgba(255,255,255,0.05);">আউটলায়ার সংবেদনশীলতা</th>
+          <th style="color: #ffffff; padding: 14px; border: 1px solid rgba(255,255,255,0.05); font-weight: 700; border: 1px solid rgba(255,255,255,0.05);">সবচেয়ে উপযোগী ক্ষেত্র</th>
         </tr>
       </thead>
       <tbody>
@@ -154,7 +155,7 @@ classes: wide
 ---
 
 <div class="system-block-layer" style="background: #090d16; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
-  <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1rem;"><span style="color: #00d4b2;">🧪</span> চিকিৎসাবিজ্ঞান ও জীববিজ্ঞানে বাস্তব প্রয়োগ</h3>
+  <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1rem;"><span style="color: #00d4b2;">🧬</span> চিকিৎসাবিজ্ঞান ও জীববিজ্ঞানে বাস্তব প্রয়োগ</h3>
   <ul style="padding-left: 1.25rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.75rem; line-height: 1.65;">
     <li><strong>ক্লিনিক্যাল ট্রায়াল:</strong> কোনো নতুন উচ্চরক্তচাপ প্রতিরোধী ওষুধের কার্যকারিতা যাচাই করতে রোগীদের বেসলাইন এবং চূড়ান্ত রক্তচাপের <b>Mean</b> বা গড় পরিবর্তন হিসাব করা হয়।</li>
     <li><strong>জনসংখ্যা ও এপিডেমিওলজি:</strong> কোনো মহামারীতে আক্রান্ত রোগীদের বয়সের বিন্যাস বুঝতে <b>Median</b> ব্যবহার করা হয়, কারণ এখানে নবজাতক থেকে শুরু করে শতবর্ষী প্রবীণ পর্যন্ত থাকতে পারে (বিষম ডেটা)।</li>
