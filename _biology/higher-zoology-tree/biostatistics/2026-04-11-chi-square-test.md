@@ -3,207 +3,260 @@ layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
-title: "à¦•à¦¾à¦‡-à¦¬à¦°à§à¦— à¦ªà¦°à§€à¦•à§à¦·à¦¾ (Chi-square Test) "
+title: "কাই-বর্গ পরীক্ষা (Chi-square Test)"
 date: 2026-04-11T09:53:00.007Z
 categories:
   - Biostatistics
-
 node_id: chi_square_test
 ---
 
-<p></p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/a/AVvXsEgTCqRrk8TmLuAEgUkmepnqVKei-SCf2JxM7vEzGXV2niZWa9T2_di0OPAOWiKNOBEcMiPV7QSIbBG3YHUjYJ8ZTj2GBvnUKCeL2iYtlF2UmiZMcn350VUdbGYvt-zH0QMCvsWTDdZyYJHMXqVbxmshuVe99yAI1vT1KhPnjc3ShHt93UEY_GnbL7Y3dKU" style="margin-left: 1em; margin-right: 1em;"><img alt="" data-original-height="559" data-original-width="1024" height="175" src="https://blogger.googleusercontent.com/img/a/AVvXsEgTCqRrk8TmLuAEgUkmepnqVKei-SCf2JxM7vEzGXV2niZWa9T2_di0OPAOWiKNOBEcMiPV7QSIbBG3YHUjYJ8ZTj2GBvnUKCeL2iYtlF2UmiZMcn350VUdbGYvt-zH0QMCvsWTDdZyYJHMXqVbxmshuVe99yAI1vT1KhPnjc3ShHt93UEY_GnbL7Y3dKU" width="320" /></a></div><br />&nbsp;<p></p>
-</meta>
-</meta>
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"></link>
-
 <style>
-    /* à¦¹à¦¿à¦°à§‹ à¦¸à§‡à¦•à¦¶à¦¨ à¦¸à§à¦Ÿà¦¾à¦‡à¦² */
-    .feature-hero-junction {
-        background: linear-gradient(135deg, rgba(22, 160, 133, 0.9) 0%, rgba(44, 62, 80, 0.8) 100%), 
-                    url('https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=1200');
-        background-size: cover;
-        background-position: center;
-        height: 380px;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 40px;
-        box-shadow: 0 10px 30px rgba(22, 160, 133, 0.2);
-        border-bottom: 6px solid #16a085;
-        overflow: hidden;
-    }
+  /* =========================================================
+     SCOPED CHI-SQUARE MODULE STYLES (Ecosystem Compliant)
+     ========================================================= */
+  .chisquare-module {
+    font-family: 'Inter', 'Tiro Bangla', sans-serif;
+    width: 100%;
+    margin: 0 auto;
+    color: #cbd5e1;
+  }
 
-    .hero-overlay {
-        text-align: center;
-        padding: 30px;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        max-width: 85%;
-    }
+  /* --- Cinematic Hero Section --- */
+  .chisquare-module .feature-hero-junction {
+    background: linear-gradient(135deg, rgba(2, 6, 23, 0.85) 0%, rgba(0, 212, 178, 0.4) 100%), 
+                url('https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=1200');
+    background-size: cover;
+    background-position: center;
+    height: clamp(250px, 40vh, 380px);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 212, 178, 0.2);
+    overflow: hidden;
+  }
 
-    .hero-main-title {
-        color: #ffffff !important;
-        font-size: 38px !important;
-        font-weight: 900 !important;
-        margin: 10px 0 !important;
-        font-family: 'Tiro Bangla', serif;
-    }
+  .chisquare-module .hero-overlay {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 90%;
+  }
 
-    .cyan-text { color: #00e5ff; }
+  .chisquare-module .hero-main-title {
+    color: #ffffff !important;
+    font-size: clamp(1.8rem, 4vw, 2.5rem) !important;
+    font-weight: 900 !important;
+    margin: 0 0 10px 0 !important;
+    line-height: 1.2;
+  }
 
-    /* à¦®à§‡à¦‡à¦¨ à¦•à¦¨à§à¦Ÿà§‡à¦‡à¦¨à¦¾à¦° */
-    .biology-lecture-container {
-        font-family: 'Inter', 'Tiro Bangla', sans-serif;
-        line-height: 1.8;
-        color: #2c3e50;
-        max-width: 850px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #ffffff;
-    }
+  /* --- Intro & Tip Boxes --- */
+  .chisquare-module .intro-box {
+    padding: 1.5rem;
+    background: rgba(15, 23, 42, 0.6);
+    border-left: 4px solid #00d4b2;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    border-radius: 0 8px 8px 0;
+    line-height: 1.7;
+  }
 
-    h2 { color: #16a085; border-bottom: 2px solid #16a085; padding-bottom: 10px; margin-top: 30px; }
+  .chisquare-module .tip-box {
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px dashed #3b82f6;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+  }
 
-    .intro-box {
-        padding: 25px;
-        background-color: #f1f8f7;
-        border-left: 5px solid #16a085;
-        font-size: 1.1em;
-        margin-bottom: 25px;
-        border-radius: 0 10px 10px 0;
-    }
+  .chisquare-module .tip-box h4 {
+    color: #3b82f6;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+  }
 
-    details {
-        background: #f9f9f9;
-        padding: 15px 20px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        transition: all 0.3s ease;
-    }
+  /* --- Interactive Accordions --- */
+  .chisquare-module details {
+    background: #0d1527;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 1.25rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
 
-    details[open] { background: #fff; border-color: #16a085; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+  .chisquare-module details[open] { 
+    border-color: rgba(0, 212, 178, 0.3); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+  }
 
-    summary {
-        font-weight: 700;
-        cursor: pointer;
-        color: #2c3e50;
-        font-size: 1.15em;
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .chisquare-module summary {
+    font-weight: 700;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 1.1rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+  }
+  
+  .chisquare-module summary:hover {
+    background: rgba(0, 212, 178, 0.05);
+  }
 
-    .formula-box {
-        background: #f4f7f6;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-        font-size: 1.3em;
-        margin: 15px 0;
-        border: 1px dashed #16a085;
-    }
+  .chisquare-module summary::-webkit-details-marker { display: none; }
+  .chisquare-module summary::after { content: '▼'; color: #00d4b2; font-size: 0.9em; transition: transform 0.3s; }
+  .chisquare-module details[open] summary::after { transform: rotate(180deg); }
+  
+  .chisquare-module .details-content {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
 
-    .biostat-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-    }
+  /* --- Math & Tables --- */
+  .chisquare-module .formula-box {
+    background: rgba(16, 185, 129, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.25rem;
+    margin: 1.5rem 0;
+    border: 1px dashed #10b981;
+    color: #10b981;
+    font-weight: bold;
+    overflow-x: auto;
+  }
 
-    .biostat-table th { background: #16a085; color: white; padding: 12px; }
-    .biostat-table td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+  .chisquare-module .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
 
-    .tip-box {
-        background-color: #e8f4fd;
-        border: 1px solid #3498db;
-        padding: 20px;
-        border-radius: 10px;
-        margin-top: 30px;
-    }
+  .chisquare-module .biostat-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+  }
+
+  .chisquare-module .biostat-table th { 
+    background: rgba(0, 212, 178, 0.1); 
+    color: #00d4b2; 
+    padding: 12px; 
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  
+  .chisquare-module .biostat-table td { 
+    border: 1px solid rgba(255,255,255,0.05); 
+    padding: 12px; 
+    text-align: center; 
+  }
+  
+  /* Image Fix */
+  .chisquare-module .featured-image-wrapper {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .chisquare-module .featured-image-wrapper img {
+    border-radius: 12px;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
 </style>
-<div class="biology-lecture-container">
 
-    <div class="feature-hero-junction">
-        <div class="hero-overlay">
-            <h2 class="hero-main-title">à¦•à¦¾à¦‡-à¦¬à¦°à§à¦— à¦ªà¦°à§€à¦•à§à¦·à¦¾ <br /><span class="cyan-text">(Chi-square Test)</span></h2>
-            <div style="background: #00e5ff; height: 3px; margin: 15px auto; width: 50px;"></div>
-            <p style="color: #e0f7fa; font-size: 18px;">à¦—à§à¦¡à¦¨à§‡à¦¸ à¦…à¦« à¦«à¦¿à¦Ÿ à¦à¦¬à¦‚ à¦•à¦¨à§à¦Ÿà¦¿à¦¨à¦œà§‡à¦¨à§à¦¸à¦¿ à¦Ÿà§‡à¦¬à¦¿à¦² à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£</p>
-        </div>
+<div class="chisquare-module">
+
+  <div class="featured-image-wrapper">
+    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgTCqRrk8TmLuAEgUkmepnqVKei-SCf2JxM7vEzGXV2niZWa9T2_di0OPAOWiKNOBEcMiPV7QSIbBG3YHUjYJ8ZTj2GBvnUKCeL2iYtlF2UmiZMcn350VUdbGYvt-zH0QMCvsWTDdZyYJHMXqVbxmshuVe99yAI1vT1KhPnjc3ShHt93UEY_GnbL7Y3dKU" alt="Chi-Square Test Diagram" loading="lazy">
+  </div>
+
+  <div class="feature-hero-junction">
+    <div class="hero-overlay">
+      <h2 class="hero-main-title">কাই-বর্গ পরীক্ষা <br /><span style="color: #00d4b2;">(Chi-square Test)</span></h2>
+      <div style="background: #00d4b2; height: 3px; margin: 15px auto; width: 60px; border-radius: 2px;"></div>
+      <p style="color: #e2e8f0; font-size: 1.1rem; margin: 0;">গুডনেস অফ ফিট এবং কন্টিনজেন্সি টেবিল বিশ্লেষণ</p>
     </div>
+  </div>
 
-    <div class="intro-box">
-        à¦…à¦¨à¦¾à¦°à§à¦¸ à§ªà¦°à§à¦¥ à¦¬à¦°à§à¦·à§‡à¦° à¦œà§€à¦¬à¦ªà¦°à¦¿à¦¸à¦‚à¦–à§à¦¯à¦¾à¦¨ (Biostatistics) à¦•à§‹à¦°à§à¦¸à§‡ <strong>Chi-square (Ï‡Â²) test</strong> à¦à¦•à¦Ÿà¦¿ à¦…à¦¤à§à¦¯à¦¨à§à¦¤ à¦°à§‹à¦®à¦¾à¦žà§à¦šà¦•à¦° à¦¬à¦¿à¦·à§Ÿà¥¤ à¦¬à¦¿à¦¶à§‡à¦· à¦•à¦°à§‡ à¦¬à¦‚à¦¶à¦—à¦¤à¦¿à¦¬à¦¿à¦¦à§à¦¯à¦¾ à¦¬à¦¾ à¦œà§‡à¦¨à§‡à¦Ÿà¦¿à¦•à§à¦¸à§‡à¦° (Mendelian Genetics) à¦—à¦¬à§‡à¦·à¦£à¦¾à§Ÿ à¦à¦Ÿà¦¿ à¦…à¦ªà¦°à¦¿à¦¹à¦¾à¦°à§à¦¯à¥¤ à§§à§¯à§¦à§¦ à¦¸à¦¾à¦²à§‡ à¦•à¦¾à¦°à§à¦² à¦ªà¦¿à¦¯à¦¼à¦¾à¦°à¦¸à¦¨ à¦à¦‡ à¦ªà¦°à§€à¦•à§à¦·à¦¾à¦Ÿà¦¿ à¦‰à¦¦à§à¦­à¦¾à¦¬à¦¨ à¦•à¦°à§‡à¦¨à¥¤
+  <div class="intro-box">
+    অনার্স ৪র্থ বর্ষের জীবপরিসংখ্যান (Biostatistics) কোর্সে <strong>Chi-square ($\chi^2$) test</strong> একটি অত্যন্ত রোমাঞ্চকর বিষয়। বিশেষ করে বংশগতিবিদ্যা বা জেনেটিক্সের (Mendelian Genetics) গবেষণায় এটি অপরিহার্য। ১৯০০ সালে কার্ল পিয়ারসন এই পরীক্ষাটি উদ্ভাবন করেন।
+  </div>
+
+  <details open>
+    <summary>১. গুডনেস অফ ফিট (Goodness of Fit)</summary>
+    <div class="details-content">
+      <p>এটি যাচাই করে যে, আমাদের সংগৃহীত উপাত্ত কোনো নির্দিষ্ট তাত্ত্বিক অনুপাতকে (যেমন- মেন্ডেলের ৩:১ অনুপাত) মেনে চলে কি না।</p>
+      <div class="formula-box">
+        $$\chi^2 = \sum \frac{(O - E)^2}{E}$$
+      </div>
+      <p>এখানে, $O =$ পর্যবেক্ষণকৃত মান (Observed Value) এবং $E =$ প্রত্যাশিত মান (Expected Value)।</p>
     </div>
+  </details>
 
-    
-
-    <details open="">
-        <summary>à§§. à¦—à§à¦¡à¦¨à§‡à¦¸ à¦…à¦« à¦«à¦¿à¦Ÿ (Goodness of Fit)</summary>
-        <div style="padding-top: 15px;">
-            <p>à¦à¦Ÿà¦¿ à¦¯à¦¾à¦šà¦¾à¦‡ à¦•à¦°à§‡ à¦¯à§‡, à¦†à¦®à¦¾à¦¦à§‡à¦° à¦¸à¦‚à¦—à§ƒà¦¹à§€à¦¤ à¦‰à¦ªà¦¾à¦¤à§à¦¤ à¦•à§‹à¦¨à§‹ à¦¨à¦¿à¦°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦¤à¦¾à¦¤à§à¦¤à§à¦¬à¦¿à¦• à¦…à¦¨à§à¦ªà¦¾à¦¤à¦•à§‡ (à¦¯à§‡à¦®à¦¨- à¦®à§‡à¦¨à§à¦¡à§‡à¦²à§‡à¦° à§©:à§§ à¦…à¦¨à§à¦ªà¦¾à¦¤) à¦®à§‡à¦¨à§‡ à¦šà¦²à§‡ à¦•à¦¿ à¦¨à¦¾à¥¤</p>
-            <div class="formula-box">
-                Ï‡Â² = Î£ [ (O - E)Â² / E ]
-            </div>
-            <p>à¦à¦–à¦¾à¦¨à§‡, O = à¦ªà¦°à§à¦¯à¦¬à§‡à¦•à§à¦·à¦£à¦•à§ƒà¦¤ à¦®à¦¾à¦¨ à¦à¦¬à¦‚ E = à¦ªà§à¦°à¦¤à§à¦¯à¦¾à¦¶à¦¿à¦¤ à¦®à¦¾à¦¨à¥¤</p>
-        </div>
-    </details>
-
-    <details>
-        <summary>ðŸ“Š à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦‰à¦¦à¦¾à¦¹à¦°à¦£: à¦®à§‡à¦¨à§à¦¡à§‡à¦²à§‡à¦° à¦®à¦Ÿà¦°à¦¶à§à¦à¦Ÿà¦¿ à¦ªà¦°à§€à¦•à§à¦·à¦¾</summary>
-        <div style="padding-top: 15px;">
-            <p><strong>à¦¸à¦®à¦¸à§à¦¯à¦¾:</strong> à§ªà§¦à§¦à¦Ÿà¦¿ à¦—à¦¾à¦›à§‡à¦° à¦®à¦§à§à¦¯à§‡ à§©à§¦à§¦à¦Ÿà¦¿ à¦²à¦®à§à¦¬à¦¾ à¦à¦¬à¦‚ à§§à§¦à§¦à¦Ÿà¦¿ à¦–à¦¾à¦Ÿà§‹à¥¤ à¦à¦Ÿà¦¿ à¦•à¦¿ à§©:à§§ à¦…à¦¨à§à¦ªà¦¾à¦¤ à¦¸à¦®à¦°à§à¦¥à¦¨ à¦•à¦°à§‡?</p>
-            <table class="biostat-table">
-                <thead>
-                    <tr>
-                        <th>à¦¬à§ˆà¦¶à¦¿à¦·à§à¦Ÿà§à¦¯</th>
-                        <th>O</th>
-                        <th>E</th>
-                        <th>(O-E)Â²/E</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>à¦²à¦®à§à¦¬à¦¾</td><td>à§©à§¦à§¦</td><td>à§©à§¦à§¦</td><td>à§¦</td></tr>
-                    <tr><td>à¦–à¦¾à¦Ÿà§‹</td><td>à§§à§¦à§¦</td><td>à§§à§¦à§¦</td><td>à§¦</td></tr>
-                </tbody>
-                <tr style="background: #f1f8f7; font-weight: bold;">
-                    <td colspan="3">à¦®à§‹à¦Ÿ Ï‡Â² à¦®à¦¾à¦¨</td>
-                    <td>à§¦</td>
-                </tr>
-            </table>
-            <p><strong>à¦¸à¦¿à¦¦à§à¦§à¦¾à¦¨à§à¦¤:</strong> à¦¯à§‡à¦¹à§‡à¦¤à§ à¦—à¦£à¦¨à¦¾à¦•à§ƒà¦¤ à¦®à¦¾à¦¨ (à§¦) à¦Ÿà§‡à¦¬à¦¿à¦² à¦®à¦¾à¦¨ (à§©.à§®à§ª) à¦à¦° à¦šà§‡à§Ÿà§‡ à¦›à§‹à¦Ÿ, à¦¤à¦¾à¦‡ à¦à¦Ÿà¦¿ à¦®à§‡à¦¨à§à¦¡à§‡à¦²à§‡à¦° à¦¤à¦¤à§à¦¤à§à¦¬à¦•à§‡ à¦¨à¦¿à¦–à§à¦à¦¤à¦­à¦¾à¦¬à§‡ à¦¸à¦®à¦°à§à¦¥à¦¨ à¦•à¦°à§‡à¥¤</p>
-        </div>
-    </details>
-
-    
-
-    <details>
-        <summary>à§¨. à¦•à¦¨à§à¦Ÿà¦¿à¦¨à¦œà§‡à¦¨à§à¦¸à¦¿ à¦Ÿà§‡à¦¬à¦¿à¦² (Contingency Table)</summary>
-        <div style="padding-top: 15px;">
-            <p>à¦¯à¦–à¦¨ à¦¦à§à¦Ÿà¦¿ à¦¬à§ˆà¦¶à¦¿à¦·à§à¦Ÿà§à¦¯à§‡à¦° à¦®à¦§à§à¦¯à§‡ à¦•à§‹à¦¨à§‹ à¦¸à¦®à§à¦ªà¦°à§à¦• à¦†à¦›à§‡ à¦•à¦¿ à¦¨à¦¾ à¦¤à¦¾ à¦¯à¦¾à¦šà¦¾à¦‡ à¦•à¦°à¦¾ à¦¹à§Ÿ (à¦¯à§‡à¦®à¦¨- à¦§à§‚à¦®à¦ªà¦¾à¦¨ à¦à¦¬à¦‚ à¦«à§à¦¸à¦«à§à¦¸à§‡à¦° à¦•à§à¦¯à¦¾à¦¨à§à¦¸à¦¾à¦°à§‡à¦° à¦¸à¦®à§à¦ªà¦°à§à¦•), à¦¤à¦–à¦¨ à¦à¦Ÿà¦¿ à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à¦¾ à¦¹à§Ÿà¥¤ à¦à¦•à§‡ <strong>Test of Independence</strong>-à¦“ à¦¬à¦²à¦¾ à¦¹à§Ÿà¥¤</p>
-            <p><strong>à¦¸à§à¦¬à¦¾à¦§à§€à¦¨à¦¤à¦¾à¦° à¦®à¦¾à¦¤à§à¦°à¦¾ (df):</strong> df = (r - 1)(c - 1)</p>
-            
-        </div>
-    </details>
-
-    <details>
-        <summary>âš ï¸ Chi-square à¦Ÿà§‡à¦¸à§à¦Ÿà§‡à¦° à¦¶à¦°à§à¦¤à¦¾à¦¬à¦²à§€</summary>
-        <div style="padding-top: 15px;">
-            <ul style="list-style-type: disc; padding-left: 20px;">
-                <li>à¦®à§‹à¦Ÿ à¦¨à¦®à§à¦¨à¦¾ à¦¸à¦‚à¦–à§à¦¯à¦¾ (N) à¦…à¦¨à§à¦¤à¦¤ à§«à§¦ à¦¹à¦¤à§‡ à¦¹à¦¬à§‡à¥¤</li>
-                <li>à¦•à§‹à¦¨à§‹ à¦¸à§‡à¦²à§‡à¦° à¦ªà§à¦°à¦¤à§à¦¯à¦¾à¦¶à¦¿à¦¤ à¦®à¦¾à¦¨ (E) à§«-à¦à¦° à¦•à¦® à¦¹à¦“à§Ÿà¦¾ à¦‰à¦šà¦¿à¦¤ à¦¨à§Ÿà¥¤</li>
-                <li>à¦‰à¦ªà¦¾à¦¤à§à¦¤à¦—à§à¦²à§‹ à¦…à¦¬à¦¶à§à¦¯à¦‡ à¦—à¦£à¦¸à¦‚à¦–à§à¦¯à¦¾ (Frequency) à¦¹à¦¤à§‡ à¦¹à¦¬à§‡, à¦•à§‹à¦¨à§‹ à¦¶à¦¤à¦¾à¦‚à¦¶ à¦¨à§Ÿà¥¤</li>
-            </ul>
-        </div>
-    </details>
-
-    <div class="tip-box">
-        <h4>ðŸ’¡ à¦¬à§à¦²à¦—à¦¾à¦° à¦Ÿà¦¿à¦ªà¦¸:</h4>
-        <p>à¦†à¦ªà¦¨à¦¾à¦° à¦¶à¦¿à¦•à§à¦·à¦¾à¦°à§à¦¥à§€à¦¦à§‡à¦° à¦¬à§à¦à¦¿à§Ÿà§‡ à¦¦à§‡à¦¬à§‡à¦¨ à¦¯à§‡, <strong>Ï‡Â² à¦à¦° à¦®à¦¾à¦¨ à¦¯à¦¤ à¦•à¦® à¦¹à¦¬à§‡</strong>, Observed à¦à¦¬à¦‚ Expected à¦®à¦¾à¦¨à§‡à¦° à¦®à¦§à§à¦¯à§‡ à¦®à¦¿à¦² à¦¤à¦¤ à¦¬à§‡à¦¶à¦¿ à¦¹à¦¬à§‡à¥¤ à¦…à¦°à§à¦¥à¦¾à§Ž à¦¨à¦¾à¦¸à§à¦¤à¦¿à¦• à¦•à¦²à§à¦ªà¦¨à¦¾ à¦—à§à¦°à¦¹à¦£ à¦•à¦°à¦¾à¦° à¦¸à¦®à§à¦­à¦¾à¦¬à¦¨à¦¾ à¦¬à¦¾à§œà¦¬à§‡à¥¤</p>
+  <details>
+    <summary>📊 গাণিতিক উদাহরণ: মেন্ডেলের মটরশুঁটি পরীক্ষা</summary>
+    <div class="details-content">
+      <p><strong>সমস্যা:</strong> ৪০০টি গাছের মধ্যে ৩০০টি লম্বা এবং ১০০টি খাটো। এটি কি ৩:১ অনুপাত সমর্থন করে?</p>
+      <div class="table-responsive">
+        <table class="biostat-table">
+          <thead>
+            <tr>
+              <th>বৈশিষ্ট্য</th>
+              <th>$O$ (Observed)</th>
+              <th>$E$ (Expected)</th>
+              <th>$\frac{(O-E)^2}{E}$</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>লম্বা</td><td>৩০০</td><td>৩০০</td><td>০</td></tr>
+            <tr><td>খাটো</td><td>১০০</td><td>১০০</td><td>০</td></tr>
+            <tr style="background: rgba(255,255,255,0.02); font-weight: bold; color: #00d4b2;">
+              <td colspan="3" style="text-align: right; padding-right: 15px;">মোট $\chi^2$ মান =</td>
+              <td>০</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>সিদ্ধান্ত:</strong> যেহেতু গণনাকৃত মান (০) টেবিল মান (৩.৮৪) এর চেয়ে ছোট, তাই এটি মেন্ডেলের তত্ত্বকে নিখুঁতভাবে সমর্থন করে।</p>
     </div>
+  </details>
+
+  <details>
+    <summary>২. কন্টিনজেন্সি টেবিল (Contingency Table)</summary>
+    <div class="details-content">
+      <p>যখন দুটি বৈশিষ্ট্যের মধ্যে কোনো সম্পর্ক আছে কি না তা যাচাই করা হয় (যেমন- ধূমপান এবং ফুসফুসের ক্যান্সারের সম্পর্ক), তখন এটি ব্যবহার করা হয়। একে <strong>Test of Independence</strong>-ও বলা হয়।</p>
+      <p><strong style="color: #00d4b2;">স্বাধীনতার মাত্রা (Degrees of Freedom):</strong> $df = (r - 1)(c - 1)$</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>⚠️ Chi-square টেস্টের শর্তাবলী</summary>
+    <div class="details-content">
+      <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 0.5rem;">🔹 মোট নমুনা সংখ্যা ($N$) অন্তত ৫০ হতে হবে।</li>
+        <li style="margin-bottom: 0.5rem;">🔹 কোনো সেলের প্রত্যাশিত মান ($E$) ৫-এর কম হওয়া উচিত নয়।</li>
+        <li>🔹 উপাত্তগুলো অবশ্যই গণসংখ্যা (Frequency) হতে হবে, কোনো শতাংশ (Percentage) নয়।</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="tip-box">
+    <h4>💡 ব্লগার টিপস:</h4>
+    <p style="margin: 0; font-size: 0.95rem; color: #cbd5e1;">আপনার শিক্ষার্থীদের বুঝিয়ে দেবেন যে, <strong>$\chi^2$ এর মান যত কম হবে</strong>, Observed এবং Expected মানের মধ্যে মিল তত বেশি হবে। অর্থাৎ নাল হাইপোথিসিস (Null Hypothesis) গ্রহণ করার সম্ভাবনা বাড়বে।</p>
+  </div>
 
 </div>
-
