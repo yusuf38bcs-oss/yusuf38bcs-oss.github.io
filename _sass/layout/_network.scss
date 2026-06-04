@@ -1,0 +1,38 @@
+.network-hero {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.network-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.network-pillar {
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.pillar-nodes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+  gap: 1rem;
+}
+
+.network-node {
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+}
+
+.node-meta {
+  display: flex;
+  gap: .5rem;
+  margin: .75rem 0;
+  font-size: .85rem;
+}
+
+.node-connections ul {
+  margin-top: .5rem;
+}

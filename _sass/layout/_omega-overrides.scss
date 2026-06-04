@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    OMEGA PRODUCTION OVERRIDES (THE CRITICAL FINAL CASCADING LAYER)
    Fixes: Navbar Gap, Hero Alignment, and Premium Footer Grid Restructuring
    ========================================================================== */
@@ -23,40 +23,13 @@ p, li, span, a, h3, h4, .card-content, .knowledge-manifold-card p {
   line-height: 1.65 !important;
 }
 
-/* --- 2. NAVBAR & HERO GAP CURE --- */
-/* By setting the navbar to sticky, it remains in the normal document flow. 
-   We remove artificial margin/padding from the hero so it sits flush beneath it. */
-.masthead, .site-header, .page__header, .neural-navbar, header, .navbar {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000 !important;
-  margin-bottom: 0 !important;
-  border-bottom: 1px solid rgba(0, 212, 178, 0.1) !important;
-  padding-bottom: clamp(0.5rem, 1vw, 1.2rem) !important;
-  background: rgba(2, 6, 23, 0.95) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-}
-
+/* --- 2. HOMEPAGE CONTAINER RESETS --- */
 .synaptic-homepage-matrix, #synaptic-home-root, .initial-content, #main, main {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-body.home .neural-hero-shell,
-body.home .neural-hero,
-body.home .page__hero,
-body.home .home-hero {
-  margin-top: 0 !important;
-  /* Natural internal aesthetic padding only */
-  padding-top: clamp(5rem, 10vw, 7rem) !important; 
-  padding-bottom: clamp(5rem, 10vw, 7rem) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-}
+
 
 .home .page__title, .home .page__meta,
 .synaptic-homepage-matrix .page__title {

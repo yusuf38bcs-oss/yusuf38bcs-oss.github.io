@@ -1,0 +1,110 @@
+﻿/* ==========================================================================
+   HOMEPAGE STABILIZER
+   Single source of truth for navbar + hero
+   ========================================================================== */
+
+:root {
+  --nav-height: 90px;
+}
+
+/* Authoritative navbar */
+.site-header,
+.masthead,
+header,
+.neural-navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: var(--nav-height) !important;
+  z-index: 9999 !important;
+  background: rgba(2,6,23,0.95) !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+/* Push content below navbar */
+body {
+  /* padding-top handled by #main-content-render-viewport in flex layout */
+  scroll-padding-top: calc(var(--nav-height) + 8px);
+}
+
+/* Hero alignment */
+body.home .neural-hero-shell,
+body.home .home-hero,
+body.home .page__hero {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Hide toggle on desktop */
+@media (min-width: 1024px) {
+  .greedy-nav__toggle,
+  #neural-mobile-toggle,
+  .masthead-mobile-trigger,
+  .masthead__menu-toggle {
+    display: none !important;
+  }
+}
+
+/* Footer stability */
+.site-footer,
+footer {
+  clear: both !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  :root { --nav-height: 70px; }
+}
+/* ==========================================================================
+   HERO SHELL ALIGNMENT FIX
+   ========================================================================== */
+
+/* Force hero shells to respect nav height */
+body.home .neural-hero-shell,
+body.home .home-hero,
+body.home .page__hero,
+.synaptic-home-layout .neural-hero-shell,
+.synaptic-home-layout .home-hero,
+.synaptic-home-layout .page__hero {
+  margin-top: 0 !important;
+  padding-top: var(--nav-height) !important;
+  min-height: auto !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Ensure hero visuals don’t add extra gap */
+body.home .neural-hero-shell > *,
+body.home .home-hero > *,
+body.home .page__hero > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* ==========================================================================
+   HERO SHELL ALIGNMENT FIX
+   ========================================================================== */
+body.home .neural-hero-shell,
+body.home .home-hero,
+body.home .page__hero,
+.synaptic-home-layout .neural-hero-shell,
+.synaptic-home-layout .home-hero,
+.synaptic-home-layout .page__hero {
+  margin-top: 0 !important;
+  padding-top: var(--nav-height) !important;
+  min-height: auto !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+body.home .neural-hero-shell > *,
+body.home .home-hero > *,
+body.home .page__hero > * {
+  position: relative !important;
+  z-index: 2 !important;
+}

@@ -14,3 +14,10 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 
+backups/
+neural_registry_candidates.csv
+node_pillar_audit.csv
+node_pillar_map.csv
+node_url_map.csv
+pillar-map.csv
+registry_review.csv

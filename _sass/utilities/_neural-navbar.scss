@@ -11,7 +11,7 @@
 }
 
 .site-header, .masthead {
-  position: sticky !important;
+  position: fixed !important;
   top: 0; 
   left: 0;
   width: 100%;
@@ -64,11 +64,16 @@
 }
 
 /* --- Layout Spacer Cures --- 
-   Ensures markdown headers and standard page bodies clear the sticky header */
+   Ensures content clears the fixed header in flex layouts */
 #main-content-render-viewport,
-.synaptic-page-container,
-.synaptic-homepage-matrix {
+#main,
+.page,
+.synaptic-page-container {
   padding-top: var(--nav-height) !important;
+}
+
+.synaptic-homepage-matrix {
+  padding-top: 0 !important;
 }
 
 /* Scroll margin ensures anchor links don't jump underneath the frosted navbar */

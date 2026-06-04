@@ -8,11 +8,9 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-height: 75svh;
 
   @media (max-width: 1023px) {
     background-attachment: scroll !important;
-    min-height: 65svh;
   }
 
   &.image-failed {

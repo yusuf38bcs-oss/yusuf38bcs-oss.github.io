@@ -1,0 +1,79 @@
+---
+layout: single
+title: "Biological Neural Network"
+permalink: /network/
+author_profile: false
+---
+
+<div class="network-hero">
+  <h1>🧠 Biological Neural Network</h1>
+  <p>
+    Every lesson is a node.
+    Every relationship is a connection.
+    Every mastery path is a neural pathway.
+  </p>
+</div>
+
+{% assign pillars = site.data.neural_nodes | group_by: "pillar" %}
+
+<div class="network-grid">
+
+{% for pillar in pillars %}
+
+<section class="network-pillar">
+
+  <h2>{{ pillar.name | capitalize }}</h2>
+
+  <div class="pillar-nodes">
+
+    {% for node in pillar.items %}
+
+    <article class="network-node">
+
+      <h3>{{ node.title }}</h3>
+
+      <div class="node-meta">
+
+        <span>{{ node.difficulty }}</span>
+
+        <span>{{ node.mastery_points }} XP</span>
+
+      </div>
+
+      {% assign outgoing = site.data.neural_edges | where: "source", node.id %}
+
+      {% if outgoing.size > 0 %}
+      <div class="node-connections">
+
+        <strong>Connects To</strong>
+
+        <ul>
+
+        {% for edge in outgoing %}
+
+          {% assign target = site.data.neural_nodes | where: "id", edge.target | first %}
+
+          {% if target %}
+            <li>{{ target.title }}</li>
+          {% else %}
+            <li>{{ edge.target }}</li>
+          {% endif %}
+
+        {% endfor %}
+
+        </ul>
+
+      </div>
+      {% endif %}
+
+    </article>
+
+    {% endfor %}
+
+  </div>
+
+</section>
+
+{% endfor %}
+
+</div>
