@@ -14,6 +14,28 @@
    box-sizing: border-box !important;
    backdrop-filter: blur(12px) !important;
 }
+.footer-primary-grid {
+   display: grid !important;
+   max-width: 1240px !important;
+   margin: 0 auto 3rem !important;
+   gap: 3.5rem !important;
+   grid-template-columns: 1fr 1.5fr 1fr !important;
+   align-items: start !important;
+}
+
+.footer-left-column,
+.footer-right-column {
+   padding: 0 !important;
+}
+
+.footer-center-column {
+   padding: 2rem !important;
+   text-align: center !important;
+   border-radius: 12px !important;
+   background: rgba(0, 212, 178, 0.02) !important;
+   border: 1px solid rgba(0, 212, 178, 0.08) !important;
+}
+
 .footer-matrix-container {
    display: grid !important;
    max-width: 1240px !important;
@@ -78,18 +100,18 @@
    transform: translateX(4px) !important;
 }
 .newsletter-action-trigger {
-   background: linear-gradient(135deg, #00d4b2, #0055ff) !important;
+   background: linear-gradient(135deg, #00d4b2, #0369a1) !important;
    color: #020617 !important;
    border: none !important;
-   padding: 0.85rem 1.5rem !important;
+   padding: 0.85rem 2rem !important;
    border-radius: 6px !important;
    font-weight: 700 !important;
    cursor: pointer !important;
    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-   margin-bottom: 1rem !important;
    display: inline-block !important;
-   width: 100% !important;
+   width: auto !important;
    text-align: center !important;
+   font-size: 0.95rem !important;
 }
 .newsletter-action-trigger:hover {
    transform: translateY(-2px) !important;
@@ -102,15 +124,13 @@
    padding-top: 2.5rem !important;
 }
 .footer-pedagogy-card {
-   background: rgba(255, 255, 255, 0.02) !important;
-   backdrop-filter: blur(10px) !important;
-   -webkit-backdrop-filter: blur(10px) !important;
-   border: 1px solid rgba(255, 255, 255, 0.05) !important;
-   padding: 2.5rem !important;
-   border-radius: 12px !important;
+   background: rgba(15, 23, 42, 0.3) !important;
+   border: 1px solid rgba(0, 212, 178, 0.15) !important;
+   padding: 1.5rem !important;
+   border-radius: 8px !important;
    text-align: center !important;
-   max-width: 855px !important;
-   margin: 0 auto !important;
+   max-width: 100% !important;
+   margin: 0 !important;
 }
 .footer-pedagogy-title {
    color: #00d4b2 !important;
@@ -129,7 +149,7 @@
 }
 .footer-base-strip {
    display: flex !important;
-   justify-content: space-between !important;
+   justify-content: center !important;
    align-items: center !important;
    max-width: 1240px !important;
    margin: 2.5rem auto 0 !important;
@@ -138,7 +158,7 @@
    font-size: 0.88rem !important;
    color: #64748b !important;
    flex-wrap: wrap !important;
-   gap: 1rem !important;
+   gap: 2rem !important;
 }
 .bright-text {
    color: #94a3b8 !important;
@@ -158,13 +178,29 @@
    background: linear-gradient(90deg, #00d4b2, transparent) !important;
    margin-top: 1rem !important;
 }
-@media (min-width: 768px) {
-   .footer-matrix-container { grid-template-columns: repeat(2, 1fr) !important; }
+@media (max-width: 1023px) {
+   .footer-primary-grid {
+     grid-template-columns: 1fr !important;
+     gap: 2.5rem !important;
+   }
+   .footer-center-column {
+     order: -1 !important;
+   }
 }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+   .footer-primary-grid {
+     grid-template-columns: 1fr 1fr !important;
+   }
+   .footer-center-column {
+     grid-column: 1 / -1 !important;
+   }
+}
+
 @media (min-width: 1024px) {
-   .footer-matrix-container {
-     grid-template-columns: 1.4fr 0.9fr 0.9fr 1.2fr !important;
-     gap: 3rem !important;
+   .footer-primary-grid {
+     grid-template-columns: 1fr 1.5fr 1fr !important;
+     gap: 3.5rem !important;
    }
 }
 @media (max-width: 767px) {

@@ -1,13 +1,7 @@
 <footer class="neural-core-footer" role="contentinfo">
-  <div class="footer-matrix-container">
-    <div class="footer-matrix-column brand-profile-node">
-      <h2 class="footer-matrix-title">Learning Biology <span class="accent-neon">For Life</span></h2>
-      <p class="footer-matrix-desc">
-        A premium educational ecosystem dedicated to multidisciplinary systems thinking, AI-assisted pedagogy, and the advancement of biological sciences in the 4IR era.
-      </p>
-      <div class="neural-accent-bar"></div>
-    </div>
-    <div class="footer-matrix-column">
+  <!-- Left Column: Explore -->
+  <div class="footer-primary-grid">
+    <div class="footer-left-column">
       <h3 class="footer-matrix-heading">Explore</h3>
       <nav class="footer-matrix-nav" aria-label="Explore Navigation">
         <a href="{{ '/biology/' | relative_url }}" class="footer-matrix-link">Biology Matrix</a>
@@ -17,36 +11,47 @@
         <a href="{{ '/knowledge-network/' | relative_url }}" class="footer-matrix-link">Knowledge Network</a>
       </nav>
     </div>
-    <div class="footer-matrix-column">
+
+    <!-- Center Column: Brand + Scientific Log + Subscription -->
+    <div class="footer-center-column">
+      <h2 class="footer-matrix-title" style="text-align: center; margin-bottom: 1.5rem;">Learning Biology <span class="accent-neon">For Life</span></h2>
+      
+      <p class="footer-matrix-desc" style="text-align: center; margin-bottom: 2rem;">
+        A premium educational ecosystem dedicated to multidisciplinary systems thinking, AI-assisted pedagogy, and the advancement of biological sciences in the 4IR era.
+      </p>
+
+      <div class="footer-pedagogy-card" style="max-width: 100%; margin: 0 auto 2rem; text-align: center;">
+        <h4 class="footer-pedagogy-title">Latest Scientific Log</h4>
+        <p class="footer-pedagogy-text">
+          "To understand the world, we must first bridge the gap between biological systems and human experience."
+        </p>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <p class="footer-matrix-desc" style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 1rem;">Subscribe to the Brevo Learning Network for trackable updates.</p>
+        <button type="button" class="newsletter-action-trigger" 
+                onclick="if(typeof openBrevoModal==='function')openBrevoModal()" 
+                aria-label="Subscribe to Newsletter"
+                aria-haspopup="dialog">
+          Subscription Hub
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Column: Resources -->
+    <div class="footer-right-column">
       <h3 class="footer-matrix-heading">Resources</h3>
       <nav class="footer-matrix-nav" aria-label="Resources Navigation">
         <a href="{{ '/about/' | relative_url }}" class="footer-matrix-link">About Ecosystem</a>
         <a href="{{ '/privacy-policy/' | relative_url }}" class="footer-matrix-link">Privacy Policy</a>
         <a href="{{ '/terms/' | relative_url }}" class="footer-matrix-link">Terms & Conditions</a>
         <a href="{{ '/disclaimer/' | relative_url }}" class="footer-matrix-link">Disclaimer</a>
-        <a href="{{ '/cookies/' | relative_url }}" class="footer-matrix-link">Cookie Policy</a>
+        <a href="{{ '/contact/' | relative_url }}" class="footer-matrix-link">Contact Hub</a>
       </nav>
     </div>
-    <div class="footer-matrix-column dispatch-engine-node">
-      <h3 class="footer-matrix-heading">Connect</h3>
-      <p class="footer-matrix-desc">Subscribe to the Brevo Learning Network for trackable updates.</p>
-      <button type="button" class="newsletter-action-trigger" 
-              onclick="if(typeof openBrevoModal==='function')openBrevoModal()" 
-              aria-label="Subscribe to Newsletter"
-              aria-haspopup="dialog">
-        Subscription Hub
-      </button>
-      <a href="{{ '/contact/' | relative_url }}" class="footer-matrix-link contact-trigger">Contact Core Hub</a>
-    </div>
   </div>
-  <div class="footer-pedagogy-wrapper">
-    <div class="footer-pedagogy-card">
-      <h4 class="footer-pedagogy-title">The Pedagogical Core</h4>
-      <p class="footer-pedagogy-text">
-        "To understand the world, we must first bridge the gap between biological systems and human experience."
-      </p>
-    </div>
-  </div>
+
+  <!-- Footer Base: Copyright & Cookies -->
   <div class="footer-base-strip">
     <p class="footer-base-copyright">
       &copy; {{ "now" | date: "%Y" }} <span class="bright-text">Learning Biology For Life</span>. Academic Excellence Array.
