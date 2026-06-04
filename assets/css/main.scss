@@ -44,5 +44,8 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 @import "utilities/utilities";
 @import "utilities/neural-navbar";
 
-/* --- 7. THE ABSOLUTE FINAL CASCADING OVERRIDES --- */
+/* --- 7. HOMEPAGE CRITICAL FIXES --- */
+@import "layout/homepage-stabilizer";
+
+/* --- 8. THE ABSOLUTE FINAL CASCADING OVERRIDES --- */
 @import "layout/omega-overrides";
