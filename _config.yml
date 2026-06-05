@@ -35,22 +35,23 @@ paginate_path: /page:num/
 collections:
   biology:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:name/        # CLEAN: strips date prefix after rename
   synaptic-bridge:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:path/        # Kept: explicit permalinks already clean
   life-philosophy:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:path/        # RESTORED: preserves subdirectory structure
   life-practices:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:name/        # CLEAN: strips date prefix after rename
   socratic:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:name/        # CLEAN: strips date prefix after rename
 
 # Defaults
 defaults:
+  # Posts
   - scope:
       path: ""
       type: "posts"
@@ -59,6 +60,8 @@ defaults:
       author_profile: true
       sidebar:
         nav: "synaptic_nav"
+
+  # Biology collection
   - scope:
       path: ""
       type: "biology"
@@ -67,6 +70,48 @@ defaults:
       author_profile: true
       sidebar:
         nav: "synaptic_nav"
+
+  # Synaptic Bridge collection
+  - scope:
+      path: ""
+      type: "synaptic-bridge"
+    values:
+      layout: single
+      author_profile: true
+      sidebar:
+        nav: "synaptic_nav"
+
+  # Life Philosophy collection — RESTORED
+  - scope:
+      path: ""
+      type: "life-philosophy"
+    values:
+      layout: single
+      author_profile: true
+      sidebar:
+        nav: "synaptic_nav"
+
+  # Life Practices collection
+  - scope:
+      path: ""
+      type: "life-practices"
+    values:
+      layout: single
+      author_profile: true
+      sidebar:
+        nav: "synaptic_nav"
+
+  # Socratic collection
+  - scope:
+      path: ""
+      type: "socratic"
+    values:
+      layout: single
+      author_profile: true
+      sidebar:
+        nav: "synaptic_nav"
+
+  # Static pages
   - scope:
       path: "_pages"
       type: "pages"

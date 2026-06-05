@@ -1,2 +1,43 @@
-﻿{% comment %}Archive contextual sidebar fallback{% endcomment %}
-{% include navigation/sidebar-academic.html %}
+﻿{% if page.sidebar.nav %}
+  {% assign nav_key = page.sidebar.nav %}
+  {% assign nav_items = site.data.navigation[nav_key] %}
+
+  {% if nav_items %}
+    <nav class="contextual-sidebar-nav" aria-label="Section Navigation">
+      <div class="sidebar-nav-header">
+        <h3 class="sidebar-nav-title">On this journey</h3>
+        <div class="header-matrix-line"></div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        {% for item in nav_items %}
+          <li class="sidebar-nav-item {% if item.children %}sidebar-nav-dropdown{% endif %}">
+            <a href="{{ item.url | relative_url }}" class="sidebar-nav-link">
+              {{ item.title }}
+            </a>
+
+            {% if item.children %}
+              <ul class="sidebar-nav-children">
+                {% for child in item.children %}
+                  <li class="sidebar-nav-child">
+                    <a href="{{ child.url | relative_url }}" class="sidebar-nav-child-link">
+                      {{ child.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  {% else %}
+    <div class="sidebar-empty-fallback">
+      <p>Navigation data <code>{{ nav_key }}</code> not found in _data/navigation.yml</p>
+    </div>
+  {% endif %}
+{% else %}
+  {% if page.author_profile %}
+    <!-- Author profile placeholder if you add it later -->
+  {% endif %}
+{% endif %}

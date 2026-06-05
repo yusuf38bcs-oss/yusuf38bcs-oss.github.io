@@ -1,4 +1,4 @@
----
+﻿---
 layout: default
 ---
 
@@ -7,7 +7,7 @@ layout: default
     <meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape }}">
     {% if page.description %}<meta itemprop="description" content="{{ page.description | markdownify | strip_html | strip_newlines | escape }}">{% endif %}
 
-    <main class="page-main-article e-content" itemprop="text">
+    <main class="page-main-article e-content" itemprop="text" role="main">
       <header class="page-content-header">
         <h1 class="page-main-title u-text-glow p-name" itemprop="name">
           {{ page.title }}
@@ -22,14 +22,14 @@ layout: default
         {% include neural-node-panel.html %}
       {% endif %}
 
-      <div class="page-rendered-markdown-body" id="synaptic-single-body">
+      <div class="page-rendered-markdown-body" id="synaptic-page-body">
         {{ content }}
       </div>
     </main>
 
-    <aside class="page-sidebar-viewport" role="complementary" aria-label="Article Navigation">
+    <aside class="page-sidebar-viewport" role="complementary" aria-label="Page Navigation">
       <div class="sticky-sidebar-wrapper">
-        {% include contextual-sidebar.html %}
+        {% include navigation/contextual-sidebar.html %}
       </div>
     </aside>
   </article>
