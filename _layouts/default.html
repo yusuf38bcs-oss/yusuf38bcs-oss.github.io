@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}" data-theme="dark" style="background-color: #020617 !important;">
 <head>
   {% include head/head.html %}
@@ -15,15 +15,14 @@
     <canvas id="neural-network"></canvas>
   </div>
 
-  <div class="main-content-render-viewport" id="synaptic-viewport-root">
+  <main class="main-content-render-viewport" id="synaptic-viewport-root" role="main">
     {{ content }}
-  </div>
+  </main>
 
   {% include body/synaptic-ai.html %}
 
   {% include footer/neural-footer.html %}
 
-  <!--<script src="{{ '/assets/js/core/synaptic-guard.js' | relative_url }}"></script>-->
   <script defer src="{{ '/assets/js/core/theme-controller.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
   <script defer src="{{ '/assets/js/core/performance-guard.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
   <script defer src="{{ '/assets/js/core/menu-scroll.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>

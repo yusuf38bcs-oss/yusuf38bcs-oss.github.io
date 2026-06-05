@@ -6,7 +6,7 @@ layout: default
   <article class="page-layout-grid h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape }}">
     {% if page.description %}<meta itemprop="description" content="{{ page.description | markdownify | strip_html | strip_newlines | escape }}">{% endif %}
-    
+
     <main class="page-main-article e-content" itemprop="text">
       <header class="page-content-header">
         <h1 class="page-main-title u-text-glow p-name" itemprop="name">
@@ -17,9 +17,10 @@ layout: default
         {% endif %}
         <div class="header-matrix-line"></div>
       </header>
-    {% if page.node_id %}
-    {% include neural-node-panel.html %}
-    {% endif %}
+
+      {% if page.node_id %}
+        {% include neural-node-panel.html %}
+      {% endif %}
 
       <div class="page-rendered-markdown-body" id="synaptic-single-body">
         {{ content }}

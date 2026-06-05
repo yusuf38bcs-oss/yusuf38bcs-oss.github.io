@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    OMEGA PRODUCTION OVERRIDES (THE CRITICAL FINAL CASCADING LAYER)
    Fixes: Navbar Gap, Hero Alignment, and Premium Footer Grid Restructuring
    ========================================================================== */
@@ -47,7 +47,7 @@ body {
   flex: 1 0 auto !important; /* Ensures footer is pushed to the bottom of the screen */
 }
 
-.neural-core-footer, .page__footer, footer {
+.neural-footer, .neural-core-footer, .page__footer, footer {
   display: block !important;
   position: relative !important;
   z-index: 10 !important;
@@ -169,4 +169,53 @@ a:focus-visible, button:focus-visible {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+/* ======================================================================
+   OMEGA FOOTER REFINEMENTS
+   ====================================================================== */
+
+.neural-footer__mission{
+  margin-top:.75rem;
+  max-width:42rem;
+  color:#94a3b8;
+  line-height:1.65;
+  font-size:.92rem;
+}
+
+.neural-footer iframe,
+.neural-footer .sib-form{
+  max-width:360px !important;
+  width:100% !important;
+}
+
+.neural-footer__reflection-card{
+  max-width:860px;
+  margin-inline:auto;
+}
+
+.neural-footer__legal{
+  border-top:1px solid rgba(0,212,178,.15);
+}
+
+@media (min-width:1024px){
+
+  .neural-footer__grid{
+    grid-template-columns:
+      1.1fr
+      1fr
+      1fr;
+  }
+
+  .neural-footer__column--subscribe{
+    padding-left:1rem;
+  }
+
+}
+/* Synaptic Footer Visibility Guard */
+.synaptic-footer {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
