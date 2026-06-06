@@ -1,36 +1,64 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}" class="no-js theme-dark" data-theme="dark">
+<head>
+  {% include head/head.html %}
+</head>
+<body class="unified-ecosystem-dark-body">
 
-    {% include body/gtm-body.html %}
-    {{ content }}
-    <canvas id="neural-network"></canvas>
-    <script defer src="{{ '/assets/js/core/neural-bg.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/hero-effects.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/neural-flow.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/neural-interactions.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/section-transitions.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  {% endif %}
-  {% if page.url == "/" %}
   {% if site.gtm_id %}
+    {% include body/gtm-body.html %}
+  {% endif %}
+
+  {% include navigation/masthead.html %}
+
+  <div class="global-ambient-matrix-backdrop" aria-hidden="true">
+    <canvas id="neural-network"></canvas>
+  </div>
+
+  <!-- 
+    NOTE: Do NOT add <main> here.
+    Child layouts (single, archive) own the <main> landmark to avoid nesting.
+  -->
+  <div class="main-content-render-viewport" id="synaptic-viewport-root">
+    {{ content }}
+  </div>
+
   {% include body/synaptic-ai.html %}
   {% include footer/neural-footer.html %}
-  {% include head/head.html %}
-  {% include navigation/masthead.html %}
-  </div>
-  </main>
-  <div class="global-ambient-matrix-backdrop" aria-hidden="true">
-  <main class="main-content-render-viewport" id="synaptic-viewport-root" role="main">
-  <script defer src="{{ '/assets/js/core/ai-core.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/analytics-engine.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/main.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/menu-scroll.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/performance-guard.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/semantic-linker.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/socratic-component.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/synapse-effects.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/theme-controller.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-<!DOCTYPE html>
+
+  <!-- Core scripts: daily cache bust only -->
+  {% assign cache_bust = site.time | date: '%Y%m%d' %}
+  
+  <script>
+    // Progressive enhancement: remove no-js class
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
+  <script defer src="{{ '/assets/js/core/theme-controller.js' | relative_url }}?v={{ cache_bust }}"></script>
+  <script defer src="{{ '/assets/js/core/performance-guard.js' | relative_url }}?v={{ cache_bust }}"></script>
+  <script defer src="{{ '/assets/js/core/menu-scroll.js' | relative_url }}?v={{ cache_bust }}"></script>
+  <script defer src="{{ '/assets/js/core/semantic-linker.js' | relative_url }}?v={{ cache_bust }}"></script>
+  <script defer src="{{ '/assets/js/core/analytics-engine.js' | relative_url }}?v={{ cache_bust }}"></script>
+  <script defer src="{{ '/assets/js/core/ai-core.js' | relative_url }}?v={{ cache_bust }}"></script>
+  <script defer src="{{ '/assets/js/core/socratic-component.js' | relative_url }}?v={{ cache_bust }}"></script>
+  <script defer src="{{ '/assets/js/core/synapse-effects.js' | relative_url }}?v={{ cache_bust }}"></script>
+  <script defer src="{{ '/assets/js/core/main.js' | relative_url }}?v={{ cache_bust }}"></script>
+
+  {% if page.url == "/" %}
+    <script defer src="{{ '/assets/js/core/neural-bg.js' | relative_url }}?v={{ cache_bust }}"></script>
+    <script defer src="{{ '/assets/js/home/hero-effects.js' | relative_url }}?v={{ cache_bust }}"></script>
+    <script defer src="{{ '/assets/js/home/neural-flow.js' | relative_url }}?v={{ cache_bust }}"></script>
+    <script defer src="{{ '/assets/js/home/neural-interactions.js' | relative_url }}?v={{ cache_bust }}"></script>
+    <script defer src="{{ '/assets/js/home/section-transitions.js' | relative_url }}?v={{ cache_bust }}"></script>
+  {% endif %}
+
+  <noscript>
+    <style>
+      .global-ambient-matrix-backdrop { display: none; }
+      .no-js .main-content-render-viewport { opacity: 1 !important; }
+    </style>
+  </noscript>
+
 </body>
-</head>
 </html>
-<body class="unified-ecosystem-dark-body">
-<head>
-<html lang="{{ site.lang | default: 'en-US' }}" data-theme="dark" style="background-color: #020617 !important;">

@@ -1,39 +1,45 @@
-
 ---
-              {% include components/archive-single.html %}
-            </div>
-            <div class="archive-grid-item-card">
-            <p>No analytical publication tracks found in this node timeline.</p>
-          {% assign posts_target = paginator.posts %}
-          {% assign posts_target = site.posts %}
-          {% endfor %}
-          {% for post in posts_target %}
-          {% include components/neural-pagination.html %}
-          </div>
-          <div class="archive-empty-fallback">
-          <p class="page-subtitle-lead">{{ page.description }}</p>
-        {% else %}
-        {% endif %}
-        {% if page.description %}
-        {% if paginator %}
-        {% if posts_target.size > 0 %}
-        </div>
-        <div class="archive-pagination-wrapper">
-        <div class="header-matrix-line"></div>
-        <h1 class="page-main-title u-text-glow">{{ page.title | default: "Knowledge Archive" }}</h1>
-      {% endif %}
-      {% if paginator.total_pages > 1 %}
-      {% include navigation/contextual-sidebar.html %}
-      </div>
-      </header>
-      <div class="archive-matrix-grid-stream">
-      <header class="page-content-header">
-    </aside>
-    </main>
-    <aside class="page-sidebar-viewport">
-    <main class="page-main-article" role="main">
-  </div>
-  <div class="page-layout-grid">
-</div>
-<div class="synaptic-page-container">
 layout: default
+---
+
+<div class="synaptic-page-container">
+  <div class="page-layout-grid">
+
+    <main class="page-main-article" role="main" aria-label="Content archive">
+      <header class="page-content-header">
+        <h1 class="page-main-title u-text-glow">{{ page.title | default: "Knowledge Archive" }}</h1>
+        {% if page.description %}
+          <p class="page-subtitle-lead">{{ page.description }}</p>
+        {% endif %}
+        <div class="header-matrix-line"></div>
+      </header>
+
+      <div class="archive-matrix-grid-stream">
+        {% assign posts_target = paginator.posts | default: site.posts %}
+
+        {% if posts_target.size > 0 %}
+          {% for post in posts_target %}
+            <article class="archive-grid-item-card">
+              {% include components/archive-single.html %}
+            </article>
+          {% endfor %}
+        {% else %}
+          <div class="archive-empty-fallback">
+            <p>No analytical publication tracks found in this node timeline.</p>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if paginator.total_pages > 1 %}
+        <nav class="archive-pagination-wrapper" aria-label="Archive pagination">
+          {% include components/neural-pagination.html %}
+        </nav>
+      {% endif %}
+    </main>
+
+    <aside class="page-sidebar-viewport" role="complementary" aria-label="Section navigation">
+      {% include navigation/contextual-sidebar.html %}
+    </aside>
+
+  </div>
+</div>
