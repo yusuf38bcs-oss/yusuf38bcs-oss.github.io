@@ -1,120 +1,22 @@
 
-    - academic-writing
-    - active-learning
-    - assessment
-    - behavioural-science
-    - biodiversity
-    - biology
-    - cognition
-    - data-analysis
-    - ecology
-    - ecosystems
-    - ethics
-    - evidence
-    - evolution
-    - existential-biology
-    - genetics
-    - health
-    - information-systems
-    - inheritance
-    - integration
-    - leadership
-    - logic
-    - methodology
-    - molecular-biology
-    - neural-mapping
-    - philosophy
-    - physiology
-    - psychology
-    - reflection
-    - reflective-learning
-    - research
-    - scientific-thinking
-    - statistics
-    - sustainability
-    - synapse
-    - systems-biology
-    - systems-thinking
-    - taxonomy
-    AI-assisted reflective self-assessment, cognitive benchmarking, and 
-    Analyze cutting-edge biological literature, meta-analyses, methodology 
-    and existential logic models built upon biological realities.
-    and the foundational biological information flow templates.
-    Apply advanced quantitative reasoning, mathematical modeling, data 
-    awareness, and optimized pathways for collaborative human growth.
-    biodiversity interactions, environmental stress vectors, and sustainability.
-    bn: "নেতৃত্ব ব্যবস্থাপনা"
-    bn: "সিন্যাপটিক ব্রিজ"
-    bn: "বাস্তুবিদ্যা"
-    bn: "মানব শারীরতত্ত্ব"
-    bn: "এমসিকিউ এরিনা"
-    bn: "গবেষণা নোড"
-    bn: "প্রাণী বৈচিত্র্য"
-    bn: "জীবন দর্শন"
-    bn: "জীবপরিসংখ্যান"
-    bn: "জেনেটিক্স"
-    conceptual reinforcement through interactive retrieval testing loops.
-    Cross-disciplinary neural connection maps linking abstract academic biology 
-    Develop strategic personal sovereignty, emotional architectures, systems 
-    en: "Animal Diversity"
-    en: "Biostatistics"
-    en: "Ecology"
-    en: "Genetics"
-    en: "Human Physiology"
-    en: "Leadership Management"
-    en: "Life Philosophy"
-    en: "MCQ Arena"
-    en: "Research Node"
-    en: "Synaptic Bridge"
-    Examine the deep ethical substrates, philosophical inquiry frameworks, 
-    Explore ecosystem dynamics, thermodynamic energy flows, global 
-    Explore taxonomy, biodiversity, molecular phylogeny, evolutionary 
-    frameworks, and emerging discoveries in scientific inquiry.
-    homeostasis thresholds, and integrated mammalian systems biology.
-    principles directly to cognitive psychological archetypes.
-    Study hereditary mechanics, molecular genetics, replication sequences, 
-    systems, and the complex structural classification of animals.
-    Understand advanced organ systems, complex cellular regulation, 
-    visualization, and statistical interpretation to biological research.
-  description: >
-  icon: "❤️"
-  icon: "📊"
-  icon: "🔬"
-  icon: "🧠"
+  collection: "_biology"
+  collection: "_life-philosophy"
+  collection: "_life-practices"
+  collection: "_socratic"
+  description: "Exploring ideas, meaning, and philosophical reflections."
+  description: "Practical approaches to living well and applying knowledge."
+  description: "Question-driven exploration of knowledge and critical thinking."
+  description: "Study of living organisms, systems, and processes."
+  icon: "💭"
+  icon: "📜"
   icon: "🧬"
   icon: "🌱"
-  icon: "🌉"
-  icon: "🌍"
-  icon: "🌌"
-  section: "higher-zoology"
-  section: "life-practices"
-  section: "socratic"
-  symbol: "circle"
-  symbol: "dot"
-  symbol: "line"
-  tags:
-  title: "Higher Zoology Tree: Animal Diversity"
-  title: "Higher Zoology Tree: Biostatistics"
-  title: "Higher Zoology Tree: Ecology"
-  title: "Higher Zoology Tree: Genetics"
-  title: "Higher Zoology Tree: Human Physiology"
-  title: "Higher Zoology Tree: Research Node"
-  title: "Life Practices: Leadership Management"
-  title: "Life Practices: Philosophical Systems"
-  title: "Socratic 4.0: MCQ Arena"
-  title: "Socratic 4.0: Synaptic Bridge"
-  translations:
-# =========================================================================
-# Aligned with the High-Performance Synaptic Architecture Engine
-# CATEGORY METADATA MATRIX
-# Semantic Educational Ontology & Taxonomy Layer
-animal-diversity:
-biostatistics:
-ecology:
-genetics:
-human-physiology:
-leadership:
-life-philosophy:
-mcq:
-research-node:
-synaptic-bridge:
+  slug: biology
+  slug: life-philosophy
+  slug: life-practices
+  slug: socratic
+- title: Biology
+- title: Life Philosophy
+- title: Life Practices
+- title: Socratic Dialogues
+# Category metadata for Learning Biology For Life

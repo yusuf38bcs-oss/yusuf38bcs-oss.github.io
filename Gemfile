@@ -14,3 +14,7 @@ end
 
 gem "webrick", "~> 1.9"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw]
+gem "fiddle"
+gem "faraday-retry"
+gem "faraday-retry"
+gem "webrick", "~> 1.9"

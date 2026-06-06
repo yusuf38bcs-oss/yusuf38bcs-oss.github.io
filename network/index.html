@@ -14,7 +14,13 @@ author_profile: false
   </p>
 </div>
 
-{% assign pillars = site.data.neural_nodes | group_by: "pillar" %}
+{% assign all_nodes = site.data.neural_nodes %}
+{% if all_nodes[0] %}
+  {% assign nodes_list = all_nodes %}
+{% else %}
+  {% assign nodes_list = all_nodes | values %}
+{% endif %}
+{% assign pillars = nodes_list | group_by: "pillar" %}
 
 <div class="network-grid">
 

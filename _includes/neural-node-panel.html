@@ -1,42 +1,69 @@
-
-            {{ item }}
-            {{ node.title }}
-          {% else %}
-          {% endif %}
-          {% if node %}
-        {% assign node = site.data.neural_nodes | where: "id", item | first %}
-        </li>
-        <li>
-      {% endfor %}
-      {% for item in page.connects_to %}
-      {% for item in page.prerequisites %}
-      <span class="label">Difficulty</span>
-      <span class="label">Node ID</span>
-      <span class="label">Pillar</span>
-      <span class="label">Status</span>
-      <span class="label">Time</span>
-      <span class="label">XP</span>
-      <span class="value">{{ page.difficulty }}</span>
-      <span class="value">{{ page.estimated_time }} min</span>
-      <span class="value">{{ page.mastery_points }}</span>
-      <span class="value">{{ page.node_id }}</span>
-      <span class="value">{{ page.pillar }}</span>
-      <span class="value">{{ page.status }}</span>
-    </div>
-    </ul>
-    <div class="neural-node-item">
-    <h4>Connected Concepts</h4>
-    <h4>Prerequisites</h4>
-    <ul>
+{% if page.node_id %}
+<div class="neural-node-panel">
+  <div class="neural-node-header">
     Neural Node Profile
-  {% endif %}
-  {% if page.connects_to %}
-  {% if page.prerequisites %}
   </div>
   <div class="neural-node-grid">
-  <div class="neural-node-header">
+    <div class="neural-node-item">
+      <span class="label">Node ID</span>
+      <span class="value">{{ page.node_id }}</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">Pillar</span>
+      <span class="value">{{ page.pillar }}</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">Difficulty</span>
+      <span class="value">{{ page.difficulty }}</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">XP</span>
+      <span class="value">{{ page.mastery_points }}</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">Time</span>
+      <span class="value">{{ page.estimated_time }} min</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">Status</span>
+      <span class="value">{{ page.status }}</span>
+    </div>
+  </div>
+
+  {% if page.prerequisites %}
   <div class="neural-node-section">
-{% endif %}
-{% if page.node_id %}
+    <h4>Prerequisites</h4>
+    <ul>
+      {% for item in page.prerequisites %}
+        <li>
+          {% assign node = site.data.neural_nodes | where: "id", item | first %}
+          {% if node %}
+            {{ node.title }}
+          {% else %}
+            {{ item }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if page.connects_to %}
+  <div class="neural-node-section">
+    <h4>Connected Concepts</h4>
+    <ul>
+      {% for item in page.connects_to %}
+        <li>
+          {% assign node = site.data.neural_nodes | where: "id", item | first %}
+          {% if node %}
+            {{ node.title }}
+          {% else %}
+            {{ item }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 </div>
-<div class="neural-node-panel">
+{% endif %}

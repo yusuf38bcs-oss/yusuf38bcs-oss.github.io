@@ -1,34 +1,75 @@
-
-        url: /biology/higher-zoology-tree/
-        url: /biology/hsc-corner/
-        url: /synaptic-bridge/4ir-education/
-        url: /synaptic-bridge/ai-education/
-        url: /synaptic-bridge/future-science/
-        url: /synaptic-bridge/interdisciplinary-science/
-        url: /synaptic-bridge/knowledge-network/
-        url: /synaptic-bridge/systems-biology/
-      - title: "4IR Education"
-      - title: "AI in Education"
-      - title: "Future Learning"
-      - title: "Future Science"
-      - title: "Higher Zoology Tree"
-      - title: "HSC Corner"
-      - title: "Interdisciplinary Science"
-      - title: "Knowledge Network"
-      - title: "Systems Biology"
-    children:
-    url: /
-    url: /life-philosophy/
-    url: /life-practices/
-    url: /socratic/
-  - title: "Biology"
-  - title: "Home"
-  - title: "Life Philosophy"
-  - title: "Life Practices"
-  - title: "Socratic 4.0"
-  - title: "Synaptic Bridge"
 # =========================================================================
 # MAIN NAVIGATION — Masthead Dropdown Menu
-# SIDEBAR NAVIGATION — "synaptic_nav"
+# =========================================================================
 main:
+  - title: "Home"
+    url: /
+
+  - title: "Biology"
+    children:
+      - title: "HSC Corner"
+        url: /biology/hsc-corner/
+      - title: "Higher Zoology Tree"
+        url: /biology/higher-zoology-tree/
+
+  - title: "Synaptic Bridge"
+    children:
+      - title: "Systems Biology"
+        url: /synaptic-bridge/systems-biology/
+      - title: "Interdisciplinary Science"
+        url: /synaptic-bridge/interdisciplinary-science/
+      - title: "AI in Education"
+        url: /synaptic-bridge/ai-education/
+      - title: "4IR Education"
+        url: /synaptic-bridge/4ir-education/
+      - title: "Future Science"
+        url: /synaptic-bridge/future-science/
+      - title: "Knowledge Network"
+        url: /synaptic-bridge/knowledge-network/
+
+  - title: "Life Practices"
+    url: /life-practices/
+
+  - title: "Life Philosophy"
+    url: /life-philosophy/
+
+  - title: "Socratic 4.0"
+    url: /socratic/
+
+# =========================================================================
+# SIDEBAR NAVIGATION — "synaptic_nav"
+# =========================================================================
 synaptic_nav:
+  - title: "Home"
+    url: /
+
+  - title: "Biology"
+    children:
+      - title: "HSC Corner"
+        url: /biology/hsc-corner/
+      - title: "Higher Zoology Tree"
+        url: /biology/higher-zoology-tree/
+
+  - title: "Synaptic Bridge"
+    children:
+      - title: "Systems Biology"
+        url: /synaptic-bridge/systems-biology/
+      - title: "Interdisciplinary Science"
+        url: /synaptic-bridge/interdisciplinary-science/
+      - title: "AI in Education"
+        url: /synaptic-bridge/ai-education/
+      - title: "4IR Education"
+        url: /synaptic-bridge/4ir-education/
+      - title: "Future Science"
+        url: /synaptic-bridge/future-science/
+      - title: "Knowledge Network"
+        url: /synaptic-bridge/knowledge-network/
+
+  - title: "Life Practices"
+    url: /life-practices/
+
+  - title: "Life Philosophy"
+    url: /life-philosophy/
+
+  - title: "Socratic 4.0"
+    url: /socratic/
