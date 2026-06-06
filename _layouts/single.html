@@ -1,36 +1,30 @@
-﻿---
-layout: default
+
 ---
-
-<div class="synaptic-page-container u-anim-reveal">
-  <article class="page-layout-grid h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape }}">
-    {% if page.description %}<meta itemprop="description" content="{{ page.description | markdownify | strip_html | strip_newlines | escape }}">{% endif %}
-
-    <main class="page-main-article e-content" itemprop="text" role="main">
-      <header class="page-content-header">
-        <h1 class="page-main-title u-text-glow p-name" itemprop="name">
           {{ page.title }}
-        </h1>
-        {% if page.description %}
           <p class="page-subtitle-lead">{{ page.description }}</p>
         {% endif %}
-        <div class="header-matrix-line"></div>
-      </header>
-
-      {% if page.node_id %}
-        {% include neural-node-panel.html %}
-      {% endif %}
-
-      <div class="page-rendered-markdown-body" id="synaptic-page-body">
-        {{ content }}
-      </div>
-    </main>
-
-    <aside class="page-sidebar-viewport" role="complementary" aria-label="Page Navigation">
-      <div class="sticky-sidebar-wrapper">
+        {% if page.description %}
         {% include navigation/contextual-sidebar.html %}
+        {% include neural-node-panel.html %}
+        {{ content }}
+        </h1>
+        <div class="header-matrix-line"></div>
+        <h1 class="page-main-title u-text-glow p-name" itemprop="name">
+      {% endif %}
+      {% if page.node_id %}
       </div>
+      </header>
+      <div class="page-rendered-markdown-body" id="synaptic-page-body">
+      <div class="sticky-sidebar-wrapper">
+      <header class="page-content-header">
+    {% if page.description %}<meta itemprop="description" content="{{ page.description | markdownify | strip_html | strip_newlines | escape }}">{% endif %}
     </aside>
+    </main>
+    <aside class="page-sidebar-viewport" role="complementary" aria-label="Page Navigation">
+    <main class="page-main-article e-content" itemprop="text" role="main">
+    <meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape }}">
   </article>
+  <article class="page-layout-grid h-entry" itemscope itemtype="https://schema.org/CreativeWork">
 </div>
+<div class="synaptic-page-container u-anim-reveal">
+layout: default

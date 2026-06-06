@@ -1,221 +1,151 @@
-/* ==========================================================================
-   OMEGA PRODUCTION OVERRIDES (THE CRITICAL FINAL CASCADING LAYER)
-   Fixes: Navbar Gap, Hero Alignment, and Premium Footer Grid Restructuring
-   ========================================================================== */
 
-/* --- 1. UNIVERSAL TYPOGRAPHY & FLUID ENGINE --- */
-html { font-size: clamp(14px, 1.1vw, 17px) !important; }
-
-h1, .hero-title, .hero-section h1 {
-  font-size: clamp(2.2rem, calc(4.5vw + 1rem), 4.2rem) !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.03em !important;
-}
-
-h2, .section-title {
-  font-size: clamp(1.7rem, calc(3vw + 1rem), 2.8rem) !important;
-  letter-spacing: -0.02em !important;
-}
-
-p, li, span, a, h3, h4, .card-content, .knowledge-manifold-card p {
-  word-spacing: normal !important;
-  letter-spacing: normal !important;
-  line-height: 1.65 !important;
-}
-
-/* --- 2. HOMEPAGE CONTAINER RESETS --- */
-.synaptic-homepage-matrix, #synaptic-home-root, .initial-content, #main, main {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-
-
-.home .page__title, .home .page__meta,
-.synaptic-homepage-matrix .page__title {
-  display: none !important;
-}
-
-/* --- 3. ACADEMIC FOOTER ALIGNMENT & REFINEMENT --- */
-body {
-  min-height: 100vh !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-#main, .page, .main-content-render-viewport {
-  flex: 1 0 auto !important; /* Ensures footer is pushed to the bottom of the screen */
-}
-
-.neural-footer, .neural-core-footer, .page__footer, footer {
-  display: block !important;
-  position: relative !important;
-  z-index: 10 !important;
-  background: linear-gradient(180deg, #020617 0%, #01040a 100%) !important;
-  border-top: 1px solid rgba(0, 212, 178, 0.15) !important;
-  padding: 5rem 2rem 2rem 2rem !important;
-  margin-top: auto !important;
-}
-
-/* Master Grid Structure */
-.footer-matrix-container {
-  display: grid !important;
-  max-width: 1250px !important;
-  margin: 0 auto !important;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
-  gap: 3rem !important;
-  align-items: start !important;
-}
-
-/* Brand Column Polish */
-.footer-matrix-column:first-child p,
-.footer-matrix-desc {
-  text-align: left !important;
-  color: #94a3b8 !important;
-  line-height: 1.7 !important;
-  font-size: 0.95rem !important;
-  max-width: 90% !important;
-  margin-top: 0.75rem !important;
-}
-
-/* Footer Navigation Links */
-.footer-matrix-nav {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.85rem !important;
-  text-align: left !important;
-}
-
-.footer-matrix-link {
-  color: #cbd5e1 !important;
-  font-size: 0.92rem !important;
-  text-decoration: none !important;
-  transition: color 0.2s ease, transform 0.2s ease !important;
-  display: inline-block !important;
-}
-
-.footer-matrix-link:hover {
-  color: #00d4b2 !important;
-  transform: translateX(4px) !important;
-}
-
-/* Subscription Button Constraint */
-.newsletter-action-trigger, .footer-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: linear-gradient(135deg, #00d4b2, #0369a1) !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  padding: 0.85rem 1.5rem !important;
-  border-radius: 8px !important;
-  border: none !important;
-  width: auto !important;
-  min-width: 180px !important;
-  text-align: center !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-  margin-top: 0.5rem !important;
-}
-
-.newsletter-action-trigger:hover, .footer-btn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px rgba(0, 212, 178, 0.3) !important;
-}
-
-/* Pedagogical Core Card Formatting */
-.footer-pedagogy-card, .footer-pedagogy-wrapper {
-  max-width: 850px !important;
-  margin: 4rem auto 2rem auto !important;
-  background: rgba(15, 23, 42, 0.5) !important;
-  border: 1px solid rgba(0, 212, 178, 0.2) !important;
-  border-radius: 12px !important;
-  padding: 2.5rem 2rem !important;
-  text-align: center !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
-}
-
-/* Mobile Breakpoint Adjustments */
-@media (max-width: 1024px) {
-  .footer-matrix-container {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-matrix-container {
-    grid-template-columns: 1fr !important;
-    text-align: center !important;
-  }
-  .footer-matrix-column:first-child p,
-  .footer-matrix-desc,
-  .footer-matrix-nav {
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  .footer-matrix-link:hover {
-    transform: none !important;
-  }
-}
-
-/* --- 4. ACCESSIBILITY & MOTION SAFETY --- */
-a:focus-visible, button:focus-visible {
-  outline: 2px dashed #00d4b2 !important;
-  outline-offset: 4px !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-/* ======================================================================
-   OMEGA FOOTER REFINEMENTS
-   ====================================================================== */
-
-.neural-footer__mission{
-  margin-top:.75rem;
-  max-width:42rem;
-  color:#94a3b8;
-  line-height:1.65;
-  font-size:.92rem;
-}
-
-.neural-footer iframe,
-.neural-footer .sib-form{
-  max-width:360px !important;
-  width:100% !important;
-}
-
-.neural-footer__reflection-card{
-  max-width:860px;
-  margin-inline:auto;
-}
-
-.neural-footer__legal{
-  border-top:1px solid rgba(0,212,178,.15);
-}
-
-@media (min-width:1024px){
-
-  .neural-footer__grid{
-    grid-template-columns:
       1.1fr
       1fr
       1fr;
-  }
-
-  .neural-footer__column--subscribe{
+    animation-duration: 0.01ms !important;
+    grid-template-columns:
+    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     padding-left:1rem;
+    text-align: center !important;
+    transform: none !important;
+    transition-duration: 0.01ms !important;
+   ====================================================================== */
+   ========================================================================== */
+   Fixes: Navbar Gap, Hero Alignment, and Premium Footer Grid Restructuring
+   OMEGA FOOTER REFINEMENTS
+   OMEGA PRODUCTION OVERRIDES (THE CRITICAL FINAL CASCADING LAYER)
+  *, *::before, *::after {
+  .footer-matrix-column:first-child p,
+  .footer-matrix-container {
+  .footer-matrix-desc,
+  .footer-matrix-link:hover {
+  .footer-matrix-nav {
+  .neural-footer__column--subscribe{
+  .neural-footer__grid{
   }
-
-}
-/* Synaptic Footer Visibility Guard */
-.synaptic-footer {
+  align-items: center !important;
+  align-items: start !important;
+  background: linear-gradient(135deg, #00d4b2, #0369a1) !important;
+  background: linear-gradient(180deg, #020617 0%, #01040a 100%) !important;
+  background: rgba(15, 23, 42, 0.5) !important;
+  border: 1px solid rgba(0, 212, 178, 0.2) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  border-radius: 8px !important;
+  border-top: 1px solid rgba(0, 212, 178, 0.15) !important;
+  border-top:1px solid rgba(0,212,178,.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  box-shadow: 0 8px 20px rgba(0, 212, 178, 0.3) !important;
+  color: #00d4b2 !important;
+  color: #94a3b8 !important;
+  color: #cbd5e1 !important;
+  color: #ffffff !important;
+  color:#94a3b8;
   display: block !important;
-  visibility: visible !important;
+  display: flex !important;
+  display: grid !important;
+  display: inline-block !important;
+  display: inline-flex !important;
+  display: none !important;
+  flex: 1 0 auto !important; /* Ensures footer is pushed to the bottom of the screen */
+  flex-direction: column !important;
+  font-size: 0.92rem !important;
+  font-size: 0.95rem !important;
+  font-size: clamp(1.7rem, calc(3vw + 1rem), 2.8rem) !important;
+  font-size: clamp(2.2rem, calc(4.5vw + 1rem), 4.2rem) !important;
+  font-size:.92rem;
+  font-weight: 700 !important;
+  gap: 0.85rem !important;
+  gap: 3rem !important;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
+  justify-content: center !important;
+  letter-spacing: -0.02em !important;
+  letter-spacing: -0.03em !important;
+  letter-spacing: normal !important;
+  line-height: 1.15 !important;
+  line-height: 1.65 !important;
+  line-height: 1.7 !important;
+  line-height:1.65;
+  margin: 0 auto !important;
+  margin: 4rem auto 2rem auto !important;
+  margin-inline:auto;
+  margin-top: 0 !important;
+  margin-top: 0.5rem !important;
+  margin-top: 0.75rem !important;
+  margin-top: auto !important;
+  margin-top:.75rem;
+  max-width: 1250px !important;
+  max-width: 850px !important;
+  max-width: 90% !important;
+  max-width:360px !important;
+  max-width:42rem;
+  max-width:860px;
+  min-height: 100vh !important;
+  min-width: 180px !important;
   opacity: 1 !important;
+  outline: 2px dashed #00d4b2 !important;
+  outline-offset: 4px !important;
+  padding: 0.85rem 1.5rem !important;
+  padding: 2.5rem 2rem !important;
+  padding: 5rem 2rem 2rem 2rem !important;
+  padding-top: 0 !important;
   position: relative !important;
+  text-align: center !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  transform: translateX(4px) !important;
+  transform: translateY(-2px) !important;
+  transition: color 0.2s ease, transform 0.2s ease !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  visibility: visible !important;
+  width: auto !important;
+  width:100% !important;
+  word-spacing: normal !important;
   z-index: 10 !important;
+#main, .page, .main-content-render-viewport {
+.footer-matrix-column:first-child p,
+.footer-matrix-container {
+.footer-matrix-desc {
+.footer-matrix-link {
+.footer-matrix-link:hover {
+.footer-matrix-nav {
+.footer-pedagogy-card, .footer-pedagogy-wrapper {
+.home .page__title, .home .page__meta,
+.neural-footer .sib-form{
+.neural-footer iframe,
+.neural-footer, .neural-core-footer, .page__footer, footer {
+.neural-footer__legal{
+.neural-footer__mission{
+.neural-footer__reflection-card{
+.newsletter-action-trigger, .footer-btn {
+.newsletter-action-trigger:hover, .footer-btn:hover {
+.synaptic-footer {
+.synaptic-homepage-matrix .page__title {
+.synaptic-homepage-matrix, #synaptic-home-root, .initial-content, #main, main {
+/* --- 1. UNIVERSAL TYPOGRAPHY & FLUID ENGINE --- */
+/* --- 2. HOMEPAGE CONTAINER RESETS --- */
+/* --- 3. ACADEMIC FOOTER ALIGNMENT & REFINEMENT --- */
+/* --- 4. ACCESSIBILITY & MOTION SAFETY --- */
+/* ======================================================================
+/* ==========================================================================
+/* Brand Column Polish */
+/* Footer Navigation Links */
+/* Master Grid Structure */
+/* Mobile Breakpoint Adjustments */
+/* Pedagogical Core Card Formatting */
+/* Subscription Button Constraint */
+/* Synaptic Footer Visibility Guard */
+@media (max-width: 1024px) {
+@media (max-width: 768px) {
+@media (min-width:1024px){
+@media (prefers-reduced-motion: reduce) {
 }
+a:focus-visible, button:focus-visible {
+body {
+h1, .hero-title, .hero-section h1 {
+h2, .section-title {
+html { font-size: clamp(14px, 1.1vw, 17px) !important; }
+p, li, span, a, h3, h4, .card-content, .knowledge-manifold-card p {

@@ -1,59 +1,43 @@
-// ==========================================================================
-// NEURAL DESIGN MIXINS (FUNCTIONAL LOGIC)
-// Core hardware-accelerated styles for Synaptic UI interfaces.
-// Eradicates layout thrashing and prevents compiled CSS code bloat.
-// ==========================================================================
 
-// 1. Premium Dark Glassmorphism
-// Forms the ultra-luxury frosted transparent plate over the dark matrix void
-@mixin neural-glass($opacity: 0.7, $blur: 12px) {
-  background: rgba(13, 21, 39, $opacity) !important; // Anchored with system dark slot backing
+    box-shadow: 0 0 5px rgba(0, 212, 178, 0.2); 
+    box-shadow: 0 0 var(--pulse-target-size, 10px) rgba(0, 212, 178, 0.5); 
+  @media (max-width: 1024px) { @content; }
+  @media (max-width: 768px) { @content; }
+  }
+  0%, 100% { 
+  50% { 
+  align-items: center !important;
+  animation: synapticPulse 3s infinite ease-in-out !important;
   backdrop-filter: blur($blur) !important;
-  -webkit-backdrop-filter: blur($blur) !important;
+  background: rgba(13, 21, 39, $opacity) !important; // Anchored with system dark slot backing
   border: 1px solid rgba(0, 212, 178, 0.08) !important; // Micro neon cyan framing border
-}
-
-// 2. Synaptic Pulse Engine
-// Upgraded to use CSS Variables inside a singular global keyframe.
-// Prevents duplicate code explosion during compiler generation.
-@mixin synaptic-pulse($color: #00d4b2, $size: 10px) {
+  display: flex !important;
+  justify-content: center !important;
   --pulse-target-color: #{$color};
   --pulse-target-size: #{$size};
-  animation: synapticPulse 3s infinite ease-in-out !important;
-}
-
-// 3. Cognitive Text Glow
-// Boosts readability performance for scientific keywords over deep backdrops
-@mixin socratic-glow($color: #00d4b2) {
   text-shadow: 0 0 15px rgba($color, 0.35) !important;
-}
-
+  -webkit-backdrop-filter: blur($blur) !important;
+// ==========================================================================
+// 1. Premium Dark Glassmorphism
+// 2. Synaptic Pulse Engine
+// 3. Cognitive Text Glow
 // 4. Center Intelligence Box
-// Reusable GPU composite flex utility for anchors, pins, and icon rings
-@mixin flex-center {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
 // 5. Responsive Structural Breakpoint: Tablet Layouts
-@mixin tablet {
-  @media (max-width: 1024px) { @content; }
-}
-
 // 6. Responsive Structural Breakpoint: Mobile Touchscreens
-@mixin mobile {
-  @media (max-width: 768px) { @content; }
-}
-
-// ==========================================================================
+// Boosts readability performance for scientific keywords over deep backdrops
+// Core hardware-accelerated styles for Synaptic UI interfaces.
+// Eradicates layout thrashing and prevents compiled CSS code bloat.
+// Forms the ultra-luxury frosted transparent plate over the dark matrix void
 // GLOBAL KEYFRAME REGISTRY (Declared once globally to block compilation leaks)
-// ==========================================================================
+// NEURAL DESIGN MIXINS (FUNCTIONAL LOGIC)
+// Prevents duplicate code explosion during compiler generation.
+// Reusable GPU composite flex utility for anchors, pins, and icon rings
+// Upgraded to use CSS Variables inside a singular global keyframe.
 @keyframes synapticPulse {
-  0%, 100% { 
-    box-shadow: 0 0 5px rgba(0, 212, 178, 0.2); 
-  }
-  50% { 
-    box-shadow: 0 0 var(--pulse-target-size, 10px) rgba(0, 212, 178, 0.5); 
-  }
+@mixin flex-center {
+@mixin mobile {
+@mixin neural-glass($opacity: 0.7, $blur: 12px) {
+@mixin socratic-glow($color: #00d4b2) {
+@mixin synaptic-pulse($color: #00d4b2, $size: 10px) {
+@mixin tablet {
 }

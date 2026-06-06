@@ -1,49 +1,39 @@
+
 ---
-layout: default
----
-
-<div class="synaptic-page-container">
-  <div class="page-layout-grid">
-
-    <main class="page-main-article" role="main">
-      <header class="page-content-header">
-        <h1 class="page-main-title u-text-glow">{{ page.title | default: "Knowledge Archive" }}</h1>
-        {% if page.description %}
-          <p class="page-subtitle-lead">{{ page.description }}</p>
-        {% endif %}
-        <div class="header-matrix-line"></div>
-      </header>
-
-      <div class="archive-matrix-grid-stream">
-        {% if paginator %}
-          {% assign posts_target = paginator.posts %}
-        {% else %}
-          {% assign posts_target = site.posts %}
-        {% endif %}
-
-        {% if posts_target.size > 0 %}
-          {% for post in posts_target %}
-            <div class="archive-grid-item-card">
               {% include components/archive-single.html %}
             </div>
-          {% endfor %}
-        {% else %}
-          <div class="archive-empty-fallback">
+            <div class="archive-grid-item-card">
             <p>No analytical publication tracks found in this node timeline.</p>
-          </div>
-        {% endif %}
-      </div>
-
-      {% if paginator.total_pages > 1 %}
-        <div class="archive-pagination-wrapper">
+          {% assign posts_target = paginator.posts %}
+          {% assign posts_target = site.posts %}
+          {% endfor %}
+          {% for post in posts_target %}
           {% include components/neural-pagination.html %}
+          </div>
+          <div class="archive-empty-fallback">
+          <p class="page-subtitle-lead">{{ page.description }}</p>
+        {% else %}
+        {% endif %}
+        {% if page.description %}
+        {% if paginator %}
+        {% if posts_target.size > 0 %}
         </div>
+        <div class="archive-pagination-wrapper">
+        <div class="header-matrix-line"></div>
+        <h1 class="page-main-title u-text-glow">{{ page.title | default: "Knowledge Archive" }}</h1>
       {% endif %}
-    </main>
-
-    <aside class="page-sidebar-viewport">
+      {% if paginator.total_pages > 1 %}
       {% include navigation/contextual-sidebar.html %}
+      </div>
+      </header>
+      <div class="archive-matrix-grid-stream">
+      <header class="page-content-header">
     </aside>
-
+    </main>
+    <aside class="page-sidebar-viewport">
+    <main class="page-main-article" role="main">
   </div>
+  <div class="page-layout-grid">
 </div>
+<div class="synaptic-page-container">
+layout: default

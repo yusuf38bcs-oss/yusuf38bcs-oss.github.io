@@ -1,398 +1,191 @@
-/* =========================================================
-   CINEMATIC REFINEMENT SYSTEM
-   Production Safe + Homepage Scoped
-========================================================= */
 
-/* =========================================================
-   GLOBAL DESIGN TOKENS
-========================================================= */
-
-:root {
-
-  --synaptic-bg:
-    #020812;
-
-  --synaptic-surface:
-    rgba(15,23,42,0.72);
-
-  --synaptic-border:
-    rgba(255,255,255,0.08);
-
-  --synaptic-glow:
-    rgba(62,231,182,0.18);
-
-  --synaptic-text:
-    #eef7ff;
-
-  --synaptic-muted:
-    rgba(255,255,255,0.68);
-
-  --synaptic-radius:
-    28px;
-
-  --section-spacing:
-    clamp(4rem, 10vw, 8rem);
-
-  --container-max:
-    1400px;
-}
-
-/* =========================================================
-   HOMEPAGE FOUNDATION
-========================================================= */
-
-.synaptic-home-layout {
-
-  position: relative;
-
-  isolation: isolate;
-
-  overflow-x: hidden;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(62,231,182,0.08),
-      transparent 50%
-    ),
-    linear-gradient(
-      to bottom,
-      #07111d,
       #020812
-    );
-
-  color:
-    var(--synaptic-text);
-}
-
-/* =========================================================
-   GLOBAL SAFETY
-========================================================= */
-
-.synaptic-home-layout * {
-
-  box-sizing: border-box;
-}
-
-/* =========================================================
-   SECTION SYSTEM
-========================================================= */
-
-.synaptic-home-layout .section-shell {
-
-  position: relative;
-
-  width: 100%;
-  max-width: var(--container-max);
-
-  margin-inline: auto;
-
-  padding:
-    var(--section-spacing)
-    1.5rem;
-}
-
-/* =========================================================
-   RESPONSIVE GRID SYSTEM
-========================================================= */
-
-.synaptic-home-layout .section-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(320px, 1fr));
-
-  gap: 2rem;
-
-  align-items: stretch;
-}
-
-/* =========================================================
-   GLASS CARD SYSTEM
-========================================================= */
-
-.synaptic-home-layout .glass-card,
-.synaptic-home-layout .neural-panel,
-.synaptic-home-layout .synaptic-card,
-.synaptic-home-layout .rail-card {
-
-  position: relative;
-
-  background:
-    var(--synaptic-surface);
-
-  backdrop-filter:
-    blur(18px)
-    saturate(180%);
-
-  -webkit-backdrop-filter:
-    blur(18px)
-    saturate(180%);
-
-  border:
-    1px solid var(--synaptic-border);
-
-  border-radius:
-    var(--synaptic-radius);
-
-  overflow: hidden;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.28);
-
-  transition:
-    transform 0.45s cubic-bezier(0.23,1,0.32,1),
-    box-shadow 0.35s ease,
-    border-color 0.3s ease,
-    background 0.3s ease;
-}
-
-/* =========================================================
-   CARD HOVER PHYSICS
-========================================================= */
-
-.synaptic-home-layout .glass-card:hover,
-.synaptic-home-layout .neural-panel:hover,
-.synaptic-home-layout .synaptic-card:hover,
-.synaptic-home-layout .rail-card:hover {
-
-  transform:
-    translateY(-6px)
-    scale(1.01);
-
-  border-color:
-    rgba(62,231,182,0.18);
-
-  background:
-    rgba(18,28,48,0.82);
-
-  box-shadow:
-    0 20px 50px rgba(0,0,0,0.38),
-    0 0 40px rgba(62,231,182,0.10);
-}
-
-/* =========================================================
-   HERO SYSTEM
-========================================================= */
-
-.synaptic-home-layout .home-hero,
-.synaptic-home-layout .neural-hero-shell {
-
-  position: relative;
-
-  min-height:
-    clamp(650px, 85vh, 980px);
-
-  display: flex;
-  align-items: center;
-
-  overflow: hidden;
-}
-
-/* =========================================================
-   HERO OVERLAY
-========================================================= */
-
-.synaptic-home-layout .home-hero::before,
-.synaptic-home-layout .neural-hero-shell::before {
-
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(62,231,182,0.10),
-      transparent 55%
-    );
-
-  pointer-events: none;
-
-  z-index: 1;
-}
-
-/* =========================================================
-   HERO CONTENT SAFETY
-========================================================= */
-
-.synaptic-home-layout .home-hero > *,
-.synaptic-home-layout .neural-hero-shell > * {
-
-  position: relative;
-
-  z-index: 2;
-}
-
-/* =========================================================
-   VISUAL CONTAINMENT SYSTEM
-========================================================= */
-
-.synaptic-home-layout .iqra-reflection,
-.synaptic-home-layout .hero-visual,
-.synaptic-home-layout .synaptic-visual,
-.synaptic-home-layout .canvas-shell {
-
-  position: relative;
-
-  width: 100%;
-  max-width: 100%;
-
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* =========================================================
-   SVG / CANVAS SAFETY
-========================================================= */
-
-.synaptic-home-layout .iqra-reflection svg,
-.synaptic-home-layout .hero-visual svg,
-.synaptic-home-layout .synaptic-visual svg,
-.synaptic-home-layout .canvas-shell canvas,
-.synaptic-home-layout .canvas-shell svg {
-
-  width: 100%;
-  max-width: 680px;
-
-  height: auto !important;
-
-  display: block;
-
-  object-fit: contain;
-
-  margin-inline: auto;
-}
-
-/* =========================================================
-   TYPOGRAPHY SYSTEM
-========================================================= */
-
-.synaptic-home-layout .section-heading {
-
-  font-size:
-    clamp(2.4rem, 5vw, 4.8rem);
-
-  line-height: 1;
-
-  font-weight: 900;
-
-  letter-spacing: -0.04em;
-
-  margin-bottom: 1.5rem;
-
-  background:
-    linear-gradient(
-      180deg,
+      #07111d,
       #ffffff 0%,
+      1.2rem;
+      180deg,
+      3.5rem
+      auto;
+      circle at top,
       rgba(255,255,255,0.72) 100%
+      rgba(62,231,182,0.08),
+      rgba(62,231,182,0.10),
+      to bottom,
+      transparent 50%
+      transparent 55%
+    #020812;
+    #eef7ff;
+    ),
     );
-
+    0 0 40px rgba(62,231,182,0.10);
+    0 10px 30px rgba(0,0,0,0.28);
+    0 12px 24px rgba(62,231,182,0.16);
+    0 20px 50px rgba(0,0,0,0.38),
+    1.5rem;
+    1400px;
+    1px solid var(--synaptic-border);
+    28px;
+    background 0.25s ease;
+    background 0.3s ease;
+    blur(18px)
+    border-color 0.3s ease,
+    border-radius: 22px;
+    box-shadow 0.25s ease,
+    box-shadow 0.35s ease,
+    clamp(1.05rem, 1.6vw, 1.3rem);
+    clamp(2.4rem, 5vw, 4.8rem);
+    clamp(4rem, 10vw, 8rem);
+    clamp(650px, 85vh, 980px);
+    linear-gradient(
+    line-height: 1.05;
+    max-height: 420px;
+    max-width: 92vw;
+    min-height:
+    padding:
+    padding: 1.5rem;
+    radial-gradient(
+    repeat(auto-fit, minmax(320px, 1fr));
+    rgba(15,23,42,0.72);
+    rgba(18,28,48,0.82);
+    rgba(255,255,255,0.08);
+    rgba(255,255,255,0.68);
+    rgba(62,231,182,0.18);
+    saturate(180%);
+    scale(1.01);
+    transform 0.25s ease,
+    transform 0.45s cubic-bezier(0.23,1,0.32,1),
+    translateY(-2px);
+    translateY(-6px)
+    var(--section-spacing)
+    var(--synaptic-muted);
+    var(--synaptic-radius);
+    var(--synaptic-surface);
+    var(--synaptic-text);
+   BUTTON REFINEMENT
+   CARD HOVER PHYSICS
+   CINEMATIC REFINEMENT SYSTEM
+   GLASS CARD SYSTEM
+   GLOBAL DESIGN TOKENS
+   GLOBAL SAFETY
+   HERO CONTENT SAFETY
+   HERO OVERLAY
+   HERO SYSTEM
+   HOMEPAGE FOUNDATION
+   IMAGE SAFETY
+   LEAD TEXT
+   MOBILE REFINEMENT
+   Production Safe + Homepage Scoped
+   RESPONSIVE GRID SYSTEM
+   SECTION SYSTEM
+   SVG / CANVAS SAFETY
+   TYPOGRAPHY SYSTEM
+   VISUAL CONTAINMENT SYSTEM
+  .synaptic-home-layout .canvas-shell canvas {
+  .synaptic-home-layout .glass-card,
+  .synaptic-home-layout .hero-visual svg,
+  .synaptic-home-layout .home-hero,
+  .synaptic-home-layout .iqra-reflection svg,
+  .synaptic-home-layout .neural-hero-shell {
+  .synaptic-home-layout .neural-panel,
+  .synaptic-home-layout .rail-card {
+  .synaptic-home-layout .section-heading {
+  .synaptic-home-layout .section-shell {
+  .synaptic-home-layout .synaptic-card,
+  }
+  align-items: center;
+  align-items: stretch;
+  backdrop-filter:
+  background:
+  border:
+  border-color:
+  border-radius:
+  box-shadow:
+  box-sizing: border-box;
+  color:
+  --container-max:
+  content: "";
+  display: block;
+  display: flex;
+  display: grid;
+  font-size:
+  font-weight: 900;
+  gap: 2rem;
+  grid-template-columns:
+  height: auto !important;
+  height: auto;
+  inset: 0;
+  isolation: isolate;
+  justify-content: center;
+  letter-spacing: -0.04em;
+  line-height: 1.8;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
+  margin-inline: auto;
+  max-width: 100%;
+  max-width: 680px;
+  max-width: 68ch;
+  max-width: var(--container-max);
+  min-height:
+  object-fit: contain;
+  overflow: hidden;
+  overflow-x: hidden;
+  padding:
+  pointer-events: none;
+  position: absolute;
+  position: relative;
+  --section-spacing:
+  --synaptic-bg:
+  --synaptic-border:
+  --synaptic-glow:
+  --synaptic-muted:
+  --synaptic-radius:
+  --synaptic-surface:
+  --synaptic-text:
+  transform:
+  transition:
+  -webkit-backdrop-filter:
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-/* =========================================================
-   LEAD TEXT
-========================================================= */
-
-.synaptic-home-layout .section-lead {
-
-  font-size:
-    clamp(1.05rem, 1.6vw, 1.3rem);
-
-  line-height: 1.8;
-
-  color:
-    var(--synaptic-muted);
-
-  max-width: 68ch;
-
-  margin-bottom: 3rem;
-}
-
-/* =========================================================
-   BUTTON REFINEMENT
-========================================================= */
-
+  width: 100%;
+  z-index: 1;
+  z-index: 2;
+.synaptic-home-layout * {
 .synaptic-home-layout .btn,
-.synaptic-home-layout button {
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
-}
-
 .synaptic-home-layout .btn:hover,
+.synaptic-home-layout .canvas-shell {
+.synaptic-home-layout .canvas-shell canvas,
+.synaptic-home-layout .canvas-shell svg {
+.synaptic-home-layout .glass-card,
+.synaptic-home-layout .glass-card:hover,
+.synaptic-home-layout .hero-visual svg,
+.synaptic-home-layout .hero-visual,
+.synaptic-home-layout .home-hero > *,
+.synaptic-home-layout .home-hero,
+.synaptic-home-layout .home-hero::before,
+.synaptic-home-layout .iqra-reflection svg,
+.synaptic-home-layout .iqra-reflection,
+.synaptic-home-layout .neural-hero-shell {
+.synaptic-home-layout .neural-hero-shell > * {
+.synaptic-home-layout .neural-hero-shell::before {
+.synaptic-home-layout .neural-panel,
+.synaptic-home-layout .neural-panel:hover,
+.synaptic-home-layout .rail-card {
+.synaptic-home-layout .rail-card:hover {
+.synaptic-home-layout .section-grid {
+.synaptic-home-layout .section-heading {
+.synaptic-home-layout .section-lead {
+.synaptic-home-layout .section-shell {
+.synaptic-home-layout .synaptic-card,
+.synaptic-home-layout .synaptic-card:hover,
+.synaptic-home-layout .synaptic-visual svg,
+.synaptic-home-layout .synaptic-visual,
+.synaptic-home-layout {
+.synaptic-home-layout button {
 .synaptic-home-layout button:hover {
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 12px 24px rgba(62,231,182,0.16);
-}
-
-/* =========================================================
-   IMAGE SAFETY
-========================================================= */
-
 .synaptic-home-layout img {
-
-  max-width: 100%;
-
-  height: auto;
-
-  display: block;
-}
-
 /* =========================================================
-   MOBILE REFINEMENT
-========================================================= */
-
+:root {
 @media (max-width: 768px) {
-
-  .synaptic-home-layout .section-shell {
-
-    padding:
-      3.5rem
-      1.2rem;
-  }
-
-  .synaptic-home-layout .glass-card,
-  .synaptic-home-layout .neural-panel,
-  .synaptic-home-layout .synaptic-card,
-  .synaptic-home-layout .rail-card {
-
-    border-radius: 22px;
-
-    padding: 1.5rem;
-  }
-
-  .synaptic-home-layout .section-heading {
-
-    line-height: 1.05;
-  }
-
-  .synaptic-home-layout .home-hero,
-  .synaptic-home-layout .neural-hero-shell {
-
-    min-height:
-      auto;
-  }
-
-  .synaptic-home-layout .iqra-reflection svg,
-  .synaptic-home-layout .hero-visual svg,
-  .synaptic-home-layout .canvas-shell canvas {
-
-    max-width: 92vw;
-
-    max-height: 420px;
-  }
 }
+========================================================= */

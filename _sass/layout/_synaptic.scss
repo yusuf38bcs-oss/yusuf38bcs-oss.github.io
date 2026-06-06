@@ -1,99 +1,77 @@
-/* ==========================================================================
-   SYNAPTIC BRIDGE SYSTEM & INTERACTIVE COGNITIVE LAYOUTS
-   ========================================================================== */
 
-/* --- 1. THE SYNAPTIC BRIDGE (Sticky Content Sub-Navigation Bar) --- */
-.synaptic-bridge-shell {
-  @include neural-glass(0.75, 12px);
-  border-bottom: 1px solid rgba($synapse-glow, 0.08) !important;
-  padding: 0.85rem 1.5rem !important;
-  position: sticky !important;
-  top: 70px; // Standardized synchronized offset from variables
-  z-index: 900 !important;
-  width: 100%;
-  box-sizing: border-box;
-
-  .synaptic-bridge-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1.5rem;
-    max-width: $container-max;
-    margin: 0 auto;
-    width: 100%;
-
-    @include mobile {
+      color: #ffffff !important;
       flex-direction: column !important;
       gap: 0.75rem;
       text-align: center;
-    }
-  }
-}
-
-.bridge-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: $synapse-glow;
-  font-weight: 800;
-  @include socratic-glow($synapse-glow);
-  text-align: left !important;
-
-  @include mobile {
-    text-align: center !important;
-  }
-}
-
-.bridge-links {
-  display: flex;
-  gap: clamp(1rem, 3vw, 2.5rem);
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-
-  .bridge-link {
-    font-size: 0.88rem;
-    color: $text-primary !important;
-    text-decoration: none !important;
-    transition: $neural-transition;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
-
-    &:hover {
-      color: #ffffff !important;
-      transform: translateY(-2px);
       text-shadow: 0 0 8px rgba(0, 212, 178, 0.4);
+      transform: translateY(-2px);
+    &:hover {
+    @include mobile {
     }
-  }
-}
-
-/* --- 2. SOCRATIC REFLECTIVE INQUIRY ENGINE --- */
-.reflective-inquiry-container {
-  padding: $space-unit 1.5rem;
-  background: radial-gradient(circle at center, rgba($synapse-glow, 0.03), transparent) !important;
-  width: 100%;
-  box-sizing: border-box;
-
-  .socratic-prompt {
-    font-family: $serif !important; // Inherited from Minimal Mistakes base config
-    font-size: clamp(1.4rem, 4vw, 2.3rem) !important;
+    align-items: center;
+    border: none !important;
     color: #ffffff !important;
+    color: $text-primary !important;
+    display: flex;
+    display: inline-flex;
+    font-family: $serif !important; // Inherited from Minimal Mistakes base config
+    font-size: 0.88rem;
+    font-size: clamp(1.4rem, 4vw, 2.3rem) !important;
     font-style: italic;
+    font-weight: 600;
+    gap: 0.5rem;
+    gap: 1.5rem;
+    justify-content: space-between;
+    letter-spacing: normal !important;
     line-height: 1.4 !important;
     margin: 0 0 2rem 0 !important;
-    border: none !important;
-    text-align: left !important;
-    word-spacing: normal !important;
-    letter-spacing: normal !important;
-  }
-}
-
-/* --- 3. CORE FRAMEWORK INTERACTION ANCHORS --- */
-[data-aos] {
-  pointer-events: none;
-  &.aos-animate {
+    margin: 0 auto;
+    max-width: $container-max;
     pointer-events: auto;
+    text-align: center !important;
+    text-align: left !important;
+    text-decoration: none !important;
+    transition: $neural-transition;
+    width: 100%;
+    word-spacing: normal !important;
+   ========================================================================== */
+   SYNAPTIC BRIDGE SYSTEM & INTERACTIVE COGNITIVE LAYOUTS
+  &.aos-animate {
+  .bridge-link {
+  .socratic-prompt {
+  .synaptic-bridge-inner {
+  @include mobile {
+  @include neural-glass(0.75, 12px);
+  @include socratic-glow($synapse-glow);
   }
+  align-items: center;
+  background: radial-gradient(circle at center, rgba($synapse-glow, 0.03), transparent) !important;
+  border-bottom: 1px solid rgba($synapse-glow, 0.08) !important;
+  box-sizing: border-box;
+  color: $synapse-glow;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.72rem;
+  font-weight: 800;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  justify-content: center;
+  letter-spacing: 0.15em;
+  padding: $space-unit 1.5rem;
+  padding: 0.85rem 1.5rem !important;
+  pointer-events: none;
+  position: sticky !important;
+  text-align: left !important;
+  text-transform: uppercase;
+  top: 70px; // Standardized synchronized offset from variables
+  width: 100%;
+  z-index: 900 !important;
+.bridge-label {
+.bridge-links {
+.reflective-inquiry-container {
+.synaptic-bridge-shell {
+/* --- 1. THE SYNAPTIC BRIDGE (Sticky Content Sub-Navigation Bar) --- */
+/* --- 2. SOCRATIC REFLECTIVE INQUIRY ENGINE --- */
+/* --- 3. CORE FRAMEWORK INTERACTION ANCHORS --- */
+/* ==========================================================================
+[data-aos] {
 }

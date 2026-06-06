@@ -1,51 +1,43 @@
-/* ==========================================================================
-   NEURAL CORE USER INTERFACE MATRICES
-   Manages automated element card grids and floating token animations.
-   ========================================================================== */
 
-.neural-section {
-  position: relative;
-  padding: $space-unit 1.5rem;
-  width: 100%;
-  max-width: $container-max;
-  margin-inline: auto;
-  box-sizing: border-box;
-}
-
-/* --- ACCELERATED RESPONSIVE GRID ENGINE --- */
-.neural-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 2rem;
-  width: 100%;
-  align-items: stretch;
-}
-
-/* --- ATMOSPHERIC INTERACTIVE GRAPHIC SYMBOLS --- */
-.synaptic-hero-symbols {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-
-  .synaptic-symbol {
-    position: absolute;
+      animation-delay: -2s !important; 
+      bottom: 20%; left: 8%; 
+      color: $quantum-blue; 
+      color: $synapse-glow; 
+      font-size: 7rem; 
+      font-size: 8rem; 
+      top: 15%; right: 10%; 
+    &.symbol-dot { 
+    &.symbol-line { 
+    }
+    animation: socraticFloat 10s ease-in-out infinite !important; // Synchronized with global keys
     opacity: 0.03; // Soft micro-presence
+    position: absolute;
     user-select: none;
     will-change: transform;
-    animation: socraticFloat 10s ease-in-out infinite !important; // Synchronized with global keys
-
-    &.symbol-dot { 
-      top: 15%; right: 10%; 
-      font-size: 7rem; 
-      color: $synapse-glow; 
-    }
-    &.symbol-line { 
-      bottom: 20%; left: 8%; 
-      font-size: 8rem; 
-      color: $quantum-blue; 
-      animation-delay: -2s !important; 
-    }
+   ========================================================================== */
+   Manages automated element card grids and floating token animations.
+   NEURAL CORE USER INTERFACE MATRICES
+  .synaptic-symbol {
   }
+  align-items: stretch;
+  box-sizing: border-box;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  inset: 0;
+  margin-inline: auto;
+  max-width: $container-max;
+  overflow: hidden;
+  padding: $space-unit 1.5rem;
+  pointer-events: none;
+  position: absolute;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+.neural-grid {
+.neural-section {
+.synaptic-hero-symbols {
+/* --- ACCELERATED RESPONSIVE GRID ENGINE --- */
+/* --- ATMOSPHERIC INTERACTIVE GRAPHIC SYMBOLS --- */
+/* ==========================================================================
 }

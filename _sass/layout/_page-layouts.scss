@@ -1,118 +1,82 @@
-/* ==========================================================================
-   UNIFIED PAGE / SINGLE / ARCHIVE LAYOUT GRID
-   Replaces inline flexbox overrides in page.html, single.html, archive.html
+
+    font-size: 1.02rem;
+    gap: 3rem;
+    grid-template-columns: 1fr;
+    line-height: 1.7;
+    margin-left: 0;
+    text-align: left;
+    width: 100%;
    ========================================================================== */
-
-.synaptic-page-container {
-  max-width: var(--container-max, 1250px);
-  margin: 0 auto;
-  padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.page-layout-grid {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 3.5rem;
-  width: 100%;
+   Replaces inline flexbox overrides in page.html, single.html, archive.html
+   UNIFIED PAGE / SINGLE / ARCHIVE LAYOUT GRID
+  .header-matrix-line {
+  .page-content-header {
+  .page-layout-grid {
+  .page-rendered-markdown-body {
+  .page-sidebar-viewport {
+  }
   align-items: start;
-}
-
-.page-main-article {
-  min-width: 0; // critical: prevents grid blowout from long URLs/pre/code
+  background: linear-gradient(90deg, #00d4b2 0%, transparent 100%);
+  box-sizing: border-box;
+  color: #64748b;
+  color: #cbd5e1;
+  color: #ffffff;
+  display: grid;
+  font-size: 1.05rem;
+  font-size: clamp(1.05rem, 2vw, 1.18rem);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  font-weight: 900;
+  gap: 3.5rem;
+  grid-template-columns: 1fr 340px;
+  height: 2px;
+  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  letter-spacing: normal;
+  line-height: 1.15;
+  line-height: 1.6;
+  line-height: 1.75;
+  margin: 0 0 0.75rem 0;
+  margin: 0 auto;
+  margin: 0;
+  margin-bottom: 1.25rem;
+  margin-bottom: 1.6rem;
+  margin-bottom: 2.8rem;
+  margin-top: 1.5rem;
+  margin-top: 2.5rem;
   max-width: 100%;
-  box-sizing: border-box;
-}
-
-.page-sidebar-viewport {
-  box-sizing: border-box;
-}
-
-.sticky-sidebar-wrapper {
+  max-width: 68ch;
+  max-width: var(--container-max, 1250px);
+  min-width: 0; // critical: prevents grid blowout from long URLs/pre/code
+  padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem;
   position: sticky;
+  text-align: left;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
   top: calc(var(--nav-height, 70px) + 20px);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
-/* --- Header Metrics --- */
-.page-content-header {
-  margin-bottom: 2.8rem;
-  text-align: left;
-}
-
-.page-main-title {
-  color: #ffffff;
-  font-size: clamp(2rem, 5vw, 2.8rem);
-  font-weight: 900;
-  margin: 0 0 0.75rem 0;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.page-subtitle-lead {
-  color: #64748b;
-  font-size: clamp(1.05rem, 2vw, 1.18rem);
-  margin: 0;
-  line-height: 1.6;
-  max-width: 68ch;
-}
-
-.header-matrix-line {
+  width: 100%;
   width: 70px;
-  height: 2px;
-  background: linear-gradient(90deg, #00d4b2 0%, transparent 100%);
-  margin-top: 1.5rem;
-}
-
-/* --- Markdown Body Defense --- */
+  will-change: transform;
+  word-spacing: normal;
+.header-matrix-line {
+.page-content-header {
+.page-layout-grid {
+.page-main-article {
+.page-main-title {
 .page-rendered-markdown-body {
-  color: #cbd5e1;
-  font-size: 1.05rem;
-  line-height: 1.75;
-  text-align: left;
-  word-spacing: normal;
-  letter-spacing: normal;
-}
-
-.page-rendered-markdown-body p,
-.page-rendered-markdown-body li,
 .page-rendered-markdown-body blockquote {
-  text-align: left;
-  word-spacing: normal;
-  margin-bottom: 1.6rem;
-}
-
 .page-rendered-markdown-body h2,
 .page-rendered-markdown-body h3,
 .page-rendered-markdown-body h4 {
-  color: #ffffff;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-top: 2.5rem;
-  margin-bottom: 1.25rem;
-  text-align: left;
-}
-
+.page-rendered-markdown-body li,
+.page-rendered-markdown-body p,
+.page-sidebar-viewport {
+.page-subtitle-lead {
+.sticky-sidebar-wrapper {
+.synaptic-page-container {
+/* --- Header Metrics --- */
+/* --- Markdown Body Defense --- */
 /* --- Responsive Collapse --- */
+/* ==========================================================================
 @media (max-width: 1024px) {
-  .page-layout-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  .page-sidebar-viewport {
-    width: 100%;
-  }
-  .page-content-header {
-    text-align: left;
-  }
-  .header-matrix-line {
-    margin-left: 0;
-  }
-  .page-rendered-markdown-body {
-    font-size: 1.02rem;
-    line-height: 1.7;
-  }
 }

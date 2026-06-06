@@ -1,194 +1,136 @@
-/* ==========================================================================
-   INTERACTIVE SOCRATIC ACCORDION & INSTRUCTIONAL PANELS
-   Designed for clean lesson rendering templates over the dark matrix void.
-   ========================================================================== */
 
-.lesson-shell {
-  max-width: $container-max;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  color: $text-primary;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* --- LESSON HEADER COMPONENT ENGINE --- */
-.lesson-header {
-  @include neural-glass(0.75, 12px); // Unified slot background execution
-  padding: clamp(1.75rem, 5vw, 3rem);
-  border-radius: 12px !important; // Geometry alignment
-  text-align: left !important; // Overriding legacy center alignments
-  margin-bottom: 2.5rem;
-  box-shadow: $shadow-neural;
-
-  h1 {
-    margin: 0 0 0.75rem 0 !important;
+  
+    
+      border-color: rgba($synapse-glow, 0.3);
+      filter: brightness(1.05);
+    &:hover {
+    &:last-child { margin-bottom: 0; }
+    @include socratic-glow($synapse-glow);
+    }
+    background: rgba($synapse-glow, 0.06) !important;
+    background: rgba($synapse-glow, 0.12) !important;
+    background: rgba(13, 21, 39, 0.3) !important;
+    border: 1px solid rgba($synapse-glow, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-left-color: $synapse-glow !important;
+    border-radius: 6px;
+    border-radius: 8px;
+    border-top: none;
     color: #ffffff !important;
+    color: $synapse-glow;
+    color: $text-muted !important;
+    color: $text-primary !important;
+    color: $text-primary;
+    content: '\2212'; // Minus glyph tracking
+    content: '\2b'; // Plus glyph mapping fallback
+    filter: brightness(0.85);
+    font-family: "Font Awesome 5 Free", sans-serif;
     font-size: $type-h2;
+    font-size: 0.82rem;
+    font-size: 1.02rem !important;
+    font-size: 1.02rem;
+    font-weight: 700;
     font-weight: 900;
     letter-spacing: -0.03em !important;
-    @include socratic-glow($synapse-glow);
-  }
-
-  p {
-    color: $text-muted !important;
-    font-size: 1.02rem !important;
-    line-height: 1.6;
-    max-width: 750px;
-    margin: 0;
-    text-align: left !important;
-  }
-}
-
-/* --- COVER COVERIMAGE VECTOR SAFETY --- */
-.lesson-cover {
-  margin-bottom: 3rem;
-  width: 100%;
-  
-  img {
-    width: 100%;
-    border-radius: 8px;
-    max-height: 450px;
-    object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    filter: brightness(0.85);
-    transition: $neural-transition;
-
-    &:hover {
-      filter: brightness(1.05);
-      border-color: rgba($synapse-glow, 0.3);
-    }
-  }
-}
-
-/* ==========================================================================
-   ACCORDION INTERACTIVE INTERFACE (Linked with accordion-engine)
-   ========================================================================== */
-.accordion {
-  width: 100%;
-  border: none !important;
-  cursor: pointer;
-  padding: 1.2rem 1.5rem;
-  margin-top: 1rem;
-  border-radius: 6px !important;
-  text-align: left !important;
-  font-size: 1.05rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: $neural-transition;
-  background: rgba(13, 21, 39, 0.5) !important; // Match dark system slot
-  color: $text-primary;
-  border-left: 4px solid rgba($text-muted, 0.3) !important;
-  box-sizing: border-box;
-
-  &:hover, &.active {
-    background: rgba($synapse-glow, 0.06) !important;
-    border-left-color: $synapse-glow !important;
-    color: #ffffff !important;
-    padding-left: 1.85rem !important; // Cognitive focus macro-shift
-  }
-
-  &::after {
-    content: '\2b'; // Plus glyph mapping fallback
-    font-family: "Font Awesome 5 Free", sans-serif;
-    font-weight: 900;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    color: $synapse-glow;
-  }
-
-  &.active::after {
-    content: '\2212'; // Minus glyph tracking
-    transform: rotate(180deg);
-  }
-}
-
-/* --- EXPANSION DRAWER LOGIC --- */
-.panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  background: rgba(2, 6, 23, 0.4); // Clean secondary dark mesh
-  border-radius: 0 0 6px 6px;
-  margin-bottom: 0.5rem;
-  box-sizing: border-box;
-
-  &.show {
-    max-height: 3000px; // Scaled macro container limit for long chapters
-    padding: 1.75rem;
-    border: 1px solid rgba($synapse-glow, 0.08);
-    border-top: none;
-  }
-
-  p {
-    line-height: 1.7 !important;
-    color: $text-primary !important;
-    font-size: 1.02rem;
-    text-align: left !important; // Destroys mobile word breaking gaps
-    word-spacing: normal !important;
-    margin: 0 0 1rem 0;
-    
-    &:last-child { margin-bottom: 0; }
-  }
-}
-
-/* --- INSTRUCTIONAL SCHEMATIC NODES --- */
-.flowchart {
-  margin: 1.5rem 0;
-  padding: 1.2rem;
-  border-left: 4px solid $synapse-glow !important;
-  background: rgba($synapse-glow, 0.03) !important;
-  border-radius: 4px;
-  font-weight: 600;
-  color: #ffffff;
-  text-align: left !important;
-}
-
-.organelle-box {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid rgba($synapse-glow, 0.12);
-  background: $neural-card-bg;
-  
-  img {
-    border-radius: 6px;
-    margin: 1rem 0;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-  }
-}
-
-/* --- DATA SHEET RENDERING OVERRIDES --- */
-.accordion-post table {
-  width: 100%;
-  margin: 1.5rem 0;
-  border-radius: 6px;
-  overflow: hidden;
-  border-collapse: collapse;
-
-  th {
-    background: rgba($synapse-glow, 0.12) !important;
-    color: #ffffff !important;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.82rem;
     letter-spacing: 0.05em;
+    line-height: 1.6;
+    line-height: 1.7 !important;
+    margin: 0 0 0.75rem 0 !important;
+    margin: 0 0 1rem 0;
+    margin: 0;
+    margin: 1rem 0;
+    max-height: 3000px; // Scaled macro container limit for long chapters
+    max-height: 450px;
+    max-width: 750px;
+    object-fit: cover;
+    padding: 1.75rem;
     padding: 12px;
+    padding-left: 1.85rem !important; // Cognitive focus macro-shift
     text-align: left !important;
-  }
-
-  td {
-    background: rgba(13, 21, 39, 0.3) !important;
-    border: 1px solid rgba(255, 255, 255, 0.03) !important;
-    padding: 12px;
-    color: $text-primary;
-    text-align: left !important;
-  }
-}
-
-.highlight {
-  color: #ffffff !important;
-  font-weight: 700;
+    text-align: left !important; // Destroys mobile word breaking gaps
+    text-transform: uppercase;
+    transform: rotate(180deg);
+    transition: $neural-transition;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+    word-spacing: normal !important;
+   ========================================================================== */
+   ACCORDION INTERACTIVE INTERFACE (Linked with accordion-engine)
+   Designed for clean lesson rendering templates over the dark matrix void.
+   INTERACTIVE SOCRATIC ACCORDION & INSTRUCTIONAL PANELS
+  &.active::after {
+  &.show {
+  &::after {
+  &:hover, &.active {
+  @include neural-glass(0.75, 12px); // Unified slot background execution
   @include socratic-glow($synapse-glow);
+  }
+  align-items: center;
+  background: $neural-card-bg;
+  background: rgba($synapse-glow, 0.03) !important;
+  background: rgba(13, 21, 39, 0.5) !important; // Match dark system slot
+  background: rgba(2, 6, 23, 0.4); // Clean secondary dark mesh
+  border: 1px solid rgba($synapse-glow, 0.12);
+  border: none !important;
+  border-collapse: collapse;
+  border-left: 4px solid $synapse-glow !important;
+  border-left: 4px solid rgba($text-muted, 0.3) !important;
+  border-radius: 0 0 6px 6px;
+  border-radius: 12px !important; // Geometry alignment
+  border-radius: 4px;
+  border-radius: 6px !important;
+  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: $shadow-neural;
+  box-sizing: border-box;
+  color: #ffffff !important;
+  color: #ffffff;
+  color: $text-primary;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-weight: 700;
+  h1 {
+  img {
+  justify-content: space-between;
+  margin: 1.5rem 0;
+  margin: 2rem 0;
+  margin: 2rem auto;
+  margin-bottom: 0.5rem;
+  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+  max-height: 0;
+  max-width: $container-max;
+  overflow: hidden;
+  p {
+  padding: 1.2rem 1.5rem;
+  padding: 1.2rem;
+  padding: 1.5rem;
+  padding: clamp(1.75rem, 5vw, 3rem);
+  td {
+  text-align: left !important;
+  text-align: left !important; // Overriding legacy center alignments
+  th {
+  transition: $neural-transition;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+.accordion {
+.accordion-post table {
+.flowchart {
+.highlight {
+.lesson-cover {
+.lesson-header {
+.lesson-shell {
+.organelle-box {
+.panel {
+/* --- COVER COVERIMAGE VECTOR SAFETY --- */
+/* --- DATA SHEET RENDERING OVERRIDES --- */
+/* --- EXPANSION DRAWER LOGIC --- */
+/* --- INSTRUCTIONAL SCHEMATIC NODES --- */
+/* --- LESSON HEADER COMPONENT ENGINE --- */
+/* ==========================================================================
 }

@@ -2,22 +2,73 @@
 # LEARNING BIOLOGY FOR LIFE - SOVEREIGN CONFIGURATION
 # =========================================================================
 
+# Site Settings
 title: "Learning Biology For Life"
 subtitle: "Biology, Philosophy & Future Sciences"
 name: "Md Yusuf"
 email: yusuf.38bcs@gmail.com
 description: "A Neural Network of Education System: Where Biology Meets Life in a Synaptic Approach."
-url: "https://learningbiologyforlife.org"
+url: "https://learningbiologyforlife.com"
 baseurl: ""
+repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
+
+# Branding
 logo: "/assets/images/logo.png"
 favicon: "/assets/images/favicon.ico"
-repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
+masthead_title: "Learning Biology For Life"
 
 # Theme
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 minimal_mistakes_skin: "dark"
 
-# Plugins
+# Build
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+timezone: Asia/Dhaka
+future: true
+incremental: false
+
+# Pagination
+paginate: 10
+paginate_path: /page:num/
+
+# Search (Minimal Mistakes Lunr)
+search: true
+search_full_content: true
+search_provider: lunr
+
+# Analytics (add IDs when ready)
+analytics:
+  provider: false # change to "google-gtag" or "google-universal"
+  google:
+    tracking_id: ""
+    anonymize_ip: true
+
+# SEO & Social (fill in when ready)
+twitter:
+  username: ""
+facebook:
+  app_id: ""
+  publisher: ""
+og_image: "/assets/images/og-default.png"
+
+# Author (used by jekyll-seo-tag and Minimal Mistakes)
+author:
+  name: "Md Yusuf"
+  avatar: "/assets/images/author.jpg"
+  bio: "Educator, Biologist, and Architect of Neural Knowledge Networks."
+  location: "Bangladesh"
+  email: yusuf.38bcs@gmail.com
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/yusuf38bcs-oss"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:yusuf.38bcs@gmail.com"
+
+# Plugins (SINGLE BLOCK - DO NOT DUPLICATE)
 plugins:
   - jekyll-paginate
   - jekyll-feed
@@ -27,27 +78,23 @@ plugins:
   - jekyll-include-cache
   - jekyll-remote-theme
 
-# Pagination
-paginate: 10
-paginate_path: /page:num/
-
-# Collections
+# Collections (consistent permalink strategy)
 collections:
   biology:
     output: true
-    permalink: /:collection/:name/        # CLEAN: strips date prefix after rename
+    permalink: /:collection/:name/
   synaptic-bridge:
     output: true
-    permalink: /:collection/:path/        # Kept: explicit permalinks already clean
+    permalink: /:collection/:name/
   life-philosophy:
     output: true
-    permalink: /:collection/:path/        # RESTORED: preserves subdirectory structure
+    permalink: /:collection/:name/
   life-practices:
     output: true
-    permalink: /:collection/:name/        # CLEAN: strips date prefix after rename
+    permalink: /:collection/:name/
   socratic:
     output: true
-    permalink: /:collection/:name/        # CLEAN: strips date prefix after rename
+    permalink: /:collection/:name/
 
 # Defaults
 defaults:
@@ -58,56 +105,61 @@ defaults:
     values:
       layout: single
       author_profile: true
+      read_time: true
+      comments: false
+      share: true
+      related: true
       sidebar:
         nav: "synaptic_nav"
 
-  # Biology collection
+  # Collections
   - scope:
       path: ""
       type: "biology"
     values:
       layout: single
       author_profile: true
+      read_time: true
       sidebar:
         nav: "synaptic_nav"
 
-  # Synaptic Bridge collection
   - scope:
       path: ""
       type: "synaptic-bridge"
     values:
       layout: single
       author_profile: true
+      read_time: true
       sidebar:
         nav: "synaptic_nav"
 
-  # Life Philosophy collection — RESTORED
   - scope:
       path: ""
       type: "life-philosophy"
     values:
       layout: single
       author_profile: true
+      read_time: true
       sidebar:
         nav: "synaptic_nav"
 
-  # Life Practices collection
   - scope:
       path: ""
       type: "life-practices"
     values:
       layout: single
       author_profile: true
+      read_time: true
       sidebar:
         nav: "synaptic_nav"
 
-  # Socratic collection
   - scope:
       path: ""
       type: "socratic"
     values:
       layout: single
       author_profile: true
+      read_time: true
       sidebar:
         nav: "synaptic_nav"
 
@@ -119,13 +171,7 @@ defaults:
       layout: single
       author_profile: false
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
-permalink: /:categories/:title/
-timezone: Asia/Dhaka
-
-# Exclude
+# Exclude from processing
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -136,6 +182,7 @@ exclude:
   - .jekyll-metadata
   - README.md
   - LICENSE
-plugins:
-  - jekyll-sitemap
-  - jekyll-feed
+  - .github
+  - .gitignore
+  - .editorconfig
+  - "*.gemspec"

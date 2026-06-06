@@ -1,58 +1,41 @@
-/* ==========================================================================
-   HARDWARE-ACCELERATED NEURAL ANIMATIONS CORE
-   ========================================================================== */
 
-/* 1. Quantum Fade & Rise Reveal */
-@keyframes synapticFadeRise {
-  0% {
-    opacity: 0;
-    transform: translateY(16px) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* 2. Socratic Subtle Shimmer/Blink (For Loading & Processing Nodes) */
-@keyframes neuralShimmer {
-  0%, 100% {
-    opacity: 1;
-    filter: drop-shadow(0 0 4px rgba(0, 212, 178, 0.2));
-  }
-  50% {
-    opacity: 0.5;
-    filter: drop-shadow(0 0 14px rgba(0, 212, 178, 0.6));
-  }
-}
-
-/* 3. Smooth Organic Float (For Floating Badges & Avatars) */
-@keyframes socraticFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-/* --- GLOBAL ANIMATION UTILITY CLASSES --- */
-.u-anim-reveal {
-  will-change: transform, opacity;
-  animation: synapticFadeRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
-}
-
-.u-anim-shimmer {
-  will-change: filter, opacity;
-  animation: neuralShimmer 2.5s infinite ease-in-out !important;
-}
-
-.u-anim-float {
-  will-change: transform;
-  animation: socraticFloat 4s infinite ease-in-out !important;
-}
-
-/* Accessibility: Respect OS-level motion reduction preferences */
-@media (prefers-reduced-motion: reduce) {
-  .u-anim-reveal, .u-anim-shimmer, .u-anim-float {
     animation: none !important;
-    transform: none !important;
+    filter: drop-shadow(0 0 14px rgba(0, 212, 178, 0.6));
+    filter: drop-shadow(0 0 4px rgba(0, 212, 178, 0.2));
+    opacity: 0.5;
+    opacity: 0;
     opacity: 1 !important;
+    opacity: 1;
+    transform: none !important;
+    transform: translateY(0) scale(1);
+    transform: translateY(16px) scale(0.98);
+   ========================================================================== */
+   HARDWARE-ACCELERATED NEURAL ANIMATIONS CORE
+  .u-anim-reveal, .u-anim-shimmer, .u-anim-float {
   }
+  0% {
+  0%, 100% {
+  0%, 100% { transform: translateY(0); }
+  100% {
+  50% {
+  50% { transform: translateY(-8px); }
+  animation: neuralShimmer 2.5s infinite ease-in-out !important;
+  animation: socraticFloat 4s infinite ease-in-out !important;
+  animation: synapticFadeRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  will-change: filter, opacity;
+  will-change: transform, opacity;
+  will-change: transform;
+.u-anim-float {
+.u-anim-reveal {
+.u-anim-shimmer {
+/* --- GLOBAL ANIMATION UTILITY CLASSES --- */
+/* ==========================================================================
+/* 1. Quantum Fade & Rise Reveal */
+/* 2. Socratic Subtle Shimmer/Blink (For Loading & Processing Nodes) */
+/* 3. Smooth Organic Float (For Floating Badges & Avatars) */
+/* Accessibility: Respect OS-level motion reduction preferences */
+@keyframes neuralShimmer {
+@keyframes socraticFloat {
+@keyframes synapticFadeRise {
+@media (prefers-reduced-motion: reduce) {
 }

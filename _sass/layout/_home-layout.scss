@@ -1,215 +1,157 @@
-/* ==========================================================================
-   PREMIUM UNIFIED HOMEPAGE LAYOUT MATRIX
-   Designed for Jekyll Minimal Mistakes Engine (Socratic Matrix Edition)
-   Combines Cinematic Refinement systems with hardware-accelerated fluid grids.
-   ========================================================================== */
 
-// Establish Local Core Mappings integrated with variables.scss tokens
-:root {
-  --synaptic-bg: #{$neural-black};
-  --synaptic-surface: #{$neural-card-bg};
-  --synaptic-border: rgba(0, 212, 178, 0.08);
-  --synaptic-glow: rgba(0, 212, 178, 0.15);
-  --synaptic-text: #{$text-primary};
-  --synaptic-muted: #{$text-muted};
-  --synaptic-radius: 12px; // Aligned with global ecosystem geometry
-  --section-spacing: clamp(4rem, 10vw, 7rem);
-  --container-max: #{$container-max};
-}
-
-/* ==========================================================================
-   HOMEPAGE CONTAINER CORE (Supports both legacy and modern ecosystem entries)
-   ========================================================================== */
-.synaptic-homepage-matrix,
-.synaptic-home-layout {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  isolation: isolate;
-  overflow-x: hidden;
-  background-color: $neural-black;
-  color: var(--synaptic-text);
-
-  // Cinematic Top Ambient Lighting Filter Mesh
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 100%; max-width: var(--container-max);
-    height: 600px;
-    background: radial-gradient(circle at top, rgba(0, 212, 178, 0.06), transparent 60%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  /* --- SECTION FRAMEWORK SHELL --- */
-  .section-shell {
-    position: relative;
-    width: 100%;
-    max-width: var(--container-max);
-    margin-inline: auto;
-    padding: var(--section-spacing) 1.5rem;
-    z-index: 5;
-    text-align: left;
-  }
-
-  /* --- RESPONSIVE INTELLECTUAL GRID --- */
-  .section-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 2rem;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  /* ==========================================================================
-     TACTILE GLASS CARD MATRIX (Utilizes core/mixins architecture)
-     ========================================================================== */
-  .glass-card,
-  .neural-panel,
-  .synaptic-card,
-  .rail-card {
-    position: relative;
-    @include neural-glass(0.65, 16px);
-    border-radius: var(--synaptic-radius);
-    overflow: hidden;
-    padding: 2.25rem;
-    box-shadow: $shadow-neural;
-    transition: $neural-transition;
-    will-change: transform, background-color, border-color;
-    z-index: 3;
-
-    /* --- HOVER KINETIC PHYSICS ENGINE --- */
-    &:hover {
-      transform: translateY(-5px) scale(1.01);
-      border-color: rgba(0, 212, 178, 0.25);
-      background-color: rgba(13, 21, 39, 0.85);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45),
                   0 0 30px rgba(0, 212, 178, 0.08);
-    }
-  }
-
-  /* ==========================================================================
-     HERO SYSTEM SPECS
-     ========================================================================== */
-  .home-hero,
-  .neural-hero,          /* ADDED */
-  .neural-hero-shell {
-    position: relative;
-    min-height: clamp(600px, 80vh, 900px);
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    width: 100%;
-
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
       background: radial-gradient(circle at center, rgba(0, 212, 178, 0.04), transparent 70%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    > * {
-      position: relative;
-      z-index: 5;
-    }
-  }
-
-  /* --- VISUAL INTERFACE CONTAINMENT --- */
-  .iqra-reflection,
-  .hero-visual,
-  .synaptic-visual,
-  .canvas-shell {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    @include flex-center;
-    z-index: 4;
-
-    /* --- SVG & CANVAS RENDER SAFEGUARDS --- */
-    canvas, svg {
-      width: 100%;
-      max-width: 650px;
-      height: auto;
-      display: block;
-      object-fit: contain;
-      margin-inline: auto;
-    }
-  }
-
-  /* ==========================================================================
-     TYPOGRAPHY & CONTENT BRANDING MATRIX
-     ========================================================================== */
-  .section-heading {
-    font-size: var(--type-h2);
-    line-height: 1.1;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.25rem;
-    color: #ffffff;
-    text-shadow: 0 0 20px rgba(0, 212, 178, 0.15);
-    text-align: left;
-  }
-
-  .section-lead {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: var(--synaptic-muted);
-    max-width: 65ch;
-    margin-bottom: 2.5rem;
-    text-align: left;
-    word-spacing: normal;
-  }
-
-  /* --- FLUID IMAGE SAFETY RETAINER --- */
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 6px;
-  }
-
-  /* ==========================================================================
-     MOBILE RESPONSIVE ADAPTATIONS (Using global mixins)
-     ========================================================================== */
-  @include mobile {
-    .section-shell {
-      padding: 3.5rem 1.2rem;
-    }
-
-    .glass-card,
-    .neural-panel,
-    .synaptic-card,
-    .rail-card {
+      background-color: rgba(13, 21, 39, 0.85);
+      border-color: rgba(0, 212, 178, 0.25);
       border-radius: 12px;
-      padding: 1.75rem;
-    }
-
-    .section-heading {
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45),
+      content: "";
+      display: block;
+      height: auto;
+      inset: 0;
       line-height: 1.15;
-    }
-
+      margin-inline: auto;
+      max-height: 380px;
+      max-width: 650px;
+      max-width: 95vw;
+      min-height: auto;
+      object-fit: contain;
+      padding: 1.75rem;
+      padding: 3.5rem 1.2rem;
+      padding: 4rem 0;
+      pointer-events: none;
+      position: absolute;
+      position: relative;
+      transform: translateY(-5px) scale(1.01);
+      width: 100%;
+      z-index: 1;
+      z-index: 5;
+     ========================================================================== */
+     HERO SYSTEM SPECS
+     MOBILE RESPONSIVE ADAPTATIONS (Using global mixins)
+     TACTILE GLASS CARD MATRIX (Utilizes core/mixins architecture)
+     TYPOGRAPHY & CONTENT BRANDING MATRIX
+    &::before {
+    &:hover {
+    .canvas-shell canvas {
+    .glass-card,
+    .hero-visual svg,
     .home-hero,
+    .iqra-reflection svg,
     .neural-hero,
     .neural-hero-shell {
-      min-height: auto;
-      padding: 4rem 0;
+    .neural-panel,
+    .rail-card {
+    .section-heading {
+    .section-shell {
+    .synaptic-card,
+    /* --- HOVER KINETIC PHYSICS ENGINE --- */
+    /* --- SVG & CANVAS RENDER SAFEGUARDS --- */
+    @include flex-center;
+    @include neural-glass(0.65, 16px);
     }
-
-    .iqra-reflection svg,
-    .hero-visual svg,
-    .canvas-shell canvas {
-      max-width: 95vw;
-      max-height: 380px;
-    }
+    > * {
+    align-items: center;
+    align-items: stretch;
+    background: radial-gradient(circle at top, rgba(0, 212, 178, 0.06), transparent 60%);
+    border-radius: 6px;
+    border-radius: var(--synaptic-radius);
+    box-shadow: $shadow-neural;
+    box-sizing: border-box;
+    canvas, svg {
+    color: #ffffff;
+    color: var(--synaptic-muted);
+    content: "";
+    display: block;
+    display: flex;
+    display: grid;
+    font-size: 1.05rem;
+    font-size: var(--type-h2);
+    font-weight: 900;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    height: 600px;
+    height: auto;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    margin-bottom: 2.5rem;
+    margin-inline: auto;
+    max-width: 100%;
+    max-width: 65ch;
+    max-width: var(--container-max);
+    min-height: clamp(600px, 80vh, 900px);
+    overflow: hidden;
+    padding: 2.25rem;
+    padding: var(--section-spacing) 1.5rem;
+    pointer-events: none;
+    position: absolute;
+    position: relative;
+    text-align: left;
+    text-shadow: 0 0 20px rgba(0, 212, 178, 0.15);
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    transition: $neural-transition;
+    width: 100%;
+    width: 100%; max-width: var(--container-max);
+    will-change: transform, background-color, border-color;
+    word-spacing: normal;
+    z-index: 1;
+    z-index: 3;
+    z-index: 4;
+    z-index: 5;
+   ========================================================================== */
+   Combines Cinematic Refinement systems with hardware-accelerated fluid grids.
+   Designed for Jekyll Minimal Mistakes Engine (Socratic Matrix Edition)
+   HOMEPAGE CONTAINER CORE (Supports both legacy and modern ecosystem entries)
+   PREMIUM UNIFIED HOMEPAGE LAYOUT MATRIX
+  &::after {
+  * {
+  .canvas-shell {
+  .glass-card,
+  .hero-visual,
+  .home-hero,
+  .iqra-reflection,
+  .neural-hero,          /* ADDED */
+  .neural-hero-shell {
+  .neural-panel,
+  .rail-card {
+  .section-grid {
+  .section-heading {
+  .section-lead {
+  .section-shell {
+  .synaptic-card,
+  .synaptic-visual,
+  /* --- FLUID IMAGE SAFETY RETAINER --- */
+  /* --- RESPONSIVE INTELLECTUAL GRID --- */
+  /* --- SECTION FRAMEWORK SHELL --- */
+  /* --- VISUAL INTERFACE CONTAINMENT --- */
+  /* ==========================================================================
+  // Cinematic Top Ambient Lighting Filter Mesh
+  @include mobile {
   }
+  background-color: $neural-black;
+  color: var(--synaptic-text);
+  --container-max: #{$container-max};
+  img {
+  isolation: isolate;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
+  position: relative;
+  --section-spacing: clamp(4rem, 10vw, 7rem);
+  --synaptic-bg: #{$neural-black};
+  --synaptic-border: rgba(0, 212, 178, 0.08);
+  --synaptic-glow: rgba(0, 212, 178, 0.15);
+  --synaptic-muted: #{$text-muted};
+  --synaptic-radius: 12px; // Aligned with global ecosystem geometry
+  --synaptic-surface: #{$neural-card-bg};
+  --synaptic-text: #{$text-primary};
+  width: 100%;
+.synaptic-home-layout {
+.synaptic-homepage-matrix,
+/* ==========================================================================
+// Establish Local Core Mappings integrated with variables.scss tokens
+:root {
 }

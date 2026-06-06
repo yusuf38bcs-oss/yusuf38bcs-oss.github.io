@@ -1,10 +1,10 @@
-﻿{% if post.id %}
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
-{% else %}
-  {% assign title = post.title %}
-{% endif %}
 
-<article class="archive__item">
-  <h2 class="archive__item-title"><a href="{{ post.url | relative_url }}">{{ title }}</a></h2>
+  {% assign title = post.title %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
   {% if post.excerpt %}<p class="archive__item-excerpt">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
+  <h2 class="archive__item-title"><a href="{{ post.url | relative_url }}">{{ title }}</a></h2>
+{% else %}
+{% endif %}
+{% if post.id %}
 </article>
+<article class="archive__item">

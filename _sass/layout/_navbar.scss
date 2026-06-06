@@ -1,2 +1,6 @@
 .navbar { position: relative; z-index: 1000; }
 ...
+@media (min-width: 768px) {
+  .nav-toggle { display: none; }
+  .nav-links { display: flex !important; }
+}

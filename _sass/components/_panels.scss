@@ -1,47 +1,42 @@
-/* ==========================================================================
-   DYNAMIC SIDEBAR & SOCRATIC PANELS
-   ========================================================================== */
 
-.neural-panel, 
-.rail-card, 
-.page-sidebar-viewport, 
-.socratic-floating-panel {
-  position: relative;
+      color: $synapse-glow !important;
+      padding-left: 4px;
+    &:hover, &.active {
+    }
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.7) 100%) !important;
+    border-bottom: 1px solid rgba($synapse-glow, 0.12);
+    color: $text-primary !important;
+    display: block;
+    font-size: 0.9rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+    padding: 6px 0;
+    padding-bottom: 0.5rem;
+    text-align: left !important;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: $neural-transition;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+   ========================================================================== */
+   DYNAMIC SIDEBAR & SOCRATIC PANELS
+  .nav__title {
+  // Active list item trackers
+  // Dynamic Header sub-nodes inside contextual sidebar modules
+  }
   background-color: $neural-dark !important;
   border: 1px solid rgba($synapse-glow, 0.08) !important;
   border-radius: 8px !important;
-  padding: 1.75rem;
   box-shadow: $shadow-neural;
-  width: 100%;
   box-sizing: border-box;
-
-  // Dynamic Header sub-nodes inside contextual sidebar modules
-  .nav__title {
-    background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.7) 100%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    font-weight: 800 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-size: 0.9rem !important;
-    border-bottom: 1px solid rgba($synapse-glow, 0.12);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-    text-align: left !important;
-  }
-
-  // Active list item trackers
   li a {
-    color: $text-primary !important;
-    text-decoration: none;
-    display: block;
-    padding: 6px 0;
-    text-align: left !important;
-    transition: $neural-transition;
-
-    &:hover, &.active {
-      color: $synapse-glow !important;
-      padding-left: 4px;
-    }
-  }
+  padding: 1.75rem;
+  position: relative;
+  width: 100%;
+.neural-panel, 
+.page-sidebar-viewport, 
+.rail-card, 
+.socratic-floating-panel {
+/* ==========================================================================
 }

@@ -1,17 +1,16 @@
-endpoint: "https://synapticai-proxy.yusuf-38bcs.workers.dev"
-cooldownMs: 1200
-maxRetries: 3
-cacheEnabled: true
-memoryEnabled: true
-analytics: true
 
-models:
-  fast: "gemini-2.0-flash"
-  deep: "gemini-2.5-pro-preview-06-05"
-  image: "gemini-2.0-flash-preview-image-generation"
   audio: "gemini-2.5-flash-preview-tts"
-
-defaults:
+  deep: "gemini-2.5-pro-preview-06-05"
+  fast: "gemini-2.0-flash"
+  image: "gemini-2.0-flash-preview-image-generation"
   temperature: 0.7
-  topP: 0.95
   topK: 40
+  topP: 0.95
+analytics: true
+cacheEnabled: true
+cooldownMs: 1200
+defaults:
+endpoint: "https://synapticai-proxy.yusuf-38bcs.workers.dev"
+maxRetries: 3
+memoryEnabled: true
+models:
