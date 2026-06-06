@@ -136,3 +136,6 @@ exclude:
   - .jekyll-metadata
   - README.md
   - LICENSE
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed

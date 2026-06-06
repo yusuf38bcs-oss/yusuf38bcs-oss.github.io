@@ -1,27 +1,2 @@
-_site
-.sass-cache
-.jekyll-cache
-.bundle
-vendor
-node_modules
-.env
-.wrangler
-.DS_Store
-Thumbs.db
-
 _site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-
-backups/
-neural_registry_candidates.csv
-node_pillar_audit.csv
-node_pillar_map.csv
-node_url_map.csv
-pillar-map.csv
-registry_review.csv
-
-# Backup files
-*.backup.*
 
