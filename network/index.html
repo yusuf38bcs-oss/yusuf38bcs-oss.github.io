@@ -14,25 +14,28 @@ author_profile: false
   </p>
 </div>
 
-{% assign all_items = site.data.neural_nodes %}
-{% assign pillars_str = "" %}
+{% comment %}
+CRITICAL: site.data.neural_nodes is a Hash: {node_id => {title, pillar, ...}}
+We CANNOT use group_by or where filters on Hash data.
+This code iterates manually.
+{% endcomment %}
 
-{% for item in all_items %}
-  {% if item[1] %}
-    {% assign node = item[1] %}
-  {% else %}
-    {% assign node = item %}
-  {% endif %}
+{% assign nodes_hash = site.data.neural_nodes %}
+{% assign edges_array = site.data.neural_edges %}
+
+{% comment %} Collect unique pillars manually {% endcomment %}
+{% assign pillars_raw = "" %}
+{% for node_entry in nodes_hash %}
+  {% assign node = node_entry[1] %}
   {% assign p = node.pillar %}
   {% if p and p != "" %}
-    {% assign p_marker = p | append: "|" %}
-    {% unless pillars_str contains p_marker %}
-      {% assign pillars_str = pillars_str | append: p_marker %}
+    {% assign p_marker = "|" | append: p | append: "|" %}
+    {% unless pillars_raw contains p_marker %}
+      {% assign pillars_raw = pillars_raw | append: p_marker %}
     {% endunless %}
   {% endif %}
 {% endfor %}
-
-{% assign pillars = pillars_str | split: "|" %}
+{% assign pillars = pillars_raw | remove_first: "|" | split: "|" %}
 
 <div class="network-grid">
 
@@ -43,12 +46,9 @@ author_profile: false
     <h2>{{ pillar | capitalize }}</h2>
     <div class="pillar-nodes">
 
-      {% for item in all_items %}
-        {% if item[1] %}
-          {% assign node = item[1] %}
-        {% else %}
-          {% assign node = item %}
-        {% endif %}
+      {% for node_entry in nodes_hash %}
+        {% assign node_id = node_entry[0] %}
+        {% assign node = node_entry[1] %}
 
         {% if node.pillar == pillar %}
           <article class="network-node">
@@ -58,22 +58,35 @@ author_profile: false
               <span>{{ node.mastery_points }} XP</span>
             </div>
 
-            {% assign outgoing = site.data.neural_edges | where: "source", node.id %}
-            {% if outgoing.size > 0 %}
+            {% comment %} Find connections manually — edges_array is an Array {% endcomment %}
+            {% assign connection_count = 0 %}
+            {% for edge in edges_array %}
+              {% if edge.source == node_id %}
+                {% assign connection_count = connection_count | plus: 1 %}
+              {% endif %}
+            {% endfor %}
+
+            {% if connection_count > 0 %}
             <div class="node-connections">
               <strong>Connects To</strong>
               <ul>
-                {% for edge in outgoing %}
-                  {% assign target = site.data.neural_nodes | where: "id", edge.target | first %}
-                  {% if target %}
-                    <li>{{ target.title }}</li>
-                  {% else %}
-                    <li>{{ edge.target }}</li>
+                {% for edge in edges_array %}
+                  {% if edge.source == node_id %}
+                    {% assign target_id = edge.target %}
+                    {% assign target_title = target_id %}
+                    {% for target_entry in nodes_hash %}
+                      {% if target_entry[0] == target_id %}
+                        {% assign target_title = target_entry[1].title %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                    <li>{{ target_title }}</li>
                   {% endif %}
                 {% endfor %}
               </ul>
             </div>
             {% endif %}
+
           </article>
         {% endif %}
       {% endfor %}
