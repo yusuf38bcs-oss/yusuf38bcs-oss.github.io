@@ -368,3 +368,100 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+
+/* == SYNAPTIC-PATCH-v2: Mobile Hardening (non-destructive) == */
+
+/* PHASE 2/3: no-scroll helper for drawer */
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+  touch-action: none;
+}
+
+/* PHASE 4: Global overflow protection */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* PHASE 3: Mobile grid collapse below 768px */
+@media screen and (max-width: 768px) {
+  .knowledge-manifolds,
+  .knowledge-manifolds-grid,
+  .socratic-cards,
+  .socratic-card-grid,
+  .footer-links-grid,
+  .footer__links,
+  .feature__wrapper,
+  .archive__grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* PHASE 5: FAB safe-zone padding */
+.page__inner-wrap,
+.page__content,
+#main,
+.site-content {
+  padding-bottom: 120px !important;
+}
+@media screen and (max-width: 768px) {
+  .page__inner-wrap,
+  .page__content,
+  #main,
+  .site-content {
+    padding-bottom: 100px !important;
+  }
+}
+
+/* PHASE 6: Accessible form inputs (scoped) */
+.subscription-hub input,
+.newsletter-form input,
+.form-wrapper input,
+input[type="email"],
+input[type="text"],
+input[type="search"],
+textarea {
+  background: #101820;
+  border: 1px solid #00f0ff;
+  color: #ffffff;
+  min-height: 44px;
+}
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #00f0ff;
+  outline-offset: 2px;
+}
+
+/* PHASE 7: Fluid typography fallback */
+.hero-title,
+.page__hero h1,
+.masthead__hero h1 {
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* PHASE 8: Touch target compliance */
+button,
+.btn,
+.masthead__menu-toggle,
+.neural-menu-toggle {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* PHASE 4: Murder 100vw inline styles safely */
+[style*="width:100vw"],
+[style*="width: 100vw"] {
+  width: 100% !important;
+  max-width: 100% !important;
+}

@@ -1,0 +1,47 @@
+﻿/* ============================================
+   Z-INDEX HIERARCHY — PHASE 9
+   Neural / Synaptic UI Architecture
+   ============================================ */
+
+:root {
+  --z-header: 1000;
+  --z-drawer: 1100;
+  --z-modal: 1200;
+  --z-fab: 1300;
+  --z-toast: 1400;
+}
+
+/* Header base layer */
+.masthead,
+.site-header {
+  position: relative;
+  z-index: var(--z-header);
+}
+
+/* Drawer must be positioned to accept z-index */
+.masthead__menu,
+.greedy-nav__nav,
+.mobile-menu,
+.nav-drawer,
+[data-nav-drawer] {
+  position: fixed; /* or absolute depending on your markup */
+  z-index: var(--z-drawer);
+}
+
+/* Floating microphone / FAB */
+.floating-mic-button,
+.floating-microphone,
+.fab,
+.neural-fab,
+.ai-assistant-fab {
+  position: fixed;
+  z-index: var(--z-fab);
+}
+
+/* Modals and toasts */
+.modal,
+.toast,
+.neural-toast {
+  position: fixed;
+  z-index: var(--z-modal); /* or var(--z-toast) for toasts */
+}
