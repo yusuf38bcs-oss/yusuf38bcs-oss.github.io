@@ -1,77 +1,17 @@
-
-      color: #ffffff !important;
-      flex-direction: column !important;
-      gap: 0.75rem;
-      text-align: center;
-      text-shadow: 0 0 8px rgba(0, 212, 178, 0.4);
-      transform: translateY(-2px);
-    &:hover {
-    @include mobile {
-    }
-    align-items: center;
-    border: none !important;
-    color: #ffffff !important;
-    color: $text-primary !important;
-    display: flex;
-    display: inline-flex;
-    font-family: $serif !important; // Inherited from Minimal Mistakes base config
-    font-size: 0.88rem;
-    font-size: clamp(1.4rem, 4vw, 2.3rem) !important;
-    font-style: italic;
-    font-weight: 600;
-    gap: 0.5rem;
-    gap: 1.5rem;
-    justify-content: space-between;
-    letter-spacing: normal !important;
-    line-height: 1.4 !important;
-    margin: 0 0 2rem 0 !important;
-    margin: 0 auto;
-    max-width: $container-max;
-    pointer-events: auto;
-    text-align: center !important;
-    text-align: left !important;
-    text-decoration: none !important;
-    transition: $neural-transition;
-    width: 100%;
-    word-spacing: normal !important;
-   ========================================================================== */
-   SYNAPTIC BRIDGE SYSTEM & INTERACTIVE COGNITIVE LAYOUTS
-  &.aos-animate {
-  .bridge-link {
-  .socratic-prompt {
-  .synaptic-bridge-inner {
-  @include mobile {
-  @include neural-glass(0.75, 12px);
-  @include socratic-glow($synapse-glow);
-  }
-  align-items: center;
-  background: radial-gradient(circle at center, rgba($synapse-glow, 0.03), transparent) !important;
-  border-bottom: 1px solid rgba($synapse-glow, 0.08) !important;
-  box-sizing: border-box;
-  color: $synapse-glow;
+.synaptic-bridge {
   display: flex;
-  flex-wrap: wrap;
-  font-size: 0.72rem;
-  font-weight: 800;
-  gap: clamp(1rem, 3vw, 2.5rem);
-  justify-content: center;
-  letter-spacing: 0.15em;
-  padding: $space-unit 1.5rem;
-  padding: 0.85rem 1.5rem !important;
-  pointer-events: none;
-  position: sticky !important;
-  text-align: left !important;
-  text-transform: uppercase;
-  top: 70px; // Standardized synchronized offset from variables
-  width: 100%;
-  z-index: 900 !important;
-.bridge-label {
-.bridge-links {
-.reflective-inquiry-container {
-.synaptic-bridge-shell {
-/* --- 1. THE SYNAPTIC BRIDGE (Sticky Content Sub-Navigation Bar) --- */
-/* --- 2. SOCRATIC REFLECTIVE INQUIRY ENGINE --- */
-/* --- 3. CORE FRAMEWORK INTERACTION ANCHORS --- */
-/* ==========================================================================
-[data-aos] {
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .synapse-node {
+    text-align: center;
+    color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(0, 212, 178, 0.4);
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      color: $synapse-glow !important;
+    }
+  }
 }

@@ -2,14 +2,9 @@
 // CORE MIXINS — Synaptic Architecture
 // ==========================================================================
 
-// Keyframe uses CSS custom properties so it responds to mixin parameters
 @keyframes synapticPulse {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(0, 212, 178, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 var(--pulse-target-size, 10px) rgba(0, 212, 178, 0.5);
-  }
+  0%, 100% { box-shadow: 0 0 5px rgba(0, 212, 178, 0.2); }
+  50% { box-shadow: 0 0 var(--pulse-target-size, 10px) rgba(0, 212, 178, 0.5); }
 }
 
 @mixin flex-center {
@@ -19,15 +14,11 @@
 }
 
 @mixin mobile {
-  @media (max-width: 768px) {
-    @content;
-  }
+  @media (max-width: 768px) { @content; }
 }
 
 @mixin tablet {
-  @media (max-width: 1024px) {
-    @content;
-  }
+  @media (max-width: 1024px) { @content; }
 }
 
 @mixin neural-glass($opacity: 0.7, $blur: 12px) {

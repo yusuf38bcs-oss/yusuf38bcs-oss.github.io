@@ -1,6 +1,26 @@
-  .nav-links { display: flex !important; }
-  .nav-toggle { display: none; }
-...
-.navbar { position: relative; z-index: 1000; }
-@media (min-width: 768px) {
+.navbar {
+  position: relative;
+  z-index: 1000;
+  background: rgba(2, 6, 23, 0.95);
+  backdrop-filter: blur(10px);
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: block;
+    }
+  }
 }

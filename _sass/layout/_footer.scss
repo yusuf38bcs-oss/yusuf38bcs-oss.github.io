@@ -1,2 +1,16 @@
-.site-footer { background:var(--bg); color:var(--text); padding:2rem; text-align:center; }
-...
+.site-footer-layout {
+  background: #020617;
+  color: #94a3b8;
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(0, 212, 178, 0.08);
+
+  a {
+    color: #00d4b2;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

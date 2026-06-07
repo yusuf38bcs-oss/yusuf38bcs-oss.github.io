@@ -1,54 +1,31 @@
-
-   ========================================================================== */
-   Consolidated File: Replaces helpers.scss & utilities.scss
-   ECOSYSTEM ATOMIC HELPERS & TYPOGRAPHY SHIELDS
-  /* Fluid padding: scales smoothly between mobile and desktop */
-  @include socratic-glow($synapse-glow);
-  @media (max-width: 768px) { display: block !important; }
-  @media (max-width: 768px) { display: none !important; }
-  box-sizing: border-box;
-  color: #ffffff !important;
-  display: none !important;
-  font-family: $serif !important;
-  font-style: italic !important;
-  letter-spacing: normal !important;
-  margin: 0 auto;
-  max-width: var(--container-max, 1280px);
-  padding: 0 clamp(1.25rem, 4vw, 2.5rem); 
-  text-align: left !important;
-  text-justify: none !important;
-  width: 100%;
-  word-spacing: normal !important;
-.container {
-.page-rendered-markdown-body li {
-.page-rendered-markdown-body p,
-.synaptic-homepage-matrix p,
-.u-bg-dark { background-color: $neural-black !important; }
-.u-bg-glass { @include neural-glass(0.7, 12px); }
-.u-cyan-accent { color: $synapse-glow !important; }
-.u-flex-center { @include flex-center; }
-.u-hide-mobile {
-.u-mb-lg { margin-bottom: 3rem !important; }
-.u-mb-md { margin-bottom: 1.5rem !important; }
-.u-mb-none { margin-bottom: 0 !important; }
-.u-mb-sm { margin-bottom: 0.75rem !important; }
-.u-mt-lg { margin-top: 3rem !important; }
-.u-mt-md { margin-top: 1.5rem !important; }
-.u-mt-none { margin-top: 0 !important; }
-.u-mt-sm { margin-top: 0.75rem !important; }
-.u-no-select { user-select: none !important; }
-.u-pointer { cursor: pointer !important; }
-.u-show-mobile {
-.u-text-center { text-align: center !important; }
-.u-text-glow {
-.u-text-left,
-.u-text-reflective {
-/* --- 1. SAFE TYPOGRAPHY REFINEMENT (Eradicates Mobile Alignment Bugs) --- */
-/* --- 2. SIGNATURE NEON GLOW ATOMS --- */
-/* --- 3. QUICK SPACING & ALIGNMENT MATRIX --- */
-/* --- 4. RESPONSIVE STRUCTURAL BOUNDARIES --- */
-/* --- 5. RESPONSIVE VISIBILITY --- */
 /* ==========================================================================
-/* CRITICAL: Never globally target `a` or `span` with text-align rules! */
+   ECOSYSTEM ATOMIC HELPERS & TYPOGRAPHY SHIELDS
+   ========================================================================== */
+
+.u-text-glow { @include socratic-glow(#00d4b2); }
+.u-hidden { display: none !important; }
+.u-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-p, li, blockquote, h1, h2, h3, h4,
+
+// Fluid spacing
+.u-pad-fluid {
+  padding: clamp(1rem, 3vw, 3rem);
+}
+
+// Mobile visibility
+.u-mobile-only {
+  @media (min-width: 769px) { display: none !important; }
+}
+
+.u-desktop-only {
+  @media (max-width: 768px) { display: none !important; }
+}

@@ -1,42 +1,21 @@
-
-    animation: none;
-    background-color: rgba(0, 212, 178, 0.15);
-    transition: none;
-   ========================================================================== */
-   SEMANTIC LINKER VISUALS (BIOLUMINESCENCE)
-  .cognitive-flash {
-  .external-synapse::after {
-  .semantic-node {
-  }
-  0% { background-color: rgba(0, 212, 178, 0.3); }
-  100% { background-color: transparent; }
-  animation: pulse-synapse 1.5s ease-out forwards;
-  background-color: rgba(0, 212, 178, 0.05);
-  border-bottom: 1px dashed rgba(0, 212, 178, 0.4);
-  border-bottom: 1px solid #00D4B2;
-  color: #00D4B2;
-  content: "\2197"; /* Up-right arrow for external pathway */
-  display: inline-block;
-  font-size: 0.75em;
-  margin-left: 4px;
-  opacity: 0.7;
-  opacity: 1;
-  position: relative;
-  text-shadow: 0 0 8px rgba(0, 212, 178, 0.3);
-  transform: translate(2px, -2px);
-  transition: border-color 0.3s ease, background-color 0.3s ease, text-shadow 0.3s ease;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-.cognitive-flash {
-.external-synapse {
-.external-synapse::after {
-.external-synapse:hover::after {
-.semantic-node {
-.semantic-node:hover {
 /* ==========================================================================
-/* Axon Scrolling Target Flash (Guides user focus) */
-/* Respect user motion preferences */
-/* Synaptic Nodes (Internal Taxonomy Links) */
-/* The Blood-Brain Barrier (External Links) */
-@keyframes pulse-synapse {
-@media (prefers-reduced-motion: reduce) {
+   SEMANTIC LINKER VISUALS (BIOLUMINESCENCE)
+   ========================================================================== */
+
+.external-synapse {
+  position: relative;
+  color: #00d4b2;
+
+  &::after {
+    content: "↗";
+    font-size: 0.75em;
+    margin-left: 0.25em;
+    opacity: 0.7;
+  }
+}
+
+.cognitive-flash {
+  animation: synapticPulse 2s ease-in-out;
+  background-color: rgba(0, 212, 178, 0.15);
+  transition: background-color 0.3s ease;
 }

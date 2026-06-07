@@ -1,43 +1,18 @@
-
-      animation-delay: -2s !important; 
-      bottom: 20%; left: 8%; 
-      color: $quantum-blue; 
-      color: $synapse-glow; 
-      font-size: 7rem; 
-      font-size: 8rem; 
-      top: 15%; right: 10%; 
-    &.symbol-dot { 
-    &.symbol-line { 
-    }
-    animation: socraticFloat 10s ease-in-out infinite !important; // Synchronized with global keys
-    opacity: 0.03; // Soft micro-presence
-    position: absolute;
-    user-select: none;
-    will-change: transform;
-   ========================================================================== */
-   Manages automated element card grids and floating token animations.
-   NEURAL CORE USER INTERFACE MATRICES
-  .synaptic-symbol {
-  }
-  align-items: stretch;
-  box-sizing: border-box;
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  inset: 0;
-  margin-inline: auto;
-  max-width: $container-max;
-  overflow: hidden;
-  padding: $space-unit 1.5rem;
-  pointer-events: none;
-  position: absolute;
+.neural-ui {
   position: relative;
-  width: 100%;
-  z-index: 1;
-.neural-grid {
-.neural-section {
-.synaptic-hero-symbols {
-/* --- ACCELERATED RESPONSIVE GRID ENGINE --- */
-/* --- ATMOSPHERIC INTERACTIVE GRAPHIC SYMBOLS --- */
-/* ==========================================================================
+
+  .orb {
+    position: absolute;
+    font-size: 7rem;
+    color: $quantum-blue;
+    animation: float 6s ease-in-out infinite;
+
+    &.orb-1 { top: 15%; right: 10%; }
+    &.orb-2 { bottom: 20%; left: 8%; animation-delay: -2s; }
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }

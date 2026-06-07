@@ -1,93 +1,12 @@
-
-      #020617 100%
-      circle at center,
-      rgba(0, 212, 178, 0.05),
-      rgba(2, 6, 23, 0.3) 0%,
-      rgba(2, 6, 23, 0.6) 60%,
-      text-align: center !important;
-      to bottom,
-      transparent 65%
-      width: 100% !important;
-    ),
-    }
-    a, .btn, button {
-    align-items: stretch !important;
-    background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 70%, #00d4b2 100%) !important;
-    background: linear-gradient(to bottom, transparent 60%, #020617 100%) !important;
-    background-image: radial-gradient(rgba(0, 212, 178, 0.04) 1px, transparent 1px) !important;
-    background-size: 40px 40px;
-    color: #ffffff !important;
-    color: rgba(203, 213, 225, 0.9) !important;
-    content: "" !important;
-    flex-direction: column !important;
-    font-size: clamp(1rem, 2vw, 1.35rem) !important;
-    font-size: clamp(2rem, 5vw, 4rem) !important;
-    font-weight: 900 !important;
-    gap: 1rem;
-    inset: 0;
-    letter-spacing: -0.03em !important;
-    linear-gradient(
-    line-height: 1.15 !important;
-    line-height: 1.7 !important;
-    margin: 0 0 1.5rem 0 !important;
-    margin: 0 auto 2.5rem auto !important;
-    max-width: 700px;
-    opacity: 0.7;
-    padding: 5rem 2rem;
-    pointer-events: none;
-    position: absolute !important;
-    radial-gradient(
-    text-align: center !important;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    top: -50%; left: -50%;
-    transform: rotate(12deg);
-    url("/assets/images/header-bg.webp") !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    width: 200%; height: 200%;
-    will-change: transform;
-    z-index: 0;
-    z-index: 1;
-   ========================================================================== */
-   NEURAL HERO ARCHITECTURE (COMPLETE MASTER PRODUCTION EDITION)
-  &::after {
-  &::before {
-  .neural-hero,
-  .neural-hero-shell {
-  @media (max-width: 480px) {
-  }
-  align-items: center !important;
-  align-items: center;
-  background-attachment: fixed !important;
-  background-color: #020617 !important;
-  background-image:
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  box-sizing: border-box;
-  display: flex !important;
-  display: flex;
-  flex-wrap: wrap;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  gap: 1.5rem;
-  h1 {
-  isolation: isolate;
-  justify-content: center !important;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 800px;
-  min-height: clamp(600px, 80vh, 900px);
-  overflow: hidden;
-  p {
-  padding: clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 1.5rem) 3rem;
+.neural-hero {
   position: relative;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 212, 178, 0.05),
+    rgba(2, 6, 23, 0.3) 0%,
+    rgba(2, 6, 23, 0.6) 60%,
+    #020617 100%
+  );
   text-align: center !important;
-  width: 100%;
-  z-index: 10;
-.hero-actions {
-.hero-content {
-.neural-hero,
-.neural-hero-shell {
-/* ==========================================================================
-@media (min-width: 1440px) {
+  padding: 4rem 1rem;
 }

@@ -1,20 +1,19 @@
-
-    animation: none !important;
-    background: linear-gradient(135deg, #070a13 0%, #020617 100%) !important;
-    background-attachment: scroll !important;
-    transition: none !important;
-   ========================================================================== */
-   CINEMATIC HERO ENHANCEMENTS ENGINE
-  &.image-failed {
-  .home-hero {
-  @media (max-width: 1023px) {
-  }
-  align-items: center !important;
-  display: flex !important;
-  justify-content: center !important;
-  overflow: hidden;
-  position: relative;
-.home-hero {
 /* ==========================================================================
-@media (prefers-reduced-motion: reduce) {
+   CINEMATIC HERO ENHANCEMENTS ENGINE
+   ========================================================================== */
+
+.hero-enhanced {
+  background: linear-gradient(135deg, #070a13 0%, #020617 100%) !important;
+  background-attachment: fixed !important;
+  transition: all 0.3s ease !important;
+
+  &.image-failed {
+    background-attachment: scroll !important;
+    animation: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+    transition: none !important;
+  }
 }

@@ -1,18 +1,72 @@
-
-   Difficulty System
-   Future Graph Integration
+/* ==========================================================================
    Neural Node Panel
-   Node Status
-.neural-node-grid {
-.neural-node-header {
+   ========================================================================== */
+
 .neural-node-panel {
-.node-advanced {
-.node-connection {
-.node-foundation {
-.node-intermediate {
-.node-link {
-.node-status-planned {
-.node-status-published {
-/* ==========================================
+  background: rgba(13, 21, 39, 0.9);
+  border: 1px solid rgba(0, 212, 178, 0.12);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
 }
-========================================== */
+
+.neural-node-header {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #00d4b2;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 212, 178, 0.12);
+}
+
+.neural-node-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.neural-node-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+  }
+
+  .value {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #e2e8f0;
+  }
+}
+
+.neural-node-section {
+  margin-top: 1.5rem;
+
+  h4 {
+    font-size: 1rem;
+    color: #00d4b2;
+    margin-bottom: 0.75rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    li {
+      padding: 0.5rem 0.75rem;
+      background: rgba(0, 212, 178, 0.04);
+      border-radius: 0.375rem;
+      border-left: 2px solid rgba(0, 212, 178, 0.3);
+    }
+  }
+}

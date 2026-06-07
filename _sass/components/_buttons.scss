@@ -2,52 +2,42 @@
    TACTILE SYSTEM BUTTONS MATRIX
    ========================================================================== */
 
-.btn, button, 
-.mi-btn-calculate, 
-.mcq-btn-generate, 
+.btn, button,
+.mi-btn-calculate,
+.mcq-btn-generate,
 .socratic-trigger {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: linear-gradient(135deg, $synapse-glow 0%, $quantum-blue 100%) !important;
-  color: $neural-black !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
-  font-weight: 700 !important;
-  padding: 12px 24px !important;
-  border-radius: 6px !important;
-  border: none !important;
-  cursor: pointer !important;
-  text-decoration: none !important;
-  transition: $neural-transition !important;
-  will-change: transform, box-shadow;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #1e293b;
+  color: #e2e8f0;
 
   &:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 25px rgba($synapse-glow, 0.4) !important;
+    background: #334155;
+    transform: translateY(-1px);
   }
 
-  &:active {
-    transform: translateY(0) scale(0.97) !important;
-  }
-
-  &:disabled {
-    background: #1e293b !important;
-    color: #475569 !important;
-    cursor: not-allowed !important;
-    transform: none !important;
-    box-shadow: none !important;
+  &:focus-visible {
+    outline: 2px solid #00d4b2;
+    outline-offset: 2px;
   }
 }
 
-// Ghost variation for secondary reflective action lines
-.btn--ghost {
-  background: transparent !important;
-  color: $synapse-glow !important;
-  border: 1px solid rgba($synapse-glow, 0.25) !important;
+.btn--primary {
+  background: linear-gradient(135deg, #00d4b2 0%, #0891b2 100%);
+  color: #020617;
 
   &:hover {
-    background: rgba($synapse-glow, 0.05) !important;
-    border-color: $synapse-glow !important;
-    @include socratic-glow($synapse-glow);
+    box-shadow: 0 0 20px rgba(0, 212, 178, 0.3);
   }
 }

@@ -1,41 +1,20 @@
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    animation: none !important;
-    filter: drop-shadow(0 0 14px rgba(0, 212, 178, 0.6));
-    filter: drop-shadow(0 0 4px rgba(0, 212, 178, 0.2));
-    opacity: 0.5;
-    opacity: 0;
-    opacity: 1 !important;
-    opacity: 1;
-    transform: none !important;
-    transform: translateY(0) scale(1);
-    transform: translateY(16px) scale(0.98);
-   ========================================================================== */
-   HARDWARE-ACCELERATED NEURAL ANIMATIONS CORE
-  .u-anim-reveal, .u-anim-shimmer, .u-anim-float {
-  }
-  0% {
-  0%, 100% {
-  0%, 100% { transform: translateY(0); }
-  100% {
-  50% {
-  50% { transform: translateY(-8px); }
-  animation: neuralShimmer 2.5s infinite ease-in-out !important;
-  animation: socraticFloat 4s infinite ease-in-out !important;
-  animation: synapticFadeRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
-  will-change: filter, opacity;
-  will-change: transform, opacity;
-  will-change: transform;
-.u-anim-float {
-.u-anim-reveal {
-.u-anim-shimmer {
-/* --- GLOBAL ANIMATION UTILITY CLASSES --- */
-/* ==========================================================================
-/* 1. Quantum Fade & Rise Reveal */
-/* 2. Socratic Subtle Shimmer/Blink (For Loading & Processing Nodes) */
-/* 3. Smooth Organic Float (For Floating Badges & Avatars) */
-/* Accessibility: Respect OS-level motion reduction preferences */
-@keyframes neuralShimmer {
-@keyframes socraticFloat {
-@keyframes synapticFadeRise {
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade { animation: fadeIn 0.5s ease forwards; }
+.animate-slide { animation: slideIn 0.4s ease forwards; }
+
 @media (prefers-reduced-motion: reduce) {
+  .animate-fade, .animate-slide {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

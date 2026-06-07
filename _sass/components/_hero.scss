@@ -1,46 +1,20 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, #070a13 0%, #020617 100%);
 
-    
-      display: block;
-      height: auto !important;
-      margin-inline: auto;
-      max-height: 380px;
-      max-width: 650px;
-      max-width: 95vw;
-      object-fit: contain;
-      width: 100%;
-    .canvas-shell canvas {
-    .hero-visual canvas, 
-    @include flex-center;
-    }
-    background: radial-gradient(circle at center, rgba($synapse-glow, 0.04), transparent 70%);
-    canvas, svg {
-    content: "";
-    inset: 0;
-    max-width: 100%;
-    min-height: auto;
-    padding: 4rem 0;
-    pointer-events: none;
-    position: absolute;
-    position: relative;
-    width: 100%;
-    z-index: 1;
-    z-index: 4;
-    z-index: 5;
-   ========================================================================== */
-   ACCELERATED HERO INTELLECT SHELL
-  &::before {
-  .canvas-shell {
-  .hero-visual, 
-  /* --- HERO GRAPHIC/SVG REFINEMENT CONTAINERS --- */
-  @include flex-center;
-  @include mobile {
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    color: #e2e8f0;
   }
-  > * {
-  min-height: clamp(600px, 80vh, 900px);
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-.home-hero, 
-.neural-hero-shell {
-/* ==========================================================================
+
+  p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    max-width: 600px;
+    color: #94a3b8;
+  }
 }

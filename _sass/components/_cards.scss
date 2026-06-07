@@ -1,2 +1,26 @@
-.card-grid { display:grid; gap:1rem; grid-template-columns:1fr; }
-...
+.card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background: #0f172a;
+  border: 1px solid rgba(0, 212, 178, 0.08);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: rgba(0, 212, 178, 0.2);
+    transform: translateY(-2px);
+  }
+}
