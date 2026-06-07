@@ -1,11 +1,7 @@
 /* ==========================================================================
-   PREMIUM SOVEREIGN NAVIGATION MATRIX (OMNIPOTENT PRODUCTION EDITION)
-   Fully Synchronized with Minimal Mistakes Greedy-Nav Engine & Neon Cyan Void
+   PREMIUM SOVEREIGN NAVIGATION MATRIX
    ========================================================================== */
 
-/* ==========================================================================
-   1. HEADER FOUNDATION (Insulated Viewport Anchor)
-   ========================================================================== */
 .site-header,
 .masthead {
   position: fixed !important;
@@ -13,11 +9,8 @@
   left: 0;
   right: 0;
   z-index: var(--z-header, 2000) !important;
-
-  // CRITICAL: Forces browser to allow absolute positioned dropdowns to cascade downwards
   overflow: visible !important;
   isolation: isolate;
-
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   background: linear-gradient(
@@ -25,14 +18,10 @@
     rgba(2, 6, 23, 0.96),
     rgba(2, 6, 23, 0.88)
   ) !important;
-
   border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ==========================================================================
-   2. GREEDY NAV GRID CONTAINER
-   ========================================================================== */
 .greedy-nav {
   position: relative;
   z-index: var(--z-header, 2000) !important;
@@ -45,9 +34,6 @@
   overflow: visible !important;
 }
 
-/* ==========================================================================
-   3. BRAND IDENTITY SYSTEM
-   ========================================================================== */
 .site-title {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: clamp(1.05rem, 2vw, 1.35rem) !important;
@@ -64,9 +50,6 @@
   }
 }
 
-/* ==========================================================================
-   4. DESKTOP HORIZONTAL LINK MATRIX
-   ========================================================================== */
 .greedy-nav .visible-links {
   display: flex;
   align-items: center;
@@ -90,9 +73,6 @@
   }
 }
 
-/* ==========================================================================
-   5. MOBILE HAMBURGER TOGGLE SYSTEM
-   ========================================================================== */
 .greedy-nav__toggle {
   display: flex !important;
   align-items: center;
@@ -123,9 +103,6 @@
   }
 }
 
-/* ==========================================================================
-   6. DYNAMIC DROPDOWN PANEL OVERHAUL (The Foolproof Toggle Fix)
-   ========================================================================== */
 .hidden-links,
 .greedy-nav .hidden-links {
   position: absolute !important;
@@ -133,14 +110,12 @@
   right: 1rem !important;
   overflow: visible !important;
   z-index: var(--z-dropdown, 3000) !important;
-
   min-width: 220px;
   padding: 0.75rem !important;
   border-radius: 8px !important;
   border: 1px solid rgba(0, 212, 178, 0.15) !important;
   background: #0d1527 !important;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-
   transform-origin: top right;
   transition: opacity 0.2s ease, transform 0.2s ease !important;
 
@@ -176,9 +151,6 @@
   }
 }
 
-/* ==========================================================================
-   7. MULTI-DEVICE RESPONSIVE BREAKPOINTS CONFIG
-   ========================================================================== */
 @media (max-width: 768px) {
   .greedy-nav {
     min-height: 66px;
@@ -201,12 +173,7 @@
   }
 }
 
-/* ==================================================
-   DESKTOP NAVIGATION FINAL OVERRIDE
-   ================================================== */
-
 @media (min-width: 1024px) {
-
   .greedy-nav__toggle,
   .masthead__menu-toggle {
     display: none !important;
@@ -218,5 +185,56 @@
 
   .greedy-nav .hidden-links {
     display: none !important;
+  }
+}
+
+/* ==========================================================================
+   CUSTOM MOBILE TOGGLE (neural-site-masthead)
+   ========================================================================== */
+
+.masthead-mobile-trigger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0;
+  background: rgba(0, 212, 178, 0.06);
+  border: 1px solid rgba(0, 212, 178, 0.15);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover, &:focus-visible {
+    background: rgba(0, 212, 178, 0.12);
+    border-color: #00d4b2;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #00d4b2;
+    outline-offset: 2px;
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 20px;
+    height: 2.5px;
+    background-color: #00d4b2;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+}
+
+.is-active-drawer .masthead-mobile-trigger {
+  .hamburger-bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
   }
 }
