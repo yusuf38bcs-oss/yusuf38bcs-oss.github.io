@@ -1,0 +1,43 @@
+﻿/* ==========================================================================
+   SYNAPTIC UI — Emergency Overrides & Cache Bust
+   Version: 2026.06.07
+   ========================================================================== */
+
+/* Prevent horizontal scroll globally */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure images don't break layout */
+img, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix pre/code overflow */
+pre, code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Table responsiveness */
+table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Remove 100vw offenders */
+[style*="width:100vw"],
+[style*="width: 100vw"] {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Ensure FAB never covers footer content */
+body:has(.fab, .floating-microphone, .neural-fab) .page__footer,
+body:has(.fab, .floating-microphone, .neural-fab) .site-footer {
+  padding-bottom: 100px;
+}

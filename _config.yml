@@ -136,3 +136,45 @@ exclude:
   - .jekyll-metadata
   - README.md
   - LICENSE
+
+# ============================================================================
+# SYNAPTIC UI — Production Overrides (Auto-injected)
+# ============================================================================
+
+# Ensure correct baseurl for Cloudflare Pages
+baseurl: ""
+url: "https://yusuf38bcs-oss-github-io.pages.dev"
+
+# Plugin whitelist for GitHub Pages compatibility
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+
+# Sass load paths
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - .jekyll-metadata
+  - README.md
+  - "*.gemspec"
+
+# Custom head injections
+head_scripts:
+  - /assets/js/synaptic-navigation.js
+  - /assets/js/synaptic-accessibility.js
+
+custom_css:
+  - /assets/css/synaptic-overrides.css
