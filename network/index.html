@@ -14,13 +14,7 @@ author_profile: false
   </p>
 </div>
 
-{% assign all_nodes = site.data.neural_nodes %}
-{% if all_nodes[0] %}
-  {% assign nodes_list = all_nodes %}
-{% else %}
-  {% assign nodes_list = all_nodes | values %}
-{% endif %}
-{% assign pillars = nodes_list | group_by: "pillar" %}
+{% assign pillars = site.data.neural_nodes | group_by_exp: "item", "item[1].pillar" %}
 
 <div class="network-grid">
 
@@ -28,55 +22,59 @@ author_profile: false
 
 <section class="network-pillar">
 
-  <h2>{{ pillar.name | capitalize }}</h2>
+<h2>{{ pillar.name | capitalize }}</h2>
 
-  <div class="pillar-nodes">
+<div class="pillar-nodes">
 
-    {% for node in pillar.items %}
+{% for pair in pillar.items %}
 
-    <article class="network-node">
+{% assign node_id = pair[0] %}
+{% assign node = pair[1] %}
 
-      <h3>{{ node.title }}</h3>
+<article class="network-node">
 
-      <div class="node-meta">
+<h3>{{ node.title }}</h3>
 
-        <span>{{ node.difficulty }}</span>
+<div class="node-meta">
+<span>{{ node.difficulty }}</span>
+<span>{{ node.mastery_points }} XP</span>
+</div>
 
-        <span>{{ node.mastery_points }} XP</span>
+{% assign outgoing = site.data.neural_edges | where: "source", node_id %}
 
-      </div>
+{% if outgoing.size > 0 %}
 
-      {% assign outgoing = site.data.neural_edges | where: "source", node.id %}
+<div class="node-connections">
 
-      {% if outgoing.size > 0 %}
-      <div class="node-connections">
+<strong>Connects To</strong>
 
-        <strong>Connects To</strong>
+<ul>
 
-        <ul>
+{% for edge in outgoing %}
 
-        {% for edge in outgoing %}
+{% assign target = site.data.neural_nodes[edge.target] %}
 
-          {% assign target = site.data.neural_nodes | where: "id", edge.target | first %}
+<li>
+{% if target %}
+{{ target.title }}
+{% else %}
+{{ edge.target }}
+{% endif %}
+</li>
 
-          {% if target %}
-            <li>{{ target.title }}</li>
-          {% else %}
-            <li>{{ edge.target }}</li>
-          {% endif %}
+{% endfor %}
 
-        {% endfor %}
+</ul>
 
-        </ul>
+</div>
 
-      </div>
-      {% endif %}
+{% endif %}
 
-    </article>
+</article>
 
-    {% endfor %}
+{% endfor %}
 
-  </div>
+</div>
 
 </section>
 
