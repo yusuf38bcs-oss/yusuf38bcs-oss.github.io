@@ -1,43 +1,48 @@
+// ==========================================================================
+// CORE MIXINS — Synaptic Architecture
+// ==========================================================================
 
-    box-shadow: 0 0 5px rgba(0, 212, 178, 0.2); 
-    box-shadow: 0 0 var(--pulse-target-size, 10px) rgba(0, 212, 178, 0.5); 
-  @media (max-width: 1024px) { @content; }
-  @media (max-width: 768px) { @content; }
+// Keyframe uses CSS custom properties so it responds to mixin parameters
+@keyframes synapticPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 212, 178, 0.2);
   }
-  0%, 100% { 
-  50% { 
-  align-items: center !important;
-  animation: synapticPulse 3s infinite ease-in-out !important;
-  backdrop-filter: blur($blur) !important;
-  background: rgba(13, 21, 39, $opacity) !important; // Anchored with system dark slot backing
-  border: 1px solid rgba(0, 212, 178, 0.08) !important; // Micro neon cyan framing border
-  display: flex !important;
-  justify-content: center !important;
+  50% {
+    box-shadow: 0 0 var(--pulse-target-size, 10px) rgba(0, 212, 178, 0.5);
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin neural-glass($opacity: 0.7, $blur: 12px) {
+  background: rgba(13, 21, 39, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba(0, 212, 178, 0.08);
+}
+
+@mixin socratic-glow($color: #00d4b2) {
+  text-shadow: 0 0 15px rgba($color, 0.35);
+}
+
+@mixin synaptic-pulse($color: #00d4b2, $size: 10px) {
   --pulse-target-color: #{$color};
   --pulse-target-size: #{$size};
-  text-shadow: 0 0 15px rgba($color, 0.35) !important;
-  -webkit-backdrop-filter: blur($blur) !important;
-// ==========================================================================
-// 1. Premium Dark Glassmorphism
-// 2. Synaptic Pulse Engine
-// 3. Cognitive Text Glow
-// 4. Center Intelligence Box
-// 5. Responsive Structural Breakpoint: Tablet Layouts
-// 6. Responsive Structural Breakpoint: Mobile Touchscreens
-// Boosts readability performance for scientific keywords over deep backdrops
-// Core hardware-accelerated styles for Synaptic UI interfaces.
-// Eradicates layout thrashing and prevents compiled CSS code bloat.
-// Forms the ultra-luxury frosted transparent plate over the dark matrix void
-// GLOBAL KEYFRAME REGISTRY (Declared once globally to block compilation leaks)
-// NEURAL DESIGN MIXINS (FUNCTIONAL LOGIC)
-// Prevents duplicate code explosion during compiler generation.
-// Reusable GPU composite flex utility for anchors, pins, and icon rings
-// Upgraded to use CSS Variables inside a singular global keyframe.
-@keyframes synapticPulse {
-@mixin flex-center {
-@mixin mobile {
-@mixin neural-glass($opacity: 0.7, $blur: 12px) {
-@mixin socratic-glow($color: #00d4b2) {
-@mixin synaptic-pulse($color: #00d4b2, $size: 10px) {
-@mixin tablet {
+  animation: synapticPulse 3s infinite ease-in-out;
 }
