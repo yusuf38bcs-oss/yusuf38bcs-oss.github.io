@@ -14,65 +14,72 @@ author_profile: false
   </p>
 </div>
 
-{% assign pillars = site.data.neural_nodes | group_by: "pillar" %}
+{% assign all_items = site.data.neural_nodes %}
+{% assign pillars_str = "" %}
+
+{% for item in all_items %}
+  {% if item[1] %}
+    {% assign node = item[1] %}
+  {% else %}
+    {% assign node = item %}
+  {% endif %}
+  {% assign p = node.pillar %}
+  {% if p and p != "" %}
+    {% assign p_marker = p | append: "|" %}
+    {% unless pillars_str contains p_marker %}
+      {% assign pillars_str = pillars_str | append: p_marker %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+
+{% assign pillars = pillars_str | split: "|" %}
 
 <div class="network-grid">
 
 {% for pillar in pillars %}
+  {% if pillar == "" %}{% continue %}{% endif %}
 
-<section class="network-pillar">
+  <section class="network-pillar">
+    <h2>{{ pillar | capitalize }}</h2>
+    <div class="pillar-nodes">
 
-  <h2>{{ pillar.name | capitalize }}</h2>
+      {% for item in all_items %}
+        {% if item[1] %}
+          {% assign node = item[1] %}
+        {% else %}
+          {% assign node = item %}
+        {% endif %}
 
-  <div class="pillar-nodes">
+        {% if node.pillar == pillar %}
+          <article class="network-node">
+            <h3>{{ node.title }}</h3>
+            <div class="node-meta">
+              <span>{{ node.difficulty }}</span>
+              <span>{{ node.mastery_points }} XP</span>
+            </div>
 
-    {% for node in pillar.items %}
+            {% assign outgoing = site.data.neural_edges | where: "source", node.id %}
+            {% if outgoing.size > 0 %}
+            <div class="node-connections">
+              <strong>Connects To</strong>
+              <ul>
+                {% for edge in outgoing %}
+                  {% assign target = site.data.neural_nodes | where: "id", edge.target | first %}
+                  {% if target %}
+                    <li>{{ target.title }}</li>
+                  {% else %}
+                    <li>{{ edge.target }}</li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </article>
+        {% endif %}
+      {% endfor %}
 
-    <article class="network-node">
-
-      <h3>{{ node.title }}</h3>
-
-      <div class="node-meta">
-
-        <span>{{ node.difficulty }}</span>
-
-        <span>{{ node.mastery_points }} XP</span>
-
-      </div>
-
-      {% assign outgoing = site.data.neural_edges | where: "source", node.id %}
-
-      {% if outgoing.size > 0 %}
-      <div class="node-connections">
-
-        <strong>Connects To</strong>
-
-        <ul>
-
-        {% for edge in outgoing %}
-
-          {% assign target = site.data.neural_nodes | where: "id", edge.target | first %}
-
-          {% if target %}
-            <li>{{ target.title }}</li>
-          {% else %}
-            <li>{{ edge.target }}</li>
-          {% endif %}
-
-        {% endfor %}
-
-        </ul>
-
-      </div>
-      {% endif %}
-
-    </article>
-
-    {% endfor %}
-
-  </div>
-
-</section>
+    </div>
+  </section>
 
 {% endfor %}
 
