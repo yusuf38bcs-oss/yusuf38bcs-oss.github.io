@@ -1,59 +1,354 @@
-﻿<!-- Synaptic Masthead — Production Mobile-Ready -->
-<header class="masthead z-header" role="banner">
-  <div class="masthead__inner-wrap">
-    
-    <!-- Site Title / Logo -->
-    <div class="masthead__title">
-      <a href="{{ '/' | relative_url }}" aria-label="Learning Biology For Life — Home">
-        Learning Biology For Life
+<header class="neural-site-masthead">
+  <div class="masthead-matrix-container">
+
+    <div class="masthead-branding-node">
+      <a href="{{ '/' | relative_url }}" class="masthead-logo-anchor">
+        <img src="{{ site.logo | relative_url }}" alt="" class="masthead-clean-logo">
+      </a>
+      <a href="{{ '/' | relative_url }}" class="masthead-title-anchor">
+        Learning Biology <span class="accent-neon">For Life</span>
       </a>
     </div>
 
-    <!-- Mobile Hamburger Toggle -->
-    <button 
-      class="masthead__menu-toggle neural-menu-toggle" 
-      type="button"
-      aria-expanded="false"
-      aria-controls="site-nav-drawer"
-      aria-label="Open navigation menu"
-      data-nav-toggle
-    >
-      <span class="hamburger-bar" aria-hidden="true"></span>
-      <span class="hamburger-bar" aria-hidden="true"></span>
-      <span class="hamburger-bar" aria-hidden="true"></span>
+    <button id="neural-mobile-toggle" class="masthead-mobile-trigger" aria-label="Expand Responsive Menu" aria-expanded="false">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
     </button>
 
-    <!-- Desktop Navigation (Minimal Mistakes Compatible) -->
-    <nav class="masthead__menu greedy-nav" id="site-nav" role="navigation" aria-label="Main navigation">
-      <ul class="visible-links">
-        {%- for link in site.data.navigation.main -%}
-          <li class="masthead__menu-item">
-            <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}{% if link.target %} target="{{ link.target }}"{% endif %}>
-              {{ link.title }}
-            </a>
-          </li>
-        {%- endfor -%}
+    <nav class="masthead-desktop-navigation" aria-label="Primary Navigation">
+      <ul class="desktop-nav-menu">
+        <li><a href="{{ '/' | relative_url }}" class="nav-main-link">Home</a></li>
+
+        <li class="has-neural-dropdown">
+          <a href="#" class="nav-main-link dropdown-trigger-node" aria-haspopup="true" aria-expanded="false">
+            Biology <span class="dropdown-arrow-indicator" aria-hidden="true">&#9660;</span>
+          </a>
+          <ul class="neural-sub-menu">
+            <li class="sub-menu-category-title">HSC Corner</li>
+            <li><a href="{{ '/biology/hsc-corner/botany/' | relative_url }}">HSC Botany</a></li>
+            <li><a href="{{ '/biology/hsc-corner/zoology/' | relative_url }}">HSC Zoology</a></li>
+            <li class="sub-menu-category-title">Higher Zoology Tree</li>
+            <li><a href="{{ '/synaptic-bridge/systems-biology/' | relative_url }}">Systems Biology</a></li>
+            <li><a href="{{ '/synaptic-bridge/interdisciplinary-science/' | relative_url }}">Interdisciplinary Science</a></li>
+          </ul>
+        </li>
+
+        <li class="has-neural-dropdown">
+          <a href="#" class="nav-main-link dropdown-trigger-node" aria-haspopup="true" aria-expanded="false">
+            Synaptic Bridge <span class="dropdown-arrow-indicator" aria-hidden="true">&#9660;</span>
+          </a>
+          <ul class="neural-sub-menu">
+            <li class="sub-menu-category-title">4IR Ecosystem</li>
+            <li><a href="{{ '/synaptic-bridge/4ir-education/' | relative_url }}">4IR Cognitive Education</a></li>
+            <li><a href="{{ '/synaptic-bridge/knowledge-network/' | relative_url }}">Knowledge Network Hub</a></li>
+            <li><a href="{{ '/synaptic-bridge/future-science/' | relative_url }}">Future Learning Science</a></li>
+          </ul>
+        </li>
+
+        <li><a href="{{ '/life-practices/' | relative_url }}" class="nav-main-link">Life Practices</a></li>
+        <li><a href="{{ '/socratic/' | relative_url }}" class="nav-main-link">Socratic 4.0</a></li>
+        <li><a href="{{ '/contact/' | relative_url }}" class="nav-main-link">Contact</a></li>
       </ul>
-      {% if site.search == true %}
-        <button class="search__toggle" type="button">
-          <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: "Toggle search" }}</span>
-          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5 13.3 12.2 10a6.8 6.8 0 0 0 1-3.6 6.9 6.9 0 1 0-6.9 6.9 6.8 6.8 0 0 0 3.6-1l3.3 3.3a.9.9 0 0 0 1.3 0 .9.9 0 0 0 0-1.3zM2.4 6.4a4 4 0 1 1 4 4 4 4 0 0 1-4-4z" fill="currentColor"/></svg>
-        </button>
-      {% endif %}
     </nav>
 
-    <!-- Mobile Drawer (Hidden on Desktop) -->
-    <div class="mobile-menu nav-drawer" id="site-nav-drawer" data-nav-drawer aria-hidden="true">
-      <ul class="mobile-menu__list">
-        {%- for link in site.data.navigation.main -%}
-          <li>
-            <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}>
-              {{ link.title }}
-            </a>
-          </li>
-        {%- endfor -%}
-      </ul>
-    </div>
+  </div>
 
+  <div id="neural-mobile-drawer" class="masthead-mobile-dropdown-drawer" aria-hidden="true">
+    <ul class="mobile-nav-menu-list">
+      <li><a href="{{ '/' | relative_url }}">Home</a></li>
+
+      <li class="mobile-menu-section-header">Biology Dynamic Stream</li>
+      <li><a href="{{ '/biology/hsc-corner/botany/' | relative_url }}" class="mobile-sub-link">HSC Botany</a></li>
+      <li><a href="{{ '/biology/hsc-corner/zoology/' | relative_url }}" class="mobile-sub-link">HSC Zoology</a></li>
+      <li><a href="{{ '/synaptic-bridge/systems-biology/' | relative_url }}" class="mobile-sub-link">Systems Biology</a></li>
+      <li><a href="{{ '/synaptic-bridge/interdisciplinary-science/' | relative_url }}" class="mobile-sub-link">Interdisciplinary Science</a></li>
+
+      <li class="mobile-menu-section-header">Synaptic Core Arrays</li>
+      <li><a href="{{ '/synaptic-bridge/4ir-education/' | relative_url }}" class="mobile-sub-link">4IR Cognitive Education</a></li>
+      <li><a href="{{ '/synaptic-bridge/knowledge-network/' | relative_url }}" class="mobile-sub-link">Knowledge Network Hub</a></li>
+      <li><a href="{{ '/synaptic-bridge/future-science/' | relative_url }}" class="mobile-sub-link">Future Learning Science</a></li>
+
+      <li class="mobile-menu-section-header">Core Portals</li>
+      <li><a href="{{ '/life-practices/' | relative_url }}">Life Practices</a></li>
+      <li><a href="{{ '/socratic/' | relative_url }}">Socratic 4.0 Portal</a></li>
+      <li><a href="{{ '/contact/' | relative_url }}">Contact Hub</a></li>
+    </ul>
   </div>
 </header>
+
+<style>
+  .neural-site-masthead {
+    background-color: #020617 !important;
+    border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important;
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000000;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .masthead-matrix-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    gap: 1rem;
+  }
+
+  .masthead-branding-node {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 14px);
+    min-width: 0;
+    flex: 1;
+  }
+
+  .masthead-clean-logo {
+    height: clamp(32px, 5vw, 42px) !important;
+    width: clamp(32px, 5vw, 42px) !important;
+    border-radius: 0px !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    object-fit: contain !important;
+    flex-shrink: 0;
+  }
+
+  .masthead-title-anchor {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: clamp(0.85rem, 3.5vw, 1.25rem) !important;
+    text-decoration: none !important;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  .masthead-title-anchor .accent-neon {
+    color: #00d4b2;
+  }
+
+  .desktop-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.75rem);
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-main-link {
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem) !important;
+    font-weight: 600 !important;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-main-link:hover, .has-neural-dropdown:hover .nav-main-link {
+    color: #00d4b2 !important;
+  }
+
+  .dropdown-trigger-node .dropdown-arrow-indicator {
+    font-size: 0.6rem;
+    margin-left: 4px;
+    color: #475569;
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .has-neural-dropdown { position: relative; }
+
+  .neural-sub-menu {
+    position: absolute;
+    top: 100%; left: 0;
+    background-color: #0d1527 !important;
+    border: 1px solid rgba(0, 212, 178, 0.12) !important;
+    border-radius: 8px;
+    padding: 1rem !important;
+    width: 250px;
+    display: none;
+    list-style: none !important;
+    margin: 0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+
+  .has-neural-dropdown:hover .neural-sub-menu,
+  .has-neural-dropdown:focus-within .neural-sub-menu {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .has-neural-dropdown:hover .dropdown-arrow-indicator,
+  .has-neural-dropdown:focus-within .dropdown-arrow-indicator {
+    transform: rotate(180deg);
+    color: #00d4b2;
+  }
+
+  .sub-menu-category-title {
+    font-size: 0.72rem !important;
+    text-transform: uppercase;
+    color: #00d4b2 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em;
+    padding: 0.6rem 0.75rem 0.25rem 0.75rem;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  .neural-sub-menu li a {
+    display: block;
+    color: #94a3b8 !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.9rem !important;
+    text-decoration: none !important;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .neural-sub-menu li a:hover {
+    background-color: rgba(0, 212, 178, 0.04) !important;
+    color: #ffffff !important;
+    padding-left: 14px !important;
+  }
+
+  .masthead-mobile-trigger {
+    background: none;
+    border: none;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    gap: 5px;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    flex-shrink: 0;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+  }
+
+  .masthead-mobile-trigger:hover,
+  .masthead-mobile-trigger:focus-visible {
+    background: rgba(0, 212, 178, 0.08);
+  }
+
+  .masthead-mobile-trigger:focus-visible {
+    outline: 2px solid #00d4b2;
+    outline-offset: 2px;
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 20px;
+    height: 2.5px;
+    background-color: #00d4b2;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .mobile-nav-menu-list {
+    list-style: none !important;
+    margin: 0;
+    padding: 1.5rem !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: 1250px;
+    margin-inline: auto;
+  }
+
+  .mobile-nav-menu-list a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 1.05rem;
+    display: block;
+    padding: 0.75rem 0;
+    min-height: 44px;
+  }
+
+  .mobile-menu-section-header {
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    color: #00d4b2 !important;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 0.5rem;
+    pointer-events: none;
+  }
+
+  .mobile-nav-menu-list .mobile-sub-link {
+    color: #94a3b8 !important;
+    font-size: 0.95rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid rgba(0, 212, 178, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    .neural-site-masthead { padding: 0.75rem 1rem !important; }
+    .masthead-desktop-navigation { display: none !important; }
+    .masthead-mobile-trigger { display: flex; }
+    .masthead-title-anchor { max-width: 160px; }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .desktop-nav-menu { gap: 1rem; }
+    .nav-main-link { font-size: 0.85rem !important; }
+  }
+
+  @media (min-width: 1920px) {
+    .masthead-matrix-container { max-width: 1400px; }
+  }
+</style>
+
+<script>
+  (function() {
+    const masthead = document.querySelector(".neural-site-masthead");
+    const toggleBtn = document.getElementById("neural-mobile-toggle");
+    const drawer = document.getElementById("neural-mobile-drawer");
+    if (!toggleBtn || !masthead) return;
+
+    function setOpen(isOpen) {
+      masthead.classList.toggle("is-active-drawer", isOpen);
+      toggleBtn.setAttribute("aria-expanded", isOpen);
+      drawer.setAttribute("aria-hidden", !isOpen);
+      document.body.style.overflow = isOpen ? "hidden" : "";
+    }
+
+    toggleBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      setOpen(!masthead.classList.contains("is-active-drawer"));
+    });
+
+    drawer.querySelectorAll("a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        setOpen(false);
+      });
+    });
+
+    document.addEventListener("click", function(e) {
+      if (!masthead.contains(e.target)) setOpen(false);
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && masthead.classList.contains("is-active-drawer")) {
+        setOpen(false);
+      }
+    });
+  })();
+</script>
