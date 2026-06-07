@@ -1,20 +1,17 @@
 ﻿source "https://rubygems.org"
 
-# Jekyll core
 gem "jekyll", "~> 4.3.3"
 
-# Plugins (whitelist-compatible for Cloudflare Pages)
 group :jekyll_plugins do
-  gem "jekyll-paginate"
-  gem "jekyll-sitemap"
-  gem "jekyll-gist"
-  gem "jekyll-feed"
-  gem "jekyll-seo-tag"
-  gem "jekyll-archives"
+  gem "jekyll-paginate", "~> 1.1"
+  gem "jekyll-sitemap", "~> 1.4"
+  gem "jekyll-gist", "~> 1.5"
+  gem "jekyll-feed", "~> 0.17"
+  gem "jekyll-seo-tag", "~> 2.8"
 end
 
-# Windows-specific performance (local dev only)
-gem "wdm", ">= 0.1.0", platforms: [:mingw, :x64_mingw, :mswin]
+# Windows local dev only
+gem "wdm", "~> 0.1", platforms: [:mingw, :x64_mingw, :mswin]
 
-# Webrick for local serve (Ruby 3+)
+# Ruby 3+ local server
 gem "webrick", "~> 1.8"
