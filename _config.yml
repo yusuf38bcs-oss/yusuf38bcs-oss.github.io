@@ -14,16 +14,18 @@ favicon: "/assets/images/favicon.ico"
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 
 # Theme (GEM-NATIVE — matches your installed gem)
-theme: minimal-mistakes-jekyll
+remote_theme: mmistakes/minimal-mistakes
 minimal_mistakes_skin: dark
 
 # Plugins
+remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-seo-tag
   - jekyll-include-cache
+  - jekyll-remote-theme
 
 # Pagination
 

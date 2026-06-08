@@ -147,7 +147,14 @@ footer {
 }
 
 @media (min-width: 769px) {
-  
+
+  .masthead-mobile-trigger {
+    display: none !important;
+  }
+
+  .masthead-desktop-navigation {
+    display: flex !important;
+  }
 
   .masthead-mobile-dropdown-drawer {
     display: none !important;
