@@ -1,23 +1,51 @@
----
+﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Protozoa: Reproduction and Parasitism (প্রোটোজোয়া: জনন ও পরজীবিতার আণবিক রণাঙ্গন)"
+excerpt: "এককোষী প্রোটোজোয়ার বৈচিত্র্যময় জনন কৌশল এবং মানবদেহে তাদের পরজীবী আক্রমণের গভীর আণবিক বিশ্লেষণ। একটিভ থিংকিং ও বাস্তব রূপকের আলোতে সাজানো পূর্ণাঙ্গ লেকচার।"
+
 date: 2026-04-05T21:30:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Animal Diversity
+
 tags:
   - Protozoa
   - Reproduction
   - Parasitism
   - Zoology
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-animal-diversity-protozoa-reproduction-and-parasitism
+parent_node: animal-diversity
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/animal-diversity/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/animal-diversity/
+
 toc: true
-toc_label: "চিন্তার মানচিত্র"
-toc_icon: "dna"
+toc_sticky: true
 classes: wide
-excerpt: "এককোষী প্রোটোজোয়ার বৈচিত্র্যময় জনন কৌশল এবং মানবদেহে তাদের পরজীবী আক্রমণের গভীর আণবিক বিশ্লেষণ। একটিভ থিংকিং ও বাস্তব রূপকের আলোতে সাজানো পূর্ণাঙ্গ লেকচার।"
-node_id: protozoa_reproduction_and_parasitism
+
+header:
+  overlay_image: /assets/images/biology/animal-diversity-banner.webp
 ---
 
 <style>

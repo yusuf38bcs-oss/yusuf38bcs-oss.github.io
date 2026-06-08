@@ -1,21 +1,51 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Protozoa: Body Covering, Skeletal Structure and Locomotion (প্রোটোজোয়া: শারীরিক আবরণ, কঙ্কাল কাঠামো ও চলন)"
+excerpt: "এককোষী প্রোটোজোয়ার শারীরিক আবরণ, অণুবীক্ষণিক কঙ্কাল বিন্যাস এবং চার ধরনের চলন কৌশলের এক গভীর জৈব-যান্ত্রিক ও ক্রিটিক্যাল অ্যানালাইসিস।"
+
 date: 2026-04-05T21:13:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Animal Diversity
+
 tags:
   - Protozoa
   - Locomotion
   - Zoology
   - Cytology
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-animal-diversity-protozoa-body-covering-skeletal-structure-locomotion
+parent_node: animal-diversity
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/animal-diversity/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/animal-diversity/
+
 toc: true
+toc_sticky: true
 classes: wide
-excerpt: "এককোষী প্রোটোজোয়ার শারীরিক আবরণ, অণুবীক্ষণিক কঙ্কাল বিন্যাস এবং চার ধরনের চলন কৌশলের এক গভীর জৈব-যান্ত্রিক ও ক্রিটিক্যাল অ্যানালাইসিস।"
-node_id: protozoa_body_covering_and_skeletal_structure_and_locomotion
+
+header:
+  overlay_image: /assets/images/biology/animal-diversity-banner.webp
 ---
 
 <style>
@@ -227,3 +257,4 @@ node_id: protozoa_body_covering_and_skeletal_structure_and_locomotion
   </p>
 
 </div>
+

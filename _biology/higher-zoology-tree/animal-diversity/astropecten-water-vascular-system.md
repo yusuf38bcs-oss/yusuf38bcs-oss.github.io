@@ -1,24 +1,52 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Astropecten: Water Vascular System (অ্যাস্ট্রো পেকটেন-এর পানি সংবহনতন্ত্র)"
+excerpt: "তারামাছের (Astropecten) অনন্য পানি সংবহনতন্ত্রের এক রোমাঞ্চকর আণবিক ও যান্ত্রিক ব্যবচ্ছেদ। জানুন কীভাবে সমুদ্রের জলচাপকে ব্যবহার করে এই প্রাণীটি তার লোকোমোশন ও হাইড্রোলিক মেকানিজম পরিচালনা করে।"
+
 date: 2026-04-17T18:10:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/animal-diversity/astropecten-water-vascular-system/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Animal Diversity
+
 tags:
   - Astropecten
   - Water-Vascular-System
   - Echinodermata
   - Zoology
   - Bio-mimicry
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-animal-diversity-astropecten-water-vascular-system
+parent_node: animal-diversity
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/animal-diversity/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/animal-diversity/
+
 toc: true
-toc_label: "পদ্ধতিগত মানচিত্র"
-toc_icon: "water"
+toc_sticky: true
 classes: wide
-excerpt: "তারামাছের (Astropecten) অনন্য পানি সংবহনতন্ত্রের এক রোমাঞ্চকর আণবিক ও যান্ত্রিক ব্যবচ্ছেদ। জানুন কীভাবে সমুদ্রের জলচাপকে ব্যবহার করে এই প্রাণীটি তার লোকোমোশন ও হাইড্রোলিক মেকানিজম পরিচালনা করে।"
-node_id: astropecten_water_vascular_system
+
+header:
+  overlay_image: /assets/images/biology/animal-diversity-banner.webp
 ---
 
 <style>
@@ -300,3 +328,4 @@ node_id: astropecten_water_vascular_system
   </p>
 
 </div>
+

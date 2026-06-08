@@ -1,19 +1,51 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "T-test: Significant difference between means"
+excerpt: "Advanced biological analysis and structural framework."
+
 date: 2026-04-05T20:38:00.012Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
+
 tags:
   - Student t-Test
   - Hypothesis Testing
   - Small Sample Theory
   - Biostatistics Lectures
 
-node_id: t_test_significant_difference_between_means
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-t-test-significant-difference-between-means
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <div class="neural-banner-card" style="margin: 1.5em 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); background: #0b1329; padding: 10px;">
@@ -140,3 +172,4 @@ $à§«\%$ à¦¸à¦¾à¦°à§à¦¥à¦•à¦¤à¦¾ à¦¸à§à¦¤�
 ### ðŸ“ à§«. à¦¬à¦¿à¦¶à§‡à¦· à¦¨à§‹à¦¡: Degrees of Freedom ($df$) à¦à¦° à¦—à§à¦°à§à¦¤à§à¦¬
 
 à¦Ÿà¦¿-à¦Ÿà§‡à¦¸à§à¦Ÿà§‡à¦° à¦²à¦¾à¦‡à¦«à¦¸à¦¾à¦‡à¦•à§‡à¦²à§‡ **Degrees of Freedom ($df$)** à¦¬à¦¾ à¦¸à§à¦¬à¦¾à¦§à§€à¦¨à¦¤à¦¾à¦° à¦®à¦¾à¦¤à§à¦°à¦¾ à¦…à¦¤à§à¦¯à¦¨à§à¦¤ à¦—à§à¦°à§à¦¤à§à¦¬à¦ªà§‚à¦°à§à¦£ à¦¨à§‹à¦¡à¥¤ à¦à¦Ÿà¦¿ à¦®à§‚à¦²à¦¤ à¦‰à¦ªà¦¾à¦¤à§à¦¤à§‡à¦° à¦¸à§à¦¬à¦¾à¦§à§€à¦¨ à¦šà¦²à¦¨à§‡à¦° à¦¸à§€à¦®à¦¾à¦•à§‡ à¦¨à¦¿à¦°à§à¦¦à§‡à¦¶ à¦•à¦°à§‡à¥¤ à¦•à§à¦·à§à¦¦à§à¦° à¦¨à¦®à§à¦¨à¦¾à¦° à¦•à§à¦·à§‡à¦¤à§à¦°à§‡ à¦¬à¦•à§à¦°à¦°à§‡à¦–à¦¾à¦° à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦° à¦¨à¦®à§à¦¨à¦¾à¦° à¦¸à¦‚à¦–à§à¦¯à¦¾à¦° à¦“à¦ªà¦° à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦¸à¦‚à¦¬à§‡à¦¦à¦¨à¦¶à§€à¦² à¦¹à¦“à§Ÿà¦¾à§Ÿ à¦à¦‡ $df$ à¦à¦° à¦¨à¦¿à¦–à§à¦à¦¤ à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¨à§‡à¦° à¦®à¦¾à¦§à§à¦¯à¦®à§‡à¦‡ à¦•à§‡à¦¬à¦² à¦¸à¦ à¦¿à¦• à¦¸à¦‚à¦•à¦Ÿ à¦Ÿà§‡à¦¬à¦¿à¦² à¦®à¦¾à¦¨à¦Ÿà¦¿ à¦–à§à¦à¦œà§‡ à¦ªà¦¾à¦“à§Ÿà¦¾ à¦¸à¦®à§à¦­à¦¬à¥¤
+

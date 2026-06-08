@@ -1,13 +1,24 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Measurements of Central Tendency: Problem Solving"
 excerpt: "à§©à§¦ à¦œà¦¨ à¦°à§‹à¦—à§€à¦° à¦°à¦•à§à¦¤à§‡à¦° à¦—à§à¦²à§à¦•à§‹à¦œà§‡à¦° à¦®à¦¾à¦¤à§à¦°à¦¾à¦° à¦‰à¦ªà¦¾à¦¤à§à¦¤ à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à§‡ à¦¶à§à¦°à§‡à¦£à§€à¦¬à¦¦à§à¦§ à¦‰à¦ªà¦¾à¦¤à§à¦¤à§‡à¦° (Grouped Data) à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦—à§œ, à¦®à¦§à§à¦¯à¦®à¦¾ à¦“ à¦ªà§à¦°à¦šà§à¦°à¦• à¦¨à¦¿à¦°à§à¦£à§Ÿà§‡à¦° à¦¸à¦®à§à¦ªà§‚à¦°à§à¦£ à¦¬à¦¾à§Ÿà§‹à¦¸à§à¦Ÿà§à¦¯à¦¾à¦Ÿà¦¿à¦¸à§à¦Ÿà¦¿à¦•à§à¦¯à¦¾à¦² à¦¸à¦®à¦¾à¦§à¦¾à¦¨à¥¤"
+
 date: 2026-04-05T17:31:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/measurements-of-central-tendency-problem-solving/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
+
 tags:
   - Biostatistics
   - Central-Tendency
@@ -15,12 +26,28 @@ tags:
   - Median
   - Mode
   - Grouped-Data
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-measurements-of-central-tendency-problem-solving
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
 toc: true
-toc_label: "à¦¸à¦®à¦¾à¦§à¦¾à¦¨à§‡à¦° à¦®à¦¾à¦¨à¦šà¦¿à¦¤à§à¦°"
-toc_icon: "calculator"
+toc_sticky: true
 classes: wide
 
-node_id: measurements_of_central_tendency_problem_solving
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
@@ -290,4 +317,5 @@ node_id: measurements_of_central_tendency_problem_solving
     .genetics-table td { color: #cbd5e1; }
     .genetics-table tr:nth-child(even) { background-color: rgba(255,255,255,0.01); }
 </style>
+
 

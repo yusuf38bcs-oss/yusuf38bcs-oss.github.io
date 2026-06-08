@@ -1,14 +1,24 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Correlation and Regression (à¦¸à¦¹à¦¸à¦®à§à¦¬à¦¨à§à¦§ à¦“ à¦¨à¦¿à¦°à§à¦­à¦°à¦• à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£)"
 excerpt: "à¦¦à§à¦Ÿà¦¿ à¦šà¦²à¦•à§‡à¦° à¦ªà¦¾à¦°à¦¸à§à¦ªà¦°à¦¿à¦• à¦¸à¦®à§à¦ªà¦°à§à¦•à§‡à¦° à¦—à¦­à§€à¦°à¦¤à¦¾ à¦à¦¬à¦‚ à¦à¦•à¦Ÿà¦¿ à¦¸à§à¦¬à¦¾à¦§à§€à¦¨ à¦šà¦²à¦•à§‡à¦° à¦¸à¦¾à¦ªà§‡à¦•à§à¦·à§‡ à¦…à¦¨à§à¦¯à¦Ÿà¦¿à¦° à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦ªà§‚à¦°à§à¦¬à¦¾à¦­à¦¾à¦¸ à¦¦à§‡à¦“à§Ÿà¦¾à¦° à¦¬à¦¾à§Ÿà§‹à¦¸à§à¦Ÿà§à¦¯à¦¾à¦Ÿà¦¿à¦¸à§à¦Ÿà¦¿à¦•à§à¦¯à¦¾à¦² à¦®à§‡à¦•à¦¾à¦¨à¦¿à¦œà¦®à¥¤"
+
 date: 2026-04-05T20:55:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/correlation-and-regression/
+
 categories:
-  - Higher Zoology Tree
-  - Biostatistics & Research Methodology
+  - Biology
+  - Higher Zoology
+  - Biostatistics
+
 tags:
   - Biostatistics
   - Correlation
@@ -16,7 +26,27 @@ tags:
   - Zoology
   - Research-Methodology
 
-node_id: correlation_and_regression
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-correlation-and-regression
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
@@ -202,4 +232,5 @@ node_id: correlation_and_regression
 <p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
     ðŸ“Š Biostatistics & Research Methodology Series 2026 | Learning Biology For Life | learningbiologyforlife.org
 </p>
+
 

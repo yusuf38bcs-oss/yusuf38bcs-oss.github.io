@@ -1,25 +1,52 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "POPULATION ECOLOGY: CONCEPT ON SIZE OF POPULATION (à¦œà¦¨à¦¸à¦‚à¦–à§à¦¯à¦¾à¦° à¦†à¦•à¦¾à¦°à§‡à¦° à¦®à§Œà¦²à¦¿à¦• à¦‰à¦ªà¦¾à¦¦à¦¾à¦¨)"
+excerpt: "à¦à¦•à¦Ÿà¦¿ à¦ªà¦ªà§à¦²à§‡à¦¶à¦¨à§‡à¦° à¦†à¦•à¦¾à¦° (N) à¦•à§€à¦­à¦¾à¦¬à§‡ à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦“ à¦ªà¦°à¦¿à¦¬à§‡à¦¶à¦—à¦¤ à§ªà¦Ÿà¦¿ à¦®à§Œà¦²à¦¿à¦• à¦ªà§à¦°à¦•à§à¦°à¦¿à¦¯à¦¼à¦¾à¦° à¦®à¦¾à¦§à§à¦¯à¦®à§‡ à¦ªà§à¦°à¦¤à¦¿à¦¨à¦¿à§Ÿà¦¤ à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¿à¦¤ à¦¹à¦šà§à¦›à§‡? à¦œà¦¾à¦¨à§à¦¨ à¦œà¦¨à§à¦®, à¦®à§ƒà¦¤à§à¦¯à§, à¦…à¦­à¦¿à¦¬à¦¾à¦¸à¦¨ à¦“ à¦ªà§à¦°à¦¬à¦¾à¦¸à¦¨à§‡à¦° à¦—à¦­à§€à¦° à¦—à¦¤à¦¿à¦¬à¦¿à¦¦à§à¦¯à¦¾à¥¤"
+
 date: 2026-04-01T16:32:00.012Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/
+
 categories:
-  - ECOLOGY
+  - Biology
+  - Higher Zoology
+  - Ecology
+
 tags:
   - Population-Size
   - Natality
   - Mortality
   - Immigration
   - Emigration
-toc: true
-toc_label: "à¦šà¦¿à¦¨à§à¦¤à¦¾à¦° à¦®à¦¾à¦¨à¦šà¦¿à¦¤à§à¦°"
-toc_icon: "chart-bar"
-classes: wide
-excerpt: "à¦à¦•à¦Ÿà¦¿ à¦ªà¦ªà§à¦²à§‡à¦¶à¦¨à§‡à¦° à¦†à¦•à¦¾à¦° (N) à¦•à§€à¦­à¦¾à¦¬à§‡ à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦“ à¦ªà¦°à¦¿à¦¬à§‡à¦¶à¦—à¦¤ à§ªà¦Ÿà¦¿ à¦®à§Œà¦²à¦¿à¦• à¦ªà§à¦°à¦•à§à¦°à¦¿à¦¯à¦¼à¦¾à¦° à¦®à¦¾à¦§à§à¦¯à¦®à§‡ à¦ªà§à¦°à¦¤à¦¿à¦¨à¦¿à§Ÿà¦¤ à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¿à¦¤ à¦¹à¦šà§à¦›à§‡? à¦œà¦¾à¦¨à§à¦¨ à¦œà¦¨à§à¦®, à¦®à§ƒà¦¤à§à¦¯à§, à¦…à¦­à¦¿à¦¬à¦¾à¦¸à¦¨ à¦“ à¦ªà§à¦°à¦¬à¦¾à¦¸à¦¨à§‡à¦° à¦—à¦­à§€à¦° à¦—à¦¤à¦¿à¦¬à¦¿à¦¦à§à¦¯à¦¾à¥¤"
 
-node_id: population_ecology_concept_on_size_of_population
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-ecology-population-ecology-concept-on-size-of-population
+parent_node: ecology
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/ecology/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/ecology/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/ecology-banner.webp
 ---
 
 <div style="text-align: center; margin-bottom: 20px;">
@@ -238,4 +265,5 @@ node_id: population_ecology_concept_on_size_of_population
 </div>
 
 <script src="{{ '/assets/js/accordion.js' | relative_url }}"></script>
+
 

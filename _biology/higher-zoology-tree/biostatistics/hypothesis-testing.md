@@ -1,25 +1,52 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Hypothesis Testing (à¦¨à¦¾à¦¸à§à¦¤à¦¿à¦• à¦“ à¦¬à¦¿à¦•à¦²à§à¦ª à¦•à¦²à§à¦ªà¦¨à¦¾)"
 excerpt: "à¦œà§€à¦¬à¦ªà¦°à¦¿à¦¸à¦‚à¦–à§à¦¯à¦¾à¦¨ (Biostatistics) à¦—à¦¬à§‡à¦·à¦£à¦¾à§Ÿ à¦ªà§à¦°à¦¾à¦ªà§à¦¤ à¦«à¦²à¦¾à¦«à¦²à§‡à¦° à¦¸à¦¤à§à¦¯à¦¤à¦¾ à¦“ à¦—à§à¦°à¦¹à¦£à¦¯à§‹à¦—à§à¦¯à¦¤à¦¾ à¦¯à¦¾à¦šà¦¾à¦‡à¦•à¦°à¦£à§‡à¦° à¦¬à§ˆà¦œà§à¦žà¦¾à¦¨à¦¿à¦•, à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦“ à¦¯à§Œà¦•à§à¦¤à¦¿à¦• à¦ªà¦¦à§à¦§à¦¤à¦¿à¥¤"
+
 date: 2026-04-05T20:12:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/hypothesis-testing/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
+
 tags:
   - Biostatistics
   - Hypothesis-Testing
   - Null-Hypothesis
   - Alternative-Hypothesis
   - P-Value
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-hypothesis-testing
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
 toc: true
-toc_label: "à¦šà¦¿à¦¨à§à¦¤à¦¾à¦° à¦®à¦¾à¦¨à¦šà¦¿à¦¤à§à¦°"
-toc_icon: "vials"
+toc_sticky: true
 classes: wide
 
-node_id: hypothesis_testing
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
@@ -185,4 +212,5 @@ node_id: hypothesis_testing
 <p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
     ðŸ“Š Biostatistics Series 2026 | Learning Biology For Life | learningbiologyforlife.org
 </p>
+
 

@@ -1,14 +1,49 @@
----
+﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Z Test: Problem Solving"
+excerpt: "Advanced biological analysis and structural framework."
+
 date: 2026-04-05T19:06:00.005Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/z-test-problem-solving/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
 
-node_id: z_test_problem_solving
+tags:
+  - Zoology
+  - Systems-Thinking
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-z-test-problem-solving
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <style>
@@ -155,4 +190,5 @@ node_id: z_test_problem_solving
         </div>
     </details>
 </div>
+
 

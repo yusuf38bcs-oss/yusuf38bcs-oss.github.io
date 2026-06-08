@@ -1,23 +1,51 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Survivorship Curve, Life Table & Growth Models: জীবনের গাণিতিক গল্প"
 excerpt: "একটি পপুলেশনের জন্ম, মৃত্যু ও বৃদ্ধির গতিশীলতা কীভাবে গাণিতিক ও প্রাকৃতিক নিয়মে নিয়ন্ত্রিত হয়? Survivorship Curve, Life Table এবং পরিবেশের Carrying Capacity (K)-এর এক গভীর রূপকধর্মী ও গাণিতিক বিশ্লেষণ।"
+
 date: 2026-04-03T15:34:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Ecology
+
 tags:
   - Population-Ecology
   - Survivorship-Curve
   - Life-Table
   - Growth-Models
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-ecology-survivorship-curve-life-table-growth-models
+parent_node: ecology
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/ecology/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/ecology/
+
 toc: true
-toc_label: "চিন্তার মানচিত্র"
-toc_icon: "seedling"
+toc_sticky: true
 classes: wide
-node_id: survivorship_curve_life_table_growth_models
+
+header:
+  overlay_image: /assets/images/biology/ecology-banner.webp
 ---
 
 <style>

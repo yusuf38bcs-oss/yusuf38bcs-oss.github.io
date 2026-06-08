@@ -1,14 +1,49 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "à¦‰à¦ªà¦¾à¦¤à§à¦¤à§‡à¦° à¦‰à¦ªà¦¸à§à¦¥à¦¾à¦ªà¦¨ à¦“ à¦—à§à¦°à¦¾à¦«à¦¿à¦•à§à¦¯à¦¾à¦² à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ (Presentation and Graphical Analysis of Data)"
+excerpt: "Advanced biological analysis and structural framework."
+
 date: 2026-04-05T16:39:00.010Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/presentation-and-graphical-analysis-of-data/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
 
-node_id: presentation_and_graphical_analysis_of_data
+tags:
+  - Zoology
+  - Systems-Thinking
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-presentation-and-graphical-analysis-of-data
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <h3><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgkAHfkaDTJWj1ZvSXMnb6IH2lSZAgNM4IElElNpk3Yaw-9CqbO0nUjJYs9-vfrhGYqq-mHiet_8wVAO90t1tiH_k3DrNYSdX9r1bNY0s2bEXR7yzaLPAD6JWJlL2z9RM56SA_Vl6NlLC1ot8uc0icGWs600ww1W7RwQpynCV1o7NkwgDXXVtz6Gmhy5tc/s4096/IMG_20260331_222225.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="2150" data-original-width="4096" height="168" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgkAHfkaDTJWj1ZvSXMnb6IH2lSZAgNM4IElElNpk3Yaw-9CqbO0nUjJYs9-vfrhGYqq-mHiet_8wVAO90t1tiH_k3DrNYSdX9r1bNY0s2bEXR7yzaLPAD6JWJlL2z9RM56SA_Vl6NlLC1ot8uc0icGWs600ww1W7RwQpynCV1o7NkwgDXXVtz6Gmhy5tc/s320/IMG_20260331_222225.jpg" width="320" /></a></div></h3><h3><span style="font-family: Tiro Bangla;">à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦‰à¦¦à¦¾à¦¹à¦°à¦£: à§«à§¦ à¦œà¦¨ à¦¶à¦¿à¦•à§à¦·à¦¾à¦°à§à¦¥à§€à¦° à¦‰à¦šà§à¦šà¦¤à¦¾</span></h3><blockquote><div><span style="font-family: Tiro Bangla;">à¦§à¦°à§à¦¨, à¦à¦•à¦Ÿà¦¿ à¦•à¦²à§‡à¦œà§‡à¦° à¦…à¦¨à¦¾à¦°à§à¦¸ à§ªà¦°à§à¦¥ à¦¬à¦°à§à¦·à§‡à¦° à§«à§¦ à¦œà¦¨ à¦¶à¦¿à¦•à§à¦·à¦¾à¦°à§à¦¥à§€à¦° à¦‰à¦šà§à¦šà¦¤à¦¾ (à¦¸à§‡à¦¨à§à¦Ÿà¦¿à¦®à¦¿à¦Ÿà¦¾à¦°à§‡) à¦¸à¦‚à¦—à§à¦°à¦¹ <span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;</span>à¦•à¦°à¦¾ à¦¹à¦¯à¦¼à§‡à¦›à§‡à¥¤ à¦¸à¦‚à¦—à§ƒà¦¹à§€à¦¤ à¦‰à¦ªà¦¾à¦¤à§à¦¤ (Raw Data) à¦¨à¦¿à¦šà§‡ à¦¦à§‡à¦“à¦¯à¦¼à¦¾ à¦¹à¦²à§‹:</span></div><blockquote data-path-to-node="4"><p data-path-to-node="4,0"><span style="font-family: Tiro Bangla;">à§§à§«à§¨, à§§à§«à§®, à§§à§¬à§§, à§§à§ªà§®, à§§à§­à§¦, à§§à§«à§«, à§§à§¬à§©, à§§à§«à§¯, à§§à§¬à§¬, à§§à§«à§¦, à§§à§¬à§¨, à§§à§«à§­, à§§à§«à§§, à§§à§¬à§ª, à§§à§¬à§®, à§§à§«à§©, à§§à§¬à§¦, à§§à§«à§ª, à§§à§«à§«, à§§à§«à§¬, à§§à§¬à§«, à§§à§­à§¨, à§§à§ªà§­, à§§à§«à§¯, à§§à§¬à§§, à§§à§¬à§©, à§§à§«à§¨, à§§à§¬à§®, à§§à§«à§®, à§§à§«à§¬, à§§à§¬à§ª, à§§à§¬à§¬, à§§à§«à§©, à§§à§¬à§§, à§§à§«à§­, à§§à§«à§¯, à§§à§¬à§¦, à§§à§¬à§«, à§§à§«à§ª, à§§à§¬à§©, à§§à§¬à§¨, à§§à§¬à§§, à§§à§¬à§¦, à§§à§«à§®, à§§à§«à§«, à§§à§«à§¬, à§§à§¬à§§, à§§à§«à§¯, à§§à§¬à§¦, à§§à§«à§­</span></p></blockquote></blockquote>
@@ -19,4 +54,5 @@ node_id: presentation_and_graphical_analysis_of_data
 
 <div style="text-align: left;"><h4 style="text-align: left;"></h4><blockquote><h4 style="text-align: left;"><span style="font-family: Tiro Bangla;">à§¨. à¦¹à¦¿à¦¸à§à¦Ÿà§‹à¦—à§à¦°à¦¾à¦® (Histogram)</span></h4><p data-path-to-node="15"><span style="font-family: Tiro Bangla;">à¦‰à¦ªà¦°à§‡à¦° à¦¸à¦¾à¦°à¦£à¦¿ à¦¥à§‡à¦•à§‡ à¦†à¦®à¦°à¦¾ à¦¹à¦¿à¦¸à§à¦Ÿà§‹à¦—à§à¦°à¦¾à¦® à¦…à¦™à§à¦•à¦¨ à¦•à¦°à¦¬à¥¤</span></p><p data-path-to-node="16"><b data-index-in-node="0" data-path-to-node="16"><span style="font-family: Tiro Bangla;">à¦…à¦™à§à¦•à¦¨ à¦ªà¦¦à§à¦§à¦¤à¦¿:</span></b></p><ul data-path-to-node="17"><li><p data-path-to-node="17,0,0"><span style="font-family: Tiro Bangla;">à¦†à¦®à¦°à¦¾ à¦—à§à¦°à¦¾à¦« à¦ªà§‡à¦ªà¦¾à¦°à§‡à¦° X-à¦…à¦•à§à¦·à§‡ 'à¦¶à§à¦°à§‡à¦£à§€à¦° à¦ªà§à¦°à¦•à§ƒà¦¤ à¦¸à§€à¦®à¦¾à¦¨à¦¾' à¦à¦¬à¦‚ Y-à¦…à¦•à§à¦·à§‡ 'à¦—à¦£à¦¸à¦‚à¦–à§à¦¯à¦¾' à¦¸à§à¦¥à¦¾à¦ªà¦¨ à¦•à¦°à¦¬à¥¤</span></p></li><li><p data-path-to-node="17,1,0"><span style="font-family: Tiro Bangla;">X-à¦…à¦•à§à¦·à§‡ à¦ªà§à¦°à¦¤à¦¿ à¦˜à¦° = à§« à¦¸à§‡.à¦®à¦¿. à¦à¦¬à¦‚ Y-à¦…à¦•à§à¦·à§‡ à¦ªà§à¦°à¦¤à¦¿ à¦˜à¦° = à§§ à¦—à¦£à¦¸à¦‚à¦–à§à¦¯à¦¾ à¦¹à¦¿à¦¸à§‡à¦¬à§‡ à¦§à¦°à¦¬à¥¤</span></p></li></ul></blockquote><h4 style="text-align: justify;"></h4><blockquote><h4 style="text-align: justify;"><span style="font-family: Tiro Bangla;">à§©. à¦«à§à¦°à¦¿à¦•à§‹à¦¯à¦¼à§‡à¦¨à§à¦¸à¦¿ à¦ªà¦²à¦¿à¦—à¦¨ (Frequency Polygon)</span></h4><p data-path-to-node="20" style="text-align: justify;"><span style="font-family: Tiro Bangla;">à¦¹à¦¿à¦¸à§à¦Ÿà§‹à¦—à§à¦°à¦¾à¦® à¦¥à§‡à¦•à§‡à¦‡ à¦«à§à¦°à¦¿à¦•à§‹à¦¯à¦¼à§‡à¦¨à§à¦¸à¦¿ à¦ªà¦²à¦¿à¦—à¦¨ à¦…à¦™à§à¦•à¦¨ à¦•à¦°à¦¾ à¦¯à¦¾à§Ÿà¥¤</span></p><p data-path-to-node="21" style="text-align: justify;"><b data-index-in-node="0" data-path-to-node="21"><span style="font-family: Tiro Bangla;">à¦…à¦™à§à¦•à¦¨ à¦ªà¦¦à§à¦§à¦¤à¦¿:</span></b></p><ul data-path-to-node="22"><li><p data-path-to-node="22,0,0" style="text-align: justify;"><span style="font-family: Tiro Bangla;">à¦ªà§à¦°à¦¥à¦®à§‡ à¦¹à¦¿à¦¸à§à¦Ÿà§‹à¦—à§à¦°à¦¾à¦®à§‡à¦° à¦ªà§à¦°à¦¤à¦¿à¦Ÿà¦¿ à¦†à§Ÿà¦¤à¦•à§à¦·à§‡à¦¤à§à¦°à§‡à¦° à¦‰à¦ªà¦°à¦¿à¦­à¦¾à¦—à§‡à¦° à¦®à¦§à§à¦¯à¦¬à¦¿à¦¨à§à¦¦à§à¦—à§à¦²à§‹à¦•à§‡ à¦šà¦¿à¦¹à§à¦¨à¦¿à¦¤ à¦•à¦°à¦¤à§‡ à¦¹à¦¬à§‡à¥¤</span></p></li><li><p data-path-to-node="22,1,0" style="text-align: justify;"><span style="font-family: Tiro Bangla;">à¦¤à¦¾à¦°à¦ªà¦° à¦à¦•à¦Ÿà¦¿ à¦¸à§à¦•à§‡à¦² à¦¬à¦¾ à¦¹à¦¾à¦¤ à¦¦à¦¿à§Ÿà§‡ à¦à¦‡ à¦¬à¦¿à¦¨à§à¦¦à§à¦—à§à¦²à§‹à¦•à§‡ à¦¸à¦°à¦²à¦°à§‡à¦–à¦¾ à¦¦à§à¦¬à¦¾à¦°à¦¾ à¦¯à§‹à¦— à¦•à¦°à¦¤à§‡ à¦¹à¦¬à§‡à¥¤</span></p></li><li><p data-path-to-node="22,2,0" style="text-align: justify;"><span style="font-family: Tiro Bangla;">à¦¸à¦¬à¦¶à§‡à¦·à§‡, à¦ªà¦²à¦¿à¦—à¦¨à¦Ÿà¦¿à¦•à§‡ à¦ªà§‚à¦°à§à¦£à¦¾à¦™à§à¦— à¦°à§‚à¦ª à¦¦à§‡à¦“à§Ÿà¦¾à¦° à¦œà¦¨à§à¦¯ à¦ªà§à¦°à¦¥à¦® à¦¶à§à¦°à§‡à¦£à§€à¦° à¦†à¦—à§‡à¦° à¦à¦•à¦Ÿà¦¿ à¦•à¦²à§à¦ªà¦¿à¦¤ à¦¶à§à¦°à§‡à¦£à§€ à¦à¦¬à¦‚ à¦¶à§‡à¦· à¦¶à§à¦°à§‡à¦£à§€à¦° à¦ªà¦°à§‡à¦° à¦à¦•à¦Ÿà¦¿ à¦•à¦²à§à¦ªà¦¿à¦¤ à¦¶à§à¦°à§‡à¦£à§€à¦° à¦®à¦§à§à¦¯à¦¬à¦¿à¦¨à§à¦¦à§à¦° à¦¸à¦¾à¦¥à§‡ (X-à¦…à¦•à§à¦·à§‡à¦° à¦“à¦ªà¦°) à¦®à¦¿à¦²à¦¿à§Ÿà§‡ à¦¦à¦¿à¦¤à§‡ à¦¹à¦¬à§‡à¥¤</span></p></li></ul></blockquote></div><h3><span style="font-family: Tiro Bangla;">à¦¤à¦¥à§à¦¯à¦¸à§‚à¦¤à§à¦° (References)</span></h3>
 <p></p><ol style="text-align: left;"><li><span style="font-family: Tiro Bangla;"><b data-index-in-node="3" data-path-to-node="29">Zar, J. H. (2010).</b> <i data-index-in-node="22" data-path-to-node="29">Biostatistical Analysis</i>. Pearson Education (à§«à¦® à¦¸à¦‚à¦¸à§à¦•à¦°à¦£)à¥¤ (à¦‰à¦ªà¦¾à¦¤à§à¦¤ à¦‰à¦ªà¦¸à§à¦¥à¦¾à¦ªà¦¨ à¦à¦¬à¦‚ à¦—à§à¦°à¦¾à¦« à¦¤à§ˆà¦°à¦¿à¦° à¦œà¦¨à§à¦¯ à¦…à¦¤à§à¦¯à¦¨à§à¦¤ à¦—à§à¦°à§à¦¤à§à¦¬à¦ªà§‚à¦°à§à¦£)à¥¤&nbsp;&nbsp;</span></li><li><span style="font-family: Tiro Bangla;"><b data-index-in-node="143" data-path-to-node="29">Gupta, S. P. (2014).</b> <i data-index-in-node="164" data-path-to-node="29">Statistical Methods</i>. Sultan Chand &amp; Sons.</span></li></ol><p></p>
+
 

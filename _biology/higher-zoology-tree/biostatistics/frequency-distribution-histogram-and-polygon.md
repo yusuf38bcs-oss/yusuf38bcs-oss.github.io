@@ -1,14 +1,49 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Frequency distribution, Histogram and Polygon"
+excerpt: "Advanced biological analysis and structural framework."
+
 date: 2026-04-05T15:59:00.012Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/frequency-distribution-histogram-and-polygon/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
 
-node_id: frequency_distribution_histogram_and_polygon
+tags:
+  - Zoology
+  - Systems-Thinking
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-frequency-distribution-histogram-and-polygon
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <div style="font-family: 'Arial', sans-serif; max-width: 900px; margin: auto; line-height: 1.8; color: #333;">
@@ -90,4 +125,5 @@ node_id: frequency_distribution_histogram_and_polygon
   </div>
 
 </div>
+
 

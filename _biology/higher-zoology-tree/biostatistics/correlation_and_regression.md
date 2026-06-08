@@ -1,21 +1,52 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Correlation and Regression (সহসম্বন্ধ ও নির্ভরক বিশ্লেষণ)"
 excerpt: "দুটি চলকের পারস্পরিক সম্পর্কের গভীরতা এবং একটি স্বাধীন চলকের সাপেক্ষে অন্যটির গাণিতিক পূর্বাভাস দেওয়ার বায়োস্ট্যাটিস্টিক্যাল মেকানিজম।"
+
 date: 2026-04-05T20:55:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/correlation_and_regression/
+
 categories:
-  - Higher Zoology Tree
-  - Biostatistics & Research Methodology
+  - Biology
+  - Higher Zoology
+  - Biostatistics
+
 tags:
   - Biostatistics
   - Correlation
   - Regression
   - Zoology
   - Research-Methodology
-node_id: correlation_and_regression
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-correlation_and_regression
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
@@ -203,3 +234,4 @@ node_id: correlation_and_regression
 <p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
   📊 Biostatistics & Research Methodology Series 2026 | Learning Biology For Life | learningbiologyforlife.org
 </p>
+

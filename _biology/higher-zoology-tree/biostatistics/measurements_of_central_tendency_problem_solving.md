@@ -1,13 +1,24 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Measurements of Central Tendency: Problem Solving"
 excerpt: "৩০ জন রোগীর রক্তের গ্লুকোজের মাত্রার উপাত্ত ব্যবহার করে শ্রেণীবদ্ধ উপাত্তের (Grouped Data) গাণিতিক গড়, মধ্যমা ও প্রচুরক নির্ণয়ের সম্পূর্ণ বায়োস্ট্যাটিস্টিক্যাল সমাধান।"
+
 date: 2026-04-05T17:31:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
+
 tags:
   - Biostatistics
   - Central-Tendency
@@ -15,7 +26,28 @@ tags:
   - Median
   - Mode
   - Grouped-Data
-node_id: measurements_of_central_tendency_problem_solving
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-measurements_of_central_tendency_problem_solving
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <style>
@@ -135,3 +167,4 @@ node_id: measurements_of_central_tendency_problem_solving
   </details>
 
 </div>
+

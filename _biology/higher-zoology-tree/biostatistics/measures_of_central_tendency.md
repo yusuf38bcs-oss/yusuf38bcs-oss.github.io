@@ -1,21 +1,52 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Measures of Central Tendency"
 excerpt: "জীবপরিসংখ্যানের (Biostatistics) মূল ভিত্তি: চলক, উপাত্তের শ্রেণীবিন্যাস এবং কেন্দ্রীয় প্রবণতার পরিমাপসমূহের (গড়, মধ্যমা ও প্রচুরক) একটি সুসংগঠিত মডুলার বিশ্লেষণ।"
+
 date: 2026-05-05T06:20:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/measures_of_central_tendency/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
+
 tags:
   - Central-Tendency
   - Mean
   - Median
   - Mode
   - Data-Types
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-measures_of_central_tendency
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
 classes: wide
-node_id: measures_of_central_tendency
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <div style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
@@ -66,3 +97,4 @@ node_id: measures_of_central_tendency
 </div>
 
 {% include components/quiz-render.html quiz_id="biostatistics" %}
+

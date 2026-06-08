@@ -1,17 +1,50 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "জীবপরিসংখ্যানের মৌলিক ধারণা (Basic Concepts of Biostatistics)"
+excerpt: "Advanced biological analysis and structural framework."
+
 date: 2026-04-05T15:48:00.006Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
+
 tags:
   - Biostatistics
   - Data Analysis
   - Research Methodology
-node_id: basic_concepts_of_biostatistics
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-basic_concepts_of_biostatistics
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <style>
@@ -80,3 +113,4 @@ node_id: basic_concepts_of_biostatistics
     📊 Learning Biology for Life | Biostatistics Series 2026
   </p>
 </div>
+

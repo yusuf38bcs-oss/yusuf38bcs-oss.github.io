@@ -1,25 +1,51 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Genetics: The Theme of Inheritance - Part 2 (মেন্ডেলের ২য় সূত্র ও এপিস্ট্যাসিসের আণবিক ডিকোডিং)"
 excerpt: "দ্বিসংকর ক্রসের স্বাধীন সঞ্চারণ সূত্র, প্রকট ও প্রচ্ছন্ন এপিস্ট্যাসিস, পরিপূরক জিন এবং ডুপ্লিকেট জিনের আণবিক মিথস্ক্রিয়ার গাণিতিক ও থিংকিং বিশ্লেষণ।"
+
 date: 2026-04-10T22:10:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-2/
+
 categories:
-  - Zoology
+  - Biology
+  - Higher Zoology
   - Genetics
+
 tags:
   - Dihybrid-Cross
   - Epistasis
   - Complementary-Gene
   - HSC-Biology
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-genetics-genetics-theme-of-inheritance-part-2
+parent_node: genetics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/genetics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/genetics/
+
 toc: true
-toc_label: "ব্যতিক্রমের মানচিত্র"
-toc_icon: "dna"
+toc_sticky: true
 classes: wide
 
-node_id: genetics_the_theme_of_inheritance_part_2
+header:
+  overlay_image: /assets/images/biology/genetics-banner.webp
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
@@ -309,3 +335,4 @@ node_id: genetics_the_theme_of_inheritance_part_2
         color: #00d4b2;
     }
 </style>
+

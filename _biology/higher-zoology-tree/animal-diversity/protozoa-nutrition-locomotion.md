@@ -1,24 +1,52 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Protozoa: Nutrition & Locomotion (প্রোটোজোয়ার বিভিন্ন প্রকার পুষ্টিগ্রহণ ও চলন)"
+excerpt: "এককোষী প্রোটোজোয়ার বৈচিত্র্যময় পুষ্টি গ্রহণ প্রক্রিয়া এবং জটিল চলন কৌশলের আণবিক ব্যবচ্ছেদ। অ্যাক্টিভ থিংকিং এবং ৪আইআর হেলথকেয়ার প্রযুক্তির এক অপূর্ব সমন্বয়।"
+
 date: 2026-04-13T16:26:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/animal-diversity/protozoa-nutrition-locomotion/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Animal Diversity
+
 tags:
   - Protozoa
   - Nutrition
   - Locomotion
   - Zoology
   - 4IR-Healthcare
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-animal-diversity-protozoa-nutrition-locomotion
+parent_node: animal-diversity
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/animal-diversity/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/animal-diversity/
+
 toc: true
-toc_label: "চিন্তার মানচিত্র"
-toc_icon: "microscope"
+toc_sticky: true
 classes: wide
-excerpt: "এককোষী প্রোটোজোয়ার বৈচিত্র্যময় পুষ্টি গ্রহণ প্রক্রিয়া এবং জটিল চলন কৌশলের আণবিক ব্যবচ্ছেদ। অ্যাক্টিভ থিংকিং এবং ৪আইআর হেলথকেয়ার প্রযুক্তির এক অপূর্ব সমন্বয়।"
-node_id: protozoa_nutrition_locomotion
+
+header:
+  overlay_image: /assets/images/biology/animal-diversity-banner.webp
 ---
 
 <style>
@@ -179,3 +207,4 @@ node_id: protozoa_nutrition_locomotion
   </p>
 
 </div>
+

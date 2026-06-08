@@ -1,25 +1,52 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "POPULATION ECOLOGY: A Science of Life & Motion of a Species (à¦ªà¦ªà§à¦¯à§à¦²à§‡à¦¶à¦¨ à¦‡à¦•à§‹à¦²à¦œà¦¿: à¦à¦•à¦Ÿà¦¿ à¦ªà§à¦°à¦œà¦¾à¦¤à¦¿à¦° à¦œà§€à¦¬à¦¨ à¦“ à¦—à¦¤à¦¿à¦° à¦¬à¦¿à¦œà§à¦žà¦¾à¦¨)"
+excerpt: "à¤ªà¥à¤°à¦•à§ƒà¦¤à¦¿à¦¤à§‡ à¦•à§‹à¦¨à§‹ à¦œà§€à¦¬à¦‡ à¦à¦•à¦• à¦¨à§Ÿà¥¤ à¦à¦•à¦Ÿà¦¿ à¦¨à¦¿à¦°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦­à§Œà¦—à§‹à¦²à¦¿à¦• à¦à¦²à¦¾à¦•à¦¾à§Ÿ à¦¬à¦¸à¦¬à¦¾à¦¸à¦•à¦¾à¦°à§€ à¦à¦•à¦‡ à¦ªà§à¦°à¦œà¦¾à¦¤à¦¿à¦° à¦à¦•à¦¦à¦² à¦¸à¦¦à¦¸à§à¦¯à§‡à¦° à¦œà¦¨à§à¦®, à¦®à§ƒà¦¤à§à¦¯à§, à¦˜à¦¨à¦¤à§à¦¬ à¦“ à¦œà§€à¦¬à¦¨ à¦¸à¦‚à¦—à§à¦°à¦¾à¦®à§‡à¦° à¦œà¦Ÿà¦¿à¦² à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦“ à¦ªà¦°à¦¿à¦¬à§‡à¦¶à¦—à¦¤ à¦¨à§‡à¦Ÿà¦“à§Ÿà¦¾à¦°à§à¦•à§‡à¦° à¦†à¦£à¦¬à¦¿à¦• à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£à¥¤"
+
 date: 2026-03-30T20:57:00.047Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species/
+
 categories:
-  - ECOLOGY
+  - Biology
+  - Higher Zoology
+  - Ecology
+
 tags:
   - Population-Ecology
   - Ecosystem
   - Population-Density
   - Dispersion
   - HSC-Biology
-toc: true
-toc_label: "à¦šà¦¿à¦¨à§à¦¤à¦¾à¦° à¦®à¦¾à¦¨à¦šà¦¿à¦¤à§à¦°"
-toc_icon: "users"
-classes: wide
-excerpt: "à¤ªà¥à¤°à¦•à§ƒà¦¤à¦¿à¦¤à§‡ à¦•à§‹à¦¨à§‹ à¦œà§€à¦¬à¦‡ à¦à¦•à¦• à¦¨à§Ÿà¥¤ à¦à¦•à¦Ÿà¦¿ à¦¨à¦¿à¦°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦­à§Œà¦—à§‹à¦²à¦¿à¦• à¦à¦²à¦¾à¦•à¦¾à§Ÿ à¦¬à¦¸à¦¬à¦¾à¦¸à¦•à¦¾à¦°à§€ à¦à¦•à¦‡ à¦ªà§à¦°à¦œà¦¾à¦¤à¦¿à¦° à¦à¦•à¦¦à¦² à¦¸à¦¦à¦¸à§à¦¯à§‡à¦° à¦œà¦¨à§à¦®, à¦®à§ƒà¦¤à§à¦¯à§, à¦˜à¦¨à¦¤à§à¦¬ à¦“ à¦œà§€à¦¬à¦¨ à¦¸à¦‚à¦—à§à¦°à¦¾à¦®à§‡à¦° à¦œà¦Ÿà¦¿à¦² à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦“ à¦ªà¦°à¦¿à¦¬à§‡à¦¶à¦—à¦¤ à¦¨à§‡à¦Ÿà¦“à§Ÿà¦¾à¦°à§à¦•à§‡à¦° à¦†à¦£à¦¬à¦¿à¦• à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£à¥¤"
 
-node_id: population_ecology_a_science_of_life_motion_of_a_species
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-ecology-population-ecology-a-science-of-life-motion-of-a-species
+parent_node: ecology
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/ecology/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/ecology/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/ecology-banner.webp
 ---
 
 <div class="separator" style="clear: both; text-align: center;">
@@ -273,4 +300,5 @@ node_id: population_ecology_a_science_of_life_motion_of_a_species
 </p>
 
 <script src="{{ '/assets/js/accordion.js' | relative_url }}"></script>
+
 

@@ -1,25 +1,51 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Genetics: The Theme of Inheritance - Part 1 (à¦œà¦¿à¦¨à¦¤à¦¤à§à¦¤à§à¦¬ à¦“ à¦¬à¦‚à¦¶à¦—à¦¤à¦¿: à¦®à§‡à¦¨à§à¦¡à§‡à¦²à¦¿à¦œà¦®à§‡à¦° à¦¸à¦¹à¦œ à¦ªà¦¾à¦ )"
+excerpt: "à¦œà¦¿à¦¨à¦¤à¦¤à§à¦¤à§à¦¬à§‡à¦° à¦®à§Œà¦²à¦¿à¦• à¦ªà¦°à¦¿à¦­à¦¾à¦·à¦¾, à¦®à§‡à¦¨à§à¦¡à§‡à¦²à§‡à¦° à¦ªà§à¦°à¦¥à¦® à¦¸à§‚à¦¤à§à¦° à¦à¦¬à¦‚ à¦à¦° à¦¬à§à¦¯à¦¤à¦¿à¦•à§à¦°à¦®à¦¸à¦®à§‚à¦¹à§‡à¦° (à¦…à¦¸à¦®à§à¦ªà§‚à¦°à§à¦£ à¦ªà§à¦°à¦•à¦Ÿà¦¤à¦¾, à¦¸à¦¹à¦ªà§à¦°à¦•à¦Ÿà¦¤à¦¾, à¦²à¦¿à¦¥à¦¾à¦² à¦œà¦¿à¦¨) à¦à¦• à¦—à¦­à§€à¦° à¦“ à¦•à§à¦°à¦¿à¦Ÿà¦¿à¦•à§à¦¯à¦¾à¦² à¦…à§à¦¯à¦¾à¦¨à¦¾à¦²à¦¾à¦‡à¦¸à¦¿à¦¸à¥¤"
+
 date: 2026-04-10T21:44:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/genetics/genetics-the-theme-of-inheritance-part-1/
+
 categories:
-  - Zoology
+  - Biology
+  - Higher Zoology
   - Genetics
+
 tags:
   - Genetics
   - Mendelism
   - Monohybrid-Cross
   - HSC-Biology
-toc: true
-toc_label: "à¦šà¦¿à¦¨à§à¦¤à¦¾à¦° à¦®à¦¾à¦¨à¦šà¦¿à¦¤à§à¦°"
-toc_icon: "dna"
-classes: wide
-excerpt: "à¦œà¦¿à¦¨à¦¤à¦¤à§à¦¤à§à¦¬à§‡à¦° à¦®à§Œà¦²à¦¿à¦• à¦ªà¦°à¦¿à¦­à¦¾à¦·à¦¾, à¦®à§‡à¦¨à§à¦¡à§‡à¦²à§‡à¦° à¦ªà§à¦°à¦¥à¦® à¦¸à§‚à¦¤à§à¦° à¦à¦¬à¦‚ à¦à¦° à¦¬à§à¦¯à¦¤à¦¿à¦•à§à¦°à¦®à¦¸à¦®à§‚à¦¹à§‡à¦° (à¦…à¦¸à¦®à§à¦ªà§‚à¦°à§à¦£ à¦ªà§à¦°à¦•à¦Ÿà¦¤à¦¾, à¦¸à¦¹à¦ªà§à¦°à¦•à¦Ÿà¦¤à¦¾, à¦²à¦¿à¦¥à¦¾à¦² à¦œà¦¿à¦¨) à¦à¦• à¦—à¦­à§€à¦° à¦“ à¦•à§à¦°à¦¿à¦Ÿà¦¿à¦•à§à¦¯à¦¾à¦² à¦…à§à¦¯à¦¾à¦¨à¦¾à¦²à¦¾à¦‡à¦¸à¦¿à¦¸à¥¤"
 
-node_id: genetics_the_theme_of_inheritance_part_1
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-genetics-genetics-the-theme-of-inheritance-part-1
+parent_node: genetics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/genetics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/genetics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/genetics-banner.webp
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
@@ -334,4 +360,5 @@ node_id: genetics_the_theme_of_inheritance_part_1
         background-color: rgba(255,255,255,0.01); 
     }
 </style>
+
 

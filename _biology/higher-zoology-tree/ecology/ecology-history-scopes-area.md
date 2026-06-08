@@ -1,14 +1,49 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
-title: "ECOLOGY: HISTORY, SCOPES & AREA (à¦‡à¦•à§‹à¦²à¦œà¦¿: à¦¸à¦‚à¦œà§à¦žà¦¾, à¦‡à¦¤à¦¿à¦¹à¦¾à¦¸ à¦“ à¦ªà¦°à¦¿à¦§à¦¿)"
-date: 2026-05-04T08:27:00.001Z
-categories:
-  - ECOLOGY
 
-node_id: ecology_history_scopes_area
+title: "ECOLOGY: HISTORY, SCOPES & AREA (à¦‡à¦•à§‹à¦²à¦œà¦¿: à¦¸à¦‚à¦œà§à¦žà¦¾, à¦‡à¦¤à¦¿à¦¹à¦¾à¦¸ à¦“ à¦ªà¦°à¦¿à¦§à¦¿)"
+excerpt: "Advanced biological analysis and structural framework."
+
+date: 2026-05-04T08:27:00.001Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/ecology/ecology-history-scopes-area/
+
+categories:
+  - Biology
+  - Higher Zoology
+  - Ecology
+
+tags:
+  - Zoology
+  - Systems-Thinking
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-ecology-ecology-history-scopes-area
+parent_node: ecology
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/ecology/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/ecology/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/ecology-banner.webp
 ---
 
 <div style="max-width:920px;margin:auto;padding:18px;font-family:'Hind Siliguri',sans-serif;line-height:1.9;color:#222;background:#fff;">
@@ -440,4 +475,5 @@ alt="Ecology â†’ Life - learningbiologyforlife.org">
 
   </div>
 </div>
+
 

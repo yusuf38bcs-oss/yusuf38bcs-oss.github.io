@@ -1,23 +1,51 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Polymorphism in Cnidaria: নিডারিয়ার বহুরূপতা ও জৈব শ্রমবণ্টন"
 excerpt: "নিডারিয়া পর্বের প্রাণীদের বহুরূপতা, জুয়েড বা নমুনাজীবের রূপান্তর এবং পর্তুগিজ ম্যান ও' ওয়ারের বিস্ময়কর সমাজব্যবস্থার এক গভীর ও ক্রিটিক্যাল অ্যানালাইসিস।"
+
 date: 2026-05-05T08:53:00.000Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/animal-diversity/polymorphism-in-cnidaria/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Animal Diversity
+
 tags:
   - Cnidaria
   - Polymorphism
   - Zoology
   - Evolutionary-Biology
+
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-animal-diversity-polymorphism-in-cnidaria
+parent_node: animal-diversity
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/animal-diversity/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/animal-diversity/
+
 toc: true
-toc_label: "চিন্তার মানচিত্র"
-toc_icon: "sitemap"
+toc_sticky: true
 classes: wide
-node_id: polymorphism_in_cnidaria
+
+header:
+  overlay_image: /assets/images/biology/animal-diversity-banner.webp
 ---
 
 <style>
@@ -183,3 +211,4 @@ node_id: polymorphism_in_cnidaria
   </p>
 
 </div>
+

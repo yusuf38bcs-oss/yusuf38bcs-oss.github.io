@@ -1,19 +1,51 @@
 ﻿---
 layout: single
 author_profile: true
+author: "MD. Yusuf"
+
 sidebar:
   nav: "synaptic_nav"
+
 title: "Z-test à¦à¦¬à¦‚ à¦à¦° à¦¸à¦¾à¦°à§à¦¥à¦•à¦¤à¦¾ (Z-test and its Significance) & Chi-Square test"
+excerpt: "Advanced biological analysis and structural framework."
+
 date: 2026-04-05T19:36:00.012Z
+last_modified_at: 2026-06-09T04:13:27.000Z
+
+permalink: /biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/
+
 categories:
+  - Biology
+  - Higher Zoology
   - Biostatistics
+
 tags:
   - Z-Test
   - Chi-Square Test
   - Non-Parametric Statistics
   - Biostatistics Lectures
 
-node_id: z_test_z_test_and_its_significance_chi_square_test
+# AI Knowledge Graph & Neural Routing
+node_id: zoology-biostatistics-z-test-z-test-and-its-significance-chi-square-test
+parent_node: biostatistics
+network:
+  - higher-zoology-tree
+  - hsc-corner
+  - mcq-arena
+
+# Synaptic Connections (Explicit Relational Mapping)
+related: true
+synaptic_links:
+  - /biology/higher-zoology-tree/biostatistics/
+  - /life-practices/human-behaviour/
+  - /socratic/mcq-arena/biostatistics/
+
+toc: true
+toc_sticky: true
+classes: wide
+
+header:
+  overlay_image: /assets/images/biology/biostatistics-banner.webp
 ---
 
 <div class="neural-banner-card" style="margin: 1.5em 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); background: #0b1329; padding: 10px;">
@@ -99,3 +131,4 @@ $$\chi^2 = \sum \frac{(O - E)^2}{E}$$
 <div class="notice--primary" style="background: rgba(0, 212, 178, 0.02); padding: 15px; border: 1px dashed rgba(0, 212, 178, 0.3); border-radius: 8px; margin: 1.5em 0;">
   <strong>ðŸ’¡ à¦“à¦®à§‡à¦—à¦¾ à¦¬à¦¾à§Ÿà§‹à¦¸à§à¦Ÿà§à¦¯à¦¾à¦Ÿ à¦Ÿà¦¿à¦ªà¦¸:</strong> à¦®à¦¨à§‡ à¦°à¦¾à¦–à¦¬à§‡à¦¨, $\chi^2$ à¦à¦° à¦šà§‚à§œà¦¾à¦¨à§à¦¤ à¦®à¦¾à¦¨ à¦¯à¦¤ à¦•à¦® à¦¹à¦¬à§‡, à¦†à¦®à¦¾à¦¦à§‡à¦° à¦ªà¦°à§à¦¯à¦¬à§‡à¦•à§à¦·à¦£à¦•à§ƒà¦¤ à¦¬à¦¾à¦¸à§à¦¤à¦¬ à¦¡à¦¾à¦Ÿà¦¾à¦° à¦¸à¦¾à¦¥à§‡ à¦¤à¦¾à¦¤à§à¦¤à§à¦¬à¦¿à¦• à¦ªà§à¦°à¦¤à§à¦¯à¦¾à¦¶à¦¿à¦¤ à¦¡à¦¾à¦Ÿà¦¾à¦° à¦®à¦¿à¦² à¦¤à¦¤ à¦¬à§‡à¦¶à¦¿ à¦¹à¦¬à§‡à¥¤ à¦ªà¦°à¦¬à¦°à§à¦¤à§€ à¦¸à§‡à¦¶à¦¨à§‡ à¦†à¦®à¦°à¦¾ à¦•à¦¾à¦‡-à¦¬à¦°à§à¦—à§‡à¦° à¦à¦•à¦Ÿà¦¿ à¦¸à¦®à§à¦ªà§‚à¦°à§à¦£ à¦—à¦¾à¦£à¦¿à¦¤à¦¿à¦• à¦Ÿà§‡à¦¬à¦¿à¦² à¦¸à¦®à¦¾à¦§à¦¾à¦¨ à¦²à¦¾à¦‡à¦­ à¦¸à§à¦Ÿà¦¾à¦¡à¦¿ à¦•à¦°à¦¬à¥¤
 </div>
+
