@@ -33,7 +33,7 @@ plugins:
 collections:
   biology:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:collection/:path/
   synaptic-bridge:
     output: true
     permalink: /:collection/:path/
@@ -42,10 +42,10 @@ collections:
     permalink: /:collection/:path/
   life-practices:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:collection/:path/
   socratic:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:collection/:path/
 
 # Defaults
 defaults:

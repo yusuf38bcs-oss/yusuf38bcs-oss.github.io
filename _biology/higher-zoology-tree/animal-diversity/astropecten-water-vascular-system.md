@@ -1,9 +1,9 @@
----
+﻿---
 layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
-title: "Astropecten: Water Vascular System (অ্যাস্ট্রো পেক্টেন-এর পানি সংবহনতন্ত্র)"
+title: "Astropecten: Water Vascular System (অ্যাস্ট্রো পেকটেন-এর পানি সংবহনতন্ত্র)"
 date: 2026-04-17T18:10:00.000Z
 categories:
   - Animal Diversity
@@ -31,7 +31,6 @@ node_id: astropecten_water_vascular_system
     line-height: 1.75;
   }
 
-  /* --- Image Wrapping --- */
   .astropecten-module .featured-image-wrapper {
     width: 100%;
     max-width: 900px;
@@ -49,7 +48,6 @@ node_id: astropecten_water_vascular_system
     object-fit: cover;
   }
 
-  /* --- Lecture Header --- */
   .astropecten-module .lecture-header {
     background: linear-gradient(135deg, #090d16 0%, #1e293b 100%);
     color: white;
@@ -76,7 +74,6 @@ node_id: astropecten_water_vascular_system
     font-weight: 600;
   }
 
-  /* --- Quote Blocks --- */
   .astropecten-module .thinker-quote {
     background: rgba(255, 255, 255, 0.02);
     border-left: 4px solid #64748b;
@@ -85,7 +82,6 @@ node_id: astropecten_water_vascular_system
     border-radius: 0 8px 8px 0;
   }
 
-  /* --- Interactive Accordions (HTML5 Native) --- */
   .astropecten-module details {
     background: #090d16;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -130,7 +126,6 @@ node_id: astropecten_water_vascular_system
     border-top: 1px solid rgba(0, 212, 178, 0.15);
   }
 
-  /* --- Tables & UI Elements --- */
   .astropecten-module .biostat-table {
     width: 100%;
     border-collapse: collapse;
@@ -142,7 +137,7 @@ node_id: astropecten_water_vascular_system
     font-size: 0.95rem;
   }
 
-  .astropecten-module .biostat-table th, 
+  .astropecten-module .biostat-table th,
   .astropecten-module .biostat-table td {
     border: 1px solid rgba(255,255,255,0.05);
     padding: 14px;
@@ -154,7 +149,7 @@ node_id: astropecten_water_vascular_system
     color: #ffffff;
     font-weight: 700;
   }
-  
+
   .astropecten-module .flow-box {
     background: #131c2e;
     border-left: 5px solid #00d4b2;
@@ -175,7 +170,6 @@ node_id: astropecten_water_vascular_system
     font-weight: 700;
   }
 
-  /* --- Insight & Brainstorming Nodes --- */
   .astropecten-module .brainstorming-node {
     background: #0f172a;
     border: 1px solid rgba(0, 212, 178, 0.15);
@@ -195,12 +189,12 @@ node_id: astropecten_water_vascular_system
 
   <div class="thinker-quote">
     <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">হে চিন্তাশীল মন (Active Thinkers):</strong>
-    জীববিজ্ঞান কোনো মুখস্থবিদ্যার খাতা নয়, এটি মহাবিশ্বের সুনিপুণ প্রকৌশলের এক জীবন্ত দলিল। মানবদেহ যেমন সমস্ত মেকানিক্যাল আবিষ্কারের আদি রহস্য, ঠিক তেমনি সমুদ্রের অতল গভীরে থাকা এই <em>Astropecten</em> (তারামাছ) হলো ফ্লুইড ডায়নামিক্সের এক অলৌকিক উদাহরণ। 
+    জীববিজ্ঞান কোনো মুখস্থবিদ্যার খাতা নয়, এটি মহাবিশ্বের সুনিপুণ প্রকৌশলের এক জীবন্ত দলিল। মানবদেহ যেমন সমস্ত মেকানিক্যাল আবিষ্কারের আদি রহস্য, ঠিক তেমনি সমুদ্রের অতল গভীরে থাকা এই Astropecten (তারামাছ) হলো ফ্লুইড ডায়নামিক্সের এক অলৌকিক উদাহরণ।
     <br><br>
-    পবিত্র কুরআনে মহান আল্লাহ এরশাদ করেছেন: 
+    পবিত্র কুরআনে মহান আল্লাহ এরশাদ করেছেন:
     <blockquote style="border-left: 3px solid #00d4b2; padding-left: 15px; margin: 15px 0; font-style: italic; color: #94a3b8;">
       "তিনিই সমুদ্রকে অধীন করেছেন, যাতে তোমরা তা থেকে তাজা মাংস (খাদ্য) খেতে পারো এবং তা থেকে বের করতে পারো অলঙ্কার..." (সূরা আন-নাহল: ১৪)
-    </blockquote> 
+    </blockquote>
     সমুদ্রের এই অধীনস্থ ইকোসিস্টেমের দিকে তাকালে আমরা এক অনন্য জলবাহী মেকানিজম দেখতে পাই, যা আজকের আধুনিক ন্যানো-রোবোটিক্সকেও হার মানায়। আসুন, এই ইন্টারেক্টিভ লার্নিং ফ্রেমওয়ার্কের মাধ্যমে তারামাছের <strong>Water Vascular System</strong>-এর ইঞ্জিনিয়ারিং ডিকোড করি।
   </div>
 
@@ -222,9 +216,9 @@ node_id: astropecten_water_vascular_system
       এই পাঠটি মনোযোগ দিয়ে সম্পন্ন করার পর তোমরা:
       <ul style="padding-left: 1.25rem; margin-top: 10px; display: flex; flex-direction: column; gap: 0.5rem;">
         <li><span class="highlight">Echinodermata</span> পর্বের প্রাণীদের অনন্য বৈশিষ্ট্য ব্যাখ্যা করতে পারবে।</li>
-        <li>অ্যাস্ট্রো পেক্টেন-এর <span class="highlight">Water Vascular System</span> বা পানি সংবহনতন্ত্রের প্রতিটি গাঠনিক উপাদান চিহ্নিত করতে পারবে।</li>
+        <li>অ্যাস্ট্রো পেকটেন-এর <span class="highlight">Water Vascular System</span> বা পানি সংবহনতন্ত্রের প্রতিটি গাঠনিক উপাদান চিহ্নিত করতে পারবে।</li>
         <li>হাইড্রোলিক চাপের মাধ্যমে কীভাবে তারামাছ লোকোমোশন (চলন) ও খাদ্য গ্রহণ সম্পন্ন করে তা বিশ্লেষণ করতে পারবে।</li>
-        <li>এই প্রাকৃতিক মেকানিজমকে ব্যবহার করে আধুনিক <span class="highlight">Soft Robotics</span>-এর বায়ো-মিমিক্রি ফ্রেমওয়ার্ক মূল্যায়ন করতে পারবে।</li>
+        <li>এই প্রাকৃতিক মেকানিজমকে ব্যবহার করে আধুনিক <span class="highlight">Soft Robotics</span>-এর বায়ো-মিমিক্রি ফ্রেমওয়ার্ক মূল্যায়ন করতে পারবে।</li>
       </ul>
     </div>
   </details>
@@ -262,10 +256,10 @@ node_id: astropecten_water_vascular_system
         Madreporite ➔ Stone Canal ➔ Ring Canal ➔ Radial Canal ➔ Lateral Canal ➔ Tube Feet
       </div>
 
-      <h4 style="color: #ffffff; font-weight: 700; margin-top: 1.5rem;">🏗️ গাঠনিক অংশসমূহের ব্যবচ্ছেদ:</h4>
+      <h4 style="color: #ffffff; font-weight: 700; margin-top: 1.5rem;">⚙️ গাঠনিক অংশসমূহের ব্যবচ্ছেদ:</h4>
       <ul style="padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem;">
         <li><span class="highlight">ম্যাড্রেপোরাইট (Madreporite):</span> এটি হলো এই সিস্টেমের 'প্রধান প্রবেশদ্বার' বা চালনি (Sieve plate)। এর পৃষ্ঠভাগে অসংখ্য সূক্ষ্ম রন্ধ্র বা ছিদ্র থাকে, যা দিয়ে সমুদ্রের পানি ফিল্টার হয়ে ভেতরে ঢোকে।</li>
-        <li><span class="highlight">পাথর নালী (Stone Canal):</span> ম্যাড্রেপোরাইট থেকে একটি ইংরেজি 'S' আকৃতির চুনময় শক্ত নালী অংকীয় দেশের দিকে নেমে যায়। ক্যালসিয়াম কার্বোনেট যুক্ত থাকায় এটি শক্ত পাথরের মতো দেখায়, তাই একে স্টোন ক্যানাল বলে।</li>
+        <li><span class="highlight">পাথর নালী (Stone Canal):</span> ম্যাড্রেপোরাইট থেকে একটি ইংরেজি 'S' আকৃতির চুনময় শক্ত নালী অঙ্কীয় দেশের দিকে নেমে যায়। ক্যালসিয়াম কার্বোনেট যুক্ত থাকায় এটি শক্ত পাথরের মতো দেখায়, তাই একে স্টোন ক্যানাল বলে।</li>
         <li><span class="highlight">বলয় নালী (Ring Canal):</span> এটি মুখছিদ্রের চারপাশে অবস্থিত একটি পঞ্চকোণাকার বলয় সদৃশ নালী, যা স্টোন ক্যানাল থেকে পানি গ্রহণ করে চারদিকের বাহুগুলোতে ডিস্ট্রিবিউট করে।</li>
         <li><span class="highlight">অরীয় নালী (Radial Canal):</span> বলয় নালী থেকে পাঁচটি দীর্ঘ নালী তারামাছের পাঁচটি বাহুর শেষ প্রান্ত পর্যন্ত বিস্তৃত থাকে।</li>
         <li><span class="highlight">নালিপদ (Tube Feet):</span> অরীয় নালী থেকে ল্যাটারাল ক্যানালের মাধ্যমে পানি প্রতিটি টিউব ফিটে পৌঁছায়। টিউব ফিটের মাথায় একটি বাল্বের মতো অংশ থাকে যাকে <strong>অ্যাম্পুলা (Ampulla)</strong> বলে এবং নিচে চোষক বা <strong>Sucker</strong> থাকে।</li>
@@ -277,7 +271,7 @@ node_id: astropecten_water_vascular_system
     <summary>📖 ৪. সম্পূর্ণ কার্যপদ্ধতি (Hydrostatic Pressure Dynamics)</summary>
     <div class="details-content">
       <p>তারামাছ কীভাবে চলে? এর পুরো মেকানিজমটি দাঁড়িয়ে আছে পদার্থবিজ্ঞানের <strong>হাইড্রোস্ট্যাটিক চাপের (Hydrostatic Pressure)</strong> ওপর।</p>
-      <p>যখন ম্যাড্রেপোরাইট দিয়ে পানি ভেতরে ঢোকে, তখন সিলিয়ার অনবরত স্পন্দনের কারণে পানি স্টোন ক্যানাল হয়ে বলয় ও অরীয় নালীতে পৌঁছায়। এরপর টিউব ফিটের অ্যাম্পুলাগুলো যখন সংকুচিত হয়, তখন ভেতরের পানি প্রচন্ড চাপে নিচের দিকে নালিপদকে প্রসারিত করে। চোষক বা সাকারটি তখন সমুদ্রের তলদেশের পাথরের সাথে শক্তভাবে আটকে যায় (Vacuum Lock)।</p>
+      <p>যখন ম্যাড্রেপোরাইট দিয়ে পানি ভেতরে ঢোকে, তখন সিলিয়ার অনবরত স্পন্দনের কারণে পানি স্টোন ক্যানাল হয়ে বলয় ও অরীয় নালীতে পৌঁছায়। এরপর টিউব ফিটের অ্যাম্পুলাগুলো যখন সংকুচিত হয়, তখন ভেতরের পানি প্রচন্ড চাপে নিচের দিকে নালিপদকে প্রসারিত করে। চোষক বা সাকারটি তখন সমুদ্রের তলদেশের পাথরের সাথে শক্তভাবে আটকে যায় (Vacuum Lock)।</p>
       <p>পরবর্তীতে, নালিপদের লম্বালম্বি পেশি সংকুচিত হলে ভেতরের পানি পুনরায় অ্যাম্পুলায় ফিরে যায় এবং পা ছোট হয়ে আসে। এই সংকোচন ও প্রসারণের ক্রমাগত ছান্দিক তরঙ্গে তারামাছ সামনের দিকে এগিয়ে চলে। একই পদ্ধতিতে তারা শক্ত ঝিনুকের খোলস টেনে খুলে ভেতরের নরম মাংস আহার করে (Feeding Mechanism)।</p>
     </div>
   </details>
@@ -286,7 +280,7 @@ node_id: astropecten_water_vascular_system
     <summary>🔬 ৫. মাল্টিডিসিপ্লিনারি প্রয়োগ: সফট রোবোটিক্স ও বায়ো-মিমিক্রি</summary>
     <div class="details-content">
       <p>বর্তমান আধুনিক প্রযুক্তির যুগে তারামাছের এই পানি সংবহনতন্ত্র ইঞ্জিনিয়ারদের জন্য এক বিশাল অনুপ্রেরণা। একে বলা হয় <strong>Bio-mimicry (প্রাকৃতিক নকশার অনুকরণ)</strong>।</p>
-      <p>আজকের দিনে চিকিৎসা ক্ষেত্রে বা উদ্ধারকাজে যে <strong>Soft Robotics (নমনীয় রোবট)</strong> তৈরি করা হচ্ছে, যেখানে কোনো শক্ত ধাতব হাড় বা চাকা থাকে না; তারা হুবহু তারামাছের এই ওয়াটার ভাস্কুলার সিস্টেমের মতো ইন্টারনাল হাইড্রোলিক বা নিউমেটিক ফ্লুইড প্রেসার ব্যবহার করে আঁকাবাঁকা ও দুর্গম জায়গায় চলাচল করতে পারে। কোটি বছর আগের এক আদিম প্রাণীর আর্কিটেকচার আজ মানুষের চতুর্থ শিল্পবিপ্লবের (4IR) অন্যতম চালিকাশক্তি!</p>
+      <p>আজকের দিনে চিকিৎসা ক্ষেত্রে বা উদ্ধারকাজে যে <strong>Soft Robotics (নমনীয় রোবট)</strong> তৈরি করা হচ্ছে, যেখানে কোনো শক্ত ধাতব হাড় বা চাকা থাকে না; তারা হুবহু তারামাছের এই ওয়াটার ভাস্কুলার সিস্টেমের মতো ইন্টারনাল হাইড্রোলিক বা নিউমেটিক ফ্লুইড প্রেসার ব্যবহার করে আঁকাবাঁকা ও দুর্গম জায়গায় চলাচল করতে পারে। কোটি বছর আগের এক আদিম প্রাণীর আর্কিটেকচার আজ মানুষের চতুর্থ শিল্পবিপ্লবের (4IR) অন্যতম চালিকাশক্তি!</p>
     </div>
   </details>
 
