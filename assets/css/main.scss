@@ -7,18 +7,21 @@
 
 @charset "UTF-8";
 
-/* --- 1. SYSTEM VARIABLE PROTECTION LAYER --- */
+/* --- 1. SYSTEM VARIABLE PROTECTION (pre-load overrides) --- */
 $serif: Georgia, Times, serif !default;
 $sans-serif: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Arial, sans-serif !default;
 $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 
-/* --- 2. CORE SKIN AND VARIABLE INITIALIZATION --- */
+/* --- 2. SKIN + THEME ENGINE --- */
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
+@import "minimal-mistakes";
+
+/* --- 3. CUSTOM VARIABLES & MIXINS --- */
+/* NOTE: Only place files here that define variables with !default to beat
+   the theme's own defaults. If core/variables references theme variables,
+   move it AFTER @import "minimal-mistakes". */
 @import "core/variables";
 @import "core/mixins";
-
-/* --- 3. THEME ENGINE LOADING LAYER --- */
-@import "minimal-mistakes";
 
 /* --- 4. MODULAR CORE UI COMPONENTS --- */
 @import "components/buttons";
