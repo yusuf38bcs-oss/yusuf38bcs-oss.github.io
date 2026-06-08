@@ -1,25 +1,27 @@
-﻿source "https://rubygems.org"
+source "https://rubygems.org"
 
-gem "jekyll", "~> 4.3.3"
-gem "minimal-mistakes-jekyll"
+# GitHub Pages compatible build environment
+gem "github-pages", group: :jekyll_plugins
+gem "jekyll-remote-theme", group: :jekyll_plugins
+gem "jekyll-include-cache", group: :jekyll_plugins
 
-gem "base64"
+# Ruby 3.4 compatibility
 gem "csv"
 gem "fiddle"
-gem "faraday-retry"
 
-gem "tzinfo"
-gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin]
-
-group :jekyll_plugins do
-  gem "jekyll-paginate", "~> 1.1"
-  gem "jekyll-sitemap", "~> 1.4"
-  gem "jekyll-gist", "~> 1.5"
-  gem "jekyll-feed", "~> 0.17"
-  gem "jekyll-seo-tag", "~> 2.8"
-  gem "jekyll-archives", "~> 2.2"
-  gem "jekyll-include-cache"
+# Windows and JRuby dependencies
+platforms :mingw, :x64_mingw, :mswin, :jruby do
+  gem "tzinfo", ">= 1", "< 3"
+  gem "tzinfo-data"
 end
 
+# Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1", platforms: [:mingw, :x64_mingw, :mswin]
-gem "webrick", "~> 1.8"
+
+# Lock http_parser.rb gem to v0.6.x on JRuby builds
+platforms :jruby do
+  gem "http_parser.rb", "~> 0.6.0"
+end
+
+# Webrick for local server (Ruby 3+)
+gem "webrick", "~> 1.9"

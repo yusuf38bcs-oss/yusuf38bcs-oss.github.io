@@ -19,7 +19,6 @@ minimal_mistakes_skin: dark
 
 # Plugins
 plugins:
-  - jekyll-paginate
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-gist
@@ -27,8 +26,6 @@ plugins:
   - jekyll-include-cache
 
 # Pagination
-paginate: 10
-paginate_path: /page:num/
 
 # Collections
 collections:
@@ -114,7 +111,7 @@ defaults:
 # Build settings
 markdown: kramdown
 highlighter: rouge
-permalink: /:categories/:title/
+permalink: /blog/:title/
 timezone: Asia/Dhaka
 
 # Exclude
