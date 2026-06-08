@@ -1,1034 +1,458 @@
-# ==========================================================================
-# UNIFIED RESPONSIVE UI AUDIT PATCH
-# Learning Biology For Life | Targets: 320px–1920px
-# ==========================================================================
+#Requires -Version 5.1
+[CmdletBinding()]
+param()
 
-Write-Host "Applying responsive UI audit patches..." -ForegroundColor Cyan
+$ErrorActionPreference = 'Stop'
+$repoRoot = (Get-Location).Path
+$reportsDir = Join-Path $repoRoot 'audit-reports'
+if (-not (Test-Path $reportsDir)) { New-Item -ItemType Directory -Path $reportsDir | Out-Null }
 
-# --------------------------------------------------------------------------
-# 1. NAVIGATION: Smaller toggle, fluid title, tighter mobile padding
-# --------------------------------------------------------------------------
-$Masthead = @'
-<header class="neural-site-masthead">
-  <div class="masthead-matrix-container">
+function Normalize-Url($url) {
+    $u = $url.Trim()
+    if (-not $u.StartsWith('/')) { $u = '/' + $u }
+    if ($u.Length -gt 1 -and $u.EndsWith('/')) { $u = $u.TrimEnd('/') }
+    return $u
+}
 
-    <div class="masthead-branding-node">
-      <a href="{{ '/' | relative_url }}" class="masthead-logo-anchor">
-        <img src="{{ site.logo | relative_url }}" alt="" class="masthead-clean-logo">
-      </a>
-      <a href="{{ '/' | relative_url }}" class="masthead-title-anchor">
-        Learning Biology <span class="accent-neon">For Life</span>
-      </a>
-    </div>
-
-    <button id="neural-mobile-toggle" class="masthead-mobile-trigger" aria-label="Expand Responsive Menu">
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-    </button>
-
-    <nav class="masthead-desktop-navigation">
-      <ul class="desktop-nav-menu">
-        <li><a href="{{ '/' | relative_url }}" class="nav-main-link">Home</a></li>
-
-        <li class="has-neural-dropdown">
-          <a href="#" class="nav-main-link dropdown-trigger-node">Biology <span class="dropdown-arrow-indicator">▼</span></a>
-          <ul class="neural-sub-menu">
-            <li class="sub-menu-category-title">HSC Corner</li>
-            <li><a href="{{ '/biology/hsc-corner/botany/' | relative_url }}">HSC Botany</a></li>
-            <li><a href="{{ '/biology/hsc-corner/zoology/' | relative_url }}">HSC Zoology</a></li>
-            <li class="sub-menu-category-title">Higher Zoology Tree</li>
-            <li><a href="{{ '/synaptic-bridge/systems-biology/' | relative_url }}">Systems Biology</a></li>
-            <li><a href="{{ '/synaptic-bridge/interdisciplinary-science/' | relative_url }}">Interdisciplinary Science</a></li>
-          </ul>
-        </li>
-
-        <li class="has-neural-dropdown">
-          <a href="#" class="nav-main-link dropdown-trigger-node">Synaptic Bridge <span class="dropdown-arrow-indicator">▼</span></a>
-          <ul class="neural-sub-menu">
-            <li class="sub-menu-category-title">4IR Ecosystem</li>
-            <li><a href="{{ '/synaptic-bridge/4ir-education/' | relative_url }}">4IR Cognitive Education</a></li>
-            <li><a href="{{ '/synaptic-bridge/knowledge-network/' | relative_url }}">Knowledge Network Hub</a></li>
-            <li><a href="{{ '/synaptic-bridge/future-science/' | relative_url }}">Future Learning Science</a></li>
-          </ul>
-        </li>
-
-        <li><a href="{{ '/life-practices/' | relative_url }}" class="nav-main-link">Life Practices</a></li>
-        <li><a href="{{ '/socratic/' | relative_url }}" class="nav-main-link">Socratic 4.0</a></li>
-        <li><a href="{{ '/contact/' | relative_url }}" class="nav-main-link">Contact</a></li>
-      </ul>
-    </nav>
-
-  </div>
-
-  <div id="neural-mobile-drawer" class="masthead-mobile-dropdown-drawer">
-    <ul class="mobile-nav-menu-list">
-      <li><a href="{{ '/' | relative_url }}">Home</a></li>
-
-      <li class="mobile-menu-section-header">Biology Dynamic Stream</li>
-      <li><a href="{{ '/biology/hsc-corner/botany/' | relative_url }}" class="mobile-sub-link">HSC Botany</a></li>
-      <li><a href="{{ '/biology/hsc-corner/zoology/' | relative_url }}" class="mobile-sub-link">HSC Zoology</a></li>
-      <li><a href="{{ '/synaptic-bridge/systems-biology/' | relative_url }}" class="mobile-sub-link">Systems Biology</a></li>
-      <li><a href="{{ '/synaptic-bridge/interdisciplinary-science/' | relative_url }}" class="mobile-sub-link">Interdisciplinary Science</a></li>
-
-      <li class="mobile-menu-section-header">Synaptic Core Arrays</li>
-      <li><a href="{{ '/synaptic-bridge/4ir-education/' | relative_url }}" class="mobile-sub-link">4IR Cognitive Education</a></li>
-      <li><a href="{{ '/synaptic-bridge/knowledge-network/' | relative_url }}" class="mobile-sub-link">Knowledge Network Hub</a></li>
-      <li><a href="{{ '/synaptic-bridge/future-science/' | relative_url }}" class="mobile-sub-link">Future Learning Science</a></li>
-
-      <li class="mobile-menu-section-header">Core Portals</li>
-      <li><a href="{{ '/life-practices/' | relative_url }}">Life Practices</a></li>
-      <li><a href="{{ '/socratic/' | relative_url }}">Socratic 4.0 Portal</a></li>
-      <li><a href="{{ '/contact/' | relative_url }}">Contact Hub</a></li>
-    </ul>
-  </div>
-</header>
-
-<style>
-  .neural-site-masthead {
-    background-color: #020617 !important;
-    border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important;
-    padding: 1rem 2rem !important;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    position: sticky;
-    top: 0;
-    z-index: 1000000;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .masthead-matrix-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
-
-  .masthead-branding-node {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
-  }
-
-  .masthead-clean-logo {
-    height: 42px !important;
-    width: 42px !important;
-    border-radius: 0px !important;
-    border: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    object-fit: contain !important;
-    flex-shrink: 0;
-  }
-
-  .masthead-title-anchor {
-    color: #ffffff !important;
-    font-weight: 800 !important;
-    font-size: clamp(0.9rem, 3.8vw, 1.25rem) !important;
-    text-decoration: none !important;
-    letter-spacing: -0.02em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-width: 0;
-  }
-
-  .masthead-title-anchor .accent-neon {
-    color: #00d4b2;
-  }
-
-  .desktop-nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    list-style: none !important;
-    margin: 0; padding: 0;
-  }
-
-  .nav-main-link {
-    color: #94a3b8 !important;
-    text-decoration: none !important;
-    font-size: 0.95rem !important;
-    font-weight: 600 !important;
-    transition: color 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .nav-main-link:hover, .has-neural-dropdown:hover .nav-main-link {
-    color: #00d4b2 !important;
-  }
-
-  .dropdown-trigger-node .dropdown-arrow-indicator {
-    font-size: 0.6rem;
-    margin-left: 4px;
-    color: #475569;
-    display: inline-block;
-    transition: transform 0.2s ease;
-  }
-
-  .has-neural-dropdown { position: relative; }
-
-  .neural-sub-menu {
-    position: absolute;
-    top: 100%; left: 0;
-    background-color: #0d1527 !important;
-    border: 1px solid rgba(0, 212, 178, 0.12) !important;
-    border-radius: 8px;
-    padding: 1rem !important;
-    width: 250px;
-    display: none;
-    list-style: none !important;
-    margin: 0;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-  }
-
-  .has-neural-dropdown:hover .neural-sub-menu {
-    display: block;
-    margin-top: 0.5rem;
-  }
-
-  .has-neural-dropdown:hover .dropdown-arrow-indicator {
-    transform: rotate(180deg);
-    color: #00d4b2;
-  }
-
-  .sub-menu-category-title {
-    font-size: 0.72rem !important;
-    text-transform: uppercase;
-    color: #00d4b2 !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.08em;
-    padding: 0.6rem 0.75rem 0.25rem 0.75rem;
-    opacity: 0.8;
-  }
-
-  .neural-sub-menu li a {
-    display: block;
-    color: #94a3b8 !important;
-    padding: 0.5rem 0.75rem !important;
-    font-size: 0.9rem !important;
-    text-decoration: none !important;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-  }
-
-  .neural-sub-menu li a:hover {
-    background-color: rgba(0, 212, 178, 0.04) !important;
-    color: #ffffff !important;
-    padding-left: 14px !important;
-  }
-
-  .masthead-mobile-trigger {
-    background: none; border: none;
-    display: none; flex-direction: column;
-    gap: 4px; cursor: pointer; padding: 2px; outline: none;
-    flex-shrink: 0;
-  }
-
-  .hamburger-bar {
-    display: block; width: 20px; height: 2px;
-    background-color: #00d4b2; border-radius: 2px;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-  }
-
-  .masthead-mobile-dropdown-drawer {
-    display: none; background-color: #020617;
-    border-top: 1px solid rgba(0, 212, 178, 0.08);
-    position: absolute; top: 100%; left: 0; width: 100%;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-    box-sizing: border-box;
-  }
-
-  .mobile-nav-menu-list {
-    list-style: none !important; margin: 0;
-    padding: 1.5rem !important; display: flex;
-    flex-direction: column; gap: 1rem;
-  }
-
-  .mobile-nav-menu-list a {
-    color: #ffffff !important; text-decoration: none !important;
-    font-weight: 600; font-size: 1.05rem; display: block;
-  }
-
-  .mobile-menu-section-header {
-    font-size: 0.75rem !important; text-transform: uppercase;
-    color: #00d4b2 !important; font-weight: 700;
-    letter-spacing: 0.05em; margin-top: 0.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
-    padding-bottom: 0.25rem;
-  }
-
-  .mobile-nav-menu-list .mobile-sub-link {
-    color: #94a3b8 !important; font-size: 0.95rem;
-    padding-left: 0.75rem; border-left: 1px solid rgba(0, 212, 178, 0.15);
-  }
-
-  @media (max-width: 992px) {
-    .neural-site-masthead { padding: 0.75rem 1rem !important; }
-    .masthead-desktop-navigation { display: none !important; }
-    .masthead-mobile-trigger { display: flex; }
-    .neural-site-masthead.is-active-drawer #neural-mobile-drawer { display: block; }
-    .neural-site-masthead.is-active-drawer .hamburger-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .neural-site-masthead.is-active-drawer .hamburger-bar:nth-child(2) { opacity: 0; }
-    .neural-site-masthead.is-active-drawer .hamburger-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-  }
-
-  @media (max-width: 480px) {
-    .masthead-clean-logo { height: 34px !important; width: 34px !important; }
-    .masthead-title-anchor { font-size: 0.9rem !important; }
-  }
-
-  @media (min-width: 1440px) {
-    .masthead-matrix-container { max-width: 1600px; padding: 0 2.5rem; }
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const masthead = document.querySelector(".neural-site-masthead");
-    const toggleBtn = document.getElementById("neural-mobile-toggle");
-    if (toggleBtn && masthead) {
-      toggleBtn.addEventListener("click", function(event) {
-        event.stopPropagation();
-        masthead.classList.toggle("is-active-drawer");
-      });
-      document.addEventListener("click", function(event) {
-        if (!masthead.contains(event.target)) {
-          masthead.classList.remove("is-active-drawer");
-        }
-      });
+# --- 1. Navigation URLs ---
+$navUrls = [System.Collections.Generic.List[string]]::new()
+$navYml = Join-Path $repoRoot '_data\navigation.yml'
+if (Test-Path $navYml) {
+    $content = Get-Content -Raw $navYml
+    [regex]::Matches($content, '^\s*url:\s*["'']?(.+?)["'']?\s*$', [System.Text.RegularExpressions.RegexOptions]::Multiline) | ForEach-Object {
+        $u = $_.Groups[1].Value.Trim()
+        if (-not $navUrls.Contains($u)) { $navUrls.Add($u) }
     }
-  });
-</script>
-'@
-Set-Content -Path ".\_includes\navigation\masthead.html" -Value $Masthead -Force -Encoding UTF8
-Write-Host "[OK] masthead.html" -ForegroundColor Green
-
-# --------------------------------------------------------------------------
-# 2. NEURAL FLOW: Remove numbering + responsive grid
-# --------------------------------------------------------------------------
-$NeuralFlow = @'
-<section class="premium-neural-flow-block" aria-label="Socratic conceptual mapping dashboard">
-  <div class="flow-engine-container">
-
-    <div class="flow-nodes-grid-axis">
-
-      <div class="flow-node-card-slot" data-aos="fade-right">
-        <div class="node-graphic-icon-box">
-          <div class="pulsing-core-dot"></div>
-        </div>
-        <h3 class="flow-node-title">Biological Dots</h3>
-        <p class="flow-node-desc">Isolate individual biological phenomena—whether a cranial nerve axis, an environmental niche, or a base pair nucleotide cluster—as a standalone data dot.</p>
-      </div>
-
-      <div class="flow-node-card-slot highlight-border-cyan" data-aos="fade-up">
-        <div class="node-graphic-icon-box">
-          <div class="vector-streaming-line"></div>
-        </div>
-        <h3 class="flow-node-title" style="color: #00d4b2 !important;">Interdisciplinary Lines</h3>
-        <p class="flow-node-desc">Trace the structural connections where raw biology metrics actively intersect with psychological behaviors, neural leadership models, and systemic choices.</p>
-      </div>
-
-      <div class="flow-node-card-slot" data-aos="fade-left">
-        <div class="node-graphic-icon-box">
-          <div class="infinite-hollow-circle"></div>
-        </div>
-        <h3 class="flow-node-title">The Socratic Circle</h3>
-        <p class="flow-node-desc">Complete the reflective learning circle back to divine wisdom, translating academic evidence into profound self-knowledge, active ethics, and global insight.</p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-{% unless jekyll_neural_flow_styles_loaded %}
-<style>
-  .premium-neural-flow-block {
-    background-color: #020617 !important;
-    padding: 4rem 1.5rem !important;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  }
-
-  .flow-engine-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .flow-nodes-grid-axis {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    align-items: stretch;
-  }
-
-  @media (min-width: 768px) {
-    .flow-nodes-grid-axis { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (min-width: 1024px) {
-    .flow-nodes-grid-axis { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  }
-
-  .flow-node-card-slot {
-    background: #0d1527 !important;
-    border: 1px solid rgba(255, 255, 255, 0.03) !important;
-    border-radius: 12px !important;
-    padding: 2rem 1.5rem !important;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
-  }
-
-  .flow-node-card-slot:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0, 212, 178, 0.2) !important;
-  }
-
-  .flow-node-card-slot.highlight-border-cyan {
-    border-color: rgba(0, 212, 178, 0.1) !important;
-    background: linear-gradient(145deg, #0d1527 0%, #070b13 100%) !important;
-  }
-
-  .node-graphic-icon-box {
-    height: 50px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 1.5rem;
-  }
-
-  .pulsing-core-dot {
-    width: 10px; height: 10px;
-    background-color: #00d4b2;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #00d4b2;
-    animation: corePulse 2s infinite ease-in-out;
-  }
-
-  .vector-streaming-line {
-    width: 80px; height: 2px;
-    background: linear-gradient(90deg, #00d4b2 0%, #3b82f6 100%);
-    position: relative;
-    border-radius: 2px;
-  }
-
-  .infinite-hollow-circle {
-    width: 16px; height: 16px;
-    border: 3px solid #00d4b2;
-    border-radius: 50%;
-    background: transparent;
-    box-shadow: 0 0 10px rgba(0, 212, 178, 0.2);
-  }
-
-  .flow-node-title {
-    color: #ffffff !important;
-    font-size: 1.25rem !important;
-    font-weight: 800 !important;
-    margin: 0 0 0.85rem 0 !important;
-    letter-spacing: -0.01em;
-  }
-
-  .flow-node-desc {
-    color: #94a3b8 !important;
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-    margin: 0 !important;
-    text-align: left !important;
-  }
-
-  @keyframes corePulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.3); opacity: 0.6; box-shadow: 0 0 18px #00d4b2; }
-  }
-
-  @media (max-width: 480px) {
-    .premium-neural-flow-block { padding: 3rem 1rem !important; }
-    .flow-node-card-slot { padding: 1.75rem 1.25rem !important; }
-    .flow-node-title { font-size: 1.15rem !important; }
-  }
-</style>
-{% assign jekyll_neural_flow_styles_loaded = true %}
-{% endunless %}
-'@
-Set-Content -Path ".\_includes\home\neural-flow.html" -Value $NeuralFlow -Force -Encoding UTF8
-Write-Host "[OK] neural-flow.html" -ForegroundColor Green
-
-# --------------------------------------------------------------------------
-# 3. ACADEMIC SECTIONS: Remove A/B/C + responsive grid
-# --------------------------------------------------------------------------
-$Academic = @'
-<section class="synaptic-core-deck-wrapper" style="padding: 5rem 1.5rem; background-color: #020617;">
-  <div style="max-width: 1400px; margin: 0 auto;">
-
-    <div class="section-header" style="margin-bottom: 3rem; text-align: left;">
-      <h2 style="font-size: clamp(1.5rem, 4vw, 2rem); color: #ffffff; border-bottom: 2px solid #00d4b2; display: inline-block; padding-bottom: 10px; margin: 0 0 0.5rem 0;">
-        🧩 Central Knowledge Manifolds
-      </h2>
-      <p style="color: #94a3b8; margin: 0; font-size: 1rem;">Explore the clean-mapped relational collection grids of this platform.</p>
-    </div>
-
-    <div class="neural-card-matrix">
-      <div class="neural-card-shell">
-        <h3 style="color: #ffffff; margin-top: 0; font-size: 1.25rem;">Higher Zoology & Biostatistics</h3>
-        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.5rem;">
-          Deep nested logs spanning Population Ecology dynamics, Survivorship trends, and mathematical applications including t-test and z-test calculations.
-        </p>
-        <a href="/biology/" style="color: #00d4b2; font-weight: bold; text-decoration: none; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem;">Initialize Vector <span style="font-size: 1.1rem;">→</span></a>
-      </div>
-
-      <div class="neural-card-shell">
-        <h3 style="color: #ffffff; margin-top: 0; font-size: 1.25rem;">Synaptic Bridge & Pedagogy</h3>
-        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.5rem;">
-          Cross-disciplinary educational interfaces charting the nexus of leadership dynamics, human behavioral mechanics, and digital research structures.
-        </p>
-        <a href="/synaptic-bridge/" style="color: #00d4b2; font-weight: bold; text-decoration: none; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem;">Initialize Vector <span style="font-size: 1.1rem;">→</span></a>
-      </div>
-
-      <div class="neural-card-shell">
-        <h3 style="color: #ffffff; margin-top: 0; font-size: 1.25rem;">Cosmic Life Philosophy</h3>
-        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.5rem;">
-          Sanitized English-mapped critical essays investigating the profound ontology of universal ethics, moral fortitude, and psychological analyses.
-        </p>
-        <a href="/life-philosophy/" style="color: #00d4b2; font-weight: bold; text-decoration: none; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem;">Initialize Vector <span style="font-size: 1.1rem;">→</span></a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<style>
-  .neural-card-matrix {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  .neural-card-shell {
-    background: rgba(15, 23, 42, 0.45);
-    border: 1px solid rgba(0, 212, 178, 0.12);
-    padding: 2rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
-    box-sizing: border-box;
-  }
-  @media (min-width: 768px) {
-    .neural-card-matrix { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-  }
-  @media (min-width: 1024px) {
-    .neural-card-matrix { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
-    .neural-card-shell { padding: 2.5rem; }
-  }
-  @media (max-width: 480px) {
-    .synaptic-core-deck-wrapper { padding: 3rem 1rem !important; }
-    .neural-card-shell { padding: 1.5rem; }
-  }
-</style>
-'@
-Set-Content -Path ".\_includes\home\academic-sections.html" -Value $Academic -Force -Encoding UTF8
-Write-Host "[OK] academic-sections.html" -ForegroundColor Green
-
-# --------------------------------------------------------------------------
-# 4. TESTS CTA: Responsive grid
-# --------------------------------------------------------------------------
-$TestsCTA = @'
-<section class="premium-tests-cta-block" aria-label="Self-discovery assessment triggers">
-  <div class="tests-matrix-grid-container">
-
-    <a class="neural-cta-interactive-card cta-card--mi" href="{{ '/socratic/multiple-intelligences/' | relative_url }}" aria-label="Multiple Intelligences Analysis Test Track">
-      <div class="neural-cta-content-shield">
-        <div class="cta-badge-indicator">
-          <span class="badge-pulse-dot"></span>
-          <span class="badge-lbl-text">Cognitive Audit</span>
-        </div>
-        <h3 class="neural-cta-title-node">Your Life is the Most Precious Gift For You From Allah (SWT)</h3>
-        <p class="neural-cta-desc-node">Discover the unique constellation of intelligences you possess. Through reflective questions and interactive analysis, uncover your cognitive strengths and learning preferences.</p>
-        <div class="neural-cta-action-trigger">
-          <span class="cta-action-text">Take MI Analysis</span>
-          <span class="cta-indicator-arrow">→</span>
-        </div>
-      </div>
-      <div class="neural-card-ambient-glow" aria-hidden="true"></div>
-    </a>
-
-    <a class="neural-cta-interactive-card cta-card--personality" href="{{ '/socratic/personality-archetypes/' | relative_url }}" aria-label="Personality Assessment Test Track">
-      <div class="neural-cta-content-shield">
-        <div class="cta-badge-indicator indicator--blue">
-          <span class="badge-pulse-dot"></span>
-          <span class="badge-lbl-text">Behavioral Axis</span>
-        </div>
-        <h3 class="neural-cta-title-node">Find Yourself <br>within You</h3>
-        <p class="neural-cta-desc-node">Move beyond surface labels. This introspective assessment reveals your core values, behavioral patterns, strengths, and systemic areas for growth. Discover who you truly are.</p>
-                <div class="neural-cta-action-trigger">
-          <span class="cta-action-text">Begin Self-Discovery</span>
-          <span class="cta-indicator-arrow">→</span>
-        </div>
-      </div>
-      <div class="neural-card-ambient-glow" aria-hidden="true"></div>
-    </a>
-
-  </div>
-
-  <div class="tests-unified-geometric-divider" aria-hidden="true">
-    <div class="geo-solid-dot"></div>
-    <div class="geo-horizontal-line"></div>
-    <div class="geo-solid-dot"></div>
-  </div>
-</section>
-
-<style>
-  .premium-tests-cta-block {
-    padding: clamp(3rem, 6vw, 5rem) 1.5rem !important;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  }
-  .tests-matrix-grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    width: 100%;
-    align-items: stretch;
-    box-sizing: border-box;
-  }
-  @media (min-width: 768px) {
-    .tests-matrix-grid-container { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-  }
-  @media (min-width: 1440px) {
-    .tests-matrix-grid-container { gap: 2.5rem; }
-  }
-  .neural-cta-interactive-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 2.5rem 2rem !important;
-    background: #0d1527 !important;
-    border: 1px solid rgba(255, 255, 255, 0.03) !important;
-    border-radius: 12px !important;
-    text-decoration: none !important;
-    overflow: hidden;
-    box-sizing: border-box;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  }
-  .neural-cta-interactive-card:hover {
-    transform: translateY(-5px) !important;
-    border-color: rgba(0, 212, 178, 0.25) !important;
-    box-shadow: 0 20px 40px rgba(0, 212, 178, 0.05) !important;
-    background: #0f172a !important;
-  }
-  .neural-cta-content-shield {
-    position: relative;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-  }
-  .cta-badge-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(0, 212, 178, 0.04);
-    border: 1px solid rgba(0, 212, 178, 0.15);
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 1.5rem;
-    width: fit-content;
-  }
-  .cta-badge-indicator.indicator--blue {
-    background: rgba(59, 130, 246, 0.04);
-    border-color: rgba(59, 130, 246, 0.15);
-  }
-  .badge-pulse-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background-color: #00d4b2;
-    box-shadow: 0 0 6px #00d4b2;
-  }
-  .cta-badge-indicator.indicator--blue .badge-pulse-dot {
-    background-color: #3b82f6;
-    box-shadow: 0 0 6px #3b82f6;
-  }
-  .badge-lbl-text {
-    font-size: 0.72rem !important;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-    color: #00d4b2 !important;
-  }
-  .cta-badge-indicator.indicator--blue .badge-lbl-text {
-    color: #3b82f6 !important;
-  }
-  .neural-cta-title-node {
-    margin: 0 0 1rem 0 !important;
-    color: #ffffff !important;
-    font-size: clamp(1.25rem, 3vw, 1.5rem) !important;
-    line-height: 1.35 !important;
-    font-weight: 800 !important;
-    letter-spacing: -0.02em;
-  }
-  .neural-cta-desc-node {
-    color: #94a3b8 !important;
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-    margin: 0 0 2.5rem 0 !important;
-    text-align: left !important;
-  }
-  .neural-cta-action-trigger {
-    margin-top: auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    font-size: 0.9rem !important;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    padding-top: 1.25rem;
-    width: 100%;
-    transition: color 0.2s ease;
-  }
-  .neural-cta-action-trigger .cta-indicator-arrow {
-    color: #00d4b2 !important;
-    transition: transform 0.2s ease;
-  }
-  .neural-cta-interactive-card:hover .neural-cta-action-trigger {
-    color: #00d4b2 !important;
-  }
-  .neural-cta-interactive-card:hover .cta-indicator-arrow {
-    transform: translateX(4px);
-  }
-  .tests-unified-geometric-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    width: 100%;
-    margin-top: 3rem;
-    user-select: none;
-  }
-  .geo-solid-dot {
-    width: 5px; height: 5px;
-    background-color: rgba(0, 212, 178, 0.2) !important;
-    border-radius: 50%;
-  }
-  .geo-horizontal-line {
-    width: 80px; height: 1px;
-    background: rgba(0, 212, 178, 0.1);
-  }
-  @media (max-width: 480px) {
-    .premium-tests-cta-block { padding: 3rem 1rem !important; }
-    .neural-cta-interactive-card { padding: 2rem 1.25rem !important; }
-    .neural-cta-title-node { font-size: 1.2rem !important; }
-  }
-</style>
-'@
-Set-Content -Path ".\_includes\home\tests-cta.html" -Value $TestsCTA -Force -Encoding UTF8
-Write-Host "[OK] tests-cta.html" -ForegroundColor Green
-
-# --------------------------------------------------------------------------
-# 5. RECENT POSTS: Limit to 6 + responsive
-# --------------------------------------------------------------------------
-$RecentPosts = @'
-<section class="recent-posts-viewport" style="padding: 5rem 1.5rem; background: #090d16; border-top: 1px solid rgba(255,255,255,0.05);">
-  <div style="max-width: 900px; margin: 0 auto;">
-    <h2 style="font-size: clamp(1.35rem, 4vw, 1.75rem); color: #ffffff; margin-bottom: 2.5rem; text-align: left;">⚡ Latest Scientific Logs</h2>
-
-    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-      {% assign docs = site.documents | where_exp: "doc", "doc.collection != 'posts'" | slice: 0, 6 %}
-      {% for doc in docs %}
-        <article style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #00d4b2; box-shadow: 0 4px 20px rgba(0,0,0,0.2); box-sizing: border-box;">
-          <span style="font-size: 0.8rem; color: #00d4b2; text-transform: uppercase; font-weight: bold; letter-spacing: 0.05em;">{{ doc.collection }}</span>
-          <h3 style="margin: 0.4rem 0; font-size: clamp(1.05rem, 3vw, 1.25rem); line-height: 1.3;">
-            <a href="{{ doc.url | relative_url }}" style="color: #ffffff; text-decoration: none;">{{ doc.title }}</a>
-          </h3>
-          <p style="color: #94a3b8; margin: 0; font-size: 0.9rem; line-height: 1.55;">{{ doc.excerpt | strip_html | truncatewords: 22 }}</p>
-        </article>
-      {% endfor %}
-    </div>
-
-  </div>
-</section>
-
-<style>
-  @media (max-width: 480px) {
-    .recent-posts-viewport { padding: 3rem 1rem !important; }
-  }
-</style>
-'@
-Set-Content -Path ".\_includes\home\recent-posts.html" -Value $RecentPosts -Force -Encoding UTF8
-Write-Host "[OK] recent-posts.html (limited to 6)" -ForegroundColor Green
-
-# --------------------------------------------------------------------------
-# 6. HERO ENHANCEMENTS: Navbar gap fix + footer alignment + responsive
-# --------------------------------------------------------------------------
-$HeroEnhancements = @'
-/* ==========================================================================
-   CINEMATIC HERO ENHANCEMENTS ENGINE & FOOTER INTEGRATION
-   ========================================================================== */
-
-/* --- HERO / NAVBAR GAP ELIMINATION --- */
-.neural-hero,
-.neural-hero-shell,
-.home-hero {
-  margin-top: 0 !important;
-  padding-top: clamp(5rem, 12vw, 8rem) !important;
 }
 
-/* --- MOBILE TOGGLE DESKTOP HIDE FIX --- */
-.masthead-mobile-trigger,
-#neural-mobile-toggle {
-  display: none !important;
+# --- 2. Hardcoded masthead URLs ---
+$hardcodedUrls = [System.Collections.Generic.List[string]]::new()
+$masthead = Join-Path $repoRoot '_includes\navigation\masthead.html'
+$mastheadContent = ''
+if (Test-Path $masthead) {
+    $mastheadContent = Get-Content -Raw $masthead
+    [regex]::Matches($mastheadContent, 'href=\{\{\s*["'']?(.+?)["'']?\s*\|\s*relative_url\s*\}\}') | ForEach-Object {
+        $u = $_.Groups[1].Value.Trim()
+        if (-not $hardcodedUrls.Contains($u)) { $hardcodedUrls.Add($u) }
+        if (-not $navUrls.Contains($u)) { $navUrls.Add($u) }
+    }
+    [regex]::Matches($mastheadContent, 'href=["'']([^"''{}]+)["'']') | ForEach-Object {
+        $u = $_.Groups[1].Value.Trim()
+        if ($u.StartsWith('/') -and -not $u.StartsWith('//') -and -not $navUrls.Contains($u)) {
+            $navUrls.Add($u)
+        }
+    }
 }
 
-@media (max-width: 992px) {
-  .masthead-mobile-trigger,
-  #neural-mobile-toggle {
-    display: flex !important;
-  }
-  .masthead-desktop-navigation {
-    display: none !important;
-  }
+# --- 3. Scan _site (HTML only) ---
+$siteUrls = [System.Collections.Generic.List[string]]::new()
+$siteDir = Join-Path $repoRoot '_site'
+if (Test-Path $siteDir) {
+    Get-ChildItem -Path $siteDir -Recurse -File -Filter '*.html' | ForEach-Object {
+        $rel = $_.FullName.Substring($siteDir.Length).Replace('\', '/')
+        $url = switch ($rel) {
+            '/index.html' { '/' }
+            default {
+                if ($rel -match '/index\.html$') {
+                    $rel -replace '/index\.html$', '/'
+                } elseif ($rel -match '\.html$') {
+                    $rel -replace '\.html$', ''
+                } else {
+                    $rel
+                }
+            }
+        }
+        if (-not $siteUrls.Contains($url)) { $siteUrls.Add($url) }
+    }
 }
 
-/* --- FOOTER ALIGNMENT FIXES --- */
-.neural-footer,
-.neural-core-footer {
-  background-color: #020617 !important;
-  border-top: 1px solid rgba(0, 212, 178, 0.1) !important;
-  padding: 5rem 1.5rem 2rem 1.5rem !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  display: block !important;
-  position: relative !important;
-  z-index: 10 !important;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$normSite = $siteUrls | ForEach-Object { Normalize-Url $_ } | Sort-Object -Unique
+$normNav = $navUrls | ForEach-Object { Normalize-Url $_ } | Sort-Object -Unique
+
+$workingLinks = [System.Collections.Generic.List[hashtable]]::new()
+$brokenLinks = [System.Collections.Generic.List[hashtable]]::new()
+foreach ($url in $normNav) {
+    $found = $normSite -contains $url
+    $entry = @{ Url = $url; Found = $found }
+    if ($found) { $workingLinks.Add($entry) } else { $brokenLinks.Add($entry) }
 }
 
-.footer-matrix-container {
-  max-width: 1400px !important;
-  margin: 0 auto !important;
-  display: grid !important;
-  grid-template-columns: 1fr !important;
-  gap: 2.5rem !important;
-  width: 100%;
-  box-sizing: border-box;
+# --- 4. Search botany / zoology / contact (FIXED EXCLUSION) ---
+$searchTerms = @('botany','zoology','contact')
+$foundSources = @{}
+foreach ($term in $searchTerms) { $foundSources[$term] = [System.Collections.Generic.List[string]]::new() }
+
+$excludePaths = @('*\_site\*','*\.git\*','*\node_modules\*','*\vendor\*','*\audit-reports\*')
+$allSourceItems = Get-ChildItem -Path $repoRoot -Recurse -File | Where-Object {
+    $file = $_
+    $file.Extension -in @('.md','.html','.markdown') -and
+    -not ($excludePaths | Where-Object { $file.FullName -like $_ })
 }
 
-@media (min-width: 768px) {
-  .footer-matrix-container {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 2.5rem !important;
-  }
-  .brand-profile-node,
-  .dispatch-engine-node {
-    grid-column: 1 / -1;
-  }
+foreach ($item in $allSourceItems) {
+    $name = $item.Name.ToLower()
+    $content = Get-Content -Raw $item.FullName -ErrorAction SilentlyContinue
+    foreach ($term in $searchTerms) {
+        if ($name.Contains($term) -or ($content -and $content.ToLower().Contains($term))) {
+            $rel = $item.FullName.Substring($repoRoot.Length).TrimStart('\','/').Replace('\','/')
+            if (-not $foundSources[$term].Contains($rel)) { $foundSources[$term].Add($rel) }
+        }
+    }
 }
 
-@media (min-width: 1024px) {
-  .footer-matrix-container {
-    grid-template-columns: 1.4fr 0.9fr 0.9fr 1.4fr !important;
-    gap: 3rem !important;
-  }
-  .brand-profile-node,
-  .dispatch-engine-node {
-    grid-column: auto;
-  }
+# --- 5. Route map & front matter (ROBUST REGEX) ---
+$routeMap = [System.Collections.Generic.List[hashtable]]::new()
+$pagesWithoutPermalink = [System.Collections.Generic.List[string]]::new()
+$configYml = Join-Path $repoRoot '_config.yml'
+$collectionsOutput = @{}
+$globalPermalinkStyle = ''
+if (Test-Path $configYml) {
+    $cfg = Get-Content -Raw $configYml
+    if ($cfg -match 'permalink:\s*["'']?(.+?)["'']?\s*[\r\n]') { $globalPermalinkStyle = $matches[1].Trim() }
+    $colMatch = [regex]::Match($cfg, 'collections:\s*(.*?)(?=\n\w|\z)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
+    if ($colMatch.Success) {
+        $block = $colMatch.Groups[1].Value
+        [regex]::Matches($block, '^\s*(\w+):\s*$([^\n]*(?:\n\s+[^\n]+)*)', [System.Text.RegularExpressions.RegexOptions]::Multiline) | ForEach-Object {
+            $cname = $_.Groups[1].Value.Trim()
+            $cbody = $_.Groups[2].Value
+            $collectionsOutput[$cname] = $cbody -match 'output:\s*true'
+        }
+    }
 }
 
-.footer-matrix-title {
-  font-size: clamp(1.25rem, 3vw, 1.5rem) !important;
-  font-weight: 800 !important;
-  color: #ffffff !important;
-  line-height: 1.3 !important;
-  margin: 0 0 1rem 0 !important;
+foreach ($item in $allSourceItems) {
+    $relPath = $item.FullName.Substring($repoRoot.Length).TrimStart('\','/').Replace('\','/')
+    $content = Get-Content -Raw $item.FullName -ErrorAction SilentlyContinue
+    $hasFm = $false
+    $permalink = $null
+    $title = $null
+    $layout = $null
+
+    # More robust front-matter detection
+    if ($content -and ($content -match '(?s)^---\r?\n(.*?)\r?\n---\r?\n')) {
+        $hasFm = $true
+        $fm = $matches[1]
+        if ($fm -match 'permalink:\s*["'']?(.+?)["'']?(?:\s*$|\s*[\r\n])') { $permalink = $matches[1].Trim() }
+        if ($fm -match 'title:\s*["'']?(.+?)["'']?(?:\s*$|\s*[\r\n])') { $title = $matches[1].Trim() }
+        if ($fm -match 'layout:\s*["'']?(.+?)["'']?(?:\s*$|\s*[\r\n])') { $layout = $matches[1].Trim() }
+    }
+
+    $inCollection = $false
+    $colName = $null
+    foreach ($c in $collectionsOutput.Keys) {
+        if ($relPath -like "_$c/*") { $inCollection = $true; $colName = $c; break }
+    }
+
+    $predicted = $null
+    if ($permalink) {
+        $predicted = $permalink
+    } elseif ($relPath -match '^_.*') {
+        $predicted = $null
+        if ($inCollection -and $collectionsOutput[$colName]) {
+            $slug = [System.IO.Path]::GetFileNameWithoutExtension($item.Name)
+            $predicted = "/$colName/$slug/"
+        }
+    } else {
+        $dir = [System.IO.Path]::GetDirectoryName($relPath)
+        if ($dir) { $dir = $dir.Replace('\','/') }
+        $name = [System.IO.Path]::GetFileNameWithoutExtension($item.Name)
+        if ($name -eq 'index') {
+            $predicted = if ($dir) { "/$dir/" } else { "/" }
+        } else {
+            $predicted = if ($dir) { "/$dir/$name/" } else { "/$name/" }
+        }
+    }
+
+    $routeMap.Add(@{
+        SourceFile = $relPath
+        Title = $title
+        Layout = $layout
+        Permalink = $permalink
+        PredictedUrl = $predicted
+        HasFrontMatter = $hasFm
+    })
+
+    if ($hasFm -and -not $permalink -and -not $inCollection -and -not ($relPath -match '^_')) {
+        $pagesWithoutPermalink.Add($relPath)
+    }
 }
 
-.accent-neon {
-  color: #00d4b2 !important;
+# Build a lookup of existing source permalinks to catch "source exists but not built" cases
+$sourcePermalinks = @{}
+foreach ($r in $routeMap) {
+    if ($r.Permalink) {
+        $n = Normalize-Url $r.Permalink
+        $sourcePermalinks[$n] = $r.SourceFile
+    }
 }
 
-.footer-matrix-desc {
-  font-size: 0.92rem !important;
-  color: #94a3b8 !important;
-  line-height: 1.6 !important;
-  text-align: left;
+# --- 6. Collections not outputting ---
+$collectionsNotOutputting = [System.Collections.Generic.List[string]]::new()
+foreach ($c in $collectionsOutput.Keys) {
+    if (-not $collectionsOutput[$c]) { $collectionsNotOutputting.Add($c) }
 }
 
-.footer-matrix-heading {
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
-  color: #f8fafc !important;
-  margin: 0 0 1.25rem 0 !important;
+# --- 7. Masthead checks ---
+$mastheadChecks = @{
+    HasNeuralMobileToggle = $mastheadContent -match 'id=["'']neural-mobile-toggle["'']'
+    HasNeuralMobileDrawer = $mastheadContent -match 'id=["'']neural-mobile-drawer["'']'
+    HasAriaExpanded = $mastheadContent -match 'aria-expanded'
+    HasAriaHidden = $mastheadContent -match 'aria-hidden=["'']true["'']'
+    HasIsActiveDrawerToggle = $mastheadContent -match 'is-active-drawer'
+    HasClickListener = $mastheadContent -match 'addEventListener\s*\(\s*["'']click["'']'
+    HasEscapeListener = $mastheadContent -match 'Escape'
+    HasStopPropagation = $mastheadContent -match 'stopPropagation\s*\(\s*\)'
+    HasDocumentClick = $mastheadContent -match 'document\.addEventListener\s*\(\s*["'']click["'']'
 }
 
-.footer-matrix-nav {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.75rem !important;
-  align-items: flex-start;
+# --- 8. SCSS checks ---
+$scssFile = Join-Path $repoRoot '_sass\layout\_homepage-stabilizer.scss'
+$scssChecks = @{}
+$scssContent = ''
+if (Test-Path $scssFile) {
+    $scssContent = Get-Content -Raw $scssFile
+    $db = [regex]::Match($scssContent, '\.masthead-mobile-dropdown-drawer\s*\{([^}]*)\}')
+    if ($db.Success) {
+        $b = $db.Groups[1].Value
+        $scssChecks['DrawerOpacityZero'] = $b -match 'opacity:\s*0'
+        $scssChecks['DrawerVisibilityHidden'] = $b -match 'visibility:\s*hidden'
+        $scssChecks['DrawerDisplayNone'] = $b -match 'display:\s*none'
+        $scssChecks['DrawerTransform'] = $b -match 'transform:'
+        $scssChecks['DrawerPointerEvents'] = $b -match 'pointer-events:'
+        $scssChecks['DrawerZIndex'] = $b -match 'z-index:'
+    }
+    $ab = [regex]::Match($scssContent, '\.neural-site-masthead\.is-active-drawer\s+\.masthead-mobile-dropdown-drawer\s*\{([^}]*)\}')
+    if ($ab.Success) {
+        $b = $ab.Groups[1].Value
+        $scssChecks['ActiveOpacityOne'] = $b -match 'opacity:\s*1'
+        $scssChecks['ActiveVisibilityVisible'] = $b -match 'visibility:\s*visible'
+        $scssChecks['ActiveDisplayBlock'] = $b -match 'display:\s*block'
+        $scssChecks['ActiveTransformNone'] = $b -match 'transform:\s*translateY\s*\(\s*0\s*\)'
+    }
 }
 
-.footer-matrix-link {
-  color: #cbd5e1 !important;
-  text-decoration: none !important;
-  font-size: 0.95rem !important;
-  transition: color 0.2s ease !important;
-  text-align: left;
+# --- 9. External JS interference ---
+$extJs = @{}
+$jsPaths = @('assets\js\neural-nav.js','assets\js\synaptic-navigation.js')
+foreach ($jp in $jsPaths) {
+    $jfull = Join-Path $repoRoot $jp
+    if (Test-Path $jfull) {
+        $jc = Get-Content -Raw $jfull
+        $extJs[$jp] = @{
+            RefsToggle = $jc -match 'neural-mobile-toggle|masthead__menu-toggle'
+            RefsDrawer = $jc -match 'neural-mobile-drawer|masthead__menu|\.mobile-menu'
+            RefsActive = $jc -match 'is-active-drawer'
+        }
+    }
 }
 
-.footer-matrix-link:hover {
-  color: #00d4b2 !important;
+# --- 10. Orphan pages ---
+$orphanUrls = [System.Collections.Generic.List[string]]::new()
+if ($normSite.Count -gt 0) {
+    foreach ($u in $normSite) {
+        if ($u -ne '/' -and -not ($normNav -contains $u)) {
+            $orphanUrls.Add($u)
+        }
+    }
 }
 
-.newsletter-action-trigger {
-  background: linear-gradient(135deg, #00d4b2 0%, #0055ff 100%) !important;
-  color: #020617 !important;
-  border: none !important;
-  padding: 0.75rem 1.5rem !important;
-  font-weight: 700 !important;
-  border-radius: 6px !important;
-  cursor: pointer !important;
-  transition: opacity 0.2s ease !important;
-  width: 100%;
-  max-width: 260px;
+# --- REPORTS ---
+
+# NAVIGATION_REPORT.md
+$lines = @()
+$lines += '# Navigation Report'
+$lines += ''
+$lines += "## Working Links ($($workingLinks.Count))"
+foreach ($l in $workingLinks) { $lines += "- $($l.Url)" }
+$lines += ''
+$lines += "## Broken Links ($($brokenLinks.Count))"
+foreach ($l in $brokenLinks) {
+    $norm = Normalize-Url $l.Url
+    $sugg = $normSite | Where-Object { $_ -like "*$($norm.Trim('/').Split('/')[-1])*" } | Select-Object -First 1
+    $suggTxt = if ($sugg) { " -> Suggested: $sugg" } else { ' -> Suggested: create source page or update navigation.yml' }
+    if ($sourcePermalinks.ContainsKey($norm)) {
+        $suggTxt = " -> SOURCE EXISTS ($($sourcePermalinks[$norm])) but _site build missing. Rebuild Jekyll."
+    }
+    $lines += "- $($l.Url)$suggTxt"
 }
-
-.newsletter-action-trigger:hover {
-  opacity: 0.9 !important;
+$lines += ''
+$lines += "## Hardcoded URLs in masthead.html ($($hardcodedUrls.Count))"
+foreach ($u in $hardcodedUrls) { $lines += "- $u" }
+$lines += ''
+$lines += '## Search Results'
+foreach ($term in $searchTerms) {
+    $lines += "### $term"
+    $items = $foundSources[$term]
+    if ($items.Count -eq 0) { $lines += '- No source files found' }
+    else { foreach ($i in $items) { $lines += "- $i" } }
 }
+$lines -join "`n" | Out-File -FilePath (Join-Path $reportsDir 'NAVIGATION_REPORT.md') -Encoding utf8
 
-.footer-pedagogy-card {
-  max-width: 1400px !important;
-  margin: 4rem auto 2rem auto !important;
-  background: rgba(7, 10, 19, 0.6) !important;
-  border: 1px solid rgba(0, 212, 178, 0.1) !important;
-  padding: 2rem !important;
-  border-radius: 12px !important;
-  box-sizing: border-box;
+# FIX_REPORT.md
+$flines = @()
+$flines += '# Fix Report'
+$flines += ''
+$flines += "## Broken Navigation Routes ($($brokenLinks.Count))"
+foreach ($l in $brokenLinks) {
+    $norm = Normalize-Url $l.Url
+    if ($sourcePermalinks.ContainsKey($norm)) {
+        $flines += "- $($l.Url): Source file found ($($sourcePermalinks[$norm])) but missing from _site. Run Jekyll build."
+    } else {
+        $flines += "- $($l.Url): Create corresponding source file or fix url in _data/navigation.yml."
+    }
 }
-
-.footer-pedagogy-title {
-  color: #00d4b2 !important;
-  margin: 0 0 0.5rem 0 !important;
-  font-weight: 700 !important;
+$flines += ''
+$flines += "## Pages Without Permalink ($($pagesWithoutPermalink.Count))"
+if ($pagesWithoutPermalink.Count -eq 0) { $flines += '- None' } else { foreach ($p in $pagesWithoutPermalink) { $flines += "- $p" } }
+$flines += ''
+$flines += "## Collections Not Outputting ($($collectionsNotOutputting.Count))"
+if ($collectionsNotOutputting.Count -eq 0) { $flines += '- None' } else { foreach ($c in $collectionsNotOutputting) { $flines += "- ${c}: add output: true to _config.yml" } }
+$flines += ''
+$flines += "## Orphan Pages in _site ($($orphanUrls.Count))"
+if ($orphanUrls.Count -eq 0) { $flines += '- None' } else { foreach ($o in $orphanUrls) { $flines += "- $o" } }
+$flines += ''
+$flines += '## Masthead JS Audit'
+foreach ($k in $mastheadChecks.Keys | Sort-Object) {
+    $v = $mastheadChecks[$k]
+    $status = if ($v) { 'PASS' } else { 'FAIL' }
+    $flines += "- $k : $status"
 }
-
-.footer-pedagogy-text {
-  color: #cbd5e1 !important;
-  font-style: italic !important;
-  line-height: 1.6 !important;
-  margin: 0 !important;
+$flines += ''
+$flines += '## Mobile Drawer CSS Audit'
+foreach ($k in $scssChecks.Keys | Sort-Object) {
+    $v = $scssChecks[$k]
+    $status = if ($v) { 'PRESENT' } else { 'MISSING' }
+    $flines += "- $k : $status"
 }
-
-.footer-base-strip {
-  max-width: 1400px !important;
-  margin: 2rem auto 0 auto !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
-  padding-top: 1.5rem !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 1rem !important;
+$flines += ''
+$flines += '## External JS Interference'
+foreach ($k in $extJs.Keys | Sort-Object) {
+    $flines += "### $k"
+    foreach ($p in $extJs[$k].Keys | Sort-Object) {
+        $v = $extJs[$k][$p]
+        $status = if ($v) { 'YES' } else { 'NO' }
+        $flines += "- $p : $status"
+    }
 }
+$flines -join "`n" | Out-File -FilePath (Join-Path $reportsDir 'FIX_REPORT.md') -Encoding utf8
 
-.footer-base-copyright {
-  font-size: 0.88rem !important;
-  color: #94a3b8 !important;
-  margin: 0 !important;
+# ROUTE_MAP.md
+$rlines = @()
+$rlines += '# Route Map'
+$rlines += ''
+$rlines += '| Source File | Title | Layout | Permalink | Predicted URL |'
+$rlines += '|-------------|-------|--------|-----------|---------------|'
+foreach ($r in $routeMap) {
+    $t = if ($r.Title) { $r.Title } else { '' }
+    $l = if ($r.Layout) { $r.Layout } else { '' }
+    $p = if ($r.Permalink) { $r.Permalink } else { '' }
+    $u = if ($r.PredictedUrl) { $r.PredictedUrl } else { 'N/A' }
+    $rlines += "| $($r.SourceFile) | $t | $l | $p | $u |"
 }
+$rlines -join "`n" | Out-File -FilePath (Join-Path $reportsDir 'ROUTE_MAP.md') -Encoding utf8
 
-.bright-text {
-  color: #94a3b8 !important;
+# PATCH_RECOMMENDATIONS.md
+$plines = @()
+$plines += '# Patch Recommendations'
+$plines += ''
+$plines += '## 1. Wire Mobile Drawer to _data/navigation.yml'
+$plines += '**File:** _includes/navigation/masthead.html'
+$plines += ''
+$plines += 'Replace the hardcoded <ul class="mobile-nav-menu-list"> block inside <div id="neural-mobile-drawer"> with:'
+$plines += ''
+$plines += '```liquid'
+$plines += '<ul class="mobile-nav-menu-list">'
+$plines += '  {% for item in site.data.navigation.main %}'
+$plines += '    {% if item.children %}'
+$plines += '      <li class="mobile-menu-section-header">{{ item.title }}</li>'
+$plines += '      {% for child in item.children %}'
+$plines += '        <li><a href="{{ child.url | relative_url }}" class="mobile-sub-link">{{ child.title }}</a></li>'
+$plines += '      {% endfor %}'
+$plines += '    {% else %}'
+$plines += '      <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>'
+$plines += '    {% endif %}'
+$plines += '  {% endfor %}'
+$plines += '  <li><a href="{{ "/contact/" | relative_url }}">Contact</a></li>'
+$plines += '</ul>'
+$plines += '```'
+$plines += ''
+$plines += '## 2. Fix Missing Routes'
+foreach ($l in $brokenLinks) {
+    $norm = Normalize-Url $l.Url
+    if (-not $sourcePermalinks.ContainsKey($norm)) {
+        $slug = $l.Url.Trim('/').Replace('/','-')
+        $plines += "- Create source for $($l.Url) (e.g., $slug.md) with front matter including permalink: $($l.Url)"
+    } else {
+        $plines += "- $($l.Url): Source exists at $($sourcePermalinks[$norm]); rebuild Jekyll to generate _site output."
+    }
 }
-
-.footer-base-link {
-  font-size: 0.88rem !important;
-  color: #94a3b8 !important;
-  text-decoration: none !important;
-  transition: color 0.2s ease !important;
+$plines += ''
+$plines += '## 3. CSS Drawer Visibility Fix'
+$plines += 'If .masthead-mobile-dropdown-drawer is hidden by display: none and .is-active-drawer does not override it, add to _sass/layout/_homepage-stabilizer.scss:'
+$plines += ''
+$plines += '```scss'
+$plines += '.masthead-mobile-dropdown-drawer {'
+$plines += '  display: block; /* ensure not none */'
+$plines += '}'
+$plines += ''
+$plines += '.neural-site-masthead.is-active-drawer .masthead-mobile-dropdown-drawer {'
+$plines += '  opacity: 1;'
+$plines += '  visibility: visible;'
+$plines += '  transform: translateY(0);'
+$plines += '  pointer-events: auto;'
+$plines += '}'
+$plines += '```'
+$plines += ''
+$plines += '## 4. External JS Conflict Resolution'
+$plines += 'If neural-nav.js or synaptic-navigation.js target different selectors, update them to use #neural-mobile-toggle and #neural-mobile-drawer, or remove them if masthead.html already contains inline JS.'
+$plines += ''
+$plines += '## 5. Collection Output'
+if ($collectionsNotOutputting.Count -gt 0) {
+    $plines += 'Enable output for collections in _config.yml:'
+    $plines += '```yaml'
+    foreach ($c in $collectionsNotOutputting) {
+        $plines += "${c}:"
+        $plines += '  output: true'
+    }
+    $plines += '```'
 }
+$plines -join "`n" | Out-File -FilePath (Join-Path $reportsDir 'PATCH_RECOMMENDATIONS.md') -Encoding utf8
 
-.footer-base-link:hover {
-  color: #00d4b2 !important;
+# --- HEALTH SCORES ---
+$totalNav = $normNav.Count
+$navHealth = if ($totalNav -gt 0) { [math]::Round(($workingLinks.Count / $totalNav) * 100, 1) } else { 0 }
+
+$validRoutes = 0
+foreach ($r in $routeMap) {
+    if ($r.PredictedUrl -and ($normSite -contains (Normalize-Url $r.PredictedUrl))) { $validRoutes++ }
 }
+$totalSrc = $routeMap.Count
+$routeHealth = if ($totalSrc -gt 0) { [math]::Round(($validRoutes / $totalSrc) * 100, 1) } else { 0 }
 
-@media (max-width: 768px) {
-  .neural-footer,
-  .neural-core-footer {
-    padding: 4rem 1.25rem 2rem 1.25rem !important;
-  }
-  .footer-matrix-container {
-    gap: 2rem !important;
-  }
-  .footer-matrix-nav {
-    align-items: center !important;
-  }
-  .footer-matrix-desc {
-    text-align: center !important;
-  }
-  .footer-base-strip {
-    flex-direction: column !important;
-    text-align: center !important;
-    justify-content: center !important;
-  }
-  .newsletter-action-trigger {
-    max-width: 100% !important;
-  }
-  .footer-pedagogy-card {
-    margin: 3rem 0.5rem 2rem 0.5rem !important;
-    padding: 1.5rem !important;
-  }
-}
+$jekyllHealth = 100
+if ($pagesWithoutPermalink.Count -gt 0) { $jekyllHealth -= [math]::Min(25, $pagesWithoutPermalink.Count * 2) }
+if ($collectionsNotOutputting.Count -gt 0) { $jekyllHealth -= [math]::Min(25, $collectionsNotOutputting.Count * 5) }
+if (-not (Test-Path $siteDir)) { $jekyllHealth -= 20 }
+$jekyllHealth = [math]::Max(0, [math]::Min(100, $jekyllHealth))
 
-@media (prefers-reduced-motion: reduce) {
-  .home-hero {
-    animation: none !important;
-    transition: none !important;
-    background-attachment: scroll !important;
-  }
-}
-'@
-Set-Content -Path ".\_sass\components\_hero-enhancements.scss" -Value $HeroEnhancements -Force -Encoding UTF8
-Write-Host "[OK] _hero-enhancements.scss" -ForegroundColor Green
+$mobileHealth = 100
+if (-not $mastheadChecks['HasNeuralMobileToggle']) { $mobileHealth -= 20 }
+if (-not $mastheadChecks['HasNeuralMobileDrawer']) { $mobileHealth -= 20 }
+if (-not $mastheadChecks['HasIsActiveDrawerToggle']) { $mobileHealth -= 15 }
+if (-not $mastheadChecks['HasClickListener']) { $mobileHealth -= 10 }
+if (-not $mastheadChecks['HasDocumentClick']) { $mobileHealth -= 5 }
+if ($scssChecks['DrawerDisplayNone'] -and -not $scssChecks['ActiveDisplayBlock']) { $mobileHealth -= 20 }
+if (-not $scssChecks['ActiveOpacityOne']) { $mobileHealth -= 5 }
+if (-not $scssChecks['ActiveVisibilityVisible']) { $mobileHealth -= 5 }
+$mobileHealth = [math]::Max(0, [math]::Min(100, $mobileHealth))
 
-# --------------------------------------------------------------------------
-# 7. BUILD & DEPLOY
-# --------------------------------------------------------------------------
-Write-Host "`nBuilding Jekyll site..." -ForegroundColor Yellow
-bundle exec jekyll clean
-if ($LASTEXITCODE -ne 0) { Write-Error "Jekyll clean failed"; exit 1 }
-
-bundle exec jekyll build --trace
-if ($LASTEXITCODE -ne 0) { Write-Error "Jekyll build failed"; exit 1 }
-
-Write-Host "`nStaging changes..." -ForegroundColor Cyan
-git add _includes/navigation/masthead.html
-git add _includes/home/neural-flow.html
-git add _includes/home/academic-sections.html
-git add _includes/home/tests-cta.html
-git add _includes/home/recent-posts.html
-git add _sass/components/_hero-enhancements.scss
-
-Write-Host "`nCommitting..." -ForegroundColor Cyan
-git commit -m "fix(ui): responsive audit — nav, hero, cards, footer, posts limit, grids, gaps"
-
-Write-Host "`nPushing to origin..." -ForegroundColor Cyan
-git push origin main
-
-Write-Host 'Done! Cloudflare Pages will rebuild automatically.' -ForegroundColor Green
+Write-Host ''
+Write-Host '========================================'
+Write-Host 'AUDIT COMPLETE'
+Write-Host '========================================'
+Write-Host "Reports directory : $reportsDir"
+Write-Host "Navigation Health : $navHealth%"
+Write-Host "Route Health      : $routeHealth%"
+Write-Host "Jekyll Health     : $jekyllHealth%"
+Write-Host "Mobile Menu Health: $mobileHealth%"
+Write-Host '========================================'
