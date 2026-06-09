@@ -93,3 +93,18 @@ button:focus-visible {
    This file is the FINAL CASCADE ONLY.
 
    ========================================================================== */
+/* ==========================================================================
+   DESKTOP NAVIGATION ENFORCEMENT
+   Remove once root cause in utilities/neural-navbar.scss is resolved.
+   ========================================================================== */
+@media (min-width: 768px) {
+  .masthead-desktop-navigation {
+    display: block !important;
+  }
+  .masthead-mobile-trigger {
+    display: none !important;
+  }
+  .masthead-mobile-dropdown-drawer {
+    display: none !important;
+  }
+}

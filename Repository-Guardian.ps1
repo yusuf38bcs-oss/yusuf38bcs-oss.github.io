@@ -171,9 +171,71 @@ Write-Host "`n[6/11] Running UTF-8 Compliance Scans..." -ForegroundColor Cyan
 
 $ScannableFiles = Get-ChildItem -Path $RepoRoot -Include "*.md", "*.html", "*.scss", "*.yml" -Recurse | Where-Object { $_.FullName -notmatch $Exclusions }
 foreach ($File in $ScannableFiles) {
+
     $RawBytes = Get-Content $File.FullName -Raw
-    if ($RawBytes -match "[Ââ€™â€œâ€â€”ðŸ›‘â€¢â€¦â€‹â€“]") {
-        if ($DryRun) {
+
+    $NeedsRepair = $false
+
+    $CorruptionTable = @(
+        "Â",
+        "â€™",
+        "â€œ",
+        "â€",
+        "â€”",
+        "ðŸ›‘",
+        "â€¢",
+        "â€¦",
+        "â€‹",
+        "â€“"
+    )
+
+    foreach($Item in $CorruptionTable){
+
+        if($RawBytes.Contains($Item)){
+
+            $NeedsRepair = $true
+            break
+
+        }
+
+    }
+
+    if($NeedsRepair){
+
+        if($DryRun){
+
+            Write-Host "[DRY RUN] UTF8 issue detected: $($File.Name)" -ForegroundColor Yellow
+
+        }
+        else{
+
+            $Scrubbed = $RawBytes
+
+            $Scrubbed = $Scrubbed.Replace("Â","")
+            $Scrubbed = $Scrubbed.Replace("â€™","'")
+            $Scrubbed = $Scrubbed.Replace("â€œ",'"')
+            $Scrubbed = $Scrubbed.Replace("â€",'"')
+            $Scrubbed = $Scrubbed.Replace("â€”","-")
+            $Scrubbed = $Scrubbed.Replace("ðŸ›‘","")
+            $Scrubbed = $Scrubbed.Replace("â€¢","-")
+            $Scrubbed = $Scrubbed.Replace("â€¦","...")
+            $Scrubbed = $Scrubbed.Replace("â€‹","")
+            $Scrubbed = $Scrubbed.Replace("â€“","-")
+
+            $Scrubbed = $Scrubbed -replace "`r`n","`n"
+            $Scrubbed = $Scrubbed -replace "`r","`n"
+
+            [System.IO.File]::WriteAllText(
+                $File.FullName,
+                $Scrubbed,
+                $Utf8NoBom
+            )
+
+        }
+
+    }
+
+}
             Write-Host "[DRY RUN] Would repair UTF-8 Mojibake in: $($File.Name)" -ForegroundColor DarkGray
         } else {
             Write-Host "  -> Repairing UTF-8 Encoding: $($File.Name)" -ForegroundColor Green

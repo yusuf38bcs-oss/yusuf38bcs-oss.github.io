@@ -12,7 +12,6 @@
 #   6. Utility Pipelines
 #   7. Stabilizers
 #   8. Global Overrides
-#   9. Firewalls (FINAL CASCADE LOCK)
 #
 # Production:
 #   Jekyll 4.x
@@ -22,12 +21,8 @@
 # ==========================================================================
 ---
 
-@charset "UTF-8";
-
 /* ==========================================================================
    1. EARLY BOOTSTRAP VARIABLES
-   These load BEFORE Minimal Mistakes.
-   Only variables intended to influence the theme belong here.
    ========================================================================== */
 
 $serif: Georgia, Times, serif !default;
@@ -38,8 +33,6 @@ $monospace: Monaco, Consolas, "Lucida Console",
 
 /* ==========================================================================
    2. CUSTOM VARIABLE OVERRIDES
-   Theme-facing variables only.
-   Do NOT place component CSS here.
    ========================================================================== */
 
 @import "core/variables";
@@ -53,15 +46,12 @@ $monospace: Monaco, Consolas, "Lucida Console",
 
 /* ==========================================================================
    4. MIXINS
-   Must load after theme if they depend on theme variables.
    ========================================================================== */
 
 @import "core/mixins";
 
 /* ==========================================================================
    5. CORE COMPONENTS
-   Self-contained UI modules.
-   Avoid cross-layout styling here.
    ========================================================================== */
 
 @import "components/buttons";
@@ -81,7 +71,6 @@ $monospace: Monaco, Consolas, "Lucida Console",
 
 /* ==========================================================================
    6. LAYOUT ECOSYSTEM
-   Large page structures.
    ========================================================================== */
 
 @import "layout/home-layout";
@@ -92,7 +81,6 @@ $monospace: Monaco, Consolas, "Lucida Console",
 
 /* ==========================================================================
    7. UTILITIES
-   Small reusable helper systems.
    ========================================================================== */
 
 @import "utilities/animations";
@@ -101,65 +89,13 @@ $monospace: Monaco, Consolas, "Lucida Console",
 
 /* ==========================================================================
    8. STABILIZATION LAYER
-   Bug fixes that should override normal components/layouts.
    ========================================================================== */
 
 @import "layout/homepage-stabilizer";
 
 /* ==========================================================================
    9. GLOBAL OMEGA OVERRIDES
-   High-priority production patches.
-   Keep generic global resets here.
+   FINAL CASCADE — nothing follows
    ========================================================================== */
 
 @import "layout/omega-overrides";
-
-/* ==========================================================================
-   10. FIREWALL ZONE
-   ABSOLUTE FINAL CASCADE LOCK
-   Nothing should be imported after this section.
-   ========================================================================== */
-
-@import "components/masthead-logo-firewall";
-
-/* ==========================================================================
-   CASCADE PROTECTION POLICY
-
-   COMPONENTS OWN:
-   - buttons
-   - cards
-   - hero
-   - navigation
-   - footer
-
-   LAYOUTS OWN:
-   - page grids
-   - containers
-   - section spacing
-   - homepage structure
-
-   UTILITIES OWN:
-   - helper classes
-   - animation helpers
-   - text utilities
-
-   OMEGA OWNS:
-   - emergency fixes
-   - z-index hierarchy
-   - navbar offsets
-   - mobile drawer patches
-
-   FIREWALL OWNS:
-   - masthead logo dimensions
-   - masthead image protection
-   - anti-global-img inheritance
-   - final navbar immunity
-
-   NEVER:
-   - import anything after firewall
-   - duplicate hero rules across files
-   - duplicate navbar offsets
-   - duplicate image resets
-   - duplicate z-index systems
-
-   ========================================================================== */

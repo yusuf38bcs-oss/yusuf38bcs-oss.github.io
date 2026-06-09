@@ -55,6 +55,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-include-cache
   - jekyll-remote-theme
+  - jekyll-paginate
 
 # ==========================================================================
 # SEARCH
@@ -152,8 +153,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-      sidebar:
-        nav: synaptic_nav
 
   - scope:
       path: ""
@@ -163,8 +162,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-      sidebar:
-        nav: synaptic_nav
 
   - scope:
       path: ""
@@ -174,8 +171,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-      sidebar:
-        nav: synaptic_nav
 
   - scope:
       path: ""
@@ -185,8 +180,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-      sidebar:
-        nav: synaptic_nav
 
   - scope:
       path: ""
@@ -196,8 +189,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-      sidebar:
-        nav: synaptic_nav
 
   - scope:
       path: ""
@@ -207,8 +198,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-      sidebar:
-        nav: synaptic_nav
 
   - scope:
       path: "_pages"
@@ -264,7 +253,7 @@ exclude:
 # _includes/navigation/masthead.html
 #
 # Navigation CSS:
-# _sass/layout/_navigation.scss
+# _sass/components/_navigation.scss
 #
 # Omega Layer:
 # _sass/layout/_omega-overrides.scss
