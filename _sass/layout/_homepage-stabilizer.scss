@@ -1,27 +1,19 @@
 /* ==========================================================================
    HOMEPAGE STABILIZER
-   Refactored: 2026-06-07
+   Refactored: 2026-06-09
    Purpose: Hero alignment, canvas backdrop, homepage spacing.
    
    REMOVED:
-   - Navigation implementation (use _sass/components/_navigation.scss)
-   - Mobile drawer implementation (use _sass/components/_navigation.scss)
-   - Footer stacking (use _sass/components/_footer.scss)
-   - Mobile toggle cleanup (use _sass/layout/_omega-overrides.scss)
+   - Navigation implementation (relocated to _sass/components/_navigation.scss)
+   - Mobile drawer implementation (relocated to _sass/components/_navigation.scss)
+   - Footer stacking (relocate to _sass/components/_footer.scss if required)
+   - Mobile toggle cleanup (relocated to _sass/layout/_omega-overrides.scss)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. HOMEPAGE DESIGN TOKENS
    -------------------------------------------------------------------------- */
-:root {
-  --homepage-hero-offset: 64px;
-}
-
-@media (max-width: 768px) {
-  :root {
-    --homepage-hero-offset: 60px;
-  }
-}
+/* --neural-nav-height is defined in _sass/components/_navigation.scss */
 
 /* --------------------------------------------------------------------------
    2. GLOBAL AMBIENT BACKDROP (CANVAS)
@@ -50,7 +42,7 @@ body.home .home-hero,
 .synaptic-home-layout .neural-hero-shell,
 .synaptic-home-layout .home-hero {
   margin-top: 0;
-  padding-top: var(--homepage-hero-offset);
+  padding-top: var(--neural-nav-height);
   position: relative;
   z-index: 100;
 }

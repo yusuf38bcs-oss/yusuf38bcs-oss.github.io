@@ -1,5 +1,5 @@
 /* ==========================================================================
-   OMEGA OVERRIDES V3.0
+   OMEGA OVERRIDES V3.1
    Learning Biology For Life
 
    FINAL CASCADE LAYER
@@ -7,10 +7,7 @@
    PURPOSE
    --------------------------------------------------------------------------
    ✓ Prevent Minimal Mistakes conflicts
-   ✓ Stabilize Neural Navigation
-   ✓ Stabilize Mobile Drawer
-   ✓ Hero Offset Correction
-   ✓ Sticky Footer
+   ✓ Z-Index Contract Enforcement
    ✓ Accessibility
    ✓ Motion Safety
    ✓ Cloudflare + GitHub Pages compatibility
@@ -18,304 +15,47 @@
    DO NOT PLACE BASE COMPONENT STYLES HERE.
    ========================================================================== */
 
-
-
 /* ==========================================================================
-   ROOT VARIABLES
+   Z-INDEX CONTRACT
    ========================================================================== */
-
-:root{
-
-  --hero-navbar-offset:90px;
-
-  --omega-nav-layer:2000000;
-  --omega-drawer-layer:2000001;
-  --omega-dropdown-layer:2000002;
-
+:root {
+  --z-index-nav: 2000;
+  --z-index-drawer: 2001;
+  --z-index-dropdown: 2002;
+  --z-index-modal: 3000;
 }
-
-@media(max-width:768px){
-
-  :root{
-
-    --hero-navbar-offset:70px;
-
-  }
-
-}
-
-
-
-/* ==========================================================================
-   GLOBAL LAYOUT
-   ========================================================================== */
-
-html{
-  font-size:clamp(14px,1.1vw,17px);
-}
-
-body{
-
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-
-  background:#020617;
-
-}
-
-#main,
-.page,
-.initial-content,
-main{
-
-  flex:1 0 auto;
-
-}
-
-
-
-/* ==========================================================================
-   HOMEPAGE CLEANUP
-   ========================================================================== */
-
-.home .page__title,
-.home .page__meta,
-.synaptic-homepage-matrix .page__title{
-
-  display:none !important;
-
-}
-
-.initial-content{
-
-  padding-top:var(--hero-navbar-offset);
-
-}
-
-
-
-/* ==========================================================================
-   NEURAL MASTHEAD
-   ========================================================================== */
-
-.neural-site-masthead{
-
-  position:fixed !important;
-
-  top:0;
-  left:0;
-  right:0;
-
-  width:100%;
-
-  z-index:var(--omega-nav-layer);
-
-}
-
-
-
-/* ==========================================================================
-   MOBILE DRAWER
-   ========================================================================== */
-
-.masthead-mobile-dropdown-drawer{
-
-  position:fixed !important;
-
-  top:var(--hero-navbar-offset);
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  z-index:var(--omega-drawer-layer);
-
-  opacity:0;
-  visibility:hidden;
-
-  transform:translateY(-12px);
-
-  pointer-events:none;
-
-  overflow-y:auto;
-
-  -webkit-overflow-scrolling:touch;
-
-  transition:
-    opacity .25s ease,
-    transform .25s ease,
-    visibility .25s ease;
-
-}
-
-
-
-/* ==========================================================================
-   DRAWER ACTIVE STATE
-   ========================================================================== */
-
-.neural-site-masthead.is-active-drawer
-.masthead-mobile-dropdown-drawer{
-
-  opacity:1 !important;
-
-  visibility:visible !important;
-
-  transform:translateY(0);
-
-  pointer-events:auto;
-
-}
-
-
-
-/* ==========================================================================
-   HAMBURGER ANIMATION
-   ========================================================================== */
-
-.is-active-drawer
-.hamburger-bar:nth-child(1){
-
-  transform:
-  translateY(7px)
-  rotate(45deg);
-
-}
-
-.is-active-drawer
-.hamburger-bar:nth-child(2){
-
-  opacity:0;
-
-}
-
-.is-active-drawer
-.hamburger-bar:nth-child(3){
-
-  transform:
-  translateY(-7px)
-  rotate(-45deg);
-
-}
-
-
-
-/* ==========================================================================
-   DESKTOP PROTECTION
-   ========================================================================== */
-
-@media(min-width:769px){
-
-  .masthead-mobile-dropdown-drawer{
-
-    display:none !important;
-
-  }
-
-}
-
-
 
 /* ==========================================================================
    REMOVE LEGACY MINIMAL MISTAKES MOBILE NAV
    ========================================================================== */
-
 .greedy-nav__toggle,
 .masthead__menu-toggle,
 .hidden-links,
-.greedy-nav .hidden-links{
-
-  display:none !important;
-
+.greedy-nav .hidden-links {
+  display: none !important;
 }
-
-
-
-/* ==========================================================================
-   FOOTER STABILIZATION
-   ========================================================================== */
-
-.neural-footer,
-.neural-core-footer,
-.page__footer,
-footer,
-.synaptic-footer{
-
-  margin-top:auto;
-
-  flex-shrink:0;
-
-}
-
-
-
-/* ==========================================================================
-   RESPONSIVE FOOTER GRID
-   ========================================================================== */
-
-@media(max-width:1024px){
-
-  .footer-matrix-container,
-  .neural-footer__grid{
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-  }
-
-}
-
-@media(max-width:768px){
-
-  .footer-matrix-container,
-  .neural-footer__grid{
-
-    grid-template-columns:
-    1fr;
-
-  }
-
-}
-
-
 
 /* ==========================================================================
    ACCESSIBILITY
    ========================================================================== */
-
 a:focus-visible,
-button:focus-visible{
-
-  outline:2px dashed #00f5d4;
-
-  outline-offset:4px;
-
+button:focus-visible {
+  outline: 2px dashed #00f5d4;
+  outline-offset: 4px;
 }
-
-
 
 /* ==========================================================================
    REDUCED MOTION
    ========================================================================== */
-
-@media(prefers-reduced-motion:reduce){
-
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
-  *::after{
-
-    animation-duration:.01ms !important;
-
-    transition-duration:.01ms !important;
-
-    scroll-behavior:auto !important;
-
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
-
 }
-
-
 
 /* ==========================================================================
    OMEGA ARCHITECTURE CONTRACT
@@ -326,7 +66,7 @@ button:focus-visible{
 
    CSS
    ----
-   _sass/layout/_navigation.scss
+   _sass/components/_navigation.scss
    _sass/layout/_homepage-stabilizer.scss
    _sass/layout/_omega-overrides.scss
 

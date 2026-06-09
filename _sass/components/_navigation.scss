@@ -1,107 +1,364 @@
 /* ==========================================================================
-   OMEGA OVERRIDES V3.0
-   Learning Biology For Life
-
-   FINAL CASCADE LAYER
-
-   PURPOSE
-   --------------------------------------------------------------------------
-   ✓ Prevent Minimal Mistakes conflicts
-   ✓ Stabilize Neural Navigation (z-index only)
-   ✓ Stabilize Mobile Drawer (z-index only)
-   ✓ Accessibility
-   ✓ Motion Safety
-   ✓ Cloudflare + GitHub Pages compatibility
-
-   DO NOT PLACE BASE COMPONENT STYLES HERE.
-   ========================================================================== */
-
-/* ==========================================================================
-   ROOT VARIABLES
+   NEURAL NAVIGATION MATRIX
+   RESPONSIBILITY: Masthead, Desktop Nav, Dropdown, Mobile Trigger, Mobile Drawer
    ========================================================================== */
 
 :root {
-  --hero-navbar-offset: 90px;
-  --omega-nav-layer: 2000;
-  --omega-drawer-layer: 2001;
-  --omega-dropdown-layer: 2002;
-  --omega-modal-layer: 3000;
+  --neural-nav-height: 72px;
 }
 
-@media (max-width: 768px) {
+/* Masthead Shell */
+.neural-site-masthead {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  overflow: visible;
+  isolation: isolate;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 6, 23, 0.96),
+    rgba(2, 6, 23, 0.88)
+  );
+  border-bottom: 1px solid rgba(0, 212, 178, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Inner Container */
+.masthead-matrix-container {
+  position: relative;
+  z-index: 2000;
+  min-height: 72px;
+  padding-inline: 1rem;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: visible;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Branding */
+.masthead-branding-node {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.masthead-logo-anchor {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.masthead-clean-logo {
+  display: block;
+  max-height: 40px;
+  width: auto;
+}
+
+.masthead-title-anchor {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.25s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: #00d4b2;
+    text-shadow: 0 0 15px rgba(0, 212, 178, 0.4);
+    transform: translateY(-1px);
+  }
+}
+
+.accent-neon {
+  color: #00d4b2;
+}
+
+/* Desktop Navigation */
+.masthead-desktop-navigation {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.desktop-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-main-link {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover,
+  &:focus-visible {
+    color: #00d4b2;
+    background: rgba(0, 212, 178, 0.04);
+    transform: translateY(-1px);
+  }
+}
+
+/* Dropdowns */
+.has-neural-dropdown {
+  position: relative;
+
+  > .nav-main-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}
+
+.dropdown-arrow-indicator {
+  font-size: 0.65rem;
+  line-height: 1;
+  margin-left: 0.15rem;
+}
+
+.neural-sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2002;
+  min-width: 220px;
+  padding: 0.75rem;
+  margin: 0;
+  list-style: none;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 212, 178, 0.15);
+  background: #0d1527;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  transform-origin: top left;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96) translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+
+  .has-neural-dropdown:hover &,
+  .has-neural-dropdown:focus-within & {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+  }
+
+  li {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 2px 0;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    color: #cbd5e1;
+    text-decoration: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    text-align: left;
+    transition: all 0.18s ease;
+
+    &:hover {
+      color: #00d4b2;
+      background: rgba(0, 212, 178, 0.05);
+      transform: translateX(3px);
+    }
+  }
+}
+
+.sub-menu-category-title {
+  padding: 0.65rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #00d4b2;
+  pointer-events: none;
+}
+
+/* Mobile Trigger */
+.masthead-mobile-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0;
+  background: rgba(0, 212, 178, 0.06);
+  border: 1px solid rgba(0, 212, 178, 0.15);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(0, 212, 178, 0.12);
+    border-color: #00d4b2;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #00d4b2;
+    outline-offset: 2px;
+  }
+}
+
+.hamburger-bar {
+  display: block;
+  width: 20px;
+  height: 2.5px;
+  background-color: #00d4b2;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.neural-site-masthead.is-active-drawer .masthead-mobile-trigger {
+  .hamburger-bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+}
+
+/* Mobile Drawer */
+.masthead-mobile-dropdown-drawer {
+  position: fixed;
+  top: var(--neural-nav-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2001;
+  background: rgba(2, 6, 23, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(0, 212, 178, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.neural-site-masthead.is-active-drawer .masthead-mobile-dropdown-drawer {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobile-nav-menu-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 2px 0;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    color: #cbd5e1;
+    text-decoration: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    text-align: left;
+    transition: all 0.18s ease;
+
+    &:hover {
+      color: #00d4b2;
+      background: rgba(0, 212, 178, 0.05);
+      transform: translateX(3px);
+    }
+  }
+}
+
+.mobile-menu-section-header {
+  padding: 0.65rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #00d4b2;
+  pointer-events: none;
+  border-top: 1px solid rgba(0, 212, 178, 0.1);
+  margin-top: 0.5rem;
+
+  &:first-child {
+    border-top: none;
+    margin-top: 0;
+  }
+}
+
+.mobile-nav-menu-list .mobile-sub-link {
+  padding-left: 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
   :root {
-    --hero-navbar-offset: 70px;
+    --neural-nav-height: 66px;
+  }
+
+  .masthead-matrix-container {
+    min-height: 66px;
+  }
+
+  .mobile-nav-menu-list {
+    padding: 1.5rem;
+    max-height: calc(100vh - var(--neural-nav-height));
+    overflow-y: auto;
+  }
+
+  .mobile-nav-menu-list a {
+    padding: 0.875rem 0;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 }
 
-/* ==========================================================================
-   REMOVE LEGACY MINIMAL MISTAKES MOBILE NAV
-   ========================================================================== */
+@media (min-width: 768px) {
+  .masthead-mobile-trigger {
+    display: none;
+  }
 
-.greedy-nav__toggle,
-.masthead__menu-toggle,
-.hidden-links,
-.greedy-nav .hidden-links {
-  display: none !important;
-}
-
-/* ==========================================================================
-   ACCESSIBILITY
-   ========================================================================== */
-
-a:focus-visible,
-button:focus-visible {
-  outline: 2px dashed #00f5d4;
-  outline-offset: 4px;
-}
-
-/* ==========================================================================
-   REDUCED MOTION
-   ========================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
+  .masthead-mobile-dropdown-drawer {
+    display: none !important;
   }
 }
 
-/* ==========================================================================
-   OMEGA ARCHITECTURE CONTRACT
-
-   HTML
-   ----
-   _includes/navigation/masthead.html
-
-   CSS
-   ----
-   _sass/components/_navigation.scss
-   _sass/layout/_homepage-stabilizer.scss
-   _sass/layout/_omega-overrides.scss
-
-   JS
-   --
-   assets/js/mobile-drawer.js
-
-   REMOVED
-   -------
-   assets/js/neural-nav.js
-   assets/js/synaptic-navigation.js
-
-   STATE FLOW
-   ----------
-
-   neural-site-masthead
-            +
-   is-active-drawer
-            +
-   masthead-mobile-dropdown-drawer
-
-   NEVER duplicate component CSS here.
-
-   This file is the FINAL CASCADE ONLY.
-
-   ========================================================================== */
+@media (min-width: 1200px) {
+  .masthead-matrix-container {
+    padding-inline: 2rem;
+  }
+}
