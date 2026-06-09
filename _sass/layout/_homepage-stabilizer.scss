@@ -1,48 +1,35 @@
 /* ==========================================================================
    HOMEPAGE STABILIZER
    Refactored: 2026-06-07
-   Purpose: Fixed nav compensation, hero alignment, canvas backdrop,
-            mobile menu behavior, footer stacking.
+   Purpose: Hero alignment, canvas backdrop, homepage spacing.
+   
+   REMOVED:
+   - Navigation implementation (use _sass/components/_navigation.scss)
+   - Mobile drawer implementation (use _sass/components/_navigation.scss)
+   - Footer stacking (use _sass/components/_footer.scss)
+   - Mobile toggle cleanup (use _sass/layout/_omega-overrides.scss)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. DESIGN TOKENS
+   1. HOMEPAGE DESIGN TOKENS
    -------------------------------------------------------------------------- */
 :root {
-  --nav-height: 64px;
-  --layer-nav: 1000;
-  --layer-content: 1;
-  --layer-backdrop: -1;
-  --layer-drawer: 1100;
+  --homepage-hero-offset: 64px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --homepage-hero-offset: 60px;
+  }
 }
 
 /* --------------------------------------------------------------------------
-   2. FIXED NAVIGATION
-   -------------------------------------------------------------------------- */
-.site-header,
-.masthead,
-.neural-site-masthead {
-  position: fixed !important;
-  top: 0; left: 0; right: 0;
-  height: var(--nav-height);
-  z-index: var(--layer-nav);
-  background: rgba(2, 6, 23, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 212, 178, 0.08);
-}
-
-html {
-  scroll-padding-top: calc(var(--nav-height) + 8px);
-}
-
-/* --------------------------------------------------------------------------
-   3. GLOBAL AMBIENT BACKDROP (CANVAS)
+   2. GLOBAL AMBIENT BACKDROP (CANVAS)
    -------------------------------------------------------------------------- */
 .global-ambient-matrix-backdrop {
   position: fixed;
   inset: 0;
-  z-index: var(--layer-backdrop);
+  z-index: -1;
   pointer-events: none;
   overflow: hidden;
   width: 100%;
@@ -56,116 +43,14 @@ html {
 }
 
 /* --------------------------------------------------------------------------
-   4. HERO ALIGNMENT
+   3. HERO ALIGNMENT
    -------------------------------------------------------------------------- */
 body.home .neural-hero-shell,
 body.home .home-hero,
 .synaptic-home-layout .neural-hero-shell,
 .synaptic-home-layout .home-hero {
   margin-top: 0;
-  padding-top: var(--nav-height);
+  padding-top: var(--homepage-hero-offset);
   position: relative;
-  z-index: var(--layer-content);
-}
-
-/* --------------------------------------------------------------------------
-   5. MOBILE TOGGLE CLEANUP
-   Only hide Minimal Mistakes greedy-nav toggle, NOT our custom one.
-   -------------------------------------------------------------------------- */
-.greedy-nav__toggle,
-.masthead__menu-toggle {
-  display: none !important;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* --------------------------------------------------------------------------
-   6. FOOTER STACKING
-   -------------------------------------------------------------------------- */
-.site-footer,
-footer {
-  position: relative;
-  z-index: var(--layer-content);
-}
-
-/* --------------------------------------------------------------------------
-   7. MOBILE DRAWER SLIDE-IN ANIMATION
-   -------------------------------------------------------------------------- */
-.masthead-mobile-dropdown-drawer {
-  position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: var(--layer-drawer);
-  background: rgba(2, 6, 23, 0.98);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(0, 212, 178, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.neural-site-masthead.is-active-drawer .masthead-mobile-dropdown-drawer {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* --------------------------------------------------------------------------
-   8. MOBILE BREAKPOINT
-   -------------------------------------------------------------------------- */
-@media (max-width: 768px) {
-  :root {
-    --nav-height: 60px;
-  }
-
-  .masthead-mobile-trigger {
-    display: flex !important;
-  }
-
-  .masthead-desktop-navigation {
-    display: none !important;
-  }
-
-  .mobile-nav-menu-list {
-    padding: 1.5rem !important;
-    max-height: calc(100vh - var(--nav-height));
-    overflow-y: auto;
-  }
-
-  .mobile-nav-menu-list a {
-    padding: 0.875rem 0 !important;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-  }
-}
-
-@media (min-width: 769px) {
-
-  .masthead-mobile-trigger {
-    display: none !important;
-  }
-
-  .masthead-desktop-navigation {
-    display: flex !important;
-  }
-
-  .masthead-mobile-dropdown-drawer {
-    display: none !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .masthead-mobile-trigger {
-    display: flex !important;
-  }
-  .masthead-desktop-navigation {
-    display: none !important;
-  }
+  z-index: 100;
 }

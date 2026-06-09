@@ -1,240 +1,107 @@
 /* ==========================================================================
-   PREMIUM SOVEREIGN NAVIGATION MATRIX
+   OMEGA OVERRIDES V3.0
+   Learning Biology For Life
+
+   FINAL CASCADE LAYER
+
+   PURPOSE
+   --------------------------------------------------------------------------
+   ✓ Prevent Minimal Mistakes conflicts
+   ✓ Stabilize Neural Navigation (z-index only)
+   ✓ Stabilize Mobile Drawer (z-index only)
+   ✓ Accessibility
+   ✓ Motion Safety
+   ✓ Cloudflare + GitHub Pages compatibility
+
+   DO NOT PLACE BASE COMPONENT STYLES HERE.
    ========================================================================== */
 
-.site-header,
-.masthead {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: var(--z-header, 2000) !important;
-  overflow: visible !important;
-  isolation: isolate;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: linear-gradient(
-    to bottom,
-    rgba(2, 6, 23, 0.96),
-    rgba(2, 6, 23, 0.88)
-  ) !important;
-  border-bottom: 1px solid rgba(0, 212, 178, 0.08) !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* ==========================================================================
+   ROOT VARIABLES
+   ========================================================================== */
 
-.greedy-nav {
-  position: relative;
-  z-index: var(--z-header, 2000) !important;
-  min-height: 72px;
-  padding-inline: 1rem;
-  background: transparent !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: visible !important;
-}
-
-.site-title {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  font-size: clamp(1.05rem, 2vw, 1.35rem) !important;
-  font-weight: 900 !important;
-  letter-spacing: -0.03em !important;
-  color: #ffffff !important;
-  text-decoration: none !important;
-  transition: all 0.25s ease;
-
-  &:hover {
-    color: #00d4b2 !important;
-    text-shadow: 0 0 15px rgba(0, 212, 178, 0.4);
-    transform: translateY(-1px);
-  }
-}
-
-.greedy-nav .visible-links {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  overflow: visible !important;
-}
-
-.greedy-nav .visible-links a {
-  font-weight: 700 !important;
-  font-size: 0.92rem !important;
-  color: #cbd5e1 !important;
-  text-decoration: none !important;
-  padding: 0.5rem 0.8rem !important;
-  border-radius: 6px !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-
-  &:hover {
-    color: #00d4b2 !important;
-    background: rgba(0, 212, 178, 0.04) !important;
-    transform: translateY(-1px);
-  }
-}
-
-.greedy-nav__toggle {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  cursor: pointer;
-  z-index: var(--z-mobile-nav, 2500) !important;
-  border-radius: 8px !important;
-  border: 1px solid rgba(0, 212, 178, 0.2) !important;
-  padding: 0 !important;
-  background: rgba(2, 6, 23, 0.6) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #00d4b2 !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-
-  &:hover {
-    background: rgba(0, 212, 178, 0.08) !important;
-    border-color: #00d4b2 !important;
-    color: #ffffff !important;
-    transform: scale(1.02);
-  }
-
-  &:focus-visible {
-    outline: 2px solid #00d4b2;
-    outline-offset: 2px;
-  }
-}
-
-.hidden-links,
-.greedy-nav .hidden-links {
-  position: absolute !important;
-  top: 100% !important;
-  right: 1rem !important;
-  overflow: visible !important;
-  z-index: var(--z-dropdown, 3000) !important;
-  min-width: 220px;
-  padding: 0.75rem !important;
-  border-radius: 8px !important;
-  border: 1px solid rgba(0, 212, 178, 0.15) !important;
-  background: #0d1527 !important;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-  transform-origin: top right;
-  transition: opacity 0.2s ease, transform 0.2s ease !important;
-
-  &.hidden {
-    display: none !important;
-    opacity: 0;
-    transform: scale(0.96) translateY(-5px);
-  }
-
-  li {
-    width: 100% !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 2px 0 !important;
-  }
-
-  a {
-    display: block !important;
-    width: 100% !important;
-    padding: 0.65rem 0.85rem !important;
-    color: #cbd5e1 !important;
-    text-decoration: none !important;
-    border-radius: 6px !important;
-    box-sizing: border-box;
-    text-align: left !important;
-    transition: all 0.18s ease !important;
-
-    &:hover {
-      color: #00d4b2 !important;
-      background: rgba(0, 212, 178, 0.05) !important;
-      transform: translateX(3px);
-    }
-  }
+:root {
+  --hero-navbar-offset: 90px;
+  --omega-nav-layer: 2000;
+  --omega-drawer-layer: 2001;
+  --omega-dropdown-layer: 2002;
+  --omega-modal-layer: 3000;
 }
 
 @media (max-width: 768px) {
-  .greedy-nav {
-    min-height: 66px;
-  }
-
-  .hidden-links,
-  .greedy-nav .hidden-links {
-    right: 0.75rem !important;
-    width: min(250px, 92vw) !important;
-  }
-
-  .greedy-nav .visible-links {
-    gap: 0.25rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .greedy-nav {
-    padding-inline: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .greedy-nav__toggle,
-  .masthead__menu-toggle {
-    display: none !important;
-  }
-
-  .greedy-nav .visible-links {
-    display: flex !important;
-  }
-
-  .greedy-nav .hidden-links {
-    display: none !important;
+  :root {
+    --hero-navbar-offset: 70px;
   }
 }
 
 /* ==========================================================================
-   CUSTOM MOBILE TOGGLE (neural-site-masthead)
+   REMOVE LEGACY MINIMAL MISTAKES MOBILE NAV
    ========================================================================== */
 
-.masthead-mobile-trigger {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  gap: 5px;
-  cursor: pointer;
-  padding: 0;
-  background: rgba(0, 212, 178, 0.06);
-  border: 1px solid rgba(0, 212, 178, 0.15);
-  border-radius: 8px;
-  transition: all 0.2s ease;
+.greedy-nav__toggle,
+.masthead__menu-toggle,
+.hidden-links,
+.greedy-nav .hidden-links {
+  display: none !important;
+}
 
-  &:hover, &:focus-visible {
-    background: rgba(0, 212, 178, 0.12);
-    border-color: #00d4b2;
-  }
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
 
-  &:focus-visible {
-    outline: 2px solid #00d4b2;
-    outline-offset: 2px;
-  }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px dashed #00f5d4;
+  outline-offset: 4px;
+}
 
-  .hamburger-bar {
-    display: block;
-    width: 20px;
-    height: 2.5px;
-    background-color: #00d4b2;
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-.is-active-drawer .masthead-mobile-trigger {
-  .hamburger-bar:nth-child(1) {
-    transform: translateY(7.5px) rotate(45deg);
-  }
-  .hamburger-bar:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger-bar:nth-child(3) {
-    transform: translateY(-7.5px) rotate(-45deg);
-  }
-}
+/* ==========================================================================
+   OMEGA ARCHITECTURE CONTRACT
+
+   HTML
+   ----
+   _includes/navigation/masthead.html
+
+   CSS
+   ----
+   _sass/components/_navigation.scss
+   _sass/layout/_homepage-stabilizer.scss
+   _sass/layout/_omega-overrides.scss
+
+   JS
+   --
+   assets/js/mobile-drawer.js
+
+   REMOVED
+   -------
+   assets/js/neural-nav.js
+   assets/js/synaptic-navigation.js
+
+   STATE FLOW
+   ----------
+
+   neural-site-masthead
+            +
+   is-active-drawer
+            +
+   masthead-mobile-dropdown-drawer
+
+   NEVER duplicate component CSS here.
+
+   This file is the FINAL CASCADE ONLY.
+
+   ========================================================================== */

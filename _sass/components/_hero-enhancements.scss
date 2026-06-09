@@ -68,3 +68,63 @@
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   HERO REFINEMENT
+   ========================================================================== */
+
+.hero-logo,
+.hero-emblem,
+.hero-image img,
+.hero-image svg {
+  max-width: 280px;
+  width: 28vw;
+  height: auto;
+}
+
+.hero-buttons,
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero__title,
+.page__hero-title,
+.hero__lead,
+.page__lead {
+  position: relative;
+  z-index: 10;
+}
+
+.page__hero,
+.hero {
+  position: relative;
+}
+
+.page__hero::before,
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.25);
+  pointer-events: none;
+}
+
+@media (max-width:768px){
+
+  .hero-logo,
+  .hero-emblem,
+  .hero-image img,
+  .hero-image svg{
+      max-width:180px;
+      width:45vw;
+  }
+
+  .hero-buttons,
+  .hero-actions{
+      flex-direction:column;
+      align-items:center;
+  }
+}

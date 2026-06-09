@@ -1,54 +1,165 @@
 ---
-# =========================================================================
-# LEARNING BIOLOGY FOR LIFE - ULTIMATE MASTER PRODUCTION STYLESHEET
-# Optimized for Jekyll 4.x, Bundler, and Cloudflare Pages Run-Time Nodes
-# =========================================================================
+# ==========================================================================
+# LEARNING BIOLOGY FOR LIFE
+# SOVEREIGN MASTER STYLESHEET
+#
+# Architecture:
+#   1. Bootstrap Variables
+#   2. Theme Engine
+#   3. Custom Core
+#   4. Components
+#   5. Layout Systems
+#   6. Utility Pipelines
+#   7. Stabilizers
+#   8. Global Overrides
+#   9. Firewalls (FINAL CASCADE LOCK)
+#
+# Production:
+#   Jekyll 4.x
+#   Minimal Mistakes
+#   GitHub Pages
+#   Cloudflare
+# ==========================================================================
 ---
 
 @charset "UTF-8";
 
-/* --- 1. SYSTEM VARIABLE PROTECTION (pre-load overrides) --- */
-$serif: Georgia, Times, serif !default;
-$sans-serif: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Arial, sans-serif !default;
-$monospace: Monaco, Consolas, "Lucida Console", monospace !default;
+/* ==========================================================================
+   1. EARLY BOOTSTRAP VARIABLES
+   These load BEFORE Minimal Mistakes.
+   Only variables intended to influence the theme belong here.
+   ========================================================================== */
 
-/* --- 2. SKIN + THEME ENGINE --- */
+$serif: Georgia, Times, serif !default;
+$sans-serif: -apple-system, BlinkMacSystemFont,
+              "Segoe UI", Roboto, Arial, sans-serif !default;
+$monospace: Monaco, Consolas, "Lucida Console",
+             monospace !default;
+
+/* ==========================================================================
+   2. CUSTOM VARIABLE OVERRIDES
+   Theme-facing variables only.
+   Do NOT place component CSS here.
+   ========================================================================== */
+
+@import "core/variables";
+
+/* ==========================================================================
+   3. MINIMAL MISTAKES ENGINE
+   ========================================================================== */
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
 @import "minimal-mistakes";
 
-/* --- 3. CUSTOM VARIABLES & MIXINS --- */
-/* NOTE: Only place files here that define variables with !default to beat
-   the theme's own defaults. If core/variables references theme variables,
-   move it AFTER @import "minimal-mistakes". */
-@import "core/variables";
+/* ==========================================================================
+   4. MIXINS
+   Must load after theme if they depend on theme variables.
+   ========================================================================== */
+
 @import "core/mixins";
 
-/* --- 4. MODULAR CORE UI COMPONENTS --- */
+/* ==========================================================================
+   5. CORE COMPONENTS
+   Self-contained UI modules.
+   Avoid cross-layout styling here.
+   ========================================================================== */
+
 @import "components/buttons";
 @import "components/cards";
-@import "components/hero";
 @import "components/panels";
 @import "components/accordion";
-@import "components/neural-ui";
+
+@import "components/navigation";
+
+@import "components/hero";
 @import "components/neural-hero";
 @import "components/hero-enhancements";
-@import "components/navigation";
+
+@import "components/neural-ui";
+
 @import "components/footer";
 
-/* --- 5. STRUCTURED ECOSYSTEM LAYOUT SYSTEMS --- */
+/* ==========================================================================
+   6. LAYOUT ECOSYSTEM
+   Large page structures.
+   ========================================================================== */
+
 @import "layout/home-layout";
 @import "layout/synaptic";
 @import "layout/neural-node";
 @import "layout/network";
 @import "layout/cinematic-refinement";
 
-/* --- 6. UTILITY PIPELINES --- */
+/* ==========================================================================
+   7. UTILITIES
+   Small reusable helper systems.
+   ========================================================================== */
+
 @import "utilities/animations";
 @import "utilities/utilities";
 @import "utilities/neural-navbar";
 
-/* --- 7. HOMEPAGE CRITICAL FIXES --- */
+/* ==========================================================================
+   8. STABILIZATION LAYER
+   Bug fixes that should override normal components/layouts.
+   ========================================================================== */
+
 @import "layout/homepage-stabilizer";
 
-/* --- 8. THE ABSOLUTE FINAL CASCADING OVERRIDES --- */
+/* ==========================================================================
+   9. GLOBAL OMEGA OVERRIDES
+   High-priority production patches.
+   Keep generic global resets here.
+   ========================================================================== */
+
 @import "layout/omega-overrides";
+
+/* ==========================================================================
+   10. FIREWALL ZONE
+   ABSOLUTE FINAL CASCADE LOCK
+   Nothing should be imported after this section.
+   ========================================================================== */
+
+@import "components/masthead-logo-firewall";
+
+/* ==========================================================================
+   CASCADE PROTECTION POLICY
+
+   COMPONENTS OWN:
+   - buttons
+   - cards
+   - hero
+   - navigation
+   - footer
+
+   LAYOUTS OWN:
+   - page grids
+   - containers
+   - section spacing
+   - homepage structure
+
+   UTILITIES OWN:
+   - helper classes
+   - animation helpers
+   - text utilities
+
+   OMEGA OWNS:
+   - emergency fixes
+   - z-index hierarchy
+   - navbar offsets
+   - mobile drawer patches
+
+   FIREWALL OWNS:
+   - masthead logo dimensions
+   - masthead image protection
+   - anti-global-img inheritance
+   - final navbar immunity
+
+   NEVER:
+   - import anything after firewall
+   - duplicate hero rules across files
+   - duplicate navbar offsets
+   - duplicate image resets
+   - duplicate z-index systems
+
+   ========================================================================== */
