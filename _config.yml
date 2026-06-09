@@ -211,6 +211,17 @@ defaults:
       author_profile: false
       classes: wide
 
+
+  - scope:
+      path: ""
+      type: concepts
+    values:
+      layout: concept_node
+      author_profile: false
+      classes: wide
+      mastery_state: "locked"
+      cognitive_depth: 1
+
 # ==========================================================================
 # AUTHOR
 # ==========================================================================
