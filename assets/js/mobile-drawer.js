@@ -8,7 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function setOpen(isOpen) {
     masthead.classList.toggle("is-active-drawer", isOpen);
-    toggleBtn.setAttribute("aria-expanded", isOpen);
+    toggleBtn.setAttribute(
+    "aria-expanded",
+    isOpen ? "true" : "false"
+);
     drawer.setAttribute("aria-hidden", !isOpen);
     document.body.style.overflow = isOpen ? "hidden" : "";
   }
