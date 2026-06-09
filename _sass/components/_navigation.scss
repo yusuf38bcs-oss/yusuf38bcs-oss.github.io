@@ -25,6 +25,7 @@
   );
   border-bottom: 1px solid rgba(0, 212, 178, 0.08);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-top: env(safe-area-inset-top);
 }
 
 /* Inner Container */
@@ -260,6 +261,7 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
+  pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -269,6 +271,7 @@
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 .mobile-nav-menu-list {
