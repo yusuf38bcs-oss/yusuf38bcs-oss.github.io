@@ -1,69 +1,39 @@
-(function () {
-  "use strict";
+document.addEventListener("DOMContentLoaded", function () {
 
-  document.addEventListener("DOMContentLoaded", function () {
+  const masthead = document.querySelector(".neural-site-masthead");
+  const toggleBtn = document.getElementById("neural-mobile-toggle");
+  const drawer = document.getElementById("neural-mobile-drawer");
 
-    const masthead = document.querySelector(".neural-site-masthead");
-    const toggle = document.getElementById("neural-mobile-toggle");
-    const drawer = document.getElementById("neural-mobile-drawer");
+  if (!toggleBtn || !masthead || !drawer) return;
 
-    if (!masthead || !toggle || !drawer) {
-      console.warn("[Masthead] Required elements missing");
-      return;
-    }
+  function setOpen(isOpen) {
+    masthead.classList.toggle("is-active-drawer", isOpen);
+    toggleBtn.setAttribute("aria-expanded", isOpen);
+    drawer.setAttribute("aria-hidden", !isOpen);
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  }
 
-    function setOpen(open) {
-      masthead.classList.toggle("is-active-drawer", open);
-
-      toggle.setAttribute("aria-expanded", open);
-      drawer.setAttribute("aria-hidden", !open);
-
-      document.body.style.overflow =
-        open ? "hidden" : "";
-    }
-
-    toggle.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const open =
-        !masthead.classList.contains("is-active-drawer");
-
-      setOpen(open);
-    });
-
-    document.addEventListener("click", function (e) {
-
-      if (
-        masthead.classList.contains("is-active-drawer") &&
-        !drawer.contains(e.target) &&
-        !toggle.contains(e.target)
-      ) {
-        setOpen(false);
-      }
-
-    });
-
-    document.addEventListener("keydown", function (e) {
-
-      if (
-        e.key === "Escape" &&
-        masthead.classList.contains("is-active-drawer")
-      ) {
-        setOpen(false);
-      }
-
-    });
-
-    window.addEventListener("resize", function () {
-
-      if (
-        window.innerWidth >= 769 &&
-        masthead.classList.contains("is-active-drawer")
-      ) {
-        setOpen(false);
-      }
-
-    });
-
+  toggleBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    setOpen(!masthead.classList.contains("is-active-drawer"));
   });
-})();
+
+  drawer.querySelectorAll("a").forEach(function(link){
+    link.addEventListener("click", function(){
+      setOpen(false);
+    });
+  });
+
+  document.addEventListener("click", function(e){
+    if(!masthead.contains(e.target)){
+      setOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(e.key==="Escape"){
+      setOpen(false);
+    }
+  });
+
+});
