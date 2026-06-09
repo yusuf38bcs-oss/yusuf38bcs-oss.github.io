@@ -1,7 +1,6 @@
 <#
 .SYNOPSIS
     Enterprise _pages/ taxonomy reorganization with permalink safety.
-    Uses git mv and preserves URLs by inspecting front matter.
 .PARAMETER Apply
     Execute moves. Omit for dry-run audit.
 #>
@@ -84,22 +83,11 @@ foreach ($dir in $subDirs) {
 # 2. ROUTING MAP
 # =========================================================================================
 $routing = @(
-    # Utility
     @{ Files = @("contact.md","disclaimer.md","privacy-policy.md","terms-and-conditions.md","welcome.md","thank-you.md"); Dest = "utility" }
-    
-    # Categories
     @{ Files = @(); Filter = "category-*.md"; Dest = "categories" }
-    
-    # Assessments
     @{ Files = @("biology-model-test.md","biology-practical.md"); Filter = "mcq-arena*.md"; Dest = "assessments" }
-    
-    # Tools
     @{ Files = @("mi-analysis.md","personality-test.md","institutional-framework.md"); Dest = "tools" }
-    
-    # Core Hubs
     @{ Files = @("biology.md","life-philosophy.md","life-practices.md","socratic.md","synaptic-bridge.md","research-node.md","mcq-arena.md"); Dest = "hubs" }
-    
-    # Sub-Hubs
     @{ Files = @(); Filter = "biology-*.md"; Dest = "sub-hubs" }
 )
 
@@ -110,16 +98,13 @@ foreach ($route in $routing) {
     $destDir = Join-Path $PagesDir $route.Dest
     $filesToMove = @()
     
-    # Explicit files
     foreach ($f in $route.Files) {
         $path = Join-Path $PagesDir $f
         if (Test-Path $path) { $filesToMove += $path }
     }
     
-    # Filter-based files
-    if ($route.Filter) {
+    if ($route.ContainsKey('Filter') -and $route.Filter) {
         Get-ChildItem -Path $PagesDir -Filter $route.Filter -File | ForEach-Object {
-            # Skip if already routed by explicit list
             if ($filesToMove -notcontains $_.FullName) {
                 $filesToMove += $_.FullName
             }
@@ -129,13 +114,11 @@ foreach ($route in $routing) {
     foreach ($filePath in $filesToMove) {
         $fileName = Split-Path $filePath -Leaf
         
-        # Check permalink safety
         if (-not (Has-Permalink -FilePath $filePath)) {
             $implicit = Get-ImplicitPermalink -FileName $fileName
             Write-Host "  WARN: $fileName has no permalink. URL will change to $implicit unless fixed." -ForegroundColor Magenta
             
             if ($Apply) {
-                # Inject permalink to preserve original URL
                 Add-Permalink -FilePath $filePath -Permalink $implicit
                 & git add $filePath
             }
