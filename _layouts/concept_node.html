@@ -1,0 +1,71 @@
+---
+layout: default
+---
+
+<div class="neural-concept-workspace">
+
+  <section class="neural-canvas-pane" aria-label="Interactive Graph Network Space">
+    <canvas id="neuralNetworkCanvas"></canvas>
+  </section>
+
+  <section class="neural-content-pane" aria-label="Concept Details and Learning Interface">
+
+    <article class="quantum-node-card" data-state="{{ page.mastery_state | default: 'unlocked' }}">
+
+      <header class="node-card-header">
+        <span class="category-tag sys-metric">{{ page.category }}</span>
+        <h1>{{ page.title }}</h1>
+      </header>
+
+      <section class="node-body-content">
+        {{ content }}
+      </section>
+
+      {% if page.prerequisites %}
+      <section class="node-prerequisites">
+        <h3>Prerequisites</h3>
+        <ul>
+          {% for pre in page.prerequisites %}
+          <li>
+            <a href="{{ '/matrix/' | append: pre | relative_url }}">
+              {{ pre | replace: '-', ' ' | capitalize }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      {% if page.downstream_links %}
+      <section class="node-connections">
+        <h3>Connected Vectors</h3>
+        <ul>
+          {% for link in page.downstream_links %}
+          <li>
+            <a href="{{ '/matrix/' | append: link | relative_url }}">
+              {{ link | replace: '-', ' ' | capitalize }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      <section class="socratic-interface-dock" aria-label="Socratic Dialog Module">
+        <h3>Socratic Simulation</h3>
+        <div id="socraticConsole" class="console-output sys-metric" role="log" aria-live="polite">
+          Initializing connection... System secure. Ready for inquiry loop challenge.
+        </div>
+        <div class="input-row">
+          <input type="text" id="socraticInput" placeholder="Synthesize your hypothesis here..." aria-label="Socratic response entry field">
+          <button id="submitResponseBtn" type="button">Transmit Vector</button>
+        </div>
+      </section>
+
+    </article>
+
+  </section>
+
+</div>
+
+<script defer src="{{ '/assets/js/neural-engine.js' | relative_url }}"></script>
