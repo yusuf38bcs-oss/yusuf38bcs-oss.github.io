@@ -1,221 +1,355 @@
 /* ==========================================================================
-   OMEGA PRODUCTION OVERRIDES (THE CRITICAL FINAL CASCADING LAYER)
-   Fixes: Navbar Gap, Hero Alignment, and Premium Footer Grid Restructuring
+   OMEGA OVERRIDES V3.0
+   Learning Biology For Life
+
+   FINAL CASCADE LAYER
+
+   PURPOSE
+   --------------------------------------------------------------------------
+   ✓ Prevent Minimal Mistakes conflicts
+   ✓ Stabilize Neural Navigation
+   ✓ Stabilize Mobile Drawer
+   ✓ Hero Offset Correction
+   ✓ Sticky Footer
+   ✓ Accessibility
+   ✓ Motion Safety
+   ✓ Cloudflare + GitHub Pages compatibility
+
+   DO NOT PLACE BASE COMPONENT STYLES HERE.
    ========================================================================== */
 
-/* --- 1. UNIVERSAL TYPOGRAPHY & FLUID ENGINE --- */
-html { font-size: clamp(14px, 1.1vw, 17px) !important; }
 
-h1, .hero-title, .hero-section h1 {
-  font-size: clamp(2.2rem, calc(4.5vw + 1rem), 4.2rem) !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.03em !important;
+
+/* ==========================================================================
+   ROOT VARIABLES
+   ========================================================================== */
+
+:root{
+
+  --hero-navbar-offset:90px;
+
+  --omega-nav-layer:2000000;
+  --omega-drawer-layer:2000001;
+  --omega-dropdown-layer:2000002;
+
 }
 
-h2, .section-title {
-  font-size: clamp(1.7rem, calc(3vw + 1rem), 2.8rem) !important;
-  letter-spacing: -0.02em !important;
-}
+@media(max-width:768px){
 
-p, li, span, a, h3, h4, .card-content, .knowledge-manifold-card p {
-  word-spacing: normal !important;
-  letter-spacing: normal !important;
-  line-height: 1.65 !important;
-}
+  :root{
 
-/* --- 2. HOMEPAGE CONTAINER RESETS --- */
-.synaptic-homepage-matrix, #synaptic-home-root, .initial-content, #main, main {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
+    --hero-navbar-offset:70px;
 
-
-
-.home .page__title, .home .page__meta,
-.synaptic-homepage-matrix .page__title {
-  display: none !important;
-}
-
-/* --- 3. ACADEMIC FOOTER ALIGNMENT & REFINEMENT --- */
-body {
-  min-height: 100vh !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-#main, .page, .main-content-render-viewport {
-  flex: 1 0 auto !important; /* Ensures footer is pushed to the bottom of the screen */
-}
-
-.neural-footer, .neural-core-footer, .page__footer, footer {
-  display: block !important;
-  position: relative !important;
-  z-index: 10 !important;
-  background: linear-gradient(180deg, #020617 0%, #01040a 100%) !important;
-  border-top: 1px solid rgba(0, 212, 178, 0.15) !important;
-  padding: 5rem 2rem 2rem 2rem !important;
-  margin-top: auto !important;
-}
-
-/* Master Grid Structure */
-.footer-matrix-container {
-  display: grid !important;
-  max-width: 1250px !important;
-  margin: 0 auto !important;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
-  gap: 3rem !important;
-  align-items: start !important;
-}
-
-/* Brand Column Polish */
-.footer-matrix-column:first-child p,
-.footer-matrix-desc {
-  text-align: left !important;
-  color: #94a3b8 !important;
-  line-height: 1.7 !important;
-  font-size: 0.95rem !important;
-  max-width: 90% !important;
-  margin-top: 0.75rem !important;
-}
-
-/* Footer Navigation Links */
-.footer-matrix-nav {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.85rem !important;
-  text-align: left !important;
-}
-
-.footer-matrix-link {
-  color: #cbd5e1 !important;
-  font-size: 0.92rem !important;
-  text-decoration: none !important;
-  transition: color 0.2s ease, transform 0.2s ease !important;
-  display: inline-block !important;
-}
-
-.footer-matrix-link:hover {
-  color: #00d4b2 !important;
-  transform: translateX(4px) !important;
-}
-
-/* Subscription Button Constraint */
-.newsletter-action-trigger, .footer-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: linear-gradient(135deg, #00d4b2, #0369a1) !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  padding: 0.85rem 1.5rem !important;
-  border-radius: 8px !important;
-  border: none !important;
-  width: auto !important;
-  min-width: 180px !important;
-  text-align: center !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-  margin-top: 0.5rem !important;
-}
-
-.newsletter-action-trigger:hover, .footer-btn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px rgba(0, 212, 178, 0.3) !important;
-}
-
-/* Pedagogical Core Card Formatting */
-.footer-pedagogy-card, .footer-pedagogy-wrapper {
-  max-width: 850px !important;
-  margin: 4rem auto 2rem auto !important;
-  background: rgba(15, 23, 42, 0.5) !important;
-  border: 1px solid rgba(0, 212, 178, 0.2) !important;
-  border-radius: 12px !important;
-  padding: 2.5rem 2rem !important;
-  text-align: center !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
-}
-
-/* Mobile Breakpoint Adjustments */
-@media (max-width: 1024px) {
-  .footer-matrix-container {
-    grid-template-columns: repeat(2, 1fr) !important;
   }
+
 }
 
-@media (max-width: 768px) {
-  .footer-matrix-container {
-    grid-template-columns: 1fr !important;
-    text-align: center !important;
+
+
+/* ==========================================================================
+   GLOBAL LAYOUT
+   ========================================================================== */
+
+html{
+  font-size:clamp(14px,1.1vw,17px);
+}
+
+body{
+
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+
+  background:#020617;
+
+}
+
+#main,
+.page,
+.initial-content,
+main{
+
+  flex:1 0 auto;
+
+}
+
+
+
+/* ==========================================================================
+   HOMEPAGE CLEANUP
+   ========================================================================== */
+
+.home .page__title,
+.home .page__meta,
+.synaptic-homepage-matrix .page__title{
+
+  display:none !important;
+
+}
+
+.initial-content{
+
+  padding-top:var(--hero-navbar-offset);
+
+}
+
+
+
+/* ==========================================================================
+   NEURAL MASTHEAD
+   ========================================================================== */
+
+.neural-site-masthead{
+
+  position:fixed !important;
+
+  top:0;
+  left:0;
+  right:0;
+
+  width:100%;
+
+  z-index:var(--omega-nav-layer);
+
+}
+
+
+
+/* ==========================================================================
+   MOBILE DRAWER
+   ========================================================================== */
+
+.masthead-mobile-dropdown-drawer{
+
+  position:fixed !important;
+
+  top:var(--hero-navbar-offset);
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  z-index:var(--omega-drawer-layer);
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(-12px);
+
+  pointer-events:none;
+
+  overflow-y:auto;
+
+  -webkit-overflow-scrolling:touch;
+
+  transition:
+    opacity .25s ease,
+    transform .25s ease,
+    visibility .25s ease;
+
+}
+
+
+
+/* ==========================================================================
+   DRAWER ACTIVE STATE
+   ========================================================================== */
+
+.neural-site-masthead.is-active-drawer
+.masthead-mobile-dropdown-drawer{
+
+  opacity:1 !important;
+
+  visibility:visible !important;
+
+  transform:translateY(0);
+
+  pointer-events:auto;
+
+}
+
+
+
+/* ==========================================================================
+   HAMBURGER ANIMATION
+   ========================================================================== */
+
+.is-active-drawer
+.hamburger-bar:nth-child(1){
+
+  transform:
+  translateY(7px)
+  rotate(45deg);
+
+}
+
+.is-active-drawer
+.hamburger-bar:nth-child(2){
+
+  opacity:0;
+
+}
+
+.is-active-drawer
+.hamburger-bar:nth-child(3){
+
+  transform:
+  translateY(-7px)
+  rotate(-45deg);
+
+}
+
+
+
+/* ==========================================================================
+   DESKTOP PROTECTION
+   ========================================================================== */
+
+@media(min-width:769px){
+
+  .masthead-mobile-dropdown-drawer{
+
+    display:none !important;
+
   }
-  .footer-matrix-column:first-child p,
-  .footer-matrix-desc,
-  .footer-matrix-nav {
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  .footer-matrix-link:hover {
-    transform: none !important;
-  }
+
 }
 
-/* --- 4. ACCESSIBILITY & MOTION SAFETY --- */
-a:focus-visible, button:focus-visible {
-  outline: 2px dashed #00d4b2 !important;
-  outline-offset: 4px !important;
+
+
+/* ==========================================================================
+   REMOVE LEGACY MINIMAL MISTAKES MOBILE NAV
+   ========================================================================== */
+
+.greedy-nav__toggle,
+.masthead__menu-toggle,
+.hidden-links,
+.greedy-nav .hidden-links{
+
+  display:none !important;
+
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-/* ======================================================================
-   OMEGA FOOTER REFINEMENTS
-   ====================================================================== */
 
-.neural-footer__mission{
-  margin-top:.75rem;
-  max-width:42rem;
-  color:#94a3b8;
-  line-height:1.65;
-  font-size:.92rem;
-}
 
-.neural-footer iframe,
-.neural-footer .sib-form{
-  max-width:360px !important;
-  width:100% !important;
+/* ==========================================================================
+   FOOTER STABILIZATION
+   ========================================================================== */
+
+.neural-footer,
+.neural-core-footer,
+.page__footer,
+footer,
+.synaptic-footer{
+
+  margin-top:auto;
+
+  flex-shrink:0;
+
 }
 
-.neural-footer__reflection-card{
-  max-width:860px;
-  margin-inline:auto;
-}
 
-.neural-footer__legal{
-  border-top:1px solid rgba(0,212,178,.15);
-}
 
-@media (min-width:1024px){
+/* ==========================================================================
+   RESPONSIVE FOOTER GRID
+   ========================================================================== */
 
+@media(max-width:1024px){
+
+  .footer-matrix-container,
   .neural-footer__grid{
+
     grid-template-columns:
-      1.1fr
-      1fr
-      1fr;
-  }
+    repeat(2,1fr);
 
-  .neural-footer__column--subscribe{
-    padding-left:1rem;
   }
 
 }
-/* Synaptic Footer Visibility Guard */
-.synaptic-footer {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 10 !important;
+
+@media(max-width:768px){
+
+  .footer-matrix-container,
+  .neural-footer__grid{
+
+    grid-template-columns:
+    1fr;
+
+  }
+
 }
+
+
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+a:focus-visible,
+button:focus-visible{
+
+  outline:2px dashed #00f5d4;
+
+  outline-offset:4px;
+
+}
+
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+
+    animation-duration:.01ms !important;
+
+    transition-duration:.01ms !important;
+
+    scroll-behavior:auto !important;
+
+  }
+
+}
+
+
+
+/* ==========================================================================
+   OMEGA ARCHITECTURE CONTRACT
+
+   HTML
+   ----
+   _includes/navigation/masthead.html
+
+   CSS
+   ----
+   _sass/layout/_navigation.scss
+   _sass/layout/_homepage-stabilizer.scss
+   _sass/layout/_omega-overrides.scss
+
+   JS
+   --
+   assets/js/mobile-drawer.js
+
+   REMOVED
+   -------
+   assets/js/neural-nav.js
+   assets/js/synaptic-navigation.js
+
+   STATE FLOW
+   ----------
+
+   neural-site-masthead
+            +
+   is-active-drawer
+            +
+   masthead-mobile-dropdown-drawer
+
+   NEVER duplicate component CSS here.
+
+   This file is the FINAL CASCADE ONLY.
+
+   ========================================================================== */
