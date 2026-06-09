@@ -94,9 +94,27 @@ button:focus-visible {
 
    ========================================================================== */
 /* ==========================================================================
-   DESKTOP NAVIGATION ENFORCEMENT
-   Remove once root cause in utilities/neural-navbar.scss is resolved.
+   LAYOUT OFFSETS & DESKTOP ENFORCEMENT
    ========================================================================== */
+
+/* Ensure content clears fixed neural masthead on all pages */
+#main,
+.page,
+.synaptic-page-container {
+  padding-top: var(--neural-nav-height);
+}
+
+/* Homepage hero handles its own padding via homepage-stabilizer */
+.synaptic-homepage-matrix {
+  padding-top: 0;
+}
+
+/* Prevent anchor links from hiding under fixed navbar */
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: calc(var(--neural-nav-height) + 20px);
+}
+
+/* Desktop navigation enforcement — remove once component layer is proven stable */
 @media (min-width: 768px) {
   .masthead-desktop-navigation {
     display: block !important;
