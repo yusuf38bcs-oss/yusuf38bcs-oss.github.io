@@ -138,6 +138,10 @@ collections:
   socratic:
     output: true
     permalink: /:collection/:path/
+  
+concepts:
+    output: true
+    permalink: /matrix/:path/
 
 # ==========================================================================
 # DEFAULTS
