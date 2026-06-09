@@ -1,0 +1,21 @@
+---
+layout: null
+---
+[
+{%- for concept in site.concepts -%}
+  {%- assign id = concept.id | default: concept.name -%}
+  {%- assign title = concept.title | default: concept.name -%}
+  {%- assign category = concept.category | default: "Uncategorized" -%}
+  {%- assign prerequisites = concept.prerequisites | default: empty_array -%}
+  {%- assign links = concept.downstream_links | default: empty_array -%}
+  {%- assign depth = concept.difficulty_depth | default: 1 -%}
+  {
+    "id": {{ id | jsonify }},
+    "title": {{ title | jsonify }},
+    "category": {{ category | jsonify }},
+    "prerequisites": {{ prerequisites | jsonify }},
+    "links": {{ links | jsonify }},
+    "depth": {{ depth }}
+  }{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]
