@@ -1,71 +1,91 @@
+$Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+
+$LayoutContent = @'
 ---
 layout: default
 ---
 
-<div class="neural-concept-workspace">
+<nav class="synaptic-breadcrumb-bar" aria-label="Synaptic path">
+  <div class="breadcrumb-track">
+    <span class="sys-metric breadcrumb-label">Vector:</span>
+    <a href="{{ '/categories/' | append: page.category | downcase | relative_url }}">
+      {{ page.category | default: "Matrix" }}
+    </a>
+    <span class="breadcrumb-separator">&#8212;&#8212;&#9889;&#8212;&#8212;&gt;</span>
+    <span class="current-node">{{ page.title }}</span>
+  </div>
+  <div class="user-telemetry sys-metric">
+    Depth: <span>Lvl {{ page.cognitive_depth | default: 1 }}</span>
+  </div>
+</nav>
 
+<div class="neural-concept-workspace">
   <section class="neural-canvas-pane" aria-label="Interactive Graph Network Space">
     <canvas id="neuralNetworkCanvas"></canvas>
   </section>
 
   <section class="neural-content-pane" aria-label="Concept Details and Learning Interface">
-
-    <article class="quantum-node-card" data-state="{{ page.mastery_state | default: 'unlocked' }}">
-
+    <article class="quantum-node-card" data-state="{{ page.mastery_state | default: 'locked' }}">
       <header class="node-card-header">
-        <span class="category-tag sys-metric">{{ page.category }}</span>
-        <h1>{{ page.title }}</h1>
+        <div class="category-tag sys-metric">{{ page.category | default: "Biological Node" | upcase }}</div>
+        <h1 class="page-main-title">{{ page.title }}</h1>
+
+        <div class="vector-grid">
+          {% if page.prerequisites %}
+          <div class="vector-section">
+            <span class="vector-label sys-metric">Upstream Prerequisites:</span>
+            <div class="vector-list">
+              {% for req in page.prerequisites %}
+                {% assign req_node = site.concepts | where: "slug", req | first %}
+                <a href="{{ req_node.url | default: '#' | relative_url }}" class="vector-chip prereq-chip">
+                  {{ req_node.title | default: req | replace: '-', ' ' | capitalize }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+
+          {% if page.downstream_links %}
+          <div class="vector-section">
+            <span class="vector-label sys-metric downstream-label">Downstream Vectors:</span>
+            <div class="vector-list">
+              {% for link in page.downstream_links %}
+                {% assign link_node = site.concepts | where: "slug", link | first %}
+                <a href="{{ link_node.url | default: '#' | relative_url }}" class="vector-chip downstream-chip">
+                  {{ link_node.title | default: link | replace: '-', ' ' | capitalize }} &rarr;
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
       </header>
 
       <section class="node-body-content">
         {{ content }}
       </section>
 
-      {% if page.prerequisites %}
-      <section class="node-prerequisites">
-        <h3>Prerequisites</h3>
-        <ul>
-          {% for pre in page.prerequisites %}
-          <li>
-            <a href="{{ '/matrix/' | append: pre | relative_url }}">
-              {{ pre | replace: '-', ' ' | capitalize }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </section>
-      {% endif %}
-
-      {% if page.downstream_links %}
-      <section class="node-connections">
-        <h3>Connected Vectors</h3>
-        <ul>
-          {% for link in page.downstream_links %}
-          <li>
-            <a href="{{ '/matrix/' | append: link | relative_url }}">
-              {{ link | replace: '-', ' ' | capitalize }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </section>
-      {% endif %}
-
       <section class="socratic-interface-dock" aria-label="Socratic Dialog Module">
         <h3>Socratic Simulation</h3>
-        <div id="socraticConsole" class="console-output sys-metric" role="log" aria-live="polite">
-          Initializing connection... System secure. Ready for inquiry loop challenge.
+        <p class="sys-metric socratic-subhead">[ CLOSING THE CIRCLE ]</p>
+        <div id="socraticConsole" class="console-output" role="log" aria-live="polite">
+          <p class="ai-prompt">
+            {{ page.socratic_prompt | default: "Based on the biological parameters established in this node, synthesize your hypothesis on how this system responds to anomalous stress." }}
+          </p>
         </div>
         <div class="input-row">
-          <input type="text" id="socraticInput" placeholder="Synthesize your hypothesis here..." aria-label="Socratic response entry field">
-          <button id="submitResponseBtn" type="button">Transmit Vector</button>
+          <textarea id="socraticInput" placeholder="Synthesize your hypothesis here..." rows="5"></textarea>
+        </div>
+        <div class="action-row">
+          <button id="submitResponseBtn" class="primary-btn" type="button">Transmit Vector</button>
         </div>
       </section>
-
     </article>
-
   </section>
-
 </div>
 
 <script defer src="{{ '/assets/js/neural-engine.js' | relative_url }}"></script>
+'@
+
+[System.IO.File]::WriteAllText("_layouts/concept_node.html", $LayoutContent, $Utf8NoBom)
+Write-Host "Layout file written successfully." -ForegroundColor Green
