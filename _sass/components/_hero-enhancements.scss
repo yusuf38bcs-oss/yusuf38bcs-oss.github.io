@@ -1,4 +1,22 @@
-﻿/* ==========================================================================
+<#
+.SYNOPSIS
+    Learning Biology For Life - Hero & Mobile Drawer CSS Integrator
+.DESCRIPTION
+    Injects the Cinematic Hero Engine and Neural Mobile Drawer styles 
+    into the designated Sass component file.
+#>
+
+Write-Host "Initiating Hero Enhancements & Mobile Drawer Injection..." -ForegroundColor Cyan
+
+# Ensure target directory exists
+$targetDir = "_sass/components"
+if (!(Test-Path $targetDir)) {
+    New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
+}
+
+$scssFile = "$targetDir/_hero-enhancements.scss"
+$scssContent = @'
+/* ==========================================================================
    CINEMATIC HERO ENHANCEMENTS ENGINE
    ========================================================================== */
 
@@ -25,3 +43,55 @@
     background-attachment: scroll !important;
   }
 }
+
+/* ==========================================================================
+   NEURAL MOBILE DRAWER (MASTHEAD)
+   ========================================================================== */
+
+.masthead-mobile-dropdown-drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  background: #020617;
+  border-top: 1px solid rgba(0, 212, 178, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Depth against hero */
+
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px);
+
+  transition:
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  z-index: 1000001; /* Extreme priority to overlap hero particles/canvas */
+}
+
+/* Active State (Drawer Open) */
+.neural-site-masthead.is-active-drawer .masthead-mobile-dropdown-drawer {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Desktop Constraint - Disable mobile drawer on larger screens */
+@media (min-width: 769px) {
+  .masthead-mobile-dropdown-drawer {
+    display: none !important;
+  }
+}
+'@
+
+Out-File -FilePath $scssFile -InputObject $scssContent -Encoding utf8
+Write-Host "[+] Restored _sass/components/_hero-enhancements.scss" -ForegroundColor Green
+
+Write-Host "=====================================================" -ForegroundColor Cyan
+Write-Host " HERO & MOBILE DRAWER INTEGRATION COMPLETE           " -ForegroundColor Cyan
+Write-Host "=====================================================" -ForegroundColor Cyan
+Write-Host "Ensure this file is imported in your main.scss (e.g., @import `"components/hero-enhancements`";)"
