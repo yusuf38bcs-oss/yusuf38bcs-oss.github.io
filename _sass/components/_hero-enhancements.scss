@@ -1,21 +1,3 @@
-<#
-.SYNOPSIS
-    Learning Biology For Life - Hero & Mobile Drawer CSS Integrator
-.DESCRIPTION
-    Injects the Cinematic Hero Engine and Neural Mobile Drawer styles 
-    into the designated Sass component file.
-#>
-
-Write-Host "Initiating Hero Enhancements & Mobile Drawer Injection..." -ForegroundColor Cyan
-
-# Ensure target directory exists
-$targetDir = "_sass/components"
-if (!(Test-Path $targetDir)) {
-    New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
-}
-
-$scssFile = "$targetDir/_hero-enhancements.scss"
-$scssContent = @'
 /* ==========================================================================
    CINEMATIC HERO ENHANCEMENTS ENGINE
    ========================================================================== */
@@ -86,12 +68,3 @@ $scssContent = @'
     display: none !important;
   }
 }
-'@
-
-Out-File -FilePath $scssFile -InputObject $scssContent -Encoding utf8
-Write-Host "[+] Restored _sass/components/_hero-enhancements.scss" -ForegroundColor Green
-
-Write-Host "=====================================================" -ForegroundColor Cyan
-Write-Host " HERO & MOBILE DRAWER INTEGRATION COMPLETE           " -ForegroundColor Cyan
-Write-Host "=====================================================" -ForegroundColor Cyan
-Write-Host "Ensure this file is imported in your main.scss (e.g., @import `"components/hero-enhancements`";)"
