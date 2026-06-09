@@ -362,3 +362,22 @@
     padding-inline: 2rem;
   }
 }
+.neural-site-masthead {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  overflow: visible;
+  isolation: isolate;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 6, 23, 0.96),
+    rgba(2, 6, 23, 0.88)
+  );
+  border-bottom: 1px solid rgba(0, 212, 178, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-top: env(safe-area-inset-top);   /* ADD THIS LINE */
+}
