@@ -126,3 +126,59 @@ h1, h2, h3, h4, h5, h6 {
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   NEURAL SYSTEM DIVIDER
+   ========================================================================== */
+.neural-system-divider {
+  width: 100%;
+  padding: 4rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divider-matrix-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 600px;
+  text-align: center;
+}
+
+.divider-node-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.8;
+}
+
+.matrix-solid-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--synth-cyan, #00f5d4);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 245, 212, 0.6);
+}
+
+.matrix-horizontal-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 212, 0.5), transparent);
+}
+
+.divider-transition-text {
+  font-size: clamp(1.2rem, 3vw, 1.75rem);
+  font-weight: 300;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.cyan-glow-text {
+  color: var(--synth-cyan, #00f5d4);
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
+}
