@@ -1,42 +1,51 @@
-document.addEventListener("DOMContentLoaded", function () {
-
+/**
+ * Core Mobile Drawer Controller | Safe Patch v1.1
+ * WCAG AA Compliant | Vanilla JS
+ */
+document.addEventListener("DOMContentLoaded", function() {
+  const toggleBtn = document.getElementById("neural-mobile-toggle") || document.querySelector(".greedy-nav__toggle");
+  const drawer = document.getElementById("neural-mobile-drawer") || document.querySelector(".greedy-nav__hidden");
   const masthead = document.querySelector(".neural-site-masthead");
-  const toggleBtn = document.getElementById("neural-mobile-toggle");
-  const drawer = document.getElementById("neural-mobile-drawer");
 
-  if (!toggleBtn || !masthead || !drawer) return;
-
-  function setOpen(isOpen) {
-    masthead.classList.toggle("is-active-drawer", isOpen);
-    toggleBtn.setAttribute(
-    "aria-expanded",
-    isOpen ? "true" : "false"
-);
-    drawer.setAttribute("aria-hidden", !isOpen);
-    document.body.style.overflow = isOpen ? "hidden" : "";
+  if (!toggleBtn || !drawer) {
+    console.warn("[Nav Audit] Mobile drawer elements missing from DOM.");
+    return;
   }
 
-  toggleBtn.addEventListener("click", function (e) {
+  const toggleDrawer = (forceState) => {
+    const isExpanded = toggleBtn.getAttribute("aria-expanded") === "true";
+    const newState = typeof forceState === "boolean" ? forceState : !isExpanded;
+    
+    // Accessibility States
+    toggleBtn.setAttribute("aria-expanded", newState);
+    drawer.setAttribute("aria-hidden", !newState);
+    
+    // Visual States
+    drawer.classList.toggle("is-open", newState);
+    if (masthead) masthead.classList.toggle("is-active-drawer", newState);
+
+    // Prevent body scroll
+    document.body.style.overflow = newState ? "hidden" : "";
+  };
+
+  toggleBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     e.stopPropagation();
-    setOpen(!masthead.classList.contains("is-active-drawer"));
+    toggleDrawer();
   });
 
-  drawer.querySelectorAll("a").forEach(function(link){
-    link.addEventListener("click", function(){
-      setOpen(false);
-    });
-  });
-
-  document.addEventListener("click", function(e){
-    if(!masthead.contains(e.target)){
-      setOpen(false);
+  // Close on outside click
+  document.addEventListener("click", (e) => {
+    if (toggleBtn.getAttribute("aria-expanded") === "true" && !drawer.contains(e.target) && !toggleBtn.contains(e.target)) {
+      toggleDrawer(false);
     }
   });
 
-  document.addEventListener("keydown", function(e){
-    if(e.key==="Escape"){
-      setOpen(false);
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && toggleBtn.getAttribute("aria-expanded") === "true") {
+      toggleDrawer(false);
+      toggleBtn.focus();
     }
   });
-
 });
