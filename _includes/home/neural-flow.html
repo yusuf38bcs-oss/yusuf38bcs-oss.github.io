@@ -3,29 +3,35 @@
 
     <div class="flow-nodes-grid-axis">
 
-      <div class="flow-node-card-slot" data-aos="fade-right">
-        <div class="node-graphic-icon-box">
-          <div class="pulsing-core-dot"></div>
-        </div>
-        <h3 class="flow-node-title">Biological Dots</h3>
-        <p class="flow-node-desc">Isolate individual biological phenomena—whether a cranial nerve axis, an environmental niche, or a base pair nucleotide cluster—as a standalone data dot.</p>
-      </div>
+      <a href="{{ '/biology/' | relative_url }}" class="flow-node-link-wrapper" aria-label="Explore Biological Dots">
+        <article class="flow-node-card-slot" data-aos="fade-right">
+          <div class="node-graphic-icon-box">
+            <div class="pulsing-core-dot"></div>
+          </div>
+          <h3 class="flow-node-title">Biological Dots</h3>
+          <p class="flow-node-desc">Isolate individual biological phenomena—whether a cranial nerve axis, an environmental niche, or a base pair nucleotide cluster—as a standalone data dot.</p>
+        </article>
+      </a>
 
-      <div class="flow-node-card-slot highlight-border-cyan" data-aos="fade-up">
-        <div class="node-graphic-icon-box">
-          <div class="vector-streaming-line"></div>
-        </div>
-        <h3 class="flow-node-title" style="color: #00d4b2 !important;">Interdisciplinary Lines</h3>
-        <p class="flow-node-desc">Trace the structural connections where raw biology metrics actively intersect with psychological behaviors, neural leadership models, and systemic choices.</p>
-      </div>
+      <a href="{{ '/synaptic-bridge/' | relative_url }}" class="flow-node-link-wrapper" aria-label="Explore Interdisciplinary Lines">
+        <article class="flow-node-card-slot highlight-border-cyan" data-aos="fade-up">
+          <div class="node-graphic-icon-box">
+            <div class="vector-streaming-line"></div>
+          </div>
+          <h3 class="flow-node-title">Interdisciplinary Lines</h3>
+          <p class="flow-node-desc">Trace the structural connections where raw biology metrics actively intersect with psychological behaviors, neural leadership models, and systemic choices.</p>
+        </article>
+      </a>
 
-      <div class="flow-node-card-slot" data-aos="fade-left">
-        <div class="node-graphic-icon-box">
-          <div class="infinite-hollow-circle"></div>
-        </div>
-        <h3 class="flow-node-title">The Socratic Circle</h3>
-        <p class="flow-node-desc">Complete the reflective learning circle back to divine wisdom, translating academic evidence into profound self-knowledge, active ethics, and global insight.</p>
-      </div>
+      <a href="{{ '/socratic/' | relative_url }}" class="flow-node-link-wrapper" aria-label="Explore The Socratic Circle">
+        <article class="flow-node-card-slot" data-aos="fade-left">
+          <div class="node-graphic-icon-box">
+            <div class="infinite-hollow-circle"></div>
+          </div>
+          <h3 class="flow-node-title">The Socratic Circle</h3>
+          <p class="flow-node-desc">Complete the reflective learning circle back to divine wisdom, translating academic evidence into profound self-knowledge, active ethics, and global insight.</p>
+        </article>
+      </a>
 
     </div>
 
@@ -74,6 +80,21 @@
     .flow-nodes-grid-axis { gap: 2.5rem; }
   }
 
+  /* --- NEW: Link Wrapper Accessibility & Routing Mechanics --- */
+  .flow-node-link-wrapper {
+    display: block;
+    text-decoration: none !important;
+    color: inherit;
+    border-radius: 12px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .flow-node-link-wrapper:focus-visible {
+    outline: 2px solid #00d4b2;
+    outline-offset: 4px;
+  }
+
   .flow-node-card-slot {
     background: #0d1527 !important;
     border: 1px solid rgba(255, 255, 255, 0.03) !important;
@@ -84,18 +105,29 @@
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
+    height: 100%; /* Ensures all cards stretch equally */
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    will-change: transform, border-color, box-shadow;
+    transform: translateZ(0); /* Hardware acceleration */
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .flow-node-card-slot:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0, 212, 178, 0.2) !important;
+  /* --- FIXED: Hover states transferred to the accessible wrapper --- */
+  .flow-node-link-wrapper:hover .flow-node-card-slot,
+  .flow-node-link-wrapper:focus-visible .flow-node-card-slot {
+    transform: translateY(-6px);
+    border-color: rgba(0, 212, 178, 0.3) !important;
+    box-shadow: 0 16px 40px rgba(0, 212, 178, 0.15);
   }
 
   .flow-node-card-slot.highlight-border-cyan {
     border-color: rgba(0, 212, 178, 0.1) !important;
     background: linear-gradient(145deg, #0d1527 0%, #070b13 100%) !important;
+  }
+
+  /* --- FIXED: Inline style removed, shifted to CSS inheritance --- */
+  .highlight-border-cyan .flow-node-title {
+    color: #00d4b2 !important;
   }
 
   .node-graphic-icon-box {
