@@ -267,3 +267,55 @@ h1, h2, h3, h4, h5, h6 {
     outline: none !important;
   }
 }
+/* ==========================================================================
+   HERO TYPOGRAPHY & FOOTER REFINEMENT PATCH
+   ========================================================================== */
+
+/* --- 1. HERO SPACING (Pushing the title down safely) --- */
+@media (max-width: 768px) {
+  .neural-hero-shell, 
+  .home-hero,
+  .synaptic-home-layout .section-shell {
+    /* Increases top padding so it clears the mobile navigation comfortably */
+    padding-top: 5rem !important; 
+  }
+  
+  .section-heading, 
+  .page-main-title {
+    margin-top: 1.5rem !important;
+  }
+}
+
+/* --- 2. HERO DESCRIPTION REFINEMENT --- */
+.section-lead, 
+.hero-description,
+.neural-hero-shell p {
+  color: #94a3b8 !important; /* Soft slate color for elegant contrast */
+  font-size: clamp(1rem, 4vw, 1.15rem) !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 2.5rem !important;
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Improves readability against complex backgrounds */
+}
+
+/* --- 3. FOOTER COPYRIGHT REFINEMENT --- */
+.synaptic-footer__legal {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 1.5rem !important;
+  padding-top: 2rem !important;
+}
+
+.synaptic-footer__copyright {
+  font-size: 0.8rem !important;
+  color: rgba(148, 163, 184, 0.5) !important; /* Dimmed slightly so links stand out */
+  text-align: center !important;
+  margin-top: 0.5rem !important;
+}
+
