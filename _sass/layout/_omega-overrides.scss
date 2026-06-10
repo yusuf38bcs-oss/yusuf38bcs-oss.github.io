@@ -319,3 +319,50 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5rem !important;
 }
 
+/* ==========================================================================
+   COMMIT 3: PRODUCTION HARDENING, ACCESSIBILITY & PERFORMANCE
+   ========================================================================== */
+
+/* --- 1. GLOBAL WCAG AA FOCUS STATES --- */
+*:focus {
+  outline: none; /* Suppress legacy/ugly browser default outlines */
+}
+
+*:focus-visible {
+  outline: 2px solid #00f5d4 !important; /* Synth-Cyan strict visibility */
+  outline-offset: 4px !important;
+  border-radius: 2px;
+}
+
+/* --- 2. HARDWARE ACCELERATION & REPAINT REDUCTION --- */
+/* Forces the browser to hand these heavy elements over to the GPU */
+.neural-card, 
+.synaptic-card, 
+.flow-node-card-slot,
+.network-node,
+.brevo-form-container {
+  will-change: transform, opacity, box-shadow;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* --- 3. ACCESSIBLE SMOOTH SCROLLING & MOTION REDUCTION --- */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* OS-Level override for users with vestibular disorders */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
