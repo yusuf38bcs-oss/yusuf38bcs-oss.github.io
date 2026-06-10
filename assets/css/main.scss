@@ -1,102 +1,59 @@
----
-@charset "utf-8";
-# ==========================================================================
-# LEARNING BIOLOGY FOR LIFE
-# SOVEREIGN MASTER STYLESHEET
-#
-# Architecture:
-#   1. Bootstrap Variables
-#   2. Theme Engine
-#   3. Custom Core
-#   4. Components
-#   5. Layout Systems
-#   6. Utility Pipelines
-#   7. Stabilizers
-#   8. Global Overrides
-#
-# Production:
-#   Jekyll 4.x
-#   Minimal Mistakes
-#   GitHub Pages
-#   Cloudflare
-# ==========================================================================
----
+
 @charset "utf-8";
 
 /* ==========================================================================
    1. EARLY BOOTSTRAP VARIABLES
    ========================================================================== */
-
 $serif: Georgia, Times, serif !default;
 $sans-serif: -apple-system, BlinkMacSystemFont,
               "Segoe UI", Roboto, Arial, sans-serif !default;
 $monospace: Monaco, Consolas, "Lucida Console",
              monospace !default;
-
 /* ==========================================================================
    2. CUSTOM VARIABLE OVERRIDES
    ========================================================================== */
-
 @import "core/variables";
-
 /* ==========================================================================
    3. MINIMAL MISTAKES ENGINE
    ========================================================================== */
-
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
 @import "minimal-mistakes";
-
 /* ==========================================================================
    4. MIXINS
    ========================================================================== */
-
 @import "core/mixins";
-
 /* ==========================================================================
    5. CORE COMPONENTS
    ========================================================================== */
-
 @import "components/buttons";
 @import "components/cards";
 @import "components/panels";
 @import "components/accordion";
-
 @import "components/navigation";
-
 @import "components/hero";
 @import "components/neural-hero";
 @import "components/hero-enhancements";
-
 @import "components/neural-ui";
-
 @import "components/footer";
-
 /* ==========================================================================
    6. LAYOUT ECOSYSTEM
    ========================================================================== */
-
 @import "layout/home-layout";
 @import "layout/synaptic";
 @import "layout/neural-node";
 @import "layout/network";
 @import "layout/cinematic-refinement";
-
 /* ==========================================================================
    7. UTILITIES
    ========================================================================== */
-
 @import "utilities/animations";
 @import "utilities/utilities";
-
 /* ==========================================================================
    8. STABILIZATION LAYER
    ========================================================================== */
-
 @import "layout/homepage-stabilizer";
-
 /* ==========================================================================
    9. GLOBAL OMEGA OVERRIDES
    FINAL CASCADE — nothing follows
    ========================================================================== */
-
 @import "layout/omega-overrides";
