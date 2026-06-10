@@ -1,16 +1,13 @@
 <footer class="synaptic-footer" role="contentinfo" aria-label="Learning Biology For Life Global Footer">
   <div class="synaptic-footer__wrapper">
 
-    <!-- 1. THE NUCLEUS: Brand Identity Card -->
     <div class="synaptic-card synaptic-footer__brand-card">
       <h2 class="synaptic-footer__brand-title">Learning Biology <span class="highlight">For Life</span></h2>
       <p class="synaptic-footer__brand-subtitle">BIOLOGY &bull; SYSTEMS THINKING &bull; 4IR EDUCATION</p>
     </div>
 
-    <!-- 2. THE PATHWAYS: Two-Column Taxonomy Grid -->
     <div class="synaptic-footer__nav-grid">
-      
-      <!-- Pillar 1: Academic Biology -->
+
       <nav class="synaptic-footer__column" aria-label="Academic Biology Pillar">
         <h3 class="synaptic-footer__heading">Biology (Academic)</h3>
         <ul class="synaptic-footer__list">
@@ -21,33 +18,31 @@
         </ul>
       </nav>
 
-      <!-- Pillar 2: Practical Approaches -->
       <nav class="synaptic-footer__column" aria-label="Practical Approaches Pillar">
-        <h3 class="synaptic-footer__heading">Practical Approaches</h3>
+        <h3 class="synaptic-footer__heading">Life Practices</h3>
         <ul class="synaptic-footer__list">
-          <li><a href="{{ '/practical/human-behaviour/' | relative_url }}">Human Behaviour</a></li>
-          <li><a href="{{ '/practical/leadership-management/' | relative_url }}">Leadership Management</a></li>
-          <li><a href="{{ '/practical/research-highlights/' | relative_url }}">Research Highlights</a></li>
-          <li><a href="{{ '/practical/random-thoughts/' | relative_url }}">Random Thoughts</a></li>
+          <li><a href="{{ '/life-practices/human-behaviour/' | relative_url }}">Human Behaviour</a></li>
+          <li><a href="{{ '/life-practices/leadership-management/' | relative_url }}">Leadership Management</a></li>
+          <li><a href="{{ '/life-practices/research-highlights/' | relative_url }}">Research Highlights</a></li>
+          <li><a href="{{ '/life-practices/random-thoughts/' | relative_url }}">Random Thoughts</a></li>
         </ul>
       </nav>
-      
+
     </div>
 
-    <!-- 3. THE TARGET NODE: Centered Subscription & Socratic Hub -->
     <div class="synaptic-card synaptic-footer__subscribe-card">
       <h3 class="synaptic-footer__heading text-center">Subscription Hub</h3>
       <p class="synaptic-footer__microcopy">
         Join the neural network. Receive custom research logs, Socratic analysis, and 4IR education insights straight to your cortex.
       </p>
-      
+
       <form action="https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ==" 
             method="POST" 
             target="_blank" 
             class="synaptic-newsletter__form">
-        
+
         <label for="FOOTER_EMAIL" class="synaptic-newsletter__label">Subscribe to Connect Your Dots Of Life</label>
-        
+
         <div class="synaptic-newsletter__input-group">
           <input type="email" id="FOOTER_EMAIL" name="EMAIL" class="synaptic-newsletter__input" placeholder="e.g. abc@xyz.com" required aria-required="true">
           <button type="submit" class="synaptic-newsletter__button">SUBSCRIBE</button>
@@ -66,14 +61,12 @@
       </form>
     </div>
 
-    <!-- 4. PILLAR 3 CONNECTOR: Pedagogical Reflection -->
     <div class="synaptic-footer__reflection">
       <blockquote class="synaptic-footer__quote">
         "The purpose of education is not the accumulation of information, but the construction of meaningful connections between ideas, systems, and life."
       </blockquote>
     </div>
 
-    <!-- 5. BASE MEMBRANE: Legal & Interactive Consent Anchor -->
     <div class="synaptic-footer__legal">
       <div class="synaptic-footer__copyright">
         &copy; {{ site.time | date: "%Y" }} Learning Biology For Life. Managed by MD. Yusuf. All rights reserved.
@@ -81,9 +74,9 @@
       <nav class="synaptic-footer__legal-links" aria-label="Legal Directory Links">
         <a href="{{ '/archive/' | relative_url }}">82-Post Archive</a>
         <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a>
-        <a href="{{ '/terms/' | relative_url }}">Terms & Conditions</a>
+        <a href="{{ '/terms-and-conditions/' | relative_url }}">Terms & Conditions</a>
         <a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a>
-        <a href="#" id="cookie-consent-trigger" class="cookie-trigger">Cookie Preferences</a>
+        <a href="#" id="cookie-consent-trigger" class="cookie-trigger" aria-haspopup="dialog">Cookie Preferences</a>
       </nav>
     </div>
 
