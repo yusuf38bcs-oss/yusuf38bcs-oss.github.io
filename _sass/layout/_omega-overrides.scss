@@ -182,3 +182,88 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   text-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
 }
+
+/* ==========================================================================
+   CRITICAL FIX: MOBILE DRAWER & LOGO OVERFLOW
+   ========================================================================== */
+
+/* 1. Constrain the Oversized Logo */
+.site-logo img,
+.masthead__menu-item img,
+#neural-mobile-drawer img,
+.greedy-nav__hidden img {
+  max-width: 180px !important;
+  height: auto !important;
+  display: block;
+}
+
+/* 2. Architect the Mobile Drawer (Off-Canvas Overlay) */
+@media (max-width: 1024px) {
+  
+  /* Force the raw list into a fixed side-panel */
+  #neural-mobile-drawer,
+  .greedy-nav__hidden {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 85vw !important;
+    max-width: 380px !important;
+    height: 100vh !important;
+    background-color: #020617 !important; /* Deep void background */
+    z-index: 99999 !important;
+    transform: translateX(100%); /* Hide off-screen by default */
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow-y: auto !important;
+    padding: 3rem 2rem !important;
+    box-shadow: -15px 0 50px rgba(0,0,0,0.8) !important;
+    border-left: 1px solid rgba(0, 245, 212, 0.15) !important;
+    display: block !important;
+  }
+
+  /* Active State (Triggered by mobile-drawer.js) */
+  #neural-mobile-drawer.is-open,
+  .greedy-nav__hidden.is-open {
+    transform: translateX(0) !important;
+  }
+
+  /* 3. Style the Navigation Links Inside the Drawer */
+  #neural-mobile-drawer ul,
+  .greedy-nav__hidden ul {
+    list-style: none !important;
+    margin: 2rem 0 0 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  #neural-mobile-drawer li,
+  .greedy-nav__hidden li {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #neural-mobile-drawer a,
+  .greedy-nav__hidden a {
+    display: block !important;
+    color: #e2e8f0 !important;
+    text-decoration: none !important;
+    font-size: 1.15rem !important;
+    font-weight: 500 !important;
+    padding: 1rem 0 !important;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1) !important;
+    transition: all 0.2s ease !important;
+  }
+
+  /* Hover & Focus Interactions */
+  #neural-mobile-drawer a:hover,
+  #neural-mobile-drawer a:focus-visible,
+  .greedy-nav__hidden a:hover,
+  .greedy-nav__hidden a:focus-visible {
+    color: #00f5d4 !important; /* Synth-Cyan Highlight */
+    padding-left: 12px !important; /* Satisfying kinetic shift */
+    border-bottom-color: rgba(0, 245, 212, 0.3) !important;
+    outline: none !important;
+  }
+}
