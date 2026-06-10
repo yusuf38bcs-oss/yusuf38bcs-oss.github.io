@@ -1,4 +1,9 @@
-
+---
+# ==========================================================================
+# LEARNING BIOLOGY FOR LIFE
+# SOVEREIGN MASTER STYLESHEET
+# ==========================================================================
+---
 @charset "utf-8";
 
 /* ==========================================================================
@@ -9,19 +14,23 @@ $sans-serif: -apple-system, BlinkMacSystemFont,
               "Segoe UI", Roboto, Arial, sans-serif !default;
 $monospace: Monaco, Consolas, "Lucida Console",
              monospace !default;
+
 /* ==========================================================================
    2. CUSTOM VARIABLE OVERRIDES
    ========================================================================== */
 @import "core/variables";
+
 /* ==========================================================================
    3. MINIMAL MISTAKES ENGINE
    ========================================================================== */
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
 @import "minimal-mistakes";
+
 /* ==========================================================================
    4. MIXINS
    ========================================================================== */
 @import "core/mixins";
+
 /* ==========================================================================
    5. CORE COMPONENTS
    ========================================================================== */
@@ -35,6 +44,7 @@ $monospace: Monaco, Consolas, "Lucida Console",
 @import "components/hero-enhancements";
 @import "components/neural-ui";
 @import "components/footer";
+
 /* ==========================================================================
    6. LAYOUT ECOSYSTEM
    ========================================================================== */
@@ -43,17 +53,158 @@ $monospace: Monaco, Consolas, "Lucida Console",
 @import "layout/neural-node";
 @import "layout/network";
 @import "layout/cinematic-refinement";
+
 /* ==========================================================================
    7. UTILITIES
    ========================================================================== */
 @import "utilities/animations";
 @import "utilities/utilities";
+
 /* ==========================================================================
    8. STABILIZATION LAYER
    ========================================================================== */
 @import "layout/homepage-stabilizer";
+
 /* ==========================================================================
    9. GLOBAL OMEGA OVERRIDES
-   FINAL CASCADE — nothing follows
    ========================================================================== */
 @import "layout/omega-overrides";
+
+/* ==========================================================================
+   10. PRODUCTION RECOVERY PATCH: NAV, LOGO & FOOTER
+   (Appended here to bypass the wiped-out _sass partials)
+   ========================================================================== */
+
+/* --- CRITICAL: CONSTRAIN THE LOGO --- */
+.masthead__inner-wrap .site-logo img,
+.masthead img,
+.site-title img {
+  max-width: 160px !important;
+  height: auto !important;
+  display: block;
+}
+
+/* --- CRITICAL: FIX THE SPILLING MOBILE MENU --- */
+@media (max-width: 1024px) {
+  .greedy-nav__hidden,
+  #neural-mobile-drawer {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 85vw !important;
+    max-width: 380px !important;
+    height: 100vh !important;
+    background-color: #020617 !important;
+    z-index: 99999 !important;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow-y: auto !important;
+    padding: 3rem 2rem !important;
+    box-shadow: -15px 0 50px rgba(0,0,0,0.8) !important;
+    border-left: 1px solid rgba(0, 245, 212, 0.15) !important;
+    display: block !important;
+  }
+
+  .greedy-nav__hidden.is-open,
+  #neural-mobile-drawer.is-open {
+    transform: translateX(0) !important;
+  }
+
+  .greedy-nav__hidden ul {
+    list-style: none !important;
+    margin: 2rem 0 0 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .greedy-nav__hidden li {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .greedy-nav__hidden a {
+    display: block !important;
+    color: #e2e8f0 !important;
+    text-decoration: none !important;
+    font-size: 1.15rem !important;
+    font-weight: 500 !important;
+    padding: 1rem 0 !important;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1) !important;
+  }
+}
+
+/* --- RESTORE FOOTER & BREVO FORM STYLING --- */
+.synaptic-footer {
+  background: #070B14 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 4rem 1.5rem 2rem !important;
+}
+
+.synaptic-card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+  padding: 3rem 2rem !important;
+  margin-bottom: 3rem !important;
+}
+
+.synaptic-newsletter__form {
+  max-width: 550px !important; 
+  margin: 0 auto !important;
+  text-align: left !important; 
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+.synaptic-newsletter__input {
+  background: #0B1120 !important;
+  border: 1px solid rgba(0, 212, 178, 0.3) !important;
+  color: #E2E8F0 !important;
+  padding: 0.9rem 1.2rem !important;
+  border-radius: 6px !important;
+  font-size: 0.95rem !important;
+  width: 100% !important;
+}
+
+.synaptic-newsletter__input:focus {
+  border-color: #00D4B2 !important;
+  outline: none !important;
+}
+
+.synaptic-newsletter__button {
+  background: #00D4B2 !important;
+  color: #020617 !important;
+  border: none !important;
+  padding: 0.9rem 1.8rem !important;
+  border-radius: 6px !important;
+  font-weight: 800 !important;
+  margin-top: 0.5rem !important;
+  cursor: pointer !important;
+}
+
+.synaptic-newsletter__optin {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.75rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.synaptic-newsletter__optin-text {
+  font-size: 0.85rem !important;
+  color: #94A3B8 !important;
+}
+
+@media (min-width: 640px) {
+  .synaptic-newsletter__input-group {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.5rem !important;
+  }
+  .synaptic-newsletter__button {
+    margin-top: 0 !important;
+  }
+}
