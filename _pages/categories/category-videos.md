@@ -1,5 +1,4 @@
 ---
-permalink: /category-videos/
 layout: archive
 title: "Video Library"
 permalink: /categories/videos/

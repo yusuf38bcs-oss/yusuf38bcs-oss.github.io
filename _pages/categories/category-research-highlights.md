@@ -1,5 +1,4 @@
 ---
-permalink: /category-research-highlights/
 layout: archive
 title: "Practical Approaches: Research Highlights"
 permalink: /categories/research-highlights/

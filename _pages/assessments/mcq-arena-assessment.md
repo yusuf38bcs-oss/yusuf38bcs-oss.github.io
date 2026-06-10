@@ -1,5 +1,4 @@
 ---
-permalink: /mcq-arena-assessment/
 title: "Assessment"
 layout: single
 permalink: /mcq-arena/assessment/

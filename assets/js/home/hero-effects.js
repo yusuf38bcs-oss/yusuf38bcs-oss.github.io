@@ -13,8 +13,11 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
     let particlesArray = [];
     let animationFrameId;
+    let isRunning = false;
 
     // Multi-Viewport Optimization Grid
     const isMobile = window.innerWidth <= 480;
@@ -71,9 +74,10 @@
           let dx = this.x - mouse.x;
           let dy = this.y - mouse.y;
           let distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < mouse.radius) {
+          // Issue: distance can be zero when a particle intersects the cursor, which produced NaN coordinates.
+          if (distance > 0 && distance < mouse.radius) {
             // Smooth directional shift vectors
-            this.x += (dx / distance) * 0.8; 
+            this.x += (dx / distance) * 0.8;
             this.y += (dy / distance) * 0.8;
           }
         }
@@ -114,7 +118,20 @@
       }
     }
 
+    function stopEngineLoop() {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+      isRunning = false;
+    }
+
+    function startEngineLoop() {
+      if (isRunning) return;
+      isRunning = true;
+      animationFrameId = requestAnimationFrame(animateEngineLoop);
+    }
+
     function animateEngineLoop() {
+      if (!isRunning) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const len = particlesArray.length;
@@ -130,26 +147,27 @@
     // High performance debouncing simulation on window resize
     let resizeTimeout;
     window.addEventListener("resize", () => {
-      cancelAnimationFrame(animationFrameId);
+      stopEngineLoop();
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
         resizeCanvas();
-        animateEngineLoop();
+        startEngineLoop();
       }, 150);
     });
 
     // Safe Page Visibility Hooks
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) { 
-        cancelAnimationFrame(animationFrameId); 
-      } else { 
-        resizeCanvas(); 
-        animateEngineLoop(); 
+      if (document.hidden) {
+        stopEngineLoop();
+      } else {
+        resizeCanvas();
+        // Issue: visibility changes and resize events could start overlapping RAF loops.
+        startEngineLoop();
       }
     });
     
     // Boot Sequence
     resizeCanvas();
-    animateEngineLoop();
+    startEngineLoop();
   });
 })();

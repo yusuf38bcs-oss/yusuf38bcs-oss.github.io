@@ -1,5 +1,4 @@
 ---
-permalink: /category-genetics/
 layout: archive
 title: "Higher Zoology Tree: Genetics"
 permalink: /categories/genetics/

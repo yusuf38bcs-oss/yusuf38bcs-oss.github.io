@@ -1,5 +1,4 @@
 ---
-permalink: /mi-analysis/
 title: "Find Your Intelligence Zone (Gardner's MI Theory)"
 layout: single
 permalink: /mi-analysis/

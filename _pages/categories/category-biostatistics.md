@@ -1,5 +1,4 @@
 ---
-permalink: /category-biostatistics/
 layout: archive
 title: "Higher Zoology Tree: Biostatistics"
 permalink: /categories/biostatistics/

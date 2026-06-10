@@ -1,5 +1,4 @@
 ---
-permalink: /category-random-thoughts/
 layout: archive
 title: "Practical Approaches: Random Thoughts"
 permalink: /categories/random-thoughts/

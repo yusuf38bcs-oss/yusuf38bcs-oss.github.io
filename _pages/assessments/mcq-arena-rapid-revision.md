@@ -1,5 +1,4 @@
 ---
-permalink: /mcq-arena-rapid-revision/
 title: "Rapid Revision"
 layout: single
 permalink: /mcq-arena/rapid-revision/

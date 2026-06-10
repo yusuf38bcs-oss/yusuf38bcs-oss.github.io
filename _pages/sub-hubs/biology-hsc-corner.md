@@ -1,5 +1,4 @@
 ---
-permalink: /biology-hsc-corner/
 title: "HSC Corner"
 layout: archive
 permalink: /biology/hsc-corner/

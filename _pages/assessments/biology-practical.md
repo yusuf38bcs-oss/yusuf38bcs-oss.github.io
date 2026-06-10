@@ -1,5 +1,4 @@
 ---
-permalink: /biology-practical/
 title: "Practical"
 layout: archive
 permalink: /biology/hsc-corner/practical/

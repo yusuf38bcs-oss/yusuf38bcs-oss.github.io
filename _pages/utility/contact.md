@@ -2,7 +2,6 @@
 permalink: /contact/
 title: "Contact Us"
 layout: single
-permalink: /contact-us/
 author_profile: true
 ---
 

@@ -1,5 +1,4 @@
 ---
-permalink: /category-animal-diversity/
 layout: archive
 title: "Higher Zoology Tree: Animal Diversity"
 permalink: /categories/animal-diversity/

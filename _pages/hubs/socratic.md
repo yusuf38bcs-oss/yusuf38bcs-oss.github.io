@@ -1,5 +1,4 @@
 ---
-permalink: /socratic/
 title: "Socratic 4.0"
 layout: single
 permalink: /socratic/

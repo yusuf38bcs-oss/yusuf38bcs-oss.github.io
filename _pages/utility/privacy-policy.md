@@ -1,5 +1,4 @@
 ---
-permalink: /privacy-policy/
 layout: single
 title: "Privacy Policy"
 permalink: /privacy-policy/

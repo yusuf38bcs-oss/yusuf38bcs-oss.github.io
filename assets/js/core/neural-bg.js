@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Learning Biology For Life - Neural Background Engine (Ecosystem Edition)
  * High-performance synaptic particle system with Retina optimization,
  * advanced requestAnimationFrame lifecycle management, and active core power-saving hooks.
@@ -9,9 +9,13 @@
 
   const NeuralEngine = {
     init() {
-      this.canvas = document.getElementById("neural-network");\n      if (!this.canvas) return;\n      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      this.canvas = document.getElementById("neural-network");
+      if (!this.canvas) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       this.ctx = this.canvas.getContext("2d");
+      if (!this.ctx) return;
+
       this.particles = [];
       this.ratio = window.devicePixelRatio || 1;
       this.animationId = null;
@@ -46,7 +50,8 @@
       this.canvas.height = this.height * this.ratio;
       this.canvas.style.width = `${this.width}px`;
       this.canvas.style.height = `${this.height}px`;
-      this.ctx.scale(this.ratio, this.ratio);
+      // Issue: repeated resize calls previously compounded canvas scaling.
+      this.ctx.setTransform(this.ratio, 0, 0, this.ratio, 0, 0);
     },
 
     debouncedResize() {

@@ -1,5 +1,4 @@
 ---
-permalink: /synaptic-bridge/
 title: "Synaptic Bridge"
 layout: archive
 permalink: /synaptic-bridge/

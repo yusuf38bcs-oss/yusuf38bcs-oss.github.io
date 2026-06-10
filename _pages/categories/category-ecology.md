@@ -1,5 +1,4 @@
 ---
-permalink: /category-ecology/
 layout: archive
 title: "Higher Zoology Tree: Ecology"
 permalink: /categories/ecology/

@@ -1,5 +1,4 @@
 ---
-permalink: /life-practices/
 title: "Life Practices"
 layout: single
 permalink: /life-practices/

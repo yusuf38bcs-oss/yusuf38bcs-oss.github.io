@@ -1,5 +1,4 @@
 ---
-permalink: /category-mcq/
 layout: archive
 title: "Socratic 4.0: MCQ Arena"
 permalink: /categories/mcq/

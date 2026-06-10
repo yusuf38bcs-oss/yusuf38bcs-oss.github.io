@@ -1,5 +1,4 @@
 ---
-permalink: /category-human-physiology/
 layout: archive
 title: "Higher Zoology Tree: Human Physiology"
 permalink: /categories/human-physiology/

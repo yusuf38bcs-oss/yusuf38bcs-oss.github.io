@@ -64,32 +64,89 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var consent = localStorage.getItem('cookie-consent');
     var banner = document.getElementById('gdpr-banner');
-    
-    if (!consent && banner) {
+    var cookieTrigger = document.getElementById('cookie-consent-trigger');
+    var adsenseClient = 'ca-pub-9144658795059352';
+
+    // Issue: localStorage can throw in private/restricted browsers; wrap reads/writes so consent UI never breaks page JS.
+    function getConsent() {
+      try {
+        return window.localStorage.getItem('cookie-consent');
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function setConsent(value) {
+      try {
+        window.localStorage.setItem('cookie-consent', value);
+      } catch (error) {
+        // If persistence is blocked, the current session still honors the button action.
+      }
+    }
+
+    function showBanner() {
+      if (!banner) return;
       banner.classList.add('is-visible');
-    } else if (consent === 'granted') {
-      loadAdSense();
+      banner.removeAttribute('aria-hidden');
+    }
+
+    function hideBanner() {
+      if (!banner) return;
+      banner.classList.remove('is-visible');
+      banner.setAttribute('aria-hidden', 'true');
+    }
+
+    function loadAdSense() {
+      // Issue: repeated consent actions previously could append duplicate AdSense scripts.
+      if (document.querySelector('script[data-cookie-managed="adsense"]')) return;
+
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + adsenseClient;
+      s.crossOrigin = 'anonymous';
+      s.dataset.cookieManaged = 'adsense';
+      document.head.appendChild(s);
     }
 
     window.gdprAccept = function() {
-      localStorage.setItem('cookie-consent', 'granted');
-      if(banner) banner.classList.remove('is-visible');
+      setConsent('granted');
+      hideBanner();
       loadAdSense();
     };
-    
+
     window.gdprDecline = function() {
-      localStorage.setItem('cookie-consent', 'denied');
-      if(banner) banner.classList.remove('is-visible');
+      setConsent('denied');
+      hideBanner();
     };
 
-    function loadAdSense() {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
-      s.crossOrigin = 'anonymous';
-      document.head.appendChild(s);
+    if (banner) {
+      banner.addEventListener('click', function(event) {
+        var actionButton = event.target.closest('[data-cookie-action]');
+        if (!actionButton) return;
+
+        if (actionButton.dataset.cookieAction === 'accept') {
+          window.gdprAccept();
+        } else if (actionButton.dataset.cookieAction === 'decline') {
+          window.gdprDecline();
+        }
+      });
+    }
+
+    if (cookieTrigger) {
+      cookieTrigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        showBanner();
+      });
+    }
+
+    var consent = getConsent();
+    if (!consent) {
+      showBanner();
+    } else if (consent === 'granted') {
+      loadAdSense();
+    } else {
+      hideBanner();
     }
   });
 </script>

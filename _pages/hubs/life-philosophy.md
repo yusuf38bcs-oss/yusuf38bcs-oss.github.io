@@ -1,5 +1,4 @@
 ---
-permalink: /life-philosophy/
 title: "Life Philosophy"
 layout: single
 permalink: /life-philosophy/

@@ -1,5 +1,4 @@
 ---
-permalink: /category-human-behaviour/
 layout: archive
 title: "Practical Approaches: Human Behaviour"
 permalink: /categories/human-behaviour/

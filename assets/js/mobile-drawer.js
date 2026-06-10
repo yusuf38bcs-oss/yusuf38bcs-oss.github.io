@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const toggleBtn = document.getElementById("neural-mobile-toggle") || document.querySelector(".greedy-nav__toggle");
   const drawer = document.getElementById("neural-mobile-drawer") || document.querySelector(".greedy-nav__hidden");
   const masthead = document.querySelector(".neural-site-masthead");
+  const originalBodyOverflow = document.body.style.overflow;
 
   if (!toggleBtn || !drawer) {
     console.warn("[Nav Audit] Mobile drawer elements missing from DOM.");
@@ -24,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
     drawer.classList.toggle("is-open", newState);
     if (masthead) masthead.classList.toggle("is-active-drawer", newState);
 
-    // Prevent body scroll
-    document.body.style.overflow = newState ? "hidden" : "";
+    // Issue: closing the drawer previously wiped any pre-existing inline body overflow state.
+    document.body.style.overflow = newState ? "hidden" : originalBodyOverflow;
   };
 
   toggleBtn.addEventListener("click", (e) => {
@@ -39,6 +40,11 @@ document.addEventListener("DOMContentLoaded", function() {
     if (toggleBtn.getAttribute("aria-expanded") === "true" && !drawer.contains(e.target) && !toggleBtn.contains(e.target)) {
       toggleDrawer(false);
     }
+  });
+
+  // Close after selecting a drawer link so keyboard and touch users regain page scroll.
+  drawer.addEventListener("click", (e) => {
+    if (e.target.closest("a")) toggleDrawer(false);
   });
 
   // Close on Escape key

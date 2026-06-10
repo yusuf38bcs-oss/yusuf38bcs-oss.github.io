@@ -1,5 +1,4 @@
 ---
-permalink: /thank-you/
 layout: single
 title: "Thank You for Subscribing!"
 permalink: /thank-you/

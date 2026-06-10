@@ -1,5 +1,4 @@
 ---
-permalink: /research-node/
 title: "Research Node"
 layout: archive
 permalink: /research-node/

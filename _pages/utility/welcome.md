@@ -1,5 +1,4 @@
 ---
-permalink: /welcome/
 layout: single
 title: "Welcome to the Synaptic Bridge!"
 permalink: /welcome/
@@ -16,6 +15,6 @@ The Synaptic Bridge connects scientific theory to reality. Here are a few ways t
 
 * **[Explore the Blog](/)**: Dive into our library of 88+ educational articles.
 * **[Meet the Author](/about/)**: Learn more about MD. YUSUF and the vision behind the platform.
-* **[Reach Out](/contact-us/)**: Have a question or a topic you want us to cover? We would love to hear from you.
+* **[Reach Out](/contact/)**: Have a question or a topic you want us to cover? We would love to hear from you.
 
 Thank you for bringing your curiosity to our community. Letâ€™s celebrate the beautiful lessons we gain just by connecting with the world around us.

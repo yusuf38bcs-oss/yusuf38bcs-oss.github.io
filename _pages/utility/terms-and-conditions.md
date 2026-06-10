@@ -1,5 +1,4 @@
 ---
-permalink: /terms-and-conditions/
 layout: single
 title: "Terms & Conditions"
 permalink: /terms-and-conditions/

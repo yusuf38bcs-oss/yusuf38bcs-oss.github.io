@@ -1,5 +1,4 @@
 ---
-permalink: /mcq-arena/
 title: "MCQ Arena"
 layout: archive
 permalink: /mcq-arena/
