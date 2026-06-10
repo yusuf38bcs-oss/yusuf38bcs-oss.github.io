@@ -1,4 +1,5 @@
-﻿/**
+/* assets/js/home/hero-effects.js */
+/**
  * Learning Biology For Life - Hero Interactive Canvas Particles
  * Optimized for High-Performance 60 FPS Rendering, Mobile Battery Protection & Safe Memory Disposal
  */
@@ -7,7 +8,9 @@
   "use strict";
 
   document.addEventListener("DOMContentLoaded", function() {
-    const canvas = document.getElementById("synaptic-hero-canvas");\n    if (!canvas) return;\n    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const canvas = document.getElementById("synaptic-hero-canvas");
+    if (!canvas) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = canvas.getContext("2d");
     let particlesArray = [];
@@ -19,8 +22,8 @@
       particleCount: isMobile ? 30 : 85, // Strict throttling to shield iPhone hardware loops
       connectDistance: isMobile ? 65 : 115,
       baseSpeed: 0.35,
-      particleColor: "rgba(0, 212, 178, 0.3)", // Signature Neon Cyan Matrix
-      lineColor: "rgba(0, 212, 178, 0.05)"
+      particleColor: "rgba(0, 245, 212, 0.3)", // Signature Neon Cyan Matrix (#00f5d4)
+      lineColor: "rgba(0, 245, 212, 0.05)"
     };
 
     const mouse = { x: null, y: null, radius: 150 };
@@ -113,13 +116,13 @@
 
     function animateEngineLoop() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       const len = particlesArray.length;
       for (let i = 0; i < len; i++) {
         particlesArray[i].update();
         particlesArray[i].draw();
       }
-      
+
       connectLines();
       animationFrameId = requestAnimationFrame(animateEngineLoop);
     }
@@ -135,6 +138,18 @@
       }, 150);
     });
 
-    document.addEventListener("visibilitychange", () => {\n      if (document.hidden) { cancelAnimationFrame(animationFrameId); }\n      else { resizeCanvas(); animateEngineLoop(); }\n    });\n    resizeCanvas();\n    animateEngineLoop();
+    // Safe Page Visibility Hooks
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) { 
+        cancelAnimationFrame(animationFrameId); 
+      } else { 
+        resizeCanvas(); 
+        animateEngineLoop(); 
+      }
+    });
+    
+    // Boot Sequence
+    resizeCanvas();
+    animateEngineLoop();
   });
 })();
