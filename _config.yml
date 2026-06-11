@@ -118,30 +118,38 @@ sass:
 # ==========================================================================
 
 collections:
+
   biology:
     output: true
-    permalink: /biology/:path/
+    permalink: /:collection/:path/
+
   synaptic-bridge:
     output: true
     permalink: /:collection/:path/
+
   life-philosophy:
     output: true
     permalink: /:collection/:path/
+
   life-practices:
     output: true
     permalink: /:collection/:path/
+
   socratic:
     output: true
     permalink: /:collection/:path/
+
   concepts:
     output: true
     permalink: /matrix/:path/
+  
 
 # ==========================================================================
 # DEFAULTS
 # ==========================================================================
 
 defaults:
+
   - scope:
       path: ""
       type: posts
@@ -155,12 +163,10 @@ defaults:
       path: ""
       type: biology
     values:
-      layout: concept_node # <-- FIXED: Matches your active Socratic layout template
-      author_profile: false
-      toc: false
+      layout: single
+      author_profile: true
+      toc: true
       classes: wide
-      mastery_state: "unlocked"
-      cognitive_depth: 1
 
   - scope:
       path: ""
@@ -206,6 +212,7 @@ defaults:
       author_profile: false
       classes: wide
 
+
   - scope:
       path: ""
       type: concepts
@@ -215,6 +222,7 @@ defaults:
       classes: wide
       mastery_state: "locked"
       cognitive_depth: 1
+
 # ==========================================================================
 # AUTHOR
 # ==========================================================================
