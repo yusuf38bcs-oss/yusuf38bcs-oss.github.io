@@ -489,3 +489,73 @@ html, body {
 img, svg, video, iframe, canvas, pre, code {
   max-width: 100% !important;
 }
+
+.neural-path-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.neural-path-item {
+  margin-bottom: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(0, 212, 178, 0.2);
+  border-radius: 8px;
+  background: rgba(13, 21, 39, 0.6);
+}
+
+.neural-path-link {
+  display: flex;
+  flex-direction: column;
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.neural-path-title {
+  color: #00f5d4;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.neural-path-reason {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.neural-toast--lock {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0d1527;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  z-index: 9999;
+}
+
+.neural-explanation {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-left: 3px solid #00f5d4;
+  background: rgba(0, 245, 212, 0.05);
+  color: #e2e8f0;
+  line-height: 1.65;
+}
+
+[data-status="locked"] {
+  opacity: 0.5;
+  pointer-events: none;
+  filter: grayscale(0.8);
+}
+
+[data-status="available"] {
+  opacity: 1;
+  pointer-events: auto;
+  border-color: rgba(0, 212, 178, 0.4);
+}
+
+.mastery-badge--earned {
+  color: #00f5d4;
+}
