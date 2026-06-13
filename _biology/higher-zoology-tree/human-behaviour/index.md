@@ -6,14 +6,14 @@ author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
 
-title: "Animal Diversity Matrix"
-excerpt: "Deconstruct the taxonomic lineages, morphological symmetries, and evolutionary milestones of the kingdom Animalia."
+title: "Human Behaviour Node"
+excerpt: "Analyze neuro-endocrine interactions, evolutionary psychology vectors, and behavioral homeostasis."
 
-date: 2026-06-13T12:05:00.000Z
-permalink: /biology/higher-zoology-tree/animal-diversity/
+date: 2026-06-13T12:15:00.000Z
+permalink: /biology/higher-zoology-tree/human-behaviour/
 
 # AI Knowledge Graph & Neural Routing
-node_id: node-animal-diversity
+node_id: node-human-behaviour
 pillar: "Life Sciences"
 difficulty: "Intermediate"
 xp: 400

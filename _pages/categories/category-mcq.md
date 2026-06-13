@@ -1,14 +1,20 @@
 ---
-permalink: /category-mcq/
 layout: archive
-title: "Socratic 4.0: MCQ Arena"
+title: "MCQ Arena"
 permalink: /categories/mcq/
 author_profile: true
 ---
 
 <div class="entries-list">
-  {% assign category_posts = site.categories['mcq'] %}
-  {% for post in category_posts %}
-    {% include archive-single.html %}
+  {% assign has_documents = false %}
+  {% for post in site.documents %}
+    {% if post.category == 'mcq' or post.categories contains 'mcq' %}
+      {% include archive-single.html %}
+      {% assign has_documents = true %}
+    {% endif %}
   {% endfor %}
+  
+  {% if has_documents == false %}
+    <p style="color: #a0aec0; padding: 2rem 0; font-style: italic;">Awaiting fresh scientific logs. Synaptic synchronization in progress...</p>
+  {% endif %}
 </div>

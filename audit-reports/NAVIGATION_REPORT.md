@@ -1,4 +1,4 @@
-﻿# Navigation Report
+# Navigation Report
 
 ## Working Links (7)
 - /

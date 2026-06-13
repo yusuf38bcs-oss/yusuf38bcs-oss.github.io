@@ -208,3 +208,39 @@ $monospace: Monaco, Consolas, "Lucida Console",
     margin-top: 0 !important;
   }
 }
+
+/* ==========================================================================
+   NUCLEAR TYPOGRAPHY & MENU OVERRIDES (CACHE BUSTER V1)
+   ========================================================================== */
+
+/* 1. Force the Main Menu & Drawer links to shrink */
+.masthead__menu-item a,
+.greedy-nav a,
+.greedy-nav .hidden-links a,
+.greedy-nav__hidden a,
+#neural-mobile-drawer a,
+nav.greedy-nav .masthead__menu-item a {
+    font-size: 14px !important; /* Hard-locked safe size */
+    font-weight: 500 !important;
+    padding: 8px 12px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+}
+
+/* 2. Tighten the spacing between menu items */
+.masthead__menu-item {
+    margin-right: 5px !important;
+}
+
+/* 3. Ensure the Site Title/Logo text isn't massive */
+.site-title {
+    font-size: 16px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* 4. Absolute overflow lock (Final fallback) */
+html, body, .initial-content, #main {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+}

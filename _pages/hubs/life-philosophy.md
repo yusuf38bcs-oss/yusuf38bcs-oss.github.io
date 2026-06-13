@@ -1,38 +1,27 @@
 ---
-permalink: /life-philosophy/
-title: "Life Philosophy"
 layout: single
+title: "Cosmic Life Philosophy"
 permalink: /life-philosophy/
-author_profile: false
+author_profile: true
 sidebar:
   nav: "synaptic_nav"
-classes: wide
-excerpt: "Deep ethical substrates, philosophical inquiry frameworks, and existential logic models built upon biological realities."
+
+node_id: hub-life-philosophy
+pillar: "Philosophy"
+status: "Active"
 ---
 
-<header class="page-content-header">
-  <h1 class="page-main-title u-text-glow">Life Philosophy</h1>
-  <p class="page-subtitle-lead">{{ page.excerpt }}</p>
-  <div class="header-matrix-line"></div>
-</header>
+<div class="hub-page">
+  <p class="page-subtitle-lead">Reflective wisdom and existential analysis bridging the gap between empirical science and universal moral fortitude.</p>
 
-<div class="archive-matrix-grid-stream">
-  {% assign items = site.life-philosophy | sort: 'date' | reverse %}
-  {% if items.size > 0 %}
-    {% for item in items %}
-      <div class="archive-grid-item-card">
-        <h2 class="archive-item-title">
-          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-        </h2>
-        {% if item.excerpt %}
-          <p class="archive-item-excerpt">{{ item.excerpt | strip_html | truncate: 160 }}</p>
-        {% endif %}
-        <span class="archive-item-meta">{{ item.date | date: "%B %d, %Y" }}</span>
-      </div>
+  <div class="entries-list" style="margin-top: 2rem;">
+    {% assign philosophy_nodes = site.documents | where_exp: "item", "item.url contains '/life-philosophy/'" %}
+    {% for post in philosophy_nodes %}
+      {% if post.url != page.url %}
+        {% include archive-single.html %}
+      {% endif %}
+    {% else %}
+      <p style="color: #a0aec0;"><em>Compiling philosophical vectors...</em></p>
     {% endfor %}
-  {% else %}
-    <div class="archive-empty-fallback">
-      <p>No analytical publication tracks found in this node timeline.</p>
-    </div>
-  {% endif %}
+  </div>
 </div>

@@ -18,6 +18,7 @@ incremental: false
 strict_front_matter: true
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: dark
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
@@ -25,25 +26,32 @@ plugins:
   - jekyll-seo-tag
   - jekyll-include-cache
   - jekyll-paginate
+
 search: true
 search_full_content: true
 breadcrumbs: true
+
 atom_feed:
   hide: false
+
 paginate: 10
 paginate_path: /page:num/
 permalink: /blog/:title/
+
 markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
   hard_wrap: false
   syntax_highlighter: rouge
+
 liquid:
   error_mode: warn
+
 sass:
   sass_dir: _sass
   style: compressed
+
 collections:
   biology:
     output: true
@@ -63,6 +71,7 @@ collections:
   concepts:
     output: true
     permalink: /matrix/:path/
+
 defaults:
   - scope:
       path: ''
@@ -128,15 +137,19 @@ defaults:
       classes: wide
       mastery_state: locked
       cognitive_depth: 1
+
 author:
   name: MD. Yusuf
   bio: BCS Education Cadre Officer | Digital Pedagogy | 4IR Education
   location: Bangladesh
+
 include:
   - _pages
+
 keep_files:
   - assets
   - network
+
 exclude:
   - Gemfile
   - Gemfile.lock
