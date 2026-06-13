@@ -1,85 +1,137 @@
----
+$u=New-Object System.Text.UTF8Encoding($false);$d=".\_layouts";if(-not(Test-Path $d)){New-Item -ItemType Directory -Path $d -Force|Out-Null};$c=@'---
 layout: default
 ---
-{% assign nav_category = page.category | default: "matrix" %}
 
-<nav class="synaptic-breadcrumb-bar" aria-label="Synaptic path">
-  <div class="breadcrumb-track">
-    <span class="sys-metric breadcrumb-label">Vector:</span>
-    <a href="{{ '/categories/' | append: nav_category | downcase | relative_url }}">
-      {{ nav_category | capitalize }}
-    </a>
-    <span class="breadcrumb-separator">&#8212;&#8212;&#9889;&#8212;&#8212;&gt;</span>
-    <span class="current-node">{{ page.title }}</span>
-  </div>
-  <div class="user-telemetry sys-metric">
-    Depth: <span>Lvl {{ page.cognitive_depth | default: 1 }}</span>
-  </div>
-</nav>
+{% assign node = page %}
+{% assign node_id = node.node_id | default: node.slug | default: node.url %}
+{% assign pillar = node.pillar | default: "biology" %}
+{% assign difficulty = node.difficulty | default: 1 %}
+{% assign mastery_points = node.mastery_points | default: 10 %}
+{% assign estimated_time = node.estimated_time | default: "5 min" %}
+{% assign status = node.status | default: "available" %}
+{% assign prerequisites = node.prerequisites | default: "" %}
+{% assign next_nodes = node.next_nodes | default: "" %}
 
-<div class="neural-concept-workspace">
-  <section class="neural-canvas-pane" aria-label="Interactive Graph Network Space">
-    <canvas id="neuralNetworkCanvas"></canvas>
+<article class="concept-node concept-node--{{ status }}"
+         data-concept-node
+         data-node-id="{{ node_id }}"
+         data-pillar="{{ pillar }}"
+         data-difficulty="{{ difficulty }}"
+         data-status="{{ status }}"
+         data-prerequisites="{{ prerequisites | join: ',' }}"
+         data-mastery-points="{{ mastery_points }}"
+         data-estimated-time="{{ estimated_time }}">
+
+  <!-- Neural Masthead -->
+  <header class="concept-hero">
+    <div class="concept-meta">
+      <span class="concept-pillar">{{ pillar | upcase }}</span>
+      <span class="concept-difficulty" data-difficulty="{{ difficulty }}">
+        {% for i in (1..5) %}
+          {% if i <= difficulty %}◆{% else %}◇{% endif %}
+        {% endfor %}
+      </span>
+      <span class="concept-time">{{ estimated_time }}</span>
+      <span class="concept-mastery-badge" data-mastery-badge="{{ node_id }}">Locked</span>
+    </div>
+    <h1 class="concept-title">{{ node.title }}</h1>
+    {% if node.excerpt %}
+      <p class="concept-excerpt">{{ node.excerpt | strip_html }}</p>
+    {% endif %}
+  </header>
+
+  <!-- Synaptic Prerequisites -->
+  {% if prerequisites != empty %}
+    <section class="synaptic-prerequisites">
+      <h2>Prerequisite Pathways</h2>
+      <ul class="prerequisite-list">
+        {% for prereq in prerequisites %}
+          {% assign prereq_page = site.pages | where: "node_id", prereq | first %}
+          {% unless prereq_page %}
+            {% assign prereq_page = site.biology | where: "node_id", prereq | first %}
+          {% endunless %}
+          {% unless prereq_page %}
+            {% assign prereq_page = site.concepts | where: "node_id", prereq | first %}
+          {% endunless %}
+          <li class="prerequisite-item" data-prerequisite="{{ prereq }}">
+            {% if prereq_page %}
+              <a href="{{ prereq_page.url | relative_url }}" class="prerequisite-link">
+                {{ prereq_page.title | default: prereq }}
+              </a>
+            {% else %}
+              <span class="prerequisite-missing">{{ prereq }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  <!-- Core Content -->
+  <div class="concept-content">
+    {{ content }}
+  </div>
+
+  <!-- Socratic Reflex Arc -->
+  {% if node.anomaly_question %}
+    <section class="socratic-reflex-container" id="socratic-{{ node_id | slugify }}">
+      <h2>Cognitive Verification Node</h2>
+      <p class="socratic-prompt-text">{{ node.anomaly_question }}</p>
+
+      <form class="socratic-reflex-form" action="#" method="post">
+        <input type="text"
+               class="reflex-input"
+               name="hypothesis"
+               placeholder="Enter your biological hypothesis..."
+               autocomplete="off" />
+        <button type="submit" class="reflex-submit-btn mi-btn-calculate">Fire Synapse</button>
+      </form>
+    </section>
+  {% endif %}
+
+  <!-- Neural Bridge: Adaptive Path -->
+  <section class="neural-bridge" data-neural-bridge data-query="What should I learn after {{ node.title }}?">
+    <h2>Neural Bridge</h2>
+    <p>Let the Neural Bridge analyze your mastery state and recommend the next synaptic pathway.</p>
+    <button class="neural-bridge-trigger mi-btn-calculate">Initialize Neural Path</button>
   </section>
 
-  <section class="neural-content-pane" aria-label="Concept Details and Learning Interface">
-    <article class="quantum-node-card" data-state="{{ page.mastery_state | default: 'locked' }}">
-      <header class="node-card-header">
-        <div class="category-tag sys-metric">{{ page.category | default: "Biological Node" | upcase }}</div>
-        <h1 class="page-main-title">{{ page.title }}</h1>
+  <!-- Next Vectors -->
+  {% if next_nodes != empty %}
+    <section class="next-vectors">
+      <h2>Forward Synaptic Vectors</h2>
+      <ul class="vector-list">
+        {% for next in next_nodes %}
+          {% assign next_page = site.pages | where: "node_id", next | first %}
+          {% unless next_page %}
+            {% assign next_page = site.biology | where: "node_id", next | first %}
+          {% endunless %}
+          {% unless next_page %}
+            {% assign next_page = site.concepts | where: "node_id", next | first %}
+          {% endunless %}
+          <li class="vector-item" data-vector="{{ next }}">
+            {% if next_page %}
+              <a href="{{ next_page.url | relative_url }}" class="vector-link">
+                {{ next_page.title | default: next }}
+              </a>
+            {% else %}
+              <span class="vector-missing">{{ next }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
 
-        <div class="vector-grid">
-          {% if page.prerequisites %}
-          <div class="vector-section">
-            <span class="vector-label sys-metric">Upstream Prerequisites:</span>
-            <div class="vector-list">
-              {% for req in page.prerequisites %}
-                {% assign req_node = site.concepts | where: "slug", req | first %}
-                <a href="{{ req_node.url | default: '#' | relative_url }}" class="vector-chip prereq-chip">
-                  {{ req_node.title | default: req | replace: '-', ' ' | capitalize }}
-                </a>
-              {% endfor %}
-            </div>
-          </div>
-          {% endif %}
+  <!-- Node Footer -->
+  <footer class="concept-footer">
+    <div class="node-id">Node ID: <code>{{ node_id }}</code></div>
+    <div class="mastery-tracker">
+      <span class="mastery-label">Mastery Points:</span>
+      <span class="mastery-value">{{ mastery_points }}</span>
+    </div>
+  </footer>
 
-          {% if page.downstream_links %}
-          <div class="vector-section">
-            <span class="vector-label sys-metric downstream-label">Downstream Vectors:</span>
-            <div class="vector-list">
-              {% for link in page.downstream_links %}
-                {% assign link_node = site.concepts | where: "slug", link | first %}
-                <a href="{{ link_node.url | default: '#' | relative_url }}" class="vector-chip downstream-chip">
-                  {{ link_node.title | default: link | replace: '-', ' ' | capitalize }} &rarr;
-                </a>
-              {% endfor %}
-            </div>
-          </div>
-          {% endif %}
-        </div>
-      </header>
-
-      <section class="node-body-content">
-        {{ content }}
-      </section>
-
-      <section class="socratic-interface-dock" aria-label="Socratic Dialog Module">
-        <h3>Socratic Simulation</h3>
-        <p class="sys-metric socratic-subhead">[ CLOSING THE CIRCLE ]</p>
-        <div id="socraticConsole" class="console-output" role="log" aria-live="polite">
-          <p class="ai-prompt">
-            {{ page.socratic_prompt | default: "Based on the biological parameters established in this node, synthesize your hypothesis on how this system responds to anomalous stress." }}
-          </p>
-        </div>
-        <div class="input-row">
-          <textarea id="socraticInput" placeholder="Synthesize your hypothesis here..." rows="5"></textarea>
-        </div>
-        <div class="action-row">
-          <button id="submitResponseBtn" class="primary-btn" type="button">Transmit Vector</button>
-        </div>
-      </section>
-    </article>
-  </section>
-</div>
-
-<script defer src="{{ '/assets/js/neural-engine.js' | relative_url }}"></script>
+</article>
+'@
+$c=$c-replace"`r`n","`n"-replace"`r","`n";[System.IO.File]::WriteAllText((Join-Path (Get-Location).Path ".\_layouts\concept_node.html"),$c,$u);Write-Host "Created: _layouts/concept_node.html" -ForegroundColor Green

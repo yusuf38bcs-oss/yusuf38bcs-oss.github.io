@@ -559,3 +559,205 @@ img, svg, video, iframe, canvas, pre, code {
 .mastery-badge--earned {
   color: #00f5d4;
 }
+
+$css=@'
+/* ==========================================================================
+   CONCEPT NODE ARCHITECTURE
+   ========================================================================== */
+
+.concept-node {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #0b1120;
+    border: 1px solid rgba(0, 212, 178, 0.12);
+    border-radius: 12px;
+}
+
+.concept-node--locked {
+    opacity: 0.6;
+    pointer-events: none;
+    filter: grayscale(0.9);
+}
+
+.concept-node--available {
+    border-color: rgba(0, 212, 178, 0.3);
+}
+
+.concept-node--mastered {
+    border-color: rgba(0, 245, 212, 0.5);
+    box-shadow: 0 0 24px rgba(0, 245, 212, 0.08);
+}
+
+.concept-hero {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.concept-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.concept-pillar {
+    color: #00f5d4;
+    font-weight: 600;
+}
+
+.concept-difficulty {
+    color: #fbbf24;
+}
+
+.concept-time {
+    color: #94a3b8;
+}
+
+.concept-mastery-badge {
+    margin-left: auto;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.mastery-badge--earned {
+    background: rgba(0, 245, 212, 0.15) !important;
+    color: #00f5d4 !important;
+}
+
+.concept-title {
+    font-size: 2rem;
+    color: #f8fafc;
+    margin: 0;
+}
+
+.concept-excerpt {
+    color: #94a3b8;
+    margin-top: 0.75rem;
+    line-height: 1.6;
+}
+
+/* Prerequisites & Vectors */
+.synaptic-prerequisites,
+.next-vectors {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(13, 21, 39, 0.6);
+    border-radius: 8px;
+}
+
+.prerequisite-list,
+.vector-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.prerequisite-link,
+.vector-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 212, 178, 0.08);
+    border: 1px solid rgba(0, 212, 178, 0.15);
+    border-radius: 6px;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.prerequisite-link:hover,
+.vector-link:hover {
+    background: rgba(0, 212, 178, 0.15);
+    border-color: rgba(0, 212, 178, 0.3);
+    color: #ffffff;
+}
+
+.prerequisite-missing,
+.vector-missing {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #64748b;
+    font-style: italic;
+}
+
+/* Socratic Reflex */
+.socratic-reflex-container {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: #0d1527;
+    border: 1px solid rgba(0, 212, 178, 0.15);
+    border-radius: 12px;
+}
+
+.socratic-reflex-container h2 {
+    color: #ffffff;
+    margin-top: 0;
+}
+
+.reflex-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: rgba(2, 6, 23, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.reflex-input:focus {
+    outline: none;
+    border-color: #00f5d4;
+}
+
+/* Neural Bridge Section */
+.neural-bridge {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(0, 212, 178, 0.05) 0%, rgba(13, 21, 39, 0.8) 100%);
+    border: 1px solid rgba(0, 212, 178, 0.2);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.neural-bridge h2 {
+    color: #00f5d4;
+    margin-top: 0;
+}
+
+.neural-bridge-trigger {
+    margin-top: 1rem;
+}
+
+/* Concept Footer */
+.concept-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.node-id code {
+    background: rgba(2, 6, 23, 0.6);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+}
+'@
+$css=$css-replace"`r`n","`n"-replace"`r","`n";Add-Content ".\_sass\layout\_omega-overrides.scss" $css;Write-Host "Appended concept node CSS" -ForegroundColor Green
