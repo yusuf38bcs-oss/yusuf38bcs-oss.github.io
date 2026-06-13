@@ -1,0 +1,14 @@
+---
+layout: null
+permalink: /biology/feed.json
+---
+{%- assign logs = site.biology -%}
+[
+  {%- for log in logs -%}
+  {
+    "title": {{ log.title | jsonify }},
+    "url": {{ log.url | relative_url | jsonify }},
+    "excerpt": {{ log.excerpt | strip_html | strip_newlines | truncate: 120 | jsonify }}
+  }{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+]
