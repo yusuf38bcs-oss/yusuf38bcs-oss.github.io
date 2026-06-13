@@ -1,16 +1,19 @@
 ---
-layout: synaptic_page  # <--- CHANGE THIS TO MATCH YOUR LAYOUT FILENAME
+layout: single
 author_profile: true
 author: "MD. Yusuf"
 
-title: "Botany: The Green Infrastructure of Life"
-excerpt: "Explore the molecular biology of plant cells, structural organelle engineering, and the central dogma of genetics."
+sidebar:
+  nav: "synaptic_nav"
+
+title: "Zoology: The Blueprint of the Animal Kingdom"
+excerpt: "Investigate the structural engineering of human physiology, cardiovascular mechanics, and respiratory control systems."
 
 date: 2026-06-09T05:00:00.000Z
 permalink: /biology/hsc-corner/zoology/
 
 # AI Knowledge Graph & Neural Routing
-node_id: index-hsc-botany
+node_id: index-hsc-zoology
 pillar: "Life Sciences"
 difficulty: "Intermediate"
 xp: 500
@@ -19,5 +22,5 @@ status: "Active"
 parent_node: hsc-corner
 network:
   - hsc-corner
-  - higher-zoology-tree
+  - index-hsc-botany
 ---

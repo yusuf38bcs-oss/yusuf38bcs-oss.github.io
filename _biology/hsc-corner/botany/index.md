@@ -1,7 +1,10 @@
 ---
-layout: synaptic_page  # <--- CHANGE THIS TO MATCH YOUR LAYOUT FILENAME
+layout: single
 author_profile: true
 author: "MD. Yusuf"
+
+sidebar:
+  nav: "synaptic_nav"
 
 title: "Botany: The Green Infrastructure of Life"
 excerpt: "Explore the molecular biology of plant cells, structural organelle engineering, and the central dogma of genetics."
