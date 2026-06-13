@@ -7,10 +7,12 @@ permalink: /life-practices/
 sidebar:
   nav: "synaptic_nav"
 
-# AI Knowledge Graph & Neural Routing
+# AI Knowledge Graph Routing
 node_id: hub-life-practices
 pillar: "Human Metrics"
 difficulty: "Advanced"
-xp: 1000
+xp: 500
 status: "Active"
 ---
+
+Welcome to the **Life Practices** node. The neural connection matrices are syncing data assets dynamically.

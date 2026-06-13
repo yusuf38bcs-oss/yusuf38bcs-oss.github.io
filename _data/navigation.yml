@@ -1,75 +1,32 @@
-# =========================================================================
-# MAIN NAVIGATION — Masthead Dropdown Menu
-# =========================================================================
 main:
   - title: "Home"
-    url: /
-
+    url: "/"
   - title: "Biology"
+    url: "/biology/"
     children:
-      - title: "HSC Corner"
-        url: /biology/hsc-corner/
+      - title: "HSC Corner: Botany"
+        url: "/biology/hsc-corner/botany/"
+      - title: "HSC Corner: Zoology"
+        url: "/biology/hsc-corner/zoology/"
       - title: "Higher Zoology Tree"
-        url: /biology/higher-zoology-tree/
-
+        url: "/biology/higher-zoology-tree/"
   - title: "Synaptic Bridge"
-    children:
-      - title: "Systems Biology"
-        url: /synaptic-bridge/systems-biology/
-      - title: "Interdisciplinary Science"
-        url: /synaptic-bridge/interdisciplinary-science/
-      - title: "AI in Education"
-        url: /synaptic-bridge/ai-education/
-      - title: "4IR Education"
-        url: /synaptic-bridge/4ir-education/
-      - title: "Future Learning"
-        url: /synaptic-bridge/future-science/
-      - title: "Knowledge Network"
-        url: /synaptic-bridge/knowledge-network/
-
+    url: "/synaptic-bridge/"
   - title: "Life Practices"
-    url: /life-practices/
-
-  - title: "Life Philosophy"
-    url: /life-philosophy/
-
+    url: "/life-practices/"
   - title: "Socratic 4.0"
-    url: /socratic/
+    url: "/life-practices/cognitive-audit/"
+  - title: "Contact"
+    url: "/contact/"
 
-# =========================================================================
-# SIDEBAR NAVIGATION — "synaptic_nav"
-# =========================================================================
 synaptic_nav:
-  - title: "Home"
-    url: /
-
-  - title: "Biology"
+  - title: "Neural Pathways"
     children:
-      - title: "HSC Corner"
-        url: /biology/hsc-corner/
-      - title: "Higher Zoology Tree"
-        url: /biology/higher-zoology-tree/
-
-  - title: "Synaptic Bridge"
-    children:
-      - title: "Systems Biology"
-        url: /synaptic-bridge/systems-biology/
-      - title: "Interdisciplinary Science"
-        url: /synaptic-bridge/interdisciplinary-science/
-      - title: "AI in Education"
-        url: /synaptic-bridge/ai-education/
-      - title: "4IR Education"
-        url: /synaptic-bridge/4ir-education/
-      - title: "Future Science"
-        url: /synaptic-bridge/future-science/
-      - title: "Knowledge Network"
-        url: /synaptic-bridge/knowledge-network/
-
-  - title: "Life Practices"
-    url: /life-practices/
-
-  - title: "Life Philosophy"
-    url: /life-philosophy/
-
-  - title: "Socratic 4.0"
-    url: /socratic/
+      - title: "Biology Core"
+        url: "/biology/"
+      - title: "Synaptic Bridge"
+        url: "/synaptic-bridge/"
+      - title: "Life Practices"
+        url: "/life-practices/"
+      - title: "Socratic Terminal"
+        url: "/life-practices/cognitive-audit/"

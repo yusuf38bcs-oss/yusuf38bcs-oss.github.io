@@ -1,12 +1,18 @@
 ---
 layout: single
+author_profile: true
+author: "MD. Yusuf"
 title: "Personality Axis Discovery"
 permalink: /life-practices/self-discovery/
-author_profile: true
+sidebar:
+  nav: "synaptic_nav"
 
+# AI Knowledge Graph Routing
 node_id: tool-personality
 pillar: "Cognitive Metrics"
-difficulty: "Intermediate"
+difficulty: "Advanced"
 xp: 500
 status: "Active"
 ---
+
+Welcome to the **Personality Axis Discovery** node. The neural connection matrices are syncing data assets dynamically.

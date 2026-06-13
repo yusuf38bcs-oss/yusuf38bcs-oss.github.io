@@ -7,10 +7,12 @@ permalink: /synaptic-bridge/
 sidebar:
   nav: "synaptic_nav"
 
-# AI Knowledge Graph & Neural Routing
+# AI Knowledge Graph Routing
 node_id: hub-synaptic-bridge
 pillar: "Interdisciplinary"
 difficulty: "Advanced"
-xp: 1000
+xp: 500
 status: "Active"
 ---
+
+Welcome to the **Synaptic Bridge** node. The neural connection matrices are syncing data assets dynamically.

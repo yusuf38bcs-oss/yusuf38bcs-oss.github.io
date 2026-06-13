@@ -7,10 +7,12 @@ permalink: /biology/
 sidebar:
   nav: "synaptic_nav"
 
-# AI Knowledge Graph & Neural Routing
+# AI Knowledge Graph Routing
 node_id: hub-biology
 pillar: "Life Sciences"
 difficulty: "Advanced"
-xp: 1000
+xp: 500
 status: "Active"
 ---
+
+Welcome to the **Biology Hub** node. The neural connection matrices are syncing data assets dynamically.

@@ -1,41 +1,18 @@
 ---
-permalink: /terms-and-conditions/
 layout: single
-title: "Terms & Conditions"
-permalink: /terms-and-conditions/
-author_profile: false
-classes: wide
+author_profile: true
+author: "MD. Yusuf"
+title: "Terms and Conditions"
+permalink: /terms-conditions/
+sidebar:
+  nav: "synaptic_nav"
+
+# AI Knowledge Graph Routing
+node_id: util-terms
+pillar: "Legal"
+difficulty: "Advanced"
+xp: 500
+status: "Active"
 ---
 
-## Terms & Conditions
-
-By accessing Learning Biology For Life, you agree to use this platform responsibly and ethically.
-
-### Educational Usage
-
-All materials are provided for:
-
-- learning
-- research
-- educational enrichment
-- academic exploration
-
-### Intellectual Property
-
-Original educational materials, designs, and frameworks belong to Learning Biology For Life unless otherwise cited.
-
-### AI-Assisted Content
-
-Some content may involve AI-assisted educational generation and analytical tools.
-
-Users should verify information independently for professional or academic decisions.
-
-### External Links
-
-The platform may contain links to external educational resources.
-
-We are not responsible for third-party content or policies.
-
-### Updates
-
-These terms may evolve as the educational ecosystem grows.
+Welcome to the **Terms and Conditions** node. The neural connection matrices are syncing data assets dynamically.
