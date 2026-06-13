@@ -1,4 +1,4 @@
-﻿# Fix Report
+# Fix Report
 
 ## Broken Navigation Routes (5)
 - /biology/higher-zoology-tree: Source file found (_pages/biology-higher-zoology.md) but missing from _site. Run Jekyll build.

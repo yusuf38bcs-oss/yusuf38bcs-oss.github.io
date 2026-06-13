@@ -1,4 +1,4 @@
-﻿# Patch Recommendations
+# Patch Recommendations
 
 ## 1. Wire Mobile Drawer to _data/navigation.yml
 **File:** _includes/navigation/masthead.html

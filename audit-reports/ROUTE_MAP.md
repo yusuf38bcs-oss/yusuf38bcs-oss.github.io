@@ -1,4 +1,4 @@
-﻿# Route Map
+# Route Map
 
 | Source File | Title | Layout | Permalink | Predicted URL |
 |-------------|-------|--------|-----------|---------------|

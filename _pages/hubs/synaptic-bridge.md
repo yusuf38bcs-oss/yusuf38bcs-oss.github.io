@@ -1,13 +1,16 @@
 ---
-permalink: /synaptic-bridge/
+layout: single
+author_profile: true
+author: "MD. Yusuf"
 title: "Synaptic Bridge"
-layout: archive
 permalink: /synaptic-bridge/
-excerpt: "Where AI meets education - interdisciplinary science and future learning."
-author_profile: false
 sidebar:
-  nav: synaptic_nav
-classes: wide
----
+  nav: "synaptic_nav"
 
-Welcome to the Synaptic Bridge workspace. This cross-disciplinary platform brings together structural biology, artificial intelligence architectures, systems thinking models, and modern digital learning networks into a single cohesive learning graph.
+# AI Knowledge Graph & Neural Routing
+node_id: hub-synaptic-bridge
+pillar: "Interdisciplinary"
+difficulty: "Advanced"
+xp: 1000
+status: "Active"
+---
