@@ -77,6 +77,15 @@ breadcrumbs: true
 atom_feed:
   hide: false
 
+feed:
+  collections:
+    biology: false
+    synaptic-bridge: false
+    life-philosophy: false
+    life-practices: false
+    socratic: false
+    concepts: false
+
 # ==========================================================================
 # PAGINATION
 # ==========================================================================
