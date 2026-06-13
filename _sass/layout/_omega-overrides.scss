@@ -83,16 +83,16 @@ button:focus-visible {
    ----------
 
    neural-site-masthead
-            +
+         +
    is-active-drawer
-            +
+         +
    masthead-mobile-dropdown-drawer
 
    NEVER duplicate component CSS here.
 
    This file is the FINAL CASCADE ONLY.
-
    ========================================================================== */
+
 /* ==========================================================================
    LAYOUT OFFSETS & DESKTOP ENFORCEMENT
    ========================================================================== */
@@ -114,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
   scroll-margin-top: calc(var(--neural-nav-height) + 20px);
 }
 
-/* Desktop navigation enforcement — remove once component layer is proven stable */
+/* Desktop navigation enforcement */
 @media (min-width: 768px) {
   .masthead-desktop-navigation {
     display: block !important;
@@ -262,11 +262,12 @@ h1, h2, h3, h4, h5, h6 {
   .greedy-nav__hidden a:hover,
   .greedy-nav__hidden a:focus-visible {
     color: #00f5d4 !important; /* Synth-Cyan Highlight */
-    padding-left: 12px !important; /* Satisfying kinetic shift */
+    padding-left: 12px !important; /* Kinetic shift */
     border-bottom-color: rgba(0, 245, 212, 0.3) !important;
     outline: none !important;
   }
 }
+
 /* ==========================================================================
    HERO TYPOGRAPHY & FOOTER REFINEMENT PATCH
    ========================================================================== */
@@ -276,7 +277,6 @@ h1, h2, h3, h4, h5, h6 {
   .neural-hero-shell, 
   .home-hero,
   .synaptic-home-layout .section-shell {
-    /* Increases top padding so it clears the mobile navigation comfortably */
     padding-top: 5rem !important; 
   }
   
@@ -290,7 +290,7 @@ h1, h2, h3, h4, h5, h6 {
 .section-lead, 
 .hero-description,
 .neural-hero-shell p {
-  color: #94a3b8 !important; /* Soft slate color for elegant contrast */
+  color: #94a3b8 !important; /* Soft slate color for contrast */
   font-size: clamp(1rem, 4vw, 1.15rem) !important;
   line-height: 1.6 !important;
   font-weight: 400 !important;
@@ -300,7 +300,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 95%;
   margin-left: auto;
   margin-right: auto;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Improves readability against complex backgrounds */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 /* --- 3. FOOTER COPYRIGHT REFINEMENT --- */
@@ -314,7 +314,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .synaptic-footer__copyright {
   font-size: 0.8rem !important;
-  color: rgba(148, 163, 184, 0.5) !important; /* Dimmed slightly so links stand out */
+  color: rgba(148, 163, 184, 0.5) !important;
   text-align: center !important;
   margin-top: 0.5rem !important;
 }
@@ -325,17 +325,16 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- 1. GLOBAL WCAG AA FOCUS STATES --- */
 *:focus {
-  outline: none; /* Suppress legacy/ugly browser default outlines */
+  outline: none;
 }
 
 *:focus-visible {
-  outline: 2px solid #00f5d4 !important; /* Synth-Cyan strict visibility */
+  outline: 2px solid #00f5d4 !important;
   outline-offset: 4px !important;
   border-radius: 2px;
 }
 
 /* --- 2. HARDWARE ACCELERATION & REPAINT REDUCTION --- */
-/* Forces the browser to hand these heavy elements over to the GPU */
 .neural-card, 
 .synaptic-card, 
 .flow-node-card-slot,
@@ -353,7 +352,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* OS-Level override for users with vestibular disorders */
+/* OS-Level override for vestibular safety */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto !important;
@@ -366,48 +365,45 @@ h1, h2, h3, h4, h5, h6 {
     scroll-behavior: auto !important;
   }
 }
+
 /* ==========================================================================
-   NEURAL FLOW LAYER & SAFE-AREA RESPONSIVENESS ADJUSTMENTS
+   NEURAL SYSTEM FLOW LAYER & SAFE-AREA RESPONSIVENESS
    ========================================================================== */ 
 
 header.neural-site-masthead {
-    background-image: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.6)) !important;
-    min-height: 66px;
-    height: auto !important;
-    padding-top: env(safe-area-inset-top, 0px) !important;
-    backdrop-filter: blur(8px);
+  background-image: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.6)) !important;
+  min-height: 66px;
+  height: auto !important;
+  padding-top: env(safe-area-inset-top, 0px) !important;
+  backdrop-filter: blur(8px);
 }
 
 #neural-network {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0 !important;
-    pointer-events: none;
-}
-
-/* Safe-area compatible mobile menu drawer */ 
-aside#neural-mobile-drawer {
-    padding-top: calc(max(3rem, env(safe-area-inset-top))) !important;
-    padding-bottom: calc(max(3rem, env(safe-area-inset-bottom))) !important;
-    height: 100dvh !important;
-
-    @supports not (height: 100dvh) {
-        height: 100vh !important;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0 !important;
+  pointer-events: none;
 }
 
 /* Main content offset prevents fixed masthead overlap */ 
 main#main {
-    padding-top: 66px;
+  padding-top: 66px;
 }
 
 /* Eliminate Logo Layout Shift (CLS) */
 .site-logo img {
-    width: 37px;
-    height: 35px;
-    object-fit: contain;
+  width: 37px;
+  height: 35px;
+  object-fit: contain;
 }
 
+/* Safe-area compatible mobile menu drawer (Un-nested for strict Sass compilation compatibility) */ 
+aside#neural-mobile-drawer {
+  padding-top: calc(max(3rem, env(safe-area-inset-top))) !important;
+  padding-bottom: calc(max(3rem, env(safe-area-inset-bottom))) !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+}
