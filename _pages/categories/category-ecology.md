@@ -1,7 +1,6 @@
 ---
-permalink: /category-ecology/
 layout: archive
-title: "Higher Zoology Tree: Ecology"
+title: "Ecology"
 permalink: /categories/ecology/
 author_profile: true
 ---

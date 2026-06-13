@@ -1,7 +1,6 @@
 ---
-permalink: /category-genetics/
 layout: archive
-title: "Higher Zoology Tree: Genetics"
+title: "Genetics"
 permalink: /categories/genetics/
 author_profile: true
 ---

@@ -1,5 +1,4 @@
 ---
-permalink: /category-botany/
 layout: archive
 title: "HSC Corner: Botany"
 permalink: /categories/botany/

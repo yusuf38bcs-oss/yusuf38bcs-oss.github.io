@@ -1,7 +1,6 @@
 ---
-permalink: /category-leadership/
 layout: archive
-title: "Practical Approaches: Leadership"
+title: "Leadership"
 permalink: /categories/leadership/
 author_profile: true
 ---

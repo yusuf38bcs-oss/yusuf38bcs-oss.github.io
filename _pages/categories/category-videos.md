@@ -1,7 +1,6 @@
 ---
-permalink: /category-videos/
 layout: archive
-title: "Video Library"
+title: "Videos"
 permalink: /categories/videos/
 author_profile: true
 ---

@@ -1,7 +1,6 @@
 ---
-permalink: /category-research-highlights/
 layout: archive
-title: "Practical Approaches: Research Highlights"
+title: "Research Highlights"
 permalink: /categories/research-highlights/
 author_profile: true
 ---

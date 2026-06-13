@@ -1,7 +1,6 @@
 ---
-permalink: /category-mcq/
 layout: archive
-title: "Socratic 4.0: MCQ Arena"
+title: "MCQ Arena"
 permalink: /categories/mcq/
 author_profile: true
 ---

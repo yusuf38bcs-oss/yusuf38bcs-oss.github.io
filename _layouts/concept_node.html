@@ -1,15 +1,13 @@
-$Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-
-$LayoutContent = @'
 ---
 layout: default
 ---
+{% assign nav_category = page.category | default: "matrix" %}
 
 <nav class="synaptic-breadcrumb-bar" aria-label="Synaptic path">
   <div class="breadcrumb-track">
     <span class="sys-metric breadcrumb-label">Vector:</span>
-    <a href="{{ '/categories/' | append: page.category | downcase | relative_url }}">
-      {{ page.category | default: "Matrix" }}
+    <a href="{{ '/categories/' | append: nav_category | downcase | relative_url }}">
+      {{ nav_category | capitalize }}
     </a>
     <span class="breadcrumb-separator">&#8212;&#8212;&#9889;&#8212;&#8212;&gt;</span>
     <span class="current-node">{{ page.title }}</span>
@@ -85,7 +83,3 @@ layout: default
 </div>
 
 <script defer src="{{ '/assets/js/neural-engine.js' | relative_url }}"></script>
-'@
-
-[System.IO.File]::WriteAllText("_layouts/concept_node.html", $LayoutContent, $Utf8NoBom)
-Write-Host "Layout file written successfully." -ForegroundColor Green

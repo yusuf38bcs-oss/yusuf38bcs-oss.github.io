@@ -1,7 +1,6 @@
 ---
-permalink: /category-biostatistics/
 layout: archive
-title: "Higher Zoology Tree: Biostatistics"
+title: "Biostatistics"
 permalink: /categories/biostatistics/
 author_profile: true
 ---

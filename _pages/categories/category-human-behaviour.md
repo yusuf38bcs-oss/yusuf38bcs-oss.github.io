@@ -1,7 +1,6 @@
 ---
-permalink: /category-human-behaviour/
 layout: archive
-title: "Practical Approaches: Human Behaviour"
+title: "Human Behaviour"
 permalink: /categories/human-behaviour/
 author_profile: true
 ---

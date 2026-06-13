@@ -1,5 +1,4 @@
 ---
-permalink: /category-zoology/
 layout: archive
 title: "HSC Corner: Zoology"
 permalink: /categories/zoology/
