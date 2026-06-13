@@ -1,159 +1,100 @@
+@'
 # ==========================================================================
 # LEARNING BIOLOGY FOR LIFE
 # SOVEREIGN PRODUCTION CONFIGURATION
-#
-# GitHub Pages
-# Minimal Mistakes
-# Cloudflare Worker
-# Neural Education Ecosystem
 # ==========================================================================
 
 title: "Learning Biology For Life"
 subtitle: "Biology, Philosophy & Future Sciences"
-
 name: "MD. Yusuf"
 email: "yusuf.38bcs@gmail.com"
-
 description: >
   A Neural Network of Education System:
   Where Biology Meets Life through
   Synaptic Learning and Future Sciences.
-
 url: "https://learningbiologyforlife.org"
 baseurl: ""
-
 repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
-
 logo: "/assets/images/logo.png"
 favicon: "/assets/images/favicon.ico"
-
 lang: en
 locale: en_US
 timezone: Asia/Dhaka
-
 encoding: utf-8
 future: true
 safe: true
 incremental: false
 strict_front_matter: true
 
-# ==========================================================================
-# THEME
-# ==========================================================================
-
-remote_theme: mmistakes/minimal-mistakes
+# THEME (Local gem — fixes SSL/download errors)
+theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: dark
 
-# ==========================================================================
 # PLUGINS
-# ==========================================================================
-
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-seo-tag
   - jekyll-include-cache
-  - jekyll-remote-theme
   - jekyll-paginate
 
-# ==========================================================================
 # SEARCH
-# ==========================================================================
-
 search: true
 search_full_content: true
 
-# ==========================================================================
 # NAVIGATION
-# ==========================================================================
-
 breadcrumbs: true
 
-# ==========================================================================
 # FEED
-# ==========================================================================
-
-# ==========================================================================
-# FEED
-# ==========================================================================
-
 atom_feed:
   hide: false
 
-# ==========================================================================
 # PAGINATION
-# ==========================================================================
-
 paginate: 10
 paginate_path: "/page:num/"
 
-# ==========================================================================
 # URLS
-# ==========================================================================
-
 permalink: /blog/:title/
 
-# ==========================================================================
 # MARKDOWN
-# ==========================================================================
-
 markdown: kramdown
 highlighter: rouge
-
 kramdown:
   input: GFM
   hard_wrap: false
   syntax_highlighter: rouge
-
 liquid:
   error_mode: warn
 
-# ==========================================================================
 # SASS
-# ==========================================================================
-
 sass:
   sass_dir: _sass
   style: compressed
 
-# ==========================================================================
 # COLLECTIONS
-# ==========================================================================
-
 collections:
-
   biology:
     output: true
     permalink: /:collection/:path/
-
   synaptic-bridge:
     output: true
     permalink: /:collection/:path/
-
   life-philosophy:
     output: true
     permalink: /:collection/:path/
-
   life-practices:
     output: true
     permalink: /:collection/:path/
-
   socratic:
     output: true
     permalink: /:collection/:path/
-
   concepts:
     output: true
     permalink: /matrix/:path/
-  
 
-# ==========================================================================
 # DEFAULTS
-# ==========================================================================
-
 defaults:
-
   - scope:
       path: ""
       type: posts
@@ -162,7 +103,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-
   - scope:
       path: ""
       type: biology
@@ -171,7 +111,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-
   - scope:
       path: ""
       type: synaptic-bridge
@@ -180,7 +119,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-
   - scope:
       path: ""
       type: life-philosophy
@@ -189,7 +127,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-
   - scope:
       path: ""
       type: life-practices
@@ -198,7 +135,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-
   - scope:
       path: ""
       type: socratic
@@ -207,7 +143,6 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-
   - scope:
       path: "_pages"
       type: pages
@@ -215,8 +150,6 @@ defaults:
       layout: single
       author_profile: false
       classes: wide
-
-
   - scope:
       path: ""
       type: concepts
@@ -227,34 +160,22 @@ defaults:
       mastery_state: "locked"
       cognitive_depth: 1
 
-# ==========================================================================
 # AUTHOR
-# ==========================================================================
-
 author:
   name: "MD. Yusuf"
   bio: "BCS Education Cadre Officer | Digital Pedagogy | 4IR Education"
   location: "Bangladesh"
 
-# ==========================================================================
 # INCLUDE
-# ==========================================================================
-
 include:
   - _pages
 
-# ==========================================================================
 # KEEP FILES
-# ==========================================================================
-
 keep_files:
   - assets
   - network
 
-# ==========================================================================
 # EXCLUDE
-# ==========================================================================
-
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -265,29 +186,4 @@ exclude:
   - .jekyll-metadata
   - README.md
   - LICENSE
-
-# ==========================================================================
-# ARCHITECTURE
-#
-# Navigation:
-# _includes/navigation/masthead.html
-#
-# Navigation CSS:
-# _sass/components/_navigation.scss
-#
-# Omega Layer:
-# _sass/layout/_omega-overrides.scss
-#
-# Mobile Controller:
-# assets/js/mobile-drawer.js
-#
-# Nested Collections:
-# _biology/
-#
-# Static Pages:
-# _pages/
-#
-# Future Graph:
-# /network/
-#
-# ==========================================================================
+'@ | Set-Content _config.yml -NoNewline; Write-Host "Written: _config.yml" -ForegroundColor Green
