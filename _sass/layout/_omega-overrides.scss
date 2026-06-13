@@ -6,11 +6,11 @@
 
    PURPOSE
    --------------------------------------------------------------------------
-   ✓ Prevent Minimal Mistakes conflicts
-   ✓ Z-Index Contract Enforcement
-   ✓ Accessibility
-   ✓ Motion Safety
-   ✓ Cloudflare + GitHub Pages compatibility
+   âœ“ Prevent Minimal Mistakes conflicts
+   âœ“ Z-Index Contract Enforcement
+   âœ“ Accessibility
+   âœ“ Motion Safety
+   âœ“ Cloudflare + GitHub Pages compatibility
 
    DO NOT PLACE BASE COMPONENT STYLES HERE.
    ========================================================================== */
@@ -406,4 +406,60 @@ aside#neural-mobile-drawer {
   padding-bottom: calc(max(3rem, env(safe-area-inset-bottom))) !important;
   height: 100vh !important;
   height: 100dvh !important;
+}
+
+/* ==========================================================================
+   GLOBAL ANTI-LEAK & OVERFLOW SAFEGUARDS (MOBILE FIX)
+   ========================================================================== */
+
+/* 1. Prevent viewport horizontal scrolling globally */
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* 2. Prevent text from breaking out of containers */
+p, h1, h2, h3, h4, h5, h6, a, li, span, div {
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-word;
+}
+
+/* 3. Constrain all media and elements to their containers */
+img, picture, video, canvas, svg, iframe {
+  max-width: 100% !important;
+  height: auto;
+}
+
+/* Scrollable code blocks (prevents code from stretching the screen) */
+pre, code {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+/* 4. Fix Hardcoded Grid Overflows from Homepage/Layouts */
+.vector-grid, 
+.manifold-grid,
+[style*="minmax(300px"], 
+[style*="minmax(320px"] {
+  /* Forces the grid to shrink on extremely small phone screens */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important;
+}
+
+/* 5. Ensure flex containers don't explode horizontally */
+.synaptic-hero-container, 
+.manifold-system-container,
+.discovery-axis-container,
+.taxonomy-directory-section,
+.subscription-hub-section,
+.page-layout-grid {
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
 }
