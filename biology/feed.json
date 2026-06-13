@@ -1,0 +1,15 @@
+@'
+---
+layout: null
+permalink: /biology/feed.json
+---
+[
+  {% for log in site.biology %}
+  {
+    "title": {{ log.title | jsonify }},
+    "url": {{ log.url | relative_url | jsonify }},
+    "excerpt": {{ log.content | markdownify | strip_html | strip_newlines | truncate: 120 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+'@
