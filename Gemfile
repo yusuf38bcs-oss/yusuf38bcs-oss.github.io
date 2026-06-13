@@ -25,3 +25,4 @@ end
 
 # Webrick for local server (Ruby 3+)
 gem "webrick", "~> 1.9"
+gem "minimal-mistakes-jekyll"

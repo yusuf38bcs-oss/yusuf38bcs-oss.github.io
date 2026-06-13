@@ -1,4 +1,3 @@
-@'
 # ==========================================================================
 # LEARNING BIOLOGY FOR LIFE
 # SOVEREIGN PRODUCTION CONFIGURATION
@@ -186,4 +185,3 @@ exclude:
   - .jekyll-metadata
   - README.md
   - LICENSE
-'@ | Set-Content _config.yml -NoNewline; Write-Host "Written: _config.yml" -ForegroundColor Green
