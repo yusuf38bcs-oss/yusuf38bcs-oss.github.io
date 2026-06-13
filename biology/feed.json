@@ -1,15 +1,18 @@
-@'
 ---
 layout: null
 permalink: /biology/feed.json
 ---
+
 [
-  {% for log in site.biology %}
-  {
-    "title": {{ log.title | jsonify }},
-    "url": {{ log.url | relative_url | jsonify }},
-    "excerpt": {{ log.content | markdownify | strip_html | strip_newlines | truncate: 120 | jsonify }}
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
+{% for log in site.biology %}
+{
+  "title": {{ log.title | jsonify }},
+  "url": {{ log.url | relative_url | jsonify }},
+  "excerpt": {{ log.content | markdownify | strip_html | strip_newlines | truncate: 120 | jsonify }},
+  "node_id": {{ log.node_id | jsonify }},
+  "pillar": {{ log.pillar | jsonify }},
+  "difficulty": {{ log.difficulty | jsonify }},
+  "status": {{ log.status | jsonify }}
+}{% unless forloop.last %},{% endunless %}
+{% endfor %}
 ]
-'@

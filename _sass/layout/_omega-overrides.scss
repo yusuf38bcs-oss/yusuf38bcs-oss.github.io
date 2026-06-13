@@ -366,3 +366,48 @@ h1, h2, h3, h4, h5, h6 {
     scroll-behavior: auto !important;
   }
 }
+/* ==========================================================================
+   NEURAL FLOW LAYER & SAFE-AREA RESPONSIVENESS ADJUSTMENTS
+   ========================================================================== */ 
+
+header.neural-site-masthead {
+    background-image: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.6)) !important;
+    min-height: 66px;
+    height: auto !important;
+    padding-top: env(safe-area-inset-top, 0px) !important;
+    backdrop-filter: blur(8px);
+}
+
+#neural-network {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0 !important;
+    pointer-events: none;
+}
+
+/* Safe-area compatible mobile menu drawer */ 
+aside#neural-mobile-drawer {
+    padding-top: calc(max(3rem, env(safe-area-inset-top))) !important;
+    padding-bottom: calc(max(3rem, env(safe-area-inset-bottom))) !important;
+    height: 100dvh !important;
+
+    @supports not (height: 100dvh) {
+        height: 100vh !important;
+    }
+}
+
+/* Main content offset prevents fixed masthead overlap */ 
+main#main {
+    padding-top: 66px;
+}
+
+/* Eliminate Logo Layout Shift (CLS) */
+.site-logo img {
+    width: 37px;
+    height: 35px;
+    object-fit: contain;
+}
+

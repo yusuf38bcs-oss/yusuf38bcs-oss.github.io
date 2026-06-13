@@ -1,21 +1,14 @@
-# ==========================================================================
-# LEARNING BIOLOGY FOR LIFE
-# SOVEREIGN PRODUCTION CONFIGURATION
-# ==========================================================================
-
-title: "Learning Biology For Life"
-subtitle: "Biology, Philosophy & Future Sciences"
-name: "MD. Yusuf"
-email: "yusuf.38bcs@gmail.com"
-description: >
-  A Neural Network of Education System:
-  Where Biology Meets Life through
-  Synaptic Learning and Future Sciences.
-url: "https://learningbiologyforlife.org"
-baseurl: ""
-repository: "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
-logo: "/assets/images/logo.png"
-favicon: "/assets/images/favicon.ico"
+---
+title: Learning Biology For Life
+subtitle: Biology, Philosophy & Future Sciences
+name: MD. Yusuf
+email: yusuf.38bcs@gmail.com
+description: A Neural Network of Education System
+url: https://learningbiologyforlife.org
+baseurl: ''
+repository: yusuf38bcs-oss/yusuf38bcs-oss.github.io
+logo: /assets/images/logo.png
+favicon: /assets/images/favicon.ico
 lang: en
 locale: en_US
 timezone: Asia/Dhaka
@@ -24,12 +17,8 @@ future: true
 safe: true
 incremental: false
 strict_front_matter: true
-
-# THEME (Local gem — fixes SSL/download errors)
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: dark
-
-# PLUGINS
 plugins:
   - jekyll-feed
   - jekyll-sitemap
@@ -37,26 +26,14 @@ plugins:
   - jekyll-seo-tag
   - jekyll-include-cache
   - jekyll-paginate
-
-# SEARCH
 search: true
 search_full_content: true
-
-# NAVIGATION
 breadcrumbs: true
-
-# FEED
 atom_feed:
   hide: false
-
-# PAGINATION
 paginate: 10
-paginate_path: "/page:num/"
-
-# URLS
+paginate_path: /page:num/
 permalink: /blog/:title/
-
-# MARKDOWN
 markdown: kramdown
 highlighter: rouge
 kramdown:
@@ -65,13 +42,9 @@ kramdown:
   syntax_highlighter: rouge
 liquid:
   error_mode: warn
-
-# SASS
 sass:
   sass_dir: _sass
   style: compressed
-
-# COLLECTIONS
 collections:
   biology:
     output: true
@@ -91,11 +64,9 @@ collections:
   concepts:
     output: true
     permalink: /matrix/:path/
-
-# DEFAULTS
 defaults:
   - scope:
-      path: ""
+      path: ''
       type: posts
     values:
       layout: single
@@ -103,7 +74,7 @@ defaults:
       toc: true
       classes: wide
   - scope:
-      path: ""
+      path: ''
       type: biology
     values:
       layout: single
@@ -111,7 +82,7 @@ defaults:
       toc: true
       classes: wide
   - scope:
-      path: ""
+      path: ''
       type: synaptic-bridge
     values:
       layout: single
@@ -119,7 +90,7 @@ defaults:
       toc: true
       classes: wide
   - scope:
-      path: ""
+      path: ''
       type: life-philosophy
     values:
       layout: single
@@ -127,7 +98,7 @@ defaults:
       toc: true
       classes: wide
   - scope:
-      path: ""
+      path: ''
       type: life-practices
     values:
       layout: single
@@ -135,7 +106,7 @@ defaults:
       toc: true
       classes: wide
   - scope:
-      path: ""
+      path: ''
       type: socratic
     values:
       layout: single
@@ -143,38 +114,30 @@ defaults:
       toc: true
       classes: wide
   - scope:
-      path: "_pages"
+      path: _pages
       type: pages
     values:
       layout: single
       author_profile: false
       classes: wide
   - scope:
-      path: ""
+      path: ''
       type: concepts
     values:
       layout: concept_node
       author_profile: false
       classes: wide
-      mastery_state: "locked"
+      mastery_state: locked
       cognitive_depth: 1
-
-# AUTHOR
 author:
-  name: "MD. Yusuf"
-  bio: "BCS Education Cadre Officer | Digital Pedagogy | 4IR Education"
-  location: "Bangladesh"
-
-# INCLUDE
+  name: MD. Yusuf
+  bio: BCS Education Cadre Officer | Digital Pedagogy | 4IR Education
+  location: Bangladesh
 include:
   - _pages
-
-# KEEP FILES
 keep_files:
   - assets
   - network
-
-# EXCLUDE
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -185,3 +148,4 @@ exclude:
   - .jekyll-metadata
   - README.md
   - LICENSE
+---
