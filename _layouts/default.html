@@ -10,10 +10,10 @@
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes %} {{ page.classes | join: ' ' }}{% endif %}">
     {% include skip-links.html %}
-    {% include browser-upgrade.html %}
     {% include masthead.html %}
 
     <canvas id="neural-network" aria-hidden="true"></canvas>
+    <div class="neural-vignette" aria-hidden="true"></div>
 
     <main class="initial-content" id="site-main" role="main">
       {{ content }}
