@@ -1,45 +1,95 @@
-/* ==========================================
-   Neural Node Panel
-========================================== */
+/* ==========================================================================
+   NEURAL NODE PANEL
+   Architecture: Neural Education OS v1.0
+   ========================================================================== */
 
 .neural-node-panel {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(0, 245, 212, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .neural-node-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  color: #e2e8f0;
 }
 
 .neural-node-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-/* ==========================================
-   Node Status
-========================================== */
+/* ==========================================================================
+   NODE STATUS INDICATORS
+   ========================================================================== */
 
 .node-status-published {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #00f5d4; /* Synth-Cyan */
+  background: rgba(0, 245, 212, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 245, 212, 0.3);
 }
 
 .node-status-planned {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #94a3b8; /* Muted Slate */
+  background: rgba(148, 163, 184, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px dashed rgba(148, 163, 184, 0.4);
 }
 
-/* ==========================================
-   Difficulty System
-========================================== */
+/* ==========================================================================
+   DIFFICULTY SYSTEM (COGNITIVE LOAD)
+   ========================================================================== */
 
 .node-foundation {
+  border-left: 4px solid #38bdf8; /* Light Blue */
 }
 
 .node-intermediate {
+  border-left: 4px solid #f59e0b; /* Amber */
 }
 
 .node-advanced {
+  border-left: 4px solid #ef4444; /* Red */
 }
 
-/* ==========================================
-   Future Graph Integration
-========================================== */
+/* ==========================================================================
+   FUTURE GRAPH INTEGRATION (SYNAPTIC LINKS)
+   ========================================================================== */
 
 .node-link {
+  color: #00f5d4;
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.node-link:hover {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0, 245, 212, 0.6);
 }
 
 .node-connection {
+  position: relative;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.node-connection:hover {
+  opacity: 1;
 }

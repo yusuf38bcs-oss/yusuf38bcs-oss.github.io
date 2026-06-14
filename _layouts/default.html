@@ -32,6 +32,14 @@
       </footer>
     </div>
 
+    <div id="gdpr-banner" aria-live="polite">
+      <span>We use cookies to enhance your neural pathway mapping and serve biological insights (and ads). Do you accept?</span>
+      <div class="gdpr-btn-group">
+        <button class="gdpr-accept" onclick="gdprAccept()">Accept</button>
+        <button class="gdpr-decline" onclick="gdprDecline()">Decline</button>
+      </div>
+    </div>
+
     {% include scripts.html %}
 
     <script defer src="{{ '/assets/js/core/theme-controller.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>

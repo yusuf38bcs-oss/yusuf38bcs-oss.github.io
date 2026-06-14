@@ -66,26 +66,40 @@
   document.addEventListener('DOMContentLoaded', function() {
     var consent = localStorage.getItem('cookie-consent');
     var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
     
+    // Show banner if no consent history is found
     if (!consent && banner) {
       banner.classList.add('is-visible');
     } else if (consent === 'granted') {
       loadAdSense();
     }
 
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
     window.gdprAccept = function() {
       localStorage.setItem('cookie-consent', 'granted');
-      if(banner) banner.classList.remove('is-visible');
+      if (banner) banner.classList.remove('is-visible');
       loadAdSense();
     };
     
     window.gdprDecline = function() {
       localStorage.setItem('cookie-consent', 'denied');
-      if(banner) banner.classList.remove('is-visible');
+      if (banner) banner.classList.remove('is-visible');
     };
 
     function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
       var s = document.createElement('script');
+      s.id = 'adsense-script';
       s.async = true;
       s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
       s.crossOrigin = 'anonymous';

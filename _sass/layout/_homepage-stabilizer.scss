@@ -42,7 +42,7 @@ body.home .home-hero,
 .synaptic-home-layout .neural-hero-shell,
 .synaptic-home-layout .home-hero {
   margin-top: 0;
-  padding-top: var(--neural-nav-height);
+  padding-top: var(--neural-nav-height, 80px); /* Added a fallback value just in case */
   position: relative;
   z-index: 100;
 }

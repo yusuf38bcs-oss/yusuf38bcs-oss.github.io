@@ -1,0 +1,58 @@
+{% assign node = include.node | default: page %}
+
+{% if node.node_id %}
+<div class="neural-node-panel">
+  <div class="neural-node-header">Neural Node Profile</div>
+
+  <div class="neural-node-grid">
+    <div class="neural-node-item">
+      <span class="label">Node ID</span>
+      <span class="value">{{ node.node_id }}</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">Pillar</span>
+      <span class="value">{{ node.pillar | default: "—" }}</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">Difficulty</span>
+      <span class="value">{{ node.difficulty | default: "—" }}</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">XP</span>
+      <span class="value">{{ node.mastery_points | default: 0 }}</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">Time</span>
+      <span class="value">{{ node.estimated_time | default: "—" }} min</span>
+    </div>
+    <div class="neural-node-item">
+      <span class="label">Status</span>
+      <span class="value">{{ node.status | default: "Draft" }}</span>
+    </div>
+  </div>
+
+  {% if node.prerequisites %}
+  <div class="neural-node-section">
+    <h4>Prerequisites</h4>
+    <ul>
+      {% for item in node.prerequisites %}
+        {% assign prereq = site.data.neural_nodes | where: "id", item | first %}
+        <li>{{ prereq.title | default: item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if node.connects_to %}
+  <div class="neural-node-section">
+    <h4>Connected Concepts</h4>
+    <ul>
+      {% for item in node.connects_to %}
+        {% assign conn = site.data.neural_nodes | where: "id", item | first %}
+        <li>{{ conn.title | default: item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
