@@ -86,7 +86,13 @@ layout: default
         {% if page.prerequisites and page.prerequisites.size > 0 %}
           <ul>
           {% for prereq in page.prerequisites %}
-            {% assign prereq_node = site.concepts | where_exp: "item", "item.node_id == prereq or item.id == prereq" | first %}
+            
+            {% comment %} SAFE GRAPH RESOLUTION: Two-step lookup to avoid Liquid syntax errors {% endcomment %}
+            {% assign prereq_node = site.concepts | where: "node_id", prereq | first %}
+            {% unless prereq_node %}
+              {% assign prereq_node = site.concepts | where: "id", prereq | first %}
+            {% endunless %}
+
             {% if prereq_node %}
               <li><a href="{{ prereq_node.url | relative_url }}" class="graph-link">{{ prereq_node.title }}</a></li>
             {% else %}
@@ -104,7 +110,13 @@ layout: default
         {% if page.next_nodes and page.next_nodes.size > 0 %}
           <ul>
           {% for next_node in page.next_nodes %}
-            {% assign target_node = site.concepts | where_exp: "item", "item.node_id == next_node or item.id == next_node" | first %}
+            
+            {% comment %} SAFE GRAPH RESOLUTION: Two-step lookup to avoid Liquid syntax errors {% endcomment %}
+            {% assign target_node = site.concepts | where: "node_id", next_node | first %}
+            {% unless target_node %}
+              {% assign target_node = site.concepts | where: "id", next_node | first %}
+            {% endunless %}
+
             {% if target_node %}
               <li><a href="{{ target_node.url | relative_url }}" class="graph-link">{{ target_node.title }}</a></li>
             {% else %}
