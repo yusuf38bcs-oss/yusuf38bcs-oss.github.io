@@ -1,137 +1,184 @@
-$u=New-Object System.Text.UTF8Encoding($false);$d=".\_layouts";if(-not(Test-Path $d)){New-Item -ItemType Directory -Path $d -Force|Out-Null};$c=@'---
+---
 layout: default
 ---
 
-{% assign node = page %}
-{% assign node_id = node.node_id | default: node.slug | default: node.url %}
-{% assign pillar = node.pillar | default: "biology" %}
-{% assign difficulty = node.difficulty | default: 1 %}
-{% assign mastery_points = node.mastery_points | default: 10 %}
-{% assign estimated_time = node.estimated_time | default: "5 min" %}
-{% assign status = node.status | default: "available" %}
-{% assign prerequisites = node.prerequisites | default: "" %}
-{% assign next_nodes = node.next_nodes | default: "" %}
+{% comment %}
+  Core Identifier Resolution:
+  Future-proofs the architecture by gracefully falling back from node_id -> id -> slug.
+  Once migration is complete, node_id can be safely deprecated.
+{% endcomment %}
+{% assign current_id = page.node_id | default: page.id | default: page.slug %}
 
-<article class="concept-node concept-node--{{ status }}"
-         data-concept-node
-         data-node-id="{{ node_id }}"
-         data-pillar="{{ pillar }}"
-         data-difficulty="{{ difficulty }}"
-         data-status="{{ status }}"
-         data-prerequisites="{{ prerequisites | join: ',' }}"
-         data-mastery-points="{{ mastery_points }}"
-         data-estimated-time="{{ estimated_time }}">
-
-  <!-- Neural Masthead -->
-  <header class="concept-hero">
-    <div class="concept-meta">
-      <span class="concept-pillar">{{ pillar | upcase }}</span>
-      <span class="concept-difficulty" data-difficulty="{{ difficulty }}">
-        {% for i in (1..5) %}
-          {% if i <= difficulty %}◆{% else %}◇{% endif %}
-        {% endfor %}
-      </span>
-      <span class="concept-time">{{ estimated_time }}</span>
-      <span class="concept-mastery-badge" data-mastery-badge="{{ node_id }}">Locked</span>
-    </div>
-    <h1 class="concept-title">{{ node.title }}</h1>
-    {% if node.excerpt %}
-      <p class="concept-excerpt">{{ node.excerpt | strip_html }}</p>
+<article class="concept-node-container" 
+         data-node-id="{{ current_id }}" 
+         data-pillar="{{ page.pillar | default: 'unassigned' }}"
+         data-mastery-state="{{ page.mastery_state | default: 'locked' }}"
+         data-difficulty="{{ page.difficulty | default: 1 }}"
+         data-cognitive-depth="{{ page.cognitive_depth | default: 1 }}"
+         data-mastery-points="{{ page.mastery_points | default: 0 }}"
+         data-terminal-node="{{ page.terminal_node | default: false }}">
+  
+  <header class="node-header">
+    <h1 class="node-title">{{ page.title }}</h1>
+    
+    {% if page.excerpt %}
+      <p class="node-excerpt">{{ page.excerpt | strip_html }}</p>
     {% endif %}
+    
+    {% if page.last_modified_at %}
+      <div class="node-updated">Updated: {{ page.last_modified_at | date: "%B %d, %Y" }}</div>
+    {% endif %}
+    
+    <div class="node-metadata-matrix">
+      {% if page.pillar %}
+      <div class="meta-item">
+        <span class="meta-label">Pillar:</span> 
+        <span class="meta-value">{{ page.pillar | capitalize | replace: '-', ' ' }}</span>
+      </div>
+      {% endif %}
+      
+      <div class="meta-item">
+        <span class="meta-label">Difficulty:</span> 
+        <span class="meta-value">Level {{ page.difficulty | default: "Unrated" }}</span>
+      </div>
+      
+      {% if page.cognitive_depth %}
+      <div class="meta-item">
+        <span class="meta-label">Cognitive Depth:</span> 
+        <span class="meta-value">{{ page.cognitive_depth }}</span>
+      </div>
+      {% endif %}
+      
+      <div class="meta-item">
+        <span class="meta-label">XP:</span> 
+        <span class="meta-value">{{ page.mastery_points | default: 0 }} Points</span>
+      </div>
+      
+      <div class="meta-item">
+        <span class="meta-label">Estimated Time:</span> 
+        <span class="meta-value">{{ page.estimated_time | default: "N/A" }}</span>
+      </div>
+      
+      <div class="meta-item">
+        <span class="meta-label">Status:</span> 
+        <span class="status-badge status-{{ page.status | default: 'available' }}">{{ page.status | default: "Available" | capitalize }}</span>
+      </div>
+      
+      <div class="meta-item">
+        <span class="meta-label">Mastery:</span> 
+        <span class="mastery-badge state-{{ page.mastery_state | default: 'locked' }}">{{ page.mastery_state | default: "Locked" | capitalize }}</span>
+      </div>
+    </div>
   </header>
 
-  <!-- Synaptic Prerequisites -->
-  {% if prerequisites != empty %}
-    <section class="synaptic-prerequisites">
-      <h2>Prerequisite Pathways</h2>
-      <ul class="prerequisite-list">
-        {% for prereq in prerequisites %}
-          {% assign prereq_page = site.pages | where: "node_id", prereq | first %}
-          {% unless prereq_page %}
-            {% assign prereq_page = site.biology | where: "node_id", prereq | first %}
-          {% endunless %}
-          {% unless prereq_page %}
-            {% assign prereq_page = site.concepts | where: "node_id", prereq | first %}
-          {% endunless %}
-          <li class="prerequisite-item" data-prerequisite="{{ prereq }}">
-            {% if prereq_page %}
-              <a href="{{ prereq_page.url | relative_url }}" class="prerequisite-link">
-                {{ prereq_page.title | default: prereq }}
-              </a>
-            {% else %}
-              <span class="prerequisite-missing">{{ prereq }}</span>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
-
-  <!-- Core Content -->
-  <div class="concept-content">
+  <section class="node-content">
     {{ content }}
-  </div>
-
-  <!-- Socratic Reflex Arc -->
-  {% if node.anomaly_question %}
-    <section class="socratic-reflex-container" id="socratic-{{ node_id | slugify }}">
-      <h2>Cognitive Verification Node</h2>
-      <p class="socratic-prompt-text">{{ node.anomaly_question }}</p>
-
-      <form class="socratic-reflex-form" action="#" method="post">
-        <input type="text"
-               class="reflex-input"
-               name="hypothesis"
-               placeholder="Enter your biological hypothesis..."
-               autocomplete="off" />
-        <button type="submit" class="reflex-submit-btn mi-btn-calculate">Fire Synapse</button>
-      </form>
-    </section>
-  {% endif %}
-
-  <!-- Neural Bridge: Adaptive Path -->
-  <section class="neural-bridge" data-neural-bridge data-query="What should I learn after {{ node.title }}?">
-    <h2>Neural Bridge</h2>
-    <p>Let the Neural Bridge analyze your mastery state and recommend the next synaptic pathway.</p>
-    <button class="neural-bridge-trigger mi-btn-calculate">Initialize Neural Path</button>
   </section>
 
-  <!-- Next Vectors -->
-  {% if next_nodes != empty %}
-    <section class="next-vectors">
-      <h2>Forward Synaptic Vectors</h2>
-      <ul class="vector-list">
-        {% for next in next_nodes %}
-          {% assign next_page = site.pages | where: "node_id", next | first %}
-          {% unless next_page %}
-            {% assign next_page = site.biology | where: "node_id", next | first %}
-          {% endunless %}
-          {% unless next_page %}
-            {% assign next_page = site.concepts | where: "node_id", next | first %}
-          {% endunless %}
-          <li class="vector-item" data-vector="{{ next }}">
-            {% if next_page %}
-              <a href="{{ next_page.url | relative_url }}" class="vector-link">
-                {{ next_page.title | default: next }}
-              </a>
+  <nav class="node-graph-navigation" aria-label="Concept Graph Navigation">
+    <hr class="graph-divider">
+    <h3>Neural Graph Navigation</h3>
+    
+    <div class="graph-links-container">
+      
+      <div class="prerequisites-list">
+        <h4>Prerequisites (Afferent Vectors)</h4>
+        {% if page.prerequisites and page.prerequisites.size > 0 %}
+          <ul>
+          {% for prereq in page.prerequisites %}
+            {% assign prereq_node = site.concepts | where_exp: "item", "item.node_id == prereq or item.id == prereq" | first %}
+            {% if prereq_node %}
+              <li><a href="{{ prereq_node.url | relative_url }}" class="graph-link">{{ prereq_node.title }}</a></li>
             {% else %}
-              <span class="vector-missing">{{ next }}</span>
+              <li><span class="missing-node warning">Missing Node Vector: <code>{{ prereq }}</code></span></li>
             {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
+          {% endfor %}
+          </ul>
+        {% else %}
+          <p class="graph-status">Root Node (No external prerequisites)</p>
+        {% endif %}
+      </div>
 
-  <!-- Node Footer -->
-  <footer class="concept-footer">
-    <div class="node-id">Node ID: <code>{{ node_id }}</code></div>
-    <div class="mastery-tracker">
-      <span class="mastery-label">Mastery Points:</span>
-      <span class="mastery-value">{{ mastery_points }}</span>
+      <div class="next-nodes-list">
+        <h4>Next Nodes (Efferent Vectors)</h4>
+        {% if page.next_nodes and page.next_nodes.size > 0 %}
+          <ul>
+          {% for next_node in page.next_nodes %}
+            {% assign target_node = site.concepts | where_exp: "item", "item.node_id == next_node or item.id == next_node" | first %}
+            {% if target_node %}
+              <li><a href="{{ target_node.url | relative_url }}" class="graph-link">{{ target_node.title }}</a></li>
+            {% else %}
+              <li><span class="missing-node warning">Missing Node Vector: <code>{{ next_node }}</code></span></li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        {% else %}
+          {% if page.terminal_node %}
+            <p class="graph-status">Terminal Capstone Node</p>
+          {% else %}
+            <p class="graph-status">End of current pathway</p>
+          {% endif %}
+        {% endif %}
+      </div>
+      
     </div>
-  </footer>
-
+  </nav>
 </article>
-'@
-$c=$c-replace"`r`n","`n"-replace"`r","`n";[System.IO.File]::WriteAllText((Join-Path (Get-Location).Path ".\_layouts\concept_node.html"),$c,$u);Write-Host "Created: _layouts/concept_node.html" -ForegroundColor Green
+
+<style>
+  /* Base fallback styling utilizing theme variables where possible */
+  .concept-node-container { 
+    font-family: inherit; 
+  }
+  .node-header {
+    margin-bottom: 2rem;
+  }
+  .node-excerpt {
+    font-size: 1.15em;
+    color: var(--text-muted-color, #666);
+    font-style: italic;
+    margin-top: 0;
+  }
+  .node-updated {
+    font-size: 0.85em;
+    color: var(--text-muted-color, #888);
+    margin-bottom: 1rem;
+  }
+  .node-metadata-matrix { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    padding: 15px; 
+    background: var(--global-bg-color, rgba(0,0,0,0.03));
+    border: 1px solid var(--border-color, rgba(0,0,0,0.1));
+    border-radius: 8px; 
+  }
+  .meta-item { font-size: 0.9em; }
+  .meta-label { font-weight: bold; color: var(--text-color, #333); }
+  .status-badge, .mastery-badge { 
+    padding: 2px 8px; 
+    border-radius: 12px; 
+    font-size: 0.85em; 
+    font-weight: bold; 
+  }
+  .state-unlocked { background-color: #e6f4ea; color: #1e8e3e; }
+  .state-locked { background-color: #f1f3f4; color: #5f6368; }
+  .state-mastered { background-color: #e8f0fe; color: #1a73e8; }
+  
+  .node-graph-navigation { margin-top: 3rem; }
+  .graph-links-container { 
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+  }
+  .prerequisites-list, .next-nodes-list { 
+    flex: 1; 
+    min-width: 250px; 
+    padding: 15px; 
+    background: var(--global-bg-color, rgba(0,0,0,0.02)); 
+    border-left: 3px solid var(--primary-color, #ccc); 
+    border-radius: 0 8px 8px 0;
+  }
+  .missing-node.warning { color: #d93025; font-style: italic; }
+</style>
