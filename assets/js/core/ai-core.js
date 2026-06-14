@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Synaptic AI - Global Production Core Engine v3.1
  * Finalized frontend for Cloudflare Worker proxy.
  */

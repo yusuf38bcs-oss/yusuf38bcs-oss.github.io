@@ -1,0 +1,22 @@
+﻿/* ==========================================================================
+   OMEGA V11: SYNCHRONIZED DOM ARCHITECTURE (MENU & FONT FIXES)
+   ========================================================================== */
+:root { --z-index-masthead: 100; --z-index-greedy-hidden: 150; }
+
+/* 1. Global Header Row Lock */
+.masthead { height: 72px !important; z-index: var(--z-index-masthead) !important; }
+.masthead__inner-wrap { display: flex !important; align-items: center !important; justify-content: space-between !important; flex-wrap: nowrap !important; width: 100% !important; padding: 0 4% !important; }
+
+/* 2. Logo & Fluid Title */
+.site-logo { flex-shrink: 0 !important; margin-right: 12px !important; }
+.site-title { font-size: clamp(14px, 3.5vw, 1.15rem) !important; white-space: nowrap !important; margin-right: auto !important; margin-bottom: 0 !important; display: block !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+
+/* 3. Desktop Menu & Mobile Hamburger */
+nav.greedy-nav { display: flex !important; align-items: center !important; flex-wrap: nowrap !important; justify-content: flex-end !important; flex-grow: 1 !important; background: transparent !important; }
+.greedy-nav__toggle { flex-shrink: 0 !important; margin-left: auto !important; }
+ul.visible-links { display: flex !important; flex-wrap: nowrap !important; gap: 1rem !important; align-items: center !important; margin: 0 !important; padding: 0 !important; }
+.masthead__menu-item a { white-space: nowrap !important; font-size: clamp(13px, 1.5vw, 15px) !important; padding: 0.5rem 0.75rem !important; }
+
+/* 4. Mobile Drawer Restraint */
+.greedy-nav__hidden { position: absolute !important; top: 72px !important; right: 0 !important; background: #020617 !important; padding: 1rem !important; border-radius: 0 0 0 12px !important; max-width: 300px !important; width: 85vw !important; z-index: var(--z-index-greedy-hidden) !important; border: 1px solid rgba(0, 245, 212, 0.15) !important; box-shadow: -10px 10px 30px rgba(0,0,0,0.8) !important; }
+.greedy-nav__hidden .hidden-links a { display: block !important; padding: 0.75rem 0 !important; font-size: 0.95rem !important; border-bottom: 1px solid rgba(255,255,255,0.05) !important; }

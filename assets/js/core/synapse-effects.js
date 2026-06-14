@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Learning Biology For Life - Synapse Effects Engine
  * Controls hardware-accelerated UI micro-interactions, cursor-tracking glows, 
  * and Web Animations API (WAAPI) routines with strict thread decoupling.
