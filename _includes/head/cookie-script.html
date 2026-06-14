@@ -1,15 +1,17 @@
-<div id="cookie-consent-banner" class="cookie-consent-modal" style="display: none;">
+<div id="cookie-consent-banner" class="cookie-consent-modal" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <div class="cookie-modal-content">
     <div class="cookie-text-area">
-      <span class="cookie-icon">??</span>
+      <span class="cookie-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 10 10"></path><path d="M12 12 8 8"></path><path d="m12 12 4-1"></path><path d="m12 12 1 4"></path><path d="m12 12-3 3"></path></svg>
+      </span>
       <p>
-        We use cookies to optimize your learning experience across our neural ecosystem. By clicking <strong>"Accept All"</strong>, you consent to our data metrics and support compliance tracking for Google AdSense. 
+        We use cookies to optimize your learning experience across our neural ecosystem. By clicking <strong>"Accept All"</strong>, you consent to our data metrics and support compliance tracking for Google AdSense.
         Read our <a href="/privacy-policy/" class="cookie-privacy-link">Privacy Policy</a>.
       </p>
     </div>
     <div class="cookie-action-area">
-      <button id="cookie-accept-btn" class="cookie-btn cookie-btn--accept">ACCEPT ALL</button>
-      <button id="cookie-decline-btn" class="cookie-btn cookie-btn--decline">DECLINE</button>
+      <button id="cookie-accept-btn" class="cookie-btn cookie-btn--accept" type="button">Accept All</button>
+      <button id="cookie-decline-btn" class="cookie-btn cookie-btn--decline" type="button">Decline</button>
     </div>
   </div>
 </div>
@@ -22,16 +24,29 @@
     right: 24px;
     max-width: 1152px;
     margin: 0 auto;
-    background: rgba(15, 23, 42, 0.85); /* Slate 900 with Fluid transparency */
+    background: rgba(15, 23, 42, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    z-index: 999999; /* Absolute foreground layer lock */
+    z-index: 9000;
     padding: 1.25rem 2rem;
     box-sizing: border-box;
-    animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.5s;
+    pointer-events: none;
+  }
+
+  .cookie-consent-modal.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .cookie-modal-content {
@@ -50,12 +65,17 @@
   }
 
   .cookie-icon {
-    font-size: 2rem;
-    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: #00d4b2;
+    flex-shrink: 0;
   }
 
   .cookie-text-area p {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 0.95rem;
     line-height: 1.6;
     color: #e2e8f0;
@@ -80,7 +100,7 @@
   }
 
   .cookie-btn {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: inherit;
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -89,6 +109,7 @@
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap;
   }
 
   .cookie-btn--accept {
@@ -113,24 +134,12 @@
     color: #ffffff;
   }
 
-  @keyframes slideUpFade {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* ????????? ?????? ????????? */
   @media (max-width: 768px) {
     .cookie-consent-modal {
       bottom: 16px;
       left: 16px;
       right: 16px;
-      padding: 1.5rem;
+      padding: 1.25rem;
     }
     .cookie-modal-content {
       flex-direction: column;
@@ -143,36 +152,35 @@
     }
     .cookie-action-area {
       width: 100%;
-      justify-content: flex-end;
+      justify-content: stretch;
+    }
+    .cookie-btn {
+      flex: 1 1 50%;
+      text-align: center;
     }
   }
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var consentBanner = document.getElementById("cookie-consent-banner");
-    var acceptBtn = document.getElementById("cookie-accept-btn");
-    var declineBtn = document.getElementById("cookie-decline-btn");
+(function () {
+  var banner = document.getElementById('cookie-consent-banner');
+  var acceptBtn = document.getElementById('cookie-accept-btn');
+  var declineBtn = document.getElementById('cookie-decline-btn');
+  if (!banner || !acceptBtn || !declineBtn) return;
 
-    // ??????? ???? ???? ???? ???????? ??? ???? ??? ???
-    var userConsent = localStorage.getItem("neural-ecosystem-consent");
+  var consent = localStorage.getItem('neural-ecosystem-consent');
+  if (!consent) {
+    banner.classList.add('is-visible');
+  }
 
-    if (!userConsent) {
-      // ??? ???? ???? ?? ????, ??? ????????? ???????? ??? ???
-      consentBanner.style.display = "block";
-    }
-
-    // Accept All ?????? ?????? ???????
-    acceptBtn.addEventListener("click", function () {
-      localStorage.setItem("neural-ecosystem-consent", "granted");
-      consentBanner.style.display = "none";
-      // ????? ????? ???? ????? ???? ????????????? ??????? ??-??? ???? ?????
-    });
-
-    // Decline ?????? ?????? ???????
-    declineBtn.addEventListener("click", function () {
-      localStorage.setItem("neural-ecosystem-consent", "declined");
-      consentBanner.style.display = "none";
-    });
+  acceptBtn.addEventListener('click', function () {
+    localStorage.setItem('neural-ecosystem-consent', 'granted');
+    banner.classList.remove('is-visible');
   });
+
+  declineBtn.addEventListener('click', function () {
+    localStorage.setItem('neural-ecosystem-consent', 'declined');
+    banner.classList.remove('is-visible');
+  });
+})();
 </script>
