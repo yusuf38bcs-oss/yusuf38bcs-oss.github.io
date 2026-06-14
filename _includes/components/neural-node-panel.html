@@ -1,18 +1,9 @@
-﻿{% assign node = include.node | default: page %}
-{% assign valid_node = false %}
-{% if node.node_id and node.node_id != "" %}{% assign valid_node = true %}{% endif %}
+{% assign node = include.node | default: page %}
 
-{% if valid_node %}
-  {% assign node_exists = site.data.neural_nodes | where: "id", node.node_id | first %}
-  {% unless node_exists %}
-    <div class="neural-node-panel neural-node-panel--error">
-      <div class="neural-node-header">Node Registry Error</div>
-      <p><code>{{ node.node_id }}</code> is not registered in <code>neural_nodes.yml</code>.</p>
-    </div>
-  {% endunless %}
-
+{% if node.node_id %}
 <div class="neural-node-panel">
   <div class="neural-node-header">Neural Node Profile</div>
+
   <div class="neural-node-grid">
     <div class="neural-node-item">
       <span class="label">Node ID</span>
@@ -46,13 +37,7 @@
     <ul>
       {% for item in node.prerequisites %}
         {% assign prereq = site.data.neural_nodes | where: "id", item | first %}
-        <li class="{% unless prereq %}neural-node--missing{% endunless %}">
-          {% if prereq %}
-            <a href="{{ prereq.url | default: '#' }}">{{ prereq.title }}</a>
-          {% else %}
-            <span title="Missing in neural_nodes.yml">{{ item }} ⚠</span>
-          {% endif %}
-        </li>
+        <li>{{ prereq.title | default: item }}</li>
       {% endfor %}
     </ul>
   </div>
@@ -64,13 +49,7 @@
     <ul>
       {% for item in node.connects_to %}
         {% assign conn = site.data.neural_nodes | where: "id", item | first %}
-        <li class="{% unless conn %}neural-node--missing{% endunless %}">
-          {% if conn %}
-            <a href="{{ conn.url | default: '#' }}">{{ conn.title }}</a>
-          {% else %}
-            <span title="Missing in neural_nodes.yml">{{ item }} ⚠</span>
-          {% endif %}
-        </li>
+        <li>{{ conn.title | default: item }}</li>
       {% endfor %}
     </ul>
   </div>
