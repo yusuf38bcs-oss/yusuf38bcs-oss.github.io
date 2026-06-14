@@ -1,56 +1,35 @@
-<<<<<<< HEAD
-﻿{% if post.id %}
-=======
-{% if post.id %}
->>>>>>> 45e74c6f6e7214893574e310e721e7baf13225fe
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
-{% else %}
-  {% assign title = post.title %}
+﻿---
+layout: default
+---
+
+{% if page.header.overlay_color or page.header.overlay_image %}
+  <div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}"
+       style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if page.header.overlay_image %}background-image: url('{{ page.header.overlay_image | relative_url }}');{% endif %}">
+    {% if page.header.overlay_filter %}
+      <div class="wrapper">
+        <h1 id="page-title" class="page__title" itemprop="headline">
+          {{ page.title }}
+        </h1>
+        {% if page.excerpt %}
+          <p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
 {% endif %}
 
-<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-  {% if post.header.teaser %}
-    <div class="archive__item-teaser">
-      <img src="{{ post.header.teaser | relative_url }}" alt="{{ title | strip_html }}" loading="lazy">
-    </div>
-<<<<<<< HEAD
-  {% else %}
-    <div class="archive__item-teaser archive__item-teaser--fallback" aria-hidden="true"></div>
-=======
->>>>>>> 45e74c6f6e7214893574e310e721e7baf13225fe
-  {% endif %}
+<div id="main" role="main">
+  <div class="archive">
+    {% unless page.posts %}
+      <p class="archive__warning">No posts found for this archive.</p>
+    {% endunless %}
 
-  <h2 class="archive__item-title" itemprop="headline">
-    {% if post.link %}
-      <a href="{{ post.link }}">{{ title }}</a>
-      <a href="{{ post.url | relative_url }}" rel="permalink">
-        <i class="fas fa-link" aria-hidden="true" title="permalink"></i>
-        <span class="sr-only">Permalink</span>
-      </a>
-    {% else %}
-      <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
-    {% endif %}
-  </h2>
+    {% for post in page.posts %}
+      {% include components/archive-single.html %}
+    {% endfor %}
+  </div>
 
-  {% if post.read_time %}
-    <p class="page__meta">
-<<<<<<< HEAD
-      <i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}
-=======
-      <i class="far fa-clock" aria-hidden="true"></i>
-      {% include read-time.html %}
->>>>>>> 45e74c6f6e7214893574e310e721e7baf13225fe
-    </p>
-  {% endif %}
+  {% include components/neural-pagination.html %}
+</div>
 
-  {% if post.excerpt %}
-    <p class="archive__item-excerpt" itemprop="description">
-      {{ post.excerpt | markdownify | strip_html | truncate: 160 }}
-    </p>
-<<<<<<< HEAD
-  {% else %}
-    <p class="archive__item-excerpt" itemprop="description">Exploring the intersection of biology, philosophy, and practice.</p>
-=======
->>>>>>> 45e74c6f6e7214893574e310e721e7baf13225fe
-  {% endif %}
-</article>
+{% include navigation/contextual-sidebar.html %}
