@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Learning Biology For Life - Synaptic Theme Engine
  * Manages cognitive visual modes, state persistence, and cross-platform system UI synchronizations.
  * Built-in FOUC insulation safeguards and fully synchronized with core main.js telemetry.

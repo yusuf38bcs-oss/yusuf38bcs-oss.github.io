@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Learning Biology For Life - Neural Interaction Core System
  * Manages premium tactile haptics, glow synchronizations, and button states across home layout nodes
  */
