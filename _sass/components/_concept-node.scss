@@ -1,132 +1,228 @@
 /* ==========================================================================
-   CONCEPT NODE EXTENSIONS v2
-   Breadcrumbs, upstream/downstream vectors, textarea
+   Concept Node Component (_sass/components/_concept-node.scss)
+   Architecture: Neural Matrix v1.0
+   Purpose: Modular styling for Socratic nodes, badges, and knowledge graphs
    ========================================================================== */
 
+/* 1. Core Container & Biological State Mutators */
+.concept-node-container {
+  font-family: inherit;
+  position: relative;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  padding-bottom: 2rem;
+  
+  /* Mastery State triggered by socratic-mastery.js / neural-core.js */
+  &.mastery-state, &.mastery-achieved {
+    box-shadow: inset 4px 0 0 #1e8e3e;
+    transition: box-shadow 0.5s ease-in-out;
+  }
+}
+
+/* 2. Breadcrumb System */
 .synaptic-breadcrumb-bar {
+  margin-bottom: 2rem;
+  font-size: 0.9em;
+  color: var(--text-muted-color, #888);
+  
+  a {
+    text-decoration: none;
+    color: var(--synth-cyan, #00f5d4);
+    transition: color 0.2s ease;
+    
+    &:hover {
+      text-decoration: underline;
+      color: var(--primary-color, #00d2b6);
+    }
+  }
+}
+
+/* 3. Metadata Matrix & Badges */
+.node-metadata-matrix {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 15px;
+  background: var(--global-bg-color, rgba(0, 0, 0, 0.03));
+  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.meta-item {
+  font-size: 0.9em;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-  background: rgba(2, 6, 23, 0.8);
-  backdrop-filter: blur(10px);
-
-  .breadcrumb-track {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-
-      &:hover {
-        color: var(--synth-cyan, #00f5d4);
-      }
-    }
+  gap: 8px;
+  
+  .meta-label {
+    font-weight: bold;
+    color: var(--text-color, #333);
   }
-
-  .breadcrumb-label {
-    color: var(--synth-cyan, #00f5d4);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .breadcrumb-separator {
-    color: var(--synth-cyan, #00f5d4);
-  }
-
-  .current-node {
-    color: var(--text-secondary, #94a3b8);
-  }
-
-  .user-telemetry {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--synth-cyan, #00f5d4);
+  
+  .meta-value {
+    color: var(--text-color);
   }
 }
 
+.status-badge, .mastery-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+/* Badge System Colors */
+.status-available { background-color: #e8f0fe; color: #1a73e8; }
+.state-unlocked   { background-color: #e6f4ea; color: #1e8e3e; }
+.state-locked     { background-color: #f1f3f4; color: #5f6368; }
+.state-mastered   { background-color: #ceead6; color: #0d652d; border: 1px solid #1e8e3e; }
+.mastery-badge--earned { background: #ceead6; color: #0d652d; border: 1px solid #1e8e3e; }
+
+/* 4. Socratic Interface Dock */
+.socratic-interface-dock {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  padding: 20px;
+  background: var(--global-bg-color, rgba(0, 0, 0, 0.02));
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 8px;
+  border-left: 4px solid var(--synth-cyan, #00f5d4);
+
+  .console-output {
+    font-family: monospace;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    color: var(--text-color, #333);
+  }
+
+  .input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Flexible Input Area (Future-proofed for textareas) */
+#socraticInput, .socratic-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 1em;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 4px;
+  resize: vertical;
+  background: var(--input-bg, #fff);
+  color: var(--text-color, #333);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--synth-cyan, #00f5d4);
+    box-shadow: 0 0 0 2px rgba(0, 245, 212, 0.2);
+  }
+  
+  &:disabled {
+    background: var(--disabled-bg, #f5f5f5);
+    color: var(--text-muted-color, #888);
+    cursor: not-allowed;
+  }
+}
+
+/* 5. Vector Navigation & Graph System */
 .vector-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.vector-section {
-  .vector-label {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary, #94a3b8);
-
-    &.downstream-label {
-      color: var(--synth-cyan, #00f5d4);
-    }
-  }
-
-  .vector-list {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
+  margin-top: 1rem;
 }
 
 .vector-chip {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  padding: 6px 12px;
+  background: var(--chip-bg, rgba(0,0,0,0.05));
+  border-radius: 16px;
+  font-size: 0.85em;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  color: var(--text-color, #333);
+  border: 1px solid var(--border-color, transparent);
+}
+
+/* Graph Links & Missing Vectors */
+.graph-link {
   text-decoration: none;
-  transition: all 0.2s ease;
-
-  &.prereq-chip {
-    background: rgba(148, 163, 184, 0.1);
-    border: 1px solid rgba(148, 163, 184, 0.3);
-    color: var(--text-secondary, #94a3b8);
-
-    &:hover {
-      background: rgba(148, 163, 184, 0.2);
-      transform: translateY(-1px);
-    }
-  }
-
-  &.downstream-chip {
-    background: rgba(0, 245, 212, 0.1);
-    border: 1px solid rgba(0, 245, 212, 0.3);
+  font-weight: 500;
+  color: var(--link-color, #1a73e8);
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  will-change: transform;
+  
+  &:hover {
     color: var(--synth-cyan, #00f5d4);
-
-    &:hover {
-      background: rgba(0, 245, 212, 0.2);
-      transform: translateY(-1px);
-    }
+    text-decoration: none;
+    transform: translateX(2px);
   }
 }
 
-/* Socratic textarea */
-#socraticInput {
-  width: 100%;
-  min-height: 120px;
-  background: #020617;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  color: var(--text-primary, #f8f9fa);
-  padding: 1rem;
-  border-radius: 6px;
-  font-family: inherit;
-  resize: vertical;
-  margin-bottom: 1rem;
-  outline: none;
-  transition: border-color 0.3s ease;
+.missing-node {
+  color: #d93025;
+  font-style: italic;
+  font-size: 0.9em;
+  background: rgba(217, 48, 37, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
 
-  &:focus {
-    border-color: var(--synth-cyan, #00f5d4);
+/* 6. Global Neural UI Components (Toasts & Errors) */
+.neural-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #111827;
+  color: #fff;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  
+  &--lock {
+    border-left: 4px solid #d93025;
+  }
+}
+
+.neural-error {
+  padding: 15px;
+  background: var(--global-bg-color, rgba(0, 0, 0, 0.03));
+  border-radius: 8px;
+  color: #d93025;
+  border-left: 4px solid #d93025;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.neural-empty {
+  padding: 15px;
+  background: var(--global-bg-color, rgba(0, 0, 0, 0.03));
+  border-radius: 8px;
+  color: var(--text-color);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.neural-path-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  
+  li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.1));
+    color: var(--text-color);
+    
+    &:last-child {
+      border-bottom: none;
+    }
   }
 }
