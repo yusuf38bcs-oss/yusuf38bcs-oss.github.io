@@ -1,23 +1,17 @@
----
-# Default layout for Neural Education OS
----
 <!doctype html>
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js" data-theme="dark">
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
   </head>
 
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes %} {{ page.classes | join: ' ' }}{% endif %}">
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
     {% include skip-links.html %}
     {% include masthead.html %}
 
-    <canvas id="neural-network" aria-hidden="true"></canvas>
-    <div class="neural-vignette" aria-hidden="true"></div>
-
-    <main class="initial-content" id="site-main" role="main">
+    <div class="initial-content">
       {{ content }}
-    </main>
+    </div>
 
     {% if site.search == true %}
       <div class="search-content">
@@ -25,45 +19,11 @@
       </div>
     {% endif %}
 
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
-    </div>
-
-    <div id="gdpr-banner" aria-live="polite">
-      <span>We use cookies to enhance your neural pathway mapping and serve biological insights (and ads). Do you accept?</span>
-      <div class="gdpr-btn-group">
-        <button class="gdpr-accept" onclick="gdprAccept()">Accept</button>
-        <button class="gdpr-decline" onclick="gdprDecline()">Decline</button>
-      </div>
+    <div id="footer" class="page__footer">
+      {% include footer/custom.html %}
+      {% include footer.html %}
     </div>
 
     {% include scripts.html %}
-
-    <script defer src="{{ '/assets/js/core/theme-controller.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/core/performance-guard.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/core/menu-scroll.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/core/semantic-linker.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/core/analytics-engine.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/core/ai-core.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    
-    <script defer src="{{ '/assets/js/core/myelination-tracker.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/core/neural-core.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    
-    <script defer src="{{ '/assets/js/core/socratic-component.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/core/synapse-effects.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/core/main.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/mobile-drawer.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    
-    <script defer src="{{ '/assets/js/core/neural-bg.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-
-    {% if page.url == "/" %}
-    <script defer src="{{ '/assets/js/home/hero-effects.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/neural-flow.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/neural-interactions.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/section-transitions.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    {% endif %}
   </body>
 </html>

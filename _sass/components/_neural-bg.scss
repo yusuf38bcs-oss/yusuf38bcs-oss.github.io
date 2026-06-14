@@ -94,3 +94,15 @@
   background-color: var(--global-bg-color, #111827);
   border-top: 1px solid var(--border-color, rgba(255,255,255,0.1));
 }
+/* ==========================================================================
+   CANVAS BACKDROP
+   ========================================================================== */
+#neural-network {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}

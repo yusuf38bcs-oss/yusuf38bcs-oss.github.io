@@ -1,86 +1,32 @@
-<footer class="synaptic-footer" role="contentinfo" aria-label="Learning Biology For Life Global Footer">
-  <div class="synaptic-footer__wrapper">
-
-    <div class="synaptic-card synaptic-footer__brand-card">
-      <h2 class="synaptic-footer__brand-title">Learning Biology <span class="highlight">For Life</span></h2>
-      <p class="synaptic-footer__brand-subtitle">BIOLOGY &bull; SYSTEMS THINKING &bull; 4IR EDUCATION</p>
+<footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="{{ '/biology/' | relative_url }}">Biology</a></li>
+        <li><a href="{{ '/synaptic-bridge/' | relative_url }}">Synaptic Bridge</a></li>
+        <li><a href="{{ '/life-philosophy/' | relative_url }}">Life Philosophy</a></li>
+        <li><a href="{{ '/life-practices/' | relative_url }}">Life Practices</a></li>
+      </ul>
     </div>
-
-    <div class="synaptic-footer__nav-grid">
-
-      <nav class="synaptic-footer__column" aria-label="Academic Biology Pillar">
-        <h3 class="synaptic-footer__heading">Biology (Academic)</h3>
-        <ul class="synaptic-footer__list">
-          <li><a href="{{ '/biology/#hsc-corner' | relative_url }}">HSC Corner (Botany/Zoology)</a></li>
-          <li><a href="{{ '/biology/higher-zoology/' | relative_url }}">Higher Zoology Tree</a></li>
-          <li><a href="{{ '/biology/animal-diversity/' | relative_url }}">Animal Diversity & Ecology</a></li>
-          <li><a href="{{ '/biology/genetics-biostatistics/' | relative_url }}">Genetics & Biostatistics</a></li>
-        </ul>
-      </nav>
-
-      <nav class="synaptic-footer__column" aria-label="Practical Approaches Pillar">
-        <h3 class="synaptic-footer__heading">Life Practices</h3>
-        <ul class="synaptic-footer__list">
-          <li><a href="{{ '/life-practices/human-behaviour/' | relative_url }}">Human Behaviour</a></li>
-          <li><a href="{{ '/life-practices/leadership-management/' | relative_url }}">Leadership Management</a></li>
-          <li><a href="{{ '/life-practices/research-highlights/' | relative_url }}">Research Highlights</a></li>
-          <li><a href="{{ '/life-practices/random-thoughts/' | relative_url }}">Random Thoughts</a></li>
-        </ul>
-      </nav>
-
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="{{ '/assessments/' | relative_url }}">Assessments</a></li>
+        <li><a href="{{ '/categories/' | relative_url }}">Categories</a></li>
+      </ul>
     </div>
-
-    <div class="synaptic-card synaptic-footer__subscribe-card">
-      <h3 class="synaptic-footer__heading text-center">Subscription Hub</h3>
-      <p class="synaptic-footer__microcopy">
-        Join the neural network. Receive custom research logs, Socratic analysis, and 4IR education insights straight to your cortex.
-      </p>
-
-      <form action="https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ==" 
-            method="POST" 
-            target="_blank" 
-            class="synaptic-newsletter__form">
-
-        <label for="FOOTER_EMAIL" class="synaptic-newsletter__label">Subscribe to Connect Your Dots Of Life</label>
-
-        <div class="synaptic-newsletter__input-group">
-          <input type="email" id="FOOTER_EMAIL" name="EMAIL" class="synaptic-newsletter__input" placeholder="e.g. abc@xyz.com" required aria-required="true">
-          <button type="submit" class="synaptic-newsletter__button">SUBSCRIBE</button>
-        </div>
-
-        <div class="synaptic-newsletter__optin">
-          <input type="checkbox" id="FOOTER_OPT_IN" name="OPT_IN" value="1" required class="synaptic-newsletter__checkbox">
-          <label for="FOOTER_OPT_IN" class="synaptic-newsletter__optin-text">
-            I agree to receive letters and accept the ecosystem data privacy statement.
-          </label>
-        </div>
-
-        <p class="synaptic-newsletter__disclaimer">
-          Marketing execution platform driven by Brevo. Data processed securely in accordance with edge protection parameters.
-        </p>
-      </form>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a></li>
+        <li><a href="{{ '/terms/' | relative_url }}">Terms & Conditions</a></li>
+        <li><a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a></li>
+        <li><a href="{{ '/cookie-preferences/' | relative_url }}">Cookie Preferences</a></li>
+      </ul>
     </div>
-
-    <div class="synaptic-footer__reflection">
-      <blockquote class="synaptic-footer__quote">
-        "The purpose of education is not the accumulation of information, but the construction of meaningful connections between ideas, systems, and life."
-      </blockquote>
-    </div>
-
-    <div class="synaptic-footer__legal">
-      
-      <nav class="synaptic-footer__legal-links" aria-label="Legal Directory Links">
-        <a href="{{ '/archive/' | relative_url }}">82-Post Archive</a>
-        <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a>
-        <a href="{{ '/terms-and-conditions/' | relative_url }}">Terms & Conditions</a>
-        <a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a>
-        <a href="#" id="cookie-consent-trigger" class="cookie-trigger" aria-haspopup="dialog">Cookie Preferences</a>
-      </nav>
-
-      <div class="synaptic-footer__copyright">
-        &copy; {{ site.time | date: "%Y" }} Learning Biology For Life. Managed by MD. Yusuf. All rights reserved.
-      </div>
-      
-    </div>
-
-  </div> </footer>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+  </div>
+</footer>

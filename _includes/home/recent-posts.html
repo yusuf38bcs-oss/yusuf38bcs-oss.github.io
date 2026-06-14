@@ -1,38 +1,19 @@
-<section class="neural-section-wrapper" id="latest-logs-matrix">
-  <div class="section-container">
-    <div class="ecosystem-section-header">
-      <h2 class="ecosystem-section-title"><span class="accent-neon">⚡</span> Latest Scientific Logs</h2>
-      <div class="neural-accent-bar"></div>
+{% assign posts = site.posts | limit: 6 %}
+<section class="home-section recent-posts">
+  <h2 class="section-title">Latest Scientific Logs</h2>
+  {% if posts.size > 0 %}
+    <div class="card-grid">
+      {% for post in posts %}
+        {% include components/archive-single.html %}
+      {% endfor %}
     </div>
-    <div class="neural-cards-grid">
-      {% assign sorted_docs = filtered_docs | default: site.posts | sort: 'date' | reverse %}
-      {% assign posts_count = sorted_docs | size %}
-      {% if posts_count > 0 %}
-        {% for doc in sorted_docs limit: 6 %}
-          <article class="premium-neural-card feed-article-card" data-aos="fade-up">
-            <div class="card-glow-layer"></div>
-            <div class="card-content-node">
-              <span class="card-tag-node">{% if doc.categories %}{{ doc.categories | first }}{% else %}Biology{% endif %}</span>
-              <h3 class="card-title-node">
-                <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
-              </h3>
-              {% if doc.excerpt %}
-                <p class="card-description-node">
-                  {{ doc.excerpt | strip_html | truncate: 120 }}
-                </p>
-              {% endif %}
-              <div class="card-footer-node">
-                <span class="card-date-node">{{ doc.date | date: "%B %d, %Y" }}</span>
-                <a href="{{ doc.url | relative_url }}" class="card-action-link" aria-label="Explore log vector: {{ doc.title }}">Explore Vector →</a>
-              </div>
-            </div>
-          </article>
-        {% endfor %}
-      {% else %}
-        <div class="fallback-empty-card">
-          <p>Awaiting fresh scientific logs. Synaptic synchronization in progress...</p>
-        </div>
-      {% endif %}
+    <div class="section-cta">
+      <a href="{{ '/archive/' | relative_url }}" class="btn btn--primary">View Archive</a>
     </div>
-  </div>
+  {% else %}
+    <p class="archive__warning">Awaiting fresh scientific logs. Check back soon.</p>
+    <div class="section-cta">
+      <a href="{{ '/categories/' | relative_url }}" class="btn btn--primary">Browse Categories</a>
+    </div>
+  {% endif %}
 </section>

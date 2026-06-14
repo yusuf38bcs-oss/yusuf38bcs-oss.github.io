@@ -1,0 +1,59 @@
+﻿
+/* ==========================================================================
+   PHASE 2: ARCHIVE / CARD STABILIZATION
+   ========================================================================== */
+
+.archive {
+  margin-bottom: 2rem;
+}
+
+.archive__item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  word-break: break-word;
+}
+
+.archive__item-teaser {
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.archive__item-teaser img,
+.page__hero-image img,
+.page__content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.archive__item-title {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.archive__item-title a {
+  text-decoration: none;
+}
+
+.archive__item-excerpt {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.page__meta {
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.archive__warning {
+  padding: 2rem;
+  text-align: center;
+  font-style: italic;
+  opacity: 0.8;
+}

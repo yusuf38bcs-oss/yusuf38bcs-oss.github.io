@@ -1,276 +1,32 @@
-<header class="neural-site-masthead">
-
-  <div class="masthead-matrix-container">
-
-    <div class="masthead-branding-node">
-      <a href="{{ '/' | relative_url }}" class="masthead-logo-anchor">
-        <img
-          src="{{ site.logo | relative_url }}"
-          alt="{{ site.title }}"
-          class="masthead-clean-logo">
-      </a>
-
-      <a href="{{ '/' | relative_url }}"
-         class="masthead-title-anchor">
-        Learning Biology
-        <span class="accent-neon">For Life</span>
-      </a>
+﻿<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        {% if site.logo %}
+          <a class="site-logo" href="{{ '/' | relative_url }}">
+            <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}">
+          </a>
+        {% endif %}
+        <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        <ul class="visible-links">
+          {%- for link in site.data.navigation.main -%}
+            <li class="masthead__menu-item">
+              <a href="{{ link.url | relative_url }}" {% if link.description %}title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+        {% if site.search == true %}
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: "Toggle search" }}</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        {% endif %}
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle menu" }}</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
     </div>
-
-    <!-- Mobile Toggle -->
-
-    <button
-      id="neural-mobile-toggle"
-      class="masthead-mobile-trigger"
-      type="button"
-      aria-label="Open navigation menu"
-      aria-controls="neural-mobile-drawer"
-      aria-expanded="false">
-
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-
-    </button>
-
-    <!-- Desktop Navigation -->
-
-    <nav
-      class="masthead-desktop-navigation"
-      aria-label="Primary Navigation">
-
-      <ul class="desktop-nav-menu">
-
-        <li>
-          <a href="{{ '/' | relative_url }}"
-             class="nav-main-link">
-            Home
-          </a>
-        </li>
-
-        <li class="has-neural-dropdown">
-
-          <a href="#"
-             class="nav-main-link dropdown-trigger-node"
-             aria-haspopup="true"
-             aria-expanded="false">
-
-            Biology
-
-            <span
-              class="dropdown-arrow-indicator"
-              aria-hidden="true">
-              &#9660;
-            </span>
-
-          </a>
-
-          <ul class="neural-sub-menu">
-
-            <li class="sub-menu-category-title">
-              HSC Corner
-            </li>
-
-            <li>
-              <a href="{{ '/biology/hsc-corner/botany/' | relative_url }}">
-                HSC Botany
-              </a>
-            </li>
-
-            <li>
-              <a href="{{ '/biology/hsc-corner/zoology/' | relative_url }}">
-                HSC Zoology
-              </a>
-            </li>
-
-            <li class="sub-menu-category-title">
-              Higher Zoology Tree
-            </li>
-
-            <li>
-              <a href="{{ '/synaptic-bridge/systems-biology/' | relative_url }}">
-                Systems Biology
-              </a>
-            </li>
-
-            <li>
-              <a href="{{ '/synaptic-bridge/interdisciplinary-science/' | relative_url }}">
-                Interdisciplinary Science
-              </a>
-            </li>
-
-          </ul>
-
-        </li>
-
-        <li class="has-neural-dropdown">
-
-          <a href="#"
-             class="nav-main-link dropdown-trigger-node"
-             aria-haspopup="true"
-             aria-expanded="false">
-
-            Synaptic Bridge
-
-            <span
-              class="dropdown-arrow-indicator"
-              aria-hidden="true">
-              &#9660;
-            </span>
-
-          </a>
-
-          <ul class="neural-sub-menu">
-
-            <li class="sub-menu-category-title">
-              4IR Ecosystem
-            </li>
-
-            <li>
-              <a href="{{ '/synaptic-bridge/4ir-education/' | relative_url }}">
-                4IR Cognitive Education
-              </a>
-            </li>
-
-            <li>
-              <a href="{{ '/synaptic-bridge/knowledge-network/' | relative_url }}">
-                Knowledge Network Hub
-              </a>
-            </li>
-
-            <li>
-              <a href="{{ '/synaptic-bridge/future-science/' | relative_url }}">
-                Future Learning Science
-              </a>
-            </li>
-
-          </ul>
-
-        </li>
-
-        <li>
-          <a href="{{ '/life-practices/' | relative_url }}"
-             class="nav-main-link">
-            Life Practices
-          </a>
-        </li>
-
-        <li>
-          <a href="{{ '/socratic/' | relative_url }}"
-             class="nav-main-link">
-            Socratic 4.0
-          </a>
-        </li>
-
-        <li>
-          <a href="{{ '/contact/' | relative_url }}"
-             class="nav-main-link">
-            Contact
-          </a>
-        </li>
-
-      </ul>
-
-    </nav>
-
   </div>
-
-  <!-- Mobile Drawer -->
-
-  <aside
-    id="neural-mobile-drawer"
-    class="masthead-mobile-dropdown-drawer"
-    aria-hidden="true">
-
-    <ul class="mobile-nav-menu-list">
-
-      <li>
-        <a href="{{ '/' | relative_url }}">
-          Home
-        </a>
-      </li>
-
-      <li class="mobile-menu-section-header">
-        Biology Dynamic Stream
-      </li>
-
-      <li>
-        <a class="mobile-sub-link"
-           href="{{ '/biology/hsc-corner/botany/' | relative_url }}">
-          HSC Botany
-        </a>
-      </li>
-
-      <li>
-        <a class="mobile-sub-link"
-           href="{{ '/biology/hsc-corner/zoology/' | relative_url }}">
-          HSC Zoology
-        </a>
-      </li>
-
-      <li>
-        <a class="mobile-sub-link"
-           href="{{ '/synaptic-bridge/systems-biology/' | relative_url }}">
-          Systems Biology
-        </a>
-      </li>
-
-      <li>
-        <a class="mobile-sub-link"
-           href="{{ '/synaptic-bridge/interdisciplinary-science/' | relative_url }}">
-          Interdisciplinary Science
-        </a>
-      </li>
-
-      <li class="mobile-menu-section-header">
-        Synaptic Core Arrays
-      </li>
-
-      <li>
-        <a class="mobile-sub-link"
-           href="{{ '/synaptic-bridge/4ir-education/' | relative_url }}">
-          4IR Cognitive Education
-        </a>
-      </li>
-
-      <li>
-        <a class="mobile-sub-link"
-           href="{{ '/synaptic-bridge/knowledge-network/' | relative_url }}">
-          Knowledge Network Hub
-        </a>
-      </li>
-
-      <li>
-        <a class="mobile-sub-link"
-           href="{{ '/synaptic-bridge/future-science/' | relative_url }}">
-          Future Learning Science
-        </a>
-      </li>
-
-      <li class="mobile-menu-section-header">
-        Core Portals
-      </li>
-
-      <li>
-        <a href="{{ '/life-practices/' | relative_url }}">
-          Life Practices
-        </a>
-      </li>
-
-      <li>
-        <a href="{{ '/socratic/' | relative_url }}">
-          Socratic 4.0 Portal
-        </a>
-      </li>
-
-      <li>
-        <a href="{{ '/contact/' | relative_url }}">
-          Contact Hub
-        </a>
-      </li>
-
-    </ul>
-
-  </aside>
-
-</header>
+</div>
