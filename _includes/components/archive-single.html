@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿{% if post.id %}
+=======
+{% if post.id %}
+>>>>>>> 45e74c6f6e7214893574e310e721e7baf13225fe
   {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
 {% else %}
   {% assign title = post.title %}
@@ -9,8 +13,11 @@
     <div class="archive__item-teaser">
       <img src="{{ post.header.teaser | relative_url }}" alt="{{ title | strip_html }}" loading="lazy">
     </div>
+<<<<<<< HEAD
   {% else %}
     <div class="archive__item-teaser archive__item-teaser--fallback" aria-hidden="true"></div>
+=======
+>>>>>>> 45e74c6f6e7214893574e310e721e7baf13225fe
   {% endif %}
 
   <h2 class="archive__item-title" itemprop="headline">
@@ -27,7 +34,12 @@
 
   {% if post.read_time %}
     <p class="page__meta">
+<<<<<<< HEAD
       <i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}
+=======
+      <i class="far fa-clock" aria-hidden="true"></i>
+      {% include read-time.html %}
+>>>>>>> 45e74c6f6e7214893574e310e721e7baf13225fe
     </p>
   {% endif %}
 
@@ -35,7 +47,10 @@
     <p class="archive__item-excerpt" itemprop="description">
       {{ post.excerpt | markdownify | strip_html | truncate: 160 }}
     </p>
+<<<<<<< HEAD
   {% else %}
     <p class="archive__item-excerpt" itemprop="description">Exploring the intersection of biology, philosophy, and practice.</p>
+=======
+>>>>>>> 45e74c6f6e7214893574e310e721e7baf13225fe
   {% endif %}
 </article>
