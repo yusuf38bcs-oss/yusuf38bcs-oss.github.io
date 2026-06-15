@@ -67,17 +67,11 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 @import "layout/homepage-stabilizer";
 
 /* ==========================================================================
-   9. GLOBAL OMEGA OVERRIDES
-   ========================================================================== */
-@import "layout/omega-overrides";
-
-/* ==========================================================================
-   10. MATRIX ARCHITECTURE COMPILING TARGET
+   9. MATRIX ARCHITECTURE COMPILING TARGET
    ========================================================================== */
 @import "custom/omega-v15";
-@import "layout/production-recovery";
 
 /* ==========================================================================
-   11. PHASE 1: NAVIGATION OWNER = components/navigation.scss
-   No competing masthead/greedy-nav rules permitted below this line.
+   10. PRODUCTION OMEGA OVERRIDE — Dead Last
    ========================================================================== */
+@import "layout/omega-overrides";

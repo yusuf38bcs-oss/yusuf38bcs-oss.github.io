@@ -1,27 +1,31 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    NAVIGATION STABILIZATION — Phase 1 Production
    Single owner for all masthead/greedy-nav overrides.
    Minimal Mistakes greedy-nav base structure is preserved.
    ========================================================================== */
 
+/* Sticky masthead container */
 .masthead {
   position: sticky;
   top: 0;
   z-index: 9999;
 }
 
+/* Inner wrap: vertical centering, enforce minimum height */
 .masthead__inner-wrap {
   min-height: 56px;
   display: flex;
   align-items: center;
 }
 
+/* Logo: hard size ceiling */
 .site-logo img {
   max-height: 36px;
   width: auto;
   display: block;
 }
 
+/* Title: one line only, ellipsis on overflow */
 .site-title {
   font-size: 1.1rem !important;
   font-weight: 700 !important;
@@ -31,20 +35,24 @@
   min-width: 0;
 }
 
+/* Greedy nav: transparent background only */
 .greedy-nav {
   background: transparent !important;
 }
 
+/* Nav links: compact, never wrap */
 .greedy-nav a {
   font-size: 0.9rem !important;
   line-height: 1.2 !important;
   white-space: nowrap !important;
 }
 
+/* Toggle: never crush */
 .greedy-nav__toggle {
   flex-shrink: 0 !important;
 }
 
+/* Mobile drawer stabilization (<=768px) */
 @media (max-width: 768px) {
   .site-title {
     font-size: 0.95rem !important;
@@ -55,6 +63,7 @@
     font-size: 0.85rem !important;
   }
 
+  /* Override MM default absolute dropdown with fixed slide-in */
   .hidden-links {
     position: fixed !important;
     top: 0 !important;
@@ -97,6 +106,7 @@
   }
 }
 
+/* Global viewport security */
 html, body {
   max-width: 100%;
   overflow-x: hidden;

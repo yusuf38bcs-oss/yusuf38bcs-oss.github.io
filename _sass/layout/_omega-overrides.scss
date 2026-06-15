@@ -1,536 +1,481 @@
 /* ==========================================================================
-   OMEGA OVERRIDES V3.1
-   Learning Biology For Life
-
-   FINAL CASCADE LAYER
+   OMEGA OVERRIDE — Production Stabilization Layer
+   Loaded dead-last in main.scss. Neutralizes omega-v11/v15 conflicts.
    ========================================================================== */
 
-/* ==========================================================================
-   Z-INDEX CONTRACT
-   ========================================================================== */
-:root {
-  --z-index-nav: 2000;
-  --z-index-drawer: 2001;
-  --z-index-dropdown: 2002;
-  --z-index-modal: 3000;
-}
-
-/* ==========================================================================
-   REMOVE LEGACY MINIMAL MISTAKES MOBILE NAV
-   ========================================================================== */
-.greedy-nav__toggle,
-.masthead__menu-toggle,
-.hidden-links,
-.greedy-nav .hidden-links {
+/* ── LEAK SUPPRESSION ── */
+body > hr:first-of-type,
+.initial-content > hr:first-child,
+.page__content > hr:first-child,
+.masthead + hr,
+hr:empty {
   display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
 }
 
-/* ==========================================================================
-   ACCESSIBILITY
-   ========================================================================== */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px dashed #00f5d4;
-  outline-offset: 4px;
+/* ── MASTHEAD LOCK ── */
+.masthead {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9000 !important;
 }
 
-/* ==========================================================================
-   REDUCED MOTION
-   ========================================================================== */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ==========================================================================
-   LAYOUT OFFSETS & DESKTOP ENFORCEMENT
-   ========================================================================== */
-#main,
-.page,
-.synaptic-page-container {
-  padding-top: var(--neural-nav-height);
-}
-
-.synaptic-homepage-matrix {
-  padding-top: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  scroll-margin-top: calc(var(--neural-nav-height) + 20px);
-}
-
-@media (min-width: 768px) {
-  .masthead-desktop-navigation {
-    display: block !important;
-  }
-  .masthead-mobile-trigger {
-    display: none !important;
-  }
-  .masthead-mobile-dropdown-drawer {
-    display: none !important;
-  }
-}
-
-/* ==========================================================================
-   NEURAL SYSTEM DIVIDER
-   ========================================================================== */
-.neural-system-divider {
-  width: 100%;
-  padding: 4rem 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.divider-matrix-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  max-width: 600px;
-  text-align: center;
-}
-
-.divider-node-cluster {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  opacity: 0.8;
-}
-
-.matrix-solid-dot {
-  width: 6px;
-  height: 6px;
-  background-color: var(--synth-cyan, #00f5d4);
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0, 245, 212, 0.6);
-}
-
-.matrix-horizontal-line {
-  width: 80px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 245, 212, 0.5), transparent);
-}
-
-.divider-transition-text {
-  font-size: clamp(1.2rem, 3vw, 1.75rem);
-  font-weight: 300;
-  color: #94a3b8;
-  line-height: 1.4;
-  margin: 0;
-  letter-spacing: 0.02em;
-}
-
-.cyan-glow-text {
-  color: var(--synth-cyan, #00f5d4);
-  font-weight: 600;
-  text-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
-}
-
-/* ==========================================================================
-   CRITICAL FIX: MOBILE DRAWER & LOGO OVERFLOW
-   ========================================================================== */
-.site-logo img,
-.masthead__menu-item img,
-#neural-mobile-drawer img,
-.greedy-nav__hidden img {
-  max-width: 180px !important;
+.masthead__inner-wrap {
+  min-height: 56px !important;
+  max-height: 72px !important;
   height: auto !important;
-  display: block;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 1rem !important;
+  box-sizing: border-box !important;
 }
 
-@media (max-width: 1024px) {
-  #neural-mobile-drawer,
-  .greedy-nav__hidden {
+.masthead__menu {
+  display: block !important;
+  width: 100% !important;
+}
+
+.greedy-nav {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: transparent !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.site-logo {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-right: 0.5rem !important;
+}
+
+.site-logo img {
+  max-height: 36px !important;
+  width: auto !important;
+  display: block !important;
+}
+
+.site-title {
+  display: block !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  flex-shrink: 1 !important;
+  min-width: 0 !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.visible-links {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.masthead__menu-item {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.masthead__menu-item a,
+.visible-links a {
+  display: block !important;
+  font-size: 0.85rem !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  padding: 0.4rem 0.6rem !important;
+}
+
+.greedy-nav__toggle {
+  flex-shrink: 0 !important;
+  margin-left: 0.5rem !important;
+}
+
+/* Mobile drawer */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 0.9rem !important;
+    max-width: 60vw !important;
+  }
+
+  .hidden-links {
     position: fixed !important;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
     width: 85vw !important;
     max-width: 380px !important;
     height: 100vh !important;
+    height: 100dvh !important;
     background-color: #020617 !important;
     z-index: 99999 !important;
-    transform: translateX(100%);
+    transform: translateX(100%) !important;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
     overflow-y: auto !important;
     padding: 3rem 2rem !important;
-    box-shadow: -15px 0 50px rgba(0,0,0,0.8) !important;
+    box-shadow: -15px 0 50px rgba(0, 0, 0, 0.8) !important;
     border-left: 1px solid rgba(0, 245, 212, 0.15) !important;
     display: block !important;
+    list-style: none !important;
+    margin: 0 !important;
   }
 
-  #neural-mobile-drawer.is-open,
-  .greedy-nav__hidden.is-open {
+  .hidden-links.hidden {
+    transform: translateX(100%) !important;
+  }
+
+  .hidden-links:not(.hidden) {
     transform: translateX(0) !important;
   }
 
-  #neural-mobile-drawer ul,
-  .greedy-nav__hidden ul {
-    list-style: none !important;
-    margin: 2rem 0 0 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-  }
-
-  #neural-mobile-drawer li,
-  .greedy-nav__hidden li {
-    display: block !important;
+  .hidden-links li {
     margin: 0 !important;
     padding: 0 !important;
   }
 
-  #neural-mobile-drawer a,
-  .greedy-nav__hidden a {
+  .hidden-links a {
     display: block !important;
-    color: #e2e8f0 !important;
-    text-decoration: none !important;
-    font-size: 1.15rem !important;
-    font-weight: 500 !important;
+    font-size: 1.05rem !important;
     padding: 1rem 0 !important;
     border-bottom: 1px solid rgba(148, 163, 184, 0.1) !important;
-    transition: all 0.2s ease !important;
-  }
-
-  #neural-mobile-drawer a:hover,
-  #neural-mobile-drawer a:focus-visible,
-  .greedy-nav__hidden a:hover,
-  .greedy-nav__hidden a:focus-visible {
-    color: #00f5d4 !important;
-    padding-left: 12px !important;
-    border-bottom-color: rgba(0, 245, 212, 0.3) !important;
-    outline: none !important;
+    white-space: normal !important;
   }
 }
 
-/* ==========================================================================
-   HERO TYPOGRAPHY & FOOTER REFINEMENT PATCH
-   ========================================================================== */
-@media (max-width: 768px) {
-  .neural-hero-shell, 
-  .home-hero,
-  .synaptic-home-layout .section-shell {
-    padding-top: 5rem !important; 
-  }
-  
-  .section-heading, 
-  .page-main-title {
-    margin-top: 1.5rem !important;
-  }
-}
-
-.section-lead, 
-.hero-description,
-.neural-hero-shell p {
-  color: #94a3b8 !important;
-  font-size: clamp(1rem, 4vw, 1.15rem) !important;
-  line-height: 1.6 !important;
-  font-weight: 400 !important;
-  letter-spacing: 0.01em !important;
-  margin-top: 1.25rem !important;
-  margin-bottom: 2.5rem !important;
-  max-width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-
-.synaptic-footer__legal {
+/* ── HERO RECOVERY ── */
+.neural-hero,
+.hero,
+.page__hero,
+.page__hero--overlay {
+  position: relative !important;
+  min-height: 85vh !important;
+  min-height: 85dvh !important;
   display: flex !important;
-  flex-direction: column !important;
   align-items: center !important;
-  gap: 1.5rem !important;
-  padding-top: 2rem !important;
-}
-
-.synaptic-footer__copyright {
-  font-size: 0.8rem !important;
-  color: rgba(148, 163, 184, 0.5) !important;
+  justify-content: center !important;
   text-align: center !important;
-  margin-top: 0.5rem !important;
+  overflow: hidden !important;
+  padding: 4rem 1.5rem !important;
+  box-sizing: border-box !important;
 }
 
-/* ==========================================================================
-   PRODUCTION HARDENING, ACCESSIBILITY & PERFORMANCE
-   ========================================================================== */
-*:focus { outline: none; }
-
-*:focus-visible {
-  outline: 2px solid #00f5d4 !important;
-  outline-offset: 4px !important;
-  border-radius: 2px;
+.neural-hero .wrapper,
+.hero .wrapper,
+.page__hero .wrapper {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
 }
 
-.neural-card, 
-.synaptic-card, 
-.flow-node-card-slot,
-.network-node,
-.brevo-form-container {
-  will-change: transform, opacity, box-shadow;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto !important; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ==========================================================================
-   NEURAL SYSTEM FLOW LAYER & SAFE-AREA RESPONSIVENESS
-   ========================================================================== */ 
-header.neural-site-masthead {
-  background-image: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.6)) !important;
-  min-height: 66px;
-  height: auto !important;
-  padding-top: env(safe-area-inset-top, 0px) !important;
-  backdrop-filter: blur(8px);
-}
-
-#neural-network {
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: 0 !important;
-  pointer-events: none;
-}
-
-main#main { padding-top: 66px; }
-
-.site-logo img {
-  width: 37px; height: 35px; object-fit: contain;
-}
-
-aside#neural-mobile-drawer {
-  padding-top: calc(max(3rem, env(safe-area-inset-top))) !important;
-  padding-bottom: calc(max(3rem, env(safe-area-inset-bottom))) !important;
+/* ── BACKGROUND STACK ── */
+#neural-network,
+.neural-bg,
+canvas[id*="neural"] {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
   height: 100vh !important;
   height: 100dvh !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
 }
 
-/* ==========================================================================
-   GLOBAL ANTI-LEAK & OVERFLOW SAFEGUARDS
-   ========================================================================== */
-html, body {
-  overflow-x: hidden !important;
-  width: 100%; max-width: 100vw;
-  box-sizing: border-box;
+.initial-content,
+#main,
+.page,
+.page__inner-wrap {
+  position: relative !important;
+  z-index: 1 !important;
 }
 
-*, *::before, *::after { box-sizing: inherit; }
-
-p, h1, h2, h3, h4, h5, h6, a, li, span, div {
-  overflow-wrap: break-word !important;
-  word-wrap: break-word !important;
-  word-break: break-word;
+/* ── GAP COLLAPSE ── */
+.neural-divider:empty,
+.section-divider:empty,
+.spacer:empty,
+div:empty:not([class*="neural"]):not([id]) {
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: none !important;
 }
 
-img, picture, video, canvas, svg, iframe {
-  max-width: 100% !important; height: auto;
+.home-section,
+.academic-sections,
+.recent-posts,
+.tests-cta {
+  margin-bottom: 2rem !important;
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
 }
 
-pre, code {
-  max-width: 100% !important; overflow-x: auto !important;
+/* ── CARD GRID EQUAL HEIGHT ── */
+.card-grid,
+.feature__wrapper,
+.archive,
+.entries-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap: 1.5rem !important;
+  align-items: stretch !important;
 }
 
-.vector-grid, 
-.manifold-grid,
-[style*="minmax(300px"], 
-[style*="minmax(320px"] {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important;
+.neural-card,
+.hub-card,
+.feature__item,
+.archive__item {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
 }
 
-.synaptic-hero-container, 
-.manifold-system-container,
-.discovery-axis-container,
-.taxonomy-directory-section,
-.subscription-hub-section,
-.page-layout-grid {
-  width: 100% !important; max-width: 100vw !important; box-sizing: border-box !important;
+.hub-card {
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  padding: 1.5rem !important;
+  border-radius: 10px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  border: 1px solid rgba(0, 245, 212, 0.15) !important;
+  background: rgba(0, 245, 212, 0.04) !important;
 }
 
-/* ==========================================================================
-   BULLETPROOF WEBKIT MOBILE OVERFLOW LOCK
-   ========================================================================== */
-html, body {
-  overflow-x: hidden !important; width: 100% !important; max-width: 100vw !important; position: relative !important;
+.hub-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(0, 245, 212, 0.3) !important;
 }
 
-.initial-content, #main, .page-wrapper, .synaptic-homepage-matrix {
-  overflow-x: hidden !important; width: 100% !important; max-width: 100vw !important; box-sizing: border-box !important;
+.hub-card__icon {
+  font-size: 2rem !important;
+  line-height: 1 !important;
 }
 
-img, svg, video, iframe, canvas, pre, code {
+.hub-card__title {
+  font-size: 1rem !important;
+  line-height: 1.3 !important;
+}
+
+.neural-card .card-body,
+.feature__item .archive__item-excerpt,
+.archive__item-excerpt {
+  flex: 1 1 auto !important;
+}
+
+/* ── ARCHIVE HARDENING ── */
+.archive__item {
+  margin-bottom: 1.5rem !important;
+  padding: 1.25rem !important;
+  border-radius: 8px !important;
+  word-break: break-word !important;
+}
+
+.archive__item-teaser {
+  margin-bottom: 0.75rem !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  min-height: 120px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.archive__item-teaser img,
+.archive__item-teaser--fallback {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
   max-width: 100% !important;
 }
 
-/* ==========================================================================
-   CONCEPT NODE ARCHITECTURE
-   ========================================================================== */
-.concept-node {
-  position: relative; max-width: 800px; margin: 0 auto; padding: 2rem;
-  background: #0b1120; border: 1px solid rgba(0, 212, 178, 0.12); border-radius: 12px;
+.archive__item-title {
+  font-size: 1.15rem !important;
+  line-height: 1.3 !important;
+  margin-top: 0 !important;
 }
 
-.concept-node--locked { opacity: 0.6; pointer-events: none; filter: grayscale(0.9); }
-.concept-node--available { border-color: rgba(0, 212, 178, 0.3); }
-.concept-node--mastered { border-color: rgba(0, 245, 212, 0.5); box-shadow: 0 0 24px rgba(0, 245, 212, 0.08); }
-
-.concept-meta {
-  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1rem;
-  font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;
+.archive__item-title a {
+  text-decoration: none !important;
 }
 
-.concept-pillar { color: #00f5d4; font-weight: 600; }
-.concept-difficulty { color: #fbbf24; }
-.concept-time { color: #94a3b8; }
-
-.concept-mastery-badge {
-  margin-left: auto; padding: 0.25rem 0.75rem; border-radius: 999px;
-  background: rgba(239, 68, 68, 0.15); color: #fca5a5; font-size: 0.7rem; font-weight: 600;
+.archive__item-excerpt {
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  margin-top: 0.5rem !important;
 }
 
-.mastery-badge--earned { background: rgba(0, 245, 212, 0.15) !important; color: #00f5d4 !important; }
-
-.prerequisite-list, .vector-list, .neural-path-list {
-  list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-direction: column; gap: 0.5rem;
+.archive__warning {
+  text-align: center !important;
+  padding: 2rem !important;
+  font-style: italic !important;
 }
 
-.prerequisite-link, .vector-link {
-  display: block; padding: 0.75rem 1rem; background: rgba(0, 212, 178, 0.08);
-  border: 1px solid rgba(0, 212, 178, 0.15); border-radius: 6px; color: #cbd5e1; text-decoration: none; transition: all 0.2s ease;
+/* ── NEWSLETTER ── */
+.synaptic-newsletter {
+  max-width: 640px !important;
+  margin: 2rem auto !important;
+  padding: 2rem !important;
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
 }
 
-.prerequisite-link:hover, .vector-link:hover {
-  background: rgba(0, 212, 178, 0.15); border-color: rgba(0, 212, 178, 0.3); color: #ffffff;
+.synaptic-newsletter__form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
 }
 
-.socratic-reflex-container {
-  margin: 2.5rem 0; padding: 2rem; background: #0d1527; border: 1px solid rgba(0, 212, 178, 0.15); border-radius: 12px;
+.synaptic-newsletter__label {
+  display: block !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.25rem !important;
 }
 
-.reflex-input {
-  width: 100%; padding: 0.875rem 1rem; background: rgba(2, 6, 23, 0.6);
-  border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 8px; color: #e2e8f0; font-size: 1rem; margin-bottom: 1rem;
+.synaptic-newsletter__input-group {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
 }
 
-.reflex-input:focus { outline: none; border-color: #00f5d4; }
-
-.neural-bridge {
-  margin: 2.5rem 0; padding: 2rem; border: 1px solid rgba(0, 212, 178, 0.2); border-radius: 12px; text-align: center;
-  background: linear-gradient(135deg, rgba(0, 212, 178, 0.05) 0%, rgba(13, 21, 39, 0.8) 100%);
+.synaptic-newsletter__input {
+  flex: 1 1 auto !important;
+  min-width: 220px !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  background: rgba(2, 6, 23, 0.6) !important;
+  color: inherit !important;
+  font-size: 0.95rem !important;
+  box-sizing: border-box !important;
 }
 
-.neural-bridge h2 { color: #00f5d4; margin-top: 0; }
-
-.neural-path-item {
-  margin-bottom: 0.75rem; padding: 1rem; border: 1px solid rgba(0, 212, 178, 0.2); border-radius: 8px; background: rgba(13, 21, 39, 0.6);
+.synaptic-newsletter__button {
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 6px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
 }
 
-.neural-path-link { display: flex; flex-direction: column; color: #cbd5e1; text-decoration: none; }
-.neural-path-title { color: #00f5d4; font-weight: 600; margin-bottom: 0.25rem; }
-.neural-path-reason { font-size: 0.85rem; color: #94a3b8; }
-
-.neural-toast--lock {
-  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: #0d1527;
-  border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; padding: 1rem 1.5rem; border-radius: 8px; z-index: 9999;
+.synaptic-newsletter__optin {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.5rem !important;
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
 }
 
-.neural-explanation {
-  margin-top: 1rem; padding: 1rem; border-left: 3px solid #00f5d4; background: rgba(0, 245, 212, 0.05); color: #e2e8f0; line-height: 1.65;
+.synaptic-newsletter__checkbox {
+  margin-top: 0.15rem !important;
+  width: 1rem !important;
+  height: 1rem !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
 }
 
-[data-status="locked"] { opacity: 0.5; pointer-events: none; filter: grayscale(0.8); }
-[data-status="available"] { opacity: 1; pointer-events: auto; border-color: rgba(0, 212, 178, 0.4); }
-/* ==========================================================================
-   V6 ULTIMATE MASTHEAD LOCK (FLEXBOX OVERRIDE)
-   ========================================================================== */
-
-/* 1. Force the entire header hierarchy to be a strict, single row */
-.masthead__inner-wrap,
-.masthead__menu,
-#site-nav.greedy-nav {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
+/* ── FOOTER COLUMNS ── */
+.neural-footer,
+.page__footer {
+  padding: 2.5rem 1rem 1.5rem !important;
 }
 
-/* 2. The Logo: Fixed size, never squish */
-#site-nav.greedy-nav .site-logo {
-    flex: 0 0 auto !important; /* Do not grow, do not shrink */
-    margin-right: 12px !important;
-    display: flex !important;
-    align-items: center !important;
+.neural-footer__grid,
+.footer-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+  gap: 2rem !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
 }
 
-#site-nav.greedy-nav .site-logo img {
-    max-height: 35px !important;
-    width: auto !important;
+.footer-col h4 {
+  margin-top: 0 !important;
+  margin-bottom: 0.75rem !important;
+  font-size: 1rem !important;
 }
 
-/* 3. The Title: The Flexbox Magic */
-#site-nav.greedy-nav .site-title {
-    flex: 1 1 auto !important; /* Grow to fill space, shrink if needed */
-    min-width: 0 !important; /* THE MAGIC FIX: Forces browser to allow shrinkage */
-    margin: 0 auto 0 0 !important; /* Shoves everything else to the far right */
-    white-space: nowrap !important; /* Never drop to line 2 */
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; /* Use '...' if screen is tiny */
-    font-size: clamp(14px, 3vw, 18px) !important;
-    line-height: 1.2 !important;
-    display: block !important;
-    padding: 0 !important;
+.footer-col ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Hide the subtitle if it exists, as it breaks the flex row */
-#site-nav.greedy-nav .site-subtitle {
-    display: none !important;
+.footer-col li {
+  margin-bottom: 0.35rem !important;
 }
 
-/* 4. Desktop Menu Links: Fixed size, shove to right */
-#site-nav.greedy-nav .visible-links {
-    flex: 0 0 auto !important; /* Never squish the menu */
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
+.footer-col a {
+  display: inline-block !important;
+  padding: 0.15rem 0 !important;
+  font-size: 0.9rem !important;
+  text-decoration: none !important;
 }
 
-#site-nav.greedy-nav .visible-links .masthead__menu-item {
-    display: inline-flex !important;
-    margin-left: 15px !important;
+.footer-bottom {
+  text-align: center !important;
+  margin-top: 2.5rem !important;
+  padding-top: 1.25rem !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.1) !important;
+  font-size: 0.85rem !important;
 }
 
-#site-nav.greedy-nav .visible-links .masthead__menu-item a {
-    white-space: nowrap !important;
-    font-size: clamp(13px, 1.5vw, 15px) !important;
+/* ── HUB PAGE TYPOGRAPHY ── */
+.biology-hub-page,
+.philosophy-hub-page {
+  max-width: 100% !important;
 }
 
-/* 5. Mobile Hamburger Menu: Fixed size, shove to right */
-#site-nav.greedy-nav .greedy-nav__toggle {
-    flex: 0 0 auto !important; /* Never squish the button */
-    margin-left: 15px !important;
-    display: flex !important;
-    align-items: center !important;
+.page-subtitle-lead {
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+  margin-bottom: 2rem !important;
+  opacity: 0.9 !important;
+}
+
+.section-heading {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2) !important;
+  padding-bottom: 0.5rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.25rem !important;
+  font-size: 1.35rem !important;
+}
+
+/* ── GLOBAL CONTAINMENT ── */
+html,
+body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+.initial-content {
+  min-height: 50vh !important;
 }
