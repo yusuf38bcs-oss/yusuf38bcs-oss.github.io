@@ -5,7 +5,6 @@ permalink: /life-philosophy/
 author_profile: false
 sidebar:
   nav: "synaptic_nav"
-
 node_id: hub-life-philosophy
 pillar: "Existential Framework"
 difficulty: "Advanced"
