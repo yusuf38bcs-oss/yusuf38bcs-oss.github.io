@@ -160,3 +160,4 @@ exclude:
   - .jekyll-metadata
   - README.md
   - LICENSE
+  - .tmp.driveupload
