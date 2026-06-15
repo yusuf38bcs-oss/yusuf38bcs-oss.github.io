@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Hypothesis Testing (নাস্তিক ও বিকল্প কল্পনা) | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Hypothesis Testing (নাস্তিক ও বিকল্প কল্পনা)" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="জীবপরিসংখ্যান (Biostatistics) গবেষণায় প্রাপ্ত ফলাফলের সত্যতা ও গ্রহণযোগ্যতা যাচাইকরণের বৈজ্ঞানিক, গাণিতিক ও যৌক্তিক পদ্ধতি।" />
+<meta property="og:description" content="জীবপরিসংখ্যান (Biostatistics) গবেষণায় প্রাপ্ত ফলাফলের সত্যতা ও গ্রহণযোগ্যতা যাচাইকরণের বৈজ্ঞানিক, গাণিতিক ও যৌক্তিক পদ্ধতি।" />
+<link rel="canonical" href="https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/hypothesis_testing/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/hypothesis_testing/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-06T02:12:00+06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Hypothesis Testing (নাস্তিক ও বিকল্প কল্পনা)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"MD. Yusuf"},"dateModified":"2026-06-09T10:13:27+06:00","datePublished":"2026-04-06T02:12:00+06:00","description":"জীবপরিসংখ্যান (Biostatistics) গবেষণায় প্রাপ্ত ফলাফলের সত্যতা ও গ্রহণযোগ্যতা যাচাইকরণের বৈজ্ঞানিক, গাণিতিক ও যৌক্তিক পদ্ধতি।","headline":"Hypothesis Testing (নাস্তিক ও বিকল্প কল্পনা)","mainEntityOfPage":{"@type":"WebPage","@id":"https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/hypothesis_testing/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/hypothesis_testing/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      
+  <div class="page__hero--overlay"
+       style=" background-image: url('/assets/images/biology/biostatistics-banner.webp');">
+    
+  </div>
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Hypothesis Testing (নাস্তিক ও বিকল্প কল্পনা)">
+    <meta itemprop="description" content="জীবপরিসংখ্যান (Biostatistics) গবেষণায় প্রাপ্ত ফলাফলের সত্যতা ও গ্রহণযোগ্যতা যাচাইকরণের বৈজ্ঞানিক, গাণিতিক ও যৌক্তিক পদ্ধতি।">
+    <meta itemprop="datePublished" content="2026-04-06T02:12:00+06:00">
+    <meta itemprop="dateModified" content="2026-06-09T10:13:27+06:00">
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhplUtAEV5hYOnMV_Xu7V9JYd_SgWJwj6J6CkKwpmVWNW-gwarMhhC22gH3Jpk6wSfpj3bjG9A1BRXimaNc12lLOEdgeYlPIloxirKWQlFNctlZoFdjanANt3p_w1BmOQ1lZaGd-EfvNBsfU7BMdl-4JZ9_W4D84wnxcqE-TvifFb9kB5l_TAYsYrXzXF4" alt="Biostatistics Hypothesis Testing Distribution Curve Banner" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+</div>
+
+<div style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+  <h1 style="color: #ffffff; margin: 0 0 0.75rem 0; font-weight: 800; font-size: 2.2rem; letter-spacing: -0.02em;">🧬 নাস্তিক ও বিকল্প কল্পনা (Hypothesis Testing)</h1>
+  <p style="margin: 0; opacity: 0.9; font-size: 1.1rem; color: #00d4b2; font-weight: 600; letter-spacing: 0.03em;">বৈজ্ঞানিক সিদ্ধান্ত গ্রহণের গাণিতিক ও যৌক্তিক ভিত্তি</p>
+</div>
+
+<div style="background: rgba(255,255,255,0.02); border-left: 4px solid #64748b; padding: 1.5rem; margin: 2.5rem 0; border-radius: 0 8px 8px 0; color: #cbd5e1; line-height: 1.75;">
+  <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">হে চিন্তাশীল গবেষক (Active Thinkers):</strong>
+  আমি গভীরভাবে বিশ্বাস করি, জীববিজ্ঞান হলো সমস্ত একাডেমিক ক্ষেত্রের মূল স্তম্ভ, আর আমাদের চারপাশে দৃশ্যমান জীবন হলো সেই সত্যগুলোর প্রায়োগিক পরম রণাঙ্গন। ল্যাবরেটরিতে বা প্রকৃতির কোলে আমরা যখন কোনো নতুন আবিষ্কার বা পরীক্ষা করি, তখন পাওয়া ফলাফলটি কি কেবলই একটা কাকতালীয় ঘটনা (By Chance), নাকি এর পেছনে সত্যিই কোনো অকাট্য প্রাকৃতিক নিয়ম লুকিয়ে আছে?
+  <br /><br />
+  এই সংশয় দূর করার জন্য আমরা বিজ্ঞানকে গণিত ও যুক্তির ফ্রেমে বাঁধি। পবিত্র কুরআনে মহাবিশ্বের এই সুনির্দিষ্ট পরিমাপ ও বিচার-বুদ্ধির প্রয়োগ সম্পর্কে পরম নির্দেশ দিয়ে বলা হয়েছে:
+  <blockquote style="color: #00d4b2; font-style: italic; margin: 1rem 0; padding-left: 1rem; border-left: 2px solid rgba(0, 212, 178, 0.3);">"তিনিই সূর্যকে দীপ্তিময় ও চাঁদকে আলোকময় করেছেন এবং তার জন্য কক্ষপথ নির্ধারণ করেছেন, যাতে তোমরা বছর গণনা ও হিসাব জানতে পারো। আল্লাহ এসব নিরর্থক সৃষ্টি করেননি, তিনি জ্ঞানীদের জন্য নিদর্শনসমূহ বিস্তারিত বর্ণনা করেন।" (সূরা ইউনুস: ৫)</blockquote>
+  জীবপরিসংখ্যানে (Biostatistics) সত্য এবং কাকতালীয় ঘটনার মধ্যকার সীমানা নির্ধারণের পরম গাণিতিক দাঁড়িপাল্লাই হলো <strong>Hypothesis Testing</strong> বা পরিসংখ্যানিক কল্পনা যাচাই। আসুন, মুখস্থ করার অন্ধ বৃত্ত ভেঙে এই রোমাঞ্চকর টপিকটি মনের গভীরে গেঁথে নিই।
+</div>
+
+<hr />
+
+<div style="background: #090d16; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1rem;"><span style="color: #00d4b2;">১️⃣</span> নাস্তিক কল্পনা (Null Hypothesis — $H_0$)</h3>
+  <p style="color: #cbd5e1; line-height: 1.75; margin-bottom: 1.25rem;">
+    এটি হলো একটি গবেষণার সেই প্রাথমিক রক্ষণশীল ধারণা, যেখানে ধরে নেওয়া হয় যে পরীক্ষা-নিরীক্ষা চলক বা দলগুলোর মধ্যে বাস্তবে কোনো পার্থক্য, প্রভাব বা সম্পর্ক নেই। প্রকৃতির সাধারণ নিয়ম অনুযায়ী কোনো জাদুকরী বা নতুন পরিবর্তন ঘটেনি—এটিই এর মূল কথা। একজন সত্যসন্ধানী গবেষক গবেষণার মাঠে নেমে মূলত এই $H_0$ ধারণাকে ভেঙে গুঁড়িয়ে দেওয়ার বা ভুল প্রমাণ করার আপ্রাণ চেষ্টা করেন।
+  </p>
+
+  <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.95rem;">🧠 বাস্তব জীবনের রূপক (Metaphor):</p>
+  <p style="color: #94a3b8; margin-bottom: 1.25rem; line-height: 1.6;">আদালত যতক্ষণ না পর্যন্ত অকাট্য প্রমাণের ভিত্তিতে কাউকে দোষী সাব্যস্ত করছে, ততক্ষণ পর্যন্ত আইনি নিয়মে ধরে নেওয়া হয়—"ব্যক্তিটি নির্দোষ"। পরিসংখ্যানের আদালতে এই নির্দোষিতার সুপ্ত ধারণাই হলো নাস্তিক কল্পনা বা নাল হাইপোথিসিস।</p>
+
+  <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.95rem;">🧪 জৈববৈজ্ঞানিক উদাহরণ:</p>
+  <p style="color: #cbd5e1; margin-bottom: 1.5rem; line-height: 1.6;">"ক্যান্সার নিরাময়ে একটি নতুন আবিষ্কৃত ফাইটোকেমিক্যাল ওষুধ ব্যবহারের ফলে রোগীদের সুস্থ হওয়ার হারে সাধারণ ওষুধের তুলনায় কোনো বাস্তব পরিবর্তন আসেনি।"</p>
+
+  <div style="background: #131c2e; border: 1px solid rgba(0, 212, 178, 0.15); border-left: 5px solid #00d4b2; padding: 1.25rem; border-radius: 8px; color: #cbd5e1;">
+    <p style="margin: 0 0 0.5rem 0; font-weight: 700; color: #ffffff;">গাণিতিক প্রকাশ বিন্যাস:</p>
+    $$H_0: \mu_1 = \mu_2$$
+    <p style="font-size: 0.85rem; color: #64748b; margin: 0.5rem 0 0 0; text-align: center;">[এখানে $\mu_1$ ও $\mu_2$ হলো দুটি ভিন্ন দলের গাণিতিক গড় বা পপুলেশন মিন]</p>
+  </div>
+</div>
+
+<hr />
+
+<div style="background: #090d16; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1rem;"><span style="color: #00d4b2;">২️⃣</span> বিকল্প কল্পনা (Alternative Hypothesis — $H_1$ বা $H_a$)</h3>
+  <p style="color: #cbd5e1; line-height: 1.75; margin-bottom: 1.25rem;">
+    এটি হলো নাস্তিক কল্পনার ঠিক বিপরীত মেরুর এক বৈপ্লবিক ধারণা। গবেষক তাঁর কঠোর ল্যাব টেস্ট বা ফিল্ড রিসার্চের মাধ্যমে প্রকৃতির যে নতুন সত্যটি আবিষ্কার করতে নেন বা যে ফলাফলটি আশা করেন, তা-ই হলো বিকল্প কল্পনা বা অল্টারনেটিভ হাইপোথিসিস।
+  </p>
+
+  <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.95rem;">🧪 জৈববৈজ্ঞানিক উদাহরণ:</p>
+  <p style="color: #cbd5e1; margin-bottom: 1.5rem; line-height: 1.6;">"নতুন আবিষ্কৃত ফাইটোকেমিক্যাল ওষুধটি ব্যবহারের ফলে রোগীরা আগের চেয়ে অনেক দ্রুত এবং বেশি হারে সুস্থ হচ্ছেন (অর্থাৎ সুস্থতার গড় হার প্রাচীন ওষুধের চেয়ে বেশি)।"</p>
+
+  <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; border-top: 4px solid #3b82f6;">
+    <p style="margin: 0 0 0.75rem 0; font-weight: 700; color: #ffffff;">গাণিতিক দিকবিন্যাস মডেল:</p>
+    <p style="color: #cbd5e1; margin: 0 0 0.5rem 0;">• দ্বিমুখী (Two-tailed directional parameter):</p>
+    $$H_a: \mu_1 \neq \mu_2$$
+    <p style="color: #cbd5e1; margin: 1rem 0 0.5rem 0;">• একমুখী (One-tailed directional parameter):</p>
+    $$H_a: \mu_1 &gt; \mu_2 \quad \text{কিংবা} \quad H_a: \mu_1 &lt; \mu_2$$
+  </div>
+</div>
+
+<hr />
+
+<div style="background: #090d16; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1rem;"><span style="color: #00d4b2;">৩️⃣</span> সংকটাপন্ন এলাকা বা বর্জন অঞ্চল (Critical Region)</h3>
+  <p style="color: #cbd5e1; line-height: 1.75; margin-bottom: 1.25rem;">
+    একটি নরমাল বেল-শেইপড ডিস্ট্রিবিউশন কার্ভের (Normal Bell-shaped Distribution Curve) যে সুনির্দিষ্ট প্রান্তীয় অঞ্চলে আমাদের গণনাকৃত টেস্ট-স্ট্যাটিস্টিকসের (যেমন: $t$-value বা $z$-value) মান গিয়ে পড়লে আমরা নাস্তিক কল্পনাকে ($H_0$) সরাসরি বর্জন বা রিজেক্ট করি, তাকেই <strong>Critical Region</strong> বা বর্জন এলাকা বলে।
+  </p>
+</div>
+
+<hr />
+
+<div style="background: #090d16; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1rem;"><span style="color: #00d4b2;">৪️⃣</span> একমুখী বনাম দ্বিমুখী পরীক্ষা (One-tailed vs Two-tailed Test)</h3>
+
+  <div style="overflow-x: auto; width: 100%; margin: 1.5rem 0;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem; text-align: left; border: 1px solid rgba(255,255,255,0.05);">
+      <thead>
+        <tr style="background-color: #131c2e;">
+          <th style="color: #00d4b2; padding: 14px; border: 1px solid rgba(255,255,255,0.05); font-weight: 700;">তুলনামূলক বৈশিষ্ট্য</th>
+          <th style="color: #ffffff; padding: 14px; border: 1px solid rgba(255,255,255,0.05); font-weight: 700;">একমুখী পরীক্ষা (One-tailed Test)</th>
+          <th style="color: #00d4b2; padding: 14px; border: 1px solid rgba(255,255,255,0.05); font-weight: 700;">দ্বিমুখী পরীক্ষা (Two-tailed Test)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 14px; border: 1px solid rgba(255,255,255,0.05); color: #cbd5e1;"><strong>মূল উদ্দেশ্য</strong></td>
+          <td style="padding: 14px; border: 1px solid rgba(255,255,255,0.05); color: #cbd5e1;">পার্থক্যটি শুধু একটি সুনির্দিষ্ট দিকে (শুধু বেশি বা শুধু কম) ঘটছে কি না তা যাচাই করা।</td>
+          <td style="padding: 14px; border: 1px solid rgba(255,255,255,0.05); color: #cbd5e1;">পার্থক্যটি ধনাত্মক নাকি ঋণাত্মক তা না দেখে, চলক দুটির মধ্যে শুধু কোনো বাস্তব "পার্থক্য আছে কি না" তা দেখা।</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr />
+
+<div style="background: #090d16; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1rem;"><span style="color: #00d4b2;">৫️⃣</span> ফলাফলের নিখুঁত ব্যাখ্যা ও P-Value এর রহস্য</h3>
+  <p style="color: #cbd5e1; line-height: 1.75; margin-bottom: 1.5rem;">
+    বাস্তব গবেষণায় আমরা যখন কোনো হাইপোথিসিস টেস্ট রান করি, তখন সিস্টেম আমাদের একটি সুনির্দিষ্ট মান দেয় যাকে বলা হয় <strong>p-value (Probability Value)</strong>। একে আমরা তুলনা করি আগে থেকে নির্ধারিত সার্থকতা স্তর বা আলফা ($\alpha = 0.05$ বা 5%) এর সাথে।
+  </p>
+
+  <div style="background: #131c2e; border: 1px solid rgba(0, 212, 178, 0.15); border-left: 5px solid #00d4b2; padding: 1.25rem; border-radius: 8px; color: #cbd5e1;">
+    <h4 style="color: #00d4b2; margin-top: 0; font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem;">📊 ডিক্রি ও চূড়ান্ত রায় (Decision Rules):</h4>
+    <ul style="padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; margin: 0;">
+      <li>
+        <strong style="color: #ffffff;">যদি $p \le 0.05$ হয়:</strong> ফলাফলটি পরিসংখ্যানিকভাবে অত্যন্ত তাৎপর্যপূর্ণ। আমরা <strong>নাস্তিক কল্পনা ($H_0$) বর্জন করি</strong> এবং বিকল্প কল্পনা গ্রহণ করি।
+      </li>
+      <li>
+        <strong style="color: #ffffff;">যদি $p &gt; 0.05$ হয়:</strong> আমাদের কাছে নাস্তিক কল্পনা ভাঙার মতো পর্যাপ্ত তথ্যপ্রমাণ নেই। আমরা <strong>$H_0$ বর্জন করতে ব্যর্থ হই (Fail to reject $H_0$)</strong>।
+      </li>
+    </ul>
+  </div>
+</div>
+
+<hr />
+
+<div style="background: #0b1324; border: 2px dashed rgba(0, 212, 178, 0.3); padding: 25px; border-radius: 12px; margin-top: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+  <h4 style="color: #00d4b2; margin-top: 0; font-size: 1.35rem; font-weight: 700;">💡 ব্রেনস্টর্মিং (Type I vs Type II Error)</h4>
+  <p style="color: #cbd5e1; margin-bottom: 1.5rem; line-height: 1.6;">$H_0$: "রোগীটির শরীরে কোনো ক্যান্সার নেই।" টেস্ট রান করার পর দুটি মারাত্মক ভুল ঘটতে পারে:</p>
+
+  <ol style="color: #cbd5e1; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 1rem; line-height: 1.65; margin-bottom: 2rem;">
+    <li><strong style="color: #ef4444;">টাইপ-১ এরর (Type I Error / $\alpha$):</strong> রোগীটি আসলে সম্পূর্ণ সুস্থ, কিন্তু টেস্টের ভুলের কারণে রিপোর্ট এলো—"তার ক্যান্সার আছে" (False Positive)।</li>
+    <li><strong style="color: #ef4444;">টাইপ-২ এরর (Type II Error / $\beta$):</strong> রোগীটির শরীরে সত্যিই মারাত্মক ক্যান্সার বাসা বেঁধেছে, কিন্তু টেস্টের রিপোর্ট তাকে সুস্থ বলে খালাস করে দিল (False Negative)।</li>
+  </ol>
+</div>
+
+<p style="color: #ef4444; padding: 1.25rem; text-align: left; background: rgba(239,68,68,0.06); border-radius: 8px; border: 1px dashed rgba(239,68,68,0.2); max-width: 820px; margin: 2rem auto;">Error Node: Database footprint ID 'biostatistics' absent inside repo _data matrix layer.</p>
+
+
+      </section>
+
+      
+    </div>
+  </article>
+
+  
+    
+  
+  
+
+  
+    <nav class="contextual-sidebar-nav" aria-label="Section Navigation">
+      <div class="sidebar-nav-header">
+        <h3 class="sidebar-nav-title">On this journey</h3>
+        <div class="header-matrix-line"></div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        
+          <li class="sidebar-nav-item sidebar-nav-dropdown">
+            <a href="" class="sidebar-nav-link">
+              Neural Pathways
+            </a>
+
+            
+              <ul class="sidebar-nav-children">
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/biology/" class="sidebar-nav-child-link">
+                      Biology Core
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/synaptic-bridge/" class="sidebar-nav-child-link">
+                      Synaptic Bridge
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/" class="sidebar-nav-child-link">
+                      Life Practices
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/cognitive-audit/" class="sidebar-nav-child-link">
+                      Socratic Terminal
+                    </a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src=

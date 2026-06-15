@@ -1,0 +1,57 @@
+[{
+    "slug": "4ir-skill-adaptation",
+    "id": "/matrix/4ir-skill-adaptation",
+    "title": "Cognitive Survival in the 4IR: Skill Adaptation",
+    "category": "Cognitive Neuroscience & Pedagogy",
+    "prerequisites": ["group-dynamics-and-ummah"],
+    "links": "",
+    "depth": 1
+  },{
+    "slug": "group-dynamics-and-ummah",
+    "id": "/matrix/group-dynamics-and-ummah",
+    "title": "The Biological Superorganism: Group Dynamics and the Ummah",
+    "category": "Cognitive Neuroscience & Islamic Psychology",
+    "prerequisites": ["multiple-intelligences","personality-archetypes"],
+    "links": "",
+    "depth": 1
+  },{
+    "slug": "molecular-translation",
+    "id": "/matrix/molecular-translation",
+    "title": "Molecular Translation",
+    "category": "Molecular Biology",
+    "prerequisites": ["rna-transcription","ribosomal-assembly"],
+    "links": ["protein-folding","post-translational-modification"],
+    "depth": 3
+  },{
+    "slug": "multiple-intelligences",
+    "id": "/matrix/multiple-intelligences",
+    "title": "The Socratic Matrix: Multiple Intelligences",
+    "category": "Cognitive Neuroscience & Pedagogy",
+    "prerequisites": ["neuroplasticity-and-learning","personality-archetypes"],
+    "links": "",
+    "depth": 1
+  },{
+    "slug": "neuroplasticity-and-learning",
+    "id": "/matrix/neuroplasticity-and-learning",
+    "title": "The Architecture of Change: Neuroplasticity and Learning",
+    "category": "Cognitive Neuroscience & Pedagogy",
+    "prerequisites": ["the-epigenetic-legacy"],
+    "links": "",
+    "depth": 1
+  },{
+    "slug": "personality-archetypes",
+    "id": "/matrix/personality-archetypes",
+    "title": "The Neurobiology of the Nafs: Personality Archetypes",
+    "category": "Cognitive Neuroscience & Islamic Psychology",
+    "prerequisites": ["neuroplasticity-and-learning"],
+    "links": "",
+    "depth": 1
+  },{
+    "slug": "the-epigenetic-legacy",
+    "id": "/matrix/the-epigenetic-legacy",
+    "title": "The Ghost in the Machine: Epigenetics and Legacy",
+    "category": "Cognitive Neuroscience & Epigenetics",
+    "prerequisites": "",
+    "links": "",
+    "depth": 1
+  }]

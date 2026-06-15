@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Home | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Home" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A Neural Network of Education System" />
+<meta property="og:description" content="A Neural Network of Education System" />
+<link rel="canonical" href="https://learningbiologyforlife.org/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Home" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"MD. Yusuf"},"description":"A Neural Network of Education System","headline":"Home","name":"Learning Biology For Life","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--default wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      <main class="synaptic-homepage-matrix" id="synaptic-home-root">
+
+  <div class="neural-hero" role="banner" aria-label="Homepage hero">
+  <div class="wrapper">
+    <div class="hero-content">
+      <h1>The Cognitive Wave of Education</h1>
+      <p>Highlights the intellectual and interconnected nature of the system.</p>
+
+      <div class="hero-actions">
+        <a href="/biology/"
+           class="btn btn--primary btn--large">
+          <span aria-hidden="true">🔬</span> Enter Biology Hub
+        </a>
+
+        <a href="/life-philosophy/"
+           class="btn btn--info btn--large">
+          <span aria-hidden="true">🌌</span> Philosophical Vectors
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <section class="premium-neural-flow-block" aria-label="Socratic conceptual mapping dashboard">
+  <div class="flow-engine-container">
+
+    <div class="flow-nodes-grid-axis">
+
+      <a href="/biology/" class="flow-node-link-wrapper" aria-label="Explore Biological Dots">
+        <article class="flow-node-card-slot" data-aos="fade-right">
+          <div class="node-graphic-icon-box">
+            <div class="pulsing-core-dot"></div>
+          </div>
+          <h3 class="flow-node-title">Biological Dots</h3>
+          <p class="flow-node-desc">Isolate individual biological phenomena—whether a cranial nerve axis, an environmental niche, or a base pair nucleotide cluster—as a standalone data dot.</p>
+        </article>
+      </a>
+
+      <a href="/synaptic-bridge/" class="flow-node-link-wrapper" aria-label="Explore Interdisciplinary Lines">
+        <article class="flow-node-card-slot highlight-border-cyan" data-aos="fade-up">
+          <div class="node-graphic-icon-box">
+            <div class="vector-streaming-line"></div>
+          </div>
+          <h3 class="flow-node-title">Interdisciplinary Lines</h3>
+          <p class="flow-node-desc">Trace the structural connections where raw biology metrics actively intersect with psychological behaviors, neural leadership models, and systemic choices.</p>
+        </article>
+      </a>
+
+      <a href="/socratic/" class="flow-node-link-wrapper" aria-label="Explore The Socratic Circle">
+        <article class="flow-node-card-slot" data-aos="fade-left">
+          <div class="node-graphic-icon-box">
+            <div class="infinite-hollow-circle"></div>
+          </div>
+          <h3 class="flow-node-title">The Socratic Circle</h3>
+          <p class="flow-node-desc">Complete the reflective learning circle back to divine wisdom, translating academic evidence into profound self-knowledge, active ethics, and global insight.</p>
+        </article>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+
+<style>
+  .premium-neural-flow-block {
+    background-color: #020617 !important;
+    padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 2rem) !important;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+
+  .flow-engine-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .flow-nodes-grid-axis {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  @media (min-width: 640px) {
+    .flow-nodes-grid-axis {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .flow-nodes-grid-axis {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .flow-engine-container { max-width: 1400px; }
+    .flow-nodes-grid-axis { gap: 2.5rem; }
+  }
+
+  /* --- NEW: Link Wrapper Accessibility & Routing Mechanics --- */
+  .flow-node-link-wrapper {
+    display: block;
+    text-decoration: none !important;
+    color: inherit;
+    border-radius: 12px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .flow-node-link-wrapper:focus-visible {
+    outline: 2px solid #00d4b2;
+    outline-offset: 4px;
+  }
+
+  .flow-node-card-slot {
+    background: #0d1527 !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border-radius: 12px !important;
+    padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.25rem, 2vw, 2rem) !important;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%; /* Ensures all cards stretch equally */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    will-change: transform, border-color, box-shadow;
+    transform: translateZ(0); /* Hardware acceleration */
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* --- FIXED: Hover states transferred to the accessible wrapper --- */
+  .flow-node-link-wrapper:hover .flow-node-card-slot,
+  .flow-node-link-wrapper:focus-visible .flow-node-card-slot {
+    transform: translateY(-6px);
+    border-color: rgba(0, 212, 178, 0.3) !important;
+    box-shadow: 0 16px 40px rgba(0, 212, 178, 0.15);
+  }
+
+  .flow-node-card-slot.highlight-border-cyan {
+    border-color: rgba(0, 212, 178, 0.1) !important;
+    background: linear-gradient(145deg, #0d1527 0%, #070b13 100%) !important;
+  }
+
+  /* --- FIXED: Inline style removed, shifted to CSS inheritance --- */
+  .highlight-border-cyan .flow-node-title {
+    color: #00d4b2 !important;
+  }
+
+  .node-graphic-icon-box {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .pulsing-core-dot {
+    width: 10px; height: 10px;
+    background-color: #00d4b2;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00d4b2;
+    animation: corePulse 2s infinite ease-in-out;
+  }
+
+  .vector-streaming-line {
+    width: 80px; height: 2px;
+    background: linear-gradient(90deg, #00d4b2 0%, #3b82f6 100%);
+    position: relative;
+    border-radius: 2px;
+  }
+
+  .infinite-hollow-circle {
+    width: 16px; height: 16px;
+    border: 3px solid #00d4b2;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 0 0 10px rgba(0, 212, 178, 0.2);
+  }
+
+  .flow-node-title {
+    color: #ffffff !important;
+    font-size: clamp(1.15rem, 2.5vw, 1.35rem) !important;
+    font-weight: 800 !important;
+    margin: 0 0 0.85rem 0 !important;
+    letter-spacing: -0.01em;
+  }
+
+  .flow-node-desc {
+    color: #94a3b8 !important;
+    font-size: clamp(0.9rem, 1.5vw, 0.95rem) !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+
+  @keyframes corePulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.6; box-shadow: 0 0 18px #00d4b2; }
+  }
+
+  @media (max-width: 480px) {
+    .node-graphic-icon-box { justify-content: center !important; margin-bottom: 1rem; }
+    .flow-node-card-slot { align-items: center !important; text-align: center !important; }
+    .flow-node-desc { text-align: center !important; }
+  }
+</style>
+
+
+
+
+  <section class="synaptic-core-deck-wrapper">
+  <div class="academic-deck-container">
+
+    <div class="academic-section-header">
+      <h2 class="academic-section-title">
+        &#127922; Central Knowledge Manifolds
+      </h2>
+      <p class="academic-section-lead">Explore the clean-mapped relational collection grids of this platform.</p>
+    </div>
+
+    <div class="neural-card-matrix">
+
+      <div class="neural-card-shell">
+        <h3 class="neural-card-heading">Higher Zoology & Biostatistics</h3>
+        <p class="neural-card-body">
+          Deep nested logs spanning Population Ecology dynamics, Survivorship trends, and mathematical applications including <em>t</em>-test and <em>z</em>-test calculations.
+        </p>
+        <a href="/biology/" class="neural-card-cta">Initialize Vector <span class="cta-arrow">&#8594;</span></a>
+      </div>
+
+      <div class="neural-card-shell">
+        <h3 class="neural-card-heading">Synaptic Bridge & Pedagogy</h3>
+        <p class="neural-card-body">
+          Cross-disciplinary educational interfaces charting the nexus of leadership dynamics, human behavioral mechanics, and digital research structures.
+        </p>
+        <a href="/synaptic-bridge/" class="neural-card-cta">Initialize Vector <span class="cta-arrow">&#8594;</span></a>
+      </div>
+
+      <div class="neural-card-shell">
+        <h3 class="neural-card-heading">Cosmic Life Philosophy</h3>
+        <p class="neural-card-body">
+          Sanitized English-mapped critical essays investigating the profound ontology of universal ethics, moral fortitude, and psychological analyses.
+        </p>
+        <a href="/life-philosophy/" class="neural-card-cta">Initialize Vector <span class="cta-arrow">&#8594;</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<style>
+  .synaptic-core-deck-wrapper {
+    padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 1.5rem);
+    background-color: #020617;
+  }
+
+  .academic-deck-container {
+    max-width: 1250px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1440px) {
+    .academic-deck-container { max-width: 1400px; }
+  }
+
+  .academic-section-header {
+    margin-bottom: clamp(2rem, 4vw, 4rem);
+    text-align: left;
+  }
+
+  .academic-section-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: #ffffff;
+    border-bottom: 2px solid #00d4b2;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;
+  }
+
+  .academic-section-lead {
+    color: #94a3b8;
+    margin: 0;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.5;
+  }
+
+  .neural-card-matrix {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .neural-card-matrix {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .neural-card-matrix {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .neural-card-matrix { gap: 2.5rem; }
+  }
+
+  .neural-card-shell {
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid rgba(0, 212, 178, 0.12);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .neural-card-shell:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 212, 178, 0.25);
+  }
+
+  .neural-card-heading {
+    color: #ffffff;
+    margin-top: 0;
+    font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .neural-card-body {
+    color: #cbd5e1;
+    font-size: clamp(0.9rem, 1.5vw, 0.95rem);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .neural-card-cta {
+    color: #00d4b2;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s ease;
+    margin-top: auto;
+  }
+
+  .neural-card-cta:hover {
+    gap: 0.75rem;
+  }
+
+  .cta-arrow {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+</style>
+
+
+
+
+  <section class="neural-system-divider" aria-label="Thematic transition section">
+  <div class="divider-matrix-inner">
+
+    <div class="divider-node-cluster node-cluster--top" aria-hidden="true">
+      <div class="matrix-solid-dot"></div>
+      <div class="matrix-horizontal-line"></div>
+      <div class="matrix-solid-dot"></div>
+    </div>
+
+    <div class="divider-core-message">
+      <p class="divider-transition-text">
+        From Understanding Biology <span class="cyan-glow-text">to Discovering Your Self</span>
+      </p>
+    </div>
+
+    <div class="divider-node-cluster node-cluster--middle" aria-hidden="true">
+      <div class="matrix-fade-line-left"></div>
+      <div class="matrix-hollow-circle"></div>
+      <div class="matrix-fade-line-right"></div>
+    </div>
+
+  </div>
+
+  <div class="divider-ambient-glow" aria-hidden="true"></div>
+</section>
+
+
+<style>
+  .neural-system-divider {
+    position: relative;
+    width: 100%;
+    margin: clamp(4rem, 10vw, 6rem) 0 !important;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, sans-serif !important;
+  }
+
+  .divider-matrix-inner {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+  }
+
+  /* Core Geometries Replacing Raw Text Characters */
+  .divider-node-cluster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    user-select: none;
+  }
+
+  .matrix-solid-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #00d4b2 !important;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00d4b2;
+  }
+
+  .matrix-horizontal-line {
+    width: 60px;
+    height: 1px;
+    background: rgba(0, 212, 178, 0.25);
+  }
+
+  /* Central Philosophy Typography Optimization */
+  .divider-transition-text {
+    color: #94a3b8 !important;
+    font-size: clamp(0.95rem, 4vw, 1.2rem) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    margin: 0 !important;
+    text-align: center !important;
+    line-height: 1.5 !important;
+    text-transform: uppercase;
+  }
+
+  .divider-transition-text .cyan-glow-text {
+    color: #ffffff !important;
+    display: block;
+    font-size: clamp(1.1rem, 5vw, 1.4rem) !important;
+    font-weight: 800 !important;
+    margin-top: 0.35rem;
+    letter-spacing: -0.01em !important;
+    text-shadow: 0 0 20px rgba(0, 212, 178, 0.1);
+    text-transform: none;
+  }
+
+  /* Middle Fading Line Blueprint */
+  .matrix-hollow-circle {
+    width: 12px;
+    height: 12px;
+    border: 2px solid #00d4b2 !important;
+    border-radius: 50%;
+    background-color: #020617 !important;
+    box-shadow: 0 0 8px rgba(0, 212, 178, 0.3);
+    flex-shrink: 0;
+  }
+
+  .matrix-fade-line-left {
+    width: 100%;
+    max-width: 180px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 178, 0.2) 100%);
+  }
+
+  .matrix-fade-line-right {
+    width: 100%;
+    max-width: 180px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 212, 178, 0.2) 0%, transparent 100%);
+  }
+
+  /* Ambient Dynamic Visual Glow Canvas */
+  .divider-ambient-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(0, 212, 178, 0.03) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Responsive Multi-Device Adaptations */
+  @media (max-width: 480px) {
+    .neural-system-divider {
+      margin: 4rem 0 !important;
+    }
+    .matrix-horizontal-line {
+      width: 40px;
+    }
+    .matrix-fade-line-left, .matrix-fade-line-right {
+      max-width: 100px;
+    }
+  }
+</style>
+
+
+
+
+  <section class="premium-tests-cta-block" aria-label="Self-discovery assessment triggers">
+  <div class="tests-matrix-grid-container">
+
+    <a class="neural-cta-interactive-card cta-card--mi" href="/socratic/multiple-intelligences/" aria-label="Multiple Intelligences Analysis Test Track">
+      <div class="neural-cta-content-shield">
+
+        <div class="cta-badge-indicator">
+          <span class="badge-pulse-dot"></span>
+          <span class="badge-lbl-text">Cognitive Audit</span>
+        </div>
+
+        <h3 class="neural-cta-title-node">
+          Your Life is the Most Precious Gift For You From Allah (SWT)
+        </h3>
+
+        <p class="neural-cta-desc-node">
+          Discover the unique constellation of intelligences you possess. Through reflective questions and interactive analysis, uncover your cognitive strengths and learning preferences.
+        </p>
+
+        <div class="neural-cta-action-trigger">
+          <span class="cta-action-text">Take MI Analysis</span>
+          <span class="cta-indicator-arrow">&#8594;</span>
+        </div>
+
+      </div>
+      <div class="neural-card-ambient-glow" aria-hidden="true"></div>
+    </a>
+
+    <a class="neural-cta-interactive-card cta-card--personality" href="/socratic/personality-archetypes/" aria-label="Personality Assessment Test Track">
+      <div class="neural-cta-content-shield">
+
+        <div class="cta-badge-indicator indicator--blue">
+          <span class="badge-pulse-dot"></span>
+          <span class="badge-lbl-text">Behavioral Axis</span>
+        </div>
+
+        <h3 class="neural-cta-title-node">
+          Find Yourself <br>within You
+        </h3>
+
+        <p class="neural-cta-desc-node">
+          Move beyond surface labels. This introspective assessment reveals your core values, behavioral patterns, strengths, and systemic areas for growth. Discover who you truly are.
+        </p>
+
+        <div class="neural-cta-action-trigger">
+          <span class="cta-action-text">Begin Self-Discovery</span>
+          <span class="cta-indicator-arrow">&#8594;</span>
+        </div>
+
+      </div>
+      <div class="neural-card-ambient-glow" aria-hidden="true"></div>
+    </a>
+
+  </div>
+
+  <div class="tests-unified-geometric-divider" aria-hidden="true">
+    <div class="geo-solid-dot"></div>
+    <div class="geo-horizontal-line"></div>
+    <div class="geo-solid-dot"></div>
+  </div>
+</section>
+
+
+<style>
+  .premium-tests-cta-block {
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 3vw, 1.5rem) !important;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+
+  .tests-matrix-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 768px) {
+    .tests-matrix-grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .tests-matrix-grid-container { gap: 2.5rem; }
+  }
+
+  .neural-cta-interactive-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: clamp(2rem, 3vw, 3rem) clamp(1.5rem, 2.5vw, 2.5rem) !important;
+    background: #0d1527 !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  }
+
+  .neural-cta-interactive-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(0, 212, 178, 0.25) !important;
+    box-shadow: 0 20px 40px rgba(0, 212, 178, 0.05) !important;
+    background: #0f172a !important;
+  }
+
+  .neural-cta-content-shield {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  .cta-badge-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 212, 178, 0.04);
+    border: 1px solid rgba(0, 212, 178, 0.15);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+  }
+
+  .cta-badge-indicator.indicator--blue {
+    background: rgba(59, 130, 246, 0.04);
+    border-color: rgba(59, 130, 246, 0.15);
+  }
+
+  .badge-pulse-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background-color: #00d4b2;
+    box-shadow: 0 0 6px #00d4b2;
+  }
+
+  .cta-badge-indicator.indicator--blue .badge-pulse-dot {
+    background-color: #3b82f6;
+    box-shadow: 0 0 6px #3b82f6;
+  }
+
+  .badge-lbl-text {
+    font-size: 0.72rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: #00d4b2 !important;
+  }
+
+  .cta-badge-indicator.indicator--blue .badge-lbl-text {
+    color: #3b82f6 !important;
+  }
+
+  .neural-cta-title-node {
+    margin: 0 0 1rem 0 !important;
+    color: #ffffff !important;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem) !important;
+    line-height: 1.35 !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em;
+  }
+
+  .neural-cta-desc-node {
+    color: #94a3b8 !important;
+    font-size: clamp(0.88rem, 1.5vw, 0.95rem) !important;
+    line-height: 1.6 !important;
+    margin: 0 0 2rem 0 !important;
+    text-align: left !important;
+  }
+
+  .neural-cta-action-trigger {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding-top: 1.25rem;
+    width: 100%;
+    transition: color 0.2s ease;
+  }
+
+  .neural-cta-action-trigger .cta-indicator-arrow {
+    color: #00d4b2 !important;
+    transition: transform 0.2s ease;
+  }
+
+  .neural-cta-interactive-card:hover .neural-cta-action-trigger {
+    color: #00d4b2 !important;
+  }
+
+  .neural-cta-interactive-card:hover .cta-indicator-arrow {
+    transform: translateX(4px);
+  }
+
+  .tests-unified-geometric-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    user-select: none;
+  }
+
+  .geo-solid-dot {
+    width: 5px; height: 5px;
+    background-color: rgba(0, 212, 178, 0.2) !important;
+    border-radius: 50%;
+  }
+
+  .geo-horizontal-line {
+    width: 80px; height: 1px;
+    background: rgba(0, 212, 178, 0.1);
+  }
+
+  @media (max-width: 480px) {
+    .neural-cta-interactive-card {
+      align-items: center !important;
+      text-align: center !important;
+    }
+    .neural-cta-desc-node {
+      text-align: center !important;
+    }
+    .cta-badge-indicator {
+      margin: 0 auto 1.25rem auto !important;
+    }
+    .neural-cta-action-trigger {
+      justify-content: center !important;
+    }
+  }
+</style>
+
+
+
+  
+<section class="home-section recent-posts">
+  <h2 class="section-title">Latest Scientific Logs</h2>
+  
+    <p class="archive__warning">Awaiting fresh scientific logs. Check back soon.</p>
+    <div class="section-cta">
+      <a href="/categories/" class="btn btn--primary">Browse Categories</a>
+    </div>
+  
+</section>
+
+
+</main>
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/l

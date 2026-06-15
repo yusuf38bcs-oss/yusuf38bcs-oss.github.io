@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Measures of Dispersion: বিস্তৃতি | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Measures of Dispersion: বিস্তৃতি" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Advanced biological analysis and structural framework." />
+<meta property="og:description" content="Advanced biological analysis and structural framework." />
+<link rel="canonical" href="https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-11T15:22:00+06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Measures of Dispersion: বিস্তৃতি" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"MD. Yusuf"},"dateModified":"2026-06-09T10:13:27+06:00","datePublished":"2026-04-11T15:22:00+06:00","description":"Advanced biological analysis and structural framework.","headline":"Measures of Dispersion: বিস্তৃতি","mainEntityOfPage":{"@type":"WebPage","@id":"https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      
+  <div class="page__hero--overlay"
+       style=" background-image: url('/assets/images/biology/biostatistics-banner.webp');">
+    
+  </div>
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Measures of Dispersion: বিস্তৃতি">
+    <meta itemprop="description" content="Advanced biological analysis and structural framework.">
+    <meta itemprop="datePublished" content="2026-04-11T15:22:00+06:00">
+    <meta itemprop="dateModified" content="2026-06-09T10:13:27+06:00">
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <style>
+  /* =========================================================
+     SCOPED DISPERSION MODULE STYLES (Ecosystem Compliant)
+     ========================================================= */
+  .dispersion-module {
+    font-family: 'Inter', -apple-system, sans-serif;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .dispersion-module details {
+    background: #0d1527;
+    border: 1px solid rgba(0, 212, 178, 0.15);
+    border-radius: 12px;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .dispersion-module details:hover {
+    border-color: rgba(0, 212, 178, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .dispersion-module summary {
+    padding: 1.25rem 1.5rem;
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+    font-weight: 700;
+    color: #ffffff;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 212, 178, 0.05);
+    transition: background 0.3s ease;
+  }
+
+  .dispersion-module summary::-webkit-details-marker { display: none; }
+  .dispersion-module summary::after { 
+    content: '▼'; 
+    color: #00d4b2; 
+    font-size: 0.9em; 
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+  }
+  
+  .dispersion-module details[open] summary {
+    background: rgba(0, 212, 178, 0.12);
+    border-bottom: 1px solid rgba(0, 212, 178, 0.1);
+  }
+  .dispersion-module details[open] summary::after { transform: rotate(180deg); }
+
+  .dispersion-module .content {
+    padding: 1.5rem;
+    color: #cbd5e1;
+    line-height: 1.75;
+    font-size: 1.05rem;
+  }
+
+  .dispersion-module .formula-box {
+    background: rgba(16, 185, 129, 0.05);
+    border-left: 4px solid #10b981;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: #10b981;
+    font-weight: bold;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  .dispersion-module .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .dispersion-module table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+    text-align: center;
+  }
+
+  .dispersion-module th {
+    background-color: #131c2e;
+    color: #00d4b2;
+    font-weight: 700;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .dispersion-module td {
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    color: #cbd5e1;
+  }
+
+  .dispersion-module .result-box {
+    background: rgba(59, 130, 246, 0.05);
+    border: 2px dashed #3b82f6;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+</style>
+
+<div class="summary-master-block" style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+  <h1 style="color: #ffffff; margin: 0 0 0.75rem 0; font-weight: 800; font-size: 2.2rem; letter-spacing: -0.02em;">📊 বিস্তারের পরিমাপ (Measures of Dispersion)</h1>
+  <p style="margin: 0; opacity: 0.9; font-size: 1.1rem; color: #00d4b2; font-weight: 600; letter-spacing: 0.03em;">জীবপরিসংখ্যানে উপাত্তের নির্ভরযোগ্যতা যাচাইয়ের সহজ পাঠ | লেখক: <strong>Bio Stat Boss</strong></p>
+</div>
+
+<div class="guideline-quote-block" style="background: rgba(250, 204, 21, 0.05); border-left: 4px solid #facc15; padding: 1.5rem; margin: 2.5rem 0; border-radius: 0 8px 8px 0; color: #cbd5e1; line-height: 1.75;">
+  <strong style="color: #facc15; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">📚 রেফারেন্স নোট:</strong>
+  এই ব্লগের সকল গাণিতিক সূত্র আন্তর্জাতিকভাবে স্বীকৃত মেডিকেল স্ট্যাটিসটিক্স বই <em>"Fundamentals of Biostatistics" (Bernard Rosner)</em> এবং <em>"Biostatistics: A Foundation for Analysis in the Health Sciences" (Wayne W. Daniel &amp; Chad L. Cross)</em> থেকে ক্রসচেক করা হয়েছে।
+</div>
+
+<div class="dispersion-module">
+  
+  <details open="">
+    <summary>কেন বিস্তারের পরিমাপ প্রয়োজন?</summary>
+    <div class="content">
+      <p>আমরা যখন 'কেন্দ্রীয় প্রবণতা' (Mean, Median, Mode) পরিমাপ করি, তখন তা আমাদের উপাত্তের (Data) একটি সাধারণ 'গড়' ধারণা দেয়। কিন্তু উপাত্তগুলো গড়ের চারপাশে কতটা ছড়িয়ে-ছিটিয়ে আছে বা তাদের মধ্যে কতটা পার্থক্য (Variation) আছে, তা গড় দিয়ে বোঝা যায় না।</p>
+      <p>যেমন: দুটি রোগীর গ্রুপের গড় বয়স ৩০ বছর হতে পারে, কিন্তু এক গ্রুপে হয়তো সবার বয়স ২৯-৩১ এর মধ্যে, আর অন্য গ্রুপে হয়তো ২০-৪০ এর মধ্যে! এই ভিন্নতা বা ছড়ানো অবস্থা পরিমাপ করার জন্যই <strong>বিস্তারের পরিমাপ বা Measures of Dispersion</strong> ব্যবহার করা হয়।</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>১. পরিসর (Range) 📏</summary>
+    <div class="content">
+      <p>পরিসর হলো উপাত্তের ভিন্নতা পরিমাপের সবচেয়ে সহজ উপায়। এটি একটি ডেটাসেটের সর্বোচ্চ এবং সর্বনিম্ন মানের ব্যবধান।</p>
+      <div class="formula-box">
+        $$R = X_{\max} - X_{\min}$$
+      </div>
+      <p><strong style="color: #ef4444;">সীমাবদ্ধতা:</strong> এটি শুধুমাত্র দুটি প্রান্তিক মানের (Extreme values) ওপর নির্ভর করে। ডেটাসেটের মাঝখানের উপাত্তগুলোর মধ্যে কেমন পরিবর্তন হচ্ছে, তা পরিসর দিয়ে বোঝা সম্ভব নয়।</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>২. ভেদাঙ্ক (Variance - $s^2$) 🔢</summary>
+    <div class="content">
+      <p>ভেদাঙ্ক আমাদের জানায় উপাত্তগুলো তাদের গড় মান (Mean) থেকে কতটুকু দূরে আছে। গাণিতিকভাবে, গড় থেকে প্রতিটি উপাত্তের দূরত্বের বর্গের গড়কে ভেদাঙ্ক বলে। জীবপরিসংখ্যানে আমরা সাধারণত 'নমুনা' (Sample) নিয়ে কাজ করি, তাই $(n-1)$ দ্বারা ভাগ করা হয় (যাকে Degrees of Freedom বলা হয়)।</p>
+      <div class="formula-box">
+        $$s^2 = \frac{\sum (X - \bar{X})^2}{n - 1}$$
+      </div>
+      <p style="font-style: italic; opacity: 0.8;">(Rosner এবং Daniel &amp; Cross উভয়ের মতেই, পপুলেশনের বদলে নমুনার জন্য 'n-1' ব্যবহার করাটা আনবায়াসড বা নিরপেক্ষ ফলাফল দেয়।)</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>৩. পরিমিত ব্যবধান (Standard Deviation - SD) 📈</summary>
+    <div class="content">
+      <p>ভেদাঙ্কের একটি বড় সমস্যা হলো, এর এককটি বর্গাকারে থাকে (যেমন: $\text{cm}^2$ বা $\text{kg}^2$), যা বোঝা কঠিন। এই সমস্যা দূর করতে ভেদাঙ্ককে রুট (বর্গমূল) করা হয়। ভেদাঙ্কের ধনাত্মক বর্গমূলকেই <strong>পরিমিত ব্যবধান (SD)</strong> বলে।</p>
+      <div class="formula-box">
+        $$s = \sqrt{\frac{\sum (X - \bar{X})^2}{n - 1}}$$
+      </div>
+      <p><strong style="color: #00d4b2;">কেন এটি সবচেয়ে জনপ্রিয়?</strong> কারণ SD-এর একক মূল উপাত্তের এককের সমান (যেমন: সেমি, কেজি বা বছর)। এটি একটি নির্দিষ্ট গ্রুপের ভেতরের প্রাকৃতিক ভিন্নতা (Natural Variation) প্রকাশ করে।</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>৪. আদর্শ বিভ্রম (Standard Error of Mean - SEM) 📐</summary>
+    <div class="content">
+      <p>SD আমাদের নমুনার ভেতরের ভিন্নতা দেখায়, কিন্তু <strong>Standard Error (SE)</strong> দেখায় আমাদের গবেষণার ফলাফল কতটা নির্ভরযোগ্য (Precision)। অর্থাৎ, আমরা যদি বারবার নমুনা নিই, তবে নমুনার গড় মানটি আসল পপুলেশনের গড়ের কাছাকাছি কতটা থাকবে, তা SE দ্বারা মাপা হয়।</p>
+      <div class="formula-box">
+        $$SE = \frac{SD}{\sqrt{n}}$$
+      </div>
+      <p><strong style="color: #00d4b2;">SD বনাম SE:</strong> গবেষণাপত্রে যখন কোনো ডেটাসেটের বৈশিষ্ট্য বর্ণনা করা হয়, তখন <strong>$\text{Mean} \pm \text{SD}$</strong> লেখা হয়। কিন্তু যখন কোনো গবেষণার ফলাফলের নির্ভরযোগ্যতা প্রকাশ করা হয়, তখন <strong>$\text{Mean} \pm \text{SE}$</strong> ব্যবহার করা হয়।</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>৫. ধাপে ধাপে গাণিতিক সমাধান (Practical Example) 🧮</summary>
+    <div class="content">
+      <p><strong>উদাহরণ:</strong> ৫টি চারাগাছের উচ্চতা (সেমি) হলো: <strong>৮, ১০, ১২, ১৪, ১৬</strong>। এদের Variance, SD এবং SE নির্ণয় করা যাক।</p>
+      
+      <p><strong style="color: #00d4b2;">ধাপ ১: গড় ($\bar{X}$) নির্ণয়</strong><br />
+      $$\bar{X} = \frac{8+10+12+14+16}{5} = \frac{60}{5} = 12 \text{ সেমি}$$</p>
+
+      <p><strong style="color: #00d4b2;">ধাপ ২: বিচ্যুতি ও বর্গের টেবিল</strong></p>
+      
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>উচ্চতা ($X$)</th>
+              <th>গড় থেকে বিচ্যুতি ($X - \bar{X}$)</th>
+              <th>বিচ্যুতির বর্গ ($(X - \bar{X})^2$)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>৮</td><td>$8 - 12 = -4$</td><td>১৬</td></tr>
+            <tr><td>১০</td><td>$10 - 12 = -2$</td><td>৪</td></tr>
+            <tr><td>১২</td><td>$12 - 12 = 0$</td><td>০</td></tr>
+            <tr><td>১৪</td><td>$14 - 12 = 2$</td><td>৪</td></tr>
+            <tr><td>১৬</td><td>$16 - 12 = 4$</td><td>১৬</td></tr>
+            <tr style="background: rgba(255,255,255,0.02); font-weight:bold;">
+              <td style="color: #00d4b2;">মোট ($n = 5$)</td>
+              <td>০ (নির্ভুলতার প্রমাণ)</td>
+              <td style="color: #00d4b2;">$\sum (X - \bar{X})^2 = 40$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong style="color: #00d4b2;">ধাপ ৩: চূড়ান্ত হিসাব (Final Calculations)</strong></p>
+      <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem;">
+        <li style="margin-bottom: 0.5rem;"><strong>ভেদাঙ্ক (Variance, $s^2$):</strong> $\frac{40}{5 - 1} = \frac{40}{4} = 10$</li>
+        <li style="margin-bottom: 0.5rem;"><strong>পরিমিত ব্যবধান (SD, $s$):</strong> $\sqrt{10} \approx 3.16 \text{ সেমি}$</li>
+        <li><strong>আদর্শ বিভ্রম (SE):</strong> $\frac{3.16}{\sqrt{5}} \approx 1.41 \text{ সেমি}$</li>
+      </ul>
+
+      <div class="result-box">
+        <h3 style="margin-top: 0; color: #3b82f6; font-size: 1.3rem;">ফলাফল উপস্থাপন (Reporting the Data)</h3>
+        <p style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #ffffff; font-weight: 700;">গড় উচ্চতা = $12 \pm 1.41 \text{ সেমি}$ <span style="font-size: 1rem; color: #cbd5e1; font-weight: normal;">($\text{Mean} \pm \text{SE}$)</span></p>
+        <p style="font-size: 0.95rem; color: #64748b; margin: 0;">[গবেষণাপত্রে (Research Paper) এভাবেই ডেটা রিপোর্ট করা হয়]</p>
+      </div>
+    </div>
+  </details>
+
+</div>
+
+      </section>
+
+      
+    </div>
+  </article>
+
+  
+    
+  
+  
+
+  
+    <nav class="contextual-sidebar-nav" aria-label="Section Navigation">
+      <div class="sidebar-nav-header">
+        <h3 class="sidebar-nav-title">On this journey</h3>
+        <div class="header-matrix-line"></div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        
+          <li class="sidebar-nav-item sidebar-nav-dropdown">
+            <a href="" class="sidebar-nav-link">
+              Neural Pathways
+            </a>
+
+            
+              <ul class="sidebar-nav-children">
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/biology/" class="sidebar-nav-child-link">
+                      Biology Core
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/synaptic-bridge/" class="sidebar-nav-child-link">
+                      Synaptic Bridge
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/" class="sidebar-nav-child-link">
+                      Life Practices
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/cognitive-audit/" class="sidebar-nav-child-link">
+                      Socratic Terminal
+                    </a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src=

@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Genetics: The Theme of Inheritance - Part 2 (মেন্ডেলের ২য় সূত্র ও এপিস্ট্যাসিসের আণবিক ডিকোডিং) | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Genetics: The Theme of Inheritance - Part 2 (মেন্ডেলের ২য় সূত্র ও এপিস্ট্যাসিসের আণবিক ডিকোডিং)" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="দ্বিসংকর ক্রসের স্বাধীন সঞ্চারণ সূত্র, প্রকট ও প্রচ্ছন্ন এপিস্ট্যাসিস, পরিপূরক জিন এবং ডুপ্লিকেট জিনের আণবিক মিথস্ক্রিয়ার গাণিতিক ও থিংকিং বিশ্লেষণ।" />
+<meta property="og:description" content="দ্বিসংকর ক্রসের স্বাধীন সঞ্চারণ সূত্র, প্রকট ও প্রচ্ছন্ন এপিস্ট্যাসিস, পরিপূরক জিন এবং ডুপ্লিকেট জিনের আণবিক মিথস্ক্রিয়ার গাণিতিক ও থিংকিং বিশ্লেষণ।" />
+<link rel="canonical" href="https://learningbiologyforlife.org/biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-2/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-2/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-11T04:10:00+06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Genetics: The Theme of Inheritance - Part 2 (মেন্ডেলের ২য় সূত্র ও এপিস্ট্যাসিসের আণবিক ডিকোডিং)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"MD. Yusuf"},"dateModified":"2026-06-09T10:13:27+06:00","datePublished":"2026-04-11T04:10:00+06:00","description":"দ্বিসংকর ক্রসের স্বাধীন সঞ্চারণ সূত্র, প্রকট ও প্রচ্ছন্ন এপিস্ট্যাসিস, পরিপূরক জিন এবং ডুপ্লিকেট জিনের আণবিক মিথস্ক্রিয়ার গাণিতিক ও থিংকিং বিশ্লেষণ।","headline":"Genetics: The Theme of Inheritance - Part 2 (মেন্ডেলের ২য় সূত্র ও এপিস্ট্যাসিসের আণবিক ডিকোডিং)","mainEntityOfPage":{"@type":"WebPage","@id":"https://learningbiologyforlife.org/biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-2/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      
+  <div class="page__hero--overlay"
+       style=" background-image: url('/assets/images/biology/genetics-banner.webp');">
+    
+  </div>
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Genetics: The Theme of Inheritance - Part 2 (মেন্ডেলের ২য় সূত্র ও এপিস্ট্যাসিসের আণবিক ডিকোডিং)">
+    <meta itemprop="description" content="দ্বিসংকর ক্রসের স্বাধীন সঞ্চারণ সূত্র, প্রকট ও প্রচ্ছন্ন এপিস্ট্যাসিস, পরিপূরক জিন এবং ডুপ্লিকেট জিনের আণবিক মিথস্ক্রিয়ার গাণিতিক ও থিংকিং বিশ্লেষণ।">
+    <meta itemprop="datePublished" content="2026-04-11T04:10:00+06:00">
+    <meta itemprop="dateModified" content="2026-06-09T10:13:27+06:00">
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjFpZkwJpGgYf6QMPE_k96uDw-vu7wx6B5Q9HmeZlMhzlrRruNsJ64e0QBffgwq-EmRuMtecpdz_cfRP9F1YXmKV3OVaFeyrRRGIB2aXjiwsOybLCyEYTXJTsR_tbmNZgi4w-df92V6BMS8BJsjN9iv2K4NBGGC0dA-2edTcgEBwu-B3LB3QwV6FqzLl3Q" alt="Genetics Dihybrid Cross and Epistasis Modeling Banner" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+</div>
+
+<div class="header-box" style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); color: white; padding: 35px; border-radius: 12px; text-align: center; margin-bottom: 25px; border: 1px solid rgba(0, 212, 178, 0.15);">
+    <h1 style="color: white !important; margin: 0 0 10px 0 !important; font-size: 2.2rem !important; font-weight: 800; letter-spacing: -0.02em;">🧬 মেন্ডেলের ২য় সূত্রের 'ম্যাজিক' ও এপিস্ট্যাসিসের আণবিক ডিকোডিং</h1>
+    <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 1.1rem; color: #00d4b2; font-weight: 600;">দ্বিসংকর ক্রস (Dihybrid Cross), জিনগত মিথস্ক্রিয়া ও অনুপাত বিপর্যয়ের ক্রিটিক্যাল বিশ্লেষণ</p>
+</div>
+
+<div class="brainstorming" style="background-color: #0f172a; padding: 25px; border-radius: 12px; border-left: 6px solid #00d4b2; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+    <h3 style="color: #00d4b2; margin-top: 0; font-size: 1.35rem; font-weight: 700;">🧠 ব্রেইনস্টর্মিং: আদর্শ ৯:৩:৩:১ অনুপাত কেন বদলে যায়?</h3>
+    <p style="color: #cbd5e1; margin: 0; line-height: 1.7;">
+        মেন্ডেল তাঁর দ্বিসংকর ক্রসে প্রমাণ করেছিলেন যে, দুই জোড়া ভিন্ন ভিন্ন বৈশিষ্ট্য গ্যামেট সৃষ্টির সময় সম্পূর্ণ স্বাধীনভাবে বিন্যস্ত হয়। কিন্তু আমরা যখন উচ্চতর ফলিত জীববিজ্ঞানের দিকে তাকাই, তখন দেখা যায় জিনের আচরণ সবসময় সোজা লাইনে চলে না। কখনো কখনো এক লোকাসের একটি জিন (Epistatic Gene), সম্পূর্ণ ভিন্ন লোকাসের অন্য একটি জিনের (Hypostatic Gene) বৈশিষ্ট্য প্রকাশে বাধা দেয় কিংবা তার কোড পরিবর্তন করে ফেলে। জিনের এই আন্তঃলোকাস অ্যারেনাকেই আমরা বলি **এপিস্ট্যাসিস (Epistasis)**। চলো এই নিউরাল কোড পরিবর্তনের গাণিতিক রহস্যগুলো উন্মোচন করি।
+    </p>
+</div>
+
+<p><button class="accordion">📖 ১. মেন্ডেলের ২য় সূত্র: স্বাধীন সঞ্চারণ সূত্র (Law of Independent Assortment) <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+    <div class="panel-content-inner">
+        <p><strong>মূল তত্ত্ব:</strong> দুই বা ততোধিক জোড়া বিপরীতধর্মী বৈশিষ্ট্যের মধ্যে ক্রস করালে, প্রথম অপত্য জনুতে (F1) কেবল প্রকট বৈশিষ্ট্যই প্রকাশিত হবে; কিন্তু গ্যামেট সৃষ্টির সময় প্রতিটি বৈশিষ্ট্যের জন্য দায়ী জিন জোড়া সম্পূর্ণ স্বাধীনভাবে ও আলাদাভাবে বিন্যস্ত হয়ে ভিন্ন ভিন্ন গ্যামেটে প্রবেশ করে।</p>
+
+        <p><strong>আদর্শ মেন্ডেলিয়ান অনুপাত:</strong> <span style="color: #00d4b2; font-weight: 700;">৯ : ৩ : ৩ : ১</span> (Dihybrid Phenotypic Ratio)</p>
+
+        [attachment_0](attachment)
+
+        <div style="background: rgba(239, 68, 68, 0.08); border-left: 4px solid #ef4444; padding: 1rem; border-radius: 0 6px 6px 0; margin-top: 1rem; color: #cbd5e1;">
+            <strong style="color: #ef4444;">🚨 ক্রোমোজোমাল সীমাবদ্ধতা (Linkage Constraint):</strong> যদি নির্বাচিত জিনের লোকাসসমূহ একই ক্রোমোজোমে খুব কাছাকাছি অবস্থান করে, তবে তারা মিয়োসিস বিভাজনের সময় স্বাধীনভাবে আলাদা হতে পারে না। এই জিনগুলোকে <strong>লিংকড জিন (Linked Genes)</strong> বলে, যা মেন্ডেলের ২য় সূত্রের প্রধান ব্যতিক্রম।
+        </div>
+    </div>
+</div>
+
+<p><button class="accordion">📊 ২. প্রকট এপিস্ট্যাসিস (Dominant Epistasis) — ১২:৩:১ বনাম ১৩:৩ <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+    <div class="panel-content-inner">
+        <p><strong>আণবিক মেকানিজম:</strong> যখন একটি লোকাসের কোনো প্রকট জিন, অন্য লোকাসের কোনো প্রকট জিনের ফিনোটাইপিক প্রকাশকে সম্পূর্ণ মাস্ক (Mask) বা বাধা প্রদান করে, তখন তাকে প্রকট এপিস্ট্যাসিস বলে। যে জিনটি বাধা দেয় তাকে <strong>এপিস্ট্যাটিক জিন (Epistatic Gene)</strong> এবং যা বাধা পায় তাকে <strong>হাইপোস্ট্যাটিক জিন (Hypostatic Gene)</strong> বলে।</p>
+
+        <p><strong>বাস্তব কেস স্টাডি (Summer Squash &amp; White Leghorn):</strong>
+        <br />১. গ্রীষ্মকালীন স্কোয়াশ (Summer Squash) ফলের রঙের ক্ষেত্রে প্রকট এপিস্ট্যাসিসের কারণে আদর্শ অনুপাত পরিবর্তিত হয়ে <strong>১২ : ৩ : ১</strong> হয়।
+        <br />২. তবে আমাদের উচ্চ মাধ্যমিক সিলেবাসের ক্লাসিক উদাহরণ— <strong>সাদা লেগহর্ন (White Leghorn)</strong> মোরগ-মুরগির ক্ষেত্রে এটি মূলত একটি <strong>প্রকট প্রতিরোধক জিন (Inhibitory Gene)</strong> এর মিথস্ক্রিয়া, যার ফলে অনুপাতটি দাঁড়ায় ১৩ : ৩।</p>
+
+        <p style="margin-bottom: 0.5rem; font-weight: bold; color: #ffffff;">F2 চেকারবোর্ড বিশ্লেষণ (CcIi × CcIi) — সাদা লেগহর্ন মোরগ-মুরগি:</p>
+        <div style="overflow-x: auto; width: 100%;">
+            <table class="genetics-table" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th style="background-color: #131c2e; color: #00d4b2;">♂ \ ♀</th>
+                        <th style="background-color: #131c2e; color: #ffffff;">CI</th>
+                        <th style="background-color: #131c2e; color: #ffffff;">Ci</th>
+                        <th style="background-color: #131c2e; color: #ffffff;">cI</th>
+                        <th style="background-color: #131c2e; color: #ffffff;">ci</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="background-color: #131c2e; color: #ffffff;"><b>CI</b></td>
+                        <td>CCII<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>CCIi<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>CcII<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>CcIi<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #131c2e; color: #ffffff;"><b>Ci</b></td>
+                        <td>CCIi<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: #00d4b2;"><b>CCii</b><br /><span>(রঙিন)</span></td>
+                        <td>CcIi<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: #00d4b2;"><b>Ccii</b><br /><span>(রঙিন)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #131c2e; color: #ffffff;"><b>cI</b></td>
+                        <td>CcII<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>CcIi<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>ccII<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>ccIi<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #131c2e; color: #ffffff;"><b>ci</b></td>
+                        <td>CcIi<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: #00d4b2;"><b>Ccii</b><br /><span>(রঙিন)</span></td>
+                        <td>ccIi<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>ccii<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="margin-top: 1rem;"><strong>চূড়ান্ত অনুপাত বিপর্যয়:</strong> এখানে রঙিন পালকের জন্য দায়ী জিন <b>C</b> হলেও, প্রকট এপিস্ট্যাটিক ইনহিবিটর জিন <b>I</b> এর উপস্থিতির কারণে ক্রোমোজোমাল এক্সপ্রেশন ব্লক হয়ে যায়। ফলে চূড়ান্ত ফিনোটাইপিক অনুপাত দাঁড়ায় <strong>সাদা : রঙিন = ১৩ : ৩</strong>।</p>
+    </div>
+</div>
+
+<p><button class="accordion">🐭 ৩. প্রচ্ছন্ন এপিস্ট্যাসিস (Recessive Epistasis) — ৯:৩:৪ <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+    <div class="panel-content-inner">
+        <p><strong>আণবিক মেকানিজম:</strong> যখন একটি লোকাসের কোনো জিন হোমোজাইগাস প্রচ্ছন্ন অবস্থায় (যেমন: <b>cc</b>) উপস্থিত থেকে অন্য লোকাসের যেকোনো প্রকট বা প্রচ্ছন্ন জিনের ফিনোটাইপিক বৈশিষ্ট্য প্রকাশে সম্পূর্ণ বাধা দেয়, তখন তাকে প্রচ্ছন্ন এপিস্ট্যাসিস বলে।</p>
+
+        <p><strong>বাস্তব কেস স্টাডি (Mice Coat Color):</strong> ইঁদুরের গায়ের লোমের বর্ণ নির্ধারণের ক্ষেত্রে এটি স্পষ্ট দেখা যায়। এখানে ইঁদুরের স্বাভাবিক বন্য রঙ হলো অ্যাগাউটি (Agouti - ধূসর)।
+        <br />• <b>C</b> জিনটি রঙ তৈরির জন্য দায়ী, কিন্তু এর প্রচ্ছন্ন অ্যালিল হোমোজাইগাস অবস্থায় (<b>cc</b>) থাকলে ইঁদুরের পিগমেন্টেশন পাথওয়ে বন্ধ হয়ে যায় এবং ইঁদুরটি সম্পূর্ণ <strong>অ্যালবিনো (সাদা)</strong> হয়।
+        <br />• অন্য লোকাসের <b>A</b> জিনটি অ্যাগাউটি রঙের জন্য দায়ী, যা প্রচ্ছন্ন অবস্থায় (<b>aa</b>) থাকলে কালো রঙ তৈরি করে।</p>
+
+        <p><strong>অনুপাত বিপর্যয়:</strong> F2 জেনারেশনে প্রচ্ছন্ন এপিস্ট্যাসিসের কারণে মেন্ডেলিয়ান ক্লাসিক অনুপাত রূপান্তরিত হয়ে দাঁড়ায় <strong>৯ (অ্যাগাউটি) : ৩ (কালো) : ৪ (অ্যালবিনো)</strong>।</p>
+    </div>
+</div>
+
+<p><button class="accordion">🌸 ৪. পরিপূরক জিন (Complementary Gene) — ৯:৭ <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+    <div class="panel-content-inner">
+        <p><strong>আণবিক মেকানিজম:</strong> একে দ্বৈত প্রচ্ছন্ন এপিস্ট্যাসিস (Duplicate Recessive Epistasis)-ও বলা হয়। যখন ভিন্ন ভিন্ন লোকাসে অবস্থিত দুটি পৃথক প্রকট জিনের সহ-অবস্থান বা টিমওয়ার্ক ছাড়া একটি নির্দিষ্ট ফিনোটাইপিক বৈশিষ্ট্য প্রকাশ করা অসম্ভব হয়, তখন তাদেরকে পরিপূরক জিন বলে। কোনো একটি জিন একাকী থাকলে এনজাইম পাথওয়ে সম্পূর্ণ করতে পারে না।</p>
+
+        <p><strong>বাস্তব কেস স্টাডি (Sweet Pea):</strong> মিষ্টি মটরশুঁটি (<i>Lathyrus odoratus</i>) উদ্ভিদের ফুলের রঙ। ফুল বেগুনী হতে হলে ক্রোমোজোমে অবশ্যই অন্ততপক্ষে একটি <b>C</b> এবং একটি <b>P</b> প্রকট জিন একসাথে থাকতে হবে। কোনো একটির অনুপস্থিতিতে ফুল সাদা হয়ে যাবে।</p>
+
+        <div style="overflow-x: auto; width: 100%;">
+            <table class="genetics-table" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th style="background-color: #131c2e; color: #00d4b2;">গ্যামেট</th>
+                        <th style="background-color: #131c2e; color: #ffffff;">CP</th>
+                        <th style="background-color: #131c2e; color: #ffffff;">Cp</th>
+                        <th style="background-color: #131c2e; color: #ffffff;">cP</th>
+                        <th style="background-color: #131c2e; color: #ffffff;">cp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="background-color: #131c2e; color: #ffffff;"><b>CP</b></td>
+                        <td style="background: rgba(162, 155, 254, 0.2); color: #a29bfe;">CCPP<br />(বেগুনী)</td>
+                        <td style="background: rgba(162, 155, 254, 0.2); color: #a29bfe;">CCPp<br />(বেগুনী)</td>
+                        <td style="background: rgba(162, 155, 254, 0.2); color: #a29bfe;">CcPP<br />(বেগুনী)</td>
+                        <td style="background: rgba(162, 155, 254, 0.2); color: #a29bfe;">CcPp<br />(বেগুনী)</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #131c2e; color: #ffffff;"><b>Cp</b></td>
+                        <td style="background: rgba(162, 155, 254, 0.2); color: #a29bfe;">CCPp<br />(বেগুনী)</td>
+                        <td>CCpp<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td style="background: rgba(162, 155, 254, 0.2); color: #a29bfe;">CcPp<br />(বেগুনী)</td>
+                        <td>Ccpp<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #131c2e; color: #ffffff;"><b>cP</b></td>
+                        <td style="background: rgba(162, 155, 254, 0.2); color: #a29bfe;">CcPP<br />(বেগুনী)</td>
+                        <td style="background: rgba(162, 155, 254, 0.2); color: #a29bfe;">CcPp<br />(বেগুনী)</td>
+                        <td>ccPP<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>ccPp<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #131c2e; color: #ffffff;"><b>cp</b></td>
+                        <td style="background: rgba(162, 155, 254, 0.2); color: #a29bfe;">CcPp<br />(বেগুনী)</td>
+                        <td>Ccpp<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>ccPp<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                        <td>ccpp<br /><span style="font-size: 0.8rem; color: #64748b;">(সাদা)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="margin-top: 1rem;"><strong>অনুপাত বিপর্যয়:</strong> এই সমান্তরাল এনজাইমেটিক ব্লকেজের কারণে F2 জনুর চূড়ান্ত ফিনোটাইপিক অনুপাত দাঁড়ায় <strong>বেগুনী : সাদা = ৯ : ৭</strong>।</p>
+    </div>
+</div>
+
+<p><button class="accordion">🎒 ৫. ডুপ্লিকেট প্রকট জিন (Duplicate Dominant Epistasis) — ১৫:১ <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+    <div class="panel-content-inner">
+        <p><strong>আণবিক মেকানিজম:</strong> যখন দুটি ভিন্ন লোকাসে অবস্থিত পৃথক জিন সম্পূর্ণ স্বাধীনভাবে একই ফিনোটাইপিক বৈশিষ্ট্য প্রকাশ করতে সক্ষম হয়, তখন তাদের ডুপ্লিকেট প্রকট জিন বলে। অর্থাৎ, ক্রোমোজোমে যেকোনো একটি লোকাসে একটি মাত্র প্রকট অ্যালিল (যেমন: <b>A</b> বা <b>B</b>) থাকলেই চূড়ান্ত বৈশিষ্ট্য প্রকাশ পেয়ে যায়। কেবল দুটি জিনই যখন একসাথে সম্পূর্ণ প্রচ্ছন্ন হোমোজাইগাস অবস্থায় (<b>aabb</b>) থাকে, শুধুমাত্র তখনই বিকল্প বৈশিষ্ট্যটি প্রকাশিত হয়।</p>
+
+        <p><strong>বাস্তব কেস স্টাডি (Shepherd's Purse):</strong> শেফার্ডস পার্স (<i>Capsella bursa-pastoris</i>) উদ্ভিদের বীজক্যাপসুলের আকৃতি। এখানে বীজক্যাপসুলের ত্রিকোণাকার আকৃতির জন্য দুটি ভিন্ন লোকাসের প্রকট জিনই এককভাবে দায়ী। কেবল ডাবল প্রচ্ছন্ন হোমোজাইগাস অবস্থায় এটি লাটিম আকৃতির (Ovoid) হয়।</p>
+
+        <p><strong>অনুপাত বিপর্যয়:</strong> এই রিডান্ড্যান্ট কোডিং ব্যাকআপের কারণে F2 জেনারেশনের চূড়ান্ত অনুপাত দাঁড়ায় <strong>ত্রিকোণাকার : লাটিম আকৃতি = ১৫ : ১</strong>।</p>
+    </div>
+</div>
+
+<p><button class="accordion">📐 ৬. শিখন মূল্যায়ন ও ইন্টারেক্টিভ কুইজ পোর্টাল <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+    <div class="panel-content-inner">
+        <p style="font-weight: bold; color: #ffffff; margin-bottom: 0.5rem;">নিচের উদ্দীপকটি মনোযোগ সহকারে পড়ো এবং স্ব-মূল্যায়ন করো:</p>
+        <div style="font-style: italic; color: #cbd5e1; background: #0f172a; padding: 20px; border-left: 4px solid #00d4b2; margin: 15px 0; border-radius: 6px; border: 1px solid rgba(255,255,255,0.02); border-left: 4px solid #00d4b2;">
+            "একটি এক্সপেরিমেন্টাল বায়োলজি ল্যাবে দুটি সাদা ফুল বিশিষ্ট মিষ্টি মটরশুঁটি গাছের মধ্যে কৃত্রিম সংকরায়ন ঘটানোর ফলে F1 জনুর সমস্ত উদ্ভিদের ফুল বেগুনী বর্ণ ধারণ করল। কিন্তু F1 উদ্ভিদের মধ্যে স্ব-পরাগায়ন ঘটানোর পর F2 জেনারেশনে বেগুনী ফুলের পাশাপাশি আবার সাদা ফুল ফিরে এলো।"
+        </div>
+        <ol style="color: #cbd5e1; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem;">
+            <li>উদ্দীপকের ঘটনাটি মেন্ডেলের কোন সূত্রের ব্যতিক্রম নির্দেশ করে এবং কেন?</li>
+            <li>F2 জনুর চেকারবোর্ডের সাহায্যে বেগুনী ও সাদা ফুলের গাণিতিক অনুপাত প্রতিষ্ঠা করো।</li>
+            <li>যোজিত প্রকট প্রভাবের (Cumulative Effect) কারণে গ্রীষ্মকালীন স্কোয়াশের ক্ষেত্রে কীভাবে ৯:৬:১ অনুপাত তৈরি হয় তা আণবিক স্তরে বিশ্লেষণ করো।</li>
+        </ol>
+
+        
+
+<div class="quiz-engine-card" id="quiz-block-genetics" data-quiz="genetics" style="background: #0f172a; border: 1px solid rgba(0, 212, 178, 0.15); border-radius: 12px; padding: clamp(1.5rem, 4vw, 2.5rem); margin: 2rem auto; max-width: 820px; font-family: 'Segoe UI', system-ui, sans-serif; color: #ffffff; box-shadow: 0 12px 30px rgba(0,0,0,0.5); text-align: left;">
+  
+  <div style="border-bottom: 1px solid rgba(0, 212, 178, 0.1); padding-bottom: 1.25rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; text-align: left;">
+    <div style="text-align: left;">
+      <span style="color: #00d4b2; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: block; text-align: left;">Interactive Diagnostic Membrane</span>
+      <h2 style="margin: 0.35rem 0 0 0; font-size: clamp(1.3rem, 3vw, 1.75rem); color: #ffffff; font-weight: 800; text-align: left; letter-spacing: -0.02em;">Genetics &amp; Laws of Inheritance</h2>
+    </div>
+    <div style="background: rgba(0, 212, 178, 0.08); color: #00d4b2; padding: 0.45rem 0.9rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: 1px solid rgba(0, 212, 178, 0.15);">
+      ⏱️ Matrix Time: 15 Mins
+    </div>
+  </div>
+
+  <form class="quiz-form" onsubmit="evaluateQuizMetrics(event, 'genetics')">
+    
+      
+      <div class="question-node" data-q-id="q1" data-correct="b" style="margin-bottom: 2.5rem; text-align: left;">
+        <p style="font-size: 1.08rem; font-weight: 600; line-height: 1.6; margin: 0 0 1.25rem 0; color: #ffffff; text-align: left;">
+          <span style="color: #00d4b2; margin-right: 4px; font-weight: 700;">Q1.</span> Which phenotypic ratio represents dominant epistasis in classical genetic inheritance interactions?
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.8rem; text-align: left;">
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q1" value="a" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">a.</strong> 9:3:3:1</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q1" value="b" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">b.</strong> 12:3:1</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q1" value="c" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">c.</strong> 9:7</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q1" value="d" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">d.</strong> 15:1</span>
+            </label>
+          
+        </div>
+
+        <div class="feedback-box" style="display: none; margin-top: 1.25rem; padding: 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; text-align: left; box-sizing: border-box; width: 100%;">
+          <p class="result-string" style="margin: 0 0 0.6rem 0; font-weight: 800; font-size: 1rem; text-align: left;"></p>
+          <p style="margin: 0; color: #94a3b8; text-align: left;"><strong style="color: #ffffff; font-weight: 700;">Socratic Analysis:</strong> Dominant epistasis occurs when a dominant allele at one locus masks expression at another locus, producing a 12:3:1 ratio instead of the standard dihybrid 9:3:3:1.</p>
+        </div>
+      </div>
+    
+      
+      <div class="question-node" data-q-id="q2" data-correct="c" style="margin-bottom: 2.5rem; text-align: left;">
+        <p style="font-size: 1.08rem; font-weight: 600; line-height: 1.6; margin: 0 0 1.25rem 0; color: #ffffff; text-align: left;">
+          <span style="color: #00d4b2; margin-right: 4px; font-weight: 700;">Q2.</span> Which enzyme relieves torsional strain ahead of the replication fork?
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.8rem; text-align: left;">
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q2" value="a" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">a.</strong> DNA Polymerase III</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q2" value="b" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">b.</strong> RNA Primase</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q2" value="c" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">c.</strong> DNA Topoisomerase (Gyrase)</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q2" value="d" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">d.</strong> DNA Ligase</span>
+            </label>
+          
+        </div>
+
+        <div class="feedback-box" style="display: none; margin-top: 1.25rem; padding: 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; text-align: left; box-sizing: border-box; width: 100%;">
+          <p class="result-string" style="margin: 0 0 0.6rem 0; font-weight: 800; font-size: 1rem; text-align: left;"></p>
+          <p style="margin: 0; color: #94a3b8; text-align: left;"><strong style="color: #ffffff; font-weight: 700;">Socratic Analysis:</strong> Topoisomerases introduce temporary breaks into the DNA backbone to relieve supercoiling tension generated by helicase unwinding.</p>
+        </div>
+      </div>
+    
+      
+      <div class="question-node" data-q-id="q3" data-correct="c" style="margin-bottom: 2.5rem; text-align: left;">
+        <p style="font-size: 1.08rem; font-weight: 600; line-height: 1.6; margin: 0 0 1.25rem 0; color: #ffffff; text-align: left;">
+          <span style="color: #00d4b2; margin-right: 4px; font-weight: 700;">Q3.</span> What is the primary function of the enzyme DNA ligase during DNA replication?
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.8rem; text-align: left;">
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q3" value="a" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">a.</strong> Synthesizing RNA primers</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q3" value="b" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">b.</strong> Unwinding the DNA double helix</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q3" value="c" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">c.</strong> Joining Okazaki fragments on the lagging strand</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-genetics-q3" value="d" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">d.</strong> Proofreading newly synthesized DNA</span>
+            </label>
+          
+        </div>
+
+        <div class="feedback-box" style="display: none; margin-top: 1.25rem; padding: 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; text-align: left; box-sizing: border-box; width: 100%;">
+          <p class="result-string" style="margin: 0 0 0.6rem 0; font-weight: 800; font-size: 1rem; text-align: left;"></p>
+          <p style="margin: 0; color: #94a3b8; text-align: left;"><strong style="color: #ffffff; font-weight: 700;">Socratic Analysis:</strong> DNA ligase catalyzes the formation of phosphodiester bonds between adjacent DNA fragments, specifically sealing the nicks between Okazaki fragments on the lagging strand.</p>
+        </div>
+      </div>
+    
+
+    <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; text-align: left;">
+      <button type="submit" class="quiz-submit-btn" style="background: #00d4b2; color: #020617; border: none; padding: 0.9rem 2.25rem; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 1rem; transition: transform 0.15s, background 0.2s;">Evaluate Vector Metrics</button>
+      <div class="score-display-track" style="font-size: 1.3rem; font-weight: 800; color: #00d4b2; display: none; text-shadow: 0 0 15px rgba(0, 212, 178, 0.2); text-align: left;"></div>
+    </div>
+  </form>
+
+  <script>
+    function evaluateQuizMetrics(event, quizId) {
+      event.preventDefault();
+      const quizBlock = document.getElementById('quiz-block-' + quizId);
+      if (!quizBlock) return;
+
+      const questions = quizBlock.querySelectorAll('.question-node');
+      let earnedScore = 0;
+      const totalQuestions = questions.length;
+
+      questions.forEach(node => {
+        const qId = node.getAttribute('data-q-id');
+        const correctKey = node.getAttribute('data-correct').trim().toLowerCase();
+        const checkedRadio = node.querySelector('input[name="q-' + quizId + '-' + qId + '"]:checked');
+        const feedbackBox = node.querySelector('.feedback-box');
+        const resultString = node.querySelector('.result-string');
+        const optionsLabels = node.querySelectorAll('.option-label-wrapper');
+
+        // Reset previous evaluation borders
+        optionsLabels.forEach(label => {
+          label.style.border = "1px solid rgba(255,255,255,0.04)";
+          label.style.background = "#1e293b";
+        });
+
+        if (checkedRadio) {
+          const userSelected = checkedRadio.value.trim().toLowerCase();
+          const selectedLabel = checkedRadio.closest('.option-label-wrapper');
+
+          if (userSelected === correctKey) {
+            earnedScore++;
+            if (selectedLabel) {
+              selectedLabel.style.border = "1px solid #10b981";
+              selectedLabel.style.background = "rgba(16, 185, 129, 0.04)";
+            }
+            feedbackBox.style.background = "rgba(16, 185, 129, 0.06)";
+            feedbackBox.style.borderLeft = "4px solid #10b981";
+            resultString.style.color = "#10b981";
+            resultString.textContent = "✓ Correct Matrix Vector Match";
+          } else {
+            if (selectedLabel) {
+              selectedLabel.style.border = "1px solid #ef4444";
+              selectedLabel.style.background = "rgba(239, 68, 68, 0.04)";
+            }
+            const correctRadio = node.querySelector('input[value="' + correctKey + '"]');
+            if (correctRadio) {
+              const correctLabel = correctRadio.closest('.option-label-wrapper');
+              if (correctLabel) correctLabel.style.border = "1px solid rgba(16, 185, 129, 0.5)";
+            }
+            feedbackBox.style.background = "rgba(239, 68, 68, 0.06)";
+            feedbackBox.style.borderLeft = "4px solid #ef4444";
+            resultString.style.color = "#ef4444";
+            resultString.textContent = "✗ Desynchronized Vector Target";
+          }
+          feedbackBox.style.display = "block";
+        }
+      });
+
+      const scoreTracker = quizBlock.querySelector('.score-display-track');
+      if (scoreTracker) {
+        scoreTracker.textContent = "Score: " + earnedScore + " / " + totalQuestions;
+        scoreTracker.style.display = "block";
+      }
+
+      const submitBtn = quizBlock.querySelector('.quiz-submit-btn');
+      if (submitBtn) {
+        submitBtn.textContent = "Metrics Synchronized";
+        submitBtn.style.opacity = "0.6";
+        submitBtn.disabled = true;
+      }
+    }
+  </script>
+</div>
+
+    </div>
+</div>
+
+<p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
+    🧬 Genetics &amp; Molecular Biology Series 2026 | Learning Biology For Life | learningbiologyforlife.org
+</p>
+
+<script>
+    (function() {
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                for (var j = 0; j < acc.length; j++) {
+                    if (acc[j] !== this) {
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.display = "none";
+                        var indicator = acc[j].querySelector('span');
+                        if(indicator) indicator.innerHTML = "+";
+                    }
+                }
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                var currentIndicator = this.querySelector('span');
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    if(currentIndicator) currentIndicator.innerHTML = "+";
+                } else {
+                    panel.style.display = "block";
+                    if(currentIndicator) currentIndicator.innerHTML = "-";
+                }
+            });
+        }
+    })();
+</script>
+
+<style>
+    /* Premium Collapsible Layout Module Styles matching global site parameters */
+    .accordion {
+        background-color: #0f172a;
+        color: #ffffff;
+        cursor: pointer;
+        padding: 18px 22px;
+        width: 100%;
+        border: 1px solid rgba(255,255,255,0.04);
+        text-align: left;
+        outline: none;
+        font-size: 1.15rem;
+        font-weight: 700;
+        transition: 0.2s all ease-in-out;
+        border-radius: 8px;
+        margin-top: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        user-select: none;
+    }
+    .accordion.active, .accordion:hover {
+        background-color: #131c2e;
+        color: #00d4b2;
+        border-color: rgba(0, 212, 178, 0.25);
+    }
+    .panel {
+        padding: 0 10px;
+        display: none;
+        background-color: #090d16;
+        border: 1px solid rgba(0, 212, 178, 0.15);
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        overflow: hidden;
+    }
+    .panel-content-inner {
+        padding: 25px 15px;
+        line-height: 1.85;
+        color: #cbd5e1;
+    }
+    .panel-content-inner p { margin: 0 0 1.25rem 0; }
+    .panel-content-inner ul { margin: 0 0 1.25rem 0; }
+
+    .genetics-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.05);
+        font-size: 0.95rem;
+    }
+    .genetics-table th, .genetics-table td {
+        border: 1px solid rgba(255,255,255,0.05);
+        padding: 14px;
+        text-align: left;
+    }
+    .genetics-table td { color: #cbd5e1; }
+    .genetics-table tr:nth-child(even) { background-color: rgba(255,255,255,0.01); }
+
+    .highlight-ratio {
+        background-color: rgba(0, 212, 178, 0.1);
+        padding: 4px 10px;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 212, 178, 0.3);
+        display: inline-block;
+        font-weight: 700;
+        color: #00d4b2;
+    }
+</style>
+
+
+      </section>
+
+      
+    </div>
+  </article>
+
+  
+    
+  
+  
+
+  
+    <nav class="contextual-sidebar-nav" aria-label="Section Navigation">
+      <div class="sidebar-nav-header">
+        <h3 class="sidebar-nav-title">On this journey</h3>
+        <div class="header-matrix-line"></div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        
+          <li class="sidebar-nav-item sidebar-nav-dropdown">
+            <a href="" class="sidebar-nav-link">
+              Neural Pathways
+            </a>
+
+            
+              <ul class="sidebar-nav-children">
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/biology/" class="sidebar-nav-child-link">
+                      Biology Core
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/synaptic-bridge/" class="sidebar-nav-child-link">
+                      Synaptic Bridge
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/" class="sidebar-nav-child-link">
+                      Life Practices
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/cognitive-audit/" class="sidebar-nav-child-link">
+                      Socratic Terminal
+                    </a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src=

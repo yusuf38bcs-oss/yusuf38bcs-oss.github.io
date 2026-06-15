@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Human Physiology: Digestive System (Part 1) | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Human Physiology: Digestive System (Part 1)" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="মানবদেহের পরিপাক ও শোষণ প্রক্রিয়ার শারীরবৃত্তীয় বিশ্লেষণ। পরিপাক নালীর গঠন, প্রধান পরিপাক গ্রন্থি এবং খাদ্যের রাসায়নিক ভাঙন প্রক্রিয়ার মডুলার গাইড।" />
+<meta property="og:description" content="মানবদেহের পরিপাক ও শোষণ প্রক্রিয়ার শারীরবৃত্তীয় বিশ্লেষণ। পরিপাক নালীর গঠন, প্রধান পরিপাক গ্রন্থি এবং খাদ্যের রাসায়নিক ভাঙন প্রক্রিয়ার মডুলার গাইড।" />
+<link rel="canonical" href="https://learningbiologyforlife.org/biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-1/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-1/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-11T02:18:00+06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Human Physiology: Digestive System (Part 1)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"MD. Yusuf"},"dateModified":"2026-06-09T10:13:27+06:00","datePublished":"2026-04-11T02:18:00+06:00","description":"মানবদেহের পরিপাক ও শোষণ প্রক্রিয়ার শারীরবৃত্তীয় বিশ্লেষণ। পরিপাক নালীর গঠন, প্রধান পরিপাক গ্রন্থি এবং খাদ্যের রাসায়নিক ভাঙন প্রক্রিয়ার মডুলার গাইড।","headline":"Human Physiology: Digestive System (Part 1)","mainEntityOfPage":{"@type":"WebPage","@id":"https://learningbiologyforlife.org/biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-1/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      
+  <div class="page__hero--overlay"
+       style=" background-image: url('/assets/images/biology/physiology-banner.webp');">
+    
+  </div>
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Human Physiology: Digestive System (Part 1)">
+    <meta itemprop="description" content="মানবদেহের পরিপাক ও শোষণ প্রক্রিয়ার শারীরবৃত্তীয় বিশ্লেষণ। পরিপাক নালীর গঠন, প্রধান পরিপাক গ্রন্থি এবং খাদ্যের রাসায়নিক ভাঙন প্রক্রিয়ার মডুলার গাইড।">
+    <meta itemprop="datePublished" content="2026-04-11T02:18:00+06:00">
+    <meta itemprop="dateModified" content="2026-06-09T10:13:27+06:00">
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgV3AH6RpW3tDCtWblqwzaqMJdwYNTGZWBWN931z9-XzUx3rSgM_E4_pzMvn67mRj-3Ciib60eS7LAGmReMSCwEPt1FKJEaiYe-t9dL3LbMqXIMH978JiBWdNPVFq5IeaG8N6zOooTTvm6H9TF3yoL8AjvUk3wjbpfBDlVFpRHVYAZBA259g-o8jh_CKE8" alt="Human Physiology Digestive System Lecture Series" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+</div>
+
+<div style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+  <h1 style="color: #ffffff; margin: 0 0 0.75rem 0; font-weight: 800; font-size: 2.2rem; letter-spacing: -0.02em;">🔬 মানবদেহের পরিপাক ও শোষণ (Part 1)</h1>
+  <p style="margin: 0; opacity: 0.9; font-size: 1.1rem; color: #00d4b2; font-weight: 600; letter-spacing: 0.03em;">Indigo &amp; Cyan মডুলার লেকচার ফ্রেমওয়ার্ক</p>
+</div>
+
+<div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <h3 style="color: #ffffff; font-size: 1.3rem; margin-top:0; color:#3b82f6;">🎯 ১. শিক্ষার উদ্দেশ্য ও শিখনফল (LOLO)</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 15px;">
+    <div style="background: #131c2e; padding: 1.25rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+      <strong style="color: #ffffff; font-size: 1.1rem; display: block; margin-bottom: 0.5rem;">Objectives (উদ্দেশ্য):</strong>
+      <ul style="padding-left: 1.25rem; color: #cbd5e1; margin: 0; font-size: 0.95rem;">
+        <li>পরিপাক ও পরিপাকতন্ত্রের মৌলিক আণবিক সংজ্ঞা জানা।</li>
+        <li>পরিপাক নালী ও প্রধান পরিপাক গ্রন্থিগুলোর শারীরবৃত্তীয় অবস্থান শনাক্ত করা।</li>
+      </ul>
+    </div>
+    <div style="background: #131c2e; padding: 1.25rem; border-radius: 8px; border-left: 4px solid #00d4b2;">
+      <strong style="color: #ffffff; font-size: 1.1rem; display: block; margin-bottom: 0.5rem;">Outcomes (শিখনফল):</strong>
+      <ul style="padding-left: 1.25rem; color: #cbd5e1; margin: 0; font-size: 0.95rem;">
+        <li>পরিপাক নালীর গাঠনিক সিকোয়েন্সের ফ্লোচার্ট ম্যাপিং করতে পারবে।</li>
+        <li>শর্করা, আমিষ ও স্নেহজাতীয় জটিল খাদ্যের জৈব-রাসায়নিক ভাঙন প্রক্রিয়া ব্যাখ্যা করতে পারবে।</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <h3 style="color: #ffffff; font-size: 1.3rem; margin-top:0; color:#00d4b2;">🧠 ২. পরিপাক ও পরিপাকতন্ত্রের পরিচয়</h3>
+  <p style="color:#cbd5e1; line-height: 1.7;"><strong>পরিপাক (Digestion):</strong> যে শারীরবৃত্তীয় প্রক্রিয়ায় জটিল, অদ্রবণীয় ও অভিশোষণ অযোগ্য খাদ্যবস্তু নির্দিষ্ট এনজাইম এবং হরমোনের উপস্থিতিতে ভেঙে সরল, দ্রবণীয় ও কোষের শোষণযোগ্য উপাদানে পরিণত হয়, তাকে পরিপাক বলে।</p>
+
+  <h4 style="color: #ffffff; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">📍 পরিপাক নালীর লজিস্টিক ফ্লোচার্ট (Gastrointestinal Track):</h4>
+  <div style="background: #131c2e; border: 1px solid rgba(0, 212, 178, 0.15); border-left: 5px solid #00d4b2; padding: 1.25rem; border-radius: 8px; font-family: monospace; font-weight: 700; color: #cbd5e1; font-size: 1rem; text-align: center; line-height: 1.6;">
+    মুখছিদ্র ➔ মুখগহ্বর ➔ গলবিল ➔ অন্ননালী ➔ পাকস্থলী ➔ ক্ষুদ্রান্ত্র ➔ বৃহদন্ত্র ➔ পায়ু
+  </div>
+
+  <h4 style="color: #ffffff; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">🩸 প্রধান পরিপাক গ্রন্থিসমূহ (Digestive Glands Matrix):</h4>
+  <ul style="padding-left: 1.25rem; color: #cbd5e1; line-height: 1.7;">
+    <li><strong style="color: #00d4b2;">লালাগ্রন্থি (Salivary Glands):</strong> মুখগহ্বরে উন্মুক্ত হয় (৩ জোড়া)। লালা ক্ষরণ করে খাদ্য নরম করে।</li>
+    <li><strong style="color: #00d4b2;">যকৃৎ (Liver):</strong> মানবদেহের বৃহত্তম জৈব-রসায়নাগার ও গ্রন্থি; পিত্তরস (Bile) তৈরি করে।</li>
+    <li><strong style="color: #00d4b2;">অগ্ন্যাশয় (Pancreas):</strong> একটি অতি গুরুত্বপূর্ণ মিশ্র গ্রন্থি (Heterocrine Gland)।</li>
+    <li><strong style="color: #00d4b2;">গ্যাস্ট্রিক গ্রন্থি (Gastric Glands):</strong> পাকস্থলীর অভ্যন্তরীণ মিউকোসা দেয়ালে অবস্থান করে।</li>
+  </ul>
+</div>
+
+<div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <h3 style="color: #ffffff; font-size: 1.3rem; margin-top:0; color:#3b82f6;">🧪 ৩. খাদ্যের রাসায়নিক পরিপাক প্রক্রিয়া</h3>
+  
+  <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-top: 4px solid #3b82f6;">
+    <h4 style="color: #ffffff; font-size: 1.15rem; margin-top: 0; font-weight: 700;">🌾 শর্করা (Carbohydrate) পরিপাক:</h4>
+    <p style="color: #cbd5e1; margin: 0; line-height: 1.6;">মুখগহ্বরে লালার <strong>টায়ালিন</strong> ও <strong>মল্টেজ</strong> এনজাইম জটিল শর্করা ভাঙার প্রাথমিক কাজ শুরু করে। পাকস্থলীতে শর্করা পরিপাককারী কোনো এনজাইম থাকে না। চূড়ান্ত পরিপাক সম্পন্ন হয় ক্ষুদ্রান্ত্রে অগ্ন্যাশয় ও আন্ত্রিক রসের অ্যামাইলোলাইটিক এনজাইম দ্বারা এবং শোষণের মূল একক <b>গ্লুকোজ</b> উৎপন্ন হয়।</p>
+  </div>
+
+  <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-top: 4px solid #00d4b2;">
+    <h4 style="color: #ffffff; font-size: 1.15rem; margin-top: 0; font-weight: 700;">🥩 আমিষ (Protein) পরিপাক:</h4>
+    <p style="color: #cbd5e1; margin: 0; line-height: 1.6;">মুখগহ্বরে আমিষ পরিপাক হয় না। পাকস্থলীতে অম্লীয় পরিবেশে গ্যাস্ট্রিক রসের <strong>পেপসিন</strong> এনজাইম জটিল আমিষকে প্রোটিওজ ও পেপটোন-এ রূপান্তর করে। ক্ষুদ্রান্ত্রে অগ্ন্যাশয়ের ট্রিপসিন, কাইমোট্রিপসিন এবং পেপটিডেজ এনজাইমের প্রভাবে এটি চূড়ান্ত বিল্ডিং ব্লক <b>অ্যামাইনো এসিডে</b> পরিণত হয়।</p>
+  </div>
+
+  <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-top: 4px solid #f59e0b;">
+    <h4 style="color: #ffffff; font-size: 1.15rem; margin-top: 0; font-weight: 700;">🧈 স্নেহ (Lipid) পরিপাক:</h4>
+    <p style="color: #cbd5e1; margin: 0; line-height: 1.6;">যকৃৎ থেকে নিঃসৃত পিত্তলবণ (Bile Salts) চর্বিকে ক্ষুদ্র ক্ষুদ্র দানায় পরিণত করে, যাকে <strong>ইমালসিফিকেশন (Emulsification)</strong> বলে। ক্ষুদ্রান্ত্রে অগ্ন্যাশয় রস ও আন্ত্রিক রসের <strong>লাইপেজ</strong> এনজাইম এই ইমালসিফাইড চর্বিকে ভেঙে শোষণযোগ্য <b>ফ্যাটি এসিড ও গ্লিসারল</b>-এ রূপান্তর করে।</p>
+  </div>
+</div>
+
+<div class="quiz-engine-card" id="quiz-block-physiology" data-quiz="physiology" style="background: #0f172a; border: 1px solid rgba(0, 212, 178, 0.15); border-radius: 12px; padding: clamp(1.5rem, 4vw, 2.5rem); margin: 2rem auto; max-width: 820px; font-family: 'Segoe UI', system-ui, sans-serif; color: #ffffff; box-shadow: 0 12px 30px rgba(0,0,0,0.5); text-align: left;">
+  
+  <div style="border-bottom: 1px solid rgba(0, 212, 178, 0.1); padding-bottom: 1.25rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; text-align: left;">
+    <div style="text-align: left;">
+      <span style="color: #00d4b2; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: block; text-align: left;">Interactive Diagnostic Membrane</span>
+      <h2 style="margin: 0.35rem 0 0 0; font-size: clamp(1.3rem, 3vw, 1.75rem); color: #ffffff; font-weight: 800; text-align: left; letter-spacing: -0.02em;">Human Physiology &amp; Organ Systems</h2>
+    </div>
+    <div style="background: rgba(0, 212, 178, 0.08); color: #00d4b2; padding: 0.45rem 0.9rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: 1px solid rgba(0, 212, 178, 0.15);">
+      ⏱️ Matrix Time: 15 Mins
+    </div>
+  </div>
+
+  <form class="quiz-form" onsubmit="evaluateQuizMetrics(event, 'physiology')">
+    
+      
+      <div class="question-node" data-q-id="q1" data-correct="b" style="margin-bottom: 2.5rem; text-align: left;">
+        <p style="font-size: 1.08rem; font-weight: 600; line-height: 1.6; margin: 0 0 1.25rem 0; color: #ffffff; text-align: left;">
+          <span style="color: #00d4b2; margin-right: 4px; font-weight: 700;">Q1.</span> Which blood vessel carries oxygenated blood from the lungs to the heart?
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.8rem; text-align: left;">
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q1" value="a" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">a.</strong> Pulmonary artery</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q1" value="b" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">b.</strong> Pulmonary vein</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q1" value="c" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">c.</strong> Superior vena cava</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q1" value="d" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">d.</strong> Aorta</span>
+            </label>
+          
+        </div>
+
+        <div class="feedback-box" style="display: none; margin-top: 1.25rem; padding: 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; text-align: left; box-sizing: border-box; width: 100%;">
+          <p class="result-string" style="margin: 0 0 0.6rem 0; font-weight: 800; font-size: 1rem; text-align: left;"></p>
+          <p style="margin: 0; color: #94a3b8; text-align: left;"><strong style="color: #ffffff; font-weight: 700;">Socratic Analysis:</strong> The pulmonary vein is unique among veins in that it carries oxygenated blood, transporting it from the lungs back to the left atrium of the heart.</p>
+        </div>
+      </div>
+    
+      
+      <div class="question-node" data-q-id="q2" data-correct="c" style="margin-bottom: 2.5rem; text-align: left;">
+        <p style="font-size: 1.08rem; font-weight: 600; line-height: 1.6; margin: 0 0 1.25rem 0; color: #ffffff; text-align: left;">
+          <span style="color: #00d4b2; margin-right: 4px; font-weight: 700;">Q2.</span> Which enzyme is responsible for the breakdown of starch into maltose in the oral cavity?
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.8rem; text-align: left;">
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q2" value="a" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">a.</strong> Pepsin</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q2" value="b" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">b.</strong> Lipase</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q2" value="c" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">c.</strong> Salivary amylase</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q2" value="d" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">d.</strong> Trypsin</span>
+            </label>
+          
+        </div>
+
+        <div class="feedback-box" style="display: none; margin-top: 1.25rem; padding: 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; text-align: left; box-sizing: border-box; width: 100%;">
+          <p class="result-string" style="margin: 0 0 0.6rem 0; font-weight: 800; font-size: 1rem; text-align: left;"></p>
+          <p style="margin: 0; color: #94a3b8; text-align: left;"><strong style="color: #ffffff; font-weight: 700;">Socratic Analysis:</strong> Salivary amylase (ptyalin) begins carbohydrate digestion by hydrolyzing starch into maltose and dextrins in the mouth.</p>
+        </div>
+      </div>
+    
+      
+      <div class="question-node" data-q-id="q3" data-correct="b" style="margin-bottom: 2.5rem; text-align: left;">
+        <p style="font-size: 1.08rem; font-weight: 600; line-height: 1.6; margin: 0 0 1.25rem 0; color: #ffffff; text-align: left;">
+          <span style="color: #00d4b2; margin-right: 4px; font-weight: 700;">Q3.</span> The baroreceptor reflex primarily regulates which physiological parameter?
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.8rem; text-align: left;">
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q3" value="a" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">a.</strong> Blood glucose</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q3" value="b" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">b.</strong> Blood pressure</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q3" value="c" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">c.</strong> Body temperature</span>
+            </label>
+          
+            
+            
+            
+            
+            
+            
+            
+            <label class="option-label-wrapper" style="display: flex; align-items: center; gap: 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; width: 100%; box-sizing: border-box;">
+              <input type="radio" name="q-physiology-q3" value="d" required="" style="accent-color: #00d4b2; width: 19px; height: 19px; margin: 0; flex-shrink: 0;" />
+              <span style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.4; text-align: left;"><strong style="color: #00d4b2; text-transform: uppercase; margin-right: 4px;">d.</strong> Respiratory rate</span>
+            </label>
+          
+        </div>
+
+        <div class="feedback-box" style="display: none; margin-top: 1.25rem; padding: 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; text-align: left; box-sizing: border-box; width: 100%;">
+          <p class="result-string" style="margin: 0 0 0.6rem 0; font-weight: 800; font-size: 1rem; text-align: left;"></p>
+          <p style="margin: 0; color: #94a3b8; text-align: left;"><strong style="color: #ffffff; font-weight: 700;">Socratic Analysis:</strong> Baroreceptors located in the carotid sinus and aortic arch detect changes in arterial blood pressure and trigger autonomic responses to restore homeostasis.</p>
+        </div>
+      </div>
+    
+
+    <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; text-align: left;">
+      <button type="submit" class="quiz-submit-btn" style="background: #00d4b2; color: #020617; border: none; padding: 0.9rem 2.25rem; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 1rem; transition: transform 0.15s, background 0.2s;">Evaluate Vector Metrics</button>
+      <div class="score-display-track" style="font-size: 1.3rem; font-weight: 800; color: #00d4b2; display: none; text-shadow: 0 0 15px rgba(0, 212, 178, 0.2); text-align: left;"></div>
+    </div>
+  </form>
+
+  <script>
+    function evaluateQuizMetrics(event, quizId) {
+      event.preventDefault();
+      const quizBlock = document.getElementById('quiz-block-' + quizId);
+      if (!quizBlock) return;
+
+      const questions = quizBlock.querySelectorAll('.question-node');
+      let earnedScore = 0;
+      const totalQuestions = questions.length;
+
+      questions.forEach(node => {
+        const qId = node.getAttribute('data-q-id');
+        const correctKey = node.getAttribute('data-correct').trim().toLowerCase();
+        const checkedRadio = node.querySelector('input[name="q-' + quizId + '-' + qId + '"]:checked');
+        const feedbackBox = node.querySelector('.feedback-box');
+        const resultString = node.querySelector('.result-string');
+        const optionsLabels = node.querySelectorAll('.option-label-wrapper');
+
+        // Reset previous evaluation borders
+        optionsLabels.forEach(label => {
+          label.style.border = "1px solid rgba(255,255,255,0.04)";
+          label.style.background = "#1e293b";
+        });
+
+        if (checkedRadio) {
+          const userSelected = checkedRadio.value.trim().toLowerCase();
+          const selectedLabel = checkedRadio.closest('.option-label-wrapper');
+
+          if (userSelected === correctKey) {
+            earnedScore++;
+            if (selectedLabel) {
+              selectedLabel.style.border = "1px solid #10b981";
+              selectedLabel.style.background = "rgba(16, 185, 129, 0.04)";
+            }
+            feedbackBox.style.background = "rgba(16, 185, 129, 0.06)";
+            feedbackBox.style.borderLeft = "4px solid #10b981";
+            resultString.style.color = "#10b981";
+            resultString.textContent = "✓ Correct Matrix Vector Match";
+          } else {
+            if (selectedLabel) {
+              selectedLabel.style.border = "1px solid #ef4444";
+              selectedLabel.style.background = "rgba(239, 68, 68, 0.04)";
+            }
+            const correctRadio = node.querySelector('input[value="' + correctKey + '"]');
+            if (correctRadio) {
+              const correctLabel = correctRadio.closest('.option-label-wrapper');
+              if (correctLabel) correctLabel.style.border = "1px solid rgba(16, 185, 129, 0.5)";
+            }
+            feedbackBox.style.background = "rgba(239, 68, 68, 0.06)";
+            feedbackBox.style.borderLeft = "4px solid #ef4444";
+            resultString.style.color = "#ef4444";
+            resultString.textContent = "✗ Desynchronized Vector Target";
+          }
+          feedbackBox.style.display = "block";
+        }
+      });
+
+      const scoreTracker = quizBlock.querySelector('.score-display-track');
+      if (scoreTracker) {
+        scoreTracker.textContent = "Score: " + earnedScore + " / " + totalQuestions;
+        scoreTracker.style.display = "block";
+      }
+
+      const submitBtn = quizBlock.querySelector('.quiz-submit-btn');
+      if (submitBtn) {
+        submitBtn.textContent = "Metrics Synchronized";
+        submitBtn.style.opacity = "0.6";
+        submitBtn.disabled = true;
+      }
+    }
+  </script>
+</div>
+
+
+      </section>
+
+      
+    </div>
+  </article>
+
+  
+    
+  
+  
+
+  
+    <nav class="contextual-sidebar-nav" aria-label="Section Navigation">
+      <div class="sidebar-nav-header">
+        <h3 class="sidebar-nav-title">On this journey</h3>
+        <div class="header-matrix-line"></div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        
+          <li class="sidebar-nav-item sidebar-nav-dropdown">
+            <a href="" class="sidebar-nav-link">
+              Neural Pathways
+            </a>
+
+            
+              <ul class="sidebar-nav-children">
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/biology/" class="sidebar-nav-child-link">
+                      Biology Core
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/synaptic-bridge/" class="sidebar-nav-child-link">
+                      Synaptic Bridge
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/" class="sidebar-nav-child-link">
+                      Life Practices
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/cognitive-audit/" class="sidebar-nav-child-link">
+                      Socratic Terminal
+                    </a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src=

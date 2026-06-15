@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Structures &amp; Functions of Cell Organelles - Part 1 (কোষীয় বিভিন্ন অঙ্গাণুর গঠন ও কাজ - ১) | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Structures &amp; Functions of Cell Organelles - Part 1 (কোষীয় বিভিন্ন অঙ্গাণুর গঠন ও কাজ - ১)" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="জীববিজ্ঞান কেবল মুখস্থবিদ্যার খাতা নয়, এটি মহাবিশ্বের সুনিপুণ প্রকৌশলের জীবন্ত দলিল। আসুন প্রোটোপ্লাজম, কোষঝিল্লি, মাইটোকন্ড্রিয়া ও অন্যান্য কোষীয় অঙ্গাণুর গঠনকে ব্যবচ্ছেদ করি।" />
+<meta property="og:description" content="জীববিজ্ঞান কেবল মুখস্থবিদ্যার খাতা নয়, এটি মহাবিশ্বের সুনিপুণ প্রকৌশলের জীবন্ত দলিল। আসুন প্রোটোপ্লাজম, কোষঝিল্লি, মাইটোকন্ড্রিয়া ও অন্যান্য কোষীয় অঙ্গাণুর গঠনকে ব্যবচ্ছেদ করি।" />
+<link rel="canonical" href="https://learningbiologyforlife.org/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-10T22:13:00+06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Structures &amp; Functions of Cell Organelles - Part 1 (কোষীয় বিভিন্ন অঙ্গাণুর গঠন ও কাজ - ১)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"MD. Yusuf"},"dateModified":"2026-06-09T10:13:27+06:00","datePublished":"2026-04-10T22:13:00+06:00","description":"জীববিজ্ঞান কেবল মুখস্থবিদ্যার খাতা নয়, এটি মহাবিশ্বের সুনিপুণ প্রকৌশলের জীবন্ত দলিল। আসুন প্রোটোপ্লাজম, কোষঝিল্লি, মাইটোকন্ড্রিয়া ও অন্যান্য কোষীয় অঙ্গাণুর গঠনকে ব্যবচ্ছেদ করি।","headline":"Structures &amp; Functions of Cell Organelles - Part 1 (কোষীয় বিভিন্ন অঙ্গাণুর গঠন ও কাজ - ১)","mainEntityOfPage":{"@type":"WebPage","@id":"https://learningbiologyforlife.org/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Structures &amp; Functions of Cell Organelles - Part 1 (কোষীয় বিভিন্ন অঙ্গাণুর গঠন ও কাজ - ১)">
+    <meta itemprop="description" content="জীববিজ্ঞান কেবল মুখস্থবিদ্যার খাতা নয়, এটি মহাবিশ্বের সুনিপুণ প্রকৌশলের জীবন্ত দলিল। আসুন প্রোটোপ্লাজম, কোষঝিল্লি, মাইটোকন্ড্রিয়া ও অন্যান্য কোষীয় অঙ্গাণুর গঠনকে ব্যবচ্ছেদ করি।">
+    <meta itemprop="datePublished" content="2026-04-10T22:13:00+06:00">
+    <meta itemprop="dateModified" content="2026-06-09T10:13:27+06:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Structures & Functions of Cell Organelles - Part 1 (কোষীয় বিভিন্ন অঙ্গাণুর গঠন ও কাজ - ১)</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <div style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+  <h1 style="color: #ffffff; margin: 0 0 0.75rem 0; font-weight: 800; font-size: 2.2rem; letter-spacing: -0.02em;">🔬 কোষের সজীব অঙ্গাণু ও কঙ্কাল: সুনিপুণ সৃষ্টির প্রকৌশল</h1>
+  <p style="margin: 0; opacity: 0.9; font-size: 1.1rem; color: #00d4b2; font-weight: 600; letter-spacing: 0.03em;">"জীবন হলো এক রণাঙ্গন, যেখানে জীববিজ্ঞানের পরম সত্যগুলো প্রতিনিয়ত প্রয়োগ হচ্ছে।"</p>
+</div>
+
+<div class="guideline-quote-block" style="background: rgba(255,255,255,0.02); border-left: 4px solid #64748b; padding: 1.5rem; margin: 2.5rem 0; border-radius: 0 8px 8px 0; color: #cbd5e1; line-height: 1.75;">
+  <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">মনোযোগ দাও, হে চিন্তাশীল অভিযাত্রী (Active Thinkers):</strong>
+  মানবদেহ হলো সমস্ত আবিষ্কারের আদি রহস্য। আর এই রহস্যের গোলকধাঁধা সমাধানের পরম গাইডলাইন ও পরম রেফারেন্স লুকিয়ে আছে "আল-কুরআন"-এ। আমরা যখন কোনো কোষকে অণুবীক্ষণ যন্ত্রের নিচে দেখি, আমরা মূলত একটি অতি-ক্ষুদ্র স্বয়ংসম্পূর্ণ মহাবিশ্বকে দেখি। আসুন, শুধু মুখস্থ করার অন্ধ বৃত্ত থেকে বেরিয়ে এসে প্রতিটি কোষীয় অঙ্গাণুকে একজন প্রকৌশলী, একজন অর্থনীতিবিদ এবং একজন রণকৌশলবিদের দৃষ্টিভঙ্গি থেকে বিশ্লেষণ করি।
+</div>
+
+<p><button class="accordion">🎯 ১. অ্যাক্টিভ থিংকিং চ্যালেঞ্জ (Learning Objectives) <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+  <div class="panel-content-inner">
+    <p>এই ইন্টারেক্টিভ পাঠটি শেষে তোমার চিন্তাভাবনায় যে পরিবর্তন আসবে:</p>
+    <ul>
+      <li><strong>বিশ্লেষণাত্মক ক্ষমতা:</strong> প্রোটোপ্লাজম ও কোষঝিল্লির গাঠনিক উপাদানকে কেবল রাসায়নিক সংকেত নয়, বরং একটি সুরক্ষিত নগরীর সীমানা প্রাচীর হিসেবে মূল্যায়ন করতে পারবে।</li>
+      <li><strong>বহুমাত্রিক সংযোগ:</strong> মাইটোকন্ড্রিয়া, গলগি বডি ও লাইসোজোমের কাজকে বিশ্ব অর্থনীতি এবং লজিস্টিক ম্যানেজমেন্টের সাথে তুলনা করতে পারবে।</li>
+      <li><strong>সমস্যা সমাধান দক্ষতা:</strong> কোষীয় কঙ্কাল ও সেন্ট্রিওলের গুরুত্ব অনুধাবন করে ম্যাক্রো-ইঞ্জিনিয়ারিংয়ের রহস্য উন্মোচন করতে পারবে।</li>
+    </ul>
+  </div>
+</div>
+
+<p><button class="accordion">💧 ২. প্রোটোপ্লাজম ও কোষঝিল্লি: জীবনের ভৌত ভিত্তি ও সুরক্ষার মহাপ্রাচীর <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+  <div class="panel-content-inner">
+    <h3 style="color: #ffffff; font-size: 1.2rem; margin-top: 0;">প্রোটোপ্লাজম: জীবনের তরল ম্যাট্রিক্স</h3>
+    <p>প্লাজমা মেমব্রেন দ্বারা পরিবেষ্টিত কোষের সকল সজীব উপাদানকে প্রোটোপ্লাজম বলা হয়। ১৭৭২ সালে কর্টি এটি প্রথম পর্যবেক্ষণ করেন এবং ১৮৩৯ সালে পারকিনজি এর নামকরণ করেন।</p>
+    
+    <div style="background: rgba(0, 212, 178, 0.05); border-left: 4px solid #00d4b2; padding: 15px; margin: 15px 0; border-radius: 0 6px 6px 0;">
+      <strong>আল-কুরআনের সূত্র ও বাস্তবতার যোগসূত্র:</strong><br />
+      প্রোটোপ্লাজমের ৭৫–৯০% উপাদানই হলো পানি। পবিত্র কুরআনে মহান আল্লাহ এরশাদ করেছেন: <em>"এবং প্রাণবান সমস্ত কিছু আমি পানি হতে সৃষ্টি করলাম..." (সূরা আল-আম্বিয়া: ৩০)</em>। আধুনিক বিজ্ঞান যখন প্রোটোপ্লাজমকে "জীবনের ভৌত ভিত্তি" বলে স্বীকৃতি দেয়, তখন তা চৌদ্দশত বছর আগের এই পরম সত্যেরই প্রতিধ্বনি করে।
+    </div>
+
+    <h3 style="color: #ffffff; font-size: 1.2rem; margin-top: 1.5rem;">প্লাজমা মেমব্রেন: ফ্লুইড মোজাইক মডেল (Fluid Mosaic Model)</h3>
+    <p>সিঙ্গার ও নিকলসন ১৯৭২ সালে এই বৈপ্লবিক মডেলটি প্রস্তাব করেন। একে <strong>‘আইসবার্গ মডেল’</strong>-ও বলা হয়।</p>
+    
+    <h4 style="color: #3b82f6;">🗺️ গাঠনিক রূপক (Metaphor)</h4>
+    <p>প্লাজমা মেমব্রেনকে চিন্তা করো একটি আন্তর্জাতিক বিমানবন্দরের ইমিগ্রেশন সিকিউরিটির মতো। এটি যাকে খুশি তাকে ঢুকতে দেয় না, আবার যাকে খুশি তাকে বের হতে দেয় না (Selective Permeability)।</p>
+    <ul>
+      <li><strong>ফসফোলিপিড বাইলেয়ার:</strong> এটি যেন একটি সাগরের মতো, যার ফ্যাটি এসিড লেজগুলো পানিবিকর্ষী (Hydrophobic) এবং ভেতরের দিকে মুখ করে থাকে; আর ফসফেট মাথাগুলো পানিগ্রাহী (Hydrophilic) যা বাইরের দিকে থাকে।</li>
+      <li><strong>মেমব্রেন প্রোটিন:</strong> সাগরে ভাসমান জাহাজের মতো প্রোটিনগুলো তিনভাবে থাকে (ইন্টিগ্রাল, পেরিফেরাল ও লিপিড-সম্পৃক্ত)। এরা মূলত কোষের 'স্মার্ট গেটওয়ে'।</li>
+      <li><strong>গ্লাইকোক্যালিক্স (কার্বোহাইড্রেট শৃঙ্খল):</strong> এটি কোষের সেলফ-আইডেন্টিটি বা 'বায়োমেট্রিক আইডি কার্ড'। কোষটি নিজের নাকি শত্রুর (যেমন: ব্যাকটেরিয়া), তা এই গ্লাইকোক্যালিক্স দেখেই শরীর চিনতে পারে।</li>
+    </ul>
+
+    <p style="background: #131c2e; padding: 10px; border-radius: 5px; border-left: 4px solid #f59e0b; color: #cbd5e1; margin-top: 15px;">
+      <strong>চিন্তার খোরাক:</strong> প্রাণীকোষের ঝিল্লিতে উদ্ভিদের চেয়ে কোলেস্টেরলের পরিমাণ বেশি থাকে কেন? কারণ, প্রাণীদের উদ্ভিদের মতো শক্ত কোষপ্রাচীর নেই। এই কোলেস্টেরলই চরম তাপমাত্রায় প্রাণীকোষের মেমব্রেনের তরলতা ও দায়িত্বশীল দৃঢ়তার ভারসাম্য বজায় রাখে।
+    </p>
+  </div>
+</div>
+
+<p><button class="accordion">⚡ ৩. মাইটোকন্ড্রিয়া ও রাইবোজোম: শক্তি উৎপাদন ও তথ্য অনুবাদের কারখানা <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+  <div class="panel-content-inner">
+    <h3 style="color: #ffffff; font-size: 1.2rem; margin-top: 0;">মাইটোকন্ড্রিয়া: কোষের পাওয়ার গ্রিড</h3>
+    <p>কার্ল বেন্ডা ১৮৯৮ সালে এর নামকরণ করেন। এটি কোষের যাবতীয় বিপাকীয় কাজের শক্তির উৎস বা ATP উৎপাদনের প্রধান কেন্দ্র।</p>
+    <ul>
+      <li><strong>ক্রিস্টি ও অক্সিজোম:</strong> ভেতরের পর্দাটি ভাঁজ হয়ে ক্রিস্টি গঠন করে, যা মূলত সারফেস এরিয়া বা কাজের ক্ষেত্রফল বাড়িয়ে দেয়। এর গায়ে লেগে থাকা অক্সিজোমগুলো যেন একেকটি জেনারেটর টারবাইন!</li>
+      <li><strong>নিজস্ব বৃত্তাকার DNA এবং 70S রাইবোজোম:</strong> এটি একটি অত্যন্ত রহস্যময় সত্য। মাইটোকন্ড্রিয়ার নিজস্ব জিনোম আছে! একে বলা হয় <strong>Semi-autonomous organelle</strong> (আধা-স্বায়ত্তশাসিত অঙ্গাণু)। বিজ্ঞানীদের ধারণা, আদিমকালে এটি একটি স্বাধীন ব্যাকটেরিয়া ছিল, যা পরবর্তীতে অন্য কোষের সাথে এন্ডোসিমবায়োসিস প্রক্রিয়ায় স্থায়ীভাবে বসবাস শুরু করেছে।</li>
+    </ul>
+
+    <h3 style="color: #ffffff; font-size: 1.2rem; margin-top: 1.5rem;">রাইবোজোম: জীবনের 3D প্রোটিন প্রিন্টার</h3>
+    <p>ঝিল্লিবিহীন এই সর্বজনীন অঙ্গাণুটি আদি কোষ (Prokaryotic) ও প্রকৃত কোষ (Eukaryotic) উভয়ের মধ্যেই পাওয়া যায়।</p>
+    <ul>
+      <li><strong>আদিকোষে:</strong> 70S (যা 50S ও 30S সাব-ইউনিট নিয়ে গঠিত)</li>
+      <li><strong>প্রকৃতকোষে:</strong> 80S (যা 60S + 40S সাব-ইউনিট নিয়ে গঠিত)</li>
+    </ul>
+    <p>রাইবোজোম হলো একটি অনুবাদক যন্ত্র (Translator)। DNA থেকে যে বার্তা (mRNA) আসে, রাইবোজোম সেই ডিজিটাল কোড পড়ে পড়ে অ্যামিনো এসিড জোড়া দিয়ে ত্রিমাত্রিক প্রোটিন তৈরি করে। তাই একে বলা হয় <strong>'Protein Factory'</strong>।</p>
+  </div>
+</div>
+
+<p><button class="accordion">🚦 ৪. গলগি বডি ও লাইসোজোম: ট্রাফিক কন্ট্রোল ও সেলুলার ডিফেন্স ফোর্স <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+  <div class="panel-content-inner">
+    <h3 style="color: #ffffff; font-size: 1.2rem; margin-top: 0;">গলগি বডি: কোষের 'আমাজন' বা 'ফেডেক্স' লজিস্টিকস হাব</h3>
+    <p>ক্যামিলো গলগি ১৮৯৮ সালে এটি আবিষ্কার করেন। কোষের ভেতর একে <strong>‘কোষের ট্রাফিক পুলিশ’</strong> বা <strong>‘কার্বোহাইড্রেট ফ্যাক্টরি’</strong> বলা হয়।</p>
+    <p>রাইবোজোম যে প্রোটিন তৈরি করে, তা সরাসরি কাজ করতে পারে না। কাঁচা প্রোটিন গলগি বডিতে আসে। গলগি বডি তার সাথে কার্বোহাইড্রেট যোগ করে (গ্লাইকোসাইলেশন), প্যাক করে এবং ভেসিকলের মাধ্যমে কোষের নির্দিষ্ট গন্তব্যে বা কোষের বাইরে পাঠিয়ে দেয়। ঠিক যেমন একটি কুরিয়ার সার্ভিস পণ্য প্যাকেজিং এবং ঠিকানা দেখে ডেলিভারি দেয়!</p>
+
+    <h3 style="color: #ffffff; font-size: 1.2rem; margin-top: 1.5rem;">লাইসোজোম: আত্মঘাতী স্কোয়াড (Suicidal Bag)</h3>
+    <p>ক্রিশ্চিয়ান ডি দুভে ১৯৫৫ সালে এটি আবিষ্কার করেন। এর ভেতর প্রায় ৪০–৫০ ধরনের অম্লীয় হাইড্রোলাইটিক এনজাইম থাকে।</p>
+    <ul>
+      <li><strong>অটোফ্যাগী (Autophagy):</strong> যখন কোষে তীব্র খাদ্যাভাব দেখা দেয়, তখন লাইসোজোম নিজের পুরনো বা অকেজো অঙ্গাণুগুলোকে হজম করে কোষকে জরুরি শক্তি জোগায়।</li>
+      <li><strong>অটোলিসিস (Autolysis) ও অ্যাপোপটোসিস:</strong> কোনো কোষ যদি মারাত্মকভাবে জীবাণু দ্বারা আক্রান্ত বা বুড়ো হয়ে যায়, তখন লাইসোজোম নিজে ফেটে গিয়ে তার শক্তিশালী এনজাইম দিয়ে পুরো কোষটাকেই গলিয়ে ধ্বংস করে দেয় (প্রোগ্রামড সেল ডেথ)। এটি মূলত পুরো শরীরকে রক্ষা করার জন্য একটি কোষের মহৎ আত্মত্যাগ!</li>
+    </ul>
+  </div>
+</div>
+
+<p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
+  🔬 Cell Biology Series 2026 | Learning Biology For Life | learningbiologyforlife.org
+</p>
+
+<script>
+    (function() {
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                for (var j = 0; j < acc.length; j++) {
+                    if (acc[j] !== this) {
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.display = "none";
+                        var indicator = acc[j].querySelector('span');
+                        if(indicator) indicator.innerHTML = "+";
+                    }
+                }
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                var currentIndicator = this.querySelector('span');
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    if(currentIndicator) currentIndicator.innerHTML = "+";
+                } else {
+                    panel.style.display = "block";
+                    if(currentIndicator) currentIndicator.innerHTML = "-";
+                }
+            });
+        }
+    })();
+</script>
+
+<style>
+    /* Premium Collapsible Layout Module Styles */
+    .accordion {
+        background-color: #0f172a;
+        color: #ffffff;
+        cursor: pointer;
+        padding: 18px 22px;
+        width: 100%;
+        border: 1px solid rgba(255,255,255,0.04);
+        text-align: left;
+        outline: none;
+        font-size: 1.15rem;
+        font-weight: 700;
+        transition: 0.2s all ease-in-out;
+        border-radius: 8px;
+        margin-top: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        user-select: none;
+    }
+    .accordion.active, .accordion:hover {
+        background-color: #131c2e;
+        color: #00d4b2;
+        border-color: rgba(0, 212, 178, 0.25);
+    }
+    .panel {
+        padding: 0 10px;
+        display: none;
+        background-color: #090d16;
+        border: 1px solid rgba(0, 212, 178, 0.15);
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        overflow: hidden;
+    }
+    .panel-content-inner {
+        padding: 25px 15px;
+        line-height: 1.85;
+        color: #cbd5e1;
+    }
+    .panel-content-inner p { margin: 0 0 1.25rem 0; }
+    .panel-content-inner ul, .panel-content-inner ol { margin: 0 0 1.25rem 0; padding-left: 1.5rem; }
+
+    .genetics-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.05);
+        font-size: 0.95rem;
+    }
+    .genetics-table th, .genetics-table td {
+        border: 1px solid rgba(255,255,255,0.05);
+        padding: 14px;
+        text-align: left;
+    }
+    .genetics-table td { color: #cbd5e1; }
+    .genetics-table tr:nth-child(even) { background-color: rgba(255,255,255,0.01); }
+</style>
+
+
+      </section>
+
+      
+    </div>
+  </article>
+
+  
+    
+  
+  
+
+  
+    <nav class="contextual-sidebar-nav" aria-label="Section Navigation">
+      <div class="sidebar-nav-header">
+        <h3 class="sidebar-nav-title">On this journey</h3>
+        <div class="header-matrix-line"></div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        
+          <li class="sidebar-nav-item sidebar-nav-dropdown">
+            <a href="" class="sidebar-nav-link">
+              Neural Pathways
+            </a>
+
+            
+              <ul class="sidebar-nav-children">
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/biology/" class="sidebar-nav-child-link">
+                      Biology Core
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/synaptic-bridge/" class="sidebar-nav-child-link">
+                      Synaptic Bridge
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/" class="sidebar-nav-child-link">
+                      Life Practices
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/cognitive-audit/" class="sidebar-nav-child-link">
+                      Socratic Terminal
+                    </a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src=

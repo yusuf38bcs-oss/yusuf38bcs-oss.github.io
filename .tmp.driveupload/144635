@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>ECOLOGY: HISTORY, SCOPES &amp; AREA (ইকোলজি: সংজ্ঞা, ইতিহাস ও পরিধি) | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="ECOLOGY: HISTORY, SCOPES &amp; AREA (ইকোলজি: সংজ্ঞা, ইতিহাস ও পরিধি)" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Advanced biological analysis and structural framework." />
+<meta property="og:description" content="Advanced biological analysis and structural framework." />
+<link rel="canonical" href="https://learningbiologyforlife.org/biology/higher-zoology-tree/ecology/ecology-history-scopes-area/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/biology/higher-zoology-tree/ecology/ecology-history-scopes-area/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-04T14:27:00+06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ECOLOGY: HISTORY, SCOPES &amp; AREA (ইকোলজি: সংজ্ঞা, ইতিহাস ও পরিধি)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"MD. Yusuf"},"dateModified":"2026-06-09T10:13:27+06:00","datePublished":"2026-05-04T14:27:00+06:00","description":"Advanced biological analysis and structural framework.","headline":"ECOLOGY: HISTORY, SCOPES &amp; AREA (ইকোলজি: সংজ্ঞা, ইতিহাস ও পরিধি)","mainEntityOfPage":{"@type":"WebPage","@id":"https://learningbiologyforlife.org/biology/higher-zoology-tree/ecology/ecology-history-scopes-area/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/biology/higher-zoology-tree/ecology/ecology-history-scopes-area/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      
+  <div class="page__hero--overlay"
+       style=" background-image: url('/assets/images/biology/ecology-banner.webp');">
+    
+  </div>
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ECOLOGY: HISTORY, SCOPES &amp; AREA (ইকোলজি: সংজ্ঞা, ইতিহাস ও পরিধি)">
+    <meta itemprop="description" content="Advanced biological analysis and structural framework.">
+    <meta itemprop="datePublished" content="2026-05-04T14:27:00+06:00">
+    <meta itemprop="dateModified" content="2026-06-09T10:13:27+06:00">
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <div style="max-width:920px;margin:auto;padding:18px;font-family:'Hind Siliguri',sans-serif;line-height:1.9;color:#222;background:#fff;">
+
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiijqPjM_EGyDNMfKR3hu0m-aQBh6rS60NoqYQ86zhnriNEQjIeqPFOPXFBMPgRvyRxGnGSN7XNcIq_BpOxZKZteH0pWFNhoZrP2noHt9mT2NY5nR8sRehMF-Qf9vGdcnZZfDMDqH6G6rhHiAkeW5jihgoPs2JWI1k59fsYU9MMnyDI97JmUnauEmKlfeY/s600/Ecology.webp" style="width:100%;border-radius:12px;margin-bottom:15px;" alt="Ecology → Life - learningbiologyforlife.org" />
+  <style>
+    .eco-wrap h1,.eco-wrap h2,.eco-wrap h3{line-height:1.35}
+    .eco-k{background:#fff3cd;padding:0 6px;border-radius:6px;font-weight:700}
+    .eco-box{background:#f8fbff;border:1px solid #e3edf7;border-radius:16px;padding:16px;margin:18px 0;box-shadow:0 6px 18px rgba(0,0,0,.04)}
+    .eco-note{background:#f5fff5;border-left:5px solid #2ecc71;padding:14px 16px;border-radius:10px}
+    .eco-cta{background:linear-gradient(135deg,#fef9e7,#eefaf0);border:1px solid #f0e1a8}
+    .eco-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .eco-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .eco-card{background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:14px}
+    .eco-table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px}
+    .eco-table th,.eco-table td{border:1px solid #e6e6e6;padding:10px;vertical-align:top;text-align:left}
+    .eco-table th{background:#f4f8fb}
+    .eco-badge{display:inline-block;padding:3px 10px;border-radius:999px;background:#eef6ff;color:#124; font-size:12px;margin:2px 5px 2px 0}
+    .eco-title{color:#1f6f4a}
+    .eco-sub{color:#5b5b5b;margin-top:-8px}
+    .eco-muted{color:#666}
+    .eco-svg{width:100%;height:auto;display:block;border-radius:14px;border:1px solid #e6edf5;background:#fff}
+    @media (max-width:760px){.eco-grid,.eco-grid3{grid-template-columns:1fr}}
+  </style>
+
+  <div class="eco-wrap">
+
+    <h1 class="eco-title">🌍 “জীবনের জাল: প্রকৃতির সাথে আমাদের অদৃশ্য সংযোগ”</h1>
+    <h3 class="eco-sub"><i>Ecology: The Web of Life – History, Scope &amp; Branches</i></h3>
+
+    <div class="eco-note">
+      <b>আজকের আলোচ্য বিষয়:</b> <span class="eco-k">Ecology</span> এর <span class="eco-k">History</span>, <span class="eco-k">Scopes</span> &amp; <span class="eco-k">Branches</span>।<br />
+      এখানে <b>LOLO</b> ও <b>LALA</b> ব্যবহার করে আমরা <b>Constructive Alignment</b> বজায় রাখব, আর <b>Active Recall</b> প্যাটার্নে শেখাব।
+    </div>
+
+    <div class="eco-box">
+      <h2>📖 প্রথমে একটি গল্প</h2>
+      <p>
+        ধরো, তোমার এলাকায় হঠাৎ <span class="eco-k">পাখির সংখ্যা কমে গেল</span>। প্রথমে বিষয়টি তেমন গুরুতর মনে না হলেও, কিছুদিন পরে দেখলে
+        <span class="eco-k">কীটপতঙ্গ বেড়ে গেছে</span>, ফসলের ক্ষতি হচ্ছে, এমনকি রোগও বাড়ছে। কেন? কারণ একটি species কমে গেলে
+        পুরো system-এর balance নড়ে যায়। এটাই <b>Ecology</b>—জীবনের অদৃশ্য জাল।
+      </p>
+    </div>
+
+    <div class="eco-box">
+      <h2>🔬 LOLO: Learning Objectives &amp; Learning Outcomes</h2>
+
+      <h3>🎯 Learning Objectives</h3>
+      <ul>
+        <li><b>Ecology সম্পর্কে স্বচ্ছ ধারণা</b><br />
+          <b>Academic:</b> জীব ও পরিবেশের পারস্পরিক সম্পর্ক বিশ্লেষণ করা।<br />
+          <b>Practical:</b> নিজের চারপাশের air, water, soil, plants, animals—সবকিছুর আন্তঃসম্পর্ক বোঝা।</li>
+        <li><b>Levels of Organization</b><br />
+          <b>Academic:</b> Organism → Population → Community → Ecosystem → Biosphere।<br />
+          <b>Practical:</b> নিজের ঘর, পাড়া, শহরকে ecological lens দিয়ে দেখা।</li>
+        <li><b>Branches of Ecology</b><br />
+          <b>Academic:</b> Autecology, Synecology, Terrestrial, Aquatic, Applied Ecology।<br />
+          <b>Practical:</b> একটি species বা পুরো ecosystem কীভাবে কাজ করে তা আলাদা করে চিনতে পারা।</li>
+        <li><b>Ecology ও আমাদের জীবন</b><br />
+          <b>Academic:</b> Energy flow, nutrient cycle, biodiversity, climate relationship।<br />
+          <b>Practical:</b> pollution, urbanization, climate change-এর ব্যক্তিগত ও সামাজিক প্রভাব বুঝা।</li>
+      </ul>
+
+      <h3>✅ Learning Outcomes</h3>
+      <ul>
+        <li><span class="eco-k">Autecology</span> ও <span class="eco-k">Synecology</span> উদাহরণসহ পার্থক্য করতে পারবে।</li>
+        <li><span class="eco-k">Organismal</span> → <span class="eco-k">Population</span> → <span class="eco-k">Community</span> → <span class="eco-k">Global Ecology</span> পর্যন্ত basic ধারণা তৈরি হবে।</li>
+        <li>Ecological concepts বাস্তব জীবনের সমস্যা বিশ্লেষণে ব্যবহার করতে পারবে।</li>
+      </ul>
+    </div>
+
+    <div class="eco-box">
+      <h2>🌱 ১. Ecology কী? (Definition of Ecology)</h2>
+      <p>
+        <b>Ecology</b> হলো জীব (biotic) এবং পরিবেশ (abiotic)-এর মধ্যকার <span class="eco-k">interaction</span> ও <span class="eco-k">interdependence</span>-এর বিজ্ঞান।
+        অন্যভাবে বললে, এটি হলো “কে কার ওপর কীভাবে নির্ভরশীল”—তার study.
+      </p>
+
+      <div class="eco-grid">
+        <div class="eco-card">
+          <span class="eco-badge">Biotic</span>
+          <p><b>জীবিত অংশ</b>: plants, animals, microbes, humans</p>
+        </div>
+        <div class="eco-card">
+          <span class="eco-badge">Abiotic</span>
+          <p><b>অজীব অংশ</b>: light, water, temperature, soil, air, minerals</p>
+        </div>
+      </div>
+
+      <p class="eco-muted">
+        Ecology দেখায় কীভাবে one change in environment can create a chain reaction across the entire system.
+      </p>
+    </div>
+
+    <div class="eco-box">
+      <h2>🖼️ Diagram 1: জীব ও পরিবেশের পারস্পরিক সম্পর্ক</h2>
+
+      <svg class="eco-svg" viewBox="0 0 1100 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ecosystem interaction diagram">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0%" stop-color="#e8f5ff" />
+            <stop offset="100%" stop-color="#f3fff1" />
+          </linearGradient>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <path d="M0,0 L8,3 L0,6 Z" fill="#2d7dd2" />
+          </marker>
+        </defs>
+        <rect x="0" y="0" width="1100" height="420" fill="url(#g1)" />
+        <circle cx="175" cy="170" r="72" fill="#fff" stroke="#2d7dd2" stroke-width="4" />
+        <text x="175" y="160" text-anchor="middle" font-size="26" font-weight="700" fill="#124">Plants</text>
+        <text x="175" y="192" text-anchor="middle" font-size="16" fill="#456">Producer</text>
+
+        <circle cx="390" cy="250" r="72" fill="#fff" stroke="#2d7dd2" stroke-width="4" />
+        <text x="390" y="240" text-anchor="middle" font-size="26" font-weight="700" fill="#124">Animals</text>
+        <text x="390" y="272" text-anchor="middle" font-size="16" fill="#456">Consumer</text>
+
+        <circle cx="610" cy="170" r="72" fill="#fff" stroke="#2d7dd2" stroke-width="4" />
+        <text x="610" y="160" text-anchor="middle" font-size="26" font-weight="700" fill="#124">Humans</text>
+        <text x="610" y="192" text-anchor="middle" font-size="16" fill="#456">Decision maker</text>
+
+        <rect x="780" y="105" width="250" height="150" rx="18" fill="#fff" stroke="#1f9d55" stroke-width="4" />
+        <text x="905" y="145" text-anchor="middle" font-size="26" font-weight="700" fill="#145">Abiotic Factors</text>
+        <text x="905" y="178" text-anchor="middle" font-size="16" fill="#456">water • air • light</text>
+        <text x="905" y="205" text-anchor="middle" font-size="16" fill="#456">temperature • soil</text>
+
+        <line x1="247" y1="170" x2="315" y2="205" stroke="#2d7dd2" stroke-width="4" marker-end="url(#arrow)" />
+        <line x1="462" y1="250" x2="545" y2="205" stroke="#2d7dd2" stroke-width="4" marker-end="url(#arrow)" />
+        <line x1="680" y1="170" x2="780" y2="180" stroke="#2d7dd2" stroke-width="4" marker-end="url(#arrow)" />
+        <line x1="905" y1="255" x2="610" y2="255" stroke="#1f9d55" stroke-width="4" marker-end="url(#arrow)" />
+        <line x1="780" y1="145" x2="460" y2="145" stroke="#1f9d55" stroke-width="4" marker-end="url(#arrow)" />
+
+        <text x="345" y="130" font-size="16" fill="#456">dependence</text>
+        <text x="512" y="300" font-size="16" fill="#456">predation / competition</text>
+        <text x="710" y="145" font-size="16" fill="#456">energy &amp; matter</text>
+      </svg>
+    </div>
+
+    <div class="eco-box">
+      <h2>📜 ২. Ecology-এর ইতিহাস (Historical Evolution)</h2>
+
+      <h3>🏛️ Ancient &amp; Pre-modern Roots</h3>
+      <p>
+        <b>Aristotle</b> প্রাণী সম্পর্কে পর্যবেক্ষণ করেছিলেন, আর <b>Theophrastus</b> উদ্ভিদ ও পরিবেশের সম্পর্ক নিয়ে কাজ করেন।
+        তাঁকে অনেকেই প্রাচীন ecological thinking-এর একজন অগ্রদূত মনে করেন।
+      </p>
+
+      <h3>🔬 Modern Foundation</h3>
+      <ul>
+        <li><b>1859</b> — <b>Charles Darwin</b> natural selection ও adaptation-এর ধারণা দেন।</li>
+        <li><b>1866</b> — <b>Ernst Haeckel</b> “Ecology” শব্দটি ব্যবহার করেন।</li>
+        <li><b>1930s</b> — <b>Arthur Tansley</b> “Ecosystem” ধারণা উপস্থাপন করেন।</li>
+        <li><b>1962</b> — <b>Rachel Carson</b> “Silent Spring” দিয়ে পরিবেশ আন্দোলন জোরদার করেন।</li>
+      </ul>
+
+      <div class="eco-note">
+        আজকের Ecology শুধু বইয়ের বিষয় না; এটি <b>Climate change</b>, <b>Biodiversity loss</b>, <b>Urban sustainability</b> বুঝার চাবিকাঠি।
+      </div>
+    </div>
+
+    <div class="eco-box">
+      <h2>🧩 ৩. Levels of Organization (ইকোলজির সাংগঠনিক স্তর)</h2>
+      <p>Ecology সাধারণত ছোট থেকে বড় স্কেলে এগোয়। এই hierarchy মনে রাখতে পারলে concept অনেক পরিষ্কার হয়ে যায়।</p>
+
+      <h3>🖼️ Diagram 2: Ecological Hierarchy</h3>
+
+      <svg class="eco-svg" viewBox="0 0 1100 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ecological levels flow diagram">
+        <defs>
+          <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <path d="M0,0 L8,3 L0,6 Z" fill="#0f766e" />
+          </marker>
+        </defs>
+        <rect x="0" y="0" width="1100" height="360" fill="#fcfeff" />
+        <g font-family="sans-serif" text-anchor="middle">
+          <rect x="40" y="120" width="160" height="90" rx="16" fill="#e8f5ff" stroke="#0f766e" stroke-width="3" />
+          <text x="120" y="158" font-size="22" font-weight="700" fill="#124">Organism</text>
+          <text x="120" y="185" font-size="14" fill="#456">একক জীব</text>
+
+          <rect x="250" y="120" width="160" height="90" rx="16" fill="#eefbf0" stroke="#0f766e" stroke-width="3" />
+          <text x="330" y="158" font-size="22" font-weight="700" fill="#124">Population</text>
+          <text x="330" y="185" font-size="14" fill="#456">একই species</text>
+
+          <rect x="460" y="120" width="160" height="90" rx="16" fill="#fff7e8" stroke="#0f766e" stroke-width="3" />
+          <text x="540" y="158" font-size="22" font-weight="700" fill="#124">Community</text>
+          <text x="540" y="185" font-size="14" fill="#456">অনেক species</text>
+
+          <rect x="670" y="120" width="160" height="90" rx="16" fill="#f4efff" stroke="#0f766e" stroke-width="3" />
+          <text x="750" y="158" font-size="22" font-weight="700" fill="#124">Ecosystem</text>
+          <text x="750" y="185" font-size="14" fill="#456">biotic + abiotic</text>
+
+          <rect x="880" y="120" width="180" height="90" rx="16" fill="#fff0f5" stroke="#0f766e" stroke-width="3" />
+          <text x="970" y="158" font-size="22" font-weight="700" fill="#124">Biosphere</text>
+          <text x="970" y="185" font-size="14" fill="#456">whole Earth</text>
+
+          <line x1="200" y1="165" x2="250" y2="165" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow2)" />
+          <line x1="410" y1="165" x2="460" y2="165" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow2)" />
+          <line x1="620" y1="165" x2="670" y2="165" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow2)" />
+          <line x1="830" y1="165" x2="880" y2="165" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow2)" />
+
+          <text x="120" y="260" font-size="14" fill="#666">Example: একজন মানুষ</text>
+          <text x="330" y="260" font-size="14" fill="#666">Example: wolf pack</text>
+          <text x="540" y="260" font-size="14" fill="#666">Example: forest animals + plants</text>
+          <text x="750" y="260" font-size="14" fill="#666">Example: pond or forest</text>
+          <text x="970" y="260" font-size="14" fill="#666">Example: planet Earth</text>
+        </g>
+      </svg>
+
+      <table class="eco-table" style="margin-top:14px;">
+        <tr>
+          <th>স্তর</th>
+          <th>আলোচনার বিষয়</th>
+          <th>বাস্তব উদাহরণ</th>
+        </tr>
+        <tr>
+          <td><b>Organismal Ecology</b></td>
+          <td>একক জীবের আচরণ ও অভিযোজন</td>
+          <td>একটি cactus কীভাবে পানি ধরে রাখে</td>
+        </tr>
+        <tr>
+          <td><b>Population Ecology</b></td>
+          <td>একই প্রজাতির জন্মহার, মৃত্যুহার, growth</td>
+          <td>একটি deer population বাড়া-কমা</td>
+        </tr>
+        <tr>
+          <td><b>Community Ecology</b></td>
+          <td>বিভিন্ন species-এর interaction</td>
+          <td>predator-prey সম্পর্ক</td>
+        </tr>
+        <tr>
+          <td><b>Ecosystem Ecology</b></td>
+          <td>energy flow ও nutrient cycle</td>
+          <td>pond, forest, grassland</td>
+        </tr>
+        <tr>
+          <td><b>Global Ecology</b></td>
+          <td>পুরো পৃথিবীর climate ও biodiversity</td>
+          <td>climate change</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="eco-box">
+      <h2>🌿 ৪. Ecology-এর প্রকারভেদ (Types / Branches)</h2>
+
+      <div class="eco-grid3">
+        <div class="eco-card">
+          <h3>Autecology</h3>
+          <p>
+            একটি নির্দিষ্ট species নিয়ে study।<br />
+            <b>Example:</b> একটি tiger-এর habitat, food, adaptation।
+          </p>
+        </div>
+        <div class="eco-card">
+          <h3>Synecology</h3>
+          <p>
+            একটি community-এর species-groups নিয়ে study।<br />
+            <b>Example:</b> Sundarbans-এর plants, animals, birds together।
+          </p>
+        </div>
+        <div class="eco-card">
+          <h3>Applied Ecology</h3>
+          <p>
+            ecology-এর practical ব্যবহার।<br />
+            <b>Example:</b> conservation, urban planning, pollution control।
+          </p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:16px;">🖼️ Diagram 3: Autecology vs Synecology</h3>
+
+      <svg class="eco-svg" viewBox="0 0 1100 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Autecology versus synecology comparison">
+        <rect x="0" y="0" width="1100" height="280" fill="#ffffff" />
+        <rect x="50" y="45" width="460" height="190" rx="18" fill="#f7fbff" stroke="#2d7dd2" stroke-width="3" />
+        <rect x="590" y="45" width="460" height="190" rx="18" fill="#f6fff8" stroke="#2ecc71" stroke-width="3" />
+        <text x="280" y="85" text-anchor="middle" font-size="30" font-weight="700" fill="#124">Autecology</text>
+        <text x="820" y="85" text-anchor="middle" font-size="30" font-weight="700" fill="#124">Synecology</text>
+
+        <text x="280" y="125" text-anchor="middle" font-size="18" fill="#456">একটি species-focused study</text>
+        <text x="820" y="125" text-anchor="middle" font-size="18" fill="#456">community-focused study</text>
+
+        <text x="280" y="160" text-anchor="middle" font-size="17" fill="#456">Habitat • Adaptation • Tolerance</text>
+        <text x="820" y="160" text-anchor="middle" font-size="17" fill="#456">Competition • Predation • Interaction</text>
+
+        <text x="280" y="195" text-anchor="middle" font-size="17" fill="#456">Example: camel in desert</text>
+        <text x="820" y="195" text-anchor="middle" font-size="17" fill="#456">Example: forest ecosystem</text>
+      </svg>
+
+      <h3>Environment Based Branches</h3>
+      <ul>
+        <li><b>Terrestrial Ecology:</b> বন, মরুভূমি, তৃণভূমি</li>
+        <li><b>Aquatic Ecology:</b> নদী, হ্রদ, সমুদ্র</li>
+      </ul>
+
+      <h3>Modern Applied Branches</h3>
+      <ul>
+        <li><b>Urban Ecology:</b> শহুরে মানুষের তৈরি পরিবেশ</li>
+        <li><b>Behavioral Ecology:</b> প্রাণীর আচরণ</li>
+        <li><b>Conservation Ecology:</b> জীববৈচিত্র্য রক্ষা</li>
+      </ul>
+    </div>
+
+    <div class="eco-box">
+      <h2>🧪 ৫. Learning Activities (Active Recall Pattern)</h2>
+
+      <p>
+        নিচের কাজগুলো <b>read → recall → explain → apply</b> ধাপে করলে topic অনেক বেশি স্থায়ীভাবে মনে থাকবে।
+      </p>
+
+      <div class="eco-grid">
+        <div class="eco-card">
+          <h3>🔍 Activity 1: Recall from Memory</h3>
+          <ul>
+            <li>Ecology-এর definition লিখো</li>
+            <li>Organism → Biosphere ধারাটি মুখে বলো</li>
+            <li>Autecology ও Synecology আলাদা করো</li>
+          </ul>
+        </div>
+        <div class="eco-card">
+          <h3>📊 Activity 2: Diagram-Based Learning</h3>
+          <ul>
+            <li>Ecological hierarchy chart আঁকো</li>
+            <li>biotic বনাম abiotic list বানাও</li>
+            <li>একটি food web sketch করো</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="eco-box eco-cta" style="margin-top:16px;">
+        <h3>🖼️ Diagram 4: Simple Food Web</h3>
+
+        <svg class="eco-svg" viewBox="0 0 1100 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simple food web diagram">
+          <defs>
+            <marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#d35400" />
+            </marker>
+          </defs>
+          <rect x="0" y="0" width="1100" height="350" fill="#fffdf8" />
+
+          <circle cx="140" cy="260" r="58" fill="#e8f5e9" stroke="#2ecc71" stroke-width="4" />
+          <text x="140" y="255" text-anchor="middle" font-size="22" font-weight="700">Grass</text>
+          <text x="140" y="279" text-anchor="middle" font-size="14">Producer</text>
+
+          <circle cx="340" cy="160" r="58" fill="#fff3e8" stroke="#e67e22" stroke-width="4" />
+          <text x="340" y="155" text-anchor="middle" font-size="22" font-weight="700">Rabbit</text>
+          <text x="340" y="179" text-anchor="middle" font-size="14">Herbivore</text>
+
+          <circle cx="560" cy="260" r="58" fill="#fff3e8" stroke="#e67e22" stroke-width="4" />
+          <text x="560" y="255" text-anchor="middle" font-size="22" font-weight="700">Insect</text>
+          <text x="560" y="279" text-anchor="middle" font-size="14">Primary consumer</text>
+
+          <circle cx="760" cy="160" r="58" fill="#fbe9e7" stroke="#c0392b" stroke-width="4" />
+          <text x="760" y="155" text-anchor="middle" font-size="22" font-weight="700">Snake</text>
+          <text x="760" y="179" text-anchor="middle" font-size="14">Predator</text>
+
+          <circle cx="960" cy="260" r="58" fill="#fdebd0" stroke="#d35400" stroke-width="4" />
+          <text x="960" y="255" text-anchor="middle" font-size="22" font-weight="700">Hawk</text>
+          <text x="960" y="279" text-anchor="middle" font-size="14">Top predator</text>
+
+          <line x1="190" y1="250" x2="282" y2="185" stroke="#d35400" stroke-width="4" marker-end="url(#arrow3)" />
+          <line x1="398" y1="160" x2="502" y2="230" stroke="#d35400" stroke-width="4" marker-end="url(#arrow3)" />
+          <line x1="618" y1="245" x2="708" y2="185" stroke="#d35400" stroke-width="4" marker-end="url(#arrow3)" />
+          <line x1="818" y1="160" x2="908" y2="230" stroke="#d35400" stroke-width="4" marker-end="url(#arrow3)" />
+
+          <text x="300" y="115" font-size="15" fill="#666">energy moves forward</text>
+          <text x="500" y="115" font-size="15" fill="#666">consumer chain</text>
+          <text x="700" y="115" font-size="15" fill="#666">predator-prey relation</text>
+        </svg>
+
+        <p class="eco-muted">
+          <b>Active Recall Prompt:</b> “If grass disappears, what will happen to rabbit, snake, and hawk populations?”
+        </p>
+      </div>
+    </div>
+
+    <div class="eco-box">
+      <h2>⚙️ ৬. Ecology ও আমাদের জীবন</h2>
+      <p>
+        Ecology কোনো isolated theory নয়। এটি food security, health, disease spread, urban design, water quality,
+        climate, biodiversity—সবকিছুর সাথে যুক্ত।
+      </p>
+
+      <div class="eco-grid3">
+        <div class="eco-card">
+          <h3>🌡️ Climate</h3>
+          <p>Temperature change species distribution বদলায়।</p>
+        </div>
+        <div class="eco-card">
+          <h3>🚭 Pollution</h3>
+          <p>Air ও water pollution human health-এর ওপর সরাসরি প্রভাব ফেলে।</p>
+        </div>
+        <div class="eco-card">
+          <h3>🌱 Sustainability</h3>
+          <p>Resource use balanced না হলে ecosystem collapse হতে পারে।</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-box">
+      <h2>🧠 Critical Thinking Questions</h2>
+      <ol>
+        <li>যদি একটি ecosystem থেকে একটি keystone species হারিয়ে যায়, তাহলে কেন পুরো community destabilize হতে পারে?</li>
+        <li>মানুষের urban lifestyle কীভাবে ecology-এর natural balance পরিবর্তন করছে—এবং এর long-term consequences কী?</li>
+      </ol>
+    </div>
+
+    <div class="eco-box">
+      <h2>📚 References</h2>
+      <ul>
+        <li><i>Fundamentals of Ecology</i> — Eugene P. Odum</li>
+        <li><i>Ecology: Concepts and Applications</i> — Manuel C. Molles</li>
+        <li><i>Ecology: Concepts and Applications</i> — Smith &amp; Smith</li>
+        <li><i>Integrated Principles of Zoology</i> — Cleveland P. Hickman</li>
+        <li>HSC Biology (NCTB) — Bangladesh curriculum support</li>
+      </ul>
+    </div>
+
+    <div class="eco-box eco-cta">
+      <h2>🔗 Final Insight</h2>
+      <p>
+        <b>Ecology</b> শেখা মানে শুধু plants, animals, or habitats memorise করা নয়; বরং <span class="eco-k">জীবন কীভাবে network-এর মতো কাজ করে</span>
+        তা বোঝা। তুমি, আমি, নদী, মাটি, পাখি, গাছ, বাতাস—সবাই একটি shared system-এর অংশ।
+      </p>
+      <p>
+        তাই Ecology হলো <b>science of connection</b> — and connection is the basis of life.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+      </section>
+
+      
+    </div>
+  </article>
+
+  
+    
+  
+  
+
+  
+    <nav class="contextual-sidebar-nav" aria-label="Section Navigation">
+      <div class="sidebar-nav-header">
+        <h3 class="sidebar-nav-title">On this journey</h3>
+        <div class="header-matrix-line"></div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        
+          <li class="sidebar-nav-item sidebar-nav-dropdown">
+            <a href="" class="sidebar-nav-link">
+              Neural Pathways
+            </a>
+
+            
+              <ul class="sidebar-nav-children">
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/biology/" class="sidebar-nav-child-link">
+                      Biology Core
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/synaptic-bridge/" class="sidebar-nav-child-link">
+                      Synaptic Bridge
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/" class="sidebar-nav-child-link">
+                      Life Practices
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/cognitive-audit/" class="sidebar-nav-child-link">
+                      Socratic Terminal
+                    </a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src=

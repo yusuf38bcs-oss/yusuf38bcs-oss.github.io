@@ -1,0 +1,1446 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Route Map | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Route Map" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A Neural Network of Education System" />
+<meta property="og:description" content="A Neural Network of Education System" />
+<link rel="canonical" href="https://learningbiologyforlife.org/audit-reports/ROUTE_MAP/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/audit-reports/ROUTE_MAP/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Route Map" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"MD. Yusuf"},"description":"A Neural Network of Education System","headline":"Route Map","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/audit-reports/ROUTE_MAP/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--default">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      <h1 id="route-map">Route Map</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Source File</th>
+      <th>Title</th>
+      <th>Layout</th>
+      <th>Permalink</th>
+      <th>Predicted URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>about.md</td>
+      <td>About the Author &amp; Executive Mission</td>
+      <td>single</td>
+      <td>/about/</td>
+      <td>/about/</td>
+    </tr>
+    <tr>
+      <td>cloudflare-hello-world-domain-guide.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>/cloudflare-hello-world-domain-guide/</td>
+    </tr>
+    <tr>
+      <td>gmail-gemini-ai-workplan.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>/gmail-gemini-ai-workplan/</td>
+    </tr>
+    <tr>
+      <td>index.html</td>
+      <td>Home</td>
+      <td>default</td>
+      <td>/</td>
+      <td>/</td>
+    </tr>
+    <tr>
+      <td>life-philosophy.html</td>
+      <td>Life Philosophy</td>
+      <td>default</td>
+      <td>/life-philosophy/</td>
+      <td>/life-philosophy/</td>
+    </tr>
+    <tr>
+      <td>README.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>/README/</td>
+    </tr>
+    <tr>
+      <td>zoology-syllabus.md</td>
+      <td>Interactive Zoology Syllabus Matrix</td>
+      <td>single</td>
+      <td>/zoology-syllabus/</td>
+      <td>/zoology-syllabus/</td>
+    </tr>
+    <tr>
+      <td>.github/agents/neural-ecosystem-architect.agent.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>/.github/agents/neural-ecosystem-architect.agent/</td>
+    </tr>
+    <tr>
+      <td>docs/architecture-cleanup-log.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>/docs/architecture-cleanup-log/</td>
+    </tr>
+    <tr>
+      <td>docs/EMAIL_SETUP_PLAN.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>/docs/EMAIL_SETUP_PLAN/</td>
+    </tr>
+    <tr>
+      <td>docs/gemini-gmail-master-prompt.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>/docs/gemini-gmail-master-prompt/</td>
+    </tr>
+    <tr>
+      <td>docs/MASTER_PLAN.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>/docs/MASTER_PLAN/</td>
+    </tr>
+    <tr>
+      <td>network/index.html</td>
+      <td>Biological Neural Network</td>
+      <td>single</td>
+      <td>/network/</td>
+      <td>/network/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/animal-diversity/astropecten-water-vascular-system.md</td>
+      <td>Astropecten: Water Vascular System (à¦…à§à¦¯à¦¾à¦¸à§à¦Ÿà§à¦°à§‹ à¦ªà§‡à¦•à§à¦Ÿà§‡à¦¨-à¦à¦° à¦ªà¦¾à¦¨à¦¿ à¦¸à¦‚à¦¬à¦¹à¦¨à¦¤à¦¨à§à¦¤à§à¦°)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/astropecten-water-vascular-system/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/animal-diversity/polymorphism-in-cnidaria.md</td>
+      <td>Polymorphism in Cnidaria: নিডারিয়ার বহুরূপতা ও জৈব শ্রমবণ্টন</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/polymorphism-in-cnidaria/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion.md</td>
+      <td>Protozoa: Body Covering, Skeletal Structure and Locomotion (প্রোটোজোয়া: শারীরিক আবরণ, কঙ্কাল কাঠামো ও চলন)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/protozoa-body-covering-and-skeletal-structure-and-locomotion/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/animal-diversity/protozoa-nutrition-locomotion.md</td>
+      <td>Protozoa: Nutrition &amp; Locomotion (à¦ªà§à¦°à§‹à¦Ÿà§‹à¦œà§‹à§Ÿà¦¾à¦° à¦¬à¦¿à¦­à¦¿à¦¨à§à¦¨ à¦ªà§à¦°à¦•à¦¾à¦° à¦ªà§à¦·à§à¦Ÿà¦¿à¦—à§à¦°à¦¹à¦£ à¦“ à¦šà¦²à¦¨)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/protozoa-nutrition-locomotion/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism.md</td>
+      <td>Protozoa: Reproduction and Parasitism (à¦ªà§à¦°à§‹à¦Ÿà§‹à¦œà§‹à§Ÿà¦¾: à¦œà¦¨à¦¨ à¦“ à¦ªà¦°à¦œà§€à¦¬à¦¿à¦¤à¦¾à¦° à¦†à¦£à¦¬à¦¿à¦• à¦°à¦£à¦¾à¦™à§à¦—à¦¨)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/protozoa-reproduction-and-parasitism/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/basic-concepts-of-biostatistics.md</td>
+      <td>জীবপরিসংখ্যানের মৌলিক ধারণা (Basic Concepts of Biostatistics)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/basic-concepts-of-biostatistics/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/chi-square-test.md</td>
+      <td>à¦•à¦¾à¦‡-à¦¬à¦°à§à¦— à¦ªà¦°à§€à¦•à§à¦·à¦¾ (Chi-square Test)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/chi-square-test/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/correlation-and-regression.md</td>
+      <td>Correlation and Regression (à¦¸à¦¹à¦¸à¦®à§à¦¬à¦¨à§à¦§ à¦“ à¦¨à¦¿à¦°à§à¦­à¦°à¦• à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/correlation-and-regression/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/frequency-distribution-histogram-and-polygon.md</td>
+      <td>Frequency distribution, Histogram and Polygon</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/frequency-distribution-histogram-and-polygon/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/hypothesis-testing.md</td>
+      <td>Hypothesis Testing (à¦¨à¦¾à¦¸à§à¦¤à¦¿à¦• à¦“ à¦¬à¦¿à¦•à¦²à§à¦ª à¦•à¦²à§à¦ªà¦¨à¦¾)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/hypothesis-testing/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/measurements-of-central-tendency-problem-solving.md</td>
+      <td>Measurements of Central Tendency: Problem Solving</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/measurements-of-central-tendency-problem-solving/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/measurements-of-central-tendency.md</td>
+      <td>à¦•à§‡à¦¨à§à¦¦à§à¦°à§€à¦¯à¦¼ à¦ªà§à¦°à¦¬à¦£à¦¤à¦¾à¦° à¦ªà¦°à¦¿à¦®à¦¾à¦ª (Measurements of Central Tendency)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/measurements-of-central-tendency/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/measures-of-central-tendency.md</td>
+      <td>Measures of Central Tendency</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/measures-of-central-tendency/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/measures-of-dispersion.md</td>
+      <td>Measures of Dispersion: বিস্তৃতি</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/measures-of-dispersion/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/presentation-and-graphical-analysis-of-data.md</td>
+      <td>à¦‰à¦ªà¦¾à¦¤à§à¦¤à§‡à¦° à¦‰à¦ªà¦¸à§à¦¥à¦¾à¦ªà¦¨ à¦“ à¦—à§à¦°à¦¾à¦«à¦¿à¦•à§à¦¯à¦¾à¦² à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ (Presentation and Graphical Analysis of Data)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/presentation-and-graphical-analysis-of-data/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means.md</td>
+      <td>T-test: Significant difference between means</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/t-test-significant-difference-between-means/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/z-test-problem-solving.md</td>
+      <td>Z Test: Problem Solving</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/z-test-problem-solving/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test.md</td>
+      <td>Z-test à¦à¦¬à¦‚ à¦à¦° à¦¸à¦¾à¦°à§à¦¥à¦•à¦¤à¦¾ (Z-test and its Significance) &amp; Chi-Square test</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/z-test-z-test-and-its-significance-chi-square-test/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/ecology/community-ecology-an-equation-of-living-together.md</td>
+      <td>à¦†à¦®à¦°à¦¾ à¦•à¦¿ à¦¸à¦¬à¦¾à¦‡ à¦®à¦¿à¦²à§‡à¦®à¦¿à¦¶à§‡ à¦¥à¦¾à¦•à¦¤à§‡ à¦ªà¦¾à¦°à¦¿? à¦•à¦®à§à¦¨à¦¿à¦Ÿà¦¿ à¦‡à¦•à§‹à¦²à¦œà¦¿ à¦“ à¦ªà§à¦°à¦•à§ƒà¦¤à¦¿à¦° à¦à¦• à¦…à¦¦à§à¦­à§à¦¤ à¦¸à¦®à§€à¦•à¦°à¦£</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/community-ecology-an-equation-of-living-together/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/ecology/ecology-history-scopes-area.md</td>
+      <td>ECOLOGY: HISTORY, SCOPES &amp; AREA (à¦‡à¦•à§‹à¦²à¦œà¦¿: à¦¸à¦‚à¦œà§à¦žà¦¾, à¦‡à¦¤à¦¿à¦¹à¦¾à¦¸ à¦“ à¦ªà¦°à¦¿à¦§à¦¿)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/ecology-history-scopes-area/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species.md</td>
+      <td>POPULATION ECOLOGY: A Science of Life &amp; Motion of a Species (à¦ªà¦ªà§à¦¯à§à¦²à§‡à¦¶à¦¨ à¦‡à¦•à§‹à¦²à¦œà¦¿: à¦à¦•à¦Ÿà¦¿ à¦ªà§à¦°à¦œà¦¾à¦¤à¦¿à¦° à¦œà§€à¦¬à¦¨ à¦“ à¦—à¦¤à¦¿à¦° à¦¬à¦¿à¦œà§à¦žà¦¾à¦¨)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/population-ecology-a-science-of-life-motion-of-a-species/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population.md</td>
+      <td>POPULATION ECOLOGY: CONCEPT ON SIZE OF POPULATION (à¦œà¦¨à¦¸à¦‚à¦–à§à¦¯à¦¾à¦° à¦†à¦•à¦¾à¦°à§‡à¦° à¦®à§Œà¦²à¦¿à¦• à¦‰à¦ªà¦¾à¦¦à¦¾à¦¨)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/population-ecology-concept-on-size-of-population/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models.md</td>
+      <td>Survivorship Curve, Life Table &amp; Growth Models: জীবনের গাণিতিক গল্প</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/survivorship-curve-life-table-growth-models/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/genetics/genetics-the-theme-of-inheritance-part-1.md</td>
+      <td>Genetics: The Theme of Inheritance - Part 1 (à¦œà¦¿à¦¨à¦¤à¦¤à§à¦¤à§à¦¬ à¦“ à¦¬à¦‚à¦¶à¦—à¦¤à¦¿: à¦®à§‡à¦¨à§à¦¡à§‡à¦²à¦¿à¦œà¦®à§‡à¦° à¦¸à¦¹à¦œ à¦ªà¦¾à¦ )</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/genetics-the-theme-of-inheritance-part-1/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/genetics/genetics-the-theme-of-inheritance-part-2.md</td>
+      <td>Genetics: The Theme of Inheritance - Part 2 (à¦®à§‡à¦¨à§à¦¡à§‡à¦²à§‡à¦° à§¨à§Ÿ à¦¸à§‚à¦¤à§à¦° à¦“ à¦à¦ªà¦¿à¦¸à§à¦Ÿà§à¦¯à¦¾à¦¸à¦¿à¦¸à§‡à¦° à¦†à¦£à¦¬à¦¿à¦• à¦¡à¦¿à¦•à§‹à¦¡à¦¿à¦‚)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/genetics-the-theme-of-inheritance-part-2/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md</td>
+      <td>Blood Circulation: The Intelligent Transport System of Life</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/blood-circulation-the-intelligent-transport-system-of-life/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md</td>
+      <td>Human Blood Circulation Overview</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/human-blood-circulation-overview/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-1.md</td>
+      <td>Human Physiology: Digestive System (Part 1)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/human-physiology-digestive-system-part-1/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-2.md</td>
+      <td>Human Physiology: Digestive System (Part 2)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/human-physiology-digestive-system-part-2/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-3.md</td>
+      <td>Human Physiology: Digestive System (Part 3)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/human-physiology-digestive-system-part-3/</td>
+    </tr>
+    <tr>
+      <td>_biology/higher-zoology-tree/research-methodology/research-methodology.md</td>
+      <td>à¦—à¦¬à§‡à¦·à¦£à¦¾ à¦®à§‡à¦¥à¦¡à§‹à¦²à¦œà¦¿ à¦“ à¦¬à¦¾à¦¯à¦¼à§‹à¦¸à§à¦Ÿà§à¦¯à¦¾à¦Ÿà¦¿à¦¸à§à¦Ÿà¦¿à¦•à¦¸: à¦ à¦Ÿà§ à¦œà§‡à¦¡ à¦—à¦¾à¦‡à¦¡à¦²à¦¾à¦‡à¦¨</td>
+      <td>single</td>
+      <td>/biology/higher-zoology-tree/research-methodology/</td>
+      <td>/biology/higher-zoology-tree/research-methodology/</td>
+    </tr>
+    <tr>
+      <td>_biology/hsc-corner/botany/human-body-the-mysterious-workspace.md</td>
+      <td>Human Body: The Mysterious Workspace (à¦®à¦¾à¦¨à¦¬à¦¦à§‡à¦¹: à¦¸à§à¦¨à¦¿à¦ªà§à¦£ à¦ªà§à¦°à§‹à¦—à§à¦°à¦¾à¦®à¦¿à¦‚ à¦“ à¦¸à§‡à¦¨à§à¦Ÿà§à¦°à¦¾à¦² à¦¡à¦—à¦®à¦¾)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/human-body-the-mysterious-workspace/</td>
+    </tr>
+    <tr>
+      <td>_biology/hsc-corner/botany/structures-functions-cell-organelles-part-1.md</td>
+      <td>Structures &amp; Functions of Cell Organelles - Part 1 (à¦•à§‹à¦·à§€à¦¯à¦¼ à¦¬à¦¿à¦­à¦¿à¦¨à§à¦¨ à¦…à¦™à§à¦—à¦¾à¦™à§à¦—à§à¦° à¦—à¦ à¦¨ à¦“ à¦•à¦¾à¦œ - à§§)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/structures-functions-cell-organelles-part-1/</td>
+    </tr>
+    <tr>
+      <td>_biology/hsc-corner/botany/structures-functions-of-cell-organelles-part-2.md</td>
+      <td>Structures &amp; Functions of Cell Organelles - Part 2 (à¦•à§‹à¦·à§€à¦¯à¦¼ à¦¬à¦¿à¦­à¦¿à¦¨à§à¦¨ à¦…à¦™à§à¦—à¦¾à¦£à§à¦° à¦—à¦ à¦¨ à¦“ à¦•à¦¾à¦œ - à§¨)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/structures-functions-of-cell-organelles-part-2/</td>
+    </tr>
+    <tr>
+      <td>_biology/hsc-corner/zoology/baroreceptors-reflex.md</td>
+      <td>Baroreceptor Reflex: Neural Control of Blood Pressure</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/baroreceptors-reflex/</td>
+    </tr>
+    <tr>
+      <td>_biology/hsc-corner/zoology/hsc-biology-2nd-paper-1st-chapter-animal-diversity-classification.md</td>
+      <td>HSC Biology 2nd Paper 1st Chapter: Animal Diversity &amp; Classification (à¦ªà§à¦°à¦¾à¦£à§€à¦° à¦¬à¦¿à¦­à¦¿à¦¨à§à¦¨à¦¤à¦¾ à¦“ à¦¶à§à¦°à§‡à¦£à¦¿à¦¬à¦¿à¦¨à§à¦¯à¦¾à¦¸)</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/hsc-biology-2nd-paper-1st-chapter-animal-diversity-classification/</td>
+    </tr>
+    <tr>
+      <td>_biology/hsc-corner/zoology/human-blood-circulation.md</td>
+      <td>Human Blood Circulation: à¦®à¦¾à¦¨à¦¬ à¦¦à§‡à¦¹à§‡ à¦°à¦•à§à¦¤ à¦¸à¦žà§à¦šà¦¾à¦²à¦¨ à¦“ à¦¹à§ƒà¦¦-à¦ªà§à¦°à¦•à§Œà¦¶à¦²</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/human-blood-circulation/</td>
+    </tr>
+    <tr>
+      <td>_biology/hsc-corner/zoology/respiratory-system-mind-mapping.md</td>
+      <td>Respiratory System &amp; Human Physiology: Interactive Mind Mapping</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/respiratory-system-mind-mapping/</td>
+    </tr>
+    <tr>
+      <td>_biology/hsc-corner/zoology/respiratory-system.md</td>
+      <td>Respiratory System: à¦®à¦¾à¦¨à¦¬ à¦¦à§‡à¦¹à§‡à¦° à¦¶à§à¦¬à¦¸à¦¨à¦¤à¦¨à§à¦¤à§à¦° à¦“ à¦ªà§à¦°à¦¾à¦£à§‡à¦° à¦†à¦¦à¦¾à¦¨-à¦ªà§à¦°à¦¦à¦¾à¦¨</td>
+      <td>single</td>
+      <td> </td>
+      <td>/biology/respiratory-system/</td>
+    </tr>
+    <tr>
+      <td>_includes/archive-single.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/brevo-subscribe.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/mcq-arena.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/neural-node-panel.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/quiz-render.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/body/ai-widget.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/body/brevo-marketing.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/body/gtm-body.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/body/synaptic-ai.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/components/archive-single.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/components/mcq-arena.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/components/mi-analysis.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/components/neural-card.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/components/neural-pagination.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/components/personality-analysis.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/components/quiz-render.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/footer/neural-footer.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/head/cookie-script.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/head/custom.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/head/head-scripts.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/head/head.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/home/academic-sections.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/home/neural-divider.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/home/neural-flow.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/home/neural-hero.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/home/recent-posts.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/home/tests-cta.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/knowledge/breadcrumb-neural.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/knowledge/concept-engine.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/knowledge/learning-pathway.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/knowledge/related-posts.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/knowledge/semantic-sidebar.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/navigation/contextual-sidebar.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/navigation/masthead.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/navigation/sidebar-academic.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/navigation/sidebar-socratic.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/seo/article-schema.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/seo/breadcrumbs-schema.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/seo/educational-schema.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/seo/knowledge-graph.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/seo/organization-schema.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_includes/seo/structured-data.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_layouts/archive.html</td>
+      <td> </td>
+      <td>default</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_layouts/default.html</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_layouts/single.html</td>
+      <td> </td>
+      <td>default</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_life-philosophy/observation/cosmic-observation-morality.md</td>
+      <td>à¦®à¦¹à¦¾à¦œà¦¾à¦—à¦¤à¦¿à¦• à¦ªà¦°à§à¦¯à¦¬à§‡à¦•à§à¦·à¦£ à¦“ à¦¦à¦¾à¦°à§à¦¶à¦¨à¦¿à¦• à¦¬à§à¦¯à¦¬à¦šà§à¦›à§‡à¦¦: à¦¬à¦¿à¦¶à§à¦¬à¦œà¦¨à§€à¦¨ à¦¨à§ˆà¦¤à¦¿à¦•à¦¤à¦¾à¦° à¦…à¦¨à¦Ÿà§‹à¦²à¦œà¦¿</td>
+      <td>single</td>
+      <td>/life-philosophy/observations/</td>
+      <td>/life-philosophy/observations/</td>
+    </tr>
+    <tr>
+      <td>_life-philosophy/psychology/psychology-character-fortitude.md</td>
+      <td>à¦¨à§ˆà¦¤à¦¿à¦•à¦¤à¦¾ à¦“ à¦®à¦¨à¦¸à§à¦¤à¦¤à§à¦¤à§à¦¬à§‡à¦° à¦®à¦¿à¦¤à¦¾à¦²à§€: à¦šà¦¾à¦°à¦¿à¦¤à§à¦°à¦¿à¦• à¦¦à§ƒà¦¢à¦¼à¦¤à¦¾à¦° à¦®à¦¨à¦¸à§à¦¤à¦¾à¦¤à§à¦¤à§à¦¬à¦¿à¦• à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_life-philosophy/realization/realization.md</td>
+      <td>à¦œà§€à¦¬à¦¨ à¤¦à¤°à¥à¤¶à¤¨, à¦¨à§ˆà¦¤à¦¿à¦•à¦¤à¦¾ à¦“ à¦®à¦¨à¦¸à§à¦¤à¦¤à§à¦¤à§à¦¬à§‡à¦° à¦®à¦¹à¦¾à¦•à¦¾à¦¬à§à¦¯: à¦¤à¦¾à¦¤à§à¦¤à§à¦¬à¦¿à¦• à¦œà§à¦žà¦¾à¦¨ à¦¥à§‡à¦•à§‡ à¦†à¦¤à§à¦®-à¦‰à¦ªà¦²à¦¬à§à¦§à¦¿à¦° à¦¯à¦¾à¦¤à§à¦°à¦¾</td>
+      <td>single</td>
+      <td>/life-philosophy/ethics-psychology-realization/</td>
+      <td>/life-philosophy/ethics-psychology-realization/</td>
+    </tr>
+    <tr>
+      <td>_life-practices/human-behaviour/building-bridges-in-the-brain-when-dots-meet-the-line.md</td>
+      <td>Building Bridges in the Brain: When Dots Meet the Line</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_life-practices/human-behaviour/dopamine-the-mystery-of-human-feelings.md</td>
+      <td>à¦¡à§‹à¦ªà¦¾à¦®à¦¿à¦¨: à¦†à¦®à¦¾à¦¦à§‡à¦° à¦…à¦¨à§à¦­à§‚à¦¤à¦¿ à¦“ à¦†à¦•à¦¾à¦™à§à¦•à§à¦·à¦¾à¦° à¦à¦• à¦…à¦¦à§ƒà¦¶à§à¦¯ à¦œà§€à¦¬à¦¤à¦¾à¦¤à§à¦¤à§à¦¬à¦¿à¦• à¦¯à§à¦¦à§à¦§à¦•à§à¦·à§‡à¦¤à§à¦°</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_life-practices/leadership-management/leadership-management-21st-century-learners-imported.md</td>
+      <td>Leadership Management &amp; 21st Century Learners</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_life-practices/leadership-management/leadership-management-21st-century-learners.md</td>
+      <td>Leadership Management &amp; 21st Century Learners</td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_life-practices/random-thoughts/the-twilight-path-and-the-silent-rose.md</td>
+      <td>Leadership Management &amp; 21st Century Learners</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_life-practices/research-highlights/evolution-of-the-vertebrate-heart.md</td>
+      <td>Evolution of the Vertebrate Heart</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_life-practices/research-highlights/mystery-of-human-evolution-a-review-of-a-synthesis-of-the-theories-and-concepts-of-early-human-evolution-2015.md</td>
+      <td>Mystery of Human Evolution: A Synthesis of Early Hominin Theories</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_mcq-arena/academic/2026-04-06-hsc-biology-2nd-paper-1st-chapter-mcq.md</td>
+      <td>HSC Biology 2nd Paper 1st Chapter MCQ</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_mcq-arena/academic/2026-04-11-hsc-biology-2nd-paper-3rd-chapter.md</td>
+      <td>HSC Biology 2nd Paper: Digestive System Quiz â€“ Step 1</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_mcq-arena/academic/2026-04-25-botany-1st-chapter-mcq.md</td>
+      <td>Botany 1st Chapter MCQ</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_mcq-arena/academic/2026-04-26-botany-1st-2nd-chapter-quiz-test.md</td>
+      <td>Botany 1st &amp; 2nd Chapter Quiz Test</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_mcq-arena/academic/2026-04-26-hsc-biology-2nd-paper-2nd-chapter-mcq.md</td>
+      <td>HSC Biology 2nd Paper 2nd Chapter MCQ</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_mcq-arena/academic/2026-04-26-hsc-biology-2nd-paper-chapter-5-mcq.md</td>
+      <td>HSC Biology 2nd Paper Chapter 5 MCQ</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_mcq-arena/academic/2026-05-04-zoology-mcq-1-2.md</td>
+      <td>Zoology MCQ 1-2</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_pages/biology-botany.md</td>
+      <td>Botany</td>
+      <td>archive</td>
+      <td>/biology/hsc-corner/botany/</td>
+      <td>/biology/hsc-corner/botany/</td>
+    </tr>
+    <tr>
+      <td>_pages/biology-higher-zoology.md</td>
+      <td>Higher Zoology Tree</td>
+      <td>archive</td>
+      <td>/biology/higher-zoology-tree/</td>
+      <td>/biology/higher-zoology-tree/</td>
+    </tr>
+    <tr>
+      <td>_pages/biology-hsc-corner.md</td>
+      <td>HSC Corner</td>
+      <td>archive</td>
+      <td>/biology/hsc-corner/</td>
+      <td>/biology/hsc-corner/</td>
+    </tr>
+    <tr>
+      <td>_pages/biology-model-test.md</td>
+      <td>Model Test</td>
+      <td>archive</td>
+      <td>/biology/hsc-corner/model-test/</td>
+      <td>/biology/hsc-corner/model-test/</td>
+    </tr>
+    <tr>
+      <td>_pages/biology-practical.md</td>
+      <td>Practical</td>
+      <td>archive</td>
+      <td>/biology/hsc-corner/practical/</td>
+      <td>/biology/hsc-corner/practical/</td>
+    </tr>
+    <tr>
+      <td>_pages/biology-zoology.md</td>
+      <td>Zoology</td>
+      <td>archive</td>
+      <td>/biology/hsc-corner/zoology/</td>
+      <td>/biology/hsc-corner/zoology/</td>
+    </tr>
+    <tr>
+      <td>_pages/biology.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_pages/category-animal-diversity.md</td>
+      <td>Higher Zoology Tree: Animal Diversity</td>
+      <td>archive</td>
+      <td>/categories/animal-diversity/</td>
+      <td>/categories/animal-diversity/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-biostatistics.md</td>
+      <td>Higher Zoology Tree: Biostatistics</td>
+      <td>archive</td>
+      <td>/categories/biostatistics/</td>
+      <td>/categories/biostatistics/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-botany.md</td>
+      <td>HSC Corner: Botany</td>
+      <td>archive</td>
+      <td>/categories/botany/</td>
+      <td>/categories/botany/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-ecology.md</td>
+      <td>Higher Zoology Tree: Ecology</td>
+      <td>archive</td>
+      <td>/categories/ecology/</td>
+      <td>/categories/ecology/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-genetics.md</td>
+      <td>Higher Zoology Tree: Genetics</td>
+      <td>archive</td>
+      <td>/categories/genetics/</td>
+      <td>/categories/genetics/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-human-behaviour.md</td>
+      <td>Practical Approaches: Human Behaviour</td>
+      <td>archive</td>
+      <td>/categories/human-behaviour/</td>
+      <td>/categories/human-behaviour/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-human-physiology.md</td>
+      <td>Higher Zoology Tree: Human Physiology</td>
+      <td>archive</td>
+      <td>/categories/human-physiology/</td>
+      <td>/categories/human-physiology/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-leadership.md</td>
+      <td>Practical Approaches: Leadership</td>
+      <td>archive</td>
+      <td>/categories/leadership/</td>
+      <td>/categories/leadership/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-mcq.md</td>
+      <td>Socratic 4.0: MCQ Arena</td>
+      <td>archive</td>
+      <td>/categories/mcq/</td>
+      <td>/categories/mcq/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-random-thoughts.md</td>
+      <td>Practical Approaches: Random Thoughts</td>
+      <td>archive</td>
+      <td>/categories/random-thoughts/</td>
+      <td>/categories/random-thoughts/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-research-highlights.md</td>
+      <td>Practical Approaches: Research Highlights</td>
+      <td>archive</td>
+      <td>/categories/research-highlights/</td>
+      <td>/categories/research-highlights/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-videos.md</td>
+      <td>Video Library</td>
+      <td>archive</td>
+      <td>/categories/videos/</td>
+      <td>/categories/videos/</td>
+    </tr>
+    <tr>
+      <td>_pages/category-zoology.md</td>
+      <td>HSC Corner: Zoology</td>
+      <td>archive</td>
+      <td>/categories/zoology/</td>
+      <td>/categories/zoology/</td>
+    </tr>
+    <tr>
+      <td>_pages/contact.md</td>
+      <td>Contact Us</td>
+      <td>single</td>
+      <td>/contact-us/</td>
+      <td>/contact-us/</td>
+    </tr>
+    <tr>
+      <td>_pages/disclaimer.md</td>
+      <td>Disclaimer</td>
+      <td>single</td>
+      <td>/disclaimer/</td>
+      <td>/disclaimer/</td>
+    </tr>
+    <tr>
+      <td>_pages/institutional-framework.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_pages/life-philosophy.md</td>
+      <td>Life Philosophy</td>
+      <td>single</td>
+      <td>/life-philosophy/</td>
+      <td>/life-philosophy/</td>
+    </tr>
+    <tr>
+      <td>_pages/life-practices.md</td>
+      <td>Life Practices</td>
+      <td>single</td>
+      <td>/life-practices/</td>
+      <td>/life-practices/</td>
+    </tr>
+    <tr>
+      <td>_pages/mcq-arena-academic.md</td>
+      <td>Academic MCQ</td>
+      <td>single</td>
+      <td>/mcq-arena/academic/</td>
+      <td>/mcq-arena/academic/</td>
+    </tr>
+    <tr>
+      <td>_pages/mcq-arena-assessment.md</td>
+      <td>Assessment</td>
+      <td>single</td>
+      <td>/mcq-arena/assessment/</td>
+      <td>/mcq-arena/assessment/</td>
+    </tr>
+    <tr>
+      <td>_pages/mcq-arena-competitive.md</td>
+      <td>Competitive Exam</td>
+      <td>single</td>
+      <td>/mcq-arena/competitive-exam/</td>
+      <td>/mcq-arena/competitive-exam/</td>
+    </tr>
+    <tr>
+      <td>_pages/mcq-arena-rapid-revision.md</td>
+      <td>Rapid Revision</td>
+      <td>single</td>
+      <td>/mcq-arena/rapid-revision/</td>
+      <td>/mcq-arena/rapid-revision/</td>
+    </tr>
+    <tr>
+      <td>_pages/mcq-arena-short-qa.md</td>
+      <td>Short Questions &amp; Answers</td>
+      <td>single</td>
+      <td>/mcq-arena/short-ques-ans/</td>
+      <td>/mcq-arena/short-ques-ans/</td>
+    </tr>
+    <tr>
+      <td>_pages/mcq-arena.md</td>
+      <td>MCQ Arena</td>
+      <td>archive</td>
+      <td>/mcq-arena/</td>
+      <td>/mcq-arena/</td>
+    </tr>
+    <tr>
+      <td>_pages/mi-analysis.md</td>
+      <td>Find Your Intelligence Zone (Gardner’s MI Theory)</td>
+      <td>single</td>
+      <td>/mi-analysis/</td>
+      <td>/mi-analysis/</td>
+    </tr>
+    <tr>
+      <td>_pages/personality-test.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_pages/privacy-policy.md</td>
+      <td>Privacy Policy</td>
+      <td>single</td>
+      <td>/privacy-policy/</td>
+      <td>/privacy-policy/</td>
+    </tr>
+    <tr>
+      <td>_pages/research-node.md</td>
+      <td>Research Node</td>
+      <td>archive</td>
+      <td>/research-node/</td>
+      <td>/research-node/</td>
+    </tr>
+    <tr>
+      <td>_pages/socratic.md</td>
+      <td>Socratic 4.0</td>
+      <td>single</td>
+      <td>/socratic/</td>
+      <td>/socratic/</td>
+    </tr>
+    <tr>
+      <td>_pages/synaptic-bridge.md</td>
+      <td>Synaptic Bridge</td>
+      <td>archive</td>
+      <td>/synaptic-bridge/</td>
+      <td>/synaptic-bridge/</td>
+    </tr>
+    <tr>
+      <td>_pages/terms-and-conditions.md</td>
+      <td>Terms &amp; Conditions</td>
+      <td>single</td>
+      <td>/terms-and-conditions/</td>
+      <td>/terms-and-conditions/</td>
+    </tr>
+    <tr>
+      <td>_pages/thank-you.md</td>
+      <td>Thank You for Subscribing!</td>
+      <td>single</td>
+      <td>/thank-you/</td>
+      <td>/thank-you/</td>
+    </tr>
+    <tr>
+      <td>_pages/welcome.md</td>
+      <td>Welcome to the Synaptic Bridge!</td>
+      <td>single</td>
+      <td>/welcome/</td>
+      <td>/welcome/</td>
+    </tr>
+    <tr>
+      <td>_socratic/assessments/mi-explorer.md</td>
+      <td>Multiple Intelligences Explorer</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_socratic/research-portal/research-proposal.md</td>
+      <td>Socratic 4.0 Research Proposal</td>
+      <td>single</td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_synaptic-bridge/ai-education.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_synaptic-bridge/knowledge-network.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_synaptic-bridge/systems-biology.md</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>_synaptic-bridge/4ir-education/4ir-education.md</td>
+      <td>4IR Education: Human Intelligence, Socratic Pedagogy &amp; Ethical Alignment</td>
+      <td>single</td>
+      <td>/synaptic-bridge/4ir-education/</td>
+      <td>/synaptic-bridge/4ir-education/</td>
+    </tr>
+    <tr>
+      <td>_synaptic-bridge/future-learning/future-science.md</td>
+      <td>Future Science: Quantum Biology, Synthetic Ontologies &amp; Divine Order</td>
+      <td>single</td>
+      <td>/synaptic-bridge/future-science/</td>
+      <td>/synaptic-bridge/future-science/</td>
+    </tr>
+    <tr>
+      <td>_synaptic-bridge/interdisciplinary-science/interdisciplinary-science.md</td>
+      <td>Interdisciplinary Science: Bridging Empirical Biology, Behavioral Analytics, and Divine Truth</td>
+      <td>single</td>
+      <td>/synaptic-bridge/interdisciplinary-science/</td>
+      <td>/synaptic-bridge/interdisciplinary-science/</td>
+    </tr>
+    <tr>
+      <td>_synaptic-bridge/knowledge-network/knowledge-network.md</td>
+      <td>Knowledge Network: Distributed Cognition, Topological Graphs &amp; Divine Epistemology</td>
+      <td>single</td>
+      <td>/synaptic-bridge/knowledge-network/</td>
+      <td>/synaptic-bridge/knowledge-network/</td>
+    </tr>
+    <tr>
+      <td>_synaptic-bridge/systems-biology/system-biology.md</td>
+      <td>Systems Biology: The Architectural Confluence of Life, Behavior, and Revelation</td>
+      <td>single</td>
+      <td>/synaptic-bridge/systems-biology/</td>
+      <td>/synaptic-bridge/systems-biology/</td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/l

@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Measurements of Central Tendency: Problem Solving | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Measurements of Central Tendency: Problem Solving" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="৩০ জন রোগীর রক্তের গ্লুকোজের মাত্রার উপাত্ত ব্যবহার করে শ্রেণীবদ্ধ উপাত্তের (Grouped Data) গাণিতিক গড়, মধ্যমা ও প্রচুরক নির্ণয়ের সম্পূর্ণ বায়োস্ট্যাটিস্টিক্যাল সমাধান।" />
+<meta property="og:description" content="৩০ জন রোগীর রক্তের গ্লুকোজের মাত্রার উপাত্ত ব্যবহার করে শ্রেণীবদ্ধ উপাত্তের (Grouped Data) গাণিতিক গড়, মধ্যমা ও প্রচুরক নির্ণয়ের সম্পূর্ণ বায়োস্ট্যাটিস্টিক্যাল সমাধান।" />
+<link rel="canonical" href="https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-05T23:31:00+06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Measurements of Central Tendency: Problem Solving" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"MD. Yusuf"},"dateModified":"2026-06-09T10:13:27+06:00","datePublished":"2026-04-05T23:31:00+06:00","description":"৩০ জন রোগীর রক্তের গ্লুকোজের মাত্রার উপাত্ত ব্যবহার করে শ্রেণীবদ্ধ উপাত্তের (Grouped Data) গাণিতিক গড়, মধ্যমা ও প্রচুরক নির্ণয়ের সম্পূর্ণ বায়োস্ট্যাটিস্টিক্যাল সমাধান।","headline":"Measurements of Central Tendency: Problem Solving","mainEntityOfPage":{"@type":"WebPage","@id":"https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      
+  <div class="page__hero--overlay"
+       style=" background-image: url('/assets/images/biology/biostatistics-banner.webp');">
+    
+  </div>
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Measurements of Central Tendency: Problem Solving">
+    <meta itemprop="description" content="৩০ জন রোগীর রক্তের গ্লুকোজের মাত্রার উপাত্ত ব্যবহার করে শ্রেণীবদ্ধ উপাত্তের (Grouped Data) গাণিতিক গড়, মধ্যমা ও প্রচুরক নির্ণয়ের সম্পূর্ণ বায়োস্ট্যাটিস্টিক্যাল সমাধান।">
+    <meta itemprop="datePublished" content="2026-04-05T23:31:00+06:00">
+    <meta itemprop="dateModified" content="2026-06-09T10:13:27+06:00">
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <style>
+  .biostats-module { font-family: 'Inter', 'Tiro Bangla', sans-serif; color: #cbd5e1; line-height: 1.75; }
+  .biostats-module .lecture-header { background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); color: white; padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+  .biostats-module .lecture-header h1 { margin: 0 0 10px 0; font-size: 2.2rem; font-weight: 800; color: #ffffff !important; }
+  .biostats-module .concept-block { background: #0f172a; padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 5px solid #00d4b2; border: 1px solid rgba(255,255,255,0.02); }
+  .biostats-module .data-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; text-align: center; }
+  .biostats-module .data-table th { background: #131c2e; color: #00d4b2; padding: 12px; border: 1px solid rgba(255,255,255,0.05); }
+  .biostats-module .data-table td { padding: 12px; border: 1px solid rgba(255,255,255,0.05); color: #cbd5e1; }
+  .biostats-module details { background: #090d16; padding: 0; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 10px; margin-bottom: 1.25rem; }
+  .biostats-module details[open] { background: #0f172a; border-color: rgba(0, 212, 178, 0.3); }
+  .biostats-module summary { font-weight: 700; cursor: pointer; color: #ffffff; font-size: 1.1rem; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .biostats-module summary::-webkit-details-marker { display: none; }
+  .biostats-module summary::after { content: '▼'; color: #00d4b2; font-size: 0.9em; transition: transform 0.3s; }
+  .biostats-module details[open] summary::after { transform: rotate(180deg); }
+  .biostats-module .details-content { padding: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+</style>
+
+<div class="biostats-module">
+  <div style="text-align: center; margin: 2rem 0;">
+    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhplUtAEV5hYOnMV_Xu7V9JYd_SgWJwj6J6CkKwpmVWNW-gwarMhhC22gH3Jpk6wSfpj3bjG9A1BRXimaNc12lLOEdgeYlPIloxirKWQlFNctlZoFdjanANt3p_w1BmOQ1lZaGd-EfvNBsfU7BMdl-4JZ9_W4D84wnxcqE-TvifFb9kB5l_TAYsYrXzXF4" alt="Central Tendency" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); max-width: 100%;" />
+  </div>
+
+  <div class="lecture-header">
+    <h1>📊 কেন্দ্রীয় প্রবণতার পরিমাপ: গাণিতিক সমাধান</h1>
+    <p style="color: #00d4b2; font-weight: 600;">Biostatistical Analysis: Grouped Data Matrix</p>
+  </div>
+
+  <div class="concept-block">
+    <h3 style="color: #ffffff; margin-top: 0; font-size: 1.4rem;">📌 সমস্যা উপাত্ত (Problem Dataset):</h3>
+    <p>৩০ জন রোগীর রক্তের গ্লুকোজের মাত্রা ($\text{mg/dL}$) নিচে দেওয়া হলো। এই শ্রেণীবদ্ধ উপাত্তের গাণিতিক গড় (Mean), মধ্যমা (Median) ও প্রচুরক (Mode) নির্ণয় করো।</p>
+    
+    <div style="overflow-x: auto; width: 100%;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>গ্লুকোজের মাত্রা (শ্রেণী)</th>
+            <th style="color: #ffffff;">৭০-৮০</th>
+            <th style="color: #ffffff;">৮০-৯০</th>
+            <th style="color: #ffffff;">৯০-১০০</th>
+            <th style="color: #ffffff;">১০০-১১০</th>
+            <th style="color: #ffffff;">১১০-১২০</th>
+            <th>মোট</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color: #ffffff; font-weight: bold;">রোগীর সংখ্যা ($f$)</td>
+            <td>৪</td>
+            <td>৮</td>
+            <td>১০</td>
+            <td>৬</td>
+            <td>২</td>
+            <td style="color: #00d4b2; font-weight: bold;">$N = 30$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <details open="">
+    <summary>১. গাণিতিক গড় (Mean) নির্ণয়</summary>
+    <div class="details-content">
+      <div style="overflow-x: auto; width: 100%;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>শ্রেণী</th>
+              <th style="color: #ffffff;">গণসংখ্যা ($f$)</th>
+              <th style="color: #ffffff;">মধ্যবিন্দু ($x$)</th>
+              <th>$fx$</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>৭০-৮০</td><td>৪</td><td>৭৫</td><td>৩০০</td></tr>
+            <tr><td>৮০-৯০</td><td>৮</td><td>৮৫</td><td>৬৮০</td></tr>
+            <tr><td>৯০-১০০</td><td>১০</td><td>৯৫</td><td>৯৫০</td></tr>
+            <tr><td>১০০-১১০</td><td>৬</td><td>১০৫</td><td>৬৩০</td></tr>
+            <tr><td>১১০-১২০</td><td>২</td><td>১১৫</td><td>২৩০</td></tr>
+            <tr style="background: #131c2e; font-weight: bold;">
+              <td>মোট</td><td style="color: #ffffff;">$N = 30$</td><td>-</td><td>$\sum fx = 2790$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="background: rgba(0, 212, 178, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #00d4b2; margin-top: 1.5rem; text-align: center; font-size: 1.25rem;">
+        $$\bar{X} = \frac{\sum fx}{N} = \frac{2790}{30} = 93 \text{ mg/dL}$$
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>২. মধ্যমা (Median) নির্ণয়</summary>
+    <div class="details-content">
+      <div style="background: rgba(0, 212, 178, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #00d4b2; text-align: center; font-size: 1.25rem;">
+        $$\text{Median} = L + \left( \frac{\frac{N}{2} - F}{f_m} \right) \times c$$
+      </div>
+      <p style="margin-top: 1rem;">মধ্যমা শ্রেণী: <strong>৯০-১০০</strong>। মান বসালে:</p>
+      <div style="text-align: center; font-size: 1.25rem; font-weight: 700; color: #00d4b2;">
+        $$\text{Median} = 90 + \left( \frac{15 - 12}{10} \right) \times 10 = 93 \text{ mg/dL}$$
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>৩. প্রচুরক (Mode) নির্ণয়</summary>
+    <div class="details-content">
+      <div style="background: rgba(0, 212, 178, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #00d4b2; text-align: center; font-size: 1.25rem;">
+        $$\text{Mode} = L + \left( \frac{f_1 - f_0}{(f_1 - f_0) + (f_1 - f_2)} \right) \times c$$
+      </div>
+      <p style="margin-top: 1rem;">প্রচুরক শ্রেণী: <strong>৯০-১০০</strong>। মান বসালে:</p>
+      <div style="text-align: center; font-size: 1.25rem; font-weight: 700; color: #00d4b2;">
+        $$\text{Mode} = 90 + \left( \frac{10 - 8}{(10 - 8) + (10 - 6)} \right) \times 10 = 93.33 \text{ mg/dL}$$
+      </div>
+    </div>
+  </details>
+
+</div>
+
+
+      </section>
+
+      
+    </div>
+  </article>
+
+  
+    
+  
+  
+
+  
+    <nav class="contextual-sidebar-nav" aria-label="Section Navigation">
+      <div class="sidebar-nav-header">
+        <h3 class="sidebar-nav-title">On this journey</h3>
+        <div class="header-matrix-line"></div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        
+          <li class="sidebar-nav-item sidebar-nav-dropdown">
+            <a href="" class="sidebar-nav-link">
+              Neural Pathways
+            </a>
+
+            
+              <ul class="sidebar-nav-children">
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/biology/" class="sidebar-nav-child-link">
+                      Biology Core
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/synaptic-bridge/" class="sidebar-nav-child-link">
+                      Synaptic Bridge
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/" class="sidebar-nav-child-link">
+                      Life Practices
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/cognitive-audit/" class="sidebar-nav-child-link">
+                      Socratic Terminal
+                    </a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src=

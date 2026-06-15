@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Respiratory System &amp; Human Physiology: Interactive Mind Mapping | Learning Biology For Life</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Respiratory System &amp; Human Physiology: Interactive Mind Mapping" />
+<meta name="author" content="MD. Yusuf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="শ্বসনতন্ত্র, রক্তসংবহন ও পরিপাকতন্ত্রের আন্তঃসংযোগের এক অভূতপূর্ব সিন্যাপটিক মাইন্ড ম্যাপিং। বাস্তব জীবনের রূপক ও ক্রিটিক্যাল থিংকিং এর আলোকে মানবদেহের জটিলতম প্রোগ্রামিংয়ের ব্যবচ্ছেদ।" />
+<meta property="og:description" content="শ্বসনতন্ত্র, রক্তসংবহন ও পরিপাকতন্ত্রের আন্তঃসংযোগের এক অভূতপূর্ব সিন্যাপটিক মাইন্ড ম্যাপিং। বাস্তব জীবনের রূপক ও ক্রিটিক্যাল থিংকিং এর আলোকে মানবদেহের জটিলতম প্রোগ্রামিংয়ের ব্যবচ্ছেদ।" />
+<link rel="canonical" href="https://learningbiologyforlife.org/biology/hsc-corner/zoology/respiratory-system-mind-mapping/" />
+<meta property="og:url" content="https://learningbiologyforlife.org/biology/hsc-corner/zoology/respiratory-system-mind-mapping/" />
+<meta property="og:site_name" content="Learning Biology For Life" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-12T18:28:03+06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Respiratory System &amp; Human Physiology: Interactive Mind Mapping" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"MD. Yusuf"},"dateModified":"2026-06-09T10:13:27+06:00","datePublished":"2026-04-12T18:28:03+06:00","description":"শ্বসনতন্ত্র, রক্তসংবহন ও পরিপাকতন্ত্রের আন্তঃসংযোগের এক অভূতপূর্ব সিন্যাপটিক মাইন্ড ম্যাপিং। বাস্তব জীবনের রূপক ও ক্রিটিক্যাল থিংকিং এর আলোকে মানবদেহের জটিলতম প্রোগ্রামিংয়ের ব্যবচ্ছেদ।","headline":"Respiratory System &amp; Human Physiology: Interactive Mind Mapping","mainEntityOfPage":{"@type":"WebPage","@id":"https://learningbiologyforlife.org/biology/hsc-corner/zoology/respiratory-system-mind-mapping/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://learningbiologyforlife.org/assets/images/logo.png"},"name":"MD. Yusuf"},"url":"https://learningbiologyforlife.org/biology/hsc-corner/zoology/respiratory-system-mind-mapping/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/css/main.css?v=20260615" as="style">
+<link rel="stylesheet" href="/assets/css/main.css?v=20260615">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gdpr-btn-group { display: flex; gap: 0.75rem; }
+  #gdpr-banner button {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gdpr-accept { 
+    background: #00f5d4; 
+    color: #020617; 
+  }
+  .gdpr-accept:hover { background: #00d4b2; }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155 !important; 
+  }
+  .gdpr-decline:hover { color: #e2e8f0; border-color: #64748b !important; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var consent = localStorage.getItem('cookie-consent');
+    var banner = document.getElementById('gdpr-banner');
+    var trigger = document.getElementById('cookie-consent-trigger');
+    
+    // Show banner if no consent history is found
+    if (!consent && banner) {
+      banner.classList.add('is-visible');
+    } else if (consent === 'granted') {
+      loadAdSense();
+    }
+
+    // Allow users to reopen the banner from the footer link
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (banner) banner.classList.add('is-visible');
+      });
+    }
+
+    window.gdprAccept = function() {
+      localStorage.setItem('cookie-consent', 'granted');
+      if (banner) banner.classList.remove('is-visible');
+      loadAdSense();
+    };
+    
+    window.gdprDecline = function() {
+      localStorage.setItem('cookie-consent', 'denied');
+      if (banner) banner.classList.remove('is-visible');
+    };
+
+    function loadAdSense() {
+      // Prevent duplicate loading if they click accept multiple times
+      if (document.getElementById('adsense-script')) return;
+      
+      var s = document.createElement('script');
+      s.id = 'adsense-script';
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
+    }
+  });
+</script>
+    <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/">
+            <img src="/assets/images/logo.png" alt="Learning Biology For Life">
+          </a>
+        
+        <a class="site-title" href="/">Learning Biology For Life</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/biology/" >Biology</a>
+            </li><li class="masthead__menu-item">
+              <a href="/synaptic-bridge/" >Synaptic Bridge</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/" >Life Practices</a>
+            </li><li class="masthead__menu-item">
+              <a href="/life-practices/cognitive-audit/" >Socratic 4.0</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact/" >Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16"><path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a1.69,1.69,0,0,0-.13,1.32l-2.2,2.22a1.69,1.69,0,0,0,0,2.38A1.68,1.68,0,0,0,1.62,18a1.69,1.69,0,0,0,1.2-.5l2.2-2.21a1.69,1.69,0,0,0,1.32-.13A6.5,6.5,0,0,0,13.5,6.5a6.46,6.46,0,0,0-.78-3.08l0.06-.06A1.69,1.69,0,0,0,15.5,13.12ZM5.77,11.5a4.5,4.5,0,1,1,4.5-4.5A4.5,4.5,0,0,1,5.77,11.5Z" transform="translate(-.01)"></path></svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="initial-content">
+      
+  <div class="page__hero--overlay"
+       style=" background-image: url('/assets/images/biology/zoology-banner.webp');">
+    
+  </div>
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Respiratory System &amp; Human Physiology: Interactive Mind Mapping">
+    <meta itemprop="description" content="শ্বসনতন্ত্র, রক্তসংবহন ও পরিপাকতন্ত্রের আন্তঃসংযোগের এক অভূতপূর্ব সিন্যাপটিক মাইন্ড ম্যাপিং। বাস্তব জীবনের রূপক ও ক্রিটিক্যাল থিংকিং এর আলোকে মানবদেহের জটিলতম প্রোগ্রামিংয়ের ব্যবচ্ছেদ।">
+    <meta itemprop="datePublished" content="2026-04-12T18:28:03+06:00">
+    <meta itemprop="dateModified" content="2026-06-09T10:13:27+06:00">
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <div style="text-align: center; margin-bottom: 25px;">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhm2u5P-NQLJ8YdTtQsROaIuYLT5GBwtewjibWa5A-uF-c6_dyzeN4MWVzGxwOlyKXR71GlTHLuO1ftmjIdUNZM1G55Tp1A2Mk1weehHulyLGE4NpvGxhBV9lm_-_nlzqIbpGI81wIrrBWe_pXnWRTIzgo9bCu6yjuaWjVxOJ3iNAAexgeINptLQU4XE6g" alt="Respiratory System Mind Mapping" style="border-radius: 12px; border: 1px solid rgba(0, 212, 178, 0.15); max-width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.4);" loading="lazy" />
+</div>
+
+<div style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+  <h1 style="color: #ffffff; margin: 0 0 0.75rem 0; font-weight: 800; font-size: 2.2rem; letter-spacing: -0.02em;">🫁 মানব শারীরতত্ত্ব: ইন্টারেক্টিভ সিন্যাপটিক নলেজ SYSTEM</h1>
+  <p style="margin: 0; opacity: 0.9; font-size: 1.1rem; color: #00d4b2; font-weight: 600; letter-spacing: 0.03em; font-style: italic;">
+    "জিজ্ঞাসা ও অনুসন্ধিৎসাই হলো সমস্ত একাডেমিক ক্ষেত্রের মূল স্তম্ভ, আর আমাদের এই যাপিত জীবন হলো জীববৈজ্ঞানিক সত্যগুলোর প্রায়োগিক রণাঙ্গন।"
+  </p>
+</div>
+
+<div class="guideline-quote-block" style="background: rgba(255,255,255,0.02); border-left: 4px solid #64748b; padding: 1.5rem; margin: 2.5rem 0; border-radius: 0 8px 8px 0; color: #cbd5e1; line-height: 1.75;">
+  <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">হে চিন্তাশীল জীববিজ্ঞানের অভিযাত্রী (Active Thinkers):</strong>
+  মানবদেহ হলো পৃথিবীর সমস্ত জটিল প্রকৌশল ও সুনিপুণ মেকানিজমের এক জীবন্ত আদি রহস্য। এই নিখুঁত নকশার আলটিমেট রেফারেন্স ও পরম গাইডলাইন আমরা খুঁজে পাই পবিত্র কুরআনে, যেখানে মহান আল্লাহ এরশাদ করেছেন: <em>"এবং তিনি তোমাদের অবয়ব দিয়েছেন, অতঃপর তোমাদের অবয়ব সুনিপুণ করেছেন..." (সূরা গাফির: ৬৪)</em>।
+  <br /><br />
+  আমাদের শারীরতত্ত্বের (Human Physiology) প্রতিটি সিস্টেম—তা পরিপাক হোক, সংবহন হোক বা শ্বসন—একেকটি বিচ্ছিন্ন দ্বীপ নয়। এরা প্রত্যেকে একটি সমন্বিত নেটওয়ার্কের অংশ। নিচে দেওয়া <strong>Interactive Mind Map</strong>-টি কেবল পরীক্ষার জন্য মুখস্থ করার ছক নয়, এটি তোমার মস্তিষ্কের নিউরনগুলোকে সচল করার এবং পুরো মানব শারীরতত্ত্বকে একটি সামগ্রিক কোডিং সিস্টেম হিসেবে দেখার একটি অনন্য ভিজ্যুয়াল আর্কিটেকচার।
+</div>
+
+<p><button class="accordion">🧠 সিন্যাপটিক ব্রিজ থিংকিং (Critical Thinking Zone) <span style="color: #00d4b2;">+</span></button></p>
+<div class="panel">
+  <div class="panel-content-inner">
+    <h3 style="color: #ffffff; font-size: 1.2rem; margin-top: 0;">🔍 বাস্তব জীবনের কেস স্টাডি-১: মাউন্ট এভারেস্ট এবং হাইপোক্সিয়া</h3>
+    <p>যখন কোনো আরোহী অক্সিজেন সিলিন্ডার ছাড়া মাউন্ট এভারেস্টের চূড়ায় (প্রায় ২৯,০০০ ফুট উচ্চতায়) যান, তখন সেখানকার বায়ুমণ্ডলীয় চাপ সমুদ্রপৃষ্ঠের তুলনায় এক-তৃতীয়াংশে নেমে আসে।</p>
+    <div style="background: #131c2e; padding: 1.25rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+      <strong style="color: #ffffff;">অ্যাক্টিভ থিংকিং প্রশ্ন:</strong> বয়েলের সূত্র এবং ডাল্টনের আংশিক চাপ সূত্রের আলোকে চিন্তা করো—সেখানে বাতাসে অক্সিজেনের শতকরা হার (২১%) একই থাকা সত্ত্বেও ফুসফুসের ভেতর অক্সিজেন ব্যাপন (Diffusion) প্রক্রিয়ায় রক্তে প্রবেশ করতে পারে না কেন? এই অবস্থায় মস্তিষ্কের মেডুলা অবলঙ্গাটা কীভাবে রেসপন্স করবে?
+    </div>
+
+    <h3 style="color: #ffffff; font-size: 1.2rem; margin-top: 1.5rem;">🔬 মেটাফোরিক্যাল অ্যানালাইসিস: লোহিত রক্তকণিকা বনাম কুরিয়ার সার্ভিস</h3>
+    <p>লোহিত রক্তকণিকার হিমোগ্লোবিনকে চিন্তা করো একটি কুরিয়ার সার্ভিস ডেলিভারি ভ্যানের মতো। ফুসফুস থেকে সে অক্সিজেন নামক পার্সেল লোড করে এবং শরীরের দূরবর্তী টিস্যুতে গিয়ে খালাস করে। কিন্তু যদি বাতাসে <strong>কার্বন মনোক্সাইড (CO)</strong> গ্যাস থাকে, তবে হিমোগ্লোবিন অক্সিজেনের চেয়ে ২০০ গুণ বেশি শক্তিতে কার্বন মনোক্সাইডের সাথে যুক্ত হয়ে 'কার্বোক্সিহিমোগ্লোবিন' নামক স্থায়ী যৌগ গঠন করে। অর্থাৎ কুরিয়ার ভ্যানের সিটগুলো হাইজ্যাক হয়ে যায়! একেই আমরা বলি সাইলেন্ট কার্বন মনোক্সাইড পয়জনিং।</p>
+  </div>
+</div>
+
+<p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
+  🫁 Learning Biology for Life | Synaptic Physiology Series 2026
+</p>
+
+<script>
+    (function() {
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                for (var j = 0; j < acc.length; j++) {
+                    if (acc[j] !== this) {
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.display = "none";
+                        var indicator = acc[j].querySelector('span');
+                        if(indicator) indicator.innerHTML = "+";
+                    }
+                }
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                var currentIndicator = this.querySelector('span');
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    if(currentIndicator) currentIndicator.innerHTML = "+";
+                } else {
+                    panel.style.display = "block";
+                    if(currentIndicator) currentIndicator.innerHTML = "-";
+                }
+            });
+        }
+    })();
+</script>
+
+<style>
+    .accordion { background-color: #0f172a; color: #ffffff; cursor: pointer; padding: 18px 22px; width: 100%; border: 1px solid rgba(255,255,255,0.04); text-align: left; outline: none; font-size: 1.15rem; font-weight: 700; transition: 0.2s all ease-in-out; border-radius: 8px; margin-top: 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); user-select: none; }
+    .accordion.active, .accordion:hover { background-color: #131c2e; color: #00d4b2; border-color: rgba(0, 212, 178, 0.25); }
+    .panel { padding: 0 10px; display: none; background-color: #090d16; border: 1px solid rgba(0, 212, 178, 0.15); border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; }
+    .panel-content-inner { padding: 25px 15px; line-height: 1.85; color: #cbd5e1; }
+    .panel-content-inner p { margin: 0 0 1.25rem 0; }
+</style>
+
+
+      </section>
+
+      
+    </div>
+  </article>
+
+  
+    
+  
+  
+
+  
+    <nav class="contextual-sidebar-nav" aria-label="Section Navigation">
+      <div class="sidebar-nav-header">
+        <h3 class="sidebar-nav-title">On this journey</h3>
+        <div class="header-matrix-line"></div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        
+          <li class="sidebar-nav-item sidebar-nav-dropdown">
+            <a href="" class="sidebar-nav-link">
+              Neural Pathways
+            </a>
+
+            
+              <ul class="sidebar-nav-children">
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/biology/" class="sidebar-nav-child-link">
+                      Biology Core
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/synaptic-bridge/" class="sidebar-nav-child-link">
+                      Synaptic Bridge
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/" class="sidebar-nav-child-link">
+                      Life Practices
+                    </a>
+                  </li>
+                
+                  <li class="sidebar-nav-child">
+                    <a href="/life-practices/cognitive-audit/" class="sidebar-nav-child-link">
+                      Socratic Terminal
+                    </a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      
+      <footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/biology/">Biology</a></li>
+        <li><a href="/synaptic-bridge/">Synaptic Bridge</a></li>
+        <li><a href="/life-philosophy/">Life Philosophy</a></li>
+        <li><a href="/life-practices/">Life Practices</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/assessments/">Assessments</a></li>
+        <li><a href="/categories/">Categories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms & Conditions</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/cookie-preferences/">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Learning Biology For Life. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    </div>
+
+    
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src=
