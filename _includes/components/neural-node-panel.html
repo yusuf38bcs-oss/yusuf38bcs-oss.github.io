@@ -1,36 +1,114 @@
-{% if node.prerequisites and node.prerequisites.size > 0 %}
-    <div class="neural-node-item">
-      <span class="label">Prerequisites</span>
-      <span class="value">
-        {% for item in node.prerequisites %}
-          {% assign prereq = site.data.neural_nodes | where: "id", item | first %}
-          <a href="{{ prereq.url | relative_url }}">{{ prereq.title | default: item }}</a><br>
-        {% endfor %}
-      </span>
-    </div>
-  {% endif %}
+{% assign node = include.node | default: page %}
 
-  {% if node.connects_to and node.connects_to.size > 0 %}
-    <div class="neural-node-item">
-      <span class="label">Connects To</span>
-      <span class="value">
-        {% for item in node.connects_to %}
-          {% assign conn = site.data.neural_nodes | where: "id", item | first %}
-          <a href="{{ conn.url | relative_url }}">{{ conn.title | default: item }}</a><br>
-        {% endfor %}
-      </span>
-    </div>
-  {% endif %}
+{% if node.node_id %}
+  {% assign registry_node = site.data.neural_nodes | where: "id", node.node_id | first %}
 
-  {% if node.related and node.related.size > 0 %}
-    <div class="neural-node-item">
-      <span class="label">Related Nodes</span>
-      <span class="value">
-        {% for item in node.related %}
-          {% assign rel = site.data.neural_nodes | where: "id", item | first %}
-          <a href="{{ rel.url | relative_url }}">{{ rel.title | default: item }}</a><br>
-        {% endfor %}
-      </span>
+  {% assign node_title = registry_node.title | default: node.title %}
+  {% assign node_pillar = node.pillar | default: registry_node.pillar | default: "—" %}
+  {% assign node_difficulty = node.difficulty | default: registry_node.difficulty | default: "—" %}
+  {% assign node_status = node.status | default: registry_node.status | default: "Draft" %}
+  {% assign node_xp = node.xp | default: node.mastery_points | default: registry_node.xp | default: 0 %}
+  {% assign node_time = node.estimated_time | default: node.time | default: registry_node.estimated_time | default: "—" %}
+  {% assign node_description = node.description | default: registry_node.description %}
+
+  <aside class="neural-node-panel" aria-labelledby="neural-node-panel-title">
+    <div class="neural-node-header">
+      <span class="neural-node-eyebrow">Neural Node Profile</span>
+      <h2 id="neural-node-panel-title" class="neural-node-title">
+        {{ node_title }}
+      </h2>
     </div>
-  {% endif %}
-</div>
+
+    {% if node_description %}
+      <p class="neural-node-description">
+        {{ node_description }}
+      </p>
+    {% endif %}
+
+    <div class="neural-node-grid">
+      <div class="neural-node-item">
+        <span class="label">Node ID</span>
+        <span class="value">{{ node.node_id }}</span>
+      </div>
+
+      <div class="neural-node-item">
+        <span class="label">Pillar</span>
+        <span class="value">{{ node_pillar }}</span>
+      </div>
+
+      <div class="neural-node-item">
+        <span class="label">Difficulty</span>
+        <span class="value">{{ node_difficulty }}</span>
+      </div>
+
+      <div class="neural-node-item">
+        <span class="label">XP</span>
+        <span class="value">{{ node_xp }}</span>
+      </div>
+
+      <div class="neural-node-item">
+        <span class="label">Time</span>
+        <span class="value">
+          {% if node_time == "—" %}
+            —
+          {% else %}
+            {{ node_time }} min
+          {% endif %}
+        </span>
+      </div>
+
+      <div class="neural-node-item">
+        <span class="label">Status</span>
+        <span class="value">{{ node_status }}</span>
+      </div>
+    </div>
+
+    {% assign prerequisites = node.prerequisites | default: registry_node.prerequisites %}
+
+    {% if prerequisites and prerequisites.size > 0 %}
+      <div class="neural-node-section">
+        <h3>Prerequisites</h3>
+
+        <ul class="neural-node-link-list">
+          {% for item in prerequisites %}
+            {% assign prereq = site.data.neural_nodes | where: "id", item | first %}
+
+            <li>
+              {% if prereq and prereq.url %}
+                <a href="{{ prereq.url | relative_url }}">
+                  {{ prereq.title | default: item }}
+                </a>
+              {% else %}
+                <span>{{ item }}</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% assign connections = node.connects_to | default: registry_node.connects_to %}
+
+    {% if connections and connections.size > 0 %}
+      <div class="neural-node-section">
+        <h3>Connects To</h3>
+
+        <ul class="neural-node-link-list">
+          {% for item in connections %}
+            {% assign conn = site.data.neural_nodes | where: "id", item | first %}
+
+            <li>
+              {% if conn and conn.url %}
+                <a href="{{ conn.url | relative_url }}">
+                  {{ conn.title | default: item }}
+                </a>
+              {% else %}
+                <span>{{ item }}</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </aside>
+{% endif %}

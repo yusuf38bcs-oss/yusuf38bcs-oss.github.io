@@ -1,323 +1,224 @@
-- id: protozoa_body_covering_and_skeletal_structure_and_locomotion
-  title: "Protozoa: Body Covering, Skeletal Structure and Locomotion"
-  pillar: zoology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/protozoa_body_covering_and_skeletal_structure_and_locomotion/
+# =========================================================
+# Master Registry: Educational Neural Network
+# Learning Biology For Life
+# ---------------------------------------------------------
+# Purpose:
+#   Central node registry for hub pages, prerequisite chains,
+#   connected learning paths, and future gamified navigation.
+#
+# Rules:
+#   1. Every node must have a unique id.
+#   2. Every node must have a title.
+#   3. Use official site routes from _data/navigation.yml.
+#   4. Keep URLs as root-relative paths with trailing slashes.
+#   5. Preserve UTF-8 encoding.
+# =========================================================
 
-- id: protozoa_reproduction_and_parasitism
-  title: "Protozoa: Reproduction and Parasitism (প্রোটোজোয়া: প্রজনন এবং পরজীবিতা)"
-  pillar: zoology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/protozoa_reproduction_and_parasitism/
+- id: hub-biology
+  title: "Biology Core Hub"
+  short_title: "Biology Core"
+  url: "/biology/"
+  pillar: "Life Sciences"
+  type: "hub"
+  difficulty: "Advanced"
+  status: "Active"
+  xp: 1000
+  description: "Central learning hub for HSC Biology, Higher Zoology, physiology, ecology, genetics, biostatistics, and reflective scientific learning."
+  icon: "🧬"
+  prerequisites: []
+  connects_to:
+    - hsc-botany
+    - hsc-zoology
+    - zoology-tree
 
-- id: protozoa_nutrition_locomotion
-  title: "Protozoa: Nutrition & Locomotion (প্রোটোজোয়া: পুষ্টি এবং চলন)"
-  pillar: zoology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/protozoa_nutrition_locomotion/
+- id: hsc-botany
+  title: "HSC Corner: Botany"
+  short_title: "Botany"
+  url: "/biology/hsc-corner/botany/"
+  pillar: "Life Sciences"
+  type: "learning_path"
+  difficulty: "Foundation"
+  status: "Active"
+  xp: 300
+  description: "Structured pathway for plant biology, cell biology, plant physiology, genetics, ecology, and applied botany."
+  icon: "🌿"
+  prerequisites:
+    - hub-biology
+  connects_to:
+    - hub-biology
 
-- id: astropecten_water_vascular_system
-  title: "Astropecten: Water Vascular System (অ্যাস্ট্রোফেক্টেক্স: জল সংবহন তন্ত্র)"
-  pillar: zoology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/astropecten_water_vascular_system/
+- id: hsc-zoology
+  title: "HSC Corner: Zoology"
+  short_title: "Zoology"
+  url: "/biology/hsc-corner/zoology/"
+  pillar: "Life Sciences"
+  type: "learning_path"
+  difficulty: "Foundation"
+  status: "Active"
+  xp: 300
+  description: "Structured pathway for animal diversity, human physiology, evolution, behaviour, and HSC zoology learning."
+  icon: "🦋"
+  prerequisites:
+    - hub-biology
+  connects_to:
+    - hub-biology
+    - zoology-tree
 
-- id: polymorphism_in_cnidaria
-  title: "Polymorphism in Cnidaria: নাইডেরিয়া পর্বের বহুকারিতা বা বহুরূপতা"
-  pillar: zoology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/polymorphism_in_cnidaria/
+- id: zoology-tree
+  title: "Higher Zoology Tree"
+  short_title: "Higher Zoology"
+  url: "/biology/higher-zoology-tree/"
+  pillar: "Life Sciences"
+  type: "knowledge_tree"
+  difficulty: "Advanced"
+  status: "Active"
+  xp: 500
+  description: "Advanced zoology pathway connecting animal diversity, physiology, ecology, genetics, and biostatistics."
+  icon: "🌳"
+  prerequisites:
+    - hub-biology
+    - hsc-zoology
+  connects_to:
+    - hsc-zoology
+    - animal-diversity
+    - physiology
+    - ecology
+    - genetics
+    - biostatistics
 
-- id: survivorship_curve_life_table_growth_models
-  title: "Survivorship Curve, Life Table & Growth Models: উত্তরজীবিতা রেখা, জীবন সারণী এবং বৃদ্ধির মডেল"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/survivorship_curve_life_table_growth_models/
+- id: animal-diversity
+  title: "Animal Diversity"
+  short_title: "Animal Diversity"
+  url: "/categories/animal-diversity/"
+  pillar: "Life Sciences"
+  type: "topic_cluster"
+  difficulty: "Intermediate"
+  status: "Active"
+  xp: 250
+  description: "Taxonomy, classification, comparative morphology, invertebrates, chordates, and evolutionary relationships."
+  icon: "🐾"
+  prerequisites:
+    - zoology-tree
+  connects_to:
+    - zoology-tree
 
-- id: basic_concepts_of_biostatistics
-  title: "জীবপরিসংখ্যানবিদ্যার প্রাথমিক ধারণা (Basic Concepts of Biostatistics)"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/basic_concepts_of_biostatistics/
+- id: physiology
+  title: "Human Physiology"
+  short_title: "Physiology"
+  url: "/categories/physiology/"
+  pillar: "Life Sciences"
+  type: "topic_cluster"
+  difficulty: "Intermediate"
+  status: "Active"
+  xp: 250
+  description: "Systems-level understanding of biological regulation, organ systems, homeostasis, and human body function."
+  icon: "🫀"
+  prerequisites:
+    - hub-biology
+  connects_to:
+    - zoology-tree
+    - hsc-zoology
 
-- id: correlation_and_regression
-  title: "Correlation and Regression (সহসম্বন্ধ এবং অনুগমন বা রিগ্রেশন)"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/correlation_and_regression/
+- id: ecology
+  title: "Ecology"
+  short_title: "Ecology"
+  url: "/categories/ecology/"
+  pillar: "Life Sciences"
+  type: "topic_cluster"
+  difficulty: "Intermediate"
+  status: "Active"
+  xp: 250
+  description: "Organisms, populations, communities, ecosystems, environmental interaction, and systems thinking."
+  icon: "🌏"
+  prerequisites:
+    - hub-biology
+  connects_to:
+    - zoology-tree
+    - hsc-botany
+    - hsc-zoology
 
-- id: frequency_distribution_histogram_and_polygon
-  title: "Frequency distribution, Histogram and Polygon"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/frequency_distribution_histogram_and_polygon/
+- id: genetics
+  title: "Genetics"
+  short_title: "Genetics"
+  url: "/categories/genetics/"
+  pillar: "Life Sciences"
+  type: "topic_cluster"
+  difficulty: "Intermediate"
+  status: "Active"
+  xp: 250
+  description: "Heredity, variation, inheritance, molecular logic, chromosome behaviour, and biological information flow."
+  icon: "🧫"
+  prerequisites:
+    - hub-biology
+  connects_to:
+    - hsc-botany
+    - hsc-zoology
+    - zoology-tree
 
-- id: hypothesis_testing
-  title: "Hypothesis Testing (অনুমিত সিদ্ধান্ত বা হাইপোথিসিস যাচাইকরণ)"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/hypothesis_testing/
+- id: biostatistics
+  title: "Biostatistics"
+  short_title: "Biostatistics"
+  url: "/categories/biostatistics/"
+  pillar: "Life Sciences"
+  type: "topic_cluster"
+  difficulty: "Intermediate"
+  status: "Active"
+  xp: 250
+  description: "Data, variables, dispersion, probability, interpretation, and biological inference."
+  icon: "📊"
+  prerequisites:
+    - hub-biology
+  connects_to:
+    - zoology-tree
+    - ecology
+    - genetics
 
-- id: measurements_of_central_tendency_problem_solving
-  title: "Measurements of Central Tendency: Problem Solving"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/measurements_of_central_tendency_problem_solving/
+- id: synaptic-bridge
+  title: "Synaptic Bridge"
+  short_title: "Synaptic Bridge"
+  url: "/synaptic-bridge/"
+  pillar: "Reflective Learning"
+  type: "bridge"
+  difficulty: "Advanced"
+  status: "Active"
+  xp: 700
+  description: "Bridge between biological theory, behaviour, leadership, practical life, and reflective scientific reasoning."
+  icon: "🌉"
+  prerequisites: []
+  connects_to:
+    - hub-biology
+    - life-practices
+    - socratic-audit
 
-- id: presentation_and_graphical_analysis_of_data
-  title: "উপাত্তের উপস্থাপন এবং রৈখিক বিশ্লেষণ (Presentation and Graphical Analysis of Data)"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/presentation_and_graphical_analysis_of_data/
+- id: life-practices
+  title: "Life Practices"
+  short_title: "Life Practices"
+  url: "/life-practices/"
+  pillar: "Practical Approaches"
+  type: "hub"
+  difficulty: "Intermediate"
+  status: "Active"
+  xp: 600
+  description: "Practical applications of learning, human behaviour, leadership, self-reflection, and real-life biological thinking."
+  icon: "🧭"
+  prerequisites: []
+  connects_to:
+    - synaptic-bridge
+    - socratic-audit
 
-- id: t_test_significant_difference_between_means
-  title: "T-test: Significant difference between means"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/t_test_significant_difference_between_means/
-
-- id: z_test_problem_solving
-  title: "Z Test: Problem Solving"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/z_test_problem_solving/
-
-- id: z_test_z_test_and_its_significance_chi_square_test
-  title: "Z-test এর তাৎপর্য (Z-test and its Significance) & Chi-Square test"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/z_test_z_test_and_its_significance_chi_square_test/
-
-- id: chi_square_test
-  title: "কাই-বর্গ যাচাইকরণ পদ্ধতি (Chi-square Test)"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/chi_square_test/
-
-- id: measures_of_dispersion
-  title: "Measures of Dispersion: বিস্তৃতির পরিমাপ"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/measures_of_dispersion/
-
-- id: measures_of_central_tendency
-  title: "Measures of Central Tendency"
-  pillar: biostatistics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/measures_of_central_tendency/
-
-- id: population_ecology_a_science_of_life_motion_of_a_species
-  title: "POPULATION ECOLOGY: A Science of Life & Motion of a Species (পপুলেশন ইকোলজি: জীবনের বিজ্ঞান এবং প্রজাতির গতিশীলতা)"
-  pillar: ecology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/population_ecology_a_science_of_life_motion_of_a_species/
-
-- id: population_ecology_concept_on_size_of_population
-  title: "POPULATION ECOLOGY: CONCEPT ON SIZE OF POPULATION (পপুলেশন ইকোলজি: পপুলেশনের আকার সংক্রান্ত ধারণা)"
-  pillar: ecology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/population_ecology_concept_on_size_of_population/
-
-- id: community_ecology_an_equation_of_living_together
-  title: "কমিউনিটি ইকোলজি: একত্রে বসবাসের একটি সমীকরণ"
-  pillar: ecology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/community_ecology_an_equation_of_living_together/
-
-- id: ecology_history_scopes_area
-  title: "ECOLOGY: HISTORY, SCOPES & AREA (বাস্তুবিদ্যা: ইতিহাস, পরিধি এবং ক্ষেত্র)"
-  pillar: ecology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/ecology_history_scopes_area/
-
-- id: genetics_the_theme_of_inheritance_part_1
-  title: "Genetics: The Theme of Inheritance - Part 1 (বংশগতিবিদ্যা: বংশগতির মূলভাব - প্রথম খণ্ড)"
-  pillar: genetics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/genetics_the_theme_of_inheritance_part_1/
-
-- id: genetics_the_theme_of_inheritance_part_2
-  title: "Genetics: The Theme of Inheritance - Part 2 (বংশগতিবিদ্যা: বংশগতির মূলভাব - দ্বিতীয় খণ্ড)"
-  pillar: genetics
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/genetics_the_theme_of_inheritance_part_2/
-
-- id: human_physiology_digestive_system_part_1
-  title: "Human Physiology: Digestive System (Part 1)"
-  pillar: physiology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/human_physiology_digestive_system_part_1/
-
-- id: human_physiology_digestive_system_part_2
-  title: "Human Physiology: Digestive System (Part 2)"
-  pillar: physiology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/human_physiology_digestive_system_part_2/
-
-- id: human_physiology_digestive_system_part_3
-  title: "Human Physiology: Digestive System (Part 3)"
-  pillar: physiology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/human_physiology_digestive_system_part_3/
-
-- id: blood_circulation_the_intelligent_transport_system_of_life
-  title: "Blood Circulation: The Intelligent Transport System of Life"
-  pillar: physiology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/blood_circulation_the_intelligent_transport_system_of_life/
-
-- id: research_methodology
-  title: "গবেষণা পদ্ধতি ও পরিসংখ্যান বিশ্লেষণ: মৌলিক ধারণা"
-  pillar: research_methodology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/research_methodology/
-
-- id: structures_functions_cell_organelles_part_1
-  title: "Structures & Functions of Cell Organelles - Part 1 (কোষীয় অঙ্গাণুর গঠন এবং কাজ - প্রথম খণ্ড)"
-  pillar: botany
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/structures_functions_cell_organelles_part_1/
-
-- id: structures_functions_of_cell_organelles_part_2
-  title: "Structures & Functions of Cell Organelles - Part 2 (কোষীয় অঙ্গাণুর গঠন এবং কাজ - দ্বিতীয় খণ্ড)"
-  pillar: botany
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/structures_functions_of_cell_organelles_part_2/
-
-- id: human_body_the_mysterious_workspace
-  title: "Human Body: The Mysterious Workspace (মানবদেহ: একটি রহস্যময় কর্মক্ষেত্র)"
-  pillar: physiology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/human_body_the_mysterious_workspace/
-
-- id: hsc_biology_2nd_paper_1st_chapter_animal_diversity_classification
-  title: "HSC Biology 2nd Paper 1st Chapter: Animal Diversity & Classification (এইচএসসি জীববিজ্ঞান ২য় পত্র ১ম অধ্যায়: প্রাণীর বিভিন্নতা ও শ্রেণীবিন্যাস)"
-  pillar: zoology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/hsc_biology_2nd_paper_1st_chapter_animal_diversity_classification/
-
-- id: respiratory_system_mind_mapping
-  title: "Respiratory System & Human Physiology: Interactive Mind Mapping"
-  pillar: zoology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/respiratory_system_mind_mapping/
-
-- id: respiratory_system
-  title: "Respiratory System: শ্বসনতন্ত্র এবং মানব শারীরস্থান"
-  pillar: zoology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/respiratory_system/
-
-- id: baroreceptors_reflex
-  title: "Baroreceptor Reflex: Neural Control of Blood Pressure"
-  pillar: zoology
-  difficulty: foundation
-  mastery_points: 25
-  estimated_time: 15
-  status: published
-  url: /biology/baroreceptors_reflex/
+- id: socratic-audit
+  title: "Socratic Cognitive Audit"
+  short_title: "Socratic Terminal"
+  url: "/life-practices/cognitive-audit/"
+  pillar: "Socratic 4.0"
+  type: "assessment"
+  difficulty: "Advanced"
+  status: "Active"
+  xp: 800
+  description: "Reflective questioning, cognitive assessment, multiple intelligences, personality inquiry, and Socratic learning diagnostics."
+  icon: "🧠"
+  prerequisites:
+    - synaptic-bridge
+  connects_to:
+    - hub-biology
+    - life-practices

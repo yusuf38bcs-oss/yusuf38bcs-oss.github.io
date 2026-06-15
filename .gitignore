@@ -27,3 +27,6 @@ registry_review.csv
 
 audit/backups/
 audit/reports/
+
+# Temporary Google Drive upload/cache files
+.tmp.driveupload/
