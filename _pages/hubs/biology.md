@@ -149,3 +149,5 @@ classes: biology-hub wide
   </section>
 
 </div>
+
+{% include hubs/omega-hub-styles.html %}
