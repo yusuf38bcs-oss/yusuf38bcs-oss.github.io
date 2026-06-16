@@ -1,176 +1,71 @@
-<style>
-  /* Premium Neural Footer Styles */
-  .neural-footer {
-    background: #020617; /* Deep matrix dark */
-    border-top: 1px solid #1e293b;
-    padding: 3rem 0 0 0;
-    font-family: 'Inter', sans-serif;
-    color: #94a3b8;
-  }
-  .neural-footer__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  .footer-col h4 {
-    color: #e2e8f0;
-    font-size: 1.1rem;
-    margin-bottom: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border-bottom: 2px solid #00d4b2;
-    display: inline-block;
-    padding-bottom: 0.3rem;
-  }
-  .footer-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .footer-col ul li {
-    margin-bottom: 0.8rem;
-  }
-  .footer-col ul li a {
-    color: #94a3b8;
-    text-decoration: none;
-    transition: color 0.3s ease, padding-left 0.3s ease;
-  }
-  .footer-col ul li a:hover {
-    color: #00d4b2;
-    padding-left: 5px; /* Premium hover slide effect */
-  }
-  .footer-mission {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-top: 0.5rem;
-  }
-  .footer-bottom {
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: 3rem;
-    background: #0f172a;
-    border-top: 1px solid #1e293b;
-    font-size: 0.85rem;
-  }
+<footer class="neural-footer" role="contentinfo">
+  <div class="neural-footer__inner">
+    <section class="neural-footer__brand-card" aria-label="Site mission">
+      <p class="neural-footer__kicker">Learning Biology For Life</p>
+      <h2 class="neural-footer__title">Biology, Life Philosophy & 4IR Learning</h2>
+      <p class="neural-footer__mission">A neural educational ecosystem connecting biological sciences, reflective thinking, practical life skills, and future-ready pedagogy.</p>
+    </section>
 
-  /* Premium GDPR Banner (Frosted Glass Effect) */
-  #gdpr-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 999999;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(12px); /* High-end frosted glass */
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(0, 212, 178, 0.4);
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
-    padding: 1.2rem 2rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    color: #e2e8f0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  #gdpr-banner.is-visible { 
-    display: flex; 
-    animation: slideUp 0.5s ease-out forwards;
-  }
-  @keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-  }
-  .gdpr-text {
-    flex: 1 1 auto;
-    text-align: center;
-  }
-  .gdpr-buttons {
-    display: flex;
-    gap: 0.8rem;
-  }
-  #gdpr-banner button {
-    padding: 0.5rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    font-size: 0.85rem;
-  }
-  .gdpr-accept { 
-    background: #00d4b2; 
-    color: #020617; 
-    border: 1px solid #00d4b2;
-  }
-  .gdpr-accept:hover {
-    background: #00f2cc;
-    box-shadow: 0 0 10px rgba(0, 212, 178, 0.5);
-  }
-  .gdpr-decline { 
-    background: transparent; 
-    color: #94a3b8; 
-    border: 1px solid #334155; 
-  }
-  .gdpr-decline:hover {
-    background: #1e293b;
-    color: #e2e8f0;
-  }
-</style>
+    <nav class="neural-footer__grid" aria-label="Footer navigation">
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="{{ '/biology/' | relative_url }}">Biology Core</a></li>
+          <li><a href="{{ '/synaptic-bridge/' | relative_url }}">Synaptic Bridge</a></li>
+          <li><a href="{{ '/life-philosophy/' | relative_url }}">Life Philosophy</a></li>
+          <li><a href="{{ '/life-practices/' | relative_url }}">Life Practices</a></li>
+        </ul>
+      </div>
 
-<footer class="page__footer neural-footer">
-  <div class="neural-footer__grid">
-    
-    <div class="footer-col">
-      <h4>{{ site.title }}</h4>
-      <p class="footer-mission">A Neural Network of Education System. Mapping biological sciences, life philosophy, and 4IR skills for the next generation.</p>
-    </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="{{ '/assessments/' | relative_url }}">Cognitive Assessments</a></li>
+          <li><a href="{{ '/categories/' | relative_url }}">Node Categories</a></li>
+          <li><a href="{{ '/tags/' | relative_url }}">Knowledge Tags</a></li>
+          <li><a href="{{ '/blog/' | relative_url }}">Scientific Log</a></li>
+        </ul>
+      </div>
 
-    <div class="footer-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="{{ '/biology/' | relative_url }}">Biology Core</a></li>
-        <li><a href="{{ '/synaptic-bridge/' | relative_url }}">Synaptic Bridge</a></li>
-        <li><a href="{{ '/life-philosophy/' | relative_url }}">Life Philosophy</a></li>
-        <li><a href="{{ '/life-practices/' | relative_url }}">Life Practices</a></li>
-      </ul>
-    </div>
-    
-    <div class="footer-col">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="{{ '/assessments/' | relative_url }}">Cognitive Assessments</a></li>
-        <li><a href="{{ '/categories/' | relative_url }}">Node Categories</a></li>
-      </ul>
-    </div>
-    
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a></li>
-        <li><a href="{{ '/terms/' | relative_url }}">Terms & Conditions</a></li>
-        <li><a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a></li>
-        <li><a href="{{ '/cookie-preferences/' | relative_url }}">Cookie Preferences</a></li>
-      </ul>
-    </div>
-  </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+          <li><a href="{{ '/socratic/' | relative_url }}">Socratic 4.0</a></li>
+          <li><a href="{{ '/network/' | relative_url }}">Neural Network</a></li>
+        </ul>
+      </div>
 
-  <div class="footer-bottom">
-    <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All systems active.</p>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a></li>
+          <li><a href="{{ '/terms/' | relative_url }}">Terms & Conditions</a></li>
+          <li><a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a></li>
+          <li><a href="{{ '/cookie-preferences/' | relative_url }}">Cookie Preferences</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="neural-footer__reflection" aria-label="Reflection">
+      <p>“Learning becomes life-ready when knowledge, behavior, ethics, and inquiry are connected.”</p>
+    </section>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All systems active.</p>
+    </div>
   </div>
 
   <div id="gdpr-banner">
-    <div class="gdpr-text">
-      We utilize cookies to map cognitive pathways, analyze node traffic, and personalize your educational experience.
-    </div>
+    <div class="gdpr-text">We utilize cookies to map cognitive pathways, analyze node traffic, and personalize your educational experience.</div>
     <div class="gdpr-buttons">
-      <button class="gdpr-accept" onclick="gdprAccept()">Initialize (Accept)</button>
-      <button class="gdpr-decline" onclick="gdprDecline()">Bypass (Decline)</button>
+      <button class="gdpr-accept" onclick="gdprAccept()">Initialize Accept</button>
+      <button class="gdpr-decline" onclick="gdprDecline()">Bypass Decline</button>
     </div>
   </div>
-
 </footer>
+
+<style>
+  .site-footer-shell{clear:both;width:100%;max-width:100%;overflow:hidden;background:#020617}.neural-footer,.neural-footer *{box-sizing:border-box}.neural-footer{position:relative;width:100%;max-width:100%;overflow:hidden;margin:0;padding:clamp(3rem,7vw,5rem) 1rem 0;background:radial-gradient(circle at top center,rgba(0,212,178,.12),transparent 36%),linear-gradient(180deg,#020617 0%,#070b14 100%);border-top:1px solid rgba(0,212,178,.16);color:#94a3b8;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}.neural-footer:before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,178,.7),transparent)}.neural-footer__inner{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto}.neural-footer__brand-card{margin:0 auto 2rem;padding:clamp(1.25rem,4vw,2rem);border:1px solid rgba(148,163,184,.13);border-radius:20px;background:linear-gradient(135deg,rgba(15,23,42,.76),rgba(2,6,23,.72));box-shadow:0 18px 46px rgba(0,0,0,.28);text-align:center}.neural-footer__kicker{margin:0 0 .6rem;color:#5eead4;font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.neural-footer__title{margin:0;color:#f8fafc;font-size:clamp(1.35rem,5vw,2.25rem);line-height:1.12;font-weight:900;letter-spacing:-.03em}.neural-footer__mission{max-width:720px;margin:1rem auto 0;color:#cbd5e1;font-size:clamp(.95rem,2.5vw,1.05rem);line-height:1.7}.neural-footer__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:0;padding:0}.footer-col{min-width:0;padding:1.15rem;border:1px solid rgba(148,163,184,.12);border-radius:16px;background:rgba(15,23,42,.46)}.footer-col h4{display:inline-block;margin:0 0 .9rem;color:#e2e8f0;font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid #00d4b2;padding-bottom:.35rem}.footer-col ul{margin:0;padding:0;list-style:none}.footer-col li{margin:0}.footer-col a{display:block;padding:.42rem 0;color:#94a3b8;text-decoration:none;font-size:.94rem;line-height:1.35;overflow-wrap:anywhere;transition:color .2s ease,transform .2s ease}.footer-col a:hover,.footer-col a:focus-visible{color:#5eead4;transform:translateX(3px);outline:none}.neural-footer__reflection{margin:1.25rem 0 0;padding:1.2rem 1rem;border-left:3px solid #00d4b2;background:rgba(0,212,178,.05);border-radius:0 14px 14px 0}.neural-footer__reflection p{margin:0;color:#e2e8f0;font-size:clamp(.95rem,2.5vw,1.08rem);line-height:1.65;font-style:italic}.footer-bottom{margin-top:2rem;padding:1.2rem 0;border-top:1px solid rgba(148,163,184,.14);text-align:center;color:#94a3b8;font-size:.84rem}.footer-bottom p{margin:0}#gdpr-banner{position:fixed;left:0;right:0;bottom:0;z-index:999999;display:none;align-items:center;justify-content:center;flex-wrap:wrap;gap:1rem;padding:1rem;background:rgba(15,23,42,.9);border-top:1px solid rgba(0,212,178,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -10px 30px rgba(0,0,0,.5);color:#e2e8f0;font-size:.9rem}.gdpr-text{flex:1 1 320px;text-align:center}.gdpr-buttons{display:flex;gap:.6rem;flex-wrap:wrap}.gdpr-accept,.gdpr-decline{min-height:42px;padding:.5rem 1rem;border-radius:8px;font-weight:800;cursor:pointer}.gdpr-accept{background:#00d4b2;color:#020617;border:1px solid #00d4b2}.gdpr-decline{background:transparent;color:#cbd5e1;border:1px solid #334155}@media(max-width:920px){.neural-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.neural-footer{padding:2.5rem .9rem 0}.neural-footer__grid{grid-template-columns:1fr;gap:.85rem}.footer-col{padding:1rem}.footer-col a{padding:.48rem 0}.neural-footer__brand-card{text-align:left}.gdpr-buttons{width:100%}.gdpr-accept,.gdpr-decline{flex:1 1 140px}}
+</style>
