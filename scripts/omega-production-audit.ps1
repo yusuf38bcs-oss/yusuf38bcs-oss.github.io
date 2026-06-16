@@ -71,11 +71,12 @@ function Assert-NoCorruptSpanArtifacts {
 
 function Assert-NoScssImportAmbiguity {
     if (-not (Test-Path "_sass")) { Write-Fail "_sass directory missing"; return }
+    $sassRoot = (Resolve-Path "_sass").Path
     $groups = Get-ChildItem _sass -Recurse -File -Include *.scss |
         Group-Object {
-            $dir = $_.DirectoryName.Replace((Resolve-Path "_sass").Path, "").TrimStart("\\", "/")
-            $name = $_.BaseName.TrimStart("_")
-            if ($dir) { "$dir/$name".Replace("\\", "/") } else { $name }
+            $dir = $_.DirectoryName.Replace($sassRoot, "").TrimStart([char]'\', [char]'/')
+            $name = $_.BaseName.TrimStart([char]'_')
+            if ($dir) { "$dir/$name".Replace("\", "/") } else { $name }
         } |
         Where-Object { $_.Count -gt 1 }
 
@@ -93,11 +94,23 @@ function Assert-NoScssImportAmbiguity {
 function Assert-JekyllScssFrontMatter {
     $path = "assets/css/main.scss"
     if (-not (Test-Path $path)) { Write-Fail "Missing $path"; return }
-    $lines = Get-Content $path -TotalCount 3
-    if ($lines.Count -ge 3 -and $lines[0] -eq "---" -and $lines[2] -eq "---") {
+    $lines = Get-Content $path
+    if ($lines.Count -lt 2) {
+        Write-Fail "main.scss is too short to contain valid Jekyll front matter"
+        return
+    }
+    if ($lines[0] -ne "---") {
+        Write-Fail "main.scss must begin with opening front matter delimiter ---"
+        return
+    }
+    $closingIndex = -1
+    for ($i = 1; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -eq "---") { $closingIndex = $i; break }
+    }
+    if ($closingIndex -gt 0) {
         Write-Ok "main.scss has valid Jekyll front matter boundary"
     } else {
-        Write-Fail "main.scss must begin with a valid three-line Jekyll front matter block"
+        Write-Fail "main.scss must contain a closing front matter delimiter ---"
     }
 }
 
