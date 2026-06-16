@@ -1,9 +1,10 @@
-/* ==========================================================================
+/* ========================================================================== 
    NEURAL HERO ARCHITECTURE (COMPLETE MASTER PRODUCTION EDITION)
    ========================================================================== */
 
 .neural-hero,
-.neural-hero-shell {
+.neural-hero-shell,
+.premium-neural-hero {
   position: relative;
   isolation: isolate;
   width: 100%;
@@ -48,8 +49,10 @@
   &::after {
     content: "" !important;
     position: absolute !important;
-    width: 200%; height: 200%;
-    top: -50%; left: -50%;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
     background-image: radial-gradient(rgba(0, 212, 178, 0.04) 1px, transparent 1px) !important;
     background-size: 40px 40px;
     transform: rotate(12deg);
@@ -60,7 +63,8 @@
   }
 }
 
-.hero-content {
+.hero-content,
+.hero-content-matrix {
   position: relative;
   z-index: 10;
   width: 100%;
@@ -92,7 +96,8 @@
   }
 }
 
-.hero-actions {
+.hero-actions,
+.hero-actions-grid {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,16 +109,28 @@
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 1rem;
-    a, .btn, button {
+
+    a,
+    .btn,
+    button {
       width: 100% !important;
       text-align: center !important;
     }
   }
 }
 
+@media (max-width: 768px) {
+  .neural-hero,
+  .neural-hero-shell,
+  .premium-neural-hero {
+    background-attachment: scroll !important;
+  }
+}
+
 @media (min-width: 1440px) {
   .neural-hero,
-  .neural-hero-shell {
+  .neural-hero-shell,
+  .premium-neural-hero {
     padding: 5rem 2rem;
   }
 }
