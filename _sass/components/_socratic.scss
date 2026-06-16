@@ -1,0 +1,81 @@
+.socratic-node {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.72);
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.socratic-node h2 {
+  margin-top: 0;
+}
+
+.socratic-question {
+  color: rgba(226, 232, 240, 0.92);
+  line-height: 1.7;
+}
+
+.socratic-node label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.socratic-node textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  border-radius: 12px;
+  color: #e5e7eb;
+  background: rgba(15, 23, 42, 0.92);
+  resize: vertical;
+}
+
+.socratic-node button {
+  margin-top: 0.9rem;
+}
+
+.socratic-feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.78);
+  min-height: 1.5rem;
+}
+
+.socratic-feedback[data-mastery="true"] {
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.55);
+}
+
+.socratic-feedback[data-mastery="false"] {
+  color: #fde68a;
+  border: 1px solid rgba(250, 204, 21, 0.35);
+}
+
+.socratic-next-vector {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-weight: 700;
+}
+
+.lbfl-node-myelinated [data-socratic-node],
+[data-socratic-node][data-mastered="true"] {
+  border-color: rgba(34, 197, 94, 0.75);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.22);
+}
+
+.flow-node-card-slot {
+  will-change: transform, border-color, box-shadow;
+  transform: translateZ(0);
+}
+
+.site-logo img,
+.masthead__menu-item img {
+  width: 37px;
+  height: 35px;
+  aspect-ratio: 37 / 35;
+}
