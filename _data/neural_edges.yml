@@ -82,3 +82,30 @@
 - source: human_physiology_digestive_system_part_3
   target: blood_circulation_the_intelligent_transport_system_of_life
   type: sequence
+
+# ==========================================
+# COGNITIVE GRAPH EDGES
+# ==========================================
+- source: human-behaviour
+  target: behavioral-axis
+  type: prerequisite
+
+- source: neuroplasticity
+  target: multiple-intelligences
+  type: synthesizes
+
+- source: multiple-intelligences
+  target: personality-archetypes
+  type: prerequisite
+
+- source: behavioral-axis
+  target: decision-making
+  type: flows_to
+
+- source: decision-making
+  target: leadership-dynamics
+  type: flows_to
+
+- source: systems-thinking
+  target: behavioral-axis
+  type: regulates
