@@ -1,36 +1,49 @@
-﻿---
+---
 layout: default
 ---
 
-<div class="synaptic-page-container u-anim-reveal">
-  <article class="page-layout-grid h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape }}">
-    {% if page.description %}<meta itemprop="description" content="{{ page.description | markdownify | strip_html | strip_newlines | escape }}">{% endif %}
-
-    <main class="page-main-article e-content" itemprop="text" role="main">
-      <header class="page-content-header">
-        <h1 class="page-main-title u-text-glow p-name" itemprop="name">
+{% if page.header.overlay_color or page.header.overlay_image %}
+  <div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}"
+       style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if page.header.overlay_image %}background-image: url('{{ page.header.overlay_image | relative_url }}');{% endif %}">
+    {% if page.header.overlay_filter %}
+      <div class="wrapper">
+        <h1 id="page-title" class="page__title" itemprop="headline">
           {{ page.title }}
         </h1>
-        {% if page.description %}
-          <p class="page-subtitle-lead">{{ page.description }}</p>
+        {% if page.excerpt %}
+          <p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
         {% endif %}
-        <div class="header-matrix-line"></div>
-      </header>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
 
-      {% if page.node_id %}
-        {% include neural-node-panel.html %}
-      {% endif %}
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>
+    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
+    {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
 
-      <div class="page-rendered-markdown-body" id="synaptic-page-body">
+    <div class="page__inner-wrap">
+      {% unless page.header.overlay_color or page.header.overlay_image %}
+        <header>
+          {% if page.title %}<h1 id="page-title" class="page__title" itemprop="headline">{{ page.title }}</h1>{% endif %}
+          {% if page.read_time %}
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
+          {% endif %}
+        </header>
+      {% endunless %}
+
+      <section class="page__content" itemprop="text">
         {{ content }}
-      </div>
-    </main>
+      </section>
 
-    <aside class="page-sidebar-viewport" role="complementary" aria-label="Page Navigation">
-      <div class="sticky-sidebar-wrapper">
-        {% include navigation/contextual-sidebar.html %}
-      </div>
-    </aside>
+      {% if page.share %}{% include social-share.html %}{% endif %}
+    </div>
   </article>
+
+  {% if page.sidebar %}
+    {% include navigation/contextual-sidebar.html %}
+  {% endif %}
 </div>

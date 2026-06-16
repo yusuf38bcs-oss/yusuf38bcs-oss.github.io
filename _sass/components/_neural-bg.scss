@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Global Neural Background Component (_sass/components/_neural-bg.scss)
+   Architecture: Neural Matrix v1.0
+   Purpose: Hardware-accelerated canvas styling, performance guards, 
+            and Z-index management for the global neural network.
+   ========================================================================== */
+
+/* 1. Core Canvas Architecture */
+#neural-network {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  /* Place it safely at the bottom of the DOM stacking context */
+  z-index: -2; 
+  
+  /* Critical: Ensure the canvas never intercepts user clicks or scrolls */
+  pointer-events: none; 
+  
+  /* Hardware Acceleration: Force the GPU to handle rendering rather than the CPU */
+  transform: translateZ(0);
+  
+  /* Default opacity, easily overridden by JS or theme variables */
+  opacity: var(--neural-bg-opacity, 0.6);
+  transition: opacity 0.8s ease-in-out;
+  
+  /* Prevent horizontal scrollbars if 100vw acts unpredictably on some mobile browsers */
+  max-width: 100%;
+}
+
+/* 2. Readability Gradient Overlay */
+/* Optional: Adds a subtle vignette/fade around the edges of the screen 
+   so the neural nodes don't distract from the main reading column. */
+.neural-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* Sits just above the canvas (-2), below the content (1) */
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center, 
+    transparent 40%, 
+    var(--global-bg-color, #111827) 100%
+  );
+}
+
+/* 3. Theme Mode Adjustments */
+/* Assuming Minimal Mistakes data-theme="dark" architecture */
+[data-theme="light"] #neural-network {
+  /* Usually lighter themes require lower opacity for dark text readability */
+  --neural-bg-opacity: 0.3;
+}
+
+[data-theme="dark"] #neural-network {
+  --neural-bg-opacity: 0.7;
+}
+
+/* 4. Mobile & Battery Optimization */
+/* Reduce the visual weight on smaller screens to save battery and reduce visual noise */
+@media screen and (max-width: 768px) {
+  #neural-network {
+    --neural-bg-opacity: 0.35;
+  }
+}
+
+/* 5. Accessibility: Prefers Reduced Motion */
+/* If a user has system-level motion reduction turned on, dim the canvas heavily. 
+   Your neural-bg.js should ideally detect this and stop drawing, but this CSS 
+   acts as an immediate visual safeguard. */
+@media (prefers-reduced-motion: reduce) {
+  #neural-network {
+    opacity: 0.05 !important;
+    transition: none;
+  }
+}
+
+/* 6. Z-Index Safeguards for Minimal Mistakes Core */
+/* Ensures the main content wrappers stay transparent so the canvas shows through,
+   while keeping their z-index above the background. */
+.initial-content,
+.page__content,
+#site-main,
+.page,
+.page__inner-wrap {
+  position: relative;
+  z-index: 1;
+  background-color: transparent !important;
+}
+
+/* Ensure the footer has a solid background so the neural nodes don't bleed through it */
+.page__footer {
+  position: relative;
+  z-index: 10;
+  background-color: var(--global-bg-color, #111827);
+  border-top: 1px solid var(--border-color, rgba(255,255,255,0.1));
+}
+/* ==========================================================================
+   CANVAS BACKDROP
+   ========================================================================== */
+#neural-network {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}

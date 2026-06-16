@@ -1,0 +1,113 @@
+/* ==========================================================================
+   NAVIGATION STABILIZATION — Phase 1 Production
+   Single owner for all masthead/greedy-nav overrides.
+   Minimal Mistakes greedy-nav base structure is preserved.
+   ========================================================================== */
+
+/* Sticky masthead container */
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+/* Inner wrap: vertical centering, enforce minimum height */
+.masthead__inner-wrap {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo: hard size ceiling */
+.site-logo img {
+  max-height: 36px;
+  width: auto;
+  display: block;
+}
+
+/* Title: one line only, ellipsis on overflow */
+.site-title {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* Greedy nav: transparent background only */
+.greedy-nav {
+  background: transparent !important;
+}
+
+/* Nav links: compact, never wrap */
+.greedy-nav a {
+  font-size: 0.9rem !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+
+/* Toggle: never crush */
+.greedy-nav__toggle {
+  flex-shrink: 0 !important;
+}
+
+/* Mobile drawer stabilization (<=768px) */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 0.95rem !important;
+    max-width: 60vw;
+  }
+
+  .greedy-nav a {
+    font-size: 0.85rem !important;
+  }
+
+  /* Override MM default absolute dropdown with fixed slide-in */
+  .hidden-links {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 85vw !important;
+    max-width: 380px !important;
+    height: 100vh !important;
+    background-color: #020617 !important;
+    z-index: 99999 !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow-y: auto !important;
+    padding: 3rem 2rem !important;
+    box-shadow: -15px 0 50px rgba(0, 0, 0, 0.8) !important;
+    border-left: 1px solid rgba(0, 245, 212, 0.15) !important;
+    display: block !important;
+    list-style: none !important;
+    margin: 0 !important;
+  }
+
+  .hidden-links.hidden {
+    transform: translateX(100%) !important;
+  }
+
+  .hidden-links:not(.hidden) {
+    transform: translateX(0) !important;
+  }
+
+  .hidden-links li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .hidden-links a {
+    display: block;
+    font-size: 1.1rem !important;
+    padding: 1rem 0 !important;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+}
+
+/* Global viewport security */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}

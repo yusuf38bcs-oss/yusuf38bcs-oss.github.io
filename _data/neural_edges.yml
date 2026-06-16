@@ -1,15 +1,84 @@
-- source: echinodermata_introduction
-  target: starfish_morphology
+# =========================================================================
+# NEURAL EDGES — Knowledge Graph Connections
+# Auto-generated from valid node IDs only
+# =========================================================================
+
+- source: protozoa_body_covering_and_skeletal_structure_and_locomotion
+  target: protozoa_nutrition_locomotion
   type: prerequisite
 
-- source: starfish_morphology
+- source: protozoa_nutrition_locomotion
+  target: protozoa_reproduction_and_parasitism
+  type: sequence
+
+- source: protozoa_reproduction_and_parasitism
+  target: polymorphism_in_cnidaria
+  type: sequence
+
+- source: polymorphism_in_cnidaria
   target: astropecten_water_vascular_system
+  type: sequence
+
+- source: basic_concepts_of_biostatistics
+  target: measures_of_central_tendency
   type: prerequisite
 
-- source: astropecten_water_vascular_system
-  target: hydrostatic_pressure
-  type: concept
+- source: measures_of_central_tendency
+  target: measures_of_dispersion
+  type: sequence
 
-- source: astropecten_water_vascular_system
-  target: soft_robotics
-  type: application
+- source: measures_of_dispersion
+  target: correlation_and_regression
+  type: sequence
+
+- source: correlation_and_regression
+  target: hypothesis_testing
+  type: sequence
+
+- source: hypothesis_testing
+  target: t_test_significant_difference_between_means
+  type: sequence
+
+- source: t_test_significant_difference_between_means
+  target: z_test_problem_solving
+  type: sequence
+
+- source: z_test_problem_solving
+  target: chi_square_test
+  type: sequence
+
+- source: ecology_history_scopes_area
+  target: population_ecology_a_science_of_life_motion_of_a_species
+  type: prerequisite
+
+- source: population_ecology_a_science_of_life_motion_of_a_species
+  target: population_ecology_concept_on_size_of_population
+  type: sequence
+
+- source: population_ecology_concept_on_size_of_population
+  target: community_ecology_an_equation_of_living_together
+  type: sequence
+
+- source: community_ecology_an_equation_of_living_together
+  target: survivorship_curve_life_table_growth_models
+  type: sequence
+
+- source: genetics_the_theme_of_inheritance_part_1
+  target: genetics_the_theme_of_inheritance_part_2
+  type: sequence
+
+- source: structures_functions_cell_organelles_part_1
+  target: structures_functions_of_cell_organelles_part_2
+  type: sequence
+
+- source: human_physiology_digestive_system_part_1
+  target: human_physiology_digestive_system_part_2
+  type: sequence
+
+- source: human_physiology_digestive_system_part_2
+  target: human_physiology_digestive_system_part_3
+  type: sequence
+
+- source: human_physiology_digestive_system_part_3
+  target: blood_circulation_the_intelligent_transport_system_of_life
+  type: sequence

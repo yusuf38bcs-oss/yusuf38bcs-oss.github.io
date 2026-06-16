@@ -1,0 +1,224 @@
+/* ==========================================================================
+   MASTHEAD LOGO FIREWALL
+   Completely isolates logo from global CSS pollution
+   ========================================================================== */
+
+.neural-site-masthead {
+  position: relative;
+  z-index: 10000;
+}
+
+/* Branding container */
+
+.neural-site-masthead .masthead-branding-node{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  flex-wrap:nowrap !important;
+  gap:0.85rem !important;
+  flex:0 0 auto !important;
+  min-width:0 !important;
+}
+
+/* Logo link */
+
+.neural-site-masthead .masthead-logo-anchor{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  flex:0 0 auto !important;
+
+  width:56px !important;
+  height:56px !important;
+
+  min-width:56px !important;
+  min-height:56px !important;
+
+  max-width:56px !important;
+  max-height:56px !important;
+
+  overflow:hidden !important;
+
+  text-decoration:none !important;
+}
+
+/* HARD IMAGE RESET */
+
+.neural-site-masthead .masthead-clean-logo{
+  display:block !important;
+
+  width:48px !important;
+  height:48px !important;
+
+  min-width:48px !important;
+  min-height:48px !important;
+
+  max-width:48px !important;
+  max-height:48px !important;
+
+  object-fit:contain !important;
+  object-position:center center !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  border:0 !important;
+  outline:none !important;
+
+  transform:none !important;
+  scale:1 !important;
+
+  position:relative !important;
+  inset:auto !important;
+
+  float:none !important;
+  clear:none !important;
+
+  flex:none !important;
+  flex-grow:0 !important;
+  flex-shrink:0 !important;
+
+  aspect-ratio:1/1 !important;
+
+  z-index:1 !important;
+}
+
+/* Protect against rogue global selectors */
+
+.neural-site-masthead img{
+  object-fit:contain !important;
+}
+
+.neural-site-masthead a img{
+  width:48px !important;
+  height:48px !important;
+  max-width:48px !important;
+  max-height:48px !important;
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+  .neural-site-masthead .masthead-logo-anchor{
+    width:44px !important;
+    height:44px !important;
+    min-width:44px !important;
+    min-height:44px !important;
+    max-width:44px !important;
+    max-height:44px !important;
+  }
+
+  .neural-site-masthead .masthead-clean-logo{
+    width:38px !important;
+    height:38px !important;
+    min-width:38px !important;
+    min-height:38px !important;
+    max-width:38px !important;
+    max-height:38px !important;
+  }
+}
+/* ==========================================================================
+   OMEGA MASTHEAD ISOLATION LAYER
+   Must be loaded last
+   ========================================================================== */
+
+.neural-site-masthead,
+.neural-site-masthead *{
+    box-sizing:border-box;
+}
+
+/* Remove homepage image inheritance */
+
+.synaptic-home-layout .neural-site-masthead img,
+.synaptic-homepage-matrix .neural-site-masthead img,
+.neural-site-masthead img{
+
+    width:auto !important;
+    max-width:none !important;
+    min-width:0 !important;
+
+    height:auto !important;
+    max-height:none !important;
+
+    border-radius:0 !important;
+
+    display:block !important;
+
+    flex:none !important;
+
+    transform:none !important;
+}
+
+/* Dedicated logo dimensions */
+
+.neural-site-masthead .masthead-clean-logo{
+
+    width:48px !important;
+    height:48px !important;
+
+    min-width:48px !important;
+    min-height:48px !important;
+
+    max-width:48px !important;
+    max-height:48px !important;
+
+    object-fit:contain !important;
+
+    margin:0 !important;
+    padding:0 !important;
+}
+
+/* Logo wrapper */
+
+.neural-site-masthead .masthead-logo-anchor{
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    width:56px !important;
+    height:56px !important;
+
+    flex:0 0 56px !important;
+
+    overflow:hidden !important;
+}
+
+/* Branding */
+
+.neural-site-masthead .masthead-branding-node{
+
+    display:flex !important;
+    align-items:center !important;
+
+    gap:.8rem !important;
+
+    flex-wrap:nowrap !important;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .neural-site-masthead .masthead-logo-anchor{
+
+        width:44px !important;
+        height:44px !important;
+
+        flex:0 0 44px !important;
+    }
+
+    .neural-site-masthead .masthead-clean-logo{
+
+        width:36px !important;
+        height:36px !important;
+
+        min-width:36px !important;
+        min-height:36px !important;
+
+        max-width:36px !important;
+        max-height:36px !important;
+    }
+}

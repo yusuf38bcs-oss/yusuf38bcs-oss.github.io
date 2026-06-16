@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Learning Biology For Life - Neural Background Engine (Ecosystem Edition)
  * High-performance synaptic particle system with Retina optimization,
  * advanced requestAnimationFrame lifecycle management, and active core power-saving hooks.

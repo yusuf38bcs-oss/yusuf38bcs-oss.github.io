@@ -1,45 +1,29 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: 'en-US' }}" data-theme="dark" style="background-color: #020617 !important;">
-<head>
-  {% include head/head.html %}
-</head>
-<body class="unified-ecosystem-dark-body">
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
 
-  {% if site.gtm_id %}
-    {% include body/gtm-body.html %}
-  {% endif %}
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
+    {% include skip-links.html %}
+    {% include masthead.html %}
 
-  {% include navigation/masthead.html %}
+    <div class="initial-content">
+      {{ content }}
+    </div>
 
-  <div class="global-ambient-matrix-backdrop" aria-hidden="true">
-    <canvas id="neural-network"></canvas>
-  </div>
+    {% if site.search == true %}
+      <div class="search-content">
+        {% include_cached search/search_form.html %}
+      </div>
+    {% endif %}
 
-  <main class="main-content-render-viewport" id="synaptic-viewport-root" role="main">
-    {{ content }}
-  </main>
+    <div id="footer" class="page__footer">
+      {% include footer/custom.html %}
+      {% include footer.html %}
+    </div>
 
-  {% include body/synaptic-ai.html %}
-
-  {% include footer/neural-footer.html %}
-
-  <script defer src="{{ '/assets/js/core/theme-controller.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/performance-guard.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/menu-scroll.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/semantic-linker.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/analytics-engine.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/ai-core.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/socratic-component.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/synapse-effects.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  <script defer src="{{ '/assets/js/core/main.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-
-  {% if page.url == "/" %}
-    <script defer src="{{ '/assets/js/core/neural-bg.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/hero-effects.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/neural-flow.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/neural-interactions.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-    <script defer src="{{ '/assets/js/home/section-transitions.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
-  {% endif %}
-
-</body>
+    {% include scripts.html %}
+  </body>
 </html>

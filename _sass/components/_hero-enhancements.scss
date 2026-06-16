@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    CINEMATIC HERO ENHANCEMENTS ENGINE
    ========================================================================== */
 
@@ -23,5 +23,108 @@
     animation: none !important;
     transition: none !important;
     background-attachment: scroll !important;
+  }
+}
+
+/* ==========================================================================
+   NEURAL MOBILE DRAWER (MASTHEAD)
+   ========================================================================== */
+
+.masthead-mobile-dropdown-drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  background: #020617;
+  border-top: 1px solid rgba(0, 212, 178, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Depth against hero */
+
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px);
+
+  transition:
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  z-index: 1000001; /* Extreme priority to overlap hero particles/canvas */
+}
+
+/* Active State (Drawer Open) */
+.neural-site-masthead.is-active-drawer .masthead-mobile-dropdown-drawer {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Desktop Constraint - Disable mobile drawer on larger screens */
+@media (min-width: 769px) {
+  .masthead-mobile-dropdown-drawer {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   HERO REFINEMENT
+   ========================================================================== */
+
+.hero-logo,
+.hero-emblem,
+.hero-image img,
+.hero-image svg {
+  max-width: 280px;
+  width: 28vw;
+  height: auto;
+}
+
+.hero-buttons,
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero__title,
+.page__hero-title,
+.hero__lead,
+.page__lead {
+  position: relative;
+  z-index: 10;
+}
+
+.page__hero,
+.hero {
+  position: relative;
+}
+
+.page__hero::before,
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.25);
+  pointer-events: none;
+}
+
+@media (max-width:768px){
+
+  .hero-logo,
+  .hero-emblem,
+  .hero-image img,
+  .hero-image svg{
+      max-width:180px;
+      width:45vw;
+  }
+
+  .hero-buttons,
+  .hero-actions{
+      flex-direction:column;
+      align-items:center;
   }
 }

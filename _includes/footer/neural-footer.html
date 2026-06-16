@@ -1,91 +1,176 @@
-<footer class="synaptic-footer" role="contentinfo" aria-label="Learning Biology For Life Global Footer">
-  <div class="synaptic-footer__wrapper">
+<style>
+  /* Premium Neural Footer Styles */
+  .neural-footer {
+    background: #020617; /* Deep matrix dark */
+    border-top: 1px solid #1e293b;
+    padding: 3rem 0 0 0;
+    font-family: 'Inter', sans-serif;
+    color: #94a3b8;
+  }
+  .neural-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .footer-col h4 {
+    color: #e2e8f0;
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid #00d4b2;
+    display: inline-block;
+    padding-bottom: 0.3rem;
+  }
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-col ul li {
+    margin-bottom: 0.8rem;
+  }
+  .footer-col ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+  }
+  .footer-col ul li a:hover {
+    color: #00d4b2;
+    padding-left: 5px; /* Premium hover slide effect */
+  }
+  .footer-mission {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+  .footer-bottom {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    background: #0f172a;
+    border-top: 1px solid #1e293b;
+    font-size: 0.85rem;
+  }
 
-    <!-- 1. THE NUCLEUS: Brand Identity Card -->
-    <div class="synaptic-card synaptic-footer__brand-card">
-      <h2 class="synaptic-footer__brand-title">Learning Biology <span class="highlight">For Life</span></h2>
-      <p class="synaptic-footer__brand-subtitle">BIOLOGY &bull; SYSTEMS THINKING &bull; 4IR EDUCATION</p>
+  /* Premium GDPR Banner (Frosted Glass Effect) */
+  #gdpr-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px); /* High-end frosted glass */
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 212, 178, 0.4);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+    padding: 1.2rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #e2e8f0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  #gdpr-banner.is-visible { 
+    display: flex; 
+    animation: slideUp 0.5s ease-out forwards;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  .gdpr-text {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  .gdpr-buttons {
+    display: flex;
+    gap: 0.8rem;
+  }
+  #gdpr-banner button {
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+  }
+  .gdpr-accept { 
+    background: #00d4b2; 
+    color: #020617; 
+    border: 1px solid #00d4b2;
+  }
+  .gdpr-accept:hover {
+    background: #00f2cc;
+    box-shadow: 0 0 10px rgba(0, 212, 178, 0.5);
+  }
+  .gdpr-decline { 
+    background: transparent; 
+    color: #94a3b8; 
+    border: 1px solid #334155; 
+  }
+  .gdpr-decline:hover {
+    background: #1e293b;
+    color: #e2e8f0;
+  }
+</style>
+
+<footer class="page__footer neural-footer">
+  <div class="neural-footer__grid">
+    
+    <div class="footer-col">
+      <h4>{{ site.title }}</h4>
+      <p class="footer-mission">A Neural Network of Education System. Mapping biological sciences, life philosophy, and 4IR skills for the next generation.</p>
     </div>
 
-    <!-- 2. THE PATHWAYS: Two-Column Taxonomy Grid -->
-    <div class="synaptic-footer__nav-grid">
-      
-      <!-- Pillar 1: Academic Biology -->
-      <nav class="synaptic-footer__column" aria-label="Academic Biology Pillar">
-        <h3 class="synaptic-footer__heading">Biology (Academic)</h3>
-        <ul class="synaptic-footer__list">
-          <li><a href="{{ '/biology/#hsc-corner' | relative_url }}">HSC Corner (Botany/Zoology)</a></li>
-          <li><a href="{{ '/biology/higher-zoology/' | relative_url }}">Higher Zoology Tree</a></li>
-          <li><a href="{{ '/biology/animal-diversity/' | relative_url }}">Animal Diversity & Ecology</a></li>
-          <li><a href="{{ '/biology/genetics-biostatistics/' | relative_url }}">Genetics & Biostatistics</a></li>
-        </ul>
-      </nav>
-
-      <!-- Pillar 2: Practical Approaches -->
-      <nav class="synaptic-footer__column" aria-label="Practical Approaches Pillar">
-        <h3 class="synaptic-footer__heading">Practical Approaches</h3>
-        <ul class="synaptic-footer__list">
-          <li><a href="{{ '/practical/human-behaviour/' | relative_url }}">Human Behaviour</a></li>
-          <li><a href="{{ '/practical/leadership-management/' | relative_url }}">Leadership Management</a></li>
-          <li><a href="{{ '/practical/research-highlights/' | relative_url }}">Research Highlights</a></li>
-          <li><a href="{{ '/practical/random-thoughts/' | relative_url }}">Random Thoughts</a></li>
-        </ul>
-      </nav>
-      
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="{{ '/biology/' | relative_url }}">Biology Core</a></li>
+        <li><a href="{{ '/synaptic-bridge/' | relative_url }}">Synaptic Bridge</a></li>
+        <li><a href="{{ '/life-philosophy/' | relative_url }}">Life Philosophy</a></li>
+        <li><a href="{{ '/life-practices/' | relative_url }}">Life Practices</a></li>
+      </ul>
     </div>
-
-    <!-- 3. THE TARGET NODE: Centered Subscription & Socratic Hub -->
-    <div class="synaptic-card synaptic-footer__subscribe-card">
-      <h3 class="synaptic-footer__heading text-center">Subscription Hub</h3>
-      <p class="synaptic-footer__microcopy">
-        Join the neural network. Receive custom research logs, Socratic analysis, and 4IR education insights straight to your cortex.
-      </p>
-      
-      <form action="https://ba976988.sibforms.com/serve/MUIFALS-Pj9niCnQzIC4Kz6AUNdZDEzk6wpWynTJG4d4dXNvGQtJiWM9njds4R5HIX_H5WnDQEPdzJFFynemiOv1t4W_9_ksGnqajmgFditGqg_YbFJgkLKO9HyuxT58mr0lnmuHRE3GDAnh4YEVdxd6Occr7A-hSgMDnS8xxf6OklDU966E4xJ6lfmE6eO0CymEsN25WAsywHtYGQ==" 
-            method="POST" 
-            target="_blank" 
-            class="synaptic-newsletter__form">
-        
-        <label for="FOOTER_EMAIL" class="synaptic-newsletter__label">Subscribe to Connect Your Dots Of Life</label>
-        
-        <div class="synaptic-newsletter__input-group">
-          <input type="email" id="FOOTER_EMAIL" name="EMAIL" class="synaptic-newsletter__input" placeholder="e.g. abc@xyz.com" required aria-required="true">
-          <button type="submit" class="synaptic-newsletter__button">SUBSCRIBE</button>
-        </div>
-
-        <div class="synaptic-newsletter__optin">
-          <input type="checkbox" id="FOOTER_OPT_IN" name="OPT_IN" value="1" required class="synaptic-newsletter__checkbox">
-          <label for="FOOTER_OPT_IN" class="synaptic-newsletter__optin-text">
-            I agree to receive letters and accept the ecosystem data privacy statement.
-          </label>
-        </div>
-
-        <p class="synaptic-newsletter__disclaimer">
-          Marketing execution platform driven by Brevo. Data processed securely in accordance with edge protection parameters.
-        </p>
-      </form>
+    
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="{{ '/assessments/' | relative_url }}">Cognitive Assessments</a></li>
+        <li><a href="{{ '/categories/' | relative_url }}">Node Categories</a></li>
+      </ul>
     </div>
-
-    <!-- 4. PILLAR 3 CONNECTOR: Pedagogical Reflection -->
-    <div class="synaptic-footer__reflection">
-      <blockquote class="synaptic-footer__quote">
-        "The purpose of education is not the accumulation of information, but the construction of meaningful connections between ideas, systems, and life."
-      </blockquote>
+    
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a></li>
+        <li><a href="{{ '/terms/' | relative_url }}">Terms & Conditions</a></li>
+        <li><a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a></li>
+        <li><a href="{{ '/cookie-preferences/' | relative_url }}">Cookie Preferences</a></li>
+      </ul>
     </div>
-
-    <!-- 5. BASE MEMBRANE: Legal & Interactive Consent Anchor -->
-    <div class="synaptic-footer__legal">
-      <div class="synaptic-footer__copyright">
-        &copy; {{ site.time | date: "%Y" }} Learning Biology For Life. Managed by MD. Yusuf. All rights reserved.
-      </div>
-      <nav class="synaptic-footer__legal-links" aria-label="Legal Directory Links">
-        <a href="{{ '/archive/' | relative_url }}">82-Post Archive</a>
-        <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a>
-        <a href="{{ '/terms/' | relative_url }}">Terms & Conditions</a>
-        <a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a>
-        <a href="#" id="cookie-consent-trigger" class="cookie-trigger">Cookie Preferences</a>
-      </nav>
-    </div>
-
   </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All systems active.</p>
+  </div>
+
+  <div id="gdpr-banner">
+    <div class="gdpr-text">
+      We utilize cookies to map cognitive pathways, analyze node traffic, and personalize your educational experience.
+    </div>
+    <div class="gdpr-buttons">
+      <button class="gdpr-accept" onclick="gdprAccept()">Initialize (Accept)</button>
+      <button class="gdpr-decline" onclick="gdprDecline()">Bypass (Decline)</button>
+    </div>
+  </div>
+
 </footer>

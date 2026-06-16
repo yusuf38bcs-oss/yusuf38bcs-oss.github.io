@@ -1,0 +1,43 @@
+/* ==========================================================================
+   VISUAL GUIDANCE ALIGNMENT (MASTHEAD LOCK)
+   As defined by UI Telemetry Analysis
+   ========================================================================== */
+
+/* 1. KEY CSS FIX: Master Container Lock */
+.masthead__inner-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    height: 72px !important;
+    padding: 0 4% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 2. Title Overflow Protection (Ensures greedy-nav triggers properly) */
+.masthead .site-title {
+    display: block !important;
+    white-space: nowrap !important;
+    overflow: hidden !important; 
+    text-overflow: ellipsis !important;
+    flex: 1 1 auto !important; 
+    min-width: 0 !important; 
+    font-size: clamp(14px, 3.5vw, 1.2rem) !important;
+    margin-right: auto !important; 
+}
+
+/* 3. Protect Logo and Menu from shrinking */
+#site-nav.greedy-nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    flex: 0 0 auto !important; 
+    margin: 0 !important;
+}
+
+.masthead .site-logo {
+    flex: 0 0 auto !important;
+    margin-right: 12px !important;
+}

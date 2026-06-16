@@ -9,8 +9,8 @@
 
   const NavigationScrollEngine = {
     init() {
-      // Cache the DOM selection once at startup (Supports both .site-header and Minimal Mistakes defaults)
-      this.header = document.querySelector('.site-header') || document.querySelector('.masthead');
+      // Cache the DOM selection once at startup (Neural Architecture target)
+      this.header = document.querySelector('.neural-site-masthead');
       if (!this.header) return;
 
       this.isTicking = false;

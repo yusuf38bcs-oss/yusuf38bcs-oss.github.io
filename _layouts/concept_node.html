@@ -1,0 +1,196 @@
+---
+layout: default
+---
+
+{% comment %}
+  Core Identifier Resolution:
+  Future-proofs the architecture by gracefully falling back from node_id -> id -> slug.
+  Once migration is complete, node_id can be safely deprecated.
+{% endcomment %}
+{% assign current_id = page.node_id | default: page.id | default: page.slug %}
+
+<article class="concept-node-container" 
+         data-node-id="{{ current_id }}" 
+         data-pillar="{{ page.pillar | default: 'unassigned' }}"
+         data-mastery-state="{{ page.mastery_state | default: 'locked' }}"
+         data-difficulty="{{ page.difficulty | default: 1 }}"
+         data-cognitive-depth="{{ page.cognitive_depth | default: 1 }}"
+         data-mastery-points="{{ page.mastery_points | default: 0 }}"
+         data-terminal-node="{{ page.terminal_node | default: false }}">
+  
+  <header class="node-header">
+    <h1 class="node-title">{{ page.title }}</h1>
+    
+    {% if page.excerpt %}
+      <p class="node-excerpt">{{ page.excerpt | strip_html }}</p>
+    {% endif %}
+    
+    {% if page.last_modified_at %}
+      <div class="node-updated">Updated: {{ page.last_modified_at | date: "%B %d, %Y" }}</div>
+    {% endif %}
+    
+    <div class="node-metadata-matrix">
+      {% if page.pillar %}
+      <div class="meta-item">
+        <span class="meta-label">Pillar:</span> 
+        <span class="meta-value">{{ page.pillar | capitalize | replace: '-', ' ' }}</span>
+      </div>
+      {% endif %}
+      
+      <div class="meta-item">
+        <span class="meta-label">Difficulty:</span> 
+        <span class="meta-value">Level {{ page.difficulty | default: "Unrated" }}</span>
+      </div>
+      
+      {% if page.cognitive_depth %}
+      <div class="meta-item">
+        <span class="meta-label">Cognitive Depth:</span> 
+        <span class="meta-value">{{ page.cognitive_depth }}</span>
+      </div>
+      {% endif %}
+      
+      <div class="meta-item">
+        <span class="meta-label">XP:</span> 
+        <span class="meta-value">{{ page.mastery_points | default: 0 }} Points</span>
+      </div>
+      
+      <div class="meta-item">
+        <span class="meta-label">Estimated Time:</span> 
+        <span class="meta-value">{{ page.estimated_time | default: "N/A" }}</span>
+      </div>
+      
+      <div class="meta-item">
+        <span class="meta-label">Status:</span> 
+        <span class="status-badge status-{{ page.status | default: 'available' }}">{{ page.status | default: "Available" | capitalize }}</span>
+      </div>
+      
+      <div class="meta-item">
+        <span class="meta-label">Mastery:</span> 
+        <span class="mastery-badge state-{{ page.mastery_state | default: 'locked' }}">{{ page.mastery_state | default: "Locked" | capitalize }}</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="node-content">
+    {{ content }}
+  </section>
+
+  <nav class="node-graph-navigation" aria-label="Concept Graph Navigation">
+    <hr class="graph-divider">
+    <h3>Neural Graph Navigation</h3>
+    
+    <div class="graph-links-container">
+      
+      <div class="prerequisites-list">
+        <h4>Prerequisites (Afferent Vectors)</h4>
+        {% if page.prerequisites and page.prerequisites.size > 0 %}
+          <ul>
+          {% for prereq in page.prerequisites %}
+            
+            {% comment %} SAFE GRAPH RESOLUTION: Two-step lookup to avoid Liquid syntax errors {% endcomment %}
+            {% assign prereq_node = site.concepts | where: "node_id", prereq | first %}
+            {% unless prereq_node %}
+              {% assign prereq_node = site.concepts | where: "id", prereq | first %}
+            {% endunless %}
+
+            {% if prereq_node %}
+              <li><a href="{{ prereq_node.url | relative_url }}" class="graph-link">{{ prereq_node.title }}</a></li>
+            {% else %}
+              <li><span class="missing-node warning">Missing Node Vector: <code>{{ prereq }}</code></span></li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        {% else %}
+          <p class="graph-status">Root Node (No external prerequisites)</p>
+        {% endif %}
+      </div>
+
+      <div class="next-nodes-list">
+        <h4>Next Nodes (Efferent Vectors)</h4>
+        {% if page.next_nodes and page.next_nodes.size > 0 %}
+          <ul>
+          {% for next_node in page.next_nodes %}
+            
+            {% comment %} SAFE GRAPH RESOLUTION: Two-step lookup to avoid Liquid syntax errors {% endcomment %}
+            {% assign target_node = site.concepts | where: "node_id", next_node | first %}
+            {% unless target_node %}
+              {% assign target_node = site.concepts | where: "id", next_node | first %}
+            {% endunless %}
+
+            {% if target_node %}
+              <li><a href="{{ target_node.url | relative_url }}" class="graph-link">{{ target_node.title }}</a></li>
+            {% else %}
+              <li><span class="missing-node warning">Missing Node Vector: <code>{{ next_node }}</code></span></li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        {% else %}
+          {% if page.terminal_node %}
+            <p class="graph-status">Terminal Capstone Node</p>
+          {% else %}
+            <p class="graph-status">End of current pathway</p>
+          {% endif %}
+        {% endif %}
+      </div>
+      
+    </div>
+  </nav>
+</article>
+
+<style>
+  /* Base fallback styling utilizing theme variables where possible */
+  .concept-node-container { 
+    font-family: inherit; 
+  }
+  .node-header {
+    margin-bottom: 2rem;
+  }
+  .node-excerpt {
+    font-size: 1.15em;
+    color: var(--text-muted-color, #666);
+    font-style: italic;
+    margin-top: 0;
+  }
+  .node-updated {
+    font-size: 0.85em;
+    color: var(--text-muted-color, #888);
+    margin-bottom: 1rem;
+  }
+  .node-metadata-matrix { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    padding: 15px; 
+    background: var(--global-bg-color, rgba(0,0,0,0.03));
+    border: 1px solid var(--border-color, rgba(0,0,0,0.1));
+    border-radius: 8px; 
+  }
+  .meta-item { font-size: 0.9em; }
+  .meta-label { font-weight: bold; color: var(--text-color, #333); }
+  .status-badge, .mastery-badge { 
+    padding: 2px 8px; 
+    border-radius: 12px; 
+    font-size: 0.85em; 
+    font-weight: bold; 
+  }
+  .state-unlocked { background-color: #e6f4ea; color: #1e8e3e; }
+  .state-locked { background-color: #f1f3f4; color: #5f6368; }
+  .state-mastered { background-color: #e8f0fe; color: #1a73e8; }
+  
+  .node-graph-navigation { margin-top: 3rem; }
+  .graph-links-container { 
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+  }
+  .prerequisites-list, .next-nodes-list { 
+    flex: 1; 
+    min-width: 250px; 
+    padding: 15px; 
+    background: var(--global-bg-color, rgba(0,0,0,0.02)); 
+    border-left: 3px solid var(--primary-color, #ccc); 
+    border-radius: 0 8px 8px 0;
+  }
+  .missing-node.warning { color: #d93025; font-style: italic; }
+</style>

@@ -1,51 +1,77 @@
----
-# =========================================================================
-# LEARNING BIOLOGY FOR LIFE - ULTIMATE MASTER PRODUCTION STYLESHEET
-# Optimized for Jekyll 4.x, Bundler, and Cloudflare Pages Run-Time Nodes
-# =========================================================================
+﻿---
+# ==========================================================================
+# LEARNING BIOLOGY FOR LIFE
+# SOVEREIGN MASTER STYLESHEET - OMEGA PRODUCTION COMPLETE
+# ==========================================================================
 ---
 
-@charset "UTF-8";
+@charset "utf-8";
 
-/* --- 1. SYSTEM VARIABLE PROTECTION LAYER --- */
+/* ==========================================================================
+   1. EARLY BOOTSTRAP VARIABLES
+   ========================================================================== */
 $serif: Georgia, Times, serif !default;
-$sans-serif: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Arial, sans-serif !default;
+$sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !default;
 $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 
-/* --- 2. CORE SKIN AND VARIABLE INITIALIZATION --- */
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
+/* ==========================================================================
+   2. CUSTOM VARIABLE OVERRIDES
+   ========================================================================== */
 @import "core/variables";
-@import "core/mixins";
 
-/* --- 3. THEME ENGINE LOADING LAYER --- */
+/* ==========================================================================
+   3. MINIMAL MISTAKES ENGINE
+   ========================================================================== */
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
 @import "minimal-mistakes";
 
-/* --- 4. MODULAR CORE UI COMPONENTS --- */
+/* ==========================================================================
+   4. MIXINS
+   ========================================================================== */
+@import "core/mixins";
+
+/* ==========================================================================
+   5. CORE COMPONENTS
+   ========================================================================== */
 @import "components/buttons";
 @import "components/cards";
-@import "components/hero";
 @import "components/panels";
 @import "components/accordion";
-@import "components/neural-ui";
+@import "components/navigation";
+@import "components/hero";
 @import "components/neural-hero";
 @import "components/hero-enhancements";
-@import "components/navigation";
+@import "components/neural-ui";
+@import "components/concept-node";
+@import "components/neural-bg";
 @import "components/footer";
 
-/* --- 5. STRUCTURED ECOSYSTEM LAYOUT SYSTEMS --- */
+/* ==========================================================================
+   6. LAYOUT ECOSYSTEM
+   ========================================================================== */
 @import "layout/home-layout";
 @import "layout/synaptic";
 @import "layout/neural-node";
 @import "layout/network";
 @import "layout/cinematic-refinement";
 
-/* --- 6. UTILITY PIPELINES --- */
+/* ==========================================================================
+   7. UTILITIES
+   ========================================================================== */
 @import "utilities/animations";
 @import "utilities/utilities";
-@import "utilities/neural-navbar";
 
-/* --- 7. HOMEPAGE CRITICAL FIXES --- */
+/* ==========================================================================
+   8. STABILIZATION LAYER
+   ========================================================================== */
 @import "layout/homepage-stabilizer";
 
-/* --- 8. THE ABSOLUTE FINAL CASCADING OVERRIDES --- */
+/* ==========================================================================
+   9. MATRIX ARCHITECTURE COMPILING TARGET
+   ========================================================================== */
+@import "custom/omega-v15";
+
+/* ==========================================================================
+   10. PRODUCTION OMEGA OVERRIDE — Dead Last
+   ========================================================================== */
 @import "layout/omega-overrides";

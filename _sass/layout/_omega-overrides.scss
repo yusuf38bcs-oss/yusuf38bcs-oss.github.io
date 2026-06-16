@@ -1,221 +1,481 @@
 /* ==========================================================================
-   OMEGA PRODUCTION OVERRIDES (THE CRITICAL FINAL CASCADING LAYER)
-   Fixes: Navbar Gap, Hero Alignment, and Premium Footer Grid Restructuring
+   OMEGA OVERRIDE — Production Stabilization Layer
+   Loaded dead-last in main.scss. Neutralizes omega-v11/v15 conflicts.
    ========================================================================== */
 
-/* --- 1. UNIVERSAL TYPOGRAPHY & FLUID ENGINE --- */
-html { font-size: clamp(14px, 1.1vw, 17px) !important; }
-
-h1, .hero-title, .hero-section h1 {
-  font-size: clamp(2.2rem, calc(4.5vw + 1rem), 4.2rem) !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.03em !important;
+/* ── LEAK SUPPRESSION ── */
+body > hr:first-of-type,
+.initial-content > hr:first-child,
+.page__content > hr:first-child,
+.masthead + hr,
+hr:empty {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
 }
 
-h2, .section-title {
-  font-size: clamp(1.7rem, calc(3vw + 1rem), 2.8rem) !important;
-  letter-spacing: -0.02em !important;
+/* ── MASTHEAD LOCK ── */
+.masthead {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9000 !important;
 }
 
-p, li, span, a, h3, h4, .card-content, .knowledge-manifold-card p {
-  word-spacing: normal !important;
-  letter-spacing: normal !important;
-  line-height: 1.65 !important;
+.masthead__inner-wrap {
+  min-height: 56px !important;
+  max-height: 72px !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 1rem !important;
+  box-sizing: border-box !important;
 }
 
-/* --- 2. HOMEPAGE CONTAINER RESETS --- */
-.synaptic-homepage-matrix, #synaptic-home-root, .initial-content, #main, main {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+.masthead__menu {
+  display: block !important;
+  width: 100% !important;
 }
 
+.greedy-nav {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: transparent !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
 
+.site-logo {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-right: 0.5rem !important;
+}
 
-.home .page__title, .home .page__meta,
-.synaptic-homepage-matrix .page__title {
+.site-logo img {
+  max-height: 36px !important;
+  width: auto !important;
+  display: block !important;
+}
+
+.site-title {
+  display: block !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  flex-shrink: 1 !important;
+  min-width: 0 !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.visible-links {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.masthead__menu-item {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.masthead__menu-item a,
+.visible-links a {
+  display: block !important;
+  font-size: 0.85rem !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  padding: 0.4rem 0.6rem !important;
+}
+
+.greedy-nav__toggle {
+  flex-shrink: 0 !important;
+  margin-left: 0.5rem !important;
+}
+
+/* Mobile drawer */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 0.9rem !important;
+    max-width: 60vw !important;
+  }
+
+  .hidden-links {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    width: 85vw !important;
+    max-width: 380px !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background-color: #020617 !important;
+    z-index: 99999 !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow-y: auto !important;
+    padding: 3rem 2rem !important;
+    box-shadow: -15px 0 50px rgba(0, 0, 0, 0.8) !important;
+    border-left: 1px solid rgba(0, 245, 212, 0.15) !important;
+    display: block !important;
+    list-style: none !important;
+    margin: 0 !important;
+  }
+
+  .hidden-links.hidden {
+    transform: translateX(100%) !important;
+  }
+
+  .hidden-links:not(.hidden) {
+    transform: translateX(0) !important;
+  }
+
+  .hidden-links li {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .hidden-links a {
+    display: block !important;
+    font-size: 1.05rem !important;
+    padding: 1rem 0 !important;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1) !important;
+    white-space: normal !important;
+  }
+}
+
+/* ── HERO RECOVERY ── */
+.neural-hero,
+.hero,
+.page__hero,
+.page__hero--overlay {
+  position: relative !important;
+  min-height: 85vh !important;
+  min-height: 85dvh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  overflow: hidden !important;
+  padding: 4rem 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+.neural-hero .wrapper,
+.hero .wrapper,
+.page__hero .wrapper {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+/* ── BACKGROUND STACK ── */
+#neural-network,
+.neural-bg,
+canvas[id*="neural"] {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+.initial-content,
+#main,
+.page,
+.page__inner-wrap {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* ── GAP COLLAPSE ── */
+.neural-divider:empty,
+.section-divider:empty,
+.spacer:empty,
+div:empty:not([class*="neural"]):not([id]) {
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
   display: none !important;
 }
 
-/* --- 3. ACADEMIC FOOTER ALIGNMENT & REFINEMENT --- */
-body {
-  min-height: 100vh !important;
-  display: flex !important;
-  flex-direction: column !important;
+.home-section,
+.academic-sections,
+.recent-posts,
+.tests-cta {
+  margin-bottom: 2rem !important;
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
 }
 
-#main, .page, .main-content-render-viewport {
-  flex: 1 0 auto !important; /* Ensures footer is pushed to the bottom of the screen */
-}
-
-.neural-footer, .neural-core-footer, .page__footer, footer {
-  display: block !important;
-  position: relative !important;
-  z-index: 10 !important;
-  background: linear-gradient(180deg, #020617 0%, #01040a 100%) !important;
-  border-top: 1px solid rgba(0, 212, 178, 0.15) !important;
-  padding: 5rem 2rem 2rem 2rem !important;
-  margin-top: auto !important;
-}
-
-/* Master Grid Structure */
-.footer-matrix-container {
+/* ── CARD GRID EQUAL HEIGHT ── */
+.card-grid,
+.feature__wrapper,
+.archive,
+.entries-list {
   display: grid !important;
-  max-width: 1250px !important;
-  margin: 0 auto !important;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
-  gap: 3rem !important;
-  align-items: start !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap: 1.5rem !important;
+  align-items: stretch !important;
 }
 
-/* Brand Column Polish */
-.footer-matrix-column:first-child p,
-.footer-matrix-desc {
-  text-align: left !important;
-  color: #94a3b8 !important;
-  line-height: 1.7 !important;
-  font-size: 0.95rem !important;
-  max-width: 90% !important;
-  margin-top: 0.75rem !important;
-}
-
-/* Footer Navigation Links */
-.footer-matrix-nav {
+.neural-card,
+.hub-card,
+.feature__item,
+.archive__item {
   display: flex !important;
   flex-direction: column !important;
-  gap: 0.85rem !important;
-  text-align: left !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
 }
 
-.footer-matrix-link {
-  color: #cbd5e1 !important;
-  font-size: 0.92rem !important;
-  text-decoration: none !important;
-  transition: color 0.2s ease, transform 0.2s ease !important;
-  display: inline-block !important;
-}
-
-.footer-matrix-link:hover {
-  color: #00d4b2 !important;
-  transform: translateX(4px) !important;
-}
-
-/* Subscription Button Constraint */
-.newsletter-action-trigger, .footer-btn {
-  display: inline-flex !important;
+.hub-card {
   align-items: center !important;
   justify-content: center !important;
-  background: linear-gradient(135deg, #00d4b2, #0369a1) !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  padding: 0.85rem 1.5rem !important;
-  border-radius: 8px !important;
-  border: none !important;
-  width: auto !important;
-  min-width: 180px !important;
+  gap: 0.75rem !important;
+  padding: 1.5rem !important;
+  border-radius: 10px !important;
   text-align: center !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  border: 1px solid rgba(0, 245, 212, 0.15) !important;
+  background: rgba(0, 245, 212, 0.04) !important;
+}
+
+.hub-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(0, 245, 212, 0.3) !important;
+}
+
+.hub-card__icon {
+  font-size: 2rem !important;
+  line-height: 1 !important;
+}
+
+.hub-card__title {
+  font-size: 1rem !important;
+  line-height: 1.3 !important;
+}
+
+.neural-card .card-body,
+.feature__item .archive__item-excerpt,
+.archive__item-excerpt {
+  flex: 1 1 auto !important;
+}
+
+/* ── ARCHIVE HARDENING ── */
+.archive__item {
+  margin-bottom: 1.5rem !important;
+  padding: 1.25rem !important;
+  border-radius: 8px !important;
+  word-break: break-word !important;
+}
+
+.archive__item-teaser {
+  margin-bottom: 0.75rem !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  min-height: 120px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.archive__item-teaser img,
+.archive__item-teaser--fallback {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  max-width: 100% !important;
+}
+
+.archive__item-title {
+  font-size: 1.15rem !important;
+  line-height: 1.3 !important;
+  margin-top: 0 !important;
+}
+
+.archive__item-title a {
+  text-decoration: none !important;
+}
+
+.archive__item-excerpt {
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
   margin-top: 0.5rem !important;
 }
 
-.newsletter-action-trigger:hover, .footer-btn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px rgba(0, 212, 178, 0.3) !important;
-}
-
-/* Pedagogical Core Card Formatting */
-.footer-pedagogy-card, .footer-pedagogy-wrapper {
-  max-width: 850px !important;
-  margin: 4rem auto 2rem auto !important;
-  background: rgba(15, 23, 42, 0.5) !important;
-  border: 1px solid rgba(0, 212, 178, 0.2) !important;
-  border-radius: 12px !important;
-  padding: 2.5rem 2rem !important;
+.archive__warning {
   text-align: center !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  padding: 2rem !important;
+  font-style: italic !important;
 }
 
-/* Mobile Breakpoint Adjustments */
-@media (max-width: 1024px) {
-  .footer-matrix-container {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+/* ── NEWSLETTER ── */
+.synaptic-newsletter {
+  max-width: 640px !important;
+  margin: 2rem auto !important;
+  padding: 2rem !important;
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
 }
 
-@media (max-width: 768px) {
-  .footer-matrix-container {
-    grid-template-columns: 1fr !important;
-    text-align: center !important;
-  }
-  .footer-matrix-column:first-child p,
-  .footer-matrix-desc,
-  .footer-matrix-nav {
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  .footer-matrix-link:hover {
-    transform: none !important;
-  }
+.synaptic-newsletter__form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
 }
 
-/* --- 4. ACCESSIBILITY & MOTION SAFETY --- */
-a:focus-visible, button:focus-visible {
-  outline: 2px dashed #00d4b2 !important;
-  outline-offset: 4px !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-/* ======================================================================
-   OMEGA FOOTER REFINEMENTS
-   ====================================================================== */
-
-.neural-footer__mission{
-  margin-top:.75rem;
-  max-width:42rem;
-  color:#94a3b8;
-  line-height:1.65;
-  font-size:.92rem;
-}
-
-.neural-footer iframe,
-.neural-footer .sib-form{
-  max-width:360px !important;
-  width:100% !important;
-}
-
-.neural-footer__reflection-card{
-  max-width:860px;
-  margin-inline:auto;
-}
-
-.neural-footer__legal{
-  border-top:1px solid rgba(0,212,178,.15);
-}
-
-@media (min-width:1024px){
-
-  .neural-footer__grid{
-    grid-template-columns:
-      1.1fr
-      1fr
-      1fr;
-  }
-
-  .neural-footer__column--subscribe{
-    padding-left:1rem;
-  }
-
-}
-/* Synaptic Footer Visibility Guard */
-.synaptic-footer {
+.synaptic-newsletter__label {
   display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 10 !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.synaptic-newsletter__input-group {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+}
+
+.synaptic-newsletter__input {
+  flex: 1 1 auto !important;
+  min-width: 220px !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  background: rgba(2, 6, 23, 0.6) !important;
+  color: inherit !important;
+  font-size: 0.95rem !important;
+  box-sizing: border-box !important;
+}
+
+.synaptic-newsletter__button {
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 6px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+}
+
+.synaptic-newsletter__optin {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.5rem !important;
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
+}
+
+.synaptic-newsletter__checkbox {
+  margin-top: 0.15rem !important;
+  width: 1rem !important;
+  height: 1rem !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+}
+
+/* ── FOOTER COLUMNS ── */
+.neural-footer,
+.page__footer {
+  padding: 2.5rem 1rem 1.5rem !important;
+}
+
+.neural-footer__grid,
+.footer-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+  gap: 2rem !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+.footer-col h4 {
+  margin-top: 0 !important;
+  margin-bottom: 0.75rem !important;
+  font-size: 1rem !important;
+}
+
+.footer-col ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer-col li {
+  margin-bottom: 0.35rem !important;
+}
+
+.footer-col a {
+  display: inline-block !important;
+  padding: 0.15rem 0 !important;
+  font-size: 0.9rem !important;
+  text-decoration: none !important;
+}
+
+.footer-bottom {
+  text-align: center !important;
+  margin-top: 2.5rem !important;
+  padding-top: 1.25rem !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.1) !important;
+  font-size: 0.85rem !important;
+}
+
+/* ── HUB PAGE TYPOGRAPHY ── */
+.biology-hub-page,
+.philosophy-hub-page {
+  max-width: 100% !important;
+}
+
+.page-subtitle-lead {
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+  margin-bottom: 2rem !important;
+  opacity: 0.9 !important;
+}
+
+.section-heading {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2) !important;
+  padding-bottom: 0.5rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.25rem !important;
+  font-size: 1.35rem !important;
+}
+
+/* ── GLOBAL CONTAINMENT ── */
+html,
+body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+.initial-content {
+  min-height: 50vh !important;
 }

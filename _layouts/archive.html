@@ -1,49 +1,35 @@
----
+﻿---
 layout: default
 ---
 
-<div class="synaptic-page-container">
-  <div class="page-layout-grid">
-
-    <main class="page-main-article" role="main">
-      <header class="page-content-header">
-        <h1 class="page-main-title u-text-glow">{{ page.title | default: "Knowledge Archive" }}</h1>
-        {% if page.description %}
-          <p class="page-subtitle-lead">{{ page.description }}</p>
-        {% endif %}
-        <div class="header-matrix-line"></div>
-      </header>
-
-      <div class="archive-matrix-grid-stream">
-        {% if paginator %}
-          {% assign posts_target = paginator.posts %}
-        {% else %}
-          {% assign posts_target = site.posts %}
-        {% endif %}
-
-        {% if posts_target.size > 0 %}
-          {% for post in posts_target %}
-            <div class="archive-grid-item-card">
-              {% include components/archive-single.html %}
-            </div>
-          {% endfor %}
-        {% else %}
-          <div class="archive-empty-fallback">
-            <p>No analytical publication tracks found in this node timeline.</p>
-          </div>
+{% if page.header.overlay_color or page.header.overlay_image %}
+  <div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}"
+       style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if page.header.overlay_image %}background-image: url('{{ page.header.overlay_image | relative_url }}');{% endif %}">
+    {% if page.header.overlay_filter %}
+      <div class="wrapper">
+        <h1 id="page-title" class="page__title" itemprop="headline">
+          {{ page.title }}
+        </h1>
+        {% if page.excerpt %}
+          <p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
         {% endif %}
       </div>
-
-      {% if paginator.total_pages > 1 %}
-        <div class="archive-pagination-wrapper">
-          {% include components/neural-pagination.html %}
-        </div>
-      {% endif %}
-    </main>
-
-    <aside class="page-sidebar-viewport">
-      {% include navigation/contextual-sidebar.html %}
-    </aside>
-
+    {% endif %}
   </div>
+{% endif %}
+
+<div id="main" role="main">
+  <div class="archive">
+    {% unless page.posts %}
+      <p class="archive__warning">No posts found for this archive.</p>
+    {% endunless %}
+
+    {% for post in page.posts %}
+      {% include components/archive-single.html %}
+    {% endfor %}
+  </div>
+
+  {% include components/neural-pagination.html %}
 </div>
+
+{% include navigation/contextual-sidebar.html %}

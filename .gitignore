@@ -25,3 +25,8 @@ registry_review.csv
 # Backup files
 *.backup.*
 
+audit/backups/
+audit/reports/
+
+# Temporary Google Drive upload/cache files
+.tmp.driveupload/

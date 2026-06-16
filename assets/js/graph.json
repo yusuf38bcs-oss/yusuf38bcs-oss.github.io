@@ -1,0 +1,20 @@
+---
+layout: null
+---
+[
+{%- for concept in site.concepts -%}
+  {%- assign slug = concept.slug -%}
+  {%- assign title = concept.title | default: slug -%}
+  {%- unless title == blank -%}
+  {
+    "slug": {{ slug | jsonify }},
+    "id": {{ concept.id | default: slug | jsonify }},
+    "title": {{ title | jsonify }},
+    "category": {{ concept.category | default: "Uncategorized" | jsonify }},
+    "prerequisites": {{ concept.prerequisites | default: empty | jsonify }},
+    "links": {{ concept.downstream_links | default: empty | jsonify }},
+    "depth": {{ concept.difficulty_depth | default: 1 }}
+  }{%- unless forloop.last -%},{%- endunless -%}
+  {%- endunless -%}
+{%- endfor -%}
+]
