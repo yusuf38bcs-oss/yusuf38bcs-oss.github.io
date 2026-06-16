@@ -1,0 +1,37 @@
+---
+layout: null
+permalink: /assets/data/graph_manifest.json
+---
+{
+  "schema": "learning-biology-for-life.graph.v1",
+  "generated_at": "{{ site.time | date_to_xmlschema }}",
+  "site": {{ site.title | default: "Learning Biology For Life" | jsonify }},
+  "nodes": [
+    {% for node in site.data.neural_nodes %}
+    {
+      "id": {{ node.id | jsonify }},
+      "slug": {{ node.id | jsonify }},
+      "title": {{ node.title | default: node.label | jsonify }},
+      "label": {{ node.label | default: node.title | jsonify }},
+      "url": {{ node.url | default: "" | jsonify }},
+      "discipline": {{ node.group | default: node.pillar | default: "general" | jsonify }},
+      "pillar": {{ node.pillar | default: "Unassigned" | jsonify }},
+      "difficulty_tier": {{ node.difficulty_tier | default: 3 | jsonify }},
+      "difficulty": {{ node.difficulty | default: "Intermediate" | jsonify }},
+      "mastery_threshold": {{ node.mastery_threshold | default: 0.85 | jsonify }},
+      "estimated_cognitive_load": {{ node.estimated_cognitive_load | default: 35 | jsonify }},
+      "status": {{ node.status | default: "Active" | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "edges": [
+    {% for edge in site.data.neural_edges %}
+    {
+      "source": {{ edge.source | jsonify }},
+      "target": {{ edge.target | jsonify }},
+      "relationship_type": {{ edge.type | default: "related" | jsonify }},
+      "coupling_coefficient": {{ edge.coupling_coefficient | default: 0.75 | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
