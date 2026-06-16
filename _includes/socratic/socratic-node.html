@@ -1,0 +1,26 @@
+<section class="socratic-node" data-socratic-node>
+  <h2>Socratic Reflex Challenge</h2>
+
+  {% if page.socratic_prompt %}
+    <p class="socratic-question">{{ page.socratic_prompt }}</p>
+  {% endif %}
+
+  <form data-socratic-form data-question="{{ page.socratic_prompt | default: '' | escape }}">
+    <label for="socratic-hypothesis">
+      Write your biological hypothesis:
+    </label>
+
+    <textarea
+      id="socratic-hypothesis"
+      data-socratic-input
+      rows="5"
+      required
+    ></textarea>
+
+    <button type="submit" class="btn btn--primary">
+      Test Hypothesis
+    </button>
+  </form>
+
+  <div class="socratic-feedback" data-socratic-feedback aria-live="polite"></div>
+</section>
