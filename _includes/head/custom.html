@@ -1,1 +1,6 @@
-{% include head/head.html %}
+{% comment %}
+  Custom head extension only. Do not re-include head/head.html here;
+  default.html already loads _includes/head.html.
+{% endcomment %}
+
+{% include head/omega-blueprint-runtime.html %}
