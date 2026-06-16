@@ -5,20 +5,15 @@
 # Purpose:
 #   Central node registry for hub pages, prerequisite chains,
 #   connected learning paths, and future gamified navigation.
-#
-# Rules:
-#   1. Every node must have a unique id.
-#   2. Every node must have a title.
-#   3. Use official site routes from _data/navigation.yml.
-#   4. Keep URLs as root-relative paths with trailing slashes.
-#   5. Preserve UTF-8 encoding.
 # =========================================================
 
 - id: hub-biology
   title: "Biology Core Hub"
   short_title: "Biology Core"
+  label: "Biology Core"
   url: "/biology/"
   pillar: "Life Sciences"
+  group: biology
   type: "hub"
   difficulty: "Advanced"
   status: "Active"
@@ -27,15 +22,19 @@
   icon: "🧬"
   prerequisites: []
   connects_to:
-    - hsc-botany
-    - hsc-zoology
-    - zoology-tree
+    - physiology
+    - ecology
+    - genetics
+    - biostatistics
+    - synaptic-bridge
 
 - id: hsc-botany
   title: "HSC Corner: Botany"
   short_title: "Botany"
+  label: "Botany"
   url: "/biology/hsc-corner/botany/"
   pillar: "Life Sciences"
+  group: biology
   type: "learning_path"
   difficulty: "Foundation"
   status: "Active"
@@ -50,8 +49,10 @@
 - id: hsc-zoology
   title: "HSC Corner: Zoology"
   short_title: "Zoology"
+  label: "Zoology"
   url: "/biology/hsc-corner/zoology/"
   pillar: "Life Sciences"
+  group: biology
   type: "learning_path"
   difficulty: "Foundation"
   status: "Active"
@@ -67,8 +68,10 @@
 - id: zoology-tree
   title: "Higher Zoology Tree"
   short_title: "Higher Zoology"
+  label: "Higher Zoology"
   url: "/biology/higher-zoology-tree/"
   pillar: "Life Sciences"
+  group: biology
   type: "knowledge_tree"
   difficulty: "Advanced"
   status: "Active"
@@ -89,8 +92,10 @@
 - id: animal-diversity
   title: "Animal Diversity"
   short_title: "Animal Diversity"
+  label: "Animal Diversity"
   url: "/categories/animal-diversity/"
   pillar: "Life Sciences"
+  group: biology
   type: "topic_cluster"
   difficulty: "Intermediate"
   status: "Active"
@@ -105,8 +110,10 @@
 - id: physiology
   title: "Human Physiology"
   short_title: "Physiology"
+  label: "Physiology"
   url: "/categories/physiology/"
   pillar: "Life Sciences"
+  group: biology
   type: "topic_cluster"
   difficulty: "Intermediate"
   status: "Active"
@@ -118,12 +125,15 @@
   connects_to:
     - zoology-tree
     - hsc-zoology
+    - human-behaviour
 
 - id: ecology
   title: "Ecology"
   short_title: "Ecology"
+  label: "Ecology"
   url: "/categories/ecology/"
   pillar: "Life Sciences"
+  group: biology
   type: "topic_cluster"
   difficulty: "Intermediate"
   status: "Active"
@@ -136,12 +146,15 @@
     - zoology-tree
     - hsc-botany
     - hsc-zoology
+    - systems-thinking
 
 - id: genetics
   title: "Genetics"
   short_title: "Genetics"
+  label: "Genetics"
   url: "/categories/genetics/"
   pillar: "Life Sciences"
+  group: biology
   type: "topic_cluster"
   difficulty: "Intermediate"
   status: "Active"
@@ -154,12 +167,15 @@
     - hsc-botany
     - hsc-zoology
     - zoology-tree
+    - neuroplasticity
 
 - id: biostatistics
   title: "Biostatistics"
   short_title: "Biostatistics"
+  label: "Biostatistics"
   url: "/categories/biostatistics/"
   pillar: "Life Sciences"
+  group: biology
   type: "topic_cluster"
   difficulty: "Intermediate"
   status: "Active"
@@ -172,36 +188,44 @@
     - zoology-tree
     - ecology
     - genetics
+    - systems-thinking
 
 - id: synaptic-bridge
   title: "Synaptic Bridge"
   short_title: "Synaptic Bridge"
+  label: "Synaptic Bridge"
   url: "/synaptic-bridge/"
   pillar: "Reflective Learning"
+  group: synaptic
   type: "bridge"
   difficulty: "Advanced"
   status: "Active"
   xp: 700
   description: "Bridge between biological theory, behaviour, leadership, practical life, and reflective scientific reasoning."
   icon: "🌉"
-  prerequisites: []
-  connects_to:
+  prerequisites:
     - hub-biology
-    - life-practices
+  connects_to:
+    - systems-thinking
+    - neuroplasticity
+    - human-behaviour
     - socratic-audit
 
 - id: life-practices
   title: "Life Practices"
   short_title: "Life Practices"
+  label: "Life Practices"
   url: "/life-practices/"
   pillar: "Practical Approaches"
+  group: practices
   type: "hub"
   difficulty: "Intermediate"
   status: "Active"
   xp: 600
   description: "Practical applications of learning, human behaviour, leadership, self-reflection, and real-life biological thinking."
   icon: "🧭"
-  prerequisites: []
+  prerequisites:
+    - leadership-dynamics
   connects_to:
     - synaptic-bridge
     - socratic-audit
@@ -209,8 +233,10 @@
 - id: socratic-audit
   title: "Socratic Cognitive Audit"
   short_title: "Socratic Terminal"
+  label: "Cognitive Audit"
   url: "/life-practices/cognitive-audit/"
   pillar: "Socratic 4.0"
+  group: cognitive
   type: "assessment"
   difficulty: "Advanced"
   status: "Active"
@@ -220,5 +246,160 @@
   prerequisites:
     - synaptic-bridge
   connects_to:
-    - hub-biology
+    - multiple-intelligences
+    - personality-archetypes
+    - behavioral-axis
+
+# ==========================================
+# COGNITIVE & BEHAVIORAL LAYER
+# ==========================================
+- id: systems-thinking
+  title: "Systems Thinking"
+  short_title: "Systems Thinking"
+  label: "Systems Thinking"
+  group: synaptic
+  type: "concept"
+  url: "/matrix/systems-thinking/"
+  pillar: "Synaptic Bridge"
+  difficulty: "Advanced"
+  status: "Planned"
+  xp: 350
+  description: "Thinking across feedback loops, relationships, constraints, and emergent learning systems."
+  icon: "🕸️"
+  prerequisites:
+    - ecology
+    - biostatistics
+  connects_to:
+    - behavioral-axis
+    - synaptic-bridge
+
+- id: neuroplasticity
+  title: "Neuroplasticity"
+  short_title: "Neuroplasticity"
+  label: "Neuroplasticity"
+  group: biology
+  type: "concept"
+  url: "/matrix/neuroplasticity-and-learning/"
+  pillar: "Life Sciences"
+  difficulty: "Intermediate"
+  status: "Active"
+  xp: 300
+  description: "Adaptive change in neural pathways through learning, repetition, attention, and reflection."
+  icon: "🧠"
+  prerequisites:
+    - genetics
+  connects_to:
+    - multiple-intelligences
+    - behavioral-axis
+
+- id: human-behaviour
+  title: "Human Behaviour"
+  short_title: "Behaviour"
+  label: "Human Behaviour"
+  group: biology
+  type: "bridge_topic"
+  url: "/biology/higher-zoology-tree/human-behaviour/"
+  pillar: "Life Sciences"
+  difficulty: "Intermediate"
+  status: "Active"
+  xp: 400
+  description: "Neuro-endocrine interaction, evolutionary psychology, regulation, and behavioral homeostasis."
+  icon: "🧬"
+  prerequisites:
+    - physiology
+  connects_to:
+    - behavioral-axis
+
+- id: multiple-intelligences
+  title: "Multiple Intelligences"
+  short_title: "MI Analysis"
+  label: "Multiple Intelligences"
+  group: cognitive
+  type: "concept"
+  url: "/matrix/multiple-intelligences/"
+  pillar: "Socratic 4.0"
+  difficulty: "Advanced"
+  status: "Active"
+  xp: 500
+  description: "Cognitive learning-channel mapping across multiple intelligence dimensions."
+  icon: "🧩"
+  prerequisites:
+    - neuroplasticity
+    - socratic-audit
+  connects_to:
+    - personality-archetypes
+    - behavioral-axis
+
+- id: behavioral-axis
+  title: "Behavioral Axis"
+  short_title: "Behavioral Axis"
+  label: "Behavioral Axis"
+  group: cognitive
+  type: "concept"
+  url: "/matrix/behavioral-axis/"
+  pillar: "Life Practices"
+  difficulty: "Intermediate"
+  status: "Active"
+  xp: 150
+  description: "Bridge between biological signals, reflective cognition, conscious decision-making, and leadership behaviour."
+  icon: "🧭"
+  prerequisites:
+    - human-behaviour
+    - neuroplasticity
+  connects_to:
+    - decision-making
+    - leadership-dynamics
+
+- id: personality-archetypes
+  title: "Personality Archetypes"
+  short_title: "Archetypes"
+  label: "Personality Archetypes"
+  group: cognitive
+  type: "concept"
+  url: "/matrix/personality-archetypes/"
+  pillar: "Socratic 4.0"
+  difficulty: "Intermediate"
+  status: "Planned"
+  xp: 300
+  description: "Reflective mapping of behavioural patterns, personality tendencies, and growth orientation."
+  icon: "🪞"
+  prerequisites:
+    - multiple-intelligences
+  connects_to:
+    - behavioral-axis
+
+- id: decision-making
+  title: "Decision Making"
+  short_title: "Decision Making"
+  label: "Decision Making"
+  group: practices
+  type: "concept"
+  url: "/matrix/decision-making/"
+  pillar: "Life Practices"
+  difficulty: "Intermediate"
+  status: "Planned"
+  xp: 300
+  description: "Reflective choice architecture, uncertainty handling, ethical judgment, and practical reasoning."
+  icon: "⚖️"
+  prerequisites:
+    - behavioral-axis
+  connects_to:
+    - leadership-dynamics
+
+- id: leadership-dynamics
+  title: "Leadership Dynamics"
+  short_title: "Leadership"
+  label: "Leadership Dynamics"
+  group: practices
+  type: "concept"
+  url: "/matrix/leadership-dynamics/"
+  pillar: "Life Practices"
+  difficulty: "Advanced"
+  status: "Planned"
+  xp: 400
+  description: "Leadership through systems awareness, behavioural regulation, ethical responsibility, and reflective action."
+  icon: "🌐"
+  prerequisites:
+    - decision-making
+  connects_to:
     - life-practices
