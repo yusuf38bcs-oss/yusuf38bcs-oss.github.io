@@ -7,32 +7,17 @@
 
 @charset "utf-8";
 
-/* ==========================================================================
-   1. EARLY BOOTSTRAP VARIABLES
-   ========================================================================== */
 $serif: Georgia, Times, serif !default;
 $sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !default;
 $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 
-/* ==========================================================================
-   2. CUSTOM VARIABLE OVERRIDES
-   ========================================================================== */
 @import "core/variables";
 
-/* ==========================================================================
-   3. MINIMAL MISTAKES ENGINE
-   ========================================================================== */
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'dark' }}";
 @import "minimal-mistakes";
 
-/* ==========================================================================
-   4. MIXINS
-   ========================================================================== */
 @import "core/mixins";
 
-/* ==========================================================================
-   5. CORE COMPONENTS
-   ========================================================================== */
 @import "components/buttons";
 @import "components/cards";
 @import "components/panels";
@@ -46,32 +31,97 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 @import "components/neural-bg";
 @import "components/footer";
 
-/* ==========================================================================
-   6. LAYOUT ECOSYSTEM
-   ========================================================================== */
 @import "layout/home-layout";
 @import "layout/synaptic";
 @import "layout/neural-node";
 @import "layout/network";
 @import "layout/cinematic-refinement";
 
-/* ==========================================================================
-   7. UTILITIES
-   ========================================================================== */
 @import "utilities/animations";
 @import "utilities/utilities";
 
-/* ==========================================================================
-   8. STABILIZATION LAYER
-   ========================================================================== */
 @import "layout/homepage-stabilizer";
-
-/* ==========================================================================
-   9. MATRIX ARCHITECTURE COMPILING TARGET
-   ========================================================================== */
+@import "layout/omega-overrides";
 @import "custom/omega-v15";
 
-/* ==========================================================================
-   10. PRODUCTION OMEGA OVERRIDE — Dead Last
-   ========================================================================== */
-@import "layout/omega-overrides";
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+.masthead__inner-wrap {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.site-logo img {
+  max-height: 36px;
+  width: auto;
+  display: block;
+}
+
+.site-title {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.greedy-nav {
+  background: transparent !important;
+}
+
+.greedy-nav a {
+  font-size: 0.9rem !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+
+.archive__item {
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.archive__item-title {
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.archive__item-excerpt {
+  margin-top: 0.75rem;
+}
+
+.archive__item-teaser img,
+.page__hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.neural-node-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.neural-node-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 0.95rem !important;
+  }
+  .greedy-nav a {
+    font-size: 0.85rem !important;
+  }
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
