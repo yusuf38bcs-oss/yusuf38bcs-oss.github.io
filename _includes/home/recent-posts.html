@@ -1,19 +1,35 @@
 {% assign posts = site.posts | limit: 6 %}
-<section class="home-section recent-posts">
-  <h2 class="section-title">Latest Scientific Logs</h2>
+<section class="home-section recent-posts omega-scientific-logs" aria-labelledby="latest-scientific-logs-title">
+  <div class="omega-logs-head">
+    <span class="omega-logs-kicker">Research Stream</span>
+    <h2 id="latest-scientific-logs-title" class="section-title">Latest Scientific Logs</h2>
+    <p>Recent biology notes, reflective scientific learning, and Synaptic Bridge updates.</p>
+  </div>
+
   {% if posts.size > 0 %}
-    <div class="card-grid">
+    <div class="omega-logs-grid">
       {% for post in posts %}
-        {% include components/archive-single.html %}
+        <article class="omega-log-card" itemscope itemtype="https://schema.org/CreativeWork">
+          <div class="omega-log-card__meta">
+            <span>{{ post.date | date: "%b %d, %Y" }}</span>
+            {% if post.categories and post.categories.size > 0 %}<span>{{ post.categories | first }}</span>{% endif %}
+          </div>
+          <h3 itemprop="headline"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          {% if post.excerpt %}<p itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 150 }}</p>{% endif %}
+          <a class="omega-log-card__read" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">Read Log ›</a>
+        </article>
       {% endfor %}
     </div>
-    <div class="section-cta">
-      <a href="{{ '/archive/' | relative_url }}" class="btn btn--primary">View Archive</a>
+    <div class="section-cta omega-logs-cta">
+      <a href="{{ '/blog/' | relative_url }}" class="btn btn--primary">View Scientific Logs</a>
+      <a href="{{ '/categories/' | relative_url }}" class="btn btn--inverse">Browse Categories</a>
     </div>
   {% else %}
     <p class="archive__warning">Awaiting fresh scientific logs. Check back soon.</p>
-    <div class="section-cta">
-      <a href="{{ '/categories/' | relative_url }}" class="btn btn--primary">Browse Categories</a>
-    </div>
+    <div class="section-cta"><a href="{{ '/categories/' | relative_url }}" class="btn btn--primary">Browse Categories</a></div>
   {% endif %}
 </section>
+
+<style>
+  .omega-scientific-logs{padding:clamp(2.5rem,6vw,4.5rem) 1rem!important;background:linear-gradient(180deg,rgba(2,6,23,.96),rgba(15,23,42,.82));border-top:1px solid rgba(0,212,178,.1);border-bottom:1px solid rgba(0,212,178,.08)}.omega-logs-head{width:min(1100px,100%);margin:0 auto 1.5rem;text-align:left}.omega-logs-kicker{display:inline-flex;margin-bottom:.7rem;padding:.35rem .75rem;border:1px solid rgba(0,212,178,.22);border-radius:999px;color:#5eead4;background:rgba(0,212,178,.07);font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.omega-logs-head h2{margin:0;color:#fff;font-size:clamp(1.75rem,5vw,3rem);line-height:1.1;font-weight:950;letter-spacing:-.04em}.omega-logs-head p{max-width:720px;margin:.75rem 0 0;color:#94a3b8;font-size:1rem;line-height:1.65}.omega-logs-grid{width:min(1100px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.omega-log-card{display:flex;flex-direction:column;min-height:230px;padding:1.15rem;border:1px solid rgba(148,163,184,.14);border-radius:18px;background:radial-gradient(circle at top left,rgba(0,212,178,.08),transparent 42%),rgba(15,23,42,.66);box-shadow:0 16px 36px rgba(0,0,0,.22);overflow:hidden}.omega-log-card__meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.8rem}.omega-log-card__meta span{display:inline-flex;padding:.25rem .55rem;border-radius:999px;background:rgba(0,212,178,.07);border:1px solid rgba(0,212,178,.16);color:#99f6e4;font-size:.72rem;font-weight:800}.omega-log-card h3{margin:0}.omega-log-card h3 a{color:#f8fafc!important;text-decoration:none!important;font-size:1.12rem;line-height:1.25;font-weight:900}.omega-log-card p{margin:.8rem 0 1rem;color:#cbd5e1;font-size:.92rem;line-height:1.6}.omega-log-card__read{margin-top:auto;color:#5eead4!important;text-decoration:none!important;font-size:.86rem;font-weight:900}.omega-logs-cta{width:min(1100px,100%);margin:1.5rem auto 0;display:flex;gap:.75rem;flex-wrap:wrap}@media(max-width:900px){.omega-logs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.omega-logs-grid{grid-template-columns:1fr}.omega-log-card{min-height:0}.omega-logs-cta a{width:100%;text-align:center}}
+</style>
