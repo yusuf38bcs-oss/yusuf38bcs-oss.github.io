@@ -1,196 +1,47 @@
 ---
 layout: default
 ---
-
-{% comment %}
-  Core Identifier Resolution:
-  Future-proofs the architecture by gracefully falling back from node_id -> id -> slug.
-  Once migration is complete, node_id can be safely deprecated.
-{% endcomment %}
 {% assign current_id = page.node_id | default: page.id | default: page.slug %}
-
-<article class="concept-node-container" 
-         data-node-id="{{ current_id }}" 
-         data-pillar="{{ page.pillar | default: 'unassigned' }}"
-         data-mastery-state="{{ page.mastery_state | default: 'locked' }}"
-         data-difficulty="{{ page.difficulty | default: 1 }}"
-         data-cognitive-depth="{{ page.cognitive_depth | default: 1 }}"
-         data-mastery-points="{{ page.mastery_points | default: 0 }}"
-         data-terminal-node="{{ page.terminal_node | default: false }}">
-  
-  <header class="node-header">
-    <h1 class="node-title">{{ page.title }}</h1>
-    
-    {% if page.excerpt %}
-      <p class="node-excerpt">{{ page.excerpt | strip_html }}</p>
-    {% endif %}
-    
-    {% if page.last_modified_at %}
-      <div class="node-updated">Updated: {{ page.last_modified_at | date: "%B %d, %Y" }}</div>
-    {% endif %}
-    
-    <div class="node-metadata-matrix">
-      {% if page.pillar %}
-      <div class="meta-item">
-        <span class="meta-label">Pillar:</span> 
-        <span class="meta-value">{{ page.pillar | capitalize | replace: '-', ' ' }}</span>
-      </div>
-      {% endif %}
-      
-      <div class="meta-item">
-        <span class="meta-label">Difficulty:</span> 
-        <span class="meta-value">Level {{ page.difficulty | default: "Unrated" }}</span>
-      </div>
-      
-      {% if page.cognitive_depth %}
-      <div class="meta-item">
-        <span class="meta-label">Cognitive Depth:</span> 
-        <span class="meta-value">{{ page.cognitive_depth }}</span>
-      </div>
-      {% endif %}
-      
-      <div class="meta-item">
-        <span class="meta-label">XP:</span> 
-        <span class="meta-value">{{ page.mastery_points | default: 0 }} Points</span>
-      </div>
-      
-      <div class="meta-item">
-        <span class="meta-label">Estimated Time:</span> 
-        <span class="meta-value">{{ page.estimated_time | default: "N/A" }}</span>
-      </div>
-      
-      <div class="meta-item">
-        <span class="meta-label">Status:</span> 
-        <span class="status-badge status-{{ page.status | default: 'available' }}">{{ page.status | default: "Available" | capitalize }}</span>
-      </div>
-      
-      <div class="meta-item">
-        <span class="meta-label">Mastery:</span> 
-        <span class="mastery-badge state-{{ page.mastery_state | default: 'locked' }}">{{ page.mastery_state | default: "Locked" | capitalize }}</span>
-      </div>
+{% assign node_xp = page.xp | default: page.mastery_points | default: 0 %}
+<article class="concept-node-container omega-concept-node" data-node-id="{{ current_id }}" itemscope itemtype="https://schema.org/LearningResource">
+  <header class="omega-concept-header">
+    <div class="omega-node-badges">
+      <span>{{ page.pillar | default: 'unassigned' | replace: '-', ' ' | capitalize }}</span>
+      <span>{{ page.difficulty | default: 'unrated' | capitalize }}</span>
+      <span>+{{ node_xp }} XP</span>
+      <span>{{ page.mastery_state | default: 'unmapped' | capitalize }}</span>
     </div>
+    <h1 itemprop="name">{{ page.title }}</h1>
+    {% if page.description %}<p itemprop="description">{{ page.description }}</p>{% endif %}
   </header>
-
-  <section class="node-content">
-    {{ content }}
-  </section>
-
-  <nav class="node-graph-navigation" aria-label="Concept Graph Navigation">
-    <hr class="graph-divider">
-    <h3>Neural Graph Navigation</h3>
-    
-    <div class="graph-links-container">
-      
-      <div class="prerequisites-list">
-        <h4>Prerequisites (Afferent Vectors)</h4>
-        {% if page.prerequisites and page.prerequisites.size > 0 %}
-          <ul>
-          {% for prereq in page.prerequisites %}
-            
-            {% comment %} SAFE GRAPH RESOLUTION: Two-step lookup to avoid Liquid syntax errors {% endcomment %}
-            {% assign prereq_node = site.concepts | where: "node_id", prereq | first %}
-            {% unless prereq_node %}
-              {% assign prereq_node = site.concepts | where: "id", prereq | first %}
-            {% endunless %}
-
-            {% if prereq_node %}
-              <li><a href="{{ prereq_node.url | relative_url }}" class="graph-link">{{ prereq_node.title }}</a></li>
-            {% else %}
-              <li><span class="missing-node warning">Missing Node Vector: <code>{{ prereq }}</code></span></li>
-            {% endif %}
+  <section class="omega-concept-content e-content">{{ content }}</section>
+  <section class="omega-concept-graph" aria-label="Local Knowledge Graph">
+    <h2>Local Knowledge Graph</h2>
+    <p>Dependency-free local topology for prerequisites and next learning vectors.</p>
+    <div class="omega-svg-graph" data-core="{{ current_id }}" data-core-label="{{ page.title | escape }}">
+      <svg viewBox="0 0 900 360" role="img" aria-label="Concept graph for {{ page.title | escape }}">
+        <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+        {% assign req_count = page.prerequisites | size %}
+        {% assign next_count = page.next_nodes | size %}
+        {% if page.prerequisites and req_count > 0 %}
+          {% for req in page.prerequisites %}
+            {% assign y = 90 | plus: forloop.index0 | times: 70 %}
+            <line x1="170" y1="{{ y }}" x2="430" y2="180" class="edge" marker-end="url(#arrow)"></line>
+            <g class="node prereq"><circle cx="140" cy="{{ y }}" r="24"></circle><text x="140" y="{{ y | plus: 44 }}">{{ req | replace: '-', ' ' | capitalize }}</text></g>
           {% endfor %}
-          </ul>
-        {% else %}
-          <p class="graph-status">Root Node (No external prerequisites)</p>
         {% endif %}
-      </div>
-
-      <div class="next-nodes-list">
-        <h4>Next Nodes (Efferent Vectors)</h4>
-        {% if page.next_nodes and page.next_nodes.size > 0 %}
-          <ul>
-          {% for next_node in page.next_nodes %}
-            
-            {% comment %} SAFE GRAPH RESOLUTION: Two-step lookup to avoid Liquid syntax errors {% endcomment %}
-            {% assign target_node = site.concepts | where: "node_id", next_node | first %}
-            {% unless target_node %}
-              {% assign target_node = site.concepts | where: "id", next_node | first %}
-            {% endunless %}
-
-            {% if target_node %}
-              <li><a href="{{ target_node.url | relative_url }}" class="graph-link">{{ target_node.title }}</a></li>
-            {% else %}
-              <li><span class="missing-node warning">Missing Node Vector: <code>{{ next_node }}</code></span></li>
-            {% endif %}
+        <g class="node core"><circle cx="450" cy="180" r="34"></circle><text x="450" y="230">{{ page.title }}</text></g>
+        {% if page.next_nodes and next_count > 0 %}
+          {% for nxt in page.next_nodes %}
+            {% assign y = 90 | plus: forloop.index0 | times: 70 %}
+            <line x1="485" y1="180" x2="730" y2="{{ y }}" class="edge" marker-end="url(#arrow)"></line>
+            <g class="node next"><circle cx="760" cy="{{ y }}" r="24"></circle><text x="760" y="{{ y | plus: 44 }}">{{ nxt | replace: '-', ' ' | capitalize }}</text></g>
           {% endfor %}
-          </ul>
-        {% else %}
-          {% if page.terminal_node %}
-            <p class="graph-status">Terminal Capstone Node</p>
-          {% else %}
-            <p class="graph-status">End of current pathway</p>
-          {% endif %}
         {% endif %}
-      </div>
-      
+      </svg>
     </div>
-  </nav>
+  </section>
 </article>
-
 <style>
-  /* Base fallback styling utilizing theme variables where possible */
-  .concept-node-container { 
-    font-family: inherit; 
-  }
-  .node-header {
-    margin-bottom: 2rem;
-  }
-  .node-excerpt {
-    font-size: 1.15em;
-    color: var(--text-muted-color, #666);
-    font-style: italic;
-    margin-top: 0;
-  }
-  .node-updated {
-    font-size: 0.85em;
-    color: var(--text-muted-color, #888);
-    margin-bottom: 1rem;
-  }
-  .node-metadata-matrix { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 15px; 
-    padding: 15px; 
-    background: var(--global-bg-color, rgba(0,0,0,0.03));
-    border: 1px solid var(--border-color, rgba(0,0,0,0.1));
-    border-radius: 8px; 
-  }
-  .meta-item { font-size: 0.9em; }
-  .meta-label { font-weight: bold; color: var(--text-color, #333); }
-  .status-badge, .mastery-badge { 
-    padding: 2px 8px; 
-    border-radius: 12px; 
-    font-size: 0.85em; 
-    font-weight: bold; 
-  }
-  .state-unlocked { background-color: #e6f4ea; color: #1e8e3e; }
-  .state-locked { background-color: #f1f3f4; color: #5f6368; }
-  .state-mastered { background-color: #e8f0fe; color: #1a73e8; }
-  
-  .node-graph-navigation { margin-top: 3rem; }
-  .graph-links-container { 
-    display: flex; 
-    justify-content: space-between; 
-    flex-wrap: wrap; 
-    gap: 20px; 
-  }
-  .prerequisites-list, .next-nodes-list { 
-    flex: 1; 
-    min-width: 250px; 
-    padding: 15px; 
-    background: var(--global-bg-color, rgba(0,0,0,0.02)); 
-    border-left: 3px solid var(--primary-color, #ccc); 
-    border-radius: 0 8px 8px 0;
-  }
-  .missing-node.warning { color: #d93025; font-style: italic; }
+.omega-concept-node{max-width:1100px;margin:0 auto;padding:clamp(1rem,3vw,2rem);overflow:hidden}.omega-concept-header{padding:clamp(1.25rem,4vw,2.25rem);border:1px solid rgba(0,212,178,.18);border-radius:22px;background:radial-gradient(circle at top left,rgba(0,212,178,.14),transparent 42%),linear-gradient(135deg,rgba(15,23,42,.94),rgba(2,6,23,.78));box-shadow:0 22px 54px rgba(0,0,0,.3)}.omega-node-badges{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1rem}.omega-node-badges span{display:inline-flex;align-items:center;min-height:30px;padding:.35rem .72rem;border:1px solid rgba(0,212,178,.22);border-radius:999px;color:#ccfbf1;background:rgba(0,212,178,.07);font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}.omega-concept-header h1{margin:0;color:#fff;font-size:clamp(2rem,6vw,4rem);line-height:1.05;font-weight:950;letter-spacing:-.045em}.omega-concept-header p{max-width:820px;margin:1rem 0 0;color:#cbd5e1;font-size:clamp(1rem,2.5vw,1.16rem);line-height:1.7}.omega-concept-content{margin-top:2rem}.omega-concept-content h2,.omega-concept-content h3{color:#f8fafc}.omega-concept-content p,.omega-concept-content li{color:#cbd5e1;line-height:1.75}.socratic-prompt-box{margin:2rem 0;padding:1.2rem;border:1px solid rgba(0,212,178,.22);border-radius:16px;background:rgba(0,212,178,.06)}.omega-concept-graph{margin:2.5rem 0 1rem;padding:1rem;border:1px solid rgba(148,163,184,.14);border-radius:18px;background:rgba(15,23,42,.58)}.omega-concept-graph h2{margin:0;color:#f8fafc;font-size:1.2rem}.omega-concept-graph p{margin:.35rem 0 1rem;color:#94a3b8}.omega-svg-graph{width:100%;background:#070b14;border:1px solid rgba(0,245,212,.2);border-radius:12px;overflow:hidden}.omega-svg-graph svg{display:block;width:100%;height:auto;min-height:260px}.omega-svg-graph .edge{stroke:rgba(255,255,255,.28);stroke-width:2}.omega-svg-graph marker path{fill:rgba(255,255,255,.42)}.omega-svg-graph circle{stroke:rgba(255,255,255,.24);stroke-width:2}.omega-svg-graph .core circle{fill:#00d4b2}.omega-svg-graph .prereq circle{fill:#38bdf8}.omega-svg-graph .next circle{fill:#f59e0b}.omega-svg-graph text{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:700}@media(max-width:560px){.omega-concept-node{padding:.75rem}.omega-concept-header{border-radius:18px}.omega-concept-graph{padding:.8rem}.omega-svg-graph text{font-size:18px}}
 </style>
