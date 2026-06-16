@@ -23,7 +23,7 @@
         </article>
       </a>
 
-      <a href="{{ '/socratic/' | relative_url }}" class="flow-node-link-wrapper" aria-label="Explore The Socratic Circle">
+      <a href="{{ '/life-practices/cognitive-audit/' | relative_url }}" class="flow-node-link-wrapper" aria-label="Explore The Socratic Circle">
         <article class="flow-node-card-slot" data-aos="fade-left">
           <div class="node-graphic-icon-box">
             <div class="infinite-hollow-circle"></div>
@@ -80,7 +80,6 @@
     .flow-nodes-grid-axis { gap: 2.5rem; }
   }
 
-  /* --- NEW: Link Wrapper Accessibility & Routing Mechanics --- */
   .flow-node-link-wrapper {
     display: block;
     text-decoration: none !important;
@@ -105,14 +104,13 @@
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    height: 100%; /* Ensures all cards stretch equally */
+    height: 100%;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     will-change: transform, border-color, box-shadow;
-    transform: translateZ(0); /* Hardware acceleration */
+    transform: translateZ(0);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  /* --- FIXED: Hover states transferred to the accessible wrapper --- */
   .flow-node-link-wrapper:hover .flow-node-card-slot,
   .flow-node-link-wrapper:focus-visible .flow-node-card-slot {
     transform: translateY(-6px);
@@ -125,7 +123,6 @@
     background: linear-gradient(145deg, #0d1527 0%, #070b13 100%) !important;
   }
 
-  /* --- FIXED: Inline style removed, shifted to CSS inheritance --- */
   .highlight-border-cyan .flow-node-title {
     color: #00d4b2 !important;
   }
@@ -138,56 +135,5 @@
     justify-content: flex-start;
     margin-bottom: 1.5rem;
   }
-
-  .pulsing-core-dot {
-    width: 10px; height: 10px;
-    background-color: #00d4b2;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #00d4b2;
-    animation: corePulse 2s infinite ease-in-out;
-  }
-
-  .vector-streaming-line {
-    width: 80px; height: 2px;
-    background: linear-gradient(90deg, #00d4b2 0%, #3b82f6 100%);
-    position: relative;
-    border-radius: 2px;
-  }
-
-  .infinite-hollow-circle {
-    width: 16px; height: 16px;
-    border: 3px solid #00d4b2;
-    border-radius: 50%;
-    background: transparent;
-    box-shadow: 0 0 10px rgba(0, 212, 178, 0.2);
-  }
-
-  .flow-node-title {
-    color: #ffffff !important;
-    font-size: clamp(1.15rem, 2.5vw, 1.35rem) !important;
-    font-weight: 800 !important;
-    margin: 0 0 0.85rem 0 !important;
-    letter-spacing: -0.01em;
-  }
-
-  .flow-node-desc {
-    color: #94a3b8 !important;
-    font-size: clamp(0.9rem, 1.5vw, 0.95rem) !important;
-    line-height: 1.6 !important;
-    margin: 0 !important;
-    text-align: left !important;
-  }
-
-  @keyframes corePulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.3); opacity: 0.6; box-shadow: 0 0 18px #00d4b2; }
-  }
-
-  @media (max-width: 480px) {
-    .node-graphic-icon-box { justify-content: center !important; margin-bottom: 1rem; }
-    .flow-node-card-slot { align-items: center !important; text-align: center !important; }
-    .flow-node-desc { text-align: center !important; }
-  }
 </style>
-{% assign jekyll_neural_flow_styles_loaded = true %}
 {% endunless %}
