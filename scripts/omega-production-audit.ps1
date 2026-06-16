@@ -1,9 +1,9 @@
 # ==========================================================================
-# LEARNING BIOLOGY FOR LIFE — OMEGA PRODUCTION AUDIT
-# ==========================================================================n
+# LEARNING BIOLOGY FOR LIFE - OMEGA PRODUCTION AUDIT
+# ==========================================================================
 $ErrorActionPreference = "Stop"
 
-Write-Host "🔎 Starting LBFL Omega production audit..." -ForegroundColor Cyan
+Write-Host "Starting LBFL Omega production audit..." -ForegroundColor Cyan
 
 function Assert-FileExists {
     param([string]$Path)
@@ -12,7 +12,7 @@ function Assert-FileExists {
         Write-Error "CRITICAL: Missing required file: $Path"
     }
 
-    Write-Host "✅ Exists: $Path" -ForegroundColor Green
+    Write-Host "OK Exists: $Path" -ForegroundColor Green
 }
 
 function Assert-NoCorruptSpanArtifacts {
@@ -32,7 +32,7 @@ function Assert-NoCorruptSpanArtifacts {
         Write-Error "CRITICAL: Corrupted [span_*] artifacts detected."
     }
 
-    Write-Host "✅ Artifact Check: No [span_*] corruption detected." -ForegroundColor Green
+    Write-Host "OK Artifact Check: No [span_*] corruption detected." -ForegroundColor Green
 }
 
 function Assert-Utf8NoBom {
@@ -44,7 +44,7 @@ function Assert-Utf8NoBom {
         Write-Error "CRITICAL: UTF-8 BOM detected in $Path"
     }
 
-    Write-Host "✅ Encoding: $Path is UTF-8 without BOM." -ForegroundColor Green
+    Write-Host "OK Encoding: $Path is UTF-8 without BOM." -ForegroundColor Green
 }
 
 function Assert-ScssFrontMatter {
@@ -56,7 +56,7 @@ function Assert-ScssFrontMatter {
         Write-Error "CRITICAL: $Path must start with valid Jekyll front matter."
     }
 
-    Write-Host "✅ SCSS Front Matter: $Path has valid Jekyll front matter start." -ForegroundColor Green
+    Write-Host "OK SCSS Front Matter: $Path has valid Jekyll front matter start." -ForegroundColor Green
 }
 
 Assert-FileExists "_config.yml"
@@ -71,23 +71,23 @@ Assert-ScssFrontMatter "assets/css/main.scss"
 Assert-NoCorruptSpanArtifacts
 
 if (Test-Path "_biology") {
-    Write-Host "✅ Collection Check: _biology collection exists." -ForegroundColor Green
+    Write-Host "OK Collection Check: _biology collection exists." -ForegroundColor Green
 } else {
     Write-Warning "WARN: _biology collection not found. Skip if biology pages are still stored as posts."
 }
 
 if ((Test-Path "wrangler.toml") -or (Test-Path "worker/wrangler.toml") -or (Test-Path "wrangler.jsonc") -or (Test-Path "worker/wrangler.jsonc")) {
-    Write-Host "✅ Worker Config: Wrangler configuration detected." -ForegroundColor Green
+    Write-Host "OK Worker Config: Wrangler configuration detected." -ForegroundColor Green
 } else {
     Write-Warning "WARN: Wrangler config not detected. Required only if Worker source lives in this repo."
 }
 
-Write-Host "🏗 Running Jekyll build..." -ForegroundColor Cyan
+Write-Host "Running Jekyll build..." -ForegroundColor Cyan
 bundle exec jekyll build
 
 if ($LASTEXITCODE -ne 0) {
     Write-Error "CRITICAL: Jekyll build failed."
 }
 
-Write-Host "✅ Build Check: Jekyll build completed successfully." -ForegroundColor Green
-Write-Host "🏁 Omega audit completed. Review warnings before production deployment." -ForegroundColor Green
+Write-Host "OK Build Check: Jekyll build completed successfully." -ForegroundColor Green
+Write-Host "Omega audit completed. Review warnings before production deployment." -ForegroundColor Green
