@@ -1,20 +1,178 @@
-<div class="neural-hero" role="banner" aria-label="Homepage hero">
-  <div class="wrapper">
-    <div class="hero-content">
-      <h1>The Cognitive Wave of Education</h1>
-      <p>Highlights the intellectual and interconnected nature of the system.</p>
+<section class="premium-neural-hero" aria-label="Homepage hero">
+  <div class="hero-ambient-core" aria-hidden="true"></div>
 
-      <div class="hero-actions">
-        <a href="{{ '/biology/' | relative_url }}"
-           class="btn btn--primary btn--large">
-          <span aria-hidden="true">🔬</span> Enter Biology Hub
+  <div class="hero-wrapper">
+    <div class="hero-content-matrix">
+      
+      <div class="system-status-badge">
+        <span class="status-pulse"></span> Neural Network Active
+      </div>
+
+      <h1 class="neural-hero-title">
+        The Cognitive Wave of <span class="gradient-text">Education</span>
+      </h1>
+      
+      <p class="neural-hero-subtitle">
+        Mapping the intellectual and interconnected nature of the biological sciences, life philosophy, and the 4IR ecosystem.
+      </p>
+
+      <div class="hero-actions-grid">
+        <a href="{{ '/biology/' | relative_url }}" class="premium-btn btn--cyan">
+          <span class="btn-icon" aria-hidden="true">🔬</span> 
+          <span class="btn-text">Enter Biology Hub</span>
         </a>
 
-        <a href="{{ '/life-philosophy/' | relative_url }}"
-           class="btn btn--info btn--large">
-          <span aria-hidden="true">🌌</span> Philosophical Vectors
+        <a href="{{ '/life-philosophy/' | relative_url }}" class="premium-btn btn--outline">
+          <span class="btn-icon" aria-hidden="true">🌌</span> 
+          <span class="btn-text">Philosophical Vectors</span>
         </a>
       </div>
+
     </div>
   </div>
-</div>
+</section>
+
+<style>
+  .premium-neural-hero {
+    position: relative;
+    background-color: #020617; /* Matches your matrix dark theme */
+    padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 4vw, 2rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, sans-serif;
+    border-bottom: 1px solid rgba(0, 212, 178, 0.1);
+  }
+
+  /* The glowing orb behind the text */
+  .hero-ambient-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    max-width: 800px;
+    max-height: 800px;
+    background: radial-gradient(circle, rgba(0, 212, 178, 0.08) 0%, rgba(2, 6, 23, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-wrapper {
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .system-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 212, 178, 0.05);
+    border: 1px solid rgba(0, 212, 178, 0.2);
+    padding: 6px 16px;
+    border-radius: 30px;
+    color: #00d4b2;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+  }
+
+  .status-pulse {
+    width: 6px;
+    height: 6px;
+    background-color: #00d4b2;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00d4b2;
+    animation: pulse 2s infinite;
+  }
+
+  .neural-hero-title {
+    color: #ffffff;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #00d4b2, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  .neural-hero-subtitle {
+    color: #94a3b8;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .hero-actions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  /* Premium Animated Buttons */
+  .premium-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .premium-btn.btn--cyan {
+    background: #00d4b2;
+    color: #020617 !important;
+    border: 1px solid #00d4b2;
+    box-shadow: 0 0 20px rgba(0, 212, 178, 0.2);
+  }
+
+  .premium-btn.btn--cyan:hover {
+    background: #00f2cc;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 212, 178, 0.4);
+  }
+
+  .premium-btn.btn--outline {
+    background: transparent;
+    color: #e2e8f0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .premium-btn.btn--outline:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #e2e8f0;
+    transform: translateY(-3px);
+  }
+
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(0.95); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(0.95); opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    .premium-btn { width: 100%; justify-content: center; }
+  }
+</style>
