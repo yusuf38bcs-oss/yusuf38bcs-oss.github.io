@@ -9,9 +9,9 @@
     {% include skip-links.html %}
     {% include masthead.html %}
 
-    <div class="initial-content">
+    <main class="initial-content" id="main-content">
       {{ content }}
-    </div>
+    </main>
 
     {% if site.search == true %}
       <div class="search-content">
@@ -19,7 +19,7 @@
       </div>
     {% endif %}
 
-    <div id="footer" class="page__footer">
+    <div id="footer" class="site-footer-shell">
       {% include footer/custom.html %}
       {% include footer.html %}
     </div>
