@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write    
+  contents: write
   pages: write
   id-token: write
 
@@ -30,7 +30,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-          bundler-cache: false # Disabled cache temporarily so it doesn't enforce a frozen Gemfile.lock
+          bundler-cache: false
 
       - name: Configure Bundler Deployment Settings
         run: |
@@ -49,7 +49,35 @@ jobs:
       - name: Validate Build Output
         run: |
           test -f _site/index.html || (echo "Missing index.html" && exit 1)
-          echo "Build artifacts validated."
+          test -f _site/assets/data/graph_manifest.json || (echo "Missing graph_manifest.json" && exit 1)
+          test -f _site/biology/index.html || (echo "Missing /biology/" && exit 1)
+          test -f _site/life-philosophy/index.html || (echo "Missing /life-philosophy/" && exit 1)
+          test -f _site/synaptic-bridge/index.html || (echo "Missing /synaptic-bridge/" && exit 1)
+          test -f _site/life-practices/index.html || (echo "Missing /life-practices/" && exit 1)
+          test -f _site/life-practices/cognitive-audit/index.html || (echo "Missing /life-practices/cognitive-audit/" && exit 1)
+          test -f _site/matrix/behavioral-axis/index.html || (echo "Missing /matrix/behavioral-axis/" && exit 1)
+          test -f _site/matrix/decision-making/index.html || (echo "Missing /matrix/decision-making/" && exit 1)
+          test -f _site/matrix/leadership-dynamics/index.html || (echo "Missing /matrix/leadership-dynamics/" && exit 1)
+          test -f _site/matrix/systems-thinking/index.html || (echo "Missing /matrix/systems-thinking/" && exit 1)
+          test -f _site/matrix/neuroplasticity/index.html || (echo "Missing /matrix/neuroplasticity/" && exit 1)
+          ruby -rjson -e 'JSON.parse(File.read("_site/assets/data/graph_manifest.json")); puts "Graph manifest JSON validated."'
+          echo "Build artifacts and OMEGA routes validated."
+
+      - name: Optional Edge Graph Sync Hook
+        if: success()
+        env:
+          EDGE_SYNC_ENDPOINT: ${{ secrets.EDGE_SYNC_ENDPOINT }}
+          EDGE_SYNC_SECRET_TOKEN: ${{ secrets.EDGE_SYNC_SECRET_TOKEN }}
+        run: |
+          if [ -z "$EDGE_SYNC_ENDPOINT" ] || [ -z "$EDGE_SYNC_SECRET_TOKEN" ]; then
+            echo "Edge sync secrets not configured. Skipping optional graph sync."
+            exit 0
+          fi
+          curl -X POST "$EDGE_SYNC_ENDPOINT" \
+            -H "Authorization: Bearer $EDGE_SYNC_SECRET_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data-binary "@_site/assets/data/graph_manifest.json" \
+            --fail-with-body
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
