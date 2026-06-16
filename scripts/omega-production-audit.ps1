@@ -125,7 +125,7 @@ function Assert-ConfigContracts {
 
 function Assert-HeadContracts {
     Assert-Contains "_includes/head/custom.html" "omega-blueprint-runtime" "Omega runtime mounted once through custom head"
-    Assert-NotContains "_includes/head/custom.html" "include\s+head/head\.html" "No duplicate head/head.html include in head/custom.html"
+    Assert-NotContains "_includes/head/custom.html" "\{\%\s*include\s+head/head\.html\s*\%\}" "No duplicate Liquid include tag for head/head.html in head/custom.html"
     Assert-Contains "_includes/head/omega-blueprint-runtime.html" "LBFL_AI_ENDPOINT" "AI endpoint contract exposed to frontend"
     Assert-Contains "_includes/head/omega-blueprint-runtime.html" "socratic-component\.js" "Socratic component globally mounted"
     Assert-Contains "_includes/head/omega-blueprint-runtime.html" "myelination-tracker\.js" "Myelination tracker globally mounted"
