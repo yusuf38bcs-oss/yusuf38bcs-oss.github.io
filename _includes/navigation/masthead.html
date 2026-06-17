@@ -1,37 +1,54 @@
-<div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+<div class="masthead lbfl-masthead">
+  <div class="masthead__inner-wrap lbfl-masthead__inner">
+    <nav class="lbfl-nav" aria-label="Primary navigation">
+      <a class="lbfl-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title | escape }} home">
         {% if site.logo %}
-          <a class="site-logo" href="{{ '/' | relative_url }}">
-            <img src="{{ site.logo | relative_url }}" alt="{{ site.title | escape }}">
-          </a>
+          <img class="lbfl-brand__logo" src="{{ site.logo | relative_url }}" alt="" width="44" height="44">
         {% endif %}
+        <span class="lbfl-brand__title">{{ site.title }}</span>
+      </a>
 
-        <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <ul class="lbfl-desktop-links" aria-label="Main menu">
+        {%- for link in site.data.navigation.main -%}
+          <li class="lbfl-desktop-links__item">
+            <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description | escape }}"{% endif %}>{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
 
-        <ul class="visible-links">
-          {%- for link in site.data.navigation.main -%}
-            <li class="masthead__menu-item">
-              <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description | escape }}"{% endif %}>{{ link.title }}</a>
-            </li>
-          {%- endfor -%}
-        </ul>
-
+      <div class="lbfl-nav-actions">
         {% if site.search == true %}
-          <button class="search__toggle" type="button" aria-label="Toggle search">
+          <button class="search__toggle lbfl-search-toggle" type="button" aria-label="Toggle search">
             <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: 'Toggle search' }}</span>
-            <span aria-hidden="true">⌕</span>
+            <span class="lbfl-search-icon" aria-hidden="true">⌕</span>
           </button>
         {% endif %}
 
-        <button class="greedy-nav__toggle hidden" type="button" aria-label="Toggle menu">
-          <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_label | default: 'Toggle menu' }}</span>
-          <div class="navicon"></div>
-        </button>
+        <details class="lbfl-mobile-menu">
+          <summary class="lbfl-mobile-toggle" aria-label="Open navigation menu">
+            <span class="lbfl-mobile-toggle__bar" aria-hidden="true"></span>
+            <span class="lbfl-mobile-toggle__bar" aria-hidden="true"></span>
+            <span class="lbfl-mobile-toggle__bar" aria-hidden="true"></span>
+          </summary>
 
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
+          <div class="lbfl-mobile-panel">
+            <ul class="lbfl-mobile-links" aria-label="Mobile menu">
+              {%- for link in site.data.navigation.main -%}
+                <li>
+                  <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description | escape }}"{% endif %}>{{ link.title }}</a>
+                  {%- if link.children -%}
+                    <ul class="lbfl-mobile-sublinks">
+                      {%- for child in link.children -%}
+                        <li><a href="{{ child.url | relative_url }}">{{ child.title }}</a></li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </details>
+      </div>
+    </nav>
   </div>
 </div>
