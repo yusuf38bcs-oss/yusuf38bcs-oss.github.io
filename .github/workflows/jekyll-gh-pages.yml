@@ -55,6 +55,8 @@ jobs:
           test -f _site/synaptic-bridge/index.html || (echo "Missing /synaptic-bridge/" && exit 1)
           test -f _site/life-practices/index.html || (echo "Missing /life-practices/" && exit 1)
           test -f _site/life-practices/cognitive-audit/index.html || (echo "Missing /life-practices/cognitive-audit/" && exit 1)
+          test -f _site/socratic/multiple-intelligences/index.html || (echo "Missing /socratic/multiple-intelligences/" && exit 1)
+          test -f _site/socratic/personality-archetypes/index.html || (echo "Missing /socratic/personality-archetypes/" && exit 1)
           test -f _site/matrix/behavioral-axis/index.html || (echo "Missing /matrix/behavioral-axis/" && exit 1)
           test -f _site/matrix/decision-making/index.html || (echo "Missing /matrix/decision-making/" && exit 1)
           test -f _site/matrix/leadership-dynamics/index.html || (echo "Missing /matrix/leadership-dynamics/" && exit 1)
