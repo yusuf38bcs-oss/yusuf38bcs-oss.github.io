@@ -1,21 +1,39 @@
 ---
-permalink: /welcome/
 layout: single
-title: "Welcome to the Synaptic Bridge!"
+author_profile: true
+author: "MD. YUSUF"
+title: "Welcome to the Synaptic Bridge"
 permalink: /welcome/
+sidebar:
+  nav: "synaptic_nav"
+node_id: util-welcome
+pillar: "Network"
+difficulty: "Foundation"
+xp: 100
+status: "Active"
 ---
 
-**Your subscription is officially confirmed.** We are thrilled to have you here!
+# Welcome to the Synaptic Bridge
 
-At **Learning Biology for Life**, we believe in the philosophy of *Learn through Learning Others*. To understand the world, we first have to understand each other. Stepping into someone else's shoes and seeing life through their eyes is the fastest way to expand our own minds.
+You have joined **Learning Biology For Life**, a neural educational ecosystem designed to rebuild the bridge between scientific theory and lived reality.
 
-By joining this community, you will receive our latest biology notes, pedagogical insights (like the LOLO and LALA models), and real-world case studies directly in your inbox. 
+## Vision
 
-### Where should you start?
-The Synaptic Bridge connects scientific theory to reality. Here are a few ways to begin your journey:
+Our vision is to connect biology, reflective thinking, digital pedagogy, and practical life skills through the **Synaptic Bridge**.
 
-* **[Explore the Blog](/)**: Dive into our library of 88+ educational articles.
-* **[Meet the Author](/about/)**: Learn more about MD. YUSUF and the vision behind the platform.
-* **[Reach Out](/contact-us/)**: Have a question or a topic you want us to cover? We would love to hear from you.
+## What You Will Receive
 
-Thank you for bringing your curiosity to our community. Letâ€™s celebrate the beautiful lessons we gain just by connecting with the world around us.
+- Biology notes and conceptual explanations
+- Pedagogical insights, including LOLO and LALA models
+- Socratic prompts for deeper thinking
+- Case studies connecting biology with real life
+- Updates from the Learning Biology For Life ecosystem
+
+## Quick Links
+
+- [Explore the Blog]({{ '/blog/' | relative_url }})
+- [Explore Biology]({{ '/biology/' | relative_url }})
+- [Meet the Author]({{ '/about/' | relative_url }})
+- [Reach Out]({{ '/contact/' | relative_url }})
+
+Thank you for bringing your curiosity to this community.
