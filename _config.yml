@@ -107,14 +107,6 @@ defaults:
       classes: wide
   - scope:
       path: ''
-      type: life-prilosophy
-    values:
-      layout: single
-      author_profile: true
-      toc: true
-      classes: wide
-  - scope:
-      path: ''
       type: life-practices
     values:
       layout: single
