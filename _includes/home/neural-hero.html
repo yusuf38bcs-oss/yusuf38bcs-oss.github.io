@@ -1,10 +1,14 @@
 <section class="premium-neural-hero" aria-label="Homepage hero">
+  <picture class="hero-header-bg-media" aria-hidden="true">
+    <source srcset="{{ '/assets/images/header-bg.webp' | relative_url }}" type="image/webp">
+    <img src="{{ '/assets/images/header-bg.webp' | relative_url }}" alt="" loading="eager" decoding="async" fetchpriority="high">
+  </picture>
+
   <div class="hero-header-bg-layer" aria-hidden="true"></div>
   <div class="hero-ambient-core" aria-hidden="true"></div>
 
   <div class="hero-wrapper">
     <div class="hero-content-matrix">
-      
       <div class="system-status-badge">
         <span class="status-pulse"></span> Neural Network Active
       </div>
@@ -12,23 +16,22 @@
       <h1 class="neural-hero-title">
         The Cognitive Wave of <span class="gradient-text">Education</span>
       </h1>
-      
+
       <p class="neural-hero-subtitle">
         Mapping the intellectual and interconnected nature of the biological sciences, life philosophy, and the 4IR ecosystem.
       </p>
 
       <div class="hero-actions-grid">
         <a href="{{ '/biology/' | relative_url }}" class="premium-btn btn--cyan">
-          <span class="btn-icon" aria-hidden="true">🔬</span> 
+          <span class="btn-icon" aria-hidden="true">🔬</span>
           <span class="btn-text">Enter Biology Hub</span>
         </a>
 
         <a href="{{ '/life-philosophy/' | relative_url }}" class="premium-btn btn--outline">
-          <span class="btn-icon" aria-hidden="true">🌌</span> 
+          <span class="btn-icon" aria-hidden="true">🌌</span>
           <span class="btn-text">Philosophical Vectors</span>
         </a>
       </div>
-
     </div>
   </div>
 </section>
@@ -36,12 +39,12 @@
 <style>
   .premium-neural-hero {
     position: relative;
+    isolation: isolate;
     background-color: #020617 !important;
-    background-image: none !important;
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.12), #020617 100%), url("{{ '/assets/images/header-bg.webp' | relative_url }}") !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
     min-height: clamp(600px, 80vh, 900px);
     padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 4vw, 2rem);
     display: flex;
@@ -53,16 +56,38 @@
     border-bottom: 1px solid rgba(0, 212, 178, 0.1);
   }
 
+  .hero-header-bg-media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-header-bg-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    opacity: 0.9;
+    filter: saturate(1.25) contrast(1.08) brightness(1.04);
+    transform: scale(1.01);
+  }
+
   .hero-header-bg-layer {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: -1;
     pointer-events: none;
     background-image: url("{{ '/assets/images/header-bg.webp' | relative_url }}") !important;
     background-size: cover !important;
     background-position: center top !important;
     background-repeat: no-repeat !important;
-    opacity: 0.72;
+    opacity: 0.38;
     filter: saturate(1.25) contrast(1.08) brightness(1.08);
     transform: scale(1.01);
   }
@@ -75,7 +100,7 @@
     pointer-events: none;
     background:
       radial-gradient(circle at center, rgba(0, 212, 178, 0.08), transparent 58%),
-      linear-gradient(to bottom, rgba(2, 6, 23, 0.20) 0%, rgba(2, 6, 23, 0.42) 56%, #020617 100%);
+      linear-gradient(to bottom, rgba(2, 6, 23, 0.14) 0%, rgba(2, 6, 23, 0.34) 56%, #020617 100%);
   }
 
   .premium-neural-hero::after {
@@ -87,7 +112,7 @@
     left: -50%;
     z-index: 2;
     pointer-events: none;
-    opacity: 0.28;
+    opacity: 0.22;
     background-image: radial-gradient(rgba(0, 212, 178, 0.04) 1px, transparent 1px);
     background-size: 40px 40px;
     transform: rotate(12deg);
@@ -118,16 +143,18 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(0, 212, 178, 0.05);
-    border: 1px solid rgba(0, 212, 178, 0.2);
+    background: rgba(0, 212, 178, 0.08);
+    border: 1px solid rgba(0, 212, 178, 0.28);
     padding: 6px 16px;
     border-radius: 30px;
-    color: #00d4b2;
+    color: #7fffe7;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 2rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .status-pulse {
@@ -157,12 +184,12 @@
   }
 
   .neural-hero-subtitle {
-    color: #cbd5e1;
+    color: #f8fafc;
     font-size: clamp(1rem, 2vw, 1.25rem);
     line-height: 1.6;
     max-width: 700px;
     margin: 0 auto 3rem auto;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.68);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.78);
   }
 
   .hero-actions-grid {
@@ -219,23 +246,5 @@
     0% { transform: scale(0.95); opacity: 1; }
     50% { transform: scale(1.5); opacity: 0.5; }
     100% { transform: scale(0.95); opacity: 1; }
-  }
-
-  @media (max-width: 768px) {
-    .premium-neural-hero {
-      background-attachment: scroll;
-      background-position: center top;
-      min-height: clamp(560px, 78vh, 760px);
-    }
-
-    .hero-header-bg-layer {
-      background-position: center top !important;
-      opacity: 0.82;
-      filter: saturate(1.3) contrast(1.12) brightness(1.12);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .premium-btn { width: 100%; justify-content: center; }
   }
 </style>
