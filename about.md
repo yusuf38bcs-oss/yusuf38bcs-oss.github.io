@@ -3,84 +3,161 @@ layout: single
 author_profile: true
 sidebar:
   nav: "synaptic_nav"
-title: "About the Author & Executive Mission"
-excerpt: "Profile of a BCS Education Cadre researcher, applied neurobiologist, and designer of the Socratic 4.0 learning framework."
+title: "About the Author"
+excerpt: "Professional academic profile of MD. YUSUF, founder of Learning Biology For Life and BCS Education Cadre Officer."
 permalink: /about/
 classes: wide
+node_id: util-author-profile
+pillar: "Network"
+difficulty: "Advanced"
+xp: 500
+status: "Active"
 ---
 
-<div class="author-profile-card" style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); padding: 3rem 2rem; border-radius: 12px; border: 1px solid rgba(0, 212, 178, 0.15); margin-bottom: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
-  
-  <div class="author-avatar-space" style="flex: 1 1 120px; text-align: center;">
-    <div style="width: 130px; height: 130px; border-radius: 50%; background: rgba(0, 212, 178, 0.1); border: 2px dashed #00d4b2; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; box-shadow: 0 0 25px rgba(0,212,178,0.2);">
-      👨‍🏫
-    </div>
-  </div>
+# About the Author
 
-  <div class="author-meta-details" style="flex: 3 1 340px;">
-    <span style="color: #00d4b2; text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; display: block; margin-bottom: 0.25rem;">Cadre Profile Command</span>
-    <h1 style="color: #ffffff; margin: 0 0 0.5rem 0; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em;">Mohammad Yusuf</h1>
-    <p style="color: #cbd5e1; font-size: 1.1rem; margin: 0 0 0.75rem 0; font-weight: 600;">BCS (General Education) Cadre Officer</p>
-    <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin: 0;">
-      Lecturer in Zoology | Interdisciplinary Educational Strategist | Cognitive Systems Designer & Developer
-    </p>
-  </div>
+## MD. YUSUF
 
-</div>
+**BCS Education Cadre Officer | Lecturer in Zoology | Biology Educator | Learning Designer | Founder of Learning Biology For Life**
 
-## 🎯 Executive Mission & Vision
+MD. YUSUF is a Bangladeshi civil service officer in the **BCS General Education Cadre**, a lecturer in **Zoology**, and the founder-author of **Learning Biology For Life**. His professional work connects biological science, reflective pedagogy, human behaviour, digital learning, leadership, and 4IR-ready education.
 
-The 21st-century academic terrain demands a structural shift from passive memorization to dynamic systems thinking. As an officer of the **BCS Education Cadre**, my goal is to bridge the traditional boundaries of biological sciences with the operational realities of human behavior and technology. 
+He serves as a biology educator with a strong commitment to quality education in Bangladesh. His teaching approach moves beyond memorization and encourages learners to ask deeper questions: how biological systems work, why they matter, and how scientific knowledge can guide behaviour, responsibility, health, ecology, and life decisions.
 
-**Learning Biology For Life** is not just an online archive—it is an optimized, neural-inspired sandbox built to empower the next generation of thinkers, civil service candidates, and science researchers through applied pedagogy.
+## Professional Identity
 
----
+- **Name:** MD. YUSUF
+- **Professional Cadre:** BCS General Education Cadre
+- **Academic Field:** Zoology and Life Sciences
+- **Current Academic Role:** Lecturer in Zoology
+- **Platform:** Learning Biology For Life
+- **Country:** Bangladesh
+- **Primary Mission:** Enhancing critical thinking through biology, systems thinking, and reflective learning
 
-## 🛠️ The Core Architectural Pillars
+## Academic and Training Background
 
-This platform operates as an integrated educational engine driven by three fundamental principles:
+MD. YUSUF has developed his professional profile through teaching, civil service training, continuous professional development, and self-directed technological learning.
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+His recorded training and learning pathway includes:
 
-  <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px;">
-    <h3 style="color: #00d4b2; font-size: 1.1rem; margin: 0 0 0.5rem 0; font-weight: 700;">1. Multidisciplinary Scope</h3>
-    <p style="color: #94a3b8; font-size: 0.9rem; margin: 0; line-height: 1.6;">Connecting macro-biological pathways (like neural synaptic behaviors or genetic inheritance codes) directly to executive management systems and corporate strategy.</p>
-  </div>
+- BCS General Education Cadre service
+- 190th Foundation Training Course at NAEM
+- Enhanced Continuous Professional Development Programme with distinction at University of Nottingham Malaysia
+- Continued learning in Python for Data Science, Cybersecurity, Prompt Engineering, digital pedagogy, and AI-assisted learning systems
 
-  <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px;">
-    <h3 style="color: #00d4b2; font-size: 1.1rem; margin: 0 0 0.5rem 0; font-weight: 700;">2. Socratic 4.0 Pedagogy</h3>
-    <p style="color: #94a3b8; font-size: 0.9rem; margin: 0; line-height: 1.6;">Implementing active learning instruments, interactive flat-file MCQ databases, and critical alignment challenges to trigger deeper cognitive processing.</p>
-  </div>
+This combination of biology, pedagogy, technology, and governance informs the structure of Learning Biology For Life.
 
-  <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px;">
-    <h3 style="color: #00d4b2; font-size: 1.1rem; margin: 0 0 0.5rem 0; font-weight: 700;">3. Digital Infrastructure</h3>
-    <p style="color: #94a3b8; font-size: 0.9rem; margin: 0; line-height: 1.6;">Leveraging lightweight, hyper-secure web technology (Jekyll, YAML databases, and zero-dependency client-side script modules) for mobile accessibility.</p>
-  </div>
+## Teaching Philosophy
 
-</div>
+The central teaching philosophy of MD. YUSUF is simple but demanding:
 
----
+> Biology should not remain only in the textbook. Biology should help learners understand life, behaviour, systems, responsibility, and reality.
 
-## 📈 Academic Focus Areas
+He teaches through:
 
-My ongoing research and lecture tracking encompass several key streams:
-* **Advanced Zoology & Phylogeny:** Structural taxonomy, evolutionary transformations, and functional morphology of chordate and non-chordate systems.
-* **Applied Neurobiology:** Brain chemistry pathways, neurotransmitter dynamics (e.g., Dopamine systems), and their direct impact on modern human behavior.
-* **Biostatistics & Experimental Design:** Quantitative mapping of biological data, sampling distributions, error deviation bounds, and Chi-Square metric calculations.
+- Real-life examples
+- Case studies
+- Scientific questioning
+- Conceptual mapping
+- Socratic inquiry
+- Reflection-based learning
+- Constructive alignment between learning objectives and learning outcomes
 
----
+His preferred educational framework connects **LOLO** (Learning Objectives and Learning Outcomes), **LALA** (Learning Activities and Learning Applications), and **Socratic 4.0** questioning to make learning active, reflective, and life-ready.
 
-## ✉️ Direct Network Vectors
+## The Synaptic Bridge
 
-If you are an educator, student, fellow cadre officer, or researcher interested in collaborative academic engineering, feel free to reach out or track the repository deployment modules.
+Learning Biology For Life is built around the idea of the **Synaptic Bridge**.
 
-<div style="background: #070a13; border: 1px solid rgba(0, 212, 178, 0.15); padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; text-align: center;">
-  <div>
-    <span style="color: #64748b; font-size: 0.8rem; display: block; text-transform: uppercase; font-weight: 700;">Platform Domain</span>
-    <a href="https://learningbiologyforlife.org" style="color: #00d4b2; text-decoration: none; font-weight: 700;">learningbiologyforlife.org</a>
-  </div>
-  <div style="border-left: 1px solid rgba(255,255,255,0.05); padding-left: 1rem;">
-    <span style="color: #64748b; font-size: 0.8rem; display: block; text-transform: uppercase; font-weight: 700;">Development Core</span>
-    <a href="https://github.com/yusuf38bcs-oss" target="_blank" style="color: #00d4b2; text-decoration: none; font-weight: 700;">GitHub Pro Profile</a>
-  </div>
-</div>
+The Synaptic Bridge connects:
+
+- Biological theory with practical life
+- Academic knowledge with human behaviour
+- Physiology with health awareness
+- Genetics with identity and inheritance
+- Ecology with responsibility and sustainability
+- Biostatistics with evidence-based reasoning
+- Leadership with self-regulation and decision-making
+- Digital pedagogy with 4IR learning skills
+
+This bridge transforms isolated facts into meaningful patterns.
+
+## DOT to LINE to CIRCLE
+
+The author’s knowledge architecture follows a three-level learning model:
+
+### DOT
+
+A biological concept begins as a dot: a cell organelle, a hormone, a nerve impulse, a gene, an ecosystem variable, or a statistical observation.
+
+### LINE
+
+The learner then connects dots into lines: physiology with behaviour, ecology with public responsibility, genetics with heredity, biostatistics with research design, and biology with life decisions.
+
+### CIRCLE
+
+Finally, the learner enters a reflective circle: questioning, applying, testing, revising, and teaching others. This is where knowledge becomes wisdom-oriented practice.
+
+## Platform Mission
+
+**Learning Biology For Life** exists to democratize high-quality biology education and to help learners build deeper scientific understanding.
+
+The platform focuses on:
+
+- HSC Biology support
+- Higher Zoology learning pathways
+- Human physiology
+- Genetics
+- Ecology
+- Biostatistics
+- Animal diversity and taxonomy
+- Human behaviour
+- Leadership and life practices
+- Research thinking
+- MCQ-based assessment
+- AI-assisted Socratic learning
+
+The long-term mission is to build a neural educational ecosystem where biology becomes a bridge between theory, life, ethics, and future-ready skills.
+
+## Educational Commitments
+
+MD. YUSUF is committed to:
+
+- Quality education for Bangladesh
+- Critical thinking over rote memorization
+- Scientific literacy with moral responsibility
+- Student-centered learning
+- Accessible digital pedagogy
+- Responsible AI integration in education
+- Multidisciplinary learning for the 4IR era
+
+## Faith, Knowledge, and Responsibility
+
+The author’s learning worldview respects scientific inquiry while recognizing the Qur’an as the ultimate source of guidance. This perspective encourages humility, responsibility, ethical reflection, and the pursuit of beneficial knowledge.
+
+## Digital Pedagogy and Platform Engineering
+
+Learning Biology For Life is not only a content website. It is being developed as a structured educational network using a Jamstack architecture with Jekyll, GitHub Pages, Cloudflare, custom collections, reusable layouts, navigation systems, and AI-assisted learning components.
+
+The author is actively involved in:
+
+- Teaching
+- Writing
+- Curriculum design
+- Platform maintenance
+- Content architecture
+- AI workflow design
+- Learning experience design
+- Digital publishing
+
+This makes the platform a single-author educational initiative with an integrated academic, technical, and pedagogical identity.
+
+## Connect
+
+- **Website:** [learningbiologyforlife.org](https://learningbiologyforlife.org)
+- **GitHub:** [yusuf38bcs-oss](https://github.com/yusuf38bcs-oss)
+- **Contact:** [Contact Page]({{ '/contact/' | relative_url }})
+
+## Profile Integrity Note
+
+This author profile is written from the known professional identity, academic mission, and platform architecture of Learning Biology For Life. It avoids unsupported claims and presents the author as a biology educator, civil service officer, learning designer, and lifelong learner committed to reflective scientific education.
