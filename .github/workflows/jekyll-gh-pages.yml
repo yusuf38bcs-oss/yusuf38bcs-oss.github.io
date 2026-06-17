@@ -52,6 +52,11 @@ jobs:
           test -f _site/index.html || (echo "Missing index.html" && exit 1)
           test -f _site/assets/data/graph_manifest.json || (echo "Missing graph_manifest.json" && exit 1)
           test -f _site/assets/css/biology-matrix.css || (echo "Missing biology-matrix.css" && exit 1)
+          test -f _site/assets/js/core/ai-core.js || (echo "Missing ai-core.js" && exit 1)
+          ! grep -R "<<<<<<<\|=======\|>>>>>>>" assets/js/core/ai-core.js || (echo "Unresolved merge conflict markers in ai-core.js" && exit 1)
+          grep -q "api.learningbiologyforlife.org" _site/index.html || (echo "Synaptic AI endpoint config missing from homepage" && exit 1)
+          grep -q "assets/js/core/ai-core.js" _site/index.html || (echo "Synaptic AI core script missing from homepage" && exit 1)
+          grep -q "synaptic-floating-ai-root" _site/index.html || (echo "Synaptic floating AI widget missing from homepage" && exit 1)
           test -f _site/biology/index.html || (echo "Missing /biology/" && exit 1)
           grep -q "biology-matrix-hub-wrapper" _site/biology/index.html || (echo "Biology Matrix wrapper missing from /biology/" && exit 1)
           grep -q "biology-matrix-card-link" _site/biology/index.html || (echo "Biology Matrix cards missing from /biology/" && exit 1)
@@ -78,7 +83,7 @@ jobs:
           test -f _site/matrix/systems-thinking/index.html || (echo "Missing /matrix/systems-thinking/" && exit 1)
           test -f _site/matrix/neuroplasticity/index.html || (echo "Missing /matrix/neuroplasticity/" && exit 1)
           ruby -rjson -e 'JSON.parse(File.read("_site/assets/data/graph_manifest.json")); puts "Graph manifest JSON validated."'
-          echo "Build artifacts, author profile, utility pages, Biology Matrix hub, and OMEGA routes validated."
+          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, and OMEGA routes validated."
 
       - name: Optional Edge Graph Sync Hook
         if: success()
