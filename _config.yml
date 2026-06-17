@@ -107,6 +107,14 @@ defaults:
       classes: wide
   - scope:
       path: ''
+      type: life-prilosophy
+    values:
+      layout: single
+      author_profile: true
+      toc: true
+      classes: wide
+  - scope:
+      path: ''
       type: life-practices
     values:
       layout: single
@@ -139,9 +147,24 @@ defaults:
       cognitive_depth: 1
 
 author:
-  name: MD. Yusuf
-  bio: BCS Education Cadre Officer | Digital Pedagogy | 4IR Education
+  name: MD. YUSUF
+  avatar: /assets/images/logo.png
+  bio: >-
+    BCS Education Cadre Officer, Lecturer in Zoology, biology educator, learning designer, and founder of Learning Biology For Life. He connects life sciences with systems thinking, reflective pedagogy, human behaviour, leadership, digital learning, and 4IR education.
   location: Bangladesh
+  email: yusuf.38bcs@gmail.com
+  uri: https://learningbiologyforlife.org/about/
+  home: https://learningbiologyforlife.org
+  links:
+    - label: Website
+      icon: fas fa-fw fa-link
+      url: https://learningbiologyforlife.org
+    - label: GitHub
+      icon: fab fa-fw fa-github
+      url: https://github.com/yusuf38bcs-oss
+    - label: Contact
+      icon: fas fa-fw fa-envelope
+      url: /contact/
 
 include:
   - _pages
