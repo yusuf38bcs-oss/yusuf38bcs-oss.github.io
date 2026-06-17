@@ -49,36 +49,100 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
   position: sticky;
   top: 0;
   z-index: 9999;
+  background: rgba(2, 6, 23, 0.96) !important;
+  border-bottom: 1px solid rgba(0, 212, 178, 0.10) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .masthead__inner-wrap {
-  min-height: 56px;
+  min-height: 64px;
   display: flex;
   align-items: center;
+  padding: 0 1rem !important;
+}
+
+.masthead__menu,
+.greedy-nav {
+  width: 100%;
+}
+
+.greedy-nav {
+  min-height: 64px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem;
+  background: transparent !important;
+}
+
+.site-logo {
+  flex: 0 0 auto;
+  margin-right: 0.35rem !important;
 }
 
 .site-logo img {
-  max-height: 36px;
+  max-height: 38px;
   width: auto;
   display: block;
 }
 
 .site-title {
+  flex: 0 1 auto;
+  max-width: 18rem;
   font-size: 1.1rem !important;
-  font-weight: 700 !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  color: #e5e7eb !important;
   white-space: nowrap !important;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.greedy-nav {
-  background: transparent !important;
+.visible-links {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem;
 }
 
 .greedy-nav a {
   font-size: 0.9rem !important;
   line-height: 1.2 !important;
   white-space: nowrap !important;
+  color: #e2e8f0 !important;
+}
+
+.search__toggle,
+.greedy-nav__toggle {
+  flex: 0 0 48px;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  margin-left: 0.5rem !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #020617 !important;
+  background: linear-gradient(135deg, #12d6bf, #2f80ed) !important;
+  box-shadow: none !important;
+}
+
+.greedy-nav__toggle.hidden {
+  display: inline-flex !important;
+}
+
+.search__toggle span[aria-hidden="true"] {
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.greedy-nav__toggle .navicon,
+.greedy-nav__toggle .navicon::before,
+.greedy-nav__toggle .navicon::after {
+  background: #020617 !important;
 }
 
 .archive__item {
@@ -114,11 +178,84 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 }
 
 @media (max-width: 768px) {
-  .site-title {
-    font-size: 0.95rem !important;
+  .masthead__inner-wrap {
+    min-height: 68px;
+    padding: 0 0.9rem !important;
   }
-  .greedy-nav a {
-    font-size: 0.85rem !important;
+
+  .greedy-nav {
+    min-height: 68px;
+    gap: 0.55rem;
+  }
+
+  .site-logo img {
+    max-height: 36px;
+  }
+
+  .site-title {
+    max-width: 5.4rem;
+    font-size: 1rem !important;
+  }
+
+  .visible-links {
+    margin-left: auto !important;
+    max-width: 4.8rem;
+    overflow: hidden;
+  }
+
+  .visible-links .masthead__menu-item:not(:first-child) {
+    display: none !important;
+  }
+
+  .visible-links .masthead__menu-item:first-child a {
+    font-size: 1rem !important;
+    padding: 0.35rem 0.25rem !important;
+  }
+
+  .search__toggle,
+  .greedy-nav__toggle {
+    flex-basis: 44px;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    margin-left: 0.35rem !important;
+  }
+
+  .premium-neural-hero {
+    min-height: auto !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 2.25rem !important;
+    align-items: flex-start !important;
+  }
+
+  .premium-neural-hero .hero-content-matrix {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .masthead__inner-wrap {
+    padding: 0 0.65rem !important;
+  }
+
+  .greedy-nav {
+    gap: 0.42rem;
+  }
+
+  .site-title {
+    max-width: 4.8rem;
+  }
+
+  .visible-links {
+    max-width: 4.1rem;
+  }
+
+  .search__toggle,
+  .greedy-nav__toggle {
+    flex-basis: 42px;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
   }
 }
 
