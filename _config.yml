@@ -158,6 +158,11 @@ exclude:
   - .sass-cache
   - .jekyll-cache
   - .jekyll-metadata
+  - .tmp
+  - .tmp/**
+  - .tmp.driveupload
+  - .tmp.driveupload/**
+  - .tmp.drivedownload
+  - .tmp.drivedownload/**
   - README.md
   - LICENSE
-  - .tmp.driveupload
