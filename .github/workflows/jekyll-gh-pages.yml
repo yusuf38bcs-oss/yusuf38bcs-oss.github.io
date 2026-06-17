@@ -55,6 +55,9 @@ jobs:
           test -f _site/biology/index.html || (echo "Missing /biology/" && exit 1)
           grep -q "biology-matrix-hub-wrapper" _site/biology/index.html || (echo "Biology Matrix wrapper missing from /biology/" && exit 1)
           grep -q "biology-matrix-card-link" _site/biology/index.html || (echo "Biology Matrix cards missing from /biology/" && exit 1)
+          test -f _site/about/index.html || (echo "Missing /about/" && exit 1)
+          grep -q "MD. YUSUF" _site/about/index.html || (echo "Author profile identity missing from /about/" && exit 1)
+          grep -q "BCS Education Cadre" _site/about/index.html || (echo "Author professional profile missing from /about/" && exit 1)
           test -f _site/privacy-policy/index.html || (echo "Missing /privacy-policy/" && exit 1)
           test -f _site/terms-and-conditions/index.html || (echo "Missing /terms-and-conditions/" && exit 1)
           test -f _site/disclaimer/index.html || (echo "Missing /disclaimer/" && exit 1)
@@ -75,7 +78,7 @@ jobs:
           test -f _site/matrix/systems-thinking/index.html || (echo "Missing /matrix/systems-thinking/" && exit 1)
           test -f _site/matrix/neuroplasticity/index.html || (echo "Missing /matrix/neuroplasticity/" && exit 1)
           ruby -rjson -e 'JSON.parse(File.read("_site/assets/data/graph_manifest.json")); puts "Graph manifest JSON validated."'
-          echo "Build artifacts, utility pages, Biology Matrix hub, and OMEGA routes validated."
+          echo "Build artifacts, author profile, utility pages, Biology Matrix hub, and OMEGA routes validated."
 
       - name: Optional Edge Graph Sync Hook
         if: success()
