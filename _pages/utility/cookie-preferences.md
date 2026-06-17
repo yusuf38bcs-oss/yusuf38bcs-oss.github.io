@@ -1,7 +1,7 @@
 ---
 layout: single
-author_profile: false
-author: "MD. Yusuf"
+author_profile: true
+author: "MD. YUSUF"
 title: "Cookie Preferences"
 permalink: /cookie-preferences/
 sidebar:
@@ -15,18 +15,34 @@ status: "Active"
 
 # Cookie Preferences
 
-Learning Biology For Life uses essential cookies for site stability and may use analytics or advertising scripts only after consent where required.
+Learning Biology For Life uses a consent-aware cookie model for essential site functions and optional learning analytics.
 
-## Current Control
+## Essential
 
-Use the cookie banner buttons to accept or decline non-essential scripts. You may reset your browser site data at any time to see the banner again.
+Essential browser storage may be used for:
 
-## Essential Cookies
+- Navigation
+- Security
+- Site stability
+- Accessibility support
+- Preference preservation
 
-Essential browser storage may be used for navigation, security, and preference preservation.
+These functions help the site work reliably.
 
-## Optional Services
+## Optional
 
-Optional services may include analytics, advertising, newsletter subscription processing, and embedded learning tools.
+Optional services may include:
 
-For privacy details, read the [Privacy Policy]({{ '/privacy-policy/' | relative_url }}).
+- Analytics
+- Advertising scripts
+- Newsletter processing
+- Embedded learning tools
+- Performance measurement
+
+Optional services should run only after consent where consent is required.
+
+## Control
+
+Use the cookie banner buttons to accept or decline non-essential scripts. You may clear browser site data at any time to reset your choice.
+
+For full details, read the [Privacy Policy]({{ '/privacy-policy/' | relative_url }}).
