@@ -1,17 +1,33 @@
 ---
-permalink: /thank-you/
 layout: single
-title: "Thank You for Subscribing!"
+author_profile: true
+author: "MD. YUSUF"
+title: "Thank You for Subscribing"
 permalink: /thank-you/
+sidebar:
+  nav: "synaptic_nav"
+node_id: util-thank-you
+pillar: "Network"
+difficulty: "Foundation"
+xp: 100
+status: "Active"
 ---
 
-**You have successfully taken the first step across the Synaptic Bridge.** Before we officially welcome you to the community, we need to verify your email address to ensure you receive our updates correctly.
+# Thank You for Subscribing
 
-### ðŸ›‘ Next Step: Check Your Inbox
-We just sent a confirmation link to your email. Please open it and click **"Confirm Subscription"** to activate your membership.
+You have taken the first step across the **Synaptic Bridge**.
 
-* **Don't see the email?** Sometimes our educational notes get misfiled. Please check your **Spam** or **Promotions** folder, and move us to your primary inbox so you never miss a lesson!
+## Action Required
 
-While you wait, why not start exploring?
-* [Return to the Homepage](/)
-* [Read our Core Philosophy](/about/)
+Please check your inbox and click **Confirm Subscription** to activate your membership.
+
+## Tip
+
+If the confirmation message is not visible, check other inbox categories and move the email to your primary inbox so future lessons arrive reliably.
+
+## Continue Exploring
+
+- [Return to the Homepage]({{ '/' | relative_url }})
+- [Explore Biology]({{ '/biology/' | relative_url }})
+- [Read the Core Philosophy]({{ '/about/' | relative_url }})
+- [Contact Us]({{ '/contact/' | relative_url }})
