@@ -1,35 +1,37 @@
-<section class="premium-neural-hero" aria-label="Homepage hero">
+<section class="premium-neural-hero neural-hero" aria-label="Homepage hero">
   <picture class="hero-header-bg-media" aria-hidden="true">
     <source srcset="{{ '/assets/images/header-bg.webp' | relative_url }}" type="image/webp">
-    <img src="{{ '/assets/images/header-bg.webp' | relative_url }}" alt="" loading="eager" decoding="async" fetchpriority="high">
+    <img src="{{ '/assets/images/header-bg.webp' | relative_url }}" alt="" loading="eager" decoding="async" fetchpriority="high" width="1920" height="1080">
   </picture>
 
   <div class="hero-ambient-core" aria-hidden="true"></div>
 
-  <div class="hero-wrapper">
-    <div class="hero-content-matrix">
+  <div class="hero-wrapper l-center" style="box-sizing: content-box; --center-measure: 900px;">
+    <div class="hero-content-matrix stack" style="--stack-space: var(--s2);">
       <div class="system-status-badge">
         <span class="status-pulse"></span> Neural Network Active
       </div>
 
-      <h1 class="neural-hero-title">
+      <h1 class="neural-hero-title txt-venus">
         The Cognitive Wave of <span class="gradient-text">Education</span>
       </h1>
 
-      <p class="neural-hero-subtitle">
+      <p class="neural-hero-subtitle txt-intro">
         Mapping the intellectual and interconnected nature of the biological sciences, life philosophy, and the 4IR ecosystem.
       </p>
 
-      <div class="hero-actions-grid">
-        <a href="{{ '/biology/' | relative_url }}" class="premium-btn btn--cyan">
-          <span class="btn-icon" aria-hidden="true">🔬</span>
-          <span class="btn-text">Enter Biology Hub</span>
-        </a>
+      <div class="hero-actions-grid l-cluster" style="--cluster-justify: center;">
+        <div class="flex-container">
+          <a href="{{ '/biology/' | relative_url }}" class="premium-btn btn--cyan button">
+            <span class="btn-icon" aria-hidden="true">🔬</span>
+            <span class="btn-text">Enter Biology Hub</span>
+          </a>
 
-        <a href="{{ '/life-philosophy/' | relative_url }}" class="premium-btn btn--outline">
-          <span class="btn-icon" aria-hidden="true">🌌</span>
-          <span class="btn-text">Philosophical Vectors</span>
-        </a>
+          <a href="{{ '/life-philosophy/' | relative_url }}" class="premium-btn btn--outline button--ghost">
+            <span class="btn-icon" aria-hidden="true">🌌</span>
+            <span class="btn-text">Philosophical Vectors</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -40,6 +42,7 @@
     position: relative;
     isolation: isolate;
     background-color: #020617 !important;
+    background-color: var(--lbfl-bg-oklch, #020617) !important;
     background-image: none !important;
     min-height: clamp(640px, 86vh, 920px);
     padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 4vw, 2rem);
@@ -111,7 +114,6 @@
   .hero-wrapper {
     position: relative;
     z-index: 10;
-    max-width: 900px;
     width: 100%;
   }
 
@@ -132,6 +134,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    align-self: center;
     background: rgba(2, 6, 23, 0.56);
     border: 1px solid rgba(0, 212, 178, 0.34);
     padding: 6px 16px;
@@ -141,7 +144,6 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 2rem;
   }
 
   .status-pulse {
@@ -155,11 +157,7 @@
 
   .neural-hero-title {
     color: #ffffff;
-    font-size: clamp(2.45rem, 6vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.08;
-    margin: 0 0 1.5rem 0;
-    letter-spacing: -0.02em;
+    margin: 0;
     text-shadow: 0 5px 24px rgba(0, 0, 0, 0.90);
   }
 
@@ -172,38 +170,23 @@
 
   .neural-hero-subtitle {
     color: #f8fafc;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    line-height: 1.6;
     max-width: 700px;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto !important;
     text-shadow: 0 3px 16px rgba(0, 0, 0, 0.92);
   }
 
-  .hero-actions-grid {
-    display: flex;
-    flex-wrap: wrap;
+  .hero-actions-grid .flex-container {
     justify-content: center;
-    gap: 1rem;
   }
 
   .premium-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 0.8rem 2rem;
-    border-radius: 12px;
-    font-weight: 700;
     font-size: 1rem;
-    text-decoration: none !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .premium-btn.btn--cyan {
     background: #00d4b2;
     color: #020617 !important;
     border: 1px solid #00d4b2;
-    box-shadow: 0 0 20px rgba(0, 212, 178, 0.2);
   }
 
   .premium-btn.btn--outline {
@@ -235,20 +218,16 @@
 
     .system-status-badge {
       font-size: 0.72rem;
-      margin-bottom: 1.35rem;
-    }
-
-    .neural-hero-title {
-      font-size: clamp(2.15rem, 11vw, 3.25rem);
+      margin-bottom: 0;
     }
 
     .neural-hero-subtitle {
       text-align: left;
       font-size: 1.05rem;
-      margin-bottom: 2rem;
     }
 
-    .hero-actions-grid {
+    .hero-actions-grid .flex-container {
+      width: 100%;
       flex-direction: column;
       align-items: stretch;
     }
@@ -257,11 +236,5 @@
       width: 100%;
       min-height: 64px;
     }
-  }
-
-  @keyframes pulse {
-    0% { transform: scale(0.95); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.5; }
-    100% { transform: scale(0.95); opacity: 1; }
   }
 </style>
