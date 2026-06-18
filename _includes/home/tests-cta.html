@@ -1,7 +1,7 @@
 <section class="premium-tests-cta-block" aria-label="Self-discovery assessment triggers">
-  <div class="tests-matrix-grid-container">
+  <div class="tests-matrix-grid-container l-sidebar" style="--sidebar-size: 24rem; --not-sidebar-min: 36rem; --sidebar-gap: 1.5rem;">
 
-    <a class="neural-cta-interactive-card cta-card--mi" href="{{ '/socratic/multiple-intelligences/' | relative_url }}" aria-label="Multiple Intelligences Analysis Test Track">
+    <a class="neural-cta-interactive-card cta-card--mi not-sidebar" href="{{ '/socratic/multiple-intelligences/' | relative_url }}" aria-label="Multiple Intelligences Analysis Test Track">
       <div class="neural-cta-content-shield">
 
         <div class="cta-badge-indicator">
@@ -17,7 +17,7 @@
           Discover the unique constellation of intelligences you possess. Through reflective questions and interactive analysis, uncover your cognitive strengths and learning preferences.
         </p>
 
-        <div class="neural-cta-action-trigger">
+        <div class="neural-cta-action-trigger button" aria-hidden="true">
           <span class="cta-action-text">Take MI Analysis</span>
           <span class="cta-indicator-arrow">&#8594;</span>
         </div>
@@ -26,7 +26,7 @@
       <div class="neural-card-ambient-glow" aria-hidden="true"></div>
     </a>
 
-    <a class="neural-cta-interactive-card cta-card--personality" href="{{ '/socratic/personality-archetypes/' | relative_url }}" aria-label="Personality Assessment Test Track">
+    <a class="neural-cta-interactive-card cta-card--personality sidebar" href="{{ '/socratic/personality-archetypes/' | relative_url }}" aria-label="Personality Assessment Test Track">
       <div class="neural-cta-content-shield">
 
         <div class="cta-badge-indicator indicator--blue">
@@ -42,7 +42,7 @@
           Move beyond surface labels. This introspective assessment reveals your core values, behavioral patterns, strengths, and systemic areas for growth. Discover who you truly are.
         </p>
 
-        <div class="neural-cta-action-trigger">
+        <div class="neural-cta-action-trigger button--ghost" aria-hidden="true">
           <span class="cta-action-text">Begin Self-Discovery</span>
           <span class="cta-indicator-arrow">&#8594;</span>
         </div>
@@ -70,23 +70,9 @@
   }
 
   .tests-matrix-grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
     width: 100%;
     align-items: stretch;
     box-sizing: border-box;
-  }
-
-  @media (min-width: 768px) {
-    .tests-matrix-grid-container {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .tests-matrix-grid-container { gap: 2.5rem; }
   }
 
   .neural-cta-interactive-card {
@@ -105,11 +91,14 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   }
 
-  .neural-cta-interactive-card:hover {
+  .neural-cta-interactive-card:hover,
+  .neural-cta-interactive-card:focus-visible {
     transform: translateY(-5px) !important;
     border-color: rgba(0, 212, 178, 0.25) !important;
     box-shadow: 0 20px 40px rgba(0, 212, 178, 0.05) !important;
     background: #0f172a !important;
+    outline: 2px solid rgba(0, 245, 212, 0.45);
+    outline-offset: 3px;
   }
 
   .neural-cta-content-shield {
@@ -138,29 +127,10 @@
     border-color: rgba(59, 130, 246, 0.15);
   }
 
-  .badge-pulse-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background-color: #00d4b2;
-    box-shadow: 0 0 6px #00d4b2;
-  }
-
-  .cta-badge-indicator.indicator--blue .badge-pulse-dot {
-    background-color: #3b82f6;
-    box-shadow: 0 0 6px #3b82f6;
-  }
-
-  .badge-lbl-text {
-    font-size: 0.72rem !important;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-    color: #00d4b2 !important;
-  }
-
-  .cta-badge-indicator.indicator--blue .badge-lbl-text {
-    color: #3b82f6 !important;
-  }
+  .badge-pulse-dot { width: 5px; height: 5px; border-radius: 50%; background-color: #00d4b2; box-shadow: 0 0 6px #00d4b2; }
+  .cta-badge-indicator.indicator--blue .badge-pulse-dot { background-color: #3b82f6; box-shadow: 0 0 6px #3b82f6; }
+  .badge-lbl-text { font-size: 0.72rem !important; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: #00d4b2 !important; }
+  .cta-badge-indicator.indicator--blue .badge-lbl-text { color: #3b82f6 !important; }
 
   .neural-cta-title-node {
     margin: 0 0 1rem 0 !important;
@@ -181,32 +151,14 @@
 
   .neural-cta-action-trigger {
     margin-top: auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff !important;
-    font-weight: 700 !important;
+    width: fit-content;
     font-size: 0.9rem !important;
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    padding-top: 1.25rem;
-    width: 100%;
-    transition: color 0.2s ease;
   }
 
-  .neural-cta-action-trigger .cta-indicator-arrow {
-    color: #00d4b2 !important;
-    transition: transform 0.2s ease;
-  }
-
-  .neural-cta-interactive-card:hover .neural-cta-action-trigger {
-    color: #00d4b2 !important;
-  }
-
-  .neural-cta-interactive-card:hover .cta-indicator-arrow {
-    transform: translateX(4px);
-  }
+  .neural-cta-action-trigger .cta-indicator-arrow { color: currentColor !important; transition: transform 0.2s ease; }
+  .neural-cta-interactive-card:hover .cta-indicator-arrow { transform: translateX(4px); }
 
   .tests-unified-geometric-divider {
     display: flex;
@@ -218,31 +170,14 @@
     user-select: none;
   }
 
-  .geo-solid-dot {
-    width: 5px; height: 5px;
-    background-color: rgba(0, 212, 178, 0.2) !important;
-    border-radius: 50%;
-  }
-
-  .geo-horizontal-line {
-    width: 80px; height: 1px;
-    background: rgba(0, 212, 178, 0.1);
-  }
+  .geo-solid-dot { width: 5px; height: 5px; background-color: rgba(0, 212, 178, 0.2) !important; border-radius: 50%; }
+  .geo-horizontal-line { width: 80px; height: 1px; background: rgba(0, 212, 178, 0.1); }
 
   @media (max-width: 480px) {
-    .neural-cta-interactive-card {
-      align-items: center !important;
-      text-align: center !important;
-    }
-    .neural-cta-desc-node {
-      text-align: center !important;
-    }
-    .cta-badge-indicator {
-      margin: 0 auto 1.25rem auto !important;
-    }
-    .neural-cta-action-trigger {
-      justify-content: center !important;
-    }
+    .neural-cta-interactive-card { align-items: center !important; text-align: center !important; }
+    .neural-cta-desc-node { text-align: center !important; }
+    .cta-badge-indicator { margin: 0 auto 1.25rem auto !important; }
+    .neural-cta-action-trigger { width: 100%; }
   }
 </style>
 {% assign jekyll_tests_cta_styles_loaded = true %}
