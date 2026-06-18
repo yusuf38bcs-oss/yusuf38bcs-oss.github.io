@@ -5,75 +5,162 @@ layout: default
 <link rel="stylesheet" href="{{ '/assets/css/biology-matrix.css' | relative_url }}">
 
 {% assign biology_nodes = site.biology | sort: "title" %}
-{% assign biology_pillars = biology_nodes | group_by_exp: "post", "post.pillar | default: 'Biology Core'" %}
+{% assign biology_pillars = biology_nodes | group_by_exp: "node", "node.pillar | default: 'Biology Core'" %}
+{% assign biology_total = biology_nodes | size %}
+{% assign biology_socratic_total = 0 %}
+{% assign biology_xp_total = 0 %}
+{% assign biology_available_total = 0 %}
 
-<div class="biology-matrix-hub-wrapper synaptic-page-container">
-  <header class="biology-matrix-hero" aria-labelledby="biology-matrix-title">
-    <p class="biology-matrix-eyebrow">Biology Matrix Hub</p>
-    <h1 id="biology-matrix-title" class="biology-matrix-title">Biological Knowledge Network</h1>
-    <p class="biology-matrix-subtitle">Explore the interconnected academic biology nodes of Learning Biology For Life from cellular foundations to zoology, physiology, ecology, genetics, and biostatistics.</p>
+{% for node in biology_nodes %}
+  {% assign node_status = node.status | default: 'available' | downcase %}
+  {% if node_status == 'available' or node_status == 'active' or node_status == 'published' or node_status == 'ready' %}
+    {% assign biology_available_total = biology_available_total | plus: 1 %}
+  {% endif %}
+  {% if node.socratic_prompt or node.anomaly_question %}
+    {% assign biology_socratic_total = biology_socratic_total | plus: 1 %}
+  {% endif %}
+  {% assign node_xp = node.mastery_points | default: node.xp | default: 10 %}
+  {% assign biology_xp_total = biology_xp_total | plus: node_xp %}
+{% endfor %}
+
+<div class="biology-zone-shell" data-biology-zone>
+  <header class="biology-zone-hero" aria-labelledby="biology-zone-title">
+    <div class="biology-hero-grid">
+      <div class="biology-hero-copy">
+        <p class="biology-zone-eyebrow">Learning Biology For Life · Academic Knowledge Matrix</p>
+        <h1 id="biology-zone-title" class="biology-zone-title">Biology Matrix Hub</h1>
+        <p class="biology-zone-subtitle">
+          A structured, collection-driven biology zone connecting HSC Botany, HSC Zoology, Higher Zoology, physiology, ecology, genetics, biostatistics, cellular logic, and Socratic inquiry.
+        </p>
+        <div class="biology-zone-actions" aria-label="Biology matrix quick actions">
+          <a href="#biology-matrix-sections" class="biology-zone-action biology-zone-action--primary">Explore Nodes</a>
+          <a href="{{ '/life-practices/cognitive-audit/' | relative_url }}" class="biology-zone-action">Open Socratic 4.0</a>
+        </div>
+      </div>
+
+      <aside class="biology-zone-status" aria-label="Biology matrix status">
+        <div class="biology-status-orb" aria-hidden="true"></div>
+        <p class="biology-status-label">Zone Status</p>
+        <p class="biology-status-value">Collection Active</p>
+        <p class="biology-status-note">Rendered from <code>site.biology</code> with fault-tolerant cards and pillar grouping.</p>
+      </aside>
+    </div>
   </header>
 
+  <section class="biology-zone-metrics" aria-label="Biology zone metrics">
+    <article class="biology-metric-card">
+      <span class="biology-metric-value">{{ biology_total }}</span>
+      <span class="biology-metric-label">Biology Nodes</span>
+    </article>
+    <article class="biology-metric-card">
+      <span class="biology-metric-value">{{ biology_pillars.size }}</span>
+      <span class="biology-metric-label">Learning Pillars</span>
+    </article>
+    <article class="biology-metric-card">
+      <span class="biology-metric-value">{{ biology_socratic_total }}</span>
+      <span class="biology-metric-label">Socratic Prompts</span>
+    </article>
+    <article class="biology-metric-card">
+      <span class="biology-metric-value">{{ biology_xp_total }}</span>
+      <span class="biology-metric-label">Mastery XP</span>
+    </article>
+  </section>
+
   {% if content and content != empty %}
-    <div class="biology-matrix-intro">
+    <section class="biology-zone-intro" aria-label="Biology hub introduction">
       {{ content }}
-    </div>
+    </section>
   {% endif %}
 
   {% if biology_nodes and biology_nodes.size > 0 %}
-    <div class="biology-matrix-sections" aria-label="Biology learning pillars">
+    <nav class="biology-pillar-index" aria-label="Biology pillar index">
+      <span class="biology-pillar-index__label">Jump to pillar</span>
+      <div class="biology-pillar-index__links">
+        {% for pillar_group in biology_pillars %}
+          {% assign pillar_name = pillar_group.name | default: 'Biology Core' %}
+          {% assign pillar_anchor = pillar_name | slugify | prepend: 'biology-pillar-' %}
+          <a href="#{{ pillar_anchor }}">{{ pillar_name }}</a>
+        {% endfor %}
+      </div>
+    </nav>
+
+    <main id="biology-matrix-sections" class="biology-matrix-sections" aria-label="Biology learning pillars">
       {% for pillar_group in biology_pillars %}
-        {% assign pillar_name = pillar_group.name | default: "Biology Core" %}
+        {% assign pillar_name = pillar_group.name | default: 'Biology Core' %}
         {% assign pillar_slug = pillar_name | slugify %}
-        {% assign pillar_class = "pillar-color-general" %}
-        {% if pillar_slug contains "zoology" or pillar_slug contains "physiology" or pillar_slug contains "animal" %}
-          {% assign pillar_class = "pillar-color-zoology" %}
-        {% elsif pillar_slug contains "botany" %}
-          {% assign pillar_class = "pillar-color-botany" %}
-        {% elsif pillar_slug contains "cellular" or pillar_slug contains "cell" %}
-          {% assign pillar_class = "pillar-color-cellular" %}
-        {% elsif pillar_slug contains "genetics" or pillar_slug contains "chromosome" or pillar_slug contains "dna" %}
-          {% assign pillar_class = "pillar-color-genetics" %}
-        {% elsif pillar_slug contains "ecology" or pillar_slug contains "environment" or pillar_slug contains "ecosystem" %}
-          {% assign pillar_class = "pillar-color-ecology" %}
-        {% elsif pillar_slug contains "biostatistics" or pillar_slug contains "statistics" or pillar_slug contains "data" %}
-          {% assign pillar_class = "pillar-color-biostatistics" %}
+        {% assign pillar_anchor = pillar_slug | prepend: 'biology-pillar-' %}
+        {% assign pillar_class = 'pillar-color-general' %}
+        {% if pillar_slug contains 'zoology' or pillar_slug contains 'physiology' or pillar_slug contains 'animal' %}
+          {% assign pillar_class = 'pillar-color-zoology' %}
+        {% elsif pillar_slug contains 'botany' or pillar_slug contains 'plant' %}
+          {% assign pillar_class = 'pillar-color-botany' %}
+        {% elsif pillar_slug contains 'cell' or pillar_slug contains 'cellular' or pillar_slug contains 'mitosis' %}
+          {% assign pillar_class = 'pillar-color-cellular' %}
+        {% elsif pillar_slug contains 'genetics' or pillar_slug contains 'chromosome' or pillar_slug contains 'dna' %}
+          {% assign pillar_class = 'pillar-color-genetics' %}
+        {% elsif pillar_slug contains 'ecology' or pillar_slug contains 'environment' or pillar_slug contains 'ecosystem' %}
+          {% assign pillar_class = 'pillar-color-ecology' %}
+        {% elsif pillar_slug contains 'biostatistics' or pillar_slug contains 'statistics' or pillar_slug contains 'data' %}
+          {% assign pillar_class = 'pillar-color-biostatistics' %}
         {% endif %}
 
-        <section class="biology-pillar-section {{ pillar_class }}" aria-labelledby="biology-pillar-{{ forloop.index }}">
+        <section id="{{ pillar_anchor }}" class="biology-pillar-section {{ pillar_class }}" aria-labelledby="{{ pillar_anchor }}-title">
           <div class="biology-pillar-heading">
             <span class="biology-pillar-dot" aria-hidden="true"></span>
             <div class="biology-pillar-heading-text">
-              <p class="biology-pillar-kicker">Pillar {{ forloop.index }}</p>
-              <h2 id="biology-pillar-{{ forloop.index }}" class="biology-pillar-title">{{ pillar_name }}</h2>
+              <p class="biology-pillar-kicker">Pillar {{ forloop.index }} · {{ pillar_group.items.size }} nodes</p>
+              <h2 id="{{ pillar_anchor }}-title" class="biology-pillar-title">{{ pillar_name }}</h2>
             </div>
           </div>
 
           <div class="biology-card-grid">
-            {% assign pillar_posts = pillar_group.items | sort: "title" %}
-            {% for post in pillar_posts %}
-              {% assign post_title = post.title | default: "Untitled Biology Node" %}
-              {% assign post_url = post.url | default: "/" %}
-              {% assign post_difficulty = post.difficulty | default: "Foundation" %}
-              {% assign post_mastery_points = post.mastery_points | default: 10 %}
-              {% assign post_excerpt_source = post.excerpt | default: post.content %}
-              {% assign post_excerpt = post_excerpt_source | strip_html | strip_newlines | normalize_whitespace | truncate: 110 %}
-              {% assign post_words = post.content | strip_html | number_of_words %}
-              {% assign post_reading_time = post_words | plus: 179 | divided_by: 180 %}
-              {% if post_reading_time < 1 %}
-                {% assign post_reading_time = 1 %}
+            {% assign pillar_posts = pillar_group.items | sort: 'title' %}
+            {% for node in pillar_posts %}
+              {% assign node_title = node.title | default: node.name | default: 'Untitled Biology Node' | replace: '.md', '' | replace: '-', ' ' %}
+              {% assign node_url = node.url | default: '/' %}
+              {% assign node_status = node.status | default: 'available' %}
+              {% assign node_difficulty = node.difficulty | default: 'Foundation' %}
+              {% assign node_xp = node.mastery_points | default: node.xp | default: 10 %}
+              {% assign node_time = node.estimated_time | default: '' %}
+              {% assign node_prompt = node.socratic_prompt | default: node.anomaly_question %}
+              {% assign node_excerpt_source = node.excerpt | default: node.description | default: node.content %}
+              {% assign node_excerpt = node_excerpt_source | strip_html | strip_newlines | normalize_whitespace | truncate: 132 %}
+              {% assign node_words = node.content | strip_html | number_of_words %}
+              {% assign node_reading_time = node_words | plus: 179 | divided_by: 180 %}
+              {% if node_reading_time < 1 %}
+                {% assign node_reading_time = 1 %}
               {% endif %}
 
-              <a class="biology-matrix-card-link" href="{{ post_url | relative_url }}" aria-label="Open biology node: {{ post_title | escape }}">
-                <article class="biology-matrix-card">
+              <a class="biology-matrix-card-link" href="{{ node_url | relative_url }}" aria-label="Open biology node: {{ node_title | escape }}">
+                <article class="biology-matrix-card" data-biology-node-card>
                   <div class="biology-card-topline">
-                    <span class="biology-difficulty-tag">{{ post_difficulty }}</span>
-                    <span class="biology-mastery-points">{{ post_mastery_points }} XP</span>
+                    <span class="biology-difficulty-tag">{{ node_difficulty }}</span>
+                    <span class="biology-status-tag">{{ node_status }}</span>
                   </div>
-                  <h3 class="biology-card-title">{{ post_title }}</h3>
-                  <p class="biology-card-excerpt">{{ post_excerpt }}</p>
+
+                  <h3 class="biology-card-title">{{ node_title }}</h3>
+                  <p class="biology-card-excerpt">{{ node_excerpt }}</p>
+
+                  <div class="biology-card-meta" aria-label="Node metadata">
+                    <span>{{ node_xp }} XP</span>
+                    {% if node_time and node_time != empty %}
+                      <span>{{ node_time }}</span>
+                    {% else %}
+                      <span>{{ node_reading_time }} min read</span>
+                    {% endif %}
+                    {% if node_prompt %}
+                      <span>Socratic</span>
+                    {% endif %}
+                  </div>
+
+                  {% if node.prerequisites and node.prerequisites.size > 0 %}
+                    <div class="biology-prereq-row" aria-label="Prerequisite count">
+                      <span>{{ node.prerequisites.size }} prerequisites</span>
+                    </div>
+                  {% endif %}
+
                   <div class="biology-card-footer">
-                    <span class="biology-reading-time">{{ post_reading_time }} min read</span>
+                    <span class="biology-card-path">{{ node_url }}</span>
                     <span class="biology-card-arrow" aria-hidden="true">&rarr;</span>
                   </div>
                 </article>
@@ -82,11 +169,35 @@ layout: default
           </div>
         </section>
       {% endfor %}
-    </div>
+    </main>
   {% else %}
     <section class="biology-empty-state" aria-labelledby="biology-empty-title">
       <h2 id="biology-empty-title">No biology nodes found</h2>
-      <p>Biology collection items will appear here when documents are added inside the <code>_biology</code> collection.</p>
+      <p>Biology collection items will appear here when Markdown documents are added inside the <code>_biology</code> collection and the collection remains enabled in <code>_config.yml</code>.</p>
     </section>
   {% endif %}
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ page.title | default: 'Biology Matrix Hub' | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "description": "Collection-driven biology learning matrix for Learning Biology For Life.",
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": {{ biology_total }},
+    "itemListElement": [
+      {% for node in biology_nodes %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.index }},
+        "url": {{ node.url | absolute_url | jsonify }},
+        "name": {{ node.title | default: node.name | default: 'Biology Node' | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
