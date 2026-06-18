@@ -1,0 +1,10 @@
+name = "synapticai-proxy"
+main = "worker/src/index.ts"
+compatibility_date = "2026-06-18"
+workers_dev = true
+
+[vars]
+GEMINI_MODEL = "gemini-2.5-flash"
+ALLOWED_ORIGIN = "https://learningbiologyforlife.org"
+EXTRA_ALLOWED_ORIGINS = "https://www.learningbiologyforlife.org,https://api.learningbiologyforlife.org"
+ENVIRONMENT = "production"
