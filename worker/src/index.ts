@@ -23,12 +23,24 @@ type SocraticResult = {
 
 type JsonRecord = Record<string, unknown>;
 
-const WORKER_VERSION = "omega-2026-06-18.1";
+const WORKER_VERSION = "omega-2026-06-18.2";
 const SERVICE_NAME = "LBFL Synaptic AI Edge Worker";
 const DEFAULT_MODEL = "gemini-2.5-flash";
 const MAX_BODY_BYTES = 12_000;
 const DEFAULT_ALLOWED_ORIGIN = "https://learningbiologyforlife.org";
 const FALLBACK_VECTOR = "/biology/";
+
+const SAFE_NEXT_VECTORS = [
+  "/biology/",
+  "/life-practices/cognitive-audit/",
+  "/socratic/multiple-intelligences/",
+  "/socratic/personality-archetypes/",
+  "/matrix/behavioral-axis/",
+  "/matrix/decision-making/",
+  "/matrix/leadership-dynamics/",
+  "/matrix/systems-thinking/",
+  "/matrix/neuroplasticity/"
+] as const;
 
 function splitOrigins(value?: string): string[] {
   return (value || "")
@@ -107,6 +119,26 @@ function cleanText(value: unknown, limit: number): string {
     .slice(0, limit);
 }
 
+function normalizePath(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed.startsWith("/")) return "";
+
+  const noHash = trimmed.split("#")[0] || "";
+  const noQuery = noHash.split("?")[0] || "";
+  const collapsed = noQuery.replace(/\/+/g, "/");
+
+  if (!collapsed.startsWith("/")) return "";
+  return collapsed.endsWith("/") ? collapsed : `${collapsed}/`;
+}
+
+function safeNextVector(value: unknown): string {
+  const candidate = normalizePath(cleanText(value, 500));
+  if ((SAFE_NEXT_VECTORS as readonly string[]).includes(candidate)) {
+    return candidate;
+  }
+  return FALLBACK_VECTOR;
+}
+
 function validatePayload(input: unknown): SocraticPayload | null {
   const payload = input as Partial<SocraticPayload> | null;
 
@@ -114,7 +146,7 @@ function validatePayload(input: unknown): SocraticPayload | null {
 
   const anomalyQuestion = cleanText(payload.anomaly_question, 1_200);
   const studentHypothesis = cleanText(payload.student_hypothesis, 2_400);
-  const pageContext = cleanText(payload.page_context, 600) || "/biology/";
+  const pageContext = normalizePath(cleanText(payload.page_context, 600)) || FALLBACK_VECTOR;
   const attemptCount = clampAttempt(Number(payload.attempt_count));
 
   if (anomalyQuestion.length < 8) return null;
@@ -129,7 +161,7 @@ function validatePayload(input: unknown): SocraticPayload | null {
   };
 }
 
-function safeFallback(attemptCount: number, reason = "safe_fallback"): SocraticResult {
+function safeFallback(attemptCount: number): SocraticResult {
   const strikeCount = clampAttempt(attemptCount);
 
   return {
@@ -138,19 +170,19 @@ function safeFallback(attemptCount: number, reason = "safe_fallback"): SocraticR
       strikeCount >= 3
         ? "The third attempt threshold has been reached. Review the core biological mechanism, identify the causal pathway, then retry from the Biology Matrix."
         : "Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.",
-    next_vector: `${FALLBACK_VECTOR}?reason=${encodeURIComponent(reason)}`,
+    next_vector: FALLBACK_VECTOR,
     strike_count: strikeCount
   };
 }
 
 function normalizeResult(parsed: Partial<SocraticResult>, attemptCount: number): SocraticResult {
+  const fallback = safeFallback(attemptCount);
   const feedback = cleanText(parsed.feedback_text, 1_500);
-  const nextVector = cleanText(parsed.next_vector, 500) || FALLBACK_VECTOR;
 
   return {
     mastery_achieved: Boolean(parsed.mastery_achieved),
-    feedback_text: feedback || safeFallback(attemptCount).feedback_text,
-    next_vector: nextVector.startsWith("/") ? nextVector : FALLBACK_VECTOR,
+    feedback_text: feedback || fallback.feedback_text,
+    next_vector: safeNextVector(parsed.next_vector),
     strike_count: clampAttempt(Number(parsed.strike_count || attemptCount))
   };
 }
@@ -181,6 +213,7 @@ function healthPayload(env: Env): JsonRecord {
       health: ["GET /", "GET /health", "GET /api/health"],
       socratic: ["POST /", "POST /api/socratic", "POST /api/gemini", "POST /socratic"]
     },
+    safe_next_vectors: SAFE_NEXT_VECTORS,
     contract: {
       request_type: "socratic_reflex",
       response_shape: ["mastery_achieved", "feedback_text", "next_vector", "strike_count"]
@@ -206,7 +239,7 @@ function statusPage(env: Env): string {
       <div class="bg-gradient-to-br from-cyan-400/15 via-slate-900 to-blue-500/10 p-8 sm:p-12">
         <p class="mb-4 inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-cyan-200">Omega Edge Runtime</p>
         <h1 class="max-w-3xl text-4xl font-black tracking-tight text-white sm:text-6xl">${SERVICE_NAME}</h1>
-        <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">Production API bridge for Socratic Biology evaluation, Gemini structured JSON, UTF-8/Bangla-safe responses, and stable Cloudflare edge delivery.</p>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">Production API bridge for Socratic Biology evaluation, Gemini structured JSON, UTF-8/Bangla-safe responses, route-safe next vectors, and stable Cloudflare edge delivery.</p>
       </div>
       <div class="grid gap-4 p-6 sm:grid-cols-3 sm:p-8">
         <article class="rounded-3xl border border-slate-700/80 bg-slate-950/60 p-5">
@@ -245,6 +278,7 @@ async function callGemini(payload: SocraticPayload, env: Env): Promise<SocraticR
   }
 
   const model = env.GEMINI_MODEL || DEFAULT_MODEL;
+  const allowedVectors = SAFE_NEXT_VECTORS.map((path) => `- ${path}`).join("\n");
 
   const systemInstruction = `
 You are the Socratic AI evaluator for Learning Biology For Life.
@@ -260,9 +294,12 @@ Rules:
 1. Preserve academic accuracy in biology, physiology, ecology, genetics, and zoology.
 2. Support English and Bangla learner input without corrupting Unicode text.
 3. If attempt_count is 1 or 2, guide with a Socratic hint and do not reveal the complete answer.
-4. If attempt_count is 3, explain the core biological mechanism directly and provide a remedial next_vector.
+4. If attempt_count is 3, explain the core biological mechanism directly.
 5. Set mastery_achieved true only when the learner demonstrates causal biological understanding.
 6. Keep feedback_text concise, respectful, and classroom-safe.
+7. next_vector MUST be exactly one of these verified routes, and MUST NOT invent nested routes:
+${allowedVectors}
+8. If no exact verified route is appropriate, use /biology/.
 `;
 
   const body = {
@@ -278,7 +315,8 @@ Rules:
               anomaly_question: payload.anomaly_question,
               student_hypothesis: payload.student_hypothesis,
               page_context: payload.page_context,
-              attempt_count: payload.attempt_count
+              attempt_count: payload.attempt_count,
+              verified_next_vectors: SAFE_NEXT_VECTORS
             })
           }
         ]
@@ -393,7 +431,7 @@ export default {
       return json(request, env, result);
     } catch (error) {
       console.error("[LBFL Worker Error]", error);
-      return json(request, env, safeFallback(payload.attempt_count, "gemini_or_schema_failure"));
+      return json(request, env, safeFallback(payload.attempt_count));
     }
   }
 };
