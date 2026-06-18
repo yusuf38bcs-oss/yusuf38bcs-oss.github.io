@@ -1,18 +1,20 @@
-<section class="premium-neural-hero neural-hero omega-hero-single" aria-label="Homepage hero">
-  <div class="hero-shell l-center" style="--center-measure: 1180px; box-sizing: content-box;">
-    <article class="hero-unified-card">
-      <img class="hero-unified-bg" src="{{ '/assets/images/header-bg.webp' | relative_url }}" alt="" loading="eager" decoding="async" fetchpriority="high" width="1920" height="1080">
-      <div class="hero-unified-shade" aria-hidden="true"></div>
-      <div class="hero-unified-copy stack" style="--stack-space: var(--s1);">
-        <div class="system-status-badge"><span class="status-pulse"></span> Neural Network Active</div>
-        <h1 class="neural-hero-title txt-venus">Where Biology <span class="gradient-text">Meets Life</span></h1>
-        <div class="hero-actions-grid l-cluster" style="--cluster-justify: flex-start; --cluster-gap: 0.85rem;">
-          <div class="flex-container">
-            <a href="{{ '/biology/' | relative_url }}" class="premium-btn btn--cyan button"><span class="btn-text">Enter Biology Hub</span></a>
-            <a href="{{ '/life-philosophy/' | relative_url }}" class="premium-btn btn--outline button--ghost"><span class="btn-text">Philosophical Vectors</span></a>
-          </div>
-        </div>
+<section class="premium-neural-hero neural-hero omega-hero-natural" aria-label="Homepage hero">
+  <picture class="hero-bg-natural" aria-hidden="true">
+    <source srcset="{{ '/assets/images/header-bg.webp' | relative_url }}" type="image/webp">
+    <img src="{{ '/assets/images/header-bg.webp' | relative_url }}" alt="" loading="eager" decoding="async" fetchpriority="high" width="1920" height="1080">
+  </picture>
+
+  <div class="hero-natural-overlay" aria-hidden="true"></div>
+
+  <div class="hero-natural-copy stack" style="--stack-space: 1rem;">
+    <div class="system-status-badge"><span class="status-pulse"></span> Neural Network Active</div>
+    <h1 class="neural-hero-title">The Cognitive Wave of <span class="gradient-text">Education</span></h1>
+    <p class="neural-hero-description">Biology meets life.</p>
+    <div class="hero-actions-grid l-cluster" style="--cluster-justify: flex-start; --cluster-gap: 0.85rem;">
+      <div class="flex-container">
+        <a href="{{ '/biology/' | relative_url }}" class="premium-btn btn--cyan button"><span class="btn-text">Enter Biology Hub</span></a>
+        <a href="{{ '/life-philosophy/' | relative_url }}" class="premium-btn btn--outline button--ghost"><span class="btn-text">Philosophical Vectors</span></a>
       </div>
-    </article>
+    </div>
   </div>
 </section>
