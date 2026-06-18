@@ -2,396 +2,688 @@
 ---
 @charset "utf-8";
 
-.biology-matrix-hub-wrapper {
-  --biology-bg: #020617;
-  --biology-surface: rgba(13, 21, 39, 0.4);
-  --biology-surface-strong: rgba(15, 23, 42, 0.72);
-  --biology-border: rgba(148, 163, 184, 0.16);
-  --biology-text: #f8fafc;
-  --biology-muted: #cbd5e1;
-  --biology-soft: #94a3b8;
-  --biology-focus: #00f5d4;
-  --biology-general: #00d4b2;
+/* ==========================================================================
+   BIOLOGY MATRIX ZONE — Production Master Stylesheet
+   Scope: /biology/ hub only
+   Output: /assets/css/biology-matrix.css
+   ========================================================================== */
 
+.biology-zone-shell {
+  --bio-bg: #020617;
+  --bio-panel: rgba(15, 23, 42, 0.72);
+  --bio-panel-soft: rgba(15, 23, 42, 0.48);
+  --bio-card: rgba(13, 21, 39, 0.64);
+  --bio-border: rgba(148, 163, 184, 0.16);
+  --bio-border-strong: rgba(0, 245, 212, 0.24);
+  --bio-text: #f8fafc;
+  --bio-muted: #cbd5e1;
+  --bio-soft: #94a3b8;
+  --bio-dim: #64748b;
+  --bio-accent: #00d4b2;
+  --bio-focus: #00f5d4;
+  --bio-blue: #60a5fa;
+  --bio-green: #34d399;
+  --bio-gold: #f59e0b;
+  --bio-pink: #f472b6;
+  --bio-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+  --bio-radius-xl: 30px;
+  --bio-radius-lg: 24px;
+  --bio-radius-md: 18px;
+
+  isolation: isolate;
+  position: relative;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
-  color: var(--biology-text);
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  color: var(--bio-text);
+  box-sizing: border-box;
+}
 
-  .biology-matrix-hero {
-    position: relative;
-    margin: 0 auto clamp(2.25rem, 5vw, 4rem);
-    padding: clamp(2rem, 5vw, 4rem);
-    overflow: hidden;
-    border: 1px solid rgba(0, 245, 212, 0.14);
-    border-radius: 28px;
-    background: radial-gradient(circle at top left, rgba(0, 245, 212, 0.12), transparent 34%), radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.1), transparent 38%), rgba(13, 21, 39, 0.48);
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+.biology-zone-shell *,
+.biology-zone-shell *::before,
+.biology-zone-shell *::after {
+  box-sizing: border-box;
+}
+
+.biology-zone-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(0, 245, 212, 0.08), transparent 34%),
+    radial-gradient(circle at 88% 28%, rgba(99, 102, 241, 0.08), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(5, 150, 105, 0.08), transparent 36%);
+}
+
+.biology-zone-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--bio-border-strong);
+  border-radius: var(--bio-radius-xl);
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.74)),
+    radial-gradient(circle at top left, rgba(0, 245, 212, 0.18), transparent 42%);
+  box-shadow: var(--bio-shadow);
+}
+
+.biology-zone-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -12% -45% auto;
+  width: min(36rem, 70vw);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 212, 178, 0.2), transparent 66%);
+  pointer-events: none;
+}
+
+.biology-hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 360px);
+  gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: stretch;
+  padding: clamp(1.5rem, 5vw, 4rem);
+}
+
+.biology-hero-copy {
+  min-width: 0;
+}
+
+.biology-zone-eyebrow,
+.biology-pillar-kicker,
+.biology-pillar-index__label,
+.biology-status-label,
+.biology-metric-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 850;
+}
+
+.biology-zone-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  color: var(--bio-focus);
+  font-size: 0.78rem;
+}
+
+.biology-zone-eyebrow::before {
+  content: "";
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  background: var(--bio-focus);
+  box-shadow: 0 0 18px rgba(0, 245, 212, 0.72);
+}
+
+.biology-zone-title {
+  max-width: 920px;
+  margin: 0;
+  color: var(--bio-text);
+  font-size: clamp(2.45rem, 7vw, 5.75rem);
+  font-weight: 950;
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+
+.biology-zone-subtitle {
+  max-width: 820px;
+  margin: 1.25rem 0 0;
+  color: var(--bio-muted);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.75;
+}
+
+.biology-zone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.6rem;
+}
+
+.biology-zone-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.72rem 1rem;
+  border: 1px solid rgba(0, 245, 212, 0.22);
+  border-radius: 12px;
+  color: #ccfbf1 !important;
+  background: rgba(0, 212, 178, 0.08);
+  text-decoration: none !important;
+  font-weight: 850;
+  line-height: 1.1;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.biology-zone-action:hover,
+.biology-zone-action:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--bio-focus);
+  background: rgba(0, 212, 178, 0.14);
+}
+
+.biology-zone-action--primary {
+  color: #020617 !important;
+  background: var(--bio-focus);
+  border-color: var(--bio-focus);
+}
+
+.biology-zone-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100%;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: var(--bio-radius-lg);
+  background: rgba(2, 6, 23, 0.42);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.biology-status-orb {
+  width: 4.25rem;
+  height: 4.25rem;
+  margin-bottom: auto;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 35%, #ffffff, rgba(255, 255, 255, 0.18) 24%, transparent 28%),
+    radial-gradient(circle, rgba(0, 245, 212, 0.92), rgba(13, 148, 136, 0.18) 62%, transparent 70%);
+  box-shadow: 0 0 42px rgba(0, 245, 212, 0.34);
+}
+
+.biology-status-label {
+  margin: 1.5rem 0 0.35rem;
+  color: var(--bio-soft);
+  font-size: 0.72rem;
+}
+
+.biology-status-value {
+  margin: 0;
+  color: var(--bio-text);
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.biology-status-note {
+  margin: 0.75rem 0 0;
+  color: var(--bio-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.biology-status-note code {
+  color: var(--bio-focus);
+  background: rgba(0, 245, 212, 0.08);
+  border-radius: 6px;
+  padding: 0.08rem 0.32rem;
+}
+
+.biology-zone-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: clamp(1.2rem, 4vw, 2rem) 0;
+}
+
+.biology-metric-card {
+  min-width: 0;
+  padding: 1.15rem;
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-md);
+  background: var(--bio-panel-soft);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+}
+
+.biology-metric-value {
+  display: block;
+  color: var(--bio-focus);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -0.045em;
+}
+
+.biology-metric-label {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--bio-soft);
+  font-size: 0.72rem;
+}
+
+.biology-zone-intro {
+  max-width: 900px;
+  margin: 0 auto clamp(1.5rem, 4vw, 2.5rem);
+  padding: 1.25rem;
+  border-left: 3px solid var(--bio-focus);
+  border-radius: 0 var(--bio-radius-md) var(--bio-radius-md) 0;
+  background: rgba(0, 212, 178, 0.045);
+  color: var(--bio-muted);
+  line-height: 1.75;
+}
+
+.biology-pillar-index {
+  position: sticky;
+  top: 70px;
+  z-index: 30;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 clamp(1.25rem, 4vw, 2rem);
+  padding: 0.85rem;
+  border: 1px solid var(--bio-border);
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.biology-pillar-index__label {
+  flex: 0 0 auto;
+  color: var(--bio-soft);
+  font-size: 0.7rem;
+  padding-left: 0.35rem;
+}
+
+.biology-pillar-index__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.biology-pillar-index__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 999px;
+  color: var(--bio-muted) !important;
+  background: rgba(15, 23, 42, 0.64);
+  text-decoration: none !important;
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
+.biology-pillar-index__links a:hover,
+.biology-pillar-index__links a:focus-visible {
+  color: #020617 !important;
+  border-color: var(--bio-focus);
+  background: var(--bio-focus);
+}
+
+.biology-matrix-sections {
+  display: grid;
+  gap: clamp(1.5rem, 5vw, 3rem);
+}
+
+.biology-pillar-section {
+  --pillar-accent: var(--bio-accent);
+  --pillar-soft: rgba(0, 212, 178, 0.14);
+  --pillar-glow: rgba(0, 212, 178, 0.28);
+  position: relative;
+  scroll-margin-top: 120px;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: var(--bio-radius-lg);
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.58), rgba(2, 6, 23, 0.36)),
+    rgba(2, 6, 23, 0.34);
+  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.22);
+}
+
+.pillar-color-zoology {
+  --pillar-accent: #f59e0b;
+  --pillar-soft: rgba(245, 158, 11, 0.16);
+  --pillar-glow: rgba(245, 158, 11, 0.32);
+}
+
+.pillar-color-botany,
+.pillar-color-cellular {
+  --pillar-accent: #0d9488;
+  --pillar-soft: rgba(13, 148, 136, 0.18);
+  --pillar-glow: rgba(13, 148, 136, 0.34);
+}
+
+.pillar-color-genetics {
+  --pillar-accent: #818cf8;
+  --pillar-soft: rgba(129, 140, 248, 0.18);
+  --pillar-glow: rgba(129, 140, 248, 0.34);
+}
+
+.pillar-color-ecology {
+  --pillar-accent: #34d399;
+  --pillar-soft: rgba(52, 211, 153, 0.16);
+  --pillar-glow: rgba(52, 211, 153, 0.3);
+}
+
+.pillar-color-biostatistics {
+  --pillar-accent: #f472b6;
+  --pillar-soft: rgba(244, 114, 182, 0.16);
+  --pillar-glow: rgba(244, 114, 182, 0.3);
+}
+
+.biology-pillar-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+}
+
+.biology-pillar-dot {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: var(--pillar-accent);
+  box-shadow: 0 0 0 7px var(--pillar-soft), 0 0 30px var(--pillar-glow);
+}
+
+.biology-pillar-heading-text {
+  min-width: 0;
+}
+
+.biology-pillar-kicker {
+  margin: 0 0 0.25rem;
+  color: var(--pillar-accent);
+  font-size: 0.72rem;
+}
+
+.biology-pillar-title {
+  margin: 0;
+  color: var(--bio-text);
+  font-size: clamp(1.35rem, 3vw, 2.2rem);
+  line-height: 1.12;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.biology-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 285px), 1fr));
+  gap: clamp(0.85rem, 2vw, 1.2rem);
+}
+
+.biology-matrix-card-link {
+  display: block;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none !important;
+  border-radius: 22px;
+  outline: none;
+}
+
+.biology-matrix-card-link:focus-visible {
+  outline: 2px solid var(--bio-focus);
+  outline-offset: 4px;
+}
+
+.biology-matrix-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 285px;
+  height: 100%;
+  padding: 1.15rem;
+  overflow: hidden;
+  border: 1px solid var(--bio-border);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, var(--pillar-soft), transparent 46%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.038), rgba(255, 255, 255, 0)),
+    var(--bio-card);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.23);
+  transform: translateZ(0);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.biology-matrix-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.075), transparent 52%);
+  transition: opacity 180ms ease;
+}
+
+.biology-matrix-card-link:hover .biology-matrix-card,
+.biology-matrix-card-link:focus-visible .biology-matrix-card {
+  transform: translateY(-5px);
+  border-color: var(--pillar-accent);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34), 0 0 28px var(--pillar-glow);
+}
+
+.biology-matrix-card-link:hover .biology-matrix-card::before,
+.biology-matrix-card-link:focus-visible .biology-matrix-card::before {
+  opacity: 1;
+}
+
+.biology-card-topline,
+.biology-card-meta,
+.biology-card-footer,
+.biology-prereq-row {
+  position: relative;
+  z-index: 1;
+}
+
+.biology-card-topline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.95rem;
+}
+
+.biology-difficulty-tag,
+.biology-status-tag,
+.biology-card-meta span,
+.biology-prereq-row span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0.32rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.biology-difficulty-tag {
+  color: var(--pillar-accent);
+  border: 1px solid rgba(0, 245, 212, 0.28);
+  background: var(--pillar-soft);
+}
+
+.biology-status-tag {
+  color: #bfdbfe;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.biology-card-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--bio-text);
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  line-height: 1.28;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+.biology-card-excerpt {
+  position: relative;
+  z-index: 1;
+  margin: 0.85rem 0 1rem;
+  color: var(--bio-muted);
+  font-size: 0.94rem;
+  line-height: 1.62;
+}
+
+.biology-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: auto;
+}
+
+.biology-card-meta span,
+.biology-prereq-row span {
+  color: var(--bio-soft);
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.biology-prereq-row {
+  margin-top: 0.7rem;
+}
+
+.biology-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.biology-card-path {
+  min-width: 0;
+  color: var(--bio-dim);
+  font-size: 0.76rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.biology-card-arrow {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  color: #020617;
+  background: var(--pillar-accent);
+  font-size: 1.15rem;
+  font-weight: 950;
+  transition: transform 180ms ease;
+}
+
+.biology-matrix-card-link:hover .biology-card-arrow,
+.biology-matrix-card-link:focus-visible .biology-card-arrow {
+  transform: translateX(4px);
+}
+
+.biology-empty-state {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid var(--bio-border-strong);
+  border-radius: var(--bio-radius-lg);
+  color: var(--bio-muted);
+  background: var(--bio-panel);
+  text-align: center;
+}
+
+.biology-empty-state h2 {
+  margin: 0 0 0.75rem;
+  color: var(--bio-text);
+}
+
+.biology-empty-state code {
+  color: var(--bio-focus);
+  background: rgba(0, 245, 212, 0.08);
+  border-radius: 6px;
+  padding: 0.08rem 0.32rem;
+}
+
+@media (max-width: 1100px) {
+  .biology-hero-grid {
+    grid-template-columns: 1fr;
   }
 
-  .biology-matrix-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0 0 1rem;
-    color: var(--biology-focus);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+  .biology-zone-status {
+    min-height: 220px;
   }
 
-  .biology-matrix-eyebrow::before {
-    content: "";
-    width: 0.65rem;
-    height: 0.65rem;
-    border-radius: 999px;
-    background: var(--biology-focus);
-    box-shadow: 0 0 18px rgba(0, 245, 212, 0.72);
+  .biology-zone-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .biology-zone-shell {
+    padding: 0.75rem;
   }
 
-  .biology-matrix-title {
-    max-width: 920px;
-    margin: 0;
-    color: var(--biology-text);
-    font-size: clamp(2.25rem, 6vw, 5rem);
-    font-weight: 900;
-    line-height: 0.98;
-    letter-spacing: -0.055em;
-    text-wrap: balance;
-  }
-
-  .biology-matrix-subtitle {
-    max-width: 820px;
-    margin: 1.35rem 0 0;
-    color: var(--biology-muted);
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    line-height: 1.75;
-  }
-
-  .biology-matrix-intro {
-    max-width: 860px;
-    margin: 0 auto clamp(2rem, 4vw, 3rem);
-    color: var(--biology-muted);
-    font-size: 1.05rem;
-    line-height: 1.75;
-  }
-
-  .biology-matrix-sections {
-    display: grid;
-    gap: clamp(2rem, 5vw, 4rem);
-  }
-
+  .biology-zone-hero,
   .biology-pillar-section {
-    --pillar-accent: var(--biology-general);
-    --pillar-accent-soft: rgba(0, 212, 178, 0.16);
-    --pillar-accent-glow: rgba(0, 212, 178, 0.36);
-    position: relative;
-    padding: clamp(1.25rem, 3vw, 2rem);
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 26px;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.54), rgba(2, 6, 23, 0.32)), rgba(2, 6, 23, 0.36);
+    border-radius: 20px;
   }
 
-  .pillar-color-zoology {
-    --pillar-accent: #D97706;
-    --pillar-accent-soft: rgba(217, 119, 6, 0.16);
-    --pillar-accent-glow: rgba(217, 119, 6, 0.42);
+  .biology-hero-grid {
+    padding: 1.15rem;
   }
 
-  .pillar-color-botany,
-  .pillar-color-cellular {
-    --pillar-accent: #0D9488;
-    --pillar-accent-soft: rgba(13, 148, 136, 0.18);
-    --pillar-accent-glow: rgba(13, 148, 136, 0.42);
+  .biology-zone-actions,
+  .biology-zone-action {
+    width: 100%;
   }
 
-  .pillar-color-genetics {
-    --pillar-accent: #6366F1;
-    --pillar-accent-soft: rgba(99, 102, 241, 0.18);
-    --pillar-accent-glow: rgba(99, 102, 241, 0.42);
+  .biology-zone-metrics {
+    grid-template-columns: 1fr;
   }
 
-  .pillar-color-ecology {
-    --pillar-accent: #059669;
-    --pillar-accent-soft: rgba(5, 150, 105, 0.18);
-    --pillar-accent-glow: rgba(5, 150, 105, 0.42);
+  .biology-pillar-index {
+    position: static;
+    border-radius: 20px;
   }
 
-  .pillar-color-biostatistics {
-    --pillar-accent: #DB2777;
-    --pillar-accent-soft: rgba(219, 39, 119, 0.18);
-    --pillar-accent-glow: rgba(219, 39, 119, 0.42);
+  .biology-pillar-index__links,
+  .biology-pillar-index__links a {
+    width: 100%;
   }
 
   .biology-pillar-heading {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: clamp(1.25rem, 3vw, 2rem);
-  }
-
-  .biology-pillar-dot {
-    flex: 0 0 auto;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 999px;
-    background: var(--pillar-accent);
-    box-shadow: 0 0 0 7px var(--pillar-accent-soft), 0 0 26px var(--pillar-accent-glow);
-  }
-
-  .biology-pillar-heading-text {
-    min-width: 0;
-  }
-
-  .biology-pillar-kicker {
-    margin: 0 0 0.22rem;
-    color: var(--pillar-accent);
-    font-size: 0.75rem;
-    font-weight: 850;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .biology-pillar-title {
-    margin: 0;
-    color: var(--biology-text);
-    font-size: clamp(1.45rem, 3vw, 2.25rem);
-    font-weight: 850;
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-  }
-
-  .biology-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: clamp(1rem, 2vw, 1.35rem);
-  }
-
-  .biology-matrix-card-link {
-    display: block;
-    min-width: 0;
-    color: inherit;
-    text-decoration: none;
-    border-radius: 22px;
-    outline: none;
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  .biology-matrix-card-link:focus-visible {
-    outline: 2px solid var(--biology-focus);
-    outline-offset: 4px;
+    align-items: flex-start;
   }
 
   .biology-matrix-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 260px;
-    height: 100%;
-    padding: 1.25rem;
-    overflow: hidden;
-    border: 1px solid var(--biology-border);
-    border-radius: 22px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0)), var(--biology-surface);
-    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transform: translateZ(0);
-    will-change: transform;
-    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    min-height: auto;
   }
+}
 
-  .biology-matrix-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    background: radial-gradient(circle at top right, var(--pillar-accent-soft), transparent 42%), linear-gradient(135deg, rgba(255, 255, 255, 0.055), transparent 48%);
-    transition: opacity 180ms ease;
+@media (prefers-reduced-motion: reduce) {
+  .biology-zone-shell *,
+  .biology-zone-shell *::before,
+  .biology-zone-shell *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
 
   .biology-matrix-card-link:hover .biology-matrix-card,
-  .biology-matrix-card-link:focus-visible .biology-matrix-card {
-    transform: translate3d(0, -6px, 0);
-    border-color: var(--pillar-accent);
-    box-shadow: 0 22px 58px rgba(0, 0, 0, 0.32), 0 0 28px var(--pillar-accent-glow);
-  }
-
-  .biology-matrix-card-link:hover .biology-matrix-card::before,
-  .biology-matrix-card-link:focus-visible .biology-matrix-card::before {
-    opacity: 1;
-  }
-
-  .biology-card-topline {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.65rem;
-    margin-bottom: 1rem;
-  }
-
-  .biology-difficulty-tag,
-  .biology-mastery-points {
-    display: inline-flex;
-    align-items: center;
-    min-height: 30px;
-    padding: 0.32rem 0.65rem;
-    border-radius: 999px;
-    font-size: 0.72rem;
-    font-weight: 850;
-    line-height: 1;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .biology-difficulty-tag {
-    color: var(--pillar-accent);
-    background: var(--pillar-accent-soft);
-    border: 1px solid var(--pillar-accent);
-  }
-
-  .biology-mastery-points {
-    color: #dbeafe;
-    background: rgba(59, 130, 246, 0.14);
-    border: 1px solid rgba(96, 165, 250, 0.24);
-  }
-
-  .biology-card-title {
-    position: relative;
-    z-index: 1;
-    margin: 0;
-    color: var(--biology-text);
-    font-size: clamp(1.08rem, 2vw, 1.32rem);
-    font-weight: 850;
-    line-height: 1.28;
-    letter-spacing: -0.025em;
-  }
-
-  .biology-card-excerpt {
-    position: relative;
-    z-index: 1;
-    margin: 0.95rem 0 1.25rem;
-    color: var(--biology-muted);
-    font-size: 0.95rem;
-    line-height: 1.65;
-  }
-
-  .biology-card-footer {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(148, 163, 184, 0.12);
-  }
-
-  .biology-reading-time {
-    color: var(--biology-soft);
-    font-size: 0.85rem;
-    font-weight: 700;
-  }
-
-  .biology-card-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.1rem;
-    height: 2.1rem;
-    border-radius: 999px;
-    color: #020617;
-    background: var(--pillar-accent);
-    font-size: 1.15rem;
-    font-weight: 900;
-    transform: translateZ(0);
-    will-change: transform;
-    transition: transform 180ms ease;
-  }
-
-  .biology-matrix-card-link:hover .biology-card-arrow,
-  .biology-matrix-card-link:focus-visible .biology-card-arrow {
-    transform: translate3d(4px, 0, 0);
-  }
-
-  .biology-empty-state {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: clamp(2rem, 5vw, 3rem);
-    border: 1px solid rgba(0, 245, 212, 0.14);
-    border-radius: 24px;
-    background: var(--biology-surface-strong);
-    color: var(--biology-muted);
-    text-align: center;
-  }
-
-  .biology-empty-state h2 {
-    margin: 0 0 0.75rem;
-    color: var(--biology-text);
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
-  }
-
-  .biology-empty-state p {
-    margin: 0;
-    line-height: 1.7;
-  }
-
-  .biology-empty-state code {
-    color: var(--biology-focus);
-    background: rgba(0, 245, 212, 0.08);
-    border-radius: 6px;
-    padding: 0.12rem 0.32rem;
-  }
-
-  @media (max-width: 720px) {
-    padding-inline: 1rem;
-
-    .biology-matrix-hero {
-      border-radius: 22px;
-    }
-
-    .biology-pillar-section {
-      border-radius: 22px;
-      padding: 1rem;
-    }
-
-    .biology-pillar-heading {
-      align-items: flex-start;
-    }
-
-    .biology-card-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .biology-matrix-card {
-      min-height: 240px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .biology-matrix-card,
-    .biology-matrix-card::before,
-    .biology-card-arrow,
-    .biology-matrix-card-link {
-      transition: none;
-      will-change: auto;
-    }
-
-    .biology-matrix-card-link:hover .biology-matrix-card,
-    .biology-matrix-card-link:focus-visible .biology-matrix-card,
-    .biology-matrix-card-link:hover .biology-card-arrow,
-    .biology-matrix-card-link:focus-visible .biology-card-arrow {
-      transform: none;
-    }
+  .biology-matrix-card-link:focus-visible .biology-matrix-card,
+  .biology-zone-action:hover,
+  .biology-zone-action:focus-visible {
+    transform: none;
   }
 }
