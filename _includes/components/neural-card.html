@@ -1,188 +1,43 @@
 {% comment %}
-  PREMIUM NEURAL CARD COMPONENT - REFINED ECOSYSTEM EDITION
-  Supports: Automated Post Loops (paginate-v2), Collection Feeds & Manual Layout Includes
-  Parameters: post (optional), card_title, card_description, card_link, card_icon, action_text
+  Accessible neural card component.
+  Text appears before decorative media; the heading link is the primary link.
 {% endcomment %}
 
-{% assign title = include.post.title | default: include.card_title %}
-{% assign excerpt = include.post.excerpt | default: include.card_description %}
-{% assign link = include.post.url | default: include.card_link %}
+{% assign title = include.post.title | default: include.card_title | default: include.title %}
+{% assign excerpt = include.post.excerpt | default: include.card_description | default: include.description %}
+{% assign link = include.post.url | default: include.card_link | default: include.url %}
 {% assign category = include.post.categories | first %}
+{% assign icon = include.card_icon | default: include.icon %}
 {% assign fallback_action = include.action_text | default: "Read Document Track" %}
 
-<article class="neural-card-wrapper" data-aos="fade-up">
-  <a class="section-card" href="{{ link | relative_url }}" aria-label="{{ title }}">
-    
-    <div class="card-header-meta">
-      {% if include.card_icon %}
-        <div class="card-icon-node" aria-hidden="true">{{ include.card_icon }}</div>
-      {% elsif category %}
+<article class="neural-card-wrapper card" data-component="card" data-aos="fade-up">
+  <div class="section-card card__inner stack" style="--stack-space: var(--s1);">
+    <div class="card__text card-content-body stack" style="--stack-space: var(--s-1);">
+      {% if category %}
         <span class="card-category-tag u-text-glow">{{ category | replace: '-', ' ' }}</span>
       {% endif %}
+      <h3 class="card__heading card-title-node">
+        <a class="card__link" href="{{ link | relative_url }}" aria-label="{{ title | strip_html | escape }}">{{ title }}</a>
+      </h3>
+      <p class="card-description-node">{{ excerpt | strip_html | truncate: 150 }}</p>
+    </div>
+
+    <div class="card__media card-header-meta" aria-hidden="true">
+      {% if icon %}<div class="card-icon-node">{{ icon }}</div>{% endif %}
       <div class="neural-pulse-dot"></div>
     </div>
 
-    <div class="card-content-body">
-      <h3 class="card-title-node">{{ title }}</h3>
-      <p class="card-description-node">
-        {{ excerpt | strip_html | truncate: 130 }}
-      </p>
-
-      <div class="card-footer-action-trigger" aria-hidden="true">
-        <span class="action-text-node">{{ fallback_action }}</span>
-        <span class="indicator-arrow-node">â†’</span>
-      </div>
+    <div class="card-footer-action-trigger" aria-hidden="true">
+      <span class="action-text-node">{{ fallback_action }}</span>
+      <span class="indicator-arrow-node">&#8594;</span>
     </div>
-
     <div class="card-glow-accent-layer" aria-hidden="true"></div>
-  </a>
+  </div>
 </article>
 
 {% unless neural_card_styles_loaded %}
 <style>
-  .neural-card-wrapper {
-    height: 100%;
-    display: flex;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .section-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: clamp(1rem, 5vw, 2.5rem) 2.25rem !important;
-    background: #0d1527 !important; 
-    border: 1px solid rgba(255, 255, 255, 0.03) !important;
-    border-radius: 12px !important; 
-    text-decoration: none !important;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    overflow: hidden;
-    box-sizing: border-box;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  }
-
-  .section-card:hover {
-    transform: translateY(-5px) !important;
-    border-color: rgba(0, 212, 178, 0.25) !important;
-    background: #0f172a !important;
-    box-shadow: 0 20px 40px rgba(0, 212, 178, 0.04) !important;
-  }
-
-  .card-header-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-
-  .card-icon-node {
-    font-size: 2.25rem;
-    line-height: 1;
-    display: block;
-  }
-
-  .card-category-tag {
-    font-size: 0.75rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.12em !important;
-    color: #64748b !important;
-    font-weight: 700 !important;
-    transition: color 0.25s ease;
-  }
-
-  .section-card:hover .card-category-tag {
-    color: #00d4b2 !important;
-  }
-
-  .card-content-body {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    margin-top: 1.25rem;
-  }
-
-  .card-title-node {
-    margin: 0 0 0.85rem 0 !important;
-    color: #ffffff !important;
-    font-size: 1.35rem !important;
-    line-height: 1.4 !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.01em;
-  }
-
-  /* PREMIUM TYPOGRAPHY FIX: ELIMINATED IRREGULAR WORD GAPS */
-  .card-description-node {
-    color: #94a3b8 !important;
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-    margin: 0 0 2rem 0 !important;
-    text-align: left !important; /* Fixed forced padding whitespace */
-    word-spacing: normal !important;
-    letter-spacing: -0.005em !important;
-  }
-
-  .card-footer-action-trigger {
-    margin-top: auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    font-size: 0.9rem !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 1.25rem;
-    width: 100%;
-    transition: color 0.2s ease;
-  }
-
-  .card-footer-action-trigger .indicator-arrow-node {
-    color: #00d4b2 !important;
-    transition: transform 0.2s ease;
-  }
-
-  .section-card:hover .card-footer-action-trigger {
-    color: #00d4b2 !important;
-  }
-
-  .section-card:hover .indicator-arrow-node {
-    transform: translateX(4px);
-  }
-
-  .neural-pulse-dot {
-    width: 6px;
-    height: 6px;
-    background: #00d4b2;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #00d4b2;
-    position: absolute;
-    top: 2.5rem;
-    right: 2.25rem;
-  }
-
-  /* Responsive Multi-Device Adaptations */
-  @media (max-width: 480px) {
-    .section-card {
-      padding: 2rem 1.5rem !important;
-      align-items: center !important;
-      text-align: center !important;
-    }
-    .card-title-node {
-      font-size: 1.25rem !important;
-    }
-    .card-description-node {
-      text-align: center !important; /* Harmonized layout on small smartphone views */
-      font-size: 0.92rem !important;
-    }
-    .card-footer-action-trigger {
-      justify-content: center !important;
-    }
-    .neural-pulse-dot {
-      top: 2rem;
-      right: 1.5rem;
-    }
-  }
+  .neural-card-wrapper.card{height:100%;display:flex;width:100%;box-sizing:border-box;position:relative}.section-card.card__inner{position:relative;display:flex;flex-direction:column;width:100%;padding:clamp(1rem,5vw,2.5rem) 2.25rem!important;background:#0d1527!important;border:1px solid rgba(255,255,255,.03)!important;border-radius:12px!important;transition:transform .28s ease,border-color .28s ease,background-color .28s ease,box-shadow .28s ease!important;overflow:hidden;box-sizing:border-box;box-shadow:0 12px 30px rgba(0,0,0,.35)}.neural-card-wrapper:hover .section-card,.neural-card-wrapper:focus-within .section-card{transform:translateY(-5px)!important;border-color:rgba(0,212,178,.25)!important;background:#0f172a!important;box-shadow:0 20px 40px rgba(0,212,178,.04)!important}.card__link{color:inherit!important;text-decoration:none!important}.card__link:after{content:"";position:absolute;inset:0;z-index:2}.card__link:focus-visible{outline:2px solid var(--lbfl-accent-oklch,#00f5d4);outline-offset:4px;border-radius:8px}.card-content-body{order:1;margin-top:0}.card-header-meta{order:2;display:flex;justify-content:space-between;align-items:center;width:100%}.card-footer-action-trigger{order:3;position:relative;z-index:1;margin-top:auto;display:inline-flex;align-items:center;gap:8px;color:#fff!important;font-weight:600!important;font-size:.9rem!important;border-top:1px solid rgba(255,255,255,.05);padding-top:1.25rem;width:100%;transition:color .2s ease}.card-icon-node{font-size:2.25rem;line-height:1}.card-category-tag{display:inline-block;width:fit-content;font-size:.75rem!important;text-transform:uppercase!important;letter-spacing:.12em!important;color:#64748b!important;font-weight:700!important}.card-title-node{margin:0!important;color:#fff!important;font-size:1.35rem!important;line-height:1.4!important;font-weight:700!important;letter-spacing:-.01em}.card-description-node{color:#94a3b8!important;font-size:.95rem!important;line-height:1.6!important;margin:0!important;text-align:left!important;word-spacing:normal!important}.indicator-arrow-node,.neural-card-wrapper:hover .card-footer-action-trigger,.neural-card-wrapper:focus-within .card-footer-action-trigger{color:#00d4b2!important}.neural-card-wrapper:hover .indicator-arrow-node,.neural-card-wrapper:focus-within .indicator-arrow-node{transform:translateX(4px)}.neural-pulse-dot{width:6px;height:6px;background:#00d4b2;border-radius:50%;box-shadow:0 0 8px #00d4b2;position:absolute;top:2.5rem;right:2.25rem}@media(max-width:480px){.section-card.card__inner{padding:2rem 1.5rem!important;align-items:center!important;text-align:center!important}.card-category-tag{margin-inline:auto}.card-title-node{font-size:1.25rem!important}.card-description-node{text-align:center!important;font-size:.92rem!important}.card-footer-action-trigger{justify-content:center!important}.neural-pulse-dot{top:2rem;right:1.5rem}}
 </style>
 {% assign neural_card_styles_loaded = true %}
 {% endunless %}
