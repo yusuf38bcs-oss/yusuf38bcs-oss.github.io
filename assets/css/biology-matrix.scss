@@ -503,14 +503,8 @@
 
 .biology-difficulty-tag {
   color: var(--pillar-accent);
-  border: 1px solid color-mix(in srgb, var(--pillar-accent) 72%, transparent);
+  border: 1px solid rgba(0, 245, 212, 0.28);
   background: var(--pillar-soft);
-}
-
-@supports not (color: color-mix(in srgb, white, black)) {
-  .biology-difficulty-tag {
-    border-color: rgba(0, 245, 212, 0.28);
-  }
 }
 
 .biology-status-tag {
