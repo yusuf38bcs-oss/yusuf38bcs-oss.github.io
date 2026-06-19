@@ -16,8 +16,8 @@ main:
     url: "/life-practices/"
   - title: "Socratic 4.0"
     url: "/life-practices/cognitive-audit/"
-  - title: "Contact"
-    url: "/contact/"
+  - title: "About"
+    url: "/about/"
 
 synaptic_nav:
   - title: "Neural Pathways"
