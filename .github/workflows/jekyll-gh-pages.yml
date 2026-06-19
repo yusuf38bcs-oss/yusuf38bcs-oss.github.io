@@ -82,8 +82,19 @@ jobs:
           test -f _site/matrix/leadership-dynamics/index.html || (echo "Missing /matrix/leadership-dynamics/" && exit 1)
           test -f _site/matrix/systems-thinking/index.html || (echo "Missing /matrix/systems-thinking/" && exit 1)
           test -f _site/matrix/neuroplasticity/index.html || (echo "Missing /matrix/neuroplasticity/" && exit 1)
+
+          # OMEGA Guardrail v2: route, Worker, and Socratic rendering contracts
+          test -f _site/mcq-arena/index.html || (echo "Missing /mcq-arena/" && exit 1)
+          test -f _site/socratic/index.html || (echo "Missing /socratic/" && exit 1)
+          test -f worker/wrangler.toml || (echo "Missing worker/wrangler.toml" && exit 1)
+          test ! -f wrangler.toml || (echo "Root wrangler.toml must not exist in Jekyll site root" && exit 1)
+          grep -q "MCQ Arena" _site/mcq-arena/index.html || (echo "MCQ Arena hub content missing" && exit 1)
+          grep -q "Socratic 4.0" _site/socratic/index.html || (echo "Socratic hub content missing" && exit 1)
+          test -f _site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html || (echo "Missing prompted Baroreceptor Reflex page" && exit 1)
+          grep -q "data-socratic-node" _site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html || (echo "Socratic prompted-page include missing" && exit 1)
+
           ruby -rjson -e 'JSON.parse(File.read("_site/assets/data/graph_manifest.json")); puts "Graph manifest JSON validated."'
-          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, and OMEGA routes validated."
+          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, and OMEGA v2 guardrails validated."
 
       - name: Optional Edge Graph Sync Hook
         if: success()
