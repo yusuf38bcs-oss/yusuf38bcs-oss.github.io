@@ -17,6 +17,14 @@
       .replace(/'/g, "&#039;");
   }
 
+  function escapeSelectorValue(value) {
+    const text = String(value || "");
+    if (window.CSS && typeof window.CSS.escape === "function") {
+      return window.CSS.escape(text);
+    }
+    return text.replace(/\\/g, "\\\\").replace(/"/g, "\\\"");
+  }
+
   function safeURL(value) {
     const url = String(value || "").trim();
     if (!url) return "/matrix/multiple-intelligences/";
@@ -69,7 +77,7 @@
   function scoreSchema(form, schema) {
     return schema.map(function (item, index) {
       const id = item.id || "mi_" + index;
-      const selected = form.querySelector('input[name="' + CSS.escape(id) + '"]:checked');
+      const selected = form.querySelector('input[name="' + escapeSelectorValue(id) + '"]:checked');
       const score = selected ? Number(selected.value) : 0;
       return {
         id: id,
