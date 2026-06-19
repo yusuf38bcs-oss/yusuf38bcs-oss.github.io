@@ -1,5 +1,5 @@
 /**
- * Synaptic AI - Global Production Core Engine v4.0
+ * Synaptic AI - Global Production Core Engine v4.1
  * Frontend bridge for Learning Biology For Life.
  *
  * Security model:
@@ -20,7 +20,7 @@
   }
 
   function resolveEndpoint() {
-    const configured = window.SYNAPTIC_AI_ENDPOINT || window.SYNAPTIC_WORKER_ENDPOINT || "";
+    const configured = window.LBFL_AI_ENDPOINT || window.SYNAPTIC_AI_ENDPOINT || window.SYNAPTIC_WORKER_ENDPOINT || "";
     const normalizedConfigured = normalizeEndpoint(configured);
     if (normalizedConfigured) return normalizedConfigured;
 
@@ -43,13 +43,21 @@
     });
   }
 
+  function cleanForWorker(value, limit) {
+    return String(value || "")
+      .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, limit);
+  }
+
   class SynapticAICore {
     constructor() {
       this.baseURL = resolveEndpoint();
       this.isProcessing = false;
       this.memoryHistory = [];
       this.requestTimeout = 30000;
-      this.version = "4.0.0";
+      this.version = "4.1.0";
     }
 
     get endpoint() {
@@ -66,11 +74,10 @@
     }
 
     async health() {
-      const response = await fetch(`${this.baseURL}/health`, {
+      const response = await fetch(`${this.baseURL}/api/health`, {
         method: "GET",
         headers: {
-          "Accept": "application/json",
-          "X-Synaptic-Version": this.version
+          "Accept": "application/json"
         }
       });
 
@@ -88,17 +95,18 @@
         throw new Error("Core Operation Active: a biological inference track is already being synthesized.");
       }
 
-      const prompt = options.prompt ? String(options.prompt).trim() : "";
+      const prompt = options.prompt ? cleanForWorker(options.prompt, 2400) : "";
       if (!prompt) {
         throw new Error("Null Prompt Paradox: introspection query cannot be blank.");
       }
 
       this.isProcessing = true;
 
-      const systemInstruction = options.systemInstruction || "You are a Socratic biology tutor. Guide students with concise, constructive, evidence-aware explanations and reflective questions.";
+      const systemInstruction = cleanForWorker(
+        options.systemInstruction || "Guide this learner through a concise Socratic biology response.",
+        800
+      );
       const useMemory = options.useMemory !== false;
-      const model = options.model || "gemini";
-      const mode = options.mode || options.type || "text";
 
       const controller = new AbortController();
       const timeoutId = window.setTimeout(function () {
@@ -106,7 +114,7 @@
       }, this.requestTimeout);
 
       try {
-        const response = await fetch(`${this.baseURL}/api/gemini`, {
+        const response = await fetch(`${this.baseURL}/api/socratic`, {
           method: "POST",
           mode: "cors",
           credentials: "omit",
@@ -114,21 +122,14 @@
           signal: controller.signal,
           headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json",
-            "X-Synaptic-Version": this.version,
-            "X-Synaptic-Origin": window.location.origin
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            prompt: prompt,
-            systemInstruction: systemInstruction,
-            history: useMemory ? this.memoryHistory.slice(-8) : [],
-            model: model,
-            mode: mode,
-            page: {
-              title: document.title || "Learning Biology For Life",
-              url: window.location.href,
-              path: window.location.pathname
-            }
+            type: "socratic_reflex",
+            anomaly_question: systemInstruction || "Guide this learner through a concise Socratic biology response.",
+            student_hypothesis: prompt,
+            page_context: window.location.pathname || "/biology/",
+            attempt_count: 1
           })
         });
 
@@ -146,7 +147,7 @@
         }
 
         const data = await response.json();
-        const generatedText = data.text || data.response || data.output || data.answer || "";
+        const generatedText = data.feedback_text || data.text || data.response || data.output || data.answer || "";
 
         if (!generatedText) {
           throw new Error("Empty Inference: Worker returned no text output.");
