@@ -1,7 +1,11 @@
 ---
-permalink: /mcq-arena/
 title: "MCQ Arena"
-layout: archive
 permalink: /mcq-arena/
-excerpt: "Test your knowledge with AI-generated MCQs."
+layout: archive
+collection: mcq-arena
+author_profile: false
+classes: wide
+excerpt: "Collection-powered assessment arena for academic MCQs, rapid revision, short answers, and competitive preparation."
 ---
+
+The MCQ Arena is now wired as a Jekyll collection archive. Assessment documents stored in `_mcq-arena` are rendered through the `/mcq-arena/` route and its child paths.
