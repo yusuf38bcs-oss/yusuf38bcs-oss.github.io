@@ -18,3 +18,93 @@
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352"
      crossorigin="anonymous"></script>
+
+<!-- OMEGA-compatible temporary translation bridge: English/Bangla only -->
+<script>
+  window.googleTranslateElementInit = function () {
+    if (!window.google || !window.google.translate || !document.getElementById('google_translate_element')) return;
+
+    new window.google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'bn,en',
+      layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+      autoDisplay: false
+    }, 'google_translate_element');
+  };
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+
+<style>
+  iframe.goog-te-banner-frame,
+  .goog-te-banner-frame.skiptranslate {
+    display: none !important;
+  }
+
+  body {
+    top: 0 !important;
+  }
+
+  .lbfl-translate-shell {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 42px;
+    margin-left: 0.75rem;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid rgba(0, 212, 178, 0.22);
+    border-radius: 999px;
+    background: rgba(13, 21, 39, 0.68);
+    color: #cbd5e1;
+    white-space: nowrap;
+  }
+
+  .lbfl-translate-label {
+    color: #7fffe7;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  #google_translate_element,
+  #google_translate_element .goog-te-gadget {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    color: #94a3b8;
+    font-family: inherit;
+    font-size: 0.76rem;
+  }
+
+  #google_translate_element select {
+    max-width: 160px;
+    min-height: 32px;
+    padding: 0.25rem 0.45rem;
+    border: 1px solid rgba(0, 212, 178, 0.45);
+    border-radius: 8px;
+    background-color: #0d1527;
+    color: #e6f2f5;
+    font: inherit;
+  }
+
+  #google_translate_element select:focus-visible {
+    outline: 2px solid rgba(0, 245, 212, 0.75);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 720px) {
+    .lbfl-translate-shell {
+      margin-left: 0;
+      padding: 0.25rem 0.45rem;
+    }
+
+    .lbfl-translate-label {
+      display: none;
+    }
+
+    #google_translate_element select {
+      max-width: 132px;
+      font-size: 0.72rem;
+    }
+  }
+</style>
