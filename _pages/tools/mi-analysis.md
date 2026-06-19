@@ -24,13 +24,14 @@ classes: wide
   </p>
   <div class="omega-audit-hero__actions">
     <a href="#mi-analysis-terminal">Start MI Analysis</a>
+    <a href="{{ '/socratic/multiple-intelligences/' | relative_url }}">Open MI Route</a>
     <a href="{{ '/matrix/multiple-intelligences/' | relative_url }}">Open Concept Node</a>
     <a href="{{ '/matrix/behavioral-axis/' | relative_url }}">Behavioral Axis</a>
   </div>
 </section>
 
 <div id="mi-analysis-terminal">
-  {% include components/mi-analysis.html %}
+  {% include components/mi-analysis-dynamic.html %}
 </div>
 
 <style>
