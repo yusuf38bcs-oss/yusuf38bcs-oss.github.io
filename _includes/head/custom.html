@@ -48,8 +48,10 @@
     position: relative;
     display: inline-flex;
     align-items: center;
+    width: 42px;
+    min-width: 42px;
     min-height: 42px;
-    margin-left: 0.65rem;
+    margin-left: 0.35rem;
     color: #cbd5e1;
     white-space: nowrap;
     z-index: 10020;
@@ -63,9 +65,11 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.35rem;
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
     min-height: 42px;
-    padding: 0.35rem 0.65rem;
+    padding: 0;
     border: 1px solid rgba(0, 212, 178, 0.26);
     border-radius: 999px;
     background: rgba(13, 21, 39, 0.86);
@@ -77,14 +81,6 @@
 
   .lbfl-translate-toggle::-webkit-details-marker {
     display: none;
-  }
-
-  .lbfl-translate-label {
-    color: #7fffe7;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
   }
 
   .lbfl-translate-panel {
@@ -150,17 +146,16 @@
 
   @media (max-width: 720px) {
     .lbfl-translate-shell {
-      margin-left: 0.2rem;
+      width: 40px;
+      min-width: 40px;
+      margin-left: 0.15rem;
     }
 
     .lbfl-translate-toggle {
-      width: 44px;
-      min-width: 44px;
-      padding: 0;
-    }
-
-    .lbfl-translate-label {
-      display: none;
+      width: 40px;
+      min-width: 40px;
+      height: 40px;
+      min-height: 40px;
     }
 
     .lbfl-translate-panel {
