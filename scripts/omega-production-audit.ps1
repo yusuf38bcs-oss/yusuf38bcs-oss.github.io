@@ -60,7 +60,7 @@ function Assert-NoCorruptSpanArtifacts {
 
     $matches = Get-ChildItem -Recurse -File -Force |
         Where-Object {
-            $relativePath = $_.FullName.Substring($repoRoot.Length).TrimStart([char]'\\', [char]'/')
+            $relativePath = $_.FullName.Substring($repoRoot.Length) -replace '^[\/]+', ''
             $segments = $relativePath -split '[\\/]+'
             -not ($segments | Where-Object { $excludedSegments -contains $_ })
         } |
