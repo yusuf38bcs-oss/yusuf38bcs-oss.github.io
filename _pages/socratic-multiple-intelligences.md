@@ -29,7 +29,7 @@ sitemap: true
 </section>
 
 <div id="mi-analysis-terminal">
-  {% include components/mi-analysis.html %}
+  {% include components/mi-analysis-dynamic.html %}
 </div>
 
 <style>
