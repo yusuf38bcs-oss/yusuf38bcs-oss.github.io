@@ -55,16 +55,16 @@ function Assert-NotContains {
 }
 
 function Assert-NoCorruptSpanArtifacts {
-    $matches = Get-ChildItem -Recurse -File |
+    $excludedSegments = @('.git', '_site', 'node_modules', 'vendor', '.jekyll-cache', '.sass-cache')
+    $repoRoot = (Get-Location).Path
+
+    $matches = Get-ChildItem -Recurse -File -Force |
         Where-Object {
-            $_.FullName -notmatch "\.git\" -and
-            $_.FullName -notmatch "\_site\" -and
-            $_.FullName -notmatch "\node_modules\" -and
-            $_.FullName -notmatch "\vendor\" -and
-            $_.FullName -notmatch "\.jekyll-cache\" -and
-            $_.FullName -notmatch "\.sass-cache\"
+            $relativePath = $_.FullName.Substring($repoRoot.Length).TrimStart([char]'\\', [char]'/')
+            $segments = $relativePath -split '[\\/]+'
+            -not ($segments | Where-Object { $excludedSegments -contains $_ })
         } |
-        Select-String -Pattern "\[span_[0-9]+\]" -ErrorAction SilentlyContinue
+        Select-String -Pattern '\[span_[0-9]+\]' -ErrorAction SilentlyContinue
 
     if ($matches) {
         $matches | ForEach-Object { Write-Host "$($_.Path):$($_.LineNumber) $($_.Line)" -ForegroundColor Red }
