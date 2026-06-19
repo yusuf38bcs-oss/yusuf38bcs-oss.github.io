@@ -43,6 +43,9 @@ toc: true
 toc_sticky: true
 classes: wide
 
+socratic_prompt: >-
+  A patient suddenly stands up from a lying position. Blood pressure falls briefly, but heart rate rises quickly. Explain the baroreceptor reflex pathway that restores blood pressure.
+
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
 ---
