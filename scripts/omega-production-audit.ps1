@@ -1,5 +1,5 @@
 # ==========================================================================
-# LEARNING BIOLOGY FOR LIFE - OMEGA PRODUCTION AUDIT
+# LEARNING BIOLOGY FOR LIFE - OMEGA PRODUCTION AUDIT v2
 # Jekyll + Minimal Mistakes + Cloudflare + AI Worker Contract Gate
 # ==========================================================================
 $ErrorActionPreference = "Stop"
@@ -16,6 +16,11 @@ function Assert-FileExists {
     param([string]$Path, [switch]$Optional)
     if (Test-Path $Path) { Write-Ok "Exists: $Path"; return }
     if ($Optional) { Write-Warn "Optional file missing: $Path" } else { Write-Fail "Missing required file: $Path" }
+}
+
+function Assert-FileNotExists {
+    param([string]$Path, [string]$Name)
+    if (Test-Path $Path) { Write-Fail "$Name must not exist: $Path" } else { Write-Ok "$Name absent as required: $Path" }
 }
 
 function Assert-DirectoryExists {
@@ -52,12 +57,12 @@ function Assert-NotContains {
 function Assert-NoCorruptSpanArtifacts {
     $matches = Get-ChildItem -Recurse -File |
         Where-Object {
-            $_.FullName -notmatch "\\.git\\" -and
-            $_.FullName -notmatch "\\_site\\" -and
-            $_.FullName -notmatch "\\node_modules\\" -and
-            $_.FullName -notmatch "\\vendor\\" -and
-            $_.FullName -notmatch "\\.jekyll-cache\\" -and
-            $_.FullName -notmatch "\\.sass-cache\\"
+            $_.FullName -notmatch "\.git\" -and
+            $_.FullName -notmatch "\_site\" -and
+            $_.FullName -notmatch "\node_modules\" -and
+            $_.FullName -notmatch "\vendor\" -and
+            $_.FullName -notmatch "\.jekyll-cache\" -and
+            $_.FullName -notmatch "\.sass-cache\"
         } |
         Select-String -Pattern "\[span_[0-9]+\]" -ErrorAction SilentlyContinue
 
@@ -118,7 +123,11 @@ function Assert-ConfigContracts {
     Assert-Contains "_config.yml" "collections:\s*`r?`n" "Jekyll collections block configured"
     Assert-Contains "_config.yml" "biology:\s*`r?`n\s+output:\s+true" "biology collection output enabled"
     Assert-Contains "_config.yml" "concepts:\s*`r?`n\s+output:\s+true" "concepts collection output enabled"
+    Assert-Contains "_config.yml" "mcq-arena:\s*`r?`n\s+output:\s+true" "mcq-arena collection output enabled"
+    Assert-Contains "_config.yml" "socratic:\s*`r?`n\s+output:\s+true" "socratic collection output enabled"
     Assert-Contains "_config.yml" "permalink:\s+/matrix/:path/" "concept matrix permalink contract configured"
+    Assert-Contains "_config.yml" "permalink:\s+/mcq-arena/:path/" "mcq-arena permalink contract configured"
+    Assert-Contains "_config.yml" "permalink:\s+/:collection/:path/" "collection permalink contract configured"
     Assert-Contains "_config.yml" "jekyll-seo-tag" "SEO plugin configured"
     Assert-Contains "_config.yml" "jekyll-sitemap" "Sitemap plugin configured"
 }
@@ -147,6 +156,22 @@ function Assert-StaticGraphContracts {
     Assert-Contains "assets/js/graph_engine.js" "graph_manifest\.json" "Graph engine loads graph manifest"
 }
 
+function Assert-WorkerSeparationContracts {
+    Assert-FileNotExists "wrangler.toml" "Root Wrangler config"
+    Assert-FileExists "worker/wrangler.toml"
+    Assert-Contains "worker/wrangler.toml" "name\s*=\s*\"synapticai-proxy\"" "Worker name contract configured"
+    Assert-Contains "worker/wrangler.toml" "main\s*=\s*\"src/index\.ts\"" "Worker entrypoint contract configured"
+    Assert-Contains "worker/wrangler.toml" "GEMINI_MODEL\s*=\s*\"gemini-2\.5-flash\"" "Worker Gemini model contract configured"
+    Assert-Contains "worker/wrangler.toml" "ALLOWED_ORIGIN\s*=\s*\"https://learningbiologyforlife\.org\"" "Worker primary allowed origin configured"
+}
+
+function Assert-LayoutContracts {
+    Assert-Utf8NoBom "_layouts/archive.html"
+    Assert-Utf8NoBom "_layouts/single.html"
+    Assert-Contains "_layouts/single.html" "socratic/socratic-node\.html" "Single layout mounts Socratic node include"
+    Assert-Contains "_includes/socratic/socratic-node.html" "data-socratic-node" "Socratic node include exposes data-socratic-node"
+}
+
 function Assert-GeneratedRoute {
     param([string]$Path)
     if (Test-Path $Path) { Write-Ok "Generated route exists: $Path" } else { Write-Fail "Generated route missing: $Path" }
@@ -169,6 +194,8 @@ function Assert-RenderedOutputContracts {
     Assert-GeneratedRoute "_site/synaptic-bridge/index.html"
     Assert-GeneratedRoute "_site/life-practices/index.html"
     Assert-GeneratedRoute "_site/life-practices/cognitive-audit/index.html"
+    Assert-GeneratedRoute "_site/mcq-arena/index.html"
+    Assert-GeneratedRoute "_site/socratic/index.html"
     Assert-GeneratedRoute "_site/socratic/multiple-intelligences/index.html"
     Assert-GeneratedRoute "_site/socratic/personality-archetypes/index.html"
     Assert-GeneratedRoute "_site/matrix/behavioral-axis/index.html"
@@ -177,6 +204,12 @@ function Assert-RenderedOutputContracts {
     Assert-GeneratedRoute "_site/matrix/systems-thinking/index.html"
     Assert-GeneratedRoute "_site/matrix/neuroplasticity/index.html"
     Assert-GeneratedRoute "_site/assets/data/graph_manifest.json"
+    Assert-GeneratedRoute "_site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html"
+
+    Assert-Contains "_site/mcq-arena/index.html" "MCQ Arena" "Rendered MCQ Arena hub content present"
+    Assert-Contains "_site/socratic/index.html" "Socratic 4\.0" "Rendered Socratic hub content present"
+    Assert-Contains "_site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html" "data-socratic-node" "Rendered prompted page contains Socratic node"
+    Assert-Contains "_site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html" "socratic-question" "Rendered prompted page contains Socratic question"
 
     try {
         Get-Content "_site/assets/data/graph_manifest.json" -Raw | ConvertFrom-Json | Out-Null
@@ -198,7 +231,7 @@ function Assert-HtmlProoferAvailability {
 }
 
 Write-Host "==============================================" -ForegroundColor Cyan
-Write-Host "LBFL OMEGA PRODUCTION AUDIT START" -ForegroundColor Cyan
+Write-Host "LBFL OMEGA PRODUCTION AUDIT v2 START" -ForegroundColor Cyan
 Write-Host "==============================================" -ForegroundColor Cyan
 
 Assert-FileExists "_config.yml"
@@ -209,8 +242,12 @@ Assert-FileExists "_includes/head/omega-blueprint-runtime.html"
 Assert-FileExists "assets/js/socratic-component.js"
 Assert-FileExists "assets/js/myelination-tracker.js"
 Assert-FileExists "_includes/socratic/socratic-node.html"
+Assert-FileExists "_layouts/archive.html"
+Assert-FileExists "_layouts/single.html"
 Assert-DirectoryExists "_biology"
 Assert-DirectoryExists "_concepts"
+Assert-DirectoryExists "_mcq-arena"
+Assert-DirectoryExists "_socratic"
 Assert-Utf8NoBom "assets/css/main.scss"
 Assert-JekyllScssFrontMatter
 Assert-NoScssImportAmbiguity
@@ -219,12 +256,14 @@ Assert-ConfigContracts
 Assert-HeadContracts
 Assert-AIContracts
 Assert-StaticGraphContracts
+Assert-WorkerSeparationContracts
+Assert-LayoutContracts
 Run-JekyllBuild
 Assert-RenderedOutputContracts
 Assert-HtmlProoferAvailability
 
 Write-Host "==============================================" -ForegroundColor Cyan
-Write-Host "LBFL OMEGA PRODUCTION AUDIT SUMMARY" -ForegroundColor Cyan
+Write-Host "LBFL OMEGA PRODUCTION AUDIT v2 SUMMARY" -ForegroundColor Cyan
 Write-Host "==============================================" -ForegroundColor Cyan
 Write-Host "Passes: $script:Passes" -ForegroundColor Green
 Write-Host "Warnings: $($script:Warnings.Count)" -ForegroundColor Yellow
@@ -238,7 +277,7 @@ if ($script:Warnings.Count -gt 0) {
 if ($script:Failures.Count -gt 0) {
     Write-Host "Failures:" -ForegroundColor Red
     $script:Failures | ForEach-Object { Write-Host " - $_" -ForegroundColor Red }
-    throw "OMEGA AUDIT FAILED. Fix the failures above before claiming 100/100 production."
+    throw "OMEGA AUDIT v2 FAILED. Fix the failures above before claiming 100/100 production."
 }
 
-Write-Host "OMEGA AUDIT PASSED. Repository is locally eligible for 100/100 production certification." -ForegroundColor Green
+Write-Host "OMEGA AUDIT v2 PASSED. Repository is locally eligible for 100/100 production certification." -ForegroundColor Green
