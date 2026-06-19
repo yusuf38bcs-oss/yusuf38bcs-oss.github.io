@@ -1,0 +1,73 @@
+# Multiple Intelligences - Socratic 4.0 Schema
+
+- id: mi-linguistic
+  type: "Linguistic Intelligence"
+  short_type: "Linguistic"
+  concept_id: "multiple-intelligences"
+  concept_url: "/matrix/multiple-intelligences/#mi-linguistic"
+  study_vector: "Use reading, writing, narration, oral explanation, and Socratic dialogue."
+  socratic_prompt: "When mastering a new biological concept, do you learn best by verbalizing the definition or rewriting the theory in your own words?"
+
+- id: mi-logical
+  type: "Logical-Mathematical Intelligence"
+  short_type: "Logical-Mathematical"
+  concept_id: "multiple-intelligences"
+  concept_url: "/matrix/multiple-intelligences/#mi-logical"
+  study_vector: "Use cause-effect chains, feedback loops, data tables, equations, and hypothesis testing."
+  socratic_prompt: "When a biological system fails, do you first search for the measurable variable or the logical flaw in the sequence?"
+
+- id: mi-spatial
+  type: "Spatial Intelligence"
+  short_type: "Spatial"
+  concept_id: "multiple-intelligences"
+  concept_url: "/matrix/multiple-intelligences/#mi-spatial"
+  study_vector: "Use diagrams, anatomical maps, phylogenetic trees, visual imagination, and spatial comparison."
+  socratic_prompt: "When studying zoological relationships, do you build a visual map of how the branches connect?"
+
+- id: mi-kinesthetic
+  type: "Bodily-Kinesthetic Intelligence"
+  short_type: "Bodily-Kinesthetic"
+  concept_id: "multiple-intelligences"
+  concept_url: "/matrix/multiple-intelligences/#mi-kinesthetic"
+  study_vector: "Use laboratory handling, physical models, drawing by hand, field movement, and simulation."
+  socratic_prompt: "Does abstract biological theory become clearer after you physically apply it, manipulate a model, or act out the process?"
+
+- id: mi-musical
+  type: "Musical-Rhythmic Intelligence"
+  short_type: "Musical-Rhythmic"
+  concept_id: "multiple-intelligences"
+  concept_url: "/matrix/multiple-intelligences/#mi-musical"
+  study_vector: "Use rhythm, repeated cadence, auditory sequencing, terminology chants, and pattern timing."
+  socratic_prompt: "Do you recognize biological cycles and behavioral patterns through rhythm, repetition, or sequence?"
+
+- id: mi-interpersonal
+  type: "Interpersonal Intelligence"
+  short_type: "Interpersonal"
+  concept_id: "group-dynamics-and-ummah"
+  concept_url: "/matrix/group-dynamics-and-ummah/"
+  study_vector: "Use peer teaching, group debate, leadership reflection, collaborative diagnosis, and feedback."
+  socratic_prompt: "In a group learning situation, do you quickly identify each person's strengths and coordinate the discussion?"
+
+- id: mi-intrapersonal
+  type: "Intrapersonal Intelligence"
+  short_type: "Intrapersonal"
+  concept_id: "multiple-intelligences"
+  concept_url: "/matrix/multiple-intelligences/#mi-intrapersonal"
+  study_vector: "Use reflective journals, self-audits, motivation mapping, bias detection, and purpose alignment."
+  socratic_prompt: "Before guiding others, do you often examine your own assumptions, emotional triggers, and learning habits?"
+
+- id: mi-naturalistic
+  type: "Naturalistic Intelligence"
+  short_type: "Naturalistic"
+  concept_id: "multiple-intelligences"
+  concept_url: "/matrix/multiple-intelligences/#mi-naturalistic"
+  study_vector: "Use organism classification, ecological grouping, field observation, environmental comparison, and taxonomy."
+  socratic_prompt: "When observing a complex environment, do you naturally classify organisms and environmental variables into a connected system?"
+
+- id: mi-existential
+  type: "Existential Intelligence"
+  short_type: "Existential"
+  concept_id: "multiple-intelligences"
+  concept_url: "/matrix/multiple-intelligences/#mi-existential"
+  study_vector: "Use meaning-based inquiry, purpose mapping, ethical reflection, long-range questioning, and worldview synthesis."
+  socratic_prompt: "When learning biology, do you often connect the mechanism to broader questions of meaning, responsibility, and human purpose?"
