@@ -24,10 +24,15 @@
           </button>
         {% endif %}
 
-        <div class="lbfl-translate-shell" aria-label="Translate this site between English and Bangla">
-          <span class="lbfl-translate-label">Translate</span>
-          <div id="google_translate_element" class="lbfl-translate-widget"></div>
-        </div>
+        <details class="lbfl-translate-shell" aria-label="Translate this site between English and Bangla">
+          <summary class="lbfl-translate-toggle">
+            <span aria-hidden="true">🌐</span>
+            <span class="lbfl-translate-label">Translate</span>
+          </summary>
+          <div class="lbfl-translate-panel">
+            <div id="google_translate_element" class="lbfl-translate-widget"></div>
+          </div>
+        </details>
 
         <details class="lbfl-mobile-menu">
           <summary class="lbfl-mobile-toggle" aria-label="Open navigation menu">
@@ -47,7 +52,7 @@
                         <li><a href="{{ child.url | relative_url }}">{{ child.title }}</a></li>
                       {%- endfor -%}
                     </ul>
-                  {%- endif -%}
+                  {%- endif %}
                 </li>
               {%- endfor -%}
             </ul>
