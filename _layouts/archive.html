@@ -1,6 +1,11 @@
-﻿---
+---
 layout: default
 ---
+
+{% assign archive_items = page.posts %}
+{% if archive_items == nil and page.collection %}
+  {% assign archive_items = site[page.collection] %}
+{% endif %}
 
 {% if page.header.overlay_color or page.header.overlay_image %}
   <div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}"
@@ -20,13 +25,27 @@ layout: default
 
 <div id="main" role="main">
   <div class="archive">
-    {% unless page.posts %}
-      <p class="archive__warning">No posts found for this archive.</p>
+    {% unless page.header.overlay_color or page.header.overlay_image %}
+      <header class="archive__header">
+        {% if page.title %}<h1 id="page-title" class="page__title">{{ page.title }}</h1>{% endif %}
+        {% if page.excerpt %}<p class="page__lead">{{ page.excerpt | markdownify | strip_html }}</p>{% endif %}
+      </header>
     {% endunless %}
 
-    {% for post in page.posts %}
-      {% include components/archive-single.html %}
-    {% endfor %}
+    {% if content and content != empty %}
+      <section class="archive__intro">
+        {{ content }}
+      </section>
+    {% endif %}
+
+    {% if archive_items and archive_items.size > 0 %}
+      {% assign sorted_items = archive_items | sort: "title" %}
+      {% for post in sorted_items %}
+        {% include components/archive-single.html %}
+      {% endfor %}
+    {% else %}
+      <p class="archive__warning">No items found for this archive.</p>
+    {% endif %}
   </div>
 
   {% include components/neural-pagination.html %}
