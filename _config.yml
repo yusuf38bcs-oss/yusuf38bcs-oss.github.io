@@ -75,6 +75,9 @@ collections:
   concepts:
     output: true
     permalink: /matrix/:path/
+  mcq-arena:
+    output: true
+    permalink: /mcq-arena/:path/
 
 defaults:
   - scope:
@@ -141,6 +144,14 @@ defaults:
       classes: wide
       mastery_state: locked
       cognitive_depth: 1
+  - scope:
+      path: ''
+      type: mcq-arena
+    values:
+      layout: single
+      author_profile: false
+      toc: true
+      classes: wide
 
 author:
   name: MD. YUSUF
