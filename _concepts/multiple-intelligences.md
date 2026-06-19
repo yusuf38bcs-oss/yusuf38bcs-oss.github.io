@@ -35,12 +35,14 @@ Rather than reducing human capability to a single standardized metric, a biologi
 
 ## Modular Neural Architectures
 
+<a id="mi-linguistic"></a>
 ### 1. Linguistic-Verbal
 Associated primarily with Broca's area, Wernicke's area, and their connecting pathways.
 * Speech production
 * Language comprehension
 * Symbolic communication
 
+<a id="mi-logical"></a>
 ### 2. Logical-Mathematical
 Strongly associated with the intraparietal sulcus and dorsolateral prefrontal cortex (dlPFC).
 * Numerical reasoning
@@ -48,6 +50,7 @@ Strongly associated with the intraparietal sulcus and dorsolateral prefrontal co
 * Working memory
 * Algorithmic thinking
 
+<a id="mi-spatial"></a>
 ### 3. Visual-Spatial
 Supported by the dorsal and ventral visual streams and occipital-parietal networks.
 * Mental rotation
@@ -55,6 +58,7 @@ Supported by the dorsal and ventral visual streams and occipital-parietal networ
 * Visual imagination
 * Geometric reasoning
 
+<a id="mi-kinesthetic"></a>
 ### 4. Bodily-Kinesthetic
 Involves the motor cortex, basal ganglia, and cerebellum.
 * Fine motor control
@@ -62,6 +66,7 @@ Involves the motor cortex, basal ganglia, and cerebellum.
 * Procedural learning
 * Sensorimotor adaptation
 
+<a id="mi-musical"></a>
 ### 5. Musical-Rhythmic
 Engages bilateral temporal lobe networks, auditory cortex, and motor timing circuits.
 * Rhythm processing
@@ -69,6 +74,7 @@ Engages bilateral temporal lobe networks, auditory cortex, and motor timing circ
 * Temporal synchronization
 * Auditory pattern recognition
 
+<a id="mi-interpersonal"></a>
 ### 6. Interpersonal
 Associated with the temporoparietal junction (TPJ), medial prefrontal cortex (mPFC), and broader social cognition networks.
 * Empathy
@@ -76,6 +82,7 @@ Associated with the temporoparietal junction (TPJ), medial prefrontal cortex (mP
 * Theory of Mind
 * Social interpretation
 
+<a id="mi-intrapersonal"></a>
 ### 7. Intrapersonal
 Linked with the insula, anterior cingulate cortex (ACC), and self-referential processing systems.
 * Self-awareness
@@ -83,6 +90,7 @@ Linked with the insula, anterior cingulate cortex (ACC), and self-referential pr
 * Reflective thinking
 * Internal state monitoring
 
+<a id="mi-naturalistic"></a>
 ### 8. Naturalist
 Supported by pattern-recognition pathways, semantic categorization systems, and hippocampal mapping functions.
 * Environmental classification
@@ -90,6 +98,7 @@ Supported by pattern-recognition pathways, semantic categorization systems, and 
 * Biological pattern detection
 * Context recognition
 
+<a id="mi-existential"></a>
 ### 9. Existential
 Often associated with large-scale integrative systems such as the Default Mode Network (DMN) and higher-order reflective cognition.
 * Meaning making
