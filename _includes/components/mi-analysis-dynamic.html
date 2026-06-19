@@ -1,0 +1,23 @@
+<section class="premium-mi-analysis" data-mi-analysis>
+  <div class="mi-analysis-header">
+    <div class="mi-status-badge">
+      <span class="status-dot"></span>
+      <span class="status-text">Cognitive Mapping Node</span>
+    </div>
+    <h2 class="mi-analysis-title">Multiple Intelligences Reflection</h2>
+    <p class="mi-analysis-desc">Map your learning reflexes across the 9 Multiple Intelligences.</p>
+  </div>
+
+  <div data-mi-schema-json="{{ site.data.mi_questionnaire | jsonify | escape }}" hidden></div>
+
+  <form class="mi-interactive-form" data-mi-form>
+    <div class="mi-question-zone" data-mi-question-zone></div>
+    <div class="mi-action-control-panel" data-mi-control-strip>
+      <button type="submit" class="mi-btn-calculate">Analyze Cognitive Profile</button>
+    </div>
+  </form>
+
+  <div class="mi-result-viewport" data-mi-result style="display: none;"></div>
+</section>
+
+<script src="{{ '/assets/js/learning/mi-engine.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}" defer></script>
