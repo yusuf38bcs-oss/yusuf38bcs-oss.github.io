@@ -8,6 +8,9 @@ gem "github-pages", group: :jekyll_plugins
 gem "jekyll-remote-theme", group: :jekyll_plugins
 gem "jekyll-include-cache", group: :jekyll_plugins
 
+# Bilingual architecture experiment: branch-only until audited
+gem "jekyll-polyglot", group: :jekyll_plugins
+
 # Ruby 3.4 compatibility
 gem "csv"
 gem "fiddle"

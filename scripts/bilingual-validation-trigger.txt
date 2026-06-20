@@ -1,0 +1,2 @@
+OMEGA bilingual validation trigger after Biology route-generation fix.
+Rerun marker: 2026-06-20.

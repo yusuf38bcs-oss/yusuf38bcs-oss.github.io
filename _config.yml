@@ -19,6 +19,31 @@ strict_front_matter: true
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: dark
 
+include:
+  - _pages
+
+# -----------------------------------------------------------------------------
+# Jekyll Polyglot bilingual architecture scaffold
+# Branch-only experiment: feature/bilingual-polyglot
+# -----------------------------------------------------------------------------
+languages:
+  - en
+  - bn
+default_lang: en
+exclude_from_localization:
+  - assets
+  - css
+  - images
+  - javascript
+  - js
+  - worker
+  - node_modules
+  - vendor
+  - .github
+  - scripts
+parallel_localization: false
+fallback_canonical_to_default_lang: true
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
@@ -26,6 +51,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-include-cache
   - jekyll-paginate
+  - jekyll-polyglot
 
 search: true
 search_full_content: true
@@ -168,31 +194,3 @@ author:
       url: https://learningbiologyforlife.org
     - label: GitHub
       icon: fab fa-fw fa-github
-      url: https://github.com/yusuf38bcs-oss
-    - label: Contact
-      icon: fas fa-fw fa-envelope
-      url: /contact/
-
-include:
-  - _pages
-
-keep_files:
-  - assets
-  - network
-
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
-  - .sass-cache
-  - .jekyll-cache
-  - .jekyll-metadata
-  - .tmp
-  - .tmp/**
-  - .tmp.driveupload
-  - .tmp.driveupload/**
-  - .tmp.drivedownload
-  - .tmp.drivedownload/**
-  - README.md
-  - LICENSE

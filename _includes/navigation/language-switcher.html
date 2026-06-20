@@ -1,0 +1,29 @@
+{% comment %}
+  Native Polyglot language switcher.
+  Branch-only: feature/bilingual-polyglot.
+  Keeps Google Translate available while native bilingual routes mature.
+{% endcomment %}
+
+{% assign active_lang = page.lang | default: site.active_lang | default: site.default_lang | default: 'en' %}
+{% assign base_path = page.permalink | default: page.url | default: '/' %}
+{% assign clean_path = base_path | replace_first: '/bn/', '/' %}
+{% assign first_char = clean_path | slice: 0 %}
+{% unless first_char == '/' %}
+  {% assign clean_path = clean_path | prepend: '/' %}
+{% endunless %}
+{% assign site_origin = site.url | default: '' %}
+{% assign english_href = site_origin | append: clean_path %}
+{% assign bangla_path = clean_path | prepend: '/bn' %}
+{% assign bangla_href = site_origin | append: bangla_path %}
+
+<nav class="lbfl-language-switcher" aria-label="Native language switcher">
+  <a class="lbfl-language-switcher__link{% if active_lang == 'en' %} is-active{% endif %}"
+     href='{{ english_href }}'
+     lang="en"
+     hreflang="en"{% if active_lang == 'en' %} aria-current="page"{% endif %}>English</a>
+  <span class="lbfl-language-switcher__divider" aria-hidden="true">|</span>
+  <a class="lbfl-language-switcher__link{% if active_lang == 'bn' %} is-active{% endif %}"
+     href='{{ bangla_href }}'
+     lang="bn"
+     hreflang="bn"{% if active_lang == 'bn' %} aria-current="page"{% endif %}>&#2476;&#2494;&#2434;&#2482;&#2494;</a>
+</nav>
