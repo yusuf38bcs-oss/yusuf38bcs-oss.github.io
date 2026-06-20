@@ -1,5 +1,7 @@
 name: OMEGA Bilingual Audit
 
+# Branch-only CI guardrail for the native bilingual pilot.
+
 on:
   push:
     branches:
