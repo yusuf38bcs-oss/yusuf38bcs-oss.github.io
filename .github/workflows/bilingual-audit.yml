@@ -1,0 +1,59 @@
+name: OMEGA Bilingual Audit
+
+on:
+  push:
+    branches:
+      - feature/bilingual-polyglot
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '_config.yml'
+      - 'Gemfile'
+      - 'Gemfile.lock'
+      - '_includes/**'
+      - '_layouts/**'
+      - '_pages/**'
+      - '_posts/**'
+      - '_sass/**'
+      - 'assets/**'
+      - 'scripts/omega-bilingual-audit.ps1'
+      - '.github/workflows/bilingual-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bilingual-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bilingual-audit:
+    name: Build and audit bilingual pilot
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: false
+
+      - name: Install dependencies
+        run: |
+          bundle config set --local frozen 'false'
+          bundle install
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run OMEGA bilingual audit
+        shell: pwsh
+        run: ./scripts/omega-bilingual-audit.ps1
