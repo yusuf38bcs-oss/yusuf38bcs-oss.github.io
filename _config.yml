@@ -19,6 +19,9 @@ strict_front_matter: true
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: dark
 
+include:
+  - _pages
+
 # -----------------------------------------------------------------------------
 # Jekyll Polyglot bilingual architecture scaffold
 # Branch-only experiment: feature/bilingual-polyglot
