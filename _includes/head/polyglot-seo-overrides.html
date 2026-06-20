@@ -5,7 +5,19 @@
 {% endcomment %}
 
 {% assign polyglot_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
-{% assign localized_url = page.url | absolute_url %}
+{% assign base_path = page.permalink | default: page.url | default: '/' %}
+{% assign clean_base_path = base_path | replace_first: '/bn/', '/' %}
+{% assign first_char = clean_base_path | slice: 0 %}
+{% unless first_char == '/' %}
+  {% assign clean_base_path = clean_base_path | prepend: '/' %}
+{% endunless %}
+{% assign en_url = clean_base_path | absolute_url %}
+{% assign bn_path = clean_base_path | prepend: '/bn' %}
+{% assign bn_url = bn_path | absolute_url %}
+{% assign localized_url = en_url %}
+{% if polyglot_lang != site.default_lang %}
+  {% assign localized_url = bn_url %}
+{% endif %}
 
 {% if polyglot_lang != site.default_lang %}
   <meta property="og:locale" content="bn_BD">
@@ -36,9 +48,7 @@
 {% endif %}
 
 {% if page.page_id %}
-  {% assign base_path = page.permalink | default: page.url %}
-  {% assign clean_base_path = base_path | replace_first: '/bn/', '/' %}
-  <link rel="alternate" hreflang="en" href="{{ clean_base_path | absolute_url }}">
-  <link rel="alternate" hreflang="bn" href="{{ clean_base_path | prepend: '/bn' | absolute_url }}">
-  <link rel="alternate" hreflang="x-default" href="{{ clean_base_path | absolute_url }}">
+  <link rel="alternate" hreflang="en" href="{{ en_url }}">
+  <link rel="alternate" hreflang="bn" href="{{ bn_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ en_url }}">
 {% endif %}
