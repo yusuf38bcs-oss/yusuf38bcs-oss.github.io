@@ -1,6 +1,7 @@
 name: OMEGA Bilingual Audit
 
 # Branch-only CI guardrail for the native bilingual pilot.
+# Validation trigger: pages include fix for Biology pilot route.
 
 on:
   push:
