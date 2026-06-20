@@ -9,6 +9,10 @@ $siteRoot = Join-Path $repoRoot "_site"
 $englishAbout = Join-Path $siteRoot "about/index.html"
 $banglaAbout = Join-Path $siteRoot "bn/about/index.html"
 
+# Avoid raw non-ASCII literals in this script so Windows PowerShell 5.1 does not
+# misread Bengali text when the script is stored as UTF-8 without BOM.
+$banglaAuthorTitle = -join ([char[]](0x09B2, 0x09C7, 0x0996, 0x0995, 0x0020, 0x09AA, 0x09B0, 0x09BF, 0x099A, 0x09BF, 0x09A4, 0x09BF))
+
 $failures = New-Object System.Collections.Generic.List[string]
 
 function Add-Failure {
@@ -48,24 +52,6 @@ function Assert-Contains {
   }
 }
 
-function Assert-Regex {
-  param(
-    [string]$Path,
-    [string]$Pattern,
-    [string]$Label
-  )
-
-  if (-not (Test-Path $Path)) {
-    Add-Failure "$Label cannot be checked because file is missing: $Path"
-    return
-  }
-
-  $content = Get-Content $Path -Raw -Encoding UTF8
-  if ($content -notmatch $Pattern) {
-    Add-Failure "$Label missing expected pattern: $Pattern"
-  }
-}
-
 Write-Host "OMEGA Bilingual Route Audit" -ForegroundColor Cyan
 Write-Host "Repository: $repoRoot"
 Write-Host "Site root:  $siteRoot"
@@ -84,7 +70,7 @@ Assert-Contains -Path $englishAbout -Pattern '<link rel="canonical" href="https:
 # Bangla route invariants
 Assert-Contains -Path $banglaAbout -Pattern '<html lang="bn" class="no-js">' -Label "Bangla html lang"
 Assert-Contains -Path $banglaAbout -Pattern '<link rel="canonical" href="https://learningbiologyforlife.org/bn/about/" />' -Label "Bangla canonical"
-Assert-Contains -Path $banglaAbout -Pattern 'লেখক পরিচিতি' -Label "Native Bangla title/body"
+Assert-Contains -Path $banglaAbout -Pattern $banglaAuthorTitle -Label "Native Bangla title/body"
 Assert-Contains -Path $banglaAbout -Pattern 'class="polyglot-jsonld-override"' -Label "Polyglot JSON-LD override"
 Assert-Contains -Path $banglaAbout -Pattern '"url": "https://learningbiologyforlife.org/bn/about/"' -Label "Bangla JSON-LD override URL"
 Assert-Contains -Path $banglaAbout -Pattern '<meta property="og:url" content="https://learningbiologyforlife.org/bn/about/">' -Label "Bangla override og:url"
