@@ -1,4 +1,56 @@
 {% comment %}
   Branch-only Polyglot SEO correction layer.
   Purpose: preserve the existing jekyll-seo-tag output while adding language-aware
-  overrides for localized routes during the
+  overrides for localized routes during the bilingual architecture experiment.
+
+  Locale handling note:
+  - Do not emit og:locale here. It is emitted by jekyll-seo-tag.
+  - Translated pages must set locale: bn_BD in front matter to avoid duplicate/conflicting locale tags.
+{% endcomment %}
+
+{% assign polyglot_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
+{% assign base_path = page.permalink | default: page.url | default: '/' %}
+{% assign clean_base_path = base_path | replace_first: '/bn/', '/' %}
+{% assign first_char = clean_base_path | slice: 0 %}
+{% unless first_char == '/' %}
+  {% assign clean_base_path = clean_base_path | prepend: '/' %}
+{% endunless %}
+{% assign site_origin = site.url | default: '' %}
+{% assign en_url = site_origin | append: clean_base_path %}
+{% assign bn_path = clean_base_path | prepend: '/bn' %}
+{% assign bn_url = site_origin | append: bn_path %}
+{% assign localized_url = en_url %}
+{% if polyglot_lang != site.default_lang %}
+  {% assign localized_url = bn_url %}
+{% endif %}
+
+{% if polyglot_lang != site.default_lang %}
+  <meta property="og:url" content="{{ localized_url }}">
+  <meta name="twitter:url" content="{{ localized_url }}">
+  <script type="application/ld+json" class="polyglot-jsonld-override">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": {{ page.title | default: site.title | jsonify }},
+    "headline": {{ page.title | default: site.title | jsonify }},
+    "description": {{ page.excerpt | default: site.description | strip_html | normalize_whitespace | jsonify }},
+    "inLanguage": {{ polyglot_lang | jsonify }},
+    "url": {{ localized_url | jsonify }},
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": {{ site.title | jsonify }},
+      "url": {{ site.url | jsonify }}
+    },
+    "author": {
+      "@type": "Person",
+      "name": {{ site.author.name | default: site.name | jsonify }}
+    }
+  }
+  </script>
+{% endif %}
+
+{% if page.page_id %}
+  <link rel="alternate" hreflang="en" href="{{ en_url }}">
+  <link rel="alternate" hreflang="bn" href="{{ bn_url }}">
+  <link href='{{ en_url }}' rel='alternate' hreflang='x-default'>
+{% endif %}
