@@ -66,6 +66,9 @@ Assert-FileExists -Path $banglaAbout -Label "Bangla About route" | Out-Null
 # English route invariants
 Assert-Contains -Path $englishAbout -Pattern '<html lang="en" class="no-js">' -Label "English html lang"
 Assert-Contains -Path $englishAbout -Pattern '<link rel="canonical" href="https://learningbiologyforlife.org/about/" />' -Label "English canonical"
+Assert-Contains -Path $englishAbout -Pattern 'lbfl-language-switcher' -Label "English native language switcher"
+Assert-Contains -Path $englishAbout -Pattern 'href="/about/"' -Label "English switcher English href"
+Assert-Contains -Path $englishAbout -Pattern 'href="/bn/about/"' -Label "English switcher Bangla href"
 
 # Bangla route invariants
 Assert-Contains -Path $banglaAbout -Pattern '<html lang="bn" class="no-js">' -Label "Bangla html lang"
@@ -75,6 +78,9 @@ Assert-Contains -Path $banglaAbout -Pattern 'class="polyglot-jsonld-override"' -
 Assert-Contains -Path $banglaAbout -Pattern '"url": "https://learningbiologyforlife.org/bn/about/"' -Label "Bangla JSON-LD override URL"
 Assert-Contains -Path $banglaAbout -Pattern '<meta property="og:url" content="https://learningbiologyforlife.org/bn/about/">' -Label "Bangla override og:url"
 Assert-Contains -Path $banglaAbout -Pattern '<meta name="twitter:url" content="https://learningbiologyforlife.org/bn/about/">' -Label "Bangla override twitter:url"
+Assert-Contains -Path $banglaAbout -Pattern 'lbfl-language-switcher' -Label "Bangla native language switcher"
+Assert-Contains -Path $banglaAbout -Pattern 'href="/about/"' -Label "Bangla switcher English href"
+Assert-Contains -Path $banglaAbout -Pattern 'href="/bn/about/"' -Label "Bangla switcher Bangla href"
 
 # Hreflang invariants
 Assert-Contains -Path $banglaAbout -Pattern 'hreflang="en" href="https://learningbiologyforlife.org/about/"' -Label "Bangla page English hreflang"
@@ -93,5 +99,5 @@ if ($failures.Count -gt 0) {
 }
 
 Write-Host "`nBILINGUAL AUDIT PASSED" -ForegroundColor Green
-Write-Host "Verified English and Bangla About pilot routes, localized metadata override, x-default, and temporary translator bridge."
+Write-Host "Verified English and Bangla About pilot routes, native switcher, localized metadata override, x-default, and temporary translator bridge."
 exit 0
