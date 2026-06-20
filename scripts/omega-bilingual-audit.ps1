@@ -12,6 +12,8 @@ $banglaAbout = Join-Path $siteRoot "bn/about/index.html"
 # Avoid raw non-ASCII literals in this script so Windows PowerShell 5.1 does not
 # misread Bengali text when the script is stored as UTF-8 without BOM.
 $banglaAuthorTitle = -join ([char[]](0x09B2, 0x09C7, 0x0996, 0x0995, 0x0020, 0x09AA, 0x09B0, 0x09BF, 0x099A, 0x09BF, 0x09A4, 0x09BF))
+$englishAboutHref = "href='https://learningbiologyforlife.org/about/'"
+$banglaAboutHref = "href='https://learningbiologyforlife.org/bn/about/'"
 
 $failures = New-Object System.Collections.Generic.List[string]
 
@@ -67,8 +69,8 @@ Assert-FileExists -Path $banglaAbout -Label "Bangla About route" | Out-Null
 Assert-Contains -Path $englishAbout -Pattern '<html lang="en" class="no-js">' -Label "English html lang"
 Assert-Contains -Path $englishAbout -Pattern '<link rel="canonical" href="https://learningbiologyforlife.org/about/" />' -Label "English canonical"
 Assert-Contains -Path $englishAbout -Pattern 'lbfl-language-switcher' -Label "English native language switcher"
-Assert-Contains -Path $englishAbout -Pattern 'href="/about/"' -Label "English switcher English href"
-Assert-Contains -Path $englishAbout -Pattern 'href="/bn/about/"' -Label "English switcher Bangla href"
+Assert-Contains -Path $englishAbout -Pattern $englishAboutHref -Label "English switcher English href"
+Assert-Contains -Path $englishAbout -Pattern $banglaAboutHref -Label "English switcher Bangla href"
 
 # Bangla route invariants
 Assert-Contains -Path $banglaAbout -Pattern '<html lang="bn" class="no-js">' -Label "Bangla html lang"
@@ -79,8 +81,8 @@ Assert-Contains -Path $banglaAbout -Pattern '"url": "https://learningbiologyforl
 Assert-Contains -Path $banglaAbout -Pattern '<meta property="og:url" content="https://learningbiologyforlife.org/bn/about/">' -Label "Bangla override og:url"
 Assert-Contains -Path $banglaAbout -Pattern '<meta name="twitter:url" content="https://learningbiologyforlife.org/bn/about/">' -Label "Bangla override twitter:url"
 Assert-Contains -Path $banglaAbout -Pattern 'lbfl-language-switcher' -Label "Bangla native language switcher"
-Assert-Contains -Path $banglaAbout -Pattern 'href="/about/"' -Label "Bangla switcher English href"
-Assert-Contains -Path $banglaAbout -Pattern 'href="/bn/about/"' -Label "Bangla switcher Bangla href"
+Assert-Contains -Path $banglaAbout -Pattern $englishAboutHref -Label "Bangla switcher English href"
+Assert-Contains -Path $banglaAbout -Pattern $banglaAboutHref -Label "Bangla switcher Bangla href"
 
 # Hreflang invariants
 Assert-Contains -Path $banglaAbout -Pattern 'hreflang="en" href="https://learningbiologyforlife.org/about/"' -Label "Bangla page English hreflang"
