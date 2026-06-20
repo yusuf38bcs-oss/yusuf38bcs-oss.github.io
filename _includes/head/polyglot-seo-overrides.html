@@ -1,0 +1,44 @@
+{% comment %}
+  Branch-only Polyglot SEO correction layer.
+  Purpose: preserve the existing jekyll-seo-tag output while adding language-aware
+  overrides for localized routes during the bilingual architecture experiment.
+{% endcomment %}
+
+{% assign polyglot_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
+{% assign localized_url = page.url | absolute_url %}
+
+{% if polyglot_lang != site.default_lang %}
+  <meta property="og:locale" content="bn_BD">
+  <meta property="og:url" content="{{ localized_url }}">
+  <meta name="twitter:url" content="{{ localized_url }}">
+  <script type="application/ld+json" class="polyglot-jsonld-override">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": {{ page.title | default: site.title | jsonify }},
+    "headline": {{ page.title | default: site.title | jsonify }},
+    "description": {{ page.excerpt | default: site.description | strip_html | normalize_whitespace | jsonify }},
+    "inLanguage": {{ polyglot_lang | jsonify }},
+    "url": {{ localized_url | jsonify }},
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": {{ site.title | jsonify }},
+      "url": {{ site.url | jsonify }}
+    },
+    "author": {
+      "@type": "Person",
+      "name": {{ site.author.name | default: site.name | jsonify }}
+    }
+  }
+  </script>
+{% else %}
+  <meta property="og:locale" content="en_US">
+{% endif %}
+
+{% if page.page_id %}
+  {% assign base_path = page.permalink | default: page.url %}
+  {% assign clean_base_path = base_path | replace_first: '/bn/', '/' %}
+  <link rel="alternate" hreflang="en" href="{{ clean_base_path | absolute_url }}">
+  <link rel="alternate" hreflang="bn" href="{{ clean_base_path | prepend: '/bn' | absolute_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ clean_base_path | absolute_url }}">
+{% endif %}
