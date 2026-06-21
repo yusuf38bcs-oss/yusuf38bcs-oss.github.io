@@ -10,21 +10,23 @@
   const NavigationScrollEngine = {
     init() {
       // Cache the DOM selection once at startup (Neural Architecture target)
-      this.header = document.querySelector('.neural-site-masthead');
+      this.header = document.querySelector(".neural-site-masthead");
       if (!this.header) return;
 
       this.isTicking = false;
+      this.raf = window.requestAnimationFrame || function(callback) { return window.setTimeout(callback, 16); };
       this.bindScrollPipeline();
+      this.evaluateHeaderState();
     },
 
     /**
      * Binds scroll event using native hardware-accelerated passive configurations
      */
     bindScrollPipeline() {
-      window.addEventListener('scroll', () => {
+      window.addEventListener("scroll", () => {
         if (!this.isTicking) {
           // Synchronize layout reads/writes with the browser's next animation frame repaint thread
-          window.requestAnimationFrame(() => {
+          this.raf(() => {
             this.evaluateHeaderState();
             this.isTicking = false;
           });
@@ -37,24 +39,16 @@
      * Evaluates viewport coordinates and toggles active state classes efficiently
      */
     evaluateHeaderState() {
-      const currentScrollY = window.scrollY || window.pageYOffset;
+      if (!this.header) return;
+      const currentScrollY = window.scrollY || window.pageYOffset || 0;
 
-      if (currentScrollY > 50) {
-        // Guard pattern: Mutate classlist only when state actually transitions
-        if (!this.header.classList.contains('scrolled')) {
-          this.header.classList.add('scrolled');
-        }
-      } else {
-        if (this.header.classList.contains('scrolled')) {
-          this.header.classList.remove('scrolled');
-        }
-      }
+      this.header.classList.toggle("scrolled", currentScrollY > 50);
     }
   };
 
   // Secure Initialization Entry Point matching your Master Hub architecture
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => NavigationScrollEngine.init());
+    document.addEventListener("DOMContentLoaded", () => NavigationScrollEngine.init(), { once: true });
   } else {
     NavigationScrollEngine.init();
   }
