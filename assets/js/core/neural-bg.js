@@ -9,13 +9,18 @@
 
   const NeuralEngine = {
     init() {
-      this.canvas = document.getElementById("neural-network");\n      if (!this.canvas) return;\n      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      this.canvas = document.getElementById("neural-network");
+      if (!this.canvas) return;
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       this.ctx = this.canvas.getContext("2d");
+      if (!this.ctx) return;
+
       this.particles = [];
       this.ratio = window.devicePixelRatio || 1;
       this.animationId = null;
-      this.isSuspended = false; // Flag tracking performance state shifts
+      this.resizeTimeout = null;
+      this.isSuspended = false;
       
       // Premium Quantum Vector Settings aligned with your Neon Cyan Accent (#00d4b2)
       this.settings = {
@@ -37,7 +42,7 @@
     },
 
     resize() {
-      if (!this.canvas.parentElement) return;
+      if (!this.canvas || !this.canvas.parentElement || !this.ctx) return;
       this.width = this.canvas.parentElement.offsetWidth;
       this.height = this.canvas.parentElement.offsetHeight;
 
@@ -46,7 +51,7 @@
       this.canvas.height = this.height * this.ratio;
       this.canvas.style.width = `${this.width}px`;
       this.canvas.style.height = `${this.height}px`;
-      this.ctx.scale(this.ratio, this.ratio);
+      this.ctx.setTransform(this.ratio, 0, 0, this.ratio, 0, 0);
     },
 
     debouncedResize() {
@@ -78,16 +83,15 @@
      */
     setupPerformanceHooks() {
       document.addEventListener("synaptic:core-performance-suspend", (e) => {
-        const suspendRequested = e.detail.suspendActive;
+        const suspendRequested = e.detail && e.detail.suspendActive;
 
         if (suspendRequested) {
           this.isSuspended = true;
           cancelAnimationFrame(this.animationId); // Drops frame calculation immediately
-        } else {
-          if (this.isSuspended) {
-            this.isSuspended = false;
-            this.kickstartRenderLoop(); // Re-ignites node tracking organically
-          }
+          this.animationId = null;
+        } else if (this.isSuspended) {
+          this.isSuspended = false;
+          this.kickstartRenderLoop(); // Re-ignites node tracking organically
         }
       });
     },
@@ -95,11 +99,12 @@
     kickstartRenderLoop() {
       // Prevent loop branching and duplicate thread leaks
       cancelAnimationFrame(this.animationId);
+      this.animationId = null;
       this.animate();
     },
 
     animate() {
-      if (this.isSuspended) return;
+      if (this.isSuspended || !this.ctx) return;
 
       this.ctx.clearRect(0, 0, this.width, this.height);
       
@@ -152,7 +157,7 @@
   window.NeuralBackgroundEngine = NeuralEngine;
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => NeuralEngine.init());
+    document.addEventListener("DOMContentLoaded", () => NeuralEngine.init(), { once: true });
   } else {
     NeuralEngine.init();
   }
