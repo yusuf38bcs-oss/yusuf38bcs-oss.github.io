@@ -10,11 +10,14 @@
   document.addEventListener("DOMContentLoaded", function() {
     const canvas = document.getElementById("synaptic-hero-canvas");
     if (!canvas) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
     let particlesArray = [];
-    let animationFrameId;
+    let animationFrameId = null;
+    let resizeTimeout = null;
 
     // Multi-Viewport Optimization Grid
     const isMobile = window.innerWidth <= 480;
@@ -71,9 +74,9 @@
           let dx = this.x - mouse.x;
           let dy = this.y - mouse.y;
           let distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < mouse.radius) {
+          if (distance > 0 && distance < mouse.radius) {
             // Smooth directional shift vectors
-            this.x += (dx / distance) * 0.8; 
+            this.x += (dx / distance) * 0.8;
             this.y += (dy / distance) * 0.8;
           }
         }
@@ -114,6 +117,18 @@
       }
     }
 
+    function stopEngineLoop() {
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    }
+
+    function startEngineLoop() {
+      if (animationFrameId !== null) return;
+      animateEngineLoop();
+    }
+
     function animateEngineLoop() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -128,28 +143,27 @@
     }
 
     // High performance debouncing simulation on window resize
-    let resizeTimeout;
     window.addEventListener("resize", () => {
-      cancelAnimationFrame(animationFrameId);
+      stopEngineLoop();
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
         resizeCanvas();
-        animateEngineLoop();
+        startEngineLoop();
       }, 150);
     });
 
     // Safe Page Visibility Hooks
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) { 
-        cancelAnimationFrame(animationFrameId); 
-      } else { 
-        resizeCanvas(); 
-        animateEngineLoop(); 
+      if (document.hidden) {
+        stopEngineLoop();
+      } else {
+        resizeCanvas();
+        startEngineLoop();
       }
     });
     
     // Boot Sequence
     resizeCanvas();
-    animateEngineLoop();
-  });
+    startEngineLoop();
+  }, { once: true });
 })();
