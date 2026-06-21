@@ -7,6 +7,8 @@
 (() => {
   "use strict";
 
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
   const SELECTOR = [
     ".neural-card",
     ".question-item-card",
@@ -27,6 +29,7 @@
   let nextY = 0;
 
   function setCardPosition(card, clientX, clientY) {
+    if (!card) return;
     const rect = card.getBoundingClientRect();
     nextX = clientX - rect.left;
     nextY = clientY - rect.top;
@@ -34,6 +37,11 @@
     if (frame) return;
 
     frame = window.requestAnimationFrame(() => {
+      if (activeCard !== card || !card.isConnected) {
+        frame = 0;
+        return;
+      }
+
       card.style.setProperty("--mouse-x", `${nextX}px`);
       card.style.setProperty("--mouse-y", `${nextY}px`);
       card.classList.add("is-synaptic-active");
