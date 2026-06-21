@@ -22,6 +22,19 @@ minimal_mistakes_skin: dark
 include:
   - _pages
 
+exclude:
+  - wrangler.jsonc
+  - worker
+  - scripts
+  - audit-reports
+  - node_modules
+  - vendor
+  - .github
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+
 # -----------------------------------------------------------------------------
 # Jekyll Polyglot bilingual architecture scaffold
 # Branch-only experiment: feature/bilingual-polyglot
