@@ -2,6 +2,10 @@
   Branch-only Polyglot SEO correction layer.
   Purpose: preserve the existing jekyll-seo-tag output while adding language-aware
   overrides for localized routes during the bilingual architecture experiment.
+
+  Locale handling note:
+  - Do not emit og:locale here. It is emitted by jekyll-seo-tag.
+  - Translated pages must set locale: bn_BD in front matter to avoid duplicate/conflicting locale tags.
 {% endcomment %}
 
 {% assign polyglot_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
@@ -21,7 +25,6 @@
 {% endif %}
 
 {% if polyglot_lang != site.default_lang %}
-  <meta property="og:locale" content="bn_BD">
   <meta property="og:url" content="{{ localized_url }}">
   <meta name="twitter:url" content="{{ localized_url }}">
   <script type="application/ld+json" class="polyglot-jsonld-override">
@@ -44,8 +47,6 @@
     }
   }
   </script>
-{% else %}
-  <meta property="og:locale" content="en_US">
 {% endif %}
 
 {% if page.page_id %}

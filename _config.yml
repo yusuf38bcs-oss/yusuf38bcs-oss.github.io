@@ -107,6 +107,23 @@ collections:
 
 defaults:
   - scope:
+      path: about.bn.md
+      type: pages
+    values:
+      locale: bn_BD
+  - scope:
+      path: _pages/hubs/biology-bn.md
+      type: pages
+    values:
+      locale: bn_BD
+  - scope:
+      path: _pages/hubs/biology.md
+      type: pages
+    values:
+      lang: en
+      locale: en_US
+      page_id: biology
+  - scope:
       path: ''
       type: posts
     values:

@@ -7,6 +7,7 @@ title: "লেখক পরিচিতি"
 excerpt: "MD. YUSUF-এর পেশাগত ও একাডেমিক পরিচিতি; Learning Biology For Life-এর প্রতিষ্ঠাতা, জীববিজ্ঞান শিক্ষক এবং BCS Education Cadre Officer।"
 permalink: /about/
 lang: bn
+locale: bn_BD
 page_id: about
 classes: wide
 node_id: util-author-profile
