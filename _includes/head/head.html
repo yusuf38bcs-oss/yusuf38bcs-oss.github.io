@@ -46,32 +46,96 @@
 
 <script>
   (function() {
-    var consent = localStorage.getItem('cookie-consent');
-    if (!consent) {
-      document.addEventListener('DOMContentLoaded', function() {
-        var banner = document.getElementById('gdpr-banner');
-        if (banner) banner.classList.add('is-visible');
-      });
-    } else if (consent === 'granted') {
-      loadAdSense();
+    "use strict";
+
+    var CONSENT_KEY = "cookie-consent";
+    var ADSENSE_SRC = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352";
+
+    function onReady(callback) {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", callback, { once: true });
+      } else {
+        callback();
+      }
     }
 
-    window.gdprAccept = function() {
-      localStorage.setItem('cookie-consent', 'granted');
-      document.getElementById('gdpr-banner').classList.remove('is-visible');
-      loadAdSense();
-    };
-    window.gdprDecline = function() {
-      localStorage.setItem('cookie-consent', 'denied');
-      document.getElementById('gdpr-banner').classList.remove('is-visible');
-    };
+    function getConsent() {
+      try {
+        return window.localStorage ? localStorage.getItem(CONSENT_KEY) : null;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function setConsent(value) {
+      try {
+        if (window.localStorage) localStorage.setItem(CONSENT_KEY, value);
+      } catch (error) {
+        // Consent UI must remain functional even when storage is blocked.
+      }
+    }
+
+    function getBanner() {
+      return document.getElementById("gdpr-banner");
+    }
+
+    function showBanner() {
+      var banner = getBanner();
+      if (banner) banner.classList.add("is-visible");
+    }
+
+    function hideBanner() {
+      var banner = getBanner();
+      if (banner) banner.classList.remove("is-visible");
+    }
 
     function loadAdSense() {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352';
-      s.crossOrigin = 'anonymous';
-      document.head.appendChild(s);
+      if (document.querySelector('script[data-cookie-managed="adsense"]')) return;
+
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = ADSENSE_SRC;
+      script.crossOrigin = "anonymous";
+      script.dataset.cookieManaged = "adsense";
+      document.head.appendChild(script);
     }
+
+    function acceptCookies() {
+      setConsent("granted");
+      hideBanner();
+      loadAdSense();
+    }
+
+    function declineCookies() {
+      setConsent("denied");
+      hideBanner();
+    }
+
+    window.gdprAccept = acceptCookies;
+    window.gdprDecline = declineCookies;
+
+    onReady(function() {
+      var consent = getConsent();
+      var banner = getBanner();
+
+      if (banner) {
+        banner.addEventListener("click", function(event) {
+          var button = event.target.closest("[data-gdpr-consent]");
+          if (!button) return;
+
+          if (button.dataset.gdprConsent === "granted") {
+            acceptCookies();
+          } else {
+            declineCookies();
+          }
+        });
+      }
+
+      if (!consent) {
+        showBanner();
+      } else if (consent === "granted") {
+        loadAdSense();
+      }
+    });
   })();
 </script>
