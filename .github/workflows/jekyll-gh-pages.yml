@@ -72,6 +72,11 @@ jobs:
           test -f _site/cookie-preferences/index.html || (echo "Missing /cookie-preferences/" && exit 1)
           test -f _site/welcome/index.html || (echo "Missing /welcome/" && exit 1)
           test -f _site/thank-you/index.html || (echo "Missing /thank-you/" && exit 1)
+          test -f _site/archive/index.html || (echo "Missing /archive/" && exit 1)
+          grep -q "Learning Archive" _site/archive/index.html || (echo "Archive page title missing" && exit 1)
+          grep -q "Archive coverage" _site/archive/index.html || (echo "Archive coverage summary missing" && exit 1)
+          grep -q "Biology" _site/archive/index.html || (echo "Archive Biology section missing" && exit 1)
+          grep -q "MCQ Arena" _site/archive/index.html || (echo "Archive MCQ Arena section missing" && exit 1)
           grep -q "formspree.io/f/mgodyrbq" _site/contact/index.html || (echo "Contact Formspree endpoint missing" && exit 1)
           test -f _site/life-philosophy/index.html || (echo "Missing /life-philosophy/" && exit 1)
           test -f _site/synaptic-bridge/index.html || (echo "Missing /synaptic-bridge/" && exit 1)
@@ -101,7 +106,7 @@ jobs:
           grep -q "data-socratic-node" _site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html || (echo "Socratic prompted-page include missing" && exit 1)
 
           ruby -rjson -e 'JSON.parse(File.read("_site/assets/data/graph_manifest.json")); puts "Graph manifest JSON validated."'
-          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, and OMEGA v2 guardrails validated."
+          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, Archive, and OMEGA v2 guardrails validated."
 
       - name: Optional Edge Graph Sync Hook
         if: success()
@@ -138,4 +143,3 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: github-pages
