@@ -1,32 +1,56 @@
-{% assign posts = site.posts | limit: 6 %}
+{% assign scientific_logs = site.posts | concat: site.documents | sort: "date" | reverse %}
 <section class="home-section recent-posts omega-scientific-logs" aria-labelledby="latest-scientific-logs-title">
   <div class="omega-logs-head">
     <span class="omega-logs-kicker">Research Stream</span>
     <h2 id="latest-scientific-logs-title" class="section-title">Latest Scientific Logs</h2>
-    <p>Recent biology notes, reflective scientific learning, and Synaptic Bridge updates.</p>
+    <p>Recent biology notes, academic practice logs, reflective scientific learning, and Synaptic Bridge updates.</p>
   </div>
 
-  {% if posts.size > 0 %}
+  {% if scientific_logs.size > 0 %}
     <div class="omega-logs-grid">
-      {% for post in posts %}
-        <article class="omega-log-card" itemscope itemtype="https://schema.org/CreativeWork">
-          <div class="omega-log-card__meta">
-            <span>{{ post.date | date: "%b %d, %Y" }}</span>
-            {% if post.categories and post.categories.size > 0 %}<span>{{ post.categories | first }}</span>{% endif %}
-          </div>
-          <h3 itemprop="headline"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          {% if post.excerpt %}<p itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 150 }}</p>{% endif %}
-          <a class="omega-log-card__read" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">Read Log ›</a>
-        </article>
+      {% for post in scientific_logs limit: 6 %}
+        {% if post.title and post.url %}
+          <article class="omega-log-card" itemscope itemtype="https://schema.org/CreativeWork">
+            <div class="omega-log-card__meta">
+              {% if post.date %}<span>{{ post.date | date: "%b %d, %Y" }}</span>{% endif %}
+              {% if post.collection %}<span>{{ post.collection | replace: '-', ' ' | capitalize }}</span>{% elsif post.categories and post.categories.size > 0 %}<span>{{ post.categories | first }}</span>{% endif %}
+            </div>
+            <h3 itemprop="headline"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            {% if post.excerpt %}<p itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 150 }}</p>{% elsif post.description %}<p itemprop="description">{{ post.description | strip_html | truncate: 150 }}</p>{% endif %}
+            <a class="omega-log-card__read" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">Read Log ›</a>
+          </article>
+        {% endif %}
       {% endfor %}
     </div>
     <div class="section-cta omega-logs-cta">
-      <a href="{{ '/blog/' | relative_url }}" class="btn btn--primary">View Scientific Logs</a>
-      <a href="{{ '/categories/' | relative_url }}" class="btn btn--inverse">Browse Categories</a>
+      <a href="{{ '/biology/' | relative_url }}" class="btn btn--primary">Explore Biology Logs</a>
+      <a href="{{ '/mcq-arena/academic/' | relative_url }}" class="btn btn--inverse">Academic Practice Logs</a>
     </div>
   {% else %}
-    <p class="archive__warning">Awaiting fresh scientific logs. Check back soon.</p>
-    <div class="section-cta"><a href="{{ '/categories/' | relative_url }}" class="btn btn--primary">Browse Categories</a></div>
+    <div class="omega-logs-grid omega-logs-grid--fallback">
+      <article class="omega-log-card" itemscope itemtype="https://schema.org/CreativeWork">
+        <div class="omega-log-card__meta"><span>Biology Hub</span></div>
+        <h3 itemprop="headline"><a href="{{ '/biology/' | relative_url }}">Biology Learning Hub</a></h3>
+        <p itemprop="description">Explore the active biology collection, including HSC Corner, Higher Zoology, physiology, ecology, genetics, and biostatistics.</p>
+        <a class="omega-log-card__read" href="{{ '/biology/' | relative_url }}" aria-label="Open Biology Learning Hub">Open Biology ›</a>
+      </article>
+      <article class="omega-log-card" itemscope itemtype="https://schema.org/CreativeWork">
+        <div class="omega-log-card__meta"><span>MCQ Arena</span></div>
+        <h3 itemprop="headline"><a href="{{ '/mcq-arena/academic/' | relative_url }}">Academic Practice Logs</a></h3>
+        <p itemprop="description">Open the academic assessment stream for biology MCQ practice, rapid revision, and structured learning checks.</p>
+        <a class="omega-log-card__read" href="{{ '/mcq-arena/academic/' | relative_url }}" aria-label="Open Academic Practice Logs">Open Practice ›</a>
+      </article>
+      <article class="omega-log-card" itemscope itemtype="https://schema.org/CreativeWork">
+        <div class="omega-log-card__meta"><span>Socratic 4.0</span></div>
+        <h3 itemprop="headline"><a href="{{ '/socratic/multiple-intelligences/' | relative_url }}">Reflective Scientific Learning</a></h3>
+        <p itemprop="description">Use Socratic reflection and assessment tools to connect biology, behaviour, intelligence, and self-audit.</p>
+        <a class="omega-log-card__read" href="{{ '/socratic/multiple-intelligences/' | relative_url }}" aria-label="Open Socratic reflective learning">Open Socratic ›</a>
+      </article>
+    </div>
+    <div class="section-cta omega-logs-cta">
+      <a href="{{ '/biology/' | relative_url }}" class="btn btn--primary">Explore Biology Logs</a>
+      <a href="{{ '/mcq-arena/academic/' | relative_url }}" class="btn btn--inverse">Academic Practice Logs</a>
+    </div>
   {% endif %}
 </section>
 
