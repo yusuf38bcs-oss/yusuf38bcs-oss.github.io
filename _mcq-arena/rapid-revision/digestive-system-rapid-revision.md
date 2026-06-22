@@ -63,9 +63,9 @@ MCQ practice শুরু করার আগে ৫ মিনিটে এই p
 
 ## 1. One-line map / এক লাইনের পথচিত্র
 
-```text
-Food -> Mouth -> Oesophagus -> Stomach -> Duodenum -> Small intestine -> Large intestine
-```
+**Food pathway:** Mouth → Oesophagus → Stomach → Duodenum → Small intestine → Large intestine.
+
+**বাংলা পথচিত্র:** মুখ → খাদ্যনালি → পাকস্থলী → ডুওডেনাম → ক্ষুদ্রান্ত্র → বৃহদান্ত্র।
 
 **Core idea:** Digestion means large food molecules are broken into absorbable molecules by **mechanical action**, **enzyme action**, **bile-assisted emulsification**, and **intestinal absorption**.
 
@@ -149,11 +149,7 @@ Small intestine is the main site of absorption because it has:
 - Rich blood supply — সমৃদ্ধ blood supply
 - Lacteals for fat absorption — fat absorption-এর জন্য lacteal
 
-Transport methods:
-
-```text
-Diffusion + Facilitated diffusion + Active transport + Secondary active transport
-```
+**Transport methods:** diffusion, facilitated diffusion, active transport and secondary active transport.
 
 **বাংলা ধারণা:** সব nutrient একইভাবে absorb হয় না। কোনোটি diffusion-এ, কোনোটি active transport বা secondary active transport-এ absorb হয়।
 
@@ -205,21 +201,17 @@ Diffusion + Facilitated diffusion + Active transport + Secondary active transpor
 
 ## Final Memory Card / শেষ মুহূর্তের মেমরি কার্ড
 
-```text
-Acidic stomach -> Pepsin
-Bile -> Fat emulsification
-Pancreas -> Wirsung duct
-Liver -> Kupffer cell + metabolism
-Small intestine -> Absorption
-```
+<div class="notice--success" markdown="1">
 
-```text
-অম্লীয় stomach -> Pepsin
-Bile -> fat emulsification
-Pancreas -> Wirsung duct
-Liver -> Kupffer cell + metabolism
-Small intestine -> absorption
-```
+- **Acidic stomach:** Pepsin activation and protein digestion.
+- **Bile:** Fat emulsification, not enzyme action.
+- **Pancreas:** Wirsung duct carries pancreatic juice.
+- **Liver:** Kupffer cell and metabolism control.
+- **Small intestine:** Main absorption site.
+
+**বাংলা স্মরণ:** অম্লীয় stomach → Pepsin; Bile → fat emulsification; Pancreas → Wirsung duct; Liver → Kupffer cell + metabolism; Small intestine → absorption.
+
+</div>
 
 ## Next Practice / পরবর্তী অনুশীলন
 
