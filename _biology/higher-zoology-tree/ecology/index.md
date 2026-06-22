@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -22,4 +23,15 @@ status: "Active"
 parent_node: index-higher-zoology-tree
 network:
   - index-higher-zoology-tree
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Organisms and Populations; Ecosystem; Biodiversity and Conservation"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Ecology and ecosystem gateway"
+hsc_alignment: "HSC Zoology: ecology, population, community, ecosystem, and conservation"
+concept_level: "Gateway"
 ---
+

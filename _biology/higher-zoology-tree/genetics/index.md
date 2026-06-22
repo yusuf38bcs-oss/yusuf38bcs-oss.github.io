@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -22,4 +23,15 @@ status: "Active"
 parent_node: index-higher-zoology-tree
 network:
   - index-higher-zoology-tree
+language: en
+curriculum_tracks:
+  - HSC Biology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Principles of Inheritance and Variation; Molecular Basis of Inheritance"
+ib_theme: "Continuity and Change"
+ib_subtopic: "Genetics and inheritance gateway"
+hsc_alignment: "HSC Biology: genetics, heredity, variation, and molecular inheritance"
+concept_level: "Gateway"
 ---
+

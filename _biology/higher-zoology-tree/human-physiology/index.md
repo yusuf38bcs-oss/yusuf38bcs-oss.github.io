@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -23,4 +24,15 @@ parent_node: index-higher-zoology-tree
 network:
   - index-higher-zoology-tree
   - index-hsc-zoology
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Human Physiology"
+ib_theme: "Form and Function"
+ib_subtopic: "Human physiology gateway"
+hsc_alignment: "HSC Zoology: human physiology and organ-system integration"
+concept_level: "Gateway"
 ---
+

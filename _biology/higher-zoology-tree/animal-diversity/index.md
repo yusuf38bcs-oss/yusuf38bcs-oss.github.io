@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -22,4 +23,15 @@ status: "Active"
 parent_node: index-higher-zoology-tree
 network:
   - index-higher-zoology-tree
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Animal Kingdom; Structural Organisation in Animals"
+ib_theme: "Diversity"
+ib_subtopic: "Animal diversity and classification gateway"
+hsc_alignment: "HSC Zoology: animal diversity, taxonomy, and classification gateway"
+concept_level: "Gateway"
 ---
+
