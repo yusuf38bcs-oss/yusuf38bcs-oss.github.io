@@ -1,21 +1,14 @@
 PHASE 2 CURRICULUM METADATA AUDIT
 ==========================================
 Scanned Markdown files: 84
-Fully mapped files: 26
+Fully mapped files: 33
 Missing front matter: 0
-Missing required metadata: 58
+Missing required metadata: 51
 Invalid IB theme values: 0
 
 FILES MISSING REQUIRED METADATA
 ----------------------------------------
 _biology/cranial-nerve-axis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/animal-diversity/astropecten-water-vascular-system.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/animal-diversity/polymorphism-in-cnidaria.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/animal-diversity/protozoa-nutrition-locomotion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-parasitism.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/biostatistics/chi_square_test.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/biostatistics/correlation_and_regression.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level

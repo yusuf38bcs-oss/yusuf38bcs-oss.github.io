@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -46,6 +47,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/animal-diversity-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: biological classification; protists and protozoan organization"
+ib_theme: "Diversity"
+ib_subtopic: "Protozoan covering, skeleton, and locomotion"
+hsc_alignment: "HSC Zoology: Protozoa, body covering, skeletal structures, and locomotion"
+concept_level: "Core"
 ---
 
 <style>
