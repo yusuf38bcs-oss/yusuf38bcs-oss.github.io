@@ -1,0 +1,97 @@
+PHASE 2 CURRICULUM METADATA AUDIT
+==========================================
+Scanned Markdown files: 84
+Fully mapped files: 0
+Missing front matter: 2
+Missing required metadata: 82
+Invalid IB theme values: 0
+
+FILES WITHOUT FRONT MATTER
+--------------------------------
+_concepts/cellular-biology.md
+_concepts/life-practices-and-physiology.md
+
+FILES MISSING REQUIRED METADATA
+----------------------------------------
+_biology/cranial-nerve-axis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/animal-diversity/astropecten-water-vascular-system.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/animal-diversity/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/animal-diversity/polymorphism-in-cnidaria.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/animal-diversity/protozoa-nutrition-locomotion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-parasitism.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/chi_square_test.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/correlation_and_regression.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/hypothesis_testing.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/measures-of-central-tendency.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/measures-of-dispersion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/measures_of_central_tendency.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/measures_of_dispersion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/biostatistics/z_test_problem_solving.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/ecology/community-ecology-an-equation-of-living-together.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/ecology/ecology-history-scopes-area.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/ecology/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-2.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/genetics/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/human-behaviour/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/human-physiology/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-2.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-3.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/physiology/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/research-methodology/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/higher-zoology-tree/research-methodology/research-methodology.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/hsc-corner/botany/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/hsc-corner/botany/structures-functions-cell-organelles-part-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/hsc-corner/botany/structures-functions-cell-organelles-part-2.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/hsc-corner/zoology/baroreceptor-reflex.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/hsc-corner/zoology/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/hsc-corner/zoology/respiratory-system-lecture.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/hsc-corner/zoology/respiratory-system-mind-mapping.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_biology/mitosis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/4ir-skill-adaptation.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/behavioral-axis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/decision-making.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/group-dynamics-and-ummah.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/leadership-dynamics.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/molecular-translation.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/multiple-intelligences.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/neuroplasticity-and-learning.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/neuroplasticity.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/personality-archetypes.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/systems-thinking.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_concepts/the-epigenetic-legacy.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/academic/botany-cell-biology-mcq-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/academic/botany-cell-division-mcq-2.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/academic/digestive-system-mcq-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/academic/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/academic/zoology-animal-diversity-mcq-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/academic/zoology-chordata-arthropoda-mcq-pro.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/academic/zoology-respiratory-system-mcq-5.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/assessment/digestive-system-cq-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/assessment/digestive-system-socratic-application-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/data-bank/botany.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/data-bank/cell-biology.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/data-bank/ecology.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/data-bank/genetics.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/data-bank/index.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/data-bank/physiology.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/data-bank/zoology.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/rapid-revision/digestive-system-rapid-revision.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
+_mcq-arena/short-qa/digestive-system-short-qa-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
