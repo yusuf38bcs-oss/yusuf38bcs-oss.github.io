@@ -1,21 +1,7 @@
 PHASE 2 CURRICULUM METADATA AUDIT
 ==========================================
 Scanned Markdown files: 84
-Fully mapped files: 73
+Fully mapped files: 84
 Missing front matter: 0
-Missing required metadata: 11
+Missing required metadata: 0
 Invalid IB theme values: 0
-
-FILES MISSING REQUIRED METADATA
-----------------------------------------
-_mcq-arena/academic/botany-cell-biology-mcq-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/academic/botany-cell-division-mcq-2.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/academic/digestive-system-mcq-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/academic/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/academic/zoology-animal-diversity-mcq-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/academic/zoology-chordata-arthropoda-mcq-pro.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/academic/zoology-respiratory-system-mcq-5.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/assessment/digestive-system-cq-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/assessment/digestive-system-socratic-application-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/rapid-revision/digestive-system-rapid-revision.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/short-qa/digestive-system-short-qa-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level

@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -39,6 +40,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Animal Kingdom"
+ib_theme: "Diversity"
+ib_subtopic: "Animal diversity MCQ assessment"
+hsc_alignment: "HSC Zoology: animal diversity and classification"
+concept_level: "Assessment"
 ---
 
 <style>

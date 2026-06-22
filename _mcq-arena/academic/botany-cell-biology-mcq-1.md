@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -38,6 +39,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/botany-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Botany
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Cell - The Unit of Life"
+ib_theme: "Form and Function"
+ib_subtopic: "Cell biology MCQ assessment"
+hsc_alignment: "HSC Botany: cell structure and cell organelles"
+concept_level: "Assessment"
 ---
 
 <style>
