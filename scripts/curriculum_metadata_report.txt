@@ -1,15 +1,10 @@
 PHASE 2 CURRICULUM METADATA AUDIT
 ==========================================
 Scanned Markdown files: 84
-Fully mapped files: 0
-Missing front matter: 2
+Fully mapped files: 2
+Missing front matter: 0
 Missing required metadata: 82
 Invalid IB theme values: 0
-
-FILES WITHOUT FRONT MATTER
---------------------------------
-_concepts/cellular-biology.md
-_concepts/life-practices-and-physiology.md
 
 FILES MISSING REQUIRED METADATA
 ----------------------------------------
