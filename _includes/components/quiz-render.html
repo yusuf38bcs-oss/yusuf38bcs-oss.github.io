@@ -131,8 +131,8 @@
 {% else %}
   {% assign missing_quiz_id = include.quiz_id | default: '' | append: '' | strip %}
   {% if missing_quiz_id == '' %}
-<!-- QUIZ DIAGNOSTIC: components/quiz-render.html was included without a quiz_id. Add quiz_id="..." and define matching data in _data/quizzes.yml. -->
+    <!-- QUIZ DIAGNOSTIC: components/quiz-render.html was included without a quiz_id. Add quiz_id="..." and define matching data in _data/quizzes.yml. -->
   {% else %}
-<!-- QUIZ DIAGNOSTIC: No entry found in _data/quizzes.yml for quiz_id="{{ missing_quiz_id | escape }}". Add matching quiz data or update the include. -->
+    <!-- QUIZ DIAGNOSTIC: No entry found in _data/quizzes.yml for quiz_id="{{ missing_quiz_id | escape }}". Add matching quiz data or update the include. -->
   {% endif %}
 {% endif %}
