@@ -125,7 +125,7 @@ defaults:
     values:
       locale: bn_BD
   - scope:
-      path: _pages/hubs/biology-bn.md
+      path: _pages/hubs/biology.bn.md
       type: pages
     values:
       locale: bn_BD
@@ -218,9 +218,3 @@ author:
   email: yusuf.38bcs@gmail.com
   uri: https://learningbiologyforlife.org/about/
   home: https://learningbiologyforlife.org
-  links:
-    - label: Website
-      icon: fas fa-fw fa-link
-      url: https://learningbiologyforlife.org
-    - label: GitHub
-      icon: fab fa-fw fa-github
