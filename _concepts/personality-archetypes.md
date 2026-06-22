@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 id: personality-archetypes
 node_id: personality-archetypes
@@ -36,7 +37,18 @@ keywords:
 last_modified_at: 2026-06-14
 sitemap: true
 robots: index,follow
+language: en
+curriculum_tracks:
+  - Behavioural Science
+  - Life Practice
+  - Reflective Learning
+neet_alignment: "Not Applicable"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Personality, behaviour, and reflective learning"
+hsc_alignment: "Applied extension: behaviour, personality, adaptation, and self-reflection"
+concept_level: "Applied"
 ---
+
 # The Neurobiology of the Nafs: Personality Archetypes
 In the modern world, personality is often treated like a horoscope—a static label used to justify our flaws. From a biological perspective, this is a dangerous misconception. **Personality is not a life sentence; it is a neural phenotype.** It represents the baseline resting state of your neurochemistry—which pathways in your brain are most heavily myelinated, and which receptor systems are naturally most sensitive. 
 When we observe human behavior on the battlefield of life, we are watching a complex interplay of neurotransmitters filtering the world. To master human interaction and our own internal states, we must understand the chemical engines driving these archetypes, and how the Creator designed them to consciously evolve.

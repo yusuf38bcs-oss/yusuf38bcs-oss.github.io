@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 id: decision-making
 node_id: decision-making
@@ -16,6 +17,16 @@ prerequisites:
 next_nodes:
   - leadership-dynamics
 mastery_state: unlocked
+language: en
+curriculum_tracks:
+  - Behavioural Science
+  - Life Practice
+  - Systems Thinking
+neet_alignment: "Not Applicable"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Decision-making and adaptive behaviour"
+hsc_alignment: "Applied life-science extension: behaviour, cognition, and decision processes"
+concept_level: "Applied"
 ---
 
 ## Decision Making

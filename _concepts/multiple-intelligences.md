@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 id: multiple-intelligences
 node_id: multiple-intelligences
@@ -23,6 +24,16 @@ description: >
   Biological and pedagogical analysis of multiple intelligences through a Socratic learning architecture.
 sitemap: true
 robots: index,follow
+language: en
+curriculum_tracks:
+  - Behavioural Science
+  - Learning Science
+  - Life Practice
+neet_alignment: "Not Applicable"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Multiple intelligences and learning diversity"
+hsc_alignment: "Applied learning extension: learner diversity, cognition, and reflective learning"
+concept_level: "Applied"
 ---
 
 # The Distributed Cortex: The Biology of Multiple Intelligences

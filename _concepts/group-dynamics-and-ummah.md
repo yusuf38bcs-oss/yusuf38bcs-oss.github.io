@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 id: group-dynamics-and-ummah
 node_id: group-dynamics-and-ummah
@@ -38,6 +39,16 @@ keywords:
 last_modified_at: 2026-06-14
 sitemap: true
 robots: index,follow
+language: en
+curriculum_tracks:
+  - Behavioural Science
+  - Leadership
+  - Life Practice
+neet_alignment: "Not Applicable"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Group dynamics and social systems"
+hsc_alignment: "Applied extension: cooperation, group behaviour, and social organization"
+concept_level: "Applied"
 ---
 
 # The Biological Superorganism: Group Dynamics and the Ummah

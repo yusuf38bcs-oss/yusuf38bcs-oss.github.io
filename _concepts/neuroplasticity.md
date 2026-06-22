@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 id: neuroplasticity
 node_id: neuroplasticity
@@ -18,6 +19,16 @@ next_nodes:
   - multiple-intelligences
   - behavioral-axis
 mastery_state: unlocked
+language: en
+curriculum_tracks:
+  - Behavioural Science
+  - Applied Biology
+  - Learning Science
+neet_alignment: "Human physiology enrichment: neural control and nervous system plasticity"
+ib_theme: "Continuity and Change"
+ib_subtopic: "Neuroplasticity and neural adaptation"
+hsc_alignment: "Applied extension of nervous system, neural pathways, and adaptation"
+concept_level: "Applied"
 ---
 
 ## Neuroplasticity

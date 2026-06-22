@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 node_id: behavioral-axis
 id: behavioral-axis
@@ -21,6 +22,16 @@ next_nodes:
   - leadership-dynamics
 sitemap: true
 robots: index,follow
+language: en
+curriculum_tracks:
+  - Behavioural Science
+  - Applied Biology
+  - Life Practice
+neet_alignment: "Not Applicable"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Behavioural regulation and life systems"
+hsc_alignment: "Applied extension of physiology, behaviour, and adaptive response"
+concept_level: "Applied"
 ---
 
 ## The Biological Foundation of Behavior
