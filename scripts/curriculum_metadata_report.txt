@@ -1,9 +1,9 @@
 PHASE 2 CURRICULUM METADATA AUDIT
 ==========================================
 Scanned Markdown files: 84
-Fully mapped files: 2
+Fully mapped files: 9
 Missing front matter: 0
-Missing required metadata: 82
+Missing required metadata: 75
 Invalid IB theme values: 0
 
 FILES MISSING REQUIRED METADATA
@@ -81,12 +81,5 @@ _mcq-arena/academic/zoology-chordata-arthropoda-mcq-pro.md: language, curriculum
 _mcq-arena/academic/zoology-respiratory-system-mcq-5.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _mcq-arena/assessment/digestive-system-cq-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _mcq-arena/assessment/digestive-system-socratic-application-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/data-bank/botany.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/data-bank/cell-biology.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/data-bank/ecology.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/data-bank/genetics.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/data-bank/index.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/data-bank/physiology.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_mcq-arena/data-bank/zoology.md: curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _mcq-arena/rapid-revision/digestive-system-rapid-revision.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _mcq-arena/short-qa/digestive-system-short-qa-set-01.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
