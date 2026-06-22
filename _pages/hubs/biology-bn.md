@@ -1,8 +1,9 @@
 ---
 layout: biology_archive
 title: "জীববিজ্ঞান ম্যাট্রিক্স হাব"
-permalink: /biology/
+permalink: /bn/biology/
 lang: bn
+language: bn
 page_id: biology
 author_profile: false
 classes: wide
