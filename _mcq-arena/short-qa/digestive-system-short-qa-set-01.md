@@ -167,15 +167,17 @@ header:
 
 ---
 
-## Memory Card
+## Memory Card / স্মরণ কার্ড
 
-```text
-Pepsin = acidic protein digestion
-Bile = fat emulsification, not enzyme
-Wirsung duct = pancreatic duct
-Kupffer cell = liver macrophage
-Small intestine = main absorption site
-```
+<div class="notice--success" markdown="1">
+
+- **Pepsin:** acidic medium-এ protein digestion শুরু করে।
+- **Bile:** enzyme নয়; fat emulsification করে।
+- **Wirsung duct:** main pancreatic duct।
+- **Kupffer cell:** liver macrophage।
+- **Small intestine:** nutrient absorption-এর প্রধান স্থান।
+
+</div>
 
 ## Critical Thinking Questions
 

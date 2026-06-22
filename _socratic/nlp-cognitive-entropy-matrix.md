@@ -71,25 +71,9 @@ Fixed-option tests are fast, but open-ended answers show how a learner thinks.
 
 Fixed-option test দ্রুত ফল দেয়, কিন্তু open-ended answer দেখায় একজন learner কীভাবে চিন্তা করে।
 
-This matrix helps read:
+This matrix helps read agency, emotional regulation, cause-effect reasoning, repair intention, future planning, self-correction and systems thinking.
 
-- agency
-- emotional regulation
-- cause-effect reasoning
-- repair intention
-- future planning
-- self-correction
-- systems thinking
-
-বাংলায়, এই matrix বিশ্লেষণ করে:
-
-- দায়িত্ববোধ বা agency
-- emotion regulation
-- কারণ-ফল reasoning
-- repair intention
-- future planning
-- self-correction
-- systems thinking
+বাংলায়, এই matrix দায়িত্ববোধ, emotion regulation, কারণ-ফল reasoning, repair intention, future planning, self-correction এবং systems thinking বিশ্লেষণ করে।
 
 ---
 
@@ -127,39 +111,13 @@ This matrix helps read:
 
 ## 4. Suitable Input / কোন উত্তরের জন্য ব্যবহারযোগ্য
 
-Best input:
+**Best input:** open-ended answer of 80–250 words, scenario-based response, reflective writing, leadership crisis answer, personality-style narrative answer, Socratic self-audit response, or moral repair reflection.
 
-```text
-Open-ended answer: 80–250 words
-Scenario-based response
-Reflective writing
-Leadership crisis answer
-Personality-style narrative answer
-Socratic self-audit response
-Moral repair reflection
-```
+**বাংলায়:** ৮০–২৫০ শব্দের খোলা উত্তর, scenario-based response, reflective writing, leadership crisis answer, personality-style narrative answer, Socratic self-audit response বা moral repair reflection।
 
-বাংলায়:
+**Not suitable for:** simple MCQ option, single-word answer, yes/no answer, fixed HSC factual answer, or final personal judgment.
 
-```text
-৮০–২৫০ শব্দের খোলা উত্তর
-scenario-based response
-reflective writing
-leadership crisis answer
-personality-style narrative answer
-Socratic self-audit response
-moral repair reflection
-```
-
-Not suitable for:
-
-```text
-simple MCQ option
-single-word answer
-yes/no answer
-fixed HSC factual answer
-final personal judgment
-```
+**ব্যবহারযোগ্য নয়:** simple MCQ option, এক শব্দের উত্তর, yes/no answer, fixed HSC factual answer, অথবা final personal judgment।
 
 ---
 
@@ -178,7 +136,7 @@ Agency language দেখায় ব্যক্তি নিজেকে respons
 | I need to adjust my habit | This always happens to me |
 | I will seek feedback | I do not care |
 
-**Score:** `0 = no agency` → `4 = agency + repair plan`
+**Score:** 0 = no agency → 4 = agency + repair plan
 
 ---
 
@@ -194,7 +152,7 @@ This dimension checks whether emotion overwhelms the response or becomes process
 | I felt fear, but checked facts | I panicked and blamed everyone |
 | I need time before deciding | I cannot control myself |
 
-**Score:** `0 = emotional flooding` → `4 = regulated with wise action`
+**Score:** 0 = emotional flooding → 4 = regulated with wise action
 
 ---
 
@@ -210,7 +168,7 @@ Causal reasoning দেখে response action, trigger, consequence, feedback �
 | If I change the routine, habit may weaken | I am just like this |
 | The trigger was stress, not the person alone | Everything is their fault |
 
-**Score:** `0 = no cause-effect link` → `4 = system-level reasoning`
+**Score:** 0 = no cause-effect link → 4 = system-level reasoning
 
 ---
 
@@ -227,7 +185,7 @@ Repair language দেখায় ব্যক্তি blame বা guilt থে�
 | I will make a small corrective plan | I only feel bad |
 | I will ask how to improve | I will prove I am right |
 
-**Score:** `0 = no repair` → `4 = repair + prevention plan`
+**Score:** 0 = no repair → 4 = repair + prevention plan
 
 ---
 
@@ -243,7 +201,7 @@ Future planning executive control দেখায়। mature response শুধ�
 | I will create a checklist | I will try somehow |
 | I will ask one person to monitor me | Maybe it will improve |
 
-**Score:** `0 = no future plan` → `4 = specific plan + accountability`
+**Score:** 0 = no future plan → 4 = specific plan + accountability
 
 ---
 
@@ -259,7 +217,7 @@ Self-blame moral মনে হতে পারে, কিন্তু correction
 | I need training in this area | I always fail |
 | I will change the trigger pattern | I hate myself |
 
-**Score:** `0 = destructive self-blame` → `4 = correction + self-compassion`
+**Score:** 0 = destructive self-blame → 4 = correction + self-compassion
 
 ---
 
@@ -275,7 +233,7 @@ Systems thinking দেখায় ব্যক্তি context, feedback loop �
 | Team pressure changed my decision | I acted randomly |
 | Feedback delay created a loop | Nothing is connected |
 
-**Score:** `0 = isolated thinking` → `4 = system repair awareness`
+**Score:** 0 = isolated thinking → 4 = system repair awareness
 
 ---
 
@@ -315,11 +273,7 @@ Systems thinking দেখায় ব্যক্তি context, feedback loop �
 | Self-Correction | 0–4 |
 | Systems Thinking | 0–4 |
 
-Total possible score:
-
-```text
-7 dimensions × 4 = 28
-```
+**Total possible score:** 7 dimensions × 4 = 28.
 
 | Total Score | Interpretation | বাংলা ব্যাখ্যা |
 |---|---|---|
@@ -348,9 +302,7 @@ A learner failed to submit an assignment. The teacher asks: “What happened, an
 
 ### High-Entropy Response
 
-```text
-Everyone kept disturbing me. I had no time. This always happens. I do not know what to do.
-```
+> Everyone kept disturbing me. I had no time. This always happens. I do not know what to do.
 
 **Analysis:** Low agency, high blame, weak future planning, no repair step.
 
@@ -358,9 +310,7 @@ Everyone kept disturbing me. I had no time. This always happens. I do not know w
 
 ### Low-Entropy Response
 
-```text
-I mismanaged my time. I should have started earlier. I will submit the incomplete draft today, ask for feedback, and make a two-day checklist for the next task.
-```
+> I mismanaged my time. I should have started earlier. I will submit the incomplete draft today, ask for feedback, and make a two-day checklist for the next task.
 
 **Analysis:** Clear agency, cause-effect reasoning, repair step, future planning.
 
@@ -381,46 +331,19 @@ A learner may write artificially perfect answers. The matrix should check whethe
 | I respect everyone | I interrupted my classmate and will apologize |
 | I will work hard | I will complete task A before phone use |
 
-### Anti-Gaming Rule
+**Anti-Gaming Rule:** Specific action + time + context + repair target = stronger authenticity.
 
-```text
-Specific action + time + context + repair target = stronger authenticity
-```
-
-বাংলায়:
-
-```text
-specific action + time + context + repair target = বেশি authentic response
-```
+**বাংলা rule:** specific action + time + context + repair target = বেশি authentic response.
 
 ---
 
 ## 10. Where to Use This Matrix / কোথায় ব্যবহার হবে
 
-Use this matrix for:
+Use this matrix for personality-style open responses, leadership reflection, Socratic self-audit, moral self-correction writing, human behaviour reflection and Life Practices self-audit.
 
-- Systemic Archetype Personality Assessment
-- Leadership reflection assessment
-- Socratic self-audit response
-- Moral reflection task
-- Behavioural biology reflection
-- Life Practices writing
+ব্যবহার করা যাবে: Personality Test open-ended response, Leadership assessment, Socratic reflective answer, Moral self-correction writing, Human Behaviour reflection এবং Life Practices self-audit।
 
-ব্যবহার করা যাবে:
-
-- Personality Test open-ended response
-- Leadership assessment
-- Socratic reflective answer
-- Moral self-correction writing
-- Human Behaviour reflection
-- Life Practices self-audit
-
-Do not use it for:
-
-- simple MCQ checking
-- direct factual short answer
-- fixed HSC answer marking
-- final personal judgment
+Do not use it for simple MCQ checking, direct factual short answer, fixed HSC answer marking or final personal judgment.
 
 ---
 
@@ -450,63 +373,37 @@ Do not use it for:
 
 ## 12. Final Output Template / Final Report Template
 
-```text
-Cognitive-Entropy Report
+Use the report format below:
 
-Agency: __ / 4
-Emotional Regulation: __ / 4
-Causal Reasoning: __ / 4
-Repair Language: __ / 4
-Future Planning: __ / 4
-Self-Correction: __ / 4
-Systems Thinking: __ / 4
+| Field | Value |
+|---|---|
+| Agency | __ / 4 |
+| Emotional Regulation | __ / 4 |
+| Causal Reasoning | __ / 4 |
+| Repair Language | __ / 4 |
+| Future Planning | __ / 4 |
+| Self-Correction | __ / 4 |
+| Systems Thinking | __ / 4 |
+| Total | __ / 28 |
+| Interpretation Band | __________ |
+| Dominant Language Pattern | __________ |
+| Growth Vector | __________ |
+| Recommended Next Practice | __________ |
 
-Total: __ / 28
-Interpretation Band: __________
-Dominant Language Pattern: __________
-Growth Vector: __________
-Recommended Next Practice: __________
-```
-
-বাংলা template:
-
-```text
-Cognitive-Entropy Report
-
-Agency: __ / 4
-Emotion Regulation: __ / 4
-Cause-effect Reasoning: __ / 4
-Repair Language: __ / 4
-Future Planning: __ / 4
-Self-Correction: __ / 4
-Systems Thinking: __ / 4
-
-Total: __ / 28
-Interpretation Band: __________
-Dominant Language Pattern: __________
-Growth Vector: __________
-Recommended Next Practice: __________
-```
+বাংলা report format-এও একই field রাখা যাবে, যাতে assessment consistent থাকে।
 
 ---
 
 ## 13. Final Memory Card
 
-```text
-NLP Matrix does not judge the person.
-It reads language markers.
-High entropy = blame, vagueness, reactivity, no repair.
-Low entropy = agency, regulation, cause-effect, repair, future planning.
-Best use = personality, leadership, Socratic and moral reflection.
-```
+<div class="notice--success" markdown="1">
 
-```text
-NLP Matrix মানুষকে বিচার করে না।
-এটি language marker পড়ে।
-High entropy = blame, vagueness, reactivity, no repair.
-Low entropy = agency, regulation, cause-effect, repair, future planning.
-Best use = personality, leadership, Socratic reflection, moral correction.
-```
+- **NLP Matrix:** মানুষকে final label দেয় না; language marker পড়ে।
+- **High entropy:** blame, vagueness, reactivity, no repair.
+- **Low entropy:** agency, regulation, cause-effect, repair, future planning.
+- **Best use:** personality-style reflection, leadership, Socratic answer, moral correction.
+
+</div>
 
 ## References
 
