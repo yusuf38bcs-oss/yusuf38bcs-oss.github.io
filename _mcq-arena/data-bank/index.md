@@ -1,10 +1,20 @@
 ---
+
 title: "MCQ Data Bank"
 layout: single
 language: en
 permalink: /mcq-arena/data-bank/
 collection: mcq-arena
 classes: wide
+curriculum_tracks:
+  - HSC Biology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "MCQ Data Bank Index"
+ib_theme: "Not Applicable"
+ib_subtopic: "Assessment index"
+hsc_alignment: "Cross-topic biology assessment gateway"
+concept_level: "Assessment Hub"
 ---
 
 These collection entries expose the reusable quiz records retained in `_data/quizzes.yml` as addressable `mcq-arena` Markdown pages.
