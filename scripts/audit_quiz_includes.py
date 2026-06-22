@@ -129,17 +129,18 @@ def check_page_quiz_id(
     issues: list[str],
     dynamic_comments: list[str],
 ) -> None:
+    rel_display = rel.as_posix()
     resolved = front_matter_quiz_id(text)
     if resolved is None:
-        issues.append(f"{rel}:{include_line}: page.quiz_id used but no quiz_id front matter found")
+        issues.append(f"{rel_display}:{include_line}: page.quiz_id used but no quiz_id front matter found")
         return
     if resolved not in available_ids:
         issues.append(
-            f"{rel}:{include_line}: page.quiz_id resolves to '{resolved}' but it is not defined in _data/quizzes.yml"
+            f"{rel_display}:{include_line}: page.quiz_id resolves to '{resolved}' but it is not defined in _data/quizzes.yml"
         )
         return
     dynamic_comments.append(
-        f"{rel}:{include_line}: page.quiz_id resolves to '{resolved}' and is defined in _data/quizzes.yml"
+        f"{rel_display}:{include_line}: page.quiz_id resolves to '{resolved}' and is defined in _data/quizzes.yml"
     )
 
 
@@ -151,20 +152,21 @@ def audit() -> tuple[list[str], list[str]]:
     for path in content_files():
         text = path.read_text(encoding="utf-8")
         rel = path.relative_to(ROOT)
+        rel_display = rel.as_posix()
         for match in INCLUDE_PATTERN.finditer(text):
             args = match.group("args")
             include_line = line_number(text, match.start())
             quiz_match = QUIZ_ID_PATTERN.search(args)
             if not quiz_match:
                 issues.append(
-                    f"{rel}:{include_line}: missing quiz_id on quiz-render include"
+                    f"{rel_display}:{include_line}: missing quiz_id on quiz-render include"
                 )
                 continue
 
             quiz_id, quoted = quiz_id_value(quiz_match)
             if quiz_id == "include.quiz_id":
                 dynamic_comments.append(
-                    f"{rel}:{include_line}: include.quiz_id pass-through wrapper is accepted and checked by callers"
+                    f"{rel_display}:{include_line}: include.quiz_id pass-through wrapper is accepted and checked by callers"
                 )
                 continue
             if quiz_id == "page.quiz_id":
@@ -179,12 +181,12 @@ def audit() -> tuple[list[str], list[str]]:
                 continue
             if is_dynamic_quiz_id(quiz_id, quoted):
                 dynamic_comments.append(
-                    f"{rel}:{include_line}: dynamic quiz_id expression '{quiz_id}' is accepted and checked at render time"
+                    f"{rel_display}:{include_line}: dynamic quiz_id expression '{quiz_id}' is accepted and checked at render time"
                 )
                 continue
             if quiz_id not in available_ids:
                 issues.append(
-                    f"{rel}:{include_line}: quiz_id '{quiz_id}' is not defined in _data/quizzes.yml"
+                    f"{rel_display}:{include_line}: quiz_id '{quiz_id}' is not defined in _data/quizzes.yml"
                 )
 
     return sorted(issues), sorted(dynamic_comments)
