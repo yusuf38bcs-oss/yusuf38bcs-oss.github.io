@@ -1,6 +1,6 @@
 ---
 title: "MCQ Data Bank"
-layout: archive
+layout: single
 language: en
 permalink: /mcq-arena/data-bank/
 collection: mcq-arena
@@ -9,12 +9,9 @@ classes: wide
 
 These collection entries expose the reusable quiz records retained in `_data/quizzes.yml` as addressable `mcq-arena` Markdown pages.
 
-<ul>
-{% assign mcq_collection = site.collections | where: "label", "mcq-arena" | first %}
-{% assign data_bank_pages = mcq_collection.docs | where_exp: "item", "item.path contains '_mcq-arena/data-bank/'" | sort: "title" %}
-{% for item in data_bank_pages %}
-  {% unless item.url == page.url %}
-    <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
-  {% endunless %}
-{% endfor %}
-</ul>
+- [Cell Organelles & Plant Biology](/mcq-arena/data-bank/botany/)
+- [Cell Biology & Physiology](/mcq-arena/data-bank/cell-biology/)
+- [Population Ecology](/mcq-arena/data-bank/ecology/)
+- [Genetics & Laws of Inheritance](/mcq-arena/data-bank/genetics/)
+- [Human Physiology & Organ Systems](/mcq-arena/data-bank/physiology/)
+- [Animal Diversity & Classification](/mcq-arena/data-bank/zoology/)
