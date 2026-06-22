@@ -1,0 +1,26 @@
+# Known legacy quiz-render include wiring gaps.
+# Run `scripts/audit_quiz_includes.py --update-baseline` only after reviewing intentional baseline changes.
+# Remove entries as each page is wired to a real _data/quizzes.yml id.
+_biology/higher-zoology-tree/animal-diversity/astropecten-water-vascular-system.md:324: quiz_id 'animal-diversity' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/animal-diversity/polymorphism-in-cnidaria.md:207: quiz_id 'animal-diversity' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion.md:431: quiz_id 'animal-diversity' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion.md:253: quiz_id 'animal-diversity' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/animal-diversity/protozoa-nutrition-locomotion.md:196: quiz_id 'animal-diversity' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism.md:352: quiz_id 'animal-diversity' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-parasitism.md:201: quiz_id 'animal-diversity' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/biostatistics/correlation_and_regression.md:232: quiz_id 'biostatistics' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/biostatistics/hypothesis_testing.md:178: quiz_id 'biostatistics' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/biostatistics/measures-of-central-tendency.md:212: quiz_id 'biostatistics' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/biostatistics/measures_of_central_tendency.md:99: quiz_id 'biostatistics' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/biostatistics/z_test_problem_solving.md:116: quiz_id 'biostatistics' is not defined in _data/quizzes.yml
+_biology/higher-zoology-tree/research-methodology/research-methodology.md:271: missing quiz_id on quiz-render include
+_life-philosophy/ethics/basic-ethics-of-life-in-religious-view.md:158: quiz_id 'ethics' is not defined in _data/quizzes.yml
+_life-philosophy/observation/cosmic-observation-morality.md:139: quiz_id 'ethics-observations' is not defined in _data/quizzes.yml
+_life-philosophy/psychology/psychology-character-fortitude.md:137: quiz_id 'ethics-psychology' is not defined in _data/quizzes.yml
+_life-philosophy/realization/realization.md:297: quiz_id 'ethics-psychology-realization' is not defined in _data/quizzes.yml
+_life-philosophy/reflective-thinking/reflection-behind-the-scene.md:307: quiz_id 'ethics-psychology-realization-epic' is not defined in _data/quizzes.yml
+_synaptic-bridge/4ir-education/4ir-education.md:131: quiz_id '4ir-education-core' is not defined in _data/quizzes.yml
+_synaptic-bridge/future-learning/future-science.md:120: quiz_id 'future-science-core' is not defined in _data/quizzes.yml
+_synaptic-bridge/interdisciplinary-science/interdisciplinary-science.md:122: quiz_id 'interdisciplinary-science-core' is not defined in _data/quizzes.yml
+_synaptic-bridge/knowledge-network/knowledge-network.md:120: quiz_id 'knowledge-network-core' is not defined in _data/quizzes.yml
+_synaptic-bridge/systems-biology/system-biology.md:145: quiz_id 'systems-biology-core' is not defined in _data/quizzes.yml
