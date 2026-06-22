@@ -1,27 +1,14 @@
 PHASE 2 CURRICULUM METADATA AUDIT
 ==========================================
 Scanned Markdown files: 84
-Fully mapped files: 33
+Fully mapped files: 46
 Missing front matter: 0
-Missing required metadata: 51
+Missing required metadata: 38
 Invalid IB theme values: 0
 
 FILES MISSING REQUIRED METADATA
 ----------------------------------------
 _biology/cranial-nerve-axis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/chi_square_test.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/correlation_and_regression.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/hypothesis_testing.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/measures-of-central-tendency.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/measures-of-dispersion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/measures_of_central_tendency.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/measures_of_dispersion.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/biostatistics/z_test_problem_solving.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/ecology/community-ecology-an-equation-of-living-together.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/ecology/ecology-history-scopes-area.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
