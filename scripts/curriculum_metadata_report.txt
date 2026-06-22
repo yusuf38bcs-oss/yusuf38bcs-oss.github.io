@@ -1,19 +1,14 @@
 PHASE 2 CURRICULUM METADATA AUDIT
 ==========================================
 Scanned Markdown files: 84
-Fully mapped files: 46
+Fully mapped files: 51
 Missing front matter: 0
-Missing required metadata: 38
+Missing required metadata: 33
 Invalid IB theme values: 0
 
 FILES MISSING REQUIRED METADATA
 ----------------------------------------
 _biology/cranial-nerve-axis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/ecology/community-ecology-an-equation-of-living-together.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/ecology/ecology-history-scopes-area.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-2.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level

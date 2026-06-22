@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -47,6 +48,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/ecology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Organisms and Populations"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Population ecology and species dynamics"
+hsc_alignment: "HSC Zoology: population ecology, population dynamics, and species-level life processes"
+concept_level: "Core"
 ---
 
 <div class="separator" style="clear: both; text-align: center;">

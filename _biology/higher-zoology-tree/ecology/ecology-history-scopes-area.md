@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -44,6 +45,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/ecology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Organisms and Populations; Ecosystem"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Ecology history, scope, and branches"
+hsc_alignment: "HSC Zoology: ecology definition, history, scope, and major branches"
+concept_level: "Foundation"
 ---
 
 <div style="max-width:920px;margin:auto;padding:18px;font-family:'Hind Siliguri',sans-serif;line-height:1.9;color:#222;background:#fff;">
