@@ -6,23 +6,6 @@ on:
   push:
     branches:
       - feature/bilingual-polyglot
-  pull_request:
-    branches:
-      - main
-    paths:
-      - '_config.yml'
-      - 'Gemfile'
-      - 'Gemfile.lock'
-      - '*.md'
-      - '*.bn.md'
-      - '_includes/**'
-      - '_layouts/**'
-      - '_pages/**'
-      - '_posts/**'
-      - '_sass/**'
-      - 'assets/**'
-      - 'scripts/omega-bilingual-audit.ps1'
-      - '.github/workflows/bilingual-audit.yml'
   workflow_dispatch:
 
 permissions:
