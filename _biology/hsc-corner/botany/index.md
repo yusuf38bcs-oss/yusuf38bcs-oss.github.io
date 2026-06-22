@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -23,4 +24,15 @@ parent_node: hsc-corner
 network:
   - hsc-corner
   - higher-zoology-tree
+language: en
+curriculum_tracks:
+  - HSC Botany
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Cell - The Unit of Life; Plant physiology foundations"
+ib_theme: "Form and Function"
+ib_subtopic: "Botany foundation gateway"
+hsc_alignment: "HSC Botany: chapter gateway and structured topic access"
+concept_level: "Gateway"
 ---
+

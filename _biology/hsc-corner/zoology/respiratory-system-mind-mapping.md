@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -45,6 +46,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Breathing and Exchange of Gases"
+ib_theme: "Form and Function"
+ib_subtopic: "Respiratory system concept mapping"
+hsc_alignment: "HSC Zoology: respiration revision and systems mapping"
+concept_level: "Revision"
 ---
 
 <div style="text-align: center; margin-bottom: 25px;">

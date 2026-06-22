@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -47,6 +48,16 @@ classes: wide
 header:
   overlay_image: /assets/images/biology/central-dogma-cover.jpg
   overlay_filter: 0.45
+language: en
+curriculum_tracks:
+  - HSC Botany
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Molecular Basis of Inheritance"
+ib_theme: "Continuity and Change"
+ib_subtopic: "Central dogma and gene expression"
+hsc_alignment: "HSC Biology: DNA, RNA, protein synthesis, and cellular information flow"
+concept_level: "Core"
 ---
 
 <div style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">

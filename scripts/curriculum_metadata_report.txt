@@ -1,9 +1,9 @@
 PHASE 2 CURRICULUM METADATA AUDIT
 ==========================================
 Scanned Markdown files: 84
-Fully mapped files: 9
+Fully mapped files: 17
 Missing front matter: 0
-Missing required metadata: 75
+Missing required metadata: 67
 Invalid IB theme values: 0
 
 FILES MISSING REQUIRED METADATA
@@ -51,14 +51,6 @@ _biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-3
 _biology/higher-zoology-tree/physiology/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/research-methodology/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/higher-zoology-tree/research-methodology/research-methodology.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/hsc-corner/botany/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/hsc-corner/botany/structures-functions-cell-organelles-part-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/hsc-corner/botany/structures-functions-cell-organelles-part-2.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/hsc-corner/zoology/baroreceptor-reflex.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/hsc-corner/zoology/index.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/hsc-corner/zoology/respiratory-system-lecture.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/hsc-corner/zoology/respiratory-system-mind-mapping.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _biology/mitosis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _concepts/4ir-skill-adaptation.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _concepts/behavioral-axis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level

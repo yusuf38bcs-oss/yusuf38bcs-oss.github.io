@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -51,6 +52,16 @@ socratic_prompt: >-
 
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Body Fluids and Circulation; Neural Control and Coordination"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Homeostasis and blood pressure regulation"
+hsc_alignment: "HSC Zoology: circulation, nervous regulation, and homeostatic feedback"
+concept_level: "Advanced"
 ---
 
 <div class="notice--info" markdown="1">

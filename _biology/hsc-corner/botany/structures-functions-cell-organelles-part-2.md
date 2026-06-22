@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -45,6 +46,16 @@ classes: wide
 header:
   overlay_image: /assets/images/biology/cell-organelles-part2-cover.jpg
   overlay_filter: 0.45
+language: en
+curriculum_tracks:
+  - HSC Botany
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Cell - The Unit of Life"
+ib_theme: "Form and Function"
+ib_subtopic: "Cell organelles and functional integration"
+hsc_alignment: "HSC Botany: cell organelles, nucleus, chromosome, and cellular function"
+concept_level: "Core"
 ---
 
 <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
