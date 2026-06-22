@@ -1,20 +1,13 @@
 PHASE 2 CURRICULUM METADATA AUDIT
 ==========================================
 Scanned Markdown files: 84
-Fully mapped files: 54
+Fully mapped files: 61
 Missing front matter: 0
-Missing required metadata: 30
+Missing required metadata: 23
 Invalid IB theme values: 0
 
 FILES MISSING REQUIRED METADATA
 ----------------------------------------
-_biology/cranial-nerve-axis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-1.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-2.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-3.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
-_biology/higher-zoology-tree/research-methodology/research-methodology.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _concepts/4ir-skill-adaptation.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _concepts/behavioral-axis.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level
 _concepts/decision-making.md: language, curriculum_tracks, neet_alignment, ib_theme, ib_subtopic, hsc_alignment, concept_level

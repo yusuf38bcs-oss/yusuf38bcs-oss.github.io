@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 title: "The Cranial Nerve Axis: Synaptic Pathways of Autonomic Homeostasis"
 permalink: /biology/cranial-nerve-axis/
@@ -10,6 +11,16 @@ prerequisites:
   - "synaptic-transmission"
 
 socratic_prompt: "A patient presents with a localized compression at the jugular foramen, resulting in sudden tachycardia and a loss of parasympathetic tone. If the glossopharyngeal nerve remains fully functional, which specific cranial nerve is compromised, and why does the heart continue to beat despite the loss of this master cranial pathway?"
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Neural Control and Coordination"
+ib_theme: "Form and Function"
+ib_subtopic: "Cranial nerves and neural coordination"
+hsc_alignment: "HSC Zoology: nervous system, cranial nerves, and neural regulation"
+concept_level: "Advanced"
 ---
 
 ## 1. The Anatomical Mapping (The Dot)

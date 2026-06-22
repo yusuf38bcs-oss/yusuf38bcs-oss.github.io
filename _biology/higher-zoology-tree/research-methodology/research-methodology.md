@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -47,6 +48,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/research-methodology-banner.webp
+language: en
+curriculum_tracks:
+  - Research Methods
+  - IB Biology
+  - Academic Biology
+neet_alignment: "Scientific method and biology research enrichment"
+ib_theme: "Not Applicable"
+ib_subtopic: "Biology research methodology"
+hsc_alignment: "Research methodology support for biology learning, investigation, and scientific writing"
+concept_level: "Research Core"
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
