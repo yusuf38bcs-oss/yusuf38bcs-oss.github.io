@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -46,6 +47,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/ecology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Organisms and Populations; population growth models"
+ib_theme: "Continuity and Change"
+ib_subtopic: "Survivorship curve, life table, and population growth"
+hsc_alignment: "HSC Zoology: survivorship curve, life table, exponential and logistic growth models"
+concept_level: "Advanced"
 ---
 
 <style>

@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 id: leadership-dynamics
 node_id: leadership-dynamics
@@ -16,6 +17,16 @@ prerequisites:
 next_nodes:
   - life-practices
 mastery_state: unlocked
+language: en
+curriculum_tracks:
+  - Leadership
+  - Behavioural Science
+  - Life Practice
+neet_alignment: "Not Applicable"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Leadership dynamics and adaptive systems"
+hsc_alignment: "Applied extension: behaviour, coordination, communication, and social leadership"
+concept_level: "Applied"
 ---
 
 ## Leadership Dynamics

@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 title: "Mitosis"
 node_id: "biology/mitosis"
@@ -15,6 +16,16 @@ next_nodes:
   - "biology/cancer-biology"
   - "biology/apoptosis"
 socratic_prompt: "If mitosis produces two genetically identical daughter cells, why do organisms age instead of staying biologically young forever?"
+language: en
+curriculum_tracks:
+  - HSC Biology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Cell Cycle and Cell Division"
+ib_theme: "Continuity and Change"
+ib_subtopic: "Mitosis and cell division"
+hsc_alignment: "HSC Biology: mitosis, cell cycle, chromosome behaviour, and daughter cell formation"
+concept_level: "Core"
 ---
 
 Mitosis is a fundamental process of cell division in which one parent cell produces two genetically identical daughter cells. It preserves chromosome number and supports growth, tissue repair, regeneration, and asexual reproduction in many organisms.

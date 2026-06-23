@@ -1,3 +1,16 @@
+---
+title: "Life Practices and Physiology"
+layout: single
+language: en
+curriculum_tracks:
+  - HSC Biology
+  - Applied Biology
+neet_alignment: "Human physiology: applied life processes"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Human physiology and behaviour"
+hsc_alignment: "HSC Biology: human physiology and practical life applications"
+concept_level: "Applied"
+---
 \---
 
 layout: concept\_node

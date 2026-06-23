@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -52,6 +53,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - Applied Biology
+  - Reflective Learning
+neet_alignment: "NCERT Biology: Digestion and Absorption"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Digestive system Socratic application"
+hsc_alignment: "HSC Zoology: digestive system application and reflective reasoning"
+concept_level: "Socratic Assessment"
 ---
 
 # Digestive System Socratic Application Set 01

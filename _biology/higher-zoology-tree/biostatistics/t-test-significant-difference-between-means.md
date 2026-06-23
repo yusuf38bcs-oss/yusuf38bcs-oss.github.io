@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -47,6 +48,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/biostatistics-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - IB Biology
+  - Research Methods
+neet_alignment: "Biology data interpretation and t-test"
+ib_theme: "Not Applicable"
+ib_subtopic: "Student's t-test and difference between means"
+hsc_alignment: "Higher Zoology: t-test and significance of difference between means"
+concept_level: "Advanced"
 ---
 
 <div class="neural-banner-card" style="margin: 1.5em 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); background: #0b1329; padding: 10px;">

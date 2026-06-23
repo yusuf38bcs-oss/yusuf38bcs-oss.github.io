@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 id: the-epigenetic-legacy
 node_id: the-epigenetic-legacy
@@ -34,6 +35,16 @@ keywords:
 last_modified_at: 2026-06-14
 sitemap: true
 robots: index,follow
+language: en
+curriculum_tracks:
+  - HSC Biology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Molecular Basis of Inheritance; inheritance and gene regulation enrichment"
+ib_theme: "Continuity and Change"
+ib_subtopic: "Epigenetics and inheritance"
+hsc_alignment: "HSC Biology extension: heredity, gene expression, environment, and inheritance"
+concept_level: "Advanced"
 ---
 
 # The Ghost in the Machine: Epigenetics and Legacy

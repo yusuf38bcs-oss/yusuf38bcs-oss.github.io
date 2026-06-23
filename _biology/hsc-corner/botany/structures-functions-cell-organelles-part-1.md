@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -41,6 +42,16 @@ synaptic_links:
 toc: true
 toc_sticky: true
 classes: wide
+language: en
+curriculum_tracks:
+  - HSC Botany
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Cell - The Unit of Life"
+ib_theme: "Form and Function"
+ib_subtopic: "Cell organelles and cellular compartmentalisation"
+hsc_alignment: "HSC Botany: cell structure and organelle function"
+concept_level: "Core"
 ---
 
 <div style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">

@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -23,4 +24,15 @@ parent_node: hsc-corner
 network:
   - hsc-corner
   - index-hsc-botany
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Zoology, physiology, ecology, genetics, and biostatistics gateway"
+ib_theme: "Not Applicable"
+ib_subtopic: "Higher zoology learning gateway"
+hsc_alignment: "Higher Zoology Tree: central gateway for animal diversity, physiology, ecology, genetics, and biostatistics"
+concept_level: "Gateway"
 ---
+

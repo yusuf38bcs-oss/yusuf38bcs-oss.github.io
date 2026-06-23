@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -22,4 +23,15 @@ status: "Active"
 parent_node: index-higher-zoology-tree
 network:
   - index-higher-zoology-tree
+language: en
+curriculum_tracks:
+  - Research Methods
+  - IB Biology
+  - Academic Biology
+neet_alignment: "Scientific method and biology research enrichment"
+ib_theme: "Not Applicable"
+ib_subtopic: "Research methodology gateway"
+hsc_alignment: "Research methodology support for biology learning, data handling, and scientific writing"
+concept_level: "Research Gateway"
 ---
+

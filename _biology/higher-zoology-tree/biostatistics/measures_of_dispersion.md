@@ -1,4 +1,5 @@
 ---
+
 layout: null
 author_profile: false
 sitemap: false
@@ -9,7 +10,18 @@ excerpt: "Redirects duplicate underscore URL to the canonical hyphenated Measure
 
 permalink: /biology/higher-zoology-tree/biostatistics/measures_of_dispersion/
 canonical_url: /biology/higher-zoology-tree/biostatistics/measures-of-dispersion/
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - IB Biology
+  - Research Methods
+neet_alignment: "Biology data interpretation and dispersion revision"
+ib_theme: "Not Applicable"
+ib_subtopic: "Dispersion revision"
+hsc_alignment: "Higher Zoology: range, variance, standard deviation, and CV revision"
+concept_level: "Revision"
 ---
+
 <!doctype html>
 <html lang="en">
 <head>

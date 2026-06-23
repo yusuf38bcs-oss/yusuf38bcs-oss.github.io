@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -48,6 +49,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Digestion and Absorption"
+ib_theme: "Form and Function"
+ib_subtopic: "Digestive system short-question assessment"
+hsc_alignment: "HSC Zoology: digestive system short Q/A practice"
+concept_level: "Short QA Assessment"
 ---
 
 # Digestive System Short Q/A Set 01

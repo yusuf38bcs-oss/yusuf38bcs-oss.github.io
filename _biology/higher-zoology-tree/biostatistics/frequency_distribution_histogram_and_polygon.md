@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -44,6 +45,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/biostatistics-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - IB Biology
+  - Research Methods
+neet_alignment: "Biology data organisation and graphical representation"
+ib_theme: "Not Applicable"
+ib_subtopic: "Frequency distribution, histogram, and frequency polygon"
+hsc_alignment: "Higher Zoology: frequency distribution, histogram, and polygon"
+concept_level: "Core"
 ---
 
 <style>

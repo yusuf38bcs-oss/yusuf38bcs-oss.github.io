@@ -1,0 +1,198 @@
+﻿questions:
+  - id: mi_linguistic_01
+    intelligence: linguistic_verbal
+    title: "Language as Inner Biology"
+    philosophical_vector: "Amanah of speech, truthfulness, and meaningful expression"
+    biological_focus: "Language processing, emotion-word feedback, stress modulation"
+    prompt: "When you are under pressure, how strongly does choosing the right word help you organize your emotion, reduce confusion, and express truth without harming others?"
+    dimensions:
+      - communication
+      - self_regulation
+      - philosophical_depth
+
+  - id: mi_linguistic_02
+    intelligence: linguistic_verbal
+    title: "Metaphor and Meaning"
+    philosophical_vector: "Responsible interpretation and reflective understanding"
+    biological_focus: "Narrative framing, emotional memory, cognitive reappraisal"
+    prompt: "When you read a deep text, lecture, ayah, story, or philosophical explanation, how strongly does language reshape your breathing, emotion, attention, and decision?"
+    dimensions:
+      - communication
+      - metacognition
+      - meaning_making
+
+  - id: mi_logical_01
+    intelligence: logical_mathematical
+    title: "Restoring Order from Chaos"
+    philosophical_vector: "Meezan: balance, proportion, and cause-effect reasoning"
+    biological_focus: "Executive function, pattern detection, cognitive load reduction"
+    prompt: "When your room, schedule, or study plan becomes chaotic, how strongly does your mind search for structure, sequence, cause, and correction?"
+    dimensions:
+      - pattern_detection
+      - problem_solving
+      - self_regulation
+
+  - id: mi_logical_02
+    intelligence: logical_mathematical
+    title: "Cause, Effect, and Accountability"
+    philosophical_vector: "Accountability through evidence and consequence"
+    biological_focus: "Analytical reasoning, prediction, systems correction"
+    prompt: "When you fail in a task, how strongly do you analyze the chain of causes instead of blaming mood, luck, or other people?"
+    dimensions:
+      - problem_solving
+      - metacognition
+      - accountability
+
+  - id: mi_spatial_01
+    intelligence: visual_spatial
+    title: "Mapping Invisible Systems"
+    philosophical_vector: "Seeing signs, relations, and hidden order"
+    biological_focus: "Mental imagery, spatial working memory, concept mapping"
+    prompt: "When you study a complex biological system, how strongly does your mind create diagrams, maps, flows, or visual models?"
+    dimensions:
+      - visualization
+      - systems_thinking
+      - learning_application
+
+  - id: mi_spatial_02
+    intelligence: visual_spatial
+    title: "Orientation in Knowledge"
+    philosophical_vector: "Direction, path, and guided movement"
+    biological_focus: "Navigation, mental mapping, relational memory"
+    prompt: "When entering a new subject or unfamiliar place, how strongly do you orient yourself by landmarks, structures, diagrams, or mental maps?"
+    dimensions:
+      - visualization
+      - adaptation
+      - metacognition
+
+  - id: mi_bodily_01
+    intelligence: bodily_kinesthetic
+    title: "Body Under Command"
+    philosophical_vector: "Discipline over impulse and Jihad-an-Nafs"
+    biological_focus: "Motor control, fatigue, hunger, pain, sympathetic activation"
+    prompt: "When your body demands comfort during fasting, tiredness, workout, or stress, how strongly can your mind hold your action under control?"
+    dimensions:
+      - self_regulation
+      - discipline
+      - biological_awareness
+
+  - id: mi_bodily_02
+    intelligence: bodily_kinesthetic
+    title: "Learning Through Movement"
+    philosophical_vector: "Practice, patience, and embodied mastery"
+    biological_focus: "Muscle memory, procedural learning, sensorimotor feedback"
+    prompt: "When learning a physical skill, experiment, drawing, or practical task, how strongly does repeated movement help you understand better than theory alone?"
+    dimensions:
+      - embodied_learning
+      - practice
+      - adaptation
+
+  - id: mi_musical_01
+    intelligence: musical_rhythmic
+    title: "Rhythm and Internal Regulation"
+    philosophical_vector: "Harmony, recitation, rhythm, and inner calm"
+    biological_focus: "Auditory rhythm, breathing pace, attention entrainment"
+    prompt: "When you hear rhythmic recitation, lecture flow, poetry, or music-like cadence, how strongly does your breathing, attention, and thinking become organized?"
+    dimensions:
+      - rhythm_sensitivity
+      - attention
+      - self_regulation
+
+  - id: mi_musical_02
+    intelligence: musical_rhythmic
+    title: "Timing of Life"
+    philosophical_vector: "Natural rhythm, prayer rhythm, and biological timing"
+    biological_focus: "Circadian rhythm, sleep-wake cycle, cognitive energy"
+    prompt: "How strongly do dawn, evening, silence, sleep cycle, or daily rhythm affect your study power, emotional stability, and decision quality?"
+    dimensions:
+      - rhythm_sensitivity
+      - biological_awareness
+      - lifestyle_alignment
+
+  - id: mi_interpersonal_01
+    intelligence: interpersonal
+    title: "Reading the Emotional Room"
+    philosophical_vector: "Takaful, empathy, and social responsibility"
+    biological_focus: "Emotional contagion, mirror systems, social stress response"
+    prompt: "When you enter a tense room, how strongly can you sense the emotional pressure and respond calmly instead of absorbing the conflict blindly?"
+    dimensions:
+      - empathy
+      - social_regulation
+      - self_regulation
+
+  - id: mi_interpersonal_02
+    intelligence: interpersonal
+    title: "Helping Others Regulate"
+    philosophical_vector: "Mercy, service, and mutual protection"
+    biological_focus: "Co-regulation, attachment safety, calming presence"
+    prompt: "When someone is distressed, how strongly can your words, silence, presence, or actions help them return to calm and clarity?"
+    dimensions:
+      - empathy
+      - service
+      - communication
+
+  - id: mi_intrapersonal_01
+    intelligence: intrapersonal
+    title: "Instinct versus Will"
+    philosophical_vector: "Jihad-an-Nafs and self-mastery"
+    biological_focus: "Impulse control, craving, dopamine loop, executive inhibition"
+    prompt: "When you face a private craving, distraction, anger, or laziness, how strongly can you observe the internal battle before reacting?"
+    dimensions:
+      - self_awareness
+      - self_regulation
+      - philosophical_depth
+
+  - id: mi_intrapersonal_02
+    intelligence: intrapersonal
+    title: "Diagnosing Your Own Failure"
+    philosophical_vector: "Tawbah, correction, and inner accountability"
+    biological_focus: "Metacognition, emotional recovery, habit design"
+    prompt: "After failure, how strongly do you examine your trigger, environment, sleep, emotion, and intention instead of hiding from self-analysis?"
+    dimensions:
+      - self_awareness
+      - metacognition
+      - accountability
+
+  - id: mi_naturalistic_01
+    intelligence: naturalistic
+    title: "Reading the Web of Life"
+    philosophical_vector: "Signs in creation and ecological interdependence"
+    biological_focus: "Pattern recognition in nature, dependency, adaptation"
+    prompt: "When observing plants, animals, ecosystems, or the human body, how strongly do you notice relationships, dependency, balance, and survival patterns?"
+    dimensions:
+      - ecological_awareness
+      - systems_thinking
+      - meaning_making
+
+  - id: mi_naturalistic_02
+    intelligence: naturalistic
+    title: "Nature as a Mirror"
+    philosophical_vector: "Humility before creation and moral choice"
+    biological_focus: "Instinct, adaptation, limitation, human moral agency"
+    prompt: "How strongly does observing nature help you understand your own vulnerability, limitation, responsibility, and unique capacity for moral choice?"
+    dimensions:
+      - ecological_awareness
+      - philosophical_depth
+      - self_awareness
+
+  - id: mi_existential_01
+    intelligence: existential
+    title: "Meaning of Life and Direction"
+    philosophical_vector: "Purpose, death-awareness, accountability, and the Quran as ultimate guidance"
+    biological_focus: "Meaning-making, stress reorientation, long-term motivation"
+    prompt: "When you think about life, death, accountability, and your purpose, how strongly does that reflection change your priorities and behaviour?"
+    dimensions:
+      - meaning_making
+      - philosophical_depth
+      - accountability
+
+  - id: mi_existential_02
+    intelligence: existential
+    title: "From Confusion to Purpose"
+    philosophical_vector: "Life as a gift from Allah and learning as responsibility"
+    biological_focus: "Motivation, identity, cognitive reframing, hope"
+    prompt: "When you feel lost, how strongly can the belief that life is a precious gift from Allah move you toward learning, correction, and meaningful action?"
+    dimensions:
+      - meaning_making
+      - spiritual_reflection
+      - learning_application

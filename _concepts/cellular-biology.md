@@ -1,3 +1,17 @@
+---
+title: "Cellular Biology"
+layout: single
+language: en
+curriculum_tracks:
+  - HSC Biology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Cell - The Unit of Life; Cell Cycle and Cell Division"
+ib_theme: "Form and Function"
+ib_subtopic: "Cell biology"
+hsc_alignment: "HSC Biology: Cell structure, organelles, and cell division"
+concept_level: "Core"
+---
 c---
 
 title: "Data Node: Cellular Biology \& The Central Dogma"

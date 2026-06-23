@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -29,6 +30,16 @@ synaptic_links:
 classes: wide
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Biology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "MCQ Arena academic assessment gateway"
+ib_theme: "Not Applicable"
+ib_subtopic: "Academic biology assessment gateway"
+hsc_alignment: "HSC Biology: academic MCQ practice gateway"
+concept_level: "Assessment Hub"
 ---
 
 <style>

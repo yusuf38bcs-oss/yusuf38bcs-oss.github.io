@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -44,6 +45,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/biostatistics-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - IB Biology
+  - Research Methods
+neet_alignment: "Biology data interpretation and chi-square analysis"
+ib_theme: "Not Applicable"
+ib_subtopic: "Chi-square test"
+hsc_alignment: "Higher Zoology: chi-square test and biological data analysis"
+concept_level: "Advanced"
 ---
 
 <style>

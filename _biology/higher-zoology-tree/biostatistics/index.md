@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -22,4 +23,15 @@ status: "Active"
 parent_node: index-higher-zoology-tree
 network:
   - index-higher-zoology-tree
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - IB Biology
+  - Research Methods
+neet_alignment: "Biology data interpretation and statistical reasoning"
+ib_theme: "Not Applicable"
+ib_subtopic: "Biostatistics and data analysis gateway"
+hsc_alignment: "Higher Zoology: biostatistics, data interpretation, and statistical methods"
+concept_level: "Gateway"
 ---
+

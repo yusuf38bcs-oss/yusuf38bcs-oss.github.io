@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -49,6 +50,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Digestion and Absorption"
+ib_theme: "Form and Function"
+ib_subtopic: "Digestive system rapid revision"
+hsc_alignment: "HSC Zoology: digestive system rapid revision"
+concept_level: "Revision"
 ---
 
 # Digestive System Rapid Revision

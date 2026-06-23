@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -38,6 +39,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/botany-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Botany
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Cell Cycle and Cell Division"
+ib_theme: "Continuity and Change"
+ib_subtopic: "Cell division MCQ assessment"
+hsc_alignment: "HSC Botany: mitosis, meiosis, and cell division"
+concept_level: "Assessment"
 ---
 
 <style>

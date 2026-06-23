@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -46,6 +47,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/genetics-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Biology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Principles of Inheritance and Variation"
+ib_theme: "Continuity and Change"
+ib_subtopic: "Mendelian inheritance and genetic principles"
+hsc_alignment: "HSC Biology: heredity, variation, Mendelian genetics, and inheritance pattern"
+concept_level: "Core"
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">

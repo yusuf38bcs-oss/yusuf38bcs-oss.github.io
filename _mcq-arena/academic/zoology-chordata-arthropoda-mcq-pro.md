@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -38,6 +39,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Animal Kingdom; Chordata and Arthropoda"
+ib_theme: "Diversity"
+ib_subtopic: "Chordata and Arthropoda MCQ assessment"
+hsc_alignment: "HSC Zoology: Chordata, Arthropoda, classification, and structural features"
+concept_level: "Advanced Assessment"
 ---
 
 <style>

@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -46,6 +47,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/ecology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Organisms and Populations; Ecosystem"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Community ecology and species interaction"
+hsc_alignment: "HSC Zoology: community ecology, species interaction, and ecological relationships"
+concept_level: "Core"
 ---
 
 <div class="neural-banner-card" style="margin: 1.5em 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); background: #0b1329; padding: 10px;">

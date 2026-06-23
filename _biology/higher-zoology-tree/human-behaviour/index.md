@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -22,4 +23,15 @@ status: "Active"
 parent_node: index-higher-zoology-tree
 network:
   - index-higher-zoology-tree
+language: en
+curriculum_tracks:
+  - Applied Biology
+  - Behavioural Science
+  - IB Biology
+neet_alignment: "Human behaviour and biological regulation enrichment"
+ib_theme: "Interaction and Interdependence"
+ib_subtopic: "Behaviour, nervous regulation, and life application gateway"
+hsc_alignment: "Applied extension of HSC Zoology: behaviour, physiology, and life practice"
+concept_level: "Applied Gateway"
 ---
+

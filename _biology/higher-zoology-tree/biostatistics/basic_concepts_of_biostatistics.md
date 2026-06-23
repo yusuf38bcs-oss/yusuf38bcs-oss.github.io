@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -45,6 +46,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/biostatistics-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - IB Biology
+  - Research Methods
+neet_alignment: "Biology data interpretation and basic statistics"
+ib_theme: "Not Applicable"
+ib_subtopic: "Basic biostatistics concepts"
+hsc_alignment: "Higher Zoology: population, sample, variable, data, and observation"
+concept_level: "Core"
 ---
 
 <style>

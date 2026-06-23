@@ -1,4 +1,5 @@
 ---
+
 layout: concept_node
 id: neuroplasticity-and-learning
 node_id: neuroplasticity-and-learning
@@ -36,6 +37,16 @@ keywords:
 last_modified_at: 2026-06-14
 sitemap: true
 robots: index,follow
+language: en
+curriculum_tracks:
+  - Behavioural Science
+  - Learning Science
+  - Applied Biology
+neet_alignment: "Human physiology enrichment: nervous system and learning"
+ib_theme: "Continuity and Change"
+ib_subtopic: "Neuroplasticity and learning adaptation"
+hsc_alignment: "Applied extension of nervous system, learning, memory, and adaptive behaviour"
+concept_level: "Applied"
 ---
 
 # The Architecture of Change: Neuroplasticity and Learning

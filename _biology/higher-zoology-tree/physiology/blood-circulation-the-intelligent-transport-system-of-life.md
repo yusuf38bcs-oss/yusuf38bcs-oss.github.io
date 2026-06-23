@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -44,6 +45,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/physiology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Body Fluids and Circulation"
+ib_theme: "Form and Function"
+ib_subtopic: "Blood circulation and transport system"
+hsc_alignment: "HSC Zoology: blood circulation, heart, blood vessels, and transport"
+concept_level: "Core"
 ---
 
 <div style="font-family:'Segoe UI',sans-serif;max-width:800px;margin:auto;padding:15px;background:#090d16;border-radius:12px;border: 1px solid rgba(0, 212, 178, 0.2);">

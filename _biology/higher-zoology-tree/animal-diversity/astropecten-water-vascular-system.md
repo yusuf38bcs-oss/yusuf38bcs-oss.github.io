@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -47,6 +48,16 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/animal-diversity-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Animal Kingdom; Echinodermata"
+ib_theme: "Diversity"
+ib_subtopic: "Echinodermata and water vascular system"
+hsc_alignment: "HSC Zoology: Echinodermata, Asteropecten, and water vascular system"
+concept_level: "Core"
 ---
 
 <style>

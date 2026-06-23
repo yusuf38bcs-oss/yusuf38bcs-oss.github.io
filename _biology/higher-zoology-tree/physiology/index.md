@@ -1,4 +1,5 @@
 ---
+
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -30,6 +31,16 @@ synaptic_links:
 classes: wide
 header:
   overlay_image: /assets/images/biology/physiology-banner.webp
+language: en
+curriculum_tracks:
+  - HSC Zoology
+  - NEET Biology
+  - IB Biology
+neet_alignment: "NCERT Biology: Human Physiology; Animal physiology foundations"
+ib_theme: "Form and Function"
+ib_subtopic: "Physiology and organ-system function gateway"
+hsc_alignment: "Higher Zoology: physiology, circulation, digestion, respiration, and regulation"
+concept_level: "Gateway"
 ---
 
 <style>
