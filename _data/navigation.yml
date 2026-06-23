@@ -30,3 +30,5 @@ synaptic_nav:
         url: "/life-practices/"
       - title: "Socratic Terminal"
         url: "/life-practices/cognitive-audit/"
+      - title: "Socratic Cognitive Assessment"
+        url: /socratic-4/socratic-assessment/
