@@ -31,6 +31,10 @@ Open these live URLs after deployment:
 - `https://learningbiologyforlife.org/ads.txt`
 - `https://learningbiologyforlife.org/sitemap.xml`
 
+## Deployment trigger
+
+Fresh production deployment requested from `main` on 2026-06-23 19:40 Asia/Dhaka.
+
 ## AdSense resubmission rule
 
 Do not request review until the merged deployment is live and the URLs above return correct public pages.
