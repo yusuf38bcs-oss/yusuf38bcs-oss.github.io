@@ -7,8 +7,6 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main", "jekyll-production-fix"]
-  pull_request:
     branches: ["main"]
   workflow_dispatch:
 
@@ -90,6 +88,18 @@ jobs:
           test -f _site/matrix/systems-thinking/index.html || (echo "Missing /matrix/systems-thinking/" && exit 1)
           test -f _site/matrix/neuroplasticity/index.html || (echo "Missing /matrix/neuroplasticity/" && exit 1)
 
+          # AdSense approval-readiness routes
+          test -f _site/categories/index.html || (echo "Missing /categories/" && exit 1)
+          grep -q "Categories" _site/categories/index.html || (echo "Categories archive title missing" && exit 1)
+          test -f _site/robots.txt || (echo "Missing /robots.txt" && exit 1)
+          grep -q "Allow: /" _site/robots.txt || (echo "robots.txt does not allow crawlers" && exit 1)
+          test -f _site/ads.txt || (echo "Missing /ads.txt" && exit 1)
+          grep -q "google.com, pub-" _site/ads.txt || (echo "ads.txt Google publisher line missing" && exit 1)
+          test -f _site/sitemap.xml || (echo "Missing /sitemap.xml" && exit 1)
+          grep -q "learningbiologyforlife.org" _site/sitemap.xml || (echo "sitemap.xml absolute site URLs missing" && exit 1)
+          grep -q "footer-legal-links" _site/index.html || (echo "Global legal footer links missing from homepage" && exit 1)
+          test "$(grep -o 'id="gdpr-banner"' _site/index.html | wc -l | tr -d ' ')" = "1" || (echo "Homepage must render exactly one GDPR banner" && exit 1)
+
           # OMEGA Guardrail v2: route, Worker, and Socratic rendering contracts
           test -f _site/mcq-arena/index.html || (echo "Missing /mcq-arena/" && exit 1)
           test -f _site/socratic/index.html || (echo "Missing /socratic/" && exit 1)
@@ -106,7 +116,7 @@ jobs:
           grep -q "data-socratic-node" _site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html || (echo "Socratic prompted-page include missing" && exit 1)
 
           ruby -rjson -e 'JSON.parse(File.read("_site/assets/data/graph_manifest.json")); puts "Graph manifest JSON validated."'
-          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, Archive, and OMEGA v2 guardrails validated."
+          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, Archive, AdSense readiness routes, and OMEGA v2 guardrails validated."
 
       - name: Optional Edge Graph Sync Hook
         if: success()
