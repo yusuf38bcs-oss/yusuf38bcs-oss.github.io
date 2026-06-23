@@ -2,24 +2,7 @@
 layout: null
 permalink: /robots.txt
 ---
-# =========================================================================
-# LEARNING BIOLOGY FOR LIFE - PRODUCTION ROBOTS MATRIX
-# W3C Standard Compliant Routing for Search Engine Crawlers
-# =========================================================================
-
 User-agent: *
 Allow: /
 
-# Exclude compiled backend scripts and operational assets
-Disallow: /assets/css/
-Disallow: /assets/js/
-
-# Security Shield: Block exposure of source fallback components
-Disallow: /.github/
-Disallow: /.jekyll-cache/
-Disallow: /vendor/
-Disallow: /Gemfile
-Disallow: /Gemfile.lock
-
-# Global Sitemap Absolute Vector Pointer
-Sitemap: {{ "/sitemap.xml" | absolute_url }}
+Sitemap: https://learningbiologyforlife.org/sitemap.xml
