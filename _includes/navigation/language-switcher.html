@@ -20,10 +20,12 @@
   <a class="lbfl-language-switcher__link{% if active_lang == 'en' %} is-active{% endif %}"
      href='{{ english_href }}'
      lang="en"
-     hreflang="en"{% if active_lang == 'en' %} aria-current="page"{% endif %}>English</a>
+     hreflang="en"
+     title="English"{% if active_lang == 'en' %} aria-current="page"{% endif %}>Eng</a>
   <span class="lbfl-language-switcher__divider" aria-hidden="true">|</span>
   <a class="lbfl-language-switcher__link{% if active_lang == 'bn' %} is-active{% endif %}"
      href='{{ bangla_href }}'
      lang="bn"
-     hreflang="bn"{% if active_lang == 'bn' %} aria-current="page"{% endif %}>&#2476;&#2494;&#2434;&#2482;&#2494;</a>
+     hreflang="bn"
+     title="Bangla"{% if active_lang == 'bn' %} aria-current="page"{% endif %}>Ban</a>
 </nav>
