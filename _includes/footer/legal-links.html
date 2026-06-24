@@ -1,13 +1,29 @@
-<nav class="footer-legal-links" aria-label="Legal and contact links">
-  <a href="{{ '/about/' | relative_url }}">About</a>
-  <a href="{{ '/contact/' | relative_url }}">Contact</a>
-  <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a>
-  <a href="{{ '/terms-and-conditions/' | relative_url }}">Terms</a>
-  <a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a>
-  <a href="{{ '/cookie-preferences/' | relative_url }}">Cookie Preferences</a>
-</nav>
+<section class="footer-legal-area" aria-label="Site legal and copyright information">
+  <nav class="footer-legal-links" aria-label="Legal and contact links">
+    <a href="{{ '/about/' | relative_url }}">About</a>
+    <a href="{{ '/contact/' | relative_url }}">Contact</a>
+    <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a>
+    <a href="{{ '/terms-and-conditions/' | relative_url }}">Terms</a>
+    <a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a>
+    <a href="{{ '/cookie-preferences/' | relative_url }}">Cookie Preferences</a>
+  </nav>
+
+  <div class="footer-copyright-row">
+    <div class="footer-copyright-text">Learning Biology For Life &copy; {{ site.time | date: '%Y' }}</div>
+    <div class="footer-status-indicator" aria-label="System Status: Online">
+      <span class="footer-status-dot" aria-hidden="true"></span> Ecosystem Online
+    </div>
+  </div>
+</section>
 
 <style>
+  .footer-legal-area {
+    width: 100%;
+    background: #020617;
+    color: #94a3b8;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
   .footer-legal-links {
     display: flex;
     flex-wrap: wrap;
@@ -15,11 +31,8 @@
     gap: 0.55rem 1rem;
     width: min(1180px, calc(100% - 2rem));
     margin: 0 auto;
-    padding: 1rem 0 1.35rem;
+    padding: 1rem 0 0.85rem;
     border-top: 1px solid rgba(148, 163, 184, 0.14);
-    background: #020617;
-    color: #94a3b8;
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 0.84rem;
   }
 
@@ -34,5 +47,44 @@
     color: #7fffe7;
     border-bottom-color: rgba(0, 245, 212, 0.55);
     outline: none;
+  }
+
+  .footer-copyright-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: min(1180px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 0.85rem 0 1.35rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.10);
+    font-size: 0.84rem;
+  }
+
+  .footer-status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #cbd5e1;
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .footer-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #00f5d4;
+    box-shadow: 0 0 14px rgba(0, 245, 212, 0.85);
+  }
+
+  @media (max-width: 560px) {
+    .footer-copyright-row {
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
   }
 </style>
