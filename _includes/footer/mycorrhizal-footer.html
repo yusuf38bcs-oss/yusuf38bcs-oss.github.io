@@ -38,13 +38,6 @@
   <div class="footer-author-bridge">
     {% include home/author-profile.html %}
   </div>
-
-  <div class="footer-basement">
-    <div class="logo-space muted">Learning Biology For Life &copy; {{ site.time | date: '%Y' }}</div>
-    <div class="sys-metric status-indicator" aria-label="System Status: Online">
-      <span class="pulse-dot" aria-hidden="true"></span> Ecosystem Online
-    </div>
-  </div>
 </footer>
 
 <style>
@@ -76,7 +69,7 @@
     width: 100%;
     max-width: 100%;
     margin: 0;
-    padding: clamp(3.2rem, 7vw, 5.6rem) clamp(0.95rem, 3vw, 1.6rem) 0;
+    padding: clamp(3.2rem, 7vw, 5.6rem) clamp(0.95rem, 3vw, 1.6rem) clamp(1.4rem, 4vw, 2.2rem);
     overflow: hidden;
     background: radial-gradient(circle at 18% 0, rgba(123,44,191,.14), transparent 34%), radial-gradient(circle at 82% 8%, rgba(0,245,212,.13), transparent 32%), linear-gradient(180deg, #020617 0%, #070b14 100%);
     border-top: 1px solid rgba(0,245,212,.16);
@@ -244,32 +237,11 @@
     color: #ddd6fe;
   }
 
-  .footer-author-bridge,
-  .footer-basement {
+  .footer-author-bridge {
     position: relative;
     z-index: 1;
     width: min(1180px, 100%);
     margin: clamp(1.4rem, 4vw, 2.2rem) auto 0;
-  }
-
-  .footer-basement {
-    padding: 1.15rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    border-top: 1px solid rgba(148,163,184,.14);
-    color: var(--text-muted);
-    font-size: .84rem;
-  }
-
-  .pulse-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: var(--synth-cyan);
-    box-shadow: 0 0 14px rgba(0,245,212,.85);
   }
 
   @media (max-width: 980px) {
@@ -278,10 +250,9 @@
   }
 
   @media (max-width: 560px) {
-    .mycorrhizal-footer { padding: 2.75rem .85rem 0; }
+    .mycorrhizal-footer { padding: 2.75rem .85rem 1.5rem; }
     .socratic-reflex-form { flex-direction: column; }
     .reflex-submit-btn { width: 100%; }
-    .footer-basement { align-items: flex-start; flex-direction: column; }
   }
 </style>
 
