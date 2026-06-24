@@ -112,6 +112,29 @@
       }
     }
 
+    function pushConsentState(state) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "lbfl_consent_update", consent_state: state });
+
+      if (typeof window.gtag === "function") {
+        if (state === "granted") {
+          window.gtag("consent", "update", {
+            analytics_storage: "granted",
+            ad_storage: "granted",
+            ad_user_data: "granted",
+            ad_personalization: "granted"
+          });
+        } else {
+          window.gtag("consent", "update", {
+            analytics_storage: "denied",
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied"
+          });
+        }
+      }
+    }
+
     function getBanner() {
       return document.getElementById("gdpr-banner");
     }
@@ -139,12 +162,14 @@
 
     function acceptCookies() {
       setConsent("granted");
+      pushConsentState("granted");
       hideBanner();
       loadAdSense();
     }
 
     function declineCookies() {
       setConsent("denied");
+      pushConsentState("denied");
       hideBanner();
     }
 
@@ -171,7 +196,10 @@
       if (!consent) {
         showBanner();
       } else if (consent === "granted") {
+        pushConsentState("granted");
         loadAdSense();
+      } else {
+        pushConsentState("denied");
       }
     });
   })();
