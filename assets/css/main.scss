@@ -67,7 +67,7 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
   max-width: 1280px;
   min-height: 64px;
   margin: 0 auto;
-  padding: 0 clamp(0.75rem, 3vw, 1.6rem) !important;
+  padding: 0 clamp(0.6rem, 2.4vw, 1.35rem) !important;
   display: flex;
   align-items: center;
 }
@@ -77,36 +77,37 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
   min-height: 64px;
   display: flex;
   align-items: center;
-  gap: clamp(0.35rem, 1.35vw, 0.9rem);
+  gap: clamp(0.25rem, 1vw, 0.8rem);
 }
 
 .lbfl-brand {
+  flex: 0 1 auto;
   min-width: 0;
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.45rem;
   color: #f8fafc !important;
   text-decoration: none !important;
 }
 
 .lbfl-brand__logo {
   flex: 0 0 auto;
-  width: 42px;
-  height: 42px;
-  max-width: 42px;
-  max-height: 42px;
+  width: 40px;
+  height: 40px;
+  max-width: 40px;
+  max-height: 40px;
   object-fit: contain;
   display: block;
 }
 
 .lbfl-brand__title {
   min-width: 0;
-  max-width: clamp(13rem, 31vw, 25rem);
+  max-width: clamp(10.5rem, 22vw, 20rem);
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: clamp(1rem, 1.45vw, 1.28rem);
+  font-size: clamp(0.92rem, 1.18vw, 1.18rem);
   line-height: 1.1;
   font-weight: 850;
   letter-spacing: -0.03em;
@@ -121,18 +122,18 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(0.18rem, 0.75vw, 0.65rem);
+  gap: clamp(0.12rem, 0.58vw, 0.55rem);
 }
 
 .lbfl-desktop-links a {
   display: inline-flex;
   align-items: center;
   min-height: 40px;
-  padding: 0.45rem 0.52rem;
+  padding: 0.42rem 0.46rem;
   border-radius: 10px;
   color: #e2e8f0 !important;
   text-decoration: none !important;
-  font-size: clamp(0.76rem, 0.98vw, 0.95rem);
+  font-size: clamp(0.72rem, 0.86vw, 0.92rem);
   font-weight: 650;
   line-height: 1.1;
   white-space: nowrap;
@@ -150,14 +151,26 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.28rem;
+}
+
+.lbfl-language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  white-space: nowrap;
+}
+
+.lbfl-language-switcher__link {
+  min-width: 2.25rem;
+  text-align: center;
 }
 
 .lbfl-search-toggle,
 .lbfl-mobile-toggle {
-  width: 44px !important;
-  height: 44px !important;
-  min-width: 44px !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
   padding: 0 !important;
   border: 0 !important;
   border-radius: 12px !important;
@@ -172,7 +185,7 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 
 .lbfl-search-icon {
   display: block;
-  font-size: 1.62rem;
+  font-size: 1.55rem;
   font-weight: 900;
   line-height: 1;
   transform: translateY(-1px);
@@ -250,18 +263,54 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
   background: rgba(0, 212, 178, 0.08);
 }
 
-@media (min-width: 860px) and (max-width: 1120px) {
+@media (min-width: 860px) and (max-width: 1180px) {
+  .lbfl-masthead__inner {
+    padding-inline: 0.7rem !important;
+  }
+
+  .lbfl-nav {
+    gap: 0.26rem;
+  }
+
+  .lbfl-brand {
+    gap: 0.32rem;
+  }
+
+  .lbfl-brand__logo {
+    width: 34px;
+    height: 34px;
+    max-width: 34px;
+    max-height: 34px;
+  }
+
   .lbfl-brand__title {
-    max-width: clamp(13rem, 26vw, 21rem);
+    max-width: clamp(8.25rem, 17vw, 13rem);
+    font-size: clamp(0.82rem, 1vw, 0.96rem);
+  }
+
+  .lbfl-desktop-links {
+    gap: 0.06rem;
   }
 
   .lbfl-desktop-links a {
-    padding-inline: 0.38rem;
-    font-size: 0.78rem;
+    padding-inline: 0.26rem;
+    font-size: 0.72rem;
   }
 
   .lbfl-nav-actions {
-    gap: 0.28rem;
+    gap: 0.2rem;
+  }
+
+  .lbfl-search-toggle,
+  .lbfl-mobile-toggle {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+  }
+
+  .lbfl-language-switcher__link {
+    min-width: 1.95rem;
+    font-size: 0.78rem;
   }
 }
 
