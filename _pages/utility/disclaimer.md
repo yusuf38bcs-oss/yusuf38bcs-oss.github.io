@@ -13,7 +13,7 @@ xp: 500
 status: "Active"
 ---
 
-# Disclaimer: Neural Connection & Growth
+**Neural Connection & Growth**
 
 Welcome to the **Disclaimer** node of **Learning Biology For Life**.
 
