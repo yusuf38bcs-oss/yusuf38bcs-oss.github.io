@@ -46,7 +46,7 @@
 
 {% include head/omega-blueprint-runtime.html %}
 
-<!-- Consent Mode defaults: safe before analytics/ad scripts are loaded. -->
+<!-- Google Consent Mode defaults: set before GTM loads. -->
 <script>
   window.gtag('consent', 'default', {
     'analytics_storage': 'denied',
@@ -59,42 +59,24 @@
   });
 </script>
 
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WPZ6MPK4');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google AdSense: kept visible for site review and ownership checks. -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352"
+     crossorigin="anonymous"></script>
+
+<!-- OMEGA-compatible temporary translation bridge: English/Bangla only -->
 <script>
   (function () {
     "use strict";
 
-    var marketingLoaded = false;
     var translateLoaded = false;
-
-    function onceOnInteraction(callback) {
-      var fired = false;
-      var events = ["pointerdown", "keydown", "touchstart", "scroll"];
-      function handler() {
-        if (fired) return;
-        fired = true;
-        events.forEach(function (eventName) {
-          window.removeEventListener(eventName, handler, { passive: true });
-        });
-        callback();
-      }
-      events.forEach(function (eventName) {
-        window.addEventListener(eventName, handler, { passive: true, once: true });
-      });
-    }
-
-    function loadMarketingScripts() {
-      if (marketingLoaded) return;
-      marketingLoaded = true;
-
-      window.lbflLoadScript("https://www.googletagmanager.com/gtm.js?id=GTM-WPZ6MPK4")
-        .then(function () { window.dataLayer.push({ event: "gtm.js" }); })
-        .catch(function () {});
-
-      window.lbflLoadScript(
-        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352",
-        { crossorigin: "anonymous" }
-      ).catch(function () {});
-    }
 
     window.googleTranslateElementInit = function () {
       if (!window.google || !window.google.translate || !document.getElementById("google_translate_element")) return;
@@ -122,159 +104,5 @@
         });
       });
     });
-
-    window.lbflWhenIdle(loadMarketingScripts, 5200);
-    onceOnInteraction(loadMarketingScripts);
   })();
 </script>
-
-<style>
-  iframe.goog-te-banner-frame,
-  .goog-te-banner-frame.skiptranslate {
-    display: none !important;
-  }
-
-  body {
-    top: 0 !important;
-  }
-
-  .lbfl-translate-shell {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    width: 42px;
-    min-width: 42px;
-    min-height: 42px;
-    margin-left: 0.35rem;
-    color: #cbd5e1;
-    white-space: nowrap;
-    z-index: 10020;
-  }
-
-  .lbfl-translate-shell[open] {
-    z-index: 10050;
-  }
-
-  .lbfl-translate-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    min-width: 42px;
-    height: 42px;
-    min-height: 42px;
-    padding: 0;
-    border: 1px solid rgba(0, 212, 178, 0.42);
-    border-radius: 999px;
-    background: #0d1527;
-    color: #b7fff0;
-    cursor: pointer;
-    list-style: none;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
-  }
-
-  .lbfl-translate-toggle::-webkit-details-marker {
-    display: none;
-  }
-
-  .lbfl-translate-panel {
-    position: absolute;
-    top: calc(100% + 0.55rem);
-    right: 0;
-    width: max-content;
-    max-width: min(280px, calc(100vw - 1.5rem));
-    padding: 0.65rem;
-    border: 1px solid rgba(0, 212, 178, 0.35);
-    border-radius: 14px;
-    background: #020617;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
-    overflow: hidden;
-  }
-
-  #google_translate_element,
-  #google_translate_element .goog-te-gadget {
-    display: inline-flex;
-    align-items: center;
-    min-height: 32px;
-    max-width: 240px;
-    color: #cbd5e1;
-    font-family: inherit;
-    font-size: 0.76rem;
-  }
-
-  #google_translate_element .goog-te-gadget-simple {
-    max-width: 220px !important;
-    min-height: 34px !important;
-    padding: 0.3rem 0.55rem !important;
-    border: 1px solid rgba(0, 212, 178, 0.55) !important;
-    border-radius: 10px !important;
-    background: #0d1527 !important;
-    color: #f8fafc !important;
-    overflow: hidden !important;
-  }
-
-  #google_translate_element .goog-te-gadget-simple span,
-  #google_translate_element .goog-te-gadget-simple a {
-    color: #f8fafc !important;
-    font-family: inherit !important;
-    font-size: 0.82rem !important;
-    text-decoration: none !important;
-  }
-
-  #google_translate_element select {
-    max-width: 180px;
-    min-height: 32px;
-    padding: 0.25rem 0.45rem;
-    border: 1px solid rgba(0, 212, 178, 0.55);
-    border-radius: 8px;
-    background-color: #0d1527;
-    color: #f8fafc;
-    font: inherit;
-  }
-
-  #google_translate_element select:focus-visible,
-  .lbfl-translate-toggle:focus-visible {
-    outline: 2px solid rgba(0, 245, 212, 0.9);
-    outline-offset: 2px;
-  }
-
-  @media (max-width: 720px) {
-    .lbfl-translate-shell,
-    .lbfl-translate-toggle {
-      width: 40px;
-      min-width: 40px;
-    }
-
-    .lbfl-translate-toggle {
-      height: 40px;
-      min-height: 40px;
-    }
-
-    .lbfl-translate-panel {
-      top: calc(100% + 0.45rem);
-      right: -3.2rem;
-      max-width: min(230px, calc(100vw - 1rem));
-      padding: 0.55rem;
-    }
-
-    #google_translate_element,
-    #google_translate_element .goog-te-gadget {
-      max-width: 200px;
-    }
-
-    #google_translate_element .goog-te-gadget-simple {
-      max-width: 195px !important;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-</style>
