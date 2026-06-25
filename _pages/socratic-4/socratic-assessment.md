@@ -122,8 +122,6 @@ classes: wide
 }
 </style>
 
-# Socratic Cognitive Assessment
-
 <div class="socratic-assessment-intro">
 
 This assessment is designed as a reflective **Cognitive Audit**, not as a clinical diagnosis. It connects biological reaction, CNS decision-making, philosophical direction, and learning correction.
