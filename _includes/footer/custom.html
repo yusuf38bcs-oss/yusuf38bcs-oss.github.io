@@ -1,10 +1,8 @@
 {% comment %}
   Global production body extensions.
   Loaded from _layouts/default.html immediately before footer.html.
+  Heavy engines are loaded on demand from their own components.
 {% endcomment %}
 
 {% include body/brevo-marketing.html %}
-
-<script src="{{ '/assets/js/core/ai-core.js' | relative_url }}" defer></script>
-
 {% include body/synaptic-ai.html %}
