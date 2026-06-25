@@ -6,9 +6,9 @@
       <a href="{{ '/biology/' | relative_url }}" class="flow-node-link-wrapper" aria-label="Explore Biological Dots">
         <article class="flow-node-card-slot" data-aos="fade-right">
           <div class="node-graphic-icon-box">
-            <div class="pulsing-core-dot"></div>
+            <div class="pulsing-core-dot" aria-hidden="true"></div>
           </div>
-          <h3 class="flow-node-title">Biological Dots</h3>
+          <h2 class="flow-node-title">Biological Dots</h2>
           <p class="flow-node-desc">Isolate individual biological phenomena—whether a cranial nerve axis, an environmental niche, or a base pair nucleotide cluster—as a standalone data dot.</p>
         </article>
       </a>
@@ -16,9 +16,9 @@
       <a href="{{ '/synaptic-bridge/' | relative_url }}" class="flow-node-link-wrapper" aria-label="Explore Interdisciplinary Lines">
         <article class="flow-node-card-slot highlight-border-cyan" data-aos="fade-up">
           <div class="node-graphic-icon-box">
-            <div class="vector-streaming-line"></div>
+            <div class="vector-streaming-line" aria-hidden="true"></div>
           </div>
-          <h3 class="flow-node-title">Interdisciplinary Lines</h3>
+          <h2 class="flow-node-title">Interdisciplinary Lines</h2>
           <p class="flow-node-desc">Trace the structural connections where raw biology metrics actively intersect with psychological behaviors, neural leadership models, and systemic choices.</p>
         </article>
       </a>
@@ -26,9 +26,9 @@
       <a href="{{ '/life-practices/cognitive-audit/' | relative_url }}" class="flow-node-link-wrapper" aria-label="Explore The Socratic Circle">
         <article class="flow-node-card-slot" data-aos="fade-left">
           <div class="node-graphic-icon-box">
-            <div class="infinite-hollow-circle"></div>
+            <div class="infinite-hollow-circle" aria-hidden="true"></div>
           </div>
-          <h3 class="flow-node-title">The Socratic Circle</h3>
+          <h2 class="flow-node-title">The Socratic Circle</h2>
           <p class="flow-node-desc">Complete the reflective learning circle back to divine wisdom, translating academic evidence into profound self-knowledge, active ethics, and global insight.</p>
         </article>
       </a>
@@ -90,13 +90,13 @@
   }
 
   .flow-node-link-wrapper:focus-visible {
-    outline: 2px solid #00d4b2;
+    outline: 2px solid #67e8f9;
     outline-offset: 4px;
   }
 
   .flow-node-card-slot {
     background: #0d1527 !important;
-    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 12px !important;
     padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.25rem, 2vw, 2rem) !important;
     box-sizing: border-box;
@@ -105,26 +105,32 @@
     align-items: flex-start;
     text-align: left;
     height: 100%;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    will-change: transform, border-color, box-shadow;
-    transform: translateZ(0);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
   .flow-node-link-wrapper:hover .flow-node-card-slot,
   .flow-node-link-wrapper:focus-visible .flow-node-card-slot {
-    transform: translateY(-6px);
-    border-color: rgba(0, 212, 178, 0.3) !important;
-    box-shadow: 0 16px 40px rgba(0, 212, 178, 0.15);
+    transform: translateY(-4px);
+    border-color: rgba(0, 212, 178, 0.34) !important;
+    box-shadow: 0 14px 34px rgba(0, 212, 178, 0.12);
   }
 
   .flow-node-card-slot.highlight-border-cyan {
-    border-color: rgba(0, 212, 178, 0.1) !important;
+    border-color: rgba(0, 212, 178, 0.18) !important;
     background: linear-gradient(145deg, #0d1527 0%, #070b13 100%) !important;
   }
 
   .highlight-border-cyan .flow-node-title {
-    color: #00d4b2 !important;
+    color: #67e8f9 !important;
+  }
+
+  .flow-node-title {
+    color: #f8fafc !important;
+    margin: 0;
+    font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+    line-height: 1.25;
+    font-weight: 850;
   }
 
   .node-graphic-icon-box {
