@@ -33,12 +33,14 @@
     });
   };
 
-  window.lbflWhenIdle = window.lbflWhenIdle || function (callback, timeout) {
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(callback, { timeout: timeout || 2500 });
-    } else {
-      window.setTimeout(callback, timeout || 1500);
-    }
+  window.lbflWhenIdle = window.lbflWhenIdle || function (callback, delay) {
+    window.setTimeout(function () {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(callback, { timeout: 1200 });
+      } else {
+        callback();
+      }
+    }, delay || 1500);
   };
 </script>
 
@@ -121,7 +123,7 @@
       });
     });
 
-    window.lbflWhenIdle(loadMarketingScripts, 3200);
+    window.lbflWhenIdle(loadMarketingScripts, 5200);
     onceOnInteraction(loadMarketingScripts);
   })();
 </script>
