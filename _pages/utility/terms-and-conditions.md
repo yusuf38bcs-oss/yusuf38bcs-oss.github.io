@@ -13,8 +13,6 @@ xp: 500
 status: "Active"
 ---
 
-# Terms & Conditions
-
 Welcome to the **Terms and Conditions** node. By accessing **Learning Biology For Life**, you agree to use this platform responsibly, ethically, and for lawful educational purposes.
 
 ## 1. Educational Usage
