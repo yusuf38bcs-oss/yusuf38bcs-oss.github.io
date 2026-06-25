@@ -13,7 +13,7 @@ xp: 500
 status: "Active"
 ---
 
-# Privacy Policy: Protecting Your Neural Assets
+**Protecting Your Neural Assets**
 
 **Effective Date:** June 17, 2026
 
