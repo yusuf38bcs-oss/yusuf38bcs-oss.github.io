@@ -1,8 +1,8 @@
-<section class="synaptic-core-deck-wrapper">
+<section class="synaptic-core-deck-wrapper" aria-labelledby="central-knowledge-title">
   <div class="academic-deck-container">
 
     <div class="academic-section-header">
-      <h2 class="academic-section-title">
+      <h2 id="central-knowledge-title" class="academic-section-title">
         &#127922; Central Knowledge Manifolds
       </h2>
       <p class="academic-section-lead">Explore the clean-mapped relational collection grids of this platform.</p>
@@ -15,7 +15,7 @@
         <p class="neural-card-body">
           Deep nested logs spanning Population Ecology dynamics, Survivorship trends, and mathematical applications including <em>t</em>-test and <em>z</em>-test calculations.
         </p>
-        <a href="/biology/" class="neural-card-cta">Initialize Vector <span class="cta-arrow">&#8594;</span></a>
+        <a href="/biology/" class="neural-card-cta" aria-label="Initialize Higher Zoology and Biostatistics vector">Initialize Vector <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
       </div>
 
       <div class="neural-card-shell">
@@ -23,7 +23,7 @@
         <p class="neural-card-body">
           Cross-disciplinary educational interfaces charting the nexus of leadership dynamics, human behavioral mechanics, and digital research structures.
         </p>
-        <a href="/synaptic-bridge/" class="neural-card-cta">Initialize Vector <span class="cta-arrow">&#8594;</span></a>
+        <a href="/synaptic-bridge/" class="neural-card-cta" aria-label="Initialize Synaptic Bridge and Pedagogy vector">Initialize Vector <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
       </div>
 
       <div class="neural-card-shell">
@@ -31,7 +31,7 @@
         <p class="neural-card-body">
           Sanitized English-mapped critical essays investigating the profound ontology of universal ethics, moral fortitude, and psychological analyses.
         </p>
-        <a href="/life-philosophy/" class="neural-card-cta">Initialize Vector <span class="cta-arrow">&#8594;</span></a>
+        <a href="/life-philosophy/" class="neural-card-cta" aria-label="Initialize Cosmic Life Philosophy vector">Initialize Vector <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
       </div>
 
     </div>
@@ -70,7 +70,7 @@
   }
 
   .academic-section-lead {
-    color: #94a3b8;
+    color: #cbd5e1;
     margin: 0;
     font-size: clamp(0.9rem, 1.5vw, 1rem);
     line-height: 1.5;
@@ -101,19 +101,19 @@
   }
 
   .neural-card-shell {
-    background: rgba(15, 23, 42, 0.45);
-    border: 1px solid rgba(0, 212, 178, 0.12);
+    background: rgba(15, 23, 42, 0.64);
+    border: 1px solid rgba(0, 212, 178, 0.16);
     padding: clamp(1.75rem, 3vw, 2.5rem);
     border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+    box-shadow: 0 16px 34px rgba(0,0,0,0.34);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.22s ease, border-color 0.22s ease;
   }
 
   .neural-card-shell:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0, 212, 178, 0.25);
+    transform: translateY(-3px);
+    border-color: rgba(0, 212, 178, 0.32);
   }
 
   .neural-card-heading {
@@ -126,7 +126,7 @@
   }
 
   .neural-card-body {
-    color: #cbd5e1;
+    color: #e2e8f0;
     font-size: clamp(0.9rem, 1.5vw, 0.95rem);
     line-height: 1.65;
     margin-bottom: 1.5rem;
@@ -134,8 +134,8 @@
   }
 
   .neural-card-cta {
-    color: #00d4b2;
-    font-weight: bold;
+    color: #67e8f9 !important;
+    font-weight: 800;
     text-decoration: none;
     font-size: 0.95rem;
     display: inline-flex;
@@ -147,6 +147,11 @@
 
   .neural-card-cta:hover {
     gap: 0.75rem;
+  }
+
+  .neural-card-cta:focus-visible {
+    outline: 2px solid #67e8f9;
+    outline-offset: 3px;
   }
 
   .cta-arrow {
