@@ -1,18 +1,14 @@
-<section class="premium-neural-hero" aria-label="Homepage hero">
-  <picture class="hero-header-bg-media" aria-hidden="true">
-    <source srcset="{{ '/assets/images/header-bg.webp' | relative_url }}" type="image/webp">
-    <img src="{{ '/assets/images/header-bg.webp' | relative_url }}" alt="" loading="eager" decoding="async" fetchpriority="high">
-  </picture>
-
+<section class="premium-neural-hero hero-bg-pending" aria-labelledby="homepage-hero-title">
+  <div class="hero-header-bg-media" aria-hidden="true"></div>
   <div class="hero-ambient-core" aria-hidden="true"></div>
 
   <div class="hero-wrapper">
     <div class="hero-content-matrix">
       <div class="system-status-badge">
-        <span class="status-pulse"></span> Neural Network Active
+        <span class="status-pulse" aria-hidden="true"></span> Neural Network Active
       </div>
 
-      <h1 class="neural-hero-title">
+      <h1 id="homepage-hero-title" class="neural-hero-title">
         The Cognitive Wave of <span class="gradient-text">Education</span>
       </h1>
 
@@ -21,12 +17,12 @@
       </p>
 
       <div class="hero-actions-grid">
-        <a href="{{ '/biology/' | relative_url }}" class="premium-btn btn--cyan">
+        <a href="{{ '/biology/' | relative_url }}" class="premium-btn btn--cyan" aria-label="Enter Biology Hub">
           <span class="btn-icon" aria-hidden="true">🔬</span>
           <span class="btn-text">Enter Biology Hub</span>
         </a>
 
-        <a href="{{ '/life-philosophy/' | relative_url }}" class="premium-btn btn--outline">
+        <a href="{{ '/life-philosophy/' | relative_url }}" class="premium-btn btn--outline" aria-label="Open Philosophical Vectors">
           <span class="btn-icon" aria-hidden="true">🌌</span>
           <span class="btn-text">Philosophical Vectors</span>
         </a>
@@ -35,43 +31,74 @@
   </div>
 </section>
 
+<script>
+  (function () {
+    function revealHeroArtwork() {
+      var hero = document.querySelector(".premium-neural-hero.hero-bg-pending");
+      if (!hero) return;
+      hero.classList.remove("hero-bg-pending");
+      hero.classList.add("hero-bg-loaded");
+    }
+
+    var reduceMotion = false;
+    var reduceData = false;
+    try { reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (_ignored) {}
+    try { reduceData = window.matchMedia("(prefers-reduced-data: reduce)").matches; } catch (_ignored) {}
+
+    if (reduceData) return;
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(revealHeroArtwork, { timeout: reduceMotion ? 2600 : 1800 });
+    } else {
+      window.setTimeout(revealHeroArtwork, reduceMotion ? 2200 : 1000);
+    }
+  })();
+</script>
+
 <style>
   .premium-neural-hero {
     position: relative;
     isolation: isolate;
     background-color: #020617 !important;
-    background-image: none !important;
-    min-height: clamp(640px, 86vh, 920px);
-    padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 4vw, 2rem);
+    background-image:
+      radial-gradient(circle at 50% 10%, rgba(0, 212, 178, 0.14), transparent 36%),
+      linear-gradient(180deg, #020617 0%, #061326 52%, #020617 100%) !important;
+    min-height: clamp(560px, 78svh, 820px);
+    padding: clamp(4.5rem, 9vw, 7rem) clamp(1rem, 4vw, 2rem) clamp(3rem, 7vw, 6rem);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     overflow: hidden;
-    font-family: 'Inter', -apple-system, sans-serif;
-    border-bottom: 1px solid rgba(0, 212, 178, 0.1);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    border-bottom: 1px solid rgba(0, 212, 178, 0.14);
   }
 
   .hero-header-bg-media {
     position: absolute;
     inset: 0;
     z-index: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
     pointer-events: none;
     overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 24%, rgba(59, 130, 246, 0.16), transparent 42%),
+      radial-gradient(circle at 18% 18%, rgba(0, 212, 178, 0.14), transparent 34%);
   }
 
-  .hero-header-bg-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-    opacity: 0.58;
-    filter: saturate(1.16) contrast(1.06) brightness(0.72);
-    transform: scale(1.03);
+  .hero-header-bg-media::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("{{ '/assets/images/header-bg.webp' | relative_url }}");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: scale(1.01);
+    transition: opacity 0.45s ease;
+  }
+
+  .premium-neural-hero.hero-bg-loaded .hero-header-bg-media::before {
+    opacity: 0.42;
   }
 
   .premium-neural-hero::before {
@@ -81,8 +108,8 @@
     z-index: 1;
     pointer-events: none;
     background:
-      linear-gradient(to bottom, rgba(2, 6, 23, 0.22) 0%, rgba(2, 6, 23, 0.70) 50%, #020617 100%),
-      radial-gradient(circle at center, rgba(0, 212, 178, 0.10), rgba(2, 6, 23, 0.40) 56%, rgba(2, 6, 23, 0.88) 100%);
+      linear-gradient(to bottom, rgba(2, 6, 23, 0.16) 0%, rgba(2, 6, 23, 0.68) 58%, #020617 100%),
+      radial-gradient(circle at center, rgba(0, 212, 178, 0.08), rgba(2, 6, 23, 0.44) 56%, rgba(2, 6, 23, 0.88) 100%);
   }
 
   .premium-neural-hero::after {
@@ -91,7 +118,7 @@
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(to right, rgba(2, 6, 23, 0.56), rgba(2, 6, 23, 0.12), rgba(2, 6, 23, 0.56));
+    background: linear-gradient(to right, rgba(2, 6, 23, 0.54), rgba(2, 6, 23, 0.10), rgba(2, 6, 23, 0.54));
   }
 
   .hero-ambient-core {
@@ -99,11 +126,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60vw;
-    height: 60vw;
-    max-width: 800px;
-    max-height: 800px;
-    background: radial-gradient(circle, rgba(0, 212, 178, 0.05) 0%, rgba(2, 6, 23, 0) 70%);
+    width: min(60vw, 760px);
+    height: min(60vw, 760px);
+    background: radial-gradient(circle, rgba(0, 212, 178, 0.06) 0%, rgba(2, 6, 23, 0) 70%);
     z-index: 3;
     pointer-events: none;
   }
@@ -120,25 +145,23 @@
     z-index: 10;
     max-width: 850px;
     margin: 0 auto;
-    padding: clamp(1.25rem, 4vw, 2.5rem);
+    padding: clamp(1.15rem, 4vw, 2.35rem);
     border-radius: 28px;
-    background: linear-gradient(180deg, rgba(2, 6, 23, 0.42), rgba(2, 6, 23, 0.18));
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    background: linear-gradient(180deg, rgba(2, 6, 23, 0.58), rgba(2, 6, 23, 0.26));
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
   }
 
   .system-status-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(2, 6, 23, 0.56);
-    border: 1px solid rgba(0, 212, 178, 0.34);
+    background: rgba(2, 6, 23, 0.72);
+    border: 1px solid rgba(0, 212, 178, 0.46);
     padding: 6px 16px;
     border-radius: 30px;
-    color: #7fffe7;
+    color: #b7fff0;
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 2rem;
@@ -154,24 +177,25 @@
   }
 
   .neural-hero-title {
-    color: #ffffff;
-    font-size: clamp(2.45rem, 6vw, 4.5rem);
-    font-weight: 800;
+    color: #ffffff !important;
+    font-size: clamp(2.35rem, 6vw, 4.5rem);
+    font-weight: 850;
     line-height: 1.08;
     margin: 0 0 1.5rem 0;
     letter-spacing: -0.02em;
-    text-shadow: 0 5px 24px rgba(0, 0, 0, 0.90);
+    text-shadow: 0 5px 24px rgba(0, 0, 0, 0.92);
   }
 
   .gradient-text {
-    background: linear-gradient(90deg, #00d4b2, #3b82f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #67e8f9 !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: #67e8f9 !important;
     display: inline-block;
   }
 
   .neural-hero-subtitle {
-    color: #f8fafc;
+    color: #f8fafc !important;
     font-size: clamp(1rem, 2vw, 1.25rem);
     line-height: 1.6;
     max-width: 700px;
@@ -193,44 +217,50 @@
     gap: 10px;
     padding: 0.8rem 2rem;
     border-radius: 12px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1rem;
     text-decoration: none !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
+  }
+
+  .premium-btn:focus-visible {
+    outline: 3px solid rgba(103, 232, 249, 0.95);
+    outline-offset: 3px;
+  }
+
+  .premium-btn:hover {
+    transform: translateY(-2px);
   }
 
   .premium-btn.btn--cyan {
     background: #00d4b2;
     color: #020617 !important;
     border: 1px solid #00d4b2;
-    box-shadow: 0 0 20px rgba(0, 212, 178, 0.2);
   }
 
   .premium-btn.btn--outline {
-    background: rgba(2, 6, 23, 0.58);
-    color: #e2e8f0 !important;
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    background: rgba(2, 6, 23, 0.72);
+    color: #f8fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.34);
   }
 
   .btn-icon { font-size: 1.2rem; }
 
   @media (max-width: 640px) {
     .premium-neural-hero {
-      min-height: 720px;
-      padding: 4.5rem 1rem 3rem;
+      min-height: 660px;
+      padding: 4.25rem 1rem 3rem;
       align-items: flex-start;
     }
 
-    .hero-header-bg-media img {
-      opacity: 0.48;
-      object-position: center top;
-      filter: saturate(1.08) contrast(1.05) brightness(0.58);
+    .premium-neural-hero.hero-bg-loaded .hero-header-bg-media::before {
+      opacity: 0.34;
     }
 
     .hero-content-matrix {
-      margin-top: 2.5rem;
+      margin-top: 2.25rem;
       padding: 1rem 0.75rem;
-      background: linear-gradient(180deg, rgba(2, 6, 23, 0.66), rgba(2, 6, 23, 0.30));
+      background: linear-gradient(180deg, rgba(2, 6, 23, 0.76), rgba(2, 6, 23, 0.42));
     }
 
     .system-status-badge {
@@ -239,7 +269,7 @@
     }
 
     .neural-hero-title {
-      font-size: clamp(2.15rem, 11vw, 3.25rem);
+      font-size: clamp(2.05rem, 10.5vw, 3.1rem);
     }
 
     .neural-hero-subtitle {
@@ -255,13 +285,24 @@
 
     .premium-btn {
       width: 100%;
-      min-height: 64px;
+      min-height: 60px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status-pulse {
+      animation: none;
+    }
+
+    .hero-header-bg-media::before,
+    .premium-btn {
+      transition: none;
     }
   }
 
   @keyframes pulse {
     0% { transform: scale(0.95); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.5; }
+    50% { transform: scale(1.45); opacity: 0.55; }
     100% { transform: scale(0.95); opacity: 1; }
   }
 </style>
