@@ -27,7 +27,7 @@
     if (reduceMotion || !window.lbflLoadScript || !window.lbflWhenIdle) return;
     window.lbflWhenIdle(function () {
       window.lbflLoadScript("{{ '/assets/js/synaptic-glow.js' | relative_url }}?v={{ runtime_version }}", { defer: true }).catch(function () {});
-    }, 2600);
+    }, 5200);
   })();
 </script>
 {% endif %}
