@@ -1,327 +1,131 @@
-<section class="brevo-integrated-section" id="newsletter">
+<section class="brevo-integrated-section" id="newsletter" aria-labelledby="newsletter-title">
   <div class="brevo-section-container">
-    
     <div class="brevo-info-block">
       <span class="meta-badge-node">Ecosystem Membership</span>
-      <h2 class="brevo-info-title">Join the Neural <br><span class="accent-neon">Knowledge Feed</span></h2>
+      <h2 id="newsletter-title" class="brevo-info-title">Join the Neural <br><span class="accent-neon">Knowledge Feed</span></h2>
       <p class="brevo-info-desc">Subscribe to receive curated academic biology insights, applied behavioral science reconditioning patterns, and Socratic reflection parameters directly in your inbox.</p>
-      <div class="neural-accent-bar-line"></div>
+      <div class="neural-accent-bar-line" aria-hidden="true"></div>
     </div>
 
     <div class="brevo-form-block-wrapper">
       <div class="sib-form">
         <div id="sib-form-container" class="sib-form-container-node">
-          
-          <div id="error-message" class="sib-form-message-panel" style="font-family:'Inter', -apple-system, sans-serif; font-size:14px; text-align:left; color:#ef4444; background-color:rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); border-radius:8px; max-width:100%; margin-bottom: 15px;">
-            <div class="sib-form-message-panel__text sib-form-message-panel__text--center" style="display:flex; align-items:center; padding: 12px 16px;">
-              <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon" style="fill: #ef4444; width:18px; height:18px; margin-right:10px; flex-shrink:0;">
-                <path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z" />
-              </svg>
+          <div id="error-message" class="sib-form-message-panel" role="status" aria-live="polite">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
               <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
             </div>
           </div>
 
-          <div id="success-message" class="sib-form-message-panel" style="font-family:'Inter', -apple-system, sans-serif; font-size:14px; text-align:left; color:#00d4b2; background-color:rgba(0, 212, 178, 0.05); border: 1px solid rgba(0, 212, 178, 0.2); border-radius:8px; max-width:100%; margin-bottom: 15px;">
-            <div class="sib-form-message-panel__text sib-form-message-panel__text--center" style="display:flex; align-items:center; padding: 12px 16px;">
-              <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon" style="fill: #00d4b2; width:18px; height:18px; margin-right:10px; flex-shrink:0;">
-                <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z" />
-              </svg>
+          <div id="success-message" class="sib-form-message-panel" role="status" aria-live="polite">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
               <span class="sib-form-message-panel__inner-text">Your subscription has been successful.</span>
             </div>
           </div>
 
           <div id="sib-container" class="custom-sib-card">
             <form id="sib-form" method="POST" action="{{ site.brevo.form_url }}" data-type="subscription">
-              
               <div class="form-title-area">
-                <h3 class="form-title-node">Newsletter Portfolio</h3>
+                <p class="form-title-node">Newsletter Portfolio</p>
                 <p class="form-subtitle-node">Subscribe to Connect Your Dots Of Life.</p>
               </div>
 
               <div class="form-group-field">
                 <label for="EMAIL" class="console-input-label">Enter secure electronic mailing point</label>
-                <input type="email" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="EMAIL" data-required="true" required class="console-email-input" />
-                <span class="field-specification">Provide your email address to subscribe. For e.g. abc@xyz.com</span>
+                <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" placeholder="EMAIL" data-required="true" required class="console-email-input" />
+                <span class="field-specification">Provide your email address to subscribe. For example, abc@xyz.com</span>
               </div>
 
               <div class="form-group-checkbox">
-                <label class="checkbox-label-container">
+                <label class="checkbox-label-container" for="NEWSLETTER_AGREEMENT">
                   <input type="checkbox" value="1" id="NEWSLETTER_AGREEMENT" name="NEWSLETTER_AGREEMENT" required class="console-checkbox-input" />
                   <span class="checkbox-custom-text">I agree to receive newsletters and accept the system data privacy protocols.</span>
                 </label>
-                <span class="field-specification">You may safely unsubscribe at any given timeline using the action link embedded in our emails.</span>
+                <span class="field-specification">You may safely unsubscribe using the action link embedded in our emails.</span>
               </div>
 
               <div class="brevo-declaration-strip">
-                <p>We leverage Brevo as our automated communication network. By submitting this matrix panel, you acknowledge that the analytical coordinates provided will be transferred to Brevo in accordance with <a href="https://www.brevo.com/en/legal/privacypolicy/" target="_blank" rel="nofollow">Brevo's Privacy Policy.</a></p>
+                <p>We leverage Brevo as our automated communication network. By submitting this matrix panel, you acknowledge that the analytical coordinates provided will be transferred to Brevo in accordance with <a href="https://www.brevo.com/en/legal/privacypolicy/" target="_blank" rel="nofollow noopener">Brevo's Privacy Policy.</a></p>
               </div>
 
               <div class="form-submit-action">
-                <button class="custom-submit-btn" form="sib-form" type="submit">
-                  <svg class="btn-loader-icon" viewBox="0 0 512 512" style="display:none; width:16px; height:16px; margin-right:8px; fill:currentColor;">
-                    <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
-                  </svg>
-                  SUBSCRIBE HUB
-                </button>
+                <button class="custom-submit-btn" form="sib-form" type="submit">SUBSCRIBE HUB</button>
               </div>
 
-              <input type="text" name="email_address_check" value="" style="display:none !important;" class="input--hidden">
+              <input type="text" name="email_address_check" value="" style="display:none !important;" class="input--hidden" tabindex="-1" autocomplete="off">
               <input type="hidden" name="locale" value="en">
             </form>
           </div>
-
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-
 <style>
-  .brevo-integrated-section {
-    background-color: #020617 !important; /* Premium system background alignment */
-    padding: 6rem 2rem !important;
-    border-top: 1px solid rgba(0, 212, 178, 0.08) !important;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
-  }
-  
-  .brevo-section-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 4rem;
-    align-items: center;
-    box-sizing: border-box;
-  }
-  
-  .brevo-info-block {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.2rem;
-    text-align: left;
-  }
-  
-  .meta-badge-node {
-    background: rgba(0, 212, 178, 0.04) !important;
-    border: 1px solid rgba(0, 212, 178, 0.15) !important;
-    color: #00d4b2 !important;
-    font-size: 0.8rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.1em !important;
-    padding: 6px 14px !important;
-    border-radius: 50px !important;
-  }
-  
-  .brevo-info-title {
-    font-size: clamp(2rem, 4vw, 2.6rem) !important;
-    font-weight: 800 !important;
-    line-height: 1.25 !important;
-    color: #ffffff !important;
-    margin: 0 !important;
-    letter-spacing: -0.02em !important;
-  }
-  
-  .brevo-info-title .accent-neon {
-    color: #00d4b2;
-  }
-  
-  .brevo-info-desc {
-    font-size: 1.05rem !important;
-    line-height: 1.65 !important;
-    color: #94a3b8 !important;
-    margin: 0 !important;
-    text-align: justify;
-  }
-  
-  .neural-accent-bar-line {
-    width: 50px;
-    height: 2px;
-    background: linear-gradient(90deg, #00d4b2 0%, transparent 100%);
-    margin-top: 0.5rem;
-  }
-  
-  /* Micro Console Glass Card Design Panel */
-  .custom-sib-card {
-    background-color: #0d1527 !important; /* Comfort dark element shell */
-    border: 1px solid rgba(255, 255, 255, 0.03) !important;
-    border-radius: 12px !important;
-    padding: clamp(1rem, 5vw, 2.5rem) !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    max-width: 480px !important;
-    margin: 0 auto;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
-  }
-  
-  .form-title-area .form-title-node {
-    font-size: 1.4rem !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    margin: 0 0 0.4rem 0 !important;
-    text-align: left;
-    letter-spacing: -0.01em;
-  }
-  
-  .form-title-area .form-subtitle-node {
-    font-size: 0.92rem !important;
-    color: #64748b !important;
-    margin: 0 0 1.75rem 0 !important;
-    text-align: left;
-  }
-  
-  .form-group-field, .form-group-checkbox {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    margin-bottom: 1.5rem;
-    text-align: left;
-  }
-  
-  .console-input-label {
-    font-size: 0.88rem !important;
-    font-weight: 600 !important;
-    color: #cbd5e1 !important;
-  }
-  
-  .console-email-input {
-    background-color: #020617 !important;
-    border: 1px solid rgba(255, 255, 255, 0.06) !important;
-    border-radius: 6px !important;
-    padding: 0.85rem 1rem !important;
-    color: #ffffff !important;
-    font-size: 0.95rem !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    outline: none !important;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .console-email-input:focus {
-    border-color: rgba(0, 212, 178, 0.4) !important;
-    box-shadow: 0 0 12px rgba(0, 212, 178, 0.08) !important;
-  }
-  
-  .checkbox-label-container {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    cursor: pointer;
-  }
-  
-  .console-checkbox-input {
-    margin-top: 0.25rem !important;
-    accent-color: #00d4b2 !important;
-  }
-  
-  .checkbox-custom-text {
-    font-size: 0.88rem !important;
-    line-height: 1.5 !important;
-    color: #94a3b8 !important;
-  }
-  
-  .field-specification {
-    font-size: 0.78rem !important;
-    color: #475569 !important;
-    line-height: 1.4 !important;
-  }
-  
-  .brevo-declaration-strip {
-    border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
-    margin-top: 1.5rem !important;
-    padding-top: 1rem !important;
-    margin-bottom: 1.5rem !important;
-    text-align: left;
-  }
-  
-  .brevo-declaration-strip p {
-    font-size: 0.76rem !important;
-    line-height: 1.5 !important;
-    color: #475569 !important;
-    margin: 0 !important;
-  }
-  
-  .brevo-declaration-strip a {
-    color: #00d4b2 !important;
-    text-decoration: underline !important;
-  }
-  
-  /* Premium System Integrated Trigger Token Action Button */
-  .custom-submit-btn {
-    background: linear-gradient(135deg, #00d4b2 0%, #3b82f6 100%) !important;
-    color: #020617 !important;
-    font-size: 0.88rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.05em !important;
-    width: 100% !important;
-    padding: 13px 24px !important;
-    border: none !important;
-    border-radius: 6px !important;
-    cursor: pointer !important;
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-    box-shadow: 0 4px 14px rgba(0, 212, 178, 0.2) !important;
-    text-transform: uppercase;
-  }
-  
-  .custom-submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 212, 178, 0.4) !important;
-  }
-
-  /* Structural Dynamic Breakpoint Adaptations */
-  @media (max-width: 992px) {
-    .brevo-integrated-section {
-      padding: 4rem 1.5rem !important;
-    }
-    .brevo-section-container {
-      grid-template-columns: 1fr !important;
-      gap: 3rem;
-    }
-    .brevo-info-block {
-      align-items: center !important;
-      text-align: center !important;
-    }
-    .brevo-info-desc {
-      text-align: center !important;
-    }
-    .neural-accent-bar-line {
-      margin: 0.5rem auto 0 auto !important;
-      background: linear-gradient(90deg, transparent 0%, #00d4b2 50%, transparent 100%) !important;
-    }
-    .custom-sib-card {
-      max-width: 100% !important;
-      padding: 2rem 1.5rem !important;
-    }
-  }
+  .brevo-integrated-section{background-color:#020617!important;padding:clamp(3.5rem,7vw,6rem) clamp(1rem,3vw,2rem)!important;border-top:1px solid rgba(0,212,178,.1)!important;width:100%;box-sizing:border-box;overflow:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}.brevo-section-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center;box-sizing:border-box}.brevo-info-block{display:flex;flex-direction:column;align-items:flex-start;gap:1.1rem;text-align:left}.meta-badge-node{background:rgba(0,212,178,.08)!important;border:1px solid rgba(0,212,178,.28)!important;color:#99f6e4!important;font-size:.8rem!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.1em!important;padding:6px 14px!important;border-radius:50px!important}.brevo-info-title{font-size:clamp(2rem,4vw,2.6rem)!important;font-weight:850!important;line-height:1.25!important;color:#fff!important;margin:0!important;letter-spacing:-.02em!important}.brevo-info-title .accent-neon{color:#67e8f9}.brevo-info-desc{font-size:1.05rem!important;line-height:1.65!important;color:#cbd5e1!important;margin:0!important;text-align:left}.neural-accent-bar-line{width:50px;height:2px;background:linear-gradient(90deg,#00d4b2 0%,transparent 100%);margin-top:.5rem}.custom-sib-card{background-color:#0d1527!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:12px!important;padding:clamp(1rem,5vw,2.5rem)!important;box-sizing:border-box!important;width:100%!important;max-width:480px!important;margin:0 auto;box-shadow:0 18px 36px rgba(0,0,0,.34)!important}.form-title-node{font-size:1.35rem!important;font-weight:800!important;color:#fff!important;margin:0 0 .4rem!important;text-align:left;letter-spacing:-.01em}.form-subtitle-node{font-size:.94rem!important;color:#cbd5e1!important;margin:0 0 1.75rem!important;text-align:left}.form-group-field,.form-group-checkbox{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem;text-align:left}.console-input-label{font-size:.9rem!important;font-weight:700!important;color:#e2e8f0!important}.console-email-input{background-color:#020617!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:6px!important;padding:.85rem 1rem!important;color:#fff!important;font-size:.95rem!important;width:100%!important;box-sizing:border-box!important;outline:none!important}.console-email-input:focus{border-color:rgba(0,212,178,.55)!important}.checkbox-label-container{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer}.console-checkbox-input{margin-top:.25rem!important}.checkbox-custom-text{font-size:.9rem!important;line-height:1.5!important;color:#e2e8f0!important}.field-specification{font-size:.8rem!important;color:#cbd5e1!important;line-height:1.4!important}.brevo-declaration-strip{border-top:1px solid rgba(255,255,255,.08)!important;margin-top:1.5rem!important;padding-top:1rem!important;margin-bottom:1.5rem!important;text-align:left}.brevo-declaration-strip p{font-size:.78rem!important;line-height:1.5!important;color:#cbd5e1!important;margin:0!important}.brevo-declaration-strip a{color:#67e8f9!important;text-decoration:underline!important}.custom-submit-btn{background:linear-gradient(135deg,#00d4b2 0%,#3b82f6 100%)!important;color:#020617!important;font-size:.9rem!important;font-weight:850!important;letter-spacing:.05em!important;width:100%!important;padding:13px 24px!important;border:0!important;border-radius:6px!important;cursor:pointer!important;display:inline-flex!important;align-items:center;justify-content:center;transition:transform .2s ease!important;text-transform:uppercase}.custom-submit-btn:hover{transform:translateY(-2px)}.sib-form-message-panel{display:none;font-family:'Inter',-apple-system,sans-serif;font-size:14px;text-align:left;border-radius:8px;max-width:100%;margin-bottom:15px}.sib-form-message-panel__text{display:flex;align-items:center;padding:12px 16px}@media(max-width:992px){.brevo-integrated-section{padding:4rem 1.5rem!important}.brevo-section-container{grid-template-columns:1fr!important;gap:3rem}.brevo-info-block{align-items:center!important;text-align:center!important}.brevo-info-desc{text-align:center!important}.neural-accent-bar-line{margin:.5rem auto 0!important;background:linear-gradient(90deg,transparent 0%,#00d4b2 50%,transparent 100%)!important}.custom-sib-card{max-width:100%!important;padding:2rem 1.5rem!important}}
 </style>
 
+<noscript><link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"></noscript>
 <script>
-  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
-  window.LOCALE = 'en';
-  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
-  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
-  window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
-  window.INVALID_NUMBER = "The information provided is invalid. Please review the field format and try again.";
-  window.INVALID_DATE = "Please enter a valid date";
-  window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
-  window.translation = {
-    common: {
-      selectedList: '{quantity} list selected',
-      selectedLists: '{quantity} lists selected',
-      selectedOption: '{quantity} selected',
-      selectedOptions: '{quantity} selected',
+  (function () {
+    "use strict";
+    window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+    window.LOCALE = 'en';
+    window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+    window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
+    window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+    window.INVALID_NUMBER = "The information provided is invalid. Please review the field format and try again.";
+    window.INVALID_DATE = "Please enter a valid date";
+    window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+    window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
+    window.AUTOHIDE = true;
+
+    var loaded = false;
+    function loadBrevoAssets() {
+      if (loaded) return;
+      loaded = true;
+
+      var css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = "https://sibforms.com/forms/end-form/build/sib-styles.css";
+      css.media = "print";
+      css.onload = function () { css.media = "all"; };
+      document.head.appendChild(css);
+
+      var loader = window.lbflLoadScript || function (src) {
+        return new Promise(function (resolve, reject) {
+          var s = document.createElement("script");
+          s.src = src;
+          s.async = true;
+          s.onload = resolve;
+          s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      };
+      loader("https://sibforms.com/forms/end-form/build/main.js").catch(function () {});
     }
-  };
-  var AUTOHIDE = Boolean(1);
+
+    function armLoader() {
+      var section = document.getElementById("newsletter");
+      if (!section) return;
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              loadBrevoAssets();
+              observer.disconnect();
+            }
+          });
+        }, { rootMargin: "700px 0px" });
+        observer.observe(section);
+      } else if (window.lbflWhenIdle) {
+        window.lbflWhenIdle(loadBrevoAssets, 3200);
+      } else {
+        window.setTimeout(loadBrevoAssets, 2500);
+      }
+    }
+
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", armLoader);
+    else armLoader();
+  })();
 </script>
-<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
