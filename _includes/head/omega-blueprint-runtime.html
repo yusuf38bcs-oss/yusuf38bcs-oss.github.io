@@ -1,10 +1,33 @@
 <style>
-  :root{--cellular-emerald:#0D9488;--genetics-indigo:#6366F1;--evolution-amber:#D97706;--ecology-green:#059669;--biostat-magenta:#DB2777;--bg-obsidian:#0B0F19;--ui-slate:#1E293B;--text-light:#F8FAFC;--text-gray:#94A3B8}body{overflow-x:hidden;text-rendering:optimizeLegibility}.main-layout,.dashboard-layout{display:grid;gap:1.5rem;max-width:1400px;margin:2rem auto;padding:0 1.5rem}.main-layout{grid-template-columns:1fr 350px}.dashboard-layout{grid-template-columns:280px 1fr 320px;max-width:1600px}.profile-card-and-stats,.pathway-progress-visualizer,.focus-node-deck,.analytics-radar-chart,.socratic-session-log{background:var(--ui-slate);border-radius:.75rem;padding:1.5rem;border:1px solid rgba(255,255,255,.05)}.focus-node-deck{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.5rem}.concept-card-container,.relationship-panel{background:var(--ui-slate);border-radius:1rem;padding:clamp(1rem,3vw,2.5rem);border:1px solid rgba(255,255,255,.05)}.connections-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.relation-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:.75rem;padding:1rem;will-change:transform;transition:transform .25s cubic-bezier(.4,0,.2,1),border-color .25s ease}.relation-card:hover{transform:translateY(-4px);border-color:var(--genetics-indigo)}.mobile-concept-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding:1rem 0;-webkit-overflow-scrolling:touch}.mobile-concept-carousel .concept-card-container{flex:0 0 85%;scroll-snap-align:center;max-width:320px}.floating-socratic-trigger{position:fixed;bottom:5rem;right:1.5rem;background:var(--genetics-indigo);color:var(--text-light);width:3.5rem;height:3.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:100}.graph-scrolling-locked{overflow:hidden!important;touch-action:none!important}.mobile-graph-pane,.interactive-graph-sandbox{width:100%;border:1px solid rgba(0,212,178,.18);border-radius:16px;background:#070B14;overflow:hidden}.mobile-graph-pane canvas,.interactive-graph-sandbox canvas{display:block;width:100%;min-height:320px}@media(max-width:1200px){.dashboard-layout{grid-template-columns:1fr}}@media(max-width:1024px){.main-layout{grid-template-columns:1fr}}@media(max-width:768px){.main-layout,.dashboard-layout{grid-template-columns:1fr;padding:0 .75rem}.socratic-tutor-sidebar{position:fixed!important;inset:0!important;z-index:9999;border-radius:0!important;height:100vh!important}}
+  :root{--cellular-emerald:#0D9488;--genetics-indigo:#6366F1;--evolution-amber:#D97706;--ecology-green:#059669;--biostat-magenta:#DB2777;--bg-obsidian:#0B0F19;--ui-slate:#1E293B;--text-light:#F8FAFC;--text-gray:#CBD5E1}body{overflow-x:hidden;text-rendering:optimizeLegibility}.main-layout,.dashboard-layout{display:grid;gap:1.5rem;max-width:1400px;margin:2rem auto;padding:0 1.5rem}.main-layout{grid-template-columns:1fr 350px}.dashboard-layout{grid-template-columns:280px 1fr 320px;max-width:1600px}.profile-card-and-stats,.pathway-progress-visualizer,.focus-node-deck,.analytics-radar-chart,.socratic-session-log{background:var(--ui-slate);border-radius:.75rem;padding:1.5rem;border:1px solid rgba(255,255,255,.08)}.focus-node-deck{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.5rem}.concept-card-container,.relationship-panel{background:var(--ui-slate);border-radius:1rem;padding:clamp(1rem,3vw,2.5rem);border:1px solid rgba(255,255,255,.08)}.connections-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.relation-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:.75rem;padding:1rem;transition:transform .25s cubic-bezier(.4,0,.2,1),border-color .25s ease}.relation-card:hover{transform:translateY(-4px);border-color:var(--genetics-indigo)}.mobile-concept-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding:1rem 0;-webkit-overflow-scrolling:touch}.mobile-concept-carousel .concept-card-container{flex:0 0 85%;scroll-snap-align:center;max-width:320px}.floating-socratic-trigger{position:fixed;bottom:5rem;right:1.5rem;background:var(--genetics-indigo);color:var(--text-light);width:3.5rem;height:3.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:100}.graph-scrolling-locked{overflow:hidden!important;touch-action:none!important}.mobile-graph-pane,.interactive-graph-sandbox{width:100%;border:1px solid rgba(0,212,178,.18);border-radius:16px;background:#070B14;overflow:hidden}.mobile-graph-pane canvas,.interactive-graph-sandbox canvas{display:block;width:100%;min-height:320px}@media(max-width:1200px){.dashboard-layout{grid-template-columns:1fr}}@media(max-width:1024px){.main-layout{grid-template-columns:1fr}}@media(max-width:768px){.main-layout,.dashboard-layout{grid-template-columns:1fr;padding:0 .75rem}.socratic-tutor-sidebar{position:fixed!important;inset:0!important;z-index:9999;border-radius:0!important;height:100vh!important}}
 </style>
+
+{% assign runtime_path = page.url | default: '' %}
+{% assign runtime_version = site.time | date: '%Y%m%d' %}
+
+{% if page.graph == true or runtime_path contains 'graph' or runtime_path contains 'synaptic-bridge' %}
+<script src="{{ '/assets/js/graph_engine.js' | relative_url }}?v={{ runtime_version }}" defer></script>
+{% endif %}
+
+{% if page.myelination == true or runtime_path contains 'learning-path' or runtime_path contains 'tracker' %}
+<script src="{{ '/assets/js/myelination-tracker.js' | relative_url }}?v={{ runtime_version }}" defer></script>
+{% endif %}
+
+{% if page.socratic == true or page.quiz == true or page.ai == true or runtime_path contains '/socratic/' or runtime_path contains '/mcq-arena/' %}
+<script src="{{ '/assets/js/socratic-component.js' | relative_url }}?v={{ runtime_version }}" defer></script>
+{% endif %}
+
+{% if page.synaptic_glow == true or runtime_path contains 'synaptic-bridge' %}
+<script src="{{ '/assets/js/synaptic-glow.js' | relative_url }}?v={{ runtime_version }}" defer></script>
+{% elsif page.url == '/' %}
 <script>
-  window.LBFL_AI_ENDPOINT = "https://api.learningbiologyforlife.org";
+  (function () {
+    var reduceMotion = false;
+    try { reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (_ignored) {}
+    if (reduceMotion || !window.lbflLoadScript || !window.lbflWhenIdle) return;
+    window.lbflWhenIdle(function () {
+      window.lbflLoadScript("{{ '/assets/js/synaptic-glow.js' | relative_url }}?v={{ runtime_version }}", { defer: true }).catch(function () {});
+    }, 2600);
+  })();
 </script>
-<script src="{{ '/assets/js/graph_engine.js' | relative_url }}?v={{ site.time | date: '%Y%m%d' }}" defer></script>
-<script src="{{ '/assets/js/myelination-tracker.js' | relative_url }}?v={{ site.time | date: '%Y%m%d' }}" defer></script>
-<script src="{{ '/assets/js/socratic-component.js' | relative_url }}?v={{ site.time | date: '%Y%m%d' }}" defer></script>
-<script src="{{ '/assets/js/synaptic-glow.js' | relative_url }}?v={{ site.time | date: '%Y%m%d' }}" defer></script>
+{% endif %}
