@@ -1,7 +1,7 @@
 {% comment %}
   Native Polyglot language switcher.
-  Branch-only: feature/bilingual-polyglot.
   Keeps Google Translate available while native bilingual routes mature.
+  Visible labels remain compact for the masthead; hreflang exposes target language.
 {% endcomment %}
 
 {% assign active_lang = page.lang | default: site.active_lang | default: site.default_lang | default: 'en' %}
@@ -16,16 +16,16 @@
 {% assign bangla_path = clean_path | prepend: '/bn' %}
 {% assign bangla_href = site_origin | append: bangla_path %}
 
-<nav class="lbfl-language-switcher" aria-label="Native language switcher">
+<nav class="lbfl-language-switcher" aria-label="Language switcher">
   <a class="lbfl-language-switcher__link{% if active_lang == 'en' %} is-active{% endif %}"
-     href='{{ english_href }}'
-     lang="en"
+     href="{{ english_href }}"
      hreflang="en"
-     title="English"{% if active_lang == 'en' %} aria-current="page"{% endif %}>Eng</a>
+     title="English version"
+     aria-label="Eng version"{% if active_lang == 'en' %} aria-current="page"{% endif %}>Eng</a>
   <span class="lbfl-language-switcher__divider" aria-hidden="true">|</span>
   <a class="lbfl-language-switcher__link{% if active_lang == 'bn' %} is-active{% endif %}"
-     href='{{ bangla_href }}'
-     lang="bn"
+     href="{{ bangla_href }}"
      hreflang="bn"
-     title="Bangla"{% if active_lang == 'bn' %} aria-current="page"{% endif %}>Ban</a>
+     title="Bangla version"
+     aria-label="Ban version"{% if active_lang == 'bn' %} aria-current="page"{% endif %}>Ban</a>
 </nav>
