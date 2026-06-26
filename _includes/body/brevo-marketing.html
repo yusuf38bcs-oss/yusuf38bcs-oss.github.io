@@ -3,66 +3,79 @@
     <div class="brevo-info-block">
       <span class="meta-badge-node">Ecosystem Membership</span>
       <h2 id="newsletter-title" class="brevo-info-title">Join the Neural <br><span class="accent-neon">Knowledge Feed</span></h2>
-      <p class="brevo-info-desc">Subscribe to receive curated academic biology insights, applied behavioral science reconditioning patterns, and Socratic reflection parameters directly in your inbox.</p>
+      <p class="brevo-info-desc">Subscribe to receive curated academic biology insights, applied behavioral science patterns, and Socratic reflection prompts directly in your inbox.</p>
       <div class="neural-accent-bar-line" aria-hidden="true"></div>
-    </div>
 
-    <div class="brevo-form-block-wrapper">
-      <div class="sib-form">
-        <div id="sib-form-container" class="sib-form-container-node">
-          <div id="error-message" class="sib-form-message-panel" role="status" aria-live="polite">
-            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-              <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
-            </div>
-          </div>
-
-          <div id="success-message" class="sib-form-message-panel" role="status" aria-live="polite">
-            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-              <span class="sib-form-message-panel__inner-text">Your subscription has been successful.</span>
-            </div>
-          </div>
-
-          <div id="sib-container" class="custom-sib-card">
-            <form id="sib-form" method="POST" action="{{ site.brevo.form_url }}" data-type="subscription">
-              <div class="form-title-area">
-                <p class="form-title-node">Newsletter Portfolio</p>
-                <p class="form-subtitle-node">Subscribe to Connect Your Dots Of Life.</p>
-              </div>
-
-              <div class="form-group-field">
-                <label for="EMAIL" class="console-input-label">Enter secure electronic mailing point</label>
-                <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" placeholder="EMAIL" data-required="true" required class="console-email-input" />
-                <span class="field-specification">Provide your email address to subscribe. For example, abc@xyz.com</span>
-              </div>
-
-              <div class="form-group-checkbox">
-                <label class="checkbox-label-container" for="NEWSLETTER_AGREEMENT">
-                  <input type="checkbox" value="1" id="NEWSLETTER_AGREEMENT" name="NEWSLETTER_AGREEMENT" required class="console-checkbox-input" />
-                  <span class="checkbox-custom-text">I agree to receive newsletters and accept the system data privacy protocols.</span>
-                </label>
-                <span class="field-specification">You may safely unsubscribe using the action link embedded in our emails.</span>
-              </div>
-
-              <div class="brevo-declaration-strip">
-                <p>We leverage Brevo as our automated communication network. By submitting this matrix panel, you acknowledge that the analytical coordinates provided will be transferred to Brevo in accordance with <a href="https://www.brevo.com/en/legal/privacypolicy/" target="_blank" rel="nofollow noopener">Brevo's Privacy Policy.</a></p>
-              </div>
-
-              <div class="form-submit-action">
-                <button class="custom-submit-btn" form="sib-form" type="submit">SUBSCRIBE HUB</button>
-              </div>
-
-              <input type="text" name="email_address_check" value="" style="display:none !important;" class="input--hidden" tabindex="-1" autocomplete="off">
-              <input type="hidden" name="locale" value="en">
-            </form>
-          </div>
-        </div>
+      <div class="brevo-cta-row">
+        <button class="brevo-open-modal-btn" type="button" data-brevo-open aria-haspopup="dialog" aria-controls="brevo-newsletter-modal">
+          Open Subscription Window
+        </button>
+        <p class="brevo-privacy-note">Secure Brevo-powered newsletter. Unsubscribe anytime.</p>
       </div>
     </div>
   </div>
 </section>
 
+<div class="brevo-modal-shell" id="brevo-newsletter-modal" role="dialog" aria-modal="true" aria-labelledby="brevo-modal-title" hidden>
+  <div class="brevo-modal-backdrop" data-brevo-close aria-hidden="true"></div>
+
+  <div class="brevo-modal-panel" role="document">
+    <button class="brevo-modal-close" type="button" data-brevo-close aria-label="Close subscription window">×</button>
+
+    <div class="sib-form">
+      <div id="sib-form-container" class="sib-form-container-node">
+        <div id="error-message" class="sib-form-message-panel" role="status" aria-live="polite">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
+          </div>
+        </div>
+
+        <div id="success-message" class="sib-form-message-panel" role="status" aria-live="polite">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <span class="sib-form-message-panel__inner-text">Your subscription has been successful.</span>
+          </div>
+        </div>
+
+        <div id="sib-container" class="custom-sib-card">
+          <form id="sib-form" method="POST" action="{{ site.brevo.form_url }}" data-type="subscription">
+            <div class="form-title-area">
+              <p id="brevo-modal-title" class="form-title-node">Newsletter Portfolio</p>
+              <p class="form-subtitle-node">Subscribe to Connect Your Dots Of Life.</p>
+            </div>
+
+            <div class="form-group-field">
+              <label for="EMAIL" class="console-input-label">Email address</label>
+              <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" placeholder="you@example.com" data-required="true" required class="console-email-input" />
+              <span class="field-specification">Provide a valid email address to subscribe.</span>
+            </div>
+
+            <div class="form-group-checkbox">
+              <label class="checkbox-label-container" for="NEWSLETTER_AGREEMENT">
+                <input type="checkbox" value="1" id="NEWSLETTER_AGREEMENT" name="NEWSLETTER_AGREEMENT" required class="console-checkbox-input" />
+                <span class="checkbox-custom-text">I agree to receive newsletters and accept the data privacy protocols.</span>
+              </label>
+              <span class="field-specification">You may safely unsubscribe using the action link embedded in our emails.</span>
+            </div>
+
+            <div class="brevo-declaration-strip">
+              <p>We use Brevo as our automated communication network. By submitting this form, you acknowledge that the provided information will be transferred to Brevo in accordance with <a href="https://www.brevo.com/en/legal/privacypolicy/" target="_blank" rel="nofollow noopener">Brevo's Privacy Policy.</a></p>
+            </div>
+
+            <div class="form-submit-action">
+              <button class="custom-submit-btn" form="sib-form" type="submit">Subscribe</button>
+            </div>
+
+            <input type="text" name="email_address_check" value="" style="display:none !important;" class="input--hidden" tabindex="-1" autocomplete="off">
+            <input type="hidden" name="locale" value="en">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
-  .brevo-integrated-section{background-color:#020617!important;padding:clamp(3.5rem,7vw,6rem) clamp(1rem,3vw,2rem)!important;border-top:1px solid rgba(0,212,178,.1)!important;width:100%;box-sizing:border-box;overflow:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}.brevo-section-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center;box-sizing:border-box}.brevo-info-block{display:flex;flex-direction:column;align-items:flex-start;gap:1.1rem;text-align:left}.meta-badge-node{background:rgba(0,212,178,.08)!important;border:1px solid rgba(0,212,178,.28)!important;color:#99f6e4!important;font-size:.8rem!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.1em!important;padding:6px 14px!important;border-radius:50px!important}.brevo-info-title{font-size:clamp(2rem,4vw,2.6rem)!important;font-weight:850!important;line-height:1.25!important;color:#fff!important;margin:0!important;letter-spacing:-.02em!important}.brevo-info-title .accent-neon{color:#67e8f9}.brevo-info-desc{font-size:1.05rem!important;line-height:1.65!important;color:#cbd5e1!important;margin:0!important;text-align:left}.neural-accent-bar-line{width:50px;height:2px;background:linear-gradient(90deg,#00d4b2 0%,transparent 100%);margin-top:.5rem}.custom-sib-card{background-color:#0d1527!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:12px!important;padding:clamp(1rem,5vw,2.5rem)!important;box-sizing:border-box!important;width:100%!important;max-width:480px!important;margin:0 auto;box-shadow:0 18px 36px rgba(0,0,0,.34)!important}.form-title-node{font-size:1.35rem!important;font-weight:800!important;color:#fff!important;margin:0 0 .4rem!important;text-align:left;letter-spacing:-.01em}.form-subtitle-node{font-size:.94rem!important;color:#cbd5e1!important;margin:0 0 1.75rem!important;text-align:left}.form-group-field,.form-group-checkbox{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem;text-align:left}.console-input-label{font-size:.9rem!important;font-weight:700!important;color:#e2e8f0!important}.console-email-input{background-color:#020617!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:6px!important;padding:.85rem 1rem!important;color:#fff!important;font-size:.95rem!important;width:100%!important;box-sizing:border-box!important;outline:none!important}.console-email-input:focus{border-color:rgba(0,212,178,.55)!important}.checkbox-label-container{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer}.console-checkbox-input{margin-top:.25rem!important}.checkbox-custom-text{font-size:.9rem!important;line-height:1.5!important;color:#e2e8f0!important}.field-specification{font-size:.8rem!important;color:#cbd5e1!important;line-height:1.4!important}.brevo-declaration-strip{border-top:1px solid rgba(255,255,255,.08)!important;margin-top:1.5rem!important;padding-top:1rem!important;margin-bottom:1.5rem!important;text-align:left}.brevo-declaration-strip p{font-size:.78rem!important;line-height:1.5!important;color:#cbd5e1!important;margin:0!important}.brevo-declaration-strip a{color:#67e8f9!important;text-decoration:underline!important}.custom-submit-btn{background:linear-gradient(135deg,#00d4b2 0%,#3b82f6 100%)!important;color:#020617!important;font-size:.9rem!important;font-weight:850!important;letter-spacing:.05em!important;width:100%!important;padding:13px 24px!important;border:0!important;border-radius:6px!important;cursor:pointer!important;display:inline-flex!important;align-items:center;justify-content:center;transition:transform .2s ease!important;text-transform:uppercase}.custom-submit-btn:hover{transform:translateY(-2px)}.sib-form-message-panel{display:none;font-family:'Inter',-apple-system,sans-serif;font-size:14px;text-align:left;border-radius:8px;max-width:100%;margin-bottom:15px}.sib-form-message-panel__text{display:flex;align-items:center;padding:12px 16px}@media(max-width:992px){.brevo-integrated-section{padding:4rem 1.5rem!important}.brevo-section-container{grid-template-columns:1fr!important;gap:3rem}.brevo-info-block{align-items:center!important;text-align:center!important}.brevo-info-desc{text-align:center!important}.neural-accent-bar-line{margin:.5rem auto 0!important;background:linear-gradient(90deg,transparent 0%,#00d4b2 50%,transparent 100%)!important}.custom-sib-card{max-width:100%!important;padding:2rem 1.5rem!important}}
+  .brevo-integrated-section{background-color:#020617!important;padding:clamp(3rem,7vw,5rem) clamp(1rem,3vw,2rem)!important;border-top:1px solid rgba(0,212,178,.1)!important;width:100%;box-sizing:border-box;overflow:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}.brevo-section-container{max-width:960px;margin:0 auto;display:block;box-sizing:border-box}.brevo-info-block{display:flex;flex-direction:column;align-items:center;gap:1.05rem;text-align:center}.meta-badge-node{background:rgba(0,212,178,.08)!important;border:1px solid rgba(0,212,178,.28)!important;color:#99f6e4!important;font-size:.8rem!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.1em!important;padding:6px 14px!important;border-radius:50px!important}.brevo-info-title{font-size:clamp(2rem,5vw,3rem)!important;font-weight:850!important;line-height:1.2!important;color:#fff!important;margin:0!important;letter-spacing:-.02em!important}.brevo-info-title .accent-neon{color:#67e8f9}.brevo-info-desc{font-size:1.05rem!important;line-height:1.65!important;color:#cbd5e1!important;margin:0!important;text-align:center!important;max-width:760px}.neural-accent-bar-line{width:70px;height:2px;background:linear-gradient(90deg,transparent 0%,#00d4b2 50%,transparent 100%);margin:.35rem auto .45rem}.brevo-cta-row{display:flex;flex-direction:column;align-items:center;gap:.75rem;margin-top:.35rem}.brevo-open-modal-btn{background:linear-gradient(135deg,#00d4b2 0%,#3b82f6 100%)!important;color:#020617!important;font-size:.92rem!important;font-weight:850!important;letter-spacing:.04em!important;padding:14px 28px!important;border:0!important;border-radius:999px!important;cursor:pointer!important;display:inline-flex!important;align-items:center;justify-content:center;box-shadow:0 18px 35px rgba(0,212,178,.18)!important;text-transform:uppercase;transition:transform .18s ease,box-shadow .18s ease!important}.brevo-open-modal-btn:hover,.brevo-open-modal-btn:focus{transform:translateY(-2px);box-shadow:0 22px 42px rgba(59,130,246,.24)!important;outline:2px solid rgba(103,232,249,.4);outline-offset:3px}.brevo-privacy-note{margin:0!important;color:#94a3b8!important;font-size:.9rem!important;line-height:1.45!important}.brevo-modal-shell[hidden]{display:none!important}.brevo-modal-shell{position:fixed!important;inset:0!important;z-index:99990!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:clamp(.75rem,3vw,1.5rem)!important;box-sizing:border-box!important}.brevo-modal-backdrop{position:absolute!important;inset:0!important;background:rgba(2,6,23,.78)!important;backdrop-filter:blur(8px)!important}.brevo-modal-panel{position:relative!important;width:min(560px,100%)!important;max-height:min(86vh,760px)!important;overflow:auto!important;border-radius:22px!important;background:#0d1527!important;border:1px solid rgba(103,232,249,.22)!important;box-shadow:0 32px 80px rgba(0,0,0,.55)!important;padding:clamp(1rem,3vw,1.35rem)!important;box-sizing:border-box!important}.brevo-modal-close{position:absolute!important;top:12px!important;right:14px!important;z-index:2!important;width:38px!important;height:38px!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:999px!important;background:rgba(2,6,23,.86)!important;color:#e2e8f0!important;font-size:1.5rem!important;line-height:1!important;cursor:pointer!important}.brevo-modal-close:hover,.brevo-modal-close:focus{color:#67e8f9!important;border-color:rgba(103,232,249,.55)!important;outline:none!important}.custom-sib-card{background-color:transparent!important;border:0!important;border-radius:0!important;padding:clamp(1.2rem,4vw,2rem)!important;box-sizing:border-box!important;width:100%!important;margin:0 auto!important;box-shadow:none!important}.form-title-node{font-size:1.55rem!important;font-weight:850!important;color:#fff!important;margin:0 2.5rem .45rem 0!important;text-align:left;letter-spacing:-.01em}.form-subtitle-node{font-size:.96rem!important;color:#cbd5e1!important;margin:0 0 1.5rem!important;text-align:left}.form-group-field,.form-group-checkbox{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.35rem;text-align:left}.console-input-label{font-size:.92rem!important;font-weight:750!important;color:#e2e8f0!important}.console-email-input{background-color:#020617!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:10px!important;padding:.95rem 1rem!important;color:#fff!important;font-size:1rem!important;width:100%!important;box-sizing:border-box!important;outline:none!important}.console-email-input:focus{border-color:rgba(0,212,178,.65)!important;box-shadow:0 0 0 3px rgba(0,212,178,.12)!important}.checkbox-label-container{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer}.console-checkbox-input{margin-top:.25rem!important}.checkbox-custom-text{font-size:.92rem!important;line-height:1.5!important;color:#e2e8f0!important}.field-specification{font-size:.82rem!important;color:#cbd5e1!important;line-height:1.45!important}.brevo-declaration-strip{border-top:1px solid rgba(255,255,255,.08)!important;margin-top:1.35rem!important;padding-top:1rem!important;margin-bottom:1.35rem!important;text-align:left}.brevo-declaration-strip p{font-size:.78rem!important;line-height:1.5!important;color:#cbd5e1!important;margin:0!important}.brevo-declaration-strip a{color:#67e8f9!important;text-decoration:underline!important}.custom-submit-btn{background:linear-gradient(135deg,#00d4b2 0%,#3b82f6 100%)!important;color:#020617!important;font-size:.92rem!important;font-weight:850!important;letter-spacing:.05em!important;width:100%!important;padding:14px 24px!important;border:0!important;border-radius:10px!important;cursor:pointer!important;display:inline-flex!important;align-items:center;justify-content:center;transition:transform .2s ease!important;text-transform:uppercase}.custom-submit-btn:hover{transform:translateY(-2px)}.sib-form-message-panel{display:none;font-family:'Inter',-apple-system,sans-serif;font-size:14px;text-align:left;border-radius:10px;max-width:100%;margin-bottom:15px}.sib-form-message-panel__text{display:flex;align-items:center;padding:12px 16px}@media(max-width:720px){.brevo-integrated-section{padding:3.25rem 1rem!important}.brevo-info-title{font-size:2.15rem!important}.brevo-info-desc{font-size:1rem!important}.brevo-open-modal-btn{width:100%!important;max-width:320px!important}.brevo-modal-shell{align-items:flex-end!important;padding:0!important}.brevo-modal-panel{width:100%!important;max-height:88vh!important;border-radius:22px 22px 0 0!important;border-left:0!important;border-right:0!important;border-bottom:0!important;padding:1rem .9rem max(1rem,env(safe-area-inset-bottom))!important}.custom-sib-card{padding:1.25rem .75rem!important}.form-title-node{font-size:1.35rem!important}}
 </style>
 
 <noscript><link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"></noscript>
@@ -81,6 +94,8 @@
     window.AUTOHIDE = true;
 
     var loaded = false;
+    var lastFocusedElement = null;
+
     function loadBrevoAssets() {
       if (loaded) return;
       loaded = true;
@@ -105,9 +120,70 @@
       loader("https://sibforms.com/forms/end-form/build/main.js").catch(function () {});
     }
 
+    function getModal() {
+      return document.getElementById("brevo-newsletter-modal");
+    }
+
+    function openModal() {
+      var modal = getModal();
+      if (!modal) return;
+      lastFocusedElement = document.activeElement;
+      loadBrevoAssets();
+      modal.hidden = false;
+      document.documentElement.classList.add("brevo-modal-open");
+      document.body.classList.add("brevo-modal-open");
+      window.setTimeout(function () {
+        var email = document.getElementById("EMAIL");
+        if (email) email.focus();
+      }, 80);
+    }
+
+    function closeModal() {
+      var modal = getModal();
+      if (!modal) return;
+      modal.hidden = true;
+      document.documentElement.classList.remove("brevo-modal-open");
+      document.body.classList.remove("brevo-modal-open");
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") lastFocusedElement.focus();
+    }
+
+    function trapFocus(event) {
+      var modal = getModal();
+      if (!modal || modal.hidden || event.key !== "Tab") return;
+      var focusables = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    function bindModal() {
+      document.querySelectorAll("[data-brevo-open]").forEach(function (button) {
+        button.addEventListener("click", openModal);
+        button.addEventListener("mouseenter", loadBrevoAssets, { once: true });
+        button.addEventListener("focus", loadBrevoAssets, { once: true });
+      });
+
+      document.querySelectorAll("[data-brevo-close]").forEach(function (button) {
+        button.addEventListener("click", closeModal);
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closeModal();
+        trapFocus(event);
+      });
+    }
+
     function armLoader() {
       var section = document.getElementById("newsletter");
       if (!section) return;
+      bindModal();
       if ("IntersectionObserver" in window) {
         var observer = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
@@ -116,7 +192,7 @@
               observer.disconnect();
             }
           });
-        }, { rootMargin: "700px 0px" });
+        }, { rootMargin: "500px 0px" });
         observer.observe(section);
       } else if (window.lbflWhenIdle) {
         window.lbflWhenIdle(loadBrevoAssets, 3200);
