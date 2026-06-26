@@ -67,7 +67,7 @@ plugins:
   - jekyll-polyglot
 
 search: true
-search_full_content: true
+search_full_content: false
 breadcrumbs: true
 
 brevo:
@@ -179,45 +179,3 @@ defaults:
       author_profile: true
       toc: true
       classes: wide
-  - scope:
-      path: ''
-      type: socratic
-    values:
-      layout: single
-      author_profile: true
-      toc: true
-      classes: wide
-  - scope:
-      path: _pages
-      type: pages
-    values:
-      layout: single
-      author_profile: false
-      classes: wide
-  - scope:
-      path: ''
-      type: concepts
-    values:
-      layout: concept_node
-      author_profile: false
-      classes: wide
-      mastery_state: locked
-      cognitive_depth: 1
-  - scope:
-      path: ''
-      type: mcq-arena
-    values:
-      layout: single
-      author_profile: false
-      toc: true
-      classes: wide
-
-author:
-  name: MD. YUSUF
-  avatar: /assets/images/logo.png
-  bio: >-
-    BCS Education Cadre Officer, Lecturer in Zoology, biology educator, learning designer, and founder of Learning Biology For Life. He connects life sciences with systems thinking, reflective pedagogy, human behaviour, leadership, digital learning, and 4IR education.
-  location: Bangladesh
-  email: yusuf.38bcs@gmail.com
-  uri: https://learningbiologyforlife.org/about/
-  home: https://learningbiologyforlife.org
