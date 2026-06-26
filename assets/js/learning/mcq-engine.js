@@ -34,6 +34,21 @@
       }
     },
 
+    escapeHTML(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    },
+
+    getOptionText(node, optionIndex) {
+      const options = Array.isArray(node.options) ? node.options : [];
+      const option = options[optionIndex];
+      return typeof option === "undefined" ? "Not answered" : String(option);
+    },
+
     async startExpedition(arena, state) {
       const box = arena.querySelector("[data-mcq-box]");
       const resultBox = arena.querySelector("[data-mcq-result]");
@@ -71,7 +86,7 @@
           type: "text",
           useMemory: false,
           systemInstruction: "You are an elite academic biology evaluator. Always respond with a raw minified JSON array object matching the specified keys strictly. No conversational texts.",
-          prompt: `Generate exactly ${MCQ_CONFIG.questionsPerSet} complex biology multiple-choice questions for topic focus: ${state.topic}. Output MUST be a valid raw JSON object string with a root "questions" array containing items with these exact keys: "question", "options" (array of 4 text strings), "answerIndex" (0 to 3 integer index pointing to correct choice), "explanation" (brief concept breakdown text).`
+          prompt: `Generate exactly ${MCQ_CONFIG.questionsPerSet} complex biology multiple-choice questions for topic focus: ${state.topic}. Output MUST be a valid raw JSON object string with a root "questions" array containing items with these exact keys: "question", "options" (array of 4 text strings), "answerIndex" (0 to 3 integer index pointing to correct choice), "explanation" (1-2 sentence answer explanation with validity logic: why the correct answer is correct and why the main distractor is less valid).`
         });
 
         let rawText = result.text || result.output || "";
@@ -129,17 +144,18 @@
         card.style.cssText = "background:#020617; border:1px solid rgba(255,255,255,0.03); padding:1.75rem; border-radius:8px;";
 
         let optionsHTML = "";
-        node.options.forEach((opt, optIndex) => {
+        const options = Array.isArray(node.options) ? node.options : [];
+        options.forEach((opt, optIndex) => {
           optionsHTML += `
             <label class="option-label-wrapper" style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.05); padding:12px 16px; border-radius:6px; margin-bottom:0.75rem; cursor:pointer; color:#cbd5e1; font-size:0.95rem; text-align:left;">
               <input type="radio" name="arena_q_${index}" value="${optIndex}" class="option-radio-input" style="accent-color:#00d4b2;">
-              <span>${opt}</span>
+              <span>${this.escapeHTML(opt)}</span>
             </label>
           `;
         });
 
         card.innerHTML = `
-          <h4 class="question-text-line" style="color:#ffffff; font-size:1.1rem; font-weight:600; margin:0 0 1.25rem 0; line-height:1.4; text-align:left;">${index + 1}. ${node.question}</h4>
+          <h4 class="question-text-line" style="color:#ffffff; font-size:1.1rem; font-weight:600; margin:0 0 1.25rem 0; line-height:1.4; text-align:left;">${index + 1}. ${this.escapeHTML(node.question)}</h4>
           <div class="options-vertical-stack" style="display:flex; flex-direction:column;">${optionsHTML}</div>
         `;
         stackContainer.appendChild(card);
@@ -168,12 +184,27 @@
       const generateBtn = arena.querySelector("[data-mcq-generate]");
       
       let correctCount = 0;
+      let reviewHTML = "";
 
       state.quiz.forEach((node, index) => {
         const selected = arena.querySelector(`input[name="arena_q_${index}"]:checked`);
-        if (selected && parseInt(selected.value) === parseInt(node.answerIndex)) {
-          correctCount++;
-        }
+        const selectedIndex = selected ? parseInt(selected.value, 10) : -1;
+        const correctIndex = parseInt(node.answerIndex, 10);
+        const isCorrect = selectedIndex === correctIndex;
+        const selectedText = this.getOptionText(node, selectedIndex);
+        const correctText = this.getOptionText(node, correctIndex);
+        const explanation = node.explanation || "The correct option matches the core biological concept tested by this question. Review the related concept note for deeper validation.";
+
+        if (isCorrect) correctCount++;
+
+        reviewHTML += `
+          <article class="mcq-result-review-card" style="background:#020617; border:1px solid ${isCorrect ? 'rgba(16,185,129,0.32)' : 'rgba(239,68,68,0.32)'}; border-left:4px solid ${isCorrect ? '#10b981' : '#ef4444'}; border-radius:10px; padding:1rem; margin:1rem 0; text-align:left;">
+            <h4 style="color:#ffffff; font-size:1rem; line-height:1.45; margin:0 0 0.75rem 0;">Q${index + 1}. ${this.escapeHTML(node.question)}</h4>
+            <p style="margin:0.35rem 0; color:#cbd5e1; font-size:0.92rem; line-height:1.55;"><strong style="color:${isCorrect ? '#10b981' : '#ef4444'};">Your answer:</strong> ${this.escapeHTML(selectedText)}</p>
+            <p style="margin:0.35rem 0; color:#cbd5e1; font-size:0.92rem; line-height:1.55;"><strong style="color:#10b981;">Correct answer:</strong> ${this.escapeHTML(correctText)}</p>
+            <p style="margin:0.75rem 0 0; color:#94a3b8; font-size:0.92rem; line-height:1.6;"><strong style="color:#ffffff;">Validity logic:</strong> ${this.escapeHTML(explanation)}</p>
+          </article>
+        `;
       });
 
       box.style.display = "none";
@@ -181,9 +212,10 @@
       resultBox.innerHTML = `
         <h3 style="color:#ffffff; font-size:1.4rem; font-weight:800; margin:0 0 0.5rem 0; text-align:center;">Assessment Matrix Completed</h3>
         <div style="font-size:2.5rem; font-weight:800; color:#00d4b2; margin-bottom:1rem; text-align:center;">${correctCount} / ${state.quiz.length}</div>
-        <p style="color:#94a3b8; font-size:0.95rem; line-height:1.6; text-align:center; margin:0;">
-          Your cognitive tracking points have been logged successfully. Focus on concepts requiring deeper verification pipelines to achieve a perfect metric score.
+        <p style="color:#94a3b8; font-size:0.95rem; line-height:1.6; text-align:center; margin:0 0 1.5rem 0;">
+          Review every answer below. Each explanation includes the validity logic behind the correct option.
         </p>
+        <section aria-label="Answer explanations and validity logic" style="margin-top:1rem;">${reviewHTML}</section>
       `;
 
       if (generateBtn) generateBtn.disabled = false;
