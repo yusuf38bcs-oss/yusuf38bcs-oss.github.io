@@ -84,7 +84,7 @@ layout: default
       </div>
     </nav>
 
-    <main id="biology-matrix-sections" class="biology-matrix-sections" aria-label="Biology learning pillars">
+    <section id="biology-matrix-sections" class="biology-matrix-sections" aria-label="Biology learning pillars">
       {% for pillar_group in biology_pillars %}
         {% assign pillar_name = pillar_group.name | default: 'Biology Core' %}
         {% assign pillar_slug = pillar_name | slugify %}
@@ -169,7 +169,7 @@ layout: default
           </div>
         </section>
       {% endfor %}
-    </main>
+    </section>
   {% else %}
     <section class="biology-empty-state" aria-labelledby="biology-empty-title">
       <h2 id="biology-empty-title">No biology nodes found</h2>
