@@ -1,4 +1,4 @@
-<footer class="mycorrhizal-footer" role="contentinfo" aria-label="Ecosystem Foundation Footer">
+<div class="mycorrhizal-footer" aria-label="Ecosystem Foundation Footer">
   <div class="footer-grid-matrix">
     <section class="footer-node footer-node--vectors" aria-labelledby="footer-nav-title">
       <h4 id="footer-nav-title" class="sys-metric">ROOT VECTORS</h4>
@@ -38,7 +38,7 @@
   <div class="footer-author-bridge">
     {% include home/author-profile.html %}
   </div>
-</footer>
+</div>
 
 <style>
   .site-footer-shell {
@@ -78,208 +78,203 @@
   }
 
   .footer-grid-matrix {
-    position: relative;
-    z-index: 1;
-    width: min(1180px, 100%);
+    width: min(100%, 1320px);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, .85fr) minmax(280px, 1.3fr) minmax(0, .95fr);
-    gap: clamp(1rem, 2.3vw, 1.55rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr) minmax(0, 1fr);
+    gap: clamp(1.05rem, 2.4vw, 1.8rem);
     align-items: stretch;
   }
 
   .footer-node {
     min-width: 0;
-    padding: clamp(1.1rem, 3vw, 1.45rem);
+    padding: clamp(1.05rem, 2vw, 1.35rem);
     border: 1px solid var(--border-soft);
-    border-radius: 20px;
-    background: linear-gradient(145deg, rgba(13,21,39,.86), rgba(2,6,23,.62));
-    box-shadow: 0 18px 48px rgba(0,0,0,.28);
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(13,21,39,.9), rgba(7,11,20,.78));
+    box-shadow: 0 18px 40px rgba(0,0,0,.22);
+  }
+
+  .footer-node--vectors,
+  .footer-node--synapse {
+    align-self: stretch;
   }
 
   .center-node {
-    border-color: rgba(0,245,212,.22);
-    background: radial-gradient(circle at top center, rgba(0,245,212,.08), transparent 45%), linear-gradient(145deg, rgba(13,21,39,.9), rgba(2,6,23,.72));
-    text-align: center;
+    border-color: rgba(0,245,212,.24);
+    background: linear-gradient(180deg, rgba(0,212,178,.08), rgba(13,21,39,.82));
   }
 
   .sys-metric {
-    margin: 0 0 1rem;
+    margin: 0 0 .85rem;
     color: var(--synth-cyan);
-    font-size: .76rem;
+    font-size: .78rem;
     font-weight: 900;
-    line-height: 1.25;
-    letter-spacing: .14em;
+    letter-spacing: .085em;
     text-transform: uppercase;
   }
 
   .synaptic-links {
-    margin: 0;
-    padding: 0;
     list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: .62rem;
   }
 
   .synaptic-links a {
-    position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    min-height: 48px;
-    padding: .55rem .2rem .55rem 1.15rem;
+    gap: .5rem;
     color: var(--text-main);
     text-decoration: none;
-    font-size: .95rem;
-    line-height: 1.35;
-    border-radius: 10px;
+    font-weight: 750;
+    overflow-wrap: anywhere;
   }
 
   .synaptic-links a::before {
     content: "";
-    position: absolute;
-    left: .15rem;
-    width: 6px;
-    height: 6px;
+    width: .44rem;
+    height: .44rem;
     border-radius: 999px;
     background: var(--cyan-soft);
-    box-shadow: 0 0 12px rgba(0,245,212,.55);
+    box-shadow: 0 0 14px rgba(0,212,178,.55);
+    flex: 0 0 auto;
   }
 
-  .synaptic-links a:hover,
-  .synaptic-links a:focus-visible {
-    color: #fff;
-    background: rgba(0,245,212,.06);
-    outline: 2px solid rgba(0,245,212,.65);
-    outline-offset: 2px;
+  .synaptic-links a:hover {
+    color: var(--synth-cyan);
   }
 
   .quranic-synthesis {
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
-    max-width: 620px;
     border: 0;
-    color: var(--text-strong);
   }
 
   .quranic-synthesis p {
     margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1.02rem, 2.4vw, 1.22rem);
-    font-style: italic;
-    line-height: 1.75;
-    color: #f8fafc;
+    color: var(--text-strong);
+    font-size: clamp(1.05rem, 2.15vw, 1.45rem);
+    line-height: 1.62;
+    font-weight: 800;
   }
 
   .quranic-synthesis cite {
     display: block;
     margin-top: .85rem;
-    color: var(--synth-cyan);
-    font-size: .82rem;
+    color: var(--cyan-soft);
     font-style: normal;
     font-weight: 800;
   }
 
-  .reflection-prompt,
-  .socratic-prompt-text {
+  .reflection-prompt {
+    margin: 1rem 0 0;
     color: var(--text-main);
-    line-height: 1.62;
+    line-height: 1.72;
   }
 
-  .socratic-reflex-form {
-    display: flex;
-    gap: .55rem;
-    align-items: stretch;
+  .case-study-micro {
+    display: grid;
+    gap: .9rem;
+  }
+
+  .socratic-prompt-text {
+    margin: 0;
+    color: var(--text-main);
+    line-height: 1.65;
+  }
+
+  .footer-input {
+    display: grid;
+    gap: .7rem;
   }
 
   .reflex-input {
-    min-width: 0;
-    min-height: 48px;
-    flex: 1 1 auto;
-    padding: .8rem .9rem;
-    border: 1px solid rgba(0,245,212,.22);
-    border-radius: 12px;
-    background: #020617;
-    color: #f8fafc;
-    font: inherit;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: .85rem 1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(0,245,212,.18);
+    background: rgba(2,6,23,.75);
+    color: var(--text-strong);
     outline: none;
   }
 
+  .reflex-input:focus {
+    border-color: var(--synth-cyan);
+    box-shadow: 0 0 0 3px rgba(0,245,212,.12);
+  }
+
   .reflex-submit-btn {
-    min-height: 48px;
-    min-width: 72px;
-    padding: .75rem 1rem;
+    min-height: 44px;
     border: 0;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #00f5d4, #3b82f6);
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--cyan-soft), #3b82f6);
     color: #020617;
-    font-size: .82rem;
     font-weight: 900;
-    letter-spacing: .07em;
-    text-transform: uppercase;
     cursor: pointer;
   }
 
   .footer-reflex-feedback {
-    margin: .75rem 0 0;
-    padding: .75rem .85rem;
-    border-radius: 12px;
-    font-size: .86rem;
-    line-height: 1.5;
-  }
-
-  .socratic-reflex-container.mastery-state .footer-reflex-feedback {
-    background: rgba(0,245,212,.08);
-    border: 1px solid rgba(0,245,212,.22);
-    color: #bffef4;
-  }
-
-  .socratic-reflex-container.failed-state .footer-reflex-feedback {
-    background: rgba(123,44,191,.1);
-    border: 1px solid rgba(123,44,191,.24);
-    color: #ddd6fe;
+    margin: 0;
+    color: var(--synth-cyan);
+    line-height: 1.55;
   }
 
   .footer-author-bridge {
-    position: relative;
-    z-index: 1;
-    width: min(1180px, 100%);
-    margin: clamp(1.4rem, 4vw, 2.2rem) auto 0;
+    width: min(100%, 920px);
+    margin: clamp(1.4rem, 3vw, 2.2rem) auto 0;
+    min-width: 0;
   }
 
   @media (max-width: 980px) {
-    .footer-grid-matrix { grid-template-columns: 1fr; }
-    .center-node { order: -1; }
+    .footer-grid-matrix {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 560px) {
-    .mycorrhizal-footer { padding: 2.75rem .85rem 1.5rem; }
-    .socratic-reflex-form { flex-direction: column; }
-    .reflex-submit-btn { width: 100%; }
+    .mycorrhizal-footer {
+      padding-left: .85rem;
+      padding-right: .85rem;
+    }
+
+    .footer-node {
+      border-radius: 18px;
+    }
   }
 </style>
 
 <script>
-  (function () {
-    var form = document.querySelector('[data-footer-reflex-form]');
+(function() {
+  "use strict";
+
+  if (window.__lbflFooterReflexBound) return;
+  window.__lbflFooterReflexBound = true;
+
+  document.addEventListener("submit", function(event) {
+    var form = event.target.closest("[data-footer-reflex-form]");
     if (!form) return;
-    var shell = form.closest('.socratic-reflex-container');
-    var input = form.querySelector('.reflex-input');
-    var feedback = document.querySelector('[data-footer-reflex-feedback]');
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      if (!shell || !input || !feedback) return;
-      shell.classList.add('is-processing');
-      shell.classList.remove('mastery-state', 'failed-state');
-      var answer = (input.value || '').trim().toLowerCase();
-      window.setTimeout(function () {
-        shell.classList.remove('is-processing');
-        feedback.hidden = false;
-        if (answer.indexOf('p53') !== -1 || answer.indexOf('tp53') !== -1) {
-          shell.classList.add('mastery-state');
-          feedback.textContent = 'Correct vector: TP53 / p53 is the guardian transcription factor linked with apoptosis control.';
-        } else {
-          shell.classList.add('failed-state');
-          feedback.textContent = 'Close. Re-map the anomaly through apoptosis regulation and the guardian of the genome: TP53 / p53.';
-        }
-      }, 220);
-    });
-  })();
+
+    event.preventDefault();
+
+    var input = form.querySelector(".reflex-input");
+    var feedback = form.parentElement.querySelector("[data-footer-reflex-feedback]");
+    var value = input ? input.value.trim() : "";
+
+    if (!feedback) return;
+
+    if (!value) {
+      feedback.hidden = false;
+      feedback.textContent = "Enter one hypothesis before firing the synapse.";
+      if (input) input.focus();
+      return;
+    }
+
+    feedback.hidden = false;
+    feedback.textContent = "Hypothesis received. Now connect evidence, mechanism, and correction.";
+  });
+})();
 </script>
