@@ -11,46 +11,96 @@ pillar: "Legal"
 difficulty: "Advanced"
 xp: 500
 status: "Active"
+description: "Privacy, cookies, analytics, advertising, newsletter, contact, and consent disclosures for Learning Biology For Life."
 ---
-
-**Protecting Your Neural Assets**
 
 **Effective Date:** June 17, 2026
 
-Welcome to the **Privacy Policy** node of **Learning Biology For Life**. In this ecosystem, data is treated as a trust-based learning asset. We prioritize the **Iqra Initiative** while protecting privacy choices and digital identity.
+Welcome to the **Privacy Policy** of **Learning Biology For Life**. This platform treats learning data, contact information, and user choices as trust-based assets. The purpose of this policy is to explain what information may be collected, how services such as Google Analytics, Google Tag Manager, Google AdSense, Cloudflare, Brevo, and contact forms may process information, and how users can manage their choices.
 
-## 1. Data Collection and Synaptic Security
+## 1. Information We May Collect
 
-We use limited technical and voluntary information to keep the site stable, secure, and useful for learners.
+We collect limited information in two main ways.
 
-Technical information may include browser type, device type, requested page, approximate region, date and time of access, and security logs. Voluntary information may include name, email address, message content, and newsletter subscription status when submitted by the user.
+**Technical information** may include browser type, device type, requested page, approximate region, date and time of access, referrer, consent status, and basic security logs.
 
-## 2. Cookies
+**Voluntary information** may include name, email address, message content, newsletter subscription status, and any information submitted through a contact or subscription form.
 
-Essential cookies or browser storage support navigation, security, accessibility, site stability, and preference preservation.
+Users should not submit sensitive personal information, student IDs, passwords, medical records, financial data, or private third-party information through public forms.
 
-Optional services may include analytics, advertising scripts, newsletter processing, embedded learning tools, and performance measurement. Optional services should run only after consent where consent is required.
+## 2. How We Use Information
 
-Review choices at [Cookie Preferences]({{ '/cookie-preferences/' | relative_url }}).
+Information may be used to:
 
-## 3. Services
+- Keep the website stable, secure, and accessible.
+- Understand which educational pages are useful to learners.
+- Respond to contact messages.
+- Send newsletters only when a user subscribes.
+- Improve page structure, learning pathways, and user experience.
+- Support AdSense review and advertising operations where applicable.
 
-The platform may use GitHub Pages, Cloudflare, Google Workspace, Google Analytics, Brevo, and Formspree for hosting, security, communication, analytics, subscriptions, and contact form processing.
+## 3. Cookies and Browser Storage
 
-Each provider may process limited information according to its own policy and configuration.
+Learning Biology For Life may use cookies or browser storage for essential site functionality, security, consent preferences, analytics, advertising scripts, newsletter forms, and embedded learning tools.
 
-## 4. AI-Assisted Learning
+Essential storage supports navigation, security, preference preservation, and accessibility. Optional cookies or scripts may support analytics, advertising, newsletter processing, and performance measurement.
 
-Some explanations, quizzes, and Socratic learning tools may be AI-assisted. AI outputs are educational aids and should be verified before important academic or professional use.
+Users can review choices at [Cookie Preferences]({{ '/cookie-preferences/' | relative_url }}).
 
-## 5. User Control
+## 4. Google Analytics and Google Tag Manager
 
-Users may accept or decline non-essential cookies, clear browser site data, unsubscribe from newsletters, and use the [Contact]({{ '/contact/' | relative_url }}) page for privacy concerns.
+The site may use **Google Tag Manager** to manage approved tags and **Google Analytics 4** to understand general usage patterns. Analytics information may include page views, device type, approximate region, engagement events, and technical performance signals.
 
-## 6. External Links
+The site should not intentionally send personally identifiable information such as names, email addresses, phone numbers, contact message content, or student identifiers to Google Analytics or Google Tag Manager.
 
-External sites have their own policies. Please review them before submitting information.
+## 5. Google AdSense and Advertising Cookies
 
-## 7. Updates
+The site may use **Google AdSense** to display ads after approval. Third-party vendors, including Google, may use cookies to serve ads based on a user's prior visits to this website or other websites.
 
-This policy may evolve as the educational ecosystem grows. The effective date above identifies the current version.
+Google's advertising cookies may enable Google and its partners to serve ads based on visits to Learning Biology For Life and/or other sites on the internet. Users may opt out of personalized advertising through Google's Ads Settings or other available browser and privacy controls.
+
+Ads should not be placed in a way that misleads users, blocks content, causes accidental clicks, or appears as navigation, download buttons, assessment buttons, or form controls.
+
+## 6. Consent Choices
+
+The site uses a consent-aware model. Non-essential analytics and advertising storage should remain restricted until the user provides consent where consent is required. Users may accept or decline through the cookie banner. Users may also clear browser site data at any time to reset stored consent choices.
+
+For users in regions with additional privacy requirements, including the EEA, UK, and Switzerland, advertising and analytics behavior may depend on legally valid consent and the available consent-management configuration.
+
+## 7. Newsletter and Brevo
+
+The newsletter form may be processed by **Brevo**. If a user subscribes, their email address and subscription choice may be transferred to Brevo for newsletter delivery and subscription management. Users may unsubscribe through links included in newsletter emails.
+
+## 8. Cloudflare and Security Processing
+
+The site may use **Cloudflare** for DNS, caching, HTTPS, firewall, bot protection, and security monitoring. Cloudflare may process technical information such as IP address, request metadata, browser characteristics, and security signals to protect the site and improve performance.
+
+## 9. Contact Forms and Communication
+
+Messages submitted through the contact page may be used only to respond to the inquiry, improve learning support, or handle corrections. Users should avoid submitting private, sensitive, medical, legal, financial, or confidential information.
+
+## 10. AI-Assisted Learning
+
+Some explanations, quizzes, outlines, or learning tools may be AI-assisted. AI outputs are educational aids and should be reviewed, verified, and contextualized before academic, professional, health-related, or high-stakes use.
+
+## 11. External Links
+
+External sites have their own policies. Learning Biology For Life is not responsible for external content, privacy practices, availability, or accuracy.
+
+## 12. User Control
+
+Users may:
+
+- Accept or decline non-essential cookies.
+- Clear browser cookies and site data.
+- Use browser privacy tools or ad personalization controls.
+- Unsubscribe from newsletters.
+- Contact the site for privacy concerns or correction requests.
+
+## 13. Updates
+
+This policy may evolve as the educational ecosystem grows. The effective date identifies the current version.
+
+## 14. Contact
+
+For privacy questions, corrections, or data-related concerns, use the [Contact]({{ '/contact/' | relative_url }}) page.
