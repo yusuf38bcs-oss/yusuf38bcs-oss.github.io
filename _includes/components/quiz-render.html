@@ -46,7 +46,7 @@
 
         <div class="feedback-box" style="display: none; margin-top: 1.25rem; padding: 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; text-align: left; box-sizing: border-box; width: 100%;">
           <p class="result-string" style="margin: 0 0 0.6rem 0; font-weight: 800; font-size: 1rem; text-align: left;"></p>
-          <p style="margin: 0; color: #94a3b8; text-align: left;"><strong style="color: #ffffff; font-weight: 700;">Socratic Analysis:</strong> {{ q.explanation }}</p>
+          <p style="margin: 0; color: #94a3b8; text-align: left;"><strong style="color: #ffffff; font-weight: 700;">Answer Explanation &amp; Validity Logic:</strong> {{ q.explanation | default: "The correct option matches the core concept tested by this question. Review the source lesson for deeper concept validation." }}</p>
         </div>
       </div>
     {% endfor %}
@@ -93,7 +93,7 @@
             feedbackBox.style.background = "rgba(16, 185, 129, 0.06)";
             feedbackBox.style.borderLeft = "4px solid #10b981";
             resultString.style.color = "#10b981";
-            resultString.textContent = "✓ Correct Matrix Vector Match";
+            resultString.textContent = "✓ Correct — your answer matches the valid concept.";
           } else {
             if (selectedLabel) {
               selectedLabel.style.border = "1px solid #ef4444";
@@ -107,7 +107,7 @@
             feedbackBox.style.background = "rgba(239, 68, 68, 0.06)";
             feedbackBox.style.borderLeft = "4px solid #ef4444";
             resultString.style.color = "#ef4444";
-            resultString.textContent = "✗ Desynchronized Vector Target";
+            resultString.textContent = "✗ Incorrect — compare your choice with the validity logic below.";
           }
           feedbackBox.style.display = "block";
         }
@@ -121,7 +121,7 @@
 
       const submitBtn = quizBlock.querySelector('.quiz-submit-btn');
       if (submitBtn) {
-        submitBtn.textContent = "Metrics Synchronized";
+        submitBtn.textContent = "Answer Explanations Revealed";
         submitBtn.style.opacity = "0.6";
         submitBtn.disabled = true;
       }
