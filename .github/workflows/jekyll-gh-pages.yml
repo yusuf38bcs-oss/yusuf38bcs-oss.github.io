@@ -60,14 +60,20 @@ jobs:
           test -f _site/biology/index.html || (echo "Missing /biology/" && exit 1)
           grep -q "biology-matrix-hub-wrapper" _site/biology/index.html || (echo "Biology Matrix wrapper missing from /biology/" && exit 1)
           grep -q "biology-matrix-card-link" _site/biology/index.html || (echo "Biology Matrix cards missing from /biology/" && exit 1)
+          grep -q "Biology as Theory, Life as Practice" _site/biology/index.html || (echo "Biology LOLO/LALA framework missing from /biology/" && exit 1)
           test -f _site/about/index.html || (echo "Missing /about/" && exit 1)
           grep -q "MD. YUSUF" _site/about/index.html || (echo "Author profile identity missing from /about/" && exit 1)
           grep -q "BCS Education Cadre" _site/about/index.html || (echo "Author professional profile missing from /about/" && exit 1)
           test -f _site/privacy-policy/index.html || (echo "Missing /privacy-policy/" && exit 1)
+          grep -q "Google AdSense and Advertising Cookies" _site/privacy-policy/index.html || (echo "AdSense privacy disclosure missing" && exit 1)
           test -f _site/terms-and-conditions/index.html || (echo "Missing /terms-and-conditions/" && exit 1)
           test -f _site/disclaimer/index.html || (echo "Missing /disclaimer/" && exit 1)
+          grep -q "Educational Purpose Only" _site/disclaimer/index.html || (echo "Disclaimer educational boundary missing" && exit 1)
           test -f _site/contact/index.html || (echo "Missing /contact/" && exit 1)
           test -f _site/cookie-preferences/index.html || (echo "Missing /cookie-preferences/" && exit 1)
+          grep -q "GTM-WPZ6MPK4" _site/cookie-preferences/index.html || (echo "Cookie preferences GTM disclosure missing" && exit 1)
+          test -f _site/editorial-policy/index.html || (echo "Missing /editorial-policy/" && exit 1)
+          grep -q "Content Creation Method" _site/editorial-policy/index.html || (echo "Editorial policy framework missing" && exit 1)
           test -f _site/welcome/index.html || (echo "Missing /welcome/" && exit 1)
           test -f _site/thank-you/index.html || (echo "Missing /thank-you/" && exit 1)
           test -f _site/archive/index.html || (echo "Missing /archive/" && exit 1)
@@ -78,7 +84,9 @@ jobs:
           grep -q "formspree.io/f/mgodyrbq" _site/contact/index.html || (echo "Contact Formspree endpoint missing" && exit 1)
           test -f _site/life-philosophy/index.html || (echo "Missing /life-philosophy/" && exit 1)
           test -f _site/synaptic-bridge/index.html || (echo "Missing /synaptic-bridge/" && exit 1)
+          grep -q "Connecting Biology with Life" _site/synaptic-bridge/index.html || (echo "Synaptic Bridge framework missing" && exit 1)
           test -f _site/life-practices/index.html || (echo "Missing /life-practices/" && exit 1)
+          grep -q "Biological Triggers Behind Human Action" _site/life-practices/index.html || (echo "Life Practices framework missing" && exit 1)
           test -f _site/life-practices/cognitive-audit/index.html || (echo "Missing /life-practices/cognitive-audit/" && exit 1)
           test -f _site/socratic/multiple-intelligences/index.html || (echo "Missing /socratic/multiple-intelligences/" && exit 1)
           test -f _site/socratic/personality-archetypes/index.html || (echo "Missing /socratic/personality-archetypes/" && exit 1)
@@ -90,7 +98,7 @@ jobs:
 
           # AdSense approval-readiness routes
           test -f _site/categories/index.html || (echo "Missing /categories/" && exit 1)
-          grep -q "Categories" _site/categories/index.html || (echo "Categories archive title missing" && exit 1)
+          grep -q "Core Learning Pathways" _site/categories/index.html || (echo "Categories learning directory missing" && exit 1)
           test -f _site/robots.txt || (echo "Missing /robots.txt" && exit 1)
           grep -q "Allow: /" _site/robots.txt || (echo "robots.txt does not allow crawlers" && exit 1)
           test -f _site/ads.txt || (echo "Missing /ads.txt" && exit 1)
@@ -98,11 +106,14 @@ jobs:
           test -f _site/sitemap.xml || (echo "Missing /sitemap.xml" && exit 1)
           grep -q "learningbiologyforlife.org" _site/sitemap.xml || (echo "sitemap.xml absolute site URLs missing" && exit 1)
           grep -q "footer-legal-links" _site/index.html || (echo "Global legal footer links missing from homepage" && exit 1)
+          grep -q "Editorial Policy" _site/index.html || (echo "Editorial Policy missing from global footer" && exit 1)
           test "$(grep -o 'id="gdpr-banner"' _site/index.html | wc -l | tr -d ' ')" = "1" || (echo "Homepage must render exactly one GDPR banner" && exit 1)
 
           # OMEGA Guardrail v2: route, Worker, and Socratic rendering contracts
           test -f _site/mcq-arena/index.html || (echo "Missing /mcq-arena/" && exit 1)
+          grep -q "Quality Standard for Every MCQ Page" _site/mcq-arena/index.html || (echo "MCQ Arena quality framework missing" && exit 1)
           test -f _site/socratic/index.html || (echo "Missing /socratic/" && exit 1)
+          grep -q "not a clinical, psychological, medical, or professional diagnostic tool" _site/socratic/index.html || (echo "Socratic 4.0 safety disclaimer missing" && exit 1)
           test -f worker/wrangler.toml || (echo "Missing worker/wrangler.toml" && exit 1)
           test -f wrangler.jsonc || (echo "Missing root wrangler.jsonc for Cloudflare Workers builds" && exit 1)
           test ! -f wrangler.toml || (echo "Root wrangler.toml must not exist in Jekyll site root" && exit 1)
@@ -116,7 +127,7 @@ jobs:
           grep -q "data-socratic-node" _site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html || (echo "Socratic prompted-page include missing" && exit 1)
 
           ruby -rjson -e 'JSON.parse(File.read("_site/assets/data/graph_manifest.json")); puts "Graph manifest JSON validated."'
-          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, Archive, AdSense readiness routes, and OMEGA v2 guardrails validated."
+          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, Archive, AdSense readiness routes, editorial policy, content frameworks, and OMEGA v2 guardrails validated."
 
       - name: Optional Edge Graph Sync Hook
         if: success()
@@ -142,7 +153,7 @@ jobs:
           retention-days: 1
 
   deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
