@@ -23,6 +23,7 @@ include:
   - _pages
 
 exclude:
+  - README.md
   - wrangler.jsonc
   - worker
   - scripts
