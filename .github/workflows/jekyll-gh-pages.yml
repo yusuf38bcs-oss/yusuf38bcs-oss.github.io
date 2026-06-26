@@ -109,6 +109,15 @@ jobs:
           grep -q "Editorial Policy" _site/index.html || (echo "Editorial Policy missing from global footer" && exit 1)
           test "$(grep -o 'id="gdpr-banner"' _site/index.html | wc -l | tr -d ' ')" = "1" || (echo "Homepage must render exactly one GDPR banner" && exit 1)
 
+          # Native Bangla route guardrails
+          test -f _site/bn/index.html || (echo "Missing native Bangla homepage /bn/" && exit 1)
+          grep -q "Native Bangla Gateway" _site/bn/index.html || (echo "Native Bangla homepage content missing" && exit 1)
+          grep -q "জীববিজ্ঞান ম্যাট্রিক্স" _site/bn/index.html || (echo "Native Bangla learning links missing" && exit 1)
+          test -f _site/bn/biology/index.html || (echo "Missing native Bangla /bn/biology/" && exit 1)
+          test -f _site/bn/about/index.html || (echo "Missing native Bangla /bn/about/" && exit 1)
+          test ! -f _site/README.html || (echo "README.md leaked into public output" && exit 1)
+          ! grep -R "# \.github\.io\|Official website for Learning Biology For Life.*Deployment refresh" _site/bn _site/index.html || (echo "Stale .github.io fallback leaked into public Bangla output" && exit 1)
+
           # OMEGA Guardrail v2: route, Worker, and Socratic rendering contracts
           test -f _site/mcq-arena/index.html || (echo "Missing /mcq-arena/" && exit 1)
           grep -q "Quality Standard for Every MCQ Page" _site/mcq-arena/index.html || (echo "MCQ Arena quality framework missing" && exit 1)
@@ -127,7 +136,7 @@ jobs:
           grep -q "data-socratic-node" _site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html || (echo "Socratic prompted-page include missing" && exit 1)
 
           ruby -rjson -e 'JSON.parse(File.read("_site/assets/data/graph_manifest.json")); puts "Graph manifest JSON validated."'
-          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, Archive, AdSense readiness routes, editorial policy, content frameworks, and OMEGA v2 guardrails validated."
+          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, Archive, AdSense readiness routes, editorial policy, native Bangla routes, content frameworks, and OMEGA v2 guardrails validated."
 
       - name: Optional Edge Graph Sync Hook
         if: success()
