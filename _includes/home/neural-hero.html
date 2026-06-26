@@ -42,10 +42,12 @@
 
     var reduceMotion = false;
     var reduceData = false;
+    var smallScreen = false;
     try { reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (_ignored) {}
     try { reduceData = window.matchMedia("(prefers-reduced-data: reduce)").matches; } catch (_ignored) {}
+    try { smallScreen = window.matchMedia("(max-width: 640px)").matches; } catch (_ignored) {}
 
-    if (reduceData) return;
+    if (reduceData || smallScreen) return;
     if ("requestIdleCallback" in window) {
       window.requestIdleCallback(revealHeroArtwork, { timeout: reduceMotion ? 2600 : 1800 });
     } else {
@@ -253,8 +255,10 @@
       align-items: flex-start;
     }
 
+    .hero-header-bg-media::before,
     .premium-neural-hero.hero-bg-loaded .hero-header-bg-media::before {
-      opacity: 0.34;
+      background-image: none !important;
+      opacity: 0 !important;
     }
 
     .hero-content-matrix {
