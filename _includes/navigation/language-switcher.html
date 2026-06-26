@@ -1,10 +1,12 @@
 {% comment %}
-  Native Polyglot language switcher.
-  Keeps Google Translate available while native bilingual routes mature.
-  Visible labels remain compact for the masthead; hreflang exposes target language.
+  Native English–Bangla language switcher.
+  Production-safe rule:
+  - Only route to reviewed native Bangla pages.
+  - If a matching Bangla page is not available yet, send users to the Bangla learning gateway /bn/.
+  - Never generate blind /bn/{{ current_path }} links, because incomplete native routes can expose stale fallback pages.
 {% endcomment %}
 
-{% assign active_lang = page.lang | default: site.active_lang | default: site.default_lang | default: 'en' %}
+{% assign active_lang = page.lang | default: page.language | default: site.active_lang | default: site.default_lang | default: 'en' %}
 {% assign base_path = page.permalink | default: page.url | default: '/' %}
 {% assign clean_path = base_path | replace_first: '/bn/', '/' %}
 {% assign first_char = clean_path | slice: 0 %}
@@ -12,8 +14,26 @@
   {% assign clean_path = clean_path | prepend: '/' %}
 {% endunless %}
 {% assign site_origin = site.url | default: '' %}
-{% assign english_href = site_origin | append: clean_path %}
-{% assign bangla_path = clean_path | prepend: '/bn' %}
+
+{% assign english_path = clean_path %}
+{% if page.page_id == 'home' %}
+  {% assign english_path = '/' %}
+{% elsif page.page_id == 'about' %}
+  {% assign english_path = '/about/' %}
+{% elsif page.page_id == 'biology' %}
+  {% assign english_path = '/biology/' %}
+{% endif %}
+
+{% assign bangla_path = '/bn/' %}
+{% if page.page_id == 'home' or clean_path == '/' %}
+  {% assign bangla_path = '/bn/' %}
+{% elsif page.page_id == 'about' or clean_path == '/about/' %}
+  {% assign bangla_path = '/bn/about/' %}
+{% elsif page.page_id == 'biology' or clean_path == '/biology/' %}
+  {% assign bangla_path = '/bn/biology/' %}
+{% endif %}
+
+{% assign english_href = site_origin | append: english_path %}
 {% assign bangla_href = site_origin | append: bangla_path %}
 
 <nav class="lbfl-language-switcher" aria-label="Language switcher">
@@ -21,11 +41,11 @@
      href="{{ english_href }}"
      hreflang="en"
      title="English version"
-     aria-label="Eng version"{% if active_lang == 'en' %} aria-current="page"{% endif %}>Eng</a>
+     aria-label="English version"{% if active_lang == 'en' %} aria-current="page"{% endif %}>Eng</a>
   <span class="lbfl-language-switcher__divider" aria-hidden="true">|</span>
   <a class="lbfl-language-switcher__link{% if active_lang == 'bn' %} is-active{% endif %}"
      href="{{ bangla_href }}"
      hreflang="bn"
      title="Bangla version"
-     aria-label="Ban version"{% if active_lang == 'bn' %} aria-current="page"{% endif %}>Ban</a>
+     aria-label="Bangla version"{% if active_lang == 'bn' %} aria-current="page"{% endif %}>Ban</a>
 </nav>
