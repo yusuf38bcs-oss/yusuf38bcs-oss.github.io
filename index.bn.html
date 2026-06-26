@@ -1,0 +1,133 @@
+---
+layout: single
+title: "বাংলা হোম"
+permalink: /
+lang: bn
+language: bn
+locale: bn_BD
+page_id: home
+author_profile: false
+classes: wide
+description: "Learning Biology For Life-এর native Bangla gateway for Biology, Synaptic Bridge, Life Practices, MCQ Arena, Socratic 4.0 and learner reflection."
+---
+
+<section class="bn-home-shell" lang="bn" aria-labelledby="bn-home-title">
+  <div class="bn-home-hero">
+    <p class="bn-home-kicker">Native Bangla Gateway</p>
+    <h1 id="bn-home-title">Learning Biology For Life — বাংলা শেখার প্রবেশদ্বার</h1>
+    <p><strong>Biology হলো academic theory, life হলো practical application, আর learning হলো তাদের মধ্যে bridge.</strong> এই বাংলা প্রবেশদ্বার শিক্ষার্থীকে জীববিজ্ঞান, জীবনচর্চা, প্রতিফলন, MCQ practice এবং Socratic 4.0 learning pathway-তে নিরাপদভাবে নিয়ে যায়।</p>
+  </div>
+
+  <nav class="bn-home-grid" aria-label="বাংলা শেখার পথসমূহ">
+    <a href="{{ '/bn/biology/' | relative_url }}">
+      <strong>জীববিজ্ঞান ম্যাট্রিক্স</strong>
+      <span>HSC Biology, Higher Zoology, Human Physiology, Ecology, Genetics, Biostatistics এবং Animal Diversity-এর structured academic hub.</span>
+    </a>
+    <a href="{{ '/synaptic-bridge/' | relative_url }}">
+      <strong>Synaptic Bridge</strong>
+      <span>Textbook Biology-কে health, behaviour, environment, ethics এবং real-life decision-এর সাথে যুক্ত করার pathway.</span>
+    </a>
+    <a href="{{ '/life-practices/' | relative_url }}">
+      <strong>Life Practices</strong>
+      <span>মানব আচরণ, স্ব-সংশোধন, নেতৃত্ব, habit, dream, hope এবং behavioural pattern বোঝার reflective section.</span>
+    </a>
+    <a href="{{ '/mcq-arena/' | relative_url }}">
+      <strong>MCQ Arena</strong>
+      <span>Answer explanation ও validity logic সহ Biology assessment practice.</span>
+    </a>
+    <a href="{{ '/socratic/' | relative_url }}">
+      <strong>Socratic 4.0</strong>
+      <span>Multiple Intelligences, personality reflection, cognitive graph এবং non-clinical self-tracking-এর learning framework.</span>
+    </a>
+    <a href="{{ '/bn/about/' | relative_url }}">
+      <strong>লেখক পরিচিতি</strong>
+      <span>MD. Yusuf-এর educational mission, Biology pedagogy এবং Learning Biology For Life-এর দর্শন।</span>
+    </a>
+  </nav>
+
+  <section class="bn-home-note" aria-labelledby="bn-home-note-title">
+    <h2 id="bn-home-note-title">বাংলা সংস্করণ সম্পর্কে</h2>
+    <p>Native Bangla content ধাপে ধাপে সম্পন্ন হচ্ছে। যে পৃষ্ঠার পূর্ণ বাংলা সংস্করণ এখনো প্রস্তুত নয়, সেখানে Ban বোতাম আপনাকে এই নিরাপদ বাংলা gateway-তে নিয়ে আসবে। এতে অসম্পূর্ণ বা stale fallback page দেখানোর ঝুঁকি থাকবে না।</p>
+  </section>
+</section>
+
+<style>
+  .bn-home-shell {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-bottom: 6rem;
+  }
+
+  .bn-home-hero,
+  .bn-home-note,
+  .bn-home-grid a {
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.42));
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+  }
+
+  .bn-home-hero,
+  .bn-home-note {
+    padding: clamp(1.15rem, 3vw, 2rem);
+    margin: 1rem 0;
+  }
+
+  .bn-home-kicker {
+    margin: 0 0 0.5rem !important;
+    color: #7fffe7 !important;
+    font-size: 0.76rem !important;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .bn-home-hero h1,
+  .bn-home-note h2 {
+    margin-top: 0;
+    line-height: 1.2;
+  }
+
+  .bn-home-hero p,
+  .bn-home-note p,
+  .bn-home-grid span {
+    color: #dbeafe;
+    line-height: 1.7;
+  }
+
+  .bn-home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.9rem;
+    margin: 1rem 0;
+  }
+
+  .bn-home-grid a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none !important;
+  }
+
+  .bn-home-grid strong {
+    display: block;
+    color: #7fffe7;
+    font-size: 1.1rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .bn-home-grid span {
+    display: block;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 700px) {
+    .bn-home-grid {
+      grid-template-columns: 1fr;
+    }
+    .bn-home-hero,
+    .bn-home-note,
+    .bn-home-grid a {
+      border-radius: 18px;
+    }
+  }
+</style>
