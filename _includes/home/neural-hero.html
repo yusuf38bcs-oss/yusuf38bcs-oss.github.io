@@ -5,26 +5,31 @@
   <div class="hero-wrapper">
     <div class="hero-content-matrix">
       <div class="system-status-badge">
-        <span class="status-pulse" aria-hidden="true"></span> Neural Network Active
+        <span class="status-pulse" aria-hidden="true"></span> Biology Learning Platform
       </div>
 
       <h1 id="homepage-hero-title" class="neural-hero-title">
-        The Cognitive Wave of <span class="gradient-text">Education</span>
+        Where <span class="gradient-text">Biology</span> Meets Life
       </h1>
 
       <p class="neural-hero-subtitle">
-        Mapping the intellectual and interconnected nature of the biological sciences, life philosophy, and the 4IR ecosystem.
+        HSC Biology, Higher Zoology, MCQ practice, diagram-based explanation, Socratic questioning, and reflective scientific learning for Bangladeshi learners and teachers.
       </p>
 
       <div class="hero-actions-grid">
-        <a href="{{ '/biology/' | relative_url }}" class="premium-btn btn--cyan" aria-label="Enter Biology Hub">
+        <a href="{{ '/biology/hsc-corner/' | relative_url }}" class="premium-btn btn--cyan" aria-label="Explore HSC Biology">
           <span class="btn-icon" aria-hidden="true">🔬</span>
-          <span class="btn-text">Enter Biology Hub</span>
+          <span class="btn-text">HSC Biology</span>
         </a>
 
-        <a href="{{ '/life-philosophy/' | relative_url }}" class="premium-btn btn--outline" aria-label="Open Philosophical Vectors">
-          <span class="btn-icon" aria-hidden="true">🌌</span>
-          <span class="btn-text">Philosophical Vectors</span>
+        <a href="{{ '/biology/higher-zoology-tree/' | relative_url }}" class="premium-btn btn--outline" aria-label="Explore Higher Zoology">
+          <span class="btn-icon" aria-hidden="true">🧬</span>
+          <span class="btn-text">Higher Zoology</span>
+        </a>
+
+        <a href="{{ '/mcq-arena/' | relative_url }}" class="premium-btn btn--outline" aria-label="Open MCQ Arena">
+          <span class="btn-icon" aria-hidden="true">✅</span>
+          <span class="btn-text">MCQ Arena</span>
         </a>
       </div>
     </div>
@@ -99,9 +104,7 @@
     transition: opacity 0.45s ease;
   }
 
-  .premium-neural-hero.hero-bg-loaded .hero-header-bg-media::before {
-    opacity: 0.42;
-  }
+  .premium-neural-hero.hero-bg-loaded .hero-header-bg-media::before { opacity: 0.42; }
 
   .premium-neural-hero::before {
     content: "";
@@ -135,12 +138,7 @@
     pointer-events: none;
   }
 
-  .hero-wrapper {
-    position: relative;
-    z-index: 10;
-    max-width: 900px;
-    width: 100%;
-  }
+  .hero-wrapper { position: relative; z-index: 10; max-width: 900px; width: 100%; }
 
   .hero-content-matrix {
     position: relative;
@@ -200,24 +198,19 @@
     color: #f8fafc !important;
     font-size: clamp(1rem, 2vw, 1.25rem);
     line-height: 1.6;
-    max-width: 700px;
+    max-width: 740px;
     margin: 0 auto 3rem auto;
     text-shadow: 0 3px 16px rgba(0, 0, 0, 0.92);
   }
 
-  .hero-actions-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
+  .hero-actions-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
 
   .premium-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 1.55rem;
     border-radius: 12px;
     font-weight: 800;
     font-size: 1rem;
@@ -225,88 +218,31 @@
     transition: transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
   }
 
-  .premium-btn:focus-visible {
-    outline: 3px solid rgba(103, 232, 249, 0.95);
-    outline-offset: 3px;
-  }
-
-  .premium-btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .premium-btn.btn--cyan {
-    background: #00d4b2;
-    color: #020617 !important;
-    border: 1px solid #00d4b2;
-  }
-
-  .premium-btn.btn--outline {
-    background: rgba(2, 6, 23, 0.72);
-    color: #f8fafc !important;
-    border: 1px solid rgba(255, 255, 255, 0.34);
-  }
-
+  .premium-btn:focus-visible { outline: 3px solid rgba(103, 232, 249, 0.95); outline-offset: 3px; }
+  .premium-btn:hover { transform: translateY(-2px); }
+  .premium-btn.btn--cyan { background: #00d4b2; color: #020617 !important; border: 1px solid #00d4b2; }
+  .premium-btn.btn--outline { background: rgba(2, 6, 23, 0.72); color: #f8fafc !important; border: 1px solid rgba(255, 255, 255, 0.34); }
   .btn-icon { font-size: 1.2rem; }
 
   @media (max-width: 640px) {
     .premium-neural-hero {
-      min-height: 660px;
-      padding: 4.25rem 1rem 3rem;
-      align-items: flex-start;
+      min-height: 600px;
+      padding: 3.5rem 1rem 2.5rem;
+      align-items: center;
     }
 
     .hero-header-bg-media::before,
-    .premium-neural-hero.hero-bg-loaded .hero-header-bg-media::before {
-      background-image: none !important;
-      opacity: 0 !important;
-    }
+    .premium-neural-hero.hero-bg-loaded .hero-header-bg-media::before { background-image: none !important; }
 
-    .hero-content-matrix {
-      margin-top: 2.25rem;
-      padding: 1rem 0.75rem;
-      background: linear-gradient(180deg, rgba(2, 6, 23, 0.76), rgba(2, 6, 23, 0.42));
-    }
-
-    .system-status-badge {
-      font-size: 0.72rem;
-      margin-bottom: 1.35rem;
-    }
-
-    .neural-hero-title {
-      font-size: clamp(2.05rem, 10.5vw, 3.1rem);
-    }
-
-    .neural-hero-subtitle {
-      text-align: left;
-      font-size: 1.05rem;
-      margin-bottom: 2rem;
-    }
-
-    .hero-actions-grid {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .premium-btn {
-      width: 100%;
-      min-height: 60px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .status-pulse {
-      animation: none;
-    }
-
-    .hero-header-bg-media::before,
-    .premium-btn {
-      transition: none;
-    }
+    .hero-content-matrix { padding: 1.15rem; border-radius: 22px; }
+    .system-status-badge { margin-bottom: 1.25rem; }
+    .neural-hero-title { font-size: clamp(2rem, 9vw, 2.85rem); }
+    .neural-hero-subtitle { margin-bottom: 2rem; font-size: 1rem; }
+    .premium-btn { width: 100%; padding: 0.85rem 1rem; }
   }
 
   @keyframes pulse {
-    0% { transform: scale(0.95); opacity: 1; }
-    50% { transform: scale(1.45); opacity: 0.55; }
-    100% { transform: scale(0.95); opacity: 1; }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
   }
 </style>
