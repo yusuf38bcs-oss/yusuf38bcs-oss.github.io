@@ -1,5 +1,4 @@
 ---
-
 title: Cell Biology & Physiology
 layout: single
 language: en
@@ -16,6 +15,16 @@ hsc_alignment: "HSC Biology: cell structure, organelles, and cell division"
 concept_level: "Assessment Bank"
 ---
 
-This `mcq-arena` collection item exposes the `cell_biology` quiz from `_data/quizzes.yml` as an individual Markdown page while retaining the shared data bank as the canonical source.
+# Cell Biology & Physiology MCQ Bank
+
+This data-bank page supports assessment on the living cell as the functional unit of life. The quiz focuses on organelles, membrane logic, cellular metabolism, cell cycle, chromosome behaviour, mitosis, meiosis, and the relationship between microscopic structure and physiological function.
+
+## What to revise
+
+Before attempting the quiz, revise cell theory, prokaryotic and eukaryotic cell differences, organelle functions, transport across membranes, enzyme-controlled reactions, DNA organization, and the stages of cell division. Most incorrect answers in cell biology come from confusing similar organelles or mixing up sequence-based events.
+
+## Learning target
+
+The target is not random answering. The target is to identify the concept in the stem, reject biologically impossible options, and use the explanation to strengthen concept memory.
 
 {% include components/quiz-render.html quiz_id=page.quiz_id %}
