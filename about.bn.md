@@ -4,7 +4,7 @@ author_profile: false
 sidebar:
   nav: "synaptic_nav"
 title: "লেখক পরিচিতি"
-excerpt: "MD. YUSUF-এর পেশাগত ও একাডেমিক পরিচিতি; Learning Biology For Life-এর প্রতিষ্ঠাতা, জীববিজ্ঞান শিক্ষক এবং BCS Education Cadre Officer।"
+excerpt: "MD. Yusuf-এর পেশাগত পরিচয়, জীববিজ্ঞানভিত্তিক শিক্ষাদর্শন এবং Learning Biology For Life-এর উদ্দেশ্য।"
 permalink: /about/
 lang: bn
 language: bn
@@ -19,109 +19,109 @@ status: "Active"
 ---
 
 <section class="author-page-hero" aria-label="লেখক পরিচিতির সারাংশ">
-  <p class="author-page-hero__eyebrow">Founder • Biology Educator • Learning Designer</p>
-  <h2>MD. YUSUF</h2>
+  <p class="author-page-hero__eyebrow">প্রতিষ্ঠাতা · জীববিজ্ঞান শিক্ষক · শিক্ষানকশাকার</p>
+  <h2>MD. Yusuf</h2>
   <p><strong>BCS Education Cadre Officer | Lecturer in Zoology | Founder of Learning Biology For Life</strong></p>
-  <p>MD. YUSUF একজন বাংলাদেশি BCS General Education Cadre Officer, প্রাণিবিদ্যার প্রভাষক এবং Learning Biology For Life-এর প্রতিষ্ঠাতা-লেখক। তাঁর কাজ জীববিজ্ঞান, প্রতিফলনভিত্তিক শিক্ষা, মানব আচরণ, ডিজিটাল পেডাগজি, নেতৃত্ব এবং 4IR-উপযোগী শিক্ষাকে সংযুক্ত করে।</p>
+  <p>MD. Yusuf একজন বাংলাদেশি শিক্ষা ক্যাডার কর্মকর্তা, প্রাণিবিদ্যার প্রভাষক এবং Learning Biology For Life-এর প্রতিষ্ঠাতা-লেখক। তাঁর কাজ জীববিজ্ঞান শিক্ষা, প্রতিফলনভিত্তিক শেখা, মানব আচরণ, ডিজিটাল শিক্ষাপদ্ধতি, নেতৃত্বচর্চা এবং ভবিষ্যৎ-উপযোগী দক্ষতাকে একই শিক্ষাব্যবস্থার মধ্যে যুক্ত করার চেষ্টা করে।</p>
 </section>
 
 ## পেশাগত পরিচয়
 
-- **নাম:** MD. YUSUF
-- **পেশাগত ক্যাডার:** BCS General Education Cadre
-- **একাডেমিক ক্ষেত্র:** Zoology and Life Sciences
-- **বর্তমান একাডেমিক ভূমিকা:** Lecturer in Zoology
+- **নাম:** MD. Yusuf
+- **পেশাগত পরিচয়:** BCS Education Cadre Officer
+- **একাডেমিক ক্ষেত্র:** প্রাণিবিদ্যা ও জীবনবিজ্ঞান
+- **বর্তমান একাডেমিক ভূমিকা:** প্রাণিবিদ্যার প্রভাষক
 - **প্ল্যাটফর্ম:** Learning Biology For Life
-- **দেশ:** Bangladesh
-- **প্রধান লক্ষ্য:** জীববিজ্ঞান, সিস্টেমস থিংকিং এবং প্রতিফলনভিত্তিক শেখার মাধ্যমে সমালোচনামূলক চিন্তা বৃদ্ধি করা
+- **দেশ:** বাংলাদেশ
+- **প্রধান লক্ষ্য:** জীববিজ্ঞান, সিস্টেম-ভাবনা এবং প্রতিফলনভিত্তিক শেখার মাধ্যমে সমালোচনামূলক চিন্তা বৃদ্ধি করা
 
 ## একাডেমিক ও প্রশিক্ষণভিত্তিক পটভূমি
 
-MD. YUSUF শিক্ষকতা, সিভিল সার্ভিস প্রশিক্ষণ, ধারাবাহিক পেশাগত উন্নয়ন এবং স্ব-নির্দেশিত প্রযুক্তি শেখার মাধ্যমে তাঁর পেশাগত পরিচয় গড়ে তুলেছেন।
+MD. Yusuf শিক্ষকতা, সিভিল সার্ভিস প্রশিক্ষণ, ধারাবাহিক পেশাগত উন্নয়ন এবং স্বনির্দেশিত প্রযুক্তি শেখার মাধ্যমে তাঁর পেশাগত পরিচয় গড়ে তুলেছেন।
 
 তাঁর শেখা ও প্রশিক্ষণের পথে রয়েছে:
 
-- BCS General Education Cadre service
+- BCS Education Cadre service
 - 190th Foundation Training Course at NAEM
 - University of Nottingham Malaysia-তে Enhanced Continuous Professional Development Programme with distinction
-- Python for Data Science, Cybersecurity, Prompt Engineering, digital pedagogy এবং AI-assisted learning systems বিষয়ে ধারাবাহিক শেখা
+- তথ্যবিজ্ঞান, সাইবার নিরাপত্তা, প্রম্পট প্রকৌশল, ডিজিটাল শিক্ষাপদ্ধতি এবং AI-assisted learning systems বিষয়ে ধারাবাহিক শেখা
 
-জীববিজ্ঞান, পেডাগজি, প্রযুক্তি এবং শাসনব্যবস্থার এই সমন্বয় Learning Biology For Life-এর কাঠামোকে প্রভাবিত করে।
+জীববিজ্ঞান, শিক্ষাদর্শন, প্রযুক্তি এবং প্রশাসনিক অভিজ্ঞতার এই সমন্বয় Learning Biology For Life-এর কাঠামোকে প্রভাবিত করে।
 
 ## শিক্ষাদর্শন
 
-MD. YUSUF-এর মূল শিক্ষাদর্শন সংক্ষিপ্ত কিন্তু গভীর:
+MD. Yusuf-এর মূল শিক্ষাদর্শন সংক্ষিপ্ত কিন্তু গভীর:
 
-> Biology should not remain only in the textbook. Biology should help learners understand life, behaviour, systems, responsibility, and reality.
+> জীববিজ্ঞান শুধু পাঠ্যবইয়ে সীমাবদ্ধ থাকার বিষয় নয়; জীববিজ্ঞান শিক্ষার্থীকে জীবন, আচরণ, ব্যবস্থা, দায়িত্ব এবং বাস্তবতা বুঝতে সাহায্য করবে।
 
-তিনি বাস্তব উদাহরণ, কেস স্টাডি, বৈজ্ঞানিক প্রশ্ন, ধারণাগত মানচিত্র, Socratic inquiry, reflection-based learning এবং learning objectives ও learning outcomes-এর constructive alignment ব্যবহার করে শেখান।
+তিনি বাস্তব উদাহরণ, কেস স্টাডি, বৈজ্ঞানিক প্রশ্ন, ধারণাগত মানচিত্র, Socratic inquiry, প্রতিফলনভিত্তিক শেখা এবং learning objectives ও learning outcomes-এর গঠনমূলক সামঞ্জস্য ব্যবহার করে শেখান।
 
-তাঁর পছন্দের শিক্ষা কাঠামো **LOLO** (Learning Objectives and Learning Outcomes), **LALA** (Learning Activities and Learning Applications), এবং **Socratic 4.0** প্রশ্নচর্চাকে যুক্ত করে শেখাকে সক্রিয়, প্রতিফলনমূলক এবং জীবন-প্রস্তুত করে।
+তাঁর পছন্দের শিক্ষা কাঠামো **LOLO** — Learning Objectives and Learning Outcomes, **LALA** — Learning Activities and Learning Applications, এবং **Socratic 4.0** প্রশ্নচর্চাকে যুক্ত করে শেখাকে সক্রিয়, প্রতিফলনমূলক এবং জীবন-প্রস্তুত করে।
 
-## The Synaptic Bridge
+## সিন্যাপটিক ব্রিজ
 
-Learning Biology For Life গড়ে উঠেছে **Synaptic Bridge** ধারণাকে কেন্দ্র করে।
+Learning Biology For Life গড়ে উঠেছে **Synaptic Bridge** ধারণাকে কেন্দ্র করে। এই ধারণা জীববিজ্ঞানের তত্ত্বকে বাস্তব জীবনের প্রয়োগের সঙ্গে যুক্ত করে।
 
 Synaptic Bridge সংযুক্ত করে:
 
-- Biological theory with practical life
-- Academic knowledge with human behaviour
-- Physiology with health awareness
-- Genetics with identity and inheritance
-- Ecology with responsibility and sustainability
-- Biostatistics with evidence-based reasoning
-- Leadership with self-regulation and decision-making
-- Digital pedagogy with 4IR learning skills
+- জীববৈজ্ঞানিক তত্ত্বকে বাস্তব জীবনের সঙ্গে
+- একাডেমিক জ্ঞানকে মানব আচরণের সঙ্গে
+- শারীরতত্ত্বকে স্বাস্থ্যসচেতনতার সঙ্গে
+- জিনতত্ত্বকে বংশগতি ও পরিচয়ের সঙ্গে
+- বাস্তুবিদ্যাকে দায়িত্ব ও স্থায়িত্বশীলতার সঙ্গে
+- জীবপরিসংখ্যানকে প্রমাণভিত্তিক যুক্তির সঙ্গে
+- নেতৃত্বচর্চাকে আত্মনিয়ন্ত্রণ ও সিদ্ধান্তগ্রহণের সঙ্গে
+- ডিজিটাল শিক্ষাপদ্ধতিকে ভবিষ্যৎ-উপযোগী শেখার দক্ষতার সঙ্গে
 
-এই সেতুবন্ধন বিচ্ছিন্ন তথ্যকে অর্থপূর্ণ প্যাটার্নে রূপান্তর করে।
+এই সেতুবন্ধন বিচ্ছিন্ন তথ্যকে অর্থপূর্ণ চিন্তাধারায় রূপান্তর করে।
 
-## DOT to LINE to CIRCLE
+## ডট থেকে রেখা, রেখা থেকে বৃত্ত
 
-লেখকের জ্ঞান-স্থাপত্য তিন স্তরের একটি শেখার মডেল অনুসরণ করে:
+লেখকের জ্ঞান-স্থাপত্য তিন স্তরের শেখার মডেল অনুসরণ করে।
 
-### DOT
+### ডট
 
-একটি জীববৈজ্ঞানিক ধারণা প্রথমে একটি ডট হিসেবে শুরু হয়: কোষ অঙ্গাণু, হরমোন, স্নায়ু-ইমপালস, জিন, ইকোসিস্টেম ভ্যারিয়েবল অথবা পরিসংখ্যানিক পর্যবেক্ষণ।
+একটি জীববৈজ্ঞানিক ধারণা প্রথমে একটি ডট হিসেবে শুরু হয়: কোষ অঙ্গাণু, হরমোন, স্নায়ু-ইমপালস, জিন, বাস্তুতান্ত্রিক ভেরিয়েবল অথবা পরিসংখ্যানিক পর্যবেক্ষণ।
 
-### LINE
+### রেখা
 
-শিক্ষার্থী পরে ডটগুলোকে লাইনে যুক্ত করে: physiology with behaviour, ecology with public responsibility, genetics with heredity, biostatistics with research design, and biology with life decisions.
+শিক্ষার্থী পরে ডটগুলোকে রেখায় যুক্ত করে: শারীরতত্ত্বকে আচরণের সঙ্গে, বাস্তুবিদ্যাকে সামাজিক দায়িত্বের সঙ্গে, জিনতত্ত্বকে বংশগতির সঙ্গে, জীবপরিসংখ্যানকে গবেষণা-নকশার সঙ্গে, এবং জীববিজ্ঞানকে জীবন-সিদ্ধান্তের সঙ্গে।
 
-### CIRCLE
+### বৃত্ত
 
-শেষে শিক্ষার্থী একটি reflective circle-এ প্রবেশ করে: প্রশ্ন করা, প্রয়োগ করা, পরীক্ষা করা, সংশোধন করা এবং অন্যকে শেখানো। এখানেই জ্ঞান wisdom-oriented practice-এ রূপ নেয়।
+শেষে শিক্ষার্থী একটি প্রতিফলনমূলক বৃত্তে প্রবেশ করে: প্রশ্ন করা, প্রয়োগ করা, পরীক্ষা করা, সংশোধন করা এবং অন্যকে শেখানো। এখানেই জ্ঞান কল্যাণমুখী প্রজ্ঞাচর্চায় রূপ নেয়।
 
 ## প্ল্যাটফর্মের লক্ষ্য
 
-**Learning Biology For Life** উচ্চমানের জীববিজ্ঞান শিক্ষাকে আরও সবার কাছে পৌঁছে দিতে এবং শিক্ষার্থীদের গভীর বৈজ্ঞানিক বোঝাপড়া গড়ে তুলতে কাজ করে।
+**Learning Biology For Life** উচ্চমানের জীববিজ্ঞান শিক্ষাকে আরও সহজলভ্য করতে এবং শিক্ষার্থীদের গভীর বৈজ্ঞানিক বোঝাপড়া গড়ে তুলতে কাজ করে।
 
-এই প্ল্যাটফর্ম HSC Biology support, Higher Zoology learning pathways, human physiology, genetics, ecology, biostatistics, animal diversity and taxonomy, human behaviour, leadership and life practices, research thinking, MCQ-based assessment এবং AI-assisted Socratic learning নিয়ে কাজ করে।
+এই প্ল্যাটফর্ম উচ্চমাধ্যমিক জীববিজ্ঞান সহায়তা, উচ্চতর প্রাণিবিদ্যা, মানব শারীরতত্ত্ব, জিনতত্ত্ব, বাস্তুবিদ্যা, জীবপরিসংখ্যান, প্রাণিবৈচিত্র্য ও শ্রেণিবিন্যাস, মানব আচরণ, নেতৃত্ব ও জীবনচর্চা, গবেষণা-চিন্তা, এমসিকিউভিত্তিক মূল্যায়ন এবং AI-assisted Socratic learning নিয়ে কাজ করে।
 
-দীর্ঘমেয়াদে লক্ষ্য হলো একটি neural educational ecosystem তৈরি করা, যেখানে biology হবে theory, life, ethics এবং future-ready skills-এর মধ্যে একটি সেতুবন্ধন।
+দীর্ঘমেয়াদে লক্ষ্য হলো একটি জীবন্ত শিক্ষাব্যবস্থা তৈরি করা, যেখানে জীববিজ্ঞান তত্ত্ব, জীবন, নৈতিকতা এবং ভবিষ্যৎ-উপযোগী দক্ষতার মধ্যে সেতুবন্ধন তৈরি করবে।
 
 ## শিক্ষাগত অঙ্গীকার
 
-MD. YUSUF অঙ্গীকারবদ্ধ:
+MD. Yusuf অঙ্গীকারবদ্ধ:
 
-- বাংলাদেশের জন্য quality education
-- rote memorization-এর বদলে critical thinking
-- scientific literacy with moral responsibility
-- student-centered learning
-- accessible digital pedagogy
-- শিক্ষায় responsible AI integration
-- 4IR era-এর জন্য multidisciplinary learning
+- বাংলাদেশের জন্য মানসম্মত শিক্ষা
+- মুখস্থনির্ভরতার বদলে সমালোচনামূলক চিন্তা
+- নৈতিক দায়িত্বসহ বৈজ্ঞানিক সাক্ষরতা
+- শিক্ষার্থী-কেন্দ্রিক শেখা
+- সহজলভ্য ডিজিটাল শিক্ষাপদ্ধতি
+- শিক্ষায় দায়িত্বশীল AI integration
+- চতুর্থ শিল্পবিপ্লব যুগের জন্য বহুবিষয়ক শেখা
 
-## Faith, Knowledge, and Responsibility
+## ঈমান, জ্ঞান ও দায়িত্ব
 
-লেখকের learning worldview বৈজ্ঞানিক অনুসন্ধানকে সম্মান করে এবং একই সঙ্গে Qur’an-কে guidance-এর ultimate source হিসেবে গ্রহণ করে। এই দৃষ্টিভঙ্গি humility, responsibility, ethical reflection এবং beneficial knowledge অনুসন্ধানকে উৎসাহিত করে।
+লেখকের শিক্ষাদর্শন বৈজ্ঞানিক অনুসন্ধানকে সম্মান করে এবং একই সঙ্গে কুরআনকে দিকনির্দেশনার চূড়ান্ত উৎস হিসেবে গ্রহণ করে। এই দৃষ্টিভঙ্গি বিনয়, দায়িত্ব, নৈতিক প্রতিফলন এবং কল্যাণকর জ্ঞান অনুসন্ধানকে উৎসাহিত করে।
 
-## Digital Pedagogy and Platform Engineering
+## ডিজিটাল শিক্ষাপদ্ধতি ও প্ল্যাটফর্ম নির্মাণ
 
-Learning Biology For Life শুধু একটি content website নয়। এটি Jekyll, GitHub Pages, Cloudflare, custom collections, reusable layouts, navigation systems এবং AI-assisted learning components ব্যবহার করে একটি structured educational network হিসেবে তৈরি হচ্ছে।
+Learning Biology For Life শুধু একটি কনটেন্ট ওয়েবসাইট নয়। এটি Jekyll, GitHub Pages, Cloudflare, custom collections, reusable layouts, navigation systems এবং AI-assisted learning components ব্যবহার করে একটি কাঠামোবদ্ধ শিক্ষানেটওয়ার্ক হিসেবে তৈরি হচ্ছে।
 
 লেখক teaching, writing, curriculum design, platform maintenance, content architecture, AI workflow design, learning experience design এবং digital publishing-এ সক্রিয়ভাবে যুক্ত।
 
-এ কারণে প্ল্যাটফর্মটি একটি single-author educational initiative, যার মধ্যে academic, technical এবং pedagogical identity একত্রে কাজ করে।
+এ কারণে প্ল্যাটফর্মটি একটি single-author educational initiative, যেখানে একাডেমিক, প্রযুক্তিগত এবং শিক্ষাদর্শনমূলক পরিচয় একত্রে কাজ করে।
 
 ## সংযোগ
 
@@ -129,38 +129,6 @@ Learning Biology For Life শুধু একটি content website নয়। �
 - **GitHub:** [yusuf38bcs-oss](https://github.com/yusuf38bcs-oss)
 - **Contact:** [Contact Page]({{ '/contact/' | relative_url }})
 
-## Profile Integrity Note
+## প্রোফাইল সততা নোট
 
-এই লেখক পরিচিতি Learning Biology For Life-এর পরিচিত পেশাগত পরিচয়, একাডেমিক লক্ষ্য এবং প্ল্যাটফর্ম স্থাপত্যের ওপর ভিত্তি করে লেখা। এতে অপ্রমাণিত দাবি এড়িয়ে লেখককে biology educator, civil service officer, learning designer এবং reflective scientific education-এ অঙ্গীকারবদ্ধ lifelong learner হিসেবে উপস্থাপন করা হয়েছে।
-
-<style>
-  .author-page-hero {
-    margin: 0 0 2rem 0;
-    padding: clamp(1.25rem, 4vw, 2rem);
-    border-radius: 22px;
-    border: 1px solid rgba(0, 212, 178, 0.16);
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.76));
-    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.25);
-  }
-
-  .author-page-hero__eyebrow {
-    margin: 0 0 0.65rem 0;
-    color: #7fffe7;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .author-page-hero h2 {
-    margin: 0 0 0.75rem 0;
-    color: #ffffff;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.08;
-  }
-
-  .author-page-hero p {
-    color: #cbd5e1;
-    line-height: 1.75;
-  }
-</style>
+এই লেখক পরিচিতি Learning Biology For Life-এর পরিচিত পেশাগত পরিচয়, একাডেমিক লক্ষ্য এবং প্ল্যাটফর্ম স্থাপত্যের ওপর ভিত্তি করে প্রস্তুত। কোনো নতুন তথ্য যোগ করার আগে সেটি যাচাই করা উচিত।
