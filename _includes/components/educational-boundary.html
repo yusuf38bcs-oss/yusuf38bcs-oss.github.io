@@ -1,0 +1,26 @@
+{% comment %}
+  Global educational/non-clinical boundary for science, physiology, behaviour,
+  Socratic assessment, and reflective learning pages.
+{% endcomment %}
+
+{% assign boundary_needed = false %}
+
+{% if page.health_boundary or page.educational_boundary %}
+  {% assign boundary_needed = true %}
+{% endif %}
+
+{% if page.collection == 'biology' or page.collection == 'mcq-arena' or page.collection == 'socratic' or page.collection == 'life-practices' or page.collection == 'life-philosophy' or page.collection == 'concepts' %}
+  {% assign boundary_needed = true %}
+{% endif %}
+
+{% if page.url contains '/biology/' or page.url contains '/mcq-arena/' or page.url contains '/socratic/' or page.url contains '/life-practices/self-discovery/' or page.url contains '/life-practices/cognitive-audit/' or page.url contains '/matrix/' %}
+  {% assign boundary_needed = true %}
+{% endif %}
+
+{% if boundary_needed %}
+<div class="notice--info educational-boundary" role="note" aria-label="Educational boundary" style="margin:1rem 0 1.4rem;padding:0.85rem 1rem;border-left:4px solid #00d4b2;border-radius:10px;background:rgba(0,212,178,0.07);color:#dbeafe;font-size:0.95rem;line-height:1.65;">
+  <strong>Educational boundary:</strong> This content is for learning and reflection only. It is not medical, psychological, clinical, diagnostic, treatment, legal, or emergency advice. For personal health or mental-health concerns, consult a qualified healthcare professional or physician.
+  <br>
+  <span lang="bn">শিক্ষামূলক সীমা: এই লেখা শেখার উদ্দেশ্যে; এটি রোগনির্ণয় নয়, চিকিৎসা-পরামর্শ নয়, এবং ব্যক্তিগত চিকিৎসার বিকল্প নয়।</span>
+</div>
+{% endif %}
