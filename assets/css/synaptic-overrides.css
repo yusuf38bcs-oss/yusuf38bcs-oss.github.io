@@ -22,6 +22,12 @@ canvas {
   height: auto;
 }
 
+/* Homepage approval mode: keep homepage academic and remove legacy mission/self-discovery blocks. */
+#synaptic-home-root > .home-mission-summary,
+#synaptic-home-root > .premium-tests-cta-block {
+  display: none !important;
+}
+
 .educational-boundary {
   margin: 1rem 0 1.4rem;
   padding: 0.85rem 1rem;
