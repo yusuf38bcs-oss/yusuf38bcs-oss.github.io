@@ -4,6 +4,55 @@ layout: default
 
 <link rel="stylesheet" href="{{ '/assets/css/biology-matrix.css' | relative_url }}">
 
+{% assign is_bn = false %}
+{% if page.lang == 'bn' or page.language == 'bn' %}
+  {% assign is_bn = true %}
+{% endif %}
+
+{% if is_bn %}
+  {% assign hero_eyebrow = 'Learning Biology For Life · একাডেমিক জীববিজ্ঞান ম্যাট্রিক্স' %}
+  {% assign hero_title = 'জীববিজ্ঞান ম্যাট্রিক্স হাব' %}
+  {% assign hero_subtitle = 'উচ্চমাধ্যমিক উদ্ভিদবিজ্ঞান, উচ্চমাধ্যমিক প্রাণিবিজ্ঞান, উচ্চতর প্রাণিবিদ্যা, শারীরতত্ত্ব, বাস্তুবিদ্যা, জিনতত্ত্ব, জীবপরিসংখ্যান, কোষীয় যুক্তি এবং Socratic অনুসন্ধানকে সংযুক্ত করা একটি কাঠামোবদ্ধ শেখার অঞ্চল।' %}
+  {% assign explore_label = 'নোডসমূহ দেখুন' %}
+  {% assign socratic_label = 'Socratic 4.0 খুলুন' %}
+  {% assign status_label = 'অঞ্চলের অবস্থা' %}
+  {% assign status_value = 'সংগ্রহ সক্রিয়' %}
+  {% assign status_note = 'জীববিজ্ঞান সংগ্রহ থেকে সহনশীল কার্ড ও স্তম্ভভিত্তিক বিন্যাসে প্রদর্শিত।' %}
+  {% assign metric_nodes = 'জীববিজ্ঞান নোড' %}
+  {% assign metric_pillars = 'শেখার স্তম্ভ' %}
+  {% assign metric_prompts = 'Socratic প্রশ্ন' %}
+  {% assign metric_xp = 'দক্ষতা XP' %}
+  {% assign jump_label = 'স্তম্ভে যান' %}
+  {% assign pillar_word = 'স্তম্ভ' %}
+  {% assign nodes_word = 'নোড' %}
+  {% assign min_read_label = 'মিনিট পঠন' %}
+  {% assign socratic_badge = 'Socratic' %}
+  {% assign prerequisites_word = 'পূর্বশর্ত' %}
+  {% assign empty_title = 'জীববিজ্ঞান নোড পাওয়া যায়নি' %}
+  {% assign empty_text = 'জীববিজ্ঞান সংগ্রহে Markdown নথি যুক্ত হলে এবং _config.yml-এ সংগ্রহ সক্রিয় থাকলে সেগুলো এখানে দেখা যাবে।' %}
+{% else %}
+  {% assign hero_eyebrow = 'Learning Biology For Life · Academic Knowledge Matrix' %}
+  {% assign hero_title = 'Biology Matrix Hub' %}
+  {% assign hero_subtitle = 'A structured, collection-driven biology zone connecting HSC Botany, HSC Zoology, Higher Zoology, physiology, ecology, genetics, biostatistics, cellular logic, and Socratic inquiry.' %}
+  {% assign explore_label = 'Explore Nodes' %}
+  {% assign socratic_label = 'Open Socratic 4.0' %}
+  {% assign status_label = 'Zone Status' %}
+  {% assign status_value = 'Collection Active' %}
+  {% assign status_note = 'Rendered from site.biology with fault-tolerant cards and pillar grouping.' %}
+  {% assign metric_nodes = 'Biology Nodes' %}
+  {% assign metric_pillars = 'Learning Pillars' %}
+  {% assign metric_prompts = 'Socratic Prompts' %}
+  {% assign metric_xp = 'Mastery XP' %}
+  {% assign jump_label = 'Jump to pillar' %}
+  {% assign pillar_word = 'Pillar' %}
+  {% assign nodes_word = 'nodes' %}
+  {% assign min_read_label = 'min read' %}
+  {% assign socratic_badge = 'Socratic' %}
+  {% assign prerequisites_word = 'prerequisites' %}
+  {% assign empty_title = 'No biology nodes found' %}
+  {% assign empty_text = 'Biology collection items will appear here when Markdown documents are added inside the _biology collection and the collection remains enabled in _config.yml.' %}
+{% endif %}
+
 {% assign biology_nodes = site.biology | sort: "title" %}
 {% assign biology_pillars = biology_nodes | group_by_exp: "node", "node.pillar | default: 'Biology Core'" %}
 {% assign biology_total = biology_nodes | size %}
@@ -27,22 +76,20 @@ layout: default
   <header class="biology-zone-hero" aria-labelledby="biology-zone-title">
     <div class="biology-hero-grid">
       <div class="biology-hero-copy">
-        <p class="biology-zone-eyebrow">Learning Biology For Life · Academic Knowledge Matrix</p>
-        <h1 id="biology-zone-title" class="biology-zone-title">Biology Matrix Hub</h1>
-        <p class="biology-zone-subtitle">
-          A structured, collection-driven biology zone connecting HSC Botany, HSC Zoology, Higher Zoology, physiology, ecology, genetics, biostatistics, cellular logic, and Socratic inquiry.
-        </p>
+        <p class="biology-zone-eyebrow">{{ hero_eyebrow }}</p>
+        <h1 id="biology-zone-title" class="biology-zone-title">{{ hero_title }}</h1>
+        <p class="biology-zone-subtitle">{{ hero_subtitle }}</p>
         <div class="biology-zone-actions" aria-label="Biology matrix quick actions">
-          <a href="#biology-matrix-sections" class="biology-zone-action biology-zone-action--primary">Explore Nodes</a>
-          <a href="{{ '/life-practices/cognitive-audit/' | relative_url }}" class="biology-zone-action">Open Socratic 4.0</a>
+          <a href="#biology-matrix-sections" class="biology-zone-action biology-zone-action--primary">{{ explore_label }}</a>
+          <a href="{{ '/life-practices/cognitive-audit/' | relative_url }}" class="biology-zone-action">{{ socratic_label }}</a>
         </div>
       </div>
 
       <aside class="biology-zone-status" aria-label="Biology matrix status">
         <div class="biology-status-orb" aria-hidden="true"></div>
-        <p class="biology-status-label">Zone Status</p>
-        <p class="biology-status-value">Collection Active</p>
-        <p class="biology-status-note">Rendered from <code>site.biology</code> with fault-tolerant cards and pillar grouping.</p>
+        <p class="biology-status-label">{{ status_label }}</p>
+        <p class="biology-status-value">{{ status_value }}</p>
+        <p class="biology-status-note">{{ status_note }}</p>
       </aside>
     </div>
   </header>
@@ -50,19 +97,19 @@ layout: default
   <section class="biology-zone-metrics" aria-label="Biology zone metrics">
     <article class="biology-metric-card">
       <span class="biology-metric-value">{{ biology_total }}</span>
-      <span class="biology-metric-label">Biology Nodes</span>
+      <span class="biology-metric-label">{{ metric_nodes }}</span>
     </article>
     <article class="biology-metric-card">
       <span class="biology-metric-value">{{ biology_pillars.size }}</span>
-      <span class="biology-metric-label">Learning Pillars</span>
+      <span class="biology-metric-label">{{ metric_pillars }}</span>
     </article>
     <article class="biology-metric-card">
       <span class="biology-metric-value">{{ biology_socratic_total }}</span>
-      <span class="biology-metric-label">Socratic Prompts</span>
+      <span class="biology-metric-label">{{ metric_prompts }}</span>
     </article>
     <article class="biology-metric-card">
       <span class="biology-metric-value">{{ biology_xp_total }}</span>
-      <span class="biology-metric-label">Mastery XP</span>
+      <span class="biology-metric-label">{{ metric_xp }}</span>
     </article>
   </section>
 
@@ -74,7 +121,7 @@ layout: default
 
   {% if biology_nodes and biology_nodes.size > 0 %}
     <nav class="biology-pillar-index" aria-label="Biology pillar index">
-      <span class="biology-pillar-index__label">Jump to pillar</span>
+      <span class="biology-pillar-index__label">{{ jump_label }}</span>
       <div class="biology-pillar-index__links">
         {% for pillar_group in biology_pillars %}
           {% assign pillar_name = pillar_group.name | default: 'Biology Core' %}
@@ -108,7 +155,7 @@ layout: default
           <div class="biology-pillar-heading">
             <span class="biology-pillar-dot" aria-hidden="true"></span>
             <div class="biology-pillar-heading-text">
-              <p class="biology-pillar-kicker">Pillar {{ forloop.index }} · {{ pillar_group.items.size }} nodes</p>
+              <p class="biology-pillar-kicker">{{ pillar_word }} {{ forloop.index }} · {{ pillar_group.items.size }} {{ nodes_word }}</p>
               <h2 id="{{ pillar_anchor }}-title" class="biology-pillar-title">{{ pillar_name }}</h2>
             </div>
           </div>
@@ -146,16 +193,16 @@ layout: default
                     {% if node_time and node_time != empty %}
                       <span>{{ node_time }}</span>
                     {% else %}
-                      <span>{{ node_reading_time }} min read</span>
+                      <span>{{ node_reading_time }} {{ min_read_label }}</span>
                     {% endif %}
                     {% if node_prompt %}
-                      <span>Socratic</span>
+                      <span>{{ socratic_badge }}</span>
                     {% endif %}
                   </div>
 
                   {% if node.prerequisites and node.prerequisites.size > 0 %}
                     <div class="biology-prereq-row" aria-label="Prerequisite count">
-                      <span>{{ node.prerequisites.size }} prerequisites</span>
+                      <span>{{ node.prerequisites.size }} {{ prerequisites_word }}</span>
                     </div>
                   {% endif %}
 
@@ -172,8 +219,8 @@ layout: default
     </section>
   {% else %}
     <section class="biology-empty-state" aria-labelledby="biology-empty-title">
-      <h2 id="biology-empty-title">No biology nodes found</h2>
-      <p>Biology collection items will appear here when Markdown documents are added inside the <code>_biology</code> collection and the collection remains enabled in <code>_config.yml</code>.</p>
+      <h2 id="biology-empty-title">{{ empty_title }}</h2>
+      <p>{{ empty_text }}</p>
     </section>
   {% endif %}
 </div>
@@ -182,9 +229,9 @@ layout: default
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": {{ page.title | default: 'Biology Matrix Hub' | jsonify }},
+  "name": {{ page.title | default: hero_title | jsonify }},
   "url": {{ page.url | absolute_url | jsonify }},
-  "description": "Collection-driven biology learning matrix for Learning Biology For Life.",
+  "description": {{ page.excerpt | default: hero_subtitle | strip_html | jsonify }},
   "mainEntity": {
     "@type": "ItemList",
     "numberOfItems": {{ biology_total }},
