@@ -36,6 +36,7 @@ layout: default
       {% endunless %}
 
       <section class="page__content" itemprop="text">
+        {% include components/educational-boundary.html %}
         {{ content }}
         {% if page.socratic_prompt or page.anomaly_question %}
           {% include socratic/socratic-node.html %}
