@@ -1,43 +1,9 @@
-﻿/* ==========================================================================
-   SYNAPTIC UI — Emergency Overrides & Cache Bust
-   Version: 2026.06.07
-   ========================================================================== */
-
-/* Prevent horizontal scroll globally */
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-/* Ensure images don't break layout */
-img, video, iframe, embed, object {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Fix pre/code overflow */
-pre, code {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  max-width: 100%;
-}
-
-/* Table responsiveness */
-table {
-  display: block;
-  overflow-x: auto;
-  max-width: 100%;
-}
-
-/* Remove 100vw offenders */
-[style*="width:100vw"],
-[style*="width: 100vw"] {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-/* Ensure FAB never covers footer content */
-body:has(.fab, .floating-microphone, .neural-fab) .page__footer,
-body:has(.fab, .floating-microphone, .neural-fab) .site-footer {
-  padding-bottom: 100px;
-}
+/* SYNAPTIC UI overrides */
+html, body { overflow-x: hidden; max-width: 100vw; }
+img, video, iframe, embed, object { max-width: 100%; height: auto; }
+pre, code { white-space: pre-wrap !important; word-wrap: break-word !important; overflow-wrap: anywhere !important; max-width: 100%; }
+table { display: block; overflow-x: auto; max-width: 100%; }
+[style*="width:100vw"], [style*="width: 100vw"] { width: 100% !important; max-width: 100% !important; }
+body:has(.fab, .floating-microphone, .neural-fab) .page__footer, body:has(.fab, .floating-microphone, .neural-fab) .site-footer { padding-bottom: 100px; }
+.page__content pre, .page__content .highlight pre, .page__content div.highlighter-rouge pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; word-break: break-word !important; overflow-x: hidden !important; }
+@media (max-width: 640px) { .page__content pre, .page__content .highlight pre, .page__content div.highlighter-rouge pre { font-size: 0.82rem !important; line-height: 1.55; } .page__content { padding-bottom: 5rem; } }
