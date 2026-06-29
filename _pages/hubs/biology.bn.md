@@ -7,12 +7,12 @@ language: bn
 page_id: biology
 author_profile: false
 classes: wide
-excerpt: "Learning Biology For Life-এর native Bangla Biology Matrix Hub; HSC Botany, HSC Zoology, physiology, ecology, genetics, biostatistics এবং Socratic inquiry-এর জন্য একটি structured biology learning gateway."
+excerpt: "Learning Biology For Life-এর স্বতন্ত্র বাংলা জীববিজ্ঞান হাব; উচ্চমাধ্যমিক জীববিজ্ঞান, উচ্চতর প্রাণিবিদ্যা, শারীরতত্ত্ব, বাস্তুবিদ্যা, জিনতত্ত্ব, জীবপরিসংখ্যান ও Socratic অনুসন্ধানের শেখার পথ।"
 ---
 
 <section class="biology-zone-intro biology-zone-intro--bn" aria-label="জীববিজ্ঞান হাব পরিচিতি">
   <h2>জীববিজ্ঞান শেখার কেন্দ্রীয় প্রবেশদ্বার</h2>
-  <p><strong>Biology Matrix Hub</strong> হলো Learning Biology For Life-এর একাডেমিক জীববিজ্ঞান অংশের কেন্দ্রীয় মানচিত্র। এখানে HSC Botany, HSC Zoology, Higher Zoology, physiology, ecology, genetics, biostatistics, cellular logic এবং Socratic inquiry-কে একটি structured learning pathway হিসেবে সাজানো হয়েছে।</p>
-  <p>এই পৃষ্ঠার লক্ষ্য শুধু topic list দেখানো নয়; বরং শিক্ষার্থীকে ধারণা, প্রয়োগ, প্রশ্ন, evidence-based reasoning এবং reflective learning-এর মধ্যে সংযোগ তৈরি করতে সাহায্য করা।</p>
-  <p>প্রতিটি biology node শিক্ষার্থীকে একটি ধারণা থেকে আরেকটি ধারণায় এগিয়ে নিতে সাহায্য করে—DOT থেকে LINE, এবং LINE থেকে CIRCLE।</p>
+  <p><strong>জীববিজ্ঞান ম্যাট্রিক্স হাব</strong> হলো Learning Biology For Life-এর একাডেমিক জীববিজ্ঞান অংশের কেন্দ্রীয় মানচিত্র। এখানে উচ্চমাধ্যমিক উদ্ভিদবিজ্ঞান, উচ্চমাধ্যমিক প্রাণিবিজ্ঞান, উচ্চতর প্রাণিবিদ্যা, মানব শারীরতত্ত্ব, বাস্তুবিদ্যা, জিনতত্ত্ব, জীবপরিসংখ্যান, কোষীয় যুক্তি এবং Socratic অনুসন্ধানকে ধাপে ধাপে শেখার পথে সাজানো হয়েছে।</p>
+  <p>এই পৃষ্ঠার লক্ষ্য শুধু বিষয়তালিকা দেখানো নয়; বরং শিক্ষার্থীকে ধারণা, প্রয়োগ, প্রশ্ন, প্রমাণভিত্তিক যুক্তি এবং প্রতিফলনভিত্তিক শেখার মধ্যে সংযোগ তৈরি করতে সাহায্য করা।</p>
+  <p>প্রতিটি জীববিজ্ঞান নোড শিক্ষার্থীকে একটি ধারণা থেকে আরেকটি ধারণায় এগিয়ে নিতে সাহায্য করে—ডট থেকে রেখা, এবং রেখা থেকে পূর্ণ বোধের বৃত্তে।</p>
 </section>
