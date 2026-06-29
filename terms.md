@@ -1,15 +1,16 @@
 ---
 layout: single
-title: "Terms of Use"
+title: "Terms of Use Redirect"
 permalink: /terms/
+sitemap: false
+robots: noindex
+language: en
 ---
 
-## Terms of Use
+# Terms of Use
 
-By accessing this site, you agree to:
+The active Terms and Conditions page for **Learning Biology For Life** is maintained at:
 
-1. Use content for personal, non-commercial educational purposes.
-2. Not redistribute or sell course materials without permission.
-3. Respect intellectual property rights of all contributors.
+[Terms & Conditions]({{ '/terms-and-conditions/' | relative_url }})
 
-Violation may result in access restriction.
+This short route is retained only as a legacy navigation safeguard so older links do not fail. For the complete policy, including educational use, intellectual property, AI-assisted content, user conduct, external links, availability, updates, and contact information, use the canonical Terms & Conditions page.
