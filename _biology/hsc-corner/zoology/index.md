@@ -7,6 +7,7 @@ sidebar:
 title: "Zoology: The Blueprint of the Animal Kingdom"
 excerpt: "Investigate the structural engineering of human physiology, cardiovascular mechanics, and respiratory control systems."
 date: 2026-06-09T05:00:00.000Z
+last_modified_at: 2026-06-29T00:00:00.000Z
 permalink: /biology/hsc-corner/zoology/
 node_id: index-hsc-zoology
 pillar: "Life Sciences"
@@ -42,8 +43,11 @@ This Zoology hub connects animal diversity, human physiology, and applied biolog
 ## Available Zoology Logs
 
 - [Baroreceptor Reflex]({{ '/biology/hsc-corner/zoology/baroreceptor-reflex/' | relative_url }})
-- [Respiratory System Lecture]({{ '/biology/hsc-corner/zoology/respiratory-system-lecture/' | relative_url }})
-- [Respiratory System Mind Mapping]({{ '/biology/hsc-corner/zoology/respiratory-system-mind-mapping/' | relative_url }})
+- [Respiratory System Master Series]({{ '/biology/hsc-corner/zoology/respiratory-system-lecture/' | relative_url }})
+  - [Part 1: শ্বাসনালীর গঠন, ফুসফুস ও অ্যালভিওলাই]({{ '/biology/hsc-corner/zoology/respiratory-system-anatomy-airway-alveoli/' | relative_url }})
+  - [Part 2: শ্বাস-প্রশ্বাসের মেকানিজম, নিয়ন্ত্রণ ও গ্যাস পরিবহন]({{ '/biology/hsc-corner/zoology/respiratory-mechanics-gas-transport/' | relative_url }})
+  - [Part 3: শ্বাসনালীর রোগ, চিকিৎসা-সচেতনতা ও প্রতিরোধ]({{ '/biology/hsc-corner/zoology/respiratory-diseases-public-health/' | relative_url }})
+  - [Revision Map: Respiratory System Mind Mapping]({{ '/biology/hsc-corner/zoology/respiratory-system-mind-mapping/' | relative_url }})
 
 ## Extended Zoology Pathways
 
