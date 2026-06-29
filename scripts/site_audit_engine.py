@@ -30,7 +30,7 @@ TEXT_EXTENSIONS = {
 CONTENT_EXTENSIONS = {".md", ".markdown", ".html", ".htm"}
 
 EXCLUDED_DIRS = {
-    ".git", "_site", ".jekyll-cache", ".sass-cache", "node_modules", "vendor",
+    ".git", "_site", "_backup", ".jekyll-cache", ".sass-cache", "node_modules", "vendor",
     ".bundle", ".cache", ".idea", ".vscode", "audit-reports"
 }
 
@@ -196,14 +196,43 @@ def infer_collection(path: str) -> Optional[str]:
     return None
 
 
-def route_from_front_matter_or_path(fm: Dict[str, str]) -> Optional[str]:
-    route = fm.get("permalink")
-    if not route:
-        return None
+def normalize_permalink(route: str) -> str:
     if not route.startswith("/"):
         route = "/" + route
     if not route.endswith("/") and not route.endswith(".txt") and not route.endswith(".xml"):
         route += "/"
+    return route
+
+
+def is_reviewed_polyglot_bn_source(path: str, fm: Dict[str, str]) -> bool:
+    if not ((fm.get("lang") == "bn") or (fm.get("language") == "bn")):
+        return False
+    if path.endswith(".bn.md") or path.endswith(".bn.html"):
+        return True
+    if path == "index.bn.html":
+        return True
+    return False
+
+
+def route_from_front_matter_or_path(path: str, fm: Dict[str, str]) -> Optional[str]:
+    if fm.get("published") == "false":
+        return None
+
+    route = fm.get("permalink")
+    if not route:
+        return None
+
+    route = normalize_permalink(route)
+
+    # Jekyll Polyglot renders reviewed Bangla page variants under /bn/.
+    # Without this audit normalization, source files like about.bn.md falsely appear
+    # to collide with their English source routes.
+    if is_reviewed_polyglot_bn_source(path, fm):
+        if route == "/":
+            return "/bn/"
+        if not route.startswith("/bn/"):
+            return normalize_permalink("/bn" + route)
+
     return route
 
 
@@ -230,8 +259,8 @@ def is_public_content_file(path: str) -> bool:
     return path.startswith(PUBLIC_CONTENT_DIR_PREFIXES)
 
 
-def is_internal_ops_doc(path: str) -> bool:
-    return path.startswith(".github/ops/")
+def is_internal_repo_control_file(path: str) -> bool:
+    return path.startswith(".github/") or path.startswith("scripts/") or path.startswith("docs/")
 
 
 def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> Optional[PageRecord]:
@@ -251,7 +280,7 @@ def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> O
             line = line_number_for(text, pattern, regex=True)
             add_finding(report, "critical", "POSSIBLE_SECRET", rpath, "Possible secret/token pattern found. Verify and revoke if real.", line, match.group(0)[:80])
 
-    if not is_internal_ops_doc(rpath):
+    if not is_internal_repo_control_file(rpath):
         for phrase in BAD_TRANSLATION_PHRASES:
             if phrase in text:
                 line = line_number_for(text, phrase)
@@ -279,7 +308,7 @@ def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> O
     if has_fm and not fm:
         add_finding(report, "high", "BROKEN_FRONT_MATTER", rpath, "File begins with front matter delimiter but key-value extraction failed; check YAML syntax.", 1)
 
-    route = route_from_front_matter_or_path(fm)
+    route = route_from_front_matter_or_path(rpath, fm)
     lang = fm.get("lang") or fm.get("language")
     title = fm.get("title")
     layout = fm.get("layout")
@@ -299,9 +328,10 @@ def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> O
         add_finding(report, "medium", "MISSING_LANGUAGE", rpath, "Public content route has no lang/language metadata.", None, route)
 
     lower_text = text.lower()
-    if any(k.lower() in lower_text for k in HEALTH_KEYWORDS):
-        if not any(k.lower() in lower_text for k in DISCLAIMER_KEYWORDS):
-            add_finding(report, "high", "MISSING_HEALTH_BOUNDARY", rpath, "Health/medical/behaviour content may need an educational/non-clinical boundary.", None, route)
+    if not is_internal_repo_control_file(rpath):
+        if any(k.lower() in lower_text for k in HEALTH_KEYWORDS):
+            if not any(k.lower() in lower_text for k in DISCLAIMER_KEYWORDS):
+                add_finding(report, "high", "MISSING_HEALTH_BOUNDARY", rpath, "Health/medical/behaviour content may need an educational/non-clinical boundary.", None, route)
 
     if route:
         if route.startswith("/en/") and lang and lang != "en":
@@ -328,7 +358,11 @@ def compute_route_pairs(report: AuditReport) -> None:
         if route is None:
             continue
         lang = page.lang
-        if lang == "bn" and not route.startswith("/bn/"):
+        if lang == "bn" and route.startswith("/bn/"):
+            expected_en = "/" if route == "/bn/" else route.replace("/bn/", "/", 1)
+            if expected_en not in by_route:
+                add_finding(report, "medium", "MISSING_ENGLISH_SOURCE", page.path, f"Bangla localized page does not have English source route at {expected_en}.", None, route)
+        elif lang == "bn" and not route.startswith("/bn/"):
             expected_en = "/en" + route
             if expected_en not in by_route:
                 add_finding(report, "medium", "MISSING_ENGLISH_MIRROR", page.path, f"Bangla page does not have an English mirror at {expected_en}.", None, route)
