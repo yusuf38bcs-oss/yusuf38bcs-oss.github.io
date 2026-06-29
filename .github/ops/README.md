@@ -14,6 +14,8 @@ These files are intentionally stored under `.github/ops/` so they remain reposit
 6. MCQ/quiz content must include answer explanation and validity logic, not only an answer key.
 7. Health, psychology, behaviour, and self-assessment content must remain educational and non-clinical unless reviewed by qualified professionals.
 8. Do not enable open public comments before AdSense approval. Use moderated learner-reflection prompts only.
+9. Do not publish automatic translations directly. Use draft, review, route-pair validation, then publish.
+10. A page is complete only after source, build output, deployment, Cloudflare cache and live canonical URL are all verified.
 
 ## Documents
 
@@ -23,6 +25,24 @@ These files are intentionally stored under `.github/ops/` so they remain reposit
 - [GTM and GA4 Setup Notes](GTM_GA4_SETUP_NOTES.md)
 - [Jekyll Build Recovery Guide](JEKYLL_BUILD_RECOVERY_GUIDE.md)
 - [Content Publishing Rules](CONTENT_PUBLISHING_RULES.md)
+- [Sovereign Content Model v2](SOVEREIGN_CONTENT_MODEL_V2.md)
+- [Bilingual Translation Control Model](BILINGUAL_TRANSLATION_CONTROL_MODEL.md)
+
+## Audit Tooling
+
+The repository includes a read-only audit engine:
+
+```powershell
+python scripts/site_audit_engine.py --root . --output-dir audit-reports --fail-on none
+```
+
+A manual GitHub Actions workflow is also available:
+
+```text
+Actions → Sovereign Site Audit → Run workflow
+```
+
+The audit report is uploaded as a workflow artifact and is not published to the Jekyll site.
 
 ## Current Production Identity
 
