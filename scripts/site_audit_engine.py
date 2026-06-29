@@ -41,7 +41,18 @@ PUBLIC_CONTENT_DIR_PREFIXES = (
 
 PUBLIC_ROOT_CONTENT_FILES = {
     "index.md", "index.html", "index.bn.html", "about.md", "about.bn.md", "privacy-policy.md",
-    "disclaimer.md", "terms-and-conditions.md", "cookie-preferences.md", "contact.md", "categories.md"
+    "disclaimer.md", "terms-and-conditions.md", "contact.md", "categories.md"
+}
+
+NON_RUNTIME_CONTROL_FILES = {
+    "README.md",
+    "_config.yml",
+    "cloudflare-worker-prompt.txt",
+    "cloudflare-hello-world-domain-guide.md",
+    "gmail-gemini-ai-workplan.md",
+    "wrangler.jsonc",
+    "Gemfile",
+    "Gemfile.lock",
 }
 
 LEGAL_REQUIRED_ROUTES = {
@@ -91,13 +102,36 @@ SECRET_PATTERNS = [
 HEALTH_KEYWORDS = [
     "disease", "treatment", "symptom", "medicine", "surgery", "diagnosis", "therapy",
     "heart attack", "angina", "hypertension", "pneumonia", "tuberculosis", "asthma",
-    "depression", "personality", "medical", "clinical", "রোগ", "চিকিৎসা", "লক্ষণ",
-    "ওষুধ", "সার্জারি", "রোগনির্ণয়", "মানসিক", "ডিপ্রেশন", "হার্ট", "শ্বাসকষ্ট",
+    "depression", "personality", "medical", "clinical", "patient", "prescription",
+    "রোগ", "চিকিৎসা", "লক্ষণ", "ওষুধ", "সার্জারি", "রোগনির্ণয়", "মানসিক",
+    "ডিপ্রেশন", "হার্ট", "শ্বাসকষ্ট", "প্রেসক্রিপশন",
 ]
 
 DISCLAIMER_KEYWORDS = [
-    "educational", "not medical", "not diagnosis", "not treatment", "physician", "healthcare",
-    "শিক্ষামূলক", "চিকিৎসা", "রোগনির্ণয়", "পরামর্শ", "চিকিৎসক",
+    "educational only",
+    "educational understanding",
+    "for education only",
+    "for learning only",
+    "learning only",
+    "not medical",
+    "not diagnosis",
+    "not treatment",
+    "not psychological",
+    "not clinical",
+    "not legal",
+    "physician",
+    "healthcare",
+    "medical safety boundary",
+    "learning boundary",
+    "health education boundary",
+    "শিক্ষামূলক",
+    "শেখার উদ্দেশ্যে",
+    "রোগনির্ণয় নয়",
+    "চিকিৎসা-পরামর্শ নয়",
+    "চিকিৎসক",
+    "ব্যক্তিগত চিকিৎসা",
+    "জরুরি চিকিৎসা",
+    "মানসিক স্বাস্থ্য",
 ]
 
 RAW_MARKDOWN_RISK_PATTERNS = [
@@ -207,11 +241,7 @@ def normalize_permalink(route: str) -> str:
 def is_reviewed_polyglot_bn_source(path: str, fm: Dict[str, str]) -> bool:
     if not ((fm.get("lang") == "bn") or (fm.get("language") == "bn")):
         return False
-    if path.endswith(".bn.md") or path.endswith(".bn.html"):
-        return True
-    if path == "index.bn.html":
-        return True
-    return False
+    return path.endswith(".bn.md") or path.endswith(".bn.html") or path == "index.bn.html"
 
 
 def route_from_front_matter_or_path(path: str, fm: Dict[str, str]) -> Optional[str]:
@@ -234,6 +264,19 @@ def route_from_front_matter_or_path(path: str, fm: Dict[str, str]) -> Optional[s
             return normalize_permalink("/bn" + route)
 
     return route
+
+
+def infer_lang(path: str, route: Optional[str], fm: Dict[str, str]) -> Optional[str]:
+    explicit = fm.get("lang") or fm.get("language")
+    if explicit:
+        return explicit
+    if route and route.startswith("/bn/"):
+        return "bn"
+    if is_reviewed_polyglot_bn_source(path, fm):
+        return "bn"
+    if route:
+        return "en"
+    return None
 
 
 def count_words(text: str) -> int:
@@ -260,7 +303,54 @@ def is_public_content_file(path: str) -> bool:
 
 
 def is_internal_repo_control_file(path: str) -> bool:
-    return path.startswith(".github/") or path.startswith("scripts/") or path.startswith("docs/")
+    return (
+        path in NON_RUNTIME_CONTROL_FILES
+        or path.startswith(".github/")
+        or path.startswith("scripts/")
+        or path.startswith("docs/")
+        or path.startswith("worker/")
+    )
+
+
+def is_runtime_template_file(path: str) -> bool:
+    return (
+        path.startswith("_includes/")
+        or path.startswith("_layouts/")
+        or path.startswith("_sass/")
+        or path.startswith("assets/")
+    )
+
+
+def is_non_public_or_control_file(path: str) -> bool:
+    return is_internal_repo_control_file(path) or is_runtime_template_file(path)
+
+
+def strip_ignored_liquid_text(text: str) -> str:
+    """Remove text regions that commonly contain literal braces or Liquid examples."""
+    text = re.sub(r"```.*?```", "", text, flags=re.DOTALL)
+    text = re.sub(r"\{%\s*raw\s*%\}.*?\{%\s*endraw\s*%\}", "", text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r"\{%\s*comment\s*%\}.*?\{%\s*endcomment\s*%\}", "", text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
+    text = re.sub(r"<script\b.*?</script>", "", text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r"<style\b.*?</style>", "", text, flags=re.DOTALL | re.IGNORECASE)
+    return text
+
+
+def should_check_liquid_balance(path: str, suffix: str, has_front_matter: bool) -> bool:
+    if is_internal_repo_control_file(path):
+        return False
+    if path.startswith("assets/") or suffix in {".js", ".css", ".scss", ".py", ".json", ".txt", ".csv"}:
+        return False
+    if path.startswith("_includes/") or path.startswith("_layouts/"):
+        return True
+    return has_front_matter and suffix in CONTENT_EXTENSIONS
+
+
+def has_health_boundary(text: str, fm: Dict[str, str]) -> bool:
+    if (fm.get("health_boundary") or fm.get("educational_boundary") or "").lower() in {"true", "educational", "yes"}:
+        return True
+    lower_text = text.lower()
+    return any(keyword.lower() in lower_text for keyword in DISCLAIMER_KEYWORDS)
 
 
 def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> Optional[PageRecord]:
@@ -270,53 +360,62 @@ def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> O
     if text.startswith("\ufeff"):
         add_finding(report, "medium", "UTF8_BOM", rpath, "File starts with UTF-8 BOM; Jekyll front matter may be affected.", 1)
 
-    for open_token, close_token in LIQUID_PAIRS:
-        if text.count(open_token) != text.count(close_token):
-            add_finding(report, "high", "LIQUID_PAIR_MISMATCH", rpath, f"Liquid token mismatch for {open_token} ... {close_token}.")
-
     for pattern in SECRET_PATTERNS:
         match = re.search(pattern, text)
         if match:
             line = line_number_for(text, pattern, regex=True)
             add_finding(report, "critical", "POSSIBLE_SECRET", rpath, "Possible secret/token pattern found. Verify and revoke if real.", line, match.group(0)[:80])
 
-    if not is_internal_repo_control_file(rpath):
+    has_fm, fm, body = extract_front_matter(text) if suffix in CONTENT_EXTENSIONS else (False, {}, text)
+    route = route_from_front_matter_or_path(rpath, fm) if suffix in CONTENT_EXTENSIONS else None
+
+    if should_check_liquid_balance(rpath, suffix, has_fm):
+        liquid_text = strip_ignored_liquid_text(text)
+        for open_token, close_token in LIQUID_PAIRS:
+            if liquid_text.count(open_token) != liquid_text.count(close_token):
+                add_finding(report, "high", "LIQUID_PAIR_MISMATCH", rpath, f"Liquid token mismatch for {open_token} ... {close_token}.")
+
+    # Stale fallback phrases are meaningful only in files that can render or influence public UI.
+    if not is_non_public_or_control_file(rpath):
         for phrase in BAD_TRANSLATION_PHRASES:
             if phrase in text:
                 line = line_number_for(text, phrase)
                 add_finding(report, "high", "BAD_TRANSLATION_OR_STALE_FALLBACK", rpath, f"Stale or unreviewed translation/fallback phrase found: {phrase}", line, phrase)
 
-    for pattern in PLACEHOLDER_PATTERNS:
-        match = re.search(pattern, text, flags=re.IGNORECASE)
-        if match:
-            line = line_number_for(text, pattern, regex=True)
-            add_finding(report, "medium", "PLACEHOLDER_TEXT", rpath, "Placeholder or unfinished text detected.", line, match.group(0)[:120])
+    if not is_internal_repo_control_file(rpath):
+        for pattern in PLACEHOLDER_PATTERNS:
+            match = re.search(pattern, text, flags=re.IGNORECASE)
+            if match:
+                line = line_number_for(text, pattern, regex=True)
+                add_finding(report, "medium", "PLACEHOLDER_TEXT", rpath, "Placeholder or unfinished text detected.", line, match.group(0)[:120])
 
-    for pattern in RAW_MARKDOWN_RISK_PATTERNS:
-        match = re.search(pattern, text, flags=re.IGNORECASE | re.MULTILINE)
-        if match:
-            line = line_number_for(text, pattern, regex=True)
-            add_finding(report, "medium", "RAW_MARKDOWN_RENDER_RISK", rpath, "Markdown may render as raw text inside an HTML block.", line, match.group(0)[:120])
+    if route or rpath.startswith("_includes/") or rpath.startswith("_layouts/"):
+        for pattern in RAW_MARKDOWN_RISK_PATTERNS:
+            match = re.search(pattern, text, flags=re.IGNORECASE | re.MULTILINE)
+            if match:
+                line = line_number_for(text, pattern, regex=True)
+                add_finding(report, "medium", "RAW_MARKDOWN_RENDER_RISK", rpath, "Markdown may render as raw text inside an HTML block.", line, match.group(0)[:120])
 
     if suffix not in CONTENT_EXTENSIONS:
         return None
 
-    has_fm, fm, body = extract_front_matter(text)
     if is_public_content_file(rpath) and not has_fm:
         add_finding(report, "high", "MISSING_FRONT_MATTER", rpath, "Public content file has no Jekyll front matter.", 1)
 
     if has_fm and not fm:
         add_finding(report, "high", "BROKEN_FRONT_MATTER", rpath, "File begins with front matter delimiter but key-value extraction failed; check YAML syntax.", 1)
 
-    route = route_from_front_matter_or_path(rpath, fm)
-    lang = fm.get("lang") or fm.get("language")
+    lang = infer_lang(rpath, route, fm)
+    explicit_lang = fm.get("lang") or fm.get("language")
     title = fm.get("title")
     layout = fm.get("layout")
     collection = infer_collection(rpath)
     words = count_words(body)
 
     if route and words < 120 and is_public_content_file(rpath):
-        add_finding(report, "medium", "THIN_PUBLIC_PAGE", rpath, f"Public route has low word count ({words}). Check whether this is intentional.", None, route)
+        # Archive shells, redirect shells and intentionally unpublished/utility terminals may be short.
+        if layout not in {"archive", "null"} and fm.get("sitemap") != "false":
+            add_finding(report, "medium", "THIN_PUBLIC_PAGE", rpath, f"Public route has low word count ({words}). Check whether this is intentional.", None, route)
 
     if route and not title:
         add_finding(report, "medium", "MISSING_TITLE", rpath, "Page has route but no title in front matter.", None, route)
@@ -324,13 +423,13 @@ def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> O
     if route and not layout:
         add_finding(report, "medium", "MISSING_LAYOUT", rpath, "Page has route but no layout in front matter.", None, route)
 
-    if route and is_public_content_file(rpath) and not lang:
-        add_finding(report, "medium", "MISSING_LANGUAGE", rpath, "Public content route has no lang/language metadata.", None, route)
+    if route and is_public_content_file(rpath) and not explicit_lang and route.startswith("/bn/"):
+        add_finding(report, "medium", "MISSING_LANGUAGE", rpath, "Bangla public route has no explicit lang/language metadata.", None, route)
 
     lower_text = text.lower()
-    if not is_internal_repo_control_file(rpath):
+    if route and is_public_content_file(rpath):
         if any(k.lower() in lower_text for k in HEALTH_KEYWORDS):
-            if not any(k.lower() in lower_text for k in DISCLAIMER_KEYWORDS):
+            if not has_health_boundary(text, fm):
                 add_finding(report, "high", "MISSING_HEALTH_BOUNDARY", rpath, "Health/medical/behaviour content may need an educational/non-clinical boundary.", None, route)
 
     if route:
