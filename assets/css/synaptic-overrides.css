@@ -22,6 +22,21 @@ canvas {
   height: auto;
 }
 
+.educational-boundary {
+  margin: 1rem 0 1.4rem;
+  padding: 0.85rem 1rem;
+  border-left: 4px solid #00d4b2;
+  border-radius: 10px;
+  background: rgba(0, 212, 178, 0.07);
+  color: #dbeafe;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.educational-boundary strong {
+  color: #f8fafc;
+}
+
 .page,
 .page__inner-wrap,
 .page__content,
@@ -121,6 +136,11 @@ body:has(.fab, .floating-microphone, .neural-fab) .site-footer {
 
   .page__content {
     padding-bottom: 7rem;
+  }
+
+  .educational-boundary {
+    font-size: 0.86rem;
+    line-height: 1.55;
   }
 
   .page__content pre,
