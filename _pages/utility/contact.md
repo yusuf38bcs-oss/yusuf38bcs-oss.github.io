@@ -1,30 +1,51 @@
 ---
 layout: single
 author_profile: true
-author: "MD. YUSUF"
-title: "Contact"
+author: "MD. Yusuf"
+title: "Contact Us"
 permalink: /contact/
 sidebar:
   nav: "synaptic_nav"
 node_id: util-contact
 pillar: "Network"
-difficulty: "Advanced"
+difficulty: "Foundation"
 xp: 500
 status: "Active"
 language: en
 ---
 
-# Connect with the Synaptic Bridge
+# Contact Learning Biology For Life
 
-Welcome to the **Contact** node of Learning Biology For Life. This page is the official communication gateway for questions, collaboration proposals, correction requests, content feedback, and platform-support messages related to biology education, digital pedagogy, reflective learning, and the Synaptic Bridge framework.
+This is the official contact page for **Learning Biology For Life**. Use this page to send academic feedback, correction requests, collaboration proposals, broken-link reports, accessibility concerns, and platform-support messages related to biology education, HSC Botany/Zoology, Higher Zoology, MCQ Arena, Socratic 4.0, and reflective scientific learning.
 
-## Communication Philosophy
+## Official Contact Emails
 
-We believe in the philosophy of **Learn through Learning Others**. Good education becomes stronger when learners, teachers, and readers can ask questions, identify errors, suggest improvements, and share constructive observations. Every serious message helps the platform become more accurate, accessible, and useful for biology learners.
+For clear routing, use the most relevant domain email:
+
+| Purpose | Email |
+|---|---|
+| General academic message | `admin@learningbiologyforlife.org` |
+| Information, collaboration, or editorial query | `info@learningbiologyforlife.org` |
+| Technical support, broken link, or access issue | `support@learningbiologyforlife.org` |
+
+You may also use the contact form below. When reporting an error, include the page title, URL, screenshot if available, and a short description of the issue.
 
 ## Appropriate Contact Topics
 
-You may use this form for academic questions, biology-content clarification, broken-link reports, accessibility concerns, article correction requests, collaboration ideas, and feedback about the MCQ Arena or Socratic 4.0 learning tools. Please write clearly and include the page title or URL when reporting a specific issue.
+You may contact the editor for:
+
+- correction of a biology explanation, MCQ answer, diagram, table, or reference;
+- suggestions for HSC Biology, Higher Zoology, Botany, Zoology, Ecology, Genetics, Human Physiology, or Biostatistics content;
+- feedback on MCQ Arena answer explanations and validity logic;
+- academic collaboration, classroom use, or digital pedagogy discussion;
+- copyright, attribution, accessibility, or technical concerns;
+- reporting a broken link, empty route, layout problem, or mobile usability issue.
+
+## Communication Boundary
+
+Please do not submit sensitive personal, financial, confidential, medical, psychological, or emergency information through this form. This website provides educational learning support only. It is not a private consultation service and is not intended for urgent communication.
+
+## Contact Form
 
 <form id="my-form" action="https://formspree.io/f/mgodyrbq" method="POST" class="contact-form" aria-label="Contact form">
   <p>
@@ -54,12 +75,15 @@ You may use this form for academic questions, biology-content clarification, bro
   </p>
 </form>
 
-## Response Scope
+## Response Expectation
 
-Messages are reviewed for educational, collaboration, and platform-support purposes. Please avoid submitting sensitive personal, financial, confidential, or emergency information through this form. This contact page is not intended for urgent services or private professional consultation.
+Messages are reviewed for educational, editorial, collaboration, and platform-support purposes. A reply is not guaranteed for every message, but serious correction requests and technical reports will be prioritized when sufficient details are provided.
 
-## Direct Navigation
+## Related Trust Pages
 
+- [About the Author]({{ '/about/' | relative_url }})
+- [Editorial Policy]({{ '/editorial-policy/' | relative_url }})
 - [Privacy Policy]({{ '/privacy-policy/' | relative_url }})
 - [Terms & Conditions]({{ '/terms-and-conditions/' | relative_url }})
-- [Cookie Preferences]({{ '/cookie-preferences/' | relative_url }})
+- [Disclaimer]({{ '/disclaimer/' | relative_url }})
+- [Sitemap]({{ '/sitemap.xml' | relative_url }})
