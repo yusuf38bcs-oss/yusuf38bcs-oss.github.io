@@ -1,5 +1,4 @@
 ---
-
 layout: concept_node
 id: neuroplasticity
 node_id: neuroplasticity
@@ -20,6 +19,7 @@ next_nodes:
   - behavioral-axis
 mastery_state: unlocked
 language: en
+health_boundary: true
 curriculum_tracks:
   - Behavioural Science
   - Applied Biology
@@ -33,6 +33,18 @@ concept_level: "Applied"
 
 ## Neuroplasticity
 
-Neuroplasticity explains how learning changes the brain through synaptic strengthening, pruning, myelination, attention, and recovery.
+Neuroplasticity explains how learning changes the nervous system through repeated attention, practice, feedback, rest, and reflection. In simple terms, the brain is not a fixed machine; it is a living adaptive network. When a learner repeats a useful action, connects a new idea with an old idea, or corrects an error through feedback, neural pathways can become more efficient.
+
+## Core mechanisms
+
+- **Synaptic strengthening:** repeated use can make a pathway easier to activate.
+- **Pruning:** weak or unused connections may become less dominant.
+- **Myelination:** practiced pathways can become faster and more coordinated.
+- **Attention:** focused attention helps select which pathways are reinforced.
+- **Sleep and rest:** recovery helps organize learning into memory.
+
+## Learning application
+
+A student can use neuroplasticity as a practical learning model. Study in short focused sessions, retrieve from memory, explain concepts aloud, correct mistakes, sleep adequately, and revisit weak topics after spaced intervals. These habits turn learning from passive reading into active neural training.
 
 [Open the expanded Neuroplasticity and Learning node]({{ '/matrix/neuroplasticity-and-learning/' | relative_url }}).
