@@ -1,5 +1,4 @@
 ---
-
 title: Population Ecology
 layout: single
 language: en
@@ -16,6 +15,16 @@ hsc_alignment: "HSC Zoology: ecology, population, community, and ecosystem"
 concept_level: "Assessment Bank"
 ---
 
-This `mcq-arena` collection item exposes the `ecology` quiz from `_data/quizzes.yml` as an individual Markdown page while retaining the shared data bank as the canonical source.
+# Population Ecology MCQ Bank
+
+This quiz bank tests core ecological reasoning: population size, density, growth, survivorship, life table, community interaction, ecological succession, biodiversity, and ecosystem stability. Ecology questions often look simple, but the answer depends on correct interpretation of relation, rate, limiting factor, or graph pattern.
+
+## Preparation checklist
+
+Revise population attributes, natality, mortality, immigration, emigration, exponential and logistic growth, carrying capacity, survivorship curves, community structure, niche, competition, predation, mutualism, parasitism, succession, and ecological pyramids.
+
+## How to think
+
+For each question, ask: What is changing? Which population attribute is affected? Is the relationship positive, negative, density-dependent, or density-independent? Then compare your reasoning with the explanation after submission.
 
 {% include components/quiz-render.html quiz_id=page.quiz_id %}
