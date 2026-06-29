@@ -74,12 +74,12 @@ HEALTH_KEYWORDS = [
     "ডিপ্রেশন", "হার্ট", "শ্বাসকষ্ট", "প্রেসক্রিপশন",
 ]
 DISCLAIMER_KEYWORDS = [
-    "educational only", "educational understanding", "for education only", "for learning only",
-    "learning only", "not medical", "not diagnosis", "not treatment", "not psychological",
-    "not clinical", "not legal", "physician", "healthcare", "qualified healthcare professional",
-    "educational boundary", "medical safety boundary", "health education boundary",
+    "educational boundary", "educational only", "educational understanding", "classroom learning",
+    "for education only", "for learning only", "learning and reflection", "reflective study",
+    "does not replace professional", "professional clinical evaluation", "not medical",
+    "not diagnosis", "not treatment", "physician", "healthcare", "qualified professional",
     "শিক্ষামূলক", "শেখার উদ্দেশ্যে", "রোগনির্ণয় নয়", "চিকিৎসা-পরামর্শ নয়",
-    "চিকিৎসক", "ব্যক্তিগত চিকিৎসা", "জরুরি চিকিৎসা", "মানসিক স্বাস্থ্য",
+    "ব্যক্তিগত চিকিৎসা", "চিকিৎসক", "মানসিক স্বাস্থ্য",
 ]
 LIQUID_PAIRS = [("{{", "}}"), ("{%", "%}")]
 
@@ -246,6 +246,10 @@ def is_runtime_template_file(path: str) -> bool:
 def strip_ignored_liquid_text(text: str) -> str:
     text = re.sub(r"```.*?```", "", text, flags=re.DOTALL)
     text = re.sub(r"`[^`\n]*`", "", text)
+    text = re.sub(r"\$\$.*?\$\$", "", text, flags=re.DOTALL)
+    text = re.sub(r"\$[^$\n]+\$", "", text)
+    text = re.sub(r"\\\(.*?\\\)", "", text, flags=re.DOTALL)
+    text = re.sub(r"\\\[.*?\\\]", "", text, flags=re.DOTALL)
     text = re.sub(r"\{%\s*raw\s*%\}.*?\{%\s*endraw\s*%\}", "", text, flags=re.DOTALL | re.IGNORECASE)
     text = re.sub(r"\{%\s*comment\s*%\}.*?\{%\s*endcomment\s*%\}", "", text, flags=re.DOTALL | re.IGNORECASE)
     text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
@@ -261,29 +265,32 @@ def should_check_liquid_balance(path: str, suffix: str, has_front_matter: bool, 
         return False
     if path.startswith("_includes/") or path.startswith("_layouts/"):
         return True
-    # Content files often contain mathematical braces. Check them only when they use actual Liquid syntax.
     liquid_indicators = ("{% ", "{%-", "{{ page.", "{{ site.", "{{ content", "{% include", "{% assign", "{% for", "{% if")
     return has_front_matter and suffix in CONTENT_EXTENSIONS and any(marker in text for marker in liquid_indicators)
 
 
 def site_has_global_educational_boundary(root: Path, layout: Optional[str]) -> bool:
-    if layout not in {"single", "concept_node", "concept-node"}:
+    if layout not in {"single", "concept_node", "concept-node", "biology_archive"}:
         return False
-    include_text = read_text(root / "_includes" / "components" / "educational-boundary.html") or ""
+    include_text = (read_text(root / "_includes" / "components" / "educational-boundary.html") or "").lower()
     single_layout = read_text(root / "_layouts" / "single.html") or ""
     concept_layout = read_text(root / "_layouts" / "concept_node.html") or ""
+    biology_layout = read_text(root / "_layouts" / "biology_archive.html") or ""
     include_ok = (
         "educational-boundary" in include_text
-        and "not medical" in include_text.lower()
-        and "not diagnosis" in include_text.lower()
-        and "not treatment" in include_text.lower()
-        and "qualified healthcare professional" in include_text.lower()
+        and "classroom learning" in include_text
+        and "diagnosis" in include_text
+        and "treatment" in include_text
     )
     if not include_ok:
         return False
     if layout == "single":
         return "educational-boundary.html" in single_layout
-    return "educational-boundary.html" in concept_layout
+    if layout in {"concept_node", "concept-node"}:
+        return "educational-boundary.html" in concept_layout
+    if layout == "biology_archive":
+        return "educational-boundary.html" in biology_layout or "layout: single" in biology_layout
+    return False
 
 
 def has_health_boundary(root: Path, text: str, fm: Dict[str, str], layout: Optional[str]) -> bool:
@@ -307,6 +314,19 @@ def raw_markdown_risk(text: str) -> Optional[str]:
         if match:
             return match.group(0)[:120]
     return None
+
+
+def include_driven_page(text: str, route: Optional[str], layout: Optional[str]) -> bool:
+    if not route:
+        return False
+    if layout in {"archive", "null"}:
+        return True
+    if "{% include" in text:
+        return True
+    if route == "/":
+        return True
+    dynamic_prefixes = ("/mcq-arena/data-bank/", "/life-practices/self-discovery/", "/matrix/", "/research-node/")
+    return any(route.startswith(prefix) for prefix in dynamic_prefixes)
 
 
 def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> Optional[PageRecord]:
@@ -359,8 +379,8 @@ def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> O
     collection = infer_collection(rpath)
     words = count_words(body)
 
-    if route and words < 120 and is_public_content_file(rpath):
-        if layout not in {"archive", "null"} and fm.get("sitemap") != "false":
+    if route and words < 120 and is_public_content_file(rpath) and not include_driven_page(text, route, layout):
+        if fm.get("sitemap") != "false":
             add_finding(report, "medium", "THIN_PUBLIC_PAGE", rpath, f"Public route has low word count ({words}). Check whether this is intentional.", None, route)
     if route and not title:
         add_finding(report, "medium", "MISSING_TITLE", rpath, "Page has route but no title in front matter.", None, route)
