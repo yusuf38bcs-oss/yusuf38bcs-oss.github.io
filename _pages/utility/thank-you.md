@@ -11,19 +11,24 @@ pillar: "Network"
 difficulty: "Foundation"
 xp: 100
 status: "Active"
+language: en
 ---
 
 # Thank You for Subscribing
 
-You have taken the first step across the **Synaptic Bridge**.
+You have taken the first step across the **Synaptic Bridge**. Your subscription connects you with future learning updates, biology lectures, reflective learning tools, MCQ practice, and platform notices from Learning Biology For Life.
 
 ## Action Required
 
-Please check your inbox and click **Confirm Subscription** to activate your membership.
+Please check your inbox and click **Confirm Subscription** to activate your membership. Confirmation protects your email address from accidental or unauthorized subscription and ensures that future messages are sent only with your permission.
+
+## What You May Receive
+
+Subscribers may receive biology learning updates, new article announcements, MCQ Arena resources, reflective learning notes, and important platform messages. The purpose is educational support, not spam or unrelated promotion.
 
 ## Tip
 
-If the confirmation message is not visible, check other inbox categories and move the email to your primary inbox so future lessons arrive reliably.
+If the confirmation message is not visible, check spam, promotions, updates, or other inbox categories. Move the email to your primary inbox so future lessons arrive reliably.
 
 ## Continue Exploring
 
