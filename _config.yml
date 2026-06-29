@@ -24,6 +24,11 @@ include:
 
 exclude:
   - README.md
+  - docs
+  - _backup
+  - cloudflare-worker-prompt.txt
+  - cloudflare-hello-world-domain-guide.md
+  - gmail-gemini-ai-workplan.md
   - wrangler.jsonc
   - worker
   - scripts
