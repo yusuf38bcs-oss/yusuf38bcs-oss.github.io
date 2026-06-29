@@ -3,35 +3,43 @@
 
     <div class="academic-section-header">
       <h2 id="central-knowledge-title" class="academic-section-title">
-        &#127922; Central Knowledge Manifolds
+        Core Learning Pathways
       </h2>
-      <p class="academic-section-lead">Explore the clean-mapped relational collection grids of this platform.</p>
+      <p class="academic-section-lead">Choose a focused academic route: HSC Biology, Higher Zoology, MCQ practice, or Socratic scientific learning.</p>
     </div>
 
     <div class="neural-card-matrix">
 
       <div class="neural-card-shell">
-        <h3 class="neural-card-heading">Higher Zoology & Biostatistics</h3>
+        <h3 class="neural-card-heading">HSC Biology</h3>
         <p class="neural-card-body">
-          Deep nested logs spanning Population Ecology dynamics, Survivorship trends, and mathematical applications including <em>t</em>-test and <em>z</em>-test calculations.
+          Botany, Zoology, practical biology, model-test preparation, diagram-based lessons, and chapter-aligned explanations for Bangladeshi HSC learners.
         </p>
-        <a href="/biology/" class="neural-card-cta" aria-label="Initialize Higher Zoology and Biostatistics vector">Initialize Vector <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
+        <a href="/biology/hsc-corner/" class="neural-card-cta" aria-label="Explore HSC Biology">Explore HSC Biology <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
       </div>
 
       <div class="neural-card-shell">
-        <h3 class="neural-card-heading">Synaptic Bridge & Pedagogy</h3>
+        <h3 class="neural-card-heading">Higher Zoology</h3>
         <p class="neural-card-body">
-          Cross-disciplinary educational interfaces charting the nexus of leadership dynamics, human behavioral mechanics, and digital research structures.
+          Human Physiology, Animal Diversity, Ecology, Genetics, and Biostatistics explained with concept maps, tables, diagrams, and learning outcomes.
         </p>
-        <a href="/synaptic-bridge/" class="neural-card-cta" aria-label="Initialize Synaptic Bridge and Pedagogy vector">Initialize Vector <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
+        <a href="/biology/higher-zoology-tree/" class="neural-card-cta" aria-label="Explore Higher Zoology">Explore Higher Zoology <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
       </div>
 
       <div class="neural-card-shell">
-        <h3 class="neural-card-heading">Cosmic Life Philosophy</h3>
+        <h3 class="neural-card-heading">MCQ Arena</h3>
         <p class="neural-card-body">
-          Sanitized English-mapped critical essays investigating the profound ontology of universal ethics, moral fortitude, and psychological analyses.
+          Practice biology MCQs with answer explanations, validity logic, misconception correction, and exam-oriented reasoning support.
         </p>
-        <a href="/life-philosophy/" class="neural-card-cta" aria-label="Initialize Cosmic Life Philosophy vector">Initialize Vector <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
+        <a href="/mcq-arena/" class="neural-card-cta" aria-label="Open MCQ Arena">Open MCQ Arena <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
+      </div>
+
+      <div class="neural-card-shell">
+        <h3 class="neural-card-heading">Socratic 4.0</h3>
+        <p class="neural-card-body">
+          Reflective scientific learning through questioning, conceptual correction, learning behaviour awareness, and non-clinical self-reflection.
+        </p>
+        <a href="/socratic/" class="neural-card-cta" aria-label="Explore Socratic 4.0">Explore Socratic 4.0 <span class="cta-arrow" aria-hidden="true">&#8594;</span></a>
       </div>
 
     </div>
@@ -72,8 +80,9 @@
   .academic-section-lead {
     color: #cbd5e1;
     margin: 0;
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
-    line-height: 1.5;
+    max-width: 760px;
+    font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+    line-height: 1.65;
   }
 
   .neural-card-matrix {
@@ -91,20 +100,20 @@
 
   @media (min-width: 1024px) {
     .neural-card-matrix {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.35rem;
     }
   }
 
   @media (min-width: 1440px) {
-    .neural-card-matrix { gap: 2.5rem; }
+    .neural-card-matrix { gap: 1.8rem; }
   }
 
   .neural-card-shell {
     background: rgba(15, 23, 42, 0.64);
     border: 1px solid rgba(0, 212, 178, 0.16);
-    padding: clamp(1.75rem, 3vw, 2.5rem);
-    border-radius: 12px;
+    padding: clamp(1.75rem, 3vw, 2.35rem);
+    border-radius: 16px;
     box-shadow: 0 16px 34px rgba(0,0,0,0.34);
     display: flex;
     flex-direction: column;
@@ -119,7 +128,7 @@
   .neural-card-heading {
     color: #ffffff;
     margin-top: 0;
-    font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+    font-size: clamp(1.12rem, 2.3vw, 1.32rem);
     font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.3;
@@ -145,19 +154,9 @@
     margin-top: auto;
   }
 
-  .neural-card-cta:hover {
-    gap: 0.75rem;
-  }
-
-  .neural-card-cta:focus-visible {
-    outline: 2px solid #67e8f9;
-    outline-offset: 3px;
-  }
-
-  .cta-arrow {
-    font-size: 1.1rem;
-    line-height: 1;
-  }
+  .neural-card-cta:hover { gap: 0.75rem; }
+  .neural-card-cta:focus-visible { outline: 2px solid #67e8f9; outline-offset: 3px; }
+  .cta-arrow { font-size: 1.1rem; line-height: 1; }
 </style>
 {% assign jekyll_academic_styles_loaded = true %}
 {% endunless %}
