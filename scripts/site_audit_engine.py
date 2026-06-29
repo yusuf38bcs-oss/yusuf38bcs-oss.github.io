@@ -18,9 +18,9 @@ import json
 import os
 import re
 import sys
-from dataclasses import dataclass, asdict, field
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Dict, Iterable, List, Optional, Tuple
 
 TEXT_EXTENSIONS = {
     ".md", ".markdown", ".html", ".htm", ".yml", ".yaml", ".json", ".js", ".css",
@@ -109,6 +109,7 @@ RAW_MARKDOWN_RISK_PATTERNS = [
 
 LIQUID_PAIRS = [("{{", "}}"), ("{%", "%}")]
 
+
 @dataclass
 class Finding:
     severity: str
@@ -117,6 +118,7 @@ class Finding:
     message: str
     line: Optional[int] = None
     evidence: Optional[str] = None
+
 
 @dataclass
 class PageRecord:
@@ -128,6 +130,7 @@ class PageRecord:
     collection: Optional[str]
     has_front_matter: bool
     word_count: int
+
 
 @dataclass
 class AuditReport:
@@ -156,7 +159,6 @@ def read_text(path: Path) -> Optional[str]:
 
 def iter_repo_files(root: Path) -> Iterable[Path]:
     for current_root, dirnames, filenames in os.walk(root):
-        rel_root = Path(current_root).relative_to(root)
         dirnames[:] = [d for d in dirnames if d not in EXCLUDED_DIRS]
         for filename in filenames:
             yield Path(current_root) / filename
@@ -194,15 +196,15 @@ def infer_collection(path: str) -> Optional[str]:
     return None
 
 
-def route_from_front_matter_or_path(path: str, fm: Dict[str, str]) -> Optional[str]:
+def route_from_front_matter_or_path(fm: Dict[str, str]) -> Optional[str]:
     route = fm.get("permalink")
-    if route:
-        if not route.startswith("/"):
-            route = "/" + route
-        if not route.endswith("/") and not route.endswith(".txt") and not route.endswith(".xml"):
-            route += "/"
-        return route
-    return None
+    if not route:
+        return None
+    if not route.startswith("/"):
+        route = "/" + route
+    if not route.endswith("/") and not route.endswith(".txt") and not route.endswith(".xml"):
+        route += "/"
+    return route
 
 
 def count_words(text: str) -> int:
@@ -228,6 +230,10 @@ def is_public_content_file(path: str) -> bool:
     return path.startswith(PUBLIC_CONTENT_DIR_PREFIXES)
 
 
+def is_internal_ops_doc(path: str) -> bool:
+    return path.startswith(".github/ops/")
+
+
 def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> Optional[PageRecord]:
     rpath = relpath(root, path)
     suffix = path.suffix.lower()
@@ -245,10 +251,11 @@ def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> O
             line = line_number_for(text, pattern, regex=True)
             add_finding(report, "critical", "POSSIBLE_SECRET", rpath, "Possible secret/token pattern found. Verify and revoke if real.", line, match.group(0)[:80])
 
-    for phrase in BAD_TRANSLATION_PHRASES:
-        if phrase in text:
-            line = line_number_for(text, phrase)
-            add_finding(report, "high", "BAD_TRANSLATION_OR_STALE_FALLBACK", rpath, f"Stale or unreviewed translation/fallback phrase found: {phrase}", line, phrase)
+    if not is_internal_ops_doc(rpath):
+        for phrase in BAD_TRANSLATION_PHRASES:
+            if phrase in text:
+                line = line_number_for(text, phrase)
+                add_finding(report, "high", "BAD_TRANSLATION_OR_STALE_FALLBACK", rpath, f"Stale or unreviewed translation/fallback phrase found: {phrase}", line, phrase)
 
     for pattern in PLACEHOLDER_PATTERNS:
         match = re.search(pattern, text, flags=re.IGNORECASE)
@@ -272,14 +279,14 @@ def audit_text_file(report: AuditReport, root: Path, path: Path, text: str) -> O
     if has_fm and not fm:
         add_finding(report, "high", "BROKEN_FRONT_MATTER", rpath, "File begins with front matter delimiter but key-value extraction failed; check YAML syntax.", 1)
 
-    route = route_from_front_matter_or_path(rpath, fm)
+    route = route_from_front_matter_or_path(fm)
     lang = fm.get("lang") or fm.get("language")
     title = fm.get("title")
     layout = fm.get("layout")
     collection = infer_collection(rpath)
     words = count_words(body)
 
-    if route and len(words) < 120 and is_public_content_file(rpath):
+    if route and words < 120 and is_public_content_file(rpath):
         add_finding(report, "medium", "THIN_PUBLIC_PAGE", rpath, f"Public route has low word count ({words}). Check whether this is intentional.", None, route)
 
     if route and not title:
@@ -352,7 +359,7 @@ def compute_required_routes(report: AuditReport) -> None:
 
 
 def run_audit(root: Path) -> AuditReport:
-    report = AuditReport(generated_at=dt.datetime.utcnow().isoformat() + "Z", root=str(root))
+    report = AuditReport(generated_at=dt.datetime.now(dt.UTC).isoformat(), root=str(root))
     for path in iter_repo_files(root):
         report.files_scanned += 1
         if path.suffix.lower() not in TEXT_EXTENSIONS:
@@ -382,7 +389,7 @@ def severity_counts(findings: List[Finding]) -> Dict[str, int]:
 
 def write_reports(report: AuditReport, output_dir: Path) -> Tuple[Path, Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
-    stamp = dt.datetime.utcnow().strftime("%Y%m%d-%H%M%S")
+    stamp = dt.datetime.now(dt.UTC).strftime("%Y%m%d-%H%M%S")
     json_path = output_dir / f"site-audit-{stamp}.json"
     md_path = output_dir / f"site-audit-{stamp}.md"
 
