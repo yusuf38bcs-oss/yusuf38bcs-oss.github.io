@@ -7,6 +7,7 @@ sidebar:
 title: "Human Physiology Matrix"
 excerpt: "A structured gateway for studying human body systems, homeostasis, health, behaviour, and reflective life application."
 date: 2026-06-13T12:20:00.000Z
+last_modified_at: 2026-06-29T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/human-physiology/
 node_id: node-human-physiology
 pillar: "Life Sciences"
@@ -65,11 +66,11 @@ By the end of this gateway, learners should be able to:
 - Connect the digestive system with nutrition and metabolic discipline.
 - Connect hormones with motivation, mood, stress, and behaviour.
 - Connect the nervous system with feelings, reaction, leadership, and self-control.
-- Connect respiration and circulation with exercise, anxiety, and endurance.
+- Connect respiration and circulation with exercise, anxiety, endurance, blood pressure, disease prevention, and heart-health discipline.
 
 ## Core Learning Route
 
-- **Transport and circulation:** heart, blood vessels, blood pressure, reflex control, and tissue perfusion.
+- **Transport and circulation:** blood, plasma, RBC, WBC, platelets, lymph, heart, blood vessels, cardiac cycle, coronary flow, blood pressure, reflex control, tissue perfusion and cardiovascular disease prevention.
 - **Respiration:** ventilation, gas exchange, oxygen transport, carbon dioxide removal, and respiratory control.
 - **Digestion and metabolism:** food processing, absorption, enzyme action, and energy release.
 - **Neural and endocrine coordination:** rapid electrical signalling and slower hormonal regulation.
@@ -77,6 +78,13 @@ By the end of this gateway, learners should be able to:
 
 ## Available Physiology Connections
 
+- [Blood Circulation Master Series]({{ '/biology/higher-zoology-tree/physiology/blood-circulation/' | relative_url }})
+  - [Part 1: রক্ত, রক্তরস, রক্তকণিকা, পরিবহন ও প্রতিরক্ষা]({{ '/biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity/' | relative_url }})
+  - [Part 2: হৃদপিণ্ডের গঠন, cardiac cycle ও রক্তসঞ্চালন]({{ '/biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation/' | relative_url }})
+  - [Part 3: সঞ্চালনজনিত রোগ]({{ '/biology/higher-zoology-tree/physiology/circulatory-diseases-causes-symptoms-treatment-awareness/' | relative_url }})
+  - [Part 4: CABG, angioplasty, stent ও open-heart surgery]({{ '/biology/higher-zoology-tree/physiology/cardiac-surgery-bypass-angioplasty-open-heart-treatment/' | relative_url }})
+  - [Part 5: হৃদস্বাস্থ্য ও জীবনচর্চা]({{ '/biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application/' | relative_url }})
+  - [Revision Map: Blood Circulation Overview]({{ '/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/' | relative_url }})
 - [Zoology Foundation]({{ '/biology/hsc-corner/zoology/' | relative_url }})
 - [Baroreceptor Reflex]({{ '/biology/hsc-corner/zoology/baroreceptor-reflex/' | relative_url }})
 - [Respiratory System Lecture]({{ '/biology/hsc-corner/zoology/respiratory-system-lecture/' | relative_url }})
@@ -93,12 +101,13 @@ By the end of this gateway, learners should be able to:
 
 ## Synaptic Bridge
 
-Human physiology forms one of the strongest bridges between biology and life. Digestion can explain nutrition and discipline. Hormones can explain energy, stress, and emotional patterns. Nervous coordination can explain reaction, restraint, and leadership behaviour. Physiology teaches learners that many life responses begin as biological signals, but reflection can guide their final direction.
+Human physiology forms one of the strongest bridges between biology and life. Digestion can explain nutrition and discipline. Hormones can explain energy, stress, and emotional patterns. Nervous coordination can explain reaction, restraint, and leadership behaviour. Circulation can explain flow, pressure, discipline, prevention and heart-health responsibility. Physiology teaches learners that many life responses begin as biological signals, but reflection can guide their final direction.
 
 ## Critical Thinking Questions
 
 1. How does a physiological feedback loop protect the body from instability?
 2. Which daily behaviour can be better understood if we trace its biological trigger first?
+3. Why does blood circulation provide one of the clearest bridges between academic biology and practical health discipline?
 
 ## Connected Nodes
 
