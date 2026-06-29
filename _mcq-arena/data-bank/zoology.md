@@ -1,5 +1,4 @@
 ---
-
 title: Animal Diversity & Classification
 layout: single
 language: en
@@ -16,6 +15,16 @@ hsc_alignment: "HSC Zoology: animal diversity and classification"
 concept_level: "Assessment Bank"
 ---
 
-This `mcq-arena` collection item exposes the `zoology` quiz from `_data/quizzes.yml` as an individual Markdown page while retaining the shared data bank as the canonical source.
+# Animal Diversity & Classification MCQ Bank
+
+This quiz bank supports practice on animal diversity, classification, phylum-level characters, diagnostic features, body plans, symmetry, coelom, segmentation, organ-system development, and evolutionary relationships.
+
+## Preparation checklist
+
+Revise Porifera, Cnidaria, Platyhelminthes, Nematoda, Annelida, Arthropoda, Mollusca, Echinodermata, Hemichordata, Chordata, protochordates, vertebrate classes, and major distinguishing features. Classification MCQs often depend on one exact diagnostic trait.
+
+## Reasoning method
+
+When answering, identify the taxonomic level first, then match the organism or feature with the correct phylum or class. Use the explanation to correct confusion between similar groups such as annelids and arthropods, or chordates and non-chordates.
 
 {% include components/quiz-render.html quiz_id=page.quiz_id %}
