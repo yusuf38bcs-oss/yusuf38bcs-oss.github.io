@@ -1,100 +1,221 @@
 ---
-
 layout: single
 author_profile: true
 author: "MD. Yusuf"
-
 sidebar:
   nav: "synaptic_nav"
-
-title: "Human Blood Circulation Overview"
-excerpt: "মানবদেহের বদ্ধ রক্ত সংবহন তন্ত্র, সিস্টেমিক ও পালমোনারি সংবহনের একটি ভিজ্যুয়াল ও গ্রাফিক্যাল বায়োমেডিক্যাল ওভারভিউ।"
-
+title: "Blood Circulation Revision Map: রক্ত, হৃদপিণ্ড, সঞ্চালন ও রোগ এক পাতায়"
+excerpt: "Blood Circulation Master Series-এর clean revision map: blood composition, plasma, corpuscles, lymph, heart structure, myogenic control, systemic-pulmonary circulation, disease logic and treatment awareness."
 date: 2026-04-01T12:06:00.013Z
-last_modified_at: 2026-06-09T04:13:27.000Z
-
+last_modified_at: 2026-06-29T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/physiology/human-blood-circulation-overview/
-
 categories:
   - Biology
   - Higher Zoology
   - Physiology
-
 tags:
   - Human Physiology
   - Blood Circulation
   - Cardiovascular System
-
-# AI Knowledge Graph & Neural Routing
+  - Revision Map
 node_id: zoology-physiology-human-blood-circulation-overview
-parent_node: physiology
+parent_node: zoology-physiology-blood-circulation
 network:
   - higher-zoology-tree
   - hsc-corner
-
-# Synaptic Connections (Explicit Relational Mapping)
 related: true
 synaptic_links:
   - /biology/higher-zoology-tree/physiology/blood-circulation/
-  - /life-practices/human-behaviour/
-  - /socratic/mcq-arena/physiology/
-
+  - /biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity/
+  - /biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation/
+  - /biology/higher-zoology-tree/physiology/circulatory-diseases-causes-symptoms-treatment-awareness/
+  - /biology/higher-zoology-tree/physiology/cardiac-surgery-bypass-angioplasty-open-heart-treatment/
+  - /biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application/
 toc: true
 toc_sticky: true
 classes: wide
-
 header:
   overlay_image: /assets/images/biology/physiology-banner.webp
-language: en
+language: bn
 curriculum_tracks:
   - HSC Zoology
-  - NEET Biology
-  - IB Biology
+  - Medical Admission Biology
 neet_alignment: "NCERT Biology: Body Fluids and Circulation"
 ib_theme: "Form and Function"
-ib_subtopic: "Human blood circulation overview"
-hsc_alignment: "HSC Zoology: human circulation, cardiac cycle, and blood flow overview"
-concept_level: "Foundation"
+ib_subtopic: "Blood circulation overview and revision"
+hsc_alignment: "HSC Zoology: blood and circulation revision map"
+concept_level: "Revision"
+difficulty: "Foundation"
+xp: 450
+time_min: 25
+status: "Active"
 ---
 
-<style>
-  .circulation-module { font-family: 'Inter', 'Tiro Bangla', sans-serif; color: #cbd5e1; line-height: 1.75; }
-  .circulation-module h2 { color: #ffffff; font-size: 1.8rem; font-weight: 800; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(0, 212, 178, 0.2); padding-bottom: 0.5rem; }
-  .circulation-module p { margin-bottom: 1.25rem; font-size: 1.05rem; }
-  .circulation-module .neural-video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #020617; border-radius: 12px; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); margin: 1.5rem 0 2.5rem 0; }
-  .circulation-module .neural-video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-  .circulation-module .concept-card { background: rgba(15, 23, 42, 0.6); border-left: 4px solid #00d4b2; padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; }
-  .circulation-module .concept-card ul { margin: 0; padding-left: 1.5rem; }
-  .circulation-module .concept-card li { margin-bottom: 0.85rem; }
-  .circulation-module .concept-card strong { color: #00d4b2; font-size: 1.1rem; }
-  .circulation-module .neural-image-card { margin: 2rem 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); background: #0b1329; padding: 10px; text-align: center; }
-  .circulation-module .neural-image-card img { width: 100%; height: auto; display: block; border-radius: 8px; }
-</style>
+# Blood Circulation Revision Map: রক্ত, হৃদপিণ্ড, সঞ্চালন ও রোগ এক পাতায়
 
-<div class="circulation-module">
+## Purpose of This Revision Map
 
-  <h2 style="margin-top:0;">🎥 Video Lecture: Cardiovascular Mechanics</h2>
-  <p>নিচের রেসপনসিভ ভিডিও উইন্ডোটি থেকে মানবদেহের রক্ত সংবহন তন্ত্রের (Cardiovascular System) মেকানিক্স এবং এর অভ্যন্তরীণ চক্রের বিস্তারিত লেকচারটি দেখে নিন:</p>
+এই page পুরনো video/image-heavy overview-এর পরিবর্তে একটি পরিষ্কার **revision map**। এটি Blood Circulation Master Series-এর দ্রুত পুনরাবৃত্তি: blood composition, RBC/WBC/platelets, lymph, heart structure, cardiac conduction, systemic-pulmonary circulation, angina, heart attack, treatment procedures and lifestyle application.
 
-  <div class="neural-video-wrapper">
-    <iframe src="https://www.youtube.com/embed/4-x_rJb5LOA" allowfullscreen="true"></iframe>
-  </div>
+## Study Route
 
-  <h2>📊 Core Concepts of Human Circulation</h2>
-  <p>মানবদেহের রক্ত সংবহন প্রক্রিয়া মূলত একটি <strong>বদ্ধ সংবহন তন্ত্র (Closed Circulatory System)</strong>। এটি প্রধানত দুটি প্রধান লুপ বা চক্রে বিভক্ত হয়ে কাজ করে:</p>
+| Step | Page | What to revise |
+|---|---|---|
+| 1 | [Master Series Hub]({{ '/biology/higher-zoology-tree/physiology/blood-circulation/' | relative_url }}) | whole series architecture |
+| 2 | [Lecture 1: Blood & Corpuscles]({{ '/biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity/' | relative_url }}) | plasma, RBC, WBC, platelets, lymph |
+| 3 | [Lecture 2: Heart and Circulation]({{ '/biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation/' | relative_url }}) | heart structure, cardiac cycle, myogenic control |
+| 4 | [Lecture 3: Diseases]({{ '/biology/higher-zoology-tree/physiology/circulatory-diseases-causes-symptoms-treatment-awareness/' | relative_url }}) | angina, heart attack, hypertension, blood disorders |
+| 5 | [Lecture 4: Treatment Procedures]({{ '/biology/higher-zoology-tree/physiology/cardiac-surgery-bypass-angioplasty-open-heart-treatment/' | relative_url }}) | CABG, PCI, stent, open-heart surgery |
+| 6 | [Lecture 5: Healthy Living]({{ '/biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application/' | relative_url }}) | prevention, habits, life application |
 
-  <div class="concept-card">
-    <ul>
-      <li><strong>সিস্টেমিক সংবহন (Systemic Circulation):</strong> বাম নিলয় (Left Ventricle) থেকে অক্সিজেনযুক্ত রক্ত মহাধমনীর (Aorta) মাধ্যমে সারা দেহে ছড়িয়ে পড়ে এবং কার্বন ডাই-অক্সাইডযুক্ত রক্ত ডান অলিন্দে (Right Atrium) ফিরে আসে।</li>
-      <li><strong>পালমোনারি সংবহন (Pulmonary Circulation):</strong> ডান নিলয় (Right Ventricle) থেকে কার্বন ডাই-অক্সাইডযুক্ত রক্ত ফুসফুসীয় ধমনীর মাধ্যমে ফুসফুসে যায় এবং অক্সিজেনসমৃদ্ধ হয়ে ফুসফুসীয় শিরার মাধ্যমে বাম অলিন্দে (Left Atrium) প্রবেশ করে।</li>
-    </ul>
-  </div>
+## Master Mind Map
 
-  <h2>🔍 Supplementary Infographic Reference</h2>
-  <p>নিচের উচ্চ-রেজোলিউশন রেফারেন্স কার্ডটি থেকে হৃদপিণ্ডের অলিন্দ ও নিলয়ের ডায়নামিক কপাটিকা (Valves) এবং রক্তের প্রবাহপথের ট্র্যাকিং ম্যাপটি স্টাডি করুন:</p>
+```text
+Blood and Circulation
+│
+├── 1. Blood
+│   ├── Fluid connective tissue
+│   ├── pH 7.35–7.45
+│   ├── About 5–6 L in adults
+│   └── About 8% body weight
+│
+├── 2. Plasma
+│   ├── Water 90–92%
+│   ├── Proteins: albumin, globulin, fibrinogen
+│   ├── Electrolytes, nutrients, hormones
+│   └── CO₂ transport mainly as bicarbonate
+│
+├── 3. Blood Corpuscles
+│   ├── RBC: hemoglobin, O₂ transport, 120 days
+│   ├── WBC: immunity
+│   │   ├── Neutrophil, eosinophil, basophil
+│   │   └── Lymphocyte, monocyte
+│   └── Platelet: clotting and hemostasis
+│
+├── 4. Lymph
+│   ├── Modified tissue fluid
+│   ├── Lymphocyte-rich
+│   ├── No RBC/platelet normally
+│   ├── Tissue drainage
+│   └── Fat absorption and immunity
+│
+├── 5. Heart
+│   ├── Four chambers: RA, RV, LA, LV
+│   ├── Valves: tricuspid, pulmonary, mitral, aortic
+│   ├── Systole: contraction
+│   └── Diastole: relaxation/filling
+│
+├── 6. Myogenic Control
+│   ├── SA Node: pacemaker
+│   ├── AV Node: delay
+│   ├── Bundle of His: conduction pathway
+│   └── Purkinje fibre: ventricular spread
+│
+├── 7. Double Circulation
+│   ├── Pulmonary: RV → lungs → LA
+│   └── Systemic: LV → body → RA
+│
+├── 8. Disease Logic
+│   ├── Angina: temporary ischemia
+│   ├── Heart attack: myocardial injury
+│   ├── Hypertension: pressure damage
+│   ├── Anaemia: low O₂ carrying capacity
+│   └── Thrombosis: abnormal clot blockage
+│
+└── 9. Treatment and Health
+    ├── Medicines
+    ├── PCI / angioplasty / stent
+    ├── CABG bypass
+    ├── Open-heart surgery
+    └── Lifestyle and rehabilitation
+```
 
-  <div class="neural-image-card">
-    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjIcq235qi6LhCcR_7GehOCPjLxm86kGYuEsBXntvgfdiJdo_Hr8M0Y2lzKusxuNgZKJlo-L3kXZyveijeSrzAPFSj_Rls9v3HPmO7qlV874pLaGsZ_1ypSb-szote_5rET-3JKBrY0qux4D0P3ZRZfR_GfYuxsGybPnxbJFWhASjqk88D7pA4wWVG9klg" alt="Human Blood Circulation Infographic Map" loading="lazy">
-  </div>
+## Blood Flow One-page Diagram
 
-</div>
+```text
+Body → Vena cava → Right atrium → Tricuspid valve → Right ventricle
+  ↓
+Pulmonary valve → Pulmonary artery → Lungs
+  ↓
+Pulmonary veins → Left atrium → Mitral valve → Left ventricle
+  ↓
+Aortic valve → Aorta → Body
+```
+
+## Impulse Flow One-page Diagram
+
+```text
+SA Node
+  ↓
+Atrial contraction
+  ↓
+AV Node delay
+  ↓
+Bundle of His
+  ↓
+Right and Left bundle branches
+  ↓
+Purkinje fibres
+  ↓
+Ventricular contraction
+```
+
+## High-yield Comparison Table
+
+| Concept | Must Remember | Common MCQ Trap |
+|---|---|---|
+| Plasma | liquid matrix of blood | শুধু water ভাবা |
+| Albumin | osmotic pressure support | antibody ভাবা |
+| Globulin | immunity/transport | clotting-only ভাবা |
+| Fibrinogen | clot precursor | oxygen carrier ভাবা |
+| RBC | hemoglobin and O₂ transport | nucleus আছে ভাবা |
+| WBC | defence | oxygen transport ভাবা |
+| Platelet | clotting | complete cell with nucleus ভাবা |
+| Lymph | tissue fluid return and immunity | RBC-rich ভাবা |
+| SAN | pacemaker | AVN pacemaker ভাবা |
+| AVN | delay gate | delay-এর প্রয়োজন না বোঝা |
+| Pulmonary artery | RV to lungs, deoxygenated | oxygenated ভাবা |
+| Pulmonary vein | lungs to LA, oxygenated | deoxygenated ভাবা |
+| Angina | temporary myocardial ischemia | always heart attack ভাবা |
+| CABG | bypasses blockage | artery cleaned ভাবা |
+| Stent | keeps artery open | medicine ভাবা |
+
+## Quick Short-answer Bank
+
+1. রক্তকে fluid connective tissue বলা হয় কেন?
+2. Plasma protein-এর তিনটি নাম ও কাজ লিখ।
+3. RBC-এর biconcave shape-এর সুবিধা কী?
+4. WBC-এর granulocyte ও agranulocyte types লিখ।
+5. Platelet কীভাবে clot formation-এ সাহায্য করে?
+6. Lymph ও blood-এর পার্থক্য লিখ।
+7. Heart-এর চার প্রকোষ্ঠের নাম লিখ।
+8. Systole ও diastole-এর পার্থক্য লিখ।
+9. SAN-কে pacemaker বলা হয় কেন?
+10. AVN delay কেন দরকার?
+11. Systemic ও pulmonary circulation আলাদা করো।
+12. Angina ও heart attack-এর পার্থক্য লিখ।
+13. Angioplasty ও CABG-এর mechanism পার্থক্য করো।
+14. Healthy lifestyle কেন surgery-এর পরও জরুরি?
+
+## MCQ Validity Logic Template
+
+```text
+Correct answer: [Option]
+Validity logic: কারণ [concept] অনুযায়ী [mechanism] ঘটে। অন্য option কম গ্রহণযোগ্য, কারণ সেটি [wrong component / wrong route / wrong disease logic] নির্দেশ করে।
+```
+
+Example:
+
+**Question:** SAN-কে pacemaker বলা হয় কেন?  
+**Correct answer:** কারণ heartbeat-এর normal impulse সাধারণত SAN থেকে শুরু হয়।  
+**Validity logic:** SAN right atrium-এ spontaneous action potential তৈরি করে atrial contraction শুরু করে। AVN impulse delay ও conduction করে, কিন্তু primary pacemaker নয়।
+
+## Synaptic Bridge
+
+Blood circulation শেখায়: life is flow. Flow থেমে গেলে tissue suffer করে। চিন্তা, আচরণ, খাদ্য, ঘুম, stress and discipline—এসবেরও biological flow আছে। তাই circulation chapter শুধু heart diagram নয়; এটি জীবনের দায়িত্বশীল চলাচল, শুদ্ধ প্রবাহ এবং self-correction-এর পাঠ।
+
+## References
+
+- Uploaded source: **Blood Circulation.pdf** — blood and circulation slides.
+- John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, blood and cardiovascular physiology chapters.
+- Blood Circulation Master Series pages on Learning Biology For Life.
