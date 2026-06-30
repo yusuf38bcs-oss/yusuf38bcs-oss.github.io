@@ -11,6 +11,7 @@
 <link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%Y%m%d' }}" as="style">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%Y%m%d' }}">
 <link rel="stylesheet" href="{{ '/assets/css/synaptic-overrides.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
+<link rel="stylesheet" href="{{ '/assets/css/production-hotfix.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -178,30 +179,22 @@
     window.gdprDecline = declineCookies;
 
     onReady(function() {
-      var consent = getConsent();
       var banner = getBanner();
+      if (!banner) return;
 
-      if (banner) {
-        banner.addEventListener("click", function(event) {
-          var button = event.target.closest("[data-gdpr-consent]");
-          if (!button) return;
-
-          if (button.dataset.gdprConsent === "granted") {
-            acceptCookies();
-          } else {
-            declineCookies();
-          }
-        });
-      }
-
-      if (!consent) {
-        showBanner();
-      } else if (consent === "granted") {
+      var consent = getConsent();
+      if (consent === "granted") {
         pushConsentState("granted");
         loadAdSense();
-      } else {
-        pushConsentState("denied");
+        return;
       }
+
+      if (consent === "denied") {
+        pushConsentState("denied");
+        return;
+      }
+
+      window.setTimeout(showBanner, 600);
     });
   })();
 </script>
