@@ -20,66 +20,102 @@
 
 <style>
   #gdpr-banner {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 999999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.85rem 1rem;
-    padding: 1rem;
-    background: rgba(15, 23, 42, 0.94);
-    border-top: 1px solid rgba(0, 212, 178, 0.35);
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.45);
-    color: #e2e8f0;
-    font-family: Inter, sans-serif;
-    font-size: 0.875rem;
+    position: fixed !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: calc(0.7rem + env(safe-area-inset-bottom)) !important;
+    z-index: 999999 !important;
+    width: min(94vw, 760px) !important;
+    transform: translateX(-50%) !important;
+    display: none !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    justify-content: stretch !important;
+    gap: 0.72rem !important;
+    padding: 0.72rem 0.85rem !important;
+    background: rgba(2, 6, 23, 0.94) !important;
+    border: 1px solid rgba(0, 212, 178, 0.28) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.5), 0 0 22px rgba(0, 212, 178, 0.12) !important;
+    backdrop-filter: blur(16px) saturate(1.15) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(1.15) !important;
+    color: #e2e8f0 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 0.86rem !important;
   }
 
-  #gdpr-banner.is-visible { display: flex; }
+  #gdpr-banner.is-visible { display: grid !important; }
 
   #gdpr-banner .gdpr-text {
-    flex: 1 1 320px;
-    max-width: 760px;
-    line-height: 1.55;
-    text-align: center;
+    flex: initial !important;
+    max-width: none !important;
+    margin: 0 !important;
+    line-height: 1.42 !important;
+    text-align: left !important;
+    font-size: clamp(0.76rem, 2.7vw, 0.9rem) !important;
   }
 
   #gdpr-banner .gdpr-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.55rem;
+    width: auto !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-end !important;
+    gap: 0.45rem !important;
   }
 
   #gdpr-banner button {
-    min-height: 44px;
-    padding: 0.55rem 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-weight: 700;
+    flex: 0 0 auto !important;
+    min-width: 78px !important;
+    min-height: 40px !important;
+    padding: 0.46rem 0.72rem !important;
+    border-radius: 11px !important;
+    cursor: pointer !important;
+    font-weight: 900 !important;
+    font-size: 0.86rem !important;
+    line-height: 1 !important;
   }
 
   .gdpr-accept {
-    background: #00d4b2;
-    color: #020617;
-    border: 1px solid #00d4b2;
+    background: #00d4b2 !important;
+    color: #020617 !important;
+    border: 1px solid #00d4b2 !important;
+    box-shadow: 0 0 18px rgba(0, 212, 178, 0.24) !important;
   }
 
   .gdpr-decline {
-    background: transparent;
-    color: #cbd5e1;
-    border: 1px solid #334155;
+    background: #1d4ed8 !important;
+    color: #f8fafc !important;
+    border: 1px solid rgba(96, 165, 250, 0.65) !important;
   }
 
   @media (max-width: 560px) {
-    #gdpr-banner { align-items: stretch; }
-    #gdpr-banner .gdpr-text { text-align: left; }
-    #gdpr-banner .gdpr-buttons { width: 100%; }
-    #gdpr-banner button { flex: 1 1 130px; }
+    #gdpr-banner {
+      width: min(94vw, 430px) !important;
+      grid-template-columns: 1fr !important;
+      gap: 0.5rem !important;
+      padding: 0.6rem 0.68rem !important;
+      border-radius: 16px !important;
+    }
+
+    #gdpr-banner .gdpr-text {
+      font-size: 0.76rem !important;
+      line-height: 1.34 !important;
+    }
+
+    #gdpr-banner .gdpr-buttons {
+      width: 100% !important;
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0.5rem !important;
+    }
+
+    #gdpr-banner button {
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 38px !important;
+      padding: 0.42rem 0.55rem !important;
+      font-size: 0.84rem !important;
+    }
   }
 </style>
 
