@@ -1,0 +1,79 @@
+/* Production hotfix: navbar collision and mobile polish. */
+
+/* The logo already links to home; desktop menu intentionally omits Home in markup.
+   This rule protects tablet/desktop-site mode from title/menu collision. */
+@media (max-width: 1180px) {
+  .lbfl-brand {
+    flex: 0 0 auto !important;
+    max-width: 116px !important;
+  }
+
+  .lbfl-brand__full {
+    display: none !important;
+  }
+
+  .lbfl-brand__short {
+    display: block !important;
+    color: #f8fafc;
+    font-weight: 950;
+    font-size: 0.98rem;
+    letter-spacing: 0.02em;
+  }
+
+  .lbfl-desktop-links {
+    margin-left: 0.35rem !important;
+    gap: 0.18rem !important;
+  }
+
+  .lbfl-desktop-links a {
+    padding-inline: 0.34rem !important;
+    font-size: clamp(0.68rem, 0.86vw, 0.82rem) !important;
+  }
+}
+
+@media (max-width: 920px) {
+  .lbfl-desktop-links {
+    display: none !important;
+  }
+
+  .lbfl-mobile-menu {
+    display: inline-flex !important;
+  }
+}
+
+/* Keep only one homepage author section and stop footer from reintroducing a second copy. */
+.footer-author-bridge,
+.mycorrhizal-footer .home-author-profile {
+  display: none !important;
+}
+
+/* Refine homepage author card after duplicate cleanup. */
+#synaptic-home-root .home-author-profile {
+  padding-top: clamp(2rem, 5vw, 4rem) !important;
+  padding-bottom: clamp(2rem, 5vw, 4rem) !important;
+}
+
+@media (max-width: 640px) {
+  #synaptic-home-root .home-author-profile__shell {
+    padding: 1.25rem !important;
+    border-radius: 22px !important;
+  }
+
+  #synaptic-home-root .home-author-profile h2 {
+    font-size: clamp(2.05rem, 10vw, 3rem) !important;
+  }
+
+  #synaptic-home-root .home-author-profile__credential {
+    font-size: 1rem !important;
+  }
+
+  #synaptic-floating-ai-root.synaptic-floating-ai-shell {
+    bottom: calc(5.85rem + env(safe-area-inset-bottom)) !important;
+    right: 0.85rem !important;
+  }
+
+  #synaptic-floating-ai-root .synaptic-core-bubble-btn {
+    width: 46px !important;
+    height: 46px !important;
+  }
+}
