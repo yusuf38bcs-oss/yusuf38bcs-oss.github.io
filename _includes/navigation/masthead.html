@@ -13,9 +13,11 @@
 
       <ul class="lbfl-desktop-links" aria-label="Main menu">
         {%- for link in site.data.navigation.main -%}
-          <li class="lbfl-desktop-links__item">
-            <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description | escape }}"{% endif %}>{{ link.title }}</a>
-          </li>
+          {%- unless link.url == '/' or link.title == 'Home' -%}
+            <li class="lbfl-desktop-links__item">
+              <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description | escape }}"{% endif %}>{{ link.title }}</a>
+            </li>
+          {%- endunless -%}
         {%- endfor -%}
       </ul>
 
