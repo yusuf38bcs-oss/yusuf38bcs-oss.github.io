@@ -12,63 +12,137 @@ toc_sticky: true
 classes: wide
 ---
 
-# HSC Biology Learning Hub
+<section class="lbfl-hub-intro" aria-labelledby="hsc-hub-title">
+  <span class="lbfl-hub-kicker">HSC Biology Gateway</span>
+  <h2 id="hsc-hub-title" class="lbfl-hub-title">Concept-first Biology for HSC Learners</h2>
+  <p class="lbfl-hub-lead">This hub organizes Botany, Zoology, model-test preparation, practical biology, diagram-based reasoning, and MCQ practice for Bangladeshi learners. The goal is to move from memorization to explanation, from isolated terms to biological systems, and from guessing to answer validity logic.</p>
+</section>
 
-The **HSC Biology Learning Hub** organizes Botany, Zoology, model-test preparation, practical biology, diagram-based reasoning, and MCQ practice for Bangladeshi learners. The purpose is not to provide memorization-only notes. The purpose is to help learners understand biological structure, function, process, evidence, and application.
+<h2 class="lbfl-section-title">Main HSC Learning Routes</h2>
 
-This hub follows the editorial model of **Learning Biology For Life**: concept clarity, HSC syllabus alignment, classroom-friendly explanation, diagrams or flowcharts where useful, MCQ explanation with validity logic, and reflective scientific thinking.
+<div class="lbfl-card-grid" aria-label="Main HSC learning routes">
+  <article class="lbfl-route-card">
+    <span class="lbfl-card-badge">Botany</span>
+    <h3><a href="{{ '/biology/hsc-corner/botany/' | relative_url }}">HSC Botany</a></h3>
+    <p>Cell biology, plant structure, cell division, genetics foundations, diagrams, and chapter-based explanation.</p>
+  </article>
 
-## Main HSC Learning Routes
+  <article class="lbfl-route-card">
+    <span class="lbfl-card-badge">Zoology</span>
+    <h3><a href="{{ '/biology/hsc-corner/zoology/' | relative_url }}">HSC Zoology</a></h3>
+    <p>Human physiology, animal diversity, respiratory system, blood pressure, feedback loops, and zoological concepts.</p>
+  </article>
 
-| Route | What learners will find | Primary use |
-|---|---|---|
-| [HSC Botany]({{ '/biology/hsc-corner/botany/' | relative_url }}) | Cell biology, plant structure, cell division, genetics foundations, diagrams, and chapter-based explanations | Chapter learning and diagram practice |
-| [HSC Zoology]({{ '/biology/hsc-corner/zoology/' | relative_url }}) | Human physiology, animal diversity, respiratory system, blood pressure, feedback loops, and zoological concepts | Conceptual Zoology learning |
-| [Model Test]({{ '/biology/hsc-corner/model-test/' | relative_url }}) | Structured test preparation, question-pattern logic, answer review, and self-assessment guidance | Exam readiness |
-| [Practical]({{ '/biology/hsc-corner/practical/' | relative_url }}) | Practical biology thinking, observation, drawing, lab-skill logic, and record-writing support | Practical class preparation |
-| [MCQ Arena]({{ '/mcq-arena/' | relative_url }}) | MCQ practice, answer explanation, wrong-option logic, and Socratic feedback | Practice and revision |
+  <article class="lbfl-route-card">
+    <span class="lbfl-card-badge">Assessment</span>
+    <h3><a href="{{ '/biology/hsc-corner/model-test/' | relative_url }}">Model Test</a></h3>
+    <p>Structured test preparation, question-pattern logic, answer review, and self-assessment guidance.</p>
+  </article>
 
-## Recommended Study Sequence
+  <article class="lbfl-route-card">
+    <span class="lbfl-card-badge">Practical</span>
+    <h3><a href="{{ '/biology/hsc-corner/practical/' | relative_url }}">Practical Biology</a></h3>
+    <p>Observation, drawing, lab-skill logic, practical record support, and evidence-based explanation.</p>
+  </article>
 
-1. **Start with the chapter hub.** Choose Botany or Zoology according to your syllabus need.
-2. **Read the concept lecture.** Focus on cause-and-effect explanation, not isolated definitions.
-3. **Draw the process.** Turn the concept into a diagram, flowchart, or comparison table.
-4. **Practice MCQs.** Read the answer explanation and understand why the other options are wrong.
-5. **Use model tests.** Check whether you can apply the concept under exam conditions.
-6. **Reflect.** Write one sentence explaining how the topic connects to real life, health, ecology, agriculture, or scientific thinking.
+  <article class="lbfl-route-card">
+    <span class="lbfl-card-badge">MCQ</span>
+    <h3><a href="{{ '/mcq-arena/' | relative_url }}">MCQ Arena</a></h3>
+    <p>MCQ practice with answer explanation, wrong-option logic, misconception correction, and Socratic feedback.</p>
+  </article>
+</div>
 
-## Core Learning Principles
+<h2 class="lbfl-section-title">Recommended Study Sequence</h2>
 
-### Structure before mechanism
+<div class="lbfl-study-grid" aria-label="Recommended study sequence">
+  <article class="lbfl-study-step">
+    <h3>Start with the chapter hub</h3>
+    <p>Choose Botany or Zoology according to your syllabus need and learning weakness.</p>
+  </article>
+  <article class="lbfl-study-step">
+    <h3>Read the concept lecture</h3>
+    <p>Focus on cause-and-effect explanation, not isolated definitions.</p>
+  </article>
+  <article class="lbfl-study-step">
+    <h3>Draw the process</h3>
+    <p>Turn the concept into a diagram, flowchart, or comparison table.</p>
+  </article>
+  <article class="lbfl-study-step">
+    <h3>Practice MCQs</h3>
+    <p>Read answer explanations and understand why the other options are wrong.</p>
+  </article>
+  <article class="lbfl-study-step">
+    <h3>Use model tests</h3>
+    <p>Check whether you can apply the concept under exam conditions.</p>
+  </article>
+  <article class="lbfl-study-step">
+    <h3>Reflect</h3>
+    <p>Write one sentence connecting the topic to life, health, ecology, agriculture, or scientific thinking.</p>
+  </article>
+</div>
 
-In Biology, learners often memorize terms before understanding the system. For example, the respiratory system becomes easier when the air route is understood before gas exchange. Blood circulation becomes easier when blood composition, heart structure, and vessel function are understood before disease and treatment logic.
+<h2 class="lbfl-section-title">Core Learning Principles</h2>
 
-### Diagram before paragraph
+<div class="lbfl-card-grid" aria-label="Core learning principles">
+  <article class="lbfl-principle-card">
+    <span class="lbfl-card-badge">Principle 1</span>
+    <h3>Structure before mechanism</h3>
+    <p>Respiration becomes easier when the air route is understood before gas exchange. Blood circulation becomes easier when blood composition, heart structure, and vessel function are understood before disease and treatment logic.</p>
+  </article>
+  <article class="lbfl-principle-card">
+    <span class="lbfl-card-badge">Principle 2</span>
+    <h3>Diagram before paragraph</h3>
+    <p>A labelled diagram of a cell, heart, lung, nephron, flower, or ecosystem often explains the first layer of the topic better than a long paragraph.</p>
+  </article>
+  <article class="lbfl-principle-card">
+    <span class="lbfl-card-badge">Principle 3</span>
+    <h3>MCQ explanation before score</h3>
+    <p>A score alone does not improve thinking. Every useful MCQ explains why the correct answer is valid and why the other options are not valid.</p>
+  </article>
+  <article class="lbfl-principle-card">
+    <span class="lbfl-card-badge">Principle 4</span>
+    <h3>Bangladesh context matters</h3>
+    <p>HSC learners need syllabus precision plus examples from classroom learning, practical work, local environment, agriculture, public health, and everyday observation.</p>
+  </article>
+</div>
 
-A diagram helps the learner see relationships. A labelled diagram of a cell, heart, lung, nephron, flower, or ecosystem often explains the first layer of the topic better than a long paragraph.
+<h2 class="lbfl-section-title">Featured HSC Pathways</h2>
 
-### MCQ explanation before score
+<div class="lbfl-card-grid" aria-label="Featured HSC pathways">
+  <article class="lbfl-log-card">
+    <span class="lbfl-card-badge">Respiration</span>
+    <h3><a href="{{ '/biology/hsc-corner/zoology/respiratory-system-lecture/' | relative_url }}">Respiratory System Master Series</a></h3>
+    <p>Complete route from airway anatomy to gas transport, respiratory mechanics, and disease awareness.</p>
+  </article>
+  <article class="lbfl-log-card">
+    <span class="lbfl-card-badge">Anatomy</span>
+    <h3><a href="{{ '/biology/hsc-corner/zoology/respiratory-system-anatomy-airway-alveoli/' | relative_url }}">Respiratory Anatomy and Airway</a></h3>
+    <p>Air route, alveoli, lung structure, and diagram-based explanation.</p>
+  </article>
+  <article class="lbfl-log-card">
+    <span class="lbfl-card-badge">Mechanism</span>
+    <h3><a href="{{ '/biology/hsc-corner/zoology/respiratory-mechanics-gas-transport/' | relative_url }}">Respiratory Mechanics and Gas Transport</a></h3>
+    <p>Physical and chemical processes of breathing and gas exchange.</p>
+  </article>
+  <article class="lbfl-log-card">
+    <span class="lbfl-card-badge">Control</span>
+    <h3><a href="{{ '/biology/hsc-corner/zoology/baroreceptor-reflex/' | relative_url }}">Baroreceptor Reflex</a></h3>
+    <p>Negative feedback, blood pressure control, and physiology reasoning.</p>
+  </article>
+  <article class="lbfl-log-card">
+    <span class="lbfl-card-badge">Cell</span>
+    <h3><a href="{{ '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/' | relative_url }}">Cell Organelles — Part 1</a></h3>
+    <p>Cell structure, organelle function, and diagram-based cell learning.</p>
+  </article>
+  <article class="lbfl-log-card">
+    <span class="lbfl-card-badge">Cell</span>
+    <h3><a href="{{ '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/' | relative_url }}">Cell Organelles — Part 2</a></h3>
+    <p>Advanced organelle relationships and function-based revision.</p>
+  </article>
+</div>
 
-A score alone does not improve thinking. Each MCQ should include validity logic: why the correct answer is correct and why the other options are not valid.
-
-### Bangladesh context matters
-
-HSC Biology learners need syllabus-based precision, but they also need examples from classroom learning, practical work, local environment, agriculture, public health, and everyday observation.
-
-## Featured HSC Pathways
-
-- [Respiratory System Master Series]({{ '/biology/hsc-corner/zoology/respiratory-system-lecture/' | relative_url }})
-- [Respiratory Anatomy and Airway]({{ '/biology/hsc-corner/zoology/respiratory-system-anatomy-airway-alveoli/' | relative_url }})
-- [Respiratory Mechanics and Gas Transport]({{ '/biology/hsc-corner/zoology/respiratory-mechanics-gas-transport/' | relative_url }})
-- [Respiratory Diseases and Public Health]({{ '/biology/hsc-corner/zoology/respiratory-diseases-public-health/' | relative_url }})
-- [Baroreceptor Reflex and Blood Pressure Control]({{ '/biology/hsc-corner/zoology/baroreceptor-reflex/' | relative_url }})
-- [Cell Organelles Part 1]({{ '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/' | relative_url }})
-- [Cell Organelles Part 2]({{ '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/' | relative_url }})
-
-## Learner Outcome
-
-A learner who uses this hub should be able to move from **chapter reading** to **diagram construction**, from **definition memorization** to **mechanism explanation**, and from **MCQ guessing** to **reasoned answer selection**.
-
-## Editorial Note
-
-This hub is reviewed and reorganized as new lessons, MCQ sets, and practical resources are added. Empty or unfinished pages should not be treated as final learning material; the goal is to keep the public route complete, useful, and navigable.
+<section class="lbfl-outcome-card" aria-label="Learner outcome">
+  <span class="lbfl-card-badge">Learner Outcome</span>
+  <h3>From memorization to explanation</h3>
+  <p>A learner who uses this hub should be able to move from chapter reading to diagram construction, from definition memorization to mechanism explanation, and from MCQ guessing to reasoned answer selection.</p>
+</section>
