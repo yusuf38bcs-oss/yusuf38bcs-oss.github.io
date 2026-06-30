@@ -179,3 +179,154 @@
     height: 46px !important;
   }
 }
+
+/* Botany lecture forensic mobile fix: keep the fixed lecture pattern readable on every HSC Botany lecture. */
+.layout--single.wide .page__content {
+  color: #dbeafe !important;
+}
+
+.layout--single.wide .page__content > div:first-of-type {
+  overflow: visible !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+.layout--single.wide .page__content > div:first-of-type h1,
+.layout--single.wide .page__content > div:first-of-type h2 {
+  color: #ffffff !important;
+  font-size: clamp(1.55rem, 8.4vw, 2.35rem) !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.025em !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  max-width: 100% !important;
+}
+
+.layout--single.wide .page__content > div:first-of-type p {
+  color: #14f1d9 !important;
+  font-size: clamp(0.98rem, 4.2vw, 1.16rem) !important;
+  line-height: 1.55 !important;
+  overflow-wrap: anywhere !important;
+}
+
+.layout--single.wide .page__content .guideline-quote-block,
+.layout--single.wide .page__content .panel,
+.layout--single.wide .page__content .panel-content-inner,
+.layout--single.wide .page__content blockquote {
+  color: #dbeafe !important;
+}
+
+.layout--single.wide .page__content .guideline-quote-block strong,
+.layout--single.wide .page__content .panel strong,
+.layout--single.wide .page__content .panel-content-inner strong {
+  color: #ffffff !important;
+}
+
+.layout--single.wide .page__content .accordion {
+  width: 100% !important;
+  min-height: 4.25rem !important;
+  margin: 1.05rem 0 0.6rem !important;
+  padding: clamp(1rem, 4vw, 1.35rem) clamp(1rem, 4vw, 1.55rem) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.9rem !important;
+  border: 1px solid rgba(148, 163, 184, 0.16) !important;
+  border-left: 4px solid rgba(148, 163, 184, 0.72) !important;
+  border-radius: 0 14px 14px 0 !important;
+  background: rgba(15, 23, 42, 0.92) !important;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22) !important;
+  color: #f8fafc !important;
+  font-weight: 900 !important;
+  font-size: clamp(1rem, 4.6vw, 1.22rem) !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  cursor: pointer !important;
+}
+
+.layout--single.wide .page__content .accordion span {
+  flex: 0 0 auto !important;
+  color: #2dd4bf !important;
+  font-size: 1.55rem !important;
+  line-height: 1 !important;
+}
+
+.layout--single.wide .page__content .accordion:hover,
+.layout--single.wide .page__content .accordion:focus-visible,
+.layout--single.wide .page__content .accordion.active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(8, 47, 73, 0.86)) !important;
+  border-color: rgba(45, 212, 191, 0.34) !important;
+  border-left-color: #2dd4bf !important;
+  outline: none !important;
+}
+
+.layout--single.wide .page__content .panel {
+  background: rgba(2, 6, 23, 0.74) !important;
+  border-left: 4px solid rgba(100, 116, 139, 0.9) !important;
+  border-radius: 0 14px 14px 0 !important;
+  overflow: hidden !important;
+}
+
+.layout--single.wide .page__content .panel-content-inner {
+  padding: clamp(1rem, 4.4vw, 1.55rem) !important;
+  color: #dbeafe !important;
+  font-size: clamp(1rem, 4.2vw, 1.14rem) !important;
+  line-height: 1.78 !important;
+}
+
+.layout--single.wide .page__content .panel-content-inner p,
+.layout--single.wide .page__content .panel-content-inner li,
+.layout--single.wide .page__content .panel-content-inner td,
+.layout--single.wide .page__content .panel-content-inner th {
+  color: #dbeafe !important;
+}
+
+.layout--single.wide .page__content .panel-content-inner h2,
+.layout--single.wide .page__content .panel-content-inner h3,
+.layout--single.wide .page__content .panel-content-inner h4 {
+  color: #f8fafc !important;
+  line-height: 1.25 !important;
+  overflow-wrap: anywhere !important;
+}
+
+.layout--single.wide .page__content .panel-content-inner a {
+  color: #67e8f9 !important;
+}
+
+.layout--single.wide .page__content img,
+.layout--single.wide .page__content svg,
+.layout--single.wide .page__content video,
+.layout--single.wide .page__content canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+@media (max-width: 640px) {
+  .layout--single.wide .page__content > div:first-of-type {
+    padding: 1.2rem !important;
+    margin-bottom: 1.5rem !important;
+    border-radius: 20px !important;
+    text-align: left !important;
+  }
+
+  .layout--single.wide .page__content > div:first-of-type h1,
+  .layout--single.wide .page__content > div:first-of-type h2 {
+    margin-bottom: 0.75rem !important;
+    font-size: clamp(1.42rem, 9.4vw, 2rem) !important;
+    line-height: 1.16 !important;
+  }
+
+  .layout--single.wide .page__content .accordion {
+    min-height: 4.55rem !important;
+    padding: 1rem 0.95rem !important;
+    font-size: clamp(1rem, 5.2vw, 1.16rem) !important;
+  }
+
+  .layout--single.wide .page__content .panel-content-inner {
+    font-size: 1rem !important;
+    line-height: 1.75 !important;
+  }
+}
