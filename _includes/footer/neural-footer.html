@@ -2,8 +2,8 @@
   <div class="neural-footer__inner">
     <section class="neural-footer__brand-card" aria-label="Site mission">
       <p class="neural-footer__kicker">Learning Biology For Life</p>
-      <h2 class="neural-footer__title">Biology, Life Philosophy & 4IR Learning</h2>
-      <p class="neural-footer__mission">A neural educational ecosystem connecting biological sciences, reflective thinking, practical life skills, and future-ready pedagogy.</p>
+      <h2 class="neural-footer__title">Biology Education, MCQ Practice & Reflective Learning</h2>
+      <p class="neural-footer__mission">A focused academic ecosystem for HSC Biology, Higher Zoology, diagram-based explanation, MCQ validity logic, and Socratic scientific learning.</p>
     </section>
 
     <nav class="neural-footer__grid" aria-label="Footer navigation">
@@ -11,19 +11,19 @@
         <h4>Explore</h4>
         <ul>
           <li><a href="{{ '/biology/' | relative_url }}">Biology Core</a></li>
-          <li><a href="{{ '/synaptic-bridge/' | relative_url }}">Synaptic Bridge</a></li>
-          <li><a href="{{ '/life-philosophy/' | relative_url }}">Life Philosophy</a></li>
-          <li><a href="{{ '/life-practices/' | relative_url }}">Life Practices</a></li>
+          <li><a href="{{ '/biology/hsc-corner/' | relative_url }}">HSC Biology</a></li>
+          <li><a href="{{ '/biology/higher-zoology-tree/' | relative_url }}">Higher Zoology</a></li>
+          <li><a href="{{ '/mcq-arena/' | relative_url }}">MCQ Arena</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4>Resources</h4>
         <ul>
-          <li><a href="{{ '/life-practices/cognitive-audit/' | relative_url }}">Cognitive Audit</a></li>
-          <li><a href="{{ '/categories/' | relative_url }}">Node Categories</a></li>
+          <li><a href="{{ '/socratic/' | relative_url }}">Socratic 4.0</a></li>
+          <li><a href="{{ '/categories/' | relative_url }}">Categories</a></li>
           <li><a href="{{ '/tags/' | relative_url }}">Knowledge Tags</a></li>
-          <li><a href="{{ '/blog/' | relative_url }}">Scientific Logs</a></li>
+          <li><a href="{{ '/archive/' | relative_url }}">Scientific Logs</a></li>
         </ul>
       </div>
 
@@ -32,8 +32,8 @@
         <ul>
           <li><a href="{{ '/about/' | relative_url }}">Author Profile</a></li>
           <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
-          <li><a href="{{ '/life-practices/cognitive-audit/' | relative_url }}">Socratic 4.0</a></li>
-          <li><a href="{{ '/matrix/behavioral-axis/' | relative_url }}">Behavioral Axis</a></li>
+          <li><a href="{{ '/editorial-policy/' | relative_url }}">Editorial Policy</a></li>
+          <li><a href="{{ '/sitemap.xml' | relative_url }}">Sitemap</a></li>
         </ul>
       </div>
 
@@ -48,26 +48,24 @@
       </div>
     </nav>
 
-    <section class="neural-footer__reflection" aria-label="Reflection">
-      <p>“Learning becomes life-ready when knowledge, behavior, ethics, and inquiry are connected.”</p>
-    </section>
-
-    {% include home/author-profile.html %}
-
     <div class="footer-bottom">
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All systems active.</p>
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. Educational ecosystem online.</p>
     </div>
   </div>
 
-  <div id="gdpr-banner">
-    <div class="gdpr-text">We utilize cookies to map cognitive pathways, analyze node traffic, and personalize your educational experience.</div>
+  <div id="gdpr-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <div class="gdpr-text">We use cookies for analytics, site stability, and learning experience improvement.</div>
     <div class="gdpr-buttons">
-      <button class="gdpr-accept" onclick="gdprAccept()">Initialize Accept</button>
-      <button class="gdpr-decline" onclick="gdprDecline()">Bypass Decline</button>
+      <button class="gdpr-accept" type="button" onclick="gdprAccept()">Accept</button>
+      <button class="gdpr-decline" type="button" onclick="gdprDecline()">Decline</button>
     </div>
   </div>
 </footer>
 
 <style>
-  .site-footer-shell{clear:both;width:100%;max-width:100%;overflow:hidden;background:#020617}.neural-footer,.neural-footer *{box-sizing:border-box}.neural-footer{position:relative;width:100%;max-width:100%;overflow:hidden;margin:0;padding:clamp(3rem,7vw,5rem) 1rem 0;background:radial-gradient(circle at top center,rgba(0,212,178,.12),transparent 36%),linear-gradient(180deg,#020617 0%,#070b14 100%);border-top:1px solid rgba(0,212,178,.16);color:#94a3b8;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}.neural-footer:before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,178,.7),transparent)}.neural-footer__inner{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto}.neural-footer__brand-card{margin:0 auto 2rem;padding:clamp(1.25rem,4vw,2rem);border:1px solid rgba(148,163,184,.13);border-radius:20px;background:linear-gradient(135deg,rgba(15,23,42,.76),rgba(2,6,23,.72));box-shadow:0 18px 46px rgba(0,0,0,.28);text-align:center}.neural-footer__kicker{margin:0 0 .6rem;color:#5eead4;font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.neural-footer__title{margin:0;color:#f8fafc;font-size:clamp(1.35rem,5vw,2.25rem);line-height:1.12;font-weight:900;letter-spacing:-.03em}.neural-footer__mission{max-width:720px;margin:1rem auto 0;color:#cbd5e1;font-size:clamp(.95rem,2.5vw,1.05rem);line-height:1.7}.neural-footer__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:0;padding:0}.footer-col{min-width:0;padding:1.15rem;border:1px solid rgba(148,163,184,.12);border-radius:16px;background:rgba(15,23,42,.46)}.footer-col h4{display:inline-block;margin:0 0 .9rem;color:#e2e8f0;font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid #00d4b2;padding-bottom:.35rem}.footer-col ul{margin:0;padding:0;list-style:none}.footer-col li{margin:0}.footer-col a{display:block;padding:.42rem 0;color:#94a3b8;text-decoration:none;font-size:.94rem;line-height:1.35;overflow-wrap:anywhere;transition:color .2s ease,transform .2s ease}.footer-col a:hover,.footer-col a:focus-visible{color:#5eead4;transform:translateX(3px);outline:none}.neural-footer__reflection{margin:1.25rem 0 0;padding:1.2rem 1rem;border-left:3px solid #00d4b2;background:rgba(0,212,178,.05);border-radius:0 14px 14px 0}.neural-footer__reflection p{margin:0;color:#e2e8f0;font-size:clamp(.95rem,2.5vw,1.08rem);line-height:1.65;font-style:italic}.neural-footer .home-author-profile{margin-top:1.25rem;padding:0;background:transparent;border-top:0;border-bottom:0}.neural-footer .home-author-profile__shell{width:100%;box-shadow:0 18px 46px rgba(0,0,0,.28)}.footer-bottom{margin-top:2rem;padding:1.2rem 0;border-top:1px solid rgba(148,163,184,.14);text-align:center;color:#94a3b8;font-size:.84rem}.footer-bottom p{margin:0}#gdpr-banner{position:fixed;left:0;right:0;bottom:0;z-index:999999;display:none;align-items:center;justify-content:center;flex-wrap:wrap;gap:1rem;padding:1rem;background:rgba(15,23,42,.9);border-top:1px solid rgba(0,212,178,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -10px 30px rgba(0,0,0,.5);color:#e2e8f0;font-size:.9rem}.gdpr-text{flex:1 1 320px;text-align:center}.gdpr-buttons{display:flex;gap:.6rem;flex-wrap:wrap}.gdpr-accept,.gdpr-decline{min-height:42px;padding:.5rem 1rem;border-radius:8px;font-weight:800;cursor:pointer}.gdpr-accept{background:#00d4b2;color:#020617;border:1px solid #00d4b2}.gdpr-decline{background:transparent;color:#cbd5e1;border:1px solid #334155}@media(max-width:920px){.neural-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.neural-footer{padding:2.5rem .9rem 0}.neural-footer__grid{grid-template-columns:1fr;gap:.85rem}.footer-col{padding:1rem}.footer-col a{padding:.48rem 0}.neural-footer__brand-card{text-align:left}.gdpr-buttons{width:100%}.gdpr-accept,.gdpr-decline{flex:1 1 140px}}
+  .site-footer-shell{clear:both;width:100%;max-width:100%;overflow:hidden;background:#020617}.neural-footer,.neural-footer *{box-sizing:border-box}.neural-footer{position:relative;width:100%;max-width:100%;overflow:hidden;margin:0;padding:clamp(2.5rem,6vw,4rem) 1rem 0;background:radial-gradient(circle at top center,rgba(0,212,178,.10),transparent 36%),linear-gradient(180deg,#020617 0%,#070b14 100%);border-top:1px solid rgba(0,212,178,.16);color:#94a3b8;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}.neural-footer:before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,178,.7),transparent)}.neural-footer__inner{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto}.neural-footer__brand-card{margin:0 auto 1.6rem;padding:clamp(1.1rem,3vw,1.7rem);border:1px solid rgba(148,163,184,.13);border-radius:20px;background:linear-gradient(135deg,rgba(15,23,42,.76),rgba(2,6,23,.72));box-shadow:0 18px 46px rgba(0,0,0,.28);text-align:center}.neural-footer__kicker{margin:0 0 .55rem;color:#5eead4;font-size:.76rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.neural-footer__title{margin:0;color:#f8fafc;font-size:clamp(1.25rem,4vw,2rem);line-height:1.12;font-weight:900;letter-spacing:-.03em}.neural-footer__mission{max-width:720px;margin:.85rem auto 0;color:#cbd5e1;font-size:clamp(.9rem,2.2vw,1rem);line-height:1.65}.neural-footer__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:0;padding:0}.footer-col{min-width:0;padding:1rem;border:1px solid rgba(148,163,184,.12);border-radius:16px;background:rgba(15,23,42,.46)}.footer-col h4{display:inline-block;margin:0 0 .8rem;color:#e2e8f0;font-size:.76rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid #00d4b2;padding-bottom:.32rem}.footer-col ul{margin:0;padding:0;list-style:none}.footer-col li{margin:0}.footer-col a{display:block;padding:.4rem 0;color:#94a3b8;text-decoration:none;font-size:.92rem;line-height:1.35;overflow-wrap:anywhere;transition:color .2s ease,transform .2s ease}.footer-col a:hover,.footer-col a:focus-visible{color:#5eead4;transform:translateX(3px);outline:none}.footer-bottom{margin-top:1.5rem;padding:1rem 0;border-top:1px solid rgba(148,163,184,.14);text-align:center;color:#94a3b8;font-size:.82rem}.footer-bottom p{margin:0}
+
+  #gdpr-banner{position:fixed!important;left:50%!important;right:auto!important;bottom:calc(.7rem + env(safe-area-inset-bottom))!important;z-index:999999!important;width:min(94vw,760px)!important;transform:translateX(-50%)!important;display:none!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;justify-content:stretch!important;gap:.72rem!important;padding:.72rem .85rem!important;background:rgba(2,6,23,.94)!important;border:1px solid rgba(0,212,178,.28)!important;border-radius:18px!important;backdrop-filter:blur(16px) saturate(1.15)!important;-webkit-backdrop-filter:blur(16px) saturate(1.15)!important;box-shadow:0 18px 46px rgba(0,0,0,.5),0 0 22px rgba(0,212,178,.12)!important;color:#e2e8f0!important;font-size:.86rem!important}.neural-footer #gdpr-banner.is-visible,#gdpr-banner.is-visible{display:grid!important}.gdpr-text,#gdpr-banner .gdpr-text{flex:initial!important;max-width:none!important;margin:0!important;text-align:left!important;line-height:1.42!important;font-size:clamp(.76rem,2.7vw,.9rem)!important}.gdpr-buttons,#gdpr-banner .gdpr-buttons{width:auto!important;display:flex!important;flex-wrap:nowrap!important;justify-content:flex-end!important;gap:.45rem!important}.gdpr-accept,.gdpr-decline,#gdpr-banner button{flex:0 0 auto!important;min-width:78px!important;min-height:40px!important;padding:.46rem .72rem!important;border-radius:11px!important;font-size:.86rem!important;font-weight:900!important;line-height:1!important;cursor:pointer!important}.gdpr-accept{background:#00d4b2!important;color:#020617!important;border:1px solid #00d4b2!important;box-shadow:0 0 18px rgba(0,212,178,.24)!important}.gdpr-decline{background:#1d4ed8!important;color:#f8fafc!important;border:1px solid rgba(96,165,250,.65)!important}
+
+  @media(max-width:920px){.neural-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.neural-footer{padding:2.2rem .85rem 0}.neural-footer__grid{grid-template-columns:1fr;gap:.8rem}.footer-col{padding:.95rem}.footer-col a{padding:.46rem 0}.neural-footer__brand-card{text-align:left}#gdpr-banner{width:min(94vw,430px)!important;grid-template-columns:1fr!important;gap:.5rem!important;padding:.6rem .68rem!important;border-radius:16px!important}.gdpr-text,#gdpr-banner .gdpr-text{font-size:.76rem!important;line-height:1.34!important}.gdpr-buttons,#gdpr-banner .gdpr-buttons{width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:.5rem!important}.gdpr-accept,.gdpr-decline,#gdpr-banner button{width:100%!important;min-width:0!important;min-height:38px!important;padding:.42rem .55rem!important;font-size:.84rem!important}}
 </style>
