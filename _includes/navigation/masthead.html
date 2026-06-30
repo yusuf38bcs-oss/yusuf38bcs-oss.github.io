@@ -5,7 +5,10 @@
         {% if site.logo %}
           <img class="lbfl-brand__logo" src="{{ site.logo | relative_url }}" alt="" width="44" height="44">
         {% endif %}
-        <span class="lbfl-brand__title">{{ site.title }}</span>
+        <span class="lbfl-brand__title" data-short="LBFL">
+          <span class="lbfl-brand__full">{{ site.title }}</span>
+          <span class="lbfl-brand__short">LBFL</span>
+        </span>
       </a>
 
       <ul class="lbfl-desktop-links" aria-label="Main menu">
