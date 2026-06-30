@@ -3,4 +3,5 @@
 Triggered from ChatGPT/GitHub connector.
 
 - Date: 2026-06-30
-- Purpose: Deploy homepage approval-mode cleanup after removing visible mission/self-discovery blocks from the homepage.
+- Purpose: Deploy after billing issue resolved; publish current homepage/navbar approval-mode cleanup and latest stability fixes.
+- Trigger mode: GitHub UI / connector commit on main
