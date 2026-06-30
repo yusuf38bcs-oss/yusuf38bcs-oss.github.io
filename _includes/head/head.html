@@ -134,11 +134,16 @@
       }
     }
 
+    function getCookieConsent() {
+      var match = document.cookie.match(new RegExp("(?:^|; )" + CONSENT_KEY + "=([^;]*)"));
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+
     function getConsent() {
       try {
-        return window.localStorage ? localStorage.getItem(CONSENT_KEY) : null;
+        return window.localStorage ? localStorage.getItem(CONSENT_KEY) || getCookieConsent() : getCookieConsent();
       } catch (error) {
-        return null;
+        return getCookieConsent();
       }
     }
 
@@ -148,6 +153,8 @@
       } catch (error) {
         // Consent UI must remain functional even when storage is blocked.
       }
+
+      document.cookie = CONSENT_KEY + "=" + encodeURIComponent(value) + "; Max-Age=31536000; Path=/; SameSite=Lax; Secure";
     }
 
     function pushConsentState(state) {
@@ -155,36 +162,39 @@
       window.dataLayer.push({ event: "lbfl_consent_update", consent_state: state });
 
       if (typeof window.gtag === "function") {
-        if (state === "granted") {
-          window.gtag("consent", "update", {
-            analytics_storage: "granted",
-            ad_storage: "granted",
-            ad_user_data: "granted",
-            ad_personalization: "granted"
-          });
-        } else {
-          window.gtag("consent", "update", {
-            analytics_storage: "denied",
-            ad_storage: "denied",
-            ad_user_data: "denied",
-            ad_personalization: "denied"
-          });
-        }
+        window.gtag("consent", "update", {
+          analytics_storage: state === "granted" ? "granted" : "denied",
+          ad_storage: state === "granted" ? "granted" : "denied",
+          ad_user_data: state === "granted" ? "granted" : "denied",
+          ad_personalization: state === "granted" ? "granted" : "denied"
+        });
       }
     }
 
-    function getBanner() {
-      return document.getElementById("gdpr-banner");
-    }
-
-    function showBanner() {
-      var banner = getBanner();
-      if (banner) banner.classList.add("is-visible");
+    function getBanners() {
+      return Array.prototype.slice.call(document.querySelectorAll("#gdpr-banner, [data-cookie-banner]"));
     }
 
     function hideBanner() {
-      var banner = getBanner();
-      if (banner) banner.classList.remove("is-visible");
+      getBanners().forEach(function(banner) {
+        banner.classList.remove("is-visible");
+        banner.setAttribute("hidden", "hidden");
+        banner.style.setProperty("display", "none", "important");
+      });
+    }
+
+    function showBanner() {
+      if (getConsent()) return;
+
+      var banners = getBanners();
+      if (!banners.length) return;
+
+      hideBanner();
+
+      var banner = banners[banners.length - 1];
+      banner.removeAttribute("hidden");
+      banner.style.removeProperty("display");
+      banner.classList.add("is-visible");
     }
 
     function loadAdSense() {
@@ -198,26 +208,63 @@
       document.head.appendChild(script);
     }
 
-    function acceptCookies() {
-      setConsent("granted");
-      pushConsentState("granted");
+    function applyConsent(state) {
+      if (state !== "granted" && state !== "denied") return;
+
+      setConsent(state);
+      pushConsentState(state);
       hideBanner();
-      loadAdSense();
+      if (state === "granted") loadAdSense();
     }
 
-    function declineCookies() {
-      setConsent("denied");
-      pushConsentState("denied");
-      hideBanner();
+    function resolveConsentState(button) {
+      var value = (
+        button.getAttribute("data-gdpr-consent") ||
+        button.getAttribute("data-cookie-consent-action") ||
+        ""
+      ).toLowerCase();
+
+      if (value === "granted" || value === "accept" || value === "accepted") return "granted";
+      if (value === "denied" || value === "decline" || value === "declined") return "denied";
+      if (button.classList.contains("gdpr-accept")) return "granted";
+      if (button.classList.contains("gdpr-decline")) return "denied";
+      return null;
     }
 
-    window.gdprAccept = acceptCookies;
-    window.gdprDecline = declineCookies;
+    function handleConsentEvent(event) {
+      var target = event.target;
+      if (!target || !target.closest) return;
+
+      var button = target.closest("[data-gdpr-consent], [data-cookie-consent-action], .gdpr-accept, .gdpr-decline");
+      if (!button) return;
+
+      var state = resolveConsentState(button);
+      if (!state) return;
+
+      event.preventDefault();
+      if (typeof event.stopImmediatePropagation === "function") {
+        event.stopImmediatePropagation();
+      } else {
+        event.stopPropagation();
+      }
+
+      applyConsent(state);
+    }
+
+    window.gdprAccept = function() { applyConsent("granted"); };
+    window.gdprDecline = function() { applyConsent("denied"); };
+
+    if (!window.__lbflCookieConsentBound) {
+      window.__lbflCookieConsentBound = true;
+      document.addEventListener("click", handleConsentEvent, true);
+      try {
+        document.addEventListener("touchend", handleConsentEvent, { capture: true, passive: false });
+      } catch (error) {
+        document.addEventListener("touchend", handleConsentEvent, true);
+      }
+    }
 
     onReady(function() {
-      var banner = getBanner();
-      if (!banner) return;
-
       var consent = getConsent();
       if (consent === "granted") {
         pushConsentState("granted");
