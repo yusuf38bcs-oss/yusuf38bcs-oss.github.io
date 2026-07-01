@@ -1,7 +1,12 @@
 ---
 layout: single
-title: Test Two
+title: "Site Note"
 permalink: /test-safe-file-2/
+robots: noindex
 ---
 
-Test page two.
+# Site Note
+
+This page is noindex and links to the main site.
+
+[Go to Home]({{ '/' | relative_url }})
