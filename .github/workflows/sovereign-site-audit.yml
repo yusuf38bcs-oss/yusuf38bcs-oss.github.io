@@ -27,6 +27,9 @@ jobs:
           bundle config set --local frozen 'false'
           bundle install
 
+      - name: Clean Previous Site Output
+        run: bundle exec jekyll clean
+
       - name: Build Site for Audit
         run: bundle exec jekyll build --trace
         env:
