@@ -4,7 +4,7 @@ title: "Knowledge Network"
 permalink: /network/
 excerpt: "Learning Biology For Life knowledge network route for connected learning pathways."
 classes: wide
-language: en
+lang: en
 ---
 
 # Knowledge Network
@@ -22,7 +22,9 @@ The Knowledge Network connects Biology, Socratic reflection, life practices, ass
 
 ## Continue
 
-- [Biology Hub]({{ '/biology/' | relative_url }})
-- [Socratic Hub]({{ '/socratic/' | relative_url }})
-- [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
-- [Learning Archive]({{ '/archive/' | relative_url }})
+<nav class="lbfl-card-grid" aria-label="Knowledge network links">
+  <a class="lbfl-principle-card" href="/biology/"><strong>Biology Hub</strong></a>
+  <a class="lbfl-principle-card" href="/socratic/"><strong>Socratic Hub</strong></a>
+  <a class="lbfl-principle-card" href="/mcq-arena/"><strong>MCQ Arena</strong></a>
+  <a class="lbfl-principle-card" href="/archive/"><strong>Learning Archive</strong></a>
+</nav>
