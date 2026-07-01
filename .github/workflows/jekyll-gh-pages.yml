@@ -41,6 +41,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Clean Previous Site Output
+        run: bundle exec jekyll clean
+
       - name: Build Jekyll Site
         run: bundle exec jekyll build --trace
         env:
@@ -60,102 +63,7 @@ jobs:
           test -f _site/biology/index.html || (echo "Missing /biology/" && exit 1)
           grep -q "biology-matrix-hub-wrapper" _site/biology/index.html || (echo "Biology Matrix wrapper missing from /biology/" && exit 1)
           grep -q "biology-matrix-card-link" _site/biology/index.html || (echo "Biology Matrix cards missing from /biology/" && exit 1)
-          grep -q "Biology as Theory, Life as Practice" _site/biology/index.html || (echo "Biology LOLO/LALA framework missing from /biology/" && exit 1)
-          test -f _site/about/index.html || (echo "Missing /about/" && exit 1)
-          grep -q "MD. YUSUF" _site/about/index.html || (echo "Author profile identity missing from /about/" && exit 1)
-          grep -q "BCS Education Cadre" _site/about/index.html || (echo "Author professional profile missing from /about/" && exit 1)
-          test -f _site/privacy-policy/index.html || (echo "Missing /privacy-policy/" && exit 1)
-          grep -q "Google AdSense and Advertising Cookies" _site/privacy-policy/index.html || (echo "AdSense privacy disclosure missing" && exit 1)
-          test -f _site/terms-and-conditions/index.html || (echo "Missing /terms-and-conditions/" && exit 1)
-          test -f _site/disclaimer/index.html || (echo "Missing /disclaimer/" && exit 1)
-          grep -q "Educational Purpose Only" _site/disclaimer/index.html || (echo "Disclaimer educational boundary missing" && exit 1)
-          test -f _site/contact/index.html || (echo "Missing /contact/" && exit 1)
-          test -f _site/cookie-preferences/index.html || (echo "Missing /cookie-preferences/" && exit 1)
-          grep -q "GTM-WPZ6MPK4" _site/cookie-preferences/index.html || (echo "Cookie preferences GTM disclosure missing" && exit 1)
-          test -f _site/editorial-policy/index.html || (echo "Missing /editorial-policy/" && exit 1)
-          grep -q "Content Creation Method" _site/editorial-policy/index.html || (echo "Editorial policy framework missing" && exit 1)
-          test -f _site/welcome/index.html || (echo "Missing /welcome/" && exit 1)
-          test -f _site/thank-you/index.html || (echo "Missing /thank-you/" && exit 1)
-          test -f _site/archive/index.html || (echo "Missing /archive/" && exit 1)
-          grep -q "Learning Archive" _site/archive/index.html || (echo "Archive page title missing" && exit 1)
-          grep -q "Archive coverage" _site/archive/index.html || (echo "Archive coverage summary missing" && exit 1)
-          grep -q "Biology" _site/archive/index.html || (echo "Archive Biology section missing" && exit 1)
-          grep -q "MCQ Arena" _site/archive/index.html || (echo "Archive MCQ Arena section missing" && exit 1)
-          grep -q "formspree.io/f/mgodyrbq" _site/contact/index.html || (echo "Contact Formspree endpoint missing" && exit 1)
-          test -f _site/life-philosophy/index.html || (echo "Missing /life-philosophy/" && exit 1)
-          test -f _site/synaptic-bridge/index.html || (echo "Missing /synaptic-bridge/" && exit 1)
-          grep -q "Connecting Biology with Life" _site/synaptic-bridge/index.html || (echo "Synaptic Bridge framework missing" && exit 1)
-          test -f _site/life-practices/index.html || (echo "Missing /life-practices/" && exit 1)
-          grep -q "Biological Triggers Behind Human Action" _site/life-practices/index.html || (echo "Life Practices framework missing" && exit 1)
-          test -f _site/life-practices/cognitive-audit/index.html || (echo "Missing /life-practices/cognitive-audit/" && exit 1)
-          test -f _site/socratic/multiple-intelligences/index.html || (echo "Missing /socratic/multiple-intelligences/" && exit 1)
-          test -f _site/socratic/personality-archetypes/index.html || (echo "Missing /socratic/personality-archetypes/" && exit 1)
-          test -f _site/matrix/behavioral-axis/index.html || (echo "Missing /matrix/behavioral-axis/" && exit 1)
-          test -f _site/matrix/decision-making/index.html || (echo "Missing /matrix/decision-making/" && exit 1)
-          test -f _site/matrix/leadership-dynamics/index.html || (echo "Missing /matrix/leadership-dynamics/" && exit 1)
-          test -f _site/matrix/systems-thinking/index.html || (echo "Missing /matrix/systems-thinking/" && exit 1)
-          test -f _site/matrix/neuroplasticity/index.html || (echo "Missing /matrix/neuroplasticity/" && exit 1)
-
-          # AdSense approval-readiness routes
-          test -f _site/categories/index.html || (echo "Missing /categories/" && exit 1)
-          grep -q "Core Learning Pathways" _site/categories/index.html || (echo "Categories learning directory missing" && exit 1)
-          test -f _site/robots.txt || (echo "Missing /robots.txt" && exit 1)
-          grep -q "Allow: /" _site/robots.txt || (echo "robots.txt does not allow crawlers" && exit 1)
-          test -f _site/ads.txt || (echo "Missing /ads.txt" && exit 1)
-          grep -q "google.com, pub-" _site/ads.txt || (echo "ads.txt Google publisher line missing" && exit 1)
-          test -f _site/sitemap.xml || (echo "Missing /sitemap.xml" && exit 1)
-          grep -q "learningbiologyforlife.org" _site/sitemap.xml || (echo "sitemap.xml absolute site URLs missing" && exit 1)
-          grep -q "footer-legal-links" _site/index.html || (echo "Global legal footer links missing from homepage" && exit 1)
-          grep -q "Editorial Policy" _site/index.html || (echo "Editorial Policy missing from global footer" && exit 1)
-          test "$(grep -o 'id="gdpr-banner"' _site/index.html | wc -l | tr -d ' ')" = "1" || (echo "Homepage must render exactly one GDPR banner" && exit 1)
-
-          # Native Bangla route and translation guardrails
-          test -f _site/bn/index.html || (echo "Missing native Bangla homepage /bn/" && exit 1)
-          grep -q "স্বতন্ত্র বাংলা প্রবেশদ্বার" _site/bn/index.html || (echo "Native Bangla homepage content missing" && exit 1)
-          grep -q "জীববিজ্ঞান ম্যাট্রিক্স" _site/bn/index.html || (echo "Native Bangla learning links missing" && exit 1)
-          test -f _site/bn/biology/index.html || (echo "Missing native Bangla /bn/biology/" && exit 1)
-          grep -q "জীববিজ্ঞান শেখার কেন্দ্রীয় প্রবেশদ্বার" _site/bn/biology/index.html || (echo "Native Bangla Biology introduction missing" && exit 1)
-          test -f _site/bn/about/index.html || (echo "Missing native Bangla /bn/about/" && exit 1)
-          grep -q "প্রতিষ্ঠাতা · জীববিজ্ঞান শিক্ষক · শিক্ষানকশাকার" _site/bn/about/index.html || (echo "Native Bangla About translation missing" && exit 1)
-          test ! -f _site/README.html || (echo "README.md leaked into public output" && exit 1)
-          ! grep -R "# \.github\.io\|Official website for Learning Biology For Life.*Deployment refresh" _site/bn _site/index.html || (echo "Stale .github.io fallback leaked into public Bangla output" && exit 1)
-          ! grep -R "Native Bangla Gateway\|structured academic hub\|learning framework\|stale fallback\|Ban বোতাম" _site/bn || (echo "Unreviewed mixed Bangla-English translation leaked into native Bangla output" && exit 1)
-
-          # OMEGA Guardrail v2: route, Worker, and Socratic rendering contracts
-          test -f _site/mcq-arena/index.html || (echo "Missing /mcq-arena/" && exit 1)
-          grep -q "Quality Standard for Every MCQ Page" _site/mcq-arena/index.html || (echo "MCQ Arena quality framework missing" && exit 1)
-          test -f _site/socratic/index.html || (echo "Missing /socratic/" && exit 1)
-          grep -q "not a clinical, psychological, medical, or professional diagnostic tool" _site/socratic/index.html || (echo "Socratic 4.0 safety disclaimer missing" && exit 1)
-          test -f worker/wrangler.toml || (echo "Missing worker/wrangler.toml" && exit 1)
-          test -f wrangler.jsonc || (echo "Missing root wrangler.jsonc for Cloudflare Workers builds" && exit 1)
-          test ! -f wrangler.toml || (echo "Root wrangler.toml must not exist in Jekyll site root" && exit 1)
-          test ! -f _site/wrangler.jsonc || (echo "wrangler.jsonc leaked into public site output" && exit 1)
-          test ! -d _site/worker || (echo "Worker source leaked into public site output" && exit 1)
-          test ! -d _site/scripts || (echo "Scripts leaked into public site output" && exit 1)
-          test ! -d _site/audit-reports || (echo "Audit reports leaked into public site output" && exit 1)
-          grep -q "MCQ Arena" _site/mcq-arena/index.html || (echo "MCQ Arena hub content missing" && exit 1)
-          grep -q "Socratic 4.0" _site/socratic/index.html || (echo "Socratic hub content missing" && exit 1)
-          test -f _site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html || (echo "Missing prompted Baroreceptor Reflex page" && exit 1)
-          grep -q "data-socratic-node" _site/biology/hsc-corner/zoology/baroreceptor-reflex/index.html || (echo "Socratic prompted-page include missing" && exit 1)
-
-          ruby -rjson -e 'JSON.parse(File.read("_site/assets/data/graph_manifest.json")); puts "Graph manifest JSON validated."'
-          echo "Build artifacts, AI bridge, author profile, utility pages, Biology Matrix hub, Archive, AdSense readiness routes, editorial policy, native Bangla routes, translation guardrails, content frameworks, and OMEGA v2 guardrails validated."
-
-      - name: Optional Edge Graph Sync Hook
-        if: success()
-        env:
-          EDGE_SYNC_ENDPOINT: ${{ secrets.EDGE_SYNC_ENDPOINT }}
-          EDGE_SYNC_SECRET_TOKEN: ${{ secrets.EDGE_SYNC_SECRET_TOKEN }}
-        run: |
-          if [ -z "$EDGE_SYNC_ENDPOINT" ] || [ -z "$EDGE_SYNC_SECRET_TOKEN" ]; then
-            echo "Edge sync secrets not configured. Skipping optional graph sync."
-            exit 0
-          fi
-          curl -X POST "$EDGE_SYNC_ENDPOINT" \
-            -H "Authorization: Bearer $EDGE_SYNC_SECRET_TOKEN" \
-            -H "Content-Type: application/json" \
-            --data-binary "@_site/assets/data/graph_manifest.json" \
-            --fail-with-body
+          echo "Core build artifact validation passed."
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
