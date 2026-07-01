@@ -11,7 +11,7 @@ SITE = ROOT / "_site"
 REPORT_DIR = ROOT / "audit-reports"
 REPORT_DIR.mkdir(exist_ok=True)
 SOURCE_EXTS = {".md", ".markdown", ".html", ".scss", ".css", ".js", ".yml", ".yaml"}
-CONTENT_DIRS = ["_pages", "_posts", "_biology", "_includes", "_layouts", "assets"]
+CONTENT_DIRS = ["_pages", "_posts", "_biology", "_includes", "_layouts", "assets", "_concepts"]
 
 
 def root_rel(path: Path) -> str:
@@ -96,6 +96,7 @@ def main() -> int:
         "editorial-policy/index.html", "mcq-arena/index.html", "socratic/index.html",
         "biology/higher-zoology-tree/animal-diversity/complete-matrix-rewritten-lectures/index.html",
         "biology/hsc-corner/practical/index.html", "biology/hsc-corner/model-test/index.html",
+        "blog/index.html",
     ]
     missing = [r for r in required if not (SITE / r).exists()]
     add(phases, "01-repository-architecture", "FAIL" if missing else "PASS", "Required production routes checked.", missing)
@@ -118,11 +119,13 @@ def main() -> int:
 
     parsed = {}
     site_paths = {"/" + site_rel(f) for f in html_files}
+    site_files = {"/" + site_rel(f) for f in SITE.rglob("*") if f.is_file()} if SITE.exists() else set()
     site_dirs = set()
     for f in html_files:
         p = "/" + site_rel(f)
         if p.endswith("/index.html"):
             site_dirs.add(p[:-10] or "/")
+            site_dirs.add((p[:-10] or "/").rstrip("/") + "/")
     for f in html_files:
         parser = PageParser(); parser.feed(read(f)); parsed[f] = parser
 
@@ -138,8 +141,8 @@ def main() -> int:
             target = clean if clean.startswith("/") else os.path.normpath(page.rsplit("/", 1)[0] + "/" + clean).replace("\\", "/")
             if not target.startswith("/"):
                 target = "/" + target
-            candidates = {target, target.rstrip("/") + "/index.html", target + "/index.html"}
-            exists = any(c in site_paths or c in site_dirs for c in candidates)
+            candidates = {target, target.rstrip("/"), target.rstrip("/") + "/", target.rstrip("/") + "/index.html", target + "/index.html"}
+            exists = any(c in site_paths or c in site_dirs or c in site_files for c in candidates)
             if not exists and not target.startswith("/assets/"):
                 broken.append({"page": page, "href": href})
                 if len(broken) >= 50:
@@ -199,10 +202,12 @@ def main() -> int:
     ads_required = ["privacy-policy/index.html", "terms-and-conditions/index.html", "disclaimer/index.html", "contact/index.html", "editorial-policy/index.html", "ads.txt"]
     ads_missing = [r for r in ads_required if not (SITE / r).exists()]
     thin = []
+    thin_ignore = {"google218dd4de4fb99bef.html", "bn/google218dd4de4fb99bef.html"}
     for f in html_files:
+        r = site_rel(f)
         words = re.findall(r"[A-Za-z\u0980-\u09FF]+", re.sub(r"<[^>]+>", " ", read(f)))
-        if len(words) < 80:
-            thin.append(site_rel(f))
+        if len(words) < 80 and r not in thin_ignore:
+            thin.append(r)
     add(phases, "11-adsense-readiness", "FAIL" if ads_missing else ("WARN" if thin else "PASS"), "Legal pages and thin page sample checked.", [{"missing": ads_missing}, {"thin_pages_sample": thin[:40]}])
 
     site_size = sum(f.stat().st_size for f in SITE.rglob("*") if f.is_file()) if SITE.exists() else 0
@@ -218,7 +223,8 @@ def main() -> int:
     fails = count_status(phases, "FAIL")
     warns = count_status(phases, "WARN")
     score = max(0, 100 - fails * 20 - warns * 3)
-    add(phases, "14-final-production-certification", "PASS" if fails == 0 and score >= 85 else "FAIL", f"Final score: {score}/100. Critical failures: {fails}. Warnings: {warns}.", [{"score": score, "failures": fails, "warnings": warns}])
+    cert_status = "PASS" if fails == 0 and score >= 85 else "FAIL"
+    add(phases, "14-final-production-certification", cert_status, f"Final score: {score}/100. Critical failures: {fails}. Warnings: {warns}.", [{"score": score, "failures": fails, "warnings": warns}])
 
     report = {"audit": "Sovereign Site Audit v3", "score": score, "failures": fails, "warnings": warns, "phases": phases}
     (REPORT_DIR / "sovereign-site-audit-v3.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
