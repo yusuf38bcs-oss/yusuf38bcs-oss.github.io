@@ -15,7 +15,17 @@ status: "Active"
 
 ## Learning Objectives
 
-এই lecture শেষে শিক্ষার্থী human digestive tract, digestive glands, mechanical digestion এবং chemical digestion ব্যাখ্যা করতে পারবে।
+এই lecture শেষে শিক্ষার্থী পারবে—
+
+1. পরিপাকের সংজ্ঞা লিখতে।
+2. mechanical digestion ও chemical digestion আলাদা করতে।
+3. alimentary canal-এর ধারাবাহিক পথ সাজাতে।
+4. digestive glands-এর কাজ ব্যাখ্যা করতে।
+5. খাদ্য কীভাবে absorbable nutrient-এ রূপ নেয় তা flowchart দিয়ে দেখাতে।
+
+## Why This Matters
+
+আমরা খাবার খাই, কিন্তু cell সরাসরি ভাত, মাছ, ডাল বা তেল ব্যবহার করতে পারে না। Cell ব্যবহার করে glucose, amino acid, fatty acid, glycerol, vitamin, mineral ও water। তাই digestive system হলো food-to-cell conversion system.
 
 ## Core Concept
 
@@ -23,15 +33,51 @@ status: "Active"
 
 ## Food Route
 
-Mouth → Buccal cavity → Pharynx → Oesophagus → Stomach → Small intestine → Large intestine → Rectum → Anus
+```text
+Mouth
+→ Buccal cavity
+→ Pharynx
+→ Oesophagus
+→ Stomach
+→ Duodenum
+→ Jejunum
+→ Ileum
+→ Large intestine
+→ Rectum
+→ Anus
+```
 
 ## Mechanical and Chemical Digestion
 
-Mechanical digestion খাদ্যকে ছোট অংশে ভাঙে ও মেশায়। Chemical digestion enzyme, acid, bile এবং intestinal secretion দিয়ে carbohydrate, protein ও lipid ভেঙে absorbable molecule তৈরি করে।
+Mechanical digestion খাদ্যকে ছোট অংশে ভাঙে, নরম করে, মেশায় এবং সামনের দিকে চালিত করে। উদাহরণ: chewing, churning, peristalsis.
+
+Chemical digestion enzyme, acid, bile এবং intestinal secretion দিয়ে carbohydrate, amino-acid-forming food এবং lipid ভেঙে absorbable molecule তৈরি করে।
 
 ## Key Glands
 
-Salivary glands saliva দেয়। Gastric glands gastric juice দেয়। Liver bile তৈরি করে। Pancreas pancreatic juice দেয়। Intestinal glands final digestion ও absorption-এ সহায়তা করে।
+| Gland | Secretion | Main role |
+|---|---|---|
+| Salivary glands | Saliva | Food moistening and starch digestion |
+| Gastric glands | Gastric juice | Stomach digestion and protection |
+| Liver | Bile | Fat emulsification and metabolic support |
+| Pancreas | Pancreatic juice | Intestinal digestion support |
+| Intestinal glands | Intestinal juice | Final digestion and absorption support |
+
+## Concept Map
+
+```text
+Food intake
+  ↓
+Mechanical preparation
+  ↓
+Chemical breakdown
+  ↓
+Absorption through villi
+  ↓
+Transport by blood or lymph
+  ↓
+Cellular use: energy, growth, repair
+```
 
 ## HSC Board Focus
 
@@ -39,6 +85,14 @@ Salivary glands saliva দেয়। Gastric glands gastric juice দেয়। Li
 - Alimentary canal route
 - Mechanical vs chemical digestion
 - Digestive glands and roles
+- Food route diagram
+
+## Common Mistakes
+
+- Digestion ও absorption একই মনে করা।
+- Liver-কে enzyme-secreting gland মনে করা।
+- Stomach-কে carbohydrate digestion-এর প্রধান স্থান মনে করা।
+- Large intestine-কে final nutrient absorption-এর প্রধান স্থান মনে করা।
 
 ## CQ Practice
 
@@ -46,3 +100,7 @@ Salivary glands saliva দেয়। Gastric glands gastric juice দেয়। Li
 খ) Mechanical digestion কেন প্রয়োজন?  
 গ) খাদ্যের যাত্রাপথ লেখো।  
 ঘ) Digestion ও absorption একই নয়—বিশ্লেষণ করো।
+
+## Summary
+
+Digestive system একটি coordinated system। Food প্রথমে mechanically প্রস্তুত হয়, পরে chemically ভাঙে, তারপর intestine থেকে absorbed হয়ে blood বা lymph-এর মাধ্যমে cell-এ পৌঁছায়।
