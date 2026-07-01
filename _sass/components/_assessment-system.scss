@@ -1,0 +1,210 @@
+/* LBFL Assessment System: scoped styles for HSC Model Test, CQ Studio, Bloom Rubric, and Practical Lab. */
+
+.lbfl-assessment-page {
+  --lbfl-assessment-bg: rgba(15, 23, 42, 0.72);
+  --lbfl-assessment-bg-strong: rgba(2, 6, 23, 0.88);
+  --lbfl-assessment-border-soft: rgba(148, 163, 184, 0.18);
+  --lbfl-assessment-text: #dbeafe;
+  --lbfl-assessment-muted: #a9b8d3;
+  --lbfl-assessment-accent: #12d6bf;
+  --lbfl-assessment-accent-2: #2f80ed;
+}
+
+.lbfl-assessment-hero,
+.lbfl-assessment-panel,
+.lbfl-cq-card,
+.lbfl-practical-card,
+.lbfl-rubric-card {
+  border: 1px solid var(--lbfl-assessment-border-soft);
+  border-radius: 24px;
+  background: radial-gradient(circle at top right, rgba(18, 214, 191, 0.12), transparent 34%), linear-gradient(180deg, var(--lbfl-assessment-bg), var(--lbfl-assessment-bg-strong));
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.28);
+}
+
+.lbfl-assessment-hero,
+.lbfl-assessment-panel {
+  padding: clamp(1.05rem, 3vw, 2rem);
+  margin: 1.1rem 0;
+}
+
+.lbfl-assessment-kicker,
+.lbfl-cq-kicker,
+.lbfl-practical-kicker,
+.lbfl-rubric-kicker {
+  display: inline-flex;
+  margin: 0 0 0.55rem;
+  color: var(--lbfl-assessment-accent) !important;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.lbfl-assessment-lead,
+.lbfl-cq-text,
+.lbfl-practical-text,
+.lbfl-rubric-text {
+  color: var(--lbfl-assessment-text) !important;
+  line-height: 1.75;
+}
+
+.lbfl-assessment-chip-row,
+.lbfl-cq-meta,
+.lbfl-practical-meta,
+.lbfl-rubric-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.85rem 0 0;
+}
+
+.lbfl-assessment-chip,
+.lbfl-cq-tag,
+.lbfl-practical-tag,
+.lbfl-rubric-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0.34rem 0.72rem;
+  border: 1px solid rgba(18, 214, 191, 0.28);
+  border-radius: 999px;
+  color: #ccfbf1 !important;
+  background: rgba(18, 214, 191, 0.08);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.lbfl-assessment-grid,
+.lbfl-cq-grid,
+.lbfl-practical-grid,
+.lbfl-rubric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.85rem;
+  margin: 1rem 0;
+}
+
+.lbfl-cq-card,
+.lbfl-practical-card,
+.lbfl-rubric-card {
+  padding: clamp(0.95rem, 2.5vw, 1.35rem);
+}
+
+.lbfl-cq-card h3,
+.lbfl-practical-card h3,
+.lbfl-rubric-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.45rem;
+  color: #f8fafc !important;
+  line-height: 1.2;
+}
+
+.lbfl-cq-stimulus {
+  margin: 1rem 0;
+  padding: clamp(0.95rem, 2.4vw, 1.4rem);
+  border-left: 5px solid var(--lbfl-assessment-accent);
+  border-radius: 20px;
+  background: rgba(8, 47, 73, 0.42);
+}
+
+.lbfl-cq-parts {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+
+.lbfl-cq-part {
+  display: grid;
+  grid-template-columns: minmax(44px, 64px) 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.50);
+}
+
+.lbfl-cq-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 14px;
+  color: #020617;
+  background: linear-gradient(135deg, var(--lbfl-assessment-accent), var(--lbfl-assessment-accent-2));
+  font-weight: 950;
+}
+
+.lbfl-cq-part strong { color: #f8fafc; }
+.lbfl-cq-part small { display: block; margin-top: 0.25rem; color: var(--lbfl-assessment-muted); font-weight: 700; }
+
+.lbfl-rubric-scale { display: grid; gap: 0.65rem; margin: 1rem 0; }
+
+.lbfl-rubric-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.8fr) minmax(180px, 1.2fr) minmax(160px, 1fr);
+  gap: 0.75rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.48);
+}
+
+.lbfl-rubric-row b { color: #f8fafc; }
+.lbfl-rubric-row span { color: var(--lbfl-assessment-text); }
+
+.lbfl-practical-checklist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lbfl-practical-checklist li {
+  padding: 0.85rem 0.95rem;
+  border: 1px solid rgba(18, 214, 191, 0.20);
+  border-radius: 18px;
+  color: var(--lbfl-assessment-text);
+  background: rgba(18, 214, 191, 0.07);
+}
+
+.lbfl-assessment-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.lbfl-assessment-links a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid rgba(47, 128, 237, 0.22);
+  border-radius: 16px;
+  color: #dbeafe !important;
+  text-decoration: none !important;
+  background: rgba(47, 128, 237, 0.08);
+  font-weight: 800;
+}
+
+.lbfl-assessment-links a:hover,
+.lbfl-assessment-links a:focus-visible {
+  color: #ffffff !important;
+  border-color: rgba(18, 214, 191, 0.46);
+  background: rgba(18, 214, 191, 0.12);
+}
+
+@media (max-width: 700px) {
+  .lbfl-assessment-page .page__content table { display: none; }
+  .lbfl-assessment-hero,
+  .lbfl-assessment-panel,
+  .lbfl-cq-card,
+  .lbfl-practical-card,
+  .lbfl-rubric-card { border-radius: 18px; }
+  .lbfl-cq-part,
+  .lbfl-rubric-row { grid-template-columns: 1fr; }
+  .lbfl-cq-letter { width: 48px; }
+}
