@@ -12,6 +12,7 @@ REPORT_DIR = ROOT / "audit-reports"
 REPORT_DIR.mkdir(exist_ok=True)
 SOURCE_EXTS = {".md", ".markdown", ".html", ".scss", ".css", ".js", ".yml", ".yaml"}
 CONTENT_DIRS = ["_pages", "_posts", "_biology", "_includes", "_layouts", "assets", "_concepts"]
+EXCLUDED_SOURCE_PARTS = {".git", "_site", "node_modules", "vendor", ".bundle", "audit-reports"}
 
 
 def root_rel(path: Path) -> str:
@@ -40,6 +41,42 @@ def source_files() -> list[Path]:
             if f.is_file() and f.suffix.lower() in SOURCE_EXTS:
                 files.append(f)
     return sorted(files)
+
+
+def route_variants(route: str) -> set[str]:
+    """Return equivalent route forms for Jekyll/Polyglot default-language checks."""
+    if not route.startswith("/"):
+        route = "/" + route
+    base = route.rstrip("/") or "/"
+    variants = {route, base, base + "/", base + "/index.html"}
+    if base.startswith("/en/"):
+        stripped = base[3:] or "/"
+        variants.update({stripped, stripped.rstrip("/") + "/", stripped.rstrip("/") + "/index.html"})
+    elif base.startswith("/bn/"):
+        stripped = base[3:] or "/"
+        variants.update({stripped, stripped.rstrip("/") + "/", stripped.rstrip("/") + "/index.html"})
+    else:
+        variants.update({"/en" + base, "/en" + base + "/", "/en" + base + "/index.html"})
+        variants.update({"/bn" + base, "/bn" + base + "/", "/bn" + base + "/index.html"})
+    return variants
+
+
+def declared_source_routes(src_files: list[Path]) -> set[str]:
+    routes: set[str] = set()
+    for f in src_files:
+        text = read(f)
+        if text.startswith("---"):
+            parts = text.split("---", 2)
+            if len(parts) >= 3:
+                match = re.search(r"^permalink:\s*[\"']?([^\"'\n]+)", parts[1], re.MULTILINE)
+                if match:
+                    routes.update(route_variants(match.group(1).strip()))
+    # Static HTML files outside generated, private, and hidden directories.
+    for f in ROOT.rglob("*.html"):
+        if any(part in EXCLUDED_SOURCE_PARTS or part.startswith("_") for part in f.parts):
+            continue
+        routes.update(route_variants("/" + root_rel(f)))
+    return routes
 
 
 class PageParser(HTMLParser):
@@ -84,6 +121,7 @@ def main() -> int:
     phases = defaultdict(list)
     html_files = site_html_files()
     src_files = source_files()
+    source_routes = declared_source_routes(src_files)
 
     if not SITE.exists():
         add(phases, "00-build", "FAIL", "_site folder missing; build did not run.", ["_site"])
@@ -141,8 +179,8 @@ def main() -> int:
             target = clean if clean.startswith("/") else os.path.normpath(page.rsplit("/", 1)[0] + "/" + clean).replace("\\", "/")
             if not target.startswith("/"):
                 target = "/" + target
-            candidates = {target, target.rstrip("/"), target.rstrip("/") + "/", target.rstrip("/") + "/index.html", target + "/index.html"}
-            exists = any(c in site_paths or c in site_dirs or c in site_files for c in candidates)
+            candidates = route_variants(target)
+            exists = any(c in site_paths or c in site_dirs or c in site_files or c in source_routes for c in candidates)
             if not exists and not target.startswith("/assets/"):
                 broken.append({"page": page, "href": href})
                 if len(broken) >= 50:
