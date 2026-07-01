@@ -7,7 +7,7 @@ sidebar:
 title: "Animal Diversity Matrix"
 excerpt: "Deconstruct taxonomic lineages, morphological symmetries, and evolutionary milestones of kingdom Animalia."
 date: 2026-06-13T12:05:00.000Z
-last_modified_at: 2026-06-26T00:00:00.000Z
+last_modified_at: 2026-07-01T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/animal-diversity/
 node_id: node-animal-diversity
 pillar: "Life Sciences"
@@ -34,6 +34,12 @@ concept_level: "Gateway"
   <span class="lbfl-hub-kicker">Higher Zoology Gateway</span>
   <h2 id="animal-diversity-title" class="lbfl-hub-title">Architecture of animal life</h2>
   <p class="lbfl-hub-lead">Animal Diversity Matrix connects taxonomy, symmetry, germ layers, coelom, segmentation, larval forms, organ systems, evolutionary adaptation, and parasitic specialization into one navigable learning path.</p>
+</section>
+
+<section class="lbfl-outcome-card" aria-label="Complete Animal Diversity Matrix">
+  <span class="lbfl-card-badge">New Complete Matrix</span>
+  <h3><a href="{{ '/biology/higher-zoology-tree/animal-diversity/complete-matrix-rewritten-lectures/' | relative_url }}">Animal Diversity Complete Matrix and Rewritten Lecture Series</a></h3>
+  <p>প্রাণীবৈচিত্র্য: শ্রেণিবিন্যাস, প্রতিনিধিত্বশীল প্রাণী, গঠন, কার্য, জীবনচক্র ও প্রয়োগ — a 17-lecture student-facing master matrix.</p>
 </section>
 
 <h2 class="lbfl-section-title">Learning Map</h2>
@@ -94,26 +100,11 @@ concept_level: "Gateway"
 <h2 class="lbfl-section-title">Study Sequence</h2>
 
 <div class="lbfl-study-grid" aria-label="Animal Diversity study sequence">
-  <article class="lbfl-study-step">
-    <h3>Start with diagnostic characters</h3>
-    <p>Identify what makes each phylum distinct before memorizing examples.</p>
-  </article>
-  <article class="lbfl-study-step">
-    <h3>Compare body plans</h3>
-    <p>Use symmetry, body cavity, segmentation, and organ-system complexity as comparison axes.</p>
-  </article>
-  <article class="lbfl-study-step">
-    <h3>Link structure to survival</h3>
-    <p>Ask how each innovation improves movement, feeding, protection, reproduction, or adaptation.</p>
-  </article>
-  <article class="lbfl-study-step">
-    <h3>Study parasitism carefully</h3>
-    <p>Understand host, transmission route, adaptation, and public-health relevance.</p>
-  </article>
-  <article class="lbfl-study-step">
-    <h3>Finish with practice</h3>
-    <p>Use MCQ practice and short-answer recall to verify classification reasoning.</p>
-  </article>
+  <article class="lbfl-study-step"><h3>Start with diagnostic characters</h3><p>Identify what makes each phylum distinct before memorizing examples.</p></article>
+  <article class="lbfl-study-step"><h3>Compare body plans</h3><p>Use symmetry, body cavity, segmentation, and organ-system complexity as comparison axes.</p></article>
+  <article class="lbfl-study-step"><h3>Link structure to survival</h3><p>Ask how each innovation improves movement, feeding, protection, reproduction, or adaptation.</p></article>
+  <article class="lbfl-study-step"><h3>Study parasitism carefully</h3><p>Understand host, transmission route, adaptation, and public-health relevance.</p></article>
+  <article class="lbfl-study-step"><h3>Finish with practice</h3><p>Use MCQ practice and short-answer recall to verify classification reasoning.</p></article>
 </div>
 
 <section class="lbfl-outcome-card" aria-label="Connected nodes">
