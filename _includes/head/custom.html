@@ -3,6 +3,16 @@
   default.html already loads _includes/head.html.
 {% endcomment %}
 
+<link rel="stylesheet" href="{{ '/assets/css/respiratory-system.css' | relative_url }}">
+<script>
+  (function () {
+    var path = window.location && window.location.pathname ? window.location.pathname : "";
+    if (/respiratory|alveoli|gas-transport|breathing|bronch/i.test(path)) {
+      document.documentElement.classList.add("lbfl-respiratory-route");
+    }
+  })();
+</script>
+
 <script>
   window.LBFL_AI_ENDPOINT = "https://api.learningbiologyforlife.org";
   window.dataLayer = window.dataLayer || [];
