@@ -4,7 +4,7 @@ title: "Heart Structure and Circulation Route"
 permalink: /biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation/
 excerpt: "Stable route for the Physiology heart structure and circulation lesson."
 classes: wide
-language: bn
+language: en
 ---
 
 # Heart Structure and Circulation Route
