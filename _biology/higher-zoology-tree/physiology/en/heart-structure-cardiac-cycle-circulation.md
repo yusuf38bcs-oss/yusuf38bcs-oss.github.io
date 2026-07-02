@@ -7,7 +7,7 @@ sidebar:
 title: "Blood Circulation Part 2: Heart Structure, Cardiac Cycle and Circulation"
 excerpt: "A complete English lecture on heart chambers, valves, myogenic rhythm, systole, diastole, cardiac conduction, systemic and pulmonary circulation."
 date: 2026-06-29T00:00:00.000Z
-last_modified_at: 2026-06-29T00:00:00.000Z
+last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /en/biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation/
 categories:
   - Biology
@@ -59,6 +59,12 @@ The heart is **myogenic**. This means that the heartbeat starts within specializ
 
 Blood cannot move efficiently without pressure. The heart creates pressure. Valves prevent backward flow. The sinoatrial node starts the beat. The atrioventricular node delays the impulse so that atria empty before ventricles contract. Systemic circulation delivers oxygenated blood to tissues, while pulmonary circulation sends deoxygenated blood to lungs for oxygenation.
 
+{% include education/framework-links.html %}
+
+## Heart-Specific Learning Focus
+
+This lecture applies the central LBFL framework to heart structure and rhythm. Learners should focus on chamber identity, valve direction, systole-diastole sequence, myogenic impulse conduction, and the difference between systemic and pulmonary circulation.
+
 ## Heart Flow Master Diagram
 
 ```text
@@ -84,49 +90,6 @@ Aorta
   ↓
 Body tissues
 ```
-
-## LOLO: Learning Objectives and Learning Outcomes
-
-### Learning Objectives
-
-Learners will study how to:
-
-1. Describe the location, size, shape, covering and wall of the heart.
-2. Identify the four chambers and four major valves.
-3. Explain systole and diastole.
-4. Explain the cardiac cycle using atrial systole, ventricular systole and diastole.
-5. Explain myogenic control and the pacemaker concept.
-6. Trace the impulse pathway: SAN → AVN → Bundle of His → Purkinje fibres.
-7. Compare systemic and pulmonary circulation.
-8. Distinguish arteries, veins and capillaries by function.
-
-### Learning Outcomes
-
-By the end of this lecture, learners will be able to:
-
-- Label a heart diagram.
-- Explain blood flow through the heart using valve logic.
-- Draw the cardiac impulse pathway.
-- Compare systole and diastole in a table.
-- Trace systemic and pulmonary circulation.
-- Explain why left ventricular wall is thicker than right ventricular wall.
-
-## LALA: Learning Activities and Learning Applications
-
-### Learning Activities
-
-1. Draw the heart-flow route using blue for deoxygenated blood and red for oxygenated blood.
-2. Match each valve with its chamber or vessel: tricuspid, pulmonary, mitral and aortic.
-3. Draw SAN → AVN → Bundle of His → Purkinje fibres.
-4. Make a cardiac cycle table: atrial systole, ventricular systole and diastole.
-5. Draw systemic and pulmonary circulation as two connected loops.
-
-### Learning Applications
-
-- Understand why exercise increases heart rate.
-- Understand why valve defects can cause backward flow or murmur.
-- Connect abnormal pulse, palpitation or fainting with rhythm or blood-flow problems.
-- Prepare for blood pressure and baroreceptor reflex topics.
 
 ## Heart Chambers
 
