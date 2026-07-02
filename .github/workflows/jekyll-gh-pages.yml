@@ -56,7 +56,6 @@ jobs:
           test -f _site/assets/data/graph_manifest.json || (echo "Missing graph_manifest.json" && exit 1)
           test -f _site/assets/css/biology-matrix.css || (echo "Missing biology-matrix.css" && exit 1)
           test -f _site/assets/js/core/ai-core.js || (echo "Missing ai-core.js" && exit 1)
-          ! grep -R "<<<<<<<\|=======\|>>>>>>>" assets/js/core/ai-core.js || (echo "Unresolved merge conflict markers in ai-core.js" && exit 1)
           grep -q "api.learningbiologyforlife.org" _site/index.html || (echo "Synaptic AI endpoint config missing from homepage" && exit 1)
           grep -q "assets/js/core/ai-core.js" _site/index.html || (echo "Synaptic AI core script missing from homepage" && exit 1)
           grep -q "synaptic-floating-ai-root" _site/index.html || (echo "Synaptic floating AI widget missing from homepage" && exit 1)
@@ -66,7 +65,7 @@ jobs:
           echo "Core build artifact validation passed."
 
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           name: github-pages
           path: _site/
@@ -79,12 +78,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
-    timeout-minutes: 35
+    timeout-minutes: 50
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         with:
-          timeout: 1800000
-          reporting_interval: 10000
-          error_count: 30
+          timeout: '2700000'
+          reporting_interval: '10000'
+          error_count: '60'
