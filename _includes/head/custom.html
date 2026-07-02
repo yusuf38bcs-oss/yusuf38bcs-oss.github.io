@@ -77,9 +77,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-WPZ6MPK4');</script>
 <!-- End Google Tag Manager -->
 
-<!-- Google AdSense: kept visible for site review and ownership checks. -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9144658795059352"
-     crossorigin="anonymous"></script>
+{% comment %}
+  AdSense is loaded by _includes/head/head.html through the cookie-consent
+  manager. Keep a single loading path to avoid duplicate script injection and
+  contradictory consent behavior.
+{% endcomment %}
 
 <!-- OMEGA-compatible temporary translation bridge: English/Bangla only -->
 <script>
