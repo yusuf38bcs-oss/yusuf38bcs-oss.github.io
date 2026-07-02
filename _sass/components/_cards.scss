@@ -1,6 +1,6 @@
-/* ==========================================================================
+/* ============================================================================
    NEURAL GLASS CARD SYSTEM
-   ========================================================================== */
+   ============================================================================ */
 
 .neural-card, 
 .question-item-card, 
@@ -52,9 +52,9 @@
     letter-spacing: normal !important;
   }
 }
-/* ==========================================================================
+/* ============================================================================
    PHASE 2: ARCHIVE / CARD STABILIZATION
-   ========================================================================== */
+   ============================================================================ */
 
 .archive {
   margin-bottom: 2rem;
@@ -115,3 +115,113 @@
   opacity: 0.8;
 }
 
+/* ============================================================================
+   LBFL RESPONSIVE LEARNING CARDS
+   Replaces mobile-risk Markdown tables for lecture facts, comparison blocks,
+   revision notes, and framework panels.
+   ============================================================================ */
+
+.lbfl-info-grid,
+.lbfl-framework-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(0.75rem, 2vw, 1rem);
+  margin: 1rem 0 1.4rem;
+}
+
+.lbfl-info-card,
+.lbfl-framework-links,
+.lbfl-framework-link {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 20px;
+  background: radial-gradient(circle at top right, rgba(18, 214, 191, 0.10), transparent 38%), linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.88));
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
+}
+
+.lbfl-info-card {
+  padding: clamp(0.95rem, 2vw, 1.25rem);
+}
+
+.lbfl-info-card h3,
+.lbfl-framework-links h2 {
+  margin-top: 0;
+  margin-bottom: 0.45rem;
+  color: #f8fafc !important;
+  line-height: 1.25;
+}
+
+.lbfl-info-card p,
+.lbfl-info-card li,
+.lbfl-framework-links p,
+.lbfl-framework-link span {
+  color: #dbeafe !important;
+  line-height: 1.65;
+}
+
+.lbfl-info-card p:last-child,
+.lbfl-info-card ul:last-child,
+.lbfl-framework-links p:last-child {
+  margin-bottom: 0;
+}
+
+.lbfl-info-card__meta,
+.lbfl-info-card small {
+  display: block;
+  margin-top: 0.35rem;
+  color: #a9b8d3 !important;
+  font-weight: 700;
+}
+
+.lbfl-info-grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.lbfl-framework-links {
+  padding: clamp(1rem, 2.6vw, 1.6rem);
+  margin: 1.25rem 0 1.6rem;
+}
+
+.lbfl-framework-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-height: 112px;
+  padding: 0.95rem;
+  text-decoration: none !important;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.lbfl-framework-link strong {
+  color: #ccfbf1 !important;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.lbfl-framework-link:hover,
+.lbfl-framework-link:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(18, 214, 191, 0.45);
+  background: rgba(18, 214, 191, 0.10);
+}
+
+@media (max-width: 700px) {
+  .neural-card,
+  .question-item-card,
+  .mi-question-card,
+  .glass-card,
+  .synaptic-card {
+    padding: 1.2rem;
+  }
+
+  .lbfl-info-grid,
+  .lbfl-framework-link-grid,
+  .lbfl-info-grid--compact {
+    grid-template-columns: 1fr;
+  }
+
+  .lbfl-info-card,
+  .lbfl-framework-links,
+  .lbfl-framework-link {
+    border-radius: 16px;
+  }
+}

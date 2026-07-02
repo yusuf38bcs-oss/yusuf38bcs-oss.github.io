@@ -197,14 +197,43 @@
   background: rgba(18, 214, 191, 0.12);
 }
 
+.lbfl-assessment-page .page__content table,
+.lbfl-assessment-page table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--lbfl-assessment-border-soft);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.48);
+}
+
+.lbfl-assessment-page th,
+.lbfl-assessment-page td {
+  padding: 0.85rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  color: var(--lbfl-assessment-text);
+  vertical-align: top;
+}
+
+.lbfl-assessment-page th {
+  color: #f8fafc;
+  background: rgba(18, 214, 191, 0.10);
+}
+
 @media (max-width: 700px) {
-  .lbfl-assessment-page .page__content table { display: none; }
   .lbfl-assessment-hero,
   .lbfl-assessment-panel,
   .lbfl-cq-card,
   .lbfl-practical-card,
   .lbfl-rubric-card { border-radius: 18px; }
+
   .lbfl-cq-part,
   .lbfl-rubric-row { grid-template-columns: 1fr; }
+
   .lbfl-cq-letter { width: 48px; }
+
+  .lbfl-assessment-page .page__content {
+    overflow-wrap: anywhere;
+  }
 }

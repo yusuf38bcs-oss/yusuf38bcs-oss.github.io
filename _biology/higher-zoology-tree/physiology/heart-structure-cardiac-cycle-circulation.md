@@ -7,7 +7,7 @@ sidebar:
 title: "Blood Circulation Part 2: হৃদপিণ্ডের গঠন, Myogenic Movement, Systole-Diastole ও রক্তসঞ্চালন"
 excerpt: "মানব হৃদপিণ্ডের অবস্থান, আবরণ, প্রকোষ্ঠ, valves, cardiac cycle, myogenic control, SAN, AVN, Bundle of His, Purkinje fibre, systemic and pulmonary circulation নিয়ে পূর্ণাঙ্গ lecture."
 date: 2026-06-29T00:00:00.000Z
-last_modified_at: 2026-06-29T00:00:00.000Z
+last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation/
 categories:
   - Biology
@@ -132,13 +132,13 @@ By the end of this lecture, learners will be able to:
 
 হৃদপিণ্ড হলো রক্ত সঞ্চালন তন্ত্রের pump organ। এটি rhythmic contraction and relaxation-এর মাধ্যমে body tissues-এ রক্ত পাঠায়।
 
-| Feature | Description |
-|---|---|
-| Position | thoracic cavity, between lungs, above diaphragm, slightly left |
-| Shape | conical, reddish-brown muscular organ |
-| Approximate adult size | about fist-sized; textbook values often around 12 cm × 9 cm |
-| Covering | pericardium |
-| Wall | cardiac muscle / myocardium |
+<div class="lbfl-info-grid lbfl-info-grid--compact">
+  <section class="lbfl-info-card"><h3>Position</h3><p>Thoracic cavity, between lungs, above diaphragm, slightly left.</p></section>
+  <section class="lbfl-info-card"><h3>Shape</h3><p>Conical, reddish-brown muscular organ.</p></section>
+  <section class="lbfl-info-card"><h3>Approximate adult size</h3><p>About fist-sized; textbook values often around 12 cm × 9 cm.</p></section>
+  <section class="lbfl-info-card"><h3>Covering</h3><p>Pericardium.</p></section>
+  <section class="lbfl-info-card"><h3>Wall</h3><p>Cardiac muscle / myocardium.</p></section>
+</div>
 
 ## 2. Pericardium: Heart Covering
 
@@ -158,12 +158,12 @@ Maintains position inside thoracic cavity
 
 মানব heart চার প্রকোষ্ঠবিশিষ্ট।
 
-| Chamber | Bengali | Blood type | Main function |
-|---|---|---|---|
-| Right atrium | ডান অলিন্দ | deoxygenated | body থেকে blood receives |
-| Right ventricle | ডান নিলয় | deoxygenated | lungs-এ blood pumps |
-| Left atrium | বাম অলিন্দ | oxygenated | lungs থেকে blood receives |
-| Left ventricle | বাম নিলয় | oxygenated | body-তে blood pumps |
+<div class="lbfl-info-grid">
+  <section class="lbfl-info-card"><h3>Right atrium — ডান অলিন্দ</h3><p><strong>Blood type:</strong> deoxygenated.</p><p><strong>Main function:</strong> body থেকে blood receives.</p></section>
+  <section class="lbfl-info-card"><h3>Right ventricle — ডান নিলয়</h3><p><strong>Blood type:</strong> deoxygenated.</p><p><strong>Main function:</strong> lungs-এ blood pumps.</p></section>
+  <section class="lbfl-info-card"><h3>Left atrium — বাম অলিন্দ</h3><p><strong>Blood type:</strong> oxygenated.</p><p><strong>Main function:</strong> lungs থেকে blood receives.</p></section>
+  <section class="lbfl-info-card"><h3>Left ventricle — বাম নিলয়</h3><p><strong>Blood type:</strong> oxygenated.</p><p><strong>Main function:</strong> body-তে blood pumps.</p></section>
+</div>
 
 ### Why left ventricle is thicker
 
@@ -173,12 +173,12 @@ Left ventricle সারা দেহে high pressure দিয়ে blood পা
 
 Valve blood-কে একদিকে প্রবাহিত হতে দেয় এবং backward flow প্রতিরোধ করে।
 
-| Valve | Location | Function |
-|---|---|---|
-| Tricuspid valve | RA → RV | right atrium থেকে right ventricle |
-| Pulmonary valve | RV → pulmonary artery | lungs-bound blood |
-| Mitral/Bicuspid valve | LA → LV | left atrium থেকে left ventricle |
-| Aortic valve | LV → aorta | systemic blood flow |
+<div class="lbfl-info-grid">
+  <section class="lbfl-info-card"><h3>Tricuspid valve</h3><p><strong>Location:</strong> RA → RV.</p><p><strong>Function:</strong> right atrium থেকে right ventricle-এ blood flow.</p></section>
+  <section class="lbfl-info-card"><h3>Pulmonary valve</h3><p><strong>Location:</strong> RV → pulmonary artery.</p><p><strong>Function:</strong> lungs-bound blood forward করে.</p></section>
+  <section class="lbfl-info-card"><h3>Mitral/Bicuspid valve</h3><p><strong>Location:</strong> LA → LV.</p><p><strong>Function:</strong> left atrium থেকে left ventricle-এ blood flow.</p></section>
+  <section class="lbfl-info-card"><h3>Aortic valve</h3><p><strong>Location:</strong> LV → aorta.</p><p><strong>Function:</strong> systemic blood flow শুরু করে.</p></section>
+</div>
 
 ### Valve Logic
 
@@ -198,10 +198,10 @@ Backflow prevented
 
 ## 5. Systole and Diastole
 
-| Term | Meaning | What happens |
-|---|---|---|
-| Systole | contraction | chamber squeezes blood out |
-| Diastole | relaxation | chamber fills with blood |
+<div class="lbfl-info-grid lbfl-info-grid--compact">
+  <section class="lbfl-info-card"><h3>Systole</h3><p><strong>Meaning:</strong> contraction.</p><p><strong>What happens:</strong> chamber squeezes blood out.</p></section>
+  <section class="lbfl-info-card"><h3>Diastole</h3><p><strong>Meaning:</strong> relaxation.</p><p><strong>What happens:</strong> chamber fills with blood.</p></section>
+</div>
 
 Heart-এর কাজ continuous, কিন্তু সহজভাবে তিন ধাপে দেখা যায়:
 
@@ -338,11 +338,11 @@ Pulmonary artery deoxygenated blood বহন করে, আর pulmonary vein o
 
 ## 14. Artery, Vein and Capillary
 
-| Vessel | Direction | Wall | Main function |
-|---|---|---|---|
-| Artery | away from heart | thick, elastic, muscular | high-pressure distribution |
-| Vein | toward heart | thinner wall, valves often present | low-pressure return |
-| Capillary | between arteriole and venule | one-cell-thick wall | exchange of gases, nutrients, wastes |
+<div class="lbfl-info-grid">
+  <section class="lbfl-info-card"><h3>Artery</h3><p><strong>Direction:</strong> away from heart.</p><p><strong>Wall:</strong> thick, elastic, muscular.</p><p><strong>Main function:</strong> high-pressure distribution.</p></section>
+  <section class="lbfl-info-card"><h3>Vein</h3><p><strong>Direction:</strong> toward heart.</p><p><strong>Wall:</strong> thinner wall, valves often present.</p><p><strong>Main function:</strong> low-pressure return.</p></section>
+  <section class="lbfl-info-card"><h3>Capillary</h3><p><strong>Direction:</strong> between arteriole and venule.</p><p><strong>Wall:</strong> one-cell-thick wall.</p><p><strong>Main function:</strong> exchange of gases, nutrients, wastes.</p></section>
+</div>
 
 ## 15. Double Circulation: Why Two Loops?
 
@@ -353,19 +353,19 @@ Pulmonary artery deoxygenated blood বহন করে, আর pulmonary vein o
 - tissue perfusion efficient হয়।
 - endothermic/high metabolic demand body support পায়।
 
-## Quick Revision Table
+## Quick Revision Cards
 
-| Concept | Must remember | Common mistake |
-|---|---|---|
-| Heart | four-chambered muscular pump | শুধুই blood storage ভাবা |
-| Valve | one-way flow gate | valve blood তৈরি করে ভাবা |
-| Systole | contraction | all chambers always contract together ভাবা |
-| Diastole | relaxation/filling | inactive period ভাবা |
-| SAN | pacemaker | nervous tissue ভাবা |
-| AVN | delay and conduction | delay-এর value না বোঝা |
-| Bundle/Purkinje | ventricular conduction | শুধু structural fibre ভাবা |
-| Systemic circulation | LV → body → RA | lungs route ভুলে মিশিয়ে ফেলা |
-| Pulmonary circulation | RV → lungs → LA | pulmonary artery oxygenated ভাবা |
+<div class="lbfl-info-grid">
+  <section class="lbfl-info-card"><h3>Heart</h3><p><strong>Must remember:</strong> four-chambered muscular pump.</p><p><strong>Common mistake:</strong> শুধুই blood storage ভাবা.</p></section>
+  <section class="lbfl-info-card"><h3>Valve</h3><p><strong>Must remember:</strong> one-way flow gate.</p><p><strong>Common mistake:</strong> valve blood তৈরি করে ভাবা.</p></section>
+  <section class="lbfl-info-card"><h3>Systole</h3><p><strong>Must remember:</strong> contraction.</p><p><strong>Common mistake:</strong> all chambers always contract together ভাবা.</p></section>
+  <section class="lbfl-info-card"><h3>Diastole</h3><p><strong>Must remember:</strong> relaxation/filling.</p><p><strong>Common mistake:</strong> inactive period ভাবা.</p></section>
+  <section class="lbfl-info-card"><h3>SAN</h3><p><strong>Must remember:</strong> pacemaker.</p><p><strong>Common mistake:</strong> nervous tissue ভাবা.</p></section>
+  <section class="lbfl-info-card"><h3>AVN</h3><p><strong>Must remember:</strong> delay and conduction.</p><p><strong>Common mistake:</strong> delay-এর value না বোঝা.</p></section>
+  <section class="lbfl-info-card"><h3>Bundle/Purkinje</h3><p><strong>Must remember:</strong> ventricular conduction.</p><p><strong>Common mistake:</strong> শুধু structural fibre ভাবা.</p></section>
+  <section class="lbfl-info-card"><h3>Systemic circulation</h3><p><strong>Must remember:</strong> LV → body → RA.</p><p><strong>Common mistake:</strong> lungs route ভুলে মিশিয়ে ফেলা.</p></section>
+  <section class="lbfl-info-card"><h3>Pulmonary circulation</h3><p><strong>Must remember:</strong> RV → lungs → LA.</p><p><strong>Common mistake:</strong> pulmonary artery oxygenated ভাবা.</p></section>
+</div>
 
 ## Synaptic Bridge
 
