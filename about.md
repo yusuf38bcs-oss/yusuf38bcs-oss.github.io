@@ -3,8 +3,8 @@ layout: single
 author_profile: false
 sidebar:
   nav: "synaptic_nav"
-title: "About the Author"
-excerpt: "Professional academic profile of MD. YUSUF, founder of Learning Biology For Life and BCS Education Cadre Officer."
+title: "About Learning Biology For Life"
+excerpt: "Author profile and platform philosophy of Learning Biology For Life: Biology as academic theory, life as application, and learning as the bridge."
 permalink: /about/
 classes: wide
 node_id: util-author-profile
@@ -12,86 +12,93 @@ pillar: "Network"
 difficulty: "Advanced"
 xp: 500
 status: "Active"
+language: en
 ---
 
-<section class="author-page-hero" aria-label="Author profile summary">
-  <p class="author-page-hero__eyebrow">Founder • Biology Educator • Learning Designer</p>
-  <h2>MD. YUSUF</h2>
-  <p><strong>BCS Education Cadre Officer | Lecturer in Zoology | Founder of Learning Biology For Life</strong></p>
-  <p>MD. YUSUF is a Bangladeshi civil service officer in the BCS General Education Cadre, a lecturer in Zoology, and the founder-author of Learning Biology For Life. His work connects biological science, reflective pedagogy, human behaviour, digital learning, leadership, and 4IR-ready education.</p>
-</section>
+# About Learning Biology For Life
 
-## Professional Identity
+## Founder and Educational Identity
 
-- **Name:** MD. YUSUF
-- **Professional Cadre:** BCS General Education Cadre
-- **Academic Field:** Zoology and Life Sciences
-- **Current Academic Role:** Lecturer in Zoology
-- **Platform:** Learning Biology For Life
-- **Country:** Bangladesh
-- **Primary Mission:** Enhancing critical thinking through biology, systems thinking, and reflective learning
+**Learning Biology For Life** is a single-author educational initiative founded by **MD. YUSUF**, a Bangladeshi BCS General Education Cadre officer, Lecturer in Zoology, and biology educator.
 
-## Academic and Training Background
+The platform connects biological science, reflective pedagogy, human behaviour, digital learning, leadership, ethical responsibility, and future-ready education. Its purpose is not only to publish biology notes, but to build a structured learning ecosystem where biology becomes a bridge between academic theory and lived reality.
 
-MD. YUSUF has developed his professional profile through teaching, civil service training, continuous professional development, and self-directed technological learning.
+<div class="lbfl-info-grid lbfl-info-grid--compact">
+  <section class="lbfl-info-card"><h3>Academic field</h3><p>Zoology and Life Sciences</p></section>
+  <section class="lbfl-info-card"><h3>Professional identity</h3><p>BCS General Education Cadre Officer and Lecturer in Zoology</p></section>
+  <section class="lbfl-info-card"><h3>Platform mission</h3><p>Enhancing critical thinking through biology, systems thinking, and reflective learning</p></section>
+  <section class="lbfl-info-card"><h3>Country</h3><p>Bangladesh</p></section>
+</div>
 
-His recorded training and learning pathway includes:
+## Core Philosophy
 
-- BCS General Education Cadre service
-- 190th Foundation Training Course at NAEM
-- Enhanced Continuous Professional Development Programme with distinction at University of Nottingham Malaysia
-- Continued learning in Python for Data Science, Cybersecurity, Prompt Engineering, digital pedagogy, and AI-assisted learning systems
+The central philosophy is simple but demanding:
 
-This combination of biology, pedagogy, technology, and governance informs the structure of Learning Biology For Life.
+```text
+Biology = Academic Theory
+Life = Practical Application
+Learning = The Bridge
+```
 
-## Teaching Philosophy
+Biology should not remain only in textbooks. It should help learners understand life, behaviour, systems, responsibility, environment, evidence, ethics, and reality.
 
-The central teaching philosophy of MD. YUSUF is simple but demanding:
+## DOT → LINE → CIRCLE
 
-> Biology should not remain only in the textbook. Biology should help learners understand life, behaviour, systems, responsibility, and reality.
+Learning Biology For Life organizes knowledge through a three-level model.
 
-He teaches through real-life examples, case studies, scientific questioning, conceptual mapping, Socratic inquiry, reflection-based learning, and constructive alignment between learning objectives and learning outcomes.
+<div class="lbfl-info-grid">
+  <section class="lbfl-info-card"><h3>DOT — Acquisition</h3><p>A learner first meets a concept as a dot: a cell organelle, hormone, nerve impulse, gene, ecosystem variable, statistical observation, Quranic principle, or ethical idea.</p></section>
+  <section class="lbfl-info-card"><h3>LINE — Application</h3><p>The learner then connects dots into lines: physiology with behaviour, ecology with stewardship, genetics with heredity, biostatistics with evidence, and biology with daily decisions.</p></section>
+  <section class="lbfl-info-card"><h3>CIRCLE — Reflective wisdom</h3><p>The learner finally enters a circle of questioning, applying, testing, revising, and teaching. Knowledge becomes responsibility-oriented practice.</p></section>
+</div>
 
-His preferred educational framework connects **LOLO** (Learning Objectives and Learning Outcomes), **LALA** (Learning Activities and Learning Applications), and **Socratic 4.0** questioning to make learning active, reflective, and life-ready.
+This model responds to a modern learning challenge: learners can retrieve information quickly, but they still need verification, synthesis, disciplined reflection, and ethical application.
 
 ## The Synaptic Bridge
 
-Learning Biology For Life is built around the idea of the **Synaptic Bridge**.
+The **Synaptic Bridge** is the platform's central method. It connects:
 
-The Synaptic Bridge connects:
-
-- Biological theory with practical life
-- Academic knowledge with human behaviour
-- Physiology with health awareness
-- Genetics with identity and inheritance
-- Ecology with responsibility and sustainability
-- Biostatistics with evidence-based reasoning
-- Leadership with self-regulation and decision-making
-- Digital pedagogy with 4IR learning skills
+- biological theory with practical life;
+- academic knowledge with human behaviour;
+- physiology with health awareness;
+- genetics with identity and inheritance;
+- ecology with responsibility and sustainability;
+- biostatistics with evidence-based reasoning;
+- leadership with self-regulation and decision-making;
+- digital pedagogy with 4IR learning skills.
 
 This bridge transforms isolated facts into meaningful patterns.
 
-## DOT to LINE to CIRCLE
+## Pedagogical Framework
 
-The author’s knowledge architecture follows a three-level learning model:
+The platform uses a structured learning approach:
 
-### DOT
+<div class="lbfl-info-grid">
+  <section class="lbfl-info-card"><h3>LOLO</h3><p>Learning Objectives and Learning Outcomes clarify what the learner should understand and be able to do.</p></section>
+  <section class="lbfl-info-card"><h3>LALA</h3><p>Learning Activities and Learning Applications connect concept learning with practice and real-world use.</p></section>
+  <section class="lbfl-info-card"><h3>Bloom's Taxonomy</h3><p>Lessons and assessments should move from recall to understanding, application, analysis, evaluation, and creation.</p></section>
+  <section class="lbfl-info-card"><h3>Socratic 4.0</h3><p>Questions are used to challenge passive reading and push learners toward reasoning, self-correction, and deeper reflection.</p></section>
+</div>
 
-A biological concept begins as a dot: a cell organelle, a hormone, a nerve impulse, a gene, an ecosystem variable, or a statistical observation.
+## Cognitive Graph and Cognitive Wave
 
-### LINE
+Learning Biology For Life treats personal learning as dynamic, not fixed. The platform's reflective tools may help learners notice patterns in their learning preferences, motivation, behaviour, emotional pressure, attention, strengths, neglected capacities, and change over time.
 
-The learner then connects dots into lines: physiology with behaviour, ecology with public responsibility, genetics with heredity, biostatistics with research design, and biology with life decisions.
+The **Cognitive Graph** is the learner's private map of these reflective records. The **Cognitive Wave** is the pattern of change that may appear when the same learner reflects at different times.
 
-### CIRCLE
+These tools are educational and non-clinical. They are not psychological diagnosis, mental-health assessment, ranking system, or permanent label.
 
-Finally, the learner enters a reflective circle: questioning, applying, testing, revising, and teaching others. This is where knowledge becomes wisdom-oriented practice.
+## Faith, Knowledge, and Responsibility
+
+The author's worldview respects empirical scientific inquiry while recognizing the Qur'an as the ultimate source of guidance. On this platform, faith-informed reflection is used to encourage humility, responsibility, stewardship, ethical awareness, and the pursuit of beneficial knowledge.
+
+Science pages explain biological concepts through academic reasoning and evidence. Reflective or faith-informed pages may discuss meaning and responsibility, but they do not replace formal religious scholarship, medical advice, psychological care, legal judgement, or scientific verification.
 
 ## Platform Mission
 
-**Learning Biology For Life** exists to democratize high-quality biology education and to help learners build deeper scientific understanding.
+Learning Biology For Life exists to democratize high-quality biology education and help learners build deeper scientific understanding.
 
-The platform focuses on HSC Biology support, Higher Zoology learning pathways, human physiology, genetics, ecology, biostatistics, animal diversity and taxonomy, human behaviour, leadership and life practices, research thinking, MCQ-based assessment, and AI-assisted Socratic learning.
+The platform focuses on HSC Biology, Higher Zoology, Animal Diversity, Human Physiology, Genetics, Ecology, Biostatistics, human behaviour, leadership, life practices, research thinking, MCQ-based assessment, and AI-assisted Socratic learning.
 
 The long-term mission is to build a neural educational ecosystem where biology becomes a bridge between theory, life, ethics, and future-ready skills.
 
@@ -99,64 +106,27 @@ The long-term mission is to build a neural educational ecosystem where biology b
 
 MD. YUSUF is committed to:
 
-- Quality education for Bangladesh
-- Critical thinking over rote memorization
-- Scientific literacy with moral responsibility
-- Student-centered learning
-- Accessible digital pedagogy
-- Responsible AI integration in education
-- Multidisciplinary learning for the 4IR era
-
-## Faith, Knowledge, and Responsibility
-
-The author’s learning worldview respects scientific inquiry while recognizing the Qur’an as the ultimate source of guidance. This perspective encourages humility, responsibility, ethical reflection, and the pursuit of beneficial knowledge.
+- quality education for Bangladesh;
+- critical thinking over rote memorization;
+- scientific literacy with moral responsibility;
+- student-centered learning;
+- accessible digital pedagogy;
+- responsible AI integration in education;
+- multidisciplinary learning for the 4IR era.
 
 ## Digital Pedagogy and Platform Engineering
 
-Learning Biology For Life is not only a content website. It is being developed as a structured educational network using a Jamstack architecture with Jekyll, GitHub Pages, Cloudflare, custom collections, reusable layouts, navigation systems, and AI-assisted learning components.
+Learning Biology For Life is built as a structured educational network using Jekyll, GitHub Pages, Cloudflare, reusable layouts, custom collections, navigation systems, and AI-assisted learning workflows.
 
-The author is actively involved in teaching, writing, curriculum design, platform maintenance, content architecture, AI workflow design, learning experience design, and digital publishing.
-
-This makes the platform a single-author educational initiative with an integrated academic, technical, and pedagogical identity.
+This makes the platform an integrated academic, technical, and pedagogical project: a biology learning site, a content architecture system, and a reflective learning ecosystem.
 
 ## Connect
 
 - **Website:** [learningbiologyforlife.org](https://learningbiologyforlife.org)
 - **GitHub:** [yusuf38bcs-oss](https://github.com/yusuf38bcs-oss)
+- **Bangla About:** [বাংলা পরিচিতি]({{ '/bn/about/' | relative_url }})
 - **Contact:** [Contact Page]({{ '/contact/' | relative_url }})
 
 ## Profile Integrity Note
 
-This author profile is written from the known professional identity, academic mission, and platform architecture of Learning Biology For Life. It avoids unsupported claims and presents the author as a biology educator, civil service officer, learning designer, and lifelong learner committed to reflective scientific education.
-
-<style>
-  .author-page-hero {
-    margin: 0 0 2rem 0;
-    padding: clamp(1.25rem, 4vw, 2rem);
-    border-radius: 22px;
-    border: 1px solid rgba(0, 212, 178, 0.16);
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.76));
-    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.25);
-  }
-
-  .author-page-hero__eyebrow {
-    margin: 0 0 0.65rem 0;
-    color: #7fffe7;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .author-page-hero h2 {
-    margin: 0 0 0.75rem 0;
-    color: #ffffff;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.08;
-  }
-
-  .author-page-hero p {
-    color: #cbd5e1;
-    line-height: 1.75;
-  }
-</style>
+This profile is written from the known professional identity, academic mission, and platform architecture of Learning Biology For Life. It avoids unsupported claims and presents the author as a biology educator, civil service officer, learning designer, and lifelong learner committed to reflective scientific education.
