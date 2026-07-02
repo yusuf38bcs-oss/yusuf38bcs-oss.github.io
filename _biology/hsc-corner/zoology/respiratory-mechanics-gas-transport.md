@@ -7,7 +7,7 @@ sidebar:
 title: "Human Respiratory System Part 2: শ্বাস-প্রশ্বাসের মেকানিজম, নিয়ন্ত্রণ ও গ্যাস পরিবহন"
 excerpt: "প্রশ্বাস ও নিঃশ্বাসের physical mechanism, Boyle's law, diaphragm-intercostal action, neural and chemical respiratory control, oxygen transport, carbon dioxide transport, chloride shift and acid-base logic নিয়ে পূর্ণাঙ্গ lecture."
 date: 2026-06-29T00:00:00.000Z
-last_modified_at: 2026-06-29T00:00:00.000Z
+last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /biology/hsc-corner/zoology/respiratory-mechanics-gas-transport/
 categories:
   - Biology
@@ -67,6 +67,12 @@ Volume কমলে Pressure বাড়ে → বাতাস বের হয়
 
 Respiratory physiology-র ভুল বোঝাবুঝির বড় কারণ হলো শিক্ষার্থীরা anatomy আলাদা, breathing আলাদা, gas transport আলাদা, এবং disease আলাদা করে মুখস্থ করে। বাস্তবে এগুলো একই system-এর ধারাবাহিক অংশ। যদি diaphragm কাজ না করে, air entry কমে; air entry কমলে alveolar O₂ কমে; O₂ gradient কমলে blood oxygenation কমে; CO₂ জমলে pH বদলায়; pH বদলালে respiratory center ventilation rate পরিবর্তন করে।
 
+{% include education/framework-links.html %}
+
+## Mechanics-Specific Learning Focus
+
+এই lecture central LBFL framework-কে respiratory mechanics ও gas transport-এ প্রয়োগ করে। এখানে learner-এর focus হবে pressure-volume relationship, diaphragm-intercostal action, neural control, chemoreceptor feedback, alveolar diffusion, hemoglobin-based O₂ transport, bicarbonate-based CO₂ transport এবং chloride shift logic।
+
 ## Master Mechanism Map
 
 ```text
@@ -86,49 +92,6 @@ Neural + Chemical Feedback
   ↓
 Breathing Rate Adjustment
 ```
-
-## LOLO: Learning Objectives & Learning Outcomes
-
-### Learning Objectives
-
-এই lecture শেষে শিক্ষার্থী শিখবে:
-
-1. Boyle’s law ব্যবহার করে inspiration ও expiration ব্যাখ্যা করতে।
-2. Diaphragm ও intercostal muscles-এর action আলাদা করতে।
-3. Inspiration কেন active এবং normal expiration কেন passive তা বোঝাতে।
-4. Medulla, pons, pneumotaxic center, apneustic center, vagus nerve ও stretch receptor-এর ভূমিকা ব্যাখ্যা করতে।
-5. Hering-Breuer reflex কীভাবে over-inflation প্রতিরোধ করে তা বুঝতে।
-6. Chemoreceptor কীভাবে O₂, CO₂ ও H⁺ পরিবর্তনের প্রতি সাড়া দেয় তা ব্যাখ্যা করতে।
-7. O₂ transport-এ hemoglobin-এর ভূমিকা এবং CO₂ transport-এ bicarbonate pathway ব্যাখ্যা করতে।
-8. Chloride shift/Hamburger phenomenon কেন electroneutrality বজায় রাখে তা বিশ্লেষণ করতে।
-
-### Learning Outcomes
-
-By the end of this lecture, learners will be able to:
-
-- Inspiration ও expiration-এর তুলনামূলক table তৈরি করতে পারবে।
-- Respiratory control loop আঁকতে পারবে।
-- Alveolar PO₂ ও venous PO₂ gradient দিয়ে O₂ diffusion explain করতে পারবে।
-- CO₂ transport-এর তিনটি route লিখতে পারবে।
-- Chloride shift-এর কারণ, ধাপ ও ফলাফল ব্যাখ্যা করতে পারবে।
-- Acid-base balance-এর সঙ্গে respiration-এর সম্পর্ক লিখতে পারবে।
-
-## LALA: Learning Activities & Learning Applications
-
-### Learning Activities
-
-1. **Pressure-Volume Drill:** দুইটি arrow diagram তৈরি করো—একটি inspiration, একটি expiration।
-2. **Control Loop Drawing:** medulla → nerve → diaphragm/intercostal muscle → lung inflation → vagus feedback → breathing adjustment—এই loop আঁকো।
-3. **Gas Table:** O₂ ও CO₂ transport comparison table তৈরি করো।
-4. **Equation Practice:** CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻—এই equation-কে কথায় ব্যাখ্যা করো।
-5. **Case Thinking:** পাহাড়ে গেলে breathing rate কেন বাড়ে? CO₂ retention হলে কী হয়?—এই দুই প্রশ্নে physiology প্রয়োগ করো।
-
-### Learning Applications
-
-- শ্বাসকষ্টে কেন রোগী দ্রুত শ্বাস নেয় তা chemical control দিয়ে বুঝতে পারবে।
-- Smoking বা CO exposure-এ hemoglobin oxygen transport কেন ব্যাহত হয় তা ব্যাখ্যা করতে পারবে।
-- Asthma/COPD/pneumonia-র symptom logic lecture 3-এ যুক্ত করতে পারবে।
-- CPR, oxygen therapy, pulse oximeter, ventilator—এই health tools-এর basic physiological logic বুঝতে পারবে।
 
 ## 1. Breathing vs Respiration: Clear the Confusion
 
@@ -307,7 +270,7 @@ pH tends to normalize
 
 ## 10. Alveolar Gas Exchange
 
-Gas exchange হয় diffusion-এর মাধ্যমে। Gas always moves from higher partial pressure to lower partial pressure.
+Gas exchange হয় diffusion-এর মাধ্যমে। Gas always moves from higher partial pressure to lower partial pressure।
 
 ### Oxygen gradient
 

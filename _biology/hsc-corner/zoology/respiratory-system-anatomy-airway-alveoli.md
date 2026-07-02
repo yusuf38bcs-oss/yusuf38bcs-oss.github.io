@@ -7,7 +7,7 @@ sidebar:
 title: "Human Respiratory System Part 1: শ্বাসনালীর গঠন, ফুসফুস ও অ্যালভিওলাই"
 excerpt: "নাক থেকে অ্যালভিওলাই পর্যন্ত মানব শ্বসনতন্ত্রের অংশ, কাজ, শ্বাসপথ, ফুসফুসের লোব, প্লিউরা, ব্রঙ্কিয়াল ট্রি, surfactant এবং gas-exchange surface নিয়ে পূর্ণাঙ্গ lecture."
 date: 2026-06-29T00:00:00.000Z
-last_modified_at: 2026-06-29T00:00:00.000Z
+last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /biology/hsc-corner/zoology/respiratory-system-anatomy-airway-alveoli/
 categories:
   - Biology
@@ -53,11 +53,17 @@ status: "Active"
 
 মানব **শ্বসনতন্ত্র** হলো এমন একটি জীবন্ত পথ-ব্যবস্থা, যার কাজ শুধু বাতাসকে ফুসফুসে পৌঁছে দেওয়া নয়। এটি আগত বাতাসকে ছেঁকে, উষ্ণ করে, সিক্ত করে, জীবাণু ও ধূলিকণা আটকায়, খাদ্যকে শ্বাসনালীতে ঢুকতে বাধা দেয়, কণ্ঠস্বর তৈরি করে, ফুসফুসকে নিরাপদে প্রসারিত-সংকুচিত হতে সাহায্য করে এবং শেষ পর্যন্ত **অ্যালভিওলাই** নামক অতি সূক্ষ্ম বায়ুথলিতে গ্যাস বিনিময় ঘটায়।
 
-এই lecture-এ আমরা শিখব: বাতাস শরীরে কোন পথে প্রবেশ করে, প্রতিটি অংশের নির্দিষ্ট কাজ কী, lungs কেন শুধু দুটি থলি নয় বরং bronchial tree ও alveolar network-সহ একটি উচ্চক্ষমতাসম্পন্ন gas-exchange organ, এবং surfactant কেন নবজাতক ও পূর্ণবয়স্ক উভয়ের জন্য গুরুত্বপূর্ণ।
+এই lecture-এ আমরা শিখব: বাতাস শরীরে কোন পথে প্রবেশ করে, প্রতিটি অংশের নির্দিষ্ট কাজ কী, lungs কেন শুধু দুটি থলি নয় বরং bronchial tree ও alveolar network-সহ একটি উচ্চক্ষমতাসম্পন্ন gas-exchange organ, এবং surfactant কেন গুরুত্বপূর্ণ।
 
 ## Why This Matters
 
 যদি তুমি শ্বসনতন্ত্রের পথ না জানো, তাহলে pneumonia, bronchitis, asthma, emphysema, sinusitis বা TB কোথায় আঘাত করে তা বুঝবে না। আবার যদি alveoli না বোঝো, তাহলে gas exchange, oxygen transport, respiratory distress অথবা smoking damage—কোনোটাই পরিষ্কার হবে না। তাই **structure first, mechanism next**—এই নিয়মে এই series শুরু করছি।
+
+{% include education/framework-links.html %}
+
+## Anatomy-Specific Learning Focus
+
+এই lecture central LBFL framework-কে respiratory anatomy-তে প্রয়োগ করে। এখানে learner-এর focus হবে air route, conducting zone, respiratory zone, bronchial tree, lung lobe, pleura, alveolus, surfactant এবং structure-function relationship।
 
 ## Air Route Master Diagram
 
@@ -88,49 +94,6 @@ Alveolar Duct → Alveolar Sac → Alveoli
   ↓
 Gas Exchange: O₂ blood-এ, CO₂ alveoli-তে
 ```
-
-## LOLO: Learning Objectives & Learning Outcomes
-
-### Learning Objectives
-
-এই lecture শেষে শিক্ষার্থী শিখবে:
-
-1. **Upper respiratory tract** ও **lower respiratory tract** আলাদা করতে।
-2. সম্মুখ নাসারন্ধ্র, ভেস্টিবিউল, নাসাগহ্বর, কোয়ানা, গলবিল, স্বরযন্ত্র, ট্রাকিয়া, ব্রঙ্কাস, ব্রঙ্কিউল, ফুসফুস ও অ্যালভিওলাইয়ের অবস্থান ও কাজ ব্যাখ্যা করতে।
-3. নাসাগহ্বর কীভাবে বাতাসকে filter, warm, and moisten করে তা বুঝতে।
-4. এপিগ্লোটিস, ভোকাল কর্ড ও larynx-এর ভূমিকা ব্যাখ্যা করতে।
-5. ট্রাকিয়ার cartilage ring ও ciliated mucous membrane কেন জরুরি তা বিশ্লেষণ করতে।
-6. Bronchial tree-এর branching pattern—primary, secondary, segmental bronchus এবং bronchiole—ধাপে ধাপে সাজাতে।
-7. ফুসফুসের lobes, segments, pleura, pleural cavity, pleural fluid ও alveoli-এর কার্যগত গুরুত্ব বুঝতে।
-8. Surfactant কীভাবে surface tension কমিয়ে alveolar collapse প্রতিরোধ করে তা ব্যাখ্যা করতে।
-
-### Learning Outcomes
-
-By the end of this lecture, learners will be able to:
-
-- নাক থেকে অ্যালভিওলাই পর্যন্ত একটি labelled pathway diagram আঁকতে পারবে।
-- প্রতিটি অংশের কাজ এক বাক্যে ব্যাখ্যা করতে পারবে।
-- Right lung ও left lung-এর lobe difference লিখতে পারবে।
-- Pleural membrane ও pleural fluid-এর কাজ ব্যাখ্যা করতে পারবে।
-- Alveolus কেন functional unit of lung তা প্রমাণসহ লিখতে পারবে।
-- Surfactant না থাকলে alveoli কেন চুপসে যেতে পারে তা বোঝাতে পারবে।
-
-## LALA: Learning Activities & Learning Applications
-
-### Learning Activities
-
-1. **Route Labelling Drill:** একটি খালি diagram-এ air route লিখো: nostril → vestibule → nasal cavity → pharynx → larynx → trachea → bronchi → bronchioles → alveoli।
-2. **Function Matching:** প্রত্যেক অঙ্গের পাশে একটি করে কাজ লিখো: filter, warm, moisten, voice, food-blocking, airway support, gas exchange।
-3. **Bronchial Tree Sketch:** Primary bronchus থেকে alveoli পর্যন্ত শাখা-প্রশাখা আঁকো।
-4. **Alveolus Micro-Map:** alveolus, capillary, macrophage, septal cell/surfactant—এই চারটি label দিয়ে একটি micro-diagram বানাও।
-5. **One-Minute Explanation:** “Why is the alveolus the functional unit of the lung?”—এই প্রশ্নের ৬০ সেকেন্ডের উত্তর তৈরি করো।
-
-### Learning Applications
-
-- ধূলা, ধোঁয়া ও জীবাণু কেন নাকের filtering system ভেঙে lower airway-এ পৌঁছালে রোগ বাড়ে তা বুঝতে পারবে।
-- দীর্ঘস্থায়ী ধূমপান কেন cilia ও alveoli ক্ষতিগ্রস্ত করে তা disease lecture-এ যুক্ত করতে পারবে।
-- Premature infant-এ surfactant deficiency কেন respiratory distress তৈরি করতে পারে তা basic physiology হিসেবে বুঝতে পারবে।
-- Mask, clean air, hand hygiene, safe environment—এসবকে respiratory anatomy-এর সঙ্গে যুক্ত করে public-health reasoning তৈরি করতে পারবে।
 
 ## 1. Functional Division of Human Respiratory System
 
@@ -195,8 +158,6 @@ Respiratory bronchioles → Alveolar ducts → Alveolar sacs → Alveoli
 - blood-rich mucosal surface
 
 ### 4.1 বাতাস প্রস্তুত করার কাজ
-
-নাসাগহ্বর আগত বাতাসকে:
 
 | কাজ | ব্যাখ্যা |
 |---|---|
