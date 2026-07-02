@@ -36,36 +36,11 @@ Higher Zoology Tree is the advanced academic gateway of Learning Biology For Lif
 
 Zoology becomes powerful when learners see its internal connection. Animal Diversity explains structural variation. Human Physiology explains regulation and homeostasis. Ecology explains interaction. Genetics explains inheritance and variation. Biostatistics explains evidence and pattern. Together, these branches form a learning tree that can support academic growth and practical life understanding.
 
-## LOLO: Learning Objectives & Learning Outcomes
+{% include education/framework-links.html %}
 
-### Learning Objectives
+## Topic-Specific Learning Focus
 
-- Build a structured overview of advanced Zoology topics.
-- Connect animal classification, physiology, ecology, genetics, and data analysis.
-- Prepare learners for academic assessment and reflective application.
-
-### Learning Outcomes
-
-By the end of this gateway, learners should be able to:
-
-- Select the correct Zoology branch for a learning goal.
-- Explain how biological structure and function are connected.
-- Use Zoology concepts to interpret health, environment, behaviour, and evidence.
-
-## LALA: Learning Activities & Learning Applications
-
-### Learning Activities
-
-- Draw a tree diagram showing how Animal Diversity, Physiology, Ecology, Genetics, and Biostatistics connect.
-- Choose one animal adaptation and explain its structure-function advantage.
-- Convert one ecological or physiological mechanism into a cause-effect chain.
-
-### Learning Applications
-
-- Use Physiology to understand health, stress, nutrition, and behaviour.
-- Use Ecology to understand environment, conservation, and responsibility.
-- Use Genetics to understand inheritance, variation, and continuity of life.
-- Use Biostatistics to interpret biological data with evidence-based reasoning.
+By using this gateway, learners should be able to select the correct Zoology branch, connect structure with function, interpret biological evidence, and apply Zoology concepts to health, environment, behaviour, and academic assessment.
 
 ## Main Branches
 
