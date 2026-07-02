@@ -27,34 +27,12 @@ classes: wide
   <div class="lbfl-assessment-chip-row"><span class="lbfl-assessment-chip">HSC Biology</span><span class="lbfl-assessment-chip">CQ Pattern</span><span class="lbfl-assessment-chip">MCQ + Diagram</span><span class="lbfl-assessment-chip">Bloom Aligned</span></div>
 </section>
 
-## Global HSC Biology Assessment Rubric
+{% include education/framework-links.html %}
+
+## Model-Test Framework Use
 
 <section class="lbfl-assessment-panel">
-  <p class="lbfl-rubric-kicker">Global Rubric</p>
-  <p class="lbfl-rubric-text">Use this rubric for MCQ, short answer, creative question, diagram, practical reasoning, and reflection. The goal is constructive alignment: every question should measure a clear learning outcome.</p>
-  <div class="lbfl-rubric-scale">
-    <div class="lbfl-rubric-row"><b>Remember</b><span>Define, identify, list, label basic facts.</span><span>Typical CQ: ক</span></div>
-    <div class="lbfl-rubric-row"><b>Understand</b><span>Explain cause, function, reason, meaning, or biological significance.</span><span>Typical CQ: খ</span></div>
-    <div class="lbfl-rubric-row"><b>Apply</b><span>Use a concept in a stimulus, diagram, data set, specimen, or unfamiliar example.</span><span>Typical CQ: গ</span></div>
-    <div class="lbfl-rubric-row"><b>Analyze</b><span>Compare, classify, interpret relationships, separate evidence from assumption.</span><span>Typical CQ: ঘ</span></div>
-    <div class="lbfl-rubric-row"><b>Evaluate</b><span>Justify a conclusion using biological evidence and syllabus-valid reasoning.</span><span>Advanced CQ: ঘ</span></div>
-    <div class="lbfl-rubric-row"><b>Create</b><span>Design a flowchart, predict a result, construct a diagram-based explanation.</span><span>Practical + CQ extension</span></div>
-  </div>
-</section>
-
-## CQ Studio: Board-Style Question Block
-
-<section class="lbfl-cq-card">
-  <p class="lbfl-cq-kicker">Creative Question Template</p>
-  <h3>Board Pattern CQ Structure</h3>
-  <div class="lbfl-cq-meta"><span class="lbfl-cq-tag">Marks: 10</span><span class="lbfl-cq-tag">Time: 18 minutes</span><span class="lbfl-cq-tag">Stimulus Based</span><span class="lbfl-cq-tag">Bloom: Remember → Evaluate</span></div>
-  <div class="lbfl-cq-stimulus"><strong>Stimulus:</strong> A short biological situation, figure, diagram, table, experiment, specimen, or comparison cue. The stimulus must connect directly with the syllabus and should not require irrelevant outside knowledge.</div>
-  <div class="lbfl-cq-parts">
-    <div class="lbfl-cq-part"><span class="lbfl-cq-letter">ক</span><div><strong>Knowledge / Remember</strong><br>Define, identify, or name the core term.<small>Expected answer: concise and accurate.</small></div></div>
-    <div class="lbfl-cq-part"><span class="lbfl-cq-letter">খ</span><div><strong>Understanding</strong><br>Explain why, how, or what the biological meaning is.<small>Expected answer: concept plus reason.</small></div></div>
-    <div class="lbfl-cq-part"><span class="lbfl-cq-letter">গ</span><div><strong>Application</strong><br>Apply the concept to the stimulus, diagram, data, or organism.<small>Expected answer: stimulus-linked explanation.</small></div></div>
-    <div class="lbfl-cq-part"><span class="lbfl-cq-letter">ঘ</span><div><strong>Analysis / Evaluation</strong><br>Compare, justify, analyze, or evaluate with biological evidence.<small>Expected answer: reasoned conclusion.</small></div></div>
-  </div>
+  <p class="lbfl-assessment-lead">Use the canonical framework pages above for the full rubric, Bloom ladder, CQ template, and practical-learning rules. This model-test page now focuses on how learners should prepare, attempt, review, and improve Biology assessment performance.</p>
 </section>
 
 ## Recommended Model-Test Structure
