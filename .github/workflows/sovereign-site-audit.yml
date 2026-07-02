@@ -1,7 +1,9 @@
-name: Sovereign Site Audit v3
+name: Sovereign Site Audit v4
 
 on:
   push:
+    branches: ["main"]
+  pull_request:
     branches: ["main"]
   workflow_dispatch:
 
@@ -42,6 +44,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sovereign-site-audit-v3
-          path: audit-reports/sovereign-site-audit-v3.json
+          name: sovereign-site-audit-v4
+          path: audit-reports/sovereign-site-audit-v4.json
           retention-days: 14
