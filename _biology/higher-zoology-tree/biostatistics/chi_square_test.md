@@ -1,51 +1,44 @@
 ---
-
 layout: single
 author_profile: true
 author: "MD. Yusuf"
-
 sidebar:
   nav: "synaptic_nav"
-
-title: "কাই-বর্গ পরীক্ষা (Chi-square Test)"
-excerpt: "Advanced biological analysis and structural framework."
-
+title: "Chi-square Test: কাই-বর্গ পরীক্ষা"
+excerpt: "Chi-square goodness of fit, test of independence, observed-expected frequency, degrees of freedom, assumptions and biological interpretation নিয়ে পরিচ্ছন্ন Biostatistics formula lecture."
+description: "A clean Biostatistics lesson on chi-square test, goodness of fit, contingency table, degrees of freedom, formula, worked example, assumptions and interpretation."
 date: 2026-04-11T09:53:00.007Z
-last_modified_at: 2026-06-09T04:13:27.000Z
-
+last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/biostatistics/chi_square_test/
-
 categories:
   - Biology
   - Higher Zoology
   - Biostatistics
-
 tags:
-  - Zoology
-  - Systems-Thinking
-
-# AI Knowledge Graph & Neural Routing
+  - Biostatistics
+  - Chi-square Test
+  - Goodness of Fit
+  - Test of Independence
+  - Contingency Table
+  - Genetics Data
 node_id: zoology-biostatistics-chi_square_test
 parent_node: biostatistics
 network:
   - higher-zoology-tree
   - hsc-corner
   - mcq-arena
-
-# Synaptic Connections (Explicit Relational Mapping)
 related: true
 synaptic_links:
   - /biology/higher-zoology-tree/biostatistics/
-  - /life-practices/human-behaviour/
-  - /socratic/mcq-arena/biostatistics/
-
+  - /biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics/
+  - /biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means/
+  - /mcq-arena/
 toc: true
 toc_sticky: true
 classes: wide
-
 header:
   overlay_image: /assets/images/biology/biostatistics-banner.webp
-language: en
+language: bn
 curriculum_tracks:
   - HSC Zoology
   - IB Biology
@@ -53,110 +46,194 @@ curriculum_tracks:
 neet_alignment: "Biology data interpretation and chi-square analysis"
 ib_theme: "Not Applicable"
 ib_subtopic: "Chi-square test"
-hsc_alignment: "Higher Zoology: chi-square test and biological data analysis"
+hsc_alignment: "Higher Zoology: chi-square test, goodness of fit, contingency table and biological data analysis"
 concept_level: "Advanced"
+difficulty: "Intermediate"
+xp: 750
+time_min: 60
+status: "Active"
 ---
 
-<style>
-  .chisquare-module { font-family: 'Inter', 'Tiro Bangla', sans-serif; color: #cbd5e1; line-height: 1.75; }
-  .chisquare-module .feature-hero-junction { background: linear-gradient(135deg, rgba(2, 6, 23, 0.85) 0%, rgba(0, 212, 178, 0.4) 100%), url('https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=1200'); background-size: cover; background-position: center; height: clamp(250px, 40vh, 380px); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); border: 1px solid rgba(0, 212, 178, 0.2); overflow: hidden; }
-  .chisquare-module .hero-overlay { text-align: center; padding: 2rem; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); max-width: 90%; }
-  .chisquare-module .hero-main-title { color: #ffffff !important; font-size: clamp(1.8rem, 4vw, 2.5rem) !important; font-weight: 900 !important; margin: 0 0 10px 0 !important; line-height: 1.2; }
-  .chisquare-module .intro-box { padding: 1.5rem; background: rgba(15, 23, 42, 0.6); border-left: 4px solid #00d4b2; font-size: 1.05rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0; }
-  .chisquare-module .tip-box { background: rgba(59, 130, 246, 0.05); border: 1px dashed #3b82f6; padding: 1.5rem; border-radius: 12px; margin-top: 2rem; }
-  .chisquare-module details { background: #0d1527; padding: 0; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 10px; margin-bottom: 1.25rem; transition: all 0.3s ease; overflow: hidden; }
-  .chisquare-module details[open] { border-color: rgba(0, 212, 178, 0.3); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); background: #0f172a; }
-  .chisquare-module summary { font-weight: 700; cursor: pointer; color: #ffffff; font-size: 1.1rem; padding: 1.25rem 1.5rem; background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center; }
-  .chisquare-module summary::-webkit-details-marker { display: none; }
-  .chisquare-module summary::after { content: '▼'; color: #00d4b2; font-size: 0.9em; transition: transform 0.3s; }
-  .chisquare-module details[open] summary::after { transform: rotate(180deg); }
-  .chisquare-module .details-content { padding: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-  .chisquare-module .formula-box { background: rgba(16, 185, 129, 0.05); padding: 1.5rem; border-radius: 8px; text-align: center; font-size: 1.25rem; margin: 1.5rem 0; border: 1px dashed #10b981; color: #10b981; font-weight: bold; }
-  .chisquare-module .biostat-table { width: 100%; border-collapse: collapse; min-width: 500px; }
-  .chisquare-module .biostat-table th { background: rgba(0, 212, 178, 0.1); color: #00d4b2; padding: 12px; border: 1px solid rgba(255,255,255,0.05); }
-  .chisquare-module .biostat-table td { border: 1px solid rgba(255,255,255,0.05); padding: 12px; text-align: center; }
-</style>
+# Chi-square Test: কাই-বর্গ পরীক্ষা
 
-<div class="chisquare-module">
+## Concept Overview
 
-  <div style="text-align: center; margin: 2rem 0;">
-    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgTCqRrk8TmLuAEgUkmepnqVKei-SCf2JxM7vEzGXV2niZWa9T2_di0OPAOWiKNOBEcMiPV7QSIbBG3YHUjYJ8ZTj2GBvnUKCeL2iYtlF2UmiZMcn350VUdbGYvt-zH0QMCvsWTDdZyYJHMXqVbxmshuVe99yAI1vT1KhPnjc3ShHt93UEY_GnbL7Y3dKU" alt="Chi-Square Test Diagram" loading="lazy" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); max-width: 100%;">
-  </div>
+**Chi-square test** বা **কাই-বর্গ পরীক্ষা** হলো categorical frequency data বিশ্লেষণের একটি inferential statistical test। এটি observed frequency এবং expected frequency-এর মধ্যে পার্থক্য random variation দিয়ে ব্যাখ্যা করা যায় কি না তা যাচাই করে।
 
-  <div class="feature-hero-junction">
-    <div class="hero-overlay">
-      <h2 class="hero-main-title">কাই-বর্গ পরীক্ষা <br /><span style="color: #00d4b2;">(Chi-square Test)</span></h2>
-      <div style="background: #00d4b2; height: 3px; margin: 15px auto; width: 60px; border-radius: 2px;"></div>
-      <p style="color: #e2e8f0; font-size: 1.1rem; margin: 0;">গুডনেস অফ ফিট এবং কন্টিনজেন্সি টেবিল বিশ্লেষণ</p>
-    </div>
-  </div>
+Biology-তে chi-square test বিশেষভাবে useful যখন data count বা category আকারে থাকে: যেমন tall vs dwarf plants, male vs female, diseased vs healthy, present vs absent, survived vs died.
 
-  <div class="intro-box">
-    অনার্স ৪র্থ বর্ষের জীবপরিসংখ্যান (Biostatistics) কোর্সে <strong>Chi-square ($\chi^2$) test</strong> একটি অত্যন্ত রোমাঞ্চকর বিষয়। বিশেষ করে বংশগতিবিদ্যা বা জেনেটিক্সের (Mendelian Genetics) গবেষণায় এটি অপরিহার্য। ১৯০০ সালে কার্ল পিয়ারসন এই পরীক্ষাটি উদ্ভাবন করেন।
-  </div>
+## Why This Matters
 
-  <details open>
-    <summary>১. গুডনেস অফ ফিট (Goodness of Fit)</summary>
-    <div class="details-content">
-      <p>এটি যাচাই করে যে, আমাদের সংগৃহীত উপাত্ত কোনো নির্দিষ্ট তাত্ত্বিক অনুপাতকে (যেমন- মেন্ডেলের ৩:১ অনুপাত) মেনে চলে কি না।</p>
-      <div class="formula-box">
-        $$\chi^2 = \sum \frac{(O - E)^2}{E}$$
-      </div>
-      <p>এখানে, $O =$ পর্যবেক্ষণকৃত মান (Observed Value) এবং $E =$ প্রত্যাশিত মান (Expected Value)।</p>
-    </div>
-  </details>
+Biological data সবসময় mean-based নয়। অনেক সময় researcher frequency বা category count নিয়ে কাজ করেন। Mendelian genetics-এ 3:1 ratio, ecology-তে species presence/absence, public-health data-তে disease frequency, behaviour study-তে response category—এসব ক্ষেত্রে chi-square thinking দরকার।
 
-  <details>
-    <summary>📊 গাণিতিক উদাহরণ: মেন্ডেলের মটরশুঁটি পরীক্ষা</summary>
-    <div class="details-content">
-      <p><strong>সমস্যা:</strong> ৪০০টি গাছের মধ্যে ৩০০টি লম্বা এবং ১০০টি খাটো। এটি কি ৩:১ অনুপাত সমর্থন করে?</p>
-      <div style="overflow-x: auto; width: 100%; margin: 1.5rem 0;">
-        <table class="biostat-table">
-          <thead>
-            <tr>
-              <th>বৈশিষ্ট্য</th>
-              <th>$O$ (Observed)</th>
-              <th>$E$ (Expected)</th>
-              <th>$\frac{(O-E)^2}{E}$</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>লম্বা</td><td>৩০০</td><td>৩০০</td><td>০</td></tr>
-            <tr><td>খাটো</td><td>১০০</td><td>১০০</td><td>০</td></tr>
-            <tr style="background: rgba(255,255,255,0.02); font-weight: bold; color: #00d4b2;">
-              <td colspan="3" style="text-align: right; padding-right: 15px;">মোট $\chi^2$ মান =</td>
-              <td>০</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p><strong>সিদ্ধান্ত:</strong> যেহেতু গণনাকৃত মান (০) টেবিল মান (৩.৮৪) এর চেয়ে ছোট, তাই এটি মেন্ডেলের তত্ত্বকে নিখুঁতভাবে সমর্থন করে।</p>
-    </div>
-  </details>
+{% include education/framework-links.html %}
 
-  <details>
-    <summary>২. কন্টিনজেন্সি টেবিল (Contingency Table)</summary>
-    <div class="details-content">
-      <p>যখন দুটি বৈশিষ্ট্যের মধ্যে কোনো সম্পর্ক আছে কি না তা যাচাই করা হয় (যেমন- ধূমপান এবং ফুসফুসের ক্যান্সারের সম্পর্ক), তখন এটি ব্যবহার করা হয়। একে <strong>Test of Independence</strong>-ও বলা হয়।</p>
-      <p><strong style="color: #00d4b2;">স্বাধীনতার মাত্রা (Degrees of Freedom):</strong> $df = (r - 1)(c - 1)$</p>
-    </div>
-  </details>
+## Chi-square Learning Focus
 
-  <details>
-    <summary>⚠️ Chi-square টেস্টের শর্তাবলী</summary>
-    <div class="details-content">
-      <ul style="list-style-type: none; padding-left: 0;">
-        <li style="margin-bottom: 0.5rem;">🔹 মোট নমুনা সংখ্যা ($N$) অন্তত ৫০ হতে হবে।</li>
-        <li style="margin-bottom: 0.5rem;">🔹 কোনো সেলের প্রত্যাশিত মান ($E$) ৫-এর কম হওয়া উচিত নয়।</li>
-        <li>🔹 উপাত্তগুলো অবশ্যই গণসংখ্যা (Frequency) হতে হবে, কোনো শতাংশ (Percentage) নয়।</li>
-      </ul>
-    </div>
-  </details>
+এই lecture central LBFL framework-কে categorical-data hypothesis testing-এ প্রয়োগ করে। Learner-এর focus হবে observed frequency, expected frequency, goodness of fit, contingency table, degrees of freedom, assumptions, chi-square formula, and cautious biological interpretation.
 
-  <div class="tip-box">
-    <h4 style="color: #3b82f6; margin-top: 0;">💡 ব্লগার টিপস:</h4>
-    <p style="margin: 0; font-size: 0.95rem; color: #cbd5e1;">আপনার শিক্ষার্থীদের বুঝিয়ে দেবেন যে, <strong>$\chi^2$ এর মান যত কম হবে</strong>, Observed এবং Expected মানের মধ্যে মিল তত বেশি হবে। অর্থাৎ নাল হাইপোথিসিস (Null Hypothesis) গ্রহণ করার সম্ভাবনা বাড়বে।</p>
-  </div>
+## Main Formula
 
+```text
+χ² = Σ[(O − E)² / E]
+```
+
+Where:
+
+- O = observed frequency
+- E = expected frequency
+- Σ = sum over all categories
+
+## Type 1: Goodness of Fit
+
+Goodness of fit test checks whether observed data fit a theoretical ratio or expected distribution.
+
+Example question:
+
+```text
+Do observed plant counts fit Mendelian 3:1 ratio?
+```
+
+## Worked Example: Mendelian 3:1 Ratio
+
+Problem: 400 pea plants show 300 tall and 100 dwarf plants. Does this fit the expected 3:1 ratio?
+
+Expected values:
+
+```text
+Total plants = 400
+Expected tall  = 3/4 × 400 = 300
+Expected dwarf = 1/4 × 400 = 100
+```
+
+Calculation table:
+
+| Category | O | E | O − E | (O − E)² / E |
+|---|---:|---:|---:|---:|
+| Tall | 300 | 300 | 0 | 0 |
+| Dwarf | 100 | 100 | 0 | 0 |
+| **Total** | 400 | 400 |  | **χ² = 0** |
+
+Interpretation:
+
+```text
+χ²calculated = 0
+```
+
+In this exact dataset, observed frequency matches expected frequency. Therefore, there is no statistical evidence against the 3:1 model from these data.
+
+## Degrees of Freedom for Goodness of Fit
+
+For a simple goodness-of-fit test:
+
+```text
+df = number of categories − 1
+```
+
+For tall/dwarf categories:
+
+```text
+df = 2 − 1 = 1
+```
+
+## Type 2: Test of Independence
+
+A chi-square test of independence checks whether two categorical variables are associated.
+
+Example questions:
+
+```text
+Is habitat type associated with species presence?
+Is smoking status associated with disease category?
+Is sex associated with response category?
+```
+
+## Contingency Table Logic
+
+In a contingency table, expected frequency is calculated from row total, column total and grand total.
+
+```text
+Expected frequency = (Row total × Column total) / Grand total
+```
+
+Degrees of freedom:
+
+```text
+df = (r − 1)(c − 1)
+```
+
+Where:
+
+- r = number of rows
+- c = number of columns
+
+## Decision Logic
+
+```text
+State H₀ and H₁
+  ↓
+Calculate expected frequencies
+  ↓
+Calculate χ²
+  ↓
+Find df
+  ↓
+Compare with critical value or p-value
+  ↓
+Reject or fail to reject H₀
+  ↓
+Interpret in biological context
+```
+
+## Assumptions and Conditions
+
+<div class="lbfl-info-grid">
+  <section class="lbfl-info-card"><h3>Categorical data</h3><p>Data should be frequency counts, not continuous measurements.</p></section>
+  <section class="lbfl-info-card"><h3>Independent observations</h3><p>One observation should not be counted repeatedly or improperly linked.</p></section>
+  <section class="lbfl-info-card"><h3>Expected frequency</h3><p>Expected counts should not be too small; very small expected counts can weaken the test.</p></section>
+  <section class="lbfl-info-card"><h3>Clear categories</h3><p>Categories should be mutually exclusive and biologically meaningful.</p></section>
 </div>
 
+## Chi-square vs t-test
+
+| Feature | Chi-square test | t-test |
+|---|---|---|
+| Data type | categorical frequency | continuous measurement |
+| Main comparison | observed vs expected counts | means |
+| Example | 3:1 genetic ratio | mean plant height |
+| Output | χ² value | t value |
+| Key concern | expected frequency and categories | mean, SD, sample size |
+
+## Common Mistakes to Avoid
+
+<div class="lbfl-info-grid">
+  <section class="lbfl-info-card"><h3>Mistake 1</h3><p>Using chi-square test for continuous data such as weight or height without categorization.</p></section>
+  <section class="lbfl-info-card"><h3>Mistake 2</h3><p>Forgetting to calculate expected frequency before using the formula.</p></section>
+  <section class="lbfl-info-card"><h3>Mistake 3</h3><p>Interpreting failure to reject H₀ as proof that H₀ is absolutely true.</p></section>
+  <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Ignoring biological design, sample source, and category validity.</p></section>
+</div>
+
+## Synaptic Bridge
+
+Chi-square test teaches that categories also carry evidence. A biological pattern may look acceptable or suspicious, but scientific thinking asks: how far are observed counts from expected counts, and is that difference larger than random variation would usually allow?
+
+## Critical Thinking Questions
+
+1. Why is chi-square test suitable for Mendelian ratio data?
+2. What is the difference between goodness of fit and test of independence?
+3. Why must expected frequencies be calculated before χ²?
+4. Why does failure to reject H₀ not prove the expected model absolutely true?
+5. When would t-test be more appropriate than chi-square test?
+
+## Related Learning Paths
+
+- [Biostatistics Hub]({{ '/biology/higher-zoology-tree/biostatistics/' | relative_url }})
+- [Basic Concepts of Biostatistics]({{ '/biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics/' | relative_url }})
+- [T-test: Significant Difference Between Means]({{ '/biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means/' | relative_url }})
+- [Measures of Dispersion]({{ '/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/' | relative_url }})
+- [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
+
+## References
+
+- Standard HSC Zoology Biostatistics notes.
+- General biostatistics references on chi-square goodness of fit, contingency table and categorical data analysis.
