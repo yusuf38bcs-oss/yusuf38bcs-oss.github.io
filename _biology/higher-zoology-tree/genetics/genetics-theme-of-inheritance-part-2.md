@@ -30,7 +30,7 @@ related: true
 synaptic_links:
   - /biology/higher-zoology-tree/genetics/
   - /biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-1/
-  - /biology/higher-zoology-tree/genetics/lecture-05-two-character/
+  - /biology/higher-zoology-tree/genetics/dihybrid-cross/
   - /mcq-arena/
 toc: true
 toc_sticky: true
@@ -263,7 +263,7 @@ Epistasis teaches that one factor rarely acts alone. A visible result may be pro
 
 - [Genetics Hub]({{ '/biology/higher-zoology-tree/genetics/' | relative_url }})
 - [Genetics: The Theme of Inheritance - Part 1]({{ '/biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-1/' | relative_url }})
-- [Two-Character Genetics Lecture]({{ '/biology/higher-zoology-tree/genetics/lecture-05-two-character/' | relative_url }})
+- [Two-Character Genetics Lecture]({{ '/biology/higher-zoology-tree/genetics/dihybrid-cross/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
 
 ## References
