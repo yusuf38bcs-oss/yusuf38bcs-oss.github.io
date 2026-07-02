@@ -59,6 +59,12 @@ Heart-এর বিশেষত্ব হলো এটি **myogenic**—অর�
 
 রক্ত নিজে চলতে পারে না; heart pressure তৈরি করে। Valve না থাকলে blood backward flow করত। SAN না থাকলে rhythmic beat তৈরি হত না। AVN delay না করলে atria ঠিকমতো ventricles-এ blood দিতে পারত না। Systemic circulation না থাকলে tissues oxygen পেত না; pulmonary circulation না থাকলে blood oxygenated হত না। তাই heart হলো structure, electricity, pressure, valve and vessel-এর সমন্বিত machine।
 
+{% include education/framework-links.html %}
+
+## Heart-Specific Learning Focus
+
+এই lecture central LBFL framework-কে heart physiology-তে প্রয়োগ করে। এখানে learner-এর focus হবে chamber identity, valve direction, systole-diastole sequence, myogenic impulse conduction, systemic circulation এবং pulmonary circulation-এর functional logic।
+
 ## Heart Flow Master Diagram
 
 ```text
@@ -84,49 +90,6 @@ Aorta
   ↓
 Body tissues
 ```
-
-## LOLO: Learning Objectives & Learning Outcomes
-
-### Learning Objectives
-
-এই lecture শেষে শিক্ষার্থী শিখবে:
-
-1. Heart-এর location, size, shape, covering and wall composition ব্যাখ্যা করতে।
-2. RA, RV, LA, LV এবং four valves-এর কাজ বুঝতে।
-3. Diastole ও systole-এর পার্থক্য করতে।
-4. Cardiac cycle-কে atrial systole, ventricular systole and diastole দিয়ে ব্যাখ্যা করতে।
-5. Myogenic control এবং pacemaker ধারণা বুঝতে।
-6. SAN, AVN, Bundle of His and Purkinje fibre pathway আঁকতে।
-7. Pulmonary circulation and systemic circulation আলাদা করতে।
-8. Artery, vein and capillary-এর functional difference বুঝতে।
-
-### Learning Outcomes
-
-By the end of this lecture, learners will be able to:
-
-- heart diagram label করতে পারবে।
-- blood-flow route মুখস্থ নয়, pressure-valve logic দিয়ে explain করতে পারবে।
-- cardiac impulse pathway লিখতে পারবে।
-- systole ও diastole-এর sequence table তৈরি করতে পারবে।
-- systemic ও pulmonary circulation-এর route লিখতে পারবে।
-- vessel type অনুযায়ী blood direction and exchange function ব্যাখ্যা করতে পারবে।
-
-## LALA: Learning Activities & Learning Applications
-
-### Learning Activities
-
-1. **Heart Route Drawing:** deoxygenated ও oxygenated blood দুই রঙে route আঁকো।
-2. **Valve Matching:** tricuspid, pulmonary, mitral, aortic—প্রতিটি valve কোন chamber/vessel-এর মাঝে তা লিখো।
-3. **Impulse Map:** SAN → atria → AVN delay → Bundle of His → Purkinje fibre → ventricles.
-4. **Cycle Timing:** atrial systole, ventricular systole, ventricular diastole—এই sequence টেবিলে লিখো।
-5. **Double Circulation Chart:** pulmonary and systemic circulation একসাথে flowchart-এ বসাও।
-
-### Learning Applications
-
-- palpitation, fainting, chest pain, abnormal pulse—এসব symptom কেন heart rhythm or blood flow-এর সঙ্গে যুক্ত হতে পারে তা বুঝতে পারবে।
-- exercise করলে heart rate কেন বাড়ে তা oxygen demand logic দিয়ে বুঝবে।
-- valve defect হলে backward flow/murmur কেন হতে পারে তা structural logic দিয়ে ব্যাখ্যা করতে পারবে।
-- baroreceptor reflex ও blood pressure regulation-এর সঙ্গে heart output যুক্ত করতে পারবে।
 
 ## 1. Heart: Definition and Location
 
