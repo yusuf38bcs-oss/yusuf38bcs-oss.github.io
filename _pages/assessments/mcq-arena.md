@@ -15,36 +15,11 @@ The **MCQ Arena** is the assessment pillar of Learning Biology For Life. It is d
 
 MCQ practice becomes meaningful when it is connected to concept correction. A learner should not only know which option is correct, but also why the other options are incorrect, which concept is being tested, and how the question connects with practical biological understanding.
 
-## LOLO: Learning Objectives & Learning Outcomes
+{% include education/framework-links.html %}
 
-### Learning Objectives
+## MCQ-Specific Learning Focus
 
-- Practice Biology concepts through structured MCQs, short Q/A, rapid revision, and applied assessment.
-- Improve recall, concept clarity, and reasoning speed.
-- Convert wrong answers into learning corrections.
-
-### Learning Outcomes
-
-By using MCQ Arena, learners should be able to:
-
-- Identify weak concepts after each question set.
-- Explain the reasoning behind correct answers.
-- Connect academic assessment with practical biological application.
-
-## LALA: Learning Activities & Learning Applications
-
-### Learning Activities
-
-- Attempt the MCQ set before reading the answer key.
-- Write one-sentence explanations for every wrong answer.
-- Create a personal correction list after each quiz.
-
-### Learning Applications
-
-- Use physiology MCQs to understand health and body regulation.
-- Use ecology MCQs to understand interaction and environmental responsibility.
-- Use genetics MCQs to practice inheritance logic.
-- Use biostatistics MCQs to improve data interpretation.
+MCQ Arena applies the central LBFL framework to assessment practice. The topic-specific focus is simple: attempt first, review reasoning, correct misconceptions, and return to the source lesson when a weakness is detected.
 
 ## Assessment Pathways
 
