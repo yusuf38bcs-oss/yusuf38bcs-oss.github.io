@@ -30,7 +30,7 @@ related: true
 synaptic_links:
   - /biology/higher-zoology-tree/genetics/
   - /biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-2/
-  - /biology/higher-zoology-tree/genetics/lecture-03-mendel-and-pea-plant/
+  - /biology/higher-zoology-tree/genetics/mendel-and-pea-plant/
   - /mcq-arena/
 toc: true
 toc_sticky: true
@@ -242,7 +242,7 @@ Genetics teaches that visible outcomes have hidden causes. A phenotype is the vi
 
 - [Genetics Hub]({{ '/biology/higher-zoology-tree/genetics/' | relative_url }})
 - [Genetics: The Theme of Inheritance - Part 2]({{ '/biology/higher-zoology-tree/genetics/genetics-theme-of-inheritance-part-2/' | relative_url }})
-- [Mendel and Pea Plant]({{ '/biology/higher-zoology-tree/genetics/lecture-03-mendel-and-pea-plant/' | relative_url }})
+- [Mendel and Pea Plant]({{ '/biology/higher-zoology-tree/genetics/mendel-and-pea-plant/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
 
 ## References
