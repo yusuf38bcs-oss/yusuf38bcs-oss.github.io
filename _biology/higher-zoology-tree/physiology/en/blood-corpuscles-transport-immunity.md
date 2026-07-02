@@ -7,7 +7,7 @@ sidebar:
 title: "Blood Circulation Part 1: Blood, Plasma, Blood Corpuscles and Immunity"
 excerpt: "A complete English lecture on blood, plasma, RBC, WBC and its types, platelets, lymph, transport, immunity and hemostasis."
 date: 2026-06-29T00:00:00.000Z
-last_modified_at: 2026-06-29T00:00:00.000Z
+last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /en/biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity/
 categories:
   - Biology
@@ -59,6 +59,12 @@ Blood has two major parts: **plasma** and **formed elements**. Plasma is the liq
 
 Without blood, oxygen from the lungs would not reach tissues, nutrients from digestion would not reach cells, hormones would not reach target organs, wastes would not reach excretory organs, and immune cells would not reach infection sites. Blood is therefore the mobile life-support network of the body.
 
+{% include education/framework-links.html %}
+
+## Blood-Specific Learning Focus
+
+This lecture applies the central LBFL framework to blood composition and function. Learners should focus on plasma, formed elements, RBC specialization, WBC defence, platelet hemostasis, lymph return, and the connection between transport and immunity.
+
 ## Blood Composition Diagram
 
 ```text
@@ -76,49 +82,6 @@ Blood
     │   └── Agranulocytes: lymphocyte, monocyte
     └── Platelet / thrombocyte: clotting and hemostasis
 ```
-
-## LOLO: Learning Objectives and Learning Outcomes
-
-### Learning Objectives
-
-Learners will study how to:
-
-1. Define blood as a fluid connective tissue.
-2. Explain the composition and function of plasma.
-3. Explain the structure and function of RBC.
-4. Classify WBC into granulocytes and agranulocytes.
-5. Explain the role of platelets in hemostasis.
-6. Describe lymph as a tissue-fluid return and immune-support system.
-7. Connect blood components with transport, immunity and clotting.
-
-### Learning Outcomes
-
-By the end of this lecture, learners will be able to:
-
-- Draw a blood composition chart.
-- Compare plasma and formed elements.
-- Explain why RBC is specialized for oxygen transport.
-- Distinguish neutrophil, eosinophil, basophil, lymphocyte and monocyte.
-- Explain why platelets are essential for reducing bleeding.
-- Compare blood and lymph in a table.
-
-## LALA: Learning Activities and Learning Applications
-
-### Learning Activities
-
-1. Draw a tree: Blood → Plasma + Formed Elements → RBC/WBC/Platelets.
-2. Make identity cards for RBC, neutrophil, lymphocyte, monocyte and platelet.
-3. Map which component carries oxygen, carbon dioxide, glucose, hormones, wastes and antibodies.
-4. Explain why low RBC can cause fatigue and low platelets can increase bleeding tendency.
-5. Draw the lymph route: tissue fluid → lymph capillary → lymph vessel → blood circulation.
-
-### Learning Applications
-
-- Understand basic CBC report terms.
-- Connect anaemia with reduced oxygen-carrying capacity.
-- Connect WBC with infection and immune response.
-- Connect platelets with bleeding control and clot risk.
-- Understand why hydration, nutrition, infection control and medical consultation are important.
 
 ## Plasma
 

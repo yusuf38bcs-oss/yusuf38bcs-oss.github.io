@@ -7,7 +7,7 @@ sidebar:
 title: "Human Physiology Matrix"
 excerpt: "A structured gateway for studying human body systems, homeostasis, health, behaviour, and reflective life application."
 date: 2026-06-13T12:20:00.000Z
-last_modified_at: 2026-06-29T00:00:00.000Z
+last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/human-physiology/
 node_id: node-human-physiology
 pillar: "Life Sciences"
@@ -37,36 +37,11 @@ Human Physiology Matrix studies the body as a living network of regulation. Ever
 
 Human physiology is not only a chapter group. It is the biological language of health, behaviour, energy, stress, discipline, fatigue, appetite, emotion, and survival. When a learner understands physiology, the body becomes readable: heartbeat, breathing, digestion, sleep, stress, and motivation become signals that can be studied and corrected.
 
-## LOLO: Learning Objectives & Learning Outcomes
+{% include education/framework-links.html %}
 
-### Learning Objectives
+## Physiology-Specific Learning Focus
 
-- Understand major human organ systems through structure, function, and regulation.
-- Explain homeostasis as a feedback-based survival principle.
-- Connect physiology with health care, nutrition, behaviour, stress, and leadership response.
-
-### Learning Outcomes
-
-By the end of this gateway, learners should be able to:
-
-- Explain physiological mechanisms using flowcharts.
-- Identify the feedback loop behind a body response.
-- Connect academic physiology with real-life health and behavioural situations.
-
-## LALA: Learning Activities & Learning Applications
-
-### Learning Activities
-
-- Draw an input-process-output-feedback diagram for one organ system.
-- Compare a reflex response with a conscious decision.
-- Make one MCQ and one short-answer question from each system.
-
-### Learning Applications
-
-- Connect the digestive system with nutrition and metabolic discipline.
-- Connect hormones with motivation, mood, stress, and behaviour.
-- Connect the nervous system with feelings, reaction, leadership, and self-control.
-- Connect respiration and circulation with exercise, anxiety, endurance, blood pressure, disease prevention, and heart-health discipline.
+This gateway applies the central LBFL framework to organ-system regulation. Learners should focus on structure, function, feedback, homeostasis, health relevance, and life application rather than repeating the full LOLO/LALA framework on every physiology page.
 
 ## Core Learning Route
 
