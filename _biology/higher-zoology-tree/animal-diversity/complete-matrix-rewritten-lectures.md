@@ -6,7 +6,7 @@ sidebar:
   nav: "synaptic_nav"
 title: "Animal Diversity Complete Matrix and Rewritten Lecture Series"
 excerpt: "প্রাণীবৈচিত্র্য: শ্রেণিবিন্যাস, প্রতিনিধিত্বশীল প্রাণী, গঠন, কার্য, জীবনচক্র ও প্রয়োগ — a complete student-facing Animal Diversity lecture matrix."
-permalink: /biology/higher-zoology-tree/animal-diversity/complete-matrix-rewritten-lectures/
+permalink: /biology/animal-diversity/complete-matrix/
 categories: [Biology, Higher Zoology, Animal Diversity]
 tags: [Animal Diversity, Taxonomy, HSC Zoology, Invertebrates, Chordata]
 toc: true
@@ -117,7 +117,7 @@ True coelomate → check segmentation, appendage, mantle, water vascular system 
 
 ## Connected Existing Lessons
 
-- [Animal Diversity Gateway]({{ '/biology/higher-zoology-tree/animal-diversity/' | relative_url }})
+- [Animal Diversity Gateway]({{ '/biology/animal-diversity/' | relative_url }})
 - [Polymorphism in Cnidaria]({{ '/biology/higher-zoology-tree/animal-diversity/polymorphism-in-cnidaria/' | relative_url }})
 - [Taenia solium Life Cycle]({{ '/biology/higher-zoology-tree/animal-diversity/taenia-solium-life-cycle/' | relative_url }})
 - [Astropecten Water Vascular System]({{ '/biology/higher-zoology-tree/animal-diversity/astropecten-water-vascular-system/' | relative_url }})
