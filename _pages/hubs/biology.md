@@ -13,37 +13,7 @@ description: "Academic Biology hub connecting HSC Botany, HSC Zoology, Higher Zo
 
   <p>This hub is built for HSC learners, honours-level Zoology learners, admission candidates, teachers, and lifelong learners who want to study Biology as a living system rather than a disconnected collection of chapters.</p>
 
-  <h2>LOLO: Learning Objectives & Learning Outcomes</h2>
-
-  <h3>Learning Objectives</h3>
-  <ul>
-    <li>Understand Biology through organized academic pillars: Botany, Zoology, Physiology, Ecology, Genetics, and Biostatistics.</li>
-    <li>Connect structure, function, regulation, adaptation, and evidence into a coherent learning map.</li>
-    <li>Prepare for academic assessment while developing practical and critical-thinking capacity.</li>
-  </ul>
-
-  <h3>Learning Outcomes</h3>
-  <ul>
-    <li>Identify the correct learning path for a Biology topic.</li>
-    <li>Explain biological mechanisms using cause, process, effect, and feedback.</li>
-    <li>Apply biological ideas to health, behaviour, environment, and daily life decisions.</li>
-  </ul>
-
-  <h2>LALA: Learning Activities & Learning Applications</h2>
-
-  <h3>Learning Activities</h3>
-  <ul>
-    <li>Read one concept note and draw a flowchart from memory.</li>
-    <li>Convert one paragraph into three MCQs and one short-answer question.</li>
-    <li>Compare an academic mechanism with a real-life observation.</li>
-  </ul>
-
-  <h3>Learning Applications</h3>
-  <ul>
-    <li>Use Human Physiology to understand health and behaviour.</li>
-    <li>Use Ecology to understand environmental responsibility.</li>
-    <li>Use Biostatistics to interpret biological variation and evidence.</li>
-  </ul>
+  {% include education/framework-links.html %}
 
   <h2>Recommended Learning Path</h2>
   <ol>
