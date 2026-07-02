@@ -44,7 +44,7 @@ By using this gateway, learners should be able to select the correct Zoology bra
 
 ## Main Branches
 
-- [Animal Diversity Matrix]({{ '/biology/higher-zoology-tree/animal-diversity/' | relative_url }})
+- [Animal Diversity Matrix]({{ '/biology/animal-diversity/' | relative_url }})
 - [Human Physiology Matrix]({{ '/biology/higher-zoology-tree/human-physiology/' | relative_url }})
 - [Ecology: Ecosystem Dynamics Matrix]({{ '/biology/higher-zoology-tree/ecology/' | relative_url }})
 - [Genetics & Molecular Lineages Matrix]({{ '/biology/higher-zoology-tree/genetics/' | relative_url }})
