@@ -7,7 +7,7 @@ sidebar:
 title: "Blood Circulation Part 1: রক্ত, রক্তরস, রক্তকণিকা, পরিবহন ও প্রতিরক্ষা"
 excerpt: "রক্তের গঠন, plasma, RBC, WBC ও তার ধরন, platelets, lymph, transport, immunity and hemostasis নিয়ে পূর্ণাঙ্গ lecture."
 date: 2026-06-29T00:00:00.000Z
-last_modified_at: 2026-06-29T00:00:00.000Z
+last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity/
 categories:
   - Biology
@@ -58,6 +58,12 @@ status: "Active"
 
 রক্তকে বুঝতে না পারলে physiology-র কোনো সিস্টেমই পুরোপুরি বোঝা যায় না। শ্বাসতন্ত্র oxygen দেয়, কিন্তু oxygen tissue-এ পৌঁছায় RBC-এর hemoglobin দিয়ে। digestive system nutrient দেয়, কিন্তু nutrient পৌঁছায় plasma দিয়ে। immune defence কাজ করে WBC ও antibody দিয়ে। bleeding বন্ধ হয় platelet ও clotting factor দিয়ে। তাই blood হলো body-wide transport, defence and repair network।
 
+{% include education/framework-links.html %}
+
+## Blood-Specific Learning Focus
+
+এই lecture central LBFL framework-কে blood physiology-তে প্রয়োগ করে। এখানে learner-এর focus হবে plasma, formed elements, RBC specialization, WBC defence, platelet hemostasis, lymph return এবং transport-immunity connection।
+
 ## Blood Composition Diagram
 
 ```text
@@ -79,48 +85,6 @@ Blood
     │   └── Agranulocyte: lymphocyte, monocyte
     └── Platelet / Thrombocyte
 ```
-
-## LOLO: Learning Objectives & Learning Outcomes
-
-### Learning Objectives
-
-এই lecture শেষে শিক্ষার্থী শিখবে:
-
-1. রক্তকে তরল connective tissue হিসেবে ব্যাখ্যা করতে।
-2. Plasma ও formed elements আলাদা করতে।
-3. Plasma protein—albumin, globulin, fibrinogen—এর কাজ বুঝতে।
-4. RBC-এর shape, nucleus absence, hemoglobin, lifespan এবং oxygen transport ব্যাখ্যা করতে।
-5. WBC-এর granulocyte ও agranulocyte types এবং immune function বুঝতে।
-6. Platelet কীভাবে clot formation ও hemostasis-এ কাজ করে তা ব্যাখ্যা করতে।
-7. Lymph কী, কীভাবে tissue fluid থেকে আসে, এবং immunity ও fat absorption-এ কী ভূমিকা রাখে তা বুঝতে।
-
-### Learning Outcomes
-
-By the end of this lecture, learners will be able to:
-
-- blood composition chart আঁকতে পারবে।
-- Plasma বনাম blood corpuscles তুলনা করতে পারবে।
-- RBC, WBC ও platelet-এর কাজ একটি table-এ লিখতে পারবে।
-- anaemia ও polycythemia-এর basic RBC-number logic বুঝতে পারবে।
-- lymph ও blood-এর পার্থক্য লিখতে পারবে।
-- transport and immunity-কে একই blood system-এর দুইটি দিক হিসেবে ব্যাখ্যা করতে পারবে।
-
-## LALA: Learning Activities & Learning Applications
-
-### Learning Activities
-
-1. **Composition Tree:** Blood → plasma → proteins/electrolytes → formed elements—এই tree আঁকো।
-2. **Cell Identity Card:** RBC, neutrophil, lymphocyte, monocyte, platelet—প্রতিটির জন্য shape/function card তৈরি করো।
-3. **Clinical Logic Drill:** RBC কমলে কী হবে? WBC বাড়লে কী বোঝাতে পারে? platelet কমলে bleeding risk কেন বাড়ে?
-4. **Transport Mapping:** oxygen, CO₂, glucose, hormone, waste, antibody—কোনটি কীভাবে blood-এ চলাচল করে তা map করো।
-5. **Lymph Pathway Sketch:** tissue fluid → lymph capillary → lymph vessel → blood circulation—এই route আঁকো।
-
-### Learning Applications
-
-- দুর্বলতা, pallor, fatigue দেখে anaemia suspicion কেন হয় তা বুঝতে পারবে।
-- fever/infection-এ WBC count কেন clinically meaningful হতে পারে তা বুঝবে।
-- bleeding tendency বা clot risk-এ platelet-এর ভূমিকা বুঝবে।
-- immunity শুধু “জীবাণু মারার” বিষয় নয়; এটি blood, lymph, WBC এবং antibody network-এর কাজ—এটি উপলব্ধি করবে।
 
 ## 1. Blood: Definition and Physical Properties
 
