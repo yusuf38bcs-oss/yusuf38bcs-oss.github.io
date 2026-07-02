@@ -18,41 +18,12 @@ description: "Educational and reflective Socratic 4.0 hub for critical thinking,
 </section>
 
 <section class="socratic-hub-framework" aria-labelledby="socratic-framework">
-  <h2 id="socratic-framework">Framework</h2>
+  <h2 id="socratic-framework">Socratic Learning Focus</h2>
   <p>The Socratic model connects stimulus, biological activation, CNS appraisal, philosophical direction, action, reflection, and correction. It helps learners move from automatic reaction toward thoughtful response.</p>
-
-  <h2>LOLO: Learning Objectives & Learning Outcomes</h2>
-
-  <h3>Learning Objectives</h3>
-  <ul>
-    <li>Develop self-questioning as a critical-thinking habit.</li>
-    <li>Reflect on Multiple Intelligences and personality-pattern tendencies.</li>
-    <li>Connect learning behaviour with biological response and reflective correction.</li>
-  </ul>
-
-  <h3>Learning Outcomes</h3>
-  <ul>
-    <li>Identify personal learning strengths and reflection needs.</li>
-    <li>Distinguish educational reflection from clinical diagnosis.</li>
-    <li>Use questioning to improve academic and practical decision-making.</li>
-  </ul>
-
-  <h2>LALA: Learning Activities & Learning Applications</h2>
-
-  <h3>Learning Activities</h3>
-  <ul>
-    <li>Answer reflective questions honestly without treating them as labels.</li>
-    <li>Write one correction plan after each assessment.</li>
-    <li>Connect one learning difficulty with a biological or behavioural trigger.</li>
-  </ul>
-
-  <h3>Learning Applications</h3>
-  <ul>
-    <li>Use Multiple Intelligences reflection to choose better learning strategies.</li>
-    <li>Use personality reflection to improve response control and communication.</li>
-    <li>Use Socratic questioning to strengthen academic reasoning and life judgement.</li>
-  </ul>
+  <p>This hub applies the central LBFL framework to reflective questioning, Multiple Intelligences awareness, personality-pattern reflection, and non-diagnostic self-correction.</p>
 </section>
+
+{% include education/framework-links.html %}
 
 <section class="socratic-hub-archive" aria-labelledby="socratic-nodes">
   <h2 id="socratic-nodes">Socratic Nodes</h2>
