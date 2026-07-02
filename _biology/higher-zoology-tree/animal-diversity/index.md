@@ -7,8 +7,8 @@ sidebar:
 title: "Animal Diversity Matrix"
 excerpt: "Deconstruct taxonomic lineages, morphological symmetries, and evolutionary milestones of kingdom Animalia."
 date: 2026-06-13T12:05:00.000Z
-last_modified_at: 2026-07-01T00:00:00.000Z
-permalink: /biology/higher-zoology-tree/animal-diversity/
+last_modified_at: 2026-07-02T00:00:00.000Z
+permalink: /biology/animal-diversity/
 node_id: node-animal-diversity
 pillar: "Life Sciences"
 difficulty: "Intermediate"
@@ -38,7 +38,7 @@ concept_level: "Gateway"
 
 <section class="lbfl-outcome-card" aria-label="Complete Animal Diversity Matrix">
   <span class="lbfl-card-badge">New Complete Matrix</span>
-  <h3><a href="{{ '/biology/higher-zoology-tree/animal-diversity/complete-matrix-rewritten-lectures/' | relative_url }}">Animal Diversity Complete Matrix and Rewritten Lecture Series</a></h3>
+  <h3><a href="{{ '/biology/animal-diversity/complete-matrix/' | relative_url }}">Animal Diversity Complete Matrix and Rewritten Lecture Series</a></h3>
   <p>প্রাণীবৈচিত্র্য: শ্রেণিবিন্যাস, প্রতিনিধিত্বশীল প্রাণী, গঠন, কার্য, জীবনচক্র ও প্রয়োগ — a 17-lecture student-facing master matrix.</p>
 </section>
 

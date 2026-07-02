@@ -18,7 +18,7 @@ main:
       - title: "Physiology"
         url: "/biology/higher-zoology-tree/physiology/"
       - title: "Animal Diversity"
-        url: "/biology/higher-zoology-tree/animal-diversity/"
+        url: "/biology/animal-diversity/"
       - title: "Ecology"
         url: "/biology/higher-zoology-tree/ecology/"
       - title: "Genetics"
