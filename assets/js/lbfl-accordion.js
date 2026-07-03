@@ -19,15 +19,42 @@
   }
 
   function setIndicator(button, text) {
-    var indicator = button ? button.querySelector("span") : null;
-    if (indicator) indicator.textContent = text;
+    var indicators = button ? button.querySelectorAll("span") : [];
+    for (var i = 0; i < indicators.length; i += 1) {
+      indicators[i].textContent = text;
+    }
+  }
+
+  function openPanel(panel) {
+    panel.classList.add("show");
+    panel.style.setProperty("display", "block", "important");
+    panel.style.setProperty("max-height", "none", "important");
+    panel.style.setProperty("height", "auto", "important");
+    panel.style.setProperty("visibility", "visible", "important");
+    panel.style.setProperty("opacity", "1", "important");
+    panel.style.setProperty("overflow", "visible", "important");
+    panel.setAttribute("aria-hidden", "false");
+  }
+
+  function closePanel(panel) {
+    panel.classList.remove("show");
+    panel.style.setProperty("display", "none", "important");
+    panel.style.setProperty("max-height", "0", "important");
+    panel.style.setProperty("height", "0", "important");
+    panel.style.setProperty("visibility", "hidden", "important");
+    panel.style.setProperty("opacity", "0", "important");
+    panel.style.setProperty("overflow", "hidden", "important");
+    panel.setAttribute("aria-hidden", "true");
   }
 
   function setOpen(button, panel, open) {
     button.classList.toggle("active", open);
     button.setAttribute("aria-expanded", open ? "true" : "false");
-    panel.style.display = open ? "block" : "none";
-    panel.setAttribute("aria-hidden", open ? "false" : "true");
+    if (open) {
+      openPanel(panel);
+    } else {
+      closePanel(panel);
+    }
     setIndicator(button, open ? "−" : "+");
   }
 
@@ -49,7 +76,7 @@
       if (!panel) continue;
       if (!button.hasAttribute("tabindex")) button.setAttribute("tabindex", "0");
       if (!button.hasAttribute("type") && button.tagName && button.tagName.toLowerCase() === "button") button.setAttribute("type", "button");
-      var open = panel.style.display === "block" || button.classList.contains("active");
+      var open = panel.classList.contains("show") || panel.style.display === "block" || button.classList.contains("active");
       setOpen(button, panel, open);
     }
   }
@@ -64,7 +91,7 @@
     event.stopPropagation();
     if (event.stopImmediatePropagation) event.stopImmediatePropagation();
 
-    var shouldOpen = panel.style.display !== "block";
+    var shouldOpen = !panel.classList.contains("show") && panel.style.display !== "block";
     closeSiblings(button);
     setOpen(button, panel, shouldOpen);
   }, true);
