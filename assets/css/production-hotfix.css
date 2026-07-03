@@ -1,5 +1,120 @@
 /* Production hotfix: navbar collision and mobile polish. */
 
+/* Stage 29: deterministic navbar collision guard.
+   Stops brand/menu/action overlap on laptop, tablet, and browser-zoomed desktop widths. */
+.lbfl-nav {
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+}
+
+.lbfl-brand {
+  flex: 0 1 min(21rem, 24vw) !important;
+  max-width: min(21rem, 24vw) !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.lbfl-brand__title,
+.lbfl-brand__full,
+.lbfl-brand__short {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.lbfl-brand__full {
+  display: inline !important;
+}
+
+.lbfl-brand__short {
+  display: none !important;
+}
+
+.lbfl-desktop-links {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.lbfl-desktop-links__item {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+}
+
+.lbfl-desktop-links a {
+  max-width: 11rem !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.lbfl-nav-actions {
+  flex: 0 0 auto !important;
+  margin-left: 0.25rem !important;
+}
+
+@media (max-width: 1440px) {
+  .lbfl-brand {
+    flex-basis: 7.5rem !important;
+    max-width: 7.5rem !important;
+  }
+
+  .lbfl-brand__full {
+    display: none !important;
+  }
+
+  .lbfl-brand__short {
+    display: inline !important;
+    color: #f8fafc !important;
+    font-weight: 950 !important;
+    font-size: 0.98rem !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .lbfl-desktop-links {
+    gap: 0.08rem !important;
+  }
+
+  .lbfl-desktop-links a {
+    padding-inline: 0.3rem !important;
+    font-size: clamp(0.68rem, 0.76vw, 0.84rem) !important;
+    max-width: 8.7rem !important;
+  }
+}
+
+@media (max-width: 1160px) {
+  .lbfl-desktop-links {
+    display: none !important;
+  }
+
+  .lbfl-mobile-menu {
+    display: inline-flex !important;
+  }
+
+  .lbfl-brand {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .lbfl-brand__logo {
+    width: 34px !important;
+    height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+  }
+
+  .lbfl-search-toggle,
+  .lbfl-mobile-toggle {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+  }
+}
+
 /* The logo already links to home; desktop menu intentionally omits Home in markup.
    This rule protects tablet/desktop-site mode from title/menu collision. */
 @media (max-width: 1180px) {
