@@ -5,7 +5,7 @@ permalink: /biology/hsc-corner/
 categories:
   - Biology
   - HSC Corner
-excerpt: "HSC Botany, Zoology, model tests, practical biology, concept maps, MCQ practice, and diagram-based learning resources."
+excerpt: "HSC Botany, Zoology, Genetics bridge, model tests, practical biology, concept maps, MCQ practice, and diagram-based learning resources."
 language: en
 toc: true
 toc_sticky: true
@@ -15,7 +15,7 @@ classes: wide
 <section class="lbfl-hub-intro" aria-labelledby="hsc-hub-title">
   <span class="lbfl-hub-kicker">HSC Biology Gateway</span>
   <h2 id="hsc-hub-title" class="lbfl-hub-title">Concept-first Biology for HSC Learners</h2>
-  <p class="lbfl-hub-lead">This hub organizes Botany, Zoology, model-test preparation, practical biology, diagram-based reasoning, and MCQ practice for Bangladeshi learners. The goal is to move from memorization to explanation, from isolated terms to biological systems, and from guessing to answer validity logic.</p>
+  <p class="lbfl-hub-lead">This hub organizes Botany, Zoology, model-test preparation, practical biology, diagram-based reasoning, Genetics bridge learning, and MCQ practice for Bangladeshi learners. The goal is to move from memorization to explanation, from isolated terms to biological systems, and from guessing to answer validity logic.</p>
 </section>
 
 <h2 class="lbfl-section-title">Main HSC Learning Routes</h2>
@@ -34,9 +34,15 @@ classes: wide
   </article>
 
   <article class="lbfl-route-card">
+    <span class="lbfl-card-badge">Genetics</span>
+    <h3><a href="{{ '/biology/higher-zoology-tree/genetics/' | relative_url }}">Genetics Matrix</a></h3>
+    <p>Bridge from HSC genetics foundations to the completed 17-lecture route on inheritance, molecular genetics, regulation, mutation, and responsible interpretation.</p>
+  </article>
+
+  <article class="lbfl-route-card">
     <span class="lbfl-card-badge">Assessment</span>
     <h3><a href="{{ '/biology/hsc-corner/model-test/' | relative_url }}">Model Test</a></h3>
-    <p>Structured test preparation, question-pattern logic, answer review, and self-assessment guidance.</p>
+    <p>Structured test preparation, question-pattern logic, answer review, source-lesson return, and self-assessment guidance.</p>
   </article>
 
   <article class="lbfl-route-card">
@@ -48,7 +54,7 @@ classes: wide
   <article class="lbfl-route-card">
     <span class="lbfl-card-badge">MCQ</span>
     <h3><a href="{{ '/mcq-arena/' | relative_url }}">MCQ Arena</a></h3>
-    <p>MCQ practice with answer explanation, wrong-option logic, misconception correction, and Socratic feedback.</p>
+    <p>MCQ practice with answer explanation, wrong-option logic, misconception correction, and source-lesson feedback.</p>
   </article>
 </div>
 
@@ -72,8 +78,8 @@ classes: wide
     <p>Read answer explanations and understand why the other options are wrong.</p>
   </article>
   <article class="lbfl-study-step">
-    <h3>Use model tests</h3>
-    <p>Check whether you can apply the concept under exam conditions.</p>
+    <h3>Return to source lessons</h3>
+    <p>After a mistake, go back to the relevant lecture, course index, diagram, or concept summary.</p>
   </article>
   <article class="lbfl-study-step">
     <h3>Reflect</h3>
@@ -97,7 +103,7 @@ classes: wide
   <article class="lbfl-principle-card">
     <span class="lbfl-card-badge">Principle 3</span>
     <h3>MCQ explanation before score</h3>
-    <p>A score alone does not improve thinking. Every useful MCQ explains why the correct answer is valid and why the other options are not valid.</p>
+    <p>A score alone does not improve thinking. Every useful MCQ explains why the correct answer is valid, why the other options are not valid, and which source lesson should be revised.</p>
   </article>
   <article class="lbfl-principle-card">
     <span class="lbfl-card-badge">Principle 4</span>
@@ -135,14 +141,14 @@ classes: wide
     <p>Cell structure, organelle function, and diagram-based cell learning.</p>
   </article>
   <article class="lbfl-log-card">
-    <span class="lbfl-card-badge">Cell</span>
-    <h3><a href="{{ '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/' | relative_url }}">Cell Organelles — Part 2</a></h3>
-    <p>Advanced organelle relationships and function-based revision.</p>
+    <span class="lbfl-card-badge">Genetics</span>
+    <h3><a href="{{ '/biology/higher-zoology-tree/genetics/course-index/' | relative_url }}">Genetics Course Index</a></h3>
+    <p>Completed route for inheritance, gene interaction, chromosome logic, molecular genetics, regulation, and mutation.</p>
   </article>
 </div>
 
 <section class="lbfl-outcome-card" aria-label="Learner outcome">
   <span class="lbfl-card-badge">Learner Outcome</span>
   <h3>From memorization to explanation</h3>
-  <p>A learner who uses this hub should be able to move from chapter reading to diagram construction, from definition memorization to mechanism explanation, and from MCQ guessing to reasoned answer selection.</p>
+  <p>A learner who uses this hub should be able to move from chapter reading to diagram construction, from definition memorization to mechanism explanation, and from MCQ guessing to reasoned answer selection followed by source-lesson correction.</p>
 </section>

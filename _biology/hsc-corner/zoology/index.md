@@ -5,9 +5,9 @@ author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
 title: "Zoology: The Blueprint of the Animal Kingdom"
-excerpt: "Investigate the structural engineering of human physiology, cardiovascular mechanics, and respiratory control systems."
+excerpt: "Investigate animal diversity, human physiology, feedback control, respiratory systems, Genetics bridge learning, and assessment correction."
 date: 2026-06-09T05:00:00.000Z
-last_modified_at: 2026-06-29T00:00:00.000Z
+last_modified_at: 2026-07-03T00:00:00.000Z
 permalink: /biology/hsc-corner/zoology/
 node_id: index-hsc-zoology
 pillar: "Life Sciences"
@@ -31,14 +31,19 @@ hsc_alignment: "HSC Zoology: chapter gateway and structured topic access"
 concept_level: "Gateway"
 ---
 
-This Zoology hub connects animal diversity, human physiology, and applied biological reasoning. It is designed as a structured entry point for HSC Zoology, admission preparation, and reflective life-science learning.
+This Zoology hub connects animal diversity, human physiology, Genetics bridge learning, and applied biological reasoning. It is designed as a structured entry point for HSC Zoology, admission preparation, and reflective life-science learning.
+
+{% include education/framework-links.html %}
 
 ## Core Learning Route
 
-- **Animal diversity:** classification, body plan, adaptation, and evolutionary relationship.
-- **Human physiology:** circulation, respiration, nervous coordination, endocrine control, digestion, and homeostasis.
-- **Applied reasoning:** connect structure, function, regulation, and survival.
-- **Assessment readiness:** short-answer recall, diagram interpretation, and MCQ practice.
+<div class="lbfl-info-grid">
+  <section class="lbfl-info-card"><h3>Animal diversity</h3><p>Classification, body plan, adaptation, representative animals, and evolutionary relationship.</p></section>
+  <section class="lbfl-info-card"><h3>Human physiology</h3><p>Circulation, respiration, nervous coordination, endocrine control, digestion, and homeostasis.</p></section>
+  <section class="lbfl-info-card"><h3>Genetics bridge</h3><p>Connect HSC genetics foundations with the completed Genetics Matrix for inheritance, variation, molecular genetics, and mutation.</p></section>
+  <section class="lbfl-info-card"><h3>Applied reasoning</h3><p>Connect structure, function, regulation, survival, evidence, and responsible biological interpretation.</p></section>
+  <section class="lbfl-info-card"><h3>Assessment readiness</h3><p>Use short answers, diagrams, MCQs, and model tests to identify weak concepts and return to source lessons.</p></section>
+</div>
 
 ## Available Zoology Logs
 
@@ -51,21 +56,30 @@ This Zoology hub connects animal diversity, human physiology, and applied biolog
 
 ## Extended Zoology Pathways
 
+- [Higher Zoology Tree]({{ '/biology/higher-zoology-tree/' | relative_url }})
 - [Animal Diversity Matrix]({{ '/biology/higher-zoology-tree/animal-diversity/' | relative_url }})
 - [Ecology: Ecosystem Dynamics Matrix]({{ '/biology/higher-zoology-tree/ecology/' | relative_url }})
+- [Genetics Matrix]({{ '/biology/higher-zoology-tree/genetics/' | relative_url }})
+- [Genetics Course Index]({{ '/biology/higher-zoology-tree/genetics/course-index/' | relative_url }})
 - [Human Behaviour Node]({{ '/biology/higher-zoology-tree/human-behaviour/' | relative_url }})
-- [Higher Zoology Tree]({{ '/biology/higher-zoology-tree/' | relative_url }})
 
 ## Study Sequence
 
 1. Begin with classification and body-plan logic.
 2. Move to human organ systems and regulation.
 3. Use diagrams to explain physiological mechanisms.
-4. Convert each concept into one MCQ and one short-answer response.
-5. Finish by linking biological mechanisms with life application.
+4. Use the Genetics Matrix when inheritance, variation, chromosome logic, or molecular genetics appears.
+5. Convert each concept into one MCQ and one short-answer response.
+6. Return to the source lesson after any MCQ or model-test mistake.
+7. Finish by linking biological mechanisms with life application.
+
+## Responsible Learning Boundary
+
+HSC Zoology examples may include physiology, disease awareness, inheritance, mutation, behaviour, or public-health context. These discussions are educational and do not provide medical diagnosis, treatment advice, genetic counselling, family-risk prediction, or institutional certification.
 
 ## Connected Nodes
 
 - [Biology Matrix Hub]({{ '/biology/' | relative_url }})
+- [HSC Biology Learning Hub]({{ '/biology/hsc-corner/' | relative_url }})
 - [Botany Foundation]({{ '/biology/hsc-corner/botany/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
