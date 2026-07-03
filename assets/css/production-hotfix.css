@@ -335,6 +335,18 @@
   overflow: hidden !important;
 }
 
+.layout--single.wide .page__content .panel.show,
+.layout--single.wide .page__content .accordion.active + .panel {
+  display: block !important;
+  max-height: none !important;
+  height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  border-top: none !important;
+}
+
 .layout--single.wide .page__content .panel-content-inner {
   padding: clamp(1rem, 4.4vw, 1.55rem) !important;
   color: #dbeafe !important;
