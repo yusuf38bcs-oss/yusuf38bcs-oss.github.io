@@ -29,8 +29,6 @@ main:
     url: "/mcq-arena/"
   - title: "Socratic 4.0"
     url: "/socratic/"
-  - title: "Blog"
-    url: "/archive/"
   - title: "About"
     url: "/about/"
   - title: "Contact"
