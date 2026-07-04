@@ -39,7 +39,7 @@ hsc_alignment: "Chapter 1: Cell and its Structure — Cytoplasm and Ribosome"
 concept_level: "Foundation"
 ---
 
-<div class="lbfl-botany-lesson">
+<div class="lbfl-botany-lesson" markdown="1">
 
 <section class="lbfl-clean-hero">
   <span class="lbfl-clean-kicker">Lecture 03</span>
