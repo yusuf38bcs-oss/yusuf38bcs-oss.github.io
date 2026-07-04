@@ -4,11 +4,16 @@
   Heavy engines are loaded on demand from their own components.
 {% endcomment %}
 
+{% assign lbfl_policy_page = false %}
+{% if page.node_id == 'util-editorial-policy' %}
+  {% assign lbfl_policy_page = true %}
+{% endif %}
+
 <link rel="stylesheet" href="{{ '/assets/css/lbfl-lesson-design.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
-{% unless page.show_newsletter == false %}
+{% unless page.show_newsletter == false or lbfl_policy_page %}
   {% include body/brevo-marketing.html %}
 {% endunless %}
-{% unless page.show_synaptic_ai == false %}
+{% unless page.show_synaptic_ai == false or lbfl_policy_page %}
   {% include body/synaptic-ai.html %}
 {% endunless %}
 <script src="{{ '/assets/js/lbfl-accordion.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}" defer></script>
