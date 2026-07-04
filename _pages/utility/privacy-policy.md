@@ -80,3 +80,29 @@ The site may use **Cloudflare** for DNS, caching, HTTPS, firewall, bot protectio
 ## 9. Contact Forms and Communication
 
 Messages submitted through the contact page may be used only to respond to the inquiry, improve learning support, or handle corrections. Users should avoid submitting private, sensitive, medical, legal, financial, or confidential information.
+
+## 10. AI-Assisted Learning
+
+Some explanations, quizzes, outlines, or learning tools may be AI-assisted. AI outputs are educational aids and should be reviewed, verified, and contextualized before academic, professional, health-related, or high-stakes use.
+
+## 11. External Links
+
+External sites have their own policies. Learning Biology For Life is not responsible for external content, privacy practices, availability, or accuracy.
+
+## 12. User Control
+
+Users may:
+
+- Accept or decline non-essential cookies.
+- Clear browser cookies and site data.
+- Use browser privacy tools or ad personalization controls.
+- Unsubscribe from newsletters.
+- Contact the site for privacy concerns or correction requests.
+
+## 13. Updates
+
+This policy may evolve as the educational ecosystem grows. The effective date identifies the current version.
+
+## 14. Contact
+
+For privacy questions, corrections, or data-related concerns, use the [Contact]({{ '/contact/' | relative_url }}) page.
