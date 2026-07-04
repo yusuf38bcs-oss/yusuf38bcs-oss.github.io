@@ -5,7 +5,7 @@ author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
 title: "Lecture 02: প্লাজমা মেমব্রেন ও Fluid Mosaic Model"
-excerpt: "HSC Botany Chapter 1 Lecture 02: plasma membrane, phospholipid bilayer, membrane protein, glycocalyx, cholesterol and membrane functions."
+excerpt: "HSC Botany Chapter 1 clean lesson with plasma membrane figure and exam focus."
 date: 2026-07-04T00:10:00.000+06:00
 last_modified_at: 2026-07-04T00:10:00.000+06:00
 permalink: /biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/
@@ -39,181 +39,142 @@ hsc_alignment: "Chapter 1: Cell and its Structure — Plasma Membrane and Fluid 
 concept_level: "Foundation"
 ---
 
-{% include education/framework-links.html %}
+<div class="lbfl-botany-lesson">
 
-# Lecture 02: প্লাজমা মেমব্রেন ও Fluid Mosaic Model
-
-<section class="lbfl-lesson-hero">
-  <span class="lbfl-kicker">HSC Botany · Cell Boundary</span>
-  <h2 class="lbfl-lesson-title">কোষের দরজা, দেয়াল নয়: Plasma Membrane</h2>
-  <p><strong>Core idea:</strong> প্লাজমা মেমব্রেন শুধু আবরণ নয়; এটি হলো কোষের selective boundary, communication surface এবং transport control system।</p>
+<section class="lbfl-clean-hero">
+  <span class="lbfl-clean-kicker">Lecture 02</span>
+  <h2>প্লাজমা মেমব্রেন ও Fluid Mosaic Model</h2>
+  <p>এই পাঠে কোষঝিল্লির গঠন, phospholipid bilayer, membrane protein, glycocalyx, cholesterol এবং transport ধারণা শেখা হবে।</p>
 </section>
 
-<section class="lbfl-diagram-card">
-  <span class="lbfl-kicker">Visual Diagram</span>
-  <h2>Fluid Mosaic Model — কীভাবে ভাববে?</h2>
-  <div class="lbfl-membrane-map" aria-label="Fluid mosaic model visual diagram">
-    <span class="lbfl-label">Hydrophilic head</span>
-    <span class="lbfl-label">Hydrophobic tail</span>
-    <span class="lbfl-label">Integral protein</span>
-    <span class="lbfl-label">Peripheral protein</span>
-    <span class="lbfl-label">Glycocalyx</span>
-    <span class="lbfl-label">Cholesterol</span>
-    <span class="lbfl-label">Selective transport</span>
-  </div>
-  <p class="lbfl-visual-caption">ঝিল্লি হলো চলনশীল lipid bilayer, যার মধ্যে protein গুলো mosaic pattern-এ থাকে।</p>
-</section>
+## Learning Target
 
-<section class="lbfl-flow-card">
-  <span class="lbfl-kicker">Transport Thinking</span>
-  <h2>ঝিল্লি কীভাবে সিদ্ধান্ত নেয়?</h2>
-  <div class="lbfl-flow">
-    <div class="lbfl-flow-node"><strong>পদার্থ</strong><br>কী ঢুকতে চায়?</div>
-    <div class="lbfl-arrow">→</div>
-    <div class="lbfl-flow-node"><strong>আকার/চার্জ</strong><br>ছোট না বড়?</div>
-    <div class="lbfl-arrow">→</div>
-    <div class="lbfl-flow-node"><strong>Protein Gate</strong><br>channel/carrier দরকার?</div>
-    <div class="lbfl-arrow">→</div>
-    <div class="lbfl-flow-node"><strong>Energy</strong><br>ATP লাগবে?</div>
-  </div>
-</section>
+<ul class="lbfl-compact-list">
+  <li>প্লাজমা মেমব্রেনের সংজ্ঞা লিখতে।</li>
+  <li>Fluid Mosaic Model ব্যাখ্যা করতে।</li>
+  <li>phospholipid bilayer-এর hydrophilic head ও hydrophobic tail বুঝতে।</li>
+  <li>membrane protein, glycocalyx ও cholesterol-এর কাজ লিখতে।</li>
+</ul>
 
-## ১. এই লেকচারটি কেন পড়ব?
+<figure class="lbfl-figure">
+<svg viewBox="0 0 760 430" role="img" aria-label="Plasma membrane fluid mosaic model figure">
+  <rect width="760" height="430" rx="28" fill="#06111f"/>
+  <g transform="translate(60 120)">
+    <rect x="0" y="75" width="640" height="80" rx="28" fill="#0f172a" stroke="#22d3ee" stroke-width="3"/>
+    <g fill="#22d3ee">
+      <circle cx="40" cy="78" r="17"/><circle cx="90" cy="78" r="17"/><circle cx="140" cy="78" r="17"/><circle cx="190" cy="78" r="17"/><circle cx="240" cy="78" r="17"/><circle cx="290" cy="78" r="17"/><circle cx="340" cy="78" r="17"/><circle cx="390" cy="78" r="17"/><circle cx="440" cy="78" r="17"/><circle cx="490" cy="78" r="17"/><circle cx="540" cy="78" r="17"/><circle cx="590" cy="78" r="17"/>
+      <circle cx="40" cy="152" r="17"/><circle cx="90" cy="152" r="17"/><circle cx="140" cy="152" r="17"/><circle cx="190" cy="152" r="17"/><circle cx="240" cy="152" r="17"/><circle cx="290" cy="152" r="17"/><circle cx="340" cy="152" r="17"/><circle cx="390" cy="152" r="17"/><circle cx="440" cy="152" r="17"/><circle cx="490" cy="152" r="17"/><circle cx="540" cy="152" r="17"/><circle cx="590" cy="152" r="17"/>
+    </g>
+    <g stroke="#93c5fd" stroke-width="5" stroke-linecap="round">
+      <line x1="40" y1="95" x2="40" y2="135"/><line x1="90" y1="95" x2="90" y2="135"/><line x1="140" y1="95" x2="140" y2="135"/><line x1="190" y1="95" x2="190" y2="135"/><line x1="240" y1="95" x2="240" y2="135"/><line x1="290" y1="95" x2="290" y2="135"/><line x1="340" y1="95" x2="340" y2="135"/><line x1="390" y1="95" x2="390" y2="135"/><line x1="440" y1="95" x2="440" y2="135"/><line x1="490" y1="95" x2="490" y2="135"/><line x1="540" y1="95" x2="540" y2="135"/><line x1="590" y1="95" x2="590" y2="135"/>
+    </g>
+    <rect x="300" y="60" width="70" height="110" rx="22" fill="#fbbf24" opacity="0.95"/>
+    <rect x="500" y="95" width="34" height="40" rx="12" fill="#fb7185"/>
+    <path d="M110 35 C135 15 165 25 180 8" fill="none" stroke="#bef264" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g fill="#e5edf9" font-family="Arial, sans-serif" font-size="19" font-weight="700">
+    <text x="95" y="90">Hydrophilic head</text>
+    <text x="95" y="345">Hydrophobic tail</text>
+    <text x="360" y="88">Integral protein</text>
+    <text x="540" y="340">Cholesterol</text>
+    <text x="155" y="60">Glycocalyx</text>
+  </g>
+</svg>
+<figcaption>Figure 2: Fluid Mosaic Model — lipid bilayer-এর মধ্যে protein, cholesterol ও carbohydrate অংশ থাকে।</figcaption>
+</figure>
 
-কোষ জীবিত থাকতে হলে তাকে একদিকে বাইরের পরিবেশ থেকে নিজেকে আলাদা রাখতে হয়, আবার অন্যদিকে প্রয়োজনীয় পদার্থ গ্রহণ ও বর্জ্য পদার্থ বের করতে হয়। এই দুই বিপরীত কাজের ভারসাম্য রক্ষা করে **প্লাজমা মেমব্রেন (Plasma Membrane)**।
+## ১. প্লাজমা মেমব্রেন কী?
 
-<div class="lbfl-concept-card">
-  <span class="lbfl-kicker">Core Formula</span>
-  <p><strong>Plasma membrane = phospholipid bilayer + protein + carbohydrate + cholesterol</strong></p>
+কোষের প্রোটোপ্লাজম অংশকে ঘিরে থাকা সজীব, স্থিতিস্থাপক, অর্ধভেদ্য, lipoprotein-নির্মিত আবরণকে প্লাজমা মেমব্রেন বা কোষঝিল্লি বলে। একে plasmalemma-ও বলা হয়।
+
+## ২. রাসায়নিক গঠন
+
+<div class="lbfl-table-wrap">
+<table>
+  <thead><tr><th>উপাদান</th><th>প্রধান কাজ</th></tr></thead>
+  <tbody>
+    <tr><td>Lipid</td><td>phospholipid bilayer তৈরি করে</td></tr>
+    <tr><td>Protein</td><td>channel, carrier, receptor, enzyme হিসেবে কাজ করে</td></tr>
+    <tr><td>Carbohydrate</td><td>glycocalyx তৈরি করে; cell recognition-এ সাহায্য করে</td></tr>
+    <tr><td>Cholesterol</td><td>membrane fluidity ও stability নিয়ন্ত্রণ করে</td></tr>
+  </tbody>
+</table>
 </div>
 
-## ২. Learning Objectives
+## ৩. Fluid Mosaic Model
 
-<div class="lbfl-checklist">
-এই লেকচার শেষে শিক্ষার্থী পারবে—
+Singer ও Nicolson-এর Fluid Mosaic Model অনুযায়ী কোষঝিল্লি হলো চলনশীল phospholipid bilayer, যার মধ্যে বিভিন্ন protein মোজাইকের মতো বসানো থাকে।
 
-1. প্লাজমা মেমব্রেনের সংজ্ঞা লিখতে।
-2. Fluid Mosaic Model ব্যাখ্যা করতে।
-3. ফসফোলিপিড বাইলেয়ারের hydrophilic ও hydrophobic অংশ বুঝতে।
-4. মেমব্রেন প্রোটিন, গ্লাইকোক্যালিক্স ও কোলেস্টেরলের ভূমিকা ব্যাখ্যা করতে।
-5. কোষঝিল্লির কাজগুলো গঠন-ভিত্তিকভাবে লিখতে।
+<div class="lbfl-mini-flow">
+  <span>Fluid = lipid/protein চলনশীল</span>
+  <span>Mosaic = protein বিচিত্র বিন্যাস</span>
+  <span>Selective = সব পদার্থ ঢুকতে পারে না</span>
 </div>
 
-## ৩. প্লাজমা মেমব্রেন কী?
+## ৪. Phospholipid Bilayer
 
-প্রাণিকোষের প্রোটোপ্লাজম অংশটি যে সজীব, স্থিতিস্থাপক, অর্ধভেদ্য, লাইপোপ্রোটিন-নির্মিত অতি পাতলা আবরণ দ্বারা পরিবেষ্টিত থাকে, তাকে **প্লাজমা মেমব্রেন** বা **কোষঝিল্লি** বলা হয়। একে **Plasmalema**-ও বলা হয়।
-
-## ৪. প্লাজমা মেমব্রেনের রাসায়নিক উপাদান
-
-| উপাদান | ভূমিকা |
-|---|---|
-| লিপিড | ঝিল্লির fluid bilayer তৈরি করে |
-| প্রোটিন | transport, receptor, enzyme ও cell recognition-এ কাজ করে |
-| কার্বোহাইড্রেট | glycocalyx গঠন করে; cell recognition-এ সাহায্য করে |
-| কোলেস্টেরল | membrane fluidity ও stability নিয়ন্ত্রণ করে |
-
-## ৫. Fluid Mosaic Model
-
-Singer এবং Nicolson ১৯৭২ সালে **Fluid Mosaic Model** প্রস্তাব করেন। এই মডেল অনুযায়ী কোষঝিল্লি হলো ফসফোলিপিডের একটি গতিশীল দ্বিস্তর, যার মধ্যে বিভিন্ন প্রোটিন মোজাইকের মতো বসানো থাকে।
-
-<div class="lbfl-concept-grid">
-  <div class="lbfl-node"><strong>Fluid</strong><br>লিপিড ও কিছু protein পাশের দিকে চলতে পারে</div>
-  <div class="lbfl-node"><strong>Mosaic</strong><br>protein, glycoprotein, glycolipid বিচিত্রভাবে বসানো</div>
-  <div class="lbfl-node"><strong>Selective</strong><br>সব পদার্থ একভাবে ঢুকতে পারে না</div>
+<div class="lbfl-table-wrap">
+<table>
+  <thead><tr><th>অংশ</th><th>প্রকৃতি</th><th>অবস্থান</th></tr></thead>
+  <tbody>
+    <tr><td>Hydrophilic head</td><td>পানিগ্রাহী</td><td>কোষের ভেতর ও বাইরের জলীয় পরিবেশের দিকে</td></tr>
+    <tr><td>Hydrophobic tail</td><td>পানিবিকর্ষী</td><td>bilayer-এর ভেতরের দিকে</td></tr>
+  </tbody>
+</table>
 </div>
 
-## ৬. ফসফোলিপিড বাইলেয়ার
+## ৫. মেমব্রেন প্রোটিন
 
-প্রতিটি ফসফোলিপিড অণুর দুই অংশ থাকে—
-
-| অংশ | প্রকৃতি | অবস্থান |
-|---|---|---|
-| Hydrophilic head | পানিগ্রাহী | বাইরে ও ভেতরের জলীয় পরিবেশের দিকে |
-| Hydrophobic tail | পানিবিকর্ষী | ঝিল্লির ভেতরের দিকে |
-
-### গঠনগত যুক্তি
-
-কোষের ভেতরে ও বাইরে জলীয় পরিবেশ থাকে। তাই ফসফোলিপিডের মাথা জলীয় পরিবেশের দিকে এবং লেজ ভেতরের দিকে মুখ করে দ্বিস্তর তৈরি করে। এই বিন্যাস ঝিল্লিকে selective barrier বানায়।
-
-## ৭. মেমব্রেন প্রোটিন
-
-| প্রোটিনের ধরন | অবস্থান | কাজ |
-|---|---|---|
-| Integral protein | ঝিল্লির ভেতর দিয়ে প্রবেশ করে | channel, carrier, receptor |
-| Peripheral protein | ঝিল্লির এক পাশে যুক্ত | support, enzyme, signalling |
-| Lipid-linked protein | লিপিডের সঙ্গে যুক্ত | anchoring ও signal pathway |
-
-<div class="lbfl-thinking-card">
-<strong>Active Thinking:</strong> যদি phospholipid bilayer হয় নদী, তাহলে membrane protein হলো সেতু, গেট, সেন্সর ও কাস্টমস অফিসার।
+<div class="lbfl-table-wrap">
+<table>
+  <thead><tr><th>ধরন</th><th>অবস্থান</th><th>কাজ</th></tr></thead>
+  <tbody>
+    <tr><td>Integral protein</td><td>ঝিল্লির ভেতর দিয়ে থাকে</td><td>channel, carrier, receptor</td></tr>
+    <tr><td>Peripheral protein</td><td>ঝিল্লির এক পাশে যুক্ত</td><td>support, enzyme, signalling</td></tr>
+  </tbody>
+</table>
 </div>
 
-## ৮. গ্লাইকোক্যালিক্স
+## ৬. Transport Logic
 
-কোষঝিল্লির বাইরের দিকে glycoprotein ও glycolipid-এর কার্বোহাইড্রেট অংশ মিলে যে স্তর তৈরি করে, তাকে **গ্লাইকোক্যালিক্স (Glycocalyx)** বলা হয়। এটি cell recognition, cell communication এবং protection-এ সাহায্য করে।
-
-## ৯. কোলেস্টেরলের ভূমিকা
-
-কোলেস্টেরল ফসফোলিপিড অণুর ফাঁকে অবস্থান করে। এটি ঝিল্লির fluidity ও stability নিয়ন্ত্রণ করে, ফলে ঝিল্লি খুব বেশি তরল বা খুব বেশি কঠিন হয়ে যায় না।
-
-## ১০. কোষঝিল্লির কাজ
-
-1. কোষের সীমানা নির্ধারণ করে।
-2. প্রোটোপ্লাজমকে বাইরের পরিবেশ থেকে পৃথক করে।
-3. পদার্থের প্রবেশ ও নির্গমন নিয়ন্ত্রণ করে।
-4. receptor-এর মাধ্যমে সংকেত গ্রহণ করে।
-5. cell recognition-এ সাহায্য করে।
-6. endocytosis ও exocytosis-এ অংশ নেয়।
-7. কোষের আকৃতি ও স্থিতিশীলতা বজায় রাখতে সাহায্য করে।
-
-## ১১. Transport Logic
-
-| প্রক্রিয়া | শক্তি লাগে? | উদাহরণ |
-|---|---|---|
-| Simple diffusion | না | ছোট nonpolar molecule |
-| Facilitated diffusion | না | carrier/channel-mediated transport |
-| Osmosis | না | পানির চলাচল |
-| Active transport | হ্যাঁ | concentration gradient-এর বিপরীতে পরিবহন |
-| Endocytosis | হ্যাঁ | বড় কণার প্রবেশ |
-| Exocytosis | হ্যাঁ | পদার্থ নির্গমন |
-
-## ১২. পরীক্ষায় গুরুত্বপূর্ণ পার্থক্য
-
-| বিষয় | Passive transport | Active transport |
-|---|---|---|
-| শক্তি | লাগে না | লাগে |
-| দিক | বেশি ঘনত্ব থেকে কম ঘনত্বে | কম ঘনত্ব থেকে বেশি ঘনত্বে যেতে পারে |
-| উদাহরণ | diffusion, osmosis | ion pump |
-
-## ১৩. Common Mistakes
-
-<div class="lbfl-misconception"><strong>ভুল:</strong> কোষঝিল্লি সম্পূর্ণ কঠিন দেয়াল।<br><strong>সংশোধন:</strong> এটি fluid ও dynamic structure।</div>
-<div class="lbfl-misconception"><strong>ভুল:</strong> শুধু লিপিড দিয়েই ঝিল্লি তৈরি।<br><strong>সংশোধন:</strong> লিপিড, প্রোটিন, কার্বোহাইড্রেট ও কোলেস্টেরল থাকে।</div>
-<div class="lbfl-misconception"><strong>ভুল:</strong> সব পদার্থ সহজে ঢুকতে পারে।<br><strong>সংশোধন:</strong> কোষঝিল্লি selectively permeable।</div>
-
-## ১৪. CQ প্রস্তুতি
-
-<div class="lbfl-practice-card">
-<strong>প্রশ্ন:</strong> Fluid Mosaic Model ব্যাখ্যা করো।
-
-<strong>উত্তরের কাঠামো:</strong> Singer ও Nicolson → phospholipid bilayer → hydrophilic head/hydrophobic tail → protein mosaic → fluidity → transport/receptor/recognition।
+<div class="lbfl-table-wrap">
+<table>
+  <thead><tr><th>প্রক্রিয়া</th><th>শক্তি লাগে?</th><th>উদাহরণ</th></tr></thead>
+  <tbody>
+    <tr><td>Simple diffusion</td><td>না</td><td>ছোট nonpolar molecule</td></tr>
+    <tr><td>Facilitated diffusion</td><td>না</td><td>channel/carrier mediated transport</td></tr>
+    <tr><td>Osmosis</td><td>না</td><td>পানির চলাচল</td></tr>
+    <tr><td>Active transport</td><td>হ্যাঁ</td><td>concentration gradient-এর বিপরীতে পরিবহন</td></tr>
+  </tbody>
+</table>
 </div>
 
-## ১৫. MCQ Practice
+## Exam Focus
 
-1. Fluid Mosaic Model কারা প্রস্তাব করেন?  
-   A. Watson ও Crick · B. Singer ও Nicolson · C. Schleiden ও Schwann · D. Robert Brown  
-   **উত্তর:** B
+<div class="lbfl-exam-focus">
+<strong>CQ/SAQ-তে অবশ্যই লিখবে:</strong>
+<ul class="lbfl-compact-list">
+  <li>প্লাজমা মেমব্রেনের সংজ্ঞা।</li>
+  <li>Fluid Mosaic Model-এর প্রস্তাবক: Singer ও Nicolson।</li>
+  <li>phospholipid bilayer-এর head ও tail।</li>
+  <li>membrane protein-এর ধরন ও কাজ।</li>
+  <li>selectively permeable বৈশিষ্ট্য।</li>
+</ul>
+</div>
 
-2. ফসফোলিপিডের পানিবিকর্ষী অংশ কোনটি?  
-   A. phosphate head · B. fatty acid tail · C. carbohydrate chain · D. membrane protein  
-   **উত্তর:** B
+## MCQ Practice
 
-3. গ্লাইকোক্যালিক্স মূলত সাহায্য করে—  
-   A. ATP উৎপাদনে · B. protein synthesis-এ · C. cell recognition-এ · D. chromosome formation-এ  
-   **উত্তর:** C
+<div class="lbfl-practice-strip">
+1. Fluid Mosaic Model-এর প্রস্তাবক—  
+A. Watson ও Crick · B. Singer ও Nicolson · C. Schleiden ও Schwann · D. Robert Brown  
+<strong>উত্তর:</strong> B
 
-## ১৬. Learning Application
+<br><br>
+2. phospholipid-এর hydrophobic অংশ হলো—  
+A. phosphate head · B. fatty acid tail · C. carbohydrate chain · D. receptor  
+<strong>উত্তর:</strong> B
+</div>
 
-একটি plasma membrane diagram আঁকো। label করো—phospholipid bilayer, hydrophilic head, hydrophobic tail, integral protein, peripheral protein, glycocalyx, cholesterol।
+<p><a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' | relative_url }}">← Previous</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">Chapter 1</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/' | relative_url }}">Next →</a></p>
 
-<p><a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' | relative_url }}">← Previous Lecture</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">Chapter 1 Gateway</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/' | relative_url }}">Next Lecture →</a></p>
+</div>
