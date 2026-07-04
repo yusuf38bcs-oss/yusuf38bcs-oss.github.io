@@ -47,7 +47,7 @@ concept_level: "Chapter Gateway"
   <p>এই অধ্যায়ের লক্ষ্য হলো কোষের গঠন, অঙ্গাণু এবং কাজকে diagram-ভিত্তিকভাবে বোঝা। এখানে শুধু প্রয়োজনীয় lecture route রাখা হলো।</p>
 </section>
 
-## Lesson Route
+<h2>Lesson Route</h2>
 
 <div class="lbfl-clean-grid">
   <article class="lbfl-clean-card">
@@ -67,7 +67,7 @@ concept_level: "Chapter Gateway"
   </article>
 </div>
 
-## Upcoming
+<h2>Upcoming</h2>
 
 <div class="lbfl-table-wrap">
 <table>
