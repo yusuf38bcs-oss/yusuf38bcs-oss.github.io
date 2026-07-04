@@ -38,7 +38,7 @@ hsc_alignment: "Chapter 1: Cell and its Structure — Cell, Protoplasm and Cell 
 concept_level: "Foundation"
 ---
 
-<div class="lbfl-botany-lesson">
+<div class="lbfl-botany-lesson" markdown="1">
 
 <section class="lbfl-clean-hero">
   <span class="lbfl-clean-kicker">Lecture 01</span>
