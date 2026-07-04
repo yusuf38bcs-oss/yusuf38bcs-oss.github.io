@@ -6,6 +6,8 @@ title: "Cookie Preferences"
 permalink: /cookie-preferences/
 sidebar:
   nav: "synaptic_nav"
+show_newsletter: false
+show_synaptic_ai: false
 node_id: util-cookie-preferences
 pillar: "Legal"
 difficulty: "Foundation"
