@@ -43,15 +43,53 @@ concept_level: "Foundation"
 
 # Lecture 02: প্লাজমা মেমব্রেন ও Fluid Mosaic Model
 
+<section class="lbfl-lesson-hero">
+  <span class="lbfl-kicker">HSC Botany · Cell Boundary</span>
+  <h2 class="lbfl-lesson-title">কোষের দরজা, দেয়াল নয়: Plasma Membrane</h2>
+  <p><strong>Core idea:</strong> প্লাজমা মেমব্রেন শুধু আবরণ নয়; এটি হলো কোষের selective boundary, communication surface এবং transport control system।</p>
+</section>
+
+<section class="lbfl-diagram-card">
+  <span class="lbfl-kicker">Visual Diagram</span>
+  <h2>Fluid Mosaic Model — কীভাবে ভাববে?</h2>
+  <div class="lbfl-membrane-map" aria-label="Fluid mosaic model visual diagram">
+    <span class="lbfl-label">Hydrophilic head</span>
+    <span class="lbfl-label">Hydrophobic tail</span>
+    <span class="lbfl-label">Integral protein</span>
+    <span class="lbfl-label">Peripheral protein</span>
+    <span class="lbfl-label">Glycocalyx</span>
+    <span class="lbfl-label">Cholesterol</span>
+    <span class="lbfl-label">Selective transport</span>
+  </div>
+  <p class="lbfl-visual-caption">ঝিল্লি হলো চলনশীল lipid bilayer, যার মধ্যে protein গুলো mosaic pattern-এ থাকে।</p>
+</section>
+
+<section class="lbfl-flow-card">
+  <span class="lbfl-kicker">Transport Thinking</span>
+  <h2>ঝিল্লি কীভাবে সিদ্ধান্ত নেয়?</h2>
+  <div class="lbfl-flow">
+    <div class="lbfl-flow-node"><strong>পদার্থ</strong><br>কী ঢুকতে চায়?</div>
+    <div class="lbfl-arrow">→</div>
+    <div class="lbfl-flow-node"><strong>আকার/চার্জ</strong><br>ছোট না বড়?</div>
+    <div class="lbfl-arrow">→</div>
+    <div class="lbfl-flow-node"><strong>Protein Gate</strong><br>channel/carrier দরকার?</div>
+    <div class="lbfl-arrow">→</div>
+    <div class="lbfl-flow-node"><strong>Energy</strong><br>ATP লাগবে?</div>
+  </div>
+</section>
+
 ## ১. এই লেকচারটি কেন পড়ব?
 
 কোষ জীবিত থাকতে হলে তাকে একদিকে বাইরের পরিবেশ থেকে নিজেকে আলাদা রাখতে হয়, আবার অন্যদিকে প্রয়োজনীয় পদার্থ গ্রহণ ও বর্জ্য পদার্থ বের করতে হয়। এই দুই বিপরীত কাজের ভারসাম্য রক্ষা করে **প্লাজমা মেমব্রেন (Plasma Membrane)**।
 
-**Core idea:**  
-প্লাজমা মেমব্রেন শুধু আবরণ নয়; এটি হলো কোষের selective boundary, communication surface এবং transport control system।
+<div class="lbfl-concept-card">
+  <span class="lbfl-kicker">Core Formula</span>
+  <p><strong>Plasma membrane = phospholipid bilayer + protein + carbohydrate + cholesterol</strong></p>
+</div>
 
 ## ২. Learning Objectives
 
+<div class="lbfl-checklist">
 এই লেকচার শেষে শিক্ষার্থী পারবে—
 
 1. প্লাজমা মেমব্রেনের সংজ্ঞা লিখতে।
@@ -59,40 +97,39 @@ concept_level: "Foundation"
 3. ফসফোলিপিড বাইলেয়ারের hydrophilic ও hydrophobic অংশ বুঝতে।
 4. মেমব্রেন প্রোটিন, গ্লাইকোক্যালিক্স ও কোলেস্টেরলের ভূমিকা ব্যাখ্যা করতে।
 5. কোষঝিল্লির কাজগুলো গঠন-ভিত্তিকভাবে লিখতে।
+</div>
 
 ## ৩. প্লাজমা মেমব্রেন কী?
 
-প্রাণিকোষের প্রোটোপ্লাজম অংশটি যে সজীব, স্থিতিস্থাপক, অর্ধভেদ্য, লাইপোপ্রোটিন-নির্মিত অতি পাতলা আবরণ দ্বারা পরিবেষ্টিত থাকে, তাকে **প্লাজমা মেমব্রেন** বা **কোষঝিল্লি** বলা হয়।
-
-একে **Plasmalema**-ও বলা হয়।
+প্রাণিকোষের প্রোটোপ্লাজম অংশটি যে সজীব, স্থিতিস্থাপক, অর্ধভেদ্য, লাইপোপ্রোটিন-নির্মিত অতি পাতলা আবরণ দ্বারা পরিবেষ্টিত থাকে, তাকে **প্লাজমা মেমব্রেন** বা **কোষঝিল্লি** বলা হয়। একে **Plasmalema**-ও বলা হয়।
 
 ## ৪. প্লাজমা মেমব্রেনের রাসায়নিক উপাদান
 
 | উপাদান | ভূমিকা |
 |---|---|
 | লিপিড | ঝিল্লির fluid bilayer তৈরি করে |
-| প্রোটিন | পরিবহন, receptor, enzyme ও cell recognition-এ কাজ করে |
-| কার্বোহাইড্রেট | গ্লাইকোক্যালিক্স গঠন করে; কোষ শনাক্তকরণে সাহায্য করে |
-| কোলেস্টেরল | ঝিল্লির fluidity ও stability নিয়ন্ত্রণ করে |
+| প্রোটিন | transport, receptor, enzyme ও cell recognition-এ কাজ করে |
+| কার্বোহাইড্রেট | glycocalyx গঠন করে; cell recognition-এ সাহায্য করে |
+| কোলেস্টেরল | membrane fluidity ও stability নিয়ন্ত্রণ করে |
 
 ## ৫. Fluid Mosaic Model
 
 Singer এবং Nicolson ১৯৭২ সালে **Fluid Mosaic Model** প্রস্তাব করেন। এই মডেল অনুযায়ী কোষঝিল্লি হলো ফসফোলিপিডের একটি গতিশীল দ্বিস্তর, যার মধ্যে বিভিন্ন প্রোটিন মোজাইকের মতো বসানো থাকে।
 
-### কেন “Fluid”?
-
-কারণ লিপিড ও কিছু প্রোটিন ঝিল্লির একই স্তরে পাশের দিকে চলাচল করতে পারে। তাই ঝিল্লি স্থির দেয়াল নয়; এটি গতিশীল।
-
-### কেন “Mosaic”?
-
-কারণ বিভিন্ন ধরনের প্রোটিন, গ্লাইকোপ্রোটিন, গ্লাইকোলিপিড ও কোলেস্টেরল ঝিল্লিতে বিচিত্র বিন্যাসে থাকে। ফলে এটি মোজাইকের মতো।
+<div class="lbfl-concept-grid">
+  <div class="lbfl-node"><strong>Fluid</strong><br>লিপিড ও কিছু protein পাশের দিকে চলতে পারে</div>
+  <div class="lbfl-node"><strong>Mosaic</strong><br>protein, glycoprotein, glycolipid বিচিত্রভাবে বসানো</div>
+  <div class="lbfl-node"><strong>Selective</strong><br>সব পদার্থ একভাবে ঢুকতে পারে না</div>
+</div>
 
 ## ৬. ফসফোলিপিড বাইলেয়ার
 
 প্রতিটি ফসফোলিপিড অণুর দুই অংশ থাকে—
 
-1. **Hydrophilic head:** পানিগ্রাহী phosphate head; বাইরে ও ভেতরের জলীয় পরিবেশের দিকে থাকে।
-2. **Hydrophobic tail:** পানিবিকর্ষী fatty acid tail; ঝিল্লির ভেতরের দিকে থাকে।
+| অংশ | প্রকৃতি | অবস্থান |
+|---|---|---|
+| Hydrophilic head | পানিগ্রাহী | বাইরে ও ভেতরের জলীয় পরিবেশের দিকে |
+| Hydrophobic tail | পানিবিকর্ষী | ঝিল্লির ভেতরের দিকে |
 
 ### গঠনগত যুক্তি
 
@@ -100,38 +137,23 @@ Singer এবং Nicolson ১৯৭২ সালে **Fluid Mosaic Model** প�
 
 ## ৭. মেমব্রেন প্রোটিন
 
-কোষঝিল্লিতে বিভিন্ন ধরনের প্রোটিন থাকে।
-
 | প্রোটিনের ধরন | অবস্থান | কাজ |
 |---|---|---|
 | Integral protein | ঝিল্লির ভেতর দিয়ে প্রবেশ করে | channel, carrier, receptor |
 | Peripheral protein | ঝিল্লির এক পাশে যুক্ত | support, enzyme, signalling |
 | Lipid-linked protein | লিপিডের সঙ্গে যুক্ত | anchoring ও signal pathway |
 
-### Active Thinking
-
-যদি ফসফোলিপিড বাইলেয়ার হয় নদী, তাহলে মেমব্রেন প্রোটিন হলো সেতু, গেট, সেন্সর ও কাস্টমস অফিসার।
+<div class="lbfl-thinking-card">
+<strong>Active Thinking:</strong> যদি phospholipid bilayer হয় নদী, তাহলে membrane protein হলো সেতু, গেট, সেন্সর ও কাস্টমস অফিসার।
+</div>
 
 ## ৮. গ্লাইকোক্যালিক্স
 
-কোষঝিল্লির বাইরের দিকে glycoprotein ও glycolipid-এর কার্বোহাইড্রেট অংশ মিলে যে স্তর তৈরি করে, তাকে **গ্লাইকোক্যালিক্স (Glycocalyx)** বলা হয়।
-
-### কাজ
-
-1. কোষ শনাক্তকরণে সাহায্য করে।
-2. কোষ-থেকে-কোষ যোগাযোগে সাহায্য করে।
-3. কোষকে বাইরের ক্ষুদ্র আঘাত থেকে কিছুটা সুরক্ষা দেয়।
-4. টিস্যুতে কোষের অবস্থান ও সংযুক্তিতে সহায়তা করে।
+কোষঝিল্লির বাইরের দিকে glycoprotein ও glycolipid-এর কার্বোহাইড্রেট অংশ মিলে যে স্তর তৈরি করে, তাকে **গ্লাইকোক্যালিক্স (Glycocalyx)** বলা হয়। এটি cell recognition, cell communication এবং protection-এ সাহায্য করে।
 
 ## ৯. কোলেস্টেরলের ভূমিকা
 
-কোলেস্টেরল লিপিড জাতীয় পদার্থ। প্রাণিকোষের ঝিল্লিতে এটি বেশি দেখা যায়।
-
-### কাজ
-
-1. ঝিল্লির স্থিতিস্থাপকতা বজায় রাখে।
-2. খুব বেশি তরল বা খুব বেশি কঠিন হয়ে যাওয়া থেকে ঝিল্লিকে রক্ষা করে।
-3. ফসফোলিপিড অণুর ফাঁকে অবস্থান করে ঝিল্লিকে স্থিতিশীল করে।
+কোলেস্টেরল ফসফোলিপিড অণুর ফাঁকে অবস্থান করে। এটি ঝিল্লির fluidity ও stability নিয়ন্ত্রণ করে, ফলে ঝিল্লি খুব বেশি তরল বা খুব বেশি কঠিন হয়ে যায় না।
 
 ## ১০. কোষঝিল্লির কাজ
 
@@ -145,8 +167,6 @@ Singer এবং Nicolson ১৯৭২ সালে **Fluid Mosaic Model** প�
 
 ## ১১. Transport Logic
 
-প্লাজমা মেমব্রেনের মাধ্যমে পদার্থ পরিবহন কয়েকভাবে হতে পারে—
-
 | প্রক্রিয়া | শক্তি লাগে? | উদাহরণ |
 |---|---|---|
 | Simple diffusion | না | ছোট nonpolar molecule |
@@ -158,8 +178,6 @@ Singer এবং Nicolson ১৯৭২ সালে **Fluid Mosaic Model** প�
 
 ## ১২. পরীক্ষায় গুরুত্বপূর্ণ পার্থক্য
 
-### Passive transport বনাম Active transport
-
 | বিষয় | Passive transport | Active transport |
 |---|---|---|
 | শক্তি | লাগে না | লাগে |
@@ -168,65 +186,34 @@ Singer এবং Nicolson ১৯৭২ সালে **Fluid Mosaic Model** প�
 
 ## ১৩. Common Mistakes
 
-1. **ভুল:** কোষঝিল্লি সম্পূর্ণ কঠিন দেয়াল।  
-   **সংশোধন:** এটি fluid ও dynamic structure।
-
-2. **ভুল:** শুধু লিপিড দিয়েই ঝিল্লি তৈরি।  
-   **সংশোধন:** লিপিড, প্রোটিন, কার্বোহাইড্রেট ও কোলেস্টেরল থাকে।
-
-3. **ভুল:** সব পদার্থ সহজে ঢুকতে পারে।  
-   **সংশোধন:** কোষঝিল্লি selectively permeable।
+<div class="lbfl-misconception"><strong>ভুল:</strong> কোষঝিল্লি সম্পূর্ণ কঠিন দেয়াল।<br><strong>সংশোধন:</strong> এটি fluid ও dynamic structure।</div>
+<div class="lbfl-misconception"><strong>ভুল:</strong> শুধু লিপিড দিয়েই ঝিল্লি তৈরি।<br><strong>সংশোধন:</strong> লিপিড, প্রোটিন, কার্বোহাইড্রেট ও কোলেস্টেরল থাকে।</div>
+<div class="lbfl-misconception"><strong>ভুল:</strong> সব পদার্থ সহজে ঢুকতে পারে।<br><strong>সংশোধন:</strong> কোষঝিল্লি selectively permeable।</div>
 
 ## ১৪. CQ প্রস্তুতি
 
-### প্রশ্ন
-Fluid Mosaic Model ব্যাখ্যা করো।
+<div class="lbfl-practice-card">
+<strong>প্রশ্ন:</strong> Fluid Mosaic Model ব্যাখ্যা করো।
 
-**উত্তরের কাঠামো:**
-
-1. মডেলের প্রস্তাবক: Singer ও Nicolson।
-2. ফসফোলিপিড বাইলেয়ার ব্যাখ্যা।
-3. hydrophilic head ও hydrophobic tail-এর অবস্থান।
-4. প্রোটিনের mosaic arrangement।
-5. fluidity ও lateral movement।
-6. গঠন থেকে কাজ: transport, receptor, recognition।
+<strong>উত্তরের কাঠামো:</strong> Singer ও Nicolson → phospholipid bilayer → hydrophilic head/hydrophobic tail → protein mosaic → fluidity → transport/receptor/recognition।
+</div>
 
 ## ১৫. MCQ Practice
 
-1. Fluid Mosaic Model কারা প্রস্তাব করেন?
-   - A. Watson ও Crick
-   - B. Singer ও Nicolson
-   - C. Schleiden ও Schwann
-   - D. Robert Brown
-
+1. Fluid Mosaic Model কারা প্রস্তাব করেন?  
+   A. Watson ও Crick · B. Singer ও Nicolson · C. Schleiden ও Schwann · D. Robert Brown  
    **উত্তর:** B
 
-2. ফসফোলিপিডের পানিবিকর্ষী অংশ কোনটি?
-   - A. phosphate head
-   - B. fatty acid tail
-   - C. carbohydrate chain
-   - D. membrane protein
-
+2. ফসফোলিপিডের পানিবিকর্ষী অংশ কোনটি?  
+   A. phosphate head · B. fatty acid tail · C. carbohydrate chain · D. membrane protein  
    **উত্তর:** B
 
-3. গ্লাইকোক্যালিক্স মূলত সাহায্য করে—
-   - A. ATP উৎপাদনে
-   - B. protein synthesis-এ
-   - C. cell recognition-এ
-   - D. chromosome formation-এ
-
+3. গ্লাইকোক্যালিক্স মূলত সাহায্য করে—  
+   A. ATP উৎপাদনে · B. protein synthesis-এ · C. cell recognition-এ · D. chromosome formation-এ  
    **উত্তর:** C
 
 ## ১৬. Learning Application
 
-একটি প্লাজমা মেমব্রেনের diagram আঁকো। তারপর label করো—phospholipid bilayer, hydrophilic head, hydrophobic tail, integral protein, peripheral protein, glycocalyx, cholesterol।
-
-## ১৭. Exit Ticket
-
-নিজে লিখে যাচাই করো—
-
-1. Fluid Mosaic Model কেন fluid?
-2. Fluid Mosaic Model কেন mosaic?
-3. কোষঝিল্লিকে selectively permeable বলা হয় কেন?
+একটি plasma membrane diagram আঁকো। label করো—phospholipid bilayer, hydrophilic head, hydrophobic tail, integral protein, peripheral protein, glycocalyx, cholesterol।
 
 <p><a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' | relative_url }}">← Previous Lecture</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">Chapter 1 Gateway</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/' | relative_url }}">Next Lecture →</a></p>
