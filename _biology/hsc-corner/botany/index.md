@@ -34,7 +34,7 @@ concept_level: "Gateway"
   <p>এখানে শুধু অধ্যায় ও লেকচারের প্রয়োজনীয় পথ রাখা হলো। অপ্রয়োজনীয় framework, stage explanation ও অতিরিক্ত ব্লক বাদ দেওয়া হয়েছে।</p>
 </section>
 
-## Chapter Index
+<h2>Chapter Index</h2>
 
 <div class="lbfl-clean-grid">
   <article class="lbfl-clean-card">
@@ -49,7 +49,7 @@ concept_level: "Gateway"
   </article>
 </div>
 
-## Available Lessons
+<h2>Available Lessons</h2>
 
 <div class="lbfl-clean-grid">
   <article class="lbfl-clean-card">
@@ -69,7 +69,7 @@ concept_level: "Gateway"
   </article>
 </div>
 
-## Next Lessons
+<h2>Next Lessons</h2>
 
 <div class="lbfl-table-wrap">
 <table>
