@@ -6,6 +6,8 @@ title: "Disclaimer"
 permalink: /disclaimer/
 sidebar:
   nav: "synaptic_nav"
+show_newsletter: false
+show_synaptic_ai: false
 node_id: util-disclaimer
 pillar: "Legal"
 difficulty: "Advanced"

@@ -6,6 +6,8 @@ title: "Terms & Conditions"
 permalink: /terms-and-conditions/
 sidebar:
   nav: "synaptic_nav"
+show_newsletter: false
+show_synaptic_ai: false
 node_id: util-terms
 pillar: "Legal"
 difficulty: "Foundation"

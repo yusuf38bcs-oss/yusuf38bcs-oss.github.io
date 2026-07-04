@@ -5,6 +5,8 @@ permalink: /terms/
 sitemap: false
 robots: noindex
 language: en
+show_newsletter: false
+show_synaptic_ai: false
 ---
 
 # Terms of Use

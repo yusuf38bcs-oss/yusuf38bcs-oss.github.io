@@ -6,6 +6,8 @@ title: "Privacy Policy"
 permalink: /privacy-policy/
 sidebar:
   nav: "synaptic_nav"
+show_newsletter: false
+show_synaptic_ai: false
 node_id: util-privacy
 pillar: "Legal"
 difficulty: "Advanced"
