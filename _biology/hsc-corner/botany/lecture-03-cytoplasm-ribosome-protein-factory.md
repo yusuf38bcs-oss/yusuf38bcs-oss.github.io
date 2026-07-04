@@ -5,7 +5,7 @@ author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
 title: "Lecture 03: সাইটোপ্লাজম, রাইবোসোম ও প্রোটিন কারখানা"
-excerpt: "HSC Botany Chapter 1 Lecture 03: cytoplasm, cytosol, cytoplasmic organelles, ribosome, 70S, 80S, polysome and protein synthesis."
+excerpt: "HSC Botany Chapter 1 clean lesson with cytoplasm and ribosome figure."
 date: 2026-07-04T00:15:00.000+06:00
 last_modified_at: 2026-07-04T00:15:00.000+06:00
 permalink: /biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/
@@ -39,173 +39,149 @@ hsc_alignment: "Chapter 1: Cell and its Structure — Cytoplasm and Ribosome"
 concept_level: "Foundation"
 ---
 
-{% include education/framework-links.html %}
+<div class="lbfl-botany-lesson">
 
-# Lecture 03: সাইটোপ্লাজম, রাইবোসোম ও প্রোটিন কারখানা
-
-<section class="lbfl-lesson-hero">
-  <span class="lbfl-kicker">HSC Botany · Cell Work Zone</span>
-  <h2 class="lbfl-lesson-title">সাইটোপ্লাজম হলো কাজের ক্ষেত্র, রাইবোসোম হলো প্রোটিন কারখানা</h2>
-  <p><strong>Core idea:</strong> সাইটোপ্লাজম কোষের ভেতরের কাজের পরিবেশ তৈরি করে, আর রাইবোসোম mRNA-এর নির্দেশ অনুযায়ী amino acid জুড়ে protein তৈরি করে।</p>
+<section class="lbfl-clean-hero">
+  <span class="lbfl-clean-kicker">Lecture 03</span>
+  <h2>সাইটোপ্লাজম, রাইবোসোম ও প্রোটিন কারখানা</h2>
+  <p>এই পাঠে সাইটোপ্লাজম, সাইটোসোল, কোষীয় অঙ্গাণু, রাইবোসোম, 70S/80S এবং protein synthesis-এর মূল ধারণা শেখা হবে।</p>
 </section>
 
-<section class="lbfl-diagram-card">
-  <span class="lbfl-kicker">Visual Diagram</span>
-  <h2>রাইবোসোমে প্রোটিন তৈরির ধারাবাহিকতা</h2>
-  <div class="lbfl-ribosome-map" aria-label="Ribosome protein synthesis visual map">
-    <span class="lbfl-label">DNA instruction</span>
-    <span class="lbfl-label">mRNA message</span>
-    <span class="lbfl-label">Ribosome platform</span>
-    <span class="lbfl-label">tRNA delivery</span>
-    <span class="lbfl-label">Amino acid chain</span>
-    <span class="lbfl-label">Protein</span>
-  </div>
-  <p class="lbfl-visual-caption">চিত্রের ধারণা: রাইবোসোম নিজে তথ্য তৈরি করে না; তথ্য পড়ে amino acid chain তৈরি করে।</p>
-</section>
+## Learning Target
 
-<section class="lbfl-flow-card">
-  <span class="lbfl-kicker">Central Flow</span>
-  <h2>Protein Factory Flow</h2>
-  <div class="lbfl-flow">
-    <div class="lbfl-flow-node"><strong>DNA</strong><br>তথ্য সংরক্ষণ</div>
-    <div class="lbfl-arrow">→</div>
-    <div class="lbfl-flow-node"><strong>mRNA</strong><br>বার্তা বহন</div>
-    <div class="lbfl-arrow">→</div>
-    <div class="lbfl-flow-node"><strong>Ribosome</strong><br>বার্তা পড়া</div>
-    <div class="lbfl-arrow">→</div>
-    <div class="lbfl-flow-node"><strong>Protein</strong><br>কাজের অণু</div>
-  </div>
-</section>
+<ul class="lbfl-compact-list">
+  <li>সাইটোপ্লাজম ও সাইটোসোলের পার্থক্য করতে।</li>
+  <li>সাইটোপ্লাজমিক অঙ্গাণুর কাজ লিখতে।</li>
+  <li>রাইবোসোমের গঠন, অবস্থান ও কাজ ব্যাখ্যা করতে।</li>
+  <li>70S ও 80S রাইবোসোমের পার্থক্য করতে।</li>
+</ul>
 
-## ১. এই লেকচারটি কেন পড়ব?
+<figure class="lbfl-figure">
+<svg viewBox="0 0 760 430" role="img" aria-label="Cytoplasm and ribosome protein synthesis figure">
+  <rect width="760" height="430" rx="28" fill="#06111f"/>
+  <ellipse cx="365" cy="215" rx="295" ry="155" fill="#10233a" stroke="#2dd4bf" stroke-width="5"/>
+  <ellipse cx="230" cy="150" rx="55" ry="25" fill="#0f766e" stroke="#99f6e4" stroke-width="3"/>
+  <ellipse cx="520" cy="285" rx="55" ry="25" fill="#0f766e" stroke="#99f6e4" stroke-width="3"/>
+  <g transform="translate(355 160)">
+    <ellipse cx="0" cy="0" rx="92" ry="40" fill="#fbbf24" opacity="0.95"/>
+    <ellipse cx="0" cy="36" rx="76" ry="32" fill="#fb7185" opacity="0.95"/>
+    <path d="M-150 16 C-100 -8 -55 42 0 18 C50 -5 88 35 148 10" fill="none" stroke="#93c5fd" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="-42" cy="80" r="12" fill="#bef264"/><circle cx="-10" cy="92" r="12" fill="#bef264"/><circle cx="22" cy="84" r="12" fill="#bef264"/><circle cx="54" cy="96" r="12" fill="#bef264"/>
+  </g>
+  <g fill="#e5edf9" font-family="Arial, sans-serif" font-size="20" font-weight="700">
+    <text x="95" y="85">Cytoplasm</text>
+    <text x="185" y="135">Mitochondrion</text>
+    <text x="310" y="112">Ribosome</text>
+    <text x="230" y="245">mRNA</text>
+    <text x="415" y="290">Amino acid chain</text>
+  </g>
+</svg>
+<figcaption>Figure 3: সাইটোপ্লাজমে অঙ্গাণু থাকে; রাইবোসোম mRNA পড়ে amino acid জুড়ে protein তৈরি করে।</figcaption>
+</figure>
 
-কোষের ভেতরের কাজগুলো কোথায় ঘটে? অঙ্গাণুগুলো কোথায় থাকে? প্রোটিন কোথায় তৈরি হয়? এই প্রশ্নগুলোর উত্তর জানতে হলে **সাইটোপ্লাজম** ও **রাইবোসোম** বুঝতে হবে।
+## ১. সাইটোপ্লাজম কী?
 
-## ২. Learning Objectives
+নিউক্লিয়াস ছাড়া প্রোটোপ্লাজমের বাকি অংশকে সাইটোপ্লাজম বলে। সাইটোপ্লাজমের তরল ভিত্তি অংশ হলো সাইটোসোল।
 
-<div class="lbfl-checklist">
-এই লেকচার শেষে শিক্ষার্থী পারবে—
-
-1. সাইটোপ্লাজম ও সাইটোসোলের পার্থক্য লিখতে।
-2. সাইটোপ্লাজমে থাকা অঙ্গাণুগুলোর ধারণা ব্যাখ্যা করতে।
-3. রাইবোসোমের গঠন, অবস্থান ও কাজ লিখতে।
-4. 70S ও 80S রাইবোসোমের পার্থক্য করতে।
-5. রাইবোসোমকে প্রোটিন কারখানা বলা হয় কেন ব্যাখ্যা করতে।
+<div class="lbfl-table-wrap">
+<table>
+  <thead><tr><th>পদ</th><th>ব্যাখ্যা</th></tr></thead>
+  <tbody>
+    <tr><td>Cytoplasm</td><td>নিউক্লিয়াস ছাড়া কোষের ভেতরের সজীব অংশ</td></tr>
+    <tr><td>Cytosol</td><td>সাইটোপ্লাজমের তরল ভিত্তি অংশ</td></tr>
+  </tbody>
+</table>
 </div>
 
-## ৩. সাইটোপ্লাজম কী?
+## ২. সাইটোপ্লাজমিক অঙ্গাণু
 
-নিউক্লিয়াস ছাড়া প্রোটোপ্লাজমের বাকি অংশকে **সাইটোপ্লাজম (Cytoplasm)** বলা হয়। এটি অর্ধতরল, কলয়ডীয়, দানাদার এবং জৈব-রাসায়নিক কাজের জন্য উপযোগী পরিবেশ।
-
-| পদ | ব্যাখ্যা |
-|---|---|
-| Cytoplasm | নিউক্লিয়াস ছাড়া কোষের ভেতরের সজীব অংশ |
-| Cytosol | সাইটোপ্লাজমের তরল ভিত্তি অংশ |
-
-## ৪. সাইটোপ্লাজমে কী থাকে?
-
-<div class="lbfl-concept-grid">
-  <div class="lbfl-node"><strong>Cytosol</strong><br>তরল ভিত্তি</div>
-  <div class="lbfl-node"><strong>Organelle</strong><br>কাজ-ভিত্তিক গঠন</div>
-  <div class="lbfl-node"><strong>Enzyme</strong><br>রাসায়নিক বিক্রিয়া</div>
-  <div class="lbfl-node"><strong>Cytoskeleton</strong><br>আকৃতি ও support</div>
+<div class="lbfl-table-wrap">
+<table>
+  <thead><tr><th>অঙ্গাণু</th><th>প্রধান কাজ</th></tr></thead>
+  <tbody>
+    <tr><td>Ribosome</td><td>protein synthesis</td></tr>
+    <tr><td>Mitochondria</td><td>ATP উৎপাদন</td></tr>
+    <tr><td>Endoplasmic Reticulum</td><td>protein/lipid transport ও synthesis</td></tr>
+    <tr><td>Golgi Body</td><td>modification, packaging, secretion</td></tr>
+    <tr><td>Lysosome</td><td>intracellular digestion</td></tr>
+    <tr><td>Plastid</td><td>photosynthesis, pigment, storage</td></tr>
+  </tbody>
+</table>
 </div>
 
-## ৫. সাইটোপ্লাজমিক অঙ্গাণু
+## ৩. রাইবোসোম কী?
 
-| অঙ্গাণু | প্রধান কাজ |
-|---|---|
-| রাইবোসোম | প্রোটিন সংশ্লেষণ |
-| মাইটোকন্ড্রিয়া | ATP উৎপাদন |
-| এন্ডোপ্লাজমিক রেটিকুলাম | প্রোটিন/লিপিড পরিবহন ও সংশ্লেষণ |
-| গলজি বডি | packaging, modification, secretion |
-| লাইসোসোম | অন্তঃকোষীয় পরিপাক |
-| প্লাস্টিড | সালোকসংশ্লেষণ/রঞ্জক/সঞ্চয় |
-| ভ্যাকুওল | সঞ্চয় ও turgor pressure |
+সাইটোপ্লাজমে মুক্ত অবস্থায় অথবা rough endoplasmic reticulum-এর গায়ে অবস্থিত ক্ষুদ্র, দানাদার, আবরণীবিহীন অঙ্গাণুকে রাইবোসোম বলে। রাইবোসোম protein synthesis করে; তাই একে কোষের প্রোটিন কারখানা বলা হয়।
 
-## ৬. রাইবোসোম কী?
+## ৪. রাইবোসোম কোথায় থাকে?
 
-সাইটোপ্লাজমে মুক্ত অবস্থায় অথবা rough endoplasmic reticulum-এর গায়ে অবস্থিত ক্ষুদ্র দানাদার, আবরণীবিহীন অঙ্গাণুকে **রাইবোসোম (Ribosome)** বলে। রাইবোসোমে protein synthesis ঘটে। তাই রাইবোসোমকে **কোষের প্রোটিন কারখানা** বলা হয়।
+<ul class="lbfl-compact-list">
+  <li>সাইটোপ্লাজমে মুক্ত অবস্থায়।</li>
+  <li>rough endoplasmic reticulum-এর গায়ে।</li>
+  <li>mitochondria ও chloroplast-এ।</li>
+  <li>prokaryotic ও eukaryotic উভয় কোষে।</li>
+</ul>
 
-## ৭. রাইবোসোমের অবস্থান
+## ৫. 70S ও 80S রাইবোসোম
 
-রাইবোসোম পাওয়া যায়—সাইটোপ্লাজমে মুক্ত অবস্থায়, rough endoplasmic reticulum-এর গায়ে, mitochondria-তে, chloroplast-এ, prokaryotic cell-এ এবং eukaryotic cell-এ।
-
-<div class="lbfl-exam-box">
-<strong>Exam point:</strong> রাইবোসোমকে সর্বজনীন অঙ্গাণু বলা হয়, কারণ prokaryotic ও eukaryotic উভয় কোষেই এটি থাকে।
+<div class="lbfl-table-wrap">
+<table>
+  <thead><tr><th>রাইবোসোম</th><th>অবস্থান</th><th>Subunit</th></tr></thead>
+  <tbody>
+    <tr><td>70S</td><td>Prokaryote, mitochondria, chloroplast</td><td>50S + 30S</td></tr>
+    <tr><td>80S</td><td>Eukaryotic cytoplasm</td><td>60S + 40S</td></tr>
+  </tbody>
+</table>
 </div>
 
-## ৮. রাইবোসোমের রাসায়নিক প্রকৃতি
-
-রাইবোসোম প্রধানত **rRNA** এবং **protein** দিয়ে গঠিত। এই দুই উপাদান একত্রে ribonucleoprotein structure তৈরি করে।
-
-## ৯. 70S ও 80S রাইবোসোম
-
-| রাইবোসোম | কোথায় থাকে | subunit |
-|---|---|---|
-| 70S | প্রোক্যারিয়ট, মাইটোকন্ড্রিয়া, ক্লোরোপ্লাস্ট | 50S + 30S |
-| 80S | ইউক্যারিয়টিক সাইটোপ্লাজম | 60S + 40S |
-
-<div class="lbfl-thinking-card">
-<strong>Important note:</strong> 50S + 30S = 70S হয়, 80S নয়। কারণ Svedberg unit additive নয়; এটি sedimentation behaviour নির্দেশ করে।
+<div class="lbfl-exam-focus">
+<strong>Important:</strong> 50S + 30S = 70S হয়, 80S নয়। Svedberg unit সরাসরি যোগফল নয়; sedimentation behaviour নির্দেশ করে।
 </div>
 
-## ১০. Polysome বা Polyribosome
+## ৬. Protein Synthesis Flow
 
-একটি mRNA অণুর উপর একাধিক রাইবোসোম মুক্তোর মালার মতো অবস্থান করলে তাকে **পলিরাইবোসোম** বা **পলিসোম (Polysome)** বলা হয়। একই mRNA থেকে দ্রুত অনেক কপি protein তৈরি করার জন্য পলিসোম গুরুত্বপূর্ণ।
-
-## ১১. Protein Synthesis-এর মূল ধারণা
-
-| উপাদান | কাজ |
-|---|---|
-| mRNA | বার্তা বা code বহন করে |
-| rRNA | রাইবোসোমের গাঠনিক/catalytic অংশে যুক্ত |
-| tRNA | amino acid বহন করে |
-| Amino acid | protein-এর building block |
-| Energy/enzyme | peptide bond ও process চালাতে সাহায্য করে |
-
-## ১২. A, P এবং E Site
-
-| Site | পূর্ণ ধারণা | কাজ |
-|---|---|---|
-| A site | Aminoacyl site | নতুন amino acid-সহ tRNA আসে |
-| P site | Peptidyl site | growing polypeptide chain থাকে |
-| E site | Exit site | খালি tRNA বের হয় |
-
-## ১৩. রাইবোসোমকে প্রোটিন কারখানা বলা হয় কেন?
-
-কারখানায় যেমন raw material থেকে product তৈরি হয়, রাইবোসোমে তেমনি amino acid থেকে protein তৈরি হয়। mRNA হলো instruction sheet, tRNA হলো delivery system, আর ribosome হলো assembly machine।
-
-## ১৪. Common Mistakes
-
-<div class="lbfl-misconception"><strong>ভুল:</strong> রাইবোসোমে membrane থাকে।<br><strong>সংশোধন:</strong> রাইবোসোম আবরণীবিহীন অঙ্গাণু।</div>
-<div class="lbfl-misconception"><strong>ভুল:</strong> 50S + 30S = 80S।<br><strong>সংশোধন:</strong> 50S + 30S মিলে 70S; Svedberg unit additive নয়।</div>
-<div class="lbfl-misconception"><strong>ভুল:</strong> রাইবোসোম DNA তৈরি করে।<br><strong>সংশোধন:</strong> রাইবোসোম protein synthesis করে।</div>
-
-## ১৫. CQ প্রস্তুতি
-
-<div class="lbfl-practice-card">
-<strong>প্রশ্ন:</strong> রাইবোসোমকে কোষের প্রোটিন কারখানা বলা হয় কেন?
-
-<strong>উত্তরের কাঠামো:</strong> সংজ্ঞা → অবস্থান → rRNA/protein গঠন → mRNA/tRNA/amino acid ভূমিকা → protein synthesis conclusion।
+<div class="lbfl-mini-flow">
+  <span>DNA</span>
+  <span>mRNA</span>
+  <span>Ribosome</span>
+  <span>Amino acid chain</span>
+  <span>Protein</span>
 </div>
 
-## ১৬. MCQ Practice
+## ৭. Polysome
 
+একটি mRNA অণুর উপর একাধিক ribosome একসঙ্গে কাজ করলে তাকে polysome বা polyribosome বলে। এতে একই mRNA থেকে দ্রুত অনেক protein তৈরি হতে পারে।
+
+## Exam Focus
+
+<div class="lbfl-exam-focus">
+<strong>লিখতে হবে:</strong>
+<ul class="lbfl-compact-list">
+  <li>সাইটোপ্লাজম ও সাইটোসোলের পার্থক্য।</li>
+  <li>রাইবোসোমের অবস্থান ও আবরণীবিহীন প্রকৃতি।</li>
+  <li>70S বনাম 80S।</li>
+  <li>রাইবোসোম = protein synthesis site।</li>
+</ul>
+</div>
+
+## MCQ Practice
+
+<div class="lbfl-practice-strip">
 1. রাইবোসোম কোন ধরনের অঙ্গাণু?  
-   A. দ্বিস্তরী আবরণীযুক্ত · B. একস্তরী আবরণীযুক্ত · C. আবরণীবিহীন · D. শুধু উদ্ভিদকোষীয়  
-   **উত্তর:** C
+A. দ্বিস্তরী আবরণীযুক্ত · B. একস্তরী আবরণীযুক্ত · C. আবরণীবিহীন · D. শুধু উদ্ভিদকোষীয়  
+<strong>উত্তর:</strong> C
 
-2. প্রোক্যারিয়টিক রাইবোসোম সাধারণত—  
-   A. 80S · B. 70S · C. 60S · D. 40S  
-   **উত্তর:** B
+<br><br>
+2. Prokaryotic ribosome সাধারণত—  
+A. 80S · B. 70S · C. 60S · D. 40S  
+<strong>উত্তর:</strong> B
 
+<br><br>
 3. Polysome হলো—  
-   A. এক রাইবোসোমে বহু mRNA · B. এক mRNA-তে বহু রাইবোসোম · C. বহু nucleus-এর সমষ্টি · D. বহু mitochondria-এর সমষ্টি  
-   **উত্তর:** B
+A. এক mRNA-তে বহু ribosome · B. এক ribosome-এ বহু mRNA · C. বহু nucleus · D. বহু mitochondria  
+<strong>উত্তর:</strong> A
+</div>
 
-## ১৭. Learning Application
+<p><a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/' | relative_url }}">← Previous</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">Chapter 1</a></p>
 
-নিজে flowchart আঁকো: DNA → mRNA → ribosome → amino acid chain → protein। তারপর লিখো: কোন অংশ বার্তা বহন করে, কোন অংশ amino acid আনে, এবং কোন অংশ protein তৈরি করে।
-
-<p><a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/' | relative_url }}">← Previous Lecture</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">Chapter 1 Gateway</a></p>
+</div>
