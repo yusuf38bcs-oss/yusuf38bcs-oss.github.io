@@ -7,7 +7,7 @@ sidebar:
 title: "Animal Diversity Matrix"
 excerpt: "Deconstruct taxonomic lineages, morphological symmetries, and evolutionary milestones of kingdom Animalia."
 date: 2026-06-13T12:05:00.000Z
-last_modified_at: 2026-07-02T00:00:00.000Z
+last_modified_at: 2026-07-05T00:00:00.000Z
 permalink: /biology/animal-diversity/
 node_id: node-animal-diversity
 pillar: "Life Sciences"
@@ -45,26 +45,26 @@ concept_level: "Gateway"
 <h2 class="lbfl-section-title">Learning Map</h2>
 
 <div class="lbfl-card-grid" aria-label="Animal Diversity learning map">
-  <article class="lbfl-principle-card">
+  <a class="lbfl-principle-card lbfl-principle-link" href="{{ '/biology/animal-diversity/complete-matrix/#lecture-01' | relative_url }}" aria-label="Open Animal Diversity classification logic lecture">
     <span class="lbfl-card-badge">Classification</span>
     <h3>Classification logic</h3>
     <p>Body plan, level of organization, symmetry, coelom, segmentation, and notochord.</p>
-  </article>
-  <article class="lbfl-principle-card">
+  </a>
+  <a class="lbfl-principle-card lbfl-principle-link" href="{{ '/biology/animal-diversity/complete-matrix/#lecture-02' | relative_url }}" aria-label="Open Animal Diversity invertebrate foundations sequence">
     <span class="lbfl-card-badge">Invertebrates</span>
     <h3>Invertebrate foundations</h3>
     <p>Protozoa, Porifera, Cnidaria, Platyhelminthes, Nematoda, Annelida, Arthropoda, Mollusca, and Echinodermata.</p>
-  </article>
-  <article class="lbfl-principle-card">
+  </a>
+  <a class="lbfl-principle-card lbfl-principle-link" href="{{ '/biology/animal-diversity/complete-matrix/#lecture-13' | relative_url }}" aria-label="Open Animal Diversity chordate transition sequence">
     <span class="lbfl-card-badge">Chordata</span>
     <h3>Chordate transition</h3>
     <p>Urochordata, Cephalochordata, Cyclostomata, fishes, amphibians, reptiles, birds, and mammals.</p>
-  </article>
-  <article class="lbfl-principle-card">
+  </a>
+  <a class="lbfl-principle-card lbfl-principle-link" href="{{ '/biology/animal-diversity/complete-matrix/#final-revision-grid' | relative_url }}" aria-label="Open Animal Diversity applied revision grid">
     <span class="lbfl-card-badge">Application</span>
     <h3>Applied focus</h3>
     <p>Adaptive radiation, parasitism, locomotion, reproduction, disease transmission, public health, and ecological role.</p>
-  </article>
+  </a>
 </div>
 
 <h2 class="lbfl-section-title">Available Learning Logs</h2>
@@ -112,3 +112,22 @@ concept_level: "Gateway"
   <h3>Continue the learning path</h3>
   <p><a class="lbfl-text-link" href="{{ '/biology/higher-zoology-tree/' | relative_url }}">Higher Zoology Tree</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/zoology/' | relative_url }}">Zoology Foundation</a> · <a class="lbfl-text-link" href="{{ '/mcq-arena/' | relative_url }}">MCQ Arena</a></p>
 </section>
+
+<style>
+  .lbfl-principle-link {
+    color: inherit;
+    display: block;
+    text-decoration: none;
+  }
+
+  .lbfl-principle-link:hover,
+  .lbfl-principle-link:focus-visible {
+    border-color: rgba(18, 214, 191, 0.38);
+    transform: translateY(-2px);
+  }
+
+  .lbfl-principle-link:focus-visible {
+    outline: 3px solid rgba(18, 214, 191, 0.58);
+    outline-offset: 3px;
+  }
+</style>
