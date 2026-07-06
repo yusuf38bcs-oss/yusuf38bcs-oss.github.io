@@ -7,7 +7,7 @@ sidebar:
 title: "Lecture 06: মাইটোকন্ড্রিয়া — কোষের শক্তিঘর"
 excerpt: "HSC Botany Chapter 1 lesson on mitochondria, ATP, cristae, mitochondrial DNA, and cell energy logic."
 date: 2026-07-06T08:05:00.000+06:00
-last_modified_at: 2026-07-06T11:20:00.000+06:00
+last_modified_at: 2026-07-06T12:05:00.000+06:00
 permalink: /biology/hsc-corner/botany/lecture-06-mitochondria/
 categories:
   - Biology
@@ -112,9 +112,21 @@ concept_level: "Foundation"
 .lbfl-mcq-card{padding:1rem;border:1px solid rgba(148,163,184,.18);border-radius:18px;background:rgba(2,6,23,.42)}
 .lbfl-mcq-card h3{margin:0 0 .85rem;color:#f8fafc;font-size:clamp(1.05rem,3.7vw,1.24rem);line-height:1.45}
 .lbfl-options{display:grid;gap:.48rem;margin:.5rem 0 .9rem}
-.lbfl-option{display:flex;gap:.6rem;align-items:flex-start;padding:.58rem .7rem;border:1px solid rgba(148,163,184,.16);border-radius:12px;background:rgba(15,23,42,.5);line-height:1.45}
+.lbfl-option{display:flex;gap:.6rem;align-items:flex-start;padding:.58rem .7rem;border:1px solid rgba(148,163,184,.16);border-radius:12px;background:rgba(15,23,42,.5);line-height:1.45;cursor:pointer;transition:border-color .18s ease,background-color .18s ease,transform .18s ease}
+.lbfl-option:hover{border-color:rgba(45,212,191,.45);background:rgba(15,23,42,.75)}
+.lbfl-option input{width:1.05rem;height:1.05rem;margin:.18rem .15rem 0 0;accent-color:#2dd4bf;flex:0 0 auto}
 .lbfl-option b{flex:0 0 1.45rem;color:#93c5fd}
+.lbfl-option.is-correct{border-color:rgba(190,242,100,.65);background:rgba(190,242,100,.10)}
+.lbfl-option.is-wrong{border-color:rgba(248,113,113,.65);background:rgba(248,113,113,.10)}
 .lbfl-answer{display:inline-flex;gap:.45rem;align-items:center;padding:.45rem .7rem;border-radius:999px;background:rgba(190,242,100,.12);color:#d9f99d;font-weight:800}
+.lbfl-feedback{margin-top:.9rem;padding:.9rem;border:1px solid rgba(190,242,100,.28);border-radius:14px;background:rgba(190,242,100,.08);color:#e9fbd0}
+.lbfl-feedback[hidden]{display:none!important}
+.lbfl-feedback-title{margin:0 0 .35rem!important;color:#d9f99d;font-weight:900}
+.lbfl-feedback p:last-child{margin-bottom:0}
+.lbfl-mcq-actions{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(148,163,184,.18)}
+.lbfl-mcq-button{border:0;border-radius:999px;padding:.78rem 1.05rem;font-weight:900;cursor:pointer;background:linear-gradient(135deg,#2dd4bf,#38bdf8);color:#001018;box-shadow:0 10px 24px rgba(45,212,191,.16)}
+.lbfl-mcq-button.secondary{background:rgba(148,163,184,.12);color:#e5edf7;border:1px solid rgba(148,163,184,.25);box-shadow:none}
+.lbfl-score{display:inline-flex;min-height:2.4rem;align-items:center;padding:.45rem .78rem;border-radius:999px;background:rgba(56,189,248,.10);color:#bae6fd;font-weight:900}
 .lbfl-cq-list{display:grid;gap:.7rem;margin:1rem 0 1.5rem;padding:0;list-style:none}
 .lbfl-cq-list li{display:grid;grid-template-columns:2.2rem 1fr;gap:.7rem;align-items:start;padding:.85rem;border:1px solid rgba(148,163,184,.18);border-radius:16px;background:rgba(15,23,42,.56)}
 .lbfl-cq-list b{display:grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:999px;background:rgba(56,189,248,.16);color:#bae6fd}
@@ -128,6 +140,8 @@ concept_level: "Foundation"
   .lbfl-number-list li::before{width:1.75rem;height:1.75rem}
   .lbfl-options{gap:.42rem}
   .lbfl-option{padding:.52rem .58rem}
+  .lbfl-mcq-actions{align-items:stretch;flex-direction:column}
+  .lbfl-mcq-button,.lbfl-score{width:100%;justify-content:center;text-align:center}
 }
 </style>
 
@@ -265,42 +279,111 @@ Mitochondria শেখায় যে জীবন শুধু material দিয়
 
 ## MCQ Practice
 
-<div class="lbfl-practice-strip">
+<form class="lbfl-practice-strip" data-lbfl-mcq-form>
+  <p class="lbfl-mini-kicker">Self-check</p>
+  <p>প্রথমে উত্তর নির্বাচন করো। তারপর <strong>Submit Answers</strong> চাপলে সঠিক উত্তর ও ব্যাখ্যা দেখা যাবে।</p>
+
   <div class="lbfl-mcq-list">
-    <article class="lbfl-mcq-card">
+    <article class="lbfl-mcq-card" data-answer="B">
       <h3>1. Cell-এর powerhouse বলা হয় কোন organelle-কে?</h3>
       <div class="lbfl-options">
-        <div class="lbfl-option"><b>A.</b><span>Ribosome</span></div>
-        <div class="lbfl-option"><b>B.</b><span>Mitochondria</span></div>
-        <div class="lbfl-option"><b>C.</b><span>Golgi body</span></div>
-        <div class="lbfl-option"><b>D.</b><span>Lysosome</span></div>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q1" value="A"><b>A.</b><span>Ribosome</span></label>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q1" value="B"><b>B.</b><span>Mitochondria</span></label>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q1" value="C"><b>C.</b><span>Golgi body</span></label>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q1" value="D"><b>D.</b><span>Lysosome</span></label>
       </div>
-      <div class="lbfl-answer"><span>উত্তর:</span><strong>B</strong></div>
+      <div class="lbfl-feedback" hidden>
+        <p class="lbfl-feedback-title">Correct answer: B — Mitochondria</p>
+        <p>Mitochondria-কে powerhouse বলা হয়, কারণ এটি food-based chemical energy-কে ATP-তে রূপান্তর করে। ATP cell-এর usable energy molecule।</p>
+      </div>
     </article>
 
-    <article class="lbfl-mcq-card">
+    <article class="lbfl-mcq-card" data-answer="B">
       <h3>2. ATP mainly কী হিসেবে কাজ করে?</h3>
       <div class="lbfl-options">
-        <div class="lbfl-option"><b>A.</b><span>Genetic material</span></div>
-        <div class="lbfl-option"><b>B.</b><span>Usable cellular energy molecule</span></div>
-        <div class="lbfl-option"><b>C.</b><span>Cell wall material</span></div>
-        <div class="lbfl-option"><b>D.</b><span>Digestive enzyme</span></div>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q2" value="A"><b>A.</b><span>Genetic material</span></label>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q2" value="B"><b>B.</b><span>Usable cellular energy molecule</span></label>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q2" value="C"><b>C.</b><span>Cell wall material</span></label>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q2" value="D"><b>D.</b><span>Digestive enzyme</span></label>
       </div>
-      <div class="lbfl-answer"><span>উত্তর:</span><strong>B</strong></div>
+      <div class="lbfl-feedback" hidden>
+        <p class="lbfl-feedback-title">Correct answer: B — Usable cellular energy molecule</p>
+        <p>ATP cell-এর কাজের জন্য সরাসরি ব্যবহারযোগ্য energy বহন করে। এটি genetic material, cell wall material বা digestive enzyme নয়।</p>
+      </div>
     </article>
 
-    <article class="lbfl-mcq-card">
+    <article class="lbfl-mcq-card" data-answer="B">
       <h3>3. Cristae কী?</h3>
       <div class="lbfl-options">
-        <div class="lbfl-option"><b>A.</b><span>Outer membrane</span></div>
-        <div class="lbfl-option"><b>B.</b><span>Inner membrane-এর fold</span></div>
-        <div class="lbfl-option"><b>C.</b><span>Matrix fluid</span></div>
-        <div class="lbfl-option"><b>D.</b><span>Mitochondrial DNA</span></div>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q3" value="A"><b>A.</b><span>Outer membrane</span></label>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q3" value="B"><b>B.</b><span>Inner membrane-এর fold</span></label>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q3" value="C"><b>C.</b><span>Matrix fluid</span></label>
+        <label class="lbfl-option"><input type="radio" name="lbfl-q3" value="D"><b>D.</b><span>Mitochondrial DNA</span></label>
       </div>
-      <div class="lbfl-answer"><span>উত্তর:</span><strong>B</strong></div>
+      <div class="lbfl-feedback" hidden>
+        <p class="lbfl-feedback-title">Correct answer: B — Inner membrane-এর fold</p>
+        <p>Cristae হলো mitochondrion-এর inner membrane-এর fold। এই fold surface area বাড়ায়, ফলে ATP production-এর জন্য বেশি জায়গা পাওয়া যায়।</p>
+      </div>
     </article>
   </div>
-</div>
+
+  <div class="lbfl-mcq-actions">
+    <button class="lbfl-mcq-button" type="submit">Submit Answers</button>
+    <button class="lbfl-mcq-button secondary" type="reset">Try Again</button>
+    <span class="lbfl-score" aria-live="polite">Score will appear after submit.</span>
+  </div>
+</form>
+
+<script>
+(function(){
+  function resetForm(form){
+    form.querySelectorAll('.lbfl-mcq-card').forEach(function(card){
+      card.classList.remove('is-reviewed','is-unanswered');
+      card.querySelectorAll('.lbfl-option').forEach(function(option){
+        option.classList.remove('is-correct','is-wrong');
+      });
+      var feedback = card.querySelector('.lbfl-feedback');
+      if(feedback){ feedback.hidden = true; }
+    });
+    var score = form.querySelector('.lbfl-score');
+    if(score){ score.textContent = 'Score will appear after submit.'; }
+  }
+
+  document.querySelectorAll('[data-lbfl-mcq-form]').forEach(function(form){
+    form.addEventListener('submit', function(event){
+      event.preventDefault();
+      var total = 0;
+      var correct = 0;
+
+      form.querySelectorAll('.lbfl-mcq-card').forEach(function(card){
+        total += 1;
+        var answer = card.getAttribute('data-answer');
+        var selected = card.querySelector('input[type="radio"]:checked');
+        card.classList.add('is-reviewed');
+        card.classList.toggle('is-unanswered', !selected);
+
+        card.querySelectorAll('.lbfl-option').forEach(function(option){
+          option.classList.remove('is-correct','is-wrong');
+          var input = option.querySelector('input[type="radio"]');
+          if(input && input.value === answer){ option.classList.add('is-correct'); }
+          if(selected && input === selected && selected.value !== answer){ option.classList.add('is-wrong'); }
+        });
+
+        if(selected && selected.value === answer){ correct += 1; }
+        var feedback = card.querySelector('.lbfl-feedback');
+        if(feedback){ feedback.hidden = false; }
+      });
+
+      var score = form.querySelector('.lbfl-score');
+      if(score){ score.textContent = 'Score: ' + correct + '/' + total; }
+    });
+
+    form.addEventListener('reset', function(){
+      window.setTimeout(function(){ resetForm(form); }, 0);
+    });
+  });
+})();
+</script>
 
 ## CQ Practice
 
