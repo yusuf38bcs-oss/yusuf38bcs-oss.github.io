@@ -7,7 +7,7 @@ sidebar:
 title: "অধ্যায় ১: কোষ ও এর গঠন"
 excerpt: "HSC Biology 1st Paper Botany Chapter 1 clean lecture index."
 date: 2026-07-04T00:00:00.000+06:00
-last_modified_at: 2026-07-04T00:00:00.000+06:00
+last_modified_at: 2026-07-06T08:10:00.000+06:00
 permalink: /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
 categories:
   - Biology
@@ -29,6 +29,7 @@ synaptic_links:
   - /biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/
   - /biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/
   - /biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/
+  - /biology/hsc-corner/botany/lecture-06-mitochondria/
 toc: true
 toc_sticky: true
 classes: wide
@@ -65,6 +66,11 @@ concept_level: "Chapter Gateway"
     <h3><a href="{{ '/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/' | relative_url }}">সাইটোপ্লাজম, রাইবোসোম ও প্রোটিন কারখানা</a></h3>
     <p>সাইটোপ্লাজম, রাইবোসোম, 70S/80S, পলিসোম এবং protein synthesis।</p>
   </article>
+  <article class="lbfl-clean-card">
+    <span class="lbfl-tag">Lecture 06</span>
+    <h3><a href="{{ '/biology/hsc-corner/botany/lecture-06-mitochondria/' | relative_url }}">মাইটোকন্ড্রিয়া — কোষের শক্তিঘর</a></h3>
+    <p>মাইটোকন্ড্রিয়ার গঠন, ATP production, cristae, matrix এবং high-energy cell logic।</p>
+  </article>
 </div>
 
 <h2>Upcoming</h2>
@@ -77,7 +83,6 @@ concept_level: "Chapter Gateway"
   <tbody>
     <tr><td>04</td><td>Endoplasmic Reticulum</td></tr>
     <tr><td>05</td><td>Golgi Body, Lysosome, Peroxisome</td></tr>
-    <tr><td>06</td><td>Mitochondria</td></tr>
     <tr><td>07</td><td>Plastid and Chloroplast</td></tr>
     <tr><td>08</td><td>Nucleus and Chromosome</td></tr>
   </tbody>
