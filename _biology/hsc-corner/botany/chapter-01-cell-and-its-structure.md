@@ -7,7 +7,7 @@ sidebar:
 title: "অধ্যায় ১: কোষ ও এর গঠন"
 excerpt: "HSC Biology 1st Paper Botany Chapter 1 clean lecture index."
 date: 2026-07-04T00:00:00.000+06:00
-last_modified_at: 2026-07-06T08:25:00.000+06:00
+last_modified_at: 2026-07-06T12:38:00.000+06:00
 permalink: /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
 categories:
   - Biology
@@ -40,7 +40,7 @@ hsc_alignment: "HSC Biology 1st Paper: Chapter 1 — Cell and its Structure"
 concept_level: "Chapter Gateway"
 ---
 
-<!-- lbfl-build-refresh: lecture-06-mitochondria-20260706-0825 -->
+<!-- lbfl-build-refresh: lecture-01-cell-protoplasm-cell-theory-20260706-1238 -->
 
 <div class="lbfl-botany-index">
 
@@ -55,8 +55,8 @@ concept_level: "Chapter Gateway"
 <div class="lbfl-clean-grid">
   <article class="lbfl-clean-card">
     <span class="lbfl-tag">Lecture 01</span>
-    <h3><a href="{{ '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' | relative_url }}">কোষ, প্রোটোপ্লাজম ও কোষতত্ত্ব</a></h3>
-    <p>কোষের সংজ্ঞা, প্রোটোপ্লাজম, সাইটোপ্লাজম, নিউক্লিয়াস এবং কোষতত্ত্ব।</p>
+    <h3><a href="{{ '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' | relative_url }}">Cell, Protoplasm and Cell Theory</a></h3>
+    <p>Cell, protoplasm, cytoplasm, cytology, unicellular/multicellular organisms, and cell theory.</p>
   </article>
   <article class="lbfl-clean-card">
     <span class="lbfl-tag">Lecture 02</span>
