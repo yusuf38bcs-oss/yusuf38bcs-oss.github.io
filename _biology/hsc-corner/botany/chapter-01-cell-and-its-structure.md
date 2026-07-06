@@ -7,7 +7,7 @@ sidebar:
 title: "অধ্যায় ১: কোষ ও এর গঠন"
 excerpt: "HSC Biology 1st Paper Botany Chapter 1 clean lecture index."
 date: 2026-07-04T00:00:00.000+06:00
-last_modified_at: 2026-07-06T08:10:00.000+06:00
+last_modified_at: 2026-07-06T08:25:00.000+06:00
 permalink: /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
 categories:
   - Biology
@@ -39,6 +39,8 @@ curriculum_tracks:
 hsc_alignment: "HSC Biology 1st Paper: Chapter 1 — Cell and its Structure"
 concept_level: "Chapter Gateway"
 ---
+
+<!-- lbfl-build-refresh: lecture-06-mitochondria-20260706-0825 -->
 
 <div class="lbfl-botany-index">
 
