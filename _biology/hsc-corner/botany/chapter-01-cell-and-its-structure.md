@@ -7,7 +7,7 @@ sidebar:
 title: "অধ্যায় ১: কোষ ও এর গঠন"
 excerpt: "HSC Biology 1st Paper Botany Chapter 1 clean lecture index."
 date: 2026-07-04T00:00:00.000+06:00
-last_modified_at: 2026-07-08T06:58:00.000+06:00
+last_modified_at: 2026-07-08T07:28:00.000+06:00
 permalink: /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
 categories:
   - Biology
@@ -40,23 +40,23 @@ hsc_alignment: "HSC Biology 1st Paper: Chapter 1 — Cell and its Structure"
 concept_level: "Chapter Gateway"
 ---
 
-<!-- lbfl-build-refresh: lecture-06-mitochondria-gold-v1-20260708-0658 -->
+<!-- lbfl-build-refresh: lecture-01-gold-aligned-and-lecture-06-gold-v1-20260708-0728 -->
 
 <div class="lbfl-botany-index">
 
 <section class="lbfl-clean-hero">
   <span class="lbfl-clean-kicker">Chapter 01</span>
   <h2>কোষ ও এর গঠন</h2>
-  <p>এই অধ্যায়ের লক্ষ্য হলো কোষের গঠন, অঙ্গাণু এবং কাজকে diagram-ভিত্তিকভাবে বোঝা। Lecture 06 এখন LBFL GOLD TEMPLATE v1 হিসেবে finalized.</p>
+  <p>এই অধ্যায়ের লক্ষ্য হলো কোষের গঠন, অঙ্গাণু এবং কাজকে diagram-ভিত্তিকভাবে বোঝা। Lecture 06 হলো GOLD TEMPLATE v1; Lecture 01 এখন সেই pattern অনুযায়ী GOLD-aligned foundation lesson.</p>
 </section>
 
 <h2>Lesson Route</h2>
 
 <div class="lbfl-clean-grid">
   <article class="lbfl-clean-card">
-    <span class="lbfl-tag">Lecture 01</span>
+    <span class="lbfl-tag">Lecture 01 • GOLD-aligned v1</span>
     <h3><a href="{{ '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' | relative_url }}">Cell, Protoplasm and Cell Theory</a></h3>
-    <p>Cell, protoplasm, cytoplasm, cytology, unicellular/multicellular organisms, and cell theory.</p>
+    <p>Cell, protoplasm, cytoplasm, cytology, unicellular/multicellular organisms, cell theory, MCQ, CQ and reflection design.</p>
   </article>
   <article class="lbfl-clean-card">
     <span class="lbfl-tag">Lecture 02</span>
