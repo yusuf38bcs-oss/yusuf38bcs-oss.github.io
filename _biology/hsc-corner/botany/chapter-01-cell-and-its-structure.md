@@ -7,7 +7,7 @@ sidebar:
 title: "অধ্যায় ১: কোষ ও এর গঠন"
 excerpt: "HSC Biology 1st Paper Botany Chapter 1 clean lecture index."
 date: 2026-07-04T00:00:00.000+06:00
-last_modified_at: 2026-07-06T12:38:00.000+06:00
+last_modified_at: 2026-07-08T06:58:00.000+06:00
 permalink: /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
 categories:
   - Biology
@@ -40,14 +40,14 @@ hsc_alignment: "HSC Biology 1st Paper: Chapter 1 — Cell and its Structure"
 concept_level: "Chapter Gateway"
 ---
 
-<!-- lbfl-build-refresh: lecture-01-cell-protoplasm-cell-theory-20260706-1238 -->
+<!-- lbfl-build-refresh: lecture-06-mitochondria-gold-v1-20260708-0658 -->
 
 <div class="lbfl-botany-index">
 
 <section class="lbfl-clean-hero">
   <span class="lbfl-clean-kicker">Chapter 01</span>
   <h2>কোষ ও এর গঠন</h2>
-  <p>এই অধ্যায়ের লক্ষ্য হলো কোষের গঠন, অঙ্গাণু এবং কাজকে diagram-ভিত্তিকভাবে বোঝা। এখানে শুধু প্রয়োজনীয় lecture route রাখা হলো।</p>
+  <p>এই অধ্যায়ের লক্ষ্য হলো কোষের গঠন, অঙ্গাণু এবং কাজকে diagram-ভিত্তিকভাবে বোঝা। Lecture 06 এখন LBFL GOLD TEMPLATE v1 হিসেবে finalized.</p>
 </section>
 
 <h2>Lesson Route</h2>
@@ -60,18 +60,18 @@ concept_level: "Chapter Gateway"
   </article>
   <article class="lbfl-clean-card">
     <span class="lbfl-tag">Lecture 02</span>
-    <h3><a href="{{ '/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/' | relative_url }}">প্লাজমা মেমব্রেন ও Fluid Mosaic Model</a></h3>
-    <p>কোষঝিল্লির গঠন, ফসফোলিপিড বাইলেয়ার, মেমব্রেন প্রোটিন এবং transport।</p>
+    <h3><a href="{{ '/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/' | relative_url }}">Plasma Membrane and Fluid Mosaic Model</a></h3>
+    <p>Cell membrane structure, phospholipid bilayer, membrane proteins and transport logic.</p>
   </article>
   <article class="lbfl-clean-card">
     <span class="lbfl-tag">Lecture 03</span>
-    <h3><a href="{{ '/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/' | relative_url }}">সাইটোপ্লাজম, রাইবোসোম ও প্রোটিন কারখানা</a></h3>
-    <p>সাইটোপ্লাজম, রাইবোসোম, 70S/80S, পলিসোম এবং protein synthesis।</p>
+    <h3><a href="{{ '/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/' | relative_url }}">Cytoplasm, Ribosome and Protein Factory</a></h3>
+    <p>Cytoplasm, ribosome, 70S/80S, polysome and protein synthesis.</p>
   </article>
   <article class="lbfl-clean-card">
-    <span class="lbfl-tag">Lecture 06</span>
-    <h3><a href="{{ '/biology/hsc-corner/botany/lecture-06-mitochondria/' | relative_url }}">মাইটোকন্ড্রিয়া — কোষের শক্তিঘর</a></h3>
-    <p>মাইটোকন্ড্রিয়ার গঠন, ATP production, cristae, matrix এবং high-energy cell logic।</p>
+    <span class="lbfl-tag">Lecture 06 • GOLD TEMPLATE v1</span>
+    <h3><a href="{{ '/biology/hsc-corner/botany/lecture-06-mitochondria/' | relative_url }}">Mitochondria — Powerhouse of the Cell</a></h3>
+    <p>Final GOLD pattern: glossary, original diagram, LOLO, LALA, DOT/LINE/CIRCLE, concept tables, MCQ, CQ and revision design.</p>
   </article>
 </div>
 
