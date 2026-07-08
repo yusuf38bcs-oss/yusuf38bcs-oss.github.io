@@ -4,10 +4,10 @@ author_profile: true
 author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
-title: "Lecture 06: মাইটোকন্ড্রিয়া — কোষের শক্তিঘর"
-excerpt: "HSC Botany Chapter 1 lesson on mitochondria, ATP, cristae, mitochondrial DNA, and cell energy logic."
+title: "Lecture 06: Mitochondria — Powerhouse of the Cell"
+excerpt: "HSC Botany GOLD TEMPLATE lesson on mitochondria, ATP, cristae, matrix, mitochondrial DNA and cellular energy."
 date: 2026-07-06T08:05:00.000+06:00
-last_modified_at: 2026-07-06T12:05:00.000+06:00
+last_modified_at: 2026-07-08T06:55:00.000+06:00
 permalink: /biology/hsc-corner/botany/lecture-06-mitochondria/
 categories:
   - Biology
@@ -15,10 +15,13 @@ categories:
   - Botany
 tags:
   - Mitochondria
+  - Mitochondrion
   - ATP
   - Cristae
-  - Cell Organelles
+  - Matrix
+  - Mitochondrial DNA
   - Cellular Respiration
+  - Cell Organelles
   - HSC Biology
 node_id: hsc-botany-lecture-06-mitochondria
 parent_node: hsc-botany-chapter-01-cell-and-its-structure
@@ -29,377 +32,84 @@ network:
 related: true
 synaptic_links:
   - /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
-  - /biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/
+  - /biology/hsc-corner/botany/lecture-05-golgi-lysosome-peroxisome/
   - /biology/hsc-corner/botany/lecture-07-plastid-chloroplast/
 toc: true
 toc_sticky: true
 classes: wide
-language: bn
+language: en
 curriculum_tracks:
   - HSC Botany
+  - HSC Biology
 hsc_alignment: "Chapter 1: Cell and its Structure — Mitochondria"
 concept_level: "Foundation"
+gold_template: "LBFL HSC Botany Lecture 06 — Mitochondria | GOLD TEMPLATE v1"
 ---
 
+<!-- lbfl-gold-template: lecture-06-mitochondria-v1-20260708 -->
+
 <style>
-.lbfl-botany-lesson{
-  --lbfl-bg:#020617;
-  --lbfl-panel:#071425;
-  --lbfl-card:#0b1528;
-  --lbfl-card-2:#101b30;
-  --lbfl-border:rgba(148,163,184,.24);
-  --lbfl-line:rgba(45,212,191,.42);
-  --lbfl-text:#e5edf7;
-  --lbfl-muted:#b8c4d6;
-  --lbfl-accent:#2dd4bf;
-  --lbfl-blue:#38bdf8;
-  --lbfl-lime:#bef264;
-  max-width:920px;
-  margin-inline:auto;
-  color:var(--lbfl-text);
-  font-size:clamp(1rem,2.6vw,1.08rem);
-  line-height:1.78;
-  overflow-wrap:break-word;
-}
-.lbfl-botany-lesson *{box-sizing:border-box}
-.lbfl-botany-lesson h2{
-  margin:2.3rem 0 1rem;
-  padding-bottom:.58rem;
-  border-bottom:1px solid rgba(148,163,184,.32);
-  color:#f8fafc;
-  font-size:clamp(1.65rem,6vw,2.35rem);
-  line-height:1.16;
-  letter-spacing:-.035em;
-}
-.lbfl-botany-lesson p{margin:0 0 1rem;color:var(--lbfl-text)}
-.lbfl-clean-hero,.lbfl-section-card,.lbfl-dlc-card,.lbfl-figure,.lbfl-exam-focus,.lbfl-practice-strip,.lbfl-summary-card{
-  border:1px solid var(--lbfl-border);
-  border-radius:24px;
-  background:linear-gradient(145deg,rgba(15,23,42,.96),rgba(3,12,24,.94));
-  box-shadow:0 18px 44px rgba(0,0,0,.24);
-}
-.lbfl-clean-hero{padding:clamp(1.15rem,4vw,2rem);margin:1.25rem 0 2rem;border-color:rgba(45,212,191,.42)}
-.lbfl-clean-kicker,.lbfl-mini-kicker{
-  display:inline-flex;align-items:center;gap:.35rem;margin:0 0 .85rem;padding:.38rem .78rem;border:1px solid rgba(45,212,191,.35);border-radius:999px;color:#a7f3d0;background:rgba(45,212,191,.08);font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase
-}
-.lbfl-clean-hero h2{border:0;margin:.2rem 0 1rem;padding:0;font-size:clamp(2rem,8vw,3.35rem)}
-.lbfl-clean-hero p{font-size:clamp(1.05rem,3.7vw,1.28rem);color:#dce7f6;margin:0}
-.lbfl-section-card{padding:clamp(1rem,3.5vw,1.35rem);margin:1rem 0 1.35rem}
-.lbfl-number-list{counter-reset:lbflnum;display:grid;gap:.72rem;margin:1rem 0 0;padding:0;list-style:none}
-.lbfl-number-list li{counter-increment:lbflnum;display:grid;grid-template-columns:2rem 1fr;gap:.75rem;align-items:start;padding:.82rem .9rem;border:1px solid rgba(148,163,184,.18);border-radius:16px;background:rgba(15,23,42,.54)}
-.lbfl-number-list li::before{content:counter(lbflnum);display:grid;place-items:center;width:2rem;height:2rem;border-radius:999px;background:linear-gradient(135deg,var(--lbfl-accent),var(--lbfl-blue));color:#001018;font-weight:900;line-height:1}
-.lbfl-check-list{display:grid;gap:.65rem;margin:1rem 0 0;padding:0;list-style:none}
-.lbfl-check-list li{position:relative;padding:.72rem .85rem .72rem 2.35rem;border:1px solid rgba(148,163,184,.18);border-radius:16px;background:rgba(15,23,42,.54)}
-.lbfl-check-list li::before{content:"✓";position:absolute;left:.85rem;top:.7rem;color:var(--lbfl-lime);font-weight:900}
-.lbfl-figure{padding:clamp(.7rem,2.5vw,1.1rem);margin:1.6rem 0 2.1rem;overflow:hidden;text-align:center}
-.lbfl-figure svg{display:block;width:100%;height:auto;max-width:760px;margin-inline:auto;border-radius:18px;background:#06111f}
-.lbfl-figure figcaption{margin:.9rem auto 0;max-width:720px;color:#cbd5e1;font-size:clamp(.92rem,3.1vw,1.05rem);line-height:1.65;text-align:center}
-.lbfl-dlc-grid{display:grid;gap:1rem;margin:1.2rem 0}
-.lbfl-dlc-card{padding:clamp(1rem,3.5vw,1.35rem);border-left:6px solid var(--lbfl-accent)}
-.lbfl-dlc-card h2{margin:0 0 .75rem;padding:0;border:0;font-size:clamp(1.45rem,5vw,2rem)}
-.lbfl-dlc-card p:last-child{margin-bottom:0}
-.lbfl-term-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:.85rem;margin:1rem 0 1.4rem}
-.lbfl-term-card{padding:1rem;border:1px solid rgba(148,163,184,.22);border-radius:18px;background:rgba(15,23,42,.66)}
-.lbfl-term-card strong{display:block;margin-bottom:.35rem;color:#a7f3d0;font-size:1.03rem}
-.lbfl-term-card span{display:block;color:#dbeafe;line-height:1.55}
-.lbfl-exam-focus{padding:1rem 1.05rem;margin:1rem 0 1.35rem;border-left:6px solid #f59e0b}
-.lbfl-exam-focus ul{margin:.2rem 0 0;padding-left:1.15rem}
-.lbfl-exam-focus li{margin:.48rem 0}
-.lbfl-board-focus{display:grid;gap:.6rem;margin:1rem 0;padding:0;list-style:none}
-.lbfl-board-focus li{padding:.72rem .9rem;border:1px solid rgba(148,163,184,.18);border-radius:14px;background:rgba(15,23,42,.52)}
-.lbfl-practice-strip{padding:clamp(1rem,3.5vw,1.35rem);margin:1rem 0 1.75rem;border-left:7px solid var(--lbfl-lime)}
-.lbfl-mcq-list{display:grid;gap:1rem;margin-top:.5rem}
-.lbfl-mcq-card{padding:1rem;border:1px solid rgba(148,163,184,.18);border-radius:18px;background:rgba(2,6,23,.42)}
-.lbfl-mcq-card h3{margin:0 0 .85rem;color:#f8fafc;font-size:clamp(1.05rem,3.7vw,1.24rem);line-height:1.45}
-.lbfl-options{display:grid;gap:.48rem;margin:.5rem 0 .9rem}
-.lbfl-option{display:flex;gap:.6rem;align-items:flex-start;padding:.58rem .7rem;border:1px solid rgba(148,163,184,.16);border-radius:12px;background:rgba(15,23,42,.5);line-height:1.45;cursor:pointer;transition:border-color .18s ease,background-color .18s ease,transform .18s ease}
-.lbfl-option:hover{border-color:rgba(45,212,191,.45);background:rgba(15,23,42,.75)}
-.lbfl-option input{width:1.05rem;height:1.05rem;margin:.18rem .15rem 0 0;accent-color:#2dd4bf;flex:0 0 auto}
-.lbfl-option b{flex:0 0 1.45rem;color:#93c5fd}
-.lbfl-option.is-correct{border-color:rgba(190,242,100,.65);background:rgba(190,242,100,.10)}
-.lbfl-option.is-wrong{border-color:rgba(248,113,113,.65);background:rgba(248,113,113,.10)}
-.lbfl-answer{display:inline-flex;gap:.45rem;align-items:center;padding:.45rem .7rem;border-radius:999px;background:rgba(190,242,100,.12);color:#d9f99d;font-weight:800}
-.lbfl-feedback{margin-top:.9rem;padding:.9rem;border:1px solid rgba(190,242,100,.28);border-radius:14px;background:rgba(190,242,100,.08);color:#e9fbd0}
-.lbfl-feedback[hidden]{display:none!important}
-.lbfl-feedback-title{margin:0 0 .35rem!important;color:#d9f99d;font-weight:900}
-.lbfl-feedback p:last-child{margin-bottom:0}
-.lbfl-mcq-actions{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(148,163,184,.18)}
-.lbfl-mcq-button{border:0;border-radius:999px;padding:.78rem 1.05rem;font-weight:900;cursor:pointer;background:linear-gradient(135deg,#2dd4bf,#38bdf8);color:#001018;box-shadow:0 10px 24px rgba(45,212,191,.16)}
-.lbfl-mcq-button.secondary{background:rgba(148,163,184,.12);color:#e5edf7;border:1px solid rgba(148,163,184,.25);box-shadow:none}
-.lbfl-score{display:inline-flex;min-height:2.4rem;align-items:center;padding:.45rem .78rem;border-radius:999px;background:rgba(56,189,248,.10);color:#bae6fd;font-weight:900}
-.lbfl-cq-list{display:grid;gap:.7rem;margin:1rem 0 1.5rem;padding:0;list-style:none}
-.lbfl-cq-list li{display:grid;grid-template-columns:2.2rem 1fr;gap:.7rem;align-items:start;padding:.85rem;border:1px solid rgba(148,163,184,.18);border-radius:16px;background:rgba(15,23,42,.56)}
-.lbfl-cq-list b{display:grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:999px;background:rgba(56,189,248,.16);color:#bae6fd}
-.lbfl-summary-card{padding:clamp(1rem,3.5vw,1.35rem);border-left:7px solid var(--lbfl-blue)}
-.lbfl-text-link{display:inline-flex;margin:1rem 0 0;padding:.75rem 1rem;border:1px solid rgba(45,212,191,.35);border-radius:999px;text-decoration:none!important;color:#a7f3d0!important;background:rgba(45,212,191,.08)}
-@media(max-width:640px){
-  .lbfl-botany-lesson{font-size:1rem;line-height:1.72;padding-inline:.05rem}
-  .lbfl-botany-lesson h2{font-size:1.72rem;margin-top:2rem}
-  .lbfl-clean-hero,.lbfl-section-card,.lbfl-dlc-card,.lbfl-figure,.lbfl-exam-focus,.lbfl-practice-strip,.lbfl-summary-card{border-radius:18px}
-  .lbfl-number-list li{grid-template-columns:1.75rem 1fr;padding:.72rem;gap:.65rem}
-  .lbfl-number-list li::before{width:1.75rem;height:1.75rem}
-  .lbfl-options{gap:.42rem}
-  .lbfl-option{padding:.52rem .58rem}
-  .lbfl-mcq-actions{align-items:stretch;flex-direction:column}
-  .lbfl-mcq-button,.lbfl-score{width:100%;justify-content:center;text-align:center}
-}
+.lbfl-gold{--ink:#0f172a;--muted:#475569;--line:#dbe4ee;--blue:#2563eb;--teal:#0f766e;--green:#15803d;--amber:#b45309;--violet:#6d28d9;max-width:980px;margin:auto;color:var(--ink);font-size:clamp(1rem,2.4vw,1.08rem);line-height:1.76}.lbfl-gold *{box-sizing:border-box}.lbfl-gold a{color:#1d4ed8;font-weight:800}.lbfl-gold h2{margin:2rem 0 1rem;font-size:clamp(1.55rem,4.8vw,2.15rem);line-height:1.15;letter-spacing:-.035em}.lbfl-hero,.lbfl-card,.lbfl-figure,.lbfl-table-card,.lbfl-flow,.lbfl-mcq-card,.lbfl-cq-card{border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 18px 42px rgba(15,23,42,.08)}.lbfl-hero{padding:clamp(1.25rem,4vw,2.25rem);margin:1rem 0 2rem;background:radial-gradient(circle at 18% 0%,rgba(37,99,235,.16),transparent 34%),radial-gradient(circle at 85% 18%,rgba(20,184,166,.17),transparent 32%),linear-gradient(135deg,#fff,#f8fbff)}.lbfl-kicker,.lbfl-pill{display:inline-flex;align-items:center;padding:.38rem .78rem;border-radius:999px;font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.lbfl-kicker{border:1px solid rgba(37,99,235,.22);background:#eff6ff;color:#1e40af;margin-bottom:.85rem}.lbfl-pill{border:1px solid rgba(20,184,166,.22);background:#f0fdfa;color:#0f766e;margin:.25rem .25rem .25rem 0}.lbfl-hero h1{margin:.15rem 0 .7rem;max-width:820px;font-size:clamp(2.15rem,7.8vw,4.25rem);line-height:1.02;letter-spacing:-.06em}.lbfl-hero .lead{max-width:820px;margin:0;color:#334155;font-size:clamp(1.05rem,3.3vw,1.25rem)}.lbfl-meta{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.1rem 0 0}.lbfl-meta span{padding:.45rem .7rem;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid var(--line);font-weight:800;color:#334155}.lbfl-card{padding:clamp(1rem,3.4vw,1.35rem);margin:1rem 0 1.25rem}.summary{background:#eef6ff;border-left:7px solid var(--blue)}.objectives{background:#ecfdf5;border-left:7px solid var(--green)}.outcomes{background:#f0fdfa;border-left:7px solid var(--teal)}.activities{background:#fffbeb;border-left:7px solid var(--amber)}.assessment{background:#f5f3ff;border-left:7px solid var(--violet)}.boundary{background:#f8fafc;border-left:7px solid #64748b}.lbfl-card h2,.lbfl-table-card h2,.lbfl-flow h2{margin:0 0 .8rem}.lbfl-list{display:grid;gap:.58rem;margin:.7rem 0 0;padding:0;list-style:none}.lbfl-list li{position:relative;padding:.72rem .85rem .72rem 2.25rem;border:1px solid rgba(148,163,184,.22);border-radius:16px;background:rgba(255,255,255,.66)}.lbfl-list li:before{content:"✓";position:absolute;left:.85rem;top:.72rem;color:var(--green);font-weight:900}.lbfl-figure{padding:1rem;margin:1.4rem 0 2rem;text-align:center;overflow:hidden}.mito-diagram{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem;align-items:center}.mito-cell{position:relative;min-height:330px;border:7px solid #166534;border-radius:48% 52% 45% 55%;background:#dcfce7}.mito-inner{position:absolute;inset:36px;border:4px solid #22c55e;border-radius:48% 52% 45% 55%;background:#ecfdf5}.cristae{position:absolute;inset:80px 120px 80px 120px;background:repeating-linear-gradient(90deg,transparent 0 24px,#0f766e 25px 32px,transparent 33px 54px);border-radius:40px;opacity:.9}.matrix{position:absolute;left:38%;top:43%;transform:translate(-50%,-50%);padding:.6rem .9rem;border-radius:16px;background:white;border:2px solid #84cc16;font-weight:900;color:#365314}.mtdna{position:absolute;right:19%;top:41%;width:78px;height:50px;border:4px solid #9333ea;border-radius:999px}.ribosome{position:absolute;width:15px;height:15px;border-radius:999px;background:#f97316}.r1{left:22%;top:32%}.r2{left:70%;top:30%}.r3{left:28%;top:68%}.r4{left:72%;top:66%}.mito-labels{display:grid;gap:.55rem}.mito-labels span{display:block;padding:.62rem .75rem;border:1px solid var(--line);border-radius:14px;background:#f8fafc;font-weight:900}.lbfl-figure figcaption{max-width:760px;margin:.9rem auto 0;color:#475569;font-size:.95rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));gap:.85rem;margin:1rem 0 1.35rem}.term{border:1px solid rgba(148,163,184,.26);border-radius:18px;padding:1rem;background:#fff}.term:nth-child(6n+1){background:#eff6ff}.term:nth-child(6n+2){background:#ecfdf5}.term:nth-child(6n+3){background:#f0fdfa}.term:nth-child(6n+4){background:#fffbeb}.term:nth-child(6n+5){background:#f5f3ff}.term:nth-child(6n+6){background:#fff1f2}.term strong{display:block;margin-bottom:.35rem;color:#0f172a}.term span{display:block;color:#334155;line-height:1.55}.lbfl-dlc{padding:1rem 1.1rem;border:1px solid var(--line);border-radius:24px;box-shadow:0 18px 42px rgba(15,23,42,.08);margin:1rem 0}.dot{background:#eff6ff;border-left:7px solid var(--blue)}.line{background:#f0fdfa;border-left:7px solid var(--teal)}.circle{background:#fff7ed;border-left:7px solid var(--amber)}.lbfl-table-card{padding:1rem;margin:1rem 0 1.4rem;overflow:hidden}.table-wrap{overflow-x:auto;border-radius:18px;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;margin:0;min-width:640px;background:#fff}th{background:#0f172a;color:#fff;text-align:left;padding:.85rem}td{border-top:1px solid #e5e7eb;padding:.82rem;color:#1e293b;vertical-align:top}tr:nth-child(even) td{background:#f8fafc}.lbfl-flow{padding:1rem 1.15rem;margin:1rem 0 1.4rem;background:#f8fafc;border-left:7px solid var(--green)}.chain{display:grid;gap:.55rem;margin:.7rem 0}.chain span{display:block;padding:.72rem .85rem;border:1px solid rgba(148,163,184,.22);border-radius:15px;background:#fff;font-weight:900;text-align:center}.mistake{padding:.9rem;border:1px solid rgba(244,63,94,.22);border-radius:17px;background:#fff1f2;margin:.75rem 0}.mistake b{color:#be123c}.mistake strong{color:#15803d}.chips{display:flex;flex-wrap:wrap;gap:.55rem;margin:1rem 0}.chips span{display:inline-flex;padding:.52rem .75rem;border-radius:999px;background:#f8fafc;border:1px solid var(--line);font-weight:800;color:#334155}.mcq-list,.cq-list{display:grid;gap:1rem;margin:1rem 0 1.4rem}.lbfl-mcq-card,.lbfl-cq-card{padding:1rem}.options{display:grid;gap:.5rem;margin:.6rem 0 .8rem}.option{display:flex;gap:.65rem;padding:.65rem .75rem;border:1px solid rgba(148,163,184,.24);border-radius:14px;background:#f8fafc;cursor:pointer}.option input{accent-color:#2563eb}.option b{color:#1d4ed8}.is-correct{border-color:#16a34a!important;background:#dcfce7!important}.is-wrong{border-color:#f43f5e!important;background:#ffe4e6!important}.feedback{margin-top:.85rem;padding:.85rem;border:1px solid rgba(22,163,74,.25);border-radius:14px;background:#f0fdf4;color:#14532d}.feedback[hidden]{display:none!important}.actions{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb}.btn{border:0;border-radius:999px;padding:.78rem 1.05rem;font-weight:900;cursor:pointer;background:linear-gradient(135deg,#2563eb,#14b8a6);color:#fff}.btn.secondary{background:#fff;color:#0f172a;border:1px solid var(--line)}.score{display:inline-flex;min-height:2.4rem;align-items:center;padding:.45rem .78rem;border-radius:999px;background:#eff6ff;color:#1e40af;font-weight:900}.lbfl-cq-card{background:#f8fafc}.lbfl-cq-card details{border:1px solid var(--line);border-radius:16px;background:#fff;padding:.85rem;margin:.75rem 0}.lbfl-cq-card summary{cursor:pointer;font-weight:900;color:#1e40af}.prevnext{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;margin:2rem 0}.prevnext a{padding:.75rem 1rem;border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none!important}@media(max-width:700px){.lbfl-hero h1{font-size:2.25rem}.mito-diagram{grid-template-columns:1fr}.actions{flex-direction:column;align-items:stretch}.btn,.score{width:100%;justify-content:center;text-align:center}}
 </style>
 
-<div class="lbfl-botany-lesson" markdown="1">
+<div class="lbfl-gold">
 
-<section class="lbfl-clean-hero">
-  <span class="lbfl-clean-kicker">Lecture 06</span>
-  <h2>মাইটোকন্ড্রিয়া — কোষের শক্তিঘর</h2>
-  <p>এই পাঠে মাইটোকন্ড্রিয়ার গঠন, ATP উৎপাদন, cristae, matrix, mitochondrial DNA এবং high-energy cell-এ mitochondria বেশি থাকার কারণ শেখা হবে।</p>
+<section class="lbfl-hero">
+  <span class="lbfl-kicker">LBFL GOLD TEMPLATE v1 • Lecture 06</span>
+  <h1>Mitochondria: Powerhouse of the Cell</h1>
+  <p class="lead">A complete HSC Botany lesson on mitochondrial structure, ATP, cristae, matrix, mitochondrial DNA and the energy logic of living cells.</p>
+  <div class="lbfl-meta"><span>Subject: HSC Botany</span><span>Chapter: Cell and Its Structure</span><span>Level: Foundation</span><span>Time: 30 minutes</span></div>
 </section>
 
-<section class="lbfl-section-card" markdown="1">
+<section class="lbfl-card summary"><h2>Lesson Summary</h2><p>This lesson explains the structure and function of mitochondria, why mitochondria are called the powerhouse of the cell, and how mitochondria help produce ATP for cellular activities.</p></section>
+<section class="lbfl-card boundary"><h2>Educational Boundary</h2><p>This lesson is for academic biology learning and HSC Biology preparation. It explains mitochondria in student-friendly language. For syllabus-specific wording, students should also follow their textbook, teacher and institutional guideline.</p></section>
 
-## Learning Objectives
+<section class="lbfl-card"><h2>Main Lesson Body</h2><p>Mitochondria are small organelles inside eukaryotic cells that help produce ATP, the usable energy molecule of the cell. Because ATP powers many cellular activities, mitochondria are often called the powerhouse of the cell.</p><p>A mitochondrion has two membranes. The outer membrane surrounds the organelle. The inner membrane is folded into cristae. These folds increase the surface area for reactions related to ATP production. The inner fluid-filled region is called the matrix. Mitochondria also contain their own small DNA.</p><p>Cells that need more energy usually contain more mitochondria. For example, muscle cells, liver cells, kidney cells and brain cells need high energy, so they depend strongly on mitochondrial activity.</p></section>
 
-এই lesson শেষে শিক্ষার্থী পারবে—
+<figure class="lbfl-figure"><div class="mito-diagram"><div class="mito-cell" aria-label="Original LBFL schematic mitochondrion diagram"><div class="mito-inner"></div><div class="cristae"></div><div class="matrix">Matrix</div><div class="mtdna" title="Mitochondrial DNA"></div><i class="ribosome r1"></i><i class="ribosome r2"></i><i class="ribosome r3"></i><i class="ribosome r4"></i></div><div class="mito-labels"><span>Outer membrane</span><span>Inner membrane</span><span>Cristae</span><span>Matrix</span><span>Mitochondrial DNA</span><span>Ribosome</span><span>Intermembrane space</span><span>ATP production</span><span>LBFL • learningbiologyforlife.org</span></div></div><figcaption>Figure: Basic structure of mitochondrion showing cristae, matrix, mitochondrial DNA and ATP production. Source: LBFL original educational diagram.</figcaption></figure>
 
-<ol class="lbfl-number-list">
-  <li>মাইটোকন্ড্রিয়াকে simple language-এ সংজ্ঞায়িত করতে।</li>
-  <li>mitochondria-কে কেন cell-এর powerhouse বলা হয় তা ব্যাখ্যা করতে।</li>
-  <li>ATP-এর cellular role বুঝতে।</li>
-  <li>cristae, matrix, outer membrane, inner membrane এবং mitochondrial DNA শনাক্ত করতে।</li>
-  <li>muscle, liver, kidney ও brain cell-এ mitochondria বেশি থাকার কারণ ব্যাখ্যা করতে।</li>
-</ol>
+<section><h2>Core Glossary</h2><div class="grid"><div class="term"><strong>Mitochondria</strong><span>Energy-producing organelles that help the cell make ATP.</span></div><div class="term"><strong>Mitochondrion</strong><span>One energy-producing mitochondrial organelle.</span></div><div class="term"><strong>ATP</strong><span>Adenosine triphosphate, the usable energy molecule of the cell.</span></div><div class="term"><strong>Cristae</strong><span>Folds of the inner mitochondrial membrane that increase surface area.</span></div><div class="term"><strong>Matrix</strong><span>The inner fluid-filled space of mitochondria.</span></div><div class="term"><strong>Mitochondrial DNA</strong><span>Small genetic material found inside mitochondria, separate from nuclear DNA.</span></div><div class="term"><strong>Cellular Respiration</strong><span>The process by which cells release usable energy from food molecules and help produce ATP.</span></div></div><p><strong>Beginner note:</strong> “Mitochondrion” means one organelle. “Mitochondria” means many organelles.</p></section>
 
-</section>
+<section class="lbfl-card objectives"><h2>Learning Objectives</h2><ul class="lbfl-list"><li>Define mitochondria in simple biological language.</li><li>Explain why mitochondria are called the powerhouse of the cell.</li><li>Identify the main parts of a mitochondrion.</li><li>Describe the role of ATP in cellular activities.</li><li>Explain the importance of cristae in ATP production.</li><li>Relate mitochondria with high-energy cells such as muscle, liver, kidney and brain cells.</li><li>Distinguish between mitochondrion and mitochondria.</li></ul></section>
+<section class="lbfl-card outcomes"><h2>Learning Outcomes</h2><ul class="lbfl-list"><li>Students can describe mitochondria as energy-producing organelles.</li><li>Students can explain the relationship between mitochondria and ATP.</li><li>Students can identify outer membrane, inner membrane, cristae, matrix and mitochondrial DNA from a diagram.</li><li>Students can explain why cristae increase functional surface area.</li><li>Students can identify why high-energy cells contain many mitochondria.</li><li>Students can connect mitochondrial structure with cellular respiration and cell function.</li><li>Students can correctly use the words mitochondrion and mitochondria.</li></ul></section>
+<section class="lbfl-card activities"><h2>Learning Activities</h2><ul class="lbfl-list"><li>Observe a labelled diagram of a mitochondrion.</li><li>Identify outer membrane, inner membrane, cristae, matrix and mitochondrial DNA.</li><li>Write the difference between mitochondrion and mitochondria.</li><li>Explain why mitochondria are called the powerhouse of the cell.</li><li>Compare a low-energy cell and a high-energy cell.</li><li>Explain why muscle cells need more mitochondria.</li><li>Draw a simple flowchart: Food molecule → Cellular respiration → ATP → Cell work.</li><li>Write one sentence connecting mitochondria with life activities.</li></ul></section>
+<section class="lbfl-card assessment"><h2>Learning Assessment</h2><ul class="lbfl-list"><li>What are mitochondria?</li><li>What is a mitochondrion?</li><li>What is ATP?</li><li>Why are mitochondria called the powerhouse of the cell?</li><li>What are cristae?</li><li>What is the matrix of mitochondria?</li><li>Why do muscle cells contain many mitochondria?</li><li>What is mitochondrial DNA?</li><li>How does mitochondrial structure support mitochondrial function?</li></ul></section>
 
-<section class="lbfl-section-card" markdown="1">
+<section class="lbfl-dlc dot"><h2>DOT — Concept Clarity</h2><p>Mitochondria are membrane-bound organelles found in most eukaryotic cells. They are called the powerhouse of the cell because they help produce ATP. ATP is the usable energy molecule that powers cellular activities.</p><p>A single mitochondrial organelle is called a mitochondrion. A cell may contain many mitochondria. The number of mitochondria varies according to the energy need of the cell. Cells that perform more work usually need more ATP, so they usually contain more mitochondria.</p><p>A mitochondrion has two membranes. The outer membrane covers the organelle. The inner membrane is folded into cristae. Cristae increase the surface area of the inner membrane. This helps the mitochondrion perform reactions related to ATP production more efficiently.</p><p>The inner fluid-filled region of the mitochondrion is called the matrix. The matrix contains enzymes, mitochondrial DNA and mitochondrial ribosomes. Mitochondrial DNA is separate from nuclear DNA. This is one reason mitochondria are considered semi-autonomous organelles.</p><p><strong>Main learning formula:</strong> Mitochondria → Cellular respiration → ATP → Cell activities</p></section>
+<section class="lbfl-dlc line"><h2>LINE — Application and Connection</h2><p>Mitochondria connect food, oxygen, cellular respiration and usable energy. Food molecules contain chemical energy, but the cell cannot use that energy directly. The cell needs ATP. Mitochondria help convert food-based chemical energy into ATP.</p><p>ATP is used in movement of materials across membranes, protein synthesis, cell growth, cell repair, muscle contraction, nerve activity, active transport and cell division.</p><p>This is why high-energy cells usually contain many mitochondria. Muscle cells need energy for contraction. Liver cells need energy for chemical processing. Kidney cells need energy for transport and filtration-related activities. Brain cells need energy for nerve signaling and maintaining cellular balance.</p><p>Mitochondria also connect with other organelles. Ribosomes produce proteins. Endoplasmic reticulum and Golgi body help process and transport materials. Mitochondria provide ATP so these activities can continue. Therefore, mitochondria are not isolated “energy boxes.” They are part of a larger cellular system.</p></section>
+<section class="lbfl-dlc circle"><h2>CIRCLE — Reflection and Life Connection</h2><p>Mitochondria teach that life depends on organized energy management. A cell may have many materials, but materials alone are not enough. The cell must convert stored chemical energy into usable energy. Without ATP, cellular activities slow down or stop.</p><p>This is also true in learning. A student may have books, notes and information, but those materials must be converted into usable understanding. Attention, discipline, revision and practice are like the learning mitochondria. They convert information into real ability.</p><p>Mitochondria also teach balance. High-energy work needs high-energy preparation. A cell that works harder needs more mitochondria. A student who wants strong output also needs proper sleep, nutrition, routine, focus and revision. Energy must be managed, not wasted.</p></section>
 
-## Learning Outcomes
+<section class="lbfl-table-card"><h2>Concept Table</h2><div class="table-wrap"><table><thead><tr><th>Term</th><th>Simple Meaning</th><th>HSC Biology Importance</th></tr></thead><tbody><tr><td>Mitochondria</td><td>Energy-producing organelles</td><td>Help produce ATP</td></tr><tr><td>Mitochondrion</td><td>One mitochondria</td><td>Singular form</td></tr><tr><td>ATP</td><td>Usable energy molecule</td><td>Powers cell activities</td></tr><tr><td>Cristae</td><td>Folds of inner membrane</td><td>Increase surface area</td></tr><tr><td>Matrix</td><td>Inner fluid-filled space</td><td>Contains enzymes and mtDNA</td></tr><tr><td>Cellular Respiration</td><td>Energy-releasing process</td><td>Produces ATP with mitochondrial role</td></tr></tbody></table></div></section>
+<section class="lbfl-table-card"><h2>Mitochondria Structure Table</h2><div class="table-wrap"><table><thead><tr><th>Part</th><th>Description</th><th>Function</th></tr></thead><tbody><tr><td>Outer membrane</td><td>Outer covering of mitochondrion</td><td>Protects and surrounds the organelle</td></tr><tr><td>Inner membrane</td><td>Inner folded membrane</td><td>Site closely related to ATP production</td></tr><tr><td>Cristae</td><td>Folds of inner membrane</td><td>Increase surface area</td></tr><tr><td>Matrix</td><td>Inner fluid-filled region</td><td>Contains enzymes, mtDNA and ribosomes</td></tr><tr><td>Intermembrane space</td><td>Space between outer and inner membrane</td><td>Involved in energy-related processes</td></tr><tr><td>Mitochondrial DNA</td><td>Small DNA inside mitochondria</td><td>Carries some mitochondrial genetic information</td></tr><tr><td>Mitochondrial ribosome</td><td>Ribosome inside mitochondria</td><td>Helps produce some mitochondrial proteins</td></tr></tbody></table></div></section>
 
-এই lesson শেষ করার পর শিক্ষার্থী—
+<section class="lbfl-flow"><h2>Why Mitochondria Are Called Powerhouse of the Cell</h2><p>Mitochondria are called the powerhouse of the cell because they help produce ATP. ATP is not the same as general energy. ATP is a usable energy-carrying molecule. The cell uses ATP to perform work.</p><div class="chain"><span>Food molecule</span><span>↓</span><span>Cellular respiration</span><span>↓</span><span>ATP production</span><span>↓</span><span>Cell activities</span></div><p>So, mitochondria do not create energy from nothing. They help convert chemical energy stored in food molecules into ATP.</p></section>
+<section class="lbfl-flow"><h2>Diagram Task</h2><p>Draw a mitochondrion and label: outer membrane, inner membrane, cristae, matrix, mitochondrial DNA, ribosome, intermembrane space and ATP production site.</p><p><strong>Write below the diagram:</strong> Cristae increase surface area for ATP production.</p></section>
 
-<ul class="lbfl-check-list">
-  <li>mitochondria-কে energy-producing organelle হিসেবে ব্যাখ্যা করতে পারবে।</li>
-  <li>ATP ও mitochondria-এর সম্পর্ক লিখতে পারবে।</li>
-  <li>cristae কীভাবে ATP production-এর জন্য surface area বাড়ায় তা বুঝতে পারবে।</li>
-  <li>high-energy cell ও low-energy cell-এর functional difference ব্যাখ্যা করতে পারবে।</li>
-  <li>cell structure এবং cell function-এর মধ্যে connection তৈরি করতে পারবে।</li>
-</ul>
+<section><h2>Key Terms</h2><div class="grid"><div class="term"><strong>Mitochondria</strong><span>Energy-producing organelles inside eukaryotic cells.</span></div><div class="term"><strong>Mitochondrion</strong><span>Singular form of mitochondria.</span></div><div class="term"><strong>ATP</strong><span>Usable energy molecule of the cell.</span></div><div class="term"><strong>Cristae</strong><span>Folds of the inner mitochondrial membrane.</span></div><div class="term"><strong>Matrix</strong><span>Inner fluid-filled space of mitochondria.</span></div><div class="term"><strong>Mitochondrial DNA</strong><span>Small genetic material found inside mitochondria.</span></div><div class="term"><strong>Cellular Respiration</strong><span>Process that helps release usable energy from food molecules.</span></div><div class="term"><strong>Semi-autonomous Organelle</strong><span>Organelle with its own DNA and ribosomes but still dependent on the cell.</span></div></div></section>
+<section><h2>Common Mistakes</h2><div class="mistake"><b>Mistake:</b> Thinking mitochondria produce energy from nothing. <strong>Correction:</strong> Mitochondria help convert food-based chemical energy into ATP.</div><div class="mistake"><b>Mistake:</b> Thinking ATP is an organelle. <strong>Correction:</strong> ATP is a molecule that carries usable energy.</div><div class="mistake"><b>Mistake:</b> Thinking all cells have the same number of mitochondria. <strong>Correction:</strong> High-energy cells usually contain more mitochondria.</div><div class="mistake"><b>Mistake:</b> Confusing mitochondria and mitochondrion. <strong>Correction:</strong> Mitochondrion means one; mitochondria means many.</div><div class="mistake"><b>Mistake:</b> Thinking cristae are found in chloroplasts. <strong>Correction:</strong> Cristae are folds of the inner mitochondrial membrane.</div><div class="mistake"><b>Mistake:</b> Thinking mitochondria are found in prokaryotic cells. <strong>Correction:</strong> Mitochondria are found in eukaryotic cells, not prokaryotic cells.</div></section>
+<section><h2>Revision Points</h2><div class="chips"><span>Mitochondria are energy-producing organelles.</span><span>One mitochondrial organelle is called a mitochondrion.</span><span>Mitochondria are found in most eukaryotic cells.</span><span>Mitochondria help produce ATP.</span><span>ATP is the usable energy molecule of the cell.</span><span>Mitochondria have two membranes.</span><span>The inner membrane forms folds called cristae.</span><span>The matrix is the inner fluid-filled space.</span><span>Mitochondria contain their own small DNA.</span><span>High-energy cells usually contain many mitochondria.</span></div></section>
 
-</section>
+<section class="lbfl-card summary"><h2>Student Takeaway</h2><p>Mitochondria are the cell’s energy factories. They help convert food-based chemical energy into ATP, which powers cellular activities.</p></section>
+<section class="lbfl-card boundary"><h2>Teacher Note</h2><p>Emphasize that mitochondria do not create energy from nothing. They help convert chemical energy from food molecules into ATP. Use high-energy examples such as muscle cells, liver cells, kidney cells and brain cells.</p><p>Clarify early: <strong>One = mitochondrion. Many = mitochondria.</strong></p><p>Students often memorize “powerhouse of the cell” without understanding ATP. Make ATP the central idea of the lesson.</p></section>
+<section class="lbfl-card activities"><h2>Exam Focus</h2><p><strong>For MCQ:</strong> definition of mitochondria, meaning of mitochondrion, ATP, cristae, matrix, mitochondrial DNA, high-energy cells and powerhouse logic.</p><p><strong>For CQ:</strong> structure-function relationship, cristae, mitochondria and ATP, muscle-cell energy demand, and how mitochondria connect food energy with cellular work.</p></section>
 
-<figure class="lbfl-figure">
-<svg viewBox="0 0 760 430" role="img" aria-label="Labelled mitochondrion diagram showing outer membrane inner membrane cristae matrix mitochondrial DNA ribosome and ATP production">
-  <rect width="760" height="430" rx="28" fill="#06111f"/>
-  <ellipse cx="380" cy="215" rx="260" ry="130" fill="#13233a" stroke="#38bdf8" stroke-width="5"/>
-  <ellipse cx="380" cy="215" rx="220" ry="98" fill="#1e3a5f" stroke="#93c5fd" stroke-width="3"/>
-  <path d="M220 210 C260 150 300 280 340 210 C380 150 420 280 460 210 C500 150 540 280 580 210" fill="none" stroke="#fbbf24" stroke-width="11" stroke-linecap="round"/>
-  <circle cx="310" cy="165" r="10" fill="#bef264"/>
-  <circle cx="455" cy="280" r="10" fill="#bef264"/>
-  <path d="M505 155 C545 135 575 160 555 190 C535 220 495 200 505 155" fill="none" stroke="#fb7185" stroke-width="6"/>
-  <g fill="#e5edf9" font-family="Arial, sans-serif" font-size="18" font-weight="700">
-    <text x="65" y="86">Outer membrane</text>
-    <text x="530" y="91">Inner membrane</text>
-    <text x="305" y="93">Cristae</text>
-    <text x="332" y="307">Matrix</text>
-    <text x="508" y="140">Mitochondrial DNA</text>
-    <text x="468" y="303">Ribosome</text>
-    <text x="298" y="378">ATP production</text>
-  </g>
-  <g stroke="#e5edf9" stroke-width="2" opacity="0.85">
-    <line x1="168" y1="92" x2="160" y2="198"/>
-    <line x1="565" y1="97" x2="545" y2="200"/>
-    <line x1="360" y1="100" x2="382" y2="206"/>
-    <line x1="395" y1="300" x2="400" y2="238"/>
-  </g>
-</svg>
-<figcaption>Figure: Mitochondrion হলো double-membrane organelle. Inner membrane-এর fold বা cristae ATP production-এর জন্য surface area বাড়ায়।</figcaption>
-</figure>
+<section id="mitochondria-mcq-set"><h2>Mitochondria MCQ Set</h2><p class="lbfl-pill">Interactive Practice</p><div class="mcq-list" data-lbfl-mcq>
+<article class="lbfl-mcq-card" data-answer="B"><h3>1. Mitochondria are mainly known for:</h3><div class="options"><label class="option"><input type="radio" name="q1" value="A"><b>A.</b> Protein synthesis</label><label class="option"><input type="radio" name="q1" value="B"><b>B.</b> ATP production</label><label class="option"><input type="radio" name="q1" value="C"><b>C.</b> Photosynthesis</label><label class="option"><input type="radio" name="q1" value="D"><b>D.</b> Chromosome formation</label></div><div class="feedback" hidden><b>Answer: B.</b> Mitochondria help produce ATP, the usable energy molecule of the cell.</div></article>
+<article class="lbfl-mcq-card" data-answer="B"><h3>2. A single mitochondria is called:</h3><div class="options"><label class="option"><input type="radio" name="q2" value="A"><b>A.</b> Mitochondrial DNA</label><label class="option"><input type="radio" name="q2" value="B"><b>B.</b> Mitochondrion</label><label class="option"><input type="radio" name="q2" value="C"><b>C.</b> Matrix</label><label class="option"><input type="radio" name="q2" value="D"><b>D.</b> Cristae</label></div><div class="feedback" hidden><b>Answer: B.</b> Mitochondrion is the singular form of mitochondria.</div></article>
+<article class="lbfl-mcq-card" data-answer="C"><h3>3. ATP is best described as:</h3><div class="options"><label class="option"><input type="radio" name="q3" value="A"><b>A.</b> A cell organelle</label><label class="option"><input type="radio" name="q3" value="B"><b>B.</b> A pigment</label><label class="option"><input type="radio" name="q3" value="C"><b>C.</b> Usable energy molecule of the cell</label><label class="option"><input type="radio" name="q3" value="D"><b>D.</b> A chromosome</label></div><div class="feedback" hidden><b>Answer: C.</b> ATP is the usable energy molecule that powers cellular activities.</div></article>
+<article class="lbfl-mcq-card" data-answer="A"><h3>4. Cristae are:</h3><div class="options"><label class="option"><input type="radio" name="q4" value="A"><b>A.</b> Folds of the inner mitochondrial membrane</label><label class="option"><input type="radio" name="q4" value="B"><b>B.</b> Folds of chloroplast membrane</label><label class="option"><input type="radio" name="q4" value="C"><b>C.</b> Fluid inside the nucleus</label><label class="option"><input type="radio" name="q4" value="D"><b>D.</b> Digestive enzymes</label></div><div class="feedback" hidden><b>Answer: A.</b> Cristae are folds of the inner membrane of mitochondria.</div></article>
+<article class="lbfl-mcq-card" data-answer="B"><h3>5. The matrix of mitochondria is:</h3><div class="options"><label class="option"><input type="radio" name="q5" value="A"><b>A.</b> Outer covering of mitochondria</label><label class="option"><input type="radio" name="q5" value="B"><b>B.</b> Inner fluid-filled space</label><label class="option"><input type="radio" name="q5" value="C"><b>C.</b> Cell wall material</label><label class="option"><input type="radio" name="q5" value="D"><b>D.</b> Part of plasma membrane</label></div><div class="feedback" hidden><b>Answer: B.</b> Matrix is the inner fluid-filled region of mitochondria.</div></article>
+<article class="lbfl-mcq-card" data-answer="B"><h3>6. Which cells usually contain many mitochondria?</h3><div class="options"><label class="option"><input type="radio" name="q6" value="A"><b>A.</b> Cells with low energy demand</label><label class="option"><input type="radio" name="q6" value="B"><b>B.</b> High-energy cells such as muscle cells</label><label class="option"><input type="radio" name="q6" value="C"><b>C.</b> Dead cells only</label><label class="option"><input type="radio" name="q6" value="D"><b>D.</b> Bacterial cells</label></div><div class="feedback" hidden><b>Answer: B.</b> Muscle cells need much energy for contraction, so they usually contain many mitochondria.</div></article>
+<article class="lbfl-mcq-card" data-answer="C"><h3>7. Mitochondria are called the powerhouse of the cell because they:</h3><div class="options"><label class="option"><input type="radio" name="q7" value="A"><b>A.</b> Store water</label><label class="option"><input type="radio" name="q7" value="B"><b>B.</b> Produce chlorophyll</label><label class="option"><input type="radio" name="q7" value="C"><b>C.</b> Help produce ATP</label><label class="option"><input type="radio" name="q7" value="D"><b>D.</b> Destroy chromosomes</label></div><div class="feedback" hidden><b>Answer: C.</b> Mitochondria help produce ATP, which powers cellular activities.</div></article>
+<article class="lbfl-mcq-card" data-answer="B"><h3>8. Which structure increases the surface area of the inner mitochondrial membrane?</h3><div class="options"><label class="option"><input type="radio" name="q8" value="A"><b>A.</b> Grana</label><label class="option"><input type="radio" name="q8" value="B"><b>B.</b> Cristae</label><label class="option"><input type="radio" name="q8" value="C"><b>C.</b> Nucleolus</label><label class="option"><input type="radio" name="q8" value="D"><b>D.</b> Cell wall</label></div><div class="feedback" hidden><b>Answer: B.</b> Cristae increase inner membrane surface area.</div></article>
+<article class="lbfl-mcq-card" data-answer="A"><h3>9. Mitochondrial DNA is found:</h3><div class="options"><label class="option"><input type="radio" name="q9" value="A"><b>A.</b> Inside mitochondria</label><label class="option"><input type="radio" name="q9" value="B"><b>B.</b> Inside cell wall</label><label class="option"><input type="radio" name="q9" value="C"><b>C.</b> Inside chlorophyll</label><label class="option"><input type="radio" name="q9" value="D"><b>D.</b> Outside the cell</label></div><div class="feedback" hidden><b>Answer: A.</b> Mitochondria contain their own small DNA inside the organelle.</div></article>
+<article class="lbfl-mcq-card" data-answer="C"><h3>10. Which statement is correct?</h3><div class="options"><label class="option"><input type="radio" name="q10" value="A"><b>A.</b> Mitochondria are found in prokaryotic cells.</label><label class="option"><input type="radio" name="q10" value="B"><b>B.</b> ATP is a type of organelle.</label><label class="option"><input type="radio" name="q10" value="C"><b>C.</b> Mitochondria help convert food-based chemical energy into ATP.</label><label class="option"><input type="radio" name="q10" value="D"><b>D.</b> Cristae are found in ribosomes.</label></div><div class="feedback" hidden><b>Answer: C.</b> Mitochondria help convert chemical energy from food molecules into ATP.</div></article>
+</div><div class="actions"><button type="button" class="btn" data-submit>Submit Answers</button><button type="button" class="btn secondary" data-reset>Try Again</button><span class="score" data-score>Score will appear after submission.</span></div></section>
 
-<div class="lbfl-dlc-grid">
+<section id="mitochondria-cq-practice"><h2>Mitochondria CQ Practice</h2><article class="lbfl-cq-card"><h3>CQ Stimulus 1</h3><p>A student observed a diagram of a double-membrane organelle. The inner membrane was folded many times. The teacher said that this organelle helps produce ATP and is highly abundant in muscle cells.</p><details open><summary>Questions</summary><p><strong>ক.</strong> What is mitochondria?</p><p><strong>খ.</strong> Why are mitochondria called the powerhouse of the cell?</p><p><strong>গ.</strong> Explain the structure of mitochondria based on the stimulus.</p><p><strong>ঘ.</strong> Analyze why muscle cells contain many mitochondria.</p></details><details><summary>Model Answer</summary><p><strong>ক.</strong> Mitochondria are energy-producing organelles found in most eukaryotic cells. They help produce ATP, the usable energy molecule of the cell.</p><p><strong>খ.</strong> Mitochondria are called the powerhouse of the cell because they help produce ATP. ATP provides usable energy for many cellular activities such as movement, transport, growth, repair and biosynthesis.</p><p><strong>গ.</strong> A mitochondrion has two membranes. The outer membrane surrounds the organelle. The inner membrane is folded into cristae. These cristae increase the surface area for ATP-related reactions. The inner fluid-filled region is called the matrix. Mitochondria also contain mitochondrial DNA and ribosomes.</p><p><strong>ঘ.</strong> Muscle cells need a large amount of ATP for contraction and movement. Since mitochondria help produce ATP, muscle cells usually contain many mitochondria. More mitochondria allow the cell to meet higher energy demand.</p></details></article><article class="lbfl-cq-card"><h3>CQ Stimulus 2</h3><p>A biology teacher wrote on the board: Food molecule → Cellular respiration → ATP → Cell work. Then the teacher asked students to explain the role of mitochondria in this flow.</p><details open><summary>Questions</summary><p><strong>ক.</strong> What is ATP?</p><p><strong>খ.</strong> Why do cells need ATP?</p><p><strong>গ.</strong> Explain the role of mitochondria in the flowchart.</p><p><strong>ঘ.</strong> Analyze how mitochondrial structure supports its function.</p></details><details><summary>Model Answer</summary><p><strong>ক.</strong> ATP is the usable energy molecule of the cell.</p><p><strong>খ.</strong> Cells need ATP because ATP provides usable energy for cellular work. Activities such as active transport, protein synthesis, growth, repair, movement and cell division require ATP.</p><p><strong>গ.</strong> Mitochondria help convert chemical energy from food molecules into ATP through cellular respiration. Food molecules store energy, but the cell cannot use all of that energy directly. Mitochondria help produce ATP, and ATP powers cell work.</p><p><strong>ঘ.</strong> Mitochondrial structure is strongly related to ATP production. The outer membrane protects the organelle. The inner membrane is folded into cristae, which increase surface area. The matrix contains enzymes and mitochondrial DNA. These features help mitochondria perform their energy-producing role efficiently.</p></details></article></section>
 
-<section class="lbfl-dlc-card" markdown="1">
-
-## DOT — Concept Clarity
-
-Mitochondria হলো cell-এর ভেতরে থাকা ছোট energy-producing organelle। একটি mitochondria-কে singular form-এ **mitochondrion** বলা হয়। এর প্রধান কাজ হলো food-based chemical energy-কে **ATP**-তে রূপান্তর করা। ATP হলো cell-এর usable energy molecule।
-
-Mitochondrion-এর দুটি membrane থাকে। বাইরের membrane organelle-কে ঘিরে রাখে। ভেতরের membrane fold হয়ে **cristae** তৈরি করে। এই fold surface area বাড়ায়, ফলে ATP production-এর জন্য বেশি জায়গা পাওয়া যায়। Inner space বা fluid-filled অংশকে **matrix** বলা হয়। Mitochondria-এর নিজস্ব ছোট DNA-ও থাকে, যাকে mitochondrial DNA বলে।
-
-</section>
-
-<section class="lbfl-dlc-card" markdown="1">
-
-## LINE — Application and Connection
-
-যে cell বেশি কাজ করে, সেই cell বেশি energy ব্যবহার করে। তাই muscle cell-এ mitochondria বেশি থাকে, কারণ muscle contraction-এর জন্য ATP লাগে। Liver cell অনেক chemical work করে, kidney cell transport ও filtration-এ কাজ করে, আর brain cell constant signal processing করে। এই কারণে এসব high-energy cell সাধারণত mitochondria-rich হয়।
-
-Mitochondria food, oxygen, cellular respiration, ATP এবং body function-কে এক energy system-এ যুক্ত করে। তাই mitochondria বোঝা মানে শুধু একটি organelle মুখস্থ করা নয়; বরং cell কীভাবে কাজ করার শক্তি পায় তা বোঝা।
-
-</section>
-
-<section class="lbfl-dlc-card" markdown="1">
-
-## CIRCLE — Reflection and Life Connection
-
-Mitochondria শেখায় যে জীবন শুধু material দিয়ে চলে না; material-কে usable energy-তে রূপান্তর করতে হয়। Cell-এর মতো learning life-তেও information থাকলেই হয় না; information-কে understanding, practice এবং disciplined action-এ রূপান্তর করতে হয়।
-
-</section>
-
+<section class="lbfl-card boundary"><h2>References</h2><ul class="lbfl-list"><li>National Human Genome Research Institute: Mitochondria genetics glossary.</li><li>NCBI Bookshelf: The Mitochondrion, Molecular Biology of the Cell.</li><li>NCBI Bookshelf: Mitochondria, The Cell.</li><li>Standard HSC Biology textbook discussion on mitochondria.</li><li>LBFL original educational diagram.</li></ul></section>
+<nav class="prevnext"><a href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">← Chapter 01 Index</a><a href="{{ '/biology/hsc-corner/botany/lecture-07-plastid-chloroplast/' | relative_url }}">Next: Plastid and Chloroplast →</a></nav>
 </div>
 
-## Key Terms
-
-<div class="lbfl-term-grid">
-  <article class="lbfl-term-card"><strong>Mitochondria</strong><span>Cell-এর energy-producing organelles</span></article>
-  <article class="lbfl-term-card"><strong>Mitochondrion</strong><span>একটি mitochondria-এর singular form</span></article>
-  <article class="lbfl-term-card"><strong>ATP</strong><span>Cell-এর usable energy molecule</span></article>
-  <article class="lbfl-term-card"><strong>Cristae</strong><span>Inner mitochondrial membrane-এর folds</span></article>
-  <article class="lbfl-term-card"><strong>Matrix</strong><span>Mitochondrion-এর inner fluid-filled space</span></article>
-  <article class="lbfl-term-card"><strong>Mitochondrial DNA</strong><span>Mitochondria-এর নিজস্ব ছোট genetic material</span></article>
-</div>
-
-## Common Mistakes
-
-<div class="lbfl-exam-focus">
-<ul class="lbfl-compact-list">
-  <li><strong>ভুল:</strong> mitochondria energy শূন্য থেকে তৈরি করে। <strong>সঠিক:</strong> mitochondria chemical energy-কে ATP-তে রূপান্তর করে।</li>
-  <li><strong>ভুল:</strong> ATP একটি organelle। <strong>সঠিক:</strong> ATP একটি molecule।</li>
-  <li><strong>ভুল:</strong> সব cell-এ mitochondria সংখ্যা একই। <strong>সঠিক:</strong> high-energy cell-এ mitochondria বেশি থাকে।</li>
-  <li><strong>ভুল:</strong> mitochondria ও mitochondrion একই grammar। <strong>সঠিক:</strong> mitochondrion = one; mitochondria = many।</li>
-</ul>
-</div>
-
-## HSC Board Focus
-
-<ul class="lbfl-board-focus">
-  <li>Mitochondria-এর গঠন ও কাজ।</li>
-  <li>Double membrane এবং cristae-এর significance।</li>
-  <li>ATP production এবং powerhouse concept।</li>
-  <li>High-energy cell-এ mitochondria বেশি থাকার কারণ।</li>
-  <li>Mitochondrial DNA-এর basic idea।</li>
-</ul>
-
-## MCQ Practice
-
-<form class="lbfl-practice-strip" data-lbfl-mcq-form>
-  <p class="lbfl-mini-kicker">Self-check</p>
-  <p>প্রথমে উত্তর নির্বাচন করো। তারপর <strong>Submit Answers</strong> চাপলে সঠিক উত্তর ও ব্যাখ্যা দেখা যাবে।</p>
-
-  <div class="lbfl-mcq-list">
-    <article class="lbfl-mcq-card" data-answer="B">
-      <h3>1. Cell-এর powerhouse বলা হয় কোন organelle-কে?</h3>
-      <div class="lbfl-options">
-        <label class="lbfl-option"><input type="radio" name="lbfl-q1" value="A"><b>A.</b><span>Ribosome</span></label>
-        <label class="lbfl-option"><input type="radio" name="lbfl-q1" value="B"><b>B.</b><span>Mitochondria</span></label>
-        <label class="lbfl-option"><input type="radio" name="lbfl-q1" value="C"><b>C.</b><span>Golgi body</span></label>
-        <label class="lbfl-option"><input type="radio" name="lbfl-q1" value="D"><b>D.</b><span>Lysosome</span></label>
-      </div>
-      <div class="lbfl-feedback" hidden>
-        <p class="lbfl-feedback-title">Correct answer: B — Mitochondria</p>
-        <p>Mitochondria-কে powerhouse বলা হয়, কারণ এটি food-based chemical energy-কে ATP-তে রূপান্তর করে। ATP cell-এর usable energy molecule।</p>
-      </div>
-    </article>
-
-    <article class="lbfl-mcq-card" data-answer="B">
-      <h3>2. ATP mainly কী হিসেবে কাজ করে?</h3>
-      <div class="lbfl-options">
-        <label class="lbfl-option"><input type="radio" name="lbfl-q2" value="A"><b>A.</b><span>Genetic material</span></label>
-        <label class="lbfl-option"><input type="radio" name="lbfl-q2" value="B"><b>B.</b><span>Usable cellular energy molecule</span></label>
-        <label class="lbfl-option"><input type="radio" name="lbfl-q2" value="C"><b>C.</b><span>Cell wall material</span></label>
-        <label class="lbfl-option"><input type="radio" name="lbfl-q2" value="D"><b>D.</b><span>Digestive enzyme</span></label>
-      </div>
-      <div class="lbfl-feedback" hidden>
-        <p class="lbfl-feedback-title">Correct answer: B — Usable cellular energy molecule</p>
-        <p>ATP cell-এর কাজের জন্য সরাসরি ব্যবহারযোগ্য energy বহন করে। এটি genetic material, cell wall material বা digestive enzyme নয়।</p>
-      </div>
-    </article>
-
-    <article class="lbfl-mcq-card" data-answer="B">
-      <h3>3. Cristae কী?</h3>
-      <div class="lbfl-options">
-        <label class="lbfl-option"><input type="radio" name="lbfl-q3" value="A"><b>A.</b><span>Outer membrane</span></label>
-        <label class="lbfl-option"><input type="radio" name="lbfl-q3" value="B"><b>B.</b><span>Inner membrane-এর fold</span></label>
-        <label class="lbfl-option"><input type="radio" name="lbfl-q3" value="C"><b>C.</b><span>Matrix fluid</span></label>
-        <label class="lbfl-option"><input type="radio" name="lbfl-q3" value="D"><b>D.</b><span>Mitochondrial DNA</span></label>
-      </div>
-      <div class="lbfl-feedback" hidden>
-        <p class="lbfl-feedback-title">Correct answer: B — Inner membrane-এর fold</p>
-        <p>Cristae হলো mitochondrion-এর inner membrane-এর fold। এই fold surface area বাড়ায়, ফলে ATP production-এর জন্য বেশি জায়গা পাওয়া যায়।</p>
-      </div>
-    </article>
-  </div>
-
-  <div class="lbfl-mcq-actions">
-    <button class="lbfl-mcq-button" type="submit">Submit Answers</button>
-    <button class="lbfl-mcq-button secondary" type="reset">Try Again</button>
-    <span class="lbfl-score" aria-live="polite">Score will appear after submit.</span>
-  </div>
-</form>
-
-<script>
-(function(){
-  function resetForm(form){
-    form.querySelectorAll('.lbfl-mcq-card').forEach(function(card){
-      card.classList.remove('is-reviewed','is-unanswered');
-      card.querySelectorAll('.lbfl-option').forEach(function(option){
-        option.classList.remove('is-correct','is-wrong');
-      });
-      var feedback = card.querySelector('.lbfl-feedback');
-      if(feedback){ feedback.hidden = true; }
-    });
-    var score = form.querySelector('.lbfl-score');
-    if(score){ score.textContent = 'Score will appear after submit.'; }
-  }
-
-  document.querySelectorAll('[data-lbfl-mcq-form]').forEach(function(form){
-    form.addEventListener('submit', function(event){
-      event.preventDefault();
-      var total = 0;
-      var correct = 0;
-
-      form.querySelectorAll('.lbfl-mcq-card').forEach(function(card){
-        total += 1;
-        var answer = card.getAttribute('data-answer');
-        var selected = card.querySelector('input[type="radio"]:checked');
-        card.classList.add('is-reviewed');
-        card.classList.toggle('is-unanswered', !selected);
-
-        card.querySelectorAll('.lbfl-option').forEach(function(option){
-          option.classList.remove('is-correct','is-wrong');
-          var input = option.querySelector('input[type="radio"]');
-          if(input && input.value === answer){ option.classList.add('is-correct'); }
-          if(selected && input === selected && selected.value !== answer){ option.classList.add('is-wrong'); }
-        });
-
-        if(selected && selected.value === answer){ correct += 1; }
-        var feedback = card.querySelector('.lbfl-feedback');
-        if(feedback){ feedback.hidden = false; }
-      });
-
-      var score = form.querySelector('.lbfl-score');
-      if(score){ score.textContent = 'Score: ' + correct + '/' + total; }
-    });
-
-    form.addEventListener('reset', function(){
-      window.setTimeout(function(){ resetForm(form); }, 0);
-    });
-  });
-})();
-</script>
-
-## CQ Practice
-
-<ul class="lbfl-cq-list">
-  <li><b>ক</b><span>ATP কী?</span></li>
-  <li><b>খ</b><span>mitochondria-কে powerhouse বলা হয় কেন?</span></li>
-  <li><b>গ</b><span>cristae ATP production-এ কীভাবে সহায়তা করে?</span></li>
-  <li><b>ঘ</b><span>muscle cell ও brain cell-এ mitochondria বেশি থাকার biological logic বিশ্লেষণ করো।</span></li>
-</ul>
-
-## Summary
-
-<section class="lbfl-summary-card" markdown="1">
-Mitochondria হলো cell-এর energy-conversion organelle। এটি food-based chemical energy-কে ATP-তে রূপান্তর করে। Inner membrane-এর cristae surface area বাড়ায়, matrix internal space দেয়, এবং mitochondrial DNA organelleটির বিশেষ বৈশিষ্ট্য নির্দেশ করে। তাই mitochondria শুধু একটি organelle নয়; এটি cell function, body activity এবং life energy logic বোঝার কেন্দ্রীয় ধারণা।
-</section>
-
-<p><a class="lbfl-text-link" href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">← Back to Chapter 1: Cell and its Structure</a></p>
-
-</div>
+<script>(function(){var root=document.querySelector('[data-lbfl-mcq]');if(!root)return;var cards=[].slice.call(root.querySelectorAll('.lbfl-mcq-card'));var submit=document.querySelector('[data-submit]');var reset=document.querySelector('[data-reset]');var score=document.querySelector('[data-score]');function clear(){cards.forEach(function(card){card.querySelectorAll('.option').forEach(function(o){o.classList.remove('is-correct','is-wrong')});var fb=card.querySelector('.feedback');if(fb)fb.hidden=true});if(score)score.textContent='Score will appear after submission.'}if(submit)submit.addEventListener('click',function(){var correct=0;cards.forEach(function(card){var ans=card.dataset.answer;var selected=card.querySelector('input[type="radio"]:checked');card.querySelectorAll('.option').forEach(function(o){var i=o.querySelector('input');o.classList.remove('is-correct','is-wrong');if(i&&i.value===ans)o.classList.add('is-correct');if(selected&&i&&i.checked&&i.value!==ans)o.classList.add('is-wrong')});if(selected&&selected.value===ans)correct++;var fb=card.querySelector('.feedback');if(fb)fb.hidden=false});if(score)score.textContent='Your Score: '+correct+' / '+cards.length});if(reset)reset.addEventListener('click',function(){cards.forEach(function(card){card.querySelectorAll('input[type="radio"]').forEach(function(i){i.checked=false})});clear()});clear()})();</script>
