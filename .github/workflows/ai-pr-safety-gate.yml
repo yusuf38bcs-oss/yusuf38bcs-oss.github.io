@@ -106,6 +106,7 @@ jobs:
               "status": "PASS",
               "trusted_guard": True,
               "checkout_pr_code": False,
+              "renames_allowed": False,
           }
 
           if not result["applies_to_ai_branch"]:
@@ -136,6 +137,7 @@ jobs:
               with urllib.request.urlopen(req, timeout=30) as response:
                   return json.loads(response.read().decode("utf-8"))
 
+          changed_items = []
           changed_files = []
           page = 1
           while True:
@@ -143,7 +145,17 @@ jobs:
               batch = github_get_json(api_url)
               if not batch:
                   break
-              changed_files.extend(item.get("filename", "") for item in batch if item.get("filename"))
+              for item in batch:
+                  filename = item.get("filename", "")
+                  previous_filename = item.get("previous_filename", "")
+                  status = item.get("status", "")
+                  if filename:
+                      changed_files.append(filename)
+                  changed_items.append({
+                      "filename": filename,
+                      "previous_filename": previous_filename,
+                      "status": status,
+                  })
               if len(batch) < 100:
                   break
               page += 1
@@ -152,25 +164,41 @@ jobs:
                   break
 
           result["changed_files"] = changed_files
-          result["changed_file_count"] = len(changed_files)
+          result["changed_file_count"] = len(changed_items)
+          result["changed_items"] = changed_items
 
-          if len(changed_files) > max_allowed_files:
-              result["violations"].append(f"Too many files changed: {len(changed_files)}")
+          if len(changed_items) > max_allowed_files:
+              result["violations"].append(f"Too many files changed: {len(changed_items)}")
 
-          for file_path in changed_files:
+          def validate_path(file_path: str, label: str) -> None:
+              if not file_path:
+                  return
               normalized = str(PurePosixPath(file_path.replace("\\", "/")))
 
               if normalized.startswith("../") or normalized == ".." or normalized.startswith("/"):
-                  result["violations"].append(f"Unsafe path traversal: {normalized}")
+                  result["violations"].append(f"Unsafe path traversal in {label}: {normalized}")
 
               if normalized in blocked_exact:
-                  result["violations"].append(f"Blocked exact file: {normalized}")
+                  result["violations"].append(f"Blocked exact file in {label}: {normalized}")
 
               if normalized.startswith(blocked_prefixes):
-                  result["violations"].append(f"Blocked path prefix: {normalized}")
+                  result["violations"].append(f"Blocked path prefix in {label}: {normalized}")
 
               if not normalized.startswith(allowed_prefixes):
-                  result["violations"].append(f"Path outside allowed AI zones: {normalized}")
+                  result["violations"].append(f"Path outside allowed AI zones in {label}: {normalized}")
+
+          for item in changed_items:
+              filename = item.get("filename", "")
+              previous_filename = item.get("previous_filename", "")
+              status = item.get("status", "")
+
+              if status == "renamed" or previous_filename:
+                  result["violations"].append(
+                      f"Renamed files are not allowed in AI PRs: {previous_filename or '?'} -> {filename or '?'}"
+                  )
+
+              validate_path(filename, "filename")
+              validate_path(previous_filename, "previous_filename")
 
           if result["violations"]:
               result["status"] = "FAIL"
