@@ -1,0 +1,112 @@
+name: AI PR Safety Gate
+
+on:
+  pull_request:
+    branches: ["staging"]
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: AI branch path safety
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect changed files
+        run: |
+          BASE_REF="${GITHUB_BASE_REF:-staging}"
+          git fetch origin "$BASE_REF" --depth=1
+          git diff --name-only "origin/${BASE_REF}...HEAD" > changed-files.txt
+          cat changed-files.txt
+
+      - name: Enforce AI PR safety contract
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import sys
+          from pathlib import Path
+
+          head_ref = os.environ.get("GITHUB_HEAD_REF", "")
+          files = [line.strip() for line in Path("changed-files.txt").read_text(encoding="utf-8").splitlines() if line.strip()]
+
+          allowed_prefixes = (
+              "_posts/",
+              "_pages/",
+              "assets/images/",
+              "assets/css/lesson/",
+              "docs/",
+          )
+
+          blocked_prefixes = (
+              ".github/",
+              "worker/",
+              "node_modules/",
+              "vendor/",
+          )
+
+          blocked_exact = {
+              "wrangler.jsonc",
+              "_config.yml",
+              "Gemfile",
+              "Gemfile.lock",
+              "CNAME",
+              ".env",
+              "package.json",
+              "package-lock.json",
+          }
+
+          result = {
+              "check": "ai_pr_safety_gate",
+              "head_ref": head_ref,
+              "applies_to_ai_branch": head_ref.startswith("ai/"),
+              "changed_file_count": len(files),
+              "changed_files": files,
+              "max_allowed_files": 5,
+              "violations": [],
+              "status": "PASS",
+          }
+
+          if not result["applies_to_ai_branch"]:
+              result["note"] = "Non-ai/* branch; safety gate recorded but not enforced."
+              print(json.dumps(result, indent=2, ensure_ascii=False))
+              with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as fh:
+                  fh.write("```json\n" + json.dumps(result, indent=2, ensure_ascii=False) + "\n```\n")
+              sys.exit(0)
+
+          if len(files) > result["max_allowed_files"]:
+              result["violations"].append(f"Too many files changed: {len(files)}")
+
+          for file_path in files:
+              normalized = file_path.replace("\\", "/")
+
+              if normalized in blocked_exact:
+                  result["violations"].append(f"Blocked exact file: {normalized}")
+
+              if normalized.startswith(blocked_prefixes):
+                  result["violations"].append(f"Blocked path prefix: {normalized}")
+
+              if normalized.startswith("/") or "../" in normalized or "..\\" in normalized:
+                  result["violations"].append(f"Unsafe path traversal: {normalized}")
+
+              if not normalized.startswith(allowed_prefixes):
+                  result["violations"].append(f"Path outside allowed AI zones: {normalized}")
+
+          if result["violations"]:
+              result["status"] = "FAIL"
+
+          print(json.dumps(result, indent=2, ensure_ascii=False))
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as fh:
+              fh.write("```json\n" + json.dumps(result, indent=2, ensure_ascii=False) + "\n```\n")
+
+          if result["status"] != "PASS":
+              sys.exit(1)
+          PY
