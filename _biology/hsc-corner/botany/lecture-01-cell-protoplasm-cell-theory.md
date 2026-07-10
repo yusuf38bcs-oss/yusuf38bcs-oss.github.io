@@ -39,7 +39,6 @@ toc: true
 toc_sticky: true
 classes: wide
 language: bn
-lang: bn
 audio_language: bn-BD
 curriculum_tracks:
   - HSC Botany

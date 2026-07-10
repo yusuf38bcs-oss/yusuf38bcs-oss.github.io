@@ -1,5 +1,5 @@
 <!doctype html>
-{% assign html_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
+{% assign html_lang = page.lang | default: page.language | default: site.active_lang | default: site.lang | default: 'en' %}
 {% assign html_lang_base = html_lang | split: '-' | first | default: 'en' %}
 {% assign html_dir = page.dir | default: site.dir | default: 'ltr' %}
 <html lang="{{ html_lang_base }}" xml:lang="{{ html_lang_base }}" dir="{{ html_dir }}" class="no-js">
