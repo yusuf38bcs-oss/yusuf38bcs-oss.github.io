@@ -21,6 +21,7 @@ minimal_mistakes_skin: dark
 
 include:
   - _pages
+  - _redirects
 
 exclude:
   - README.md

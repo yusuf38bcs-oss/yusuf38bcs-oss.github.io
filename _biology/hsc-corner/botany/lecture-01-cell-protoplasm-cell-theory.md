@@ -97,33 +97,6 @@ translation_of: /en/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-th
 
 <section class="lbfl-card"><h2>মূল পাঠ</h2><p>কোষ হলো জীবনের মৌলিক গঠনগত ও কার্যগত একক। প্রতিটি cellular organism এক বা একাধিক কোষ দিয়ে গঠিত। এককোষী জীব একটি কোষের মধ্যেই সব জীবনক্রিয়া সম্পন্ন করে, আর বহুকোষী জীব বহু বিশেষায়িত কোষের সহযোগিতার উপর নির্ভর করে।</p><p>কোষের ভেতরের জীবন্ত পদার্থকে প্রোটোপ্লাজম বলা হয়। HSC Biology-তে প্রোটোপ্লাজমকে সাধারণত সাইটোপ্লাজম ও নিউক্লিয়াসসহ জীবন্ত অংশ হিসেবে বোঝানো হয়। সাইটোপ্লাজম হলো plasma membrane ও nucleus-এর মধ্যবর্তী অঞ্চল; নিউক্লিয়াস genetic information সংরক্ষণ করে এবং কোষীয় কাজ নিয়ন্ত্রণে সাহায্য করে।</p><p>কোষতত্ত্ব জীবনের cellular foundation ব্যাখ্যা করে। এর প্রধান বক্তব্য হলো: সব living cellular organisms এক বা একাধিক কোষ দিয়ে গঠিত; কোষ জীবনের মৌলিক গঠনগত ও কার্যগত একক; এবং নতুন কোষ পূর্ববর্তী কোষ থেকে সৃষ্টি হয়।</p></section>
 
-<figure class="lbfl-figure">
-<svg viewBox="0 0 1100 650" role="img" aria-label="কোষ, প্রোটোপ্লাজম, সাইটোপ্লাজম, নিউক্লিয়াস ও কোষতত্ত্বের শিক্ষামূলক চিত্র">
-  <rect width="1100" height="650" rx="28" fill="#f8fafc"/>
-  <text x="550" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="900" fill="#0f172a">কোষ, প্রোটোপ্লাজম ও কোষতত্ত্ব</text>
-  <text x="550" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#475569">LBFL • learningbiologyforlife.org</text>
-  <ellipse cx="390" cy="335" rx="285" ry="195" fill="#dbeafe" stroke="#2563eb" stroke-width="9"/>
-  <ellipse cx="390" cy="335" rx="230" ry="150" fill="#eff6ff" stroke="#60a5fa" stroke-width="5" stroke-dasharray="14 10"/>
-  <circle cx="470" cy="320" r="78" fill="#ede9fe" stroke="#7c3aed" stroke-width="7"/>
-  <text x="470" y="328" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="900" fill="#4c1d95">নিউক্লিয়াস</text>
-  <ellipse cx="275" cy="275" rx="48" ry="25" fill="#fed7aa" stroke="#ea580c" stroke-width="5"/>
-  <ellipse cx="300" cy="430" rx="48" ry="25" fill="#fed7aa" stroke="#ea580c" stroke-width="5"/>
-  <ellipse cx="540" cy="430" rx="48" ry="25" fill="#fed7aa" stroke="#ea580c" stroke-width="5"/>
-  <circle cx="355" cy="260" r="12" fill="#16a34a"/><circle cx="360" cy="385" r="12" fill="#16a34a"/><circle cx="575" cy="285" r="12" fill="#16a34a"/>
-  <text x="820" y="150" font-family="Arial, sans-serif" font-size="22" font-weight="900" fill="#0f172a">লেবেল</text>
-  <g font-family="Arial, sans-serif" font-size="18" font-weight="800" fill="#0f172a">
-    <rect x="760" y="175" width="280" height="40" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="900" y="201" text-anchor="middle">কোষ</text>
-    <rect x="760" y="225" width="280" height="40" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="900" y="251" text-anchor="middle">প্লাজমা মেমব্রেন</text>
-    <rect x="760" y="275" width="280" height="40" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="900" y="301" text-anchor="middle">সাইটোপ্লাজম</text>
-    <rect x="760" y="325" width="280" height="40" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="900" y="351" text-anchor="middle">নিউক্লিয়াস</text>
-    <rect x="760" y="375" width="280" height="40" rx="14" fill="#ecfdf5" stroke="#22c55e"/><text x="900" y="401" text-anchor="middle">প্রোটোপ্লাজম = সাইটোপ্লাজম + নিউক্লিয়াস</text>
-    <rect x="760" y="425" width="280" height="40" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="900" y="451" text-anchor="middle">কোষ অঙ্গাণু</text>
-    <rect x="760" y="475" width="280" height="62" rx="14" fill="#fffbeb" stroke="#f59e0b"/><text x="900" y="500" text-anchor="middle">কোষতত্ত্ব: জীবদেহ</text><text x="900" y="524" text-anchor="middle">কোষ দিয়ে গঠিত</text>
-  </g>
-  <text x="390" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#1e3a8a">কোষ হলো জীবনের basic structural and functional unit.</text>
-</svg>
-<figcaption>চিত্র: কোষ, প্রোটোপ্লাজম, সাইটোপ্লাজম, নিউক্লিয়াস ও কোষতত্ত্বের মৌলিক ধারণা। Source: LBFL original educational diagram.</figcaption>
-</figure>
 
 <section><h2>শব্দার্থ</h2><div class="grid"><div class="term"><strong>কোষ</strong><span>জীবনের মৌলিক গঠনগত ও কার্যগত একক।</span></div><div class="term"><strong>প্রোটোপ্লাজম</strong><span>কোষের জীবন্ত পদার্থ। HSC পর্যায়ে: প্রোটোপ্লাজম = সাইটোপ্লাজম + নিউক্লিয়াস।</span></div><div class="term"><strong>সাইটোপ্লাজম</strong><span>নিউক্লিয়াসের বাইরে এবং plasma membrane-এর ভেতরের অংশ।</span></div><div class="term"><strong>কোষতত্ত্ব</strong><span>জীবনের cellular basis ব্যাখ্যা করা মৌলিক biological theory।</span></div><div class="term"><strong>সাইটোলজি</strong><span>কোষ নিয়ে অধ্যয়নকারী জীববিজ্ঞানের শাখা।</span></div><div class="term"><strong>এককোষী জীব</strong><span>যে জীব একটি কোষ দিয়ে গঠিত।</span></div><div class="term"><strong>বহুকোষী জীব</strong><span>যে জীব বহু কোষ দিয়ে গঠিত এবং যার কোষগুলো বিশেষায়িত হতে পারে।</span></div></div></section>
 
