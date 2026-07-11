@@ -7,7 +7,7 @@ sidebar:
 title: "উদ্ভিদবিজ্ঞান: HSC Biology 1st Paper Botany"
 excerpt: "উচ্চ মাধ্যমিক জীববিজ্ঞান ১ম পত্রের উদ্ভিদবিজ্ঞান শেখার পরিচ্ছন্ন অধ্যায় ও লেকচার সূচি।"
 date: 2026-06-09T05:00:00.000Z
-last_modified_at: 2026-07-11T15:40:00.000+06:00
+last_modified_at: 2026-07-11T15:45:00.000+06:00
 permalink: /biology/hsc-corner/botany/
 node_id: index-hsc-botany
 pillar: "Life Sciences"
