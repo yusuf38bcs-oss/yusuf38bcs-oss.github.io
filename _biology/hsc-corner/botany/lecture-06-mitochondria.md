@@ -91,34 +91,6 @@ translation_of: /en/biology/hsc-corner/botany/lecture-06-mitochondria/
 
 <section class="lbfl-card"><h2>মূল পাঠ</h2><p>মাইটোকন্ড্রিয়া হলো ইউক্যারিওটিক কোষের ক্ষুদ্র অঙ্গাণু, যা ATP উৎপাদনে সাহায্য করে। ATP হলো কোষের ব্যবহারযোগ্য শক্তি অণু। কোষের চলাচল, পরিবহন, বৃদ্ধি, মেরামত, পেশি সংকোচন ও বিভাজনের মতো কাজ ATP-এর উপর নির্ভর করে।</p><p>একটি মাইটোকন্ড্রিয়নে দুটি পর্দা থাকে। বাইরের পর্দা অঙ্গাণুটিকে ঘিরে রাখে। ভেতরের পর্দা ভাঁজ হয়ে ক্রিস্টি তৈরি করে। এই ভাঁজগুলো ATP উৎপাদন-সম্পর্কিত বিক্রিয়ার জন্য পৃষ্ঠতল বৃদ্ধি করে। ভেতরের তরলপূর্ণ অঞ্চলকে ম্যাট্রিক্স বলা হয়। মাইটোকন্ড্রিয়ার নিজস্ব ছোট DNA-ও থাকে।</p><p>যেসব কোষে বেশি শক্তি দরকার, সেসব কোষে সাধারণত বেশি মাইটোকন্ড্রিয়া থাকে। যেমন পেশি কোষ, যকৃত কোষ, বৃক্ক কোষ ও মস্তিষ্কের কোষ শক্তির জন্য মাইটোকন্ড্রিয়ার উপর বেশি নির্ভর করে।</p></section>
 
-<figure class="lbfl-figure">
-<svg viewBox="0 0 1100 650" role="img" aria-label="মাইটোকন্ড্রিয়নের চিত্র: বাইরের পর্দা, ভেতরের পর্দা, ক্রিস্টি, ম্যাট্রিক্স, মাইটোকন্ড্রিয়াল DNA ও ATP উৎপাদন">
-  <rect width="1100" height="650" rx="28" fill="#f8fafc"/>
-  <text x="550" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="900" fill="#0f172a">মাইটোকন্ড্রিয়ন: গঠন ও ATP উৎপাদন</text>
-  <text x="550" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#475569">LBFL • learningbiologyforlife.org</text>
-  <ellipse cx="430" cy="335" rx="305" ry="188" fill="#dcfce7" stroke="#166534" stroke-width="9"/>
-  <ellipse cx="430" cy="335" rx="255" ry="145" fill="#ecfdf5" stroke="#22c55e" stroke-width="5"/>
-  <path d="M285 245 C345 300 345 370 286 425 M365 230 C430 292 432 372 365 440 M445 225 C508 292 508 378 445 448 M525 235 C590 300 590 375 525 435" fill="none" stroke="#0f766e" stroke-width="12" stroke-linecap="round"/>
-  <rect x="358" y="312" width="150" height="58" rx="20" fill="#ffffff" stroke="#84cc16" stroke-width="4"/>
-  <text x="433" y="349" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="900" fill="#365314">ম্যাট্রিক্স</text>
-  <ellipse cx="590" cy="344" rx="48" ry="31" fill="none" stroke="#7c3aed" stroke-width="6"/>
-  <circle cx="300" cy="285" r="12" fill="#f97316"/><circle cx="352" cy="438" r="12" fill="#f97316"/><circle cx="582" cy="254" r="12" fill="#f97316"/><circle cx="628" cy="432" r="12" fill="#f97316"/>
-  <text x="820" y="170" font-family="Arial, sans-serif" font-size="22" font-weight="900" fill="#0f172a">লেবেল</text>
-  <g font-family="Arial, sans-serif" font-size="18" font-weight="800" fill="#0f172a">
-    <rect x="805" y="195" width="230" height="38" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="920" y="220" text-anchor="middle">বাইরের পর্দা</text>
-    <rect x="805" y="245" width="230" height="38" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="920" y="270" text-anchor="middle">ভেতরের পর্দা</text>
-    <rect x="805" y="295" width="230" height="38" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="920" y="320" text-anchor="middle">ক্রিস্টি</text>
-    <rect x="805" y="345" width="230" height="38" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="920" y="370" text-anchor="middle">ম্যাট্রিক্স</text>
-    <rect x="805" y="395" width="230" height="38" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="920" y="420" text-anchor="middle">মাইটোকন্ড্রিয়াল DNA</text>
-    <rect x="805" y="445" width="230" height="38" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="920" y="470" text-anchor="middle">রাইবোসোম</text>
-    <rect x="805" y="495" width="230" height="38" rx="14" fill="#ffffff" stroke="#dbe4ee"/><text x="920" y="520" text-anchor="middle">দুই পর্দার মধ্যবর্তী স্থান</text>
-    <rect x="805" y="545" width="230" height="38" rx="14" fill="#fffbeb" stroke="#f59e0b"/><text x="920" y="570" text-anchor="middle">ATP উৎপাদন</text>
-  </g>
-  <line x1="735" y1="335" x2="795" y2="560" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
-  <text x="430" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#1e3a8a">ক্রিস্টি ATP উৎপাদনের জন্য পৃষ্ঠতল বৃদ্ধি করে।</text>
-</svg>
-<figcaption>চিত্র: ক্রিস্টি, ম্যাট্রিক্স, মাইটোকন্ড্রিয়াল DNA এবং ATP উৎপাদন দেখানো মাইটোকন্ড্রিয়নের মৌলিক গঠন। Source: LBFL original educational diagram.</figcaption>
-</figure>
 
 <section><h2>শব্দার্থ</h2><div class="grid"><div class="term"><strong>মাইটোকন্ড্রিয়া</strong><span>ATP উৎপাদনে সাহায্যকারী শক্তি-উৎপাদনকারী অঙ্গাণু।</span></div><div class="term"><strong>মাইটোকন্ড্রিয়ন</strong><span>একটিমাত্র মাইটোকন্ড্রিয়াল অঙ্গাণু।</span></div><div class="term"><strong>ATP</strong><span>কোষের ব্যবহারযোগ্য শক্তি অণু।</span></div><div class="term"><strong>ক্রিস্টি</strong><span>মাইটোকন্ড্রিয়ার ভেতরের পর্দার ভাঁজ।</span></div><div class="term"><strong>ম্যাট্রিক্স</strong><span>মাইটোকন্ড্রিয়নের ভেতরের তরলপূর্ণ অঞ্চল।</span></div><div class="term"><strong>মাইটোকন্ড্রিয়াল DNA</strong><span>মাইটোকন্ড্রিয়ার নিজস্ব ছোট জিনগত উপাদান।</span></div><div class="term"><strong>কোষীয় শ্বসন</strong><span>খাদ্য অণু থেকে ব্যবহারযোগ্য শক্তি মুক্ত করার প্রক্রিয়া।</span></div></div><p><strong>Beginner note:</strong> এক অঙ্গাণু = mitochondrion; অনেক অঙ্গাণু = mitochondria.</p></section>
 
