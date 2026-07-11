@@ -7,7 +7,7 @@ sidebar:
 title: "অধ্যায় ১: কোষ ও এর গঠন"
 excerpt: "HSC Biology 1st Paper Botany Chapter 1 clean lecture index."
 date: 2026-07-04T00:00:00.000+06:00
-last_modified_at: 2026-07-11T15:40:00.000+06:00
+last_modified_at: 2026-07-11T15:45:00.000+06:00
 permalink: /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
 categories:
   - Biology
@@ -47,7 +47,7 @@ concept_level: "Chapter Gateway"
 <section class="lbfl-clean-hero">
   <span class="lbfl-clean-kicker">অধ্যায় ০১</span>
   <h2>কোষ ও এর গঠন</h2>
-  <p>এই অধ্যায়ে কোষের গঠন, প্রোটোপ্লাজম, কোষঝিল্লি, সাইটোপ্লাজম, রাইবোসোম, মাইটোকন্ড্রিয়া ও অন্যান্য অঙ্গাণুকে ধাপে ধাপে শেখার জন্য সাজানো হয়েছে। প্রতিটি সক্রিয় লেকচার সরাসরি সংশ্লিষ্ট lesson page-এ যাবে।</p>
+  <p>এই অধ্যায়ে কোষের গঠন, প্রোটোপ্লাজম, কোষঝিল্লি, সাইটোপ্লাজম, রাইবোসোম, মাইটোকন্ড্রিয়া ও অন্যান্য অঙ্গাণুকে ধাপে ধাপে শেখার জন্য সাজানো হয়েছে। প্রতিটি সক্রিয় লেকচার সরাসরি সংশ্লিষ্ট পাঠে যাবে।</p>
 </section>
 
 <h2>সক্রিয় লেকচার</h2>
