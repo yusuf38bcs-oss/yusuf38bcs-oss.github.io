@@ -7,10 +7,10 @@
   - Fallback-generated /bn/... pages without page.lang must not receive localized
     URL/JSON-LD overrides, because jekyll-seo-tag will still emit the site default
     Open Graph locale.
-  - Native Bangla pages must expose language metadata through page.lang or page.language before language-aware SEO renders.
+  - Native Bangla pages must set lang: bn and locale: bn_BD before jekyll-seo-tag renders.
 {% endcomment %}
 
-{% assign native_lang = page.lang | default: page.language | default: '' %}
+{% assign native_lang = page.lang | default: '' %}
 {% assign polyglot_lang = native_lang | default: site.active_lang | default: site.lang | default: 'en' %}
 {% assign base_path = page.permalink | default: page.url | default: '/' %}
 {% assign clean_base_path = base_path | replace_first: '/bn/', '/' %}
