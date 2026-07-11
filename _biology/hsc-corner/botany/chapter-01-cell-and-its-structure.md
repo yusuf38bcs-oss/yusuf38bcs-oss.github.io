@@ -26,10 +26,10 @@ network:
   - cell-biology
 related: true
 synaptic_links:
-  - /biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/
+  - /bn/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/
   - /biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/
   - /biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/
-  - /biology/hsc-corner/botany/lecture-06-mitochondria/
+  - /bn/biology/hsc-corner/botany/lecture-06-mitochondria/
 toc: true
 toc_sticky: true
 classes: wide
@@ -55,7 +55,7 @@ concept_level: "Chapter Gateway"
 <div class="lbfl-clean-grid">
   <article class="lbfl-clean-card">
     <span class="lbfl-tag">Lecture 01 • Foundation</span>
-    <h3><a href="/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/">Cell, Protoplasm and Cell Theory</a></h3>
+    <h3><a href="/bn/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/">Cell, Protoplasm and Cell Theory</a></h3>
     <p>Cell, protoplasm, cytoplasm, nucleus, cell theory, unicellular and multicellular organization with visual learning route, MCQ and CQ practice.</p>
   </article>
   <article class="lbfl-clean-card">
@@ -70,7 +70,7 @@ concept_level: "Chapter Gateway"
   </article>
   <article class="lbfl-clean-card">
     <span class="lbfl-tag">Lecture 06 • Mitochondria</span>
-    <h3><a href="/biology/hsc-corner/botany/lecture-06-mitochondria/">Mitochondria — Powerhouse of the Cell</a></h3>
+    <h3><a href="/bn/biology/hsc-corner/botany/lecture-06-mitochondria/">Mitochondria — Powerhouse of the Cell</a></h3>
     <p>Mitochondrion structure, cristae, matrix, mitochondrial DNA, ATP production and high-energy cells with original LBFL visuals.</p>
   </article>
 </div>
