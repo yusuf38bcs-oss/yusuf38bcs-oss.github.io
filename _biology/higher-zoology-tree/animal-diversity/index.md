@@ -5,9 +5,10 @@ author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
 title: "Animal Diversity Matrix"
-excerpt: "Deconstruct taxonomic lineages, morphological symmetries, and evolutionary milestones of kingdom Animalia."
+excerpt: "Animal Diversity gateway for HSC and Higher Zoology: taxonomy, body plan, symmetry, coelom, segmentation, representative animals and exam-focused learning routes."
+description: "A student-facing Animal Diversity gateway for HSC and Higher Zoology covering taxonomy, body plan, symmetry, coelom, segmentation, representative animals, classification logic and exam preparation paths."
 date: 2026-06-13T12:05:00.000Z
-last_modified_at: 2026-07-05T00:00:00.000Z
+last_modified_at: 2026-07-12T00:00:00.000Z
 permalink: /biology/animal-diversity/
 node_id: node-animal-diversity
 pillar: "Life Sciences"
@@ -32,13 +33,13 @@ concept_level: "Gateway"
 
 <section class="lbfl-hub-intro" aria-labelledby="animal-diversity-title">
   <span class="lbfl-hub-kicker">Higher Zoology Gateway</span>
-  <h2 id="animal-diversity-title" class="lbfl-hub-title">Architecture of animal life</h2>
+  <h1 id="animal-diversity-title" class="lbfl-hub-title">Architecture of animal life</h1>
   <p class="lbfl-hub-lead">Animal Diversity Matrix connects taxonomy, symmetry, germ layers, coelom, segmentation, larval forms, organ systems, evolutionary adaptation, and parasitic specialization into one navigable learning path.</p>
 </section>
 
 <section class="lbfl-outcome-card" aria-label="Complete Animal Diversity Matrix">
   <span class="lbfl-card-badge">New Complete Matrix</span>
-  <h3><a href="{{ '/biology/animal-diversity/complete-matrix/' | relative_url }}">Animal Diversity Complete Matrix and Rewritten Lecture Series</a></h3>
+  <h2><a href="{{ '/biology/animal-diversity/complete-matrix/' | relative_url }}">Animal Diversity Complete Matrix and Rewritten Lecture Series</a></h2>
   <p>প্রাণীবৈচিত্র্য: শ্রেণিবিন্যাস, প্রতিনিধিত্বশীল প্রাণী, গঠন, কার্য, জীবনচক্র ও প্রয়োগ — a 17-lecture student-facing master matrix.</p>
 </section>
 
@@ -108,7 +109,6 @@ concept_level: "Gateway"
 </div>
 
 <section class="lbfl-outcome-card" aria-label="Connected nodes">
-  <span class="lbfl-card-badge">Connected Nodes</span>
   <h3>Continue the learning path</h3>
   <p><a class="lbfl-text-link" href="{{ '/biology/higher-zoology-tree/' | relative_url }}">Higher Zoology Tree</a> · <a class="lbfl-text-link" href="{{ '/biology/hsc-corner/zoology/' | relative_url }}">Zoology Foundation</a> · <a class="lbfl-text-link" href="{{ '/mcq-arena/' | relative_url }}">MCQ Arena</a></p>
 </section>
