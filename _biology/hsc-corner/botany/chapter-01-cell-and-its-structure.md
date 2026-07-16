@@ -7,7 +7,7 @@ sidebar:
 title: "অধ্যায় ১: কোষ ও এর গঠন"
 excerpt: "HSC Biology 1st Paper Botany Chapter 1 clean lecture index."
 date: 2026-07-04T00:00:00.000+06:00
-last_modified_at: 2026-07-11T16:45:00.000+06:00
+last_modified_at: 2026-07-16T00:00:00.000+06:00
 permalink: /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
 categories:
   - Biology
@@ -29,6 +29,7 @@ synaptic_links:
   - /bn/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/
   - /biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/
   - /biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/
+  - /biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/
   - /bn/biology/hsc-corner/botany/lecture-06-mitochondria/
 toc: true
 toc_sticky: true
@@ -69,6 +70,11 @@ concept_level: "Chapter Gateway"
     <p>সাইটোপ্লাজম, ribosome, 70S/80S, polysome এবং protein synthesis।</p>
   </article>
   <article class="lbfl-clean-card">
+    <span class="lbfl-tag">লেকচার ০৪</span>
+    <h3><a href="/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/">Endoplasmic Reticulum: কোষের অভ্যন্তরীণ Transport Network</a></h3>
+    <p>Rough ER, Smooth ER, cisternae, ER lumen, protein processing, lipid synthesis এবং ER-to-Golgi transport pathway।</p>
+  </article>
+<article class="lbfl-clean-card">
     <span class="lbfl-tag">লেকচার ০৬ · মাইটোকন্ড্রিয়া</span>
     <h3><a href="/bn/biology/hsc-corner/botany/lecture-06-mitochondria/">মাইটোকন্ড্রিয়া: কোষের শক্তিঘর</a></h3>
     <p>Mitochondrion structure, cristae, matrix, mitochondrial DNA, ATP production এবং high-energy cell।</p>
@@ -83,8 +89,7 @@ concept_level: "Chapter Gateway"
     <tr><th>লেকচার</th><th>বিষয়</th></tr>
   </thead>
   <tbody>
-    <tr><td>০৪</td><td>Endoplasmic Reticulum</td></tr>
-    <tr><td>০৫</td><td>Golgi Body, Lysosome, Peroxisome</td></tr>
+<tr><td>০৫</td><td>Golgi Body, Lysosome, Peroxisome</td></tr>
     <tr><td>০৭</td><td>Plastid and Chloroplast</td></tr>
     <tr><td>০৮</td><td>Nucleus and Chromosome</td></tr>
   </tbody>

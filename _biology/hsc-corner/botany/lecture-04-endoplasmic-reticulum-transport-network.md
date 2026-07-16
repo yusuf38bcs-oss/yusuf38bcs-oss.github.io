@@ -6,8 +6,8 @@ sidebar:
   nav: "synaptic_nav"
 title: "লেকচার ০৪: Endoplasmic Reticulum — কোষের অভ্যন্তরীণ Transport Network"
 excerpt: "HSC Botany-এর বাংলা মূল পাঠ: endoplasmic reticulum, rough ER, smooth ER, cisternae, tubules, ER lumen, transport vesicle এবং intracellular transport।"
-date: 2026-07-17T21:00:00.000+06:00
-last_modified_at: 2026-07-17T21:00:00.000+06:00
+date: 2026-07-16T00:00:00.000+06:00
+last_modified_at: 2026-07-16T00:00:00.000+06:00
 permalink: /biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/
 slug: endoplasmic-reticulum-transport-network
 categories:
@@ -57,6 +57,34 @@ seo_description: "HSC Biology lesson on endoplasmic reticulum, rough ER, smooth 
 .lbfl-gold{--ink:#0f172a;--muted:#475569;--line:#dbe4ee;--blue:#2563eb;--teal:#0f766e;--green:#15803d;--amber:#b45309;--violet:#6d28d9;--rose:#be123c;max-width:980px;margin:auto;color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali","Hind Siliguri",Arial,sans-serif;font-size:clamp(1rem,2.35vw,1.08rem);line-height:1.78}.lbfl-gold *{box-sizing:border-box}.lbfl-gold h1{margin:.15rem 0 .7rem;font-size:clamp(2.05rem,7.2vw,3.75rem);line-height:1.08}.lbfl-gold h2{margin:2rem 0 1rem;font-size:clamp(1.45rem,4.7vw,2.05rem);line-height:1.18}.lbfl-hero,.lbfl-card,.lbfl-table-card,.lbfl-flow,.lbfl-mcq-card,.lbfl-cq-card,.lbfl-thinking,.lbfl-image-card{border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 18px 42px rgba(15,23,42,.08)}.lbfl-hero{padding:clamp(1.15rem,4vw,2.15rem);margin:1rem 0 2rem;background:radial-gradient(circle at 18% 0%,rgba(37,99,235,.16),transparent 34%),radial-gradient(circle at 85% 18%,rgba(20,184,166,.17),transparent 32%),linear-gradient(135deg,#fff,#f8fbff)}.lbfl-kicker{display:inline-flex;padding:.38rem .78rem;border-radius:999px;font-size:.78rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(37,99,235,.22);background:#eff6ff;color:#1e40af;margin-bottom:.85rem}.lead{max-width:860px;margin:0;color:#334155;font-size:clamp(1.04rem,3.2vw,1.22rem)}.lbfl-meta,.chips{display:flex;flex-wrap:wrap;gap:.55rem;margin:1rem 0}.lbfl-meta span,.chips span{padding:.45rem .7rem;border-radius:999px;background:#f8fafc;border:1px solid var(--line);font-weight:800;color:#334155}.lbfl-card{padding:clamp(1rem,3.4vw,1.35rem);margin:1rem 0 1.25rem}.summary{background:#eef6ff;border-left:7px solid var(--blue)}.objectives{background:#ecfdf5;border-left:7px solid var(--green)}.outcomes{background:#f0fdfa;border-left:7px solid var(--teal)}.activities{background:#fffbeb;border-left:7px solid var(--amber)}.boundary{background:#f8fafc;border-left:7px solid #64748b}.lbfl-list{display:grid;gap:.58rem;margin:.7rem 0 0;padding:0;list-style:none}.lbfl-list li{position:relative;padding:.72rem .85rem .72rem 2.25rem;border:1px solid rgba(148,163,184,.22);border-radius:16px;background:rgba(255,255,255,.66)}.lbfl-list li:before{content:"✓";position:absolute;left:.85rem;color:var(--green);font-weight:900}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));gap:.85rem;margin:1rem 0}.term{border:1px solid rgba(148,163,184,.26);border-radius:18px;padding:1rem;background:#fff}.term:nth-child(odd){background:#eff6ff}.term:nth-child(even){background:#ecfdf5}.term strong{display:block;margin-bottom:.35rem}.lbfl-table-card,.lbfl-image-card,.lbfl-flow,.lbfl-thinking{padding:1rem 1.15rem;margin:1rem 0 1.4rem}.lbfl-flow{background:#f8fafc;border-left:7px solid var(--green)}.lbfl-image-card{background:#f8fafc;border-left:7px solid var(--blue)}.lbfl-thinking{background:#fff1f2;border-left:7px solid var(--rose)}.table-wrap{overflow-x:auto;border-radius:18px;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:650px;background:#fff}th{background:#0f172a;color:#fff;text-align:left;padding:.85rem}td{border-top:1px solid #e5e7eb;padding:.82rem;vertical-align:top}tr:nth-child(even) td{background:#f8fafc}.chain{display:grid;gap:.55rem;margin:.7rem 0}.chain span{display:block;padding:.72rem .85rem;border:1px solid rgba(148,163,184,.22);border-radius:15px;background:#fff;font-weight:900;text-align:center}.mistake{padding:.9rem;border:1px solid rgba(244,63,94,.22);border-radius:17px;background:#fff1f2;margin:.75rem 0}.mistake b{color:#be123c}.mistake strong{color:#15803d}.mcq-list,.cq-list{display:grid;gap:1rem;margin:1rem 0 1.4rem}.lbfl-mcq-card,.lbfl-cq-card{padding:1rem}.options{display:grid;gap:.5rem;margin:.6rem 0}.option{padding:.65rem .75rem;border:1px solid rgba(148,163,184,.24);border-radius:14px;background:#f8fafc}.answer{margin-top:.85rem;padding:.85rem;border:1px solid rgba(22,163,74,.25);border-radius:14px;background:#f0fdf4;color:#14532d}.lbfl-cq-card details,.lbfl-mcq-card details{border:1px solid var(--line);border-radius:16px;background:#fff;padding:.85rem;margin:.75rem 0}.lbfl-cq-card summary{cursor:pointer;font-weight:900;color:#1e40af}.prompt-box{padding:.85rem;border:1px dashed #94a3b8;border-radius:16px;background:#fff;color:#334155}.prevnext{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;margin:2rem 0}.prevnext a,.prevnext span{padding:.75rem 1rem;border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none!important;color:#334155;font-weight:800}@media(max-width:760px){.lbfl-gold{font-size:1rem}.prevnext{flex-direction:column}.prevnext a,.prevnext span{text-align:center}table{min-width:560px}}
 </style>
 
+<style>
+.lbfl-figure{
+  padding:clamp(.65rem,2vw,1rem);
+  margin:1.25rem 0 2rem;
+  overflow:hidden;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 18px 42px rgba(15,23,42,.08);
+}
+.lbfl-figure img{
+  display:block;
+  width:100%;
+  height:auto;
+  margin:auto;
+  border-radius:18px;
+  background:#f8fafc;
+}
+.lbfl-figure figcaption{
+  max-width:800px;
+  margin:.85rem auto 0;
+  color:#475569;
+  font-size:.95rem;
+  line-height:1.55;
+}
+</style>
+
 <div class="lbfl-gold" markdown="1">
 
 <section class="lbfl-hero">
@@ -72,14 +100,15 @@ seo_description: "HSC Biology lesson on endoplasmic reticulum, rough ER, smooth 
   <p><strong>Rough ER</strong> মূলত ribosome-যুক্ত protein production pathway-এর সাথে যুক্ত। <strong>Smooth ER</strong> lipid synthesis, detoxification, carbohydrate metabolism এবং কিছু cell-এ calcium storage-এ সাহায্য করে।</p>
 </section>
 
-<section class="lbfl-image-card">
-  <h2>Visual Placement 1: Hero Image</h2>
-  <p><strong>Placement:</strong> Hero summary-এর পর।</p>
-  <p><strong>Recommended file:</strong> <code>lbfl-endoplasmic-reticulum-transport-network-hsc-biology.webp</code></p>
-  <div class="prompt-box"><strong>Image prompt:</strong> Create a clean educational vector diagram for HSC Biology showing the endoplasmic reticulum inside a eukaryotic cell. Show nucleus, nuclear envelope, rough ER with attached ribosomes, smooth ER without ribosomes, ER lumen, transport vesicles and Golgi body. Make rough ER appear near and continuous with the nuclear envelope, and smooth ER appear as tubular membranes. Use minimal labels only: Nucleus, Rough ER, Smooth ER, Ribosome, ER lumen, Vesicle, Golgi body. White background, textbook style, no clutter. Add small footer text: “LBFL • learningbiologyforlife.org”.</div>
-  <p><strong>Alt text:</strong> Labelled diagram showing nucleus, nuclear envelope, rough endoplasmic reticulum, smooth endoplasmic reticulum, attached ribosomes, ER lumen, transport vesicles and Golgi body.</p>
-  <p><strong>Caption:</strong> Endoplasmic reticulum হলো nucleus-এর কাছ থেকে শুরু হওয়া protein–lipid production ও transport network।</p>
-</section>
+<figure class="lbfl-figure">
+  <img
+    src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-endoplasmic-reticulum-transport-network-hsc-biology.webp' | relative_url }}"
+    alt="Labelled diagram showing nucleus, nuclear envelope, rough endoplasmic reticulum, smooth endoplasmic reticulum, attached ribosomes, ER lumen, transport vesicles and Golgi body."
+    loading="eager"
+    fetchpriority="high"
+    decoding="async">
+  <figcaption>Endoplasmic reticulum হলো nucleus-এর কাছ থেকে শুরু হওয়া protein-lipid production ও transport network।</figcaption>
+</figure>
 
 <section class="lbfl-card objectives">
   <h2>Learning Objectives</h2>
@@ -156,14 +185,14 @@ seo_description: "HSC Biology lesson on endoplasmic reticulum, rough ER, smooth 
 
 <p>Rough ER secretory protein, membrane protein এবং lysosome-এ ব্যবহৃত অনেক protein-এর production pathway-এর সাথে যুক্ত। Ribosome protein তৈরি করার সময় newly formed polypeptide ER lumen বা ER membrane-এ প্রবেশ করতে পারে। সেখানে folding ও initial processing শুরু হয়।</p>
 
-<section class="lbfl-image-card">
-  <h2>Visual Placement 2: Rough ER vs Smooth ER</h2>
-  <p><strong>Placement:</strong> Rough ER ব্যাখ্যার পর।</p>
-  <p><strong>Recommended file:</strong> <code>lbfl-rough-er-vs-smooth-er-comparison.webp</code></p>
-  <div class="prompt-box"><strong>Image prompt:</strong> Create a clean comparison diagram of rough ER and smooth ER for HSC Biology learners. Left side: rough ER shown as flattened cisternae with many ribosomes attached, near the nucleus. Right side: smooth ER shown as branching tubular membranes without ribosomes. Use minimal labels: Rough ER, Ribosome, Cisternae, Smooth ER, Tubule. Add two short function labels only: Protein pathway and Lipid synthesis. White background, modern textbook vector style. Add small footer text: “LBFL • learningbiologyforlife.org”.</div>
-  <p><strong>Alt text:</strong> Comparison diagram showing rough ER with attached ribosomes and flattened cisternae, and smooth ER without ribosomes as branching tubules.</p>
-  <p><strong>Caption:</strong> Rough ER-এর ribosome protein pathway-কে support করে; Smooth ER-এর tubular membrane lipid-related activity-তে গুরুত্বপূর্ণ।</p>
-</section>
+<figure class="lbfl-figure">
+  <img
+    src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-rough-er-vs-smooth-er-comparison.webp' | relative_url }}"
+    alt="Comparison diagram showing rough ER with attached ribosomes and flattened cisternae, and smooth ER without ribosomes as branching tubules."
+    loading="lazy"
+    decoding="async">
+  <figcaption>Rough ER-এর ribosome protein pathway-কে support করে; Smooth ER-এর tubular membrane lipid-related activity-তে গুরুত্বপূর্ণ।</figcaption>
+</figure>
 
 <h3>৪. Smooth Endoplasmic Reticulum</h3>
 <p><strong>Smooth ER</strong>-এর surface-এ ribosome থাকে না। এটি সাধারণত branching tubular membrane network তৈরি করে। Smooth ER-এর প্রধান কাজ cell type অনুযায়ী ভিন্ন হতে পারে।</p>
@@ -190,14 +219,14 @@ seo_description: "HSC Biology lesson on endoplasmic reticulum, rough ER, smooth 
   <div class="chain"><span>DNA information</span><span>↓</span><span>mRNA</span><span>↓</span><span>Ribosome</span><span>↓</span><span>Rough ER</span><span>↓</span><span>Transport vesicle</span><span>↓</span><span>Golgi body</span><span>↓</span><span>Final destination</span></div>
 </section>
 
-<section class="lbfl-image-card">
-  <h2>Visual Placement 3: ER to Golgi Transport Pathway</h2>
-  <p><strong>Placement:</strong> Protein transport pathway-এর পর।</p>
-  <p><strong>Recommended file:</strong> <code>lbfl-ribosome-rough-er-vesicle-golgi-pathway.webp</code></p>
-  <div class="prompt-box"><strong>Image prompt:</strong> Create a minimal educational flow diagram showing a secretory protein pathway: Ribosome → Rough ER → ER lumen → Transport vesicle → Golgi body → Secretory vesicle or cell membrane. Use arrows and simple biological icons. Show the protein as a small colored chain moving through the pathway. Minimal labels only, white background, uncluttered HSC textbook style. Add small footer text: “LBFL • learningbiologyforlife.org”.</div>
-  <p><strong>Alt text:</strong> Flow diagram showing protein movement from ribosome to rough ER, ER lumen, transport vesicle, Golgi body and final destination.</p>
-  <p><strong>Caption:</strong> Rough ER protein pathway-এর প্রথম processing station; Golgi body পরবর্তী modification, sorting ও packaging করে।</p>
-</section>
+<figure class="lbfl-figure">
+  <img
+    src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-ribosome-rough-er-vesicle-golgi-pathway.webp' | relative_url }}"
+    alt="Flow diagram showing protein movement from ribosome to rough ER, ER lumen, transport vesicle, Golgi body and final destination."
+    loading="lazy"
+    decoding="async">
+  <figcaption>Rough ER protein pathway-এর প্রথম processing station; Golgi body পরবর্তী modification, sorting ও packaging করে।</figcaption>
+</figure>
 
 <h3>৬. কোন cell-এ কোন ER বেশি থাকে?</h3>
 <div class="lbfl-table-card">
@@ -216,14 +245,14 @@ seo_description: "HSC Biology lesson on endoplasmic reticulum, rough ER, smooth 
   </div>
 </div>
 
-<section class="lbfl-image-card">
-  <h2>Visual Placement 4: Structure–Function Map</h2>
-  <p><strong>Placement:</strong> Cell-type application table-এর পর।</p>
-  <p><strong>Recommended file:</strong> <code>lbfl-er-structure-function-cell-type-map.webp</code></p>
-  <div class="prompt-box"><strong>Image prompt:</strong> Create a four-part structure–function infographic for HSC Biology. Panel 1: Rough ER with ribosomes → protein pathway. Panel 2: Smooth ER tubules → lipid synthesis. Panel 3: Liver cell smooth ER → detoxification. Panel 4: Muscle sarcoplasmic reticulum → calcium storage. Use minimal labels, clean white background and clear arrows. Add small footer text: “LBFL • learningbiologyforlife.org”.</div>
-  <p><strong>Alt text:</strong> Four-panel infographic connecting rough ER with protein synthesis, smooth ER with lipid synthesis, liver smooth ER with detoxification and sarcoplasmic reticulum with calcium storage.</p>
-  <p><strong>Caption:</strong> ER-এর গঠন ও abundance cell-এর specialized function অনুযায়ী পরিবর্তিত হয়।</p>
-</section>
+<figure class="lbfl-figure">
+  <img
+    src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-er-structure-function-cell-type-map.webp' | relative_url }}"
+    alt="Four-panel infographic connecting rough ER with protein synthesis, smooth ER with lipid synthesis, liver smooth ER with detoxification and sarcoplasmic reticulum with calcium storage."
+    loading="lazy"
+    decoding="async">
+  <figcaption>ER-এর গঠন ও abundance cell-এর specialized function অনুযায়ী পরিবর্তিত হয়।</figcaption>
+</figure>
 
 <h2>CIRCLE: Structure–Function Thinking</h2>
 <p>Biology-তে organelle-এর নাম মুখস্থ করার চেয়ে structure কীভাবে function-কে support করে তা বোঝা বেশি গুরুত্বপূর্ণ।</p>
