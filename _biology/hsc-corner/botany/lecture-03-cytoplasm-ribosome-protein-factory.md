@@ -98,11 +98,11 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
 <figure class="lbfl-figure">
   <img
     src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-cytoplasm-ribosome-protein-synthesis-hsc-biology.webp' | relative_url }}"
-    alt="???????????? ???? cytoplasm, cytosol, free ribosome, rough ER-? attached ribosome ??? protein synthesis ?????? labelled diagram?"
+    alt="ইউক্যারিওটিক কোষে cytoplasm, cytosol, free ribosome, rough ER-এ attached ribosome এবং protein synthesis দেখানো labelled diagram।"
     loading="eager"
     fetchpriority="high"
     decoding="async">
-  <figcaption>Cytoplasm ??? ????? working area; ribosome ??? ??????? protein synthesis ????</figcaption>
+  <figcaption>Cytoplasm হলো কোষের working area; ribosome সেই পরিবেশে protein synthesis করে।</figcaption>
 </figure>
 
 <section class="lbfl-card objectives">
@@ -164,10 +164,10 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
 <figure class="lbfl-figure">
   <img
     src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-cytoplasm-vs-cytosol.webp' | relative_url }}"
-    alt="Cytoplasm ? cytosol-?? ????????? ?????; cytoplasm-? cytosol ? organelles ???? ??? cytosol ??? fluid part?"
+    alt="Cytoplasm ও cytosol-এর তুলনামূলক চিত্র; cytoplasm-এ cytosol ও organelles থাকে এবং cytosol হলো fluid part।"
     loading="lazy"
     decoding="async">
-  <figcaption>Cytoplasm ??? nucleus-?? ?????? ???????? working region; cytosol ??? ??? region-?? fluid component?</figcaption>
+  <figcaption>Cytoplasm হলো nucleus-এর বাইরের সম্পূর্ণ working region; cytosol হলো সেই region-এর fluid component।</figcaption>
 </figure>
 
 <div class="lbfl-table-card">
@@ -205,10 +205,10 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
 <figure class="lbfl-figure">
   <img
     src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-ribosome-protein-factory-flowchart.webp' | relative_url }}"
-    alt="DNA information ???? mRNA, ribosome, protein chain ??? cell function ??????? protein synthesis flowchart?"
+    alt="DNA information থেকে mRNA, ribosome, protein chain এবং cell function পর্যন্ত protein synthesis flowchart।"
     loading="lazy"
     decoding="async">
-  <figcaption>Ribosome genetic message ??????? amino acid ????? ??? functional protein ?????? ??????? ????</figcaption>
+  <figcaption>Ribosome genetic message অনুসারে amino acid যুক্ত করে functional protein তৈরিতে সাহায্য করে।</figcaption>
 </figure>
 
 <h2>LINE: Application and Connection</h2>
@@ -234,10 +234,10 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
 <figure class="lbfl-figure">
   <img
     src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-free-vs-attached-ribosome.webp' | relative_url }}"
-    alt="Cytoplasm-? free ribosome ??? rough endoplasmic reticulum-?? surface-? attached ribosome-?? ????????? ??????"
+    alt="Cytoplasm-এ free ribosome এবং rough endoplasmic reticulum-এর surface-এ attached ribosome-এর তুলনামূলক চিত্র।"
     loading="lazy"
     decoding="async">
-  <figcaption>Free ribosome ??????? intracellular protein ???? ???; attached ribosome secretory, lysosomal ? membrane protein ?????? ??????</figcaption>
+  <figcaption>Free ribosome সাধারণত intracellular protein তৈরি করে; attached ribosome secretory, lysosomal ও membrane protein তৈরিতে যুক্ত।</figcaption>
 </figure>
 
 <h3>৬. Ribosome → Rough ER → Golgi Body Connection</h3>
