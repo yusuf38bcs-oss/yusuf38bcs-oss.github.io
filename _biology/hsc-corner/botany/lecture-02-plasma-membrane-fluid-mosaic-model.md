@@ -70,7 +70,7 @@ seo_description: "HSC Biology lesson on plasma membrane, selective permeability,
 <section class="lbfl-card summary">
   <h2>পাঠের সারাংশ</h2>
   <p><strong>Plasma membrane</strong> হলো কোষের পাতলা, জীবন্ত এবং <strong>selectively permeable</strong> সীমারেখা। এটি cell-এর inside environment এবং outside environment আলাদা করে, প্রয়োজনীয় substance প্রবেশ করতে দেয়, waste বের হতে সাহায্য করে এবং harmful বা unnecessary movement নিয়ন্ত্রণ করে।</p>
-  <p><strong>Fluid mosaic model</strong> অনুযায়ী membrane মূলত <strong>phospholipid bilayer</strong> দিয়ে তৈরি, যেখানে protein, carbohydrate chain এবং cholesterol বিভিন্নভাবে arranged থাকে। Fluid মানে flexible and dynamic; mosaic মানে protein ও molecule-এর scattered pattern।</p>
+  <p><strong>Fluid mosaic model</strong> (proposed by Singer and Nicolson) অনুযায়ী membrane মূলত <strong>phospholipid bilayer</strong> দিয়ে তৈরি, যেখানে protein, carbohydrate chain এবং cholesterol বিভিন্নভাবে arranged থাকে। Fluid মানে flexible and dynamic; mosaic মানে protein ও molecule-এর scattered pattern।</p>
 </section>
 
 <figure class="lbfl-figure">
@@ -370,6 +370,7 @@ seo_description: "HSC Biology lesson on plasma membrane, selective permeability,
     <li>Phospholipid-এর hydrophilic head এবং hydrophobic tail আছে।</li>
     <li>Membrane protein transport, recognition এবং communication-এ সাহায্য করে।</li>
     <li>Fluid mosaic model membrane structure ব্যাখ্যা করে।</li>
+    <li>Fluid Mosaic Model proposer: Singer and Nicolson.</li>
     <li>Fluid মানে flexible এবং dynamic।</li>
     <li>Mosaic মানে protein এবং molecule-এর arranged pattern।</li>
     <li>Plasma membrane cellular balance বজায় রাখতে সাহায্য করে।</li>
