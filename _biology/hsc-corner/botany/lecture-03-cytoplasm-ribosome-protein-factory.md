@@ -56,6 +56,30 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
 .lbfl-gold{--ink:#0f172a;--muted:#475569;--line:#dbe4ee;--blue:#2563eb;--teal:#0f766e;--green:#15803d;--amber:#b45309;--violet:#6d28d9;--rose:#be123c;max-width:980px;margin:auto;color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali","Hind Siliguri",Arial,sans-serif;font-size:clamp(1rem,2.35vw,1.08rem);line-height:1.78}.lbfl-gold *{box-sizing:border-box}.lbfl-gold h1{margin:.15rem 0 .7rem;font-size:clamp(2.05rem,7.2vw,3.75rem);line-height:1.08}.lbfl-gold h2{margin:2rem 0 1rem;font-size:clamp(1.45rem,4.7vw,2.05rem);line-height:1.18}.lbfl-hero,.lbfl-card,.lbfl-figure,.lbfl-table-card,.lbfl-flow,.lbfl-mcq-card,.lbfl-cq-card,.lbfl-thinking,.lbfl-image-card{border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 18px 42px rgba(15,23,42,.08)}.lbfl-hero{padding:clamp(1.15rem,4vw,2.15rem);margin:1rem 0 2rem;background:radial-gradient(circle at 18% 0%,rgba(37,99,235,.16),transparent 34%),radial-gradient(circle at 85% 18%,rgba(20,184,166,.17),transparent 32%),linear-gradient(135deg,#fff,#f8fbff)}.lbfl-kicker{display:inline-flex;padding:.38rem .78rem;border-radius:999px;font-size:.78rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(37,99,235,.22);background:#eff6ff;color:#1e40af;margin-bottom:.85rem}.lead{max-width:860px;margin:0;color:#334155;font-size:clamp(1.04rem,3.2vw,1.22rem)}.lbfl-meta,.chips{display:flex;flex-wrap:wrap;gap:.55rem;margin:1rem 0}.lbfl-meta span,.chips span{padding:.45rem .7rem;border-radius:999px;background:#f8fafc;border:1px solid var(--line);font-weight:800;color:#334155}.lbfl-card{padding:clamp(1rem,3.4vw,1.35rem);margin:1rem 0 1.25rem}.summary{background:#eef6ff;border-left:7px solid var(--blue)}.objectives{background:#ecfdf5;border-left:7px solid var(--green)}.outcomes{background:#f0fdfa;border-left:7px solid var(--teal)}.activities{background:#fffbeb;border-left:7px solid var(--amber)}.boundary{background:#f8fafc;border-left:7px solid #64748b}.lbfl-list{display:grid;gap:.58rem;margin:.7rem 0 0;padding:0;list-style:none}.lbfl-list li{position:relative;padding:.72rem .85rem .72rem 2.25rem;border:1px solid rgba(148,163,184,.22);border-radius:16px;background:rgba(255,255,255,.66)}.lbfl-list li:before{content:"✓";position:absolute;left:.85rem;color:var(--green);font-weight:900}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));gap:.85rem;margin:1rem 0}.term{border:1px solid rgba(148,163,184,.26);border-radius:18px;padding:1rem;background:#fff}.term:nth-child(odd){background:#eff6ff}.term:nth-child(even){background:#ecfdf5}.term strong{display:block;margin-bottom:.35rem}.lbfl-table-card,.lbfl-image-card,.lbfl-flow,.lbfl-thinking{padding:1rem 1.15rem;margin:1rem 0 1.4rem}.lbfl-flow{background:#f8fafc;border-left:7px solid var(--green)}.lbfl-image-card{background:#f8fafc;border-left:7px solid var(--blue)}.lbfl-thinking{background:#fff1f2;border-left:7px solid var(--rose)}.table-wrap{overflow-x:auto;border-radius:18px;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:650px;background:#fff}th{background:#0f172a;color:#fff;text-align:left;padding:.85rem}td{border-top:1px solid #e5e7eb;padding:.82rem;vertical-align:top}tr:nth-child(even) td{background:#f8fafc}.chain{display:grid;gap:.55rem;margin:.7rem 0}.chain span{display:block;padding:.72rem .85rem;border:1px solid rgba(148,163,184,.22);border-radius:15px;background:#fff;font-weight:900;text-align:center}.mistake{padding:.9rem;border:1px solid rgba(244,63,94,.22);border-radius:17px;background:#fff1f2;margin:.75rem 0}.mistake b{color:#be123c}.mistake strong{color:#15803d}.mcq-list,.cq-list{display:grid;gap:1rem;margin:1rem 0 1.4rem}.lbfl-mcq-card,.lbfl-cq-card{padding:1rem}.options{display:grid;gap:.5rem;margin:.6rem 0}.option{padding:.65rem .75rem;border:1px solid rgba(148,163,184,.24);border-radius:14px;background:#f8fafc}.answer{margin-top:.85rem;padding:.85rem;border:1px solid rgba(22,163,74,.25);border-radius:14px;background:#f0fdf4;color:#14532d}.lbfl-cq-card details,.lbfl-mcq-card details{border:1px solid var(--line);border-radius:16px;background:#fff;padding:.85rem;margin:.75rem 0}.lbfl-cq-card summary{cursor:pointer;font-weight:900;color:#1e40af}.prompt-box{padding:.85rem;border:1px dashed #94a3b8;border-radius:16px;background:#fff;color:#334155}.prevnext{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;margin:2rem 0}.prevnext a,.prevnext span{padding:.75rem 1rem;border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none!important;color:#334155;font-weight:800}@media(max-width:760px){.lbfl-gold{font-size:1rem}.prevnext{flex-direction:column}.prevnext a{text-align:center}table{min-width:560px}}
 </style>
 
+<style>
+.lbfl-figure{
+  padding:clamp(.65rem,2vw,1rem);
+  margin:1.25rem 0 2rem;
+  overflow:hidden;
+  text-align:center;
+}
+.lbfl-figure img{
+  display:block;
+  width:100%;
+  height:auto;
+  margin:auto;
+  border-radius:18px;
+  background:#f8fafc;
+}
+.lbfl-figure figcaption{
+  max-width:800px;
+  margin:.85rem auto 0;
+  color:#475569;
+  font-size:.95rem;
+  line-height:1.55;
+}
+</style>
+
 <div class="lbfl-gold" markdown="1">
 
 <section class="lbfl-hero">
@@ -71,14 +95,15 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
   <p>Cytoplasm-এর মধ্যে থাকে <strong>cytosol</strong>, organelles, enzymes, nutrients, ions এবং dissolved molecules। Ribosome হলো ছোট <strong>non-membranous organelle</strong>, যা amino acid যুক্ত করে protein synthesis-এ সাহায্য করে।</p>
 </section>
 
-<section class="lbfl-image-card">
-  <h2>Visual Placement 1: Hero Image</h2>
-  <p><strong>Placement:</strong> Hero summary-এর পর।</p>
-  <p><strong>Recommended file:</strong> <code>lbfl-cytoplasm-ribosome-protein-synthesis-hsc-biology.webp</code></p>
-  <div class="prompt-box"><strong>Image prompt:</strong> Create a clean educational vector image for HSC Biology showing a eukaryotic cell with cytoplasm highlighted as the internal working area. Show nucleus, plasma membrane, cytoplasm, cytosol, free ribosomes, rough ER with attached ribosomes, and a small protein chain forming near ribosomes. Use minimal labels only: Cytoplasm, Cytosol, Ribosome, Rough ER, Protein synthesis. White background, textbook style, no clutter. Add small footer text: “LBFL • learningbiologyforlife.org”.</div>
-  <p><strong>Alt text:</strong> Labelled diagram showing cytoplasm, cytosol, free ribosomes, attached ribosomes, rough endoplasmic reticulum and protein synthesis inside a eukaryotic cell.</p>
-  <p><strong>Caption:</strong> Cytoplasm cell-এর working area; ribosome সেই area-তে protein synthesis করে।</p>
-</section>
+<figure class="lbfl-figure">
+  <img
+    src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-cytoplasm-ribosome-protein-synthesis-hsc-biology.webp' | relative_url }}"
+    alt="ইউক্যারিওটিক কোষে cytoplasm, cytosol, free ribosome, rough ER-এ attached ribosome এবং protein synthesis দেখানো labelled diagram।"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async">
+  <figcaption>Cytoplasm হলো কোষের working area; ribosome সেই পরিবেশে protein synthesis করে।</figcaption>
+</figure>
 
 <section class="lbfl-card objectives">
   <h2>Learning Objectives</h2>
@@ -136,14 +161,14 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
 <h3>২. Cytosol কী?</h3>
 <p><strong>Cytosol</strong> হলো cytoplasm-এর fluid part। Organelles বাদ দিলে cytoplasm-এর যে fluid medium থাকে, সেটিকে cytosol বলা হয়। Cytoplasm broader term, আর cytosol হলো তার liquid part।</p>
 
-<section class="lbfl-image-card">
-  <h2>Visual Placement 2: Cytoplasm vs Cytosol</h2>
-  <p><strong>Placement:</strong> Cytosol ব্যাখ্যার পর।</p>
-  <p><strong>Recommended file:</strong> <code>lbfl-cytoplasm-vs-cytosol.webp</code></p>
-  <div class="prompt-box"><strong>Image prompt:</strong> Create a simple comparison diagram explaining cytoplasm vs cytosol. Show one eukaryotic cell. Highlight the whole region outside the nucleus as “Cytoplasm”. In a second smaller panel, show only the fluid part around organelles as “Cytosol”. Use minimal text: Cytoplasm = cytosol + organelles, Cytosol = fluid part. Clean white background, HSC-friendly vector style. Add small footer text: “LBFL • learningbiologyforlife.org”.</div>
-  <p><strong>Alt text:</strong> Comparison diagram showing cytoplasm as the region outside the nucleus and cytosol as the fluid part of cytoplasm.</p>
-  <p><strong>Caption:</strong> Cytoplasm হলো পুরো working area; cytosol হলো সেই area-এর fluid medium।</p>
-</section>
+<figure class="lbfl-figure">
+  <img
+    src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-cytoplasm-vs-cytosol.webp' | relative_url }}"
+    alt="Cytoplasm ও cytosol-এর তুলনামূলক চিত্র; cytoplasm-এ cytosol ও organelles থাকে এবং cytosol হলো fluid part।"
+    loading="lazy"
+    decoding="async">
+  <figcaption>Cytoplasm হলো nucleus-এর বাইরের সম্পূর্ণ working region; cytosol হলো সেই region-এর fluid component।</figcaption>
+</figure>
 
 <div class="lbfl-table-card">
   <h3>Cytoplasm vs Cytosol</h3>
@@ -177,14 +202,14 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
   <div class="chain"><span>DNA information</span><span>↓</span><span>mRNA message</span><span>↓</span><span>Ribosome</span><span>↓</span><span>Protein</span><span>↓</span><span>Cell function</span></div>
 </section>
 
-<section class="lbfl-image-card">
-  <h2>Visual Placement 3: Ribosome as Protein Factory</h2>
-  <p><strong>Placement:</strong> Protein synthesis chain-এর পর।</p>
-  <p><strong>Recommended file:</strong> <code>lbfl-ribosome-protein-factory-flowchart.webp</code></p>
-  <div class="prompt-box"><strong>Image prompt:</strong> Create a minimal educational flowchart showing ribosome as the protein factory of the cell. Use simple icons and arrows: DNA information → mRNA message → Ribosome → Protein chain → Cell function. Keep the ribosome as the central visual. Use minimal labels, clean white background, modern biology infographic style. Add small footer text: “LBFL • learningbiologyforlife.org”.</div>
-  <p><strong>Alt text:</strong> Flowchart showing DNA information, mRNA message, ribosome, protein chain and cell function.</p>
-  <p><strong>Caption:</strong> Ribosome genetic message-কে useful protein output-এ convert করতে সাহায্য করে।</p>
-</section>
+<figure class="lbfl-figure">
+  <img
+    src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-ribosome-protein-factory-flowchart.webp' | relative_url }}"
+    alt="DNA information থেকে mRNA, ribosome, protein chain এবং cell function পর্যন্ত protein synthesis flowchart।"
+    loading="lazy"
+    decoding="async">
+  <figcaption>Ribosome genetic message অনুসারে amino acid যুক্ত করে functional protein তৈরিতে সাহায্য করে।</figcaption>
+</figure>
 
 <h2>LINE: Application and Connection</h2>
 <p>Cytoplasm এবং ribosome আলাদা topic হলেও তারা strongly connected। Cytoplasm হলো cell-এর workspace; ribosome হলো সেই workspace-এর protein-making machine।</p>
@@ -206,14 +231,14 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
   </div>
 </div>
 
-<section class="lbfl-image-card">
-  <h2>Visual Placement 4: Free Ribosome vs Attached Ribosome</h2>
-  <p><strong>Placement:</strong> LINE section-এর পর।</p>
-  <p><strong>Recommended file:</strong> <code>lbfl-free-vs-attached-ribosome.webp</code></p>
-  <div class="prompt-box"><strong>Image prompt:</strong> Create a clean comparison image showing free ribosomes and attached ribosomes. Left side: free ribosomes floating in cytoplasm. Right side: ribosomes attached to rough endoplasmic reticulum. Use minimal labels: Free ribosome, Attached ribosome, Cytoplasm, Rough ER. Add short notes: internal proteins, transported proteins. White background, textbook-style vector. Add small footer text: “LBFL • learningbiologyforlife.org”.</div>
-  <p><strong>Alt text:</strong> Comparison diagram showing free ribosomes in cytoplasm and attached ribosomes on rough endoplasmic reticulum.</p>
-  <p><strong>Caption:</strong> একই ribosome ভিন্ন location-এ ভিন্ন functional context-এ কাজ করতে পারে।</p>
-</section>
+<figure class="lbfl-figure">
+  <img
+    src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-free-vs-attached-ribosome.webp' | relative_url }}"
+    alt="Cytoplasm-এ free ribosome এবং rough endoplasmic reticulum-এর surface-এ attached ribosome-এর তুলনামূলক চিত্র।"
+    loading="lazy"
+    decoding="async">
+  <figcaption>Free ribosome সাধারণত intracellular protein তৈরি করে; attached ribosome secretory, lysosomal ও membrane protein তৈরিতে যুক্ত।</figcaption>
+</figure>
 
 <h3>৬. Ribosome → Rough ER → Golgi Body Connection</h3>
 <p>এই lesson পরের lesson-এর সাথে সরাসরি connected। Ribosome protein তৈরি করে, rough ER protein processing ও transport-এ সাহায্য করে, এবং Golgi body সেই protein modify, sort ও package করে destination-এ পাঠায়।</p>
