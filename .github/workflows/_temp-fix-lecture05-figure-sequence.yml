@@ -1,0 +1,57 @@
+name: Temporary Lecture 05 Figure Sequence Fix
+
+on:
+  push:
+    branches:
+      - lesson/botany-chapter-01-forensic-audit-lecture-05
+    paths:
+      - .github/workflows/_temp-fix-lecture05-figure-sequence.yml
+  pull_request:
+    branches:
+      - staging
+    paths:
+      - .github/workflows/_temp-fix-lecture05-figure-sequence.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix-sequence:
+    if: github.actor != 'github-actions[bot]' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout actual PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
+      - name: Correct figure sequence exactly once
+        shell: python
+        run: |
+          from pathlib import Path
+          path = Path('_biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome.md')
+          text = path.read_text(encoding='utf-8')
+          replacements = [
+              ('চিত্র ৪: Cell maintenance system — package, clean and protect.', 'চিত্র ২: Cell maintenance system — package, clean and protect.'),
+              ('চিত্র ২: ER থেকে Golgi হয়ে final destination-এ cargo flow।', 'চিত্র ৩: ER থেকে Golgi হয়ে final destination-এ cargo flow।'),
+              ('চিত্র ৩: Golgi, lysosome ও peroxisome-এর core comparison।', 'চিত্র ৪: Golgi, lysosome ও peroxisome-এর core comparison।'),
+          ]
+          for old, new in replacements:
+              if text.count(old) != 1:
+                  raise SystemExit(f'Expected one figure caption target: {old!r}; found {text.count(old)}')
+              text = text.replace(old, new, 1)
+          path.write_text(text, encoding='utf-8', newline='\n')
+          captions = [line.strip() for line in text.splitlines() if '<figcaption>' in line]
+          expected = [f'চিত্র {n}:' for n in range(1, 6)]
+          if len(captions) != 5 or any(marker not in caption for marker, caption in zip(expected, captions)):
+              raise SystemExit(f'Figure sequence validation failed: {captions}')
+          print('LECTURE_05_FIGURE_SEQUENCE_OK')
+      - name: Commit corrected lesson
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome.md
+          git commit -m "Correct Lecture 05 figure sequence"
+          git push origin "HEAD:${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
