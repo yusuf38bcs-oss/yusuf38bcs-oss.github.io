@@ -7,7 +7,7 @@ sidebar:
 title: "উদ্ভিদবিজ্ঞান: HSC Biology 1st Paper Botany"
 excerpt: "উচ্চ মাধ্যমিক জীববিজ্ঞান ১ম পত্রের উদ্ভিদবিজ্ঞান শেখার পরিচ্ছন্ন অধ্যায় ও লেকচার সূচি।"
 date: 2026-06-09T05:00:00.000Z
-last_modified_at: 2026-07-11T16:45:00.000+06:00
+last_modified_at: 2026-07-16T00:00:00.000+06:00
 permalink: /biology/hsc-corner/botany/
 node_id: index-hsc-botany
 pillar: "Life Sciences"
@@ -68,6 +68,11 @@ concept_level: "Gateway"
     <p>সাইটোপ্লাজম, সাইটোসোল, ribosome, 70S/80S এবং protein synthesis।</p>
   </article>
   <article class="lbfl-clean-card">
+    <span class="lbfl-tag">লেকচার ০৪</span>
+    <h3><a href="/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/">Endoplasmic Reticulum: কোষের অভ্যন্তরীণ Transport Network</a></h3>
+    <p>Rough ER, Smooth ER, cisternae, ER lumen, protein processing, lipid synthesis এবং ER-to-Golgi transport pathway।</p>
+  </article>
+<article class="lbfl-clean-card">
     <span class="lbfl-tag">লেকচার ০৬</span>
     <h3><a href="/bn/biology/hsc-corner/botany/lecture-06-mitochondria/">মাইটোকন্ড্রিয়া: কোষের শক্তিঘর</a></h3>
     <p>Mitochondrion structure, cristae, matrix, mitochondrial DNA, ATP production ও high-energy cell।</p>
@@ -82,8 +87,7 @@ concept_level: "Gateway"
     <tr><th>লেকচার</th><th>বিষয়</th></tr>
   </thead>
   <tbody>
-    <tr><td>০৪</td><td>Endoplasmic Reticulum</td></tr>
-    <tr><td>০৫</td><td>Golgi Body, Lysosome, Peroxisome</td></tr>
+<tr><td>০৫</td><td>Golgi Body, Lysosome, Peroxisome</td></tr>
     <tr><td>০৭</td><td>Plastid and Chloroplast</td></tr>
     <tr><td>০৮</td><td>Nucleus and Chromosome</td></tr>
   </tbody>
