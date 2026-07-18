@@ -7,7 +7,7 @@ sidebar:
 title: "লেকচার ০৩: Cytoplasm and Ribosome — কোষের কার্যক্ষেত্র ও Protein Factory"
 excerpt: "HSC Botany-এর বাংলা মূল পাঠ: cytoplasm, cytosol, ribosome, free ribosome, attached ribosome, rough ER এবং protein synthesis।"
 date: 2026-07-04T00:15:00.000+06:00
-last_modified_at: 2026-07-16T09:25:00.000+06:00
+last_modified_at: 2026-07-16T00:00:00.000+06:00
 permalink: /biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/
 slug: cytoplasm-ribosome-protein-factory
 categories:
@@ -34,6 +34,7 @@ synaptic_links:
   - /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
   - /biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/
   - /biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/
+  - /biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/
 toc: true
 toc_sticky: true
 classes: wide
@@ -357,7 +358,7 @@ seo_description: "HSC Biology lesson on cytoplasm, cytosol, ribosome, free ribos
 <nav class="prevnext" aria-label="Lesson navigation">
   <a href="{{ '/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/' | relative_url }}">← Previous: Plasma Membrane and Fluid Mosaic Model</a>
   <a href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">Chapter 1</a>
-  <span>Next: Endoplasmic Reticulum — coming soon</span>
+  <a href="{{ '/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/' | relative_url }}">Next: Endoplasmic Reticulum →</a>
 </nav>
 
 </div>
