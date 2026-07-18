@@ -209,18 +209,18 @@ next_lesson:
 
 <figure class="lbfl-figure">
 <img src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-cell-maintenance-system-golgi-lysosome-peroxisome.webp' | relative_url }}" alt="Concept diagram showing Golgi body, lysosome and peroxisome as a coordinated cell maintenance system for packaging, cleaning and protection." loading="lazy" decoding="async">
-<figcaption>চিত্র ৪: Cell maintenance system — package, clean and protect.</figcaption>
+<figcaption>চিত্র ২: Cell maintenance system — package, clean and protect.</figcaption>
 </figure>
 
 <section class="lbfl-table-card"><h2>Structure–Function Map</h2><div class="table-wrap"><table><thead><tr><th>Feature</th><th>Golgi body</th><th>Lysosome</th><th>Peroxisome</th></tr></thead><tbody><tr><td>Main identity</td><td>Modification and sorting stack</td><td>Acidic digestive compartment</td><td>Oxidative organelle</td></tr><tr><td>Membrane</td><td>Single-membrane cisternae stack</td><td>Single membrane</td><td>Single membrane</td></tr><tr><td>Key content</td><td>Processing enzymes, cargo</td><td>Acid hydrolases</td><td>Oxidases, catalase</td></tr><tr><td>Core function</td><td>Modify, sort, package</td><td>Digest, recycle, autophagy</td><td>Fatty-acid oxidation, H₂O₂ control</td></tr><tr><td>Major connection</td><td>ER and vesicle traffic</td><td>Endocytosis/autophagy</td><td>Detoxification and lipid metabolism</td></tr><tr><td>Plant note</td><td>Dictyosome common term</td><td>Lytic vacuole often performs similar roles</td><td>Photorespiration; glyoxysome in seeds</td></tr></tbody></table></div></section>
 
 <figure class="lbfl-figure">
 <img src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-er-golgi-vesicle-pathway.webp' | relative_url }}" alt="Flowchart showing rough ER, transport vesicle, cis Golgi, trans Golgi, secretory vesicle and final destination." loading="lazy"  decoding="async">
-<figcaption>চিত্র ২: ER থেকে Golgi হয়ে final destination-এ cargo flow।</figcaption>
+<figcaption>চিত্র ৩: ER থেকে Golgi হয়ে final destination-এ cargo flow।</figcaption>
 </figure>
 <figure class="lbfl-figure">
 <img src="{{ '/assets/images/hsc-botany/chapter-01/lbfl-golgi-lysosome-peroxisome-comparison.webp' | relative_url }}" alt="Comparison infographic showing Golgi packaging, lysosome digestion and peroxisome detoxification." loading="lazy"  decoding="async">
-<figcaption>চিত্র ৩: Golgi, lysosome ও peroxisome-এর core comparison।</figcaption>
+<figcaption>চিত্র ৪: Golgi, lysosome ও peroxisome-এর core comparison।</figcaption>
 </figure>
 
 <section><h2>Misconception Correction</h2><div class="mistake"><b>ভুল ধারণা:</b> Golgi body protein তৈরি করে।<br><strong>সংশোধন:</strong> Protein ribosome synthesize করে; Golgi modify, sort ও package করে।</div><div class="mistake"><b>ভুল ধারণা:</b> Cis ও trans face একই side।<br><strong>সংশোধন:</strong> Cis face receiving side; trans face sorting/shipping side।</div><div class="mistake"><b>ভুল ধারণা:</b> Lysosome শুধু cell destroy করে।<br><strong>সংশোধন:</strong> Normal lysosome controlled digestion, defense, autophagy ও recycling চালায়।</div><div class="mistake"><b>ভুল ধারণা:</b> Plant cell-এর lysosome animal cell-এর মতো সবসময় distinct।<br><strong>সংশোধন:</strong> Plant lytic vacuole lysosome-like function করতে পারে।</div><div class="mistake"><b>ভুল ধারণা:</b> Lysosome ও peroxisome একই।<br><strong>সংশোধন:</strong> Lysosome hydrolase ও acidic digestion; peroxisome oxidase/catalase ও oxidative metabolism।</div><div class="mistake"><b>ভুল ধারণা:</b> Peroxisome H₂O₂ শুধু তৈরি করে।<br><strong>সংশোধন:</strong> Oxidase H₂O₂ generate করতে পারে; catalase তা breakdown করে।</div><div class="mistake"><b>ভুল ধারণা:</b> Peroxisome ATP powerhouse।<br><strong>সংশোধন:</strong> Main ATP production mitochondria-এর সঙ্গে যুক্ত।</div></section>
