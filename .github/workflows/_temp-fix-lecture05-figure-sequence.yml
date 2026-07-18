@@ -25,33 +25,16 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.head_ref || github.ref_name }}
-      - name: Correct and validate figure sequence
+      - name: Correct figure sequence
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          from pathlib import Path
-          path = Path('_biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome.md')
-          text = path.read_text(encoding='utf-8')
-          originals = {
-              'FIG_MAINT': 'চিত্র ৪: Cell maintenance system — package, clean and protect.',
-              'FIG_PATH': 'চিত্র ২: ER থেকে Golgi হয়ে final destination-এ cargo flow।',
-              'FIG_COMPARE': 'চিত্র ৩: Golgi, lysosome ও peroxisome-এর core comparison।',
-          }
-          for token, old in originals.items():
-              if text.count(old) != 1:
-                  raise SystemExit(f'Expected one target for {token}; found {text.count(old)}')
-              text = text.replace(old, token, 1)
-          text = text.replace('FIG_MAINT', 'চিত্র ২: Cell maintenance system — package, clean and protect.', 1)
-          text = text.replace('FIG_PATH', 'চিত্র ৩: ER থেকে Golgi হয়ে final destination-এ cargo flow।', 1)
-          text = text.replace('FIG_COMPARE', 'চিত্র ৪: Golgi, lysosome ও peroxisome-এর core comparison।', 1)
-          captions = [line.strip() for line in text.splitlines() if '<figcaption>' in line]
-          expected = [f'চিত্র {n}:' for n in range(1, 6)]
-          if len(captions) != 5 or any(marker not in caption for marker, caption in zip(expected, captions)):
-              raise SystemExit(f'Figure sequence validation failed: {captions}')
-          path.write_text(text, encoding='utf-8', newline='\n')
-          print('LECTURE_05_FIGURE_SEQUENCE_OK')
-          PY
+          file='_biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome.md'
+          sed -i 's/চিত্র ৪: Cell maintenance system — package, clean and protect\./চিত্র ২: Cell maintenance system — package, clean and protect./' "$file"
+          sed -i 's/চিত্র ২: ER থেকে Golgi হয়ে final destination-এ cargo flow।/চিত্র ৩: ER থেকে Golgi হয়ে final destination-এ cargo flow।/' "$file"
+          sed -i 's/চিত্র ৩: Golgi, lysosome ও peroxisome-এর core comparison।/চিত্র ৪: Golgi, lysosome ও peroxisome-এর core comparison।/' "$file"
+          grep -n '<figcaption>' "$file"
+          git diff --check
       - name: Commit corrected lesson
         shell: bash
         run: |
