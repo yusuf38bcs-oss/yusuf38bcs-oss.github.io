@@ -9,19 +9,28 @@ on:
       - scripts/_patch_botany_chapter01_code.lzma.b64
       - scripts/_lecture05_payload.lzma.b64
       - .github/workflows/_temp-patch-botany-chapter01.yml
+  pull_request:
+    branches:
+      - staging
+    paths:
+      - scripts/_patch_botany_chapter01_runner.py
+      - scripts/_patch_botany_chapter01_code.lzma.b64
+      - scripts/_lecture05_payload.lzma.b64
+      - .github/workflows/_temp-patch-botany-chapter01.yml
 
 permissions:
   contents: write
 
 jobs:
   apply-production-fix:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'github-actions[bot]' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-24.04
     steps:
-      - name: Checkout generator branch
+      - name: Checkout actual audit branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -39,4 +48,4 @@ jobs:
           git add -A
           git diff --cached --quiet && { echo "No generated changes."; exit 1; }
           git commit -m "Audit Botany Chapter 01 and publish Lecture 05"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
