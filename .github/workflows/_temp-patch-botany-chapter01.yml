@@ -38,7 +38,18 @@ jobs:
       - name: Install deterministic dependencies
         run: python -m pip install --disable-pip-version-check pillow pyyaml beautifulsoup4
       - name: Apply and validate production fix
-        run: python scripts/_patch_botany_chapter01_runner.py
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/_patch_botany_chapter01_runner.py 2>&1 | tee botany-generator.log
+      - name: Upload deterministic diagnostic log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: botany-chapter01-generator-log
+          path: botany-generator.log
+          if-no-files-found: error
+          retention-days: 3
       - name: Commit production set and remove bootstrap
         shell: bash
         run: |
