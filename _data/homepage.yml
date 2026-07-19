@@ -1,4 +1,4 @@
-version: 1
+version: 2
 status: baseline-only
 render_enabled: false
 baseline_date: "2026-07-19"
@@ -70,10 +70,40 @@ trust_signals:
   - "Academic and accessibility review"
 
 latest_learning:
-  mode: curated
+  mode: explicit-curation
   maximum_items: 6
-  require_front_matter:
-    homepage_featured: true
+  selection_policy: "Render only the explicitly listed learner-facing items below. Do not mutate lesson or collection front matter for homepage eligibility."
+  items:
+    - id: cell-protoplasm-cell-theory
+      title: "Cell, Protoplasm and Cell Theory"
+      label: "Lecture 01"
+      pathway: "HSC Botany"
+      url: "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/"
+    - id: plasma-membrane-fluid-mosaic-model
+      title: "Plasma Membrane and Fluid Mosaic Model"
+      label: "Lecture 02"
+      pathway: "HSC Botany"
+      url: "/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/"
+    - id: cytoplasm-ribosome-protein-factory
+      title: "Cytoplasm and Ribosome: Protein Factory of the Cell"
+      label: "Lecture 03"
+      pathway: "HSC Botany"
+      url: "/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/"
+    - id: endoplasmic-reticulum-transport-network
+      title: "Endoplasmic Reticulum: Transport Network of the Cell"
+      label: "Lecture 04"
+      pathway: "HSC Botany"
+      url: "/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/"
+    - id: golgi-body-lysosome-peroxisome
+      title: "Golgi Body, Lysosome and Peroxisome"
+      label: "Lecture 05"
+      pathway: "HSC Botany"
+      url: "/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/"
+    - id: mitochondria-powerhouse
+      title: "Mitochondria: Powerhouse of the Cell"
+      label: "Lecture 06"
+      pathway: "HSC Botany"
+      url: "/biology/hsc-corner/botany/lecture-06-mitochondria/"
   forbidden_collections:
     - redirects
   exclude_internal_paths:
