@@ -1,0 +1,136 @@
+version: 1
+status: baseline-only
+render_enabled: false
+baseline_date: "2026-07-19"
+baseline_commit: "e74c6d5a99b066e134ddc0441720e6fc5b0a9d62"
+base_branch: staging
+
+identity:
+  name: "Learning Biology For Life"
+  headline: "Where Biology Meets Life"
+  audience: "Bangladeshi learners and teachers"
+  promise: "Bangla-first biology learning with English technical terms, diagrams, interactive assessment and reflective scientific reasoning."
+
+primary_actions:
+  - id: hsc-biology
+    label: "Start HSC Biology"
+    url: "/biology/hsc-corner/"
+    priority: primary
+  - id: higher-zoology
+    label: "Explore Higher Zoology"
+    url: "/biology/higher-zoology-tree/"
+    priority: primary
+
+secondary_actions:
+  - id: mcq-arena
+    label: "Practice MCQs"
+    url: "/mcq-arena/"
+    priority: secondary
+  - id: socratic
+    label: "Learn through Socratic Inquiry"
+    url: "/socratic/"
+    priority: secondary
+
+pathways:
+  - id: hsc-biology
+    title: "HSC Biology"
+    outcome: "Build chapter-aligned Botany and Zoology understanding with diagrams and assessment."
+    best_for: "HSC learners"
+    url: "/biology/hsc-corner/"
+  - id: higher-zoology
+    title: "Higher Zoology"
+    outcome: "Explore Animal Diversity, Physiology, Ecology, Genetics and Biostatistics."
+    best_for: "Advanced learners and teachers"
+    url: "/biology/higher-zoology-tree/"
+  - id: mcq-arena
+    title: "MCQ Arena"
+    outcome: "Attempt, submit, score, inspect explanations and repair misconceptions."
+    best_for: "Exam practice"
+    url: "/mcq-arena/"
+  - id: socratic
+    title: "Socratic 4.0"
+    outcome: "Strengthen reflective scientific thinking through guided questions and self-audit."
+    best_for: "Conceptual reflection"
+    url: "/socratic/"
+
+featured_route:
+  enabled: true
+  eyebrow: "Start Here"
+  title: "HSC Botany Chapter 01 — Cell and Its Structure"
+  summary: "Six audited lessons covering cell foundation, membrane, ribosome, ER, Golgi–lysosome–peroxisome and mitochondria."
+  lesson_count: 6
+  chapter_url: "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
+  start_url: "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/"
+
+trust_signals:
+  - "Bangla-first explanation"
+  - "English technical terms"
+  - "Diagram-supported lessons"
+  - "Interactive MCQ feedback"
+  - "Academic and accessibility review"
+
+latest_learning:
+  mode: curated
+  maximum_items: 6
+  require_front_matter:
+    homepage_featured: true
+  forbidden_collections:
+    - redirects
+  exclude_internal_paths:
+    - ".github/"
+    - "audit-reports/"
+    - "docs/"
+
+assessment_loop:
+  steps:
+    - "Learn"
+    - "Attempt"
+    - "Submit"
+    - "Score"
+    - "Read explanation"
+    - "Repair misconception"
+
+editorial_trust:
+  author: "MD. Yusuf"
+  role: "BCS Education Cadre (38th BCS)"
+  profile_url: "/about/"
+  contact_url: "/contact/"
+
+release_contract:
+  worker: "lbfl-ai-deploy-orchestrator"
+  worker_mode: "homepage-dry-run-required"
+  direct_main_write: false
+  target_base_branch: staging
+  merge_by_worker: false
+  expected_head_guard: true
+  manual_ads_in_homepage: false
+  legal_routes_immutable: true
+  required_gates:
+    - "Validate Jekyll PR"
+    - "Sovereign Site Audit v4"
+    - "Cloudflare preview"
+    - "Mobile visual QA"
+    - "Accessibility and keyboard QA"
+    - "Route and canonical smoke test"
+
+allowed_homepage_paths:
+  - "index.html"
+  - "_includes/home/"
+  - "_data/homepage.yml"
+  - "_sass/pages/_homepage-v2.scss"
+  - "assets/js/home/homepage-v2.js"
+  - "assets/images/home/"
+  - ".github/ops/HOMEPAGE_"
+
+forbidden_paths:
+  - "_config.yml"
+  - ".github/workflows/"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "package.json"
+  - "package-lock.json"
+  - "wrangler.toml"
+  - "CNAME"
+  - "_redirects"
+  - "assets/js/consent/"
+  - "assets/js/adsense/"
