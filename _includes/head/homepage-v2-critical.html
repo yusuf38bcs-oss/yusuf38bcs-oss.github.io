@@ -6,4 +6,26 @@
 {% include head/polyglot-seo-overrides.html %}
 
 <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
-<link rel="apple-touch-icon" href="{{ '/
+<link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+
+{% assign lbfl_main_css = '/assets/css/main.css' | relative_url %}
+<link rel="preload" href="{{ lbfl_main_css }}?v={{ site.time | date: '%Y%m%d' }}" as="style" fetchpriority="high">
+<link rel="stylesheet" href="{{ lbfl_main_css }}?v={{ site.time | date: '%Y%m%d' }}">
+
+<style>
+  html.lbfl-home-v2-document,
+  html.lbfl-home-v2-document body {
+    scroll-behavior: auto !important;
+  }
+
+  html.lbfl-home-v2-document {
+    background: #020617;
+  }
+
+  body.lbfl-home-v2-active {
+    margin: 0;
+  }
+</style>
+
+{% include home/homepage-styles.html %}
+{% include home/homepage-runtime-fixes.html %}
