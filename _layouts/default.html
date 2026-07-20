@@ -1,18 +1,26 @@
+{% assign lbfl_home_v2_active = false %}
+{% if page.url == '/' and site.data.homepage.render_enabled %}
+  {% assign lbfl_home_v2_active = true %}
+{% endif %}
 <!doctype html>
 {% assign html_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
 {% assign html_lang_base = html_lang | split: '-' | first | default: 'en' %}
 {% assign html_dir = page.dir | default: site.dir | default: 'ltr' %}
-<html lang="{{ html_lang_base }}" xml:lang="{{ html_lang_base }}" dir="{{ html_dir }}" class="no-js">
+<html lang="{{ html_lang_base }}" xml:lang="{{ html_lang_base }}" dir="{{ html_dir }}" class="no-js{% if lbfl_home_v2_active %} lbfl-home-v2-document{% endif %}">
   <head>
     {% include head.html %}
-    {% include head/custom.html %}
+    {% unless lbfl_home_v2_active %}
+      {% include head/custom.html %}
+    {% endunless %}
   </head>
 
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
-    <!-- Google Tag Manager noscript fallback -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPZ6MPK4"
-    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
-    <!-- End Google Tag Manager noscript fallback -->
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}{% if lbfl_home_v2_active %} lbfl-home-v2-active{% endif %}">
+    {% unless lbfl_home_v2_active %}
+      <!-- Google Tag Manager noscript fallback -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPZ6MPK4"
+      height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+      <!-- End Google Tag Manager noscript fallback -->
+    {% endunless %}
 
     {% include skip-links.html %}
     {% include masthead.html %}
@@ -21,7 +29,7 @@
       {{ content }}
     </main>
 
-    {% if site.search == true %}
+    {% if site.search == true and lbfl_home_v2_active == false %}
       <div class="search-content" role="search" aria-label="Site search">
         {% include_cached search/search_form.html %}
       </div>
@@ -33,6 +41,10 @@
     </footer>
 
     {% include body/gdpr-banner.html %}
-    {% include scripts.html %}
+    {% if lbfl_home_v2_active %}
+      <script src="{{ '/assets/js/main.min.js' | relative_url }}" defer></script>
+    {% else %}
+      {% include scripts.html %}
+    {% endif %}
   </body>
 </html>
