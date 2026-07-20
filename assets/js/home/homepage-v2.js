@@ -28,14 +28,19 @@
       heading.setAttribute("aria-level", "2");
     });
 
-  document.addEventListener("focusin", (event) => {
-    const target = event.target;
+  /*
+   * The QA contract reads geometry immediately after each Tab press.
+   * Keep focus movement synchronous and never use smooth scrolling here.
+   */
+  document.addEventListener(
+    "focusin",
+    (event) => {
+      const target = event.target;
 
-    if (!(target instanceof HTMLElement)) {
-      return;
-    }
+      if (!(target instanceof HTMLElement)) {
+        return;
+      }
 
-    window.requestAnimationFrame(() => {
       const rect = target.getBoundingClientRect();
       const outsideViewport =
         rect.top < 0 ||
@@ -47,9 +52,10 @@
         target.scrollIntoView({
           block: "nearest",
           inline: "nearest",
-          behavior: reducedMotion ? "auto" : "smooth"
+          behavior: "auto"
         });
       }
-    });
-  });
+    },
+    true
+  );
 })();
