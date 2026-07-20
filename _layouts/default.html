@@ -8,10 +8,12 @@
 {% assign html_dir = page.dir | default: site.dir | default: 'ltr' %}
 <html lang="{{ html_lang_base }}" xml:lang="{{ html_lang_base }}" dir="{{ html_dir }}" class="no-js{% if lbfl_home_v2_active %} lbfl-home-v2-document{% endif %}">
   <head>
-    {% include head.html %}
-    {% unless lbfl_home_v2_active %}
+    {% if lbfl_home_v2_active %}
+      {% include head/homepage-v2-critical.html %}
+    {% else %}
+      {% include head.html %}
       {% include head/custom.html %}
-    {% endunless %}
+    {% endif %}
   </head>
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}{% if lbfl_home_v2_active %} lbfl-home-v2-active{% endif %}">
@@ -40,11 +42,9 @@
       {% include footer.html %}
     </footer>
 
-    {% include body/gdpr-banner.html %}
-    {% if lbfl_home_v2_active %}
-      <script src="{{ '/assets/js/main.min.js' | relative_url }}" defer></script>
-    {% else %}
+    {% unless lbfl_home_v2_active %}
+      {% include body/gdpr-banner.html %}
       {% include scripts.html %}
-    {% endif %}
+    {% endunless %}
   </body>
 </html>
