@@ -1,22 +1,36 @@
 <style>
-  /* H2.2 runtime remediation: keep the skip link inside the viewport when focused. */
+  /* H2.2: the first keyboard target must be visible in the same frame as focus. */
   .lbfl-skip-link {
     position: fixed !important;
     top: max(1rem, env(safe-area-inset-top)) !important;
     left: max(1rem, env(safe-area-inset-left)) !important;
     z-index: 10000000 !important;
     max-width: calc(100vw - 2rem) !important;
-    transform: translateY(calc(-100% - 2rem));
-    transition: transform 0.16s ease !important;
+    transform: none !important;
+    opacity: 0;
+    pointer-events: none;
+    transition: none !important;
   }
 
   .lbfl-skip-link:focus,
   .lbfl-skip-link:focus-visible {
     top: max(1rem, env(safe-area-inset-top)) !important;
-    transform: translateY(0);
+    transform: none !important;
+    opacity: 1;
+    pointer-events: auto;
+    transition: none !important;
   }
 
-  /* Keep every keyboard-focusable Homepage v2 control visibly identifiable. */
+  /* Every keyboard-focused control gets an immediate, measurable indicator. */
+  .lbfl-home-v2-active :where(
+    a[href],
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]:not([tabindex="-1"])
+  ):focus,
   .lbfl-home-v2-active :where(
     a[href],
     button,
@@ -29,9 +43,10 @@
     outline: 3px solid #f5ad45 !important;
     outline-offset: 4px !important;
     box-shadow: 0 0 0 2px #ffffff !important;
+    transition: none !important;
   }
 
-  /* Keep the above-the-fold LCP content on a local, immediately available stack. */
+  /* Keep the LCP content on a local, immediately available font stack. */
   .lbfl-home-v2,
   .lbfl-home-v2 h1,
   .lbfl-home-v2 h2,
@@ -49,9 +64,19 @@
     contain: none !important;
   }
 
+  /* Search is intentionally omitted from the staging-only critical path. */
+  .lbfl-home-v2-active .lbfl-search-toggle {
+    display: none !important;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .lbfl-skip-link {
+    .lbfl-home-v2-active *,
+    .lbfl-home-v2-active *::before,
+    .lbfl-home-v2-active *::after {
+      scroll-behavior: auto !important;
       transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
     }
   }
 </style>
