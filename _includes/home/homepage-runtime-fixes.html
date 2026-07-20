@@ -4,6 +4,7 @@
     position: fixed !important;
     top: max(1rem, env(safe-area-inset-top)) !important;
     left: max(1rem, env(safe-area-inset-left)) !important;
+    z-index: 10000000 !important;
     max-width: calc(100vw - 2rem) !important;
     transform: translateY(calc(-100% - 2rem));
     transition: transform 0.16s ease !important;
@@ -15,12 +16,37 @@
     transform: translateY(0);
   }
 
-  /* Keep the above-the-fold LCP heading on the local system stack. */
+  /* Keep every keyboard-focusable Homepage v2 control visibly identifiable. */
+  .lbfl-home-v2-active :where(
+    a[href],
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]:not([tabindex="-1"])
+  ):focus-visible {
+    outline: 3px solid #f5ad45 !important;
+    outline-offset: 4px !important;
+    box-shadow: 0 0 0 2px #ffffff !important;
+  }
+
+  /* Keep the above-the-fold LCP content on a local, immediately available stack. */
   .lbfl-home-v2,
   .lbfl-home-v2 h1,
   .lbfl-home-v2 h2,
-  .lbfl-home-v2 h3 {
+  .lbfl-home-v2 h3,
+  .lbfl-home-v2 p,
+  .lbfl-home-v2 a,
+  .lbfl-home-v2 button {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .lbfl-home-v2__hero,
+  .lbfl-home-v2__hero-copy,
+  .lbfl-home-v2 h1 {
+    content-visibility: visible !important;
+    contain: none !important;
   }
 
   @media (prefers-reduced-motion: reduce) {
