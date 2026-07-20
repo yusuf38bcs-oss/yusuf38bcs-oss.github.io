@@ -38,7 +38,9 @@
     {% endif %}
 
     <footer id="footer" class="site-footer-shell" role="contentinfo">
-      {% include footer/custom.html %}
+      {% unless lbfl_home_v2_active %}
+        {% include footer/custom.html %}
+      {% endunless %}
       {% include footer.html %}
     </footer>
 
