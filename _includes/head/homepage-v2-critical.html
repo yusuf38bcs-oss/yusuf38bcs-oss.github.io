@@ -1,0 +1,129 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+
+{% seo %}
+{% include head/polyglot-seo-overrides.html %}
+
+<link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+
+{% assign lbfl_main_css = '/assets/css/main.css' | relative_url %}
+<link rel="preload" href="{{ lbfl_main_css }}?v={{ site.time | date: '%Y%m%d' }}" as="style">
+<link rel="stylesheet" href="{{ lbfl_main_css }}?v={{ site.time | date: '%Y%m%d' }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ lbfl_main_css }}?v={{ site.time | date: '%Y%m%d' }}"></noscript>
+
+<style>
+  html.lbfl-home-v2-document,
+  html.lbfl-home-v2-document body {
+    margin: 0;
+    min-height: 100%;
+    scroll-behavior: auto !important;
+    background: #020617;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .lbfl-home-v2-active {
+    overflow-x: hidden;
+  }
+
+  .lbfl-home-v2-active *,
+  .lbfl-home-v2-active *::before,
+  .lbfl-home-v2-active *::after {
+    box-sizing: border-box;
+  }
+
+  .lbfl-home-v2-active .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    min-height: 64px;
+    background: rgba(2, 6, 23, 0.96);
+    border-bottom: 1px solid rgba(0, 212, 178, 0.10);
+  }
+
+  .lbfl-home-v2-active .masthead__inner-wrap {
+    width: min(100%, 1280px);
+    min-height: 64px;
+    margin: 0 auto;
+    padding: 0 clamp(0.6rem, 2.4vw, 1.35rem);
+  }
+
+  .lbfl-home-v2-active .lbfl-nav {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .lbfl-home-v2-active .lbfl-brand {
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #f8fafc;
+    text-decoration: none;
+  }
+
+  .lbfl-home-v2-active .lbfl-brand__logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .lbfl-home-v2-active .lbfl-brand__title {
+    max-width: clamp(10.5rem, 22vw, 20rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 850;
+  }
+
+  .lbfl-home-v2-active .lbfl-desktop-links {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lbfl-home-v2-active .lbfl-desktop-links a,
+  .lbfl-home-v2-active .lbfl-language-switcher__link {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.42rem 0.46rem;
+    color: #e2e8f0;
+    text-decoration: none;
+  }
+
+  .lbfl-home-v2-active .lbfl-nav-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .lbfl-home-v2-active .lbfl-mobile-menu {
+    display: none;
+  }
+
+  .lbfl-home-v2-active .initial-content {
+    min-height: 1px;
+  }
+
+  @media (max-width: 859px) {
+    .lbfl-home-v2-active .lbfl-desktop-links {
+      display: none;
+    }
+
+    .lbfl-home-v2-active .lbfl-mobile-menu {
+      display: inline-flex;
+      margin-left: auto;
+    }
+  }
+</style>
+
+{% include home/homepage-styles.html %}
+{% include home/homepage-runtime-fixes.html %}
