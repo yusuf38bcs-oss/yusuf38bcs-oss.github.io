@@ -20,4 +20,11 @@
   root.dataset.saveData = String(saveData);
   root.dataset.reducedMotion = String(reducedMotion);
   root.classList.add("lbfl-home-v2--enhanced");
+
+  document
+    .querySelectorAll(".mycorrhizal-footer .sys-metric")
+    .forEach((heading) => {
+      heading.setAttribute("role", "heading");
+      heading.setAttribute("aria-level", "2");
+    });
 })();
