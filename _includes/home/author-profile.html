@@ -1,3 +1,31 @@
+{% if include.mode == "v2" %}
+{% assign trust = site.data.homepage.editorial_trust %}
+<section
+  class="lbfl-home-v2__section lbfl-home-v2__editorial"
+  aria-labelledby="lbfl-home-v2-editorial-title"
+>
+  <div>
+    <p class="lbfl-home-v2__eyebrow">Editorial trust</p>
+    <h2 id="lbfl-home-v2-editorial-title">
+      Biology teaching grounded in reflection and evidence
+    </h2>
+    <p>
+      Lessons are developed for Bangladeshi learners with
+      Bangla-first explanation, English technical terms and
+      explicit academic review.
+    </p>
+  </div>
+
+  <div class="lbfl-home-v2__editorial-profile">
+    <strong>{{ trust.author }}</strong>
+    <span>{{ trust.role }}</span>
+    <div class="lbfl-home-v2__actions">
+      <a href="{{ trust.profile_url | relative_url }}">Read the profile</a>
+      <a href="{{ trust.contact_url | relative_url }}">Contact LBFL</a>
+    </div>
+  </div>
+</section>
+{% else %}
 <section class="home-author-profile" aria-labelledby="home-author-profile-title">
   <div class="home-author-profile__shell">
     <div class="home-author-profile__media" aria-hidden="true">
@@ -184,3 +212,4 @@
     }
   }
 </style>
+{% endif %}

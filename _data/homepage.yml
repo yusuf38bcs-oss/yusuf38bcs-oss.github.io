@@ -1,10 +1,20 @@
-version: 2
-status: baseline-only
+version: 3
+status: hidden-foundation
 render_enabled: false
 baseline_date: "2026-07-19"
 baseline_commit: "e74c6d5a99b066e134ddc0441720e6fc5b0a9d62"
 base_branch: staging
 
+implementation:
+  phase: "H2.1"
+  foundation_ready: true
+  activated: false
+  render_strategy: "feature-flagged"
+  base_commit: "8402ded0854cbc21fd0569a1893956a559fb4f24"
+  branch: "home/homepage-v2-hidden-foundation-20260720-043914"
+  css_source: "_includes/home/homepage-styles.html"
+  javascript_source: "assets/js/home/homepage-v2.js"
+  javascript_loading: "deferred-optional"
 identity:
   name: "Learning Biology For Life"
   headline: "Where Biology Meets Life"

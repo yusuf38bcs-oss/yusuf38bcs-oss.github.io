@@ -5,6 +5,25 @@ permalink: /
 classes: wide
 language: en
 ---
+{% if site.data.homepage.render_enabled %}
+{% include home/homepage-styles.html %}
+<div
+  class="lbfl-home-v2"
+  id="lbfl-home-v2"
+  data-homepage-v2
+  data-foundation-phase="h2-1"
+>
+  {% include home/neural-hero.html mode="v2" %}
+  {% include home/academic-sections.html mode="v2" %}
+  {% include home/featured-route.html %}
+  {% include home/assessment-loop.html %}
+  {% include home/author-profile.html mode="v2" %}
+</div>
+<script
+  src="{{ '/assets/js/home/homepage-v2.js' | relative_url }}"
+  defer
+></script>
+{% else %}
 
 <div class="synaptic-homepage-matrix" id="synaptic-home-root">
   {% include home/neural-hero.html %}
@@ -12,3 +31,4 @@ language: en
   {% include home/author-profile.html %}
   {% include home/recent-posts.html %}
 </div>
+{% endif %}

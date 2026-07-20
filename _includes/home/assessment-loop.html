@@ -1,0 +1,21 @@
+{% assign assessment = site.data.homepage.assessment_loop %}
+<section
+  class="lbfl-home-v2__section lbfl-home-v2__assessment"
+  aria-labelledby="lbfl-home-v2-assessment-title"
+>
+  <div class="lbfl-home-v2__section-heading">
+    <p class="lbfl-home-v2__eyebrow">Assessment loop</p>
+    <h2 id="lbfl-home-v2-assessment-title">
+      Turn every attempt into better understanding
+    </h2>
+  </div>
+
+  <ol class="lbfl-home-v2__assessment-list">
+    {% for step in assessment.steps %}
+      <li>
+        <span aria-hidden="true">{{ forloop.index }}</span>
+        <strong>{{ step }}</strong>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
