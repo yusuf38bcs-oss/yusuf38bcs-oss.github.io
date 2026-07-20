@@ -1,0 +1,31 @@
+<style>
+  /* H2.2 runtime remediation: keep the skip link inside the viewport when focused. */
+  .lbfl-skip-link {
+    position: fixed !important;
+    top: max(1rem, env(safe-area-inset-top)) !important;
+    left: max(1rem, env(safe-area-inset-left)) !important;
+    max-width: calc(100vw - 2rem) !important;
+    transform: translateY(calc(-100% - 2rem));
+    transition: transform 0.16s ease !important;
+  }
+
+  .lbfl-skip-link:focus,
+  .lbfl-skip-link:focus-visible {
+    top: max(1rem, env(safe-area-inset-top)) !important;
+    transform: translateY(0);
+  }
+
+  /* Keep the above-the-fold LCP heading on the local system stack. */
+  .lbfl-home-v2,
+  .lbfl-home-v2 h1,
+  .lbfl-home-v2 h2,
+  .lbfl-home-v2 h3 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lbfl-skip-link {
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
