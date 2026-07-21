@@ -1,3 +1,64 @@
+{% if include.mode == "v2" %}
+{% assign home = site.data.homepage %}
+<section
+  class="lbfl-home-v2__section"
+  aria-labelledby="lbfl-home-v2-pathways-title"
+>
+  <div class="lbfl-home-v2__section-heading">
+    <p class="lbfl-home-v2__eyebrow">Learning pathways</p>
+    <h2 id="lbfl-home-v2-pathways-title">
+      Choose a clear starting point
+    </h2>
+    <p>
+      Move from chapter-aligned biology to advanced zoology,
+      assessment and reflective scientific inquiry.
+    </p>
+  </div>
+
+  <div class="lbfl-home-v2__pathway-grid">
+    {% for pathway in home.pathways %}
+      <article class="lbfl-home-v2__pathway-card">
+        <p class="lbfl-home-v2__card-label">
+          Best for {{ pathway.best_for }}
+        </p>
+        <h3>{{ pathway.title }}</h3>
+        <p>{{ pathway.outcome }}</p>
+        <a href="{{ pathway.url | relative_url }}">
+          Explore {{ pathway.title }}
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section
+  class="lbfl-home-v2__section lbfl-home-v2__section--learning"
+  aria-labelledby="lbfl-home-v2-latest-title"
+>
+  <div class="lbfl-home-v2__section-heading">
+    <p class="lbfl-home-v2__eyebrow">Latest learning sequence</p>
+    <h2 id="lbfl-home-v2-latest-title">
+      Build the cell chapter step by step
+    </h2>
+    <p>
+      Follow the explicitly curated six-lecture sequence without
+      searching through internal collections.
+    </p>
+  </div>
+
+  <ol class="lbfl-home-v2__learning-list">
+    {% for item in home.latest_learning.items limit: home.latest_learning.maximum_items %}
+      <li>
+        <a href="{{ item.url | relative_url }}">
+          <span>{{ item.label }}</span>
+          <strong>{{ item.title }}</strong>
+          <small>{{ item.pathway }}</small>
+        </a>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+{% else %}
 <section class="synaptic-core-deck-wrapper" aria-labelledby="central-knowledge-title">
   <div class="academic-deck-container">
 
@@ -160,3 +221,4 @@
 </style>
 {% assign jekyll_academic_styles_loaded = true %}
 {% endunless %}
+{% endif %}

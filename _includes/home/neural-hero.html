@@ -1,3 +1,64 @@
+{% if include.mode == "v2" %}
+{% assign home = site.data.homepage %}
+<section
+  class="lbfl-home-v2__hero"
+  aria-labelledby="lbfl-home-v2-title"
+>
+  <div class="lbfl-home-v2__hero-copy">
+    <p class="lbfl-home-v2__eyebrow">
+      {{ home.identity.name }}
+    </p>
+
+    <h1 id="lbfl-home-v2-title">
+      {{ home.identity.headline }}
+    </h1>
+
+    <p class="lbfl-home-v2__promise">
+      {{ home.identity.promise }}
+    </p>
+
+    <div
+      class="lbfl-home-v2__actions lbfl-home-v2__actions--primary"
+      aria-label="Primary learning actions"
+    >
+      {% for action in home.primary_actions %}
+        <a
+          class="lbfl-home-v2__button lbfl-home-v2__button--primary"
+          href="{{ action.url | relative_url }}"
+        >
+          {{ action.label }}
+        </a>
+      {% endfor %}
+    </div>
+
+    <div
+      class="lbfl-home-v2__actions lbfl-home-v2__actions--secondary"
+      aria-label="Additional learning actions"
+    >
+      {% for action in home.secondary_actions %}
+        <a
+          class="lbfl-home-v2__text-link"
+          href="{{ action.url | relative_url }}"
+        >
+          {{ action.label }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <aside
+    class="lbfl-home-v2__trust-card"
+    aria-label="Learning quality commitments"
+  >
+    <p class="lbfl-home-v2__trust-title">Designed for clear learning</p>
+    <ul class="lbfl-home-v2__trust-list">
+      {% for signal in home.trust_signals %}
+        <li>{{ signal }}</li>
+      {% endfor %}
+    </ul>
+  </aside>
+</section>
+{% else %}
 <section class="premium-neural-hero hero-bg-pending" aria-labelledby="homepage-hero-title">
   <div class="hero-header-bg-media" aria-hidden="true"></div>
   <div class="hero-ambient-core" aria-hidden="true"></div>
@@ -246,3 +307,4 @@
     50% { opacity: 0.35; }
   }
 </style>
+{% endif %}
