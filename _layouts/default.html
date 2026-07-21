@@ -44,8 +44,9 @@
       {% include footer.html %}
     </footer>
 
+    {% include body/gdpr-banner.html %}
+
     {% unless lbfl_home_v2_active %}
-      {% include body/gdpr-banner.html %}
       {% include scripts.html %}
     {% endunless %}
   </body>
