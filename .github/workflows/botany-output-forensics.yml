@@ -1,0 +1,78 @@
+name: Botany Output Forensics
+
+on:
+  pull_request:
+    branches: ["staging"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: false
+
+      - name: Install dependencies
+        run: |
+          bundle config set --local frozen 'false'
+          bundle install
+
+      - name: Build production site
+        run: |
+          bundle exec jekyll clean
+          JEKYLL_ENV=production bundle exec jekyll build --trace 2>&1 | tee botany-build.log
+
+      - name: Capture route ownership and output
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p botany-forensics
+          cp botany-build.log botany-forensics/
+          cp _site/biology/hsc-corner/botany/index.html botany-forensics/generated-index.html
+
+          {
+            echo "HEAD=$(git rev-parse HEAD)"
+            echo
+            echo "=== Explicit permalink owners ==="
+            grep -RInE '^permalink:[[:space:]]*/biology/hsc-corner/botany/?[[:space:]]*$' \
+              --include='*.md' --include='*.html' . || true
+            echo
+            echo "=== Static source paths matching canonical output ==="
+            find . -path './.git' -prune -o \
+              \( -path './biology/hsc-corner/botany/index.html' -o \
+                 -path './biology/hsc-corner/botany/index.md' -o \
+                 -path './_site/biology/hsc-corner/botany/index.html' \) -print
+            echo
+            echo "=== Distinctive old-content matches ==="
+            grep -RInE 'পরবর্তী লেকচার|এখানে HSC Botany শেখার প্রয়োজনীয়|crossing over.*chromosome behaviour' \
+              --exclude-dir=.git --exclude-dir=_site . || true
+            echo
+            echo "=== Generated artifact assertions ==="
+            grep -n 'lbfl-botany-index-release: 2026-07-22' _site/biology/hsc-corner/botany/index.html || true
+            for lesson in 01 02 03 04 05 06; do
+              grep -n "লেকচার ${lesson}" _site/biology/hsc-corner/botany/index.html || true
+            done
+            echo
+            echo "=== Generated artifact digest ==="
+            sha256sum _site/biology/hsc-corner/botany/index.html
+          } | tee botany-forensics/sources-and-assertions.txt
+
+          grep -q 'lbfl-botany-index-release: 2026-07-22' _site/biology/hsc-corner/botany/index.html
+          grep -q 'lecture-04-endoplasmic-reticulum-transport-network' _site/biology/hsc-corner/botany/index.html
+          grep -q 'lecture-05-golgi-body-lysosome-peroxisome' _site/biology/hsc-corner/botany/index.html
+
+      - name: Upload forensic artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: botany-output-forensics
+          path: botany-forensics/
+          retention-days: 1
