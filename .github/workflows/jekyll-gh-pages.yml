@@ -56,9 +56,25 @@ jobs:
           test -f _site/assets/data/graph_manifest.json || (echo "Missing graph_manifest.json" && exit 1)
           test -f _site/assets/css/biology-matrix.css || (echo "Missing biology-matrix.css" && exit 1)
           test -f _site/assets/js/core/ai-core.js || (echo "Missing ai-core.js" && exit 1)
-          grep -q "api.learningbiologyforlife.org" _site/index.html || (echo "Synaptic AI endpoint config missing from homepage" && exit 1)
-          grep -q "assets/js/core/ai-core.js" _site/index.html || (echo "Synaptic AI core script missing from homepage" && exit 1)
-          grep -q "synaptic-floating-ai-root" _site/index.html || (echo "Synaptic floating AI widget missing from homepage" && exit 1)
+
+          if grep -q 'data-homepage-v2' _site/index.html; then
+            echo "Validating Homepage v2 production output."
+            grep -q 'id="lbfl-home-v2"' _site/index.html || (echo "Homepage v2 root missing" && exit 1)
+            grep -q 'assets/js/home/homepage-v2.js' _site/index.html || (echo "Homepage v2 runtime missing" && exit 1)
+            grep -q 'GTM-WPZ6MPK4' _site/index.html || (echo "Homepage v2 GTM configuration missing" && exit 1)
+            grep -q 'translate.google.com/translate_a/element.js' _site/index.html || (echo "Homepage v2 Translate loader missing" && exit 1)
+            grep -q 'analytics_storage.*denied' _site/index.html || (echo "Homepage v2 denied consent default missing" && exit 1)
+            if grep -q 'synaptic-floating-ai-root' _site/index.html; then
+              echo "Legacy Synaptic floating AI widget must not be injected into Homepage v2"
+              exit 1
+            fi
+          else
+            echo "Validating legacy homepage output."
+            grep -q "api.learningbiologyforlife.org" _site/index.html || (echo "Synaptic AI endpoint config missing from legacy homepage" && exit 1)
+            grep -q "assets/js/core/ai-core.js" _site/index.html || (echo "Synaptic AI core script missing from legacy homepage" && exit 1)
+            grep -q "synaptic-floating-ai-root" _site/index.html || (echo "Synaptic floating AI widget missing from legacy homepage" && exit 1)
+          fi
+
           test -f _site/biology/index.html || (echo "Missing /biology/" && exit 1)
           grep -q "biology-matrix-hub-wrapper" _site/biology/index.html || (echo "Biology Matrix wrapper missing from /biology/" && exit 1)
           grep -q "biology-matrix-card-link" _site/biology/index.html || (echo "Biology Matrix cards missing from /biology/" && exit 1)
