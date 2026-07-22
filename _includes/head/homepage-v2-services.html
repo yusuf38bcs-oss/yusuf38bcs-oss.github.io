@@ -1,0 +1,240 @@
+{% comment %}
+  Lightweight Homepage v2 production services only.
+
+  Responsibilities:
+  - Establish dataLayer/gtag and denied Consent Mode defaults synchronously.
+  - Load GTM once after window load and an idle opportunity.
+  - Load Google Translate only after the learner opens the translate control.
+
+  Deliberately excluded:
+  - legacy custom head bundle
+  - respiratory CSS
+  - OMEGA runtime
+  - AI globals
+  - search/marketing scripts
+  - AdSense loading
+{% endcomment %}
+
+<script>
+  (function () {
+    "use strict";
+
+    var GTM_ID = "GTM-WPZ6MPK4";
+    var GTM_SELECTOR = 'script[src*="googletagmanager.com/gtm.js"]';
+    var TRANSLATE_SELECTOR = 'script[src*="translate.google.com/translate_a/element.js"]';
+    var TRANSLATE_SRC = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag("consent", "default", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      functionality_storage: "granted",
+      security_storage: "granted",
+      wait_for_update: 500
+    });
+
+    function startGtm() {
+      var existing = document.querySelector(GTM_SELECTOR);
+
+      if (window.__lbflGtmLoaded || existing) {
+        window.__lbflGtmLoaded = true;
+        return;
+      }
+
+      window.__lbflGtmLoaded = true;
+      window.dataLayer.push({
+        "gtm.start": Date.now(),
+        event: "gtm.js"
+      });
+
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(GTM_ID);
+      script.dataset.lbflService = "gtm";
+
+      script.addEventListener("load", function () {
+        script.dataset.loaded = "true";
+      }, { once: true });
+
+      script.addEventListener("error", function () {
+        window.__lbflGtmLoaded = false;
+        script.remove();
+      }, { once: true });
+
+      document.head.appendChild(script);
+    }
+
+    function scheduleGtm() {
+      if (window.__lbflGtmScheduled) return;
+      window.__lbflGtmScheduled = true;
+
+      var afterLoad = function () {
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(startGtm, { timeout: 2000 });
+        } else {
+          window.setTimeout(startGtm, 800);
+        }
+      };
+
+      if (document.readyState === "complete") {
+        afterLoad();
+      } else {
+        window.addEventListener("load", afterLoad, { once: true });
+      }
+    }
+
+    var translateState = "idle";
+
+    function getTranslateShells() {
+      return Array.prototype.slice.call(
+        document.querySelectorAll(".lbfl-translate-shell")
+      );
+    }
+
+    function ensureTranslateStatus(shell) {
+      var status = shell.querySelector("[data-lbfl-translate-status]");
+      if (status) return status;
+
+      var panel = shell.querySelector(".lbfl-translate-panel");
+      if (!panel) return null;
+
+      status = document.createElement("p");
+      status.className = "lbfl-translate-status visually-hidden";
+      status.setAttribute("role", "status");
+      status.setAttribute("aria-live", "polite");
+      status.setAttribute("data-lbfl-translate-status", "");
+      panel.appendChild(status);
+      return status;
+    }
+
+    function setTranslateStatus(message, exposeVisually) {
+      getTranslateShells().forEach(function (shell) {
+        var status = ensureTranslateStatus(shell);
+        if (!status) return;
+
+        status.textContent = message || "";
+        if (exposeVisually) {
+          status.classList.remove("visually-hidden");
+        } else {
+          status.classList.add("visually-hidden");
+        }
+      });
+    }
+
+    function initializeTranslateWidget() {
+      var target = document.getElementById("google_translate_element");
+
+      if (
+        !target ||
+        !window.google ||
+        !window.google.translate ||
+        !window.google.translate.TranslateElement
+      ) {
+        translateState = "error";
+        setTranslateStatus(
+          "Translation is temporarily unavailable. Please try again later.",
+          true
+        );
+        return;
+      }
+
+      if (target.dataset.lbflTranslateReady === "true") {
+        translateState = "ready";
+        return;
+      }
+
+      new window.google.translate.TranslateElement({
+        pageLanguage: "en",
+        includedLanguages: "bn,en",
+        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, "google_translate_element");
+
+      target.dataset.lbflTranslateReady = "true";
+      translateState = "ready";
+      setTranslateStatus("Translation options are ready.", false);
+    }
+
+    window.googleTranslateElementInit = initializeTranslateWidget;
+
+    function loadTranslate() {
+      if (translateState === "ready") {
+        initializeTranslateWidget();
+        return;
+      }
+
+      if (translateState === "loading") return;
+
+      var existing = document.querySelector(TRANSLATE_SELECTOR);
+      if (existing) {
+        translateState = "loading";
+        setTranslateStatus("Loading translation options...", false);
+
+        if (
+          window.google &&
+          window.google.translate &&
+          window.google.translate.TranslateElement
+        ) {
+          initializeTranslateWidget();
+        }
+        return;
+      }
+
+      translateState = "loading";
+      setTranslateStatus("Loading translation options...", false);
+
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = TRANSLATE_SRC;
+      script.dataset.lbflService = "google-translate";
+
+      script.addEventListener("load", function () {
+        if (translateState !== "ready") {
+          initializeTranslateWidget();
+        }
+      }, { once: true });
+
+      script.addEventListener("error", function () {
+        translateState = "error";
+        script.remove();
+        setTranslateStatus(
+          "Translation is temporarily unavailable. Please try again later.",
+          true
+        );
+      }, { once: true });
+
+      document.head.appendChild(script);
+    }
+
+    function bindTranslateControls() {
+      getTranslateShells().forEach(function (shell) {
+        if (shell.dataset.lbflTranslateBound === "true") return;
+
+        shell.dataset.lbflTranslateBound = "true";
+        ensureTranslateStatus(shell);
+
+        shell.addEventListener("toggle", function () {
+          if (shell.open) loadTranslate();
+        });
+      });
+    }
+
+    scheduleGtm();
+
+    if (document.readyState === "loading") {
+      document.addEventListener(
+        "DOMContentLoaded",
+        bindTranslateControls,
+        { once: true }
+      );
+    } else {
+      bindTranslateControls();
+    }
+  })();
+</script>
