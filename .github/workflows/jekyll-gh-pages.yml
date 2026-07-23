@@ -88,10 +88,136 @@ jobs:
           grep -q 'lecture-04-endoplasmic-reticulum-transport-network' "$BOTANY_INDEX" || (echo "Botany Lecture 04 missing" && exit 1)
           grep -q 'lecture-05-golgi-body-lysosome-peroxisome' "$BOTANY_INDEX" || (echo "Botany Lecture 05 missing" && exit 1)
           grep -q 'lecture-06-mitochondria' "$BOTANY_INDEX" || (echo "Botany Lecture 06 missing" && exit 1)
-          if grep -q 'পরবর্তী লেকচার.*লেকচার ০৪\|পরবর্তী লেকচার.*লেকচার ০৫' "$BOTANY_INDEX"; then
-            echo "Botany Lectures 04 or 05 incorrectly remain under the upcoming section"
-            exit 1
-          fi
+
+          python3 - "$BOTANY_INDEX" <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          import re
+          import sys
+
+          REQUIRED_ACTIVE_ROUTES = {
+              "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/",
+              "/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/",
+              "/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/",
+              "/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/",
+              "/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/",
+              "/biology/hsc-corner/botany/lecture-06-mitochondria/",
+          }
+          FORBIDDEN_UPCOMING_ROUTES = {
+              "/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/",
+              "/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/",
+              "/biology/hsc-corner/botany/lecture-06-mitochondria/",
+          }
+          FORBIDDEN_UPCOMING_LABELS = {
+              "লেকচার ০৪",
+              "লেকচার ০৫",
+              "লেকচার ০৬",
+              "lecture 04",
+              "lecture 05",
+              "lecture 06",
+          }
+
+          def normalize_space(value):
+              return re.sub(r"\s+", " ", value).strip()
+
+          def normalize_route(href):
+              path = urlsplit(href).path
+              if not path:
+                  return ""
+              return path.rstrip("/") + "/"
+
+          class BotanyIndexParser(HTMLParser):
+              def __init__(self):
+                  super().__init__(convert_charrefs=True)
+                  self.in_h2 = False
+                  self.heading_parts = []
+                  self.current_section = None
+                  self.active_heading_found = False
+                  self.upcoming_heading_found = False
+                  self.active_links = set()
+                  self.upcoming_links = set()
+                  self.upcoming_text_parts = []
+
+              def handle_starttag(self, tag, attrs):
+                  tag = tag.lower()
+                  if tag == "h2":
+                      self.in_h2 = True
+                      self.heading_parts = []
+                      return
+
+                  if tag == "a" and self.current_section in {"active", "upcoming"}:
+                      href = dict(attrs).get("href", "")
+                      route = normalize_route(href)
+                      if self.current_section == "active":
+                          self.active_links.add(route)
+                      else:
+                          self.upcoming_links.add(route)
+
+              def handle_endtag(self, tag):
+                  if tag.lower() != "h2" or not self.in_h2:
+                      return
+
+                  heading = normalize_space("".join(self.heading_parts))
+                  heading_lower = heading.casefold()
+
+                  if "সক্রিয় chapter 01 লেকচার" in heading_lower or "active chapter 01 lectures" in heading_lower:
+                      self.current_section = "active"
+                      self.active_heading_found = True
+                  elif "পরবর্তী লেকচার" in heading_lower or "next lessons" in heading_lower:
+                      self.current_section = "upcoming"
+                      self.upcoming_heading_found = True
+                  else:
+                      self.current_section = None
+
+                  self.in_h2 = False
+                  self.heading_parts = []
+
+              def handle_data(self, data):
+                  if self.in_h2:
+                      self.heading_parts.append(data)
+                  elif self.current_section == "upcoming":
+                      self.upcoming_text_parts.append(data)
+
+          html_path = Path(sys.argv[1])
+          parser = BotanyIndexParser()
+          parser.feed(html_path.read_text(encoding="utf-8"))
+
+          if not parser.active_heading_found:
+              raise SystemExit("Botany active Chapter 01 lesson section heading missing")
+
+          missing_active = sorted(REQUIRED_ACTIVE_ROUTES - parser.active_links)
+          if missing_active:
+              raise SystemExit(
+                  "Botany active lesson section is missing routes: "
+                  + ", ".join(missing_active)
+              )
+
+          forbidden_routes = sorted(FORBIDDEN_UPCOMING_ROUTES & parser.upcoming_links)
+          upcoming_text = normalize_space(" ".join(parser.upcoming_text_parts)).casefold()
+          forbidden_labels = sorted(
+              label
+              for label in FORBIDDEN_UPCOMING_LABELS
+              if label.casefold() in upcoming_text
+          )
+
+          if forbidden_routes or forbidden_labels:
+              details = []
+              if forbidden_routes:
+                  details.append("routes=" + ", ".join(forbidden_routes))
+              if forbidden_labels:
+                  details.append("labels=" + ", ".join(forbidden_labels))
+              raise SystemExit(
+                  "Published Botany Lectures 04-06 must not appear in the "
+                  "upcoming section: " + "; ".join(details)
+              )
+
+          print(
+              "Botany section validation passed: "
+              f"{len(REQUIRED_ACTIVE_ROUTES)} active routes verified; "
+              f"upcoming heading present={parser.upcoming_heading_found}."
+          )
+          PY
 
           echo "Core build artifact validation passed."
 
