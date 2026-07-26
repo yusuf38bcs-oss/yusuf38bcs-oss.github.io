@@ -7,8 +7,13 @@ permalink: /biology/hsc-corner/botany/structures-functions-cell-organelles-part-
 robots: noindex
 sitemap: false
 language: bn
+visibility: system
+index_in_matrix: false
+searchable: false
+learning_node: false
 ---
 
+<meta name="robots" content="noindex, follow">
 <meta http-equiv="refresh" content="0; url={{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">
 
 # এই পুরোনো পেজটি অবসর দেওয়া হয়েছে

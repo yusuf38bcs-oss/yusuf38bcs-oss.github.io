@@ -3,6 +3,10 @@ layout: null
 permalink: /biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion/
 sitemap: false
 robots: noindex
+visibility: system
+index_in_matrix: false
+searchable: false
+learning_node: false
 ---
 <!doctype html>
 <html lang="en">
