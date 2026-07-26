@@ -17,10 +17,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36"
           S="https://p1-1-biology-collection-sani.yusuf38bcs-oss-github-io.pages.dev/biology/"
           P="https://learningbiologyforlife.org/biology/"
-          curl -fsSL "$S" -o /tmp/s.html
-          curl -fsSL "$P" -o /tmp/p.html
+          curl -A "$UA" -fsSL "$S" -o /tmp/s.html
+          curl -A "$UA" -fsSL "$P" -o /tmp/p.html
           python3 - <<'PY'
           from pathlib import Path
           import re
