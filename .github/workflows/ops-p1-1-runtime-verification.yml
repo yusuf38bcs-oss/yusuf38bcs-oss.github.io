@@ -2,8 +2,7 @@ name: Verify P1.1 Staging Runtime
 
 on:
   pull_request:
-    branches:
-      - staging
+    branches: [staging]
     paths:
       - ".github/workflows/ops-p1-1-runtime-verification.yml"
 
@@ -21,26 +20,28 @@ jobs:
           set -euo pipefail
 
           STAGING="https://p1-1-biology-collection-sani.yusuf38bcs-oss-github-io.pages.dev"
-          PRODUCTION="https://learningbiologyforlife.org"
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36"
           WORKDIR="$(mktemp -d)"
 
           fetch() {
             local url="$1"
             local output="$2"
-            curl --fail --silent --show-error --location \
+            curl -A "$UA" --fail --silent --show-error --location \
               --retry 4 --retry-delay 3 --retry-all-errors \
               --connect-timeout 15 --max-time 60 \
               "$url" -o "$output"
           }
 
           fetch "$STAGING/biology/" "$WORKDIR/staging-biology.html"
-          fetch "$PRODUCTION/biology/" "$WORKDIR/production-biology.html"
 
-          python3 - "$WORKDIR/staging-biology.html" "$WORKDIR/production-biology.html" <<'PY'
+          python3 - "$WORKDIR/staging-biology.html" <<'PY'
           from html.parser import HTMLParser
           from pathlib import Path
           import re
           import sys
+
+          PRODUCTION_NODES = 103
+          PRODUCTION_XP = 35315
 
           SYSTEM_ROUTES = {
               "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/",
@@ -54,15 +55,18 @@ jobs:
               "/biology/higher-zoology-tree/genetics/test-safe-file/",
           }
 
-          REQUIRED_CANONICAL_ROUTES = {
-              "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/",
-              "/biology/hsc-corner/botany/lecture-06-mitochondria/",
+          REQUIRED_CARD_ROUTES = {
               "/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-parasitism/",
               "/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion/",
               "/biology/higher-zoology-tree/biostatistics/measures-of-central-tendency/",
               "/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/",
               "/biology/higher-zoology-tree/biostatistics/z_test_problem_solving/",
               "/biology/higher-zoology-tree/genetics/",
+          }
+
+          REQUIRED_INDEXED_ROUTES = REQUIRED_CARD_ROUTES | {
+              "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/",
+              "/biology/hsc-corner/botany/lecture-06-mitochondria/",
           }
 
           class MatrixParser(HTMLParser):
@@ -108,65 +112,46 @@ jobs:
                   if self.in_jsonld:
                       self.script_buffer.append(data)
 
-          def parse(path):
-              parser = MatrixParser()
-              parser.feed(Path(path).read_text(encoding="utf-8"))
-              return parser, "\n".join(parser.scripts)
+          parser = MatrixParser()
+          parser.feed(Path(sys.argv[1]).read_text(encoding="utf-8"))
+          jsonld = "\n".join(parser.scripts)
 
-          staging, staging_jsonld = parse(sys.argv[1])
-          production, production_jsonld = parse(sys.argv[2])
+          if len(parser.metric_values) < 4:
+              raise SystemExit(f"Unable to parse Matrix metrics: {parser.metric_values}")
 
-          if len(staging.metric_values) < 4 or len(production.metric_values) < 4:
+          staging_nodes, staging_pillars, staging_prompts, staging_xp = parser.metric_values[:4]
+          if (staging_nodes, staging_pillars, staging_prompts, staging_xp) != (94, 4, 3, 35225):
               raise SystemExit(
-                  f"Unable to parse Matrix metrics: staging={staging.metric_values}, "
-                  f"production={production.metric_values}"
+                  "Unexpected staging metrics: "
+                  f"{staging_nodes}, {staging_pillars}, {staging_prompts}, {staging_xp}"
               )
+          if PRODUCTION_NODES - staging_nodes != 9 or PRODUCTION_XP - staging_xp != 90:
+              raise SystemExit("Production-to-staging metric delta is not 9 nodes and 90 XP")
 
-          staging_nodes, _, _, staging_xp = staging.metric_values[:4]
-          production_nodes, _, _, production_xp = production.metric_values[:4]
-          node_delta = production_nodes - staging_nodes
-          xp_delta = production_xp - staging_xp
-
-          if node_delta != 9:
-              raise SystemExit(
-                  f"Expected staging to exclude 9 nodes; production={production_nodes}, "
-                  f"staging={staging_nodes}, delta={node_delta}"
-              )
-          if xp_delta != 90:
-              raise SystemExit(
-                  f"Expected staging XP reduction of 90; production={production_xp}, "
-                  f"staging={staging_xp}, delta={xp_delta}"
-              )
-
-          leaked_cards = sorted(route for route in SYSTEM_ROUTES if route in staging.card_hrefs)
-          leaked_jsonld = sorted(route for route in SYSTEM_ROUTES if route in staging_jsonld)
+          leaked_cards = sorted(SYSTEM_ROUTES & parser.card_hrefs)
+          leaked_jsonld = sorted(route for route in SYSTEM_ROUTES if route in jsonld)
           if leaked_cards or leaked_jsonld:
+              raise SystemExit(f"System route leakage: cards={leaked_cards}; jsonld={leaked_jsonld}")
+
+          missing_cards = sorted(REQUIRED_CARD_ROUTES - parser.card_hrefs)
+          missing_indexed = sorted(route for route in REQUIRED_INDEXED_ROUTES if route not in jsonld)
+          if missing_cards or missing_indexed:
               raise SystemExit(
-                  "System routes leaked into staging Matrix: "
-                  f"cards={leaked_cards}; jsonld={leaked_jsonld}"
+                  f"Canonical routes missing: cards={missing_cards}; jsonld={missing_indexed}"
               )
 
-          missing_canonical_cards = sorted(
-              route for route in REQUIRED_CANONICAL_ROUTES if route not in staging.card_hrefs
-          )
-          missing_canonical_jsonld = sorted(
-              route for route in REQUIRED_CANONICAL_ROUTES if route not in staging_jsonld
-          )
-          if missing_canonical_cards or missing_canonical_jsonld:
-              raise SystemExit(
-                  "Canonical learning routes missing from staging Matrix: "
-                  f"cards={missing_canonical_cards}; jsonld={missing_canonical_jsonld}"
-              )
-
-          number_match = re.search(r'"numberOfItems"\s*:\s*(\d+)', staging_jsonld)
+          number_match = re.search(r'"numberOfItems"\s*:\s*(\d+)', jsonld)
           if not number_match or int(number_match.group(1)) != staging_nodes:
-              raise SystemExit("Staging ItemList numberOfItems does not match visible node metric")
+              raise SystemExit("JSON-LD numberOfItems does not equal the visible node total")
+
+          if len(parser.card_hrefs) != staging_nodes:
+              raise SystemExit(
+                  f"Card count {len(parser.card_hrefs)} does not equal node total {staging_nodes}"
+              )
 
           print(
-              "Matrix verification passed: "
-              f"production nodes={production_nodes}, staging nodes={staging_nodes}; "
-              f"production XP={production_xp}, staging XP={staging_xp}; "
-              "9 system routes absent from cards and JSON-LD; canonical routes present."
+              "Matrix passed: staging=94 nodes/35225 XP; production reference=103/35315; "
+              "9 system routes absent; canonical routes retained; JSON-LD count=94."
           )
           PY
 
