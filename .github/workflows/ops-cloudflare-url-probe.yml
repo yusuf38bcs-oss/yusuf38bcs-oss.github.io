@@ -1,0 +1,36 @@
+name: Diagnose Cloudflare Preview Reachability
+
+on:
+  pull_request:
+    branches:
+      - staging
+    paths:
+      - ".github/workflows/ops-cloudflare-url-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Probe Cloudflare URLs
+        shell: bash
+        run: |
+          set +e
+          for url in \
+            "https://p1-1-biology-collection-sani.yusuf38bcs-oss-github-io.pages.dev/biology/" \
+            "https://8441803a.yusuf38bcs-oss-github-io.pages.dev/biology/" \
+            "https://learningbiologyforlife.org/biology/"
+          do
+            echo "PROBE_BEGIN $url"
+            getent ahosts "$(printf '%s' "$url" | sed -E 's#https?://([^/]+).*#\1#')"
+            curl --silent --show-error --location --head \
+              --connect-timeout 10 --max-time 30 \
+              --write-out 'HTTP_STATUS=%{http_code} REMOTE_IP=%{remote_ip} URL_EFFECTIVE=%{url_effective}\n' \
+              "$url"
+            echo "CURL_EXIT=$?"
+            echo "PROBE_END $url"
+          done
+          exit 0
