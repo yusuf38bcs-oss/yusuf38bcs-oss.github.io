@@ -13,11 +13,11 @@ jobs:
   diagnose-routes:
     runs-on: ubuntu-24.04
     steps:
-      - name: Print preserved route facts
+      - name: Verify preserved route facts
         shell: bash
         run: |
-          set -u
-          BASE="https://p1-1-biology-collection-sani.yusuf38bcs-oss-github-io.pages.dev"
+          set -euo pipefail
+          BASE="https://p1-1-rendered-noindex-fix.yusuf38bcs-oss-github-io.pages.dev"
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36"
           declare -A ROUTES=(
             ["/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/"]="/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
@@ -34,9 +34,9 @@ jobs:
             target="${ROUTES[$route]}"
             file="/tmp/$(printf '%s' "$route" | sha256sum | cut -d' ' -f1).html"
             code=$(curl -A "$UA" -sS -o "$file" -w '%{http_code}' "$BASE$route")
-            noindex=false; grep -qi 'noindex' "$file" && noindex=true
-            target_found=false; grep -Fq "$target" "$file" && target_found=true
-            bytes=$(wc -c < "$file")
-            echo "ROUTE status=$code noindex=$noindex target=$target_found bytes=$bytes path=$route"
+            [[ "$code" == "200" ]] || { echo "Unexpected HTTP $code for $route"; exit 1; }
+            grep -qi 'noindex' "$file" || { echo "Missing rendered noindex on $route"; exit 1; }
+            grep -Fq "$target" "$file" || { echo "Expected target $target missing from $route"; exit 1; }
+            echo "ROUTE PASSED status=200 noindex=true target=true path=$route"
           done
-          exit 0
+          echo "All nine preserved compatibility routes passed."
