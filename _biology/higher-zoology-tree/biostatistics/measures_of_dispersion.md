@@ -1,13 +1,10 @@
 ---
-
 layout: null
 author_profile: false
 sitemap: false
 robots: noindex, follow
-
 title: "Measures of Dispersion: Canonical Redirect"
 excerpt: "Redirects duplicate underscore URL to the canonical hyphenated Measures of Dispersion page."
-
 permalink: /biology/higher-zoology-tree/biostatistics/measures_of_dispersion/
 canonical_url: /biology/higher-zoology-tree/biostatistics/measures-of-dispersion/
 language: en
@@ -20,6 +17,10 @@ ib_theme: "Not Applicable"
 ib_subtopic: "Dispersion revision"
 hsc_alignment: "Higher Zoology: range, variance, standard deviation, and CV revision"
 concept_level: "Revision"
+visibility: system
+index_in_matrix: false
+searchable: false
+learning_node: false
 ---
 
 <!doctype html>
