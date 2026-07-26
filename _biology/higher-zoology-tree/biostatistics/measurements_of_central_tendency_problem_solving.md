@@ -3,6 +3,10 @@ layout: null
 permalink: /biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/
 sitemap: false
 robots: noindex
+visibility: system
+index_in_matrix: false
+searchable: false
+learning_node: false
 ---
 <!doctype html>
 <html lang="en">
