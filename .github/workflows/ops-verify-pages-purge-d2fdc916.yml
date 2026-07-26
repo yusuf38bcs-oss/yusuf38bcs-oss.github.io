@@ -1,0 +1,234 @@
+name: Verify Pages and Purge Cloudflare Cache
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/ops-verify-pages-purge-d2fdc916.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  verify-and-purge:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      TARGET_SHA: d2fdc91601572205734ab823ec3ee70ecc318beb
+      PRODUCTION_URL: https://learningbiologyforlife.org
+      GH_TOKEN: ${{ github.token }}
+      CF_TOKEN_PRIMARY: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CF_TOKEN_ALT: ${{ secrets.CF_API_TOKEN }}
+      CF_TOKEN_ALT2: ${{ secrets.CLOUDFLARE_TOKEN }}
+      CF_ZONE_ID_PRIMARY: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+      CF_ZONE_ID_ALT: ${{ secrets.CF_ZONE_ID }}
+    steps:
+      - name: Verify exact GitHub Pages deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          runs_json="$(gh api --paginate \
+            "repos/${GITHUB_REPOSITORY}/actions/runs?head_sha=${TARGET_SHA}&per_page=100")"
+
+          run_json="$(jq -c --arg sha "$TARGET_SHA" '
+            .workflow_runs
+            | map(select(
+                .name == "Deploy to GitHub Pages"
+                and .event == "push"
+                and .head_branch == "main"
+                and .head_sha == $sha
+              ))
+            | sort_by(.run_number)
+            | last // empty
+          ' <<<"$runs_json")"
+
+          if [[ -z "$run_json" ]]; then
+            echo "No Deploy to GitHub Pages push run found for $TARGET_SHA."
+            exit 1
+          fi
+
+          run_id="$(jq -r '.id' <<<"$run_json")"
+          run_status="$(jq -r '.status' <<<"$run_json")"
+          run_conclusion="$(jq -r '.conclusion' <<<"$run_json")"
+          run_url="$(jq -r '.html_url' <<<"$run_json")"
+
+          echo "PAGES_RUN_ID=$run_id"
+          echo "PAGES_RUN_STATUS=$run_status"
+          echo "PAGES_RUN_CONCLUSION=$run_conclusion"
+          echo "PAGES_RUN_URL=$run_url"
+
+          [[ "$run_status" == "completed" ]] || {
+            echo "Pages run is not completed."
+            exit 1
+          }
+          [[ "$run_conclusion" == "success" ]] || {
+            echo "Pages run did not succeed."
+            exit 1
+          }
+
+          jobs_json="$(gh api --paginate \
+            "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/jobs?per_page=100")"
+
+          build_conclusion="$(jq -r '
+            [.jobs[] | select(.name == "build")]
+            | last.conclusion // "missing"
+          ' <<<"$jobs_json")"
+          deploy_conclusion="$(jq -r '
+            [.jobs[] | select(.name == "deploy")]
+            | last.conclusion // "missing"
+          ' <<<"$jobs_json")"
+
+          echo "BUILD_JOB_CONCLUSION=$build_conclusion"
+          echo "DEPLOY_JOB_CONCLUSION=$deploy_conclusion"
+
+          [[ "$build_conclusion" == "success" ]] || {
+            echo "GitHub Pages build job was not successful."
+            exit 1
+          }
+          [[ "$deploy_conclusion" == "success" ]] || {
+            echo "GitHub Pages deploy job was not successful."
+            exit 1
+          }
+
+          echo "Exact GitHub Pages deployment verified."
+
+      - name: Capture production Matrix before purge
+        shell: bash
+        run: |
+          set -euo pipefail
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36"
+          curl -A "$UA" -fsSL \
+            -H 'Cache-Control: no-cache' \
+            -H 'Pragma: no-cache' \
+            "${PRODUCTION_URL}/biology/?ops_check=${TARGET_SHA}" \
+            -o /tmp/biology-before.html
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          html = Path('/tmp/biology-before.html').read_text(encoding='utf-8')
+          values = [
+              int(value.replace(',', ''))
+              for value in re.findall(
+                  r'biology-metric-value[^>]*>\s*([0-9,]+)\s*<',
+                  html,
+              )
+          ]
+          print(f'PRE_PURGE_METRICS={values[:4]}')
+          print(f'PRE_PURGE_HAS_TEST_SAFE={"/biology/higher-zoology-tree/genetics/test-safe-file/" in html}')
+          PY
+
+      - name: Purge Cloudflare production cache
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CF_TOKEN="${CF_TOKEN_PRIMARY:-}"
+          [[ -n "$CF_TOKEN" ]] || CF_TOKEN="${CF_TOKEN_ALT:-}"
+          [[ -n "$CF_TOKEN" ]] || CF_TOKEN="${CF_TOKEN_ALT2:-}"
+
+          if [[ -z "$CF_TOKEN" ]]; then
+            echo "No supported Cloudflare API token secret is configured."
+            echo "Checked: CLOUDFLARE_API_TOKEN, CF_API_TOKEN, CLOUDFLARE_TOKEN."
+            exit 1
+          fi
+
+          ZONE_ID="${CF_ZONE_ID_PRIMARY:-}"
+          [[ -n "$ZONE_ID" ]] || ZONE_ID="${CF_ZONE_ID_ALT:-}"
+
+          if [[ -z "$ZONE_ID" ]]; then
+            zone_response="$(curl -fsS \
+              -H "Authorization: Bearer ${CF_TOKEN}" \
+              -H 'Content-Type: application/json' \
+              'https://api.cloudflare.com/client/v4/zones?name=learningbiologyforlife.org&status=active')"
+
+            zone_success="$(jq -r '.success' <<<"$zone_response")"
+            [[ "$zone_success" == "true" ]] || {
+              echo "Cloudflare zone lookup failed."
+              jq -c '{success, errors}' <<<"$zone_response"
+              exit 1
+            }
+
+            ZONE_ID="$(jq -r '.result[0].id // empty' <<<"$zone_response")"
+          fi
+
+          [[ -n "$ZONE_ID" ]] || {
+            echo "Could not resolve the Cloudflare zone ID."
+            exit 1
+          }
+
+          purge_response="$(curl -fsS -X POST \
+            -H "Authorization: Bearer ${CF_TOKEN}" \
+            -H 'Content-Type: application/json' \
+            --data '{"purge_everything":true}' \
+            "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/purge_cache")"
+
+          purge_success="$(jq -r '.success' <<<"$purge_response")"
+          [[ "$purge_success" == "true" ]] || {
+            echo "Cloudflare cache purge failed."
+            jq -c '{success, errors}' <<<"$purge_response"
+            exit 1
+          }
+
+          echo "CLOUDFLARE_PURGE_SUCCESS=true"
+          echo "Cloudflare production cache purged."
+
+      - name: Verify production Matrix after purge
+        shell: bash
+        run: |
+          set -euo pipefail
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36"
+
+          for attempt in 1 2 3 4 5; do
+            curl -A "$UA" -fsSL \
+              -H 'Cache-Control: no-cache' \
+              -H 'Pragma: no-cache' \
+              "${PRODUCTION_URL}/biology/?post_purge=${TARGET_SHA}-${attempt}" \
+              -o /tmp/biology-after.html
+
+            if python3 - <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+
+          html = Path('/tmp/biology-after.html').read_text(encoding='utf-8')
+          values = [
+              int(value.replace(',', ''))
+              for value in re.findall(
+                  r'biology-metric-value[^>]*>\s*([0-9,]+)\s*<',
+                  html,
+              )
+          ]
+          expected = [94, 4, 3, 35225]
+          system_routes = [
+              '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/',
+              '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/',
+              '/biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma/',
+              '/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism/',
+              '/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion/',
+              '/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/',
+              '/biology/higher-zoology-tree/biostatistics/measures_of_dispersion/',
+              '/biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/',
+              '/biology/higher-zoology-tree/genetics/test-safe-file/',
+          ]
+          leaked = [route for route in system_routes if route in html]
+          print(f'POST_PURGE_METRICS={values[:4]}')
+          print(f'POST_PURGE_SYSTEM_ROUTE_LEAKS={leaked}')
+          if values[:4] == expected and not leaked:
+              raise SystemExit(0)
+          raise SystemExit(1)
+          PY
+            then
+              echo "Production Matrix verification passed after purge."
+              exit 0
+            fi
+
+            echo "Attempt ${attempt}: production has not converged yet."
+            sleep 5
+          done
+
+          echo "Production Matrix did not converge to the verified P1.1 output."
+          exit 1
