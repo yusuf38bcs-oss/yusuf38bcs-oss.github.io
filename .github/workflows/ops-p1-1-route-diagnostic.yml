@@ -1,0 +1,42 @@
+name: Diagnose P1.1 Preserved Routes
+
+on:
+  pull_request:
+    branches: [staging]
+    paths:
+      - ".github/workflows/ops-p1-1-route-diagnostic.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose-routes:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Print preserved route facts
+        shell: bash
+        run: |
+          set -u
+          BASE="https://p1-1-biology-collection-sani.yusuf38bcs-oss-github-io.pages.dev"
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36"
+          declare -A ROUTES=(
+            ["/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/"]="/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
+            ["/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/"]="/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
+            ["/biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma/"]="/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
+            ["/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism/"]="/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-parasitism/"
+            ["/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion/"]="/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion/"
+            ["/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/"]="/biology/higher-zoology-tree/biostatistics/measures-of-central-tendency/"
+            ["/biology/higher-zoology-tree/biostatistics/measures_of_dispersion/"]="/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/"
+            ["/biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/"]="/biology/higher-zoology-tree/biostatistics/z_test_problem_solving/"
+            ["/biology/higher-zoology-tree/genetics/test-safe-file/"]="/biology/higher-zoology-tree/genetics/"
+          )
+          for route in "${!ROUTES[@]}"; do
+            target="${ROUTES[$route]}"
+            file="/tmp/$(printf '%s' "$route" | sha256sum | cut -d' ' -f1).html"
+            code=$(curl -A "$UA" -sS -o "$file" -w '%{http_code}' "$BASE$route")
+            noindex=false; grep -qi 'noindex' "$file" && noindex=true
+            target_found=false; grep -Fq "$target" "$file" && target_found=true
+            bytes=$(wc -c < "$file")
+            echo "ROUTE status=$code noindex=$noindex target=$target_found bytes=$bytes path=$route"
+          done
+          exit 0
