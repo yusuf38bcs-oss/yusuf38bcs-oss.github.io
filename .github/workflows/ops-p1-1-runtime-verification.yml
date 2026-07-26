@@ -1,0 +1,214 @@
+name: Verify P1.1 Staging Runtime
+
+on:
+  pull_request:
+    branches:
+      - staging
+    paths:
+      - ".github/workflows/ops-p1-1-runtime-verification.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Verify staging Matrix and preserved routes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          STAGING="https://staging.yusuf38bcs-oss-github-io.pages.dev"
+          PRODUCTION="https://learningbiologyforlife.org"
+          WORKDIR="$(mktemp -d)"
+
+          fetch() {
+            local url="$1"
+            local output="$2"
+            curl --fail --silent --show-error --location \
+              --retry 4 --retry-delay 3 --retry-all-errors \
+              --connect-timeout 15 --max-time 60 \
+              "$url" -o "$output"
+          }
+
+          fetch "$STAGING/biology/" "$WORKDIR/staging-biology.html"
+          fetch "$PRODUCTION/biology/" "$WORKDIR/production-biology.html"
+
+          python3 - "$WORKDIR/staging-biology.html" "$WORKDIR/production-biology.html" <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import json
+          import re
+          import sys
+
+          SYSTEM_ROUTES = {
+              "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/",
+              "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/",
+              "/biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma/",
+              "/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism/",
+              "/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion/",
+              "/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/",
+              "/biology/higher-zoology-tree/biostatistics/measures_of_dispersion/",
+              "/biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/",
+              "/biology/higher-zoology-tree/genetics/test-safe-file/",
+          }
+
+          REQUIRED_CANONICAL_ROUTES = {
+              "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/",
+              "/biology/hsc-corner/botany/lecture-06-mitochondria/",
+              "/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-parasitism/",
+              "/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion/",
+              "/biology/higher-zoology-tree/biostatistics/measures-of-central-tendency/",
+              "/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/",
+              "/biology/higher-zoology-tree/biostatistics/z_test_problem_solving/",
+              "/biology/higher-zoology-tree/genetics/",
+          }
+
+          class MatrixParser(HTMLParser):
+              def __init__(self):
+                  super().__init__(convert_charrefs=True)
+                  self.card_depth = 0
+                  self.metric_depth = 0
+                  self.metric_values = []
+                  self.metric_buffer = []
+                  self.card_hrefs = set()
+                  self.scripts = []
+                  self.in_jsonld = False
+                  self.script_buffer = []
+
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  classes = set(attrs.get("class", "").split())
+                  if tag == "article" and "biology-matrix-card" in classes:
+                      self.card_depth += 1
+                  elif self.card_depth:
+                      self.card_depth += 1
+
+                  if tag == "a" and "biology-matrix-card-link" in classes:
+                      self.card_hrefs.add(attrs.get("href", ""))
+
+                  if tag == "article" and "biology-metric-card" in classes:
+                      self.metric_depth += 1
+                      self.metric_buffer = []
+                  elif self.metric_depth:
+                      self.metric_depth += 1
+
+                  if tag == "script" and attrs.get("type") == "application/ld+json":
+                      self.in_jsonld = True
+                      self.script_buffer = []
+
+              def handle_endtag(self, tag):
+                  if self.card_depth:
+                      self.card_depth -= 1
+                  if self.metric_depth:
+                      self.metric_depth -= 1
+                      if self.metric_depth == 0:
+                          text = " ".join(self.metric_buffer)
+                          match = re.search(r"\b([0-9][0-9,]*)\b", text)
+                          if match:
+                              self.metric_values.append(int(match.group(1).replace(",", "")))
+                  if tag == "script" and self.in_jsonld:
+                      self.in_jsonld = False
+                      self.scripts.append("".join(self.script_buffer))
+
+              def handle_data(self, data):
+                  if self.metric_depth:
+                      self.metric_buffer.append(data)
+                  if self.in_jsonld:
+                      self.script_buffer.append(data)
+
+          def parse(path):
+              parser = MatrixParser()
+              parser.feed(Path(path).read_text(encoding="utf-8"))
+              jsonld_text = "\n".join(parser.scripts)
+              return parser, jsonld_text
+
+          staging, staging_jsonld = parse(sys.argv[1])
+          production, production_jsonld = parse(sys.argv[2])
+
+          if len(staging.metric_values) < 4 or len(production.metric_values) < 4:
+              raise SystemExit(
+                  f"Unable to parse Matrix metrics: staging={staging.metric_values}, "
+                  f"production={production.metric_values}"
+              )
+
+          staging_nodes, _, _, staging_xp = staging.metric_values[:4]
+          production_nodes, _, _, production_xp = production.metric_values[:4]
+
+          node_delta = production_nodes - staging_nodes
+          xp_delta = production_xp - staging_xp
+          if node_delta != 9:
+              raise SystemExit(
+                  f"Expected staging to exclude 9 nodes; production={production_nodes}, "
+                  f"staging={staging_nodes}, delta={node_delta}"
+              )
+          if xp_delta != 90:
+              raise SystemExit(
+                  f"Expected staging XP reduction of 90; production={production_xp}, "
+                  f"staging={staging_xp}, delta={xp_delta}"
+              )
+
+          leaked_cards = sorted(route for route in SYSTEM_ROUTES if route in staging.card_hrefs)
+          leaked_jsonld = sorted(route for route in SYSTEM_ROUTES if route in staging_jsonld)
+          if leaked_cards or leaked_jsonld:
+              raise SystemExit(
+                  "System routes leaked into staging Matrix: "
+                  f"cards={leaked_cards}; jsonld={leaked_jsonld}"
+              )
+
+          missing_canonical_cards = sorted(
+              route for route in REQUIRED_CANONICAL_ROUTES if route not in staging.card_hrefs
+          )
+          missing_canonical_jsonld = sorted(
+              route for route in REQUIRED_CANONICAL_ROUTES if route not in staging_jsonld
+          )
+          if missing_canonical_cards or missing_canonical_jsonld:
+              raise SystemExit(
+                  "Canonical learning routes missing from staging Matrix: "
+                  f"cards={missing_canonical_cards}; jsonld={missing_canonical_jsonld}"
+              )
+
+          number_match = re.search(r'"numberOfItems"\s*:\s*(\d+)', staging_jsonld)
+          if not number_match or int(number_match.group(1)) != staging_nodes:
+              raise SystemExit(
+                  "Staging ItemList numberOfItems does not match visible node metric"
+              )
+
+          print(
+              "Matrix verification passed: "
+              f"production nodes={production_nodes}, staging nodes={staging_nodes}; "
+              f"production XP={production_xp}, staging XP={staging_xp}; "
+              "9 system routes absent from cards and JSON-LD; canonical routes present."
+          )
+          PY
+
+          declare -A ROUTES=(
+            ["/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/"]="/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
+            ["/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/"]="/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
+            ["/biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma/"]="/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
+            ["/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism/"]="/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-parasitism/"
+            ["/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion/"]="/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion/"
+            ["/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/"]="/biology/higher-zoology-tree/biostatistics/measures-of-central-tendency/"
+            ["/biology/higher-zoology-tree/biostatistics/measures_of_dispersion/"]="/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/"
+            ["/biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/"]="/biology/higher-zoology-tree/biostatistics/z_test_problem_solving/"
+            ["/biology/higher-zoology-tree/genetics/test-safe-file/"]="/biology/higher-zoology-tree/genetics/"
+          )
+
+          for route in "${!ROUTES[@]}"; do
+            target="${ROUTES[$route]}"
+            file="$WORKDIR/route-$(printf '%s' "$route" | sha256sum | cut -d' ' -f1).html"
+            fetch "$STAGING$route" "$file"
+            grep -qi 'noindex' "$file" || {
+              echo "Missing noindex marker on $route"
+              exit 1
+            }
+            grep -Fq "$target" "$file" || {
+              echo "Expected target $target missing from $route"
+              exit 1
+            }
+            echo "Preserved route passed: $route -> $target"
+          done
+
+          echo "P1.1 staging runtime verification passed."
