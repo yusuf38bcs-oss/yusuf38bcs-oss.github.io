@@ -7,6 +7,10 @@ permalink: /biology/hsc-corner/botany/human-body-mysterious-workspace-central-do
 robots: noindex
 sitemap: false
 language: bn
+visibility: system
+index_in_matrix: false
+searchable: false
+learning_node: false
 ---
 
 <meta http-equiv="refresh" content="0; url={{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">
