@@ -1,0 +1,65 @@
+name: Diagnose P1.1 Matrix Runtime
+
+on:
+  pull_request:
+    branches: [staging]
+    paths:
+      - ".github/workflows/ops-p1-1-matrix-diagnostic.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Print Matrix runtime facts
+        shell: bash
+        run: |
+          set -euo pipefail
+          S="https://p1-1-biology-collection-sani.yusuf38bcs-oss-github-io.pages.dev/biology/"
+          P="https://learningbiologyforlife.org/biology/"
+          curl -fsSL "$S" -o /tmp/s.html
+          curl -fsSL "$P" -o /tmp/p.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s = Path('/tmp/s.html').read_text(encoding='utf-8')
+          p = Path('/tmp/p.html').read_text(encoding='utf-8')
+          metric = re.compile(r'biology-metric-value[^>]*>\s*([0-9,]+)\s*<')
+          href = re.compile(r'class="biology-matrix-card-link"\s+href="([^"]+)"')
+          sm = [int(x.replace(',', '')) for x in metric.findall(s)]
+          pm = [int(x.replace(',', '')) for x in metric.findall(p)]
+          sh = set(href.findall(s))
+          print(f'STAGING_METRICS={sm}')
+          print(f'PRODUCTION_METRICS={pm}')
+          print(f'METRIC_DELTA={[a-b for a,b in zip(pm,sm)]}')
+          print(f'STAGING_CARD_COUNT={len(sh)}')
+          routes = [
+            '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/',
+            '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/',
+            '/biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma/',
+            '/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism/',
+            '/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion/',
+            '/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/',
+            '/biology/higher-zoology-tree/biostatistics/measures_of_dispersion/',
+            '/biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/',
+            '/biology/higher-zoology-tree/genetics/test-safe-file/',
+          ]
+          for r in routes:
+              print(f'SYSTEM_ROUTE card={r in sh} jsonld={r in s} route={r}')
+          canonical = [
+            '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/',
+            '/biology/hsc-corner/botany/lecture-06-mitochondria/',
+            '/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-parasitism/',
+            '/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion/',
+            '/biology/higher-zoology-tree/biostatistics/measures-of-central-tendency/',
+            '/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/',
+            '/biology/higher-zoology-tree/biostatistics/z_test_problem_solving/',
+            '/biology/higher-zoology-tree/genetics/',
+          ]
+          for r in canonical:
+              print(f'CANONICAL_ROUTE card={r in sh} jsonld={r in s} route={r}')
+          n = re.search(r'"numberOfItems"\s*:\s*(\d+)', s)
+          print(f'JSONLD_NUMBER_OF_ITEMS={n.group(1) if n else "missing"}')
+          PY
