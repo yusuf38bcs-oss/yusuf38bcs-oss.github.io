@@ -13,28 +13,24 @@ jobs:
   diagnose:
     runs-on: ubuntu-24.04
     steps:
-      - name: Print Matrix runtime facts
+      - name: Print staging Matrix runtime facts
         shell: bash
         run: |
           set -euo pipefail
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36"
           S="https://p1-1-biology-collection-sani.yusuf38bcs-oss-github-io.pages.dev/biology/"
-          P="https://learningbiologyforlife.org/biology/"
           curl -A "$UA" -fsSL "$S" -o /tmp/s.html
-          curl -A "$UA" -fsSL "$P" -o /tmp/p.html
           python3 - <<'PY'
           from pathlib import Path
           import re
           s = Path('/tmp/s.html').read_text(encoding='utf-8')
-          p = Path('/tmp/p.html').read_text(encoding='utf-8')
           metric = re.compile(r'biology-metric-value[^>]*>\s*([0-9,]+)\s*<')
           href = re.compile(r'class="biology-matrix-card-link"\s+href="([^"]+)"')
           sm = [int(x.replace(',', '')) for x in metric.findall(s)]
-          pm = [int(x.replace(',', '')) for x in metric.findall(p)]
           sh = set(href.findall(s))
           print(f'STAGING_METRICS={sm}')
-          print(f'PRODUCTION_METRICS={pm}')
-          print(f'METRIC_DELTA={[a-b for a,b in zip(pm,sm)]}')
+          print(f'PRODUCTION_REFERENCE=[103, 4, 3, 35315]')
+          print(f'METRIC_DELTA={[a-b for a,b in zip([103,4,3,35315],sm)]}')
           print(f'STAGING_CARD_COUNT={len(sh)}')
           routes = [
             '/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/',
