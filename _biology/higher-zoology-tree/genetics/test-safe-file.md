@@ -9,6 +9,8 @@ searchable: false
 learning_node: false
 ---
 
+<meta name="robots" content="noindex, follow">
+
 # Genetics Course Note
 
 This temporary compatibility page points learners to the Genetics gateway.
