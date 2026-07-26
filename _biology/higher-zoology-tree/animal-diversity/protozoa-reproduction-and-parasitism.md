@@ -3,6 +3,10 @@ layout: null
 permalink: /biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism/
 sitemap: false
 robots: noindex
+visibility: system
+index_in_matrix: false
+searchable: false
+learning_node: false
 ---
 <!doctype html>
 <html lang="en">
