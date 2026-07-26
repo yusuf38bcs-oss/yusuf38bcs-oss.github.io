@@ -53,7 +53,7 @@ layout: default
   {% assign empty_text = 'Biology collection items will appear here when Markdown documents are added inside the _biology collection and the collection remains enabled in _config.yml.' %}
 {% endif %}
 
-{% assign biology_nodes = site.biology | sort: "title" %}
+{% assign biology_nodes = site.biology | where_exp: "node", "node.index_in_matrix != false" | where_exp: "node", "node.learning_node != false" | sort: "title" %}
 {% assign biology_pillars = biology_nodes | group_by_exp: "node", "node.pillar | default: 'Biology Core'" %}
 {% assign biology_total = biology_nodes | size %}
 {% assign biology_socratic_total = 0 %}
