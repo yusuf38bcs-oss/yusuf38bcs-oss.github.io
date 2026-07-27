@@ -1,0 +1,317 @@
+name: Verify Pages Artifact and Optional Cache Purge
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_sha:
+        description: "Exact main commit SHA to verify; leave blank to use current main"
+        required: false
+        type: string
+      purge_cache:
+        description: "Purge approved Biology URLs after artifact verification"
+        required: true
+        default: false
+        type: boolean
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/ops-verify-pages-artifact.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: ops-verify-pages-artifact-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-pages-artifact:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PRODUCTION_URL: https://learningbiologyforlife.org
+      CF_TOKEN_PRIMARY: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CF_TOKEN_ALT: ${{ secrets.CF_API_TOKEN }}
+      CF_TOKEN_ALT2: ${{ secrets.CLOUDFLARE_TOKEN }}
+      CF_ZONE_ID_PRIMARY: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+      CF_ZONE_ID_ALT: ${{ secrets.CF_ZONE_ID }}
+
+    steps:
+      - name: Resolve target SHA
+        id: target
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          requested_sha="${{ inputs.target_sha }}"
+
+          if [[ -n "$requested_sha" ]]; then
+            target_sha="$requested_sha"
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            target_sha="${{ github.event.pull_request.base.sha }}"
+          else
+            target_sha="$(gh api "repos/${GITHUB_REPOSITORY}/commits/main" --jq '.sha')"
+          fi
+
+          [[ "$target_sha" =~ ^[0-9a-fA-F]{40}$ ]] || {
+            echo "Target SHA must be an exact 40-character commit SHA."
+            exit 1
+          }
+
+          echo "sha=${target_sha,,}" >> "$GITHUB_OUTPUT"
+          echo "TARGET_SHA=${target_sha,,}"
+
+      - name: Verify exact GitHub Pages deployment
+        id: pages
+        shell: bash
+        env:
+          TARGET_SHA: ${{ steps.target.outputs.sha }}
+        run: |
+          set -euo pipefail
+
+          runs_json="$(gh api --paginate \
+            "repos/${GITHUB_REPOSITORY}/actions/runs?head_sha=${TARGET_SHA}&per_page=100")"
+
+          run_json="$(jq -c --arg sha "$TARGET_SHA" '
+            .workflow_runs
+            | map(select(
+                .name == "Deploy to GitHub Pages"
+                and .event == "push"
+                and .head_branch == "main"
+                and .head_sha == $sha
+              ))
+            | sort_by(.run_number)
+            | last // empty
+          ' <<<"$runs_json")"
+
+          [[ -n "$run_json" ]] || {
+            echo "No Deploy to GitHub Pages push run found for $TARGET_SHA."
+            exit 1
+          }
+
+          run_id="$(jq -r '.id' <<<"$run_json")"
+          run_status="$(jq -r '.status' <<<"$run_json")"
+          run_conclusion="$(jq -r '.conclusion' <<<"$run_json")"
+          run_url="$(jq -r '.html_url' <<<"$run_json")"
+
+          [[ "$run_status" == "completed" ]] || {
+            echo "Pages run is not completed."
+            exit 1
+          }
+
+          [[ "$run_conclusion" == "success" ]] || {
+            echo "Pages run did not succeed."
+            exit 1
+          }
+
+          jobs_json="$(gh api --paginate \
+            "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/jobs?per_page=100")"
+
+          build_conclusion="$(jq -r '
+            [.jobs[] | select(.name == "build")]
+            | last.conclusion // "missing"
+          ' <<<"$jobs_json")"
+
+          deploy_conclusion="$(jq -r '
+            [.jobs[] | select(.name == "deploy")]
+            | last.conclusion // "missing"
+          ' <<<"$jobs_json")"
+
+          [[ "$build_conclusion" == "success" ]] || {
+            echo "GitHub Pages build job was not successful."
+            exit 1
+          }
+
+          [[ "$deploy_conclusion" == "success" ]] || {
+            echo "GitHub Pages deploy job was not successful."
+            exit 1
+          }
+
+          echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          echo "run_url=$run_url" >> "$GITHUB_OUTPUT"
+          echo "Exact GitHub Pages deployment verified: $run_url"
+
+      - name: Download deployed Pages artifact
+        shell: bash
+        env:
+          RUN_ID: ${{ steps.pages.outputs.run_id }}
+        run: |
+          set -euo pipefail
+
+          artifacts_json="$(gh api --paginate \
+            "repos/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}/artifacts?per_page=100")"
+
+          artifact_json="$(jq -c '
+            .artifacts
+            | map(select(
+                (.expired | not)
+                and (.name | startswith("github-pages-"))
+              ))
+            | sort_by(.created_at)
+            | last // empty
+          ' <<<"$artifacts_json")"
+
+          [[ -n "$artifact_json" ]] || {
+            echo "No unexpired GitHub Pages artifact found for run $RUN_ID."
+            echo "The deployment itself is verified, but its one-day artifact has expired."
+            echo "Re-run Deploy to GitHub Pages for the target commit, then run this workflow again."
+            exit 1
+          }
+
+          artifact_id="$(jq -r '.id' <<<"$artifact_json")"
+          artifact_name="$(jq -r '.name' <<<"$artifact_json")"
+
+          mkdir -p /tmp/pages-artifact /tmp/pages-site
+          gh api \
+            -H 'Accept: application/vnd.github+json' \
+            "repos/${GITHUB_REPOSITORY}/actions/artifacts/${artifact_id}/zip" \
+            > /tmp/pages-artifact.zip
+
+          unzip -q /tmp/pages-artifact.zip -d /tmp/pages-artifact
+
+          artifact_tar="$(find /tmp/pages-artifact -type f -name 'artifact.tar' -print -quit)"
+
+          if [[ -n "$artifact_tar" ]]; then
+            tar -xf "$artifact_tar" -C /tmp/pages-site
+          else
+            cp -a /tmp/pages-artifact/. /tmp/pages-site/
+          fi
+
+          test -f /tmp/pages-site/index.html || {
+            echo "Downloaded artifact does not contain index.html."
+            find /tmp/pages-artifact -maxdepth 3 -type f | sort | head -100
+            exit 1
+          }
+
+          echo "Downloaded Pages artifact: $artifact_name"
+
+      - name: Verify Biology Matrix in deployed artifact
+        shell: bash
+        env:
+          TARGET_SHA: ${{ steps.target.outputs.sha }}
+        run: |
+          set -euo pipefail
+
+          biology_html="/tmp/pages-site/biology/index.html"
+          test -f "$biology_html" || {
+            echo "Pages artifact is missing /biology/index.html."
+            exit 1
+          }
+
+          python3 - "$biology_html" <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+
+          html = Path(sys.argv[1]).read_text(encoding="utf-8")
+          values = [
+              int(value.replace(",", ""))
+              for value in re.findall(
+                  r"biology-metric-value[^>]*>\s*([0-9,]+)\s*<",
+                  html,
+              )
+          ]
+
+          expected = [94, 4, 3, 35225]
+          system_routes = [
+              "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/",
+              "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/",
+              "/biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma/",
+              "/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism/",
+              "/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion/",
+              "/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/",
+              "/biology/higher-zoology-tree/biostatistics/measures_of_dispersion/",
+              "/biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/",
+              "/biology/higher-zoology-tree/genetics/test-safe-file/",
+          ]
+
+          leaked = [route for route in system_routes if route in html]
+
+          print(f"ARTIFACT_METRICS={values[:4]}")
+          print(f"ARTIFACT_SYSTEM_ROUTE_LEAKS={leaked}")
+
+          if values[:4] != expected:
+              raise SystemExit(
+                  f"Biology Matrix mismatch: expected {expected}, got {values[:4]}"
+              )
+
+          if leaked:
+              raise SystemExit(
+                  "Sanitized system routes leaked into the deployed artifact: "
+                  + ", ".join(leaked)
+              )
+
+          print("Deployed Pages artifact verification passed.")
+          PY
+
+      - name: Purge approved Biology URLs
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.purge_cache }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cf_token="${CF_TOKEN_PRIMARY:-}"
+          [[ -n "$cf_token" ]] || cf_token="${CF_TOKEN_ALT:-}"
+          [[ -n "$cf_token" ]] || cf_token="${CF_TOKEN_ALT2:-}"
+
+          [[ -n "$cf_token" ]] || {
+            echo "Cache purge was requested, but no supported Cloudflare API token secret is configured."
+            echo "Configure one of: CLOUDFLARE_API_TOKEN, CF_API_TOKEN, CLOUDFLARE_TOKEN."
+            exit 1
+          }
+
+          zone_id="${CF_ZONE_ID_PRIMARY:-}"
+          [[ -n "$zone_id" ]] || zone_id="${CF_ZONE_ID_ALT:-}"
+
+          if [[ -z "$zone_id" ]]; then
+            zone_response="$(curl -fsS \
+              -H "Authorization: Bearer ${cf_token}" \
+              -H 'Content-Type: application/json' \
+              'https://api.cloudflare.com/client/v4/zones?name=learningbiologyforlife.org&status=active')"
+
+            [[ "$(jq -r '.success' <<<"$zone_response")" == "true" ]] || {
+              echo "Cloudflare zone lookup failed."
+              jq -c '{success, errors}' <<<"$zone_response"
+              exit 1
+            }
+
+            zone_id="$(jq -r '.result[0].id // empty' <<<"$zone_response")"
+          fi
+
+          [[ -n "$zone_id" ]] || {
+            echo "Could not resolve the Cloudflare zone ID."
+            exit 1
+          }
+
+          purge_response="$(curl -fsS -X POST \
+            -H "Authorization: Bearer ${cf_token}" \
+            -H 'Content-Type: application/json' \
+            --data '{"files":["https://learningbiologyforlife.org/biology/","https://learningbiologyforlife.org/biology/index.html"]}' \
+            "https://api.cloudflare.com/client/v4/zones/${zone_id}/purge_cache")"
+
+          [[ "$(jq -r '.success' <<<"$purge_response")" == "true" ]] || {
+            echo "Cloudflare targeted cache purge failed."
+            jq -c '{success, errors}' <<<"$purge_response"
+            exit 1
+          }
+
+          echo "Targeted Biology cache purge succeeded."
+
+      - name: Summary
+        shell: bash
+        env:
+          TARGET_SHA: ${{ steps.target.outputs.sha }}
+          RUN_URL: ${{ steps.pages.outputs.run_url }}
+        run: |
+          {
+            echo "## Pages verification result"
+            echo
+            echo "- Target SHA: \`$TARGET_SHA\`"
+            echo "- Pages deployment: $RUN_URL"
+            echo "- Verification source: deployed GitHub Pages artifact"
+            echo "- Direct production curl: intentionally not used"
+            echo "- Cloudflare purge requested: \`${{ inputs.purge_cache || false }}\`"
+            echo "- Purge scope: approved Biology URLs only"
+          } >> "$GITHUB_STEP_SUMMARY"
