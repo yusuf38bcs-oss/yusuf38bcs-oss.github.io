@@ -36,20 +36,25 @@ jobs:
       CF_TOKEN_ALT2: ${{ secrets.CLOUDFLARE_TOKEN }}
       CF_ZONE_ID_PRIMARY: ${{ secrets.CLOUDFLARE_ZONE_ID }}
       CF_ZONE_ID_ALT: ${{ secrets.CF_ZONE_ID }}
+      PURGE_REQUESTED: ${{ inputs.purge_cache || false }}
 
     steps:
       - name: Resolve target SHA
         id: target
         shell: bash
+        env:
+          REQUESTED_SHA: ${{ inputs.target_sha || '' }}
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
         run: |
           set -euo pipefail
 
-          requested_sha="${{ inputs.target_sha }}"
+          requested_sha="${REQUESTED_SHA:-}"
 
           if [[ -n "$requested_sha" ]]; then
             target_sha="$requested_sha"
-          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            target_sha="${{ github.event.pull_request.base.sha }}"
+          elif [[ "$EVENT_NAME" == "pull_request" ]]; then
+            target_sha="$PR_BASE_SHA"
           else
             target_sha="$(gh api "repos/${GITHUB_REPOSITORY}/commits/main" --jq '.sha')"
           fi
@@ -77,7 +82,7 @@ jobs:
             .workflow_runs
             | map(select(
                 .name == "Deploy to GitHub Pages"
-                and .event == "push"
+                and (.event == "push" or .event == "workflow_dispatch")
                 and .head_branch == "main"
                 and .head_sha == $sha
               ))
@@ -86,7 +91,7 @@ jobs:
           ' <<<"$runs_json")"
 
           [[ -n "$run_json" ]] || {
-            echo "No Deploy to GitHub Pages push run found for $TARGET_SHA."
+            echo "No successful-candidate Pages run found for exact SHA $TARGET_SHA."
             exit 1
           }
 
@@ -173,49 +178,117 @@ jobs:
           }
 
           python3 - "$biology_html" <<'PY'
+          from html.parser import HTMLParser
           from pathlib import Path
+          from urllib.parse import urlsplit
           import re
           import sys
 
-          html = Path(sys.argv[1]).read_text(encoding="utf-8")
-          values = [
-              int(value.replace(",", ""))
-              for value in re.findall(
-                  r"biology-metric-value[^>]*>\s*([0-9,]+)\s*<",
-                  html,
-              )
-          ]
-
-          expected = [94, 4, 3, 35225]
-          system_routes = [
+          EXPECTED_METRICS = [94, 4, 3, 35225]
+          SYSTEM_ROUTES = {
               "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/",
               "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/",
               "/biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma/",
               "/biology/higher-zoology-tree/animal-diversity/protozoa-reproduction-and-parasitism/",
               "/biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-and-skeletal-structure-and-locomotion/",
               "/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/",
-              "/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/",
+              "/biology/higher-zoology-tree/biostatistics/measures_of_dispersion/",
               "/biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/",
               "/biology/higher-zoology-tree/genetics/test-safe-file/",
-          ]
+          }
 
-          leaked = [route for route in system_routes if route in html]
+          def normalize_route(value):
+              path = urlsplit(value).path
+              if not path:
+                  return ""
+              return path.rstrip("/") + "/"
 
-          print(f"REBUILT_METRICS={values[:4]}")
-          print(f"REBUILT_SYSTEM_ROUTE_LEAKS={leaked}")
+          class MatrixParser(HTMLParser):
+              def __init__(self):
+                  super().__init__(convert_charrefs=True)
+                  self.card_routes = []
+                  self.in_json_ld = False
+                  self.json_ld_parts = []
 
-          if values[:4] != expected:
+              def handle_starttag(self, tag, attrs):
+                  tag = tag.lower()
+                  attrs_map = dict(attrs)
+
+                  if tag == "a":
+                      classes = set(attrs_map.get("class", "").split())
+                      if "biology-matrix-card-link" in classes:
+                          route = normalize_route(attrs_map.get("href", ""))
+                          if route:
+                              self.card_routes.append(route)
+
+                  if (
+                      tag == "script"
+                      and attrs_map.get("type", "").lower()
+                      == "application/ld+json"
+                  ):
+                      self.in_json_ld = True
+
+              def handle_endtag(self, tag):
+                  if tag.lower() == "script":
+                      self.in_json_ld = False
+
+              def handle_data(self, data):
+                  if self.in_json_ld:
+                      self.json_ld_parts.append(data)
+
+          html = Path(sys.argv[1]).read_text(encoding="utf-8")
+          metrics = [
+              int(value.replace(",", ""))
+              for value in re.findall(
+                  r"biology-metric-value[^>]*>\s*([0-9,]+)\s*<",
+                  html,
+              )
+          ][:4]
+
+          parser = MatrixParser()
+          parser.feed(html)
+
+          card_routes = parser.card_routes
+          card_route_set = set(card_routes)
+          json_ld_text = "\n".join(parser.json_ld_parts)
+
+          leaked_cards = sorted(SYSTEM_ROUTES & card_route_set)
+          leaked_json_ld = sorted(
+              route for route in SYSTEM_ROUTES if route in json_ld_text
+          )
+
+          print(f"REBUILT_METRICS={metrics}")
+          print(f"REBUILT_CARD_COUNT={len(card_routes)}")
+          print(f"REBUILT_UNIQUE_CARD_COUNT={len(card_route_set)}")
+          print(f"REBUILT_SYSTEM_CARD_LEAKS={leaked_cards}")
+          print(f"REBUILT_SYSTEM_JSONLD_LEAKS={leaked_json_ld}")
+
+          if metrics != EXPECTED_METRICS:
               raise SystemExit(
-                  f"Biology Matrix mismatch: expected {expected}, got {values[:4]}"
+                  f"Biology Matrix mismatch: expected {EXPECTED_METRICS}, got {metrics}"
               )
 
-          if leaked:
+          if len(card_routes) != EXPECTED_METRICS[0]:
               raise SystemExit(
-                  "Sanitized system routes leaked into the rebuilt output: "
-                  + ", ".join(leaked)
+                  "Biology Matrix card count does not match the visible-node metric: "
+                  f"expected {EXPECTED_METRICS[0]}, got {len(card_routes)}"
               )
 
-          print("Exact deployed commit verification passed.")
+          if len(card_route_set) != len(card_routes):
+              raise SystemExit("Biology Matrix contains duplicate learner-facing card routes.")
+
+          if leaked_cards or leaked_json_ld:
+              details = []
+              if leaked_cards:
+                  details.append("cards=" + ", ".join(leaked_cards))
+              if leaked_json_ld:
+                  details.append("jsonld=" + ", ".join(leaked_json_ld))
+              raise SystemExit(
+                  "System-only routes leaked into learner-facing Matrix output: "
+                  + "; ".join(details)
+              )
+
+          print("Exact deployed commit Matrix verification passed.")
           PY
 
       - name: Purge approved Biology URLs
@@ -283,8 +356,9 @@ jobs:
             echo "- Target SHA: \`$TARGET_SHA\`"
             echo "- Pages deployment: $RUN_URL"
             echo "- Verification source: exact commit rebuilt with production Jekyll settings"
+            echo "- Learner-facing card and ItemList JSON-LD checks: passed"
             echo "- Direct production curl: intentionally not used"
-            echo "- Expired Pages artifact: no longer required"
-            echo "- Cloudflare purge requested: \`${{ inputs.purge_cache || false }}\`"
+            echo "- Expired Pages artifact: not required"
+            echo "- Cloudflare purge requested: \`$PURGE_REQUESTED\`"
             echo "- Purge scope: approved Biology URLs only"
           } >> "$GITHUB_STEP_SUMMARY"
