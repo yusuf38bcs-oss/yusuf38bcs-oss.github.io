@@ -253,34 +253,54 @@
   }
 
   .lbfl-premium-hero {
-    min-height: min(48rem, calc(100svh - 74px));
-    padding-block: clamp(3.25rem, 8vw, 6.5rem);
     position: relative;
+    min-height: auto;
+    padding: 0;
+    color: #ffffff;
+    background: #071525;
+    isolation: isolate;
+    overflow: hidden;
   }
 
   .lbfl-premium-hero::before {
     content: "";
     position: absolute;
-    inset: 8% -12% auto 42%;
-    height: 28rem;
+    inset: 0;
+    z-index: 1;
     pointer-events: none;
-    background: radial-gradient(circle, rgba(0, 168, 150, 0.16), transparent 68%);
+    background:
+      radial-gradient(circle at 14% 25%, rgba(66, 199, 232, 0.18), transparent 28rem),
+      linear-gradient(180deg, rgba(7, 21, 37, 0.04), rgba(7, 21, 37, 0.32));
   }
 
   .lbfl-premium-hero__copy {
     position: relative;
-    z-index: 2;
+    z-index: 3;
+    width: min(100% - 2rem, 76rem);
+    margin-inline: auto;
+    padding-block: clamp(3.25rem, 8vw, 6.5rem) 1.5rem;
+    color: #ffffff;
   }
 
-  .lbfl-premium-hero h1 span {
-    color: #0d665d;
+  .lbfl-home-v2 .lbfl-premium-hero .lbfl-home-v2__eyebrow {
+    color: #8fe4d9;
+  }
+
+  .lbfl-home-v2 .lbfl-premium-hero h1,
+  .lbfl-home-v2 .lbfl-premium-hero h1 span {
+    color: #ffffff;
+    text-shadow: 0 0.18rem 1.4rem rgba(0, 0, 0, 0.22);
   }
 
   .lbfl-premium-hero__brand-line {
     margin: 1rem 0 0;
-    color: #08736b;
+    color: #83e4d7;
     font-size: clamp(1rem, 2vw, 1.2rem);
     font-weight: 850;
+  }
+
+  .lbfl-home-v2 .lbfl-premium-hero .lbfl-home-v2__promise {
+    color: #d8ece9;
   }
 
   .lbfl-premium-hero__signals {
@@ -297,150 +317,122 @@
     display: inline-flex;
     align-items: center;
     padding: 0.42rem 0.7rem;
-    color: #0d665d;
-    background: rgba(13, 102, 93, 0.08);
-    border: 1px solid rgba(13, 102, 93, 0.18);
+    color: #e9fffb;
+    background: rgba(7, 21, 37, 0.48);
+    border: 1px solid rgba(143, 228, 217, 0.32);
     border-radius: 999px;
     font-size: 0.8rem;
     font-weight: 800;
+    backdrop-filter: blur(10px);
+  }
+
+  .lbfl-home-v2 .lbfl-premium-hero a.lbfl-home-v2__button--secondary {
+    color: #ffffff;
+    border-color: #8fe4d9;
+    background: rgba(7, 21, 37, 0.3);
   }
 
   .lbfl-premium-hero__diagnostic-note {
     max-width: 48rem;
     margin: 0.75rem 0 0;
-    color: #667d7a;
+    color: #b9d3d0;
     font-size: 0.78rem;
     line-height: 1.5;
   }
 
   .lbfl-premium-cell {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    min-width: 0;
     margin: 0;
   }
 
   .lbfl-premium-cell__canvas {
     position: relative;
-    width: min(100%, 31rem);
-    aspect-ratio: 1 / 1;
-    margin-inline: auto;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 42% 42%, rgba(255, 255, 255, 0.95), rgba(214, 242, 237, 0.88) 45%, rgba(0, 168, 150, 0.18) 72%, rgba(7, 21, 37, 0.08) 100%);
-    border: 1px solid rgba(13, 102, 93, 0.22);
-    box-shadow: inset 0 0 4rem rgba(13, 102, 93, 0.12), 0 2rem 4rem rgba(7, 21, 37, 0.15);
+    width: 100%;
+    min-height: clamp(19rem, 72vw, 30rem);
+    background: #071525;
     overflow: hidden;
+    isolation: isolate;
   }
 
-  .lbfl-premium-cell__membrane {
+  .lbfl-premium-cell__canvas::after {
+    content: "";
     position: absolute;
-    inset: 5%;
-    border: 2px solid rgba(13, 102, 93, 0.34);
-    border-radius: 48% 52% 46% 54%;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(7, 21, 37, 0.36) 0%,
+        rgba(7, 21, 37, 0.02) 34%,
+        rgba(7, 21, 37, 0.08) 74%,
+        rgba(7, 21, 37, 0.44) 100%
+      );
   }
 
-  .lbfl-premium-cell__nucleus {
+  .lbfl-premium-cell__media,
+  .lbfl-premium-cell__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .lbfl-premium-cell__image {
     position: absolute;
-    width: 31%;
-    height: 31%;
-    left: 34%;
-    top: 31%;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #c8f4ee, #2da798 72%);
-    border: 2px solid rgba(7, 81, 75, 0.55);
-    box-shadow: 0 0 0 0.5rem rgba(45, 167, 152, 0.1);
+    inset: 0;
+    object-fit: cover;
+    object-position: 72% center;
   }
 
-  .lbfl-premium-cell__nucleolus {
+  .lbfl-premium-cell__caption {
     position: absolute;
-    width: 9%;
-    height: 9%;
-    left: 45%;
-    top: 42%;
-    border-radius: 50%;
-    background: #07544f;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-  .lbfl-premium-cell__er {
-    position: absolute;
-    width: 32%;
-    height: 17%;
-    border: 3px double rgba(8, 115, 107, 0.68);
-    border-radius: 50%;
-    transform: rotate(-16deg);
-  }
+  @media (min-width: 48rem) {
+    .lbfl-premium-hero {
+      min-height: min(48rem, calc(100svh - 74px));
+    }
 
-  .lbfl-premium-cell__er--rough {
-    left: 16%;
-    top: 23%;
-    box-shadow: 0 8px 0 -5px #07544f, 12px -4px 0 -6px #07544f;
-  }
+    .lbfl-premium-hero__copy {
+      padding-block: clamp(4rem, 9vw, 7rem);
+      padding-right: min(52%, 40rem);
+    }
 
-  .lbfl-premium-cell__er--smooth {
-    right: 14%;
-    bottom: 24%;
-    transform: rotate(22deg);
-  }
+    .lbfl-premium-cell {
+      position: absolute;
+      inset: 0;
+    }
 
-  .lbfl-premium-cell__golgi {
-    position: absolute;
-    width: 21%;
-    height: 14%;
-    right: 17%;
-    top: 23%;
-    border-top: 4px solid #42c7e8;
-    border-bottom: 4px solid #42c7e8;
-    border-radius: 50%;
-    box-shadow: 0 7px 0 -3px #42c7e8, 0 14px 0 -6px #42c7e8;
-    transform: rotate(-12deg);
-  }
+    .lbfl-premium-cell__canvas {
+      height: 100%;
+      min-height: 0;
+    }
 
-  .lbfl-premium-cell__mitochondrion {
-    position: absolute;
-    width: 18%;
-    height: 10%;
-    border-radius: 50%;
-    background: repeating-linear-gradient(90deg, #f4b942 0 4px, #ffe2a1 4px 8px);
-    border: 2px solid #b37b0d;
-  }
+    .lbfl-premium-cell__canvas::after {
+      background:
+        linear-gradient(
+          90deg,
+          #071525 0%,
+          rgba(7, 21, 37, 0.97) 24%,
+          rgba(7, 21, 37, 0.78) 43%,
+          rgba(7, 21, 37, 0.22) 65%,
+          rgba(7, 21, 37, 0.02) 82%
+        );
+    }
 
-  .lbfl-premium-cell__mitochondrion--one {
-    left: 18%;
-    bottom: 25%;
-    transform: rotate(24deg);
-  }
-
-  .lbfl-premium-cell__mitochondrion--two {
-    right: 16%;
-    top: 48%;
-    transform: rotate(-28deg);
-  }
-
-  .lbfl-premium-cell__chip {
-    position: absolute;
-    min-height: 32px;
-    display: inline-flex;
-    align-items: center;
-    padding: 0.35rem 0.65rem;
-    color: #ffffff;
-    background: rgba(7, 21, 37, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 999px;
-    font-size: 0.74rem;
-    font-weight: 850;
-  }
-
-  .lbfl-premium-cell__chip--learn { left: 5%; top: 8%; }
-  .lbfl-premium-cell__chip--practise { right: 2%; top: 8%; }
-  .lbfl-premium-cell__chip--master { right: 8%; bottom: 8%; }
-
-  .lbfl-premium-cell figcaption {
-    max-width: 34rem;
-    margin: 0.85rem auto 0;
-    color: #617a77;
-    font-size: 0.78rem;
-    line-height: 1.5;
-    text-align: center;
+    .lbfl-premium-cell__image {
+      object-position: center;
+    }
   }
 
   .lbfl-home-v2-active .lbfl-home-v2 a.lbfl-home-v2__button--primary:link,
@@ -503,8 +495,16 @@
       gap: 0.4rem;
     }
 
+    .lbfl-premium-hero__copy {
+      width: min(100% - 1.25rem, 76rem);
+    }
+
     .lbfl-premium-cell__canvas {
-      width: min(100%, 24rem);
+      min-height: 19rem;
+    }
+
+    .lbfl-premium-cell__image {
+      object-position: 72% center;
     }
   }
 

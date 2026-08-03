@@ -60,23 +60,31 @@ language: en
       </p>
     </div>
 
-    <figure class="lbfl-premium-cell" aria-labelledby="lbfl-premium-cell-caption">
-      <div class="lbfl-premium-cell__canvas" aria-hidden="true">
-        <span class="lbfl-premium-cell__membrane"></span>
-        <span class="lbfl-premium-cell__nucleus"></span>
-        <span class="lbfl-premium-cell__nucleolus"></span>
-        <span class="lbfl-premium-cell__er lbfl-premium-cell__er--rough"></span>
-        <span class="lbfl-premium-cell__er lbfl-premium-cell__er--smooth"></span>
-        <span class="lbfl-premium-cell__golgi"></span>
-        <span class="lbfl-premium-cell__mitochondrion lbfl-premium-cell__mitochondrion--one"></span>
-        <span class="lbfl-premium-cell__mitochondrion lbfl-premium-cell__mitochondrion--two"></span>
-        <span class="lbfl-premium-cell__chip lbfl-premium-cell__chip--learn">Learn</span>
-        <span class="lbfl-premium-cell__chip lbfl-premium-cell__chip--practise">Practise</span>
-        <span class="lbfl-premium-cell__chip lbfl-premium-cell__chip--master">Master</span>
+    <figure
+      class="lbfl-premium-cell"
+      aria-labelledby="lbfl-premium-cell-caption"
+    >
+      <div class="lbfl-premium-cell__canvas">
+        <picture class="lbfl-premium-cell__media">
+          <img
+            class="lbfl-premium-cell__image"
+            src="{{ '/assets/images/home/lbfl-premium-cell-hero.webp' | relative_url }}"
+            alt=""
+            width="1600"
+            height="1200"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          >
+        </picture>
       </div>
-      <figcaption id="lbfl-premium-cell-caption">
-        A simplified eukaryotic-cell learning map connecting concept,
-        practice and mastery.
+      <figcaption
+        class="lbfl-premium-cell__caption"
+        id="lbfl-premium-cell-caption"
+      >
+        Cinematic illustration of a eukaryotic animal cell showing
+        the nucleus, endoplasmic reticulum, Golgi apparatus and
+        mitochondria.
       </figcaption>
     </figure>
   </section>
