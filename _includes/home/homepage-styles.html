@@ -549,6 +549,76 @@
     }
   }
 
+  @media (min-width: 48rem) and (max-height: 46rem) {
+    .lbfl-premium-hero {
+      min-height: calc(100svh - 74px);
+    }
+
+    .lbfl-premium-hero__copy {
+      padding-block: clamp(1.4rem, 4vh, 2.25rem);
+      padding-right: min(48%, 34rem);
+    }
+
+    .lbfl-home-v2 .lbfl-premium-hero .lbfl-home-v2__eyebrow {
+      margin-bottom: 0.45rem;
+      font-size: 0.68rem;
+    }
+
+    .lbfl-home-v2 .lbfl-premium-hero h1,
+    .lbfl-home-v2 .lbfl-premium-hero h1 span {
+      max-width: 18ch;
+      font-size: clamp(2.6rem, 4.9vw, 3.7rem);
+      letter-spacing: -0.045em;
+      line-height: 0.92;
+    }
+
+    .lbfl-premium-hero__brand-line {
+      margin-top: 0.55rem;
+      font-size: clamp(0.9rem, 1.6vw, 1rem);
+    }
+
+    .lbfl-home-v2 .lbfl-premium-hero .lbfl-home-v2__promise {
+      max-width: 35rem;
+      margin-top: 0.75rem;
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .lbfl-premium-hero__signals {
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+
+    .lbfl-premium-hero__signals li {
+      min-height: 30px;
+      padding: 0.3rem 0.55rem;
+      font-size: 0.72rem;
+    }
+
+    .lbfl-premium-hero .lbfl-home-v2__actions {
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+    }
+
+    .lbfl-home-v2__actions--primary {
+      margin-top: 0.9rem;
+    }
+
+    .lbfl-premium-hero .lbfl-home-v2__button {
+      min-height: 2.75rem;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .lbfl-premium-hero__diagnostic-note {
+      max-width: 35rem;
+      margin-top: 0.4rem;
+      font-size: 0.67rem;
+      line-height: 1.35;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .lbfl-home-v2 *,
     .lbfl-home-v2 *::before,
