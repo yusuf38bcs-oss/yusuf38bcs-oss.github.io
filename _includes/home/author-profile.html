@@ -4,26 +4,35 @@
   class="lbfl-home-v2__section lbfl-home-v2__editorial"
   aria-labelledby="lbfl-home-v2-editorial-title"
 >
-  <div>
-    <p class="lbfl-home-v2__eyebrow">Editorial trust</p>
+  <div class="lbfl-home-v2__editorial-copy">
+    <p class="lbfl-home-v2__eyebrow">{{ trust.eyebrow }}</p>
     <h2 id="lbfl-home-v2-editorial-title">
-      Biology teaching grounded in reflection and evidence
+      {{ trust.title }}
     </h2>
-    <p>
-      Lessons are developed for Bangladeshi learners with
-      Bangla-first explanation, English technical terms and
-      explicit academic review.
-    </p>
+    <p>{{ trust.summary }}</p>
+
+    <ul class="lbfl-home-v2__method-list">
+      {% for method in trust.methods %}
+        <li>{{ method }}</li>
+      {% endfor %}
+    </ul>
   </div>
 
-  <div class="lbfl-home-v2__editorial-profile">
+  <aside
+    class="lbfl-home-v2__editorial-profile"
+    aria-label="Author and editorial lead"
+  >
+    <p class="lbfl-home-v2__profile-label">
+      Author and editorial lead
+    </p>
     <strong>{{ trust.author }}</strong>
     <span>{{ trust.role }}</span>
+    <small>{{ trust.affiliation }}</small>
     <div class="lbfl-home-v2__actions">
       <a href="{{ trust.profile_url | relative_url }}">Read the profile</a>
       <a href="{{ trust.contact_url | relative_url }}">Contact LBFL</a>
     </div>
-  </div>
+  </aside>
 </section>
 {% else %}
 <section class="home-author-profile" aria-labelledby="home-author-profile-title">

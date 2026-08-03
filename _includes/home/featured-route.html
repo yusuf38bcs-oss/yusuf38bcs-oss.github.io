@@ -1,31 +1,47 @@
 {% assign featured = site.data.homepage.featured_route %}
+{% assign learning = site.data.homepage.latest_learning %}
 {% if featured.enabled %}
 <section
   class="lbfl-home-v2__section lbfl-home-v2__featured"
   aria-labelledby="lbfl-home-v2-featured-title"
 >
-  <div>
+  <div class="lbfl-home-v2__featured-intro">
     <p class="lbfl-home-v2__eyebrow">{{ featured.eyebrow }}</p>
     <h2 id="lbfl-home-v2-featured-title">{{ featured.title }}</h2>
     <p>{{ featured.summary }}</p>
     <p class="lbfl-home-v2__featured-meta">
       {{ featured.lesson_count }} connected lessons
     </p>
+
+    <div class="lbfl-home-v2__actions">
+      <a
+        class="lbfl-home-v2__button lbfl-home-v2__button--primary"
+        href="{{ featured.start_url | relative_url }}"
+      >
+        Begin Lecture 01
+      </a>
+      <a
+        class="lbfl-home-v2__button lbfl-home-v2__button--secondary"
+        href="{{ featured.chapter_url | relative_url }}"
+      >
+        View the full chapter
+      </a>
+    </div>
   </div>
 
-  <div class="lbfl-home-v2__actions">
-    <a
-      class="lbfl-home-v2__button lbfl-home-v2__button--primary"
-      href="{{ featured.start_url | relative_url }}"
-    >
-      Begin Lecture 01
-    </a>
-    <a
-      class="lbfl-home-v2__button lbfl-home-v2__button--secondary"
-      href="{{ featured.chapter_url | relative_url }}"
-    >
-      View the chapter
-    </a>
-  </div>
+  <ol
+    class="lbfl-home-v2__learning-list"
+    aria-label="Six-lecture Cell Biology sequence"
+  >
+    {% for item in learning.items limit: learning.maximum_items %}
+      <li>
+        <a href="{{ item.url | relative_url }}">
+          <span>{{ item.label }}</span>
+          <strong>{{ item.title }}</strong>
+          <small>{{ item.pathway }}</small>
+        </a>
+      </li>
+    {% endfor %}
+  </ol>
 </section>
 {% endif %}
