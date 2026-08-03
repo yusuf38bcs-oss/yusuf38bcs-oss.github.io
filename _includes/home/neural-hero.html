@@ -3,18 +3,26 @@
 <section
   class="lbfl-home-v2__hero"
   aria-labelledby="lbfl-home-v2-title"
+  aria-describedby="lbfl-home-v2-promise"
 >
   <div class="lbfl-home-v2__hero-copy">
     <p class="lbfl-home-v2__eyebrow">
-      {{ home.identity.name }}
+      {{ home.identity.eyebrow }}
     </p>
 
     <h1 id="lbfl-home-v2-title">
       {{ home.identity.headline }}
     </h1>
 
-    <p class="lbfl-home-v2__promise">
+    <p
+      class="lbfl-home-v2__promise"
+      id="lbfl-home-v2-promise"
+    >
       {{ home.identity.promise }}
+    </p>
+
+    <p class="lbfl-home-v2__support-line">
+      {{ home.identity.support_line }}
     </p>
 
     <div
@@ -50,7 +58,12 @@
     class="lbfl-home-v2__trust-card"
     aria-label="Learning quality commitments"
   >
-    <p class="lbfl-home-v2__trust-title">Designed for clear learning</p>
+    <p class="lbfl-home-v2__trust-kicker">
+      Designed for {{ home.identity.audience }}
+    </p>
+    <p class="lbfl-home-v2__trust-title">
+      A clear route from concept to confidence
+    </p>
     <ul class="lbfl-home-v2__trust-list">
       {% for signal in home.trust_signals %}
         <li>{{ signal }}</li>
