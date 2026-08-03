@@ -1,13 +1,15 @@
 {% assign assessment = site.data.homepage.assessment_loop %}
+{% assign bridge = site.data.homepage.synaptic_bridge %}
 <section
   class="lbfl-home-v2__section lbfl-home-v2__assessment"
   aria-labelledby="lbfl-home-v2-assessment-title"
 >
   <div class="lbfl-home-v2__section-heading">
-    <p class="lbfl-home-v2__eyebrow">Assessment loop</p>
+    <p class="lbfl-home-v2__eyebrow">{{ assessment.eyebrow }}</p>
     <h2 id="lbfl-home-v2-assessment-title">
-      Turn every attempt into better understanding
+      {{ assessment.title }}
     </h2>
+    <p>{{ assessment.summary }}</p>
   </div>
 
   <ol class="lbfl-home-v2__assessment-list">
@@ -15,6 +17,40 @@
       <li>
         <span aria-hidden="true">{{ forloop.index }}</span>
         <strong>{{ step }}</strong>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <p class="lbfl-home-v2__assessment-result">
+    {{ assessment.result }}
+  </p>
+</section>
+
+<section
+  class="lbfl-home-v2__section lbfl-home-v2__bridge"
+  aria-labelledby="lbfl-home-v2-bridge-title"
+>
+  <div class="lbfl-home-v2__bridge-copy">
+    <p class="lbfl-home-v2__eyebrow">{{ bridge.eyebrow }}</p>
+    <p class="lbfl-home-v2__bridge-name">{{ bridge.name }}</p>
+    <h2 id="lbfl-home-v2-bridge-title">{{ bridge.title }}</h2>
+    <p>{{ bridge.summary }}</p>
+    <a
+      class="lbfl-home-v2__button lbfl-home-v2__button--secondary"
+      href="{{ bridge.action_url | relative_url }}"
+    >
+      {{ bridge.action_label }}
+    </a>
+  </div>
+
+  <ol class="lbfl-home-v2__bridge-principles">
+    {% for principle in bridge.principles %}
+      <li>
+        <span aria-hidden="true">{{ forloop.index }}</span>
+        <div>
+          <strong>{{ principle.title }}</strong>
+          <p>{{ principle.text }}</p>
+        </div>
       </li>
     {% endfor %}
   </ol>
