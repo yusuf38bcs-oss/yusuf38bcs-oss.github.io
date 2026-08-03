@@ -7,15 +7,80 @@ language: en
 ---
 {% if site.data.homepage.render_enabled %}
 <div
-  class="lbfl-home-v2"
+  class="lbfl-home-v2 lbfl-home-v2--premium-v1b"
   id="lbfl-home-v2"
   data-homepage-v2
-  data-foundation-phase="premium-v1a"
+  data-foundation-phase="premium-v1b"
 >
   <a class="lbfl-home-v2__skip-link" href="#lbfl-home-v2-pathways-title">
     Skip to learning pathways
   </a>
-  {% include home/neural-hero.html mode="v2" %}
+
+  <section
+    class="lbfl-home-v2__hero lbfl-premium-hero"
+    aria-labelledby="lbfl-home-v2-title"
+    aria-describedby="lbfl-home-v2-promise"
+  >
+    <div class="lbfl-premium-hero__copy">
+      <p class="lbfl-home-v2__eyebrow">Bangla-first biology learning</p>
+      <h1 id="lbfl-home-v2-title">
+        Master Biology.<br>
+        <span>Understand Life.</span>
+      </h1>
+      <p class="lbfl-premium-hero__brand-line">Where Biology Meets Life.</p>
+      <p class="lbfl-home-v2__promise" id="lbfl-home-v2-promise">
+        Chapter-aligned lessons, clear biological diagrams, purposeful
+        assessment and misconception repair for Bangladeshi learners.
+      </p>
+
+      <ul class="lbfl-premium-hero__signals" aria-label="Learning pathways">
+        <li>HSC Biology</li>
+        <li>Higher Zoology</li>
+        <li>Board and Admission Practice</li>
+      </ul>
+
+      <div class="lbfl-home-v2__actions lbfl-home-v2__actions--primary">
+        <a
+          class="lbfl-home-v2__button lbfl-home-v2__button--primary"
+          href="{{ '/biology/hsc-corner/' | relative_url }}"
+        >
+          Start Learning
+        </a>
+        <a
+          class="lbfl-home-v2__button lbfl-home-v2__button--secondary"
+          href="{{ '/mcq-arena/' | relative_url }}"
+          aria-describedby="lbfl-diagnostic-note"
+        >
+          Take a 5-question Diagnostic
+        </a>
+      </div>
+      <p class="lbfl-premium-hero__diagnostic-note" id="lbfl-diagnostic-note">
+        Diagnostic recommendations are being introduced progressively;
+        the current route opens focused assessment practice.
+      </p>
+    </div>
+
+    <figure class="lbfl-premium-cell" aria-labelledby="lbfl-premium-cell-caption">
+      <div class="lbfl-premium-cell__canvas" aria-hidden="true">
+        <span class="lbfl-premium-cell__membrane"></span>
+        <span class="lbfl-premium-cell__nucleus"></span>
+        <span class="lbfl-premium-cell__nucleolus"></span>
+        <span class="lbfl-premium-cell__er lbfl-premium-cell__er--rough"></span>
+        <span class="lbfl-premium-cell__er lbfl-premium-cell__er--smooth"></span>
+        <span class="lbfl-premium-cell__golgi"></span>
+        <span class="lbfl-premium-cell__mitochondrion lbfl-premium-cell__mitochondrion--one"></span>
+        <span class="lbfl-premium-cell__mitochondrion lbfl-premium-cell__mitochondrion--two"></span>
+        <span class="lbfl-premium-cell__chip lbfl-premium-cell__chip--learn">Learn</span>
+        <span class="lbfl-premium-cell__chip lbfl-premium-cell__chip--practise">Practise</span>
+        <span class="lbfl-premium-cell__chip lbfl-premium-cell__chip--master">Master</span>
+      </div>
+      <figcaption id="lbfl-premium-cell-caption">
+        A simplified eukaryotic-cell learning map connecting concept,
+        practice and mastery.
+      </figcaption>
+    </figure>
+  </section>
+
   {% include home/academic-sections.html mode="v2" %}
   {% include home/featured-route.html %}
   {% include home/assessment-loop.html %}
