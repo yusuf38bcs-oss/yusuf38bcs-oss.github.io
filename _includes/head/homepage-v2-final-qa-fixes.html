@@ -1,0 +1,109 @@
+<style>
+  @media (max-width: 859px) {
+    .lbfl-premium-header__search-panel,
+    .lbfl-premium-header__menu-panel {
+      position: fixed;
+      top: calc(74px + 0.5rem);
+      right: 0.625rem;
+      left: 0.625rem;
+      width: auto;
+      max-width: none;
+      max-height: calc(100dvh - 86px);
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+  }
+
+  @media (max-width: 560px) {
+    #gdpr-banner {
+      left: 0.5rem !important;
+      right: 0.5rem !important;
+      bottom: calc(0.5rem + env(safe-area-inset-bottom)) !important;
+      width: auto !important;
+      transform: none !important;
+      grid-template-columns: minmax(0, 1fr) auto !important;
+      gap: 0.5rem !important;
+      padding: 0.55rem 0.6rem !important;
+      border-radius: 14px !important;
+    }
+
+    #gdpr-banner .gdpr-text {
+      font-size: 0.7rem !important;
+      line-height: 1.28 !important;
+    }
+
+    #gdpr-banner .gdpr-buttons {
+      width: 8.5rem !important;
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 0.4rem !important;
+    }
+
+    #gdpr-banner button {
+      min-width: 0 !important;
+      min-height: 44px !important;
+      width: 100% !important;
+      padding: 0.4rem 0.45rem !important;
+      font-size: 0.76rem !important;
+    }
+  }
+
+  @media (max-width: 350px) {
+    #gdpr-banner .gdpr-buttons {
+      width: 7.5rem !important;
+    }
+
+    #gdpr-banner .gdpr-text {
+      font-size: 0.66rem !important;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    "use strict";
+
+    function syncConsentState() {
+      var banner = document.querySelector("#gdpr-banner[data-cookie-banner]");
+      var visible = !!(
+        banner &&
+        !banner.hasAttribute("hidden") &&
+        banner.classList.contains("is-visible")
+      );
+
+      document.documentElement.classList.toggle(
+        "lbfl-consent-visible",
+        visible
+      );
+
+      window.dispatchEvent(
+        new CustomEvent(
+          visible ? "lbfl:consent-shown" : "lbfl:consent-hidden"
+        )
+      );
+    }
+
+    function initializeConsentObserver() {
+      var banner = document.querySelector("#gdpr-banner[data-cookie-banner]");
+      if (!banner) return;
+
+      new MutationObserver(syncConsentState).observe(banner, {
+        attributes: true,
+        attributeFilter: ["class", "hidden"]
+      });
+
+      syncConsentState();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener(
+        "DOMContentLoaded",
+        initializeConsentObserver,
+        { once: true }
+      );
+    } else {
+      initializeConsentObserver();
+    }
+  })();
+</script>
