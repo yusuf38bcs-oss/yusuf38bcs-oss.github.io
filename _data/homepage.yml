@@ -1,25 +1,28 @@
-version: 4
-status: staging-qa
+version: 5
+status: premium-foundation-draft
 render_enabled: true
-baseline_date: "2026-07-19"
-baseline_commit: "e74c6d5a99b066e134ddc0441720e6fc5b0a9d62"
+baseline_date: "2026-08-03"
+baseline_commit: "fbf48e885caff1dd7cf5916db91ff966257a0b17"
 base_branch: staging
 
 implementation:
-  phase: "H2.2"
+  phase: "Premium Foundation v1a"
   foundation_ready: true
   activated: true
-  render_strategy: "staging-only-qa"
-  base_commit: "2fba7bf72f3f1dc809d1f2afe034f387f80c2e40"
-  branch: "home/homepage-v2-staging-activation-2fba7bf"
+  render_strategy: "branch-preview-first"
+  base_commit: "fbf48e885caff1dd7cf5916db91ff966257a0b17"
+  branch: "homepage/premium-foundation-v1a"
   css_source: "_includes/home/homepage-styles.html"
   javascript_source: "assets/js/home/homepage-v2.js"
   javascript_loading: "deferred-optional"
+
 identity:
   name: "Learning Biology For Life"
+  eyebrow: "Biology learning for Bangladesh"
   headline: "Where Biology Meets Life"
   audience: "Bangladeshi learners and teachers"
-  promise: "Bangla-first biology learning with English technical terms, diagrams, interactive assessment and reflective scientific reasoning."
+  promise: "Bangla-first biology learning with English technical terms, clear diagrams, purposeful assessment and reflective scientific reasoning."
+  support_line: "HSC Biology • Higher Zoology • Assessment • Scientific Reasoning"
 
 primary_actions:
   - id: hsc-biology
@@ -43,31 +46,35 @@ secondary_actions:
 
 pathways:
   - id: hsc-biology
+    ordinal: "01"
     title: "HSC Biology"
-    outcome: "Build chapter-aligned Botany and Zoology understanding with diagrams and assessment."
+    outcome: "Build chapter-aligned Botany and Zoology understanding through explanation, diagrams and assessment."
     best_for: "HSC learners"
     url: "/biology/hsc-corner/"
   - id: higher-zoology
+    ordinal: "02"
     title: "Higher Zoology"
-    outcome: "Explore Animal Diversity, Physiology, Ecology, Genetics and Biostatistics."
+    outcome: "Explore Animal Diversity, Physiology, Ecology, Genetics and Biostatistics with structured academic depth."
     best_for: "Advanced learners and teachers"
     url: "/biology/higher-zoology-tree/"
   - id: mcq-arena
+    ordinal: "03"
     title: "MCQ Arena"
-    outcome: "Attempt, submit, score, inspect explanations and repair misconceptions."
-    best_for: "Exam practice"
+    outcome: "Attempt questions, inspect explanations and repair misconceptions through focused exam practice."
+    best_for: "Assessment practice"
     url: "/mcq-arena/"
   - id: socratic
+    ordinal: "04"
     title: "Socratic 4.0"
-    outcome: "Strengthen reflective scientific thinking through guided questions and self-audit."
-    best_for: "Conceptual reflection"
+    outcome: "Strengthen conceptual reasoning through guided questions, reflection and self-audit."
+    best_for: "Independent thinkers"
     url: "/socratic/"
 
 featured_route:
   enabled: true
-  eyebrow: "Start Here"
+  eyebrow: "Featured learning sequence"
   title: "HSC Botany Chapter 01 — Cell and Its Structure"
-  summary: "Six audited lessons covering cell foundation, membrane, ribosome, ER, Golgi–lysosome–peroxisome and mitochondria."
+  summary: "A connected six-lecture route from the basic idea of the cell to membrane systems, organelles and cellular energy."
   lesson_count: 6
   chapter_url: "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
   start_url: "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/"
@@ -122,6 +129,10 @@ latest_learning:
     - "docs/"
 
 assessment_loop:
+  eyebrow: "Assessment and feedback"
+  title: "Turn every attempt into better understanding"
+  summary: "Practice is useful only when learners can see what happened, why it happened and what to repair next."
+  result: "A visible path from first attempt to corrected understanding."
   steps:
     - "Learn"
     - "Attempt"
@@ -130,15 +141,41 @@ assessment_loop:
     - "Read explanation"
     - "Repair misconception"
 
+synaptic_bridge:
+  eyebrow: "Learning design"
+  name: "The Synaptic Bridge"
+  title: "Connect explanation, practice and reflection"
+  summary: "LBFL links concept learning, visual reasoning, assessment feedback and reflective questioning so that learners can move from remembering information to explaining biological relationships."
+  principles:
+    - title: "Understand"
+      text: "Begin with a clear concept and the language needed to explain it."
+    - title: "Visualise"
+      text: "Use diagrams, comparisons and systems thinking to organise relationships."
+    - title: "Apply"
+      text: "Test understanding through MCQs, questions and structured tasks."
+    - title: "Reflect"
+      text: "Identify misconceptions and rebuild the explanation in your own words."
+  action_label: "Explore Socratic learning"
+  action_url: "/socratic/"
+
 editorial_trust:
+  eyebrow: "Editorial trust"
+  title: "Biology teaching grounded in reflection and evidence"
+  summary: "Lessons are developed for Bangladeshi learners with Bangla-first explanation, English technical terms and explicit academic review."
   author: "MD. Yusuf"
   role: "BCS Education Cadre (38th BCS)"
+  affiliation: "People’s Republic of Bangladesh"
+  methods:
+    - "Learning objectives and outcomes"
+    - "Concept and misconception checks"
+    - "Diagram and accessibility review"
+    - "Assessment with explanation"
   profile_url: "/about/"
   contact_url: "/contact/"
 
 release_contract:
   worker: "lbfl-ai-deploy-orchestrator"
-  worker_mode: "homepage-dry-run-required"
+  worker_mode: "homepage-dry-run-certified"
   direct_main_write: false
   target_base_branch: staging
   merge_by_worker: false
