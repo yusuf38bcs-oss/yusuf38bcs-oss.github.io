@@ -10,6 +10,10 @@
   --ielts-border: #dce5ee;
 }
 
+.ielts-hub-page .page__title {
+  display: none;
+}
+
 .ielts-hub {
   max-width: 1180px;
   margin: 0 auto;
