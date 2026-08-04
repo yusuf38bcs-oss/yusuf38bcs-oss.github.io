@@ -70,6 +70,12 @@
   border-radius: 0.75rem;
 }
 
+.ielts-hub__actions .btn:focus-visible,
+.ielts-skill-card:focus-visible {
+  outline: 3px solid var(--ielts-gold);
+  outline-offset: 3px;
+}
+
 .ielts-hub__section,
 .ielts-hub__journey {
   margin-top: 2rem;
@@ -158,5 +164,16 @@
 
   .ielts-skill-card {
     min-height: 10rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ielts-skill-card {
+    transition: none;
+  }
+
+  .ielts-skill-card:hover,
+  .ielts-skill-card:focus-visible {
+    transform: none;
   }
 }
