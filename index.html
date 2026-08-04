@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Home
+title: Critical Thinking Through Biology
 permalink: /
 classes: wide
 language: en
+description: Bangla-first, evidence-led biology for developing critical thinking, scientific reasoning and deeper understanding.
 ---
 {% if site.data.homepage.render_enabled %}
 <div
@@ -22,42 +23,52 @@ language: en
     aria-describedby="lbfl-home-v2-promise"
   >
     <div class="lbfl-premium-hero__copy">
-      <p class="lbfl-home-v2__eyebrow">Bangla-first biology learning</p>
-      <h1 id="lbfl-home-v2-title">
-        Master Biology.<br>
-        <span>Understand Life.</span>
-      </h1>
-      <p class="lbfl-premium-hero__brand-line">Where Biology Meets Life.</p>
-      <p class="lbfl-home-v2__promise" id="lbfl-home-v2-promise">
-        Chapter-aligned lessons, clear biological diagrams, purposeful
-        assessment and misconception repair for Bangladeshi learners.
+      <p class="lbfl-home-v2__eyebrow">
+        Bangla-first <span aria-hidden="true">•</span>
+        Evidence-led <span aria-hidden="true">•</span>
+        Socratic biology
       </p>
 
-      <ul class="lbfl-premium-hero__signals" aria-label="Learning pathways">
-        <li>HSC Biology</li>
-        <li>Higher Zoology</li>
-        <li>Board and Admission Practice</li>
-      </ul>
+      <h1 id="lbfl-home-v2-title">
+        <span>Enhance Critical Thinking</span>
+        <span class="lbfl-premium-hero__headline-accent">Through Biology.</span>
+      </h1>
+
+      <p class="lbfl-premium-hero__brand-line">
+        Where Biology Meets Life.
+      </p>
+
+      <p class="lbfl-home-v2__promise" id="lbfl-home-v2-promise">
+        Explore chapter-aligned, Bangla-first biology that helps learners
+        observe closely, question assumptions, connect concepts, and explain
+        life through evidence.
+      </p>
+
+      <ol
+        class="lbfl-premium-hero__thinking-path"
+        aria-label="LBFL critical-thinking pathway"
+      >
+        <li>Observe</li>
+        <li>Question</li>
+        <li>Connect</li>
+        <li>Explain</li>
+      </ol>
 
       <div class="lbfl-home-v2__actions lbfl-home-v2__actions--primary">
         <a
           class="lbfl-home-v2__button lbfl-home-v2__button--primary"
           href="{{ '/biology/hsc-corner/' | relative_url }}"
         >
-          Start Learning
+          Explore Biology
         </a>
+
         <a
           class="lbfl-home-v2__button lbfl-home-v2__button--secondary"
           href="{{ '/mcq-arena/' | relative_url }}"
-          aria-describedby="lbfl-diagnostic-note"
         >
-          Take a 5-question Diagnostic
+          Test Your Thinking
         </a>
       </div>
-      <p class="lbfl-premium-hero__diagnostic-note" id="lbfl-diagnostic-note">
-        Diagnostic recommendations are being introduced progressively;
-        the current route opens focused assessment practice.
-      </p>
     </div>
 
     <figure
@@ -78,13 +89,14 @@ language: en
           >
         </picture>
       </div>
+
       <figcaption
         class="lbfl-premium-cell__caption"
         id="lbfl-premium-cell-caption"
       >
-        Cinematic illustration of a eukaryotic animal cell showing
-        the nucleus, endoplasmic reticulum, Golgi apparatus and
-        mitochondria.
+        A premium scientific illustration of a eukaryotic animal cell,
+        representing biology as a pathway to observation, connection and
+        evidence-based reasoning.
       </figcaption>
     </figure>
   </section>
@@ -94,6 +106,7 @@ language: en
   {% include home/assessment-loop.html %}
   {% include home/author-profile.html mode="v2" %}
 </div>
+
 <script
   src="{{ '/assets/js/home/homepage-v2.js' | relative_url }}"
   defer

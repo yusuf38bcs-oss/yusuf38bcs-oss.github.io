@@ -5,27 +5,47 @@
   aria-labelledby="lbfl-home-v2-pathways-title"
 >
   <div class="lbfl-home-v2__section-heading">
-    <p class="lbfl-home-v2__eyebrow">Four learner pathways</p>
+    <p class="lbfl-home-v2__eyebrow">Learning pathways</p>
+
     <h2 id="lbfl-home-v2-pathways-title">
-      Choose the route that matches your next learning goal
+      Choose Your Path to Deeper Understanding
     </h2>
+
     <p>
-      Begin with chapter-aligned biology, move into advanced zoology,
-      practise with feedback, or strengthen scientific reasoning.
+      Move from foundational biology to deeper exploration, focused practice
+      and independent scientific reasoning.
     </p>
   </div>
 
   <div class="lbfl-home-v2__pathway-grid">
     {% for pathway in home.pathways %}
+      {% case forloop.index %}
+        {% when 1 %}
+          {% assign thinking_stage = "Learn" %}
+          {% assign thinking_focus = "HSC foundations" %}
+        {% when 2 %}
+          {% assign thinking_stage = "Explore" %}
+          {% assign thinking_focus = "Advanced zoology" %}
+        {% when 3 %}
+          {% assign thinking_stage = "Practice" %}
+          {% assign thinking_focus = "Assessment" %}
+        {% else %}
+          {% assign thinking_stage = "Think" %}
+          {% assign thinking_focus = "Independent reasoning" %}
+      {% endcase %}
+
       <article class="lbfl-home-v2__pathway-card">
         <div class="lbfl-home-v2__pathway-meta">
           <span aria-hidden="true">{{ pathway.ordinal }}</span>
+
           <p class="lbfl-home-v2__card-label">
-            Best for {{ pathway.best_for }}
+            {{ thinking_stage }} • {{ thinking_focus }}
           </p>
         </div>
+
         <h3>{{ pathway.title }}</h3>
         <p>{{ pathway.outcome }}</p>
+
         <a href="{{ pathway.url | relative_url }}">
           Explore {{ pathway.title }}
           <span aria-hidden="true">→</span>
