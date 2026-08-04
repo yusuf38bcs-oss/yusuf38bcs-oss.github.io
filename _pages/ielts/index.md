@@ -2,7 +2,7 @@
 title: "IELTS English Hub"
 permalink: /ielts/
 layout: single
-classes: wide
+classes: wide ielts-hub-page
 sidebar:
   nav: "ielts"
 author_profile: false
