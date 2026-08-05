@@ -634,6 +634,172 @@
     }
   }
 </style>
+<style id="lbfl-p0-mobile-alignment-fix">
+  /*
+   * P0 mobile composition and width correction:
+   * keep the biological visual in the same hero frame as the foreground copy.
+   */
+  html.lbfl-home-v2-document,
+  body.lbfl-home-v2-active,
+  body.lbfl-home-v2-active .initial-content,
+  body.lbfl-home-v2-active #lbfl-home-v2,
+  .lbfl-home-v2-active .lbfl-premium-header {
+    width: 100%;
+    max-width: none;
+  }
+
+  .lbfl-home-v2-active .lbfl-premium-header {
+    min-width: 0;
+  }
+
+  .lbfl-home-v2-active .lbfl-home-v2__editorial-profile > p:not(.lbfl-home-v2__profile-label) {
+    color: #315d59 !important;
+  }
+
+  .lbfl-home-v2-active .lbfl-home-v2__editorial-profile .lbfl-home-v2__actions a {
+    color: #0c756b !important;
+    background: #ffffff !important;
+    border-color: #0c756b !important;
+  }
+
+  .lbfl-home-v2-active .lbfl-home-v2__editorial-profile .lbfl-home-v2__actions a:hover,
+  .lbfl-home-v2-active .lbfl-home-v2__editorial-profile .lbfl-home-v2__actions a:focus-visible {
+    color: #ffffff !important;
+    background: #0c756b !important;
+    border-color: #0c756b !important;
+  }
+
+  @media (max-width: 520px) {
+    .lbfl-home-v2-active .lbfl-premium-header__inner {
+      width: min(100% - 0.75rem, 1280px);
+      gap: 0.2rem;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-header__brand {
+      flex: 1 1 auto;
+      gap: 0.35rem;
+      min-width: 0;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-header__logo {
+      width: 34px;
+      height: 34px;
+      flex-basis: 34px;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-header__brand-copy {
+      min-width: 0;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-header__brand-copy strong {
+      font-size: 0.9rem;
+      letter-spacing: 0.025em;
+      white-space: nowrap;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-header__actions {
+      flex: 0 0 auto;
+      gap: 0.15rem;
+    }
+
+    .lbfl-home-v2-active .lbfl-language-switcher {
+      flex: 0 0 auto;
+    }
+
+    .lbfl-home-v2-active .lbfl-language-switcher__link {
+      min-width: 36px;
+      padding-inline: 0.22rem;
+      font-size: 0.74rem;
+      white-space: nowrap;
+    }
+
+    .lbfl-home-v2-active .lbfl-language-switcher__divider {
+      margin-inline: 0;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-header__search > summary,
+    .lbfl-home-v2-active .lbfl-premium-header__menu > summary {
+      width: 38px;
+      min-width: 38px;
+      padding-inline: 0.35rem;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .lbfl-home-v2-active .lbfl-premium-header__logo {
+      width: 30px;
+      height: 30px;
+      flex-basis: 30px;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-header__brand-copy strong {
+      font-size: 0.8rem;
+      letter-spacing: 0;
+    }
+
+    .lbfl-home-v2-active .lbfl-language-switcher__link {
+      min-width: 32px;
+      padding-inline: 0.12rem;
+      font-size: 0.68rem;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-header__search > summary,
+    .lbfl-home-v2-active .lbfl-premium-header__menu > summary {
+      width: 36px;
+      min-width: 36px;
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .lbfl-home-v2-active .lbfl-premium-hero {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: auto;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-hero::before {
+      z-index: 2;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(7, 21, 37, 1) 0%,
+          rgba(7, 21, 37, 0.98) 34%,
+          rgba(7, 21, 37, 0.9) 56%,
+          rgba(7, 21, 37, 0.55) 78%,
+          rgba(7, 21, 37, 0.18) 100%
+        );
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-hero__copy {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: stretch;
+      width: 100%;
+      padding-bottom: clamp(4rem, 12vw, 6.5rem);
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-cell {
+      position: absolute !important;
+      inset: 0 !important;
+      grid-column: 1;
+      grid-row: 1;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      margin: 0;
+      pointer-events: none;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-cell__canvas {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .lbfl-home-v2-active .lbfl-premium-cell__image {
+      object-position: 60% center;
+    }
+  }
+</style>
 
 <script>
   (function () {
