@@ -1,54 +1,56 @@
 {% if include.mode == "v2" %}
 {% assign home = site.data.homepage %}
 <section
-  class="lbfl-home-v2__section lbfl-home-v2__section--pathways"
+  class="lbfl-home-v2__section lbfl-home-v2__section--pathways lbfl-home-v2__section--narrative"
   aria-labelledby="lbfl-home-v2-pathways-title"
+  data-home-narrative-step="choose"
 >
+  <div class="lbfl-home-v2__narrative-marker" aria-hidden="true">
+    <span>01</span>
+    <strong>Choose</strong>
+  </div>
+
   <div class="lbfl-home-v2__section-heading">
-    <p class="lbfl-home-v2__eyebrow">Learning pathways</p>
+    <p class="lbfl-home-v2__eyebrow">Four ways to begin</p>
 
     <h2 id="lbfl-home-v2-pathways-title">
-      Choose Your Path to Deeper Understanding
+      Choose How You Want<br>
+      to Learn and Think
     </h2>
 
     <p>
-      Move from foundational biology to deeper exploration, focused practice
-      and independent scientific reasoning.
+      Begin with the syllabus, explore biology more deeply, test your
+      reasoning, or strengthen understanding through guided reflection.
     </p>
   </div>
 
   <div class="lbfl-home-v2__pathway-grid">
     {% for pathway in home.pathways %}
-      {% case forloop.index %}
-        {% when 1 %}
-          {% assign thinking_stage = "Learn" %}
-          {% assign thinking_focus = "HSC foundations" %}
-        {% when 2 %}
-          {% assign thinking_stage = "Explore" %}
-          {% assign thinking_focus = "Advanced zoology" %}
-        {% when 3 %}
-          {% assign thinking_stage = "Practice" %}
-          {% assign thinking_focus = "Assessment" %}
-        {% else %}
-          {% assign thinking_stage = "Think" %}
-          {% assign thinking_focus = "Independent reasoning" %}
-      {% endcase %}
+      <article
+        class="lbfl-home-v2__pathway-card"
+        data-pathway-motif="{{ pathway.motif }}"
+      >
+        <a
+          class="lbfl-home-v2__pathway-link"
+          href="{{ pathway.url | relative_url }}"
+          aria-label="{{ pathway.cta_label }}"
+        >
+          <div class="lbfl-home-v2__pathway-meta">
+            <span aria-hidden="true">{{ pathway.ordinal }}</span>
+            <p class="lbfl-home-v2__card-label">
+              {{ pathway.thinking_action }}
+            </p>
+          </div>
 
-      <article class="lbfl-home-v2__pathway-card">
-        <div class="lbfl-home-v2__pathway-meta">
-          <span aria-hidden="true">{{ pathway.ordinal }}</span>
+          <div class="lbfl-home-v2__pathway-motif" aria-hidden="true"></div>
 
-          <p class="lbfl-home-v2__card-label">
-            {{ thinking_stage }} • {{ thinking_focus }}
-          </p>
-        </div>
+          <h3>{{ pathway.title }}</h3>
+          <p>{{ pathway.promise }}</p>
 
-        <h3>{{ pathway.title }}</h3>
-        <p>{{ pathway.outcome }}</p>
-
-        <a href="{{ pathway.url | relative_url }}">
-          Explore {{ pathway.title }}
-          <span aria-hidden="true">→</span>
+          <strong class="lbfl-home-v2__pathway-cta">
+            {{ pathway.cta_label }}
+            <span aria-hidden="true">&rarr;</span>
+          </strong>
         </a>
       </article>
     {% endfor %}
