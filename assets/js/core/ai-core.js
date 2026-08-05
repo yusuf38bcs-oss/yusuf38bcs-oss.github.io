@@ -4,8 +4,9 @@
  *
  * Security model:
  * - Browser calls only the Cloudflare Worker.
- * - Gemini/OpenAI keys remain inside Worker secrets.
- * - No provider API key is stored in this static frontend.
+ * - Gemini remains the only public Socratic Mentor provider.
+ * - OpenAI is not exposed through this public website bridge.
+ * - Provider API keys remain inside Worker secrets; none are stored here.
  */
 (function () {
   "use strict";
