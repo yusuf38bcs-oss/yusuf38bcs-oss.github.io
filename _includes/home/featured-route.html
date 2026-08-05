@@ -2,16 +2,33 @@
 {% assign learning = site.data.homepage.latest_learning %}
 {% if featured.enabled %}
 <section
-  class="lbfl-home-v2__section lbfl-home-v2__featured"
+  class="lbfl-home-v2__section lbfl-home-v2__featured lbfl-home-v2__section--narrative"
   aria-labelledby="lbfl-home-v2-featured-title"
+  data-home-narrative-step="experience"
 >
+  <div class="lbfl-home-v2__narrative-marker lbfl-home-v2__narrative-marker--dark" aria-hidden="true">
+    <span>02</span>
+    <strong>Experience</strong>
+  </div>
+
   <div class="lbfl-home-v2__featured-intro">
     <p class="lbfl-home-v2__eyebrow">{{ featured.eyebrow }}</p>
-    <h2 id="lbfl-home-v2-featured-title">{{ featured.title }}</h2>
+
+    <h2 id="lbfl-home-v2-featured-title">
+      {{ featured.title }}
+      <span>{{ featured.title_accent }}</span>
+    </h2>
+
     <p>{{ featured.summary }}</p>
-    <p class="lbfl-home-v2__featured-meta">
-      {{ featured.lesson_count }} connected lessons
-    </p>
+
+    <ol
+      class="lbfl-home-v2__featured-flow"
+      aria-label="Connected cell-learning route"
+    >
+      {% for stage in featured.flow %}
+        <li>{{ stage }}</li>
+      {% endfor %}
+    </ol>
 
     <div class="lbfl-home-v2__actions">
       <a
@@ -20,6 +37,7 @@
       >
         Begin Lecture 01
       </a>
+
       <a
         class="lbfl-home-v2__button lbfl-home-v2__button--secondary"
         href="{{ featured.chapter_url | relative_url }}"
@@ -30,15 +48,23 @@
   </div>
 
   <ol
-    class="lbfl-home-v2__learning-list"
-    aria-label="Six-lecture Cell Biology sequence"
+    class="lbfl-home-v2__learning-list lbfl-home-v2__learning-route"
+    aria-label="Six-function Cell Biology journey"
   >
     {% for item in learning.items limit: learning.maximum_items %}
       <li>
         <a href="{{ item.url | relative_url }}">
-          <span>{{ item.label }}</span>
-          <strong>{{ item.title }}</strong>
-          <small>{{ item.pathway }}</small>
+          <span class="lbfl-home-v2__lesson-number">
+            {{ item.label }}
+          </span>
+
+          <strong>{{ item.function }}</strong>
+          <p>{{ item.question }}</p>
+
+          <small>
+            {{ item.title }}
+            <span aria-hidden="true">&rarr;</span>
+          </small>
         </a>
       </li>
     {% endfor %}
