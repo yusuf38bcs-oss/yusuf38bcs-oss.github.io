@@ -1,2 +1,6 @@
-{% include footer/mycorrhizal-footer.html %}
+{% if lbfl_home_v2_active %}
+  {% include home/reflection-lab.html %}
+{% else %}
+  {% include footer/mycorrhizal-footer.html %}
+{% endif %}
 {% include footer/legal-links.html %}
