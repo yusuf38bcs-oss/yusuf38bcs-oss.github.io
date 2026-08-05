@@ -1,0 +1,179 @@
+{% assign reflection = site.data.homepage.reflection_lab %}
+<section
+  class="lbfl-reflection-lab"
+  aria-labelledby="lbfl-reflection-lab-title"
+  data-home-narrative-step="reflect"
+>
+  <div class="lbfl-reflection-lab__inner">
+    <div class="lbfl-home-v2__narrative-marker lbfl-home-v2__narrative-marker--gold" aria-hidden="true">
+      <span>06</span>
+      <strong>Reflect</strong>
+    </div>
+
+    <header class="lbfl-reflection-lab__header">
+      <p class="lbfl-reflection-lab__eyebrow">{{ reflection.eyebrow }}</p>
+      <h2 id="lbfl-reflection-lab-title">{{ reflection.title }}</h2>
+      <p>{{ reflection.summary }}</p>
+    </header>
+
+    <div class="lbfl-reflection-lab__grid">
+      <article class="lbfl-reflection-card lbfl-reflection-card--challenge">
+        <p class="lbfl-reflection-card__label">Reasoning challenge</p>
+        <h3>{{ reflection.challenge_title }}</h3>
+        <p class="lbfl-reflection-card__question">
+          {{ reflection.challenge_question }}
+        </p>
+
+        <form class="lbfl-reasoning-form" data-lbfl-reasoning-form>
+          <div>
+            <label for="lbfl-reasoning-hypothesis">Your hypothesis</label>
+            <input
+              id="lbfl-reasoning-hypothesis"
+              name="hypothesis"
+              type="text"
+              autocomplete="off"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="lbfl-reasoning-why">Why do you think so?</label>
+            <textarea
+              id="lbfl-reasoning-why"
+              name="reasoning"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
+          <div>
+            <label for="lbfl-reasoning-evidence">
+              Evidence or biological principle
+            </label>
+            <textarea
+              id="lbfl-reasoning-evidence"
+              name="evidence"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit">Test My Reasoning</button>
+        </form>
+
+        <div
+          class="lbfl-reasoning-feedback"
+          data-lbfl-reasoning-feedback
+          role="status"
+          aria-live="polite"
+          tabindex="-1"
+          hidden
+        ></div>
+      </article>
+
+      <article class="lbfl-reflection-card lbfl-reflection-card--lens">
+        <p class="lbfl-reflection-card__label">Reflective worldview lens</p>
+        <h3>{{ reflection.reflection_title }}</h3>
+
+        <blockquote>
+          <p>
+            “We will show them Our signs in the horizons and within themselves
+            until it becomes clear to them that it is the truth.”
+          </p>
+          <cite>
+            Qur’an 41:53, Sahih International translation
+          </cite>
+        </blockquote>
+
+        <p class="lbfl-reflection-card__prompt">
+          {{ reflection.reflection_prompt }}
+        </p>
+
+        <p class="lbfl-reflection-card__boundary">
+          This reflection is presented as a worldview lens, clearly separated
+          from empirical scientific evidence.
+        </p>
+      </article>
+    </div>
+
+    <nav
+      class="lbfl-reflection-lab__continue"
+      aria-label="Continue exploring Learning Biology For Life"
+    >
+      <p>Continue exploring</p>
+
+      <ul>
+        {% for link in reflection.continue_links %}
+          <li>
+            <a href="{{ link.url | relative_url }}">
+              {{ link.label }}
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<script>
+(function() {
+  "use strict";
+
+  if (window.__lbflReasoningLabBound) return;
+  window.__lbflReasoningLabBound = true;
+
+  document.addEventListener("submit", function(event) {
+    var form = event.target.closest("[data-lbfl-reasoning-form]");
+    if (!form) return;
+
+    event.preventDefault();
+
+    var feedback = form.parentElement.querySelector(
+      "[data-lbfl-reasoning-feedback]"
+    );
+
+    var hypothesis = form.elements.hypothesis.value.trim();
+    var reasoning = form.elements.reasoning.value.trim();
+    var evidence = form.elements.evidence.value.trim();
+
+    if (!hypothesis || !reasoning || !evidence || !feedback) return;
+
+    var answerPassed = /\b(?:tp53|p53)\b/i.test(hypothesis);
+    var reasoningPassed =
+      /(tumou?r suppressor|dna damage|cell[- ]cycle|apoptosis|checkpoint|transcription factor)/i
+        .test(reasoning);
+    var evidencePassed =
+      /(p21|cell[- ]cycle arrest|dna repair|apoptosis|checkpoint)/i
+        .test(evidence);
+
+    var heading = "";
+    var message = "";
+
+    if (answerPassed && reasoningPassed && evidencePassed) {
+      heading = "Strong biological explanation";
+      message =
+        "You identified p53 or TP53 and connected DNA-damage signalling to " +
+        "cell-cycle control or apoptosis. Reapply the idea to a different " +
+        "checkpoint failure to test transfer.";
+    } else if (answerPassed) {
+      heading = "Correct hypothesis; explanation needs strengthening";
+      message =
+        "p53 or TP53 is the expected factor. Strengthen the reasoning by " +
+        "explaining its tumour-suppressor role in DNA-damage checkpoints, " +
+        "cell-cycle arrest, repair or apoptosis.";
+    } else {
+      heading = "Reconsider the checkpoint mechanism";
+      message =
+        "Look for the tumour-suppressor transcription factor that responds " +
+        "to severe DNA damage by promoting cell-cycle arrest, repair or " +
+        "apoptosis. Then rebuild the explanation in your own words.";
+    }
+
+    feedback.hidden = false;
+    feedback.innerHTML =
+      "<strong>" + heading + "</strong><p>" + message + "</p>";
+    feedback.focus();
+  });
+})();
+</script>
