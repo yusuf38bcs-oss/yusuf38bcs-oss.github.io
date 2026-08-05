@@ -1,9 +1,14 @@
+// Public website requests are limited to Gemini-backed Socratic mentoring.
+// OpenAI is not a public provider option and no OpenAI secret is read here.
+
 export interface Env {
   GEMINI_API_KEY: string;
   GEMINI_MODEL?: string;
   ALLOWED_ORIGIN?: string;
   EXTRA_ALLOWED_ORIGINS?: string;
   ENVIRONMENT?: string;
+  PUBLIC_AI_PROVIDER?: string;
+  PUBLIC_AI_SCOPE?: string;
 }
 
 type SocraticPayload = {
@@ -29,6 +34,8 @@ const DEFAULT_MODEL = "gemini-2.5-flash";
 const MAX_BODY_BYTES = 12_000;
 const DEFAULT_ALLOWED_ORIGIN = "https://learningbiologyforlife.org";
 const FALLBACK_VECTOR = "/biology/";
+const PUBLIC_MENTOR_PROVIDER = "gemini";
+const PUBLIC_MENTOR_SCOPE = "socratic_mentor";
 
 const SAFE_NEXT_VECTORS = [
   "/biology/",
@@ -47,6 +54,23 @@ function splitOrigins(value?: string): string[] {
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean);
+}
+
+function publicMentorConfig(env: Env): { provider: string; scope: string; valid: boolean } {
+  const provider = cleanText(env.PUBLIC_AI_PROVIDER, 40).toLowerCase() || PUBLIC_MENTOR_PROVIDER;
+  const scope = cleanText(env.PUBLIC_AI_SCOPE, 80).toLowerCase() || PUBLIC_MENTOR_SCOPE;
+
+  return {
+    provider,
+    scope,
+    valid: provider === PUBLIC_MENTOR_PROVIDER && scope === PUBLIC_MENTOR_SCOPE
+  };
+}
+
+function assertPublicMentorConfig(env: Env): void {
+  if (!publicMentorConfig(env).valid) {
+    throw new Error("Public AI configuration must remain Gemini Socratic Mentor only.");
+  }
 }
 
 function allowedOrigins(env: Env): string[] {
@@ -201,11 +225,18 @@ function parseGeminiJson(text: string, attemptCount: number): SocraticResult {
 }
 
 function healthPayload(env: Env): JsonRecord {
+  const mentor = publicMentorConfig(env);
+
   return {
     ok: true,
     service: SERVICE_NAME,
     version: WORKER_VERSION,
     environment: env.ENVIRONMENT || "production",
+    public_mentor: {
+      provider: mentor.provider,
+      scope: mentor.scope,
+      config_valid: mentor.valid
+    },
     model: env.GEMINI_MODEL || DEFAULT_MODEL,
     gemini_key_configured: Boolean(env.GEMINI_API_KEY),
     allowed_origins: allowedOrigins(env),
@@ -273,6 +304,8 @@ async function readJsonBody(request: Request): Promise<unknown> {
 }
 
 async function callGemini(payload: SocraticPayload, env: Env): Promise<SocraticResult> {
+  assertPublicMentorConfig(env);
+
   if (!env.GEMINI_API_KEY) {
     throw new Error("GEMINI_API_KEY is not configured.");
   }
