@@ -1,19 +1,30 @@
 {% if include.mode == "v2" %}
 {% assign trust = site.data.homepage.editorial_trust %}
 <section
-  class="lbfl-home-v2__section lbfl-home-v2__editorial"
+  class="lbfl-home-v2__section lbfl-home-v2__editorial lbfl-home-v2__section--narrative"
   aria-labelledby="lbfl-home-v2-editorial-title"
+  data-home-narrative-step="trust"
 >
+  <div class="lbfl-home-v2__narrative-marker" aria-hidden="true">
+    <span>05</span>
+    <strong>Trust</strong>
+  </div>
+
   <div class="lbfl-home-v2__editorial-copy">
     <p class="lbfl-home-v2__eyebrow">{{ trust.eyebrow }}</p>
+
     <h2 id="lbfl-home-v2-editorial-title">
       {{ trust.title }}
     </h2>
+
     <p>{{ trust.summary }}</p>
 
     <ul class="lbfl-home-v2__method-list">
       {% for method in trust.methods %}
-        <li>{{ method }}</li>
+        <li>
+          <strong>{{ method.title }}</strong>
+          <span>{{ method.text }}</span>
+        </li>
       {% endfor %}
     </ul>
   </div>
@@ -23,14 +34,26 @@
     aria-label="Author and editorial lead"
   >
     <p class="lbfl-home-v2__profile-label">
-      Author and editorial lead
+      Accountable editorial leadership
     </p>
+
     <strong>{{ trust.author }}</strong>
     <span>{{ trust.role }}</span>
     <small>{{ trust.affiliation }}</small>
+
+    <p>
+      Biology educator focused on Zoology, scientific reasoning, digital
+      pedagogy and transparent revision for Bangladeshi learners.
+    </p>
+
     <div class="lbfl-home-v2__actions">
-      <a href="{{ trust.profile_url | relative_url }}">Read the profile</a>
-      <a href="{{ trust.contact_url | relative_url }}">Contact LBFL</a>
+      <a href="{{ trust.profile_url | relative_url }}">
+        Meet the Editorial Lead
+      </a>
+
+      <a href="{{ trust.contact_url | relative_url }}">
+        Report a Correction
+      </a>
     </div>
   </aside>
 </section>
