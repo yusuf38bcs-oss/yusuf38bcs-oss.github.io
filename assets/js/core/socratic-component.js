@@ -100,7 +100,9 @@
           };
 
           const isLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
-          const endpointUrl = isLocal ? "http://localhost:8787/api/gemini" : "https://learningbiologyforlife.org/api/gemini";
+          const configuredEndpoint = window.LBFL_AI_ENDPOINT || window.SYNAPTIC_AI_ENDPOINT || "";
+          const endpointBase = configuredEndpoint || (isLocal ? "http://localhost:8787" : "https://api.learningbiologyforlife.org");
+          const endpointUrl = endpointBase.replace(/\/+$/, "") + "/api/socratic";
 
           try {
             const response = await fetch(endpointUrl, {
