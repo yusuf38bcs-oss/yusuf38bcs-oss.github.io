@@ -1,4 +1,6 @@
-endpoint: "https://synapticai-proxy.yusuf-38bcs.workers.dev"
+provider: "gemini"
+public_scope: "socratic_mentor"
+endpoint: "https://api.learningbiologyforlife.org"
 cooldownMs: 1200
 maxRetries: 3
 cacheEnabled: true
@@ -6,7 +8,7 @@ memoryEnabled: true
 analytics: true
 
 models:
-  fast: "gemini-2.0-flash"
+  fast: "gemini-2.5-flash"
   deep: "gemini-2.5-pro-preview-06-05"
   image: "gemini-2.0-flash-preview-image-generation"
   audio: "gemini-2.5-flash-preview-tts"
