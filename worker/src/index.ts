@@ -4,6 +4,7 @@ export interface Env {
   ALLOWED_ORIGIN?: string;
   EXTRA_ALLOWED_ORIGINS?: string;
   ENVIRONMENT?: string;
+  CF_VERSION_METADATA: WorkerVersionMetadata;
 }
 
 type SocraticPayload = {
@@ -76,6 +77,10 @@ function resolveCorsOrigin(request: Request, env: Env): string {
   return env.ALLOWED_ORIGIN || DEFAULT_ALLOWED_ORIGIN;
 }
 
+function runtimeWorkerVersionId(env: Env): string {
+  return env.CF_VERSION_METADATA?.id || "unavailable";
+}
+
 function baseHeaders(request: Request, env: Env, contentType: string): HeadersInit {
   return {
     "Access-Control-Allow-Origin": resolveCorsOrigin(request, env),
@@ -87,7 +92,8 @@ function baseHeaders(request: Request, env: Env, contentType: string): HeadersIn
     "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
     "Referrer-Policy": "no-referrer",
     "X-Content-Type-Options": "nosniff",
-    "X-Frame-Options": "DENY"
+    "X-Frame-Options": "DENY",
+    "X-LBFL-Worker-Version": runtimeWorkerVersionId(env)
   };
 }
 
@@ -205,6 +211,7 @@ function healthPayload(env: Env): JsonRecord {
     ok: true,
     service: SERVICE_NAME,
     version: WORKER_VERSION,
+    worker_version_id: runtimeWorkerVersionId(env),
     environment: env.ENVIRONMENT || "production",
     model: env.GEMINI_MODEL || DEFAULT_MODEL,
     gemini_key_configured: Boolean(env.GEMINI_API_KEY),
