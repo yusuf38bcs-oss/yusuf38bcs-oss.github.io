@@ -59,24 +59,18 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
         )
         self.assertEqual(claim, TARGET_SHA[:8])
 
-    def test_worker_builds_api_queries_one_version_at_a_time(self) -> None:
+    def test_worker_versions_api_queries_one_version_at_a_time(self) -> None:
         version_one = "11111111-1111-1111-1111-111111111111"
         version_two = "22222222-2222-2222-2222-222222222222"
         calls: list[str] = []
 
         def fake_get(path: str, token: str) -> Any:
             calls.append(path)
-            if path.endswith("/deployments"):
-                return {
-                    "deployments": [
-                        {
-                            "versions": [
-                                {"percentage": 100, "version_id": version_one},
-                                {"percentage": 100, "version_id": version_two},
-                            ]
-                        }
-                    ]
-                }
+            if path.endswith("/versions"):
+                return [
+                    {"id": version_one},
+                    {"id": version_two},
+                ]
             if f"version_ids={version_one}" in path:
                 return {
                     "builds": {
