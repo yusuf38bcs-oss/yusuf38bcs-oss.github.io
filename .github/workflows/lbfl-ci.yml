@@ -370,6 +370,10 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Verify trusted Cloudflare resolver fixtures
+        shell: bash
+        run: python3 .github/scripts/test-resolve-cloudflare-targets.py
+
       - name: Download non-certifying build evidence as data
         uses: actions/download-artifact@v4
         with:
