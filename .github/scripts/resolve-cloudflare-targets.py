@@ -29,7 +29,7 @@ LATEST_COMMIT_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 WORKER_COMMIT_RE = re.compile(
-    r"^\\|.*?Deployment successful!.*?\\|\\s*[^|]+\\|\\s*([0-9a-f]{7,40})\\s*\\|",
+    r"^\|.*?Deployment successful!.*?\|\s*[^|]+\|\s*([0-9a-f]{7,40})\s*\|",
     re.IGNORECASE | re.MULTILINE,
 )
 ENDPOINT_RE = re.compile(r'^\s*endpoint:\s*["\']?([^"\'\s#]+)', re.MULTILINE)
