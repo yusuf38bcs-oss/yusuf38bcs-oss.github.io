@@ -25,8 +25,12 @@ WORKER_URL_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 LATEST_COMMIT_RE = re.compile(
-    r"<strong>\s*Latest\s+commit:\s*</strong>\s*</td>\s*<td>\s*<code>\s*([0-9a-f]{7}|[0-9a-f]{40})\s*</code>",
+    r"<strong>\s*Latest\s+commit:\s*</strong>\s*</td>\s*<td>\s*<code>\s*([0-9a-f]{7,40})\s*</code>",
     re.IGNORECASE | re.DOTALL,
+)
+WORKER_COMMIT_RE = re.compile(
+    r"^\\|.*?Deployment successful!.*?\\|\\s*[^|]+\\|\\s*([0-9a-f]{7,40})\\s*\\|",
+    re.IGNORECASE | re.MULTILINE,
 )
 ENDPOINT_RE = re.compile(r'^\s*endpoint:\s*["\']?([^"\'\s#]+)', re.MULTILINE)
 FULL_SHA_RE = re.compile(r"[0-9a-f]{40}")
