@@ -112,7 +112,7 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
 
 | Status | Name | Latest Commit | Preview URL | Updated (UTC) |
 | -|-|-|-|-|
-| ? Deployment successful! | synapticai-proxy | {TARGET_SHA[:8]} | <a href='https://{VERSION_ID[:8]}-synapticai-proxy.example.workers.dev'>Commit Preview URL</a> | Aug 08 2026 |
+| Deployment successful! | synapticai-proxy | {TARGET_SHA[:8]} | <a href='https://{VERSION_ID[:8]}-synapticai-proxy.example.workers.dev'>Commit Preview URL</a> | Aug 08 2026 |
 """
         actual = resolver.find_worker_build_uuid(
             [{"user": BOT, "body": body}], TARGET_SHA
