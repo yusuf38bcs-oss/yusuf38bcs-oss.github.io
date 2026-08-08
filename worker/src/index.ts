@@ -24,7 +24,7 @@ type SocraticResult = {
 
 type JsonRecord = Record<string, unknown>;
 
-const WORKER_VERSION = "omega-2026-06-18.2";
+const WORKER_VERSION = "omega-2026-08-08.1";
 const SERVICE_NAME = "LBFL Synaptic AI Edge Worker";
 const DEFAULT_MODEL = "gemini-2.5-flash";
 const MAX_BODY_BYTES = 12_000;
