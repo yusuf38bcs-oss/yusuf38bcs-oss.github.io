@@ -210,12 +210,27 @@ jobs:
         shell: bash
         env:
           TARGET_SHA: ${{ steps.target.outputs.sha }}
+          BASE_SHA: ${{ steps.target.outputs.base_sha }}
+          RELEASE_CERTIFICATION_REQUIRED: ${{ steps.target.outputs.release_certification_required }}
         run: |
           set -euo pipefail
           mkdir -p "$QA_DIR"
           printf 'repository=%s\nevent=%s\nrun_url=%s\ntarget_sha=%s\n' \
             "$GITHUB_REPOSITORY" "$GITHUB_EVENT_NAME" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" "$TARGET_SHA" \
             > "$QA_DIR/status.env"
+          if [[ "$RELEASE_CERTIFICATION_REQUIRED" == "true" ]]; then
+            initial_result="PENDING"
+            initial_summary="Awaiting immutable merge-result and exact-head release certification."
+          else
+            initial_result="NOT REQUESTED (Draft PR)"
+            initial_summary="Draft PRs collect evidence without promotion authority."
+          fi
+          printf '{"result":"%s","head_sha":"%s","base_sha":"%s","merge_sha":"","reason":"%s"}\n' \
+            "$initial_result" "$TARGET_SHA" "$BASE_SHA" "$initial_summary" \
+            > "$QA_DIR/merge-result.json"
+          printf '{"result":"%s","target_sha":"%s","base_sha":"%s","summary":"%s"}\n' \
+            "$initial_result" "$TARGET_SHA" "$BASE_SHA" "$initial_summary" \
+            > "$QA_DIR/release-certification.json"
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
