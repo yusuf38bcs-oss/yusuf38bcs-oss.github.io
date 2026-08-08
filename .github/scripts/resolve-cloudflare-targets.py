@@ -76,13 +76,13 @@ def find_preview(
         body = str(comment.get("body") or "")
         if user.get("login") != "cloudflare-workers-and-pages[bot]":
             continue
-        if "Deploy successful" not in body:
+        if "Deploy successful" not in body and "Deployment successful" not in body:
             continue
-        commit_match = LATEST_COMMIT_RE.search(body)
+        commit_match = LATEST_COMMIT_RE.search(body) or WORKER_COMMIT_RE.search(body)
         if not commit_match:
             continue
         commit_claim = commit_match.group(1).lower()
-        if commit_claim not in {target_sha, target_sha[:7]}:
+        if commit_claim != target_sha and not target_sha.startswith(commit_claim):
             continue
         url_match = pattern.search(body)
         if url_match:
@@ -175,12 +175,16 @@ def cloudflare_worker_version_for_sha(
         return ""
 
     unique_version_ids = list(dict.fromkeys(version_ids))[:20]
-    query = urllib.parse.urlencode({"version_ids": ",".join(unique_version_ids)})
-    builds_result = cloudflare_api_get(f"/accounts/{account}/builds/builds?{query}", token)
-    builds = builds_result.get("builds") if isinstance(builds_result, dict) else {}
-    if not isinstance(builds, dict):
-        return ""
     for version_id in unique_version_ids:
+        # Cloudflare documents one version ID per request even though the query
+        # parameter is plural. Comma-joining IDs returns HTTP 400.
+        query = urllib.parse.urlencode({"version_ids": version_id})
+        builds_result = cloudflare_api_get(
+            f"/accounts/{account}/builds/builds?{query}", token
+        )
+        builds = builds_result.get("builds") if isinstance(builds_result, dict) else {}
+        if not isinstance(builds, dict):
+            continue
         build = builds.get(version_id)
         metadata = build.get("build_trigger_metadata") if isinstance(build, dict) else {}
         commit_hash = str(metadata.get("commit_hash") or "").lower()
