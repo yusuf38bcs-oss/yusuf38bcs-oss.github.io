@@ -108,8 +108,19 @@ def cloudflare_api_get(path: str, token: str) -> Any:
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
             payload = json.loads(response.read().decode("utf-8"))
-    except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError) as error:
-        print(f"Cloudflare deployment metadata lookup skipped: {error}", file=sys.stderr)
+    except urllib.error.HTTPError as error:
+        detail = error.read().decode("utf-8", errors="replace")[:1000]
+        print(
+            f"Cloudflare deployment metadata lookup skipped for {path}: "
+            f"HTTP {error.code}: {detail}",
+            file=sys.stderr,
+        )
+        return {}
+    except (urllib.error.URLError, json.JSONDecodeError) as error:
+        print(
+            f"Cloudflare deployment metadata lookup skipped for {path}: {error}",
+            file=sys.stderr,
+        )
         return {}
     if not isinstance(payload, dict) or payload.get("success") is not True:
         print("Cloudflare deployment metadata lookup returned no successful result.", file=sys.stderr)
