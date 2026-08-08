@@ -464,7 +464,7 @@ jobs:
 
   codex_readonly_review:
     name: Codex read-only PR review
-    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/staging' && inputs.mode == 'qa' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/staging' && inputs.mode == 'qa' && github.actor == 'yusuf38bcs-oss' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
