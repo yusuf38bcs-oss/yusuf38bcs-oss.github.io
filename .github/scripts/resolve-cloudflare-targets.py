@@ -32,6 +32,17 @@ WORKER_COMMIT_RE = re.compile(
     r"^\|.*?Deployment successful!.*?\|\s*[^|]+\|\s*([0-9a-f]{7,40})\s*\|",
     re.IGNORECASE | re.MULTILINE,
 )
+WORKER_BUILD_UUID_RE = re.compile(
+    r"/workers/services/view/[^/\s]+/production/builds/"
+    r"([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})",
+    re.IGNORECASE,
+)
+WORKER_VERSION_ID_RE = re.compile(
+    r"Worker Version ID:\s*"
+    r"([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})",
+    re.IGNORECASE,
+)
+
 ENDPOINT_RE = re.compile(r'^\s*endpoint:\s*["\']?([^"\'\s#]+)', re.MULTILINE)
 FULL_SHA_RE = re.compile(r"[0-9a-f]{40}")
 
@@ -92,6 +103,31 @@ def find_preview(
         if url_match:
             return clean_url(url_match.group(1)), commit_claim
     return "", ""
+
+
+def find_worker_build_uuid(
+    comments: list[dict[str, Any]], target_sha: str
+) -> str:
+    """Find the build UUID from the same trusted Worker deployment comment."""
+    for comment in reversed(comments):
+        user = comment.get("user") or {}
+        body = str(comment.get("body") or "")
+        if user.get("login") != "cloudflare-workers-and-pages[bot]":
+            continue
+        if "Deployment successful" not in body:
+            continue
+        commit_match = WORKER_COMMIT_RE.search(body)
+        if not commit_match:
+            continue
+        commit_claim = commit_match.group(1).lower()
+        if commit_claim != target_sha and not target_sha.startswith(commit_claim):
+            continue
+        if not WORKER_URL_RE.search(body):
+            continue
+        build_match = WORKER_BUILD_UUID_RE.search(body)
+        if build_match:
+            return build_match.group(1).lower()
+    return ""
 
 
 def cloudflare_api_get(path: str, token: str) -> Any:
@@ -202,6 +238,120 @@ def cloudflare_worker_version_for_sha(
     return ""
 
 
+def cloudflare_build_log_text(
+    account_id: str, build_uuid: str, token: str
+) -> str:
+    """Read all available Cloudflare build-log pages as trusted text."""
+    if not account_id or not build_uuid or not token:
+        return ""
+
+    account = urllib.parse.quote(account_id, safe="")
+    build = urllib.parse.quote(build_uuid, safe="")
+    base_path = f"/accounts/{account}/builds/builds/{build}/logs"
+    cursor = ""
+    chunks: list[str] = []
+
+    for _ in range(50):
+        path = base_path
+        if cursor:
+            path += "?" + urllib.parse.urlencode({"cursor": cursor})
+
+        result = cloudflare_api_get(path, token)
+        if not isinstance(result, dict):
+            return ""
+
+        lines = result.get("lines")
+        if isinstance(lines, list):
+            for row in lines:
+                if isinstance(row, list):
+                    chunks.append(" ".join(str(part) for part in row))
+                elif isinstance(row, dict):
+                    chunks.append(" ".join(str(part) for part in row.values()))
+                else:
+                    chunks.append(str(row))
+
+        if not result.get("truncated"):
+            break
+
+        cursor = str(result.get("cursor") or "")
+        if not cursor:
+            break
+
+    return "\n".join(chunks)
+
+
+def cloudflare_worker_version_from_build_log(
+    account_id: str,
+    script_name: str,
+    target_sha: str,
+    preview_url: str,
+    build_uuid: str,
+    token: str,
+) -> str:
+    """Recover a Worker version only through an exact-SHA authenticated build."""
+    if not account_id or not script_name or not target_sha or not build_uuid or not token:
+        return ""
+
+    preview = cloudflare_url(preview_url, ".workers.dev")
+    if not preview:
+        return ""
+
+    account = urllib.parse.quote(account_id, safe="")
+    script = urllib.parse.quote(script_name, safe="")
+    build = urllib.parse.quote(build_uuid, safe="")
+
+    build_result = cloudflare_api_get(
+        f"/accounts/{account}/builds/builds/{build}", token
+    )
+    if not isinstance(build_result, dict):
+        return ""
+
+    returned_build_uuid = str(build_result.get("build_uuid") or "").lower()
+    metadata = build_result.get("build_trigger_metadata")
+    metadata = metadata if isinstance(metadata, dict) else {}
+    commit_hash = str(metadata.get("commit_hash") or "").lower()
+
+    if returned_build_uuid != build_uuid.lower() or commit_hash != target_sha:
+        return ""
+
+    log_text = cloudflare_build_log_text(account_id, build_uuid, token)
+    version_match = WORKER_VERSION_ID_RE.search(log_text)
+    if not version_match:
+        return ""
+
+    version_id = version_match.group(1).lower()
+
+    hostname = (urllib.parse.urlparse(preview).hostname or "").lower()
+    if not hostname.startswith(version_id[:8] + "-"):
+        return ""
+
+    version_result = cloudflare_api_get(
+        f"/accounts/{account}/workers/scripts/{script}/versions/{version_id}",
+        token,
+    )
+    if not isinstance(version_result, dict):
+        return ""
+
+    if str(version_result.get("id") or "").lower() != version_id:
+        return ""
+
+    resources = version_result.get("resources")
+    resources = resources if isinstance(resources, dict) else {}
+    bindings = resources.get("bindings")
+    bindings = bindings if isinstance(bindings, list) else []
+
+    has_version_metadata = any(
+        isinstance(binding, dict)
+        and binding.get("name") == "CF_VERSION_METADATA"
+        and binding.get("type") == "version_metadata"
+        for binding in bindings
+    )
+    if not has_version_metadata:
+        return ""
+
+    return version_id
+
+
 def configured_worker_endpoint(site_config: Path) -> str:
     if not site_config.is_file():
         return ""
@@ -214,12 +364,32 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
     comments = github_comments(args.repository, args.pr_number, os.environ.get("GH_TOKEN", ""))
     pages_comment_url, pages_commit_claim = find_preview(comments, target_sha, PAGES_URL_RE)
     worker_comment_url, worker_commit_claim = find_preview(comments, target_sha, WORKER_URL_RE)
+    worker_build_uuid = find_worker_build_uuid(comments, target_sha)
     pages_api_url = cloudflare_pages_preview(
         args.cloudflare_account_id, args.cloudflare_pages_project, target_sha, token
     )
     worker_version_id = cloudflare_worker_version_for_sha(
         args.cloudflare_account_id, args.cloudflare_worker_script, target_sha, token
     )
+    worker_version_source = (
+        "cloudflare_worker_build_api_full_sha_pending_endpoint_version_binding"
+        if worker_version_id
+        else ""
+    )
+
+    if not worker_version_id and worker_comment_url and worker_build_uuid:
+        worker_version_id = cloudflare_worker_version_from_build_log(
+            args.cloudflare_account_id,
+            args.cloudflare_worker_script,
+            target_sha,
+            worker_comment_url,
+            worker_build_uuid,
+            token,
+        )
+        if worker_version_id:
+            worker_version_source = (
+                "cloudflare_worker_build_log_full_sha_version_bound_pending_contract_probe"
+            )
 
     pages_override = cloudflare_url(args.pages_override, ".pages.dev")
     worker_override = cloudflare_url(args.worker_override, ".workers.dev")
@@ -243,7 +413,10 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
         pages_source = "pending"
 
     if worker_metadata_exact_head:
-        worker_source = "cloudflare_worker_build_api_full_sha_pending_endpoint_version_binding"
+        worker_source = (
+            worker_version_source
+            or "cloudflare_worker_build_api_full_sha_pending_endpoint_version_binding"
+        )
     elif worker_comment_url:
         worker_source = "cloudflare_structured_short_sha_comment_unverified"
     elif worker_override:
