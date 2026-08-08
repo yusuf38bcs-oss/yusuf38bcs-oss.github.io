@@ -144,7 +144,7 @@ def cloudflare_pages_preview(
     account = urllib.parse.quote(account_id, safe="")
     project = urllib.parse.quote(project_name, safe="")
     result = cloudflare_api_get(
-        f"/accounts/{account}/pages/projects/{project}/deployments?per_page=100", token
+        f"/accounts/{account}/pages/projects/{project}/deployments?per_page=25", token
     )
     for deployment in as_records(result, "deployments"):
         trigger = deployment.get("deployment_trigger")
@@ -166,30 +166,24 @@ def cloudflare_pages_preview(
 def cloudflare_worker_version_for_sha(
     account_id: str, script_name: str, target_sha: str, token: str
 ) -> str:
-    """Verify a 100%-served Worker version through its Cloudflare build metadata."""
+    """Find the exact PR-preview Worker version through Cloudflare build metadata."""
     if not account_id or not script_name or not token:
         return ""
     account = urllib.parse.quote(account_id, safe="")
     script = urllib.parse.quote(script_name, safe="")
-    deployments_result = cloudflare_api_get(
-        f"/accounts/{account}/workers/scripts/{script}/deployments", token
+    versions_result = cloudflare_api_get(
+        f"/accounts/{account}/workers/scripts/{script}/versions", token
     )
-    deployments = as_records(deployments_result, "deployments")
-    version_ids: list[str] = []
-    for deployment in deployments:
-        versions = deployment.get("versions")
-        if not isinstance(versions, list):
-            continue
-        for version in versions:
-            if not isinstance(version, dict) or version.get("percentage") != 100:
-                continue
-            version_id = str(version.get("version_id") or "")
-            if version_id:
-                version_ids.append(version_id)
+    versions = as_records(versions_result, "versions")
+    version_ids = [
+        str(version.get("id") or "")
+        for version in versions
+        if str(version.get("id") or "")
+    ]
     if not version_ids:
         return ""
 
-    unique_version_ids = list(dict.fromkeys(version_ids))[:20]
+    unique_version_ids = list(dict.fromkeys(version_ids))[:50]
     for version_id in unique_version_ids:
         # Cloudflare documents one version ID per request even though the query
         # parameter is plural. Comma-joining IDs returns HTTP 400.
