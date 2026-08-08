@@ -81,6 +81,16 @@
 
         const originalQuestion = promptTextEl.textContent?.replace(/\s+/g, ' ').trim() || "";
 
+        const setPromptFeedback = function(label, feedback, color) {
+          const strong = document.createElement("strong");
+          strong.textContent = label;
+          if (color) strong.style.color = color;
+          promptTextEl.replaceChildren(
+            strong,
+            document.createTextNode(` ${String(feedback || "")}`)
+          );
+        };
+
         form.addEventListener("submit", async function(e) {
           e.preventDefault();
           const hypothesis = inputField.value.trim();
@@ -121,7 +131,7 @@
             if (data.mastery_achieved) {
               container.classList.remove("failed-state");
               container.classList.add("mastery-state");
-              promptTextEl.innerHTML = `<strong style="color: #00f5d4;">System Override Complete:</strong> ${data.feedback_text}`;
+              setPromptFeedback("System Override Complete:", data.feedback_text, "#00f5d4");
               form.style.display = "none";
 
               document.dispatchEvent(new CustomEvent("lbfl:node-myelinated", {
@@ -138,7 +148,7 @@
             } else {
               attemptCount++;
               container.classList.add("failed-state");
-              promptTextEl.innerHTML = `<strong>Synaptic Pivot:</strong> ${data.feedback_text}`;
+              setPromptFeedback("Synaptic Pivot:", data.feedback_text);
               inputField.value = "";
               inputField.disabled = false;
               submitBtn.disabled = false;
