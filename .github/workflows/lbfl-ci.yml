@@ -109,10 +109,29 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            if (!String(context.payload.comment.body || '').includes('Deploy successful')) {
+            const body = String(context.payload.comment.body || '');
+            const pagesSuccess = body.includes('Deploy successful!');
+            const workersSuccess = body.includes('Deployment successful!');
+            if (!pagesSuccess && !workersSuccess) {
               core.notice('Cloudflare preview comment is not a successful deployment.');
               return;
             }
+
+            let reportedCommit = '';
+            if (pagesSuccess) {
+              reportedCommit = body.match(
+                /Latest commit:[\s\S]*?<code>\s*([0-9a-f]{7,40})\s*<\/code>/i,
+              )?.[1] || '';
+            } else {
+              const workerRow = body
+                .split('\n')
+                .find((line) => line.includes('Deployment successful!'));
+              reportedCommit = workerRow
+                ?.split('|')
+                .map((cell) => cell.trim())
+                .find((cell) => /^[0-9a-f]{7,40}$/i.test(cell)) || '';
+            }
+
             const pull = (await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -124,6 +143,10 @@ jobs:
               pull.head.repo?.full_name !== `${context.repo.owner}/${context.repo.repo}`
             ) {
               core.notice('Cloudflare preview is not for an open same-repository staging PR.');
+              return;
+            }
+            if (!reportedCommit || !pull.head.sha.toLowerCase().startsWith(reportedCommit.toLowerCase())) {
+              core.notice('Cloudflare preview success is not for the current PR head.');
               return;
             }
             await github.rest.actions.createWorkflowDispatch({
