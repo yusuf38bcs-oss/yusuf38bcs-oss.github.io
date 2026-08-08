@@ -17,6 +17,8 @@ resolver = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(resolver)
 
 TARGET_SHA = "a6af620338baa5a7d3f232dc955f8122133c5da9"
+BUILD_UUID = "2e99cdd4-26b5-499c-84b8-1c33d3cdf466"
+VERSION_ID = "75099c3d-38c5-4549-8199-7289fceb9117"
 BOT = {"login": "cloudflare-workers-and-pages[bot]"}
 
 
@@ -102,6 +104,105 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
         build_calls = [path for path in calls if "/builds/builds?" in path]
         self.assertEqual(len(build_calls), 2)
         self.assertTrue(all("%2C" not in path and "," not in path for path in build_calls))
+
+    def test_worker_build_uuid_is_extracted_from_matching_bot_comment(self) -> None:
+        body = f"""## Deploying with Cloudflare Workers
+
+[View logs](https://dash.cloudflare.com/?to=/account/workers/services/view/synapticai-proxy/production/builds/{BUILD_UUID})
+
+| Status | Name | Latest Commit | Preview URL | Updated (UTC) |
+| -|-|-|-|-|
+| Deployment successful! | synapticai-proxy | {TARGET_SHA[:8]} | <a href='https://{VERSION_ID[:8]}-synapticai-proxy.example.workers.dev'>Commit Preview URL</a> | Aug 08 2026 |
+"""
+        actual = resolver.find_worker_build_uuid(
+            [{"user": BOT, "body": body}], TARGET_SHA
+        )
+        self.assertEqual(actual, BUILD_UUID)
+
+    def test_worker_build_log_fallback_binds_exact_version(self) -> None:
+        calls: list[str] = []
+
+        def fake_get(path: str, token: str) -> Any:
+            calls.append(path)
+
+            if path == f"/accounts/account/builds/builds/{BUILD_UUID}":
+                return {
+                    "build_uuid": BUILD_UUID,
+                    "build_trigger_metadata": {"commit_hash": TARGET_SHA},
+                }
+
+            if path == f"/accounts/account/builds/builds/{BUILD_UUID}/logs":
+                return {
+                    "lines": [
+                        ["1786191880342", "Uploaded synapticai-proxy"],
+                        ["1786191880342", f"Worker Version ID: {VERSION_ID}"],
+                    ],
+                    "cursor": None,
+                    "truncated": False,
+                }
+
+            if path == (
+                f"/accounts/account/workers/scripts/synapticai-proxy/"
+                f"versions/{VERSION_ID}"
+            ):
+                return {
+                    "id": VERSION_ID,
+                    "resources": {
+                        "bindings": [
+                            {
+                                "name": "CF_VERSION_METADATA",
+                                "type": "version_metadata",
+                            }
+                        ]
+                    },
+                }
+
+            self.fail(f"Unexpected API path: {path}")
+
+        original = resolver.cloudflare_api_get
+        resolver.cloudflare_api_get = fake_get
+        try:
+            actual = resolver.cloudflare_worker_version_from_build_log(
+                "account",
+                "synapticai-proxy",
+                TARGET_SHA,
+                f"https://{VERSION_ID[:8]}-synapticai-proxy.example.workers.dev",
+                BUILD_UUID,
+                "token",
+            )
+        finally:
+            resolver.cloudflare_api_get = original
+
+        self.assertEqual(actual, VERSION_ID)
+        self.assertIn(
+            f"/accounts/account/builds/builds/{BUILD_UUID}/logs",
+            calls,
+        )
+
+    def test_worker_build_log_fallback_rejects_wrong_full_sha(self) -> None:
+        def fake_get(path: str, token: str) -> Any:
+            if path == f"/accounts/account/builds/builds/{BUILD_UUID}":
+                return {
+                    "build_uuid": BUILD_UUID,
+                    "build_trigger_metadata": {"commit_hash": "0" * 40},
+                }
+            self.fail(f"Unexpected API path after SHA mismatch: {path}")
+
+        original = resolver.cloudflare_api_get
+        resolver.cloudflare_api_get = fake_get
+        try:
+            actual = resolver.cloudflare_worker_version_from_build_log(
+                "account",
+                "synapticai-proxy",
+                TARGET_SHA,
+                f"https://{VERSION_ID[:8]}-synapticai-proxy.example.workers.dev",
+                BUILD_UUID,
+                "token",
+            )
+        finally:
+            resolver.cloudflare_api_get = original
+
+        self.assertEqual(actual, "")
 
 
 if __name__ == "__main__":
