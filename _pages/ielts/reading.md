@@ -8,8 +8,6 @@ sidebar:
 author_profile: false
 ---
 
-# IELTS Reading
-
 Develop fast, evidence-based reading through skimming, scanning, inference, vocabulary in context, and question-type practice.
 
 ## Foundation practice areas

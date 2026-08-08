@@ -8,8 +8,6 @@ sidebar:
 author_profile: false
 ---
 
-# IELTS Band 8 Roadmap
-
 Band 8 requires accurate understanding, clear organization, flexible vocabulary, grammatical control, and the ability to develop ideas naturally rather than reproduce memorised templates.
 
 ## Learning pathway

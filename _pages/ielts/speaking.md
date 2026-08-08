@@ -8,8 +8,6 @@ sidebar:
 author_profile: false
 ---
 
-# IELTS Speaking Simulator
-
 Build fluency, idea development, lexical flexibility, grammatical control, and pronunciation awareness across Parts 1, 2, and 3.
 
 ## Foundation practice areas

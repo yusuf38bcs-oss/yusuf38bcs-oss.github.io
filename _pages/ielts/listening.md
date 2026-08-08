@@ -8,8 +8,6 @@ sidebar:
 author_profile: false
 ---
 
-# IELTS Listening
-
 Build accuracy through prediction, focused note-taking, signal words, detail recognition, and transcript-based correction.
 
 ## Foundation practice areas

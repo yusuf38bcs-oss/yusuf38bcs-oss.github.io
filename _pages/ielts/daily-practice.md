@@ -8,8 +8,6 @@ sidebar:
 author_profile: false
 ---
 
-# Daily 20-Minute Practice
-
 Rotate through **Listening → Reading → Writing → Speaking**. Each session includes one task, a model answer or feedback checklist, key vocabulary, a follow-up drill, and one reflection note.
 
 ## Session flow
