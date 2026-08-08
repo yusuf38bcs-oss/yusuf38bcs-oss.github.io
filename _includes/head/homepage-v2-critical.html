@@ -232,8 +232,12 @@
   }
 
   .lbfl-premium-header__menu-panel {
-    display: grid;
+    display: none;
     gap: 0.25rem;
+  }
+
+  .lbfl-premium-header__menu[open] .lbfl-premium-header__menu-panel {
+    display: grid;
   }
 
   .lbfl-premium-header__menu-panel a {
