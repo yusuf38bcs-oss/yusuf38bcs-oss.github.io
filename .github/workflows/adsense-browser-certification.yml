@@ -17,7 +17,7 @@ permissions:
 
 concurrency:
   group: adsense-browser-certification-${{ github.event.pull_request.number }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   browser-certification:
@@ -39,6 +39,9 @@ jobs:
       - name: Resolve the exact-head Cloudflare Pages preview
         id: preview
         env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
@@ -48,6 +51,8 @@ jobs:
             --repository "$GITHUB_REPOSITORY" \
             --sha "$PR_HEAD_SHA" \
             --pr-number "$PR_NUMBER" \
+            --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" \
+            --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" \
             --wait-seconds 600 \
             --poll-interval-seconds 15 \
             --site-config _data/ai.yml \
