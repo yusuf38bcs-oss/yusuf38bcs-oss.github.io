@@ -1,21 +1,82 @@
 {% assign assessment = site.data.homepage.assessment_loop %}
+{% assign bridge = site.data.homepage.synaptic_bridge %}
+
 <section
-  class="lbfl-home-v2__section lbfl-home-v2__assessment"
-  aria-labelledby="lbfl-home-v2-assessment-title"
+  class="lbfl-home-v2__section lbfl-home-v2__bridge lbfl-home-v2__section--narrative"
+  aria-labelledby="lbfl-home-v2-bridge-title"
+  data-home-narrative-step="think"
 >
-  <div class="lbfl-home-v2__section-heading">
-    <p class="lbfl-home-v2__eyebrow">Assessment loop</p>
-    <h2 id="lbfl-home-v2-assessment-title">
-      Turn every attempt into better understanding
-    </h2>
+  <div class="lbfl-home-v2__narrative-marker" aria-hidden="true">
+    <span>03</span>
+    <strong>Think</strong>
   </div>
 
-  <ol class="lbfl-home-v2__assessment-list">
-    {% for step in assessment.steps %}
+  <div class="lbfl-home-v2__bridge-copy">
+    <p class="lbfl-home-v2__eyebrow">{{ bridge.eyebrow }}</p>
+    <p class="lbfl-home-v2__bridge-name">{{ bridge.name }}</p>
+    <h2 id="lbfl-home-v2-bridge-title">{{ bridge.title }}</h2>
+    <p>{{ bridge.summary }}</p>
+
+    <a
+      class="lbfl-home-v2__button lbfl-home-v2__button--secondary"
+      href="{{ bridge.action_url | relative_url }}"
+    >
+      {{ bridge.action_label }}
+    </a>
+  </div>
+
+  <ol
+    class="lbfl-home-v2__bridge-principles lbfl-home-v2__critical-cycle"
+    aria-label="LBFL critical-thinking cycle"
+  >
+    {% for principle in bridge.principles %}
       <li>
         <span aria-hidden="true">{{ forloop.index }}</span>
-        <strong>{{ step }}</strong>
+        <div>
+          <strong>{{ principle.title }}</strong>
+          <p>{{ principle.text }}</p>
+        </div>
       </li>
     {% endfor %}
   </ol>
+</section>
+
+<section
+  class="lbfl-home-v2__section lbfl-home-v2__assessment lbfl-home-v2__assessment--repair lbfl-home-v2__section--narrative"
+  aria-labelledby="lbfl-home-v2-assessment-title"
+  data-home-narrative-step="repair"
+>
+  <div class="lbfl-home-v2__narrative-marker" aria-hidden="true">
+    <span>04</span>
+    <strong>Repair</strong>
+  </div>
+
+  <div class="lbfl-home-v2__section-heading">
+    <p class="lbfl-home-v2__eyebrow">{{ assessment.eyebrow }}</p>
+
+    <h2 id="lbfl-home-v2-assessment-title">
+      {{ assessment.title }}
+    </h2>
+
+    <p>{{ assessment.summary }}</p>
+  </div>
+
+  <ol
+    class="lbfl-home-v2__assessment-list lbfl-home-v2__repair-loop"
+    aria-label="Reasoning repair loop"
+  >
+    {% for step in assessment.steps %}
+      <li>
+        <span aria-hidden="true">{{ forloop.index }}</span>
+        <div>
+          <strong>{{ step.title }}</strong>
+          <p>{{ step.text }}</p>
+        </div>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <p class="lbfl-home-v2__assessment-result">
+    {{ assessment.result }}
+  </p>
 </section>

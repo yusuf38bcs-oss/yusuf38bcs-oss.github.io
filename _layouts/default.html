@@ -10,6 +10,8 @@
   <head>
     {% if lbfl_home_v2_active %}
       {% include head/homepage-v2-critical.html %}
+      {% include head/homepage-v2-final-qa-fixes.html %}
+      {% include head/homepage-v2-narrative.html %}
     {% else %}
       {% include head.html %}
       {% include head/custom.html %}
@@ -25,7 +27,11 @@
     {% endunless %}
 
     {% include skip-links.html %}
-    {% include masthead.html %}
+    {% if lbfl_home_v2_active %}
+      {% include home/premium-header.html %}
+    {% else %}
+      {% include masthead.html %}
+    {% endif %}
 
     <main class="initial-content" id="main-content" tabindex="-1">
       {{ content }}

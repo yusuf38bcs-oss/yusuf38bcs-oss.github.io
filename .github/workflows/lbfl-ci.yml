@@ -207,9 +207,13 @@ jobs:
             if (pull.head.repo?.full_name !== `${context.repo.owner}/${context.repo.repo}`) {
               throw new Error('Trusted QA accepts same-repository PRs only.');
             }
+            const currentBaseSha = exactSha(
+              'Trusted staging SHA',
+              context.sha,
+            );
             core.setOutput('sha', exactSha('PR head SHA', pull.head.sha));
             core.setOutput('pr_number', String(pull.number));
-            core.setOutput('base_sha', exactSha('PR base SHA', pull.base.sha));
+            core.setOutput('base_sha', currentBaseSha);
             core.setOutput('base_ref', pull.base.ref);
             core.setOutput('release_certification_required', pull.draft ? 'false' : 'true');
             core.setOutput('certifying_context', 'true');
@@ -360,7 +364,7 @@ jobs:
               throw new Error('Trusted certification accepts open same-repository staging PRs only.');
             }
             core.setOutput('sha', pull.head.sha);
-            core.setOutput('base_sha', pull.base.sha);
+            core.setOutput('base_sha', context.sha);
             core.setOutput('release_certification_required', pull.draft ? 'false' : 'true');
 
       - name: Check out trusted staging control scripts
@@ -369,6 +373,10 @@ jobs:
           ref: ${{ github.sha }}
           fetch-depth: 0
           persist-credentials: false
+
+      - name: Verify trusted Cloudflare resolver fixtures
+        shell: bash
+        run: python3 .github/scripts/test-resolve-cloudflare-targets.py
 
       - name: Download non-certifying build evidence as data
         uses: actions/download-artifact@v4

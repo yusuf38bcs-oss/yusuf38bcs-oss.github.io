@@ -125,6 +125,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-    worker_bound = bool(worker.get("metadata_exact_head")) and isinstance(
-        health.get("deployment_binding"), dict
-    ) and health["deployment_binding"].get("result") == "PASS"
