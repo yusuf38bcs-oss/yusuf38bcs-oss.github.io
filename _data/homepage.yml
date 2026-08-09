@@ -1,90 +1,89 @@
-version: 5
-status: premium-foundation-draft
+version: 6
+status: critical-thinking-narrative-draft
 render_enabled: true
-baseline_date: "2026-08-03"
-baseline_commit: "fbf48e885caff1dd7cf5916db91ff966257a0b17"
-base_branch: staging
+baseline_date: "2026-08-04"
+baseline_commit: "c1b9c184711f826b0b422a78fbceeb642c44b9e4"
+base_branch: homepage/premium-product-experience-v1b
 
 implementation:
-  phase: "Premium Foundation v1a"
+  phase: "Critical-Thinking Narrative v2"
   foundation_ready: true
   activated: true
-  render_strategy: "branch-preview-first"
-  base_commit: "fbf48e885caff1dd7cf5916db91ff966257a0b17"
-  branch: "homepage/premium-foundation-v1a"
-  css_source: "_includes/home/homepage-styles.html"
+  render_strategy: "stacked-draft-preview-first"
+  base_commit: "c1b9c184711f826b0b422a78fbceeb642c44b9e4"
+  branch: "homepage/critical-thinking-narrative-v2"
+  css_source: "_includes/head/homepage-v2-narrative.html"
   javascript_source: "assets/js/home/homepage-v2.js"
   javascript_loading: "deferred-optional"
 
 identity:
   name: "Learning Biology For Life"
-  eyebrow: "Biology learning for Bangladesh"
-  headline: "Where Biology Meets Life"
+  eyebrow: "Bangla-first biology for evidence-led learning"
+  headline: "Enhance Critical Thinking Through Biology"
   audience: "Bangladeshi learners and teachers"
-  promise: "Bangla-first biology learning with English technical terms, clear diagrams, purposeful assessment and reflective scientific reasoning."
-  support_line: "HSC Biology • Higher Zoology • Assessment • Scientific Reasoning"
+  promise: "Chapter-aligned biology that helps learners observe closely, question assumptions, connect concepts and explain life through evidence."
+  support_line: "Observe - Question - Connect - Explain"
 
 primary_actions:
   - id: hsc-biology
-    label: "Start HSC Biology"
+    label: "Explore Biology"
     url: "/biology/hsc-corner/"
     priority: primary
-  - id: higher-zoology
-    label: "Explore Higher Zoology"
-    url: "/biology/higher-zoology-tree/"
-    priority: primary
-
-secondary_actions:
   - id: mcq-arena
-    label: "Practice MCQs"
+    label: "Test Your Thinking"
     url: "/mcq-arena/"
-    priority: secondary
-  - id: socratic
-    label: "Learn through Socratic Inquiry"
-    url: "/socratic/"
-    priority: secondary
+    priority: primary
 
 pathways:
   - id: hsc-biology
     ordinal: "01"
+    thinking_action: "Build Foundations"
     title: "HSC Biology"
-    outcome: "Build chapter-aligned Botany and Zoology understanding through explanation, diagrams and assessment."
-    best_for: "HSC learners"
+    promise: "Learn chapter-aligned concepts through Bangla-first explanations and clear scientific visuals."
+    cta_label: "Start HSC Biology"
+    motif: "cell"
     url: "/biology/hsc-corner/"
   - id: higher-zoology
     ordinal: "02"
+    thinking_action: "Explore Deeper"
     title: "Higher Zoology"
-    outcome: "Explore Animal Diversity, Physiology, Ecology, Genetics and Biostatistics with structured academic depth."
-    best_for: "Advanced learners and teachers"
+    promise: "Connect structure, function, diversity and evolution beyond the textbook."
+    cta_label: "Explore Higher Zoology"
+    motif: "branch"
     url: "/biology/higher-zoology-tree/"
   - id: mcq-arena
     ordinal: "03"
+    thinking_action: "Test and Repair"
     title: "MCQ Arena"
-    outcome: "Attempt questions, inspect explanations and repair misconceptions through focused exam practice."
-    best_for: "Assessment practice"
+    promise: "Attempt questions, inspect reasoning and correct misconceptions through focused feedback."
+    cta_label: "Enter MCQ Arena"
+    motif: "grid"
     url: "/mcq-arena/"
   - id: socratic
     ordinal: "04"
+    thinking_action: "Question and Reflect"
     title: "Socratic 4.0"
-    outcome: "Strengthen conceptual reasoning through guided questions, reflection and self-audit."
-    best_for: "Independent thinkers"
+    promise: "Develop independent explanations through guided inquiry, reflection and self-audit."
+    cta_label: "Begin Socratic Inquiry"
+    motif: "nodes"
     url: "/socratic/"
 
 featured_route:
   enabled: true
-  eyebrow: "Featured learning sequence"
-  title: "HSC Botany Chapter 01 — Cell and Its Structure"
-  summary: "A connected six-lecture route from the basic idea of the cell to membrane systems, organelles and cellular energy."
+  eyebrow: "Featured connected journey"
+  title: "Inside the Cell"
+  title_accent: "Six Functions. One Living System."
+  summary: "Follow the cell from organisation and selective exchange to protein production, internal transport, molecular processing and usable energy."
   lesson_count: 6
   chapter_url: "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
   start_url: "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/"
-
-trust_signals:
-  - "Bangla-first explanation"
-  - "English technical terms"
-  - "Diagram-supported lessons"
-  - "Interactive MCQ feedback"
-  - "Academic and accessibility review"
+  flow:
+    - "Identity"
+    - "Boundary"
+    - "Production"
+    - "Transport"
+    - "Processing"
+    - "Energy"
 
 latest_learning:
   mode: explicit-curation
@@ -94,31 +93,43 @@ latest_learning:
     - id: cell-protoplasm-cell-theory
       title: "Cell, Protoplasm and Cell Theory"
       label: "Lecture 01"
+      function: "Cellular identity"
+      question: "What makes a cell the fundamental unit of life?"
       pathway: "HSC Botany"
       url: "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/"
     - id: plasma-membrane-fluid-mosaic-model
       title: "Plasma Membrane and Fluid Mosaic Model"
       label: "Lecture 02"
+      function: "Selective exchange"
+      question: "How does the plasma membrane control movement?"
       pathway: "HSC Botany"
       url: "/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/"
     - id: cytoplasm-ribosome-protein-factory
       title: "Cytoplasm and Ribosome: Protein Factory of the Cell"
       label: "Lecture 03"
+      function: "Protein production"
+      question: "How do cytoplasm and ribosomes build proteins?"
       pathway: "HSC Botany"
       url: "/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/"
     - id: endoplasmic-reticulum-transport-network
       title: "Endoplasmic Reticulum: Transport Network of the Cell"
       label: "Lecture 04"
+      function: "Internal transport"
+      question: "How does the ER organise cellular movement?"
       pathway: "HSC Botany"
       url: "/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/"
     - id: golgi-body-lysosome-peroxisome
       title: "Golgi Body, Lysosome and Peroxisome"
       label: "Lecture 05"
+      function: "Processing and recycling"
+      question: "How do Golgi bodies, lysosomes and peroxisomes coordinate cellular maintenance?"
       pathway: "HSC Botany"
       url: "/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/"
     - id: mitochondria-powerhouse
       title: "Mitochondria: Powerhouse of the Cell"
       label: "Lecture 06"
+      function: "Cellular energy"
+      question: "How do mitochondria release usable energy?"
       pathway: "HSC Botany"
       url: "/biology/hsc-corner/botany/lecture-06-mitochondria/"
   forbidden_collections:
@@ -128,50 +139,74 @@ latest_learning:
     - "audit-reports/"
     - "docs/"
 
-assessment_loop:
-  eyebrow: "Assessment and feedback"
-  title: "Turn every attempt into better understanding"
-  summary: "Practice is useful only when learners can see what happened, why it happened and what to repair next."
-  result: "A visible path from first attempt to corrected understanding."
-  steps:
-    - "Learn"
-    - "Attempt"
-    - "Submit"
-    - "Score"
-    - "Read explanation"
-    - "Repair misconception"
-
 synaptic_bridge:
-  eyebrow: "Learning design"
+  eyebrow: "The LBFL method"
   name: "The Synaptic Bridge"
-  title: "Connect explanation, practice and reflection"
-  summary: "LBFL links concept learning, visual reasoning, assessment feedback and reflective questioning so that learners can move from remembering information to explaining biological relationships."
+  title: "From Observation to Evidence-Based Explanation"
+  summary: "Every LBFL lesson moves through one memorable critical-thinking cycle so that biological facts become connected explanations."
   principles:
-    - title: "Understand"
-      text: "Begin with a clear concept and the language needed to explain it."
-    - title: "Visualise"
-      text: "Use diagrams, comparisons and systems thinking to organise relationships."
-    - title: "Apply"
-      text: "Test understanding through MCQs, questions and structured tasks."
-    - title: "Reflect"
-      text: "Identify misconceptions and rebuild the explanation in your own words."
+    - title: "Observe"
+      text: "Notice biological structure, pattern, change or relationship accurately."
+    - title: "Question"
+      text: "Identify what needs explaining and challenge the first assumption."
+    - title: "Connect"
+      text: "Link structure, function, evidence and prior knowledge."
+    - title: "Explain"
+      text: "Construct an answer, test it and revise it through reflection."
   action_label: "Explore Socratic learning"
   action_url: "/socratic/"
 
+assessment_loop:
+  eyebrow: "Feedback that changes thinking"
+  title: "Do Not Just Check the Answer. Repair the Reasoning."
+  summary: "Every attempt should reveal what you understand, where the reasoning broke and which concept needs rebuilding."
+  result: "Reattempt returns the learner to a stronger prediction, keeping the cycle active."
+  steps:
+    - title: "Attempt"
+      text: "Commit to an answer and make the reasoning visible."
+    - title: "Feedback"
+      text: "Compare the reasoning with evidence and explanation."
+    - title: "Repair"
+      text: "Identify and rebuild the mistaken concept."
+    - title: "Reattempt"
+      text: "Apply the corrected idea in a new context."
+
 editorial_trust:
-  eyebrow: "Editorial trust"
-  title: "Biology teaching grounded in reflection and evidence"
-  summary: "Lessons are developed for Bangladeshi learners with Bangla-first explanation, English technical terms and explicit academic review."
-  author: "MD. Yusuf"
-  role: "BCS Education Cadre (38th BCS)"
-  affiliation: "People’s Republic of Bangladesh"
+  eyebrow: "How LBFL content is built"
+  title: "Biology Teaching Designed for Clarity, Evidence and Revision"
+  summary: "Credibility comes from a transparent learning and review process, supported by an accountable educator."
+  author: "Md. Yusuf"
+  role: "Zoology Educator and Editorial Lead"
+  affiliation: "Bangladesh Civil Service - General Education"
   methods:
-    - "Learning objectives and outcomes"
-    - "Concept and misconception checks"
-    - "Diagram and accessibility review"
-    - "Assessment with explanation"
+    - title: "Curriculum Alignment"
+      text: "National syllabus and chapter alignment are stated clearly."
+    - title: "Constructive Alignment"
+      text: "Objectives, explanations, activities and assessment are connected."
+    - title: "Evidence and References"
+      text: "Scientific references and further reading support major claims."
+    - title: "Review and Correction"
+      text: "Content is designed for academic review, revision history and correction."
   profile_url: "/about/"
   contact_url: "/contact/"
+
+reflection_lab:
+  eyebrow: "Reflection lab"
+  title: "One Question Can Reveal How You Think"
+  summary: "Test a biological explanation, then consider a clearly separated reflective worldview lens."
+  challenge_title: "Test an Explanation"
+  challenge_question: "A cell with severe DNA damage continues dividing and fails to activate apoptosis. Which tumour-suppressor transcription factor is most likely impaired?"
+  reflection_title: "Signs Within and Beyond"
+  reflection_prompt: "What does the organisation of a living system reveal about interdependence, order and the limits of human understanding?"
+  continue_links:
+    - label: "Explore Biology"
+      url: "/biology/"
+    - label: "Enter MCQ Arena"
+      url: "/mcq-arena/"
+    - label: "Begin Socratic Inquiry"
+      url: "/socratic/"
+    - label: "Read Research Notes"
+      url: "/blog/"
 
 release_contract:
   worker: "lbfl-ai-deploy-orchestrator"
@@ -186,14 +221,17 @@ release_contract:
     - "Validate Jekyll PR"
     - "Sovereign Site Audit v4"
     - "Cloudflare preview"
-    - "Mobile visual QA"
+    - "Six-viewport visual QA"
     - "Accessibility and keyboard QA"
     - "Route and canonical smoke test"
 
 allowed_homepage_paths:
   - "index.html"
   - "_includes/home/"
+  - "_includes/head/homepage-v2-narrative.html"
+  - "_includes/footer.html"
   - "_data/homepage.yml"
+  - "_layouts/default.html"
   - "_sass/pages/_homepage-v2.scss"
   - "assets/js/home/homepage-v2.js"
   - "assets/images/home/"
