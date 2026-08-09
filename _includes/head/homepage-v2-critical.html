@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#020617">
+<meta name="theme-color" content="#071525">
 
 {% seo %}
 {% include head/polyglot-seo-overrides.html %}
@@ -19,7 +19,7 @@
     margin: 0;
     min-height: 100%;
     scroll-behavior: auto !important;
-    background: #020617;
+    background: #071525;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
@@ -33,84 +33,411 @@
     box-sizing: border-box;
   }
 
-  .lbfl-home-v2-active .masthead {
+  .lbfl-home-v2-active .initial-content {
+    min-height: 1px;
+  }
+
+  .lbfl-premium-header {
     position: sticky;
     top: 0;
     z-index: 9999;
-    min-height: 64px;
-    background: rgba(2, 6, 23, 0.96);
-    border-bottom: 1px solid rgba(0, 212, 178, 0.10);
+    min-height: 74px;
+    color: #e8f7f4;
+    background: rgba(7, 21, 37, 0.96);
+    border-bottom: 1px solid rgba(66, 199, 232, 0.16);
+    backdrop-filter: blur(14px);
   }
 
-  .lbfl-home-v2-active .masthead__inner-wrap {
-    width: min(100%, 1280px);
-    min-height: 64px;
-    margin: 0 auto;
-    padding: 0 clamp(0.6rem, 2.4vw, 1.35rem);
-  }
-
-  .lbfl-home-v2-active .lbfl-nav {
-    min-height: 64px;
+  .lbfl-premium-header__inner {
+    width: min(100% - 1.25rem, 1280px);
+    min-height: 74px;
+    margin-inline: auto;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: clamp(0.55rem, 1.8vw, 1.25rem);
   }
 
-  .lbfl-home-v2-active .lbfl-brand {
+  .lbfl-premium-header__brand {
     min-width: 0;
+    min-height: 44px;
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    color: #f8fafc;
+    gap: 0.6rem;
+    color: #ffffff;
     text-decoration: none;
   }
 
-  .lbfl-home-v2-active .lbfl-brand__logo {
-    width: 40px;
-    height: 40px;
+  .lbfl-premium-header__logo {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
     object-fit: contain;
   }
 
-  .lbfl-home-v2-active .lbfl-brand__title {
-    max-width: clamp(10.5rem, 22vw, 20rem);
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .lbfl-premium-header__brand-copy {
+    display: grid;
+    gap: 0.05rem;
+    line-height: 1.05;
+  }
+
+  .lbfl-premium-header__brand-copy strong {
+    color: #ffffff;
+    font-size: 1.04rem;
+    letter-spacing: 0.08em;
+  }
+
+  .lbfl-premium-header__brand-copy small {
+    color: #9fc5c0;
+    font-size: 0.72rem;
     white-space: nowrap;
-    font-weight: 850;
   }
 
-  .lbfl-home-v2-active .lbfl-desktop-links {
-    flex: 1 1 auto;
+  .lbfl-premium-header__desktop-nav {
     display: flex;
+    flex: 1 1 auto;
     justify-content: flex-end;
-    gap: 0.4rem;
-    margin: 0 0 0 auto;
-    padding: 0;
-    list-style: none;
+    gap: 0.15rem;
   }
 
-  .lbfl-home-v2-active .lbfl-desktop-links a,
-  .lbfl-home-v2-active .lbfl-language-switcher__link {
-    min-height: 40px;
+  .lbfl-premium-header__desktop-nav a,
+  .lbfl-premium-header .lbfl-language-switcher__link {
+    min-height: 44px;
     display: inline-flex;
     align-items: center;
-    padding: 0.42rem 0.46rem;
-    color: #e2e8f0;
+    padding: 0.55rem 0.65rem;
+    color: #d9ebe8;
+    border-radius: 999px;
     text-decoration: none;
+    font-size: 0.86rem;
+    font-weight: 720;
   }
 
-  .lbfl-home-v2-active .lbfl-nav-actions {
+  .lbfl-premium-header .lbfl-language-switcher__link {
+    min-width: 44px;
+    justify-content: center;
+  }
+
+  .lbfl-premium-header__desktop-nav a:hover,
+  .lbfl-premium-header__desktop-nav a:focus-visible,
+  .lbfl-premium-header .lbfl-language-switcher__link:hover,
+  .lbfl-premium-header .lbfl-language-switcher__link:focus-visible {
+    color: #ffffff;
+    background: rgba(66, 199, 232, 0.1);
+  }
+
+  .lbfl-premium-header__actions {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
   }
 
-  .lbfl-home-v2-active .lbfl-mobile-menu {
+  .lbfl-premium-header .lbfl-language-switcher {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .lbfl-premium-header .lbfl-language-switcher__divider {
+    color: #5f7d7a;
+  }
+
+  .lbfl-premium-header__search,
+  .lbfl-premium-header__menu {
+    position: relative;
+  }
+
+  .lbfl-premium-header__search > summary,
+  .lbfl-premium-header__menu > summary {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.65rem;
+    color: #e8f7f4;
+    border: 1px solid rgba(159, 197, 192, 0.22);
+    border-radius: 999px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .lbfl-premium-header__search > summary::-webkit-details-marker,
+  .lbfl-premium-header__menu > summary::-webkit-details-marker {
     display: none;
   }
 
-  .lbfl-home-v2-active .initial-content {
-    min-height: 1px;
+  .lbfl-premium-header__search-panel,
+  .lbfl-premium-header__menu-panel {
+    position: absolute;
+    top: calc(100% + 0.65rem);
+    right: 0;
+    z-index: 20;
+    width: min(23rem, calc(100vw - 1.25rem));
+    padding: 1rem;
+    color: #143b3a;
+    background: #ffffff;
+    border: 1px solid #d7e4e1;
+    border-radius: 1rem;
+    box-shadow: 0 1.4rem 3rem rgba(0, 0, 0, 0.22);
+  }
+
+  .lbfl-premium-header__search-panel label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+
+  .lbfl-premium-header__search-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.45rem;
+  }
+
+  .lbfl-premium-header__search-row input,
+  .lbfl-premium-header__search-row button {
+    min-height: 44px;
+    border-radius: 0.7rem;
+  }
+
+  .lbfl-premium-header__search-row input {
+    min-width: 0;
+    padding-inline: 0.75rem;
+    border: 1px solid #b8ccc8;
+  }
+
+  .lbfl-premium-header__search-row button {
+    padding-inline: 0.9rem;
+    color: #ffffff;
+    background: #0d665d;
+    border: 0;
+    font-weight: 800;
+  }
+
+  .lbfl-premium-header__menu {
+    display: none;
+  }
+
+  .lbfl-premium-header__menu-icon {
+    width: 1rem;
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .lbfl-premium-header__menu-icon span {
+    height: 2px;
+    display: block;
+    background: currentColor;
+    border-radius: 999px;
+  }
+
+  /* Keep author display rules from overriding the native closed details state. */
+  .lbfl-premium-header__menu-panel {
+    display: none;
+    gap: 0.25rem;
+  }
+
+  .lbfl-premium-header__menu[open] .lbfl-premium-header__menu-panel {
+    display: grid;
+  }
+
+  .lbfl-premium-header__menu-panel a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0.65rem 0.75rem;
+    color: #143b3a;
+    border-radius: 0.65rem;
+    text-decoration: none;
+    font-weight: 750;
+  }
+
+  .lbfl-premium-header__menu-panel a:hover,
+  .lbfl-premium-header__menu-panel a:focus-visible {
+    background: #eaf4f2;
+  }
+
+  .lbfl-premium-hero {
+    position: relative;
+    min-height: auto;
+    padding: 0;
+    color: #ffffff;
+    background: #071525;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .lbfl-premium-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 14% 25%, rgba(66, 199, 232, 0.18), transparent 28rem),
+      linear-gradient(180deg, rgba(7, 21, 37, 0.04), rgba(7, 21, 37, 0.32));
+  }
+
+  .lbfl-premium-hero__copy {
+    position: relative;
+    z-index: 3;
+    width: min(100% - 2rem, 76rem);
+    margin-inline: auto;
+    padding-block: clamp(3.25rem, 8vw, 6.5rem) 1.5rem;
+    color: #ffffff;
+  }
+
+  .lbfl-home-v2 .lbfl-premium-hero .lbfl-home-v2__eyebrow {
+    color: #8fe4d9;
+  }
+
+  .lbfl-home-v2 .lbfl-premium-hero h1,
+  .lbfl-home-v2 .lbfl-premium-hero h1 span {
+    color: #ffffff;
+    text-shadow: 0 0.18rem 1.4rem rgba(0, 0, 0, 0.22);
+  }
+
+  .lbfl-premium-hero__brand-line {
+    margin: 1rem 0 0;
+    color: #83e4d7;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 850;
+  }
+
+  .lbfl-home-v2 .lbfl-premium-hero .lbfl-home-v2__promise {
+    color: #d8ece9;
+  }
+
+  .lbfl-premium-hero__signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 1.4rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lbfl-premium-hero__signals li {
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.42rem 0.7rem;
+    color: #e9fffb;
+    background: rgba(7, 21, 37, 0.48);
+    border: 1px solid rgba(143, 228, 217, 0.32);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    backdrop-filter: blur(10px);
+  }
+
+  .lbfl-home-v2 .lbfl-premium-hero a.lbfl-home-v2__button--secondary {
+    color: #ffffff;
+    border-color: #8fe4d9;
+    background: rgba(7, 21, 37, 0.3);
+  }
+
+  .lbfl-premium-hero__diagnostic-note {
+    max-width: 48rem;
+    margin: 0.75rem 0 0;
+    color: #b9d3d0;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .lbfl-premium-cell {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .lbfl-premium-cell__canvas {
+    position: relative;
+    width: 100%;
+    min-height: clamp(19rem, 72vw, 30rem);
+    background: #071525;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .lbfl-premium-cell__canvas::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(7, 21, 37, 0.36) 0%,
+        rgba(7, 21, 37, 0.02) 34%,
+        rgba(7, 21, 37, 0.08) 74%,
+        rgba(7, 21, 37, 0.44) 100%
+      );
+  }
+
+  .lbfl-premium-cell__media,
+  .lbfl-premium-cell__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .lbfl-premium-cell__image {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: 72% center;
+  }
+
+  .lbfl-premium-cell__caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .lbfl-premium-hero {
+      min-height: min(48rem, calc(100svh - 74px));
+    }
+
+    .lbfl-premium-hero__copy {
+      padding-block: clamp(4rem, 9vw, 7rem);
+      padding-right: min(52%, 40rem);
+    }
+
+    .lbfl-premium-cell {
+      position: absolute;
+      inset: 0;
+    }
+
+    .lbfl-premium-cell__canvas {
+      height: 100%;
+      min-height: 0;
+    }
+
+    .lbfl-premium-cell__canvas::after {
+      background:
+        linear-gradient(
+          90deg,
+          #071525 0%,
+          rgba(7, 21, 37, 0.97) 24%,
+          rgba(7, 21, 37, 0.78) 43%,
+          rgba(7, 21, 37, 0.22) 65%,
+          rgba(7, 21, 37, 0.02) 82%
+        );
+    }
+
+    .lbfl-premium-cell__image {
+      object-position: center;
+    }
   }
 
   .lbfl-home-v2-active .lbfl-home-v2 a.lbfl-home-v2__button--primary:link,
@@ -122,23 +449,77 @@
     -webkit-text-fill-color: #ffffff;
   }
 
-  .lbfl-home-v2-active .lbfl-home-v2__featured a.lbfl-home-v2__button--secondary:link,
-  .lbfl-home-v2-active .lbfl-home-v2__featured a.lbfl-home-v2__button--secondary:visited,
-  .lbfl-home-v2-active .lbfl-home-v2__featured a.lbfl-home-v2__button--secondary:hover,
-  .lbfl-home-v2-active .lbfl-home-v2__featured a.lbfl-home-v2__button--secondary:focus-visible,
-  .lbfl-home-v2-active .lbfl-home-v2__featured a.lbfl-home-v2__button--secondary:active {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff;
-  }
-
   @media (max-width: 859px) {
-    .lbfl-home-v2-active .lbfl-desktop-links {
+    .lbfl-premium-header__desktop-nav {
       display: none;
     }
 
-    .lbfl-home-v2-active .lbfl-mobile-menu {
-      display: inline-flex;
-      margin-left: auto;
+    .lbfl-premium-header__menu {
+      display: block;
+    }
+
+    .lbfl-premium-header__control-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .lbfl-premium-header__inner {
+      width: min(100% - 0.75rem, 1280px);
+      gap: 0.35rem;
+    }
+
+    .lbfl-premium-header__brand-copy small {
+      display: none;
+    }
+
+    .lbfl-premium-header .lbfl-language-switcher__link {
+      padding-inline: 0.35rem;
+      font-size: 0.78rem;
+    }
+
+    .lbfl-premium-header__search > summary,
+    .lbfl-premium-header__menu > summary {
+      padding-inline: 0.55rem;
+    }
+
+    .lbfl-premium-hero {
+      min-height: auto;
+      padding-top: 3rem;
+    }
+
+    .lbfl-premium-hero__signals {
+      gap: 0.4rem;
+    }
+
+    .lbfl-premium-hero__copy {
+      width: min(100% - 1.25rem, 76rem);
+    }
+
+    .lbfl-premium-cell__canvas {
+      min-height: 19rem;
+    }
+
+    .lbfl-premium-cell__image {
+      object-position: 72% center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lbfl-premium-header,
+    .lbfl-premium-cell__canvas,
+    .lbfl-home-v2 a {
+      scroll-behavior: auto !important;
+      transition: none !important;
+      animation: none !important;
     }
   }
 </style>

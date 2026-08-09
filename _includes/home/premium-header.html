@@ -1,0 +1,91 @@
+<header class="lbfl-premium-header" role="banner">
+  <div class="lbfl-premium-header__inner">
+    <a
+      class="lbfl-premium-header__brand"
+      href="{{ '/' | relative_url }}"
+      aria-label="Learning Biology For Life home"
+    >
+      {% if site.logo %}
+        <img
+          class="lbfl-premium-header__logo"
+          src="{{ site.logo | relative_url }}"
+          alt=""
+          width="44"
+          height="44"
+        >
+      {% endif %}
+      <span class="lbfl-premium-header__brand-copy">
+        <strong>LBFL</strong>
+        <small>Biology for Life</small>
+      </span>
+    </a>
+
+    <nav
+      class="lbfl-premium-header__desktop-nav"
+      aria-label="Primary learning navigation"
+    >
+      <a href="{{ '/biology/hsc-corner/' | relative_url }}">HSC Biology</a>
+      <a href="{{ '/biology/higher-zoology-tree/' | relative_url }}">Higher Zoology</a>
+      <a href="{{ '/mcq-arena/' | relative_url }}">MCQ Arena</a>
+      <a href="{{ '/socratic/' | relative_url }}">Socratic 4.0</a>
+    </nav>
+
+    <div class="lbfl-premium-header__actions">
+      {% include navigation/language-switcher.html %}
+
+      <details class="lbfl-premium-header__search">
+        <summary aria-label="Open site search">
+          <span aria-hidden="true">⌕</span>
+          <span class="lbfl-premium-header__control-label">Search</span>
+        </summary>
+        <div class="lbfl-premium-header__search-panel">
+          <form
+            action="https://www.google.com/search"
+            method="get"
+            role="search"
+          >
+            <input
+              type="hidden"
+              name="as_sitesearch"
+              value="learningbiologyforlife.org"
+            >
+            <label for="lbfl-premium-search-input">Search LBFL</label>
+            <div class="lbfl-premium-header__search-row">
+              <input
+                id="lbfl-premium-search-input"
+                name="q"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                placeholder="Biology topic or lesson"
+                required
+              >
+              <button type="submit">Search</button>
+            </div>
+          </form>
+        </div>
+      </details>
+
+      <details class="lbfl-premium-header__menu">
+        <summary aria-label="Open navigation menu">
+          <span class="lbfl-premium-header__menu-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span class="lbfl-premium-header__control-label">Menu</span>
+        </summary>
+        <nav
+          class="lbfl-premium-header__menu-panel"
+          aria-label="Mobile learning navigation"
+        >
+          <a href="{{ '/biology/hsc-corner/' | relative_url }}">HSC Biology</a>
+          <a href="{{ '/biology/higher-zoology-tree/' | relative_url }}">Higher Zoology</a>
+          <a href="{{ '/mcq-arena/' | relative_url }}">MCQ Arena</a>
+          <a href="{{ '/socratic/' | relative_url }}">Socratic 4.0</a>
+          <a href="{{ '/about/' | relative_url }}">About LBFL</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
