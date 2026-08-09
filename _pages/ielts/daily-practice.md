@@ -23,7 +23,7 @@ author_profile: false
       <h2 id="today-skill-heading" data-practice-skill>Loading…</h2>
       <p data-practice-focus>Preparing today’s focus.</p>
     </div>
-    <div class="ielts-practice__timer" aria-live="polite" aria-atomic="true">
+    <div class="ielts-practice__timer" role="timer" aria-label="Time remaining">
       <span class="ielts-practice__label">Time remaining</span>
       <strong data-practice-timer>20:00</strong>
     </div>
