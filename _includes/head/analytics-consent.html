@@ -1,0 +1,158 @@
+{% comment %}
+  LBFL first-party analytics-choice runtime.
+
+  This UI controls optional analytics only. It never grants advertising
+  consent and never loads AdSense. Advertising consent, if AdSense is later
+  activated, belongs to the configured Google-certified CMP.
+{% endcomment %}
+<script>
+  (function () {
+    "use strict";
+
+    if (window.__lbflAnalyticsConsentBound) return;
+    window.__lbflAnalyticsConsentBound = true;
+
+    var CONSENT_KEY = "cookie-consent";
+
+    function onReady(callback) {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", callback, { once: true });
+      } else {
+        callback();
+      }
+    }
+
+    function getCookieConsent() {
+      var match = document.cookie.match(new RegExp("(?:^|; )" + CONSENT_KEY + "=([^;]*)"));
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+
+    function getConsent() {
+      try {
+        return window.localStorage
+          ? localStorage.getItem(CONSENT_KEY) || getCookieConsent()
+          : getCookieConsent();
+      } catch (error) {
+        return getCookieConsent();
+      }
+    }
+
+    function setConsent(value) {
+      try {
+        if (window.localStorage) localStorage.setItem(CONSENT_KEY, value);
+      } catch (error) {
+        // Keep the choice UI functional when storage access is blocked.
+      }
+
+      document.cookie = CONSENT_KEY + "=" + encodeURIComponent(value) +
+        "; Max-Age=31536000; Path=/; SameSite=Lax; Secure";
+    }
+
+    function getBanners() {
+      return Array.prototype.slice.call(
+        document.querySelectorAll("#gdpr-banner, [data-cookie-banner]")
+      );
+    }
+
+    function hideBanner() {
+      getBanners().forEach(function (banner) {
+        banner.classList.remove("is-visible");
+        banner.setAttribute("hidden", "hidden");
+        banner.style.setProperty("display", "none", "important");
+      });
+    }
+
+    function showBanner() {
+      if (getConsent()) return;
+
+      var banners = getBanners();
+      if (!banners.length) return;
+
+      hideBanner();
+      var banner = banners[banners.length - 1];
+      banner.removeAttribute("hidden");
+      banner.style.removeProperty("display");
+      banner.classList.add("is-visible");
+    }
+
+    function pushAnalyticsConsent(state) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "lbfl_consent_update",
+        consent_scope: "analytics",
+        consent_state: state
+      });
+
+      if (typeof window.gtag === "function") {
+        window.gtag("consent", "update", {
+          analytics_storage: state === "granted" ? "granted" : "denied"
+        });
+      }
+    }
+
+    function applyConsent(state) {
+      if (state !== "granted" && state !== "denied") return;
+      setConsent(state);
+      pushAnalyticsConsent(state);
+      hideBanner();
+    }
+
+    function resolveConsentState(button) {
+      var value = (
+        button.getAttribute("data-gdpr-consent") ||
+        button.getAttribute("data-cookie-consent-action") ||
+        ""
+      ).toLowerCase();
+
+      if (value === "granted" || value === "accept" || value === "accepted") return "granted";
+      if (value === "denied" || value === "decline" || value === "declined") return "denied";
+      if (button.classList.contains("gdpr-accept")) return "granted";
+      if (button.classList.contains("gdpr-decline")) return "denied";
+      return null;
+    }
+
+    function handleConsentEvent(event) {
+      var target = event.target;
+      if (!target || !target.closest) return;
+
+      var button = target.closest(
+        "[data-gdpr-consent], [data-cookie-consent-action], .gdpr-accept, .gdpr-decline"
+      );
+      if (!button) return;
+
+      var state = resolveConsentState(button);
+      if (!state) return;
+
+      event.preventDefault();
+      if (typeof event.stopImmediatePropagation === "function") {
+        event.stopImmediatePropagation();
+      } else {
+        event.stopPropagation();
+      }
+      applyConsent(state);
+    }
+
+    window.gdprAccept = function () { applyConsent("granted"); };
+    window.gdprDecline = function () { applyConsent("denied"); };
+
+    document.addEventListener("click", handleConsentEvent, true);
+    try {
+      document.addEventListener("touchend", handleConsentEvent, {
+        capture: true,
+        passive: false
+      });
+    } catch (error) {
+      document.addEventListener("touchend", handleConsentEvent, true);
+    }
+
+    onReady(function () {
+      var consent = getConsent();
+      if (consent === "granted" || consent === "denied") {
+        pushAnalyticsConsent(consent);
+        hideBanner();
+        return;
+      }
+      window.setTimeout(showBanner, 600);
+    });
+  })();
+</script>

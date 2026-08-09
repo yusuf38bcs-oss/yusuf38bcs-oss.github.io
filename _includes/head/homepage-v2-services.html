@@ -3,7 +3,7 @@
 
   Responsibilities:
   - Establish dataLayer/gtag and denied Consent Mode defaults synchronously.
-  - Load GTM once after window load and an idle opportunity.
+  - Load GTM only after the live-mode and certified-CMP gates are both true.
   - Load Google Translate only after the learner opens the translate control.
 
   Deliberately excluded:
@@ -19,8 +19,6 @@
   (function () {
     "use strict";
 
-    var GTM_ID = "GTM-WPZ6MPK4";
-    var GTM_SELECTOR = 'script[src*="googletagmanager.com/gtm.js"]';
     var TRANSLATE_SELECTOR = 'script[src*="translate.google.com/translate_a/element.js"]';
     var TRANSLATE_SRC = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
 
@@ -38,6 +36,10 @@
       security_storage: "granted",
       wait_for_update: 500
     });
+
+{% if lbfl_gtm_allowed %}
+    var GTM_ID = "GTM-WPZ6MPK4";
+    var GTM_SELECTOR = 'script[src*="googletagmanager.com/gtm.js"]';
 
     function startGtm() {
       var existing = document.querySelector(GTM_SELECTOR);
@@ -88,6 +90,7 @@
         window.addEventListener("load", afterLoad, { once: true });
       }
     }
+{% endif %}
 
     var translateState = "idle";
 
@@ -225,7 +228,9 @@
       });
     }
 
+{% if lbfl_gtm_allowed %}
     scheduleGtm();
+{% endif %}
 
     if (document.readyState === "loading") {
       document.addEventListener(

@@ -1,0 +1,5 @@
+# Review mode publishes Google site-verification metadata but never ads.
+# Live mode remains fail-closed until a certified CMP is ready and an
+# individual page is explicitly marked ads_eligible: true.
+mode: review
+certified_cmp_ready: false
