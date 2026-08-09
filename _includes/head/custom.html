@@ -70,16 +70,20 @@
 </script>
 
 <!-- Google Tag Manager -->
+{% if lbfl_gtm_allowed %}
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WPZ6MPK4');</script>
+{% endif %}
 <!-- End Google Tag Manager -->
 
 {% comment %}
-  AdSense is governed only by head/adsense.html. The LBFL banner controls
-  optional analytics and must never become an advertising-consent loader.
+  AdSense is governed only by head/adsense.html. Review mode also suppresses
+  GTM because the current container includes a Google Ads tag. The LBFL banner
+  controls optional analytics and must never become an advertising-consent
+  loader.
 {% endcomment %}
 
 <!-- OMEGA-compatible temporary translation bridge: English/Bangla only -->
