@@ -1,0 +1,59 @@
+name: LBFL Candidate Preflight
+
+on:
+  pull_request:
+    branches: ["staging"]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lbfl-candidate-preflight-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  candidate_build:
+    name: Candidate Jekyll build (non-certifying)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out the immutable PR head without credentials
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify the QA report generator CLI contract
+        shell: bash
+        run: python3 .github/scripts/test-generate-qa-report.py
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build Jekyll in production mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          JEKYLL_ENV=production bundle exec jekyll clean
+          JEKYLL_ENV=production bundle exec jekyll build --trace
+          test -f _site/index.html
+          mkdir -p candidate-preflight
+          tar -czf candidate-preflight/jekyll-site.tar.gz _site
+          printf 'tested_sha=%s\njekyll_build=PASS\n' "${{ github.event.pull_request.head.sha }}" > candidate-preflight/status.env
+
+      - name: Publish non-certifying build evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lbfl-candidate-preflight-${{ github.event.pull_request.head.sha }}
+          path: candidate-preflight
+          if-no-files-found: warn
+          retention-days: 30
