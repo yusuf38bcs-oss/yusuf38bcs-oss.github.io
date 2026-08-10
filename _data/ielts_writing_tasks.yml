@@ -1,0 +1,113 @@
+- id: task-1-public-transport
+  type: task1
+  label: "Academic Task 1"
+  title: "Public transport use in three cities"
+  prompt: >-
+    The table below shows the percentage of commuters who used public transport
+    in three cities in 2000, 2010 and 2020. Summarise the information by
+    selecting and reporting the main features, and make comparisons where
+    relevant.
+
+    City North: 2000 — 34%; 2010 — 42%; 2020 — 55%.
+    City Central: 2000 — 48%; 2010 — 51%; 2020 — 53%.
+    City South: 2000 — 22%; 2010 — 37%; 2020 — 49%.
+  threshold: 150
+  planning_prompts:
+    - "What is the overall trend across the three cities?"
+    - "Which city started and ended at the highest level?"
+    - "Which two figures or changes are most useful for comparison?"
+  structure:
+    - "Introduction: paraphrase the task without copying the prompt."
+    - "Overview: state two clear overall features; avoid exact figures here."
+    - "Body paragraph 1: compare the strongest starting and ending patterns."
+    - "Body paragraph 2: report the remaining figures in grouped comparisons."
+  checklist:
+    - "The response is at least 150 words and describes the data objectively."
+    - "An overview identifies the largest trends or contrasts."
+    - "Figures are grouped logically rather than listed year by year."
+    - "Comparisons use accurate units, dates and grammatical structures."
+    - "No personal opinion, invented cause or unsupported explanation is added."
+
+- id: task-1-study-hours
+  type: task1
+  label: "Academic Task 1"
+  title: "Average weekly study hours"
+  prompt: >-
+    The chart below shows the average number of hours that students in four
+    departments spent studying independently each week in 2015 and 2025.
+    Summarise the information by selecting and reporting the main features,
+    and make comparisons where relevant.
+
+    Biology: 2015 — 8 hours; 2025 — 13 hours.
+    Economics: 2015 — 10 hours; 2025 — 12 hours.
+    History: 2015 — 7 hours; 2025 — 9 hours.
+    Engineering: 2015 — 12 hours; 2025 — 15 hours.
+  threshold: 150
+  planning_prompts:
+    - "What changed in every department?"
+    - "Which department had the highest figure in both years?"
+    - "Which department experienced the largest increase?"
+  structure:
+    - "Introduction: identify what is measured, for whom and in which years."
+    - "Overview: summarise the common movement and the highest/lowest positions."
+    - "Body paragraph 1: compare the departments with the largest figures."
+    - "Body paragraph 2: compare the remaining departments and changes."
+  checklist:
+    - "The response selects the main features instead of describing every number equally."
+    - "The overview is specific and does not include detailed statistics."
+    - "Past and present figures use consistent tense and units."
+    - "The largest increase and the highest department are accurately identified."
+    - "The response remains descriptive rather than argumentative."
+
+- id: task-2-practical-skills
+  type: task2
+  label: "Academic Task 2"
+  title: "Academic knowledge and practical skills"
+  prompt: >-
+    Some people think universities should focus mainly on academic knowledge,
+    while others believe practical skills are equally important. Discuss both
+    views and give your own opinion.
+  threshold: 250
+  planning_prompts:
+    - "What is the strongest reason for prioritising academic knowledge?"
+    - "What is the strongest reason for teaching practical skills?"
+    - "What position will you take, and how will you qualify it?"
+    - "What specific example can support each main idea?"
+  structure:
+    - "Introduction: paraphrase the debate and state a precise position."
+    - "Body paragraph 1: explain one view with a reason and specific example."
+    - "Body paragraph 2: explain the other view and connect it to your position."
+    - "Conclusion: synthesise the argument; do not introduce a new idea."
+  checklist:
+    - "The response answers every part of the question and gives a clear opinion."
+    - "Each body paragraph has one controlling idea developed with explanation."
+    - "Examples are specific and directly connected to the argument."
+    - "Ideas progress logically with accurate referencing and linking."
+    - "Vocabulary is precise, and complex sentences remain controlled."
+
+- id: task-2-digital-learning
+  type: task2
+  label: "Academic Task 2"
+  title: "Digital learning and classroom teaching"
+  prompt: >-
+    Online learning is becoming increasingly common. Some people believe it
+    will eventually replace most classroom teaching, while others think that
+    face-to-face education will always be necessary. Discuss both views and
+    give your own opinion.
+  threshold: 250
+  planning_prompts:
+    - "What can online learning provide more efficiently?"
+    - "What does a physical classroom make possible?"
+    - "Will your opinion be absolute or balanced? Why?"
+    - "Which example from education can make your argument concrete?"
+  structure:
+    - "Introduction: frame the change, contrast both views and state your position."
+    - "Body paragraph 1: explain the strongest case for online learning."
+    - "Body paragraph 2: explain the continuing value of face-to-face teaching."
+    - "Conclusion: restate the balanced judgement in fresh language."
+  checklist:
+    - "Both views are addressed fairly before the final judgement."
+    - "The position is clear throughout, not only in the conclusion."
+    - "Paragraphs contain explanation, consequence or example—not a list of claims."
+    - "Cohesive devices clarify relationships without being overused."
+    - "Grammar and word choice support precision and natural academic tone."
