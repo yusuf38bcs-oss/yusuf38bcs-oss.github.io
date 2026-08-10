@@ -1,4 +1,7 @@
 ---
+robots: "noindex, follow"
+educational_boundary: true
+ads_eligible: false
 layout: single
 author_profile: true
 author: "MD. Yusuf"

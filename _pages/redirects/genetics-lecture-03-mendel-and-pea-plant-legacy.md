@@ -1,8 +1,9 @@
 ---
+ads_eligible: false
 layout: null
 permalink: /biology/higher-zoology-tree/genetics/lecture-03-mendel-and-pea-plant/
 sitemap: false
-robots: noindex
+robots: "noindex, follow"
 title: "Redirecting to Mendel and Pea Plant"
 ---
 <!doctype html>

@@ -68,18 +68,6 @@ categories:
             margin-top: 40px;
         }
 
-        .adsense-placeholder {
-            background: #eee;
-            width: 100%;
-            height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-            border: 1px dashed #ccc;
-            color: #888;
-            font-style: italic;
-        }
 
         .highlight-box {
             background: linear-gradient(135deg, #e0f7fa 0%, #e8eaf6 100%);
@@ -140,7 +128,6 @@ categories:
         <p>A deep dive into the physiological transitions of the circulatory system.</p>
     </header>
 
-    <div class="adsense-placeholder">AdSense Responsive Unit (Top)</div>
 
     <p>In the study of <strong>Zoology</strong>, few concepts are as fascinating as the transition of life from water to land. This migration necessitated a complete overhaul of the circulatory system. As metabolic demands increased, the vertebrate heart evolved from a simple linear pump to a complex, multi-chambered organ.</p>
 
@@ -159,7 +146,6 @@ categories:
     <p>As vertebrates moved to land, lungs replaced gills. This introduced <strong>Double Circulation</strong>. Amphibians and most reptiles have two atria and one ventricle.</p>
     <p>While this is more efficient, a partial mixing of blood occurs in the single ventricle. However, in Crocodilians, we see the first glimpse of a nearly complete ventricular septum.</p>
 
-    <div class="adsense-placeholder">AdSense In-Article Unit</div>
 
     <h2>Comparison Table: Heart Structures</h2>
     <table>

@@ -1,4 +1,5 @@
 ---
+ads_eligible: false
 layout: single
 author_profile: true
 author: MD. Yusuf

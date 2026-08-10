@@ -1,18 +1,26 @@
 ---
-layout: single
-title: "Genetics Course Note"
+layout: null
+title: "Redirecting to the Genetics Gateway"
 permalink: /biology/higher-zoology-tree/genetics/test-safe-file/
-robots: noindex
-visibility: system
-index_in_matrix: false
-searchable: false
-learning_node: false
+sitemap: false
+robots: "noindex, follow"
+ads_eligible: false
 ---
-
-<meta name="robots" content="noindex, follow">
-
-# Genetics Course Note
-
-This temporary compatibility page points learners to the Genetics gateway.
-
-[Go to Genetics Gateway]({{ '/biology/higher-zoology-tree/genetics/' | relative_url }})
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="This temporary compatibility route now directs learners to the active Genetics gateway.">
+  <link rel="canonical" href="{{ '/biology/higher-zoology-tree/genetics/' | absolute_url }}">
+  <meta http-equiv="refresh" content="0; url={{ '/biology/higher-zoology-tree/genetics/' | relative_url }}">
+  <title>Redirecting to the Genetics Gateway | Learning Biology For Life</title>
+</head>
+<body>
+  <main>
+    <h1>Redirecting to the Genetics Gateway</h1>
+    <p>This temporary compatibility route now directs learners to the active Genetics gateway.</p>
+    <p><a href="{{ '/biology/higher-zoology-tree/genetics/' | relative_url }}">Continue to Genetics Gateway</a>.</p>
+  </main>
+</body>
+</html>
