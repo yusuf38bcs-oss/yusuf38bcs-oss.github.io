@@ -361,3 +361,314 @@
     transform: none;
   }
 }
+
+/* Phase 2B — local-first Writing Lab */
+.ielts-writing-page .page__title {
+  display: none;
+}
+
+.ielts-writing {
+  max-width: 980px;
+  margin: 0 auto;
+  color: var(--ielts-ink);
+}
+
+.ielts-writing__header {
+  padding: clamp(1.8rem, 5vw, 3.5rem);
+  border-radius: 1.5rem;
+  color: #fff;
+  background:
+    radial-gradient(circle at 88% 6%, rgba(215, 166, 43, 0.2), transparent 28%),
+    linear-gradient(135deg, var(--ielts-navy), var(--ielts-indigo));
+}
+
+.ielts-writing__header h1 {
+  max-width: 760px;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 6vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.ielts-writing__header p:last-child {
+  max-width: 700px;
+  margin-bottom: 0;
+  color: #e2e8f0;
+}
+
+.ielts-writing__eyebrow,
+.ielts-writing__label {
+  margin: 0 0 0.45rem;
+  color: #087f74;
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ielts-writing__header .ielts-writing__eyebrow {
+  color: #a9fff5;
+}
+
+.ielts-writing__panel {
+  margin-top: 1.25rem;
+  padding: clamp(1.15rem, 3vw, 1.8rem);
+  border: 1px solid var(--ielts-border);
+  border-radius: 1.15rem;
+  background: var(--ielts-card);
+}
+
+.ielts-writing__panel h2,
+.ielts-writing__panel h3 {
+  margin-top: 0;
+}
+
+.ielts-writing__setup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.ielts-writing__field-label {
+  display: block;
+  margin: 1rem 0 0.45rem;
+  color: var(--ielts-ink);
+  font-weight: 700;
+}
+
+.ielts-writing select,
+.ielts-writing textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--ielts-border);
+  border-radius: 0.8rem;
+  color: var(--ielts-ink);
+  background: #fff;
+  font: inherit;
+}
+
+.ielts-writing textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.ielts-writing select:focus-visible,
+.ielts-writing textarea:focus-visible,
+.ielts-writing button:focus-visible,
+.ielts-writing input:focus-visible {
+  outline: 3px solid var(--ielts-gold);
+  outline-offset: 3px;
+}
+
+.ielts-writing__privacy,
+.ielts-writing__notice {
+  margin: 1rem 0 0;
+  padding: 0.9rem 1rem;
+  border-left: 4px solid var(--ielts-teal);
+  border-radius: 0.6rem;
+  color: var(--ielts-muted);
+  background: rgba(21, 184, 166, 0.08);
+}
+
+.ielts-writing__prompt {
+  border-color: rgba(21, 184, 166, 0.38);
+  background: linear-gradient(145deg, #fff, #f1fbfa);
+}
+
+.ielts-writing__prompt-text {
+  white-space: pre-line;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.ielts-writing__threshold,
+.ielts-writing__help,
+.ielts-writing__save-status,
+.ielts-writing__review-summary {
+  color: var(--ielts-muted);
+  font-size: 0.9rem;
+}
+
+.ielts-writing__panel-heading,
+.ielts-writing__timer-panel,
+.ielts-writing__actions-panel {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ielts-writing__word-count {
+  min-width: 11rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.8rem;
+  color: #fff;
+  background: var(--ielts-navy);
+  text-align: right;
+}
+
+.ielts-writing__word-count strong,
+.ielts-writing__word-count span {
+  display: block;
+}
+
+.ielts-writing__word-count strong {
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.ielts-writing__word-count span {
+  margin-top: 0.25rem;
+  color: #c8d6e4;
+  font-size: 0.75rem;
+}
+
+.ielts-writing__word-count span.is-ready {
+  color: #a9fff5;
+}
+
+.ielts-writing__word-count span.is-over {
+  color: #ffd88a;
+}
+
+.ielts-writing__timer-panel {
+  align-items: center;
+  background: linear-gradient(145deg, #f8fbff, #eef8f7);
+}
+
+.ielts-writing__timer-box {
+  min-width: 10rem;
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  color: #fff;
+  background: var(--ielts-navy);
+  text-align: center;
+}
+
+.ielts-writing__timer-box .ielts-writing__label {
+  color: #a9fff5;
+}
+
+.ielts-writing__timer-box strong {
+  display: block;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.ielts-writing__timer-copy {
+  flex: 1;
+}
+
+.ielts-writing__timer-copy h2 {
+  margin-bottom: 0.35rem;
+}
+
+.ielts-writing__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.8rem;
+}
+
+.ielts-writing__controls .btn {
+  margin: 0;
+  border-radius: 0.7rem;
+}
+
+.ielts-writing__checklist,
+.ielts-writing__model ul,
+.ielts-writing__model ol {
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+.ielts-writing__checklist {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.ielts-writing__checklist li {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--ielts-border);
+  border-radius: 0.65rem;
+  background: var(--ielts-paper);
+  list-style: none;
+}
+
+.ielts-writing__checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: var(--ielts-ink);
+  cursor: pointer;
+}
+
+.ielts-writing__checklist input {
+  flex: 0 0 auto;
+  margin-top: 0.25rem;
+  accent-color: var(--ielts-teal);
+}
+
+.ielts-writing__model {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background: #f4f8fb;
+}
+
+.ielts-writing [hidden] {
+  display: none !important;
+}
+
+.ielts-writing__notice {
+  margin-top: 1.25rem;
+  border-left-color: var(--ielts-gold);
+  color: var(--ielts-ink);
+  background: #fffaf0;
+}
+
+@media (max-width: 680px) {
+  .ielts-writing__setup-grid,
+  .ielts-writing__model {
+    grid-template-columns: 1fr;
+  }
+
+  .ielts-writing__panel-heading,
+  .ielts-writing__timer-panel,
+  .ielts-writing__actions-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .ielts-writing__word-count,
+  .ielts-writing__timer-box {
+    width: 100%;
+    text-align: left;
+  }
+
+  .ielts-writing__word-count strong,
+  .ielts-writing__word-count span {
+    display: inline;
+  }
+
+  .ielts-writing__word-count span {
+    margin-left: 0.5rem;
+  }
+
+  .ielts-writing__controls .btn {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ielts-writing * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
