@@ -433,6 +433,7 @@
 .ielts-writing__field-label {
   display: block;
   margin: 1rem 0 0.45rem;
+  color: var(--ielts-ink);
   font-weight: 700;
 }
 
@@ -600,6 +601,7 @@
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
+  color: var(--ielts-ink);
   cursor: pointer;
 }
 
@@ -626,7 +628,8 @@
 .ielts-writing__notice {
   margin-top: 1.25rem;
   border-left-color: var(--ielts-gold);
-  background: rgba(215, 166, 43, 0.09);
+  color: var(--ielts-ink);
+  background: #fffaf0;
 }
 
 @media (max-width: 680px) {

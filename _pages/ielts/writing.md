@@ -102,7 +102,7 @@ excerpt: "A local-first IELTS Academic Writing Lab for planning, timed writing a
         <p class="ielts-writing__label">4 · Compare and rewrite</p>
         <h2 id="writing-model-title">Structure and checklist</h2>
       </div>
-      <button class="btn" type="button" data-writing-model-toggle aria-expanded="false" aria-controls="writingModel">Reveal structure and checklist</button>
+      <button id="writingModelToggle" class="btn" type="button" data-writing-model-toggle aria-expanded="false" aria-controls="writingModel">Reveal structure and checklist</button>
     </div>
     <div id="writingModel" class="ielts-writing__model" data-writing-model hidden tabindex="-1">
       <div>
