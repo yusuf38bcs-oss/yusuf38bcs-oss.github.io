@@ -1,0 +1,114 @@
+part1:
+  - id: part1-learning
+    topic: "Learning"
+    questions:
+      - "What subject do you most enjoy learning about?"
+      - "How has the way you study changed in recent years?"
+      - "Do you prefer learning independently or with other people?"
+      - "What makes a lesson memorable for you?"
+
+  - id: part1-hometown
+    topic: "Hometown"
+    questions:
+      - "What do you like most about the place where you live?"
+      - "Has your hometown changed much in recent years?"
+      - "What type of place would you recommend to a visitor?"
+      - "Would you like to continue living there in the future?"
+
+  - id: part1-technology
+    topic: "Technology"
+    questions:
+      - "What technology do you use most often in your daily life?"
+      - "Has technology changed the way you communicate?"
+      - "Is there any technology you find difficult to use?"
+      - "What technological skill would you like to develop?"
+
+  - id: part1-nature
+    topic: "Nature"
+    questions:
+      - "Do you spend much time outdoors?"
+      - "What natural places do people visit in your area?"
+      - "Did you enjoy learning about nature as a child?"
+      - "Why do some people prefer cities to natural environments?"
+
+part2:
+  - id: part2-teacher
+    topic: "A teacher who influenced your thinking"
+    cue: "Describe a teacher who influenced the way you think."
+    bullets:
+      - "who the person was"
+      - "when you learned from this person"
+      - "what the person did differently"
+      - "and explain how this person influenced your thinking"
+    follow_up:
+      - "What specific lesson from this person do you still use?"
+      - "How would you teach the same lesson to someone else?"
+
+  - id: part2-place
+    topic: "A place where you can think clearly"
+    cue: "Describe a place where you can think clearly."
+    bullets:
+      - "where the place is"
+      - "what it looks or feels like"
+      - "when you usually go there"
+      - "and explain why it helps you think clearly"
+    follow_up:
+      - "Would the place have the same effect on everyone?"
+      - "How does environment influence concentration?"
+
+  - id: part2-skill
+    topic: "A useful skill you learned"
+    cue: "Describe a useful skill you learned."
+    bullets:
+      - "what the skill is"
+      - "why you decided to learn it"
+      - "how you learned it"
+      - "and explain how it has been useful"
+    follow_up:
+      - "What was the most difficult stage of learning it?"
+      - "What would you do differently if you learned it again?"
+
+  - id: part2-problem
+    topic: "A problem you solved successfully"
+    cue: "Describe a problem you solved successfully."
+    bullets:
+      - "what the problem was"
+      - "why it was difficult"
+      - "what steps you took"
+      - "and explain what you learned from solving it"
+    follow_up:
+      - "Which step was most important?"
+      - "Would your solution work in another situation?"
+
+part3:
+  - id: part3-education
+    topic: "Education and independent thinking"
+    questions:
+      - "Should schools spend more time teaching students how to think rather than what to remember?"
+      - "What prevents students from expressing independent opinions?"
+      - "How can teachers encourage disagreement without creating conflict?"
+      - "Will technology make independent thinking easier or more difficult in the future?"
+
+  - id: part3-technology
+    topic: "Technology and society"
+    questions:
+      - "Why do societies adopt some technologies faster than others?"
+      - "What skills may become more important as automation increases?"
+      - "Should governments regulate technologies that strongly influence behaviour?"
+      - "How can people benefit from technology without becoming overly dependent on it?"
+
+  - id: part3-environment
+    topic: "Environment and responsibility"
+    questions:
+      - "Who should carry the greatest responsibility for environmental protection?"
+      - "Why do people sometimes ignore environmental problems they understand?"
+      - "Can individual behaviour significantly influence large environmental problems?"
+      - "How might environmental priorities differ between richer and poorer countries?"
+
+  - id: part3-work
+    topic: "Work and professional skills"
+    questions:
+      - "Why are communication skills important in professional life?"
+      - "Should universities prepare students directly for particular careers?"
+      - "How might workplaces change as artificial intelligence becomes more common?"
+      - "Which human abilities are likely to remain difficult to automate?"
