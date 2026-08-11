@@ -2,6 +2,10 @@
 {% if page.url == '/' and site.data.homepage.render_enabled %}
   {% assign lbfl_home_v2_active = true %}
 {% endif %}
+{% assign lbfl_gtm_allowed = false %}
+{% if site.data.adsense.mode == 'live' and site.data.adsense.certified_cmp_ready == true %}
+  {% assign lbfl_gtm_allowed = true %}
+{% endif %}
 <!doctype html>
 {% assign html_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
 {% assign html_lang_base = html_lang | split: '-' | first | default: 'en' %}
@@ -19,12 +23,12 @@
   </head>
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}{% if lbfl_home_v2_active %} lbfl-home-v2-active{% endif %}">
-    {% unless lbfl_home_v2_active %}
+    {% if lbfl_gtm_allowed and lbfl_home_v2_active == false %}
       <!-- Google Tag Manager noscript fallback -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPZ6MPK4"
       height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
       <!-- End Google Tag Manager noscript fallback -->
-    {% endunless %}
+    {% endif %}
 
     {% include skip-links.html %}
     {% if lbfl_home_v2_active %}

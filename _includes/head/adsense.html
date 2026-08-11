@@ -1,0 +1,26 @@
+{% comment %}
+  Central AdSense boundary.
+
+  `review` mode emits only Google's supported account-verification meta tag.
+  Ad serving is fail-closed and requires all three live-mode conditions:
+  - site.data.adsense.mode == "live"
+  - site.data.adsense.certified_cmp_ready == true
+  - page.ads_eligible == true
+
+  LBFL's analytics-choice banner is deliberately not an advertising CMP.
+{% endcomment %}
+{% assign lbfl_adsense_client = site.adsense.client | default: '' | strip %}
+{% assign lbfl_adsense_mode = site.data.adsense.mode | default: 'review' | downcase | strip %}
+
+{% if lbfl_adsense_client != '' %}
+<meta name="google-adsense-account" content="{{ lbfl_adsense_client | escape }}">
+{% endif %}
+
+{% if lbfl_adsense_client != '' and lbfl_adsense_mode == 'live' and site.data.adsense.certified_cmp_ready == true and page.ads_eligible == true %}
+<script
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ lbfl_adsense_client | url_encode }}"
+  crossorigin="anonymous"
+  data-lbfl-adsense="eligible-live-page"
+></script>
+{% endif %}
