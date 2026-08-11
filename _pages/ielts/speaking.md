@@ -108,7 +108,7 @@ excerpt: "A local-first IELTS Speaking Simulator for structured preparation, tim
   </aside>
 </section>
 
-<!-- Phase 2C exact-head certification surface: behavior-harness-v2 -->
+<!-- Phase 2C exact-head certification surface: elapsed-timer-v3 -->
 <script>
   window.LBFL_IELTS_SPEAKING_PROMPTS = {{ site.data.ielts_speaking_prompts | jsonify }};
 </script>
