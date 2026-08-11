@@ -14,10 +14,20 @@
   "audited_question_count": 0,
   "zero_claims_allowed": false,
   "matrix_release_allowed": false,
-  "sources": [],
+  "sources": [
+    {
+      "source_id": "SATT-DU-A-2016-17",
+      "tier": "C1",
+      "kind": "community-reviewed-question-bank",
+      "url": "https://sattacademy.com/admission-mcq/sub_cat=3118&subject=all",
+      "status": "candidate",
+      "supports": "Candidate locator for Dhaka University A/Ka Unit 2016-17 questions. It is not yet admitted as a complete Biology paper and currently supports no audited question rows."
+    }
+  ],
   "questions": [],
   "research_notes": [
-    "No acceptable full 2016-17 DU Biology paper/source has been admitted to the audit ledger yet.",
+    "A Satt Academy community-reviewed DU A/Ka Unit 2016-17 question-bank page has been identified as a reconciliation candidate, but no Biology row has yet been admitted from it.",
+    "No acceptable complete 2016-17 DU Biology paper/source has yet been independently reconciled, so this file remains U.",
     "This file intentionally remains U rather than using inferred zeros or reconstructed counts.",
     "The DU written component is not asserted for this session until the historical paper format is source-verified."
   ]
