@@ -41,6 +41,11 @@ exclude:
   - Gemfile.lock
   - package.json
   - package-lock.json
+  - feed.atom
+  - feed_restore.py
+  - convert_atom.py
+  - neural_candidates.csv
+  - Repository-Guardian.ps1
 
 # -----------------------------------------------------------------------------
 # Jekyll Polyglot bilingual architecture scaffold
