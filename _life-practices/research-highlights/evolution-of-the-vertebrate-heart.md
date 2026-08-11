@@ -1,4 +1,5 @@
 ---
+# Exact-head AdSense certification marker; non-rendered
 layout: single
 author_profile: true
 sidebar:
