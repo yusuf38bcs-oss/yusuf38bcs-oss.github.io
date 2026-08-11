@@ -1,5 +1,6 @@
 ---
 # Exact-head AdSense certification marker; non-rendered
+# Exact-head Pages rebuild marker; non-rendered
 layout: single
 author_profile: true
 sidebar:
