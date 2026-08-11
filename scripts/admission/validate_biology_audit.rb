@@ -28,9 +28,14 @@ end
 
 def require_fields(record, fields, label, errors)
   fields.each do |field|
+    unless record.key?(field)
+      errors << "#{label}: missing required field #{field}"
+      next
+    end
+
     value = record[field]
-    missing = value.nil? || (value.respond_to?(:empty?) && value.empty?)
-    errors << "#{label}: missing required field #{field}" if missing
+    missing_value = value.nil? || (value.is_a?(String) && value.strip.empty?)
+    errors << "#{label}: missing required field #{field}" if missing_value
   end
 end
 
