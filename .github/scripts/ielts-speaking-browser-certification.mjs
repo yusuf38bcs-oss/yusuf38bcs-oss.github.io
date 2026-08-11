@@ -413,7 +413,7 @@ async function runSaveData(browser) {
       navigatorSaveData: Boolean(navigator.connection?.saveData),
       rootVisible: Boolean(document.querySelector("[data-ielts-speaking-simulator]")),
     }));
-    const documentRequest = probe.requests.find((request) => request.resourceType() === "document");
+    const documentRequest = probe.requests.find((request) => request.resourceType === "document");
 
     return {
       ...state,
