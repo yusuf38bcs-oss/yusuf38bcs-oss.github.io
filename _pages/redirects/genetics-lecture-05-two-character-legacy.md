@@ -1,8 +1,9 @@
 ---
+ads_eligible: false
 layout: null
 permalink: /biology/higher-zoology-tree/genetics/lecture-05-two-character/
 sitemap: false
-robots: noindex
+robots: "noindex, follow"
 title: "Redirecting to Dihybrid Cross"
 ---
 <!doctype html>

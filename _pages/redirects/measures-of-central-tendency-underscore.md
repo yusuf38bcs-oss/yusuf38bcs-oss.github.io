@@ -1,9 +1,10 @@
 ---
+ads_eligible: false
 layout: null
 title: "Redirecting to Measures of Central Tendency"
 permalink: /biology/higher-zoology-tree/biostatistics/measures_of_central_tendency/
 sitemap: false
-robots: noindex
+robots: "noindex, follow"
 ---
 <!doctype html>
 <html lang="en">

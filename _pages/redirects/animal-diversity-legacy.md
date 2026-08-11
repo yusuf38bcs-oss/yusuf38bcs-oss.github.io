@@ -1,8 +1,9 @@
 ---
+ads_eligible: false
 layout: null
 permalink: /biology/higher-zoology-tree/animal-diversity/
 sitemap: false
-robots: noindex
+robots: "noindex, follow"
 title: "Redirecting to Animal Diversity Matrix"
 ---
 <!doctype html>

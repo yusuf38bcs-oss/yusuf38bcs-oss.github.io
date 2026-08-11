@@ -1,8 +1,9 @@
 ---
+ads_eligible: false
 layout: null
 permalink: /biology/higher-zoology-tree/animal-diversity/complete-matrix-rewritten-lectures/
 sitemap: false
-robots: noindex
+robots: "noindex, follow"
 title: "Redirecting to Animal Diversity Complete Matrix"
 ---
 <!doctype html>

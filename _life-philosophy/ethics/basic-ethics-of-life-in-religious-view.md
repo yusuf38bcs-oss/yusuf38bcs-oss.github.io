@@ -1,4 +1,8 @@
 ---
+locale: bn_BD
+lang: bn
+educational_boundary: true
+ads_eligible: false
 layout: single
 author_profile: true
 sidebar:

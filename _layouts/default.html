@@ -12,6 +12,9 @@
 {% assign html_dir = page.dir | default: site.dir | default: 'ltr' %}
 <html lang="{{ html_lang_base }}" xml:lang="{{ html_lang_base }}" dir="{{ html_dir }}" class="no-js{% if lbfl_home_v2_active %} lbfl-home-v2-document{% endif %}">
   <head>
+    {% if page.robots %}
+      <meta name="robots" content="{{ page.robots | escape }}">
+    {% endif %}
     {% if lbfl_home_v2_active %}
       {% include head/homepage-v2-critical.html %}
       {% include head/homepage-v2-final-qa-fixes.html %}
