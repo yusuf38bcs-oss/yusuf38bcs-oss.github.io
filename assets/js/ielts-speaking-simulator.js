@@ -6,9 +6,12 @@
   const STORAGE_KEY = "lbfl-ielts-speaking-simulator:v1";
 
   const timings = {
-    part1: { label: "Response", seconds: 45 },
-    part2: { label: "Preparation", seconds: 60 },
-    part3: { label: "Response", seconds: 90 },
+    part1: [{ id: "response", label: "Response", seconds: 45 }],
+    part2: [
+      { id: "prepare", label: "Preparation", seconds: 60 },
+      { id: "speak", label: "Speaking", seconds: 120 },
+    ],
+    part3: [{ id: "response", label: "Response", seconds: 90 }],
   };
 
   const criteria = [
@@ -63,12 +66,22 @@
     part: "part1",
     promptId: "",
     attempt: 1,
-    remaining: timings.part1.seconds,
+    phaseIndex: 0,
+    remaining: timings.part1[0].seconds,
     checks: {},
     plan: "",
     notes: "",
     reflection: "",
   };
+
+  function phasesFor(part = state.part) {
+    return timings[part] || timings.part1;
+  }
+
+  function currentPhase() {
+    const phases = phasesFor();
+    return phases[state.phaseIndex] || phases[0];
+  }
 
   function safeRead() {
     try {
@@ -121,9 +134,9 @@
 
   function resetTimerState() {
     stopTimer();
-    const config = timings[state.part];
-    state.remaining = config.seconds;
-    els.timerPhase.textContent = config.label;
+    state.phaseIndex = 0;
+    state.remaining = phasesFor()[0].seconds;
+    els.timerPhase.textContent = currentPhase().label;
     els.timer.textContent = formatTime(state.remaining);
     els.timerStatus.textContent = "Timer ready.";
   }
@@ -198,6 +211,10 @@
     const item = currentPrompt();
     if (!state.promptId && item) state.promptId = item.id;
 
+    const phases = phasesFor();
+    if (!Number.isInteger(state.phaseIndex) || !phases[state.phaseIndex]) state.phaseIndex = 0;
+    if (!Number.isFinite(state.remaining) || state.remaining < 0) state.remaining = phases[state.phaseIndex].seconds;
+
     els.attempt.textContent = `Attempt ${state.attempt}`;
     els.plan.value = state.plan || "";
     els.notes.value = state.notes || "";
@@ -208,24 +225,27 @@
     renderReviewSummary();
 
     els.timer.textContent = formatTime(state.remaining);
-    els.timerPhase.textContent = timings[state.part].label;
+    els.timerPhase.textContent = currentPhase().label;
   }
 
-  function changePart() {
-    collectState();
-    stopTimer();
-
-    state = {
-      part: els.part.value,
+  function freshState(part) {
+    return {
+      part,
       promptId: "",
       attempt: 1,
-      remaining: timings[els.part.value].seconds,
+      phaseIndex: 0,
+      remaining: phasesFor(part)[0].seconds,
       checks: {},
       plan: "",
       notes: "",
       reflection: "",
     };
+  }
 
+  function changePart() {
+    collectState();
+    stopTimer();
+    state = freshState(els.part.value);
     const item = randomPrompt();
     if (item) state.promptId = item.id;
     render();
@@ -235,23 +255,22 @@
   function chooseNewPrompt() {
     collectState();
     stopTimer();
-
     const item = randomPrompt();
     if (!item) return;
 
     state.promptId = item.id;
     state.attempt = 1;
+    state.phaseIndex = 0;
+    state.remaining = phasesFor()[0].seconds;
     state.plan = "";
     state.notes = "";
     state.reflection = "";
     state.checks = {};
-    state.remaining = timings[state.part].seconds;
-
     render();
     safeWrite("New prompt selected.");
   }
 
-  function timerFinished() {
+  function finishTimerSequence() {
     stopTimer();
     state.remaining = 0;
     els.timer.textContent = "00:00";
@@ -261,6 +280,20 @@
     els.notes.focus();
   }
 
+  function advanceTimerPhase() {
+    const phases = phasesFor();
+    if (state.phaseIndex < phases.length - 1) {
+      state.phaseIndex += 1;
+      state.remaining = phases[state.phaseIndex].seconds;
+      els.timerPhase.textContent = currentPhase().label;
+      els.timer.textContent = formatTime(state.remaining);
+      els.timerStatus.textContent = `${currentPhase().label} phase started.`;
+      safeWrite();
+      return true;
+    }
+    return false;
+  }
+
   els.part.addEventListener("change", changePart);
   els.newPrompt.addEventListener("click", chooseNewPrompt);
 
@@ -268,12 +301,12 @@
     if (interval || state.remaining <= 0) return;
     els.start.disabled = true;
     els.pause.disabled = false;
-    els.timerStatus.textContent = "Timer running.";
+    els.timerStatus.textContent = `${currentPhase().label} timer running.`;
 
     interval = window.setInterval(() => {
       state.remaining -= 1;
       els.timer.textContent = formatTime(state.remaining);
-      if (state.remaining <= 0) timerFinished();
+      if (state.remaining <= 0 && !advanceTimerPhase()) finishTimerSequence();
     }, 1000);
   });
 
@@ -314,7 +347,8 @@
     collectState();
     stopTimer();
     state.attempt += 1;
-    state.remaining = timings[state.part].seconds;
+    state.phaseIndex = 0;
+    state.remaining = phasesFor()[0].seconds;
     state.checks = {};
     render();
     safeWrite(`Retry ${state.attempt} started for the same prompt.`);
@@ -332,17 +366,7 @@
       // Continue with in-memory reset.
     }
 
-    state = {
-      part: els.part.value,
-      promptId: "",
-      attempt: 1,
-      remaining: timings[els.part.value].seconds,
-      checks: {},
-      plan: "",
-      notes: "",
-      reflection: "",
-    };
-
+    state = freshState(els.part.value);
     const item = randomPrompt();
     if (item) state.promptId = item.id;
     render();
