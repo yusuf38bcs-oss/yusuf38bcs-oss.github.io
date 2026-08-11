@@ -197,13 +197,39 @@ async function runViewport(browser, viewport) {
   }
 }
 
-async function setStoredState(page, transform) {
-  await page.evaluate(({ key, transformSource }) => {
-    const current = JSON.parse(localStorage.getItem(key) || "null");
-    if (!current) throw new Error(`Missing ${key} state`);
-    const transformFunction = eval(`(${transformSource})`);
-    localStorage.setItem(key, JSON.stringify(transformFunction(current)));
-  }, { key: STORAGE_KEY, transformSource: transform.toString() });
+const PENDING_STATE_PATCH_KEY = "__lbfl-speaking-certification-state-patch";
+
+async function installStoredStatePatchBridge(page) {
+  await page.addInitScript(({ pendingKey, storageKey }) => {
+    const rawPatch = sessionStorage.getItem(pendingKey);
+    if (!rawPatch) return;
+
+    sessionStorage.removeItem(pendingKey);
+
+    const current = JSON.parse(localStorage.getItem(storageKey) || "null");
+    if (!current) throw new Error(`Missing ${storageKey} state`);
+
+    const patch = JSON.parse(rawPatch);
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify({ ...current, ...patch })
+    );
+  }, {
+    pendingKey: PENDING_STATE_PATCH_KEY,
+    storageKey: STORAGE_KEY,
+  });
+}
+
+async function queueStoredStatePatch(page, patch) {
+  await page.evaluate(({ pendingKey, patchValue }) => {
+    sessionStorage.setItem(
+      pendingKey,
+      JSON.stringify(patchValue)
+    );
+  }, {
+    pendingKey: PENDING_STATE_PATCH_KEY,
+    patchValue: patch,
+  });
 }
 
 async function runBehavior(browser) {
@@ -213,6 +239,7 @@ async function runBehavior(browser) {
   const checks = {};
 
   try {
+    await installStoredStatePatchBridge(page);
     await page.goto(speakingUrl, { waitUntil: "domcontentloaded", timeout: 60_000 });
     await settle(page);
     await page.evaluate(() => localStorage.clear());
@@ -260,17 +287,26 @@ async function runBehavior(browser) {
     checks.part2Initial = (await page.locator("[data-speaking-timer]").textContent()).trim() === "01:00" &&
       (await page.locator("[data-speaking-timer-phase]").textContent()).trim() === "Preparation";
 
-    await setStoredState(page, (current) => ({ ...current, part: "part2", phaseIndex: 0, remaining: 1 }));
+    await queueStoredStatePatch(page, {
+      part: "part2",
+      phaseIndex: 0,
+      remaining: 1,
+    });
     await page.reload({ waitUntil: "domcontentloaded" });
     await settle(page);
     await page.locator("[data-speaking-start]").click();
     await page.waitForFunction(() => document.querySelector("[data-speaking-timer-phase]")?.textContent?.trim() === "Speaking", null, { timeout: 5_000 });
     await page.locator("[data-speaking-pause]").click();
-    checks.part2Transition = (await page.locator("[data-speaking-timer-phase]").textContent()).trim() === "Speaking" &&
-      (await page.locator("[data-speaking-timer]").textContent()).trim().startsWith("01:") ||
-      (await page.locator("[data-speaking-timer]").textContent()).trim() === "02:00";
+    const transitionTimer = (await page.locator("[data-speaking-timer]").textContent()).trim();
+    checks.part2Transition =
+      (await page.locator("[data-speaking-timer-phase]").textContent()).trim() === "Speaking" &&
+      (transitionTimer.startsWith("01:") || transitionTimer === "02:00");
 
-    await setStoredState(page, (current) => ({ ...current, part: "part2", phaseIndex: 1, remaining: 1 }));
+    await queueStoredStatePatch(page, {
+      part: "part2",
+      phaseIndex: 1,
+      remaining: 1,
+    });
     await page.reload({ waitUntil: "domcontentloaded" });
     await settle(page);
     await page.locator("[data-speaking-start]").click();
