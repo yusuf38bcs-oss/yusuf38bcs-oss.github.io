@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "1.0",
+  "exam": "DU",
+  "session": "2016-17",
+  "unit": "A/Ka (Science)",
+  "component_scope": [
+    "mcq"
+  ],
+  "paper_audit_state": "U",
+  "verification_status": "unstarted",
+  "paper_complete": false,
+  "expected_biology_question_count": null,
+  "audited_question_count": 0,
+  "zero_claims_allowed": false,
+  "matrix_release_allowed": false,
+  "sources": [],
+  "questions": [],
+  "research_notes": [
+    "No acceptable full 2016-17 DU Biology paper/source has been admitted to the audit ledger yet.",
+    "This file intentionally remains U rather than using inferred zeros or reconstructed counts.",
+    "The DU written component is not asserted for this session until the historical paper format is source-verified."
+  ]
+}

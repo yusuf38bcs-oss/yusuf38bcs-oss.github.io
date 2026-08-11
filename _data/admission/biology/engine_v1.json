@@ -1,0 +1,326 @@
+{
+  "engine": "LBFL Biology Admission Intelligence Engine",
+  "version": "1.0",
+  "language": "bn",
+  "audit_window": [
+    "2016-17",
+    "2017-18",
+    "2018-19",
+    "2019-20",
+    "2020-21",
+    "2021-22",
+    "2022-23",
+    "2023-24",
+    "2024-25",
+    "2025-26"
+  ],
+  "legal_states": {
+    "0": "fully audited and no question found",
+    "U": "unaudited",
+    "P": "partially audited",
+    "X": "source conflict/unresolved",
+    "F-S2": "full secondary reconstruction; independent reconciliation pending",
+    "F-V2": "full audit independently verified"
+  },
+  "qyi_model": {
+    "qyi_du": {
+      "YTR": 0.4,
+      "NQS": 0.3,
+      "Recent": 0.15,
+      "FootprintEfficiency": 0.15
+    },
+    "qyi_medical": {
+      "YTR": 0.4,
+      "NQS": 0.3,
+      "Recent": 0.15,
+      "FootprintEfficiency": 0.15
+    },
+    "qyi_common": {
+      "DU": 0.45,
+      "Medical": 0.45,
+      "Overlap": 0.1
+    },
+    "recent_3y_weights": {
+      "latest": 0.5,
+      "previous": 0.3,
+      "third": 0.2
+    },
+    "release_gate": "10-year audit + verified NCTB footprint + holdout backtest + confidence A/B"
+  },
+  "backtest": {
+    "train": [
+      "2016-17",
+      "2017-18",
+      "2018-19",
+      "2019-20",
+      "2020-21",
+      "2021-22",
+      "2022-23"
+    ],
+    "holdout": [
+      "2023-24",
+      "2024-25",
+      "2025-26"
+    ],
+    "metrics": [
+      "Coverage@10",
+      "Coverage@15",
+      "Coverage@20",
+      "Coverage@28"
+    ]
+  },
+  "taxonomy": [
+    {
+      "id": "B01",
+      "bn": "কোষের গঠন, কোষঝিল্লি ও পরিবহন",
+      "en": "Cell Architecture, Membrane & Transport",
+      "include": "Pro/eukaryotic cell; cell wall; plasma membrane; fluid mosaic; diffusion; osmosis; active transport",
+      "exclude": "Cell organelles; nucleus/molecular processes",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B02",
+      "bn": "কোষীয় অঙ্গাণু",
+      "en": "Cell Organelles",
+      "include": "Mitochondria; chloroplast; ER; Golgi; ribosome; lysosome; vacuole; centrosome; peroxisome",
+      "exclude": "Nucleus/chromosome; pathway-yield questions",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B03",
+      "bn": "নিউক্লিয়াস, ক্রোমোজোম ও আণবিক জীববিজ্ঞান",
+      "en": "Nucleus, Chromosome & Molecular Biology",
+      "include": "Nucleus; chromosome; DNA/RNA; replication; transcription; translation; genetic code; gene regulation",
+      "exclude": "Mendelian inheritance; biotechnology",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B04",
+      "bn": "কোষচক্র, মাইটোসিস ও মিয়োসিস",
+      "en": "Cell Cycle, Mitosis & Meiosis",
+      "include": "Cell cycle; S-phase; mitosis; meiosis; synapsis; chiasma; crossing-over; cytokinesis",
+      "exclude": "General organelle questions",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B05",
+      "bn": "জৈব অণু ও এনজাইম",
+      "en": "Biomolecules & Enzymes",
+      "include": "Carbohydrate; protein; lipid; nucleic-acid chemistry; enzyme properties and action",
+      "exclude": "Respiration pathway; digestive enzymes when system-focused",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B06",
+      "bn": "অণুজীব",
+      "en": "Microorganisms",
+      "include": "Virus; bacteria; cyanobacteria; viroid/prion; pathogen identification; microbial structure/reproduction",
+      "exclude": "Fungi/algae; immunity response",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B07",
+      "bn": "শৈবাল, ছত্রাক ও লাইকেন",
+      "en": "Algae, Fungi & Lichens",
+      "include": "Major groups; representative examples; reproduction; diagnostic traits",
+      "exclude": "Cyanobacteria if tested as prokaryote/pathogen",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B08",
+      "bn": "ব্রায়োফাইটা ও টেরিডোফাইটা",
+      "en": "Bryophyta & Pteridophyta",
+      "include": "Moss/liverwort; fern; protonema; archegonium; alternation; vascular features",
+      "exclude": "General plant anatomy",
+      "lane": "University Edge",
+      "provisional_role": "P2"
+    },
+    {
+      "id": "B09",
+      "bn": "জিমনোস্পার্ম, অ্যাঞ্জিওস্পার্ম ও উদ্ভিদ পরিবার",
+      "en": "Gymnosperm, Angiosperm & Plant Families",
+      "include": "Cycas/Pinus; monocot-dicot; floral characters; inflorescence; plant families",
+      "exclude": "Plant reproduction physiology",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B10",
+      "bn": "উদ্ভিদ টিস্যু ও অঙ্গসংস্থান",
+      "en": "Plant Tissue & Anatomy",
+      "include": "Meristem; permanent tissue; vascular bundle; epidermis; secondary growth; internal anatomy",
+      "exclude": "Transport physiology",
+      "lane": "University Edge",
+      "provisional_role": "P2"
+    },
+    {
+      "id": "B11",
+      "bn": "পানি, খনিজ পরিবহন ও প্রস্বেদন",
+      "en": "Water, Mineral Transport & Transpiration",
+      "include": "Water absorption; mineral nutrition; ascent of sap; stomata; transpiration",
+      "exclude": "Seed imbibition if reproduction/germination-focused",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B12",
+      "bn": "সালোকসংশ্লেষণ ও কোষীয় শ্বসন",
+      "en": "Photosynthesis & Cellular Respiration",
+      "include": "Light/dark reactions; C3/C4; glycolysis; Krebs; ETC; aerobic/anaerobic respiration",
+      "exclude": "Organelle-location-only questions",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B13",
+      "bn": "উদ্ভিদ বৃদ্ধি, হরমোন ও প্রজনন",
+      "en": "Plant Growth, Hormones & Reproduction",
+      "include": "Plant hormones; tropism; flower; pollination; fertilisation; seed/fruit; germination",
+      "exclude": "Plant family morphology",
+      "lane": "Common Core",
+      "provisional_role": "P2"
+    },
+    {
+      "id": "B14",
+      "bn": "জীবপ্রযুক্তি",
+      "en": "Biotechnology",
+      "include": "Recombinant DNA; vector; restriction enzyme; PCR; cloning; tissue culture; GMO; totipotency",
+      "exclude": "Inheritance pattern; DNA basics",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B15",
+      "bn": "বাস্তুবিদ্যা, জীববৈচিত্র্য ও সংরক্ষণ",
+      "en": "Ecology, Biodiversity & Conservation",
+      "include": "Ecosystem relations; adaptation; biodiversity; endangered species; in-situ/ex-situ conservation",
+      "exclude": "Pure plant transport",
+      "lane": "Common Core",
+      "provisional_role": "P2"
+    },
+    {
+      "id": "B16",
+      "bn": "প্রাণিবৈচিত্র্য ও শ্রেণিবিন্যাস",
+      "en": "Animal Diversity & Classification",
+      "include": "Symmetry; coelom; cleavage; phylum/class characters; diagnostic classification",
+      "exclude": "Representative-animal organ/function",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B17",
+      "bn": "প্রতীক/প্রতিনিধি প্রাণী",
+      "en": "Representative Animals",
+      "include": "Hydra; grasshopper; Rohu and other textbook representatives—structure, physiology, locomotion, reproduction",
+      "exclude": "Pure phylum identification when no representative detail",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B18",
+      "bn": "পরিপাক ও শোষণ",
+      "en": "Digestion & Absorption",
+      "include": "Alimentary canal; digestive glands; bile; enzymes; digestion; absorption",
+      "exclude": "Enteric nervous detail if nervous-system concept dominates",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B19",
+      "bn": "রক্ত ও সঞ্চালন",
+      "en": "Blood & Circulation",
+      "include": "Blood cells; blood group; clotting; heart; pacemaker; vessels; cardiac cycle; BP; circulation",
+      "exclude": "Hormonal regulation when endocrine/homeostasis dominates",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B20",
+      "bn": "শ্বসন ও গ্যাস বিনিময়",
+      "en": "Respiration & Gas Exchange",
+      "include": "Respiratory tract; lung/pleura; ventilation; gas exchange; O2/CO2 transport",
+      "exclude": "Cellular respiration",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B21",
+      "bn": "রেচন ও অসমোরেগুলেশন",
+      "en": "Excretion & Osmoregulation",
+      "include": "Kidney; nephron; urine; renal flow; urea cycle; excretory products; osmoregulation",
+      "exclude": "Endocrine control if hormone is the direct concept",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B22",
+      "bn": "চলন, কঙ্কাল, সন্ধি ও পেশি",
+      "en": "Locomotion: Skeleton, Joint & Muscle",
+      "include": "Bone; cartilage; joints; tendon/ligament; skeletal muscle; muscle protein; locomotion",
+      "exclude": "Respiratory mechanics if gas-exchange concept dominates",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B23",
+      "bn": "স্নায়ুতন্ত্র ও ইন্দ্রিয় অঙ্গ",
+      "en": "Nervous System & Sense Organs",
+      "include": "Brain; spinal cord; nerves; reflex; cranial nerves; eye; ear; vestibular system",
+      "exclude": "Hormone/homeostasis",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B24",
+      "bn": "অন্তঃক্ষরা তন্ত্র ও হোমিওস্ট্যাসিস",
+      "en": "Endocrine & Homeostasis",
+      "include": "Endocrine glands; hormones; feedback; glucose/temp/water regulation; erythropoietin as regulatory hormone",
+      "exclude": "Reproductive anatomy when system rather than hormone is tested",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B25",
+      "bn": "মানব প্রজনন ও ভ্রূণতত্ত্ব",
+      "en": "Human Reproduction & Embryology",
+      "include": "Male/female reproductive systems; gametogenesis; fertilisation; embryo; placenta; embryonic layers",
+      "exclude": "Inheritance",
+      "lane": "Common Core",
+      "provisional_role": "P1"
+    },
+    {
+      "id": "B26",
+      "bn": "রোগপ্রতিরোধ",
+      "en": "Immunity",
+      "include": "Innate/adaptive immunity; antibody; leukocyte immune roles; vaccine; immune response",
+      "exclude": "Blood-clotting-only questions",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B27",
+      "bn": "বংশগতি ও জেনেটিক্স",
+      "en": "Genetics & Inheritance",
+      "include": "Mendel; mono/dihybrid; dominance; epistasis; linkage; sex-linked inheritance; genetic disorders",
+      "exclude": "DNA transcription/translation; biotech gene insertion",
+      "lane": "Common Core",
+      "provisional_role": "P0"
+    },
+    {
+      "id": "B28",
+      "bn": "বিবর্তন ও প্রাণী আচরণ",
+      "en": "Evolution & Animal Behaviour",
+      "include": "Evolution concepts/evidence; living fossil; vestigial organs; taxis; migration; learning/behaviour",
+      "exclude": "Taxonomic identification without evolutionary/behavioural concept",
+      "lane": "University Edge",
+      "provisional_role": "P2"
+    }
+  ]
+}
