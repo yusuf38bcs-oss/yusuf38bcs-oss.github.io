@@ -47,7 +47,7 @@ exclude:
   - neural_candidates.csv
   - Repository-Guardian.ps1
 
-# AdSense sanitation exact-head certification boundary: this marker keeps the Pages preview aligned with the certified PR head.
+# AdSense sanitation exact-head certification boundary; report heading is generated generically.: this marker keeps the Pages preview aligned with the certified PR head.
 # -----------------------------------------------------------------------------
 # Jekyll Polyglot bilingual architecture scaffold
 # Branch-only experiment: feature/bilingual-polyglot
