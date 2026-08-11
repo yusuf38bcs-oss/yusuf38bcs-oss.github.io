@@ -62,6 +62,7 @@
   };
 
   let interval = null;
+  let deadlineMs = null;
   let state = {
     part: "part1",
     promptId: "",
@@ -128,6 +129,7 @@
   function stopTimer() {
     if (interval) window.clearInterval(interval);
     interval = null;
+    deadlineMs = null;
     els.start.disabled = false;
     els.pause.disabled = true;
   }
@@ -288,9 +290,30 @@
       els.timerPhase.textContent = currentPhase().label;
       els.timer.textContent = formatTime(state.remaining);
       els.timerStatus.textContent = `${currentPhase().label} phase started.`;
-      safeWrite();
       return true;
     }
+    return false;
+  }
+
+  function syncTimerToNow(now = performance.now()) {
+    if (!interval || !Number.isFinite(deadlineMs)) return false;
+
+    let advanced = false;
+
+    while (now >= deadlineMs) {
+      if (!advanceTimerPhase()) {
+        finishTimerSequence();
+        return true;
+      }
+
+      advanced = true;
+      deadlineMs += state.remaining * 1000;
+    }
+
+    state.remaining = Math.max(0, Math.ceil((deadlineMs - now) / 1000));
+    els.timer.textContent = formatTime(state.remaining);
+
+    if (advanced) safeWrite();
     return false;
   }
 
@@ -303,14 +326,14 @@
     els.pause.disabled = false;
     els.timerStatus.textContent = `${currentPhase().label} timer running.`;
 
+    deadlineMs = performance.now() + (state.remaining * 1000);
     interval = window.setInterval(() => {
-      state.remaining -= 1;
-      els.timer.textContent = formatTime(state.remaining);
-      if (state.remaining <= 0 && !advanceTimerPhase()) finishTimerSequence();
+      syncTimerToNow();
     }, 1000);
   });
 
   els.pause.addEventListener("click", () => {
+    if (syncTimerToNow()) return;
     stopTimer();
     els.timerStatus.textContent = "Timer paused.";
     collectState();
@@ -373,7 +396,15 @@
     els.saveStatus.textContent = "Practice reset. Nothing was submitted.";
   });
 
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "visible" || !interval) return;
+    if (syncTimerToNow()) return;
+    collectState();
+    safeWrite();
+  });
+
   window.addEventListener("pagehide", () => {
+    if (interval) syncTimerToNow();
     collectState();
     safeWrite();
   });
