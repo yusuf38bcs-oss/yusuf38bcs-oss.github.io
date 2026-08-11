@@ -29,6 +29,9 @@ jobs:
           bundle config set --local frozen 'false'
           bundle install
 
+      - name: Validate Biology Admission Engine
+        run: ruby scripts/admission/validate_biology_engine.rb
+
       - name: Clean Previous Build
         run: bundle exec jekyll clean
 
