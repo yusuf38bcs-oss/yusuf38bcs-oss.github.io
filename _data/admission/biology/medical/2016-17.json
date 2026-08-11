@@ -21,6 +21,14 @@
       "url": "https://www.biologybd.com/atest16.html",
       "status": "reviewed",
       "supports": "Medical admission 2016-17 Biology question transcription; currently used only for the three audited seed records below."
+    },
+    {
+      "source_id": "ADMISSIONTESTBD-MED-2016-17",
+      "tier": "C2",
+      "kind": "secondary-question-bank-locator",
+      "url": "https://admissiontestbd.com/medical-admission/past-questions",
+      "status": "candidate",
+      "supports": "Independent candidate locator for a Medical Admission 2016-17 full-paper resource. It has not yet been reconciled question-by-question and currently supports no additional audited rows."
     }
   ],
   "questions": [
@@ -69,8 +77,9 @@
   },
   "research_notes": [
     "This is a partial secondary-source seed, not a complete Medical 2016-17 Biology audit.",
-    "The source page supports at least these three records, but no inference is made that only three Biology questions existed.",
+    "BiologyBD currently supports the three V1 seed records; a separate AdmissionTestBD year-paper locator has been added only as a candidate reconciliation source.",
+    "The candidate locator does not yet independently verify the three Biology rows and does not justify any increase in audited_question_count.",
     "No topic-level zero is legal while paper_audit_state remains P.",
-    "Independent source reconciliation is still required before promotion to F-S2 or F-V2."
+    "Independent question-by-question reconciliation is still required before promotion to F-S2 or F-V2."
   ]
 }
