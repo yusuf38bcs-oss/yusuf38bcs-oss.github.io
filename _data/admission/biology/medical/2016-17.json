@@ -9,77 +9,469 @@
   "paper_audit_state": "P",
   "verification_status": "V1",
   "paper_complete": false,
-  "expected_biology_question_count": null,
-  "audited_question_count": 3,
+  "expected_biology_question_count": 30,
+  "expected_count_verification_status": "V1",
+  "expected_count_source_refs": [
+    "EXAMOBD-MBBS-CIRCULAR-2016-17"
+  ],
+  "audited_question_count": 23,
   "zero_claims_allowed": false,
   "matrix_release_allowed": false,
   "sources": [
     {
-      "source_id": "BIOLOGYBD-AT16",
+      "source_id": "BIOLOGYBD-MED-2016",
       "tier": "B2",
-      "kind": "historical-transcription",
-      "url": "https://www.biologybd.com/atest16.html",
+      "kind": "historical-biology-transcription",
+      "url": "https://biologybd.com/medical.html",
       "status": "reviewed",
-      "supports": "Medical admission 2016-17 Biology question transcription; currently used only for the three audited seed records below."
+      "supports": "Biology-specific Medical Admission Test 2016 transcription with 23 numbered Biology 2nd-paper questions and answers; used as the current source-local audit spine, not proof of the complete 30-question Biology allocation."
+    },
+    {
+      "source_id": "BANGLAMEDQA-MAT-2016-17",
+      "tier": "B1",
+      "kind": "academic-curated-dataset",
+      "url": "https://huggingface.co/datasets/ajwad-abrar/BanglaMedQA/viewer/default/train?p=24",
+      "status": "reviewed",
+      "supports": "IUT-curated BanglaMedQA rows tagged MAT 2016-2017; used for independent identity/answer reconciliation where an exact matching row is visible. Duplicate or internally inconsistent rows are not silently accepted."
+    },
+    {
+      "source_id": "SATT-MAT-BIO-2016",
+      "tier": "C1",
+      "kind": "community-reviewed-question-bank",
+      "url": "https://sattacademy.com/ques-bank/mat/%E0%A6%9C%E0%A7%80%E0%A6%AC%E0%A6%AC%E0%A6%BF%E0%A6%9C%E0%A7%8D%E0%A6%9E%E0%A6%BE%E0%A6%A8-19765/2016/mcq",
+      "status": "reviewed",
+      "supports": "MAT Biology 2016 community-reviewed question bank advertising 27+ Biology questions; used only for question-level reconciliation where a matching item is identifiable, not as sole completeness evidence."
+    },
+    {
+      "source_id": "10MS-MED-2016-17",
+      "tier": "C2",
+      "kind": "secondary-question-bank",
+      "url": "https://10minuteschool.com/content/medical-admission-test-question-bank-2016-17/",
+      "status": "reviewed",
+      "supports": "Secondary 2016-17 Medical full-paper question bank; useful for cross-subject identity checks and for detecting subject-grouping disagreements with Biology-specific transcriptions."
+    },
+    {
+      "source_id": "EXAMOBD-MBBS-CIRCULAR-2016-17",
+      "tier": "C2",
+      "kind": "contemporaneous-circular-reproduction",
+      "url": "https://examobd.blogspot.com/2016/08/medical-college-admission-circular-and.html",
+      "status": "reviewed",
+      "supports": "Contemporaneous 2016-17 MBBS admission-circular reproduction stating a 100-question MCQ test with Biology 30, Chemistry 25, Physics 20, English 15 and General Knowledge 10; used only for the expected Biology opportunity count at V1."
     },
     {
       "source_id": "ADMISSIONTESTBD-MED-2016-17",
       "tier": "C2",
-      "kind": "secondary-question-bank-locator",
+      "kind": "secondary-full-paper-locator",
       "url": "https://admissiontestbd.com/medical-admission/past-questions",
       "status": "candidate",
-      "supports": "Independent candidate locator for a Medical Admission 2016-17 full-paper resource. It has not yet been reconciled question-by-question and currently supports no additional audited rows."
+      "supports": "Independent locator listing the Medical Admission 2016-2017 full paper as 100 questions. It is retained as a completeness-reconciliation candidate and does not by itself add Biology rows."
     }
   ],
   "questions": [
     {
       "question_id": "MED-2016-17-MCQ-001",
       "question_no": 1,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
       "component": "mcq",
       "primary_topic_id": "B17",
       "secondary_topic_ids": [],
-      "question_fingerprint": "Hydra rapid locomotion method: somersaulting",
+      "question_fingerprint": "Hydra rapid locomotion method",
       "answer": "Somersaulting",
       "source_refs": [
-        "BIOLOGYBD-AT16"
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
       ],
-      "verification_status": "V1"
+      "verification_status": "V2"
     },
     {
       "question_id": "MED-2016-17-MCQ-002",
       "question_no": 2,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
       "component": "mcq",
       "primary_topic_id": "B17",
       "secondary_topic_ids": [],
       "question_fingerprint": "Grasshopper head exoskeleton: identify the item that is not an exoskeletal part",
       "answer": "Ocelli",
       "source_refs": [
-        "BIOLOGYBD-AT16"
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
       ],
-      "verification_status": "V1"
+      "verification_status": "V2"
     },
     {
       "question_id": "MED-2016-17-MCQ-003",
       "question_no": 3,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
       "component": "mcq",
       "primary_topic_id": "B17",
       "secondary_topic_ids": [],
       "question_fingerprint": "Rohu scale growth: season of greatest growth",
       "answer": "Spring",
       "source_refs": [
-        "BIOLOGYBD-AT16"
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
       ],
-      "verification_status": "V1"
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-004",
+      "question_no": 4,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B18",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Human dental formula asked for one half of a jaw",
+      "answer": "I2 C1 P2 M3 / source rendering requires reconciliation",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "conflict"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-005",
+      "question_no": 5,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B18",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "BMI interpretation/calculation item",
+      "answer": "Answer/options require source reconciliation",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "conflict"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-006",
+      "question_no": 6,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B24",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Identify the gland that is not a mixed gland",
+      "answer": "Adrenal gland",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-007",
+      "question_no": 7,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B20",
+      "secondary_topic_ids": [
+        "B19"
+      ],
+      "question_fingerprint": "Pulse oximeter: physiological quantity measured",
+      "answer": "Blood oxygen saturation",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17",
+        "SATT-MAT-BIO-2016",
+        "10MS-MED-2016-17"
+      ],
+      "verification_status": "conflict"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-008",
+      "question_no": 8,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B19",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Identify the mature human blood cell lacking a nucleus",
+      "answer": "Red blood cell (RBC)",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-009",
+      "question_no": 9,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B19",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Primary investigation for diagnosing heart disease",
+      "answer": "ECG",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-010",
+      "question_no": 10,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B23",
+      "secondary_topic_ids": [
+        "B20"
+      ],
+      "question_fingerprint": "Location of a respiratory control centre",
+      "answer": "Pons",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-011",
+      "question_no": 11,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B20",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Identify the skull sinus that is not a paranasal sinus",
+      "answer": "Occipital sinus",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-012",
+      "question_no": 12,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B24",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Acid-base interpretation when blood pH is 6.90",
+      "answer": "Acidosis",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "10MS-MED-2016-17"
+      ],
+      "verification_status": "conflict"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-013",
+      "question_no": 13,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B21",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Maximum preservation interval asked for a kidney before transplantation",
+      "answer": "48 hours",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "SATT-MAT-BIO-2016"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-014",
+      "question_no": 14,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B22",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Number of bones in the human wrist/carpus",
+      "answer": "8",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-015",
+      "question_no": 15,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B23",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Approximate neuron count in the adult human brain",
+      "answer": "Answer magnitude conflicts across secondary sources",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "conflict"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-016",
+      "question_no": 16,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B26",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Major immunoglobulin associated with breast milk",
+      "answer": "IgA",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "SATT-MAT-BIO-2016"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-017",
+      "question_no": 17,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B27",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Haemophilia carrier mother and healthy father: identify the false offspring statement",
+      "answer": "All sons will be healthy",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-018",
+      "question_no": 18,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B28",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Author of Philosophic Zoologique",
+      "answer": "Jean-Baptiste Lamarck",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-019",
+      "question_no": 19,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B28",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Approximate age/duration associated with the Jurassic period",
+      "answer": "About 165 million years",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-020",
+      "question_no": 20,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B18",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Largest lobe of the human liver",
+      "answer": "Right lobe",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-021",
+      "question_no": 21,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B18",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Identify the structure that is not part of the small intestine",
+      "answer": "Appendix",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17",
+        "SATT-MAT-BIO-2016"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-022",
+      "question_no": 22,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B19",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Normal human bleeding time",
+      "answer": "1–4 minutes",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17",
+        "SATT-MAT-BIO-2016"
+      ],
+      "verification_status": "V2"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-023",
+      "question_no": 23,
+      "question_no_scope": "biology-section-local-secondary-transcription",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B19",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Battery type used in an artificial pacemaker",
+      "answer": "Lithium battery",
+      "source_refs": [
+        "BIOLOGYBD-MED-2016",
+        "BANGLAMEDQA-MAT-2016-17"
+      ],
+      "verification_status": "V2"
     }
   ],
   "derived_topic_counts": {
-    "B17": 3
+    "B17": 3,
+    "B18": 4,
+    "B19": 4,
+    "B20": 2,
+    "B21": 1,
+    "B22": 1,
+    "B23": 2,
+    "B24": 2,
+    "B26": 1,
+    "B27": 1,
+    "B28": 2
+  },
+  "reconciliation_summary": {
+    "expected_biology_opportunities": 30,
+    "admitted_source_local_rows": 23,
+    "question_level_v2_rows": 18,
+    "conflict_rows": 5,
+    "unresolved_biology_opportunities": 7,
+    "full_completeness_established": false
   },
   "research_notes": [
-    "This is a partial secondary-source seed, not a complete Medical 2016-17 Biology audit.",
-    "BiologyBD currently supports the three V1 seed records; a separate AdmissionTestBD year-paper locator has been added only as a candidate reconciliation source.",
-    "The candidate locator does not yet independently verify the three Biology rows and does not justify any increase in audited_question_count.",
-    "No topic-level zero is legal while paper_audit_state remains P.",
-    "Independent question-by-question reconciliation is still required before promotion to F-S2 or F-V2."
+    "The 2016-17 MBBS circular reproduction establishes a 30-question Biology allocation at V1, but no original official paper/scan has yet been admitted.",
+    "BiologyBD provides a 23-row Biology-specific secondary transcription and is used as the current source-local audit spine; these local row numbers are not asserted as original full-paper question numbers.",
+    "Independent sources materially disagree on Biology grouping/completeness: 10 Minute School presents a broader Biology section, Satt lists 27+ Biology items, while BiologyBD exposes 23 Biology-specific rows. Therefore the paper remains P rather than F-S2.",
+    "Eighteen admitted rows have independent question-level matches sufficient for V2 identity/answer status; five rows remain conflict because answer rendering, source answer, or subject-grouping evidence is unresolved.",
+    "BanglaMedQA contains an internally inconsistent breast-milk immunoglobulin answer/rationale row; that row is not used to verify the IgA answer. BiologyBD plus Satt are used for that question instead.",
+    "Seven of the 30 expected Biology opportunities remain unresolved; no topic-level zero, matrix publication, or QYI contribution is legal while the paper remains P."
   ]
 }
