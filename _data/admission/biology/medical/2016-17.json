@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "1.0",
+  "exam": "Medical",
+  "session": "2016-17",
+  "component_scope": [
+    "mcq"
+  ],
+  "paper_audit_state": "P",
+  "verification_status": "V1",
+  "paper_complete": false,
+  "expected_biology_question_count": null,
+  "audited_question_count": 3,
+  "zero_claims_allowed": false,
+  "matrix_release_allowed": false,
+  "sources": [
+    {
+      "source_id": "BIOLOGYBD-AT16",
+      "tier": "B2",
+      "kind": "historical-transcription",
+      "url": "https://www.biologybd.com/atest16.html",
+      "status": "reviewed",
+      "supports": "Medical admission 2016-17 Biology question transcription; currently used only for the three audited seed records below."
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "MED-2016-17-MCQ-001",
+      "question_no": 1,
+      "component": "mcq",
+      "primary_topic_id": "B17",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Hydra rapid locomotion method: somersaulting",
+      "answer": "Somersaulting",
+      "source_refs": [
+        "BIOLOGYBD-AT16"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-002",
+      "question_no": 2,
+      "component": "mcq",
+      "primary_topic_id": "B17",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Grasshopper head exoskeleton: identify the item that is not an exoskeletal part",
+      "answer": "Ocelli",
+      "source_refs": [
+        "BIOLOGYBD-AT16"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "MED-2016-17-MCQ-003",
+      "question_no": 3,
+      "component": "mcq",
+      "primary_topic_id": "B17",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Rohu scale growth: season of greatest growth",
+      "answer": "Spring",
+      "source_refs": [
+        "BIOLOGYBD-AT16"
+      ],
+      "verification_status": "V1"
+    }
+  ],
+  "derived_topic_counts": {
+    "B17": 3
+  },
+  "research_notes": [
+    "This is a partial secondary-source seed, not a complete Medical 2016-17 Biology audit.",
+    "The source page supports at least these three records, but no inference is made that only three Biology questions existed.",
+    "No topic-level zero is legal while paper_audit_state remains P.",
+    "Independent source reconciliation is still required before promotion to F-S2 or F-V2."
+  ]
+}
