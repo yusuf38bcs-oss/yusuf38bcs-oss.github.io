@@ -32,6 +32,9 @@ jobs:
       - name: Validate Biology Admission Engine
         run: ruby scripts/admission/validate_biology_engine.rb
 
+      - name: Validate Biology 2016-17 Audit Pilot
+        run: ruby scripts/admission/validate_biology_audit.rb
+
       - name: Clean Previous Build
         run: bundle exec jekyll clean
 
