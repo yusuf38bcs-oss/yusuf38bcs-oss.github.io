@@ -283,6 +283,30 @@ async function runBehavior(browser) {
     checks.timerReset = (await page.locator("[data-speaking-timer]").textContent()).trim() === "00:45" &&
       (await page.locator("[data-speaking-timer-phase]").textContent()).trim() === "Response";
 
+    await queueStoredStatePatch(page, {
+      part: "part1",
+      phaseIndex: 0,
+      remaining: 6,
+    });
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await settle(page);
+    await page.locator("[data-speaking-start]").click();
+    await page.evaluate(() => {
+      const actualNow = performance.now.bind(performance);
+      Object.defineProperty(performance, "now", {
+        configurable: true,
+        value: () => actualNow() + 3500,
+      });
+      document.dispatchEvent(new Event("visibilitychange"));
+    });
+    const elapsedTimer = (await page.locator("[data-speaking-timer]").textContent()).trim();
+    checks.elapsedTimeCatchUp = elapsedTimer === "00:03";
+    await page.locator("[data-speaking-pause]").click();
+    await page.evaluate(() => {
+      delete performance.now;
+    });
+    await page.locator("[data-speaking-reset-timer]").click();
+
     await page.locator("#speakingPartSelect").selectOption("part2");
     checks.part2Initial = (await page.locator("[data-speaking-timer]").textContent()).trim() === "01:00" &&
       (await page.locator("[data-speaking-timer-phase]").textContent()).trim() === "Preparation";
@@ -389,7 +413,7 @@ async function runSaveData(browser) {
       navigatorSaveData: Boolean(navigator.connection?.saveData),
       rootVisible: Boolean(document.querySelector("[data-ielts-speaking-simulator]")),
     }));
-    const documentRequest = probe.requests.find((request) => request.resourceType === "document");
+    const documentRequest = probe.requests.find((request) => request.resourceType() === "document");
 
     return {
       ...state,
