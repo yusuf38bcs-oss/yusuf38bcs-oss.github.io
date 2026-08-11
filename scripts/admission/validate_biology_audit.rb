@@ -103,7 +103,8 @@ PILOT_PATHS.each do |expected_exam, path|
     errors << "#{label}: duplicate question_id detected"
   end
 
-  Array(data["component_scope"]).each do |component|
+  component_scope = Array(data["component_scope"])
+  component_scope.each do |component|
     unless Array(allowed_components[expected_exam]).include?(component)
       errors << "#{label}: invalid component_scope entry #{component.inspect}"
     end
@@ -138,8 +139,11 @@ PILOT_PATHS.each do |expected_exam, path|
     end
 
     component = question["component"]
-    unless Array(allowed_components[expected_exam]).include?(component)
+    exam_components = Array(allowed_components[expected_exam])
+    if !exam_components.include?(component)
       errors << "#{qlabel}: invalid component #{component.inspect}"
+    elsif !component_scope.include?(component)
+      errors << "#{qlabel}: component #{component.inspect} is outside declared component_scope #{component_scope.inspect}"
     end
 
     unless allowed_verifications.include?(question["verification_status"])
@@ -191,6 +195,15 @@ PILOT_PATHS.each do |expected_exam, path|
     errors << "#{label}: complete audit requires paper_complete=true" unless data["paper_complete"] == true
     if expected.is_a?(Integer) && expected.positive? && expected != questions.length
       errors << "#{label}: complete audit expected count must equal questions.length"
+    end
+
+    if state == "F-V2"
+      errors << "#{label}: F-V2 requires verification_status=V2" unless verification == "V2"
+      questions.each_with_index do |question, index|
+        next if question["verification_status"] == "V2"
+
+        errors << "#{label} question[#{index}]: F-V2 requires every question verification_status=V2"
+      end
     end
   end
 
