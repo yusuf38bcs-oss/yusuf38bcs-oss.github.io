@@ -11,7 +11,7 @@ excerpt: "A local-first IELTS Speaking Simulator for structured preparation, tim
 
 <link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
 
-<section class="ielts-speaking" data-ielts-speaking-simulator aria-labelledby="ielts-speaking-title">
+<section class="ielts-speaking" data-ielts-speaking-simulator data-certification-surface="phase-2c" aria-labelledby="ielts-speaking-title">
   <header class="ielts-speaking__header">
     <p class="ielts-speaking__eyebrow">Phase 2C · Speaking Simulator MVP</p>
     <h1 id="ielts-speaking-title">Think clearly. Speak deliberately.</h1>
