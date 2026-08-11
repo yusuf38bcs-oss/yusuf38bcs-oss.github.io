@@ -2,9 +2,11 @@ name: AdSense Exact-Head Browser Certification
 
 on:
   pull_request:
-    branches: ["staging"]
+    branches: ["staging", "main"]
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
+      - "_config.yml"
+      - "_life-practices/research-highlights/**"
       - "_data/adsense.yml"
       - "_includes/head/**"
       - ".github/scripts/adsense-browser-certification.mjs"
