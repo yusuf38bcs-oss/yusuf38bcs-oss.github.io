@@ -396,7 +396,7 @@ async function runSaveData(browser) {
 
 function markdown(report) {
   const lines = [
-    "# PR #225 Exact-Head Browser Certification",
+    "# Exact-Head Browser Certification",
     "",
     `- Expected SHA: \`${report.expectedSha}\``,
     `- Preview: ${report.previewUrl}`,
