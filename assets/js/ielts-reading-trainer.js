@@ -31,6 +31,14 @@
     clearErrors: root.querySelector("[data-reading-clear-errors]"),
   };
 
+  // Fail fast and warn if required elements are missing to avoid obscure runtime errors
+  const _required = ["setSelect", "questions", "timer", "submit", "saveStatus"];
+  const _missing = _required.filter((k) => !els[k]);
+  if (_missing.length) {
+    console.warn("IELTS reading trainer: missing required elements:", _missing);
+    return;
+  }
+
   let interval = null;
   let deadlineMs = null;
 
@@ -78,19 +86,33 @@
   function safeWrite(message = "Saved locally.") {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      els.saveStatus.textContent = message;
-    } catch (_) {
-      els.saveStatus.textContent = "Browser storage is unavailable; this session will not persist after reload.";
+      if (els.saveStatus) els.saveStatus.textContent = message;
+      else console.debug("saveStatus element missing; message:", message);
+    } catch (err) {
+      if (els.saveStatus) {
+        els.saveStatus.textContent = "Browser storage is unavailable; this session will not persist after reload.";
+      }
+      console.warn("localStorage set failed:", err);
     }
   }
 
   function escapeHtml(value) {
-    return String(value ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+    const s = String(value ?? "");
+    if (String.prototype.replaceAll) {
+      return s
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+    // Fallback for environments without replaceAll
+    return s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
 
   function formatTime(seconds) {
@@ -104,8 +126,8 @@
     if (interval) window.clearInterval(interval);
     interval = null;
     deadlineMs = null;
-    els.start.disabled = false;
-    els.pause.disabled = true;
+    if (els.start) els.start.disabled = false;
+    if (els.pause) els.pause.disabled = true;
   }
 
   function syncTimerToNow(now = performance.now()) {
@@ -114,15 +136,15 @@
     if (now >= deadlineMs) {
       state.remaining = 0;
       stopTimer();
-      els.timer.textContent = "00:00";
-      els.timerStatus.textContent = "Time is up. Submit your answers when you are ready to review.";
+      if (els.timer) els.timer.textContent = "00:00";
+      if (els.timerStatus) els.timerStatus.textContent = "Time is up. Submit your answers when you are ready to review.";
       safeWrite("Timer completed. Answers remain local until you review them.");
-      els.submit.focus();
+      if (els.submit) try { els.submit.focus(); } catch (_) {}
       return true;
     }
 
     state.remaining = Math.max(0, Math.ceil((deadlineMs - now) / 1000));
-    els.timer.textContent = formatTime(state.remaining);
+    if (els.timer) els.timer.textContent = formatTime(state.remaining);
     return false;
   }
 
@@ -130,21 +152,27 @@
     els.setSelect.innerHTML = sets.map((set) => (
       `<option value="${escapeHtml(set.id)}">${escapeHtml(set.title)}</option>`
     )).join("");
-    els.setSelect.value = state.setId;
+
+    const fallback = (sets[0] && sets[0].id) || "";
+    els.setSelect.value = state.setId || fallback;
+    if (!els.setSelect.value && sets[0]) {
+      // Keep UI and state consistent by resetting to the first set
+      resetForSet(sets[0].id, "Selected set not found; falling back to first set.");
+    }
   }
 
   function renderPassage() {
     const set = currentSet();
     if (!set) {
-      els.topic.textContent = "Reading practice";
-      els.title.textContent = "No reading set available";
-      els.passage.innerHTML = "";
+      if (els.topic) els.topic.textContent = "Reading practice";
+      if (els.title) els.title.textContent = "No reading set available";
+      if (els.passage) els.passage.innerHTML = "";
       return;
     }
 
-    els.topic.textContent = set.topic || "Academic reading";
-    els.title.textContent = set.title;
-    els.passage.innerHTML = (set.passage || [])
+    if (els.topic) els.topic.textContent = set.topic || "Academic reading";
+    if (els.title) els.title.textContent = set.title;
+    if (els.passage) els.passage.innerHTML = (set.passage || [])
       .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
       .join("");
   }
@@ -192,26 +220,26 @@
   function renderResult() {
     const set = currentSet();
     const total = set?.questions?.length || 0;
-    els.result.hidden = !state.submitted;
-    els.submit.disabled = state.submitted || total === 0;
+    if (els.result) els.result.hidden = !state.submitted;
+    if (els.submit) els.submit.disabled = state.submitted || total === 0;
 
     if (!state.submitted) {
-      els.resultSummary.textContent = "";
+      if (els.resultSummary) els.resultSummary.textContent = "";
       return;
     }
 
     const unanswered = (set.questions || []).filter((question) => !state.answers[question.id]).length;
-    els.resultSummary.textContent = `${state.score} of ${total} correct · ${unanswered} unanswered. This is a practice accuracy result, not an IELTS band score.`;
+    if (els.resultSummary) els.resultSummary.textContent = `${state.score} of ${total} correct · ${unanswered} unanswered. This is a practice accuracy result, not an IELTS band score.`;
   }
 
   function renderErrorLog() {
     const history = Array.isArray(state.history) ? state.history : [];
     const recent = history.slice(-10).reverse();
-    els.errorCount.textContent = `${history.length} saved error${history.length === 1 ? "" : "s"}`;
-    els.errorEmpty.hidden = recent.length > 0;
-    els.clearErrors.disabled = history.length === 0;
+    if (els.errorCount) els.errorCount.textContent = `${history.length} saved error${history.length === 1 ? "" : "s"}`;
+    if (els.errorEmpty) els.errorEmpty.hidden = recent.length > 0;
+    if (els.clearErrors) els.clearErrors.disabled = history.length === 0;
 
-    els.errorList.innerHTML = recent.map((entry) => `
+    if (els.errorList) els.errorList.innerHTML = recent.map((entry) => `
       <li class="ielts-reading__error-item">
         <div>
           <strong>${escapeHtml(entry.setTitle)}</strong>
@@ -223,8 +251,8 @@
   }
 
   function renderTimer() {
-    els.timer.textContent = formatTime(state.remaining);
-    if (!interval) {
+    if (els.timer) els.timer.textContent = formatTime(state.remaining);
+    if (!interval && els.timerStatus) {
       els.timerStatus.textContent = state.remaining === 0 ?
         "Time is up. Submit your answers when you are ready to review." :
         "Timer ready. You can also practise without starting it.";
@@ -247,7 +275,7 @@
     renderResult();
     renderErrorLog();
     renderTimer();
-    els.attempt.textContent = `Attempt ${state.attempt}`;
+    if (els.attempt) els.attempt.textContent = `Attempt ${state.attempt}`;
   }
 
   function resetForSet(setId, message, attempt = 1) {
@@ -263,7 +291,7 @@
     const candidates = sets.filter((set) => set.id !== state.setId);
     const next = candidates[Math.floor(Math.random() * candidates.length)];
     resetForSet(next.id, "New reading set selected.");
-    els.setSelect.focus();
+    if (els.setSelect) els.setSelect.focus();
   }
 
   function submitAnswers() {
@@ -300,61 +328,75 @@
     state.history = [...state.history, ...newErrors].slice(-HISTORY_LIMIT);
     render();
     safeWrite("Reading attempt reviewed and error log updated locally.");
-    els.result.focus();
+    if (els.result) try { els.result.focus(); } catch (_) {}
   }
 
-  els.setSelect.addEventListener("change", () => {
-    resetForSet(els.setSelect.value, "Reading set changed.");
-  });
+  if (els.setSelect) {
+    els.setSelect.addEventListener("change", () => {
+      resetForSet(els.setSelect.value, "Reading set changed.");
+    });
+  }
 
-  els.newSet.addEventListener("click", chooseNewSet);
+  if (els.newSet) els.newSet.addEventListener("click", chooseNewSet);
 
-  els.questions.addEventListener("change", (event) => {
-    const input = event.target.closest("[data-reading-answer]");
-    if (!input || state.submitted) return;
-    state.answers[input.dataset.readingAnswer] = input.value;
-    safeWrite("Answer autosaved locally.");
-  });
+  if (els.questions) {
+    els.questions.addEventListener("change", (event) => {
+      const input = event.target.closest("[data-reading-answer]");
+      if (!input || state.submitted) return;
+      state.answers[input.dataset.readingAnswer] = input.value;
+      safeWrite("Answer autosaved locally.");
+    });
+  }
 
-  els.start.addEventListener("click", () => {
-    if (interval || state.remaining <= 0 || state.submitted) return;
-    els.start.disabled = true;
-    els.pause.disabled = false;
-    els.timerStatus.textContent = "Reading timer running.";
-    deadlineMs = performance.now() + (state.remaining * 1000);
-    interval = window.setInterval(() => syncTimerToNow(), 1000);
-  });
+  if (els.start) {
+    els.start.addEventListener("click", () => {
+      if (interval || state.remaining <= 0 || state.submitted) return;
+      els.start.disabled = true;
+      if (els.pause) els.pause.disabled = false;
+      if (els.timerStatus) els.timerStatus.textContent = "Reading timer running.";
+      deadlineMs = performance.now() + (state.remaining * 1000);
+      interval = window.setInterval(() => syncTimerToNow(), 1000);
+    });
+  }
 
-  els.pause.addEventListener("click", () => {
-    if (syncTimerToNow()) return;
-    stopTimer();
-    els.timerStatus.textContent = "Timer paused.";
-    safeWrite("Timer paused and saved locally.");
-  });
+  if (els.pause) {
+    els.pause.addEventListener("click", () => {
+      if (syncTimerToNow()) return;
+      stopTimer();
+      if (els.timerStatus) els.timerStatus.textContent = "Timer paused.";
+      safeWrite("Timer paused and saved locally.");
+    });
+  }
 
-  els.resetTimer.addEventListener("click", () => {
-    stopTimer();
-    state.remaining = setSeconds();
-    renderTimer();
-    safeWrite("Timer reset.");
-  });
+  if (els.resetTimer) {
+    els.resetTimer.addEventListener("click", () => {
+      stopTimer();
+      state.remaining = setSeconds();
+      renderTimer();
+      safeWrite("Timer reset.");
+    });
+  }
 
-  els.submit.addEventListener("click", submitAnswers);
+  if (els.submit) els.submit.addEventListener("click", submitAnswers);
 
-  els.retry.addEventListener("click", () => {
-    const nextAttempt = state.attempt + 1;
-    const setId = state.setId;
-    resetForSet(setId, `Retry ${nextAttempt} started for the same passage.`, nextAttempt);
-    els.passage.focus();
-  });
+  if (els.retry) {
+    els.retry.addEventListener("click", () => {
+      const nextAttempt = state.attempt + 1;
+      const setId = state.setId;
+      resetForSet(setId, `Retry ${nextAttempt} started for the same passage.`, nextAttempt);
+      if (els.passage) els.passage.focus();
+    });
+  }
 
-  els.clearErrors.addEventListener("click", () => {
-    const confirmed = window.confirm("Clear the local Reading Trainer error log? Your current passage answers will remain.");
-    if (!confirmed) return;
-    state.history = [];
-    renderErrorLog();
-    safeWrite("Reading error log cleared.");
-  });
+  if (els.clearErrors) {
+    els.clearErrors.addEventListener("click", () => {
+      const confirmed = window.confirm("Clear the local Reading Trainer error log? Your current passage answers will remain.");
+      if (!confirmed) return;
+      state.history = [];
+      renderErrorLog();
+      safeWrite("Reading error log cleared.");
+    });
+  }
 
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState !== "visible" || !interval) return;
@@ -369,11 +411,18 @@
 
   const saved = safeRead();
   if (saved && sets.some((set) => set.id === saved.setId)) {
-    state = {
-      ...freshState(saved.setId, saved.history, saved.attempt),
-      ...saved,
+    // Normalize and validate saved values before applying to state
+    const normalized = {
+      setId: saved.setId,
+      attempt: Number.isFinite(Number(saved.attempt)) && Number(saved.attempt) >= 1 ? Math.floor(Number(saved.attempt)) : 1,
       history: Array.isArray(saved.history) ? saved.history.slice(-HISTORY_LIMIT) : [],
+      answers: (saved.answers && typeof saved.answers === "object") ? saved.answers : {},
+      remaining: (Number.isFinite(Number(saved.remaining)) && saved.remaining >= 0) ? Number(saved.remaining) : setSeconds(findSet(saved.setId)),
+      submitted: !!saved.submitted,
+      score: Number.isFinite(Number(saved.score)) ? Number(saved.score) : null,
     };
+
+    state = { ...freshState(normalized.setId, normalized.history, normalized.attempt), ...normalized };
   }
 
   render();
