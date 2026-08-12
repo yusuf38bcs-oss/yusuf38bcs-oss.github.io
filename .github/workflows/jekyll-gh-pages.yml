@@ -61,7 +61,26 @@ jobs:
             echo "Validating Homepage v2 production output."
             grep -q 'id="lbfl-home-v2"' _site/index.html || (echo "Homepage v2 root missing" && exit 1)
             grep -q 'assets/js/home/homepage-v2.js' _site/index.html || (echo "Homepage v2 runtime missing" && exit 1)
-            grep -q 'GTM-WPZ6MPK4' _site/index.html || (echo "Homepage v2 GTM configuration missing" && exit 1)
+            readarray -t ADSENSE_POLICY < <(ruby -ryaml -e '
+              policy = YAML.safe_load(
+                File.read("_data/adsense.yml"),
+                permitted_classes: [],
+                permitted_symbols: [],
+                aliases: false
+              ) || {}
+              puts policy.fetch("mode", "")
+              puts policy.fetch("certified_cmp_ready", false)
+            ')
+            ADSENSE_MODE="${ADSENSE_POLICY[0]:-}"
+            ADSENSE_CMP_READY="${ADSENSE_POLICY[1]:-false}"
+            if [[ "$ADSENSE_MODE" == "live" && "$ADSENSE_CMP_READY" == "true" ]]; then
+              grep -q 'GTM-WPZ6MPK4' _site/index.html || (echo "Homepage v2 GTM configuration missing in certified live mode" && exit 1)
+            elif grep -q 'GTM-WPZ6MPK4' _site/index.html; then
+              echo "Homepage v2 GTM must remain suppressed outside certified live mode"
+              exit 1
+            else
+              echo "Homepage v2 GTM suppression matches the current AdSense policy."
+            fi
             grep -q 'translate.google.com/translate_a/element.js' _site/index.html || (echo "Homepage v2 Translate loader missing" && exit 1)
             grep -q 'analytics_storage.*denied' _site/index.html || (echo "Homepage v2 denied consent default missing" && exit 1)
             if grep -q 'synaptic-floating-ai-root' _site/index.html; then

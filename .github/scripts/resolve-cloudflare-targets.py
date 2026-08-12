@@ -172,15 +172,20 @@ def as_records(value: Any, key: str) -> list[dict[str, Any]]:
     return []
 
 
-def cloudflare_pages_preview(
-    account_id: str, project_name: str, target_sha: str, token: str
-) -> str:
+def cloudflare_pages_deployment(
+    account_id: str,
+    project_name: str,
+    target_sha: str,
+    token: str,
+    environment: str = "preview",
+) -> dict[str, str]:
     if not account_id or not project_name or not token:
-        return ""
+        return {}
     account = urllib.parse.quote(account_id, safe="")
     project = urllib.parse.quote(project_name, safe="")
+    query = urllib.parse.urlencode({"env": environment, "per_page": 25})
     result = cloudflare_api_get(
-        f"/accounts/{account}/pages/projects/{project}/deployments?per_page=25", token
+        f"/accounts/{account}/pages/projects/{project}/deployments?{query}", token
     )
     for deployment in as_records(result, "deployments"):
         trigger = deployment.get("deployment_trigger")
@@ -190,13 +195,32 @@ def cloudflare_pages_preview(
         latest_status = latest_stage.get("status") if isinstance(latest_stage, dict) else ""
         if (
             commit_hash == target_sha
-            and deployment.get("environment") == "preview"
+            and deployment.get("environment") == environment
             and latest_status == "success"
+            and deployment.get("is_skipped") is not True
+            and metadata.get("commit_dirty") is not True
         ):
             url = cloudflare_url(deployment.get("url"), ".pages.dev")
             if url:
-                return url
-    return ""
+                return {
+                    "branch": str(metadata.get("branch") or ""),
+                    "commit_hash": commit_hash,
+                    "deployment_id": str(deployment.get("id") or ""),
+                    "environment": environment,
+                    "status": latest_status,
+                    "url": url,
+                }
+    return {}
+
+
+def cloudflare_pages_preview(
+    account_id: str, project_name: str, target_sha: str, token: str
+) -> str:
+    """Backward-compatible preview URL helper for existing callers."""
+    deployment = cloudflare_pages_deployment(
+        account_id, project_name, target_sha, token, "preview"
+    )
+    return deployment.get("url", "")
 
 
 def cloudflare_worker_version_for_sha(
@@ -361,13 +385,24 @@ def configured_worker_endpoint(site_config: Path) -> str:
 
 def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
     token = os.environ.get("CLOUDFLARE_API_TOKEN", "")
-    comments = github_comments(args.repository, args.pr_number, os.environ.get("GH_TOKEN", ""))
+    comments = (
+        github_comments(
+            args.repository, args.pr_number, os.environ.get("GH_TOKEN", "")
+        )
+        if args.pages_environment == "preview"
+        else []
+    )
     pages_comment_url, pages_commit_claim = find_preview(comments, target_sha, PAGES_URL_RE)
     worker_comment_url, worker_commit_claim = find_preview(comments, target_sha, WORKER_URL_RE)
     worker_build_uuid = find_worker_build_uuid(comments, target_sha)
-    pages_api_url = cloudflare_pages_preview(
-        args.cloudflare_account_id, args.cloudflare_pages_project, target_sha, token
+    pages_deployment = cloudflare_pages_deployment(
+        args.cloudflare_account_id,
+        args.cloudflare_pages_project,
+        target_sha,
+        token,
+        args.pages_environment,
     )
+    pages_api_url = pages_deployment.get("url", "")
     worker_version_id = cloudflare_worker_version_for_sha(
         args.cloudflare_account_id, args.cloudflare_worker_script, target_sha, token
     )
@@ -391,7 +426,11 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
                 "cloudflare_worker_build_log_full_sha_version_bound_pending_contract_probe"
             )
 
-    pages_override = cloudflare_url(args.pages_override, ".pages.dev")
+    pages_override = (
+        cloudflare_url(args.pages_override, ".pages.dev")
+        if args.pages_environment == "preview"
+        else ""
+    )
     worker_override = cloudflare_url(args.worker_override, ".workers.dev")
     configured_worker = configured_worker_endpoint(Path(args.site_config))
     pages_exact_head = bool(pages_api_url) or pages_commit_claim == target_sha
@@ -402,7 +441,9 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
     worker_url = worker_comment_url or worker_override or configured_worker
 
     if pages_api_url:
-        pages_source = "cloudflare_pages_deployment_api_full_sha"
+        pages_source = (
+            f"cloudflare_pages_{args.pages_environment}_deployment_api_full_sha"
+        )
     elif pages_commit_claim == target_sha:
         pages_source = "cloudflare_full_sha_commit_comment"
     elif pages_comment_url:
@@ -436,6 +477,11 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
             "url": pages_url,
             "source": pages_source,
             "commit_claim": pages_commit_claim,
+            "branch": pages_deployment.get("branch", ""),
+            "deployed_sha": pages_deployment.get("commit_hash", ""),
+            "deployment_id": pages_deployment.get("deployment_id", ""),
+            "environment": pages_deployment.get("environment", ""),
+            "status": pages_deployment.get("status", ""),
             "exact_head": pages_exact_head,
         },
         "worker": {
@@ -466,6 +512,11 @@ def main() -> int:
     parser.add_argument("--worker-override", default="")
     parser.add_argument("--cloudflare-account-id", default="")
     parser.add_argument("--cloudflare-pages-project", default="")
+    parser.add_argument(
+        "--pages-environment",
+        choices=("preview", "production"),
+        default="preview",
+    )
     parser.add_argument("--cloudflare-worker-script", default="")
     parser.add_argument("--wait-seconds", type=int, default=0)
     parser.add_argument("--poll-interval-seconds", type=int, default=20)
@@ -496,6 +547,11 @@ def main() -> int:
         {
             "pages_url": str(result["pages"]["url"]),
             "pages_exact_head": str(result["pages"]["exact_head"]).lower(),
+            "pages_branch": str(result["pages"]["branch"]),
+            "pages_deployed_sha": str(result["pages"]["deployed_sha"]),
+            "pages_deployment_id": str(result["pages"]["deployment_id"]),
+            "pages_environment": str(result["pages"]["environment"]),
+            "pages_status": str(result["pages"]["status"]),
             "worker_url": str(result["worker"]["url"]),
             "worker_metadata_exact_head": str(result["worker"]["metadata_exact_head"]).lower(),
             "worker_version_id": str(result["worker"]["version_id"]),

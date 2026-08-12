@@ -1,0 +1,371 @@
+name: Production Exact-Head Certification
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "_data/adsense.yml"
+      - ".github/scripts/adsense-browser-certification.mjs"
+      - ".github/scripts/resolve-cloudflare-targets.py"
+      - ".github/scripts/test-resolve-cloudflare-targets.py"
+      - ".github/workflows/jekyll-gh-pages.yml"
+      - ".github/workflows/production-certification.yml"
+  workflow_dispatch:
+    inputs:
+      expected_main_sha:
+        description: "Exact 40-character main SHA expected in Cloudflare production"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-certification-${{ inputs.expected_main_sha }}
+  cancel-in-progress: false
+
+jobs:
+  certification-contract:
+    name: Certification contract (exact head)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      CERTIFICATION_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out the immutable candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.CERTIFICATION_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Test trusted Cloudflare deployment resolution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$CERTIFICATION_HEAD_SHA"
+          python3 -m py_compile \
+            .github/scripts/resolve-cloudflare-targets.py \
+            .github/scripts/test-resolve-cloudflare-targets.py
+          python3 .github/scripts/test-resolve-cloudflare-targets.py
+          node --check .github/scripts/adsense-browser-certification.mjs
+
+      - name: Validate workflow YAML and current AdSense policy
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Parse certification contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby -ryaml -e '
+            ARGV.each { |path| YAML.parse_file(path) }
+          ' \
+            .github/workflows/jekyll-gh-pages.yml \
+            .github/workflows/production-certification.yml
+          ruby -ryaml -e '
+            policy = YAML.safe_load(
+              File.read("_data/adsense.yml"),
+              permitted_classes: [],
+              permitted_symbols: [],
+              aliases: false
+            ) || {}
+            abort("AdSense mode is invalid") unless %w[review live].include?(policy["mode"])
+            abort("certified_cmp_ready must be boolean") unless [true, false].include?(policy["certified_cmp_ready"])
+          '
+
+  production-certification:
+    name: Main/deployment identity, health, and browser matrix
+    needs: certification-contract
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      EVIDENCE_DIR: production-certification
+      PRODUCTION_URL: https://learningbiologyforlife.org
+      TARGET_MAIN_SHA: ${{ inputs.expected_main_sha }}
+      WORKER_HEALTH_URL: https://api.learningbiologyforlife.org/api/health
+
+    steps:
+      - name: Check out the requested immutable main SHA
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.TARGET_MAIN_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Enforce current main identity before certification
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$TARGET_MAIN_SHA" =~ ^[0-9a-f]{40}$ ]] || {
+            echo "expected_main_sha must be a full lowercase commit SHA"
+            exit 1
+          }
+          test "$GITHUB_REF" = "refs/heads/main" || {
+            echo "Dispatch this workflow from the main branch"
+            exit 1
+          }
+          test "$GITHUB_SHA" = "$TARGET_MAIN_SHA" || {
+            echo "The dispatch SHA does not equal expected_main_sha"
+            exit 1
+          }
+          test "$(git rev-parse HEAD)" = "$TARGET_MAIN_SHA"
+          git fetch --no-tags --depth=1 origin main
+          test "$(git rev-parse origin/main)" = "$TARGET_MAIN_SHA" || {
+            echo "main moved before certification began; rerun at the new exact head"
+            exit 1
+          }
+
+      - name: Resolve the successful exact-SHA Cloudflare production deployment
+        id: production
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_ACCOUNT_ID"
+          test -n "$CLOUDFLARE_API_TOKEN"
+          test -n "$CLOUDFLARE_PAGES_PROJECT"
+          mkdir -p "$EVIDENCE_DIR"
+          production_output="$RUNNER_TEMP/cloudflare-production.out"
+          for attempt in $(seq 1 40); do
+            : > "$production_output"
+            python3 .github/scripts/resolve-cloudflare-targets.py \
+              --repository "$GITHUB_REPOSITORY" \
+              --sha "$TARGET_MAIN_SHA" \
+              --pages-environment production \
+              --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" \
+              --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" \
+              --wait-seconds 0 \
+              --site-config _data/ai.yml \
+              --output "$EVIDENCE_DIR/cloudflare-production.json" \
+              --github-output "$production_output"
+            if python3 - "$EVIDENCE_DIR/cloudflare-production.json" "$TARGET_MAIN_SHA" <<'PY'
+          import json
+          import sys
+
+          evidence = json.load(open(sys.argv[1], encoding="utf-8"))
+          target_sha = sys.argv[2]
+          pages = evidence.get("pages", {})
+          passed = (
+              evidence.get("target_sha") == target_sha
+              and pages.get("exact_head") is True
+              and pages.get("deployed_sha") == target_sha
+              and pages.get("branch") == "main"
+              and pages.get("environment") == "production"
+              and pages.get("status") == "success"
+              and bool(pages.get("deployment_id"))
+              and str(pages.get("url", "")).startswith("https://")
+          )
+          raise SystemExit(0 if passed else 1)
+          PY
+            then
+              cat "$production_output" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 15
+          done
+          cat "$EVIDENCE_DIR/cloudflare-production.json"
+          echo "No successful production deployment matched the exact main SHA"
+          exit 1
+
+      - name: Enforce production deployment outputs
+        env:
+          DEPLOYED_SHA: ${{ steps.production.outputs.pages_deployed_sha }}
+          DEPLOYMENT_ID: ${{ steps.production.outputs.pages_deployment_id }}
+          DEPLOYMENT_STATUS: ${{ steps.production.outputs.pages_status }}
+          PAGES_BRANCH: ${{ steps.production.outputs.pages_branch }}
+          PAGES_ENVIRONMENT: ${{ steps.production.outputs.pages_environment }}
+          PAGES_EXACT_HEAD: ${{ steps.production.outputs.pages_exact_head }}
+          PAGES_URL: ${{ steps.production.outputs.pages_url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$PAGES_EXACT_HEAD" = "true"
+          test "$DEPLOYED_SHA" = "$TARGET_MAIN_SHA"
+          test "$PAGES_BRANCH" = "main"
+          test "$PAGES_ENVIRONMENT" = "production"
+          test "$DEPLOYMENT_STATUS" = "success"
+          test -n "$DEPLOYMENT_ID"
+          test -n "$PAGES_URL"
+
+      - name: Verify canonical production HTTP 200 and exact-deployment content
+        env:
+          EXACT_DEPLOYMENT_URL: ${{ steps.production.outputs.pages_url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          production_status="$(curl \
+            --fail \
+            --location \
+            --retry 5 \
+            --retry-all-errors \
+            --silent \
+            --show-error \
+            --output "$EVIDENCE_DIR/production-homepage.html" \
+            --write-out '%{http_code}' \
+            "$PRODUCTION_URL/")"
+          deployment_status="$(curl \
+            --fail \
+            --location \
+            --retry 5 \
+            --retry-all-errors \
+            --silent \
+            --show-error \
+            --output "$EVIDENCE_DIR/exact-deployment-homepage.html" \
+            --write-out '%{http_code}' \
+            "$EXACT_DEPLOYMENT_URL/")"
+          test "$production_status" = "200"
+          test "$deployment_status" = "200"
+          grep -q 'data-homepage-v2' "$EVIDENCE_DIR/production-homepage.html"
+          cmp --silent \
+            "$EVIDENCE_DIR/production-homepage.html" \
+            "$EVIDENCE_DIR/exact-deployment-homepage.html" || {
+              echo "Canonical production does not match the exact deployment homepage"
+              exit 1
+            }
+          printf 'canonical=%s\nexact_deployment=%s\ncontent_match=true\n' \
+            "$production_status" \
+            "$deployment_status" \
+            > "$EVIDENCE_DIR/production-http-status.txt"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Verify Worker health and serving version
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - "$WORKER_HEALTH_URL" "$EVIDENCE_DIR/worker-health.json" <<'NODE'
+          const assert = require("node:assert/strict");
+          const fs = require("node:fs");
+
+          (async () => {
+            const [url, output] = process.argv.slice(2);
+            const response = await fetch(url, {
+              headers: { Accept: "application/json" },
+              redirect: "error",
+              signal: AbortSignal.timeout(15_000),
+            });
+            assert.equal(response.status, 200, "Worker health must return HTTP 200");
+            assert.match(
+              response.headers.get("content-type") ?? "",
+              /^application\/json/i,
+              "Worker health must return JSON",
+            );
+            const health = await response.json();
+            const versionId = response.headers.get("x-lbfl-worker-version") ?? "";
+            assert.equal(health.ok, true, "Worker health must report ok=true");
+            assert.equal(health.environment, "production", "Worker must report production");
+            assert.equal(typeof health.service, "string", "Worker service must be present");
+            assert.ok(health.service.length > 0, "Worker service must be non-empty");
+            assert.equal(typeof health.version, "string", "Worker version must be present");
+            assert.ok(health.version.length > 0, "Worker version must be non-empty");
+            assert.match(
+              versionId,
+              /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i,
+              "Worker version header must be a UUID",
+            );
+            if (health.worker_version_id) {
+              assert.equal(
+                health.worker_version_id,
+                versionId,
+                "Worker body and response header version IDs must match",
+              );
+            }
+            fs.writeFileSync(output, `${JSON.stringify({
+              environment: health.environment,
+              ok: health.ok,
+              service: health.service,
+              status: response.status,
+              tested_at: new Date().toISOString(),
+              version: health.version,
+              worker_version_id: versionId,
+            }, null, 2)}\n`);
+          })().catch((error) => {
+            console.error(error);
+            process.exitCode = 1;
+          });
+          NODE
+
+      - name: Install pinned browser-test dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+
+      - name: Run the full production browser matrix
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/scripts/adsense-browser-certification.mjs \
+            --url "$PRODUCTION_URL" \
+            --expected-sha "$TARGET_MAIN_SHA" \
+            --output-dir "$EVIDENCE_DIR/browser"
+
+      - name: Recheck main after certification
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 origin main
+          test "$(git rev-parse origin/main)" = "$TARGET_MAIN_SHA" || {
+            echo "main moved during certification; all evidence is stale and a full rerun is required"
+            exit 1
+          }
+
+      - name: Add certification summary
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          {
+            echo "# Production Exact-Head Certification"
+            echo
+            echo "- Requested main SHA: \`$TARGET_MAIN_SHA\`"
+            if [[ -f "$EVIDENCE_DIR/cloudflare-production.json" ]]; then
+              python3 - "$EVIDENCE_DIR/cloudflare-production.json" <<'PY'
+          import json
+          import sys
+
+          pages = json.load(open(sys.argv[1], encoding="utf-8")).get("pages", {})
+          print(f"- Cloudflare deployed SHA: `{pages.get('deployed_sha', '')}`")
+          print(f"- Cloudflare source branch: `{pages.get('branch', '')}`")
+          print(f"- Cloudflare deployment: `{pages.get('deployment_id', '')}`")
+          print(f"- Cloudflare environment/status: `{pages.get('environment', '')}` / `{pages.get('status', '')}`")
+          PY
+            fi
+            if [[ -f "$EVIDENCE_DIR/worker-health.json" ]]; then
+              python3 - "$EVIDENCE_DIR/worker-health.json" <<'PY'
+          import json
+          import sys
+
+          worker = json.load(open(sys.argv[1], encoding="utf-8"))
+          print(f"- Worker service version: `{worker.get('version', '')}`")
+          print(f"- Worker deployment version: `{worker.get('worker_version_id', '')}`")
+          PY
+            fi
+            if [[ -f "$EVIDENCE_DIR/browser/browser-certification.md" ]]; then
+              echo
+              cat "$EVIDENCE_DIR/browser/browser-certification.md"
+            else
+              echo "- Browser matrix: report not produced"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Preserve production evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-certification-${{ env.TARGET_MAIN_SHA }}
+          path: ${{ env.EVIDENCE_DIR }}
+          if-no-files-found: warn
+          retention-days: 30

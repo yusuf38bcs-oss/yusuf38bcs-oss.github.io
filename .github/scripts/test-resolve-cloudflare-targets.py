@@ -23,6 +23,67 @@ BOT = {"login": "cloudflare-workers-and-pages[bot]"}
 
 
 class ResolveCloudflareTargetsTest(unittest.TestCase):
+    def test_pages_production_deployment_requires_exact_successful_sha(self) -> None:
+        calls: list[str] = []
+
+        def deployment(
+            deployment_id: str,
+            sha: str,
+            environment: str,
+            status: str,
+            *,
+            is_skipped: bool = False,
+        ) -> dict[str, Any]:
+            return {
+                "id": deployment_id,
+                "url": f"https://{deployment_id}.example.pages.dev",
+                "environment": environment,
+                "deployment_trigger": {
+                    "metadata": {
+                        "branch": "main",
+                        "commit_dirty": False,
+                        "commit_hash": sha,
+                    }
+                },
+                "is_skipped": is_skipped,
+                "latest_stage": {"status": status},
+            }
+
+        def fake_get(path: str, token: str) -> Any:
+            calls.append(path)
+            return [
+                deployment("wrong-sha", "0" * 40, "production", "success"),
+                deployment("wrong-environment", TARGET_SHA, "preview", "success"),
+                deployment("not-ready", TARGET_SHA, "production", "failure"),
+                deployment(
+                    "skipped", TARGET_SHA, "production", "success", is_skipped=True
+                ),
+                deployment("exact-production", TARGET_SHA, "production", "success"),
+            ]
+
+        original = resolver.cloudflare_api_get
+        resolver.cloudflare_api_get = fake_get
+        try:
+            actual = resolver.cloudflare_pages_deployment(
+                "account", "project", TARGET_SHA, "token", "production"
+            )
+        finally:
+            resolver.cloudflare_api_get = original
+
+        self.assertEqual(
+            actual,
+            {
+                "branch": "main",
+                "commit_hash": TARGET_SHA,
+                "deployment_id": "exact-production",
+                "environment": "production",
+                "status": "success",
+                "url": "https://exact-production.example.pages.dev",
+            },
+        )
+        self.assertEqual(len(calls), 1)
+        self.assertIn("env=production", calls[0])
+
     def test_pages_success_fixture_matches_current_head_prefix(self) -> None:
         body = """## Deploying yusuf38bcs-oss-github-io with Cloudflare Pages
 
