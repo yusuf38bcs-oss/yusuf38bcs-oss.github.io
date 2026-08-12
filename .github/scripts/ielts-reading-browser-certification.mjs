@@ -271,7 +271,7 @@ async function runBehavior(browser) {
     await page.locator("[data-reading-start]").click();
     await page.evaluate(() => {
       try {
-        const originalNow = performance.now;
+        const originalNow = performance.now.bind(performance);
         Object.defineProperty(performance, "now", {
           configurable: true,
           value: () => originalNow() + 3500,
