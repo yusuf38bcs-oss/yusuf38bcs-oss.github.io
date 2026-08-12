@@ -22,7 +22,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: production-certification-${{ inputs.expected_main_sha }}
+  group: production-certification-${{ github.event.pull_request.head.sha || inputs.expected_main_sha || github.run_id }}
   cancel-in-progress: false
 
 jobs:
@@ -84,6 +84,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     env:
+      CLOUDFLARE_WORKER_SCRIPT: ${{ vars.CLOUDFLARE_WORKER_SCRIPT }}
       EVIDENCE_DIR: production-certification
       PRODUCTION_URL: https://learningbiologyforlife.org
       TARGET_MAIN_SHA: ${{ inputs.expected_main_sha }}
@@ -132,6 +133,11 @@ jobs:
           test -n "$CLOUDFLARE_ACCOUNT_ID"
           test -n "$CLOUDFLARE_API_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
+          test -n "$CLOUDFLARE_WORKER_SCRIPT"
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy" || {
+            echo "CLOUDFLARE_WORKER_SCRIPT must identify the public production Worker"
+            exit 1
+          }
           mkdir -p "$EVIDENCE_DIR"
           production_output="$RUNNER_TEMP/cloudflare-production.out"
           for attempt in $(seq 1 40); do
@@ -142,17 +148,21 @@ jobs:
               --pages-environment production \
               --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" \
               --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" \
+              --cloudflare-worker-script "$CLOUDFLARE_WORKER_SCRIPT" \
               --wait-seconds 0 \
               --site-config _data/ai.yml \
               --output "$EVIDENCE_DIR/cloudflare-production.json" \
               --github-output "$production_output"
             if python3 - "$EVIDENCE_DIR/cloudflare-production.json" "$TARGET_MAIN_SHA" <<'PY'
           import json
+          import re
           import sys
 
           evidence = json.load(open(sys.argv[1], encoding="utf-8"))
           target_sha = sys.argv[2]
           pages = evidence.get("pages", {})
+          worker = evidence.get("worker", {})
+          worker_version_id = str(worker.get("version_id", ""))
           passed = (
               evidence.get("target_sha") == target_sha
               and pages.get("exact_head") is True
@@ -162,6 +172,12 @@ jobs:
               and pages.get("status") == "success"
               and bool(pages.get("deployment_id"))
               and str(pages.get("url", "")).startswith("https://")
+              and worker.get("metadata_exact_head") is True
+              and re.fullmatch(
+                  r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}",
+                  worker_version_id,
+                  re.IGNORECASE,
+              ) is not None
           )
           raise SystemExit(0 if passed else 1)
           PY
@@ -184,6 +200,8 @@ jobs:
           PAGES_ENVIRONMENT: ${{ steps.production.outputs.pages_environment }}
           PAGES_EXACT_HEAD: ${{ steps.production.outputs.pages_exact_head }}
           PAGES_URL: ${{ steps.production.outputs.pages_url }}
+          EXPECTED_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}
+          WORKER_METADATA_EXACT_HEAD: ${{ steps.production.outputs.worker_metadata_exact_head }}
         shell: bash
         run: |
           set -euo pipefail
@@ -194,6 +212,8 @@ jobs:
           test "$DEPLOYMENT_STATUS" = "success"
           test -n "$DEPLOYMENT_ID"
           test -n "$PAGES_URL"
+          test "$WORKER_METADATA_EXACT_HEAD" = "true"
+          [[ "$EXPECTED_WORKER_VERSION_ID" =~ ^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$ ]]
 
       - name: Verify canonical production HTTP 200 and exact-deployment content
         env:
@@ -241,15 +261,22 @@ jobs:
           node-version: "24"
 
       - name: Verify Worker health and serving version
+        env:
+          EXPECTED_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}
         shell: bash
         run: |
           set -euo pipefail
-          node - "$WORKER_HEALTH_URL" "$EVIDENCE_DIR/worker-health.json" <<'NODE'
+          node - "$WORKER_HEALTH_URL" "$EVIDENCE_DIR/worker-health.json" "$EXPECTED_WORKER_VERSION_ID" <<'NODE'
           const assert = require("node:assert/strict");
           const fs = require("node:fs");
 
           (async () => {
-            const [url, output] = process.argv.slice(2);
+            const [url, output, expectedVersionId] = process.argv.slice(2);
+            assert.match(
+              expectedVersionId,
+              /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i,
+              "Resolved Worker version must be a UUID",
+            );
             const response = await fetch(url, {
               headers: { Accept: "application/json" },
               redirect: "error",
@@ -274,15 +301,24 @@ jobs:
               /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i,
               "Worker version header must be a UUID",
             );
-            if (health.worker_version_id) {
-              assert.equal(
-                health.worker_version_id,
-                versionId,
-                "Worker body and response header version IDs must match",
-              );
-            }
+            assert.equal(
+              versionId,
+              expectedVersionId,
+              "Production Worker must serve the version resolved for TARGET_MAIN_SHA",
+            );
+            assert.equal(
+              typeof health.worker_version_id,
+              "string",
+              "Worker body version ID must be present",
+            );
+            assert.equal(
+              health.worker_version_id,
+              expectedVersionId,
+              "Worker body must report the version resolved for TARGET_MAIN_SHA",
+            );
             fs.writeFileSync(output, `${JSON.stringify({
               environment: health.environment,
+              expected_worker_version_id: expectedVersionId,
               ok: health.ok,
               service: health.service,
               status: response.status,

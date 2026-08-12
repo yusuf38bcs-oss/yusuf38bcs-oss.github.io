@@ -197,8 +197,8 @@ def cloudflare_pages_deployment(
             commit_hash == target_sha
             and deployment.get("environment") == environment
             and latest_status == "success"
-            and deployment.get("is_skipped") is not True
-            and metadata.get("commit_dirty") is not True
+            and deployment.get("is_skipped") is False
+            and metadata.get("commit_dirty") is False
         ):
             url = cloudflare_url(deployment.get("url"), ".pages.dev")
             if url:
@@ -436,7 +436,12 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
     pages_exact_head = bool(pages_api_url) or pages_commit_claim == target_sha
     # The Worker contract probe must confirm this version ID at the tested URL
     # before release certification can claim exact-head evidence.
-    worker_metadata_exact_head = bool(worker_version_id and worker_comment_url)
+    # Preview certification also requires a trusted deployment-comment URL.
+    # Production resolves immutable Worker metadata directly, then the workflow
+    # binds the live health response to that exact version ID.
+    worker_metadata_exact_head = bool(worker_version_id) and (
+        args.pages_environment == "production" or bool(worker_comment_url)
+    )
     pages_url = pages_api_url or pages_comment_url or pages_override
     worker_url = worker_comment_url or worker_override or configured_worker
 
