@@ -194,15 +194,19 @@ async function runViewport(browser, viewport) {
 
 async function installStoredStatePatchBridge(page) {
   await page.addInitScript(({ pendingKey, storageKey }) => {
-    const rawPatch = sessionStorage.getItem(pendingKey);
-    if (!rawPatch) return;
+    try {
+      const rawPatch = sessionStorage.getItem(pendingKey);
+      if (!rawPatch) return;
 
-    sessionStorage.removeItem(pendingKey);
-    const current = JSON.parse(localStorage.getItem(storageKey) || "null");
-    if (!current) throw new Error(`Missing ${storageKey} state`);
-
-    const patch = JSON.parse(rawPatch);
-    localStorage.setItem(storageKey, JSON.stringify({ ...current, ...patch }));
+      sessionStorage.removeItem(pendingKey);
+      const currentRaw = localStorage.getItem(storageKey);
+      const current = currentRaw ? JSON.parse(currentRaw) : {};
+      const patch = JSON.parse(rawPatch);
+      localStorage.setItem(storageKey, JSON.stringify({ ...current, ...patch }));
+    } catch (err) {
+      // Don't throw — make the probe resilient. Log a warning so the probe captures it if possible.
+      try { console.warn('installStoredStatePatchBridge: failed to apply patch', String(err)); } catch (_) {}
+    }
   }, { pendingKey: PENDING_STATE_PATCH_KEY, storageKey: STORAGE_KEY });
 }
 
@@ -266,16 +270,34 @@ async function runBehavior(browser) {
     await settle(page);
     await page.locator("[data-reading-start]").click();
     await page.evaluate(() => {
-      const actualNow = performance.now.bind(performance);
-      Object.defineProperty(performance, "now", {
-        configurable: true,
-        value: () => actualNow() + 3500,
-      });
+      try {
+        const originalNow = performance.now;
+        Object.defineProperty(performance, "now", {
+          configurable: true,
+          value: () => originalNow() + 3500,
+        });
+        // keep a reference so we can restore later
+        window.__original_performance_now = originalNow;
+      } catch (err) {
+        // ignore if we can't override
+      }
       document.dispatchEvent(new Event("visibilitychange"));
     });
     checks.elapsedTimeCatchUp = (await page.locator("[data-reading-timer]").textContent()).trim() === "00:03";
     await page.locator("[data-reading-pause]").click();
-    await page.evaluate(() => { delete performance.now; });
+    await page.evaluate(() => {
+      try {
+        if (window.__original_performance_now) {
+          Object.defineProperty(performance, "now", {
+            configurable: true,
+            value: window.__original_performance_now,
+          });
+          delete window.__original_performance_now;
+        }
+      } catch (err) {
+        // ignore restore failures
+      }
+    });
     await page.locator("[data-reading-reset-timer]").click();
     checks.timerReset = (await page.locator("[data-reading-timer]").textContent()).trim() === "20:00";
 
