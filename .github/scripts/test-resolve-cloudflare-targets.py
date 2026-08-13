@@ -26,57 +26,40 @@ BOT = {"login": "cloudflare-workers-and-pages[bot]"}
 
 
 class ResolveCloudflareTargetsTest(unittest.TestCase):
-    def test_pages_production_deployment_requires_exact_successful_sha(self) -> None:
+    def test_pages_production_deployment_requires_canonical_exact_successful_sha(
+        self,
+    ) -> None:
         calls: list[str] = []
 
-        def deployment(
-            deployment_id: str,
-            sha: str,
-            environment: str,
-            status: str,
-            *,
-            is_skipped: bool = False,
-        ) -> dict[str, Any]:
-            return {
-                "id": deployment_id,
-                "url": f"https://{deployment_id}.example.pages.dev",
-                "environment": environment,
-                "deployment_trigger": {
-                    "metadata": {
-                        "branch": "main",
-                        "commit_dirty": False,
-                        "commit_hash": sha,
-                    }
-                },
-                "is_skipped": is_skipped,
-                "latest_stage": {"status": status},
-            }
+        canonical_deployment = {
+            "id": "exact-production",
+            "url": "https://exact-production.example.pages.dev",
+            "environment": "production",
+            "deployment_trigger": {
+                "metadata": {
+                    "branch": "main",
+                    "commit_dirty": False,
+                    "commit_hash": TARGET_SHA,
+                }
+            },
+            "is_skipped": False,
+            "latest_stage": {"status": "success"},
+        }
 
         def fake_get(path: str, token: str) -> Any:
             calls.append(path)
-            return [
-                deployment("wrong-sha", "0" * 40, "production", "success"),
-                deployment("wrong-environment", TARGET_SHA, "preview", "success"),
-                deployment("not-ready", TARGET_SHA, "production", "failure"),
-                deployment(
-                    "skipped", TARGET_SHA, "production", "success", is_skipped=True
-                ),
-                deployment("exact-production", TARGET_SHA, "production", "success"),
-            ]
+            return {"canonical_deployment": canonical_deployment}
 
-        original = resolver.cloudflare_api_get
-        resolver.cloudflare_api_get = fake_get
-        try:
+        with patch.object(resolver, "cloudflare_api_get", side_effect=fake_get):
             actual = resolver.cloudflare_pages_deployment(
                 "account", "project", TARGET_SHA, "token", "production"
             )
-        finally:
-            resolver.cloudflare_api_get = original
 
         self.assertEqual(
             actual,
             {
                 "branch": "main",
+                "canonical": True,
                 "commit_hash": TARGET_SHA,
                 "deployment_id": "exact-production",
                 "environment": "production",
@@ -84,8 +67,82 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
                 "url": "https://exact-production.example.pages.dev",
             },
         )
-        self.assertEqual(len(calls), 1)
-        self.assertIn("env=production", calls[0])
+        self.assertEqual(
+            calls,
+            ["/accounts/account/pages/projects/project"],
+        )
+
+    def test_pages_production_rejects_invalid_canonical_deployment(
+        self,
+    ) -> None:
+        def deployment(
+            *,
+            deployment_id: str = "currently-canonical",
+            sha: str = TARGET_SHA,
+            environment: str = "production",
+            status: str = "success",
+            is_skipped: bool = False,
+            commit_dirty: bool = False,
+        ) -> dict[str, Any]:
+            return {
+                "id": deployment_id,
+                "url": "https://currently-canonical.example.pages.dev",
+                "environment": environment,
+                "deployment_trigger": {
+                    "metadata": {
+                        "branch": "main",
+                        "commit_dirty": commit_dirty,
+                        "commit_hash": sha,
+                    }
+                },
+                "is_skipped": is_skipped,
+                "latest_stage": {"status": status},
+            }
+
+        rejected = (
+            ("missing-canonical", {}),
+            (
+                "wrong-canonical-sha",
+                {"canonical_deployment": deployment(sha="0" * 40)},
+            ),
+            (
+                "wrong-environment",
+                {"canonical_deployment": deployment(environment="preview")},
+            ),
+            (
+                "failed-deployment",
+                {"canonical_deployment": deployment(status="failure")},
+            ),
+            (
+                "skipped-deployment",
+                {"canonical_deployment": deployment(is_skipped=True)},
+            ),
+            (
+                "dirty-deployment",
+                {"canonical_deployment": deployment(commit_dirty=True)},
+            ),
+            (
+                "missing-deployment-id",
+                {"canonical_deployment": deployment(deployment_id="")},
+            ),
+        )
+
+        for name, project_payload in rejected:
+            with self.subTest(name=name):
+                with patch.object(
+                    resolver,
+                    "cloudflare_api_get",
+                    return_value=project_payload,
+                ):
+                    actual = resolver.cloudflare_pages_deployment(
+                        "account",
+                        "project",
+                        TARGET_SHA,
+                        "token",
+                        "production",
+                    )
+
+                self.assertEqual(actual, {})
 
     def test_pages_success_fixture_matches_current_head_prefix(self) -> None:
         body = """## Deploying yusuf38bcs-oss-github-io with Cloudflare Pages
@@ -311,7 +368,12 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
                 with patch.object(
                     resolver,
                     "cloudflare_api_get",
-                    return_value=[candidate(is_skipped, commit_dirty)],
+                    return_value={
+                        "canonical_deployment": candidate(
+                            is_skipped,
+                            commit_dirty,
+                        )
+                    },
                 ):
                     actual = resolver.cloudflare_pages_deployment(
                         "account",

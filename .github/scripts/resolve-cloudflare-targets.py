@@ -178,34 +178,65 @@ def cloudflare_pages_deployment(
     target_sha: str,
     token: str,
     environment: str = "preview",
-) -> dict[str, str]:
+) -> dict[str, Any]:
     if not account_id or not project_name or not token:
         return {}
     account = urllib.parse.quote(account_id, safe="")
     project = urllib.parse.quote(project_name, safe="")
-    query = urllib.parse.urlencode({"env": environment, "per_page": 25})
-    result = cloudflare_api_get(
-        f"/accounts/{account}/pages/projects/{project}/deployments?{query}", token
-    )
-    for deployment in as_records(result, "deployments"):
+
+    canonical_deployment_id = ""
+    if environment == "production":
+        project_result = cloudflare_api_get(
+            f"/accounts/{account}/pages/projects/{project}", token
+        )
+        canonical_deployment = (
+            project_result.get("canonical_deployment")
+            if isinstance(project_result, dict)
+            else None
+        )
+        deployments = (
+            [canonical_deployment]
+            if isinstance(canonical_deployment, dict)
+            else []
+        )
+        canonical_deployment_id = str(
+            canonical_deployment.get("id") or ""
+        ) if isinstance(canonical_deployment, dict) else ""
+    else:
+        query = urllib.parse.urlencode({"env": environment, "per_page": 25})
+        result = cloudflare_api_get(
+            f"/accounts/{account}/pages/projects/{project}/deployments?{query}",
+            token,
+        )
+        deployments = as_records(result, "deployments")
+
+    for deployment in deployments:
         trigger = deployment.get("deployment_trigger")
         metadata = trigger.get("metadata") if isinstance(trigger, dict) else {}
         commit_hash = str(metadata.get("commit_hash") or "").lower()
+        deployment_id = str(deployment.get("id") or "")
         latest_stage = deployment.get("latest_stage")
         latest_status = latest_stage.get("status") if isinstance(latest_stage, dict) else ""
+        is_canonical = (
+            environment == "production"
+            and bool(deployment_id)
+            and deployment_id == canonical_deployment_id
+        )
         if (
             commit_hash == target_sha
             and deployment.get("environment") == environment
             and latest_status == "success"
             and deployment.get("is_skipped") is False
             and metadata.get("commit_dirty") is False
+            and (environment != "production" or is_canonical)
         ):
             url = cloudflare_url(deployment.get("url"), ".pages.dev")
             if url:
                 return {
                     "branch": str(metadata.get("branch") or ""),
+                    "canonical": is_canonical,
                     "commit_hash": commit_hash,
-                    "deployment_id": str(deployment.get("id") or ""),
+                    "deployment_id": deployment_id,
                     "environment": environment,
                     "status": latest_status,
                     "url": url,
@@ -447,7 +478,9 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
 
     if pages_api_url:
         pages_source = (
-            f"cloudflare_pages_{args.pages_environment}_deployment_api_full_sha"
+            "cloudflare_pages_project_canonical_deployment_api_full_sha"
+            if args.pages_environment == "production"
+            else "cloudflare_pages_preview_deployment_api_full_sha"
         )
     elif pages_commit_claim == target_sha:
         pages_source = "cloudflare_full_sha_commit_comment"
@@ -483,6 +516,7 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
             "source": pages_source,
             "commit_claim": pages_commit_claim,
             "branch": pages_deployment.get("branch", ""),
+            "canonical": pages_deployment.get("canonical", False),
             "deployed_sha": pages_deployment.get("commit_hash", ""),
             "deployment_id": pages_deployment.get("deployment_id", ""),
             "environment": pages_deployment.get("environment", ""),
@@ -553,6 +587,7 @@ def main() -> int:
             "pages_url": str(result["pages"]["url"]),
             "pages_exact_head": str(result["pages"]["exact_head"]).lower(),
             "pages_branch": str(result["pages"]["branch"]),
+            "pages_canonical": str(result["pages"]["canonical"]).lower(),
             "pages_deployed_sha": str(result["pages"]["deployed_sha"]),
             "pages_deployment_id": str(result["pages"]["deployment_id"]),
             "pages_environment": str(result["pages"]["environment"]),

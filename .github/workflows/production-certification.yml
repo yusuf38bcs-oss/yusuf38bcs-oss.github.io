@@ -167,6 +167,7 @@ jobs:
               evidence.get("target_sha") == target_sha
               and pages.get("exact_head") is True
               and pages.get("deployed_sha") == target_sha
+              and pages.get("canonical") is True
               and pages.get("branch") == "main"
               and pages.get("environment") == "production"
               and pages.get("status") == "success"
@@ -188,7 +189,7 @@ jobs:
             sleep 15
           done
           cat "$EVIDENCE_DIR/cloudflare-production.json"
-          echo "No successful production deployment matched the exact main SHA"
+          echo "No canonical successful production deployment matched the exact main SHA"
           exit 1
 
       - name: Enforce production deployment outputs
@@ -197,6 +198,7 @@ jobs:
           DEPLOYMENT_ID: ${{ steps.production.outputs.pages_deployment_id }}
           DEPLOYMENT_STATUS: ${{ steps.production.outputs.pages_status }}
           PAGES_BRANCH: ${{ steps.production.outputs.pages_branch }}
+          PAGES_CANONICAL: ${{ steps.production.outputs.pages_canonical }}
           PAGES_ENVIRONMENT: ${{ steps.production.outputs.pages_environment }}
           PAGES_EXACT_HEAD: ${{ steps.production.outputs.pages_exact_head }}
           PAGES_URL: ${{ steps.production.outputs.pages_url }}
@@ -206,6 +208,7 @@ jobs:
         run: |
           set -euo pipefail
           test "$PAGES_EXACT_HEAD" = "true"
+          test "$PAGES_CANONICAL" = "true"
           test "$DEPLOYED_SHA" = "$TARGET_MAIN_SHA"
           test "$PAGES_BRANCH" = "main"
           test "$PAGES_ENVIRONMENT" = "production"
@@ -374,6 +377,7 @@ jobs:
 
           pages = json.load(open(sys.argv[1], encoding="utf-8")).get("pages", {})
           print(f"- Cloudflare deployed SHA: `{pages.get('deployed_sha', '')}`")
+          print(f"- Cloudflare canonical deployment: `{pages.get('canonical', False)}`")
           print(f"- Cloudflare source branch: `{pages.get('branch', '')}`")
           print(f"- Cloudflare deployment: `{pages.get('deployment_id', '')}`")
           print(f"- Cloudflare environment/status: `{pages.get('environment', '')}` / `{pages.get('status', '')}`")
