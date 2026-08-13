@@ -352,6 +352,7 @@ jobs:
             --output-dir "$EVIDENCE_DIR/browser"
 
       - name: Recheck main and Cloudflare identities after certification
+        id: final_identity
         if: ${{ always() }}
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
@@ -362,6 +363,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+
+          revalidation_marker="$EVIDENCE_DIR/cloudflare-identities-revalidated.ok"
+          rm -f "$revalidation_marker"
 
           check_main() {
             git fetch --no-tags --depth=1 origin main
@@ -530,9 +534,13 @@ jobs:
           PY
 
           check_main
+          touch "$revalidation_marker"
+          echo "identity_match=true" >> "$GITHUB_OUTPUT"
 
       - name: Add certification summary
         if: ${{ always() }}
+        env:
+          END_IDENTITY_MATCH: ${{ steps.final_identity.outputs.identity_match }}
         shell: bash
         run: |
           {
@@ -572,8 +580,13 @@ jobs:
           worker = final.get("worker", {})
           print(f"- Final Cloudflare deployment: `{pages.get('deployment_id', '')}`")
           print(f"- Final Worker deployment version: `{worker.get('version_id', '')}`")
-          print("- End-of-run Cloudflare identity match: `true`")
           PY
+            fi
+            if [[ "$END_IDENTITY_MATCH" == "true" ]] &&
+              [[ -f "$EVIDENCE_DIR/cloudflare-identities-revalidated.ok" ]]; then
+              echo "- End-of-run Cloudflare identity match: `true`"
+            else
+              echo "- End-of-run Cloudflare identity match: `false`"
             fi
             if [[ -f "$EVIDENCE_DIR/browser/browser-certification.md" ]]; then
               echo
