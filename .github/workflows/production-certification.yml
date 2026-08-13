@@ -584,9 +584,9 @@ jobs:
             fi
             if [[ "$END_IDENTITY_MATCH" == "true" ]] &&
               [[ -f "$EVIDENCE_DIR/cloudflare-identities-revalidated.ok" ]]; then
-              echo "- End-of-run Cloudflare identity match: `true`"
+              echo "- End-of-run Cloudflare identity match: \`true\`"
             else
-              echo "- End-of-run Cloudflare identity match: `false`"
+              echo "- End-of-run Cloudflare identity match: \`false\`"
             fi
             if [[ -f "$EVIDENCE_DIR/browser/browser-certification.md" ]]; then
               echo
