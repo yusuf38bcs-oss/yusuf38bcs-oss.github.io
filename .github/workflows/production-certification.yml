@@ -351,16 +351,185 @@ jobs:
             --expected-sha "$TARGET_MAIN_SHA" \
             --output-dir "$EVIDENCE_DIR/browser"
 
-      - name: Recheck main after certification
+      - name: Recheck main and Cloudflare identities after certification
         if: ${{ always() }}
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+          INITIAL_DEPLOYMENT_ID: ${{ steps.production.outputs.pages_deployment_id }}
+          INITIAL_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}
         shell: bash
         run: |
           set -euo pipefail
-          git fetch --no-tags --depth=1 origin main
-          test "$(git rev-parse origin/main)" = "$TARGET_MAIN_SHA" || {
-            echo "main moved during certification; all evidence is stale and a full rerun is required"
-            exit 1
+
+          check_main() {
+            git fetch --no-tags --depth=1 origin main
+            test "$(git rev-parse origin/main)" = "$TARGET_MAIN_SHA" || {
+              echo "main moved during certification; all evidence is stale and a full rerun is required"
+              exit 1
+            }
           }
+
+          check_main
+          test -n "$CLOUDFLARE_ACCOUNT_ID"
+          test -n "$CLOUDFLARE_API_TOKEN"
+          test -n "$CLOUDFLARE_PAGES_PROJECT"
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy"
+          test -n "$INITIAL_DEPLOYMENT_ID"
+          [[ "$INITIAL_WORKER_VERSION_ID" =~ ^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$ ]]
+
+          python3 .github/scripts/resolve-cloudflare-targets.py \
+            --repository "$GITHUB_REPOSITORY" \
+            --sha "$TARGET_MAIN_SHA" \
+            --pages-environment production \
+            --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" \
+            --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" \
+            --cloudflare-worker-script "$CLOUDFLARE_WORKER_SCRIPT" \
+            --wait-seconds 0 \
+            --site-config _data/ai.yml \
+            --output "$EVIDENCE_DIR/cloudflare-production-final.json"
+
+          python3 - \
+            "$EVIDENCE_DIR/cloudflare-production.json" \
+            "$EVIDENCE_DIR/cloudflare-production-final.json" \
+            "$TARGET_MAIN_SHA" \
+            "$INITIAL_DEPLOYMENT_ID" \
+            "$INITIAL_WORKER_VERSION_ID" \
+            "$WORKER_HEALTH_URL" \
+            "$EVIDENCE_DIR/worker-health-final.json" <<'PY'
+          import json
+          import re
+          import sys
+          from datetime import datetime, timezone
+          from urllib.error import HTTPError
+          from urllib.request import HTTPRedirectHandler, Request, build_opener
+
+
+          class NoRedirect(HTTPRedirectHandler):
+              def redirect_request(self, request, file_pointer, code, message, headers, new_url):
+                  return None
+
+
+          def require(condition, message):
+              if not condition:
+                  raise SystemExit(message)
+
+
+          (
+              initial_path,
+              final_path,
+              target_sha,
+              initial_deployment_id,
+              initial_worker_version_id,
+              worker_health_url,
+              worker_output_path,
+          ) = sys.argv[1:]
+
+          with open(initial_path, encoding="utf-8") as handle:
+              initial = json.load(handle)
+          with open(final_path, encoding="utf-8") as handle:
+              final = json.load(handle)
+
+          initial_pages = initial.get("pages", {})
+          initial_worker = initial.get("worker", {})
+          final_pages = final.get("pages", {})
+          final_worker = final.get("worker", {})
+
+          require(initial.get("target_sha") == target_sha, "Initial target SHA changed")
+          require(
+              initial_pages.get("deployment_id") == initial_deployment_id,
+              "Initial Pages output and evidence disagree",
+          )
+          require(
+              str(initial_worker.get("version_id", "")).lower()
+              == initial_worker_version_id.lower(),
+              "Initial Worker output and evidence disagree",
+          )
+
+          require(final.get("target_sha") == target_sha, "Final target SHA changed")
+          require(final_pages.get("exact_head") is True, "Final Pages evidence is not exact-head")
+          require(final_pages.get("canonical") is True, "Final Pages deployment is not canonical")
+          require(final_pages.get("deployed_sha") == target_sha, "Final Pages SHA changed")
+          require(final_pages.get("branch") == "main", "Final Pages branch changed")
+          require(final_pages.get("environment") == "production", "Final Pages environment changed")
+          require(final_pages.get("status") == "success", "Final Pages deployment is not successful")
+          require(
+              final_pages.get("deployment_id") == initial_deployment_id,
+              "Canonical Pages deployment changed during certification",
+          )
+          require(
+              final_pages.get("url") == initial_pages.get("url"),
+              "Canonical Pages deployment URL changed during certification",
+          )
+
+          final_worker_version_id = str(final_worker.get("version_id", ""))
+          require(
+              final_worker.get("metadata_exact_head") is True,
+              "Final Worker metadata is not exact-head",
+          )
+          require(
+              re.fullmatch(
+                  r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}",
+                  final_worker_version_id,
+                  re.IGNORECASE,
+              ) is not None,
+              "Final Worker version is not a UUID",
+          )
+          require(
+              final_worker_version_id.lower() == initial_worker_version_id.lower(),
+              "Resolved Worker version changed during certification",
+          )
+
+          request = Request(worker_health_url, headers={"Accept": "application/json"})
+          try:
+              response = build_opener(NoRedirect).open(request, timeout=15)
+          except HTTPError as error:
+              raise SystemExit(f"Final Worker health returned HTTP {error.code}") from error
+
+          with response:
+              status = response.getcode()
+              content_type = response.headers.get("content-type", "")
+              live_version_id = response.headers.get("x-lbfl-worker-version", "")
+              health = json.load(response)
+
+          require(status == 200, "Final Worker health must return HTTP 200")
+          require(
+              content_type.lower().startswith("application/json"),
+              "Final Worker health must return JSON",
+          )
+          require(health.get("ok") is True, "Final Worker health must report ok=true")
+          require(
+              health.get("environment") == "production",
+              "Final Worker must report production",
+          )
+          require(
+              live_version_id.lower() == initial_worker_version_id.lower(),
+              "Live Worker header version changed during certification",
+          )
+          require(
+              str(health.get("worker_version_id", "")).lower()
+              == initial_worker_version_id.lower(),
+              "Live Worker body version changed during certification",
+          )
+
+          with open(worker_output_path, "w", encoding="utf-8") as handle:
+              json.dump(
+                  {
+                      "environment": health.get("environment"),
+                      "expected_worker_version_id": initial_worker_version_id,
+                      "ok": health.get("ok"),
+                      "status": status,
+                      "tested_at": datetime.now(timezone.utc).isoformat(),
+                      "worker_version_id": live_version_id,
+                  },
+                  handle,
+                  indent=2,
+              )
+              handle.write("\n")
+          PY
+
+          check_main
 
       - name: Add certification summary
         if: ${{ always() }}
@@ -391,6 +560,19 @@ jobs:
           worker = json.load(open(sys.argv[1], encoding="utf-8"))
           print(f"- Worker service version: `{worker.get('version', '')}`")
           print(f"- Worker deployment version: `{worker.get('worker_version_id', '')}`")
+          PY
+            fi
+            if [[ -f "$EVIDENCE_DIR/cloudflare-production-final.json" ]]; then
+              python3 - "$EVIDENCE_DIR/cloudflare-production-final.json" <<'PY'
+          import json
+          import sys
+
+          final = json.load(open(sys.argv[1], encoding="utf-8"))
+          pages = final.get("pages", {})
+          worker = final.get("worker", {})
+          print(f"- Final Cloudflare deployment: `{pages.get('deployment_id', '')}`")
+          print(f"- Final Worker deployment version: `{worker.get('version_id', '')}`")
+          print("- End-of-run Cloudflare identity match: `true`")
           PY
             fi
             if [[ -f "$EVIDENCE_DIR/browser/browser-certification.md" ]]; then
