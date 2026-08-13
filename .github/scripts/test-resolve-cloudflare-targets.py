@@ -4,9 +4,12 @@
 from __future__ import annotations
 
 import importlib.util
+import os
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any
+from unittest.mock import patch
 
 
 SCRIPT = Path(__file__).with_name("resolve-cloudflare-targets.py")
@@ -23,6 +26,124 @@ BOT = {"login": "cloudflare-workers-and-pages[bot]"}
 
 
 class ResolveCloudflareTargetsTest(unittest.TestCase):
+    def test_pages_production_deployment_requires_canonical_exact_successful_sha(
+        self,
+    ) -> None:
+        calls: list[str] = []
+
+        canonical_deployment = {
+            "id": "exact-production",
+            "url": "https://exact-production.example.pages.dev",
+            "environment": "production",
+            "deployment_trigger": {
+                "metadata": {
+                    "branch": "main",
+                    "commit_dirty": False,
+                    "commit_hash": TARGET_SHA,
+                }
+            },
+            "is_skipped": False,
+            "latest_stage": {"status": "success"},
+        }
+
+        def fake_get(path: str, token: str) -> Any:
+            calls.append(path)
+            return {"canonical_deployment": canonical_deployment}
+
+        with patch.object(resolver, "cloudflare_api_get", side_effect=fake_get):
+            actual = resolver.cloudflare_pages_deployment(
+                "account", "project", TARGET_SHA, "token", "production"
+            )
+
+        self.assertEqual(
+            actual,
+            {
+                "branch": "main",
+                "canonical": True,
+                "commit_hash": TARGET_SHA,
+                "deployment_id": "exact-production",
+                "environment": "production",
+                "status": "success",
+                "url": "https://exact-production.example.pages.dev",
+            },
+        )
+        self.assertEqual(
+            calls,
+            ["/accounts/account/pages/projects/project"],
+        )
+
+    def test_pages_production_rejects_invalid_canonical_deployment(
+        self,
+    ) -> None:
+        def deployment(
+            *,
+            deployment_id: str = "currently-canonical",
+            sha: str = TARGET_SHA,
+            environment: str = "production",
+            status: str = "success",
+            is_skipped: bool = False,
+            commit_dirty: bool = False,
+        ) -> dict[str, Any]:
+            return {
+                "id": deployment_id,
+                "url": "https://currently-canonical.example.pages.dev",
+                "environment": environment,
+                "deployment_trigger": {
+                    "metadata": {
+                        "branch": "main",
+                        "commit_dirty": commit_dirty,
+                        "commit_hash": sha,
+                    }
+                },
+                "is_skipped": is_skipped,
+                "latest_stage": {"status": status},
+            }
+
+        rejected = (
+            ("missing-canonical", {}),
+            (
+                "wrong-canonical-sha",
+                {"canonical_deployment": deployment(sha="0" * 40)},
+            ),
+            (
+                "wrong-environment",
+                {"canonical_deployment": deployment(environment="preview")},
+            ),
+            (
+                "failed-deployment",
+                {"canonical_deployment": deployment(status="failure")},
+            ),
+            (
+                "skipped-deployment",
+                {"canonical_deployment": deployment(is_skipped=True)},
+            ),
+            (
+                "dirty-deployment",
+                {"canonical_deployment": deployment(commit_dirty=True)},
+            ),
+            (
+                "missing-deployment-id",
+                {"canonical_deployment": deployment(deployment_id="")},
+            ),
+        )
+
+        for name, project_payload in rejected:
+            with self.subTest(name=name):
+                with patch.object(
+                    resolver,
+                    "cloudflare_api_get",
+                    return_value=project_payload,
+                ):
+                    actual = resolver.cloudflare_pages_deployment(
+                        "account",
+                        "project",
+                        TARGET_SHA,
+                        "token",
+                        "production",
+                    )
+
+                self.assertEqual(actual, {})
+
     def test_pages_success_fixture_matches_current_head_prefix(self) -> None:
         body = """## Deploying yusuf38bcs-oss-github-io with Cloudflare Pages
 
@@ -203,6 +324,145 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
             resolver.cloudflare_api_get = original
 
         self.assertEqual(actual, "")
+
+    def test_pages_deployment_requires_explicit_clean_unskipped_booleans(
+        self,
+    ) -> None:
+        missing = object()
+
+        def candidate(
+            is_skipped: Any = missing,
+            commit_dirty: Any = missing,
+        ) -> dict[str, Any]:
+            metadata: dict[str, Any] = {
+                "branch": "main",
+                "commit_hash": TARGET_SHA,
+            }
+            if commit_dirty is not missing:
+                metadata["commit_dirty"] = commit_dirty
+
+            deployment: dict[str, Any] = {
+                "id": "candidate",
+                "url": "https://candidate.example.pages.dev",
+                "environment": "production",
+                "deployment_trigger": {"metadata": metadata},
+                "latest_stage": {"status": "success"},
+            }
+            if is_skipped is not missing:
+                deployment["is_skipped"] = is_skipped
+            return deployment
+
+        rejected = (
+            ("missing-is-skipped", missing, False),
+            ("null-is-skipped", None, False),
+            ("string-is-skipped", "false", False),
+            ("integer-is-skipped", 0, False),
+            ("missing-commit-dirty", False, missing),
+            ("null-commit-dirty", False, None),
+            ("string-commit-dirty", False, "false"),
+            ("integer-commit-dirty", False, 0),
+        )
+
+        for name, is_skipped, commit_dirty in rejected:
+            with self.subTest(name=name):
+                with patch.object(
+                    resolver,
+                    "cloudflare_api_get",
+                    return_value={
+                        "canonical_deployment": candidate(
+                            is_skipped,
+                            commit_dirty,
+                        )
+                    },
+                ):
+                    actual = resolver.cloudflare_pages_deployment(
+                        "account",
+                        "project",
+                        TARGET_SHA,
+                        "token",
+                        "production",
+                    )
+                self.assertEqual(actual, {})
+
+    def test_production_worker_metadata_accepts_authenticated_exact_version(
+        self,
+    ) -> None:
+        args = SimpleNamespace(
+            repository="yusuf38bcs-oss/yusuf38bcs-oss.github.io",
+            pr_number="",
+            pages_environment="production",
+            cloudflare_account_id="account",
+            cloudflare_pages_project="project",
+            cloudflare_worker_script="synapticai-proxy",
+            pages_override="",
+            worker_override="",
+            site_config="_data/ai.yml",
+        )
+
+        with (
+            patch.dict(os.environ, {"CLOUDFLARE_API_TOKEN": "token"}),
+            patch.object(resolver, "github_comments") as comments,
+            patch.object(
+                resolver,
+                "cloudflare_pages_deployment",
+                return_value={},
+            ),
+            patch.object(
+                resolver,
+                "cloudflare_worker_version_for_sha",
+                return_value=VERSION_ID,
+            ),
+            patch.object(
+                resolver,
+                "configured_worker_endpoint",
+                return_value="https://api.learningbiologyforlife.org/api/health",
+            ),
+        ):
+            result = resolver.resolve_once(args, TARGET_SHA)
+
+        comments.assert_not_called()
+        self.assertEqual(result["worker"]["version_id"], VERSION_ID)
+        self.assertTrue(result["worker"]["metadata_exact_head"])
+
+    def test_preview_worker_metadata_still_requires_trusted_comment_url(
+        self,
+    ) -> None:
+        args = SimpleNamespace(
+            repository="yusuf38bcs-oss/yusuf38bcs-oss.github.io",
+            pr_number="240",
+            pages_environment="preview",
+            cloudflare_account_id="account",
+            cloudflare_pages_project="project",
+            cloudflare_worker_script="synapticai-proxy",
+            pages_override="",
+            worker_override="",
+            site_config="_data/ai.yml",
+        )
+
+        with (
+            patch.dict(os.environ, {"CLOUDFLARE_API_TOKEN": "token"}),
+            patch.object(resolver, "github_comments", return_value=[]) as comments,
+            patch.object(
+                resolver,
+                "cloudflare_pages_deployment",
+                return_value={},
+            ),
+            patch.object(
+                resolver,
+                "cloudflare_worker_version_for_sha",
+                return_value=VERSION_ID,
+            ),
+            patch.object(
+                resolver,
+                "configured_worker_endpoint",
+                return_value="https://api.learningbiologyforlife.org/api/health",
+            ),
+        ):
+            result = resolver.resolve_once(args, TARGET_SHA)
+
+        comments.assert_called_once()
+        self.assertEqual(result["worker"]["version_id"], VERSION_ID)
+        self.assertFalse(result["worker"]["metadata_exact_head"])
 
 
 if __name__ == "__main__":
