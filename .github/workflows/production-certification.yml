@@ -7,7 +7,9 @@ on:
     paths:
       - "_data/adsense.yml"
       - ".github/scripts/adsense-browser-certification.mjs"
+      - ".github/scripts/certification-bypass.mjs"
       - ".github/scripts/resolve-cloudflare-targets.py"
+      - ".github/scripts/test-certification-bypass.mjs"
       - ".github/scripts/test-resolve-cloudflare-targets.py"
       - ".github/workflows/jekyll-gh-pages.yml"
       - ".github/workflows/production-certification.yml"
@@ -49,7 +51,10 @@ jobs:
             .github/scripts/resolve-cloudflare-targets.py \
             .github/scripts/test-resolve-cloudflare-targets.py
           python3 .github/scripts/test-resolve-cloudflare-targets.py
+          node --check .github/scripts/certification-bypass.mjs
+          node --check .github/scripts/test-certification-bypass.mjs
           node --check .github/scripts/adsense-browser-certification.mjs
+          node --test .github/scripts/test-certification-bypass.mjs
 
       - name: Validate workflow YAML and current AdSense policy
         uses: ruby/setup-ruby@v1
@@ -118,6 +123,17 @@ jobs:
           git fetch --no-tags --depth=1 origin main
           test "$(git rev-parse origin/main)" = "$TARGET_MAIN_SHA" || {
             echo "main moved before certification began; rerun at the new exact head"
+            exit 1
+          }
+
+      - name: Validate the production certification credential
+        env:
+          PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$PRODUCTION_CERTIFICATION_BYPASS_TOKEN" =~ ^[0-9a-f]{64}$ ]] || {
+            echo "The production certification credential is missing or invalid"
             exit 1
           }
 
@@ -221,19 +237,24 @@ jobs:
       - name: Verify canonical production HTTP 200 and exact-deployment content
         env:
           EXACT_DEPLOYMENT_URL: ${{ steps.production.outputs.pages_url }}
+          PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
-          production_status="$(curl \
-            --fail \
-            --location \
-            --retry 5 \
-            --retry-all-errors \
-            --silent \
-            --show-error \
-            --output "$EVIDENCE_DIR/production-homepage.html" \
-            --write-out '%{http_code}' \
-            "$PRODUCTION_URL/")"
+          production_status="$(
+            curl \
+              --config - \
+              --fail \
+              --retry 5 \
+              --retry-all-errors \
+              --silent \
+              --show-error \
+              --output "$EVIDENCE_DIR/production-homepage.html" \
+              --write-out '%{http_code}' \
+              "$PRODUCTION_URL/" <<CURL_CONFIG
+          header = "x-lbfl-certification: $PRODUCTION_CERTIFICATION_BYPASS_TOKEN"
+          CURL_CONFIG
+          )"
           deployment_status="$(curl \
             --fail \
             --location \
@@ -266,6 +287,7 @@ jobs:
       - name: Verify Worker health and serving version
         env:
           EXPECTED_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}
+          PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
@@ -275,13 +297,29 @@ jobs:
 
           (async () => {
             const [url, output, expectedVersionId] = process.argv.slice(2);
+            const certificationToken = process.env.PRODUCTION_CERTIFICATION_BYPASS_TOKEN ?? "";
             assert.match(
               expectedVersionId,
               /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i,
               "Resolved Worker version must be a UUID",
             );
+            assert.ok(
+              /^[0-9a-f]{64}$/.test(certificationToken),
+              "Production certification credential must be valid",
+            );
+            const healthUrl = new URL(url);
+            assert.equal(healthUrl.protocol, "https:", "Worker health must use HTTPS");
+            assert.equal(
+              healthUrl.hostname,
+              "api.learningbiologyforlife.org",
+              "Worker health credential is restricted to the production API host",
+            );
+            assert.equal(healthUrl.port, "", "Worker health must use the default HTTPS port");
             const response = await fetch(url, {
-              headers: { Accept: "application/json" },
+              headers: {
+                Accept: "application/json",
+                "x-lbfl-certification": certificationToken,
+              },
               redirect: "error",
               signal: AbortSignal.timeout(15_000),
             });
@@ -343,6 +381,8 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Run the full production browser matrix
+        env:
+          PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
@@ -360,6 +400,7 @@ jobs:
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
           INITIAL_DEPLOYMENT_ID: ${{ steps.production.outputs.pages_deployment_id }}
           INITIAL_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}
+          PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
@@ -403,10 +444,12 @@ jobs:
             "$WORKER_HEALTH_URL" \
             "$EVIDENCE_DIR/worker-health-final.json" <<'PY'
           import json
+          import os
           import re
           import sys
           from datetime import datetime, timezone
           from urllib.error import HTTPError
+          from urllib.parse import urlparse
           from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 
@@ -485,7 +528,28 @@ jobs:
               "Resolved Worker version changed during certification",
           )
 
-          request = Request(worker_health_url, headers={"Accept": "application/json"})
+          certification_token = os.environ.get(
+              "PRODUCTION_CERTIFICATION_BYPASS_TOKEN",
+              "",
+          )
+          require(
+              re.fullmatch(r"[0-9a-f]{64}", certification_token) is not None,
+              "Production certification credential is missing or invalid",
+          )
+          parsed_health_url = urlparse(worker_health_url)
+          require(
+              parsed_health_url.scheme == "https"
+              and parsed_health_url.hostname == "api.learningbiologyforlife.org"
+              and parsed_health_url.port is None,
+              "Worker health credential target is not the exact production API host",
+          )
+          request = Request(
+              worker_health_url,
+              headers={
+                  "Accept": "application/json",
+                  "x-lbfl-certification": certification_token,
+              },
+          )
           try:
               response = build_opener(NoRedirect).open(request, timeout=15)
           except HTTPError as error:
@@ -537,12 +601,41 @@ jobs:
           touch "$revalidation_marker"
           echo "identity_match=true" >> "$GITHUB_OUTPUT"
 
+      - name: Verify evidence contains no certification credential
+        id: evidence_safety
+        if: ${{ always() }}
+        env:
+          PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$PRODUCTION_CERTIFICATION_BYPASS_TOKEN" =~ ^[0-9a-f]{64}$ ]] || {
+            echo "Cannot verify evidence safety without a valid certification credential"
+            exit 1
+          }
+          if [[ -d "$EVIDENCE_DIR" ]] &&
+            grep -R -F -q -- "$PRODUCTION_CERTIFICATION_BYPASS_TOKEN" "$EVIDENCE_DIR"; then
+            echo "Certification credential detected in production evidence"
+            exit 1
+          fi
+          echo "safe=true" >> "$GITHUB_OUTPUT"
+
       - name: Add certification summary
         if: ${{ always() }}
         env:
           END_IDENTITY_MATCH: ${{ steps.final_identity.outputs.identity_match }}
+          EVIDENCE_SAFE: ${{ steps.evidence_safety.outputs.safe }}
         shell: bash
         run: |
+          if [[ "$EVIDENCE_SAFE" != "true" ]]; then
+            {
+              echo "# Production Exact-Head Certification"
+              echo
+              echo "- Requested main SHA: `$TARGET_MAIN_SHA`"
+              echo "- Evidence safety check: `false`; details suppressed"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           {
             echo "# Production Exact-Head Certification"
             echo
@@ -597,7 +690,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Preserve production evidence
-        if: ${{ always() }}
+        if: ${{ always() && steps.evidence_safety.outputs.safe == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: production-certification-${{ env.TARGET_MAIN_SHA }}
