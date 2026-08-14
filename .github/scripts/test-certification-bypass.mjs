@@ -7,6 +7,7 @@ import {
   certificationHeadersForRequest,
   certificationHeadersForUrl,
   installCertificationBypassRoute,
+  isProductionCertificationUrl,
   requireCertificationToken,
   sanitizeRecordedHeaders,
 } from "./certification-bypass.mjs";
@@ -33,6 +34,22 @@ test("adds the header only to the two exact HTTPS production hosts", () => {
       accept: "text/html",
       [CERTIFICATION_HEADER_NAME]: TOKEN,
     });
+  }
+});
+
+test("requires a credential only for exact production origins", () => {
+  assert.equal(isProductionCertificationUrl("https://learningbiologyforlife.org/"), true);
+  assert.equal(
+    isProductionCertificationUrl("https://api.learningbiologyforlife.org/api/health"),
+    true,
+  );
+  for (const url of [
+    "https://preview.example.pages.dev/",
+    "https://www.learningbiologyforlife.org/",
+    "http://learningbiologyforlife.org/",
+    "https://learningbiologyforlife.org:8443/",
+  ]) {
+    assert.equal(isProductionCertificationUrl(url), false, url);
   }
 });
 

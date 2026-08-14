@@ -8,6 +8,7 @@ import { chromium } from "playwright";
 import {
   assertCertificationTokenAbsent,
   installCertificationBypassRoute,
+  isProductionCertificationUrl,
   requireCertificationToken,
   sanitizeRecordedHeaders,
 } from "./certification-bypass.mjs";
@@ -31,17 +32,24 @@ function argument(name, fallback = "") {
 const previewUrl = argument("--url");
 const expectedSha = argument("--expected-sha");
 const outputDir = path.resolve(argument("--output-dir", "browser-certification"));
-const certificationToken = requireCertificationToken(
-  process.env.PRODUCTION_CERTIFICATION_BYPASS_TOKEN,
-);
-delete process.env.PRODUCTION_CERTIFICATION_BYPASS_TOKEN;
 
 if (!previewUrl || !expectedSha) {
   console.error("Usage: adsense-browser-certification.mjs --url URL --expected-sha SHA [--output-dir DIR]");
   process.exit(2);
 }
 
+const certificationToken = isProductionCertificationUrl(previewUrl)
+  ? requireCertificationToken(process.env.PRODUCTION_CERTIFICATION_BYPASS_TOKEN)
+  : "";
+delete process.env.PRODUCTION_CERTIFICATION_BYPASS_TOKEN;
+
 await fs.mkdir(outputDir, { recursive: true });
+
+async function configureCertificationRoute(context) {
+  if (certificationToken) {
+    await installCertificationBypassRoute(context, certificationToken);
+  }
+}
 
 function createProbe(page) {
   const requests = [];
@@ -125,7 +133,7 @@ async function runViewport(browser, viewport) {
     reducedMotion: "no-preference",
     viewport: { width: viewport.width, height: viewport.height },
   });
-  await installCertificationBypassRoute(context, certificationToken);
+  await configureCertificationRoute(context);
   const page = await context.newPage();
   const probe = createProbe(page);
   let response;
@@ -244,7 +252,7 @@ async function runViewport(browser, viewport) {
 
 async function runConsentMatrix(browser) {
   const context = await browser.newContext({ viewport: { width: 375, height: 812 } });
-  await installCertificationBypassRoute(context, certificationToken);
+  await configureCertificationRoute(context);
   const page = await context.newPage();
   const probe = createProbe(page);
 
@@ -326,7 +334,7 @@ async function runReducedMotion(browser) {
     reducedMotion: "reduce",
     viewport: { width: 375, height: 812 },
   });
-  await installCertificationBypassRoute(context, certificationToken);
+  await configureCertificationRoute(context);
   const page = await context.newPage();
   const probe = createProbe(page);
 
@@ -374,7 +382,7 @@ async function runSaveData(browser) {
     extraHTTPHeaders: { "Save-Data": "on" },
     viewport: { width: 375, height: 812 },
   });
-  await installCertificationBypassRoute(context, certificationToken);
+  await configureCertificationRoute(context);
   await context.addInitScript(() => {
     Object.defineProperty(navigator, "connection", {
       configurable: true,
@@ -462,8 +470,10 @@ try {
 
 const jsonReport = `${JSON.stringify(report, null, 2)}\n`;
 const markdownReport = markdown(report);
-assertCertificationTokenAbsent(jsonReport, certificationToken, "Browser JSON report");
-assertCertificationTokenAbsent(markdownReport, certificationToken, "Browser Markdown report");
+if (certificationToken) {
+  assertCertificationTokenAbsent(jsonReport, certificationToken, "Browser JSON report");
+  assertCertificationTokenAbsent(markdownReport, certificationToken, "Browser Markdown report");
+}
 await fs.writeFile(path.join(outputDir, "browser-certification.json"), jsonReport);
 await fs.writeFile(path.join(outputDir, "browser-certification.md"), markdownReport);
 console.log(markdownReport);

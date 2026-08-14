@@ -651,8 +651,8 @@ jobs:
             {
               echo "# Production Exact-Head Certification"
               echo
-              echo "- Requested main SHA: `$TARGET_MAIN_SHA`"
-              echo "- Evidence safety check: `false`; details suppressed"
+              echo "- Requested main SHA: \`$TARGET_MAIN_SHA\`"
+              echo "- Evidence safety check: \`false\`; details suppressed"
             } >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi

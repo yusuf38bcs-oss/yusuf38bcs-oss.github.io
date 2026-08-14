@@ -7,6 +7,20 @@ export const CERTIFICATION_HOSTS = Object.freeze([
 const CERTIFICATION_HOST_SET = new Set(CERTIFICATION_HOSTS);
 const TOKEN_PATTERN = /^[0-9a-f]{64}$/;
 
+export function isProductionCertificationUrl(rawUrl) {
+  let url;
+  try {
+    url = new URL(rawUrl);
+  } catch {
+    return false;
+  }
+  return (
+    url.protocol === "https:" &&
+    url.port === "" &&
+    CERTIFICATION_HOST_SET.has(url.hostname.toLowerCase())
+  );
+}
+
 export function requireCertificationToken(value) {
   const token = typeof value === "string" ? value : "";
   if (!TOKEN_PATTERN.test(token)) {
@@ -17,18 +31,7 @@ export function requireCertificationToken(value) {
 
 export function certificationHeadersForUrl(rawUrl, headers, token) {
   const validatedToken = requireCertificationToken(token);
-  let url;
-  try {
-    url = new URL(rawUrl);
-  } catch {
-    return null;
-  }
-
-  if (
-    url.protocol !== "https:" ||
-    url.port !== "" ||
-    !CERTIFICATION_HOST_SET.has(url.hostname.toLowerCase())
-  ) {
+  if (!isProductionCertificationUrl(rawUrl)) {
     return null;
   }
 
