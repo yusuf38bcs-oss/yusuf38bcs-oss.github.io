@@ -45,6 +45,7 @@ delete process.env.PRODUCTION_CERTIFICATION_BYPASS_TOKEN;
 
 await fs.mkdir(outputDir, { recursive: true });
 
+// Preview URLs stay credential-free; production navigations are authorized one hop at a time.
 async function configureCertificationRoute(context) {
   if (certificationToken) {
     await installCertificationBypassRoute(context, certificationToken);
