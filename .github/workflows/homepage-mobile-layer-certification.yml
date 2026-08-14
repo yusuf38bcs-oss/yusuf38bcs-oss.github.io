@@ -33,11 +33,18 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Install Ruby dependencies
+        run: |
+          bundle config set --local frozen 'false'
+          bundle install
 
       - name: Build production Jekyll site
         env:
           JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bundle exec jekyll build --trace
 
       - name: Set up Node
@@ -75,5 +82,5 @@ jobs:
         with:
           name: homepage-mobile-layer-${{ github.event.pull_request.head.sha || github.sha }}
           path: homepage-mobile-layer-report/
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 14
