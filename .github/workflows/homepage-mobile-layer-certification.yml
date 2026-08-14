@@ -1,0 +1,79 @@
+name: Homepage Mobile Layer Certification
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "_layouts/default.html"
+      - "_includes/home/**"
+      - "_includes/head/homepage-v2-*.html"
+      - "_data/homepage.yml"
+      - "assets/images/home/**"
+      - ".github/scripts/homepage-mobile-layer-certification.cjs"
+      - ".github/workflows/homepage-mobile-layer-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: homepage-mobile-layer-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: Six-width layout, overlap, and overflow contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out exact candidate
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Build production Jekyll site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install browser runtime
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Serve exact build
+        run: |
+          python3 -m http.server 4000 --directory _site > /tmp/lbfl-homepage-server.log 2>&1 &
+          echo $! > /tmp/lbfl-homepage-server.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error http://127.0.0.1:4000/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/lbfl-homepage-server.log
+          exit 1
+
+      - name: Certify requested widths
+        env:
+          LBFL_HOMEPAGE_URL: http://127.0.0.1:4000/
+          LBFL_REPORT_DIR: homepage-mobile-layer-report
+        run: node .github/scripts/homepage-mobile-layer-certification.cjs
+
+      - name: Upload certification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: homepage-mobile-layer-${{ github.event.pull_request.head.sha || github.sha }}
+          path: homepage-mobile-layer-report/
+          if-no-files-found: error
+          retention-days: 14
