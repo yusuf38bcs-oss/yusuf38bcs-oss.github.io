@@ -265,7 +265,10 @@ def cloudflare_worker_version_for_sha(
     versions_result = cloudflare_api_get(
         f"/accounts/{account}/workers/scripts/{script}/versions", token
     )
-    versions = as_records(versions_result, "versions")
+    versions = (
+        as_records(versions_result, "items")
+        or as_records(versions_result, "versions")
+    )
     version_ids = [
         str(version.get("id") or "")
         for version in versions
