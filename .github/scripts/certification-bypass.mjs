@@ -46,6 +46,23 @@ export function sanitizeRecordedHeaders(headers) {
   );
 }
 
+export function certificationHeadersForRequest(request, token) {
+  let frame;
+  try {
+    frame = request.frame();
+  } catch {
+    return null;
+  }
+  if (
+    request.resourceType() !== "document" ||
+    !request.isNavigationRequest() ||
+    frame !== frame.page().mainFrame()
+  ) {
+    return null;
+  }
+  return certificationHeadersForUrl(request.url(), request.headers(), token);
+}
+
 export function assertCertificationTokenAbsent(value, token, label) {
   const validatedToken = requireCertificationToken(token);
   if (String(value).includes(validatedToken)) {
@@ -57,13 +74,10 @@ export async function installCertificationBypassRoute(context, token) {
   const validatedToken = requireCertificationToken(token);
   await context.route("**/*", async (route) => {
     const request = route.request();
-    const headers = certificationHeadersForUrl(
-      request.url(),
-      request.headers(),
-      validatedToken,
-    );
+    const headers = certificationHeadersForRequest(request, validatedToken);
     if (headers) {
-      await route.continue({ headers });
+      const response = await route.fetch({ headers, maxRedirects: 0 });
+      await route.fulfill({ response });
       return;
     }
     await route.continue();

@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   CERTIFICATION_HEADER_NAME,
   assertCertificationTokenAbsent,
+  certificationHeadersForRequest,
   certificationHeadersForUrl,
   installCertificationBypassRoute,
   requireCertificationToken,
@@ -61,6 +62,40 @@ test("removes the certification header from recorded request metadata", () => {
   );
 });
 
+test("authorizes only top-level document navigations", () => {
+  const mainFrame = {};
+  mainFrame.page = () => ({ mainFrame: () => mainFrame });
+  const request = ({
+    frame = mainFrame,
+    navigation = true,
+    resourceType = "document",
+    url = "https://learningbiologyforlife.org/",
+  } = {}) => ({
+    frame: () => frame,
+    headers: () => ({ accept: "text/html" }),
+    isNavigationRequest: () => navigation,
+    resourceType: () => resourceType,
+    url: () => url,
+  });
+  assert.equal(
+    certificationHeadersForRequest(request(), TOKEN)[CERTIFICATION_HEADER_NAME],
+    TOKEN,
+  );
+  assert.equal(
+    certificationHeadersForRequest(request({ resourceType: "script" }), TOKEN),
+    null,
+  );
+  assert.equal(
+    certificationHeadersForRequest(request({ navigation: false }), TOKEN),
+    null,
+  );
+  const childFrame = { page: mainFrame.page };
+  assert.equal(
+    certificationHeadersForRequest(request({ frame: childFrame }), TOKEN),
+    null,
+  );
+});
+
 test("detects evidence leakage without repeating the credential", () => {
   assert.doesNotThrow(() => assertCertificationTokenAbsent("safe evidence", TOKEN, "Evidence"));
   assert.throws(
@@ -83,17 +118,40 @@ test("routes attach the credential only to allowed requests", async () => {
   await installCertificationBypassRoute(context, TOKEN);
 
   const calls = [];
-  const route = (url) => ({
+  const mainFrame = {};
+  mainFrame.page = () => ({ mainFrame: () => mainFrame });
+  const route = (url, { resourceType = "document" } = {}) => ({
     async continue(options) {
-      calls.push(options);
+      calls.push({ operation: "continue", options, url });
+    },
+    async fetch(options) {
+      calls.push({ operation: "fetch", options, url });
+      return { status: 302 };
+    },
+    async fulfill(options) {
+      calls.push({ operation: "fulfill", options, url });
     },
     request() {
-      return { headers: () => ({ accept: "*/*" }), url: () => url };
+      return {
+        frame: () => mainFrame,
+        headers: () => ({ accept: "*/*" }),
+        isNavigationRequest: () => resourceType === "document",
+        resourceType: () => resourceType,
+        url: () => url,
+      };
     },
   });
 
   await handler(route("https://api.learningbiologyforlife.org/api/health"));
+  await handler(route("https://learningbiologyforlife.org/app.js", { resourceType: "script" }));
   await handler(route("https://third-party.example/pixel"));
-  assert.equal(calls[0].headers[CERTIFICATION_HEADER_NAME], TOKEN);
-  assert.equal(calls[1], undefined);
+  assert.equal(calls[0].operation, "fetch");
+  assert.equal(calls[0].options.headers[CERTIFICATION_HEADER_NAME], TOKEN);
+  assert.equal(calls[0].options.maxRedirects, 0);
+  assert.equal(calls[1].operation, "fulfill");
+  assert.deepEqual(calls[1].options.response, { status: 302 });
+  assert.equal(calls[2].operation, "continue");
+  assert.equal(calls[2].options, undefined);
+  assert.equal(calls[3].operation, "continue");
+  assert.equal(calls[3].options, undefined);
 });

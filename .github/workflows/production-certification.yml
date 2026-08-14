@@ -613,11 +613,31 @@ jobs:
             echo "Cannot verify evidence safety without a valid certification credential"
             exit 1
           }
-          if [[ -d "$EVIDENCE_DIR" ]] &&
-            grep -R -F -q -- "$PRODUCTION_CERTIFICATION_BYPASS_TOKEN" "$EVIDENCE_DIR"; then
-            echo "Certification credential detected in production evidence"
-            exit 1
-          fi
+          python3 - "$EVIDENCE_DIR" <<'PY'
+          import os
+          import pathlib
+          import re
+          import sys
+
+          token = os.environ.get("PRODUCTION_CERTIFICATION_BYPASS_TOKEN", "")
+          if re.fullmatch(r"[0-9a-f]{64}", token) is None:
+              raise SystemExit("Cannot verify evidence safety without a valid credential")
+          needle = token.encode()
+          root = pathlib.Path(sys.argv[1])
+          if root.is_dir():
+              for path in root.rglob("*"):
+                  if not path.is_file():
+                      continue
+                  previous = b""
+                  with path.open("rb") as handle:
+                      while chunk := handle.read(1024 * 1024):
+                          combined = previous + chunk
+                          if needle in combined:
+                              raise SystemExit(
+                                  "Certification credential detected in production evidence"
+                              )
+                          previous = combined[-(len(needle) - 1):]
+          PY
           echo "safe=true" >> "$GITHUB_OUTPUT"
 
       - name: Add certification summary
