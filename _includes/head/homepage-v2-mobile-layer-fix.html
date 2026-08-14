@@ -197,6 +197,29 @@
       max-width: 100%;
     }
 
+    /* Keep each Experience card in reading order at tablet widths too. */
+    .lbfl-home-v2-active .lbfl-home-v2 .lbfl-home-v2__learning-route a {
+      grid-template-columns: minmax(0, 1fr) !important;
+      grid-template-rows: repeat(4, auto) !important;
+      overflow-wrap: anywhere;
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route .lbfl-home-v2__lesson-number {
+      grid-row: auto !important;
+      min-width: 0;
+      width: max-content;
+      max-width: 100%;
+      justify-content: flex-start;
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route a > strong,
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route a > p,
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route a > small {
+      grid-column: 1;
+      min-width: 0;
+      max-width: 100%;
+    }
+
     .lbfl-home-v2-active .lbfl-home-v2__learning-route::before,
     .lbfl-home-v2-active .lbfl-home-v2__critical-cycle::before {
       left: 1rem;
