@@ -10,6 +10,7 @@ on:
       - "_data/adsense.yml"
       - "_includes/head/**"
       - ".github/scripts/adsense-browser-certification.mjs"
+      - ".github/scripts/certification-bypass.mjs"
       - ".github/workflows/adsense-browser-certification.yml"
 
 permissions:
