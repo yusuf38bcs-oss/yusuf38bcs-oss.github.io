@@ -11,6 +11,8 @@ on:
       - ".github/scripts/resolve-cloudflare-targets.py"
       - ".github/scripts/test-certification-bypass.mjs"
       - ".github/scripts/test-resolve-cloudflare-targets.py"
+      - ".github/scripts/test-verify-cloudflare-jsd-equivalence.py"
+      - ".github/scripts/verify-cloudflare-jsd-equivalence.py"
       - ".github/workflows/jekyll-gh-pages.yml"
       - ".github/workflows/production-certification.yml"
   workflow_dispatch:
@@ -49,8 +51,11 @@ jobs:
           test "$(git rev-parse HEAD)" = "$CERTIFICATION_HEAD_SHA"
           python3 -m py_compile \
             .github/scripts/resolve-cloudflare-targets.py \
-            .github/scripts/test-resolve-cloudflare-targets.py
+            .github/scripts/test-resolve-cloudflare-targets.py \
+            .github/scripts/verify-cloudflare-jsd-equivalence.py \
+            .github/scripts/test-verify-cloudflare-jsd-equivalence.py
           python3 .github/scripts/test-resolve-cloudflare-targets.py
+          python3 .github/scripts/test-verify-cloudflare-jsd-equivalence.py
           node --check .github/scripts/certification-bypass.mjs
           node --check .github/scripts/test-certification-bypass.mjs
           node --check .github/scripts/adsense-browser-certification.mjs
@@ -268,13 +273,12 @@ jobs:
           test "$production_status" = "200"
           test "$deployment_status" = "200"
           grep -q 'data-homepage-v2' "$EVIDENCE_DIR/production-homepage.html"
-          cmp --silent \
-            "$EVIDENCE_DIR/production-homepage.html" \
-            "$EVIDENCE_DIR/exact-deployment-homepage.html" || {
-              echo "Canonical production does not match the exact deployment homepage"
-              exit 1
-            }
-          printf 'canonical=%s\nexact_deployment=%s\ncontent_match=true\n' \
+          python3 .github/scripts/verify-cloudflare-jsd-equivalence.py \
+            --canonical "$EVIDENCE_DIR/production-homepage.html" \
+            --exact "$EVIDENCE_DIR/exact-deployment-homepage.html" \
+            --normalized-output "$EVIDENCE_DIR/production-homepage.normalized.html" \
+            --report "$EVIDENCE_DIR/cloudflare-jsd-equivalence.json"
+          printf 'canonical=%s\nexact_deployment=%s\ncontent_match=true\ncloudflare_jsd_normalized=true\n' \
             "$production_status" \
             "$deployment_status" \
             > "$EVIDENCE_DIR/production-http-status.txt"
