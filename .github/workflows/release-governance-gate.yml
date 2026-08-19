@@ -1,0 +1,160 @@
+name: Release Governance Gate
+
+on:
+  pull_request:
+    branches: ["main", "staging"]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: release-governance-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
+  cancel-in-progress: true
+
+jobs:
+  candidate-identity:
+    name: Candidate contains current base
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Require exact current-base ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$PR_HEAD_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$PR_BASE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+          git fetch --no-tags origin \
+            "+refs/heads/${PR_BASE_REF}:refs/remotes/origin/${PR_BASE_REF}"
+          current_base_sha="$(git rev-parse "origin/${PR_BASE_REF}")"
+          test "$current_base_sha" = "$PR_BASE_SHA" || {
+            echo "Target base advanced while the gate was running. Rerun at the new base."
+            exit 1
+          }
+          git merge-base --is-ancestor "$current_base_sha" "$PR_HEAD_SHA" || {
+            echo "Candidate is stale: it does not contain current ${PR_BASE_REF}@${current_base_sha}."
+            echo "Merge or rebase the current target branch, then rerun all exact-head evidence."
+            exit 1
+          }
+
+  independent-review:
+    name: Independent approval and resolved threads
+    if: ${{ github.event.pull_request.draft == false }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Require current independent approval and zero unresolved threads
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const pull = context.payload.pull_request;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const pull_number = pull.number;
+            const author = String(pull.user?.login || '').toLowerCase();
+            const headSha = String(pull.head?.sha || '').toLowerCase();
+
+            if (!/^[0-9a-f]{40}$/.test(headSha)) {
+              throw new Error('PR head must be an exact 40-character SHA.');
+            }
+
+            const reviews = await github.paginate(github.rest.pulls.listReviews, {
+              owner,
+              repo,
+              pull_number,
+              per_page: 100,
+            });
+
+            const latestByReviewer = new Map();
+            for (const review of reviews) {
+              const login = String(review.user?.login || '').toLowerCase();
+              if (!login || login === author || login.endsWith('[bot]')) continue;
+              const submitted = review.submitted_at ? Date.parse(review.submitted_at) : 0;
+              const previous = latestByReviewer.get(login);
+              if (!previous || submitted >= previous.submitted) {
+                latestByReviewer.set(login, {
+                  state: String(review.state || '').toUpperCase(),
+                  commitId: String(review.commit_id || '').toLowerCase(),
+                  submitted,
+                });
+              }
+            }
+
+            const currentApprovals = [...latestByReviewer.entries()].filter(([, review]) =>
+              review.state === 'APPROVED' && review.commitId === headSha
+            );
+
+            if (currentApprovals.length < 1) {
+              throw new Error(
+                'No independent APPROVED review is anchored to the current exact head. ' +
+                'A new commit invalidates older approval evidence.'
+              );
+            }
+
+            const query = `
+              query($owner: String!, $repo: String!, $number: Int!, $cursor: String) {
+                repository(owner: $owner, name: $repo) {
+                  pullRequest(number: $number) {
+                    reviewThreads(first: 100, after: $cursor) {
+                      nodes { isResolved }
+                      pageInfo { hasNextPage endCursor }
+                    }
+                  }
+                }
+              }
+            `;
+
+            let cursor = null;
+            let unresolved = 0;
+            do {
+              const data = await github.graphql(query, {
+                owner,
+                repo,
+                number: pull_number,
+                cursor,
+              });
+              const threads = data.repository.pullRequest.reviewThreads;
+              unresolved += threads.nodes.filter((thread) => !thread.isResolved).length;
+              cursor = threads.pageInfo.hasNextPage ? threads.pageInfo.endCursor : null;
+            } while (cursor);
+
+            if (unresolved !== 0) {
+              throw new Error(`${unresolved} unresolved review thread(s) remain.`);
+            }
+
+            core.info(`Release review gate PASS at ${headSha}: ${currentApprovals.length} current independent approval(s), zero unresolved threads.`);
+
+  governance-summary:
+    name: Governance gate summary
+    if: ${{ always() }}
+    needs: [candidate-identity, independent-review]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Enforce promotion result
+        shell: bash
+        env:
+          DRAFT: ${{ github.event.pull_request.draft }}
+          IDENTITY_RESULT: ${{ needs.candidate-identity.result }}
+          REVIEW_RESULT: ${{ needs.independent-review.result }}
+        run: |
+          set -euo pipefail
+          test "$IDENTITY_RESULT" = "success"
+          if [[ "$DRAFT" == "true" ]]; then
+            echo "Draft candidate: identity is current, but promotion authority is intentionally absent."
+            exit 0
+          fi
+          test "$REVIEW_RESULT" = "success"
+          echo "RELEASE_GOVERNANCE_GATE_PASS"
