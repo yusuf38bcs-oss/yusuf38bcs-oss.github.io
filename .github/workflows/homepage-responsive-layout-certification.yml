@@ -10,6 +10,7 @@ on:
       - "_data/homepage.yml"
       - "assets/css/main.scss"
       - "_sass/**"
+      - "assets/js/home/homepage-v2.js"
       - "assets/images/home/**"
       - ".github/scripts/homepage-responsive-layout-certification.cjs"
       - ".github/workflows/homepage-responsive-layout-certification.yml"
