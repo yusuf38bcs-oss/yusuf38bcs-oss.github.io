@@ -101,7 +101,7 @@ jobs:
               const comparison = await github.rest.repos.compareCommitsWithBasehead({
                 owner,
                 repo,
-                basehead: `${repoOwner}:${currentBaseSha}...${headOwner}:${headRef}`,
+                basehead: `${currentBaseSha}...${headSha}`,
               });
               const comparedHeadSha = String(
                 comparison.data.head_commit?.sha || ''
