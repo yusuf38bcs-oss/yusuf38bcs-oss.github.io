@@ -8,6 +8,8 @@ on:
       - "_includes/home/**"
       - "_includes/head/homepage-v2-*.html"
       - "_data/homepage.yml"
+      - "assets/css/main.scss"
+      - "_sass/**"
       - "assets/images/home/**"
       - ".github/scripts/homepage-responsive-layout-certification.cjs"
       - ".github/workflows/homepage-responsive-layout-certification.yml"
