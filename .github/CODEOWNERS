@@ -1,0 +1,18 @@
+# LBFL repository ownership
+* @yusuf38bcs-oss
+
+# Production and release control
+.github/workflows/ @yusuf38bcs-oss
+.github/scripts/ @yusuf38bcs-oss
+docs/production/ @yusuf38bcs-oss
+worker/ @yusuf38bcs-oss
+wrangler.jsonc @yusuf38bcs-oss
+_data/ai.yml @yusuf38bcs-oss
+_data/adsense.yml @yusuf38bcs-oss
+
+# Public experience and academic surfaces
+index.html @yusuf38bcs-oss
+_includes/ @yusuf38bcs-oss
+_sass/ @yusuf38bcs-oss
+assets/ @yusuf38bcs-oss
+_biology/ @yusuf38bcs-oss
