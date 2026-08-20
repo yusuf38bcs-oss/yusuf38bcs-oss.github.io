@@ -79,9 +79,9 @@ Comment-only reviews do not dismiss an earlier approval. A later decisive stateâ
 
 ## Trusted-policy boundary
 
-The executable policy uses `pull_request_target` so GitHub loads it from the trusted target branch. The workflow evaluates candidate metadata through GitHub APIs and never checks out or executes candidate-controlled files. Review events use the workflow already present on the repository's trusted default branch.
+The executable policy uses `pull_request_target`, so GitHub loads it from the repository's trusted default branch (`main`). That default-branch policy governs pull requests whose base is either `main` or `staging`. The workflow evaluates candidate metadata through GitHub APIs and never checks out or executes candidate-controlled files. Review events likewise use the workflow already present on the trusted default branch.
 
-PR #246 is the one-time bootstrap that first introduces this trusted workflow. Because no trusted copy exists on its base yet, #246 cannot use its own candidate-authored workflow run as independent proof of policy integrity. Its eventual merge therefore requires all of the following as an explicit bootstrap decision: ordinary exact-head CI, manual exact-head diff review, zero unresolved findings, authenticated base/head identity, and separate owner merge authorization. After bootstrap, no candidate workflow run may substitute for the trusted-target gate.
+PR #246 is the one-time bootstrap that first introduces this trusted workflow. Because no trusted copy exists on its base yet, #246 cannot use its own candidate-authored workflow run as independent proof of policy integrity. Its eventual merge therefore requires all of the following as an explicit bootstrap decision: ordinary exact-head CI, manual exact-head diff review, zero unresolved findings, authenticated base/head identity, and separate owner merge authorization. After bootstrap, no candidate workflow run may substitute for the trusted default-branch gate.
 
 ## Repository ruleset requirements
 
@@ -98,7 +98,7 @@ GitHub repository settings for both `main` and `staging` must enforce controls c
 - rely on the trusted executable gate for either qualified independent review or SHA-bound solo-maintainer authority;
 - do not permit undocumented bypasses.
 
-The trusted workflow runs in the target-branch context, evaluates candidate metadata without executing candidate code, and publishes `LBFL Trusted Release Governance` directly on the exact PR-head SHA. Strict up-to-date enforcement is also mandatory: a success attached to an unchanged head cannot invalidate itself merely because `main` or `staging` later advances. The server-side rule blocks that stale head until it contains the new base and the checks rerun.
+The trusted workflow runs from the repository default branch (`main`) and governs PRs targeting either `main` or `staging`; it evaluates candidate metadata without executing candidate code and publishes `LBFL Trusted Release Governance` directly on the exact PR-head SHA. Strict up-to-date enforcement is also mandatory: a success attached to an unchanged head cannot invalidate itself merely because `main` or `staging` later advances. The server-side rule blocks that stale head until it contains the new base and the checks rerun.
 
 GitHub exposes review-thread resolution as a webhook event but not as a GitHub Actions workflow trigger. Therefore server-side **require conversation resolution** is the authoritative fail-closed control when a thread is reopened after a status has passed. The trusted workflow still counts all paginated unresolved threads whenever it runs. If resolving the last thread leaves an earlier failure status in place, rerun the failed governance workflow at the unchanged head before promotion.
 
