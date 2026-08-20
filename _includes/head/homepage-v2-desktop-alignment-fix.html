@@ -1,0 +1,92 @@
+<style id="lbfl-homepage-desktop-alignment-fix">
+  /*
+   * Desktop narrative-grid correction.
+   *
+   * The Experience / Think / Trust sections each contain a narrative marker
+   * plus two content regions. Earlier two-column rules treated the marker as a
+   * normal grid item, which shifted the copy into column 2 and the supporting
+   * content into column 1 on the next row. Keep the marker on its own full row,
+   * then align the two content regions on the same row.
+   */
+  @media (min-width: 64.0625rem) {
+    .lbfl-home-v2-active .lbfl-home-v2__featured,
+    .lbfl-home-v2-active .lbfl-home-v2__bridge,
+    .lbfl-home-v2-active .lbfl-home-v2__editorial {
+      grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr) !important;
+      grid-auto-flow: row;
+      align-items: start;
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__featured > .lbfl-home-v2__narrative-marker,
+    .lbfl-home-v2-active .lbfl-home-v2__bridge > .lbfl-home-v2__narrative-marker,
+    .lbfl-home-v2-active .lbfl-home-v2__editorial > .lbfl-home-v2__narrative-marker {
+      grid-column: 1 / -1 !important;
+      grid-row: 1 !important;
+      justify-self: start;
+      min-width: 0;
+      max-width: 100%;
+      margin-bottom: 0;
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__featured-intro,
+    .lbfl-home-v2-active .lbfl-home-v2__bridge-copy,
+    .lbfl-home-v2-active .lbfl-home-v2__editorial-copy {
+      grid-column: 1 !important;
+      grid-row: 2 !important;
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route,
+    .lbfl-home-v2-active .lbfl-home-v2__critical-cycle,
+    .lbfl-home-v2-active .lbfl-home-v2__editorial-profile {
+      grid-column: 2 !important;
+      grid-row: 2 !important;
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+      align-self: start;
+    }
+
+    /*
+     * The learning route is already nested inside the right-hand Experience
+     * column. Prevent the earlier 48rem rule from creating a second nested
+     * two-column grid that makes each lecture card too narrow.
+     */
+    .lbfl-home-v2-active .lbfl-home-v2__learning-list,
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route > li,
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route a {
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route a {
+      grid-template-columns: auto minmax(0, 1fr) !important;
+      grid-template-rows: auto auto auto !important;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__learning-route .lbfl-home-v2__lesson-number {
+      grid-row: 1 / span 3 !important;
+      min-width: 3.8rem;
+      width: auto;
+      max-width: 5.5rem;
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__featured-intro {
+      position: sticky !important;
+      top: calc(var(--lbfl-header-height, 74px) + 1.5rem);
+    }
+
+    .lbfl-home-v2-active .lbfl-home-v2__editorial-profile {
+      margin-top: 0;
+    }
+  }
+</style>
