@@ -1,8 +1,9 @@
 name: Release Governance Gate
 
-# The policy is loaded from the trusted target branch. It evaluates PR metadata
-# through GitHub APIs, executes no candidate code, and reports a dedicated
-# required commit status on the exact PR head.
+# The policy is loaded from the trusted default branch (`main`). It governs PRs
+# whose base is either `main` or `staging`, evaluates PR metadata through GitHub
+# APIs, executes no candidate code, and reports a dedicated required commit
+# status on the exact PR head.
 on:
   pull_request_target:
     branches: ["main", "staging"]
