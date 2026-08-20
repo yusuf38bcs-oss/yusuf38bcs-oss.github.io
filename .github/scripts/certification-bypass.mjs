@@ -1,0 +1,88 @@
+export const CERTIFICATION_HEADER_NAME = "x-lbfl-certification";
+export const CERTIFICATION_HOSTS = Object.freeze([
+  "api.learningbiologyforlife.org",
+  "learningbiologyforlife.org",
+]);
+
+const CERTIFICATION_HOST_SET = new Set(CERTIFICATION_HOSTS);
+const TOKEN_PATTERN = /^[0-9a-f]{64}$/;
+
+export function isProductionCertificationUrl(rawUrl) {
+  let url;
+  try {
+    url = new URL(rawUrl);
+  } catch {
+    return false;
+  }
+  return (
+    url.protocol === "https:" &&
+    url.port === "" &&
+    CERTIFICATION_HOST_SET.has(url.hostname.toLowerCase())
+  );
+}
+
+export function requireCertificationToken(value) {
+  const token = typeof value === "string" ? value : "";
+  if (!TOKEN_PATTERN.test(token)) {
+    throw new Error("Production certification credential is missing or invalid");
+  }
+  return token;
+}
+
+export function certificationHeadersForUrl(rawUrl, headers, token) {
+  const validatedToken = requireCertificationToken(token);
+  if (!isProductionCertificationUrl(rawUrl)) {
+    return null;
+  }
+
+  return {
+    ...(headers || {}),
+    [CERTIFICATION_HEADER_NAME]: validatedToken,
+  };
+}
+
+export function sanitizeRecordedHeaders(headers) {
+  return Object.fromEntries(
+    Object.entries(headers || {}).filter(
+      ([name]) => name.toLowerCase() !== CERTIFICATION_HEADER_NAME,
+    ),
+  );
+}
+
+export function certificationHeadersForRequest(request, token) {
+  let frame;
+  try {
+    frame = request.frame();
+  } catch {
+    return null;
+  }
+  if (
+    request.resourceType() !== "document" ||
+    !request.isNavigationRequest() ||
+    frame !== frame.page().mainFrame()
+  ) {
+    return null;
+  }
+  return certificationHeadersForUrl(request.url(), request.headers(), token);
+}
+
+export function assertCertificationTokenAbsent(value, token, label) {
+  const validatedToken = requireCertificationToken(token);
+  if (String(value).includes(validatedToken)) {
+    throw new Error(`${label} contains the production certification credential`);
+  }
+}
+
+export async function installCertificationBypassRoute(context, token) {
+  const validatedToken = requireCertificationToken(token);
+  await context.route("**/*", async (route) => {
+    const request = route.request();
+    const headers = certificationHeadersForRequest(request, validatedToken);
+    if (headers) {
+      const response = await route.fetch({ headers, maxRedirects: 0 });
+      await route.fulfill({ response });
+      return;
+    }
+    await route.continue();
+  });
+}
