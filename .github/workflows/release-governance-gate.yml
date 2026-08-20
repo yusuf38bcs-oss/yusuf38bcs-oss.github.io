@@ -3,7 +3,7 @@ name: Release Governance Gate
 on:
   pull_request:
     branches: ["main", "staging"]
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
   pull_request_review:
     branches: ["main", "staging"]
     types: [submitted, edited, dismissed]
@@ -54,12 +54,12 @@ jobs:
           }
 
   independent-review:
-    name: Independent approval and resolved threads
+    name: Promotion authority and resolved threads
     if: ${{ github.event.pull_request.draft == false }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - name: Require current independent approval and zero unresolved threads
+      - name: Require exact-head promotion authority and zero unresolved threads
         uses: actions/github-script@v8
         with:
           script: |
@@ -68,7 +68,15 @@ jobs:
             const repo = context.repo.repo;
             const pull_number = pull.number;
             const author = String(pull.user?.login || '').toLowerCase();
+            const headOwner = String(pull.head?.repo?.owner?.login || '').toLowerCase();
+            const repoOwner = String(owner || '').toLowerCase();
             const headSha = String(pull.head?.sha || '').toLowerCase();
+            const body = String(pull.body || '');
+
+            const SOLO_MAINTAINER = 'yusuf38bcs-oss';
+            const SOLO_EXCEPTION_LINE =
+              'SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER';
+            const SOLO_APPROVAL_PREFIX = 'SOLO-MAINTAINER-APPROVAL: ';
 
             if (!/^[0-9a-f]{40}$/.test(headSha)) {
               throw new Error('PR head must be an exact 40-character SHA.');
@@ -100,11 +108,40 @@ jobs:
               review.state === 'APPROVED' && review.commitId === headSha
             );
 
-            if (currentApprovals.length < 1) {
-              throw new Error(
-                'No independent APPROVED review is anchored to the current exact head. ' +
-                'A new commit invalidates older approval evidence.'
+            let authority = null;
+            if (currentApprovals.length >= 1) {
+              authority = `independent-review:${currentApprovals.length}`;
+            } else {
+              const lines = body.split(/\r?\n/).map((line) => line.trim());
+              const exceptionLines = lines.filter((line) =>
+                line.startsWith('SOLO-MAINTAINER-EXCEPTION:')
               );
+              const approvalLines = lines.filter((line) =>
+                line.startsWith(SOLO_APPROVAL_PREFIX)
+              );
+              const expectedApprovalLine = `${SOLO_APPROVAL_PREFIX}${headSha}`;
+
+              const identityEligible =
+                repoOwner === SOLO_MAINTAINER &&
+                author === SOLO_MAINTAINER &&
+                headOwner === SOLO_MAINTAINER;
+
+              const markerEligible =
+                exceptionLines.length === 1 &&
+                exceptionLines[0] === SOLO_EXCEPTION_LINE &&
+                approvalLines.length === 1 &&
+                approvalLines[0] === expectedApprovalLine;
+
+              if (!identityEligible || !markerEligible) {
+                throw new Error(
+                  'No independent exact-head approval and no valid solo-maintainer authority. ' +
+                  `For the permanent LBFL solo-maintainer exception, the owner-authored PR body must contain exactly: ` +
+                  `"${SOLO_EXCEPTION_LINE}" and "${expectedApprovalLine}". ` +
+                  'A new commit invalidates the SHA-bound solo approval marker.'
+                );
+              }
+
+              authority = 'solo-maintainer-exact-head';
             }
 
             const query = `
@@ -138,7 +175,9 @@ jobs:
               throw new Error(`${unresolved} unresolved review thread(s) remain.`);
             }
 
-            core.info(`Release review gate PASS at ${headSha}: ${currentApprovals.length} current independent approval(s), zero unresolved threads.`);
+            core.info(
+              `Release review gate PASS at ${headSha}: authority=${authority}, zero unresolved threads.`
+            );
 
   governance-summary:
     name: Governance gate summary
