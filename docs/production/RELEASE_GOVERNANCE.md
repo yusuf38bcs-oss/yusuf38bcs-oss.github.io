@@ -4,13 +4,19 @@ Status: proposed production control
 Baseline: `main@65fbd738d6b7087ca65484098bc89a7973dd5fd5`
 Programme ledger: #245
 
-## Release identity invariant
+## Release identity invariants
 
-For any production or staging promotion:
+Before merge:
 
-> Tested SHA = reviewed/authorized SHA = approved SHA = deployed SHA.
+> Tested candidate SHA = reviewed/authorized PR-head SHA.
 
-Any change to the candidate head or target-base SHA invalidates previous exact-head evidence and requires a complete rerun of the applicable gates.
+After merge:
+
+> Authenticated target-branch SHA = deployed SHA = production-certified SHA.
+
+A merge, squash, or rebase may create a target-branch SHA different from the PR head. Pre-merge evidence remains evidence for the reviewed candidate only; it must never be relabelled as evidence for a different post-merge commit. Authenticate and validate the actual target-branch SHA before treating it as deployable, and bind production certification to that exact SHA.
+
+Any change to the candidate head invalidates its authorization and exact-head evidence. Any advance of the target base makes an unchanged candidate stale until the candidate contains the new base and all applicable gates rerun.
 
 ## Maintainer model
 
@@ -32,7 +38,7 @@ The solo-maintainer path is not self-review disguised as independent review. It 
 - the authorization marker is valid only for that exact head; every new commit invalidates it automatically;
 - certification evidence never authorizes merge by itself; merge still requires a separate explicit production/release decision.
 
-This exception may not be used to bypass failed CI, stale-base detection, unresolved review threads, production certification, secret-leak gates, or explicit deployment authorization.
+This exception may not bypass failed CI, stale-base detection, unresolved review threads, production certification, secret-leak gates, or explicit deployment authorization.
 
 ## Branch roles
 
@@ -59,35 +65,42 @@ One coherent scope per branch. Preferred namespaces:
 A non-Draft PR targeting `main` or `staging` is promotion-eligible only when all of the following are true:
 
 1. The candidate head is an exact immutable 40-character SHA.
-2. The candidate contains the current target-base SHA. A stale candidate must merge/rebase the new base and rerun all evidence.
+2. The candidate contains the exact current target-base SHA.
 3. Required CI for the changed scope is green at the current head.
 4. Promotion authority exists at the current exact head through either:
-   - at least one independent non-author human `APPROVED` review anchored to that head; or
+   - at least one non-author, non-bot `APPROVED` review from a collaborator with GitHub write, maintain, or admin permission, anchored to that head; or
    - the LBFL permanent solo-maintainer exact-head authority described above.
 5. No unresolved inline review thread remains.
 6. Security-sensitive changes have zero secret/artifact/log leakage.
 7. Production-facing changes have the applicable browser, accessibility, deployment-identity and Worker-health evidence.
 8. Certification does not itself authorize merge; a separate explicit merge decision is required.
 
-Draft PRs may collect evidence but have no promotion authority.
+Comment-only reviews do not dismiss an earlier approval. A later decisive state—`CHANGES_REQUESTED` or `DISMISSED`—does. Draft PRs may collect evidence but the governance summary must not pass.
 
-## Repository ruleset target
+## Trusted-policy boundary
 
-GitHub repository settings for both `main` and `staging` should enforce controls compatible with the permanent solo-maintainer model:
+The executable policy uses `pull_request_target` so GitHub loads it from the trusted target branch. The workflow checks the candidate as Git data and never checks out or executes candidate-controlled files. Review and review-thread events likewise use the workflow already present on the repository's trusted branch.
+
+PR #246 is the one-time bootstrap that first introduces this trusted workflow. Because no trusted copy exists on its base yet, #246 cannot use its own candidate-authored workflow run as independent proof of policy integrity. Its eventual merge therefore requires all of the following as an explicit bootstrap decision: ordinary exact-head CI, manual exact-head diff review, zero unresolved findings, authenticated base/head identity, and separate owner merge authorization. After bootstrap, no candidate workflow run may substitute for the trusted-target gate.
+
+## Repository ruleset requirements
+
+GitHub repository settings for both `main` and `staging` must enforce controls compatible with the permanent solo-maintainer model:
 
 - require a pull request before merging;
+- require the exact-head `LBFL Trusted Release Governance` commit status;
 - require required status checks to pass;
-- require branches to be up to date before merging where supported;
+- require branches to be up to date before merging (strict mode);
 - require conversation resolution before merging;
 - block force pushes;
 - block branch deletion;
-- do not require an unavailable second human reviewer as a permanent server-side prerequisite;
-- rely on the executable Release Governance Gate for either independent exact-head review or SHA-bound solo-maintainer authority;
+- do not require an unavailable second human reviewer as a permanent prerequisite;
+- rely on the trusted executable gate for either qualified independent review or SHA-bound solo-maintainer authority;
 - do not permit undocumented bypasses.
 
-If a qualified independent reviewer becomes available, independent approval remains the preferred authority path.
+The trusted workflow runs in the target-branch context, evaluates candidate metadata without executing candidate code, and publishes `LBFL Trusted Release Governance` directly on the exact PR-head SHA. Strict up-to-date enforcement is also mandatory: a success attached to an unchanged head cannot invalidate itself merely because `main` or `staging` later advances. The server-side rule blocks that stale head until it contains the new base and the checks rerun.
 
-The executable `.github/workflows/release-governance-gate.yml` supplements server-side rulesets; it is not a substitute for branch protection, status checks, or deployment certification.
+If a qualified independent reviewer becomes available, independent approval remains the preferred authority path. The executable gate supplements server-side rulesets; it is not a substitute for branch protection, status checks, or deployment certification.
 
 ## Solo-maintainer release sequence
 
@@ -98,13 +111,14 @@ For a solo-maintainer promotion:
 3. run all required exact-head CI and scope-specific certification;
 4. ensure zero unresolved review threads;
 5. record the permanent solo-maintainer exception marker in the PR body;
-6. record `SOLO-MAINTAINER-APPROVAL: <current-head-SHA>` in the PR body only after the exact head is known;
-7. require the Release Governance Gate to pass at that same head;
+6. record `SOLO-MAINTAINER-APPROVAL: <current-head-SHA>` only after the exact head is known;
+7. require the trusted Release Governance Gate to pass at that same head;
 8. record a separate explicit merge authorization;
 9. merge without force operations;
 10. authenticate the resulting target-branch SHA;
-11. perform website/Worker deployment as separate authorized actions where applicable;
-12. run fresh production certification and rollback verification.
+11. run the required post-merge validation against that exact target SHA;
+12. bind any website or Worker deployment to that target SHA through a separate authorized action;
+13. run fresh production certification and rollback verification against the deployed target SHA.
 
 Any candidate commit after step 6 invalidates the authorization marker and returns the PR to HOLD until the marker is deliberately updated to the new exact head after revalidation.
 
@@ -140,7 +154,7 @@ If an urgent P0 production repair must bypass normal sequencing, record in the P
 - incident reason;
 - exact pre-change production SHA;
 - exact repair SHA;
-- exact-head solo-maintainer authorization or independent approval;
+- exact-head solo-maintainer authorization or qualified independent approval;
 - rollback command/commit;
 - post-merge production certification result; and
 - follow-up review to close any temporary governance exception.

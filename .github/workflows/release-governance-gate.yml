@@ -1,65 +1,35 @@
 name: Release Governance Gate
 
+# The policy is loaded from the trusted target branch. It evaluates PR metadata
+# through GitHub APIs, executes no candidate code, and reports a dedicated
+# required commit status on the exact PR head.
 on:
-  pull_request:
+  pull_request_target:
     branches: ["main", "staging"]
-    types: [opened, synchronize, reopened, ready_for_review, edited]
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited]
   pull_request_review:
     branches: ["main", "staging"]
     types: [submitted, edited, dismissed]
+  pull_request_review_thread:
+    branches: ["main", "staging"]
+    types: [resolved, unresolved]
 
 permissions:
   contents: read
   pull-requests: read
+  statuses: write
 
 concurrency:
   group: release-governance-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
   cancel-in-progress: true
 
 jobs:
-  candidate-identity:
-    name: Candidate contains current base
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    env:
-      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-      PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-      PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
-    steps:
-      - name: Check out immutable candidate
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ env.PR_HEAD_SHA }}
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Require exact current-base ancestry
-        shell: bash
-        run: |
-          set -euo pipefail
-          [[ "$PR_HEAD_SHA" =~ ^[0-9a-f]{40}$ ]]
-          [[ "$PR_BASE_SHA" =~ ^[0-9a-f]{40}$ ]]
-          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
-          git fetch --no-tags origin \
-            "+refs/heads/${PR_BASE_REF}:refs/remotes/origin/${PR_BASE_REF}"
-          current_base_sha="$(git rev-parse "origin/${PR_BASE_REF}")"
-          test "$current_base_sha" = "$PR_BASE_SHA" || {
-            echo "Target base advanced while the gate was running. Rerun at the new base."
-            exit 1
-          }
-          git merge-base --is-ancestor "$current_base_sha" "$PR_HEAD_SHA" || {
-            echo "Candidate is stale: it does not contain current ${PR_BASE_REF}@${current_base_sha}."
-            echo "Merge or rebase the current target branch, then rerun all exact-head evidence."
-            exit 1
-          }
-
-  independent-review:
-    name: Promotion authority and resolved threads
-    if: ${{ github.event.pull_request.draft == false }}
+  trusted-governance:
+    name: Trusted governance evaluation
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - name: Require exact-head promotion authority and zero unresolved threads
+      - name: Evaluate policy and report exact-head status
         uses: actions/github-script@v8
         with:
           script: |
@@ -69,134 +39,225 @@ jobs:
             const pull_number = pull.number;
             const author = String(pull.user?.login || '').toLowerCase();
             const headOwner = String(pull.head?.repo?.owner?.login || '').toLowerCase();
+            const headRef = String(pull.head?.ref || '');
             const repoOwner = String(owner || '').toLowerCase();
             const headSha = String(pull.head?.sha || '').toLowerCase();
+            const payloadBaseSha = String(pull.base?.sha || '').toLowerCase();
+            const baseRef = String(pull.base?.ref || '');
             const body = String(pull.body || '');
 
+            const STATUS_CONTEXT = 'LBFL Trusted Release Governance';
             const SOLO_MAINTAINER = 'yusuf38bcs-oss';
             const SOLO_EXCEPTION_LINE =
               'SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER';
-            const SOLO_APPROVAL_PREFIX = 'SOLO-MAINTAINER-APPROVAL: ';
+            const SOLO_APPROVAL_LABEL = 'SOLO-MAINTAINER-APPROVAL:';
+            const decisiveStates = new Set(['APPROVED', 'CHANGES_REQUESTED', 'DISMISSED']);
+            const allowedPermissionLevels = new Set(['admin', 'maintain', 'write', 'push']);
+            const target_url =
+              `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+
+            async function reportStatus(state, description) {
+              await github.rest.repos.createCommitStatus({
+                owner,
+                repo,
+                sha: headSha,
+                state,
+                context: STATUS_CONTEXT,
+                description: String(description).slice(0, 140),
+                target_url,
+              });
+            }
 
             if (!/^[0-9a-f]{40}$/.test(headSha)) {
               throw new Error('PR head must be an exact 40-character SHA.');
             }
 
-            const reviews = await github.paginate(github.rest.pulls.listReviews, {
-              owner,
-              repo,
-              pull_number,
-              per_page: 100,
-            });
+            await reportStatus('pending', 'Trusted exact-head governance evaluation is running.');
 
-            const latestByReviewer = new Map();
-            for (const review of reviews) {
-              const login = String(review.user?.login || '').toLowerCase();
-              if (!login || login === author || login.endsWith('[bot]')) continue;
-              const submitted = review.submitted_at ? Date.parse(review.submitted_at) : 0;
-              const previous = latestByReviewer.get(login);
-              if (!previous || submitted >= previous.submitted) {
-                latestByReviewer.set(login, {
-                  state: String(review.state || '').toUpperCase(),
-                  commitId: String(review.commit_id || '').toLowerCase(),
-                  submitted,
-                });
+            try {
+              if (pull.draft) {
+                throw new Error('Draft PRs have no promotion authority.');
               }
-            }
+              if (!/^[0-9a-f]{40}$/.test(payloadBaseSha) || !baseRef) {
+                throw new Error('Target base identity is incomplete or malformed.');
+              }
+              if (!headOwner || !headRef) {
+                throw new Error('Head repository identity is incomplete.');
+              }
 
-            const currentApprovals = [...latestByReviewer.entries()].filter(([, review]) =>
-              review.state === 'APPROVED' && review.commitId === headSha
-            );
-
-            let authority = null;
-            if (currentApprovals.length >= 1) {
-              authority = `independent-review:${currentApprovals.length}`;
-            } else {
-              const lines = body.split(/\r?\n/).map((line) => line.trim());
-              const exceptionLines = lines.filter((line) =>
-                line.startsWith('SOLO-MAINTAINER-EXCEPTION:')
-              );
-              const approvalLines = lines.filter((line) =>
-                line.startsWith(SOLO_APPROVAL_PREFIX)
-              );
-              const expectedApprovalLine = `${SOLO_APPROVAL_PREFIX}${headSha}`;
-
-              const identityEligible =
-                repoOwner === SOLO_MAINTAINER &&
-                author === SOLO_MAINTAINER &&
-                headOwner === SOLO_MAINTAINER;
-
-              const markerEligible =
-                exceptionLines.length === 1 &&
-                exceptionLines[0] === SOLO_EXCEPTION_LINE &&
-                approvalLines.length === 1 &&
-                approvalLines[0] === expectedApprovalLine;
-
-              if (!identityEligible || !markerEligible) {
+              const baseBranch = await github.rest.repos.getBranch({
+                owner,
+                repo,
+                branch: baseRef,
+              });
+              const currentBaseSha = String(baseBranch.data.commit?.sha || '').toLowerCase();
+              if (currentBaseSha !== payloadBaseSha) {
                 throw new Error(
-                  'No independent exact-head approval and no valid solo-maintainer authority. ' +
-                  `For the permanent LBFL solo-maintainer exception, the owner-authored PR body must contain exactly: ` +
-                  `"${SOLO_EXCEPTION_LINE}" and "${expectedApprovalLine}". ` +
-                  'A new commit invalidates the SHA-bound solo approval marker.'
+                  `Target base advanced from ${payloadBaseSha} to ${currentBaseSha}; rerun at the new base.`
                 );
               }
 
-              authority = 'solo-maintainer-exact-head';
-            }
+              const comparison = await github.rest.repos.compareCommitsWithBasehead({
+                owner,
+                repo,
+                basehead: `${repoOwner}:${currentBaseSha}...${headOwner}:${headRef}`,
+              });
+              const comparedHeadSha = String(
+                comparison.data.head_commit?.sha || ''
+              ).toLowerCase();
+              const mergeBaseSha = String(
+                comparison.data.merge_base_commit?.sha || ''
+              ).toLowerCase();
+              if (comparedHeadSha !== headSha) {
+                throw new Error('PR head changed while ancestry was evaluated.');
+              }
+              if (mergeBaseSha !== currentBaseSha) {
+                throw new Error(
+                  `Candidate ${headSha} does not contain current ${baseRef}@${currentBaseSha}.`
+                );
+              }
 
-            const query = `
-              query($owner: String!, $repo: String!, $number: Int!, $cursor: String) {
-                repository(owner: $owner, name: $repo) {
-                  pullRequest(number: $number) {
-                    reviewThreads(first: 100, after: $cursor) {
-                      nodes { isResolved }
-                      pageInfo { hasNextPage endCursor }
+              const reviews = await github.paginate(github.rest.pulls.listReviews, {
+                owner,
+                repo,
+                pull_number,
+                per_page: 100,
+              });
+
+              // COMMENTED reviews do not dismiss an earlier approval. Only the
+              // latest decisive state controls each reviewer's authority.
+              const latestDecisiveByReviewer = new Map();
+              for (const review of reviews) {
+                const login = String(review.user?.login || '').toLowerCase();
+                const state = String(review.state || '').toUpperCase();
+                if (
+                  !login ||
+                  login === author ||
+                  login.endsWith('[bot]') ||
+                  !decisiveStates.has(state)
+                ) {
+                  continue;
+                }
+                const submitted = review.submitted_at ? Date.parse(review.submitted_at) : 0;
+                const previous = latestDecisiveByReviewer.get(login);
+                if (!previous || submitted >= previous.submitted) {
+                  latestDecisiveByReviewer.set(login, {
+                    state,
+                    commitId: String(review.commit_id || '').toLowerCase(),
+                    submitted,
+                  });
+                }
+              }
+
+              const approvalCandidates = [...latestDecisiveByReviewer.entries()].filter(
+                ([, review]) => review.state === 'APPROVED' && review.commitId === headSha
+              );
+
+              // Public-repository visitors may submit reviews. Count approval only
+              // when GitHub reports write, maintain, or admin repository authority.
+              const authorizedApprovals = [];
+              for (const [login] of approvalCandidates) {
+                try {
+                  const response = await github.rest.repos.getCollaboratorPermissionLevel({
+                    owner,
+                    repo,
+                    username: login,
+                  });
+                  const permissions = response.data.user?.permissions || {};
+                  const level = String(response.data.permission || '').toLowerCase();
+                  if (
+                    permissions.push ||
+                    permissions.maintain ||
+                    permissions.admin ||
+                    allowedPermissionLevels.has(level)
+                  ) {
+                    authorizedApprovals.push(login);
+                  } else {
+                    core.info(
+                      `Ignoring approval from ${login}: insufficient repository authority.`
+                    );
+                  }
+                } catch (error) {
+                  core.info(
+                    `Ignoring approval from ${login}: permission lookup failed ` +
+                    `(${error.status || 'unknown'}).`
+                  );
+                }
+              }
+
+              let authority = null;
+              if (authorizedApprovals.length >= 1) {
+                authority = `independent-review:${authorizedApprovals.length}`;
+              } else {
+                const lines = body.split(/\r?\n/).map((line) => line.trim());
+                const exceptionLines = lines.filter((line) =>
+                  line.startsWith('SOLO-MAINTAINER-EXCEPTION:')
+                );
+                const approvalLines = lines.filter((line) =>
+                  line.startsWith(SOLO_APPROVAL_LABEL)
+                );
+                const expectedApprovalLine = `${SOLO_APPROVAL_LABEL} ${headSha}`;
+
+                const identityEligible =
+                  repoOwner === SOLO_MAINTAINER &&
+                  author === SOLO_MAINTAINER &&
+                  headOwner === SOLO_MAINTAINER;
+                const markerEligible =
+                  exceptionLines.length === 1 &&
+                  exceptionLines[0] === SOLO_EXCEPTION_LINE &&
+                  approvalLines.length === 1 &&
+                  approvalLines[0] === expectedApprovalLine;
+
+                if (!identityEligible || !markerEligible) {
+                  throw new Error(
+                    'No authorized independent exact-head approval and no valid solo-maintainer ' +
+                    `authority. The owner-authored PR body must contain exactly "${SOLO_EXCEPTION_LINE}" ` +
+                    `and "${expectedApprovalLine}". A new commit invalidates the marker.`
+                  );
+                }
+                authority = 'solo-maintainer-exact-head';
+              }
+
+              const query = `
+                query($owner: String!, $repo: String!, $number: Int!, $cursor: String) {
+                  repository(owner: $owner, name: $repo) {
+                    pullRequest(number: $number) {
+                      reviewThreads(first: 100, after: $cursor) {
+                        nodes { isResolved }
+                        pageInfo { hasNextPage endCursor }
+                      }
                     }
                   }
                 }
+              `;
+
+              let cursor = null;
+              let unresolved = 0;
+              do {
+                const data = await github.graphql(query, {
+                  owner,
+                  repo,
+                  number: pull_number,
+                  cursor,
+                });
+                const threads = data.repository.pullRequest.reviewThreads;
+                unresolved += threads.nodes.filter((thread) => !thread.isResolved).length;
+                cursor = threads.pageInfo.hasNextPage ? threads.pageInfo.endCursor : null;
+              } while (cursor);
+
+              if (unresolved !== 0) {
+                throw new Error(`${unresolved} unresolved review thread(s) remain.`);
               }
-            `;
 
-            let cursor = null;
-            let unresolved = 0;
-            do {
-              const data = await github.graphql(query, {
-                owner,
-                repo,
-                number: pull_number,
-                cursor,
-              });
-              const threads = data.repository.pullRequest.reviewThreads;
-              unresolved += threads.nodes.filter((thread) => !thread.isResolved).length;
-              cursor = threads.pageInfo.hasNextPage ? threads.pageInfo.endCursor : null;
-            } while (cursor);
-
-            if (unresolved !== 0) {
-              throw new Error(`${unresolved} unresolved review thread(s) remain.`);
+              await reportStatus(
+                'success',
+                `PASS at ${headSha.slice(0, 12)}: ${authority}; zero unresolved threads.`
+              );
+              core.info(
+                `RELEASE_GOVERNANCE_GATE_PASS at ${headSha}: authority=${authority}, ` +
+                'current base contained, zero unresolved threads.'
+              );
+            } catch (error) {
+              await reportStatus('failure', `FAIL: ${error.message || error}`);
+              throw error;
             }
-
-            core.info(
-              `Release review gate PASS at ${headSha}: authority=${authority}, zero unresolved threads.`
-            );
-
-  governance-summary:
-    name: Governance gate summary
-    if: ${{ always() }}
-    needs: [candidate-identity, independent-review]
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Enforce promotion result
-        shell: bash
-        env:
-          DRAFT: ${{ github.event.pull_request.draft }}
-          IDENTITY_RESULT: ${{ needs.candidate-identity.result }}
-          REVIEW_RESULT: ${{ needs.independent-review.result }}
-        run: |
-          set -euo pipefail
-          test "$IDENTITY_RESULT" = "success"
-          if [[ "$DRAFT" == "true" ]]; then
-            echo "Draft candidate: identity is current, but promotion authority is intentionally absent."
-            exit 0
-          fi
-          test "$REVIEW_RESULT" = "success"
-          echo "RELEASE_GOVERNANCE_GATE_PASS"
