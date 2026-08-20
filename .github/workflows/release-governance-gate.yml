@@ -103,14 +103,25 @@ jobs:
                 repo,
                 basehead: `${currentBaseSha}...${headSha}`,
               });
-              const comparedHeadSha = String(
-                comparison.data.head_commit?.sha || ''
-              ).toLowerCase();
               const mergeBaseSha = String(
                 comparison.data.merge_base_commit?.sha || ''
               ).toLowerCase();
-              if (comparedHeadSha !== headSha) {
-                throw new Error('PR head changed while ancestry was evaluated.');
+
+              // The compare response does not expose a dependable `head_commit`
+              // field. Re-authenticate the PR after the ancestry lookup so a
+              // concurrent head movement still fails closed at the exact SHA.
+              const currentPull = await github.rest.pulls.get({
+                owner,
+                repo,
+                pull_number,
+              });
+              const currentHeadSha = String(
+                currentPull.data.head?.sha || ''
+              ).toLowerCase();
+              if (currentHeadSha !== headSha) {
+                throw new Error(
+                  `PR head changed from ${headSha} to ${currentHeadSha || 'unknown'} while ancestry was evaluated.`
+                );
               }
               if (mergeBaseSha !== currentBaseSha) {
                 throw new Error(
