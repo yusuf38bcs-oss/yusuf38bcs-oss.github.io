@@ -8,11 +8,7 @@ on:
     branches: ["main", "staging"]
     types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited]
   pull_request_review:
-    branches: ["main", "staging"]
     types: [submitted, edited, dismissed]
-  pull_request_review_thread:
-    branches: ["main", "staging"]
-    types: [resolved, unresolved]
 
 permissions:
   contents: read
@@ -70,6 +66,10 @@ jobs:
 
             if (!/^[0-9a-f]{40}$/.test(headSha)) {
               throw new Error('PR head must be an exact 40-character SHA.');
+            }
+            if (!['main', 'staging'].includes(baseRef)) {
+              core.info(`Ignoring governance event for unprotected base ${baseRef}.`);
+              return;
             }
 
             await reportStatus('pending', 'Trusted exact-head governance evaluation is running.');

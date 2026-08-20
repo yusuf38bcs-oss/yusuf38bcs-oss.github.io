@@ -79,7 +79,7 @@ Comment-only reviews do not dismiss an earlier approval. A later decisive stateâ
 
 ## Trusted-policy boundary
 
-The executable policy uses `pull_request_target` so GitHub loads it from the trusted target branch. The workflow checks the candidate as Git data and never checks out or executes candidate-controlled files. Review and review-thread events likewise use the workflow already present on the repository's trusted branch.
+The executable policy uses `pull_request_target` so GitHub loads it from the trusted target branch. The workflow evaluates candidate metadata through GitHub APIs and never checks out or executes candidate-controlled files. Review events use the workflow already present on the repository's trusted default branch.
 
 PR #246 is the one-time bootstrap that first introduces this trusted workflow. Because no trusted copy exists on its base yet, #246 cannot use its own candidate-authored workflow run as independent proof of policy integrity. Its eventual merge therefore requires all of the following as an explicit bootstrap decision: ordinary exact-head CI, manual exact-head diff review, zero unresolved findings, authenticated base/head identity, and separate owner merge authorization. After bootstrap, no candidate workflow run may substitute for the trusted-target gate.
 
@@ -99,6 +99,8 @@ GitHub repository settings for both `main` and `staging` must enforce controls c
 - do not permit undocumented bypasses.
 
 The trusted workflow runs in the target-branch context, evaluates candidate metadata without executing candidate code, and publishes `LBFL Trusted Release Governance` directly on the exact PR-head SHA. Strict up-to-date enforcement is also mandatory: a success attached to an unchanged head cannot invalidate itself merely because `main` or `staging` later advances. The server-side rule blocks that stale head until it contains the new base and the checks rerun.
+
+GitHub exposes review-thread resolution as a webhook event but not as a GitHub Actions workflow trigger. Therefore server-side **require conversation resolution** is the authoritative fail-closed control when a thread is reopened after a status has passed. The trusted workflow still counts all paginated unresolved threads whenever it runs. If resolving the last thread leaves an earlier failure status in place, rerun the failed governance workflow at the unchanged head before promotion.
 
 If a qualified independent reviewer becomes available, independent approval remains the preferred authority path. The executable gate supplements server-side rulesets; it is not a substitute for branch protection, status checks, or deployment certification.
 
