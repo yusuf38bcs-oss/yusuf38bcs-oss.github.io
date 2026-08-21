@@ -7,7 +7,7 @@ name: Release Governance Gate
 on:
   pull_request_target:
     branches: ["main", "staging"]
-    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited]
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited, closed]
   pull_request_review:
     types: [submitted, edited, dismissed]
 
@@ -17,7 +17,7 @@ permissions:
   statuses: write
 
 concurrency:
-  group: release-governance-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
+  group: release-governance-${{ github.event.pull_request.head.sha }}
   cancel-in-progress: true
 
 jobs:
@@ -30,18 +30,10 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            const pull = context.payload.pull_request;
+            const eventPull = context.payload.pull_request;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const pull_number = pull.number;
-            const author = String(pull.user?.login || '').toLowerCase();
-            const headOwner = String(pull.head?.repo?.owner?.login || '').toLowerCase();
-            const headRef = String(pull.head?.ref || '');
-            const repoOwner = String(owner || '').toLowerCase();
-            const headSha = String(pull.head?.sha || '').toLowerCase();
-            const payloadBaseSha = String(pull.base?.sha || '').toLowerCase();
-            const baseRef = String(pull.base?.ref || '');
-            const body = String(pull.body || '');
+            const eventAction = String(context.payload.action || '');
 
             const STATUS_CONTEXT = 'LBFL Trusted Release Governance';
             const PROTECTED_BASES = new Set(['main', 'staging']);
@@ -54,18 +46,65 @@ jobs:
             const target_url =
               `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
 
-            async function reportStatus(state, description) {
-              await github.rest.repos.createCommitStatus({
-                owner,
-                repo,
-                sha: headSha,
-                state,
-                context: STATUS_CONTEXT,
-                description: String(description).slice(0, 140),
-                target_url,
-              });
+            if (!eventPull || !eventPull.head) {
+              throw new Error('Pull-request identity is missing from the event payload.');
             }
 
+            let targetPulls;
+            if (eventAction === 'closed') {
+              const closedHeadSha = String(eventPull.head?.sha || '').toLowerCase();
+              const openPulls = await github.paginate(github.rest.pulls.list, {
+                owner,
+                repo,
+                state: 'open',
+                per_page: 100,
+              });
+
+              targetPulls = openPulls.filter((candidate) => {
+                const candidateBase = String(candidate.base?.ref || '');
+                const candidateHeadSha = String(candidate.head?.sha || '').toLowerCase();
+
+                return (
+                  PROTECTED_BASES.has(candidateBase) &&
+                  candidateHeadSha === closedHeadSha
+                );
+              });
+              core.info(
+                `Closed PR #${eventPull.number} released head ${closedHeadSha}; ` +
+                `re-evaluating ${targetPulls.length} open protected-base survivor(s).`
+              );
+            } else {
+              targetPulls = [eventPull];
+            }
+
+            if (targetPulls.length === 0) {
+              core.info('No open protected-base survivor requires re-evaluation.');
+              return;
+            }
+
+            const evaluationErrors = [];
+            for (const pull of targetPulls) {
+              const pull_number = Number(pull.number);
+              const author = String(pull.user?.login || '').toLowerCase();
+              const headOwner = String(pull.head?.repo?.owner?.login || '').toLowerCase();
+              const headRef = String(pull.head?.ref || '');
+              const repoOwner = String(owner || '').toLowerCase();
+              const headSha = String(pull.head?.sha || '').toLowerCase();
+              const payloadBaseSha = String(pull.base?.sha || '').toLowerCase();
+              const baseRef = String(pull.base?.ref || '');
+              const body = String(pull.body || '');
+
+              async function reportStatus(state, description) {
+                await github.rest.repos.createCommitStatus({
+                  owner,
+                  repo,
+                  sha: headSha,
+                  state,
+                  context: STATUS_CONTEXT,
+                  description: String(description).slice(0, 140),
+                  target_url,
+                });
+              }
             if (!/^[0-9a-f]{40}$/.test(headSha)) {
               throw new Error('PR head must be an exact 40-character SHA.');
             }
@@ -303,6 +342,57 @@ jobs:
                 throw new Error(`${unresolved} unresolved review thread(s) remain.`);
               }
 
+              // Re-authenticate the ambiguity immediately before success. The
+              // SHA-scoped concurrency group serializes same-head evaluations,
+              // while this second snapshot prevents a late-opened conflicting
+              // PR from receiving a stale success after the initial check.
+              const finalOpenPulls = await github.paginate(github.rest.pulls.list, {
+                owner,
+                repo,
+                state: 'open',
+                per_page: 100,
+              });
+              const finalConflicts = finalOpenPulls.filter((candidate) => {
+                const candidateNumber = Number(candidate.number);
+                const candidateBase = String(candidate.base?.ref || '');
+                const candidateHeadSha = String(candidate.head?.sha || '').toLowerCase();
+
+                return (
+                  candidateNumber !== pull_number &&
+                  PROTECTED_BASES.has(candidateBase) &&
+                  candidateHeadSha === headSha
+                );
+              });
+              if (finalConflicts.length !== 0) {
+                const conflicts = finalConflicts
+                  .map((candidate) => `#${candidate.number}->${candidate.base?.ref || 'unknown'}`)
+                  .sort()
+                  .join(', ');
+                throw new Error(
+                  `Head ${headSha} became shared before success: ` + conflicts +
+                  '. Trusted governance status is ambiguous.'
+                );
+              }
+
+              const finalPull = await github.rest.pulls.get({
+                owner,
+                repo,
+                pull_number,
+              });
+              const finalHeadSha = String(finalPull.data.head?.sha || '').toLowerCase();
+              const finalBaseRef = String(finalPull.data.base?.ref || '');
+              const finalBaseSha = String(finalPull.data.base?.sha || '').toLowerCase();
+              if (
+                finalPull.data.state !== 'open' ||
+                finalHeadSha !== headSha ||
+                finalBaseRef !== baseRef ||
+                finalBaseSha !== currentBaseSha
+              ) {
+                throw new Error(
+                  `PR #${pull_number} identity changed before success; rerun at the current exact head/base.`
+                );
+              }
+
               await reportStatus(
                 'success',
                 `PASS at ${headSha.slice(0, 12)}: ${authority}; zero unresolved threads.`
@@ -313,5 +403,6 @@ jobs:
               );
             } catch (error) {
               await reportStatus('failure', `FAIL: ${error.message || error}`);
-              throw error;
+              evaluationErrors.push(`#${pull_number}: ${error.message || error}`);
+            }
             }
