@@ -38,7 +38,7 @@ bad_saliva_patterns.each do |pattern|
   fail!("Lecture 02 still places maltase in saliva: #{pattern.inspect}") if lecture_02.match?(pattern)
 end
 
-lectures = Dir.glob(ROOT.join("_biology/hsc-corner/zoology/digestive-system/lecture-*.md")).sort
+lectures = Dir.glob(ROOT.join("_biology/hsc-corner/zoology/digestive-system/lecture-*.md").to_s).sort
 fail!("Expected 14 HSC Digestive lectures, found #{lectures.length}") unless lectures.length == 14
 
 fail!("Zoology stylesheet is not route-scoped from head/custom.html") unless
@@ -77,7 +77,7 @@ html_files = []
   SITE.join("biology/higher-zoology-tree")
 ].each do |root|
   next unless root.directory?
-  html_files.concat(Dir.glob(root.join("**/*.html")))
+  html_files.concat(Dir.glob(root.join("**/*.html").to_s))
 end
 
 fail!("No rendered Zoology HTML was found") if html_files.empty?
