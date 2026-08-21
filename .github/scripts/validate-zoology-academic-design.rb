@@ -94,10 +94,14 @@ forbidden_rendered = [
 page_count = 0
 html_files.each do |path|
   html = File.read(path, encoding: "UTF-8")
-  fail!("Missing Zoology stylesheet in #{path}") unless html.include?("/assets/css/zoology-academic.css")
 
+  # Compatibility redirects and other layout:null artifacts can live under a
+  # historical Zoology pathname. The academic design contract applies to
+  # rendered learner-content pages, identified by the standard page shell.
   next unless html.include?("class=\"page\"") && html.include?("class=\"page__content\"")
+
   page_count += 1
+  fail!("Missing Zoology stylesheet in #{path}") unless html.include?("/assets/css/zoology-academic.css")
   fail!("Missing LOLO/LALA learning cycle in #{path}") unless html.include?("data-zoology-learning-cycle")
 
   forbidden_rendered.each do |needle|
