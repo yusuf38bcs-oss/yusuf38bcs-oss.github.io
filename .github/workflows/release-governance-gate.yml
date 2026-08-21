@@ -44,6 +44,7 @@ jobs:
             const body = String(pull.body || '');
 
             const STATUS_CONTEXT = 'LBFL Trusted Release Governance';
+            const PROTECTED_BASES = new Set(['main', 'staging']);
             const SOLO_MAINTAINER = 'yusuf38bcs-oss';
             const SOLO_EXCEPTION_LINE =
               'SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER';
@@ -84,6 +85,47 @@ jobs:
               }
               if (!headOwner || !headRef) {
                 throw new Error('Head repository identity is incomplete.');
+              }
+
+              // Commit statuses are keyed only by SHA + context, while governance
+              // authority is PR-specific. Fail closed if this exact head is shared
+              // by another open PR targeting a protected base, otherwise one PR's
+              // success could overwrite another PR's failure on the same status.
+              const openPulls = await github.paginate(github.rest.pulls.list, {
+                owner,
+                repo,
+                state: 'open',
+                per_page: 100,
+              });
+
+              const sharedProtectedHeadPulls = openPulls.filter((candidate) => {
+                const candidateNumber = Number(candidate.number);
+                const candidateBase = String(candidate.base?.ref || '');
+                const candidateHeadSha = String(
+                  candidate.head?.sha || ''
+                ).toLowerCase();
+
+                return (
+                  candidateNumber !== pull_number &&
+                  PROTECTED_BASES.has(candidateBase) &&
+                  candidateHeadSha === headSha
+                );
+              });
+
+              if (sharedProtectedHeadPulls.length !== 0) {
+                const conflicts = sharedProtectedHeadPulls
+                  .map(
+                    (candidate) =>
+                      `#${candidate.number}->${candidate.base?.ref || 'unknown'}`
+                  )
+                  .sort()
+                  .join(', ');
+
+                throw new Error(
+                  `Head ${headSha} is shared by multiple protected-base PRs: ` +
+                  `#${pull_number}->${baseRef}, ${conflicts}. ` +
+                  'Trusted governance status is ambiguous.'
+                );
               }
 
               const baseBranch = await github.rest.repos.getBranch({

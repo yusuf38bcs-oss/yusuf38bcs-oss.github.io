@@ -262,7 +262,6 @@ jobs:
           )"
           deployment_status="$(curl \
             --fail \
-            --location \
             --retry 5 \
             --retry-all-errors \
             --silent \
