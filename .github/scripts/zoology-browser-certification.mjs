@@ -37,6 +37,7 @@ function routeFor(file) {
 
 async function isLearnerContentPage(file) {
   const html = await fs.readFile(file, "utf8");
+  if (/<meta[^>]+http-equiv=["']?refresh["']?/i.test(html)) return false;
   return html.includes('class="page"') && html.includes('class="page__content"');
 }
 
@@ -70,11 +71,27 @@ for (const route of routes) {
       blockedExternal.push({ resourceType: request.resourceType(), url: requestUrl.origin });
       await requestRoute.fulfill({ status: 204, body: "" });
     });
+
     const page = await context.newPage();
     const consoleErrors = [];
     const pageErrors = [];
-    page.on("console", (message) => { if (message.type() === "error") consoleErrors.push(message.text()); });
+    const localHttpErrors = [];
+
+    page.on("console", (message) => {
+      if (message.type() === "error") {
+        consoleErrors.push({ text: message.text(), location: message.location() });
+      }
+    });
     page.on("pageerror", (error) => pageErrors.push(String(error)));
+    page.on("response", (response) => {
+      const responseUrl = new URL(response.url());
+      if (
+        ["127.0.0.1", "localhost"].includes(responseUrl.hostname) &&
+        response.status() >= 400
+      ) {
+        localHttpErrors.push({ status: response.status(), url: responseUrl.pathname });
+      }
+    });
 
     let status = 0;
     let metrics = null;
@@ -119,9 +136,21 @@ for (const route of routes) {
       (metrics?.horizontalOverflow ?? 999) <= 2 &&
       consoleErrors.length === 0 &&
       pageErrors.length === 0 &&
+      localHttpErrors.length === 0 &&
       axeViolations.length === 0;
 
-    results.push({ route, viewport: viewport.name, status, metrics, blockedExternal, consoleErrors, pageErrors, axeViolations, passed });
+    results.push({
+      route,
+      viewport: viewport.name,
+      status,
+      metrics,
+      blockedExternal,
+      localHttpErrors,
+      consoleErrors,
+      pageErrors,
+      axeViolations,
+      passed,
+    });
     await context.close();
   }
 }
@@ -146,7 +175,20 @@ const markdown = [
   `- Viewport checks: ${results.length}`,
   `- Result: ${passed ? "PASS" : "FAIL"}`,
   "",
-  ...(failures.length ? ["## Failures", "", ...failures.map((failure) => `- ${failure.route} @ ${failure.viewport}`)] : ["All discovered learner-content Zoology routes passed the scoped design, overflow, application-console, AI-label and learning-cycle checks. Compatibility redirects and layout:null artifacts under historical Zoology paths are intentionally excluded from this academic-design matrix and remain covered by site/SEO validation. Third-party network calls were isolated with local 204 responses and recorded separately in the JSON evidence."]),
+  ...(failures.length
+    ? [
+        "## Failures",
+        "",
+        ...failures.map((failure) => {
+          const http = failure.localHttpErrors?.length
+            ? `; local HTTP ${failure.localHttpErrors.map((item) => `${item.status} ${item.url}`).join(", ")}`
+            : "";
+          return `- ${failure.route} @ ${failure.viewport}${http}`;
+        }),
+      ]
+    : [
+        "All discovered learner-content Zoology routes passed the scoped design, overflow, local-resource, application-console, AI-label and learning-cycle checks. Compatibility redirects, meta-refresh aliases and layout:null artifacts under historical Zoology paths are intentionally excluded from this academic-design matrix and remain covered by site/SEO validation. Third-party network calls were isolated with local 204 responses and recorded separately in the JSON evidence.",
+      ]),
   "",
 ].join("\n");
 await fs.writeFile(path.join(outputDir, "zoology-browser-certification.md"), markdown);
