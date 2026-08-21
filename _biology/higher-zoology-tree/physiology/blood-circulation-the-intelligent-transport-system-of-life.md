@@ -7,7 +7,7 @@ sidebar:
 title: "Blood Circulation Master Series: রক্ত, হৃদপিণ্ড, সঞ্চালন, রোগ ও হৃদস্বাস্থ্য"
 excerpt: "রক্ত, রক্তরস, রক্তকণিকা, লসিকা, হৃদপিণ্ডের গঠন, myogenic control, systole-diastole, systemic-pulmonary circulation, coronary disease, cardiac procedures and healthy living নিয়ে পূর্ণাঙ্গ lecture series."
 date: 2026-05-04T17:08:00.008Z
-last_modified_at: 2026-06-29T00:00:00.000Z
+last_modified_at: 2026-08-21T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/physiology/blood-circulation/
 categories:
   - Biology
@@ -163,13 +163,8 @@ By the end of this series, learners will be able to:
 | Treatment awareness | PCI, stent, CABG, open-heart | Procedure comparison | Explain without prescribing |
 | Life application | habits and heart health | Lifestyle audit | Reflection response |
 
-## Source Processing Note
-
-The uploaded **Blood Circulation.pdf** was treated as the base class note. It contains slides on blood definition, plasma composition and functions, blood corpuscles, RBC features, lymph, heart structure, myogenic control, SAN/AVN/Bundle of His/Purkinje fibre, systemic and pulmonary circulation, angina and heart attack. These were reorganized into a complete lecture series and clarified using standard human physiology framing consistent with Guyton & Hall-style cardiovascular physiology.
-
 ## References
 
-- Uploaded source: **Blood Circulation.pdf** — blood and circulation lecture slides.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, cardiovascular and blood physiology chapters.
 - National Heart, Lung, and Blood Institute: coronary heart disease treatment, stents, and coronary artery bypass grafting educational pages.
 - Centers for Disease Control and Prevention: heart attack symptoms and prevention education.
