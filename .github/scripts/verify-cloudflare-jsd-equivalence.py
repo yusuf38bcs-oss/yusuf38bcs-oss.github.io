@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Fail-closed comparison for Cloudflare JSD-modified production HTML.
 
-The canonical production response may contain exactly one Cloudflare-managed
-JavaScript Detection injection that is absent from the exact Pages deployment.
-This tool preserves both input artifacts, removes only one narrowly recognized
-Cloudflare JSD inline script from a derived canonical copy, and then requires
+The canonical production response may be byte-for-byte identical to the exact
+Pages deployment, or it may contain exactly one Cloudflare-managed JavaScript
+Detection injection that is absent from the exact deployment. This tool
+preserves both input artifacts, removes only one narrowly recognized Cloudflare
+JSD inline script from a derived canonical copy when present, and then requires
 byte-for-byte equality with the exact deployment artifact.
 """
 
@@ -68,6 +69,17 @@ def normalize_canonical(canonical: bytes, exact: bytes) -> tuple[bytes, dict[str
         raise VerificationError(
             "Exact deployment unexpectedly contains a Cloudflare challenge-platform marker"
         )
+
+    if canonical == exact:
+        report: dict[str, object] = {
+            "canonical_sha256": sha256_bytes(canonical),
+            "exact_sha256": sha256_bytes(exact),
+            "injection_count": 0,
+            "jsd_path": None,
+            "normalized_canonical_sha256": sha256_bytes(canonical),
+            "normalized_match": True,
+        }
+        return canonical, report
 
     candidates: list[re.Match[bytes]] = []
     for match in SCRIPT_RE.finditer(canonical):

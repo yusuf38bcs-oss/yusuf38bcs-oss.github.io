@@ -47,8 +47,12 @@ def test_valid_single_injection() -> None:
     assert report["jsd_path"] == "/cdn-cgi/challenge-platform/scripts/jsd/main.js"
 
 
-def test_zero_injection_fails() -> None:
-    require_failure(EXACT, EXACT, "exactly one")
+def test_zero_injection_exact_match_passes() -> None:
+    normalized, report = normalize_canonical(EXACT, EXACT)
+    assert normalized == EXACT
+    assert report["injection_count"] == 0
+    assert report["normalized_match"] is True
+    assert report["jsd_path"] is None
 
 
 def test_multiple_injections_fail() -> None:
@@ -88,7 +92,7 @@ def test_exact_artifact_must_not_contain_challenge_marker() -> None:
 def run_all() -> None:
     tests = [
         test_valid_single_injection,
-        test_zero_injection_fails,
+        test_zero_injection_exact_match_passes,
         test_multiple_injections_fail,
         test_non_jsd_challenge_path_fails,
         test_unrecognized_wrapper_fails,
