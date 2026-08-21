@@ -40,6 +40,10 @@ layout: default
     {% assign lbfl_page_content = lbfl_rebuilt_content %}
   {% endif %}
   {% assign lbfl_page_content = lbfl_page_content | replace: '<li>Uploaded source: <strong>Respiratory.docx</strong> — Human Respiratory System teaching note.</li>', '' %}
+  {% assign lbfl_page_content = lbfl_page_content | replace: '<li>Uploaded source: <strong>Respiratory.docx</strong> — chapter note on human respiratory system.</li>', '' %}
+  {% assign lbfl_page_content = lbfl_page_content | replace: '<li>Uploaded source: <strong>Respiratory.docx</strong> — respiratory anatomy, airway, lung, alveoli, surfactant, and respiratory muscle notes.</li>', '' %}
+  {% assign lbfl_page_content = lbfl_page_content | replace: '<li>Uploaded source: <strong>Respiratory.docx</strong> — respiratory muscles, inspiration-expiration mechanism, neural and chemical control, gas transport and chloride shift notes.</li>', '' %}
+  {% assign lbfl_page_content = lbfl_page_content | replace: '<li>Uploaded source: <strong>Respiratory.docx</strong> — respiratory disease notes: sinusitis, otitis media, bronchitis, pneumonia, TB, smoking damage, emphysema, pleurisy, fibrosis, CPR awareness, tidal volume.</li>', '' %}
 {% endif %}
 
 <div id="main" role="main">
