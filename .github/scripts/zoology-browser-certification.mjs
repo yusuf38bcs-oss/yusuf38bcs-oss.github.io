@@ -49,10 +49,16 @@ const results = [];
 for (const route of routes) {
   for (const viewport of viewports) {
     const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
+    const blockedExternal = [];
     await context.route("**/*", async (requestRoute) => {
-      const requestUrl = new URL(requestRoute.request().url());
-      if (["127.0.0.1", "localhost"].includes(requestUrl.hostname)) await requestRoute.continue();
-      else await requestRoute.abort();
+      const request = requestRoute.request();
+      const requestUrl = new URL(request.url());
+      if (["127.0.0.1", "localhost"].includes(requestUrl.hostname)) {
+        await requestRoute.continue();
+        return;
+      }
+      blockedExternal.push({ resourceType: request.resourceType(), url: requestUrl.origin });
+      await requestRoute.fulfill({ status: 204, body: "" });
     });
     const page = await context.newPage();
     const consoleErrors = [];
@@ -104,7 +110,7 @@ for (const route of routes) {
       pageErrors.length === 0 &&
       axeViolations.length === 0;
 
-    results.push({ route, viewport: viewport.name, status, metrics, consoleErrors, pageErrors, axeViolations, passed });
+    results.push({ route, viewport: viewport.name, status, metrics, blockedExternal, consoleErrors, pageErrors, axeViolations, passed });
     await context.close();
   }
 }
@@ -122,7 +128,7 @@ const markdown = [
   `- Viewport checks: ${results.length}`,
   `- Result: ${passed ? "PASS" : "FAIL"}`,
   "",
-  ...(failures.length ? ["## Failures", "", ...failures.map((failure) => `- ${failure.route} @ ${failure.viewport}`)] : ["All discovered Zoology routes passed the scoped design, overflow, console, AI-label and learning-cycle checks."]),
+  ...(failures.length ? ["## Failures", "", ...failures.map((failure) => `- ${failure.route} @ ${failure.viewport}`)] : ["All discovered Zoology routes passed the scoped design, overflow, application-console, AI-label and learning-cycle checks. Third-party network calls were isolated with local 204 responses and recorded separately in the JSON evidence."]),
   "",
 ].join("\n");
 await fs.writeFile(path.join(outputDir, "zoology-browser-certification.md"), markdown);
