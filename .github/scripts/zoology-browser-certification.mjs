@@ -35,12 +35,22 @@ function routeFor(file) {
   return `/${relative}/`.replace(/\/+/g, "/");
 }
 
+async function isLearnerContentPage(file) {
+  const html = await fs.readFile(file, "utf8");
+  return html.includes('class="page"') && html.includes('class="page__content"');
+}
+
 const roots = [
   path.join(siteDir, "biology", "hsc-corner", "zoology"),
   path.join(siteDir, "biology", "higher-zoology-tree"),
 ];
-const routes = [...new Set((await Promise.all(roots.map(walk))).flat().map(routeFor))].sort();
-if (!routes.length) throw new Error("No rendered Zoology routes were discovered");
+const discoveredFiles = (await Promise.all(roots.map(walk))).flat();
+const learnerFiles = [];
+for (const file of discoveredFiles) {
+  if (await isLearnerContentPage(file)) learnerFiles.push(file);
+}
+const routes = [...new Set(learnerFiles.map(routeFor))].sort();
+if (!routes.length) throw new Error("No rendered learner-content Zoology routes were discovered");
 
 await fs.mkdir(outputDir, { recursive: true });
 const browser = await chromium.launch({ headless: true });
@@ -102,8 +112,9 @@ for (const route of routes) {
     }
 
     const passed = status === 200 &&
+      metrics?.hasContent === true &&
       metrics?.hasStylesheet === true &&
-      (!metrics?.hasContent || metrics?.hasCycle === true) &&
+      metrics?.hasCycle === true &&
       metrics?.resetInquiryLabel === true &&
       (metrics?.horizontalOverflow ?? 999) <= 2 &&
       consoleErrors.length === 0 &&
@@ -117,18 +128,25 @@ for (const route of routes) {
 
 await browser.close();
 const passed = results.every((result) => result.passed);
-const report = { passed, routeCount: routes.length, checks: results.length, generatedAt: new Date().toISOString(), results };
+const report = {
+  passed,
+  discoveredHtmlCount: discoveredFiles.length,
+  routeCount: routes.length,
+  checks: results.length,
+  generatedAt: new Date().toISOString(),
+  results,
+};
 await fs.writeFile(path.join(outputDir, "zoology-browser-certification.json"), `${JSON.stringify(report, null, 2)}\n`);
 
 const failures = results.filter((result) => !result.passed);
 const markdown = [
   "# Zoology Browser Certification",
   "",
-  `- Routes: ${routes.length}`,
+  `- Learner-content routes: ${routes.length}`,
   `- Viewport checks: ${results.length}`,
   `- Result: ${passed ? "PASS" : "FAIL"}`,
   "",
-  ...(failures.length ? ["## Failures", "", ...failures.map((failure) => `- ${failure.route} @ ${failure.viewport}`)] : ["All discovered Zoology routes passed the scoped design, overflow, application-console, AI-label and learning-cycle checks. Third-party network calls were isolated with local 204 responses and recorded separately in the JSON evidence."]),
+  ...(failures.length ? ["## Failures", "", ...failures.map((failure) => `- ${failure.route} @ ${failure.viewport}`)] : ["All discovered learner-content Zoology routes passed the scoped design, overflow, application-console, AI-label and learning-cycle checks. Compatibility redirects and layout:null artifacts under historical Zoology paths are intentionally excluded from this academic-design matrix and remain covered by site/SEO validation. Third-party network calls were isolated with local 204 responses and recorded separately in the JSON evidence."]),
   "",
 ].join("\n");
 await fs.writeFile(path.join(outputDir, "zoology-browser-certification.md"), markdown);
