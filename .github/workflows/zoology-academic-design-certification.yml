@@ -81,7 +81,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ruby -run -e httpd _site -p 4173 > "$RUNNER_TEMP/zoology-http.log" 2>&1 &
+          bundle exec ruby -run -e httpd _site -p 4173 > "$RUNNER_TEMP/zoology-http.log" 2>&1 &
           echo $! > "$RUNNER_TEMP/zoology-http.pid"
           for attempt in $(seq 1 30); do
             if curl --fail --silent http://127.0.0.1:4173/biology/hsc-corner/zoology/ >/dev/null; then
