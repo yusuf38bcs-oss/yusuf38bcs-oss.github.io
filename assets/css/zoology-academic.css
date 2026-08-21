@@ -1,0 +1,290 @@
+/* LBFL Zoology Academic Design System
+ * Shared by HSC Zoology and Higher Zoology routes.
+ * Content authority stays in the lecture Markdown; this layer standardizes
+ * readability, hierarchy, learning-cycle presentation, tables and legacy cards.
+ */
+
+.lbfl-zoology-route {
+  --zoo-ink: #102a2a;
+  --zoo-muted: #496560;
+  --zoo-paper: #fbfaf5;
+  --zoo-surface: #ffffff;
+  --zoo-soft: #eef7f3;
+  --zoo-teal: #147a6d;
+  --zoo-teal-strong: #0d5f55;
+  --zoo-amber: #b77a21;
+  --zoo-border: rgba(20, 122, 109, 0.18);
+  --zoo-shadow: 0 0.8rem 2.2rem rgba(15, 62, 57, 0.07);
+}
+
+.lbfl-zoology-route body,
+.lbfl-zoology-route .initial-content {
+  background: var(--zoo-paper);
+}
+
+.lbfl-zoology-route .page__inner-wrap {
+  max-width: 72rem;
+}
+
+.lbfl-zoology-route .page__title {
+  color: #123835;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.lbfl-zoology-route .page__content {
+  color: var(--zoo-ink);
+  font-size: clamp(1rem, 0.97rem + 0.15vw, 1.08rem);
+  line-height: 1.78;
+  overflow-wrap: anywhere;
+}
+
+.lbfl-zoology-route .page__content > p:first-of-type {
+  font-size: 1.04em;
+}
+
+.lbfl-zoology-route .page__content h1,
+.lbfl-zoology-route .page__content h2,
+.lbfl-zoology-route .page__content h3,
+.lbfl-zoology-route .page__content h4 {
+  color: #153f3b !important;
+  font-family: inherit;
+  text-wrap: balance;
+}
+
+.lbfl-zoology-route .page__content h2 {
+  margin: 2.6rem 0 1rem;
+  padding: 0.78rem 1rem;
+  border-left: 0.28rem solid var(--zoo-teal);
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: linear-gradient(90deg, var(--zoo-soft), rgba(238, 247, 243, 0));
+  font-size: clamp(1.35rem, 1.18rem + 0.75vw, 1.85rem);
+  line-height: 1.18;
+}
+
+.lbfl-zoology-route .page__content h3 {
+  margin-top: 2rem;
+  color: var(--zoo-teal-strong) !important;
+  font-size: clamp(1.14rem, 1.06rem + 0.35vw, 1.42rem);
+  line-height: 1.3;
+}
+
+.lbfl-zoology-route .page__content h4 {
+  color: #315f59 !important;
+}
+
+.lbfl-zoology-route .page__content a {
+  color: var(--zoo-teal-strong);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.lbfl-zoology-route .page__content a:focus-visible,
+.lbfl-zoology-route .page__content button:focus-visible,
+.lbfl-zoology-route .page__content summary:focus-visible {
+  outline: 3px solid rgba(20, 122, 109, 0.38);
+  outline-offset: 3px;
+}
+
+.lbfl-zoology-route .page__content blockquote,
+.lbfl-zoology-route .page__content .notice,
+.lbfl-zoology-route .page__content .notice--info,
+.lbfl-zoology-route .page__content .notice--warning,
+.lbfl-zoology-route .page__content .notice--success {
+  margin: 1.4rem 0;
+  padding: 1rem 1.15rem;
+  color: var(--zoo-ink) !important;
+  border: 1px solid var(--zoo-border) !important;
+  border-left: 0.3rem solid var(--zoo-teal) !important;
+  border-radius: 0.85rem !important;
+  background: var(--zoo-soft) !important;
+  box-shadow: none !important;
+}
+
+.lbfl-zoology-route .page__content table {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  margin: 1.35rem 0;
+  overflow-x: auto;
+  border-collapse: collapse;
+  background: var(--zoo-surface);
+  border: 1px solid var(--zoo-border);
+  border-radius: 0.7rem;
+}
+
+.lbfl-zoology-route .page__content th,
+.lbfl-zoology-route .page__content td {
+  min-width: 7.5rem;
+  padding: 0.68rem 0.78rem !important;
+  color: var(--zoo-ink) !important;
+  border-color: rgba(20, 122, 109, 0.14) !important;
+  vertical-align: top;
+}
+
+.lbfl-zoology-route .page__content th {
+  color: #123835 !important;
+  background: var(--zoo-soft) !important;
+  font-weight: 800;
+}
+
+.lbfl-zoology-route .page__content pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(20, 122, 109, 0.18);
+  border-radius: 0.85rem;
+  background: #102825;
+  color: #f5fbf8;
+}
+
+.lbfl-zoology-route .page__content code {
+  overflow-wrap: normal;
+}
+
+.lbfl-zoology-route .page__content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.9rem;
+}
+
+.lbfl-zoology-route .page__content details {
+  margin: 1.2rem 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--zoo-border);
+  border-radius: 0.85rem;
+  background: var(--zoo-surface);
+}
+
+.lbfl-zoology-route .page__content summary {
+  cursor: pointer;
+  color: #174d47;
+  font-weight: 800;
+}
+
+/* Normalize older inline dark-card lectures without deleting their content. */
+.lbfl-zoology-route .page__content div[style*="#0f172a"],
+.lbfl-zoology-route .page__content div[style*="#131c2e"],
+.lbfl-zoology-route .page__content div[style*="#0b1329"],
+.lbfl-zoology-route .page__content div[style*="#090d16"] {
+  color: var(--zoo-ink) !important;
+  background: var(--zoo-surface) !important;
+  border-color: var(--zoo-border) !important;
+  box-shadow: var(--zoo-shadow) !important;
+}
+
+.lbfl-zoology-route .page__content [style*="color:#cbd5e1"],
+.lbfl-zoology-route .page__content [style*="color: #cbd5e1"],
+.lbfl-zoology-route .page__content [style*="color:#abb2bf"],
+.lbfl-zoology-route .page__content [style*="color: #abb2bf"] {
+  color: var(--zoo-muted) !important;
+}
+
+.lbfl-zoology-route .page__content [style*="color:#ffffff"],
+.lbfl-zoology-route .page__content [style*="color: #ffffff"],
+.lbfl-zoology-route .page__content [style*="color:#00d4b2"],
+.lbfl-zoology-route .page__content [style*="color: #00d4b2"],
+.lbfl-zoology-route .page__content [style*="color:#3b82f6"],
+.lbfl-zoology-route .page__content [style*="color: #3b82f6"] {
+  color: var(--zoo-teal-strong) !important;
+}
+
+.lbfl-zoology-cycle {
+  margin: 0 0 2rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid var(--zoo-border);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, #ffffff, #f1f8f5);
+  box-shadow: var(--zoo-shadow);
+}
+
+.lbfl-zoology-cycle__eyebrow {
+  margin: 0 0 0.35rem !important;
+  color: var(--zoo-teal-strong) !important;
+  font-size: 0.78rem !important;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lbfl-zoology-cycle__title {
+  margin: 0 !important;
+  color: #123835 !important;
+  font-size: clamp(1.12rem, 1.02rem + 0.45vw, 1.4rem) !important;
+}
+
+.lbfl-zoology-cycle__steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  counter-reset: zoo-cycle;
+}
+
+.lbfl-zoology-cycle__steps li {
+  counter-increment: zoo-cycle;
+  min-width: 0;
+  padding: 0.8rem;
+  border-top: 2px solid rgba(20, 122, 109, 0.23);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.lbfl-zoology-cycle__steps li::before {
+  content: counter(zoo-cycle, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--zoo-amber);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.lbfl-zoology-cycle__steps strong {
+  display: block;
+  color: #153f3b;
+  font-size: 0.88rem;
+}
+
+.lbfl-zoology-cycle__steps span {
+  display: block;
+  margin-top: 0.18rem;
+  color: var(--zoo-muted);
+  font-size: 0.78rem;
+  line-height: 1.42;
+}
+
+@media (max-width: 48rem) {
+  .lbfl-zoology-route .page__content {
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+
+  .lbfl-zoology-route .page__content h2 {
+    margin-top: 2.15rem;
+    padding-inline: 0.8rem;
+  }
+
+  .lbfl-zoology-cycle__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 24rem) {
+  .lbfl-zoology-cycle__steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lbfl-zoology-route *,
+  .lbfl-zoology-route *::before,
+  .lbfl-zoology-route *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

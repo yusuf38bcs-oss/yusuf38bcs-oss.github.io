@@ -2,6 +2,13 @@
 layout: default
 ---
 
+{% assign lbfl_zoology_route = false %}
+{% if page.url contains '/biology/hsc-corner/zoology/' %}
+  {% assign lbfl_zoology_route = true %}
+{% elsif page.url contains '/biology/higher-zoology-tree/' %}
+  {% assign lbfl_zoology_route = true %}
+{% endif %}
+
 {% if page.header.overlay_color or page.header.overlay_image %}
   <div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}"
        style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if page.header.overlay_image %}background-image: url('{{ page.header.overlay_image | relative_url }}');{% endif %}">
@@ -16,6 +23,23 @@ layout: default
       </div>
     {% endif %}
   </div>
+{% endif %}
+
+{% assign lbfl_page_content = content %}
+{% if lbfl_zoology_route %}
+  {% assign lbfl_page_content = lbfl_page_content | replace: 'নির্দিষ্ট এনজাইম এবং হরমোনের উপস্থিতিতে', 'যান্ত্রিক প্রক্রিয়া ও নির্দিষ্ট পরিপাক এনজাইমের ক্রিয়ায়' %}
+  {% assign lbfl_page_content = lbfl_page_content | replace: 'লালার <strong>টায়ালিন</strong> ও <strong>মল্টেজ</strong> এনজাইম', 'লালার <strong>টায়ালিন (salivary amylase)</strong> এনজাইম' %}
+  {% assign lbfl_page_content = lbfl_page_content | replace: 'Indigo & Cyan মেমব্রেন ভিত্তিক শতভাগ স্যানিটাইজড প্রোডাকশন লেকচার নোড', 'উন্নত শারীরবৃত্তীয় বিশ্লেষণ ও ধারণাভিত্তিক লার্নিং নোড' %}
+  {% assign lbfl_source_marker = '<h2 id="source-processing-note">Source Processing Note</h2>' %}
+  {% if lbfl_page_content contains lbfl_source_marker %}
+    {% assign lbfl_source_parts = lbfl_page_content | split: lbfl_source_marker %}
+    {% assign lbfl_source_head = lbfl_source_parts | first %}
+    {% assign lbfl_source_tail = lbfl_source_parts | last %}
+    {% assign lbfl_source_tail_parts = lbfl_source_tail | split: '<h2' %}
+    {% capture lbfl_rebuilt_content %}{{ lbfl_source_head }}{% for lbfl_segment in lbfl_source_tail_parts offset:1 %}<h2{{ lbfl_segment }}{% endfor %}{% endcapture %}
+    {% assign lbfl_page_content = lbfl_rebuilt_content %}
+  {% endif %}
+  {% assign lbfl_page_content = lbfl_page_content | replace: '<li>Uploaded source: <strong>Respiratory.docx</strong> — Human Respiratory System teaching note.</li>', '' %}
 {% endif %}
 
 <div id="main" role="main">
@@ -37,7 +61,10 @@ layout: default
 
       <section class="page__content" itemprop="text">
         {% include components/educational-boundary.html %}
-        {{ content }}
+        {% if lbfl_zoology_route %}
+          {% include zoology/learning-cycle.html %}
+        {% endif %}
+        {{ lbfl_page_content }}
         {% if page.socratic_prompt or page.anomaly_question %}
           {% include socratic/socratic-node.html %}
         {% endif %}

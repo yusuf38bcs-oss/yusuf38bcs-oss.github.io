@@ -1,0 +1,122 @@
+name: Zoology Academic Design Certification
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "_biology/hsc-corner/zoology/**"
+      - "_biology/higher-zoology-tree/**"
+      - "_includes/zoology/**"
+      - "_includes/head/custom.html"
+      - "_includes/body/synaptic-ai.html"
+      - "_layouts/single.html"
+      - "assets/css/zoology-academic.css"
+      - ".github/scripts/validate-zoology-academic-design.rb"
+      - ".github/scripts/zoology-browser-certification.mjs"
+      - ".github/workflows/zoology-academic-design-certification.yml"
+      - "docs/zoology/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zoology-academic-design-${{ github.event.pull_request.number || github.ref }}-${{ github.event.pull_request.head.sha || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: Academic, rendered-design, responsive and Axe contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CERTIFICATION_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      REPORT_DIR: zoology-browser-report
+
+    steps:
+      - name: Check out immutable candidate head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.CERTIFICATION_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Enforce exact checked-out identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$CERTIFICATION_HEAD_SHA"
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build exact-head Jekyll site
+        shell: bash
+        run: |
+          set -euo pipefail
+          JEKYLL_ENV=production bundle exec jekyll build --trace
+
+      - name: Enforce Zoology source and rendered contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby .github/scripts/validate-zoology-academic-design.rb
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install pinned browser dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check .github/scripts/zoology-browser-certification.mjs
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+
+      - name: Serve exact Jekyll build
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby -run -e httpd _site -p 4173 > "$RUNNER_TEMP/zoology-http.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/zoology-http.pid"
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4173/biology/hsc-corner/zoology/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/zoology-http.log"
+          exit 1
+
+      - name: Certify every rendered Zoology route
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/scripts/zoology-browser-certification.mjs \
+            --site-dir _site \
+            --base-url http://127.0.0.1:4173 \
+            --output-dir "$REPORT_DIR"
+
+      - name: Add Zoology certification summary
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          if [[ -f "$REPORT_DIR/zoology-browser-certification.md" ]]; then
+            cat "$REPORT_DIR/zoology-browser-certification.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "# Zoology Browser Certification" >> "$GITHUB_STEP_SUMMARY"
+            echo "Report was not produced." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve Zoology certification evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: zoology-academic-design-${{ env.CERTIFICATION_HEAD_SHA }}
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
