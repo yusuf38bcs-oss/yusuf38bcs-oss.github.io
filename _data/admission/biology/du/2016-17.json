@@ -7,18 +7,151 @@
   "component_scope": [
     "mcq"
   ],
-  "paper_audit_state": "U",
-  "verification_status": "unstarted",
+  "paper_audit_state": "P",
+  "verification_status": "V1",
   "paper_complete": false,
-  "expected_biology_question_count": null,
-  "audited_question_count": 0,
+  "expected_biology_question_count": 30,
+  "expected_count_verification_status": "V1",
+  "audited_question_count": 3,
   "zero_claims_allowed": false,
   "matrix_release_allowed": false,
-  "sources": [],
-  "questions": [],
+  "sources": [
+    {
+      "source_id": "SATT-DU-A-2016-17",
+      "tier": "C1",
+      "kind": "community-reviewed-question-bank",
+      "url": "https://sattacademy.com/admission-mcq/sub_cat%3D3118%26subject%3Dall",
+      "status": "reviewed",
+      "supports": "Community-reviewed locator for Dhaka University A/Ka Unit 2016-17. It identifies the session but is not used alone to assert completeness."
+    },
+    {
+      "source_id": "BISSOY-DU-A-2016-17-C4",
+      "tier": "C1",
+      "kind": "community-question-bank-item",
+      "url": "https://www.bissoy.com/mcq/100869",
+      "status": "reviewed",
+      "supports": "DU A Unit 2016-17 Biology item asking the first stable product of C4 plants; answer Oxaloacetic acid."
+    },
+    {
+      "source_id": "BISSOY-DU-A-2016-17-RENIN",
+      "tier": "C1",
+      "kind": "community-question-bank-item",
+      "url": "https://www.bissoy.com/mcq/95017",
+      "status": "reviewed",
+      "supports": "DU A Unit 2016-17 Biology item asking where renin is produced; answer kidney."
+    },
+    {
+      "source_id": "BISSOY-DU-A-2016-17-MERISTEM",
+      "tier": "C1",
+      "kind": "community-question-bank-item",
+      "url": "https://www.bissoy.com/mcq/95005",
+      "status": "reviewed",
+      "supports": "DU A Unit 2016-17 Biology item asking which technique produces disease-free plantlets; answer meristem culture."
+    },
+    {
+      "source_id": "BDQB-DU-A-MARK-DISTRIBUTION",
+      "tier": "C2",
+      "kind": "secondary-format-reference",
+      "url": "https://bdquestionbank.com/dhaka-university-a-unit-du-a-unit-subject-wise-mark-distribution/",
+      "status": "reviewed",
+      "supports": "Historical A Unit mark-distribution reference: Physics, Chemistry, Mathematics and Biology are each 30 marks; 120 MCQ marks total across four answered subjects. Used only for V1 Biology block-size reconstruction."
+    },
+    {
+      "source_id": "BABAR-DU-A-2016-17-ENGLISH",
+      "tier": "C2",
+      "kind": "session-specific-subject-transcription",
+      "url": "https://www.babarenglish.com/post/university-admission-test-english-dhaka-university-a-unit-2016-2017-session-english-questions",
+      "status": "reviewed",
+      "supports": "Session-specific DU A Unit 2016-17 English transcription with a 30-question subject block; used with the historical A Unit format reference as corroboration of the 30-question per-subject structure, not as Biology content evidence."
+    },
+    {
+      "source_id": "STUDOCU-DU-A-2016-17-PAPER",
+      "tier": "C2",
+      "kind": "secondary-paper-scan-locator",
+      "url": "https://www.studocu.com/row/document/university-of-dhaka/mathmetics-practice-test/du-questions-a-16-17-copy/80424559",
+      "status": "candidate",
+      "supports": "Secondary locator for a DU A Unit 2016-17 paper scan showing full marks 120. Biology-page extraction is not yet sufficiently accessible for a complete question-by-question sequence audit."
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "DU-2016-17-MCQ-R001",
+      "question_no": 1,
+      "question_no_scope": "reconciliation-local-not-original-paper-number",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B12",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "First stable product in C4 photosynthesis",
+      "answer": "Oxaloacetic acid",
+      "source_refs": [
+        "SATT-DU-A-2016-17",
+        "BISSOY-DU-A-2016-17-C4"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-R002",
+      "question_no": 2,
+      "question_no_scope": "reconciliation-local-not-original-paper-number",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B24",
+      "secondary_topic_ids": [
+        "B21"
+      ],
+      "question_fingerprint": "Site of renin production in the human body",
+      "answer": "Kidney",
+      "source_refs": [
+        "SATT-DU-A-2016-17",
+        "BISSOY-DU-A-2016-17-RENIN"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-R003",
+      "question_no": 3,
+      "question_no_scope": "reconciliation-local-not-original-paper-number",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B14",
+      "secondary_topic_ids": [
+        "B13"
+      ],
+      "question_fingerprint": "Technique used to produce disease-free plantlets",
+      "answer": "Meristem culture",
+      "source_refs": [
+        "SATT-DU-A-2016-17",
+        "BISSOY-DU-A-2016-17-MERISTEM"
+      ],
+      "verification_status": "V1"
+    }
+  ],
+  "derived_topic_counts": {
+    "B12": 1,
+    "B14": 1,
+    "B24": 1
+  },
+  "sequence_reconstruction": {
+    "expected_slots": 30,
+    "resolved_question_identities": 3,
+    "resolved_original_positions": 0,
+    "unresolved_question_identities": 27,
+    "full_sequence_reconstructed": false
+  },
+  "reconciliation_summary": {
+    "expected_biology_opportunities": 30,
+    "expected_count_basis": "V1 historical A Unit 30-mark-per-subject structure corroborated by a session-specific 30-question English block",
+    "source_backed_seed_rows": 3,
+    "original_paper_question_numbers_resolved": 0,
+    "full_biology_block_completeness_established": false
+  },
   "research_notes": [
-    "No acceptable full 2016-17 DU Biology paper/source has been admitted to the audit ledger yet.",
-    "This file intentionally remains U rather than using inferred zeros or reconstructed counts.",
-    "The DU written component is not asserted for this session until the historical paper format is source-verified."
+    "The DU A Unit historical format supports a 30-question/30-mark Biology subject block at V1; this establishes the block size but not the full 2016-17 Biology question sequence.",
+    "Three DU A/Ka Unit 2016-17 Biology questions are admitted as source-backed seed rows. Their local question numbers are reconciliation-local identifiers only; original paper positions remain unresolved.",
+    "The accessible paper-scan locator is not yet sufficient to extract and independently reconcile all 30 Biology questions, so 27 question identities remain unresolved and the paper remains P.",
+    "No placeholder question is converted into an audited row, no original position is invented, and no topic-level zero is legal while the full Biology sequence remains incomplete.",
+    "Renin source/action remains classified to B24 Endocrine & Homeostasis with B21 as secondary, and meristem culture remains B14 Biotechnology with B13 as secondary, per the frozen taxonomy boundaries.",
+    "Matrix publication and QYI contribution remain blocked."
   ]
 }
