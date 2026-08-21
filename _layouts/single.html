@@ -9,9 +9,14 @@ layout: default
   {% assign lbfl_zoology_route = true %}
 {% endif %}
 
-{% if page.header.overlay_color or page.header.overlay_image %}
-  <div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}"
-       style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if page.header.overlay_image %}background-image: url('{{ page.header.overlay_image | relative_url }}');{% endif %}">
+{% assign lbfl_overlay_image = page.header.overlay_image %}
+{% if lbfl_zoology_route and lbfl_overlay_image contains '/assets/images/biology/' %}
+  {% assign lbfl_overlay_image = '' %}
+{% endif %}
+
+{% if page.header.overlay_color or lbfl_overlay_image != '' %}
+  <div class="page__hero{% if page.header.overlay_color or lbfl_overlay_image != '' %}--overlay{% endif %}"
+       style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if lbfl_overlay_image != '' %}background-image: url('{{ lbfl_overlay_image | relative_url }}');{% endif %}">
     {% if page.header.overlay_filter %}
       <div class="wrapper">
         <h1 id="page-title" class="page__title" itemprop="headline">
@@ -54,7 +59,7 @@ layout: default
     {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
 
     <div class="page__inner-wrap">
-      {% unless page.header.overlay_color or page.header.overlay_image %}
+      {% unless page.header.overlay_color or lbfl_overlay_image != '' %}
         <header>
           {% if page.title %}<h1 id="page-title" class="page__title" itemprop="headline">{{ page.title }}</h1>{% endif %}
           {% if page.read_time %}
