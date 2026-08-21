@@ -8,6 +8,8 @@
   if (window.LBFL_MI_ENGINE_BOOTED) return;
   window.LBFL_MI_ENGINE_BOOTED = true;
 
+  const INSTRUMENT_VERSION = "MI-S1-0.1";
+
   function escapeHTML(value) {
     return String(value || "")
       .replace(/&/g, "&amp;")
@@ -56,7 +58,7 @@
 
     zone.innerHTML = schema.map(function (item, index) {
       const name = escapeHTML(item.id || "mi_" + index);
-      const title = escapeHTML(item.type || item.short_type || "Intelligence");
+      const title = escapeHTML(item.type || item.short_type || "Reflection channel");
       const prompt = escapeHTML(item.socratic_prompt || "Reflect on this learning channel.");
 
       return [
@@ -81,8 +83,8 @@
       const score = selected ? Number(selected.value) : 0;
       return {
         id: id,
-        type: item.type || item.short_type || "Intelligence",
-        shortType: item.short_type || item.type || "Intelligence",
+        type: item.type || item.short_type || "Reflection channel",
+        shortType: item.short_type || item.type || "Reflection channel",
         score: Number.isFinite(score) ? score : 0,
         conceptURL: safeURL(item.concept_url),
         conceptID: item.concept_id || "multiple-intelligences",
@@ -96,30 +98,31 @@
   function renderResults(root, ranked) {
     const form = root.querySelector("[data-mi-form]");
     const result = root.querySelector("[data-mi-result]");
-    const top = ranked.slice(0, 3);
+    const strongestResponses = ranked.slice(0, 3);
     if (!form || !result) return;
 
     form.style.display = "none";
     result.style.display = "block";
 
     result.innerHTML = [
-      '<h3 class="mi-result-title">Cognitive Spectrum Synthesized</h3>',
+      '<h3 class="mi-result-title">Your Current Learning-Engagement Reflection</h3>',
       '<div class="mi-result-grid">',
-        top.map(function (item, index) {
+        strongestResponses.map(function (item, index) {
           return [
-            '<article class="mi-result-node ' + (index === 0 ? 'is-dominant' : '') + '">',
+            '<article class="mi-result-node">',
               '<div class="mi-result-node-header">',
                 '<strong>' + (index + 1) + '. ' + escapeHTML(item.type) + '</strong>',
-                '<span class="mi-score-chip">Score: ' + escapeHTML(item.score) + '/5</span>',
+                '<span class="mi-score-chip">Current response: ' + escapeHTML(item.score) + '/5</span>',
               '</div>',
-              '<p class="mi-strategy-line"><strong>Learning vector:</strong> ' + escapeHTML(item.strategy) + '</p>',
-              '<a class="mi-concept-link" href="' + escapeHTML(item.conceptURL) + '">Open Matrix Node</a>',
+              '<p class="mi-strategy-line"><strong>Experiment to try:</strong> ' + escapeHTML(item.strategy) + '</p>',
+              '<a class="mi-concept-link" href="' + escapeHTML(item.conceptURL) + '">Open reflection context</a>',
             '</article>'
           ].join("");
         }).join(""),
       '</div>',
-      '<p class="mi-validation-note">This is a reflective educational audit, not a clinical or psychometric diagnosis. Use it to select better learning strategies inside Learning Biology For Life.</p>',
-      '<div style="text-align:center;margin-top:1.5rem"><button type="button" class="mi-btn-calculate" data-mi-reset>Restart Audit</button></div>'
+      '<p class="mi-validation-note"><strong>What this suggests:</strong> these were among your stronger self-reported responses today.</p>',
+      '<p class="mi-validation-note"><strong>What this does not prove:</strong> preference is not the same as ability, intelligence, or the instructional method that will produce the best learning. This is not a validated intelligence or learning-style test. Compare strategies experimentally. Instrument: ' + INSTRUMENT_VERSION + '.</p>',
+      '<div style="text-align:center;margin-top:1.5rem"><button type="button" class="mi-btn-calculate" data-mi-reset>Reflect Again</button></div>'
     ].join("");
 
     const reset = result.querySelector("[data-mi-reset]");
@@ -128,13 +131,16 @@
         result.style.display = "none";
         form.style.display = "flex";
         form.reset();
-        root.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        const reducedMotion = window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        root.scrollIntoView({
+          behavior: reducedMotion ? "auto" : "smooth",
+          block: "start"
+        });
       });
     }
-
-    document.dispatchEvent(new CustomEvent("lbfl:mi-profile-generated", {
-      detail: { top: top, all: ranked }
-    }));
   }
 
   function setup(root) {
