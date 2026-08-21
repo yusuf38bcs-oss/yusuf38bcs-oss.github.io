@@ -1,17 +1,16 @@
-name: AdSense Exact-Head Browser Certification
+name: IELTS Reading Exact-Head Browser Certification
 
 on:
   pull_request:
-    branches: ["staging", "main"]
+    branches: ["staging"]
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
-      - "_config.yml"
-      - "_life-practices/research-highlights/**"
-      - "_data/adsense.yml"
-      - "_includes/head/**"
-      - ".github/scripts/adsense-browser-certification.mjs"
-      - ".github/scripts/certification-bypass.mjs"
-      - ".github/workflows/adsense-browser-certification.yml"
+      - "_data/ielts_reading_sets.yml"
+      - "_pages/ielts/reading.md"
+      - "assets/css/ielts-reading-trainer.css"
+      - "assets/js/ielts-reading-trainer.js"
+      - ".github/scripts/ielts-reading-browser-certification.mjs"
+      - ".github/workflows/ielts-reading-browser-certification.yml"
 
 permissions:
   contents: read
@@ -19,16 +18,16 @@ permissions:
   pull-requests: read
 
 concurrency:
-  group: adsense-browser-certification-${{ github.event.pull_request.number }}
+  group: ielts-reading-browser-certification-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
   browser-certification:
-    name: Six viewports, Axe, consent, motion, and Save-Data
+    name: IELTS Reading six viewports, Axe, and behavior
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 30
     env:
-      EVIDENCE_DIR: browser-certification
+      EVIDENCE_DIR: ielts-reading-browser-certification
       PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
 
@@ -94,13 +93,20 @@ jobs:
           npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
           npx playwright install --with-deps chromium
 
-      - name: Run exact-head browser certification
+      - name: Syntax-check Reading certification and runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check .github/scripts/ielts-reading-browser-certification.mjs
+          node --check assets/js/ielts-reading-trainer.js
+
+      - name: Run exact-head IELTS Reading certification
         env:
           PAGES_URL: ${{ steps.preview.outputs.pages_url }}
         shell: bash
         run: |
           set -euo pipefail
-          node .github/scripts/adsense-browser-certification.mjs \
+          node .github/scripts/ielts-reading-browser-certification.mjs \
             --url "$PAGES_URL" \
             --expected-sha "$PR_HEAD_SHA" \
             --output-dir "$EVIDENCE_DIR"
@@ -109,17 +115,17 @@ jobs:
         if: ${{ always() }}
         shell: bash
         run: |
-          if [[ -f "$EVIDENCE_DIR/browser-certification.md" ]]; then
-            cat "$EVIDENCE_DIR/browser-certification.md" >> "$GITHUB_STEP_SUMMARY"
+          if [[ -f "$EVIDENCE_DIR/ielts-reading-browser-certification.md" ]]; then
+            cat "$EVIDENCE_DIR/ielts-reading-browser-certification.md" >> "$GITHUB_STEP_SUMMARY"
           else
-            printf '%s\n' 'Browser certification did not produce a report.' >> "$GITHUB_STEP_SUMMARY"
+            printf '%s\n' 'IELTS Reading browser certification did not produce a report.' >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Preserve exact-head evidence
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: adsense-browser-certification-${{ env.PR_HEAD_SHA }}
+          name: ielts-reading-browser-certification-${{ env.PR_HEAD_SHA }}
           path: ${{ env.EVIDENCE_DIR }}
           if-no-files-found: warn
           retention-days: 30

@@ -1,0 +1,102 @@
+name: Homepage Responsive Layout Certification
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "_layouts/default.html"
+      - "_includes/home/**"
+      - "_includes/head/homepage-v2-*.html"
+      - "_data/homepage.yml"
+      - "assets/css/main.scss"
+      - "_sass/**"
+      - "assets/js/home/homepage-v2.js"
+      - "assets/images/home/**"
+      - ".github/scripts/homepage-responsive-layout-certification.cjs"
+      - ".github/workflows/homepage-responsive-layout-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: homepage-responsive-layout-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: Compact and desktop narrative-layout contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out immutable candidate head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Enforce exact checked-out identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          observed_sha="$(git rev-parse HEAD)"
+          test "$observed_sha" = "$PR_HEAD_SHA"
+          printf 'Responsive certification head: %s\n' "$observed_sha"
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Install Ruby dependencies
+        run: |
+          bundle config set --local frozen 'false'
+          bundle install
+
+      - name: Build production Jekyll site
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bundle exec jekyll build --trace
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install browser runtime
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Serve exact build
+        run: |
+          python3 -m http.server 4000 --directory _site > /tmp/lbfl-homepage-server.log 2>&1 &
+          echo $! > /tmp/lbfl-homepage-server.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error http://127.0.0.1:4000/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/lbfl-homepage-server.log
+          exit 1
+
+      - name: Certify compact and desktop layouts
+        env:
+          LBFL_HOMEPAGE_URL: http://127.0.0.1:4000/
+          LBFL_REPORT_DIR: homepage-responsive-layout-report
+        run: node .github/scripts/homepage-responsive-layout-certification.cjs
+
+      - name: Upload responsive-layout evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: homepage-responsive-layout-${{ env.PR_HEAD_SHA }}
+          path: homepage-responsive-layout-report/
+          if-no-files-found: warn
+          retention-days: 14
