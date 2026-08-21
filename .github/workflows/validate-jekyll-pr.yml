@@ -52,8 +52,25 @@ jobs:
             exit 1
           fi
 
+          git fetch --no-tags origin "refs/heads/$PR_BASE_REF:refs/remotes/origin/$PR_BASE_REF"
+          fetched_base="$(git rev-parse "refs/remotes/origin/$PR_BASE_REF")"
+          if [[ "$fetched_base" != "$remote_base" ]]; then
+            echo "BASE FETCH IDENTITY MISMATCH"
+            echo "remote base:  $remote_base"
+            echo "fetched base: $fetched_base"
+            exit 1
+          fi
+
+          if ! git merge-base --is-ancestor "$remote_base" "$actual_head"; then
+            echo "STALE PR HEAD — CURRENT BASE IS NOT AN ANCESTOR"
+            echo "current base: $PR_BASE_REF@$remote_base"
+            echo "PR head:      $actual_head"
+            exit 1
+          fi
+
           echo "Exact head authenticated: $actual_head"
           echo "Current base authenticated: $PR_BASE_REF@$remote_base"
+          echo "Base ancestry authenticated: $remote_base is an ancestor of $actual_head"
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
