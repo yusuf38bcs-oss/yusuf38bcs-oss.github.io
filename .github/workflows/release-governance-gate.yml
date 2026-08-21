@@ -23,6 +23,7 @@ env:
     const repo = context.repo.repo;
     const eventAction = String(context.payload.action || '');
     const mode = String(process.env.EVALUATION_MODE || '');
+    const lockedHeadSha = String(process.env.LOCKED_HEAD_SHA || '').toLowerCase();
 
     const STATUS_CONTEXT = 'LBFL Trusted Release Governance';
     const PROTECTED_BASES = new Set(['main', 'staging']);
@@ -37,6 +38,9 @@ env:
 
     if (!eventPull || !eventPull.head) {
       throw new Error('Pull-request identity is missing from the event payload.');
+    }
+    if (!/^[0-9a-f]{40}$/.test(lockedHeadSha)) {
+      throw new Error('Concurrency lane must be bound to an exact 40-character SHA.');
     }
 
     async function countUnresolved(pull_number) {
@@ -190,6 +194,12 @@ env:
       if (!/^[0-9a-f]{40}$/.test(headSha)) {
         throw new Error('PR head must be an exact 40-character SHA.');
       }
+      if (headSha !== lockedHeadSha) {
+        throw new Error(
+          `PR #${pull_number} refreshed to ${headSha}, but this evaluator owns ` +
+          `concurrency lane ${lockedHeadSha}; aborting stale-lane evaluation.`
+        );
+      }
       if (!PROTECTED_BASES.has(baseRef)) {
         core.info(`Ignoring governance evaluation for unprotected base ${baseRef}.`);
         return;
@@ -315,6 +325,7 @@ env:
           finalPull.state !== 'open' ||
           finalPull.draft ||
           finalHeadSha !== headSha ||
+          finalHeadSha !== lockedHeadSha ||
           finalBaseRef !== baseRef ||
           finalBaseSha !== currentBaseSha
         ) {
@@ -347,7 +358,8 @@ env:
     if (mode === 'current') {
       targetPulls = [eventPull];
       core.info(
-        `Evaluating current PR #${eventPull.number} at head ${eventPull.head?.sha || 'unknown'}.`
+        `Evaluating current PR #${eventPull.number} at head ${eventPull.head?.sha || 'unknown'} ` +
+        `inside lane ${lockedHeadSha}.`
       );
     } else if (mode === 'released') {
       if (!['closed', 'synchronize'].includes(eventAction)) {
@@ -361,6 +373,11 @@ env:
       ).toLowerCase();
       if (!/^[0-9a-f]{40}$/.test(affectedHeadSha)) {
         throw new Error('Released head must be an exact 40-character SHA.');
+      }
+      if (affectedHeadSha !== lockedHeadSha) {
+        throw new Error(
+          `Released head ${affectedHeadSha} does not match concurrency lane ${lockedHeadSha}.`
+        );
       }
 
       const openPulls = await github.paginate(github.rest.pulls.list, {
@@ -402,7 +419,7 @@ env:
 jobs:
   current-head-governance:
     name: Trusted governance — current head
-    if: github.event.action != 'closed'
+    if: github.event.action != 'closed' && (github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'staging')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     concurrency:
@@ -410,6 +427,7 @@ jobs:
       cancel-in-progress: true
     env:
       EVALUATION_MODE: current
+      LOCKED_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
     steps:
       - name: Evaluate current exact-head policy
         uses: actions/github-script@v8
@@ -426,6 +444,7 @@ jobs:
       cancel-in-progress: true
     env:
       EVALUATION_MODE: released
+      LOCKED_HEAD_SHA: ${{ github.event.action == 'synchronize' && github.event.before || github.event.pull_request.head.sha }}
     steps:
       - name: Re-evaluate surviving PRs on released head
         uses: actions/github-script@v8
