@@ -17,7 +17,7 @@ permissions:
   statuses: write
 
 concurrency:
-  group: release-governance-${{ github.event.pull_request.head.sha }}
+  group: release-governance-${{ github.event.before || github.event.pull_request.head.sha }}
   cancel-in-progress: true
 
 jobs:
@@ -51,8 +51,12 @@ jobs:
             }
 
             let targetPulls;
-            if (eventAction === 'closed') {
-              const closedHeadSha = String(eventPull.head?.sha || '').toLowerCase();
+            if (eventAction === 'closed' || eventAction === 'synchronize') {
+              const affectedHeadSha = String(
+                eventAction === 'closed'
+                  ? eventPull.head?.sha || ''
+                  : context.payload.before || ''
+              ).toLowerCase();
               const openPulls = await github.paginate(github.rest.pulls.list, {
                 owner,
                 repo,
@@ -60,23 +64,34 @@ jobs:
                 per_page: 100,
               });
 
-              targetPulls = openPulls.filter((candidate) => {
+              const survivors = openPulls.filter((candidate) => {
+                const candidateNumber = Number(candidate.number);
                 const candidateBase = String(candidate.base?.ref || '');
                 const candidateHeadSha = String(candidate.head?.sha || '').toLowerCase();
 
                 return (
+                  candidateNumber !== Number(eventPull.number) &&
                   PROTECTED_BASES.has(candidateBase) &&
-                  candidateHeadSha === closedHeadSha
+                  candidateHeadSha === affectedHeadSha
                 );
               });
-              core.info(
-                `Closed PR #${eventPull.number} released head ${closedHeadSha}; ` +
-                `re-evaluating ${targetPulls.length} open protected-base survivor(s).`
-              );
+
+              if (eventAction === 'closed') {
+                targetPulls = survivors;
+                core.info(
+                  `Closed PR #${eventPull.number} released head ${affectedHeadSha}; ` +
+                  `re-evaluating ${survivors.length} open protected-base survivor(s).`
+                );
+              } else {
+                targetPulls = [eventPull, ...survivors];
+                core.info(
+                  `Synchronized PR #${eventPull.number} moved away from ${affectedHeadSha}; ` +
+                  `re-evaluating ${survivors.length} old-head survivor(s).`
+                );
+              }
             } else {
               targetPulls = [eventPull];
             }
-
             if (targetPulls.length === 0) {
               core.info('No open protected-base survivor requires re-evaluation.');
               return;
