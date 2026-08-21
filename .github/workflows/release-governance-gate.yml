@@ -406,3 +406,7 @@ jobs:
               evaluationErrors.push(`#${pull_number}: ${error.message || error}`);
             }
             }
+
+            if (evaluationErrors.length !== 0) {
+              throw new Error(evaluationErrors.join(' | '));
+            }
