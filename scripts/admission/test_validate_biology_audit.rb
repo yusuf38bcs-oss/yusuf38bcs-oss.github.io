@@ -175,14 +175,18 @@ assert_success(
   ]
 )
 
-# 1. Unverified F-V2.
-assert_rejection("unverified F-V2", ["F-V2 requires verification_status=V2"]) do |root|
+# 1. F-V2 with one question below V2. Paper-level verification is valid so this
+# scenario independently protects the per-question F-V2 invariant.
+assert_rejection("F-V2 question below V2", ["F-V2 requires every question verification_status=V2"]) do |root|
   path = "_data/admission/biology/medical/2016-17.json"
   data = read_json(root, path)
   data["paper_audit_state"] = "F-V2"
+  data["verification_status"] = "V2"
   data["paper_complete"] = true
   data["expected_biology_question_count"] = data["questions"].length
   data["zero_claims_allowed"] = true
+  data["questions"].each { |question| question["verification_status"] = "V2" }
+  data["questions"][0]["verification_status"] = "V1"
   write_json(root, path, data)
 end
 
