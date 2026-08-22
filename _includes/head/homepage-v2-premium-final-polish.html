@@ -203,10 +203,22 @@
   }
 
   .lbfl-home-v2-active
-  .lbfl-premium-hero__thinking-path li {
+  .lbfl-premium-hero__thinking-path > li {
+    display: block;
     min-width: 0;
+    width: auto;
     margin: 0;
     padding: 0;
+  }
+
+  .lbfl-home-v2-active
+  .lbfl-premium-hero__thinking-path > li::after {
+    content: none;
+    display: none;
+  }
+
+  .lbfl-home-v2-active
+  .lbfl-premium-hero__thinking-path li {
     color: #edf8f5;
     border-top: 1px solid rgba(191, 232, 219, 0.24);
   }
@@ -627,6 +639,11 @@
     .lbfl-premium-cell__image {
       transition: none !important;
       transform: none !important;
+    }
+
+    .lbfl-home-v2-active
+    .lbfl-premium-hero__thinking-indicator {
+      transition: none !important;
     }
   }
 
