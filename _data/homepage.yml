@@ -29,9 +29,9 @@ primary_actions:
     label: "Explore Biology"
     url: "/biology/hsc-corner/"
     priority: primary
-  - id: mcq-arena
+  - id: socratic
     label: "Test Your Thinking"
-    url: "/mcq-arena/"
+    url: "/socratic/"
     priority: primary
 
 pathways:
