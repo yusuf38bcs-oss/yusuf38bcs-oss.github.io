@@ -424,7 +424,7 @@ jobs:
     timeout-minutes: 10
     concurrency:
       group: release-governance-${{ github.event.pull_request.head.sha }}
-      cancel-in-progress: true
+      cancel-in-progress: false
     env:
       EVALUATION_MODE: current
       LOCKED_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
@@ -441,7 +441,7 @@ jobs:
     timeout-minutes: 10
     concurrency:
       group: release-governance-${{ github.event.action == 'synchronize' && github.event.before || github.event.pull_request.head.sha }}
-      cancel-in-progress: true
+      cancel-in-progress: false
     env:
       EVALUATION_MODE: released
       LOCKED_HEAD_SHA: ${{ github.event.action == 'synchronize' && github.event.before || github.event.pull_request.head.sha }}
