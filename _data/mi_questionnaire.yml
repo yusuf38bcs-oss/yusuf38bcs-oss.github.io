@@ -1,15 +1,17 @@
-# Multiple Intelligences - Socratic 4.0 Schema
+# MI-Informed Learning Reflection - Socratic 4.0 exploratory schema
+# Instrument version: MI-S1-0.1
+# Not a validated intelligence or learning-style test
 
 - id: mi-linguistic
-  type: "Linguistic Intelligence"
+  type: "Linguistic reflection channel"
   short_type: "Linguistic"
   concept_id: "multiple-intelligences"
   concept_url: "/matrix/multiple-intelligences/#mi-linguistic"
   study_vector: "Use reading, writing, narration, oral explanation, and Socratic dialogue."
-  socratic_prompt: "When mastering a new biological concept, do you learn best by verbalizing the definition or rewriting the theory in your own words?"
+  socratic_prompt: "When mastering a new biological concept, how often do you choose verbal explanation or rewriting in your own words?"
 
 - id: mi-logical
-  type: "Logical-Mathematical Intelligence"
+  type: "Logical-Mathematical reflection channel"
   short_type: "Logical-Mathematical"
   concept_id: "multiple-intelligences"
   concept_url: "/matrix/multiple-intelligences/#mi-logical"
@@ -17,7 +19,7 @@
   socratic_prompt: "When a biological system fails, do you first search for the measurable variable or the logical flaw in the sequence?"
 
 - id: mi-spatial
-  type: "Spatial Intelligence"
+  type: "Spatial reflection channel"
   short_type: "Spatial"
   concept_id: "multiple-intelligences"
   concept_url: "/matrix/multiple-intelligences/#mi-spatial"
@@ -25,7 +27,7 @@
   socratic_prompt: "When studying zoological relationships, do you build a visual map of how the branches connect?"
 
 - id: mi-kinesthetic
-  type: "Bodily-Kinesthetic Intelligence"
+  type: "Bodily-Kinesthetic reflection channel"
   short_type: "Bodily-Kinesthetic"
   concept_id: "multiple-intelligences"
   concept_url: "/matrix/multiple-intelligences/#mi-kinesthetic"
@@ -33,7 +35,7 @@
   socratic_prompt: "Does abstract biological theory become clearer after you physically apply it, manipulate a model, or act out the process?"
 
 - id: mi-musical
-  type: "Musical-Rhythmic Intelligence"
+  type: "Musical-Rhythmic reflection channel"
   short_type: "Musical-Rhythmic"
   concept_id: "multiple-intelligences"
   concept_url: "/matrix/multiple-intelligences/#mi-musical"
@@ -41,15 +43,15 @@
   socratic_prompt: "Do you recognize biological cycles and behavioral patterns through rhythm, repetition, or sequence?"
 
 - id: mi-interpersonal
-  type: "Interpersonal Intelligence"
+  type: "Interpersonal reflection channel"
   short_type: "Interpersonal"
   concept_id: "group-dynamics-and-ummah"
   concept_url: "/matrix/group-dynamics-and-ummah/"
-  study_vector: "Use peer teaching, group debate, leadership reflection, collaborative diagnosis, and feedback."
+  study_vector: "Use peer teaching, group debate, leadership reflection, collaborative analysis, and feedback."
   socratic_prompt: "In a group learning situation, do you quickly identify each person's strengths and coordinate the discussion?"
 
 - id: mi-intrapersonal
-  type: "Intrapersonal Intelligence"
+  type: "Intrapersonal reflection channel"
   short_type: "Intrapersonal"
   concept_id: "multiple-intelligences"
   concept_url: "/matrix/multiple-intelligences/#mi-intrapersonal"
@@ -57,7 +59,7 @@
   socratic_prompt: "Before guiding others, do you often examine your own assumptions, emotional triggers, and learning habits?"
 
 - id: mi-naturalistic
-  type: "Naturalistic Intelligence"
+  type: "Naturalistic reflection channel"
   short_type: "Naturalistic"
   concept_id: "multiple-intelligences"
   concept_url: "/matrix/multiple-intelligences/#mi-naturalistic"
@@ -65,7 +67,7 @@
   socratic_prompt: "When observing a complex environment, do you naturally classify organisms and environmental variables into a connected system?"
 
 - id: mi-existential
-  type: "Existential Intelligence"
+  type: "Existential meaning-making reflection (supplemental)"
   short_type: "Existential"
   concept_id: "multiple-intelligences"
   concept_url: "/matrix/multiple-intelligences/#mi-existential"

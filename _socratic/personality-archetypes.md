@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Personality Archetypes"
+title: "Personality Pattern Reflection"
 permalink: /socratic/personality-archetypes/
 author_profile: false
 classes: wide
@@ -12,13 +12,13 @@ language: en
 health_boundary: true
 ---
 
-# Personality Archetypes
+# Personality Pattern Reflection
 
 This route connects the Socratic assessment entry point to the production concept pathway. It is designed as an educational bridge between reflective questioning, behavioural pattern recognition, and practical learning improvement.
 
 ## Purpose
 
-Personality archetypes on this platform are not fixed labels. They are learning metaphors that help a student compare tendencies, strengths, blind spots, communication habits, and decision patterns. The goal is to support self-reflection, not to diagnose or rank a person.
+Architect, Catalyst, Observer, Explorer, and Steward are **LBFL-created reflective pattern lenses**. They are educational metaphors for questioning current learning and response tendencies; they are not validated personality types, psychological diagnoses, psychometric categories, or permanent identities. A learner may express several lenses and may respond differently across contexts.
 
 ## How to read an archetype
 

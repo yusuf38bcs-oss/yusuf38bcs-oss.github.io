@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Multiple Intelligences Analysis"
+title: "MI-Informed Learning Reflection"
 permalink: /socratic/multiple-intelligences/
 author_profile: false
 classes: wide
@@ -16,13 +16,13 @@ sitemap: true
 ---
 
 <section class="omega-audit-hero" aria-labelledby="mi-analysis-title">
-  <div class="omega-audit-hero__badge">Socratic 4.0 Terminal</div>
-  <h1 id="mi-analysis-title">Multiple Intelligences Analysis</h1>
+  <div class="omega-audit-hero__badge">Socratic 4.0 Reflection</div>
+  <h1 id="mi-analysis-title">MI-Informed Learning Reflection</h1>
   <p>
-    Map your dominant learning channel, reflective processing style, and behavioural orientation through a guided Socratic diagnostic interface.
+    Explore how different learning activities currently feel useful to you. This is an MI-informed educational reflection, not an intelligence test, psychometric profile, or learning-style prescription.
   </p>
   <div class="omega-audit-hero__actions">
-    <a href="#mi-analysis-terminal">Start MI Analysis</a>
+    <a href="#mi-analysis-terminal">Start Reflection</a>
     <a href="{{ '/life-practices/cognitive-audit/' | relative_url }}">Open Full Cognitive Audit</a>
     <a href="{{ '/matrix/multiple-intelligences/' | relative_url }}">Open Concept Node</a>
   </div>
