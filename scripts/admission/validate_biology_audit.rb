@@ -29,6 +29,7 @@ TOP_LEVEL_KEYS = %w[
 ].freeze
 
 LEGAL_VERIFICATION_BY_STATE = {
+  "0" => %w[V1 V2],
   "U" => %w[unstarted],
   "P" => %w[V1 V2],
   "X" => %w[conflict],
@@ -130,6 +131,9 @@ PILOT_PATHS.each do |expected_exam, path|
   errors << "#{label}: duplicate source_id detected" if source_ids.uniq.length != source_ids.length
   errors << "#{label}: duplicate question_id detected" if question_ids.uniq.length != question_ids.length
 
+  question_slots = questions.map { |question| [question["component"], question["question_no"]] }
+  errors << "#{label}: duplicate (component, question_no) detected" if question_slots.uniq.length != question_slots.length
+
   errors << "#{label}: component_scope must not be empty" if component_scope.empty?
   component_scope.each do |component|
     unless Array(allowed_components[expected_exam]).include?(component)
@@ -148,6 +152,11 @@ PILOT_PATHS.each do |expected_exam, path|
   questions.each_with_index do |question, index|
     qlabel = "#{label} question[#{index}]"
     require_fields(question, required_question_fields, qlabel, errors)
+
+    question_no = question["question_no"]
+    unless question_no.is_a?(Integer) && question_no.positive?
+      errors << "#{qlabel}: question_no must be a positive integer"
+    end
 
     primary = question["primary_topic_id"]
     errors << "#{qlabel}: invalid primary_topic_id #{primary.inspect}" unless topic_ids.include?(primary)
@@ -193,6 +202,14 @@ PILOT_PATHS.each do |expected_exam, path|
   end
 
   case state
+  when "0"
+    errors << "#{label}: 0 requires zero questions" unless questions.empty?
+    errors << "#{label}: 0 requires audited_question_count=0" unless data["audited_question_count"] == 0
+    errors << "#{label}: 0 requires expected_biology_question_count=0" unless data["expected_biology_question_count"] == 0
+    errors << "#{label}: 0 requires at least one declared source" if sources.empty?
+    errors << "#{label}: 0 requires paper_complete=true" unless data["paper_complete"] == true
+    errors << "#{label}: 0 requires zero_claims_allowed=true" unless data["zero_claims_allowed"] == true
+    errors << "#{label}: 0 requires matrix_release_allowed=false" unless data["matrix_release_allowed"] == false
   when "U"
     errors << "#{label}: U requires zero questions" unless questions.empty?
     errors << "#{label}: U requires audited_question_count=0" unless data["audited_question_count"] == 0
@@ -231,7 +248,7 @@ PILOT_PATHS.each do |expected_exam, path|
     end
   end
 
-  if data["zero_claims_allowed"] == true && !%w[F-S2 F-V2].include?(state)
+  if data["zero_claims_allowed"] == true && !%w[0 F-S2 F-V2].include?(state)
     errors << "#{label}: zero_claims_allowed=true requires a complete audit state"
   end
 

@@ -7,7 +7,7 @@ require "rbconfig"
 require "tmpdir"
 
 VALIDATOR_SOURCE = File.expand_path("validate_biology_audit.rb", __dir__)
-SCENARIO_COUNT = 15
+SCENARIO_COUNT = 18
 
 def write_json(root, relative_path, payload)
   path = File.join(root, relative_path)
@@ -23,7 +23,7 @@ def schema_fixture
   {
     "schema_version" => "1.0",
     "engine_version" => "1.0",
-    "paper_audit_states" => %w[U P X F-S2 F-V2],
+    "paper_audit_states" => %w[0 U P X F-S2 F-V2],
     "verification_statuses" => %w[unstarted V1 V2 conflict],
     "source_tiers" => { "B2" => "Independent historical transcription" },
     "source_statuses" => %w[candidate reviewed verified rejected],
@@ -93,6 +93,20 @@ def unaudited_du_fixture
     "sources" => [],
     "questions" => []
   }
+end
+
+def zero_result_du_fixture
+  unaudited_du_fixture.merge(
+    "paper_audit_state" => "0",
+    "verification_status" => "V2",
+    "paper_complete" => true,
+    "expected_biology_question_count" => 0,
+    "audited_question_count" => 0,
+    "zero_claims_allowed" => true,
+    "matrix_release_allowed" => false,
+    "sources" => [source_fixture],
+    "questions" => []
+  )
 end
 
 def partial_medical_fixture
@@ -174,6 +188,16 @@ assert_success(
     "Final QYI release: NOT EVALUATED"
   ]
 )
+
+# A complete source-backed audit may certify a zero-question Biology result without releasing the matrix.
+assert_success(
+  "legal zero-result audit",
+  expected_output: [
+    "DU 2016-17: state=0 verification=V2 audited=0 complete=true zero_claims=true matrix_release=false"
+  ]
+) do |root|
+  write_json(root, "_data/admission/biology/du/2016-17.json", zero_result_du_fixture)
+end
 
 # 1. F-V2 with one question below V2. Paper-level verification is valid so this
 # scenario independently protects the per-question F-V2 invariant.
@@ -303,5 +327,21 @@ assert_rejection("conflict falsely promoted", ["unresolved conflict requires pap
   write_json(root, path, data)
 end
 
+# 15. A zero-result audit must declare an actual zero expected count.
+assert_rejection("zero-result expected count", ["0 requires expected_biology_question_count=0"]) do |root|
+  path = "_data/admission/biology/du/2016-17.json"
+  data = zero_result_du_fixture
+  data["expected_biology_question_count"] = 1
+  write_json(root, path, data)
+end
+
+# 16. Distinct IDs cannot describe the same paper slot within a component.
+assert_rejection("duplicate component question number", ["duplicate (component, question_no) detected"]) do |root|
+  path = "_data/admission/biology/medical/2016-17.json"
+  data = read_json(root, path)
+  data["questions"][1]["question_no"] = data["questions"][0]["question_no"]
+  write_json(root, path, data)
+end
+
 puts "LBFL Biology audit validator regression tests: PASS"
-puts "Scenarios: #{SCENARIO_COUNT} (1 valid baseline + 14 expected rejections)"
+puts "Scenarios: #{SCENARIO_COUNT} (2 valid audits + 16 expected rejections)"
