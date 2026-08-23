@@ -1,0 +1,131 @@
+name: IELTS Reading Exact-Head Browser Certification
+
+on:
+  pull_request:
+    branches: ["staging"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "_data/ielts_reading_sets.yml"
+      - "_pages/ielts/reading.md"
+      - "assets/css/ielts-reading-trainer.css"
+      - "assets/js/ielts-reading-trainer.js"
+      - ".github/scripts/ielts-reading-browser-certification.mjs"
+      - ".github/workflows/ielts-reading-browser-certification.yml"
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+concurrency:
+  group: ielts-reading-browser-certification-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  browser-certification:
+    name: IELTS Reading six viewports, Axe, and behavior
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      EVIDENCE_DIR: ielts-reading-browser-certification
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+
+    steps:
+      - name: Check out the immutable PR head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Resolve the exact-head Cloudflare Pages preview
+        id: preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$EVIDENCE_DIR"
+          preview_output="$RUNNER_TEMP/cloudflare-preview.out"
+          for attempt in $(seq 1 40); do
+            : > "$preview_output"
+            python3 .github/scripts/resolve-cloudflare-targets.py \
+              --repository "$GITHUB_REPOSITORY" \
+              --sha "$PR_HEAD_SHA" \
+              --pr-number "$PR_NUMBER" \
+              --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" \
+              --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" \
+              --wait-seconds 0 \
+              --site-config _data/ai.yml \
+              --output "$EVIDENCE_DIR/cloudflare-targets.json" \
+              --github-output "$preview_output"
+            if python3 -c 'import json,sys; sys.exit(0 if json.load(open(sys.argv[1], encoding="utf-8"))["pages"]["exact_head"] else 1)' "$EVIDENCE_DIR/cloudflare-targets.json"; then
+              cat "$preview_output" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 15
+          done
+          cat "$EVIDENCE_DIR/cloudflare-targets.json"
+          exit 1
+
+      - name: Enforce immutable preview identity
+        env:
+          PAGES_EXACT_HEAD: ${{ steps.preview.outputs.pages_exact_head }}
+          PAGES_URL: ${{ steps.preview.outputs.pages_url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$PAGES_EXACT_HEAD" = "true"
+          test -n "$PAGES_URL"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install pinned browser-test dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+
+      - name: Syntax-check Reading certification and runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check .github/scripts/ielts-reading-browser-certification.mjs
+          node --check assets/js/ielts-reading-trainer.js
+
+      - name: Run exact-head IELTS Reading certification
+        env:
+          PAGES_URL: ${{ steps.preview.outputs.pages_url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/scripts/ielts-reading-browser-certification.mjs \
+            --url "$PAGES_URL" \
+            --expected-sha "$PR_HEAD_SHA" \
+            --output-dir "$EVIDENCE_DIR"
+
+      - name: Add certification to the workflow summary
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          if [[ -f "$EVIDENCE_DIR/ielts-reading-browser-certification.md" ]]; then
+            cat "$EVIDENCE_DIR/ielts-reading-browser-certification.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' 'IELTS Reading browser certification did not produce a report.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve exact-head evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ielts-reading-browser-certification-${{ env.PR_HEAD_SHA }}
+          path: ${{ env.EVIDENCE_DIR }}
+          if-no-files-found: warn
+          retention-days: 30

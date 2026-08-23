@@ -15,8 +15,62 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout immutable event head
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Assert exact PR head and current base identity
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -euo pipefail
+
+          actual_head="$(git rev-parse HEAD)"
+          if [[ "$actual_head" != "$PR_HEAD_SHA" ]]; then
+            echo "HEAD CHANGED — RECERTIFICATION REQUIRED"
+            echo "event head:  $PR_HEAD_SHA"
+            echo "actual head: $actual_head"
+            exit 1
+          fi
+
+          remote_base="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
+          if [[ -z "$remote_base" ]]; then
+            echo "Unable to resolve current base ref: $PR_BASE_REF"
+            exit 1
+          fi
+
+          if [[ "$remote_base" != "$PR_BASE_SHA" ]]; then
+            echo "BASE CHANGED — RECERTIFICATION REQUIRED"
+            echo "event base:   $PR_BASE_SHA"
+            echo "current base: $remote_base"
+            exit 1
+          fi
+
+          git fetch --no-tags origin "refs/heads/$PR_BASE_REF:refs/remotes/origin/$PR_BASE_REF"
+          fetched_base="$(git rev-parse "refs/remotes/origin/$PR_BASE_REF")"
+          if [[ "$fetched_base" != "$remote_base" ]]; then
+            echo "BASE FETCH IDENTITY MISMATCH"
+            echo "remote base:  $remote_base"
+            echo "fetched base: $fetched_base"
+            exit 1
+          fi
+
+          if ! git merge-base --is-ancestor "$remote_base" "$actual_head"; then
+            echo "STALE PR HEAD — CURRENT BASE IS NOT AN ANCESTOR"
+            echo "current base: $PR_BASE_REF@$remote_base"
+            echo "PR head:      $actual_head"
+            exit 1
+          fi
+
+          echo "Exact head authenticated: $actual_head"
+          echo "Current base authenticated: $PR_BASE_REF@$remote_base"
+          echo "Base ancestry authenticated: $remote_base is an ancestor of $actual_head"
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -28,6 +82,15 @@ jobs:
         run: |
           bundle config set --local frozen 'false'
           bundle install
+
+      - name: Validate Biology Admission Engine
+        run: ruby scripts/admission/validate_biology_engine.rb
+
+      - name: Test Biology Audit Validator Regressions
+        run: ruby scripts/admission/test_validate_biology_audit.rb
+
+      - name: Validate Biology 2016-17 Audit Pilot
+        run: ruby scripts/admission/validate_biology_audit.rb
 
       - name: Clean Previous Build
         run: bundle exec jekyll clean

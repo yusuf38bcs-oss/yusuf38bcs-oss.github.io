@@ -287,7 +287,7 @@ async function runBehavior(browser) {
     await page.locator("[data-reading-start]").click();
     await page.evaluate(() => {
       try {
-        const originalNow = performance.now;
+        const originalNow = performance.now.bind(performance);
         Object.defineProperty(performance, "now", {
           configurable: true,
           value: () => originalNow() + 3500,
@@ -358,10 +358,33 @@ async function runReducedMotion(browser) {
     const result = await page.evaluate(() => {
       const root = document.querySelector("[data-ielts-reading-trainer]");
       const option = document.querySelector(".ielts-reading__option");
+      const durationMs = (value) => String(value || "")
+        .split(",")
+        .map((token) => {
+          const normalized = token.trim();
+          if (normalized.endsWith("ms")) return Number.parseFloat(normalized) || 0;
+          if (normalized.endsWith("s")) return (Number.parseFloat(normalized) || 0) * 1000;
+          return 0;
+        });
+      const motionOffenders = root
+        ? [root, ...root.querySelectorAll("*")].flatMap((element) => {
+            const style = getComputedStyle(element);
+            const transitionMs = Math.max(0, ...durationMs(style.transitionDuration));
+            const animationMs = Math.max(0, ...durationMs(style.animationDuration));
+            if (transitionMs <= 0.1 && animationMs <= 0.1) return [];
+            return [{
+              tag: element.tagName,
+              className: typeof element.className === "string" ? element.className : "",
+              transitionDuration: style.transitionDuration,
+              animationDuration: style.animationDuration,
+            }];
+          }).slice(0, 20)
+        : [];
       return {
         mediaMatches: matchMedia("(prefers-reduced-motion: reduce)").matches,
         rootVisible: Boolean(root && root.getBoundingClientRect().height > 0),
         transitionDuration: option ? getComputedStyle(option).transitionDuration : "",
+        motionOffenders,
       };
     });
 
@@ -371,7 +394,8 @@ async function runReducedMotion(browser) {
       consoleErrors: probe.consoleErrors,
       pageErrors: probe.pageErrors,
       passed: response?.status() === 200 && result.mediaMatches && result.rootVisible &&
-        adRequests(probe.requests).length === 0 && probe.consoleErrors.length === 0 && probe.pageErrors.length === 0,
+        result.motionOffenders.length === 0 && adRequests(probe.requests).length === 0 &&
+        probe.consoleErrors.length === 0 && probe.pageErrors.length === 0,
     };
   } finally {
     await context.close();
@@ -430,18 +454,18 @@ function markdownReport(report) {
     .map(([key, value]) => `- ${key}: **${value ? "PASS" : "FAIL"}**`)
     .join("\n");
 
-  return `# IELTS Reading Exact-Head Browser Certification\\n\\n` +
-    `- Expected SHA: \`${report.expectedSha}\`\\n` +
-    `- Preview: ${report.previewUrl}\\n` +
-    `- Route: /ielts/reading/\\n` +
-    `- Generated: ${report.generatedAt}\\n` +
-    `- Overall: **${report.passed ? "PASS" : "FAIL"}**\\n\\n` +
-    `| Viewport | Layout | Axe | Keyboard | Ad requests | Console/page errors | Result |\\n` +
-    `|---|---:|---:|---:|---:|---:|---:|\\n${rows}\\n\\n` +
-    `- Functional Reading Trainer checks: **${report.behavior.passed ? "PASS" : "FAIL"}**\\n` +
-    `- Reduced motion: **${report.reducedMotion.passed ? "PASS" : "FAIL"}**\\n` +
-    `- Save-Data: **${report.saveData.passed ? "PASS" : "FAIL"}**\\n\\n` +
-    `${behaviorRows}\\n`;
+  return `# IELTS Reading Exact-Head Browser Certification\n\n` +
+    `- Expected SHA: \`${report.expectedSha}\`\n` +
+    `- Preview: ${report.previewUrl}\n` +
+    `- Route: /ielts/reading/\n` +
+    `- Generated: ${report.generatedAt}\n` +
+    `- Overall: **${report.passed ? "PASS" : "FAIL"}**\n\n` +
+    `| Viewport | Layout | Axe | Keyboard | Ad requests | Console/page errors | Result |\n` +
+    `|---|---:|---:|---:|---:|---:|---:|\n${rows}\n\n` +
+    `- Functional Reading Trainer checks: **${report.behavior.passed ? "PASS" : "FAIL"}**\n` +
+    `- Reduced motion: **${report.reducedMotion.passed ? "PASS" : "FAIL"}**\n` +
+    `- Save-Data: **${report.saveData.passed ? "PASS" : "FAIL"}**\n\n` +
+    `${behaviorRows}\n`;
 }
 
 const browser = await chromium.launch({ headless: true });

@@ -1,0 +1,85 @@
+{
+  "schema_name": "LBFL Biology Admission Audit Schema",
+  "schema_version": "1.0",
+  "engine_version": "1.0",
+  "purpose": "Year-by-year, source-traceable Biology admission audit contract for DU Science and Bangladesh Medical admission tests.",
+  "canonical_paths": {
+    "du": "_data/admission/biology/du/<session>.json",
+    "medical": "_data/admission/biology/medical/<session>.json"
+  },
+  "allowed_exams": [
+    "DU",
+    "Medical"
+  ],
+  "allowed_components": {
+    "DU": [
+      "mcq",
+      "written"
+    ],
+    "Medical": [
+      "mcq"
+    ]
+  },
+  "paper_audit_states": [
+    "0",
+    "U",
+    "P",
+    "X",
+    "F-S2",
+    "F-V2"
+  ],
+  "verification_statuses": [
+    "unstarted",
+    "V1",
+    "V2",
+    "conflict"
+  ],
+  "source_statuses": [
+    "candidate",
+    "reviewed",
+    "verified",
+    "rejected"
+  ],
+  "source_tiers": {
+    "A1": "Official institution, regulator, official paper, scan, notice or syllabus",
+    "B1": "Academic or curated dataset with explicit provenance",
+    "B2": "Independent historical transcription or archive",
+    "C1": "Community/team-reviewed question bank",
+    "C2": "Secondary answer key, coaching archive or general preparation source"
+  },
+  "question_record_required_fields": [
+    "question_id",
+    "question_no",
+    "component",
+    "primary_topic_id",
+    "secondary_topic_ids",
+    "question_fingerprint",
+    "source_refs",
+    "verification_status"
+  ],
+  "source_record_required_fields": [
+    "source_id",
+    "tier",
+    "kind",
+    "url",
+    "status",
+    "supports"
+  ],
+  "invariants": [
+    "Every audited question has exactly one primary_topic_id from B01-B28.",
+    "secondary_topic_ids are optional search tags and never affect primary recurrence counts.",
+    "question_fingerprint is a concise paraphrase or identifying concept, not a full copied question unless licensing permits it.",
+    "The questions array is the source of truth; topic counts are derived from question rows and are never authoritative manual inputs.",
+    "\"0\" means a fully audited, source-backed paper/component contains no Biology questions: questions must be empty, expected_biology_question_count=0, paper_complete=true, zero_claims_allowed=true and matrix_release_allowed=false.",
+    "U means unaudited: questions must be empty, paper_complete=false, matrix_release_allowed=false and zero_claims_allowed=false.",
+    "P means partially audited: observed rows may exist, but unaudited remainder must never be converted to zero.",
+    "X means source conflict or unresolved paper identity; zero claims and matrix release remain blocked.",
+    "F-S2 means the full paper was reconstructed from secondary sources; all expected Biology opportunities must be represented, but independent verification is still pending.",
+    "F-V2 means a complete full-paper audit with independent verification; all expected Biology opportunities must be represented.",
+    "A topic-level zero is legal only after the relevant full Biology paper/component has been completely audited.",
+    "No U, P or X paper may contribute definitive zero counts or final QYI release.",
+    "For a complete paper, audited_question_count must equal expected_biology_question_count and equal questions.length.",
+    "source_refs on every question must resolve to a source_id declared in that same year file.",
+    "Final QYI remains governed by engine_v1.json release_gate, independent of any single-year audit state."
+  ]
+}

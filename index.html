@@ -44,14 +44,39 @@ description: Bangla-first, evidence-led biology for developing critical thinking
         life through evidence.
       </p>
 
+      <p
+        class="lbfl-premium-hero__thinking-path-label"
+        id="lbfl-thinking-cycle-label"
+      >
+        One thinking cycle — open a step to see what the learner does.
+      </p>
+
       <ol
         class="lbfl-premium-hero__thinking-path"
-        aria-label="LBFL critical-thinking pathway"
+        aria-labelledby="lbfl-thinking-cycle-label"
       >
-        <li>Observe</li>
-        <li>Question</li>
-        <li>Connect</li>
-        <li>Explain</li>
+        {% for principle in site.data.homepage.synaptic_bridge.principles %}
+          <li>
+            <details name="lbfl-thinking-cycle">
+              <summary>
+                <span
+                  class="lbfl-premium-hero__thinking-number"
+                  aria-hidden="true"
+                >
+                  {{ forloop.index | prepend: '0' }}
+                </span>
+                <strong>{{ principle.title }}</strong>
+                <span
+                  class="lbfl-premium-hero__thinking-indicator"
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </summary>
+              <p>{{ principle.text }}</p>
+            </details>
+          </li>
+        {% endfor %}
       </ol>
 
       <div class="lbfl-home-v2__actions lbfl-home-v2__actions--primary">
@@ -64,7 +89,7 @@ description: Bangla-first, evidence-led biology for developing critical thinking
 
         <a
           class="lbfl-home-v2__button lbfl-home-v2__button--secondary"
-          href="{{ '/mcq-arena/' | relative_url }}"
+          href="{{ '/socratic/' | relative_url }}"
         >
           Test Your Thinking
         </a>
