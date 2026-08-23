@@ -70,8 +70,8 @@
     "secondary_topic_ids are optional search tags and never affect primary recurrence counts.",
     "question_fingerprint is a concise paraphrase or identifying concept, not a full copied question unless licensing permits it.",
     "The questions array is the source of truth; topic counts are derived from question rows and are never authoritative manual inputs.",
-    "0 means a fully audited, source-backed paper/component contains no Biology questions: questions must be empty, expected_biology_question_count=0, paper_complete=true, zero_claims_allowed=true and matrix_release_allowed=false.",
-    "U means unaudited: questions must be empty, paper_complete=false, matrix_release_allowed=false and zero_claims_allowed=false."
+    "\"0\" means a fully audited, source-backed paper/component contains no Biology questions: questions must be empty, expected_biology_question_count=0, paper_complete=true, zero_claims_allowed=true and matrix_release_allowed=false.",
+    "U means unaudited: questions must be empty, paper_complete=false, matrix_release_allowed=false and zero_claims_allowed=false.",
     "P means partially audited: observed rows may exist, but unaudited remainder must never be converted to zero.",
     "X means source conflict or unresolved paper identity; zero claims and matrix release remain blocked.",
     "F-S2 means the full paper was reconstructed from secondary sources; all expected Biology opportunities must be represented, but independent verification is still pending.",
