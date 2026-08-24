@@ -1,62 +1,50 @@
-﻿(function () {
+(function () {
+  "use strict";
+
+  const INSTRUMENT_VERSION = "LEGACY-MI-S1-0.1";
+
   function titleCase(value) {
-    return value
+    return String(value || "")
       .replace(/_/g, " ")
       .replace(/\b\w/g, function (char) { return char.toUpperCase(); });
   }
 
   function collectResponses() {
-    const selected = document.querySelectorAll(".socratic-scale input[type='radio']:checked");
-    const scores = {};
-    const dimensions = {};
+    const selected = document.querySelectorAll(
+      ".socratic-scale input[type='radio']:checked"
+    );
+
+    const channelResponses = {};
     let answered = 0;
 
     selected.forEach(function (input) {
-      const intelligence = input.dataset.intelligence;
+      const channel = input.dataset.intelligence;
       const value = Number(input.value);
-      const dimensionList = (input.dataset.dimensions || "").split(",").filter(Boolean);
 
-      scores[intelligence] = (scores[intelligence] || 0) + value;
+      if (!channel || !Number.isFinite(value)) return;
+
+      channelResponses[channel] =
+        (channelResponses[channel] || 0) + value;
+
       answered += 1;
-
-      dimensionList.forEach(function (dimension) {
-        dimensions[dimension] = (dimensions[dimension] || 0) + value;
-      });
     });
 
-    return { scores: scores, dimensions: dimensions, answered: answered };
+    return {
+      channelResponses: channelResponses,
+      answered: answered
+    };
   }
 
-  function sortObjectEntries(object) {
+  function sortEntries(object) {
     return Object.entries(object).sort(function (a, b) {
       return b[1] - a[1];
     });
   }
 
-  function personalityPhase(topDimensions) {
-    const names = topDimensions.map(function (item) { return item[0]; });
-
-    if (names.includes("meaning_making") || names.includes("spiritual_reflection")) {
-      return "Meaning-Seeking Reflector";
-    }
-
-    if (names.includes("service") || names.includes("empathy") || names.includes("social_regulation")) {
-      return "Service-Oriented Co-Regulator";
-    }
-
-    if (names.includes("problem_solving") || names.includes("pattern_detection") || names.includes("systems_thinking")) {
-      return "Systems Builder";
-    }
-
-    if (names.includes("discipline") || names.includes("self_regulation") || names.includes("accountability")) {
-      return "Self-Mastery Builder";
-    }
-
-    return "Reflective Learner";
-  }
-
   function renderResults() {
-    const totalQuestions = document.querySelectorAll(".socratic-question-card").length;
+    const totalQuestions =
+      document.querySelectorAll(".socratic-question-card").length;
+
     const result = collectResponses();
     const panel = document.getElementById("socratic-result-panel");
 
@@ -64,47 +52,59 @@
 
     if (result.answered < totalQuestions) {
       panel.innerHTML =
-        "<strong>Incomplete assessment.</strong><br>Please answer all " +
+        "<strong>Incomplete reflection.</strong><br>Please answer all " +
         totalQuestions +
-        " questions before generating your Socratic profile.";
+        " questions before generating the summary.";
+
       panel.classList.add("is-visible");
       return;
     }
 
-    const topIntelligences = sortObjectEntries(result.scores).slice(0, 3);
-    const topDimensions = sortObjectEntries(result.dimensions).slice(0, 5);
-    const phase = personalityPhase(topDimensions);
+    const strongestResponses =
+      sortEntries(result.channelResponses).slice(0, 3);
 
-    const intelligenceHtml = topIntelligences
+    const channelHtml = strongestResponses
       .map(function (item, index) {
-        return "<li><strong>" + (index + 1) + ". " + titleCase(item[0]) + "</strong> — Score: " + item[1] + "</li>";
-      })
-      .join("");
-
-    const dimensionHtml = topDimensions
-      .map(function (item) {
-        return "<li>" + titleCase(item[0]) + " — " + item[1] + "</li>";
+        return (
+          "<li><strong>" +
+          (index + 1) +
+          ". " +
+          titleCase(item[0]) +
+          "</strong> — combined current response: " +
+          item[1] +
+          "</li>"
+        );
       })
       .join("");
 
     panel.innerHTML =
-      "<h2>Your Socratic Cognitive Audit Result</h2>" +
-      "<h3>Dominant MI Signals</h3>" +
-      "<ol>" + intelligenceHtml + "</ol>" +
-      "<h3>Dominant Behavioural Dimensions</h3>" +
-      "<ul>" + dimensionHtml + "</ul>" +
-      "<h3>Current Personality Phase</h3>" +
-      "<p><strong>" + phase + "</strong></p>" +
+      "<h2>Your Current Reflection Summary</h2>" +
+      "<h3>Stronger MI-informed responses in this questionnaire</h3>" +
+      "<ol>" + channelHtml + "</ol>" +
+      "<p><strong>What this does not prove:</strong> these values do not measure intelligence, establish a learning style, diagnose a psychological construct, or define a personality phase.</p>" +
+      "<p><strong>Separation rule:</strong> MI-informed responses are not mathematically combined with Personality Pattern Reflection.</p>" +
       "<h3>Action Task</h3>" +
-      "<p>Choose one real-life trigger from this week. Identify the stimulus, biological reaction, CNS decision point, philosophical vector, and one corrective action for tomorrow.</p>" +
-      "<p><em>This is an educational self-reflection tool, not a medical or psychiatric diagnosis.</em></p>";
+      "<p>Choose one learning strategy suggested by your responses and compare it with an alternative strategy on the same Biology topic. Record which produced clearer explanation, retrieval, or application.</p>" +
+      "<p><em>Exploratory instrument: " +
+      INSTRUMENT_VERSION +
+      ". Not longitudinally comparable unless a later compatibility review explicitly permits it.</em></p>";
 
     panel.classList.add("is-visible");
-    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    const reducedMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    panel.scrollIntoView({
+      behavior: reducedMotion ? "auto" : "smooth",
+      block: "start"
+    });
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    const button = document.getElementById("generate-socratic-result");
+    const button = document.getElementById(
+      "generate-socratic-result"
+    );
+
     if (button) {
       button.addEventListener("click", renderResults);
     }

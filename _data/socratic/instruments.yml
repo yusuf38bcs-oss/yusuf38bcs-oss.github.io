@@ -1,0 +1,71 @@
+contract_version: "S1-2026-08-22.1"
+
+scientific_boundary:
+  product_type: "educational reflective learning"
+  psychological_diagnosis: false
+  clinical_assessment: false
+  psychometric_certification: false
+  intelligence_measurement: false
+  learning_style_prescription: false
+  personality_mi_mathematical_fusion: false
+
+longitudinal:
+  comparison_enabled: false
+  reason: >
+    S1 establishes instrument identity and version semantics only.
+    Historical or future comparisons require an explicit compatibility review.
+  required_before_enable:
+    - stable instrument schema
+    - response schema version
+    - interpretation version
+    - compatibility decision
+    - privacy architecture
+    - migration behavior
+    - delete and export behavior
+    - exact-head certification
+
+instruments:
+
+  personality_pattern_reflection:
+    instrument_id: "lbfl-personality-pattern-reflection"
+    instrument_version: "PPR-S1-0.1"
+    response_schema_version: "1"
+    interpretation_version: "PPR-I-S1-0.1"
+    status: "exploratory_reflection"
+    validated_psychometric: false
+    longitudinal_compatible: false
+    constructs:
+      - Architect
+      - Catalyst
+      - Observer
+      - Explorer
+      - Steward
+    interpretation: >
+      LBFL-created reflective pattern lenses. Outputs are current
+      self-observation hypotheses, not validated personality types.
+
+  mi_informed_learning_reflection:
+    instrument_id: "lbfl-mi-informed-learning-reflection"
+    instrument_version: "MI-S1-0.1"
+    response_schema_version: "1"
+    interpretation_version: "MI-I-S1-0.1"
+    status: "exploratory_reflection"
+    validated_intelligence_test: false
+    validated_learning_style_test: false
+    longitudinal_compatible: false
+    interpretation: >
+      MI-informed learning-engagement reflection. Preference is not
+      equated with ability, intelligence, or effective instructional method.
+
+  legacy_socratic_assessment:
+    instrument_id: "lbfl-legacy-socratic-mi-reflection"
+    instrument_version: "LEGACY-MI-S1-0.1"
+    response_schema_version: "legacy-1"
+    interpretation_version: "LEGACY-MI-I-S1-0.1"
+    status: "legacy_exploratory"
+    personality_inference_enabled: false
+    mi_personality_fusion_enabled: false
+    longitudinal_compatible: false
+    interpretation: >
+      Compatibility route only. Its historical scores must not be
+      treated as equivalent to future Socratic instruments.
