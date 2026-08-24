@@ -236,7 +236,7 @@
   content: counter(zoo-cycle, decimal-leading-zero);
   display: block;
   margin-bottom: 0.2rem;
-  color: var(--zoo-amber);
+  color: #7a4f10;
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.08em;
