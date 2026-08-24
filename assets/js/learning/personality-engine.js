@@ -1,36 +1,38 @@
 /**
  * Learning Biology For Life - Personality Archetype Engine (Production Edition)
- * Maps behavioral intelligence to biological learning pathways with flawless typography alignment.
+ * Supports a short educational pattern reflection. Not a validated personality or psychometric test.
  */
 
 (function() {
   "use strict";
 
+  const INSTRUMENT_VERSION = "PPR-S1-0.1";
+
   const ARCHETYPES = {
     Architect: {
-      desc: "You prioritize clear structure, first principles, data metrics, and long-range ecosystem clarity.",
-      edge: "Your cognitive growth edge is taking decisive action before every single variable is perfectly quantified.",
-      path: "Focus heavily on Systems Biology Core, nucleotide storage arrays, and molecular architectures."
+      desc: "A stronger Architect response can suggest a current preference for structure, first principles, and causal organisation.",
+      edge: "Question to test: does seeking complete structure sometimes delay useful action?",
+      path: "Experiment: build a causal map of one Biology mechanism, then explain it without the map."
     },
     Catalyst: {
-      desc: "You mobilize intellectual energy, team momentum, collective network growth, and active transformation.",
-      edge: "Your cognitive growth edge is slowing down to refine long-term direction through deep, silent listening.",
-      path: "Explore Evolutionary Dynamics, Interdisciplinary Sciences, and applied Behavioral Intelligence."
+      desc: "A stronger Catalyst response can suggest a current tendency to energise discussion, participation, or collective action.",
+      edge: "Question to test: does generating momentum sometimes happen before enough listening?",
+      path: "Experiment: teach one Biology mechanism to a peer, then retrieve it independently from memory."
     },
     Observer: {
-      desc: "You identify subtle biochemical patterns, ecosystem feedback loops, and biological signals others miss entirely.",
-      edge: "Your cognitive growth edge is externalizing and sharing your insights before the window of opportunity closes.",
-      path: "Study Ecological Monitoring Networks, Biostatistics Nodes, and Reflective Pedagogy."
+      desc: "A stronger Observer response can suggest a current tendency to watch for patterns before intervening.",
+      edge: "Question to test: are useful observations sometimes held internally for too long?",
+      path: "Experiment: observe a Biology pattern first, then make a prediction before checking the explanation."
     },
     Explorer: {
-      desc: "You are highly adaptive, experimental, deeply inquisitive, and driven by raw biological curiosity.",
-      edge: "Your cognitive growth edge is sustaining steady metabolic focus and retention after the initial novelty fades.",
-      path: "Dive into Genetic Engineering, Nucleotide Synthesis, and field laboratory expeditions."
+      desc: "A stronger Explorer response can suggest a current tendency to experiment with unfamiliar approaches.",
+      edge: "Question to test: what happens when novelty fades and sustained practice becomes necessary?",
+      path: "Experiment: try an unfamiliar study method, compare it with retrieval practice, and record the result."
     },
     Steward: {
-      desc: "You cultivate systemic safety, operational continuity, environmental ethics, and collective trust.",
-      edge: "Your growth edge is protecting your own cellular homeostasis while supporting the wider population network.",
-      path: "Investigate Homeostatic Systems, Feedback Regulations, and Collaborative Ecology."
+      desc: "A stronger Steward response can suggest a current tendency to protect continuity, responsibility, and collective trust.",
+      edge: "Question to test: can responsibility for others sometimes obscure personal limits?",
+      path: "Experiment: organise a feedback-loop explanation, then test whether the structure improves recall."
     }
   };
 
@@ -38,7 +40,7 @@
     { text: "I naturally seek to isolate and understand the underlying first principles of any complex system.", trait: "Architect" },
     { text: "I find myself energizing and motivating peers during periods of academic uncertainty.", trait: "Catalyst" },
     { text: "I prefer to observe a biological or social pattern quietly before intervening with an action.", trait: "Observer" },
-    { text: "I learn complex topics best by experimenting with unconventional, self-styled learning tracks.", trait: "Explorer" },
+    { text: "I often choose experimentation or an unfamiliar approach when exploring a complex topic.", trait: "Explorer" },
     { text: "I feel personally responsible for the collective harmony, ethics, and health of my environment.", trait: "Steward" },
     { text: "I am naturally drawn to clear schematics, measurable statistical data, and crisp structural logic.", trait: "Architect" },
     { text: "I notice subtle behavioral, emotional, or environmental changes in a group dynamic instantly.", trait: "Observer" },
@@ -87,7 +89,7 @@
         </div>
         
         <div class="mi-action-control-panel" style="text-align:center; margin-top:2.5rem; width:100%;">
-          <button type="submit" class="mi-btn-calculate" style="max-width:320px; width:100%;">Reveal My Archetype</button>
+          <button type="submit" class="mi-btn-calculate" style="max-width:320px; width:100%;">View My Current Reflection</button>
         </div>
       `;
     },
@@ -98,26 +100,34 @@
     },
 
     processArchetype(form, resultBox) {
-      const scores = { Architect: 0, Catalyst: 0, Observer: 0, Explorer: 0, Steward: 0 };
-      
+      const totals = { Architect: 0, Catalyst: 0, Observer: 0, Explorer: 0, Steward: 0 };
+      const counts = { Architect: 0, Catalyst: 0, Observer: 0, Explorer: 0, Steward: 0 };
+
       QUESTIONS.forEach((q, i) => {
-        const val = parseInt(form.querySelector(`input[name="p_${i}"]:checked`)?.value || 0);
-        scores[q.trait] += val;
+        const value = Number(form.querySelector(`input[name="p_${i}"]:checked`)?.value || 0);
+        if (!Number.isFinite(value) || value < 1 || value > 5) return;
+        totals[q.trait] += value;
+        counts[q.trait] += 1;
       });
 
-      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const averages = Object.fromEntries(
+        Object.keys(totals).map((trait) => [
+          trait,
+          counts[trait] ? totals[trait] / counts[trait] : 0
+        ])
+      );
+
+      const sorted = Object.entries(averages).sort((a, b) => b[1] - a[1]);
       const primary = sorted[0];
       const secondary = sorted[1];
+      const leaders = sorted
+        .filter((entry) => Math.abs(entry[1] - primary[1]) < 1e-9)
+        .map((entry) => entry[0]);
 
-      this.renderResults(resultBox, primary, secondary, sorted, form);
-      
-      // Dispatch securely to site-wide global analytics pipelines
-      document.dispatchEvent(new CustomEvent("lbfl:archetype-revealed", {
-        detail: { primary: primary[0], scores: scores }
-      }));
+      this.renderResults(resultBox, primary, secondary, sorted, leaders, form);
     },
 
-    renderResults(box, primary, secondary, all, form) {
+    renderResults(box, primary, secondary, all, leaders, form) {
       const data = ARCHETYPES[primary[0]];
       
       form.style.display = "none";
@@ -125,44 +135,51 @@
       box.className = "mi-result-viewport";
       
       box.innerHTML = `
-        <h3 class="mi-result-title" style="color:#ffffff; font-size:1.4rem; font-weight:800; margin:0 0 1.5rem 0; text-align:center;">Behavioral Profile Output</h3>
+        <h3 class="mi-result-title" style="color:#ffffff; font-size:1.4rem; font-weight:800; margin:0 0 1.5rem 0; text-align:center;">Your Current Pattern Reflection</h3>
         
         <div class="mi-dominant-badge" style="background:#020617; border:1px solid rgba(0,212,178,0.25); padding:1.5rem; border-radius:8px; text-align:center; margin-bottom:1.5rem; box-shadow:0 0 15px rgba(0,212,178,0.05);">
-          <span style="color:#64748b; font-size:0.85rem; text-transform:uppercase; font-weight:700; letter-spacing:0.05em; display:block; margin-bottom:0.25rem;">Primary Inner Archetype</span>
-          <span style="font-size:1.8rem; font-weight:800; color:#00d4b2; text-shadow:0 0 12px rgba(0,212,178,0.2);">${primary[0]} Channel</span>
+          <span style="color:#64748b; font-size:0.85rem; text-transform:uppercase; font-weight:700; letter-spacing:0.05em; display:block; margin-bottom:0.25rem;">Stronger Current Response Lens</span>
+          <span style="font-size:1.8rem; font-weight:800; color:#00d4b2; text-shadow:0 0 12px rgba(0,212,178,0.2);">${leaders.length > 1 ? leaders.join(" / ") : primary[0]}</span>
         </div>
         
         <div class="results-body-matrix" style="display:flex; flex-direction:column; gap:1.25rem;">
           
           <div style="background:#020617; border:1px solid rgba(255,255,255,0.03); padding:1.25rem; border-radius:6px; text-align:left;">
             <p style="color:#e2e8f0; font-size:0.98rem; line-height:1.6; margin:0; text-align:left; word-spacing:normal;">
-              <strong style="color:#ffffff;">Profile Orientation:</strong> ${data.desc}
+              <strong style="color:#ffffff;">What this may suggest:</strong> ${data.desc}
             </p>
           </div>
 
           <div style="background:#020617; border:1px solid rgba(255,255,255,0.03); padding:1.25rem; border-radius:6px; text-align:left;">
             <p style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin:0; text-align:left; word-spacing:normal;">
-              <strong style="color:#00d4b2;"> Growth Edge Parameter:</strong> ${data.edge}
+              <strong style="color:#00d4b2;"> Reflective question:</strong> ${data.edge}
             </p>
           </div>
 
           <div style="background:#020617; border:1px solid rgba(0,212,178,0.08); padding:1.25rem; border-radius:6px; text-align:left;">
             <p style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin:0; text-align:left; word-spacing:normal;">
-              <strong style="color:#3b82f6;"> Recommended Learning Pathway:</strong> ${data.path}
+              <strong style="color:#3b82f6;"> Biology learning experiment:</strong> ${data.path}
             </p>
           </div>
 
           <div style="background:rgba(255,255,255,0.01); border:1px dashed rgba(255,255,255,0.05); padding:1rem; border-radius:6px; text-align:center;">
             <p style="color:#64748b; font-size:0.88rem; margin:0;">
-              Secondary Auxiliary Influence Vector: <strong style="color:#ffffff;">${secondary[0]}</strong>
+              Another current response lens: <strong style="color:#ffffff;">${secondary[0]}</strong>
             </p>
           </div>
 
         </div>
 
+        <p style="color:#94a3b8; font-size:0.9rem; line-height:1.6; margin:1.5rem 0 0;">
+          <strong>What this does not prove:</strong> This short reflection does not establish a
+          validated personality type, diagnosis, intelligence, or permanent identity.
+          Treat the result as a hypothesis to question and test.
+          Instrument: ${INSTRUMENT_VERSION}.
+        </p>
+
         <div style="text-align:center; margin-top:2.5rem;">
           <button type="button" class="mi-btn-calculate" id="reset-personality-trigger" style="background:transparent !important; color:#64748b !important; border:1px solid rgba(255,255,255,0.06) !important; max-width:220px; box-shadow:none;">
-            Re-Audit Behavioral Loop
+            Reflect Again
           </button>
         </div>
       `;

@@ -1,12 +1,12 @@
-﻿---
+---
 layout: single
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
-title: "Socratic Cognitive Assessment"
-excerpt: "A biological, philosophical, and reflective assessment based on 9 Gardner-aligned Multiple Intelligences."
-description: "A Socratic self-audit connecting Multiple Intelligences, biological triggers, CNS decision-making, philosophical vectors, and reflective learning correction."
+title: "Socratic MI-Informed Reflection (Legacy)"
+excerpt: "A legacy MI-informed reflective questionnaire retained for compatibility while Socratic 4.0 is rebuilt."
+description: "A legacy educational reflection using MI-informed prompts; not a personality, intelligence, clinical, or psychometric assessment."
 permalink: /socratic-4/socratic-assessment/
 categories:
   - Socratic 4.0
@@ -15,7 +15,6 @@ categories:
 tags:
   - Multiple Intelligences
   - Socratic Assessment
-  - Personality Reflection
   - Biological Behaviour
   - Cognitive Audit
 language: "en"
@@ -124,13 +123,15 @@ classes: wide
 
 <div class="socratic-assessment-intro">
 
-This assessment is designed as a reflective **Cognitive Audit**, not as a clinical diagnosis. It connects biological reaction, CNS decision-making, philosophical direction, and learning correction.
+This legacy questionnaire is retained as an educational reflection surface while Socratic 4.0 is rebuilt. It does not measure intelligence, infer a personality phase, or provide a clinical or psychometric diagnosis. MI-informed responses and personality reflection are separate constructs and are not mathematically fused.
 
 <div class="socratic-flow">
 Stimulus → Biological Activation → CNS Appraisal → Philosophical Vector → Action / Reaction → Reflection → Correction
 </div>
 
-Answer each item honestly using the 1–5 scale. A higher score means the statement strongly describes your real-life pattern.
+Answer each item honestly using the 1–5 scale. The values represent only your current self-report on these prompts.
+
+**Version boundary:** this legacy instrument is exploratory and must not be used for longitudinal comparison with future Socratic instruments unless explicit compatibility is established.
 
 </div>
 
@@ -151,7 +152,7 @@ Answer each item honestly using the 1–5 scale. A higher score means the statem
   <h3>{{ forloop.index }}. {{ q.title }}</h3>
 
   <div class="socratic-meta">
-    <strong>MI Type:</strong> {{ q.intelligence | replace: "_", " " | capitalize }}<br>
+    <strong>MI-informed channel:</strong> {{ q.intelligence | replace: "_", " " | capitalize }}<br>
     <strong>Biological focus:</strong> {{ q.biological_focus }}<br>
     <strong>Philosophical vector:</strong> {{ q.philosophical_vector }}
   </div>
@@ -175,7 +176,7 @@ Answer each item honestly using the 1–5 scale. A higher score means the statem
 {% endfor %}
 
 <button id="generate-socratic-result" class="socratic-action-button" type="button">
-  Generate My Socratic Profile
+  Generate Reflection Summary
 </button>
 
 <div id="socratic-result-panel" class="socratic-result-panel"></div>
