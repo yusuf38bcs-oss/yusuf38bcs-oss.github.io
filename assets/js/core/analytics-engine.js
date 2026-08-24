@@ -1,6 +1,6 @@
 /**
  * Learning Biology For Life - Cognitive Intelligence Analytics Engine
- * Tracks Socratic engagement milestones, multi-intelligence mapping, scroll depths,
+ * Tracks non-sensitive engagement milestones, scroll depths,
  * and learner behaviors with high-reliability mobile fail-safes.
  */
 
@@ -29,7 +29,12 @@
       if (!analytics.pathway) analytics.pathway = {};
       if (!analytics.interactions) analytics.interactions = {};
       if (!analytics.conceptualMastery) analytics.conceptualMastery = {};
-      if (!analytics.cognitiveProfile) analytics.cognitiveProfile = { miTopChannels: [], archetype: null };
+      // S1 privacy migration: reflective Personality/MI outputs must not live
+      // inside the general analytics profile store.
+      if (Object.prototype.hasOwnProperty.call(analytics, "cognitiveProfile")) {
+        delete analytics.cognitiveProfile;
+        this.saveStorage();
+      }
       if (typeof analytics.totalExpeditionTime !== "number") analytics.totalExpeditionTime = 0;
     },
 
@@ -151,23 +156,8 @@
         this.saveStorage();
       });
 
-      // Synchronize Cognitive Multiple Intelligences Maps
-      document.addEventListener("lbfl:mi-profile-generated", (e) => {
-        const { top } = e.detail;
-        if (Array.isArray(top)) {
-          analytics.cognitiveProfile.miTopChannels = top.map(item => ({ channel: item[0], score: item[1] }));
-          this.saveStorage();
-        }
-      });
 
-      // Synchronize Inner Archetype Profiles
-      document.addEventListener("lbfl:archetype-revealed", (e) => {
-        const { primary } = e.detail;
-        if (primary) {
-          analytics.cognitiveProfile.archetype = primary;
-          this.saveStorage();
-        }
-      });
+
     },
 
     /**
@@ -194,7 +184,7 @@
   window.CognitiveIntelligence = {
     getStats: () => analytics,
     getMastery: (topic) => analytics.conceptualMastery?.[topic] || null,
-    getCognitiveProfile: () => analytics.cognitiveProfile || null,
+
     getExpeditionSummary: () => {
       const paths = Object.keys(analytics.pathway || {});
       const activePathsCount = paths.length;
@@ -216,7 +206,7 @@
         pathway: {},
         interactions: {},
         conceptualMastery: {},
-        cognitiveProfile: { miTopChannels: [], archetype: null },
+
         totalExpeditionTime: 0
       };
       console.log(" Synaptic Analytics: Cognitive database registry cleared successfully.");
