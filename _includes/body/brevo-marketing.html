@@ -150,7 +150,7 @@
     function trapFocus(event) {
       var modal = getModal();
       if (!modal || modal.hidden || event.key !== "Tab") return;
-      var focusables = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      var focusables = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])');
       if (!focusables.length) return;
       var first = focusables[0];
       var last = focusables[focusables.length - 1];
@@ -166,8 +166,6 @@
     function bindModal() {
       document.querySelectorAll("[data-brevo-open]").forEach(function (button) {
         button.addEventListener("click", openModal);
-        button.addEventListener("mouseenter", loadBrevoAssets, { once: true });
-        button.addEventListener("focus", loadBrevoAssets, { once: true });
       });
 
       document.querySelectorAll("[data-brevo-close]").forEach(function (button) {
@@ -180,28 +178,7 @@
       });
     }
 
-    function armLoader() {
-      var section = document.getElementById("newsletter");
-      if (!section) return;
-      bindModal();
-      if ("IntersectionObserver" in window) {
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              loadBrevoAssets();
-              observer.disconnect();
-            }
-          });
-        }, { rootMargin: "500px 0px" });
-        observer.observe(section);
-      } else if (window.lbflWhenIdle) {
-        window.lbflWhenIdle(loadBrevoAssets, 3200);
-      } else {
-        window.setTimeout(loadBrevoAssets, 2500);
-      }
-    }
-
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", armLoader);
-    else armLoader();
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindModal);
+    else bindModal();
   })();
 </script>
