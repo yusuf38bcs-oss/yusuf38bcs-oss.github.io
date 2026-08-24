@@ -353,6 +353,8 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 .header-link:focus,
 .header-link:focus-visible {
   opacity: 1 !important;
+  -webkit-transition: none !important;
+  transition: none !important;
   outline: 2px solid #67e8f9 !important;
   outline-offset: 0.2em;
   border-radius: 0.15em;
