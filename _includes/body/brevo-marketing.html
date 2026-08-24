@@ -150,7 +150,7 @@
     function trapFocus(event) {
       var modal = getModal();
       if (!modal || modal.hidden || event.key !== "Tab") return;
-      var focusables = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      var focusables = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])');
       if (!focusables.length) return;
       var first = focusables[0];
       var last = focusables[focusables.length - 1];
