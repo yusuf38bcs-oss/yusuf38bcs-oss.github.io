@@ -77,7 +77,7 @@ DISCLAIMER_KEYWORDS = [
     "educational boundary", "educational only", "educational understanding", "classroom learning",
     "for education only", "for learning only", "learning and reflection", "reflective study",
     "does not replace professional", "professional clinical evaluation", "not medical",
-    "not diagnosis", "not treatment", "physician", "healthcare", "qualified professional",
+    "not diagnosis", "not treatment", "do not provide diagnosis", "physician", "healthcare", "qualified professional",
     "শিক্ষামূলক", "শেখার উদ্দেশ্যে", "রোগনির্ণয় নয়", "চিকিৎসা-পরামর্শ নয়",
     "ব্যক্তিগত চিকিৎসা", "চিকিৎসক", "মানসিক স্বাস্থ্য",
 ]

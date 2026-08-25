@@ -6,6 +6,10 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - "_config.yml"
+      - "_biology/**"
+      - "_life-philosophy/**"
+      - "_pages/**"
+      - "scripts/site_audit_engine.py"
       - "_life-practices/research-highlights/**"
       - "_data/adsense.yml"
       - "_includes/head/**"
