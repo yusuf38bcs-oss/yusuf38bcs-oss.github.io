@@ -79,7 +79,7 @@ route_roots = [
 ]
 
 route_roots.each do |root|
-  next unless root.directory?
+  fail!("required rendered route root missing: #{root}") unless root.directory?
 
   pages = Dir.glob(root.join("**/*.html").to_s)
   fail!("no rendered pages under #{root}") if pages.empty?

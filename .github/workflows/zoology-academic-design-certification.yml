@@ -12,6 +12,8 @@ on:
       - "_layouts/single.html"
       - "assets/css/zoology-academic.css"
       - ".github/scripts/validate-zoology-academic-design.rb"
+      - "_layouts/default.html"
+      - ".github/scripts/validate-zoology-premier-regressions.rb"
       - ".github/scripts/zoology-browser-certification.mjs"
       - ".github/workflows/zoology-academic-design-certification.yml"
       - "docs/zoology/**"
@@ -63,6 +65,7 @@ jobs:
         run: |
           set -euo pipefail
           ruby .github/scripts/validate-zoology-academic-design.rb
+          ruby .github/scripts/validate-zoology-premier-regressions.rb
 
       - name: Set up Node
         uses: actions/setup-node@v4
