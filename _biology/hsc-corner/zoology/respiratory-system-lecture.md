@@ -7,7 +7,7 @@ sidebar:
 title: "Respiratory System Master Series: শ্বাস, গঠন, গ্যাস পরিবহন ও রোগতত্ত্ব"
 excerpt: "মানব শ্বসনতন্ত্রের গঠন, শ্বাস-প্রশ্বাসের যান্ত্রিক ও রাসায়নিক প্রক্রিয়া, গ্যাস পরিবহন, স্নায়বিক-রাসায়নিক নিয়ন্ত্রণ এবং শ্বাসনালীর রোগসমূহ নিয়ে পূর্ণাঙ্গ HSC Zoology lecture series."
 date: 2026-04-12T14:15:00.000+06:00
-last_modified_at: 2026-07-02T00:00:00.000Z
+last_modified_at: 2026-08-21T00:00:00.000Z
 permalink: /biology/hsc-corner/zoology/respiratory-system-lecture/
 categories:
   - Biology
@@ -116,13 +116,8 @@ CO₂-rich air নিঃশ্বাসে বের হয়
 | Disease awareness | Respiratory diseases | Disease sorting table | Cause-symptom-prevention analysis |
 | Synaptic Bridge | Biology to life | Reflection paragraph | Critical-thinking response |
 
-## Source Processing Note
-
-The uploaded **Respiratory.docx** was treated as the base class note. Its content was reorganized topic-by-topic into a cleaner learning sequence: anatomical route, lungs and alveoli, surfactant, respiratory muscles, function of respiratory system, inspiration/expiration, neural and chemical control, gaseous transport, chloride shift, and respiratory disease awareness. The material was clarified using standard Human Physiology framing consistent with Guyton & Hall-style respiratory physiology.
-
 ## References
 
-- Uploaded source: **Respiratory.docx** — Human Respiratory System teaching note.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, respiratory physiology chapters.
 - National Heart, Lung, and Blood Institute: Pneumonia, Asthma, COPD educational pages.
 - Centers for Disease Control and Prevention: Tuberculosis and Influenza educational pages.

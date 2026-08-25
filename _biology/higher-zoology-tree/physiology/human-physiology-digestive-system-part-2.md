@@ -8,10 +8,10 @@ sidebar:
   nav: "synaptic_nav"
 
 title: "Human Physiology: Digestive System (Part 2)"
-excerpt: "মানবদেহের যকৃতের কার্যাবলী, স্নায়ু ও হরমোনের নিউরো-এন্ডোক্রাইন নেটওয়ার্ক এবং পরিপাক নালীর সাধারণ রোগসমূহের ক্লিনিক্যাল বিশ্লেষণ।"
+excerpt: "মানবদেহের যকৃতের কার্যাবলী, স্নায়ু ও হরমোনের নিউরো-এন্ডোক্রাইন নেটওয়ার্ক এবং পরিপাক নালীর সাধারণ রোগসমূহের শিক্ষামূলক বিশ্লেষণ।"
 
 date: 2026-04-10T20:38:00.007Z
-last_modified_at: 2026-06-09T04:13:27.000Z
+last_modified_at: 2026-08-21T00:00:00.000Z
 
 permalink: /biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-2/
 
@@ -61,7 +61,7 @@ concept_level: "Core"
 
 <div class="notice--info" style="background: rgba(63, 81, 181, 0.05); border-left: 4px solid #3f51b5; padding: 15px; border-radius: 0 8px 8px 0; margin-bottom: 2em; text-align: center;">
   <h2 style="margin: 0; color: #3f51b5; font-family: 'Tiro Bangla', serif;">পরিপাক ও শোষণ: খাদ্যের রূপান্তর গাথা (Part 2)</h2>
-  <p style="margin: 5px 0 0 0; color: #abb2bf;">Indigo & Cyan মেমব্রেন ভিত্তিক শতভাগ স্যানিটাইজড প্রোডাকশন লেকচার নোড</p>
+  <p style="margin: 5px 0 0 0; color: #abb2bf;">উন্নত শারীরবৃত্তীয় বিশ্লেষণ ও ধারণাভিত্তিক লার্নিং নোড</p>
 </div>
 
 <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
@@ -71,26 +71,26 @@ concept_level: "Core"
   <p style="color:#cbd5e1; line-height: 1.7;">যকৃৎ অতিরিক্ত রক্ত-গ্লুকোজকে <strong>গ্লাইকোজেন</strong> হিসেবে (গ্লাইকোজেনেসিস প্রক্রিয়া), অতিরিক্ত আয়রনকে <strong>ফেরিটিন</strong> অণু হিসেবে এবং ফ্যাট-দ্রবণীয় ভিটামিন (A, D, E, K) তার হেপাটোসাইট কোষে সঞ্চয় করে রাখে।</p>
 
   <h4 style="color: #3b82f6; margin-top: 15px;">🧪 খ. বিপাকীয় ভূমিকা (Metabolic Functions):</h4>
-  <p style="color:#cbd5e1; line-height: 1.7;">অ্যামিনো এসিডের ডিঅ্যামিনেশনের ফলে উৎপন্ন বিষাক্ত অ্যামোনিয়াকে ($\text{NH}_3$) যকৃৎ তার বিখ্যাত <strong>অরনিথিন চক্রের (Ornithine Cycle)</strong> মাধ্যমে অপেক্ষাকৃত কম ক্ষতিকর ইউরিয়ায় রূপান্তর করে, যা পরে রেচনতন্ত্র দিয়ে নিষ্কাশিত হয়।</p>
+  <p style="color:#cbd5e1; line-height: 1.7;">অ্যামিনো এসিডের ডিঅ্যামিনেশনের ফলে উৎপন্ন বিষাক্ত অ্যামোনিয়াকে ($\text{NH}_3$) যকৃৎ <strong>urea cycle বা ornithine cycle</strong>-এর মাধ্যমে কম বিষাক্ত ইউরিয়ায় রূপান্তর করে, যা পরে রেচনতন্ত্র দিয়ে নিষ্কাশিত হয়।</p>
 </div>
 
 <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
   <h3 style="color: #ffffff; font-size: 1.3rem; margin-top:0; color:#3b82f6;">🧠 ২. পরিপাক প্রক্রিয়ায় স্নায়ু ও হরমোনের নেটওয়ার্ক</h3>
 
   <h4 style="color: #00d4b2; margin-top: 15px;">⚡ ক. স্নায়বিক নিয়ন্ত্রণ (Neural Control):</h4>
-  <p style="color:#cbd5e1; line-height: 1.7;">পাকস্থলীতে গ্যাস্ট্রিক রস নিঃসরণ মূলত ৩টি স্বতন্ত্র স্নায়বিক পর্যায় বা ফেজে বিভক্ত:</p>
+  <p style="color:#cbd5e1; line-height: 1.7;">পাকস্থলীর secretion-কে বোঝার জন্য cephalic, gastric ও intestinal—এই তিনটি overlapping phase ব্যবহার করা হয়। এগুলো স্নায়বিক ও হরমোনীয় সংকেতের সমন্বিত ফল; শতাংশের মান পাঠ্যসূত্র ও experimental condition অনুযায়ী পরিবর্তিত হতে পারে।</p>
   <ul style="color:#cbd5e1; padding-left: 1.5rem; line-height: 1.7;">
-    <li><strong>সেফালিক পর্যায় (Cephalic Phase - ২০%):</strong> খাদ্যের দর্শন, ঘ্রাণ বা স্বাদের উদ্দীপনা সরাসরি মস্তিষ্ক হয়ে ভেগাস স্নায়ুর মাধ্যমে পাকস্থলীতে পৌঁছালে খাবার প্রবেশের পূর্বেই ২০% রস ক্ষরিত হয়।</li>
-    <li><strong>গ্যাস্ট্রিক পর্যায় (Gastric Phase - ৭০%):</strong> খাদ্যবস্তু শারীরিকভাবে পাকস্থলীর অভ্যন্তরে প্রবেশ করে এর প্রাচীরকে প্রসারিত করলে লোকাল রিফ্লেক্সের মাধ্যমে সর্বোচ্চ ৭০% রস নিঃসৃত হয়।</li>
-    <li><strong>আন্ত্রিক পর্যায় (Intestinal Phase):</strong> আংশিক পরিপাককৃত অম্লীয় কাইম (Chyme) ক্ষুদ্রান্ত্রের ডিওডেনামে প্রবেশের পর এই উদ্দীপনা শুরু হয়।</li>
+    <li><strong>সেফালিক পর্যায় (Cephalic Phase):</strong> খাদ্যের দর্শন, ঘ্রাণ, চিন্তা বা স্বাদের সংকেত vagus nerve-এর মাধ্যমে খাদ্য পাকস্থলীতে পৌঁছানোর আগেই gastric secretion শুরু করতে পারে।</li>
+    <li><strong>গ্যাস্ট্রিক পর্যায় (Gastric Phase):</strong> পাকস্থলীতে খাদ্য প্রবেশ, wall distension এবং peptide/amino acid signal স্থানীয় reflex, vagovagal reflex ও gastrin-mediated response সক্রিয় করে secretion বাড়ায়।</li>
+    <li><strong>আন্ত্রিক পর্যায় (Intestinal Phase):</strong> chyme duodenum-এ প্রবেশের পর intestinal signals অল্প সময় gastric secretion সমর্থন করতে পারে, তবে acid/fat-এর উপস্থিতিতে inhibitory enterogastric ও hormonal signal gastric emptying এবং secretion কমায়।</li>
   </ul>
 
-  <h4 style="color: #00d4b2; margin-top: 25px;">🩸 খ. হরমোনের ভূমিকা (Local Endocrine Shield):</h4>
+  <h4 style="color: #00d4b2; margin-top: 25px;">🩸 খ. হরমোনের ভূমিকা (Gastrointestinal Hormonal Control):</h4>
   <table style="width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em; text-align: left;">
     <thead>
       <tr style="background-color: #131c2e; color: #00d4b2;">
-        <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">স্থানীয় হরমোন</th>
-        <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">নিঃসরণকারী উৎস</th>
+        <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">হরমোন</th>
+        <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">প্রধান উৎস</th>
         <th style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">প্রধান শারীরবৃত্তীয় কাজ</th>
       </tr>
     </thead>
@@ -98,29 +98,29 @@ concept_level: "Core"
       <tr>
         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);"><strong>গ্যাস্ট্রিন (Gastrin)</strong></td>
         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">পাকস্থলীর G-কোষ</td>
-        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">প্যারাইটাল কোষ থেকে তীব্র $\text{HCl}$ ও গ্যাস্ট্রিক রস নিঃসরণ উদ্দীপিত করে।</td>
+        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">Gastric acid secretion ও gastric mucosal growth/motility-কে সমর্থন করে; acid secretion-এ histamine-mediated pathway গুরুত্বপূর্ণ।</td>
       </tr>
       <tr>
         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);"><strong>সিক্রেটিন (Secretin)</strong></td>
         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">ডিওডেনামের S-কোষ</td>
-        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">অগ্ন্যাশয়কে ক্ষারীয় বাইকার্বোনেট সমৃদ্ধ রস এবং যকৃৎকে পিত্ত ক্ষরণে বাধ্য করে।</td>
+        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">Pancreatic ও biliary bicarbonate-rich secretion বাড়িয়ে duodenal acid neutralization-এ সাহায্য করে।</td>
       </tr>
       <tr>
         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);"><strong>কোলেসিস্টোকাইনিন (CCK)</strong></td>
-        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">ক্ষুদ্রান্ত্র প্রাচীর</td>
-        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">পিত্তথলির সংকোচন ঘটিয়ে পিত্তরস ডিওডেনামে মুক্ত করে।</td>
+        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">Duodenum/jejunum-এর I-কোষ</td>
+        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.05);">Gallbladder contraction ও pancreatic enzyme secretion বাড়ায় এবং fat/protein-rich meal-এর পর gastric emptying ধীর করতে সাহায্য করে।</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
-  <h3 style="color: #ffffff; font-size: 1.3rem; margin-top:0; color:#ef4444;">🏥 ৩. গ্যাস্ট্রোইনটেস্টাইনাল ট্র্যাক্টের সাধারণ রোগসমূহ</h3>
-  <p style="color:#cbd5e1; line-height: 1.7;">অনিয়ন্ত্রিত জীবনযাত্রা এবং প্যাথোজেনিক সংক্রমণের কারণে মানব পরিপাকতন্ত্রে মূলত ৩টি সাধারণ ব্যাধি দেখা যায়:</p>
+  <h3 style="color: #ffffff; font-size: 1.3rem; margin-top:0; color:#ef4444;">🏥 ৩. গ্যাস্ট্রোইনটেস্টাইনাল ট্র্যাক্টের সাধারণ সমস্যা</h3>
+  <p style="color:#cbd5e1; line-height: 1.7;">Gastrointestinal symptoms-এর কারণ বহুবিধ হতে পারে। নিচের উদাহরণগুলো শিক্ষামূলক ধারণা; এগুলো self-diagnosis বা treatment নির্দেশনা নয়।</p>
   <ul style="color:#cbd5e1; padding-left: 1.5rem; line-height: 1.7;">
-    <li><strong>গ্যাস্ট্রাইটিস (Gastritis):</strong> পাকস্থলীর অভ্যন্তরীণ মিউকোসা স্তরে অত্যধিক $\text{HCl}$ ক্ষরণের ফলে সৃষ্ট তীব্র প্রদাহ বা জ্বালাপোড়া। অনিয়মিত খাদ্যাভ্যাস ও মানসিক চাপ এর প্রধান উদ্দীপক।</li>
-    <li><strong>পেপটিক আলসার ডিজিজ (PUD):</strong> পাকস্থলী (Gastric) বা ডিওডেনামের (Duodenal) প্রতিরক্ষামূলক মিউকোসা পর্দা ক্ষয়ে গিয়ে ক্ষত সৃষ্টি হওয়া। এটি মূলত <em>Helicobacter pylori</em> নামক ব্যাকটেরিয়ার সংক্রমণ অথবা দীর্ঘদিন NSAID (ব্যথানাশক) ঔষধ সেবনের ফলে ঘটে।</li>
-    <li><strong>অজীর্ণতা (Dyspepsia):</strong> পাচক রসের ভারসাম্যহীনতা বা ত্রুটিপূর্ণ পাচন ক্রিয়ার ফলে সৃষ্ট সমস্যা। এর সাধারণ লক্ষণ হলো পেট ফাঁপা, টক ঢেকুর এবং বুক জ্বালাপোড়া করা।</li>
+    <li><strong>গ্যাস্ট্রাইটিস (Gastritis):</strong> পাকস্থলীর mucosa-র প্রদাহ। গুরুত্বপূর্ণ কারণের মধ্যে <em>Helicobacter pylori</em> infection, NSAID ব্যবহার, alcohol এবং autoimmune gastritis অন্তর্ভুক্ত; শুধু “অতিরিক্ত HCl” দিয়ে gastritis সংজ্ঞায়িত করা ঠিক নয়।</li>
+    <li><strong>পেপটিক আলসার ডিজিজ (PUD):</strong> পাকস্থলী বা duodenum-এর mucosa-য় ulcer তৈরি হওয়া। <em>H. pylori</em> infection এবং NSAID ব্যবহার প্রধান কারণ; acid-peptic injury ও mucosal defence-এর ভারসাম্যও গুরুত্বপূর্ণ।</li>
+    <li><strong>ডিসপেপসিয়া (Dyspepsia):</strong> upper-abdominal pain বা burning, post-meal fullness এবং early satiety-এর মতো উপসর্গের সমষ্টি। Functional dyspepsia সাধারণ হলেও ulcer, reflux বা অন্য disease-ও similar symptoms দিতে পারে।</li>
   </ul>
 </div>
 

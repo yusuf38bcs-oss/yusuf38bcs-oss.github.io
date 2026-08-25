@@ -24,7 +24,7 @@
       <label class="socratic-console-label" for="ai-floating-query">Socratic query</label>
       <textarea id="ai-floating-query" rows="2" placeholder="Formulate a Socratic query..." class="socratic-console-textarea-field"></textarea>
       <div class="socratic-action-button-row">
-        <button class="socratic-console-clear-btn" type="button">Clear Console</button>
+        <button class="socratic-console-clear-btn" type="button">Reset inquiry</button>
         <button class="socratic-console-submit-btn" id="ai-floating-submit-trigger" type="button">Inquire</button>
       </div>
     </div>
@@ -71,7 +71,7 @@
 
     function clearChat() {
       if (!chatBox) return;
-      chatBox.innerHTML = '<div class="ai-stream-message-bubble">🧠 Synaptic memory parameters restored. Console timeline is cleared for new analytical queries.</div>';
+      chatBox.innerHTML = '<div class="ai-stream-message-bubble">🧠 Inquiry state reset. Start a new analytical question whenever you are ready.</div>';
     }
 
     function ensureSynapticAI() {

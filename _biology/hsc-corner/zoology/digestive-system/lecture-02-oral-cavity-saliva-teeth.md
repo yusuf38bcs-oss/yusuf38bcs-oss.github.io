@@ -9,6 +9,7 @@ toc_sticky: true
 classes: wide
 language: bn
 status: "Active"
+last_modified_at: 2026-08-21T00:00:00.000Z
 ---
 
 # Digestive System Lecture 02: Oral Cavity, Teeth and Saliva
@@ -42,7 +43,7 @@ Molar → grinding
 
 ## Saliva Composition
 
-Saliva-তে water, mucus, electrolyte, ptyalin বা salivary amylase, maltase ও protective substance থাকে। pH সাধারণত slightly acidic to neutral range-এ থাকে।
+Saliva-তে water, mucus, electrolytes, ptyalin বা salivary amylase এবং protective substances থাকে। Salivary amylase মুখে starch digestion শুরু করে। Maltase saliva-এর enzyme নয়; maltase small intestine-এর brush-border enzyme, যেখানে এটি maltose ভেঙে glucose তৈরি করে।
 
 ## Saliva Functions
 
@@ -59,8 +60,8 @@ Saliva-তে water, mucus, electrolyte, ptyalin বা salivary amylase, maltas
 Food
   ↓ chewing
 Small food particles
-  ↓ saliva mixing
-Bolus
+  ↓ saliva mixing + salivary amylase
+Bolus + partial starch digestion
   ↓ swallowing
 Pharynx and oesophagus
 ```
@@ -72,11 +73,12 @@ Pharynx and oesophagus
 - Salivary glands
 - Ptyalin-এর কাজ
 - Bolus formation
-- Mouth-phase digestion
+- Mouth-phase starch digestion
 
 ## Common Mistakes
 
 - Saliva-কে শুধু পানি মনে করা।
+- Maltase-কে saliva-এর enzyme মনে করা; maltase small intestine-এর brush border-এ কাজ করে।
 - দাঁতের কাজ শুধু কাটাকাটি মনে করা।
 - Mouth-এ সব ধরনের food digestion হয় মনে করা।
 - Tongue-এর role বাদ দেওয়া।
@@ -90,4 +92,4 @@ Pharynx and oesophagus
 
 ## Summary
 
-Mouth হলো digestive system-এর preparation chamber। এখানে food mechanically ছোট হয়, saliva-এর সঙ্গে মেশে, bolus তৈরি হয় এবং carbohydrate digestion-এর সূচনা ঘটে।
+Mouth হলো digestive system-এর preparation chamber। এখানে food mechanically ছোট হয়, saliva-এর সঙ্গে মেশে, bolus তৈরি হয় এবং salivary amylase-এর মাধ্যমে carbohydrate digestion-এর সূচনা ঘটে। Maltase পরবর্তী ধাপে small intestine-এর brush border-এ কাজ করে।
