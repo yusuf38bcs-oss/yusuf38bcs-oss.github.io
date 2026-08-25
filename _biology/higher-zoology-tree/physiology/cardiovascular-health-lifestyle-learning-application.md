@@ -280,7 +280,6 @@ Circulation teaches a discipline model: every cell receives according to flow, p
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf** — blood and circulation foundation slides.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, cardiovascular physiology chapters.
 - American Heart Association: Life’s Essential 8 cardiovascular health framework.
 - NHLBI: heart-healthy living and coronary heart disease prevention resources.

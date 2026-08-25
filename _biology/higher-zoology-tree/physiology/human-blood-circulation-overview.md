@@ -216,6 +216,5 @@ Blood circulation শেখায়: life is flow. Flow থেমে গেলে 
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf** — blood and circulation slides.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, blood and cardiovascular physiology chapters.
 - Blood Circulation Master Series pages on Learning Biology For Life.

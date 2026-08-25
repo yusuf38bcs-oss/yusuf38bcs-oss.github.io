@@ -8,10 +8,12 @@
   {% assign lbfl_zoology_route = true %}
 {% elsif page.url contains '/biology/higher-zoology-tree/' %}
   {% assign lbfl_zoology_route = true %}
+{% elsif page.url contains '/biology/animal-diversity/' %}
+  {% assign lbfl_zoology_route = true %}
 {% endif %}
 {% if lbfl_zoology_route %}
 <link rel="stylesheet" href="{{ '/assets/css/zoology-academic.css' | relative_url }}">
-<script>document.documentElement.classList.add("lbfl-zoology-route");</script>
+
 {% endif %}
 
 <link rel="stylesheet" href="{{ '/assets/css/respiratory-system.css' | relative_url }}">

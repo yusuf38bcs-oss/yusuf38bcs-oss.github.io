@@ -177,5 +177,4 @@ The heart teaches coordinated leadership. The SA node starts the rhythm, the AV 
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf**.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, cardiac physiology chapters.

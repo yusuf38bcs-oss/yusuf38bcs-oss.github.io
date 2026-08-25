@@ -5,6 +5,7 @@
  */
 
 .lbfl-zoology-route {
+  --zoo-heading-color: #153f3b;
   --zoo-ink: #102a2a;
   --zoo-muted: #496560;
   --zoo-paper: #fbfaf5;
@@ -48,7 +49,7 @@
 .lbfl-zoology-route .page__content h2,
 .lbfl-zoology-route .page__content h3,
 .lbfl-zoology-route .page__content h4 {
-  color: #153f3b !important;
+  color: var(--zoo-heading-color);
   font-family: inherit;
   text-wrap: balance;
 }

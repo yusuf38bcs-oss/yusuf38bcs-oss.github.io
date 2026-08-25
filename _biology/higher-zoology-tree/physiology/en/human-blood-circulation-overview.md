@@ -160,5 +160,4 @@ The circulatory system is a lesson in connection. No cell survives alone. Every 
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf**.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, blood and cardiovascular chapters.

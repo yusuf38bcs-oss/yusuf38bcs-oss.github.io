@@ -419,6 +419,5 @@ Fetal surfactant production mid-to-late gestation-এ clinically important হ�
 
 ## References
 
-- Uploaded source: **Respiratory.docx** — respiratory anatomy, airway, lung, alveoli, surfactant, and respiratory muscle notes.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, respiratory physiology chapters.
 - Standard HSC Zoology respiratory system curriculum notes.
