@@ -129,14 +129,13 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
 
-      - name: Fail closed on credentials and Worker identity
+      - name: Fail closed on Cloudflare credentials and Worker identity
         shell: bash
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID is missing"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is missing"; exit 1; }
-          test -n "$GEMINI_API_KEY" || { echo "GEMINI_API_KEY is missing; refusing to create an unconfigured Worker"; exit 1; }
           node <<'NODE'
           const fs = require('node:fs');
           const config = JSON.parse(fs.readFileSync('wrangler.jsonc', 'utf8'));
@@ -146,6 +145,9 @@ jobs:
           if (config.custom_domain || config.custom_domains) throw new Error('Smoke deployment must not declare custom domains.');
           if (config.workers_dev !== true) throw new Error('workers_dev must remain enabled.');
           NODE
+          if [[ -z "$GEMINI_API_KEY" ]]; then
+            echo "GEMINI_API_KEY is not present in GitHub Actions; isolated runtime will be deployed in fail-safe mode."
+          fi
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -165,14 +167,19 @@ jobs:
           set -euo pipefail
           npx wrangler deploy --config ../wrangler.jsonc
 
-      - name: Configure Gemini secret on lbfl-socratic-ai
+      - name: Configure Gemini secret when available
         working-directory: worker
         shell: bash
         run: |
           set -euo pipefail
-          printf '%s' "$GEMINI_API_KEY" | npx wrangler secret put GEMINI_API_KEY --config ../wrangler.jsonc
+          if [[ -n "$GEMINI_API_KEY" ]]; then
+            printf '%s' "$GEMINI_API_KEY" | npx wrangler secret put GEMINI_API_KEY --config ../wrangler.jsonc
+          else
+            echo "No GitHub GEMINI_API_KEY is available; leaving the isolated Worker without that secret."
+          fi
 
       - name: Verify isolated Worker health
+        id: health
         shell: bash
         run: |
           set -euo pipefail
@@ -187,23 +194,27 @@ jobs:
             sleep 3
           done
           test "$success" = true
-          node - "$health" "$headers" <<'NODE'
+          node - "$health" "$headers" "$GITHUB_OUTPUT" <<'NODE'
           const fs = require('node:fs');
-          const [healthPath, headersPath] = process.argv.slice(2);
+          const [healthPath, headersPath, outputPath] = process.argv.slice(2);
           const health = JSON.parse(fs.readFileSync(healthPath, 'utf8'));
           const headers = fs.readFileSync(headersPath, 'utf8').toLowerCase();
           const versionId = String(health.worker_version_id || '').toLowerCase();
           if (health.ok !== true) throw new Error('health.ok must be true');
           if (health.environment !== 'production') throw new Error(`Unexpected environment: ${health.environment}`);
-          if (health.gemini_key_configured !== true) throw new Error('Gemini secret is not configured');
+          if (typeof health.gemini_key_configured !== 'boolean') throw new Error('gemini_key_configured must be boolean');
           if (health.service !== 'LBFL Synaptic AI Edge Worker') throw new Error(`Unexpected service: ${health.service}`);
           if (!/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(versionId)) throw new Error(`Invalid version: ${versionId}`);
           if (!headers.includes(`x-lbfl-worker-version: ${versionId}`)) throw new Error('Worker version header/body mismatch');
+          fs.appendFileSync(outputPath, `gemini_configured=${health.gemini_key_configured ? 'true' : 'false'}\n`);
+          fs.appendFileSync(outputPath, `worker_version_id=${versionId}\n`);
           console.log(JSON.stringify(health, null, 2));
           NODE
 
-      - name: Verify live Socratic contract
+      - name: Verify Socratic contract
         shell: bash
+        env:
+          GEMINI_CONFIGURED: ${{ steps.health.outputs.gemini_configured }}
         run: |
           set -euo pipefail
           result="$RUNNER_TEMP/socratic.json"
@@ -212,9 +223,10 @@ jobs:
             -H 'Accept: application/json' \
             --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/hsc-corner/zoology/baroreceptor-reflex/","attempt_count":1}' \
             "$WORKER_URL/api/socratic" > "$result"
-          node - "$result" <<'NODE'
+          node - "$result" "$GEMINI_CONFIGURED" <<'NODE'
           const fs = require('node:fs');
-          const result = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+          const [resultPath, geminiConfigured] = process.argv.slice(2);
+          const result = JSON.parse(fs.readFileSync(resultPath, 'utf8'));
           for (const key of ['mastery_achieved', 'feedback_text', 'next_vector', 'strike_count']) {
             if (!(key in result)) throw new Error(`Missing key: ${key}`);
           }
@@ -222,11 +234,19 @@ jobs:
           if (typeof result.feedback_text !== 'string' || result.feedback_text.length < 5) throw new Error('feedback_text invalid');
           if (typeof result.next_vector !== 'string' || !result.next_vector.startsWith('/')) throw new Error('next_vector invalid');
           if (!Number.isInteger(result.strike_count) || result.strike_count < 1 || result.strike_count > 3) throw new Error('strike_count invalid');
+          if (geminiConfigured !== 'true') {
+            if (result.mastery_achieved !== false) throw new Error('Fail-safe response must not claim mastery');
+            if (result.next_vector !== '/biology/') throw new Error(`Unexpected fail-safe vector: ${result.next_vector}`);
+            if (result.strike_count !== 1) throw new Error(`Unexpected fail-safe strike count: ${result.strike_count}`);
+          }
           console.log(JSON.stringify(result, null, 2));
           NODE
 
       - name: Summarize isolated smoke deployment
         shell: bash
+        env:
+          GEMINI_CONFIGURED: ${{ steps.health.outputs.gemini_configured }}
+          WORKER_VERSION_ID: ${{ steps.health.outputs.worker_version_id }}
         run: |
           {
             echo '# lbfl-socratic-ai isolated smoke deployment'
@@ -234,7 +254,14 @@ jobs:
             echo "- Worker: \`lbfl-socratic-ai\`"
             echo "- Endpoint: \`$WORKER_URL\`"
             echo "- Source SHA: \`${{ github.event.pull_request.head.sha }}\`"
+            echo "- Worker version ID: \`$WORKER_VERSION_ID\`"
             echo '- Custom domain/route mutation: `none`'
-            echo '- Health: `PASS`'
-            echo '- Socratic contract: `PASS`'
+            echo '- Runtime health: `PASS`'
+            echo '- Socratic response contract: `PASS`'
+            echo "- Gemini key configured: \`$GEMINI_CONFIGURED\`"
+            if [[ "$GEMINI_CONFIGURED" == "true" ]]; then
+              echo '- Custom-domain cutover readiness from Worker-secret perspective: `PASS`'
+            else
+              echo '- Custom-domain cutover readiness: `BLOCKED — GEMINI_API_KEY not configured on isolated Worker`'
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
