@@ -187,6 +187,11 @@ metrics = await page.evaluate((contract) => {
           id: violation.id,
           impact: violation.impact,
           nodes: violation.nodes.length,
+          details: violation.nodes.map((node) => ({
+            target: node.target,
+            html: node.html,
+            failureSummary: node.failureSummary,
+          })),
         }));
       }
     } catch (error) {
