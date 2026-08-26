@@ -144,7 +144,7 @@ Production certification must be dispatched from `main` with a full `expected_ma
 - current `main` identity is unchanged before and after the run;
 - canonical Cloudflare Pages production maps to that SHA;
 - canonical production content equals the exact deployment, allowing only the narrowly recognized fail-closed Cloudflare JSD normalization;
-- the public `synapticai-proxy` Worker metadata and live version match the target SHA;
+- the public `lbfl-socratic-ai` Worker metadata and live version match the target SHA;
 - Worker health returns HTTP 200 and production identity;
 - browser/Axe/consent/reduced-motion/Save-Data gates pass where required; and
 - the certification credential is host-isolated and absent from evidence artifacts and summaries.
