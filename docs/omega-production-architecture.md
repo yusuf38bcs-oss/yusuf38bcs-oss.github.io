@@ -60,7 +60,7 @@ Student hypothesis
 - `_includes/socratic/socratic-node.html`
 - `_sass/components/_socratic.scss`
 - `worker/src/index.ts`
-- `worker/wrangler.toml`
+- `wrangler.jsonc`
 - `worker/package.json`
 - `scripts/omega-production-audit.ps1`
 
