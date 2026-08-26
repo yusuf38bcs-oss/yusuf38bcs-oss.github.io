@@ -320,7 +320,27 @@ html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-child-link {
   }
 }
 
-@media (max-width: 24rem) {
+@media (max-width: 390px) {
+  /*
+   * The canonical Animal Diversity gateway and matrix keep dark, legacy
+   * component surfaces. At the 390px reading size, the Zoology foreground
+   * token otherwise wins for these unscoped text nodes.
+   */
+  .lbfl-zoology-route .page__content:has(.lbfl-hub-intro) .lbfl-outcome-card h2,
+  .lbfl-zoology-route .page__content:has(.lbfl-hub-intro) .lbfl-outcome-card h2 a,
+  .lbfl-zoology-route .page__content:has(.lbfl-hub-intro) .lbfl-outcome-card h3 {
+    color: #f8fafc !important;
+  }
+
+  .lbfl-zoology-route .page__content:has(.animal-matrix-hero) .animal-matrix-hero,
+  .lbfl-zoology-route .page__content:has(.animal-matrix-hero) .animal-matrix-card {
+    color: #dbeafe !important;
+  }
+
+  .lbfl-zoology-route .page__content:has(.animal-matrix-hero) .animal-matrix-hero strong {
+    color: #f8fafc !important;
+  }
+
   .lbfl-zoology-cycle__steps {
     grid-template-columns: 1fr;
   }
@@ -336,3 +356,4 @@ html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-child-link {
     transition-duration: 0.01ms !important;
   }
 }
+118eb65b72ebd4f1ba9984114d78f8194f1ac95c
