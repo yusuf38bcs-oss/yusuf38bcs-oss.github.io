@@ -1,4 +1,4 @@
-endpoint: "https://synapticai-proxy.yusuf-38bcs.workers.dev"
+endpoint: "https://lbfl-socratic-ai.yusuf-38bcs.workers.dev"
 cooldownMs: 1200
 maxRetries: 3
 cacheEnabled: true
