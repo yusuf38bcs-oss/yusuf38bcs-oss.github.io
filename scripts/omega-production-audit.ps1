@@ -157,12 +157,14 @@ function Assert-StaticGraphContracts {
 }
 
 function Assert-WorkerSeparationContracts {
-    Assert-FileNotExists "wrangler.toml" "Root Wrangler config"
-    Assert-FileExists "worker/wrangler.toml"
-    Assert-Contains "worker/wrangler.toml" "name\s*=\s*\"synapticai-proxy\"" "Worker name contract configured"
-    Assert-Contains "worker/wrangler.toml" "main\s*=\s*\"src/index\.ts\"" "Worker entrypoint contract configured"
-    Assert-Contains "worker/wrangler.toml" "GEMINI_MODEL\s*=\s*\"gemini-2\.5-flash\"" "Worker Gemini model contract configured"
-    Assert-Contains "worker/wrangler.toml" "ALLOWED_ORIGIN\s*=\s*\"https://learningbiologyforlife\.org\"" "Worker primary allowed origin configured"
+    Assert-FileNotExists "wrangler.toml" "Root legacy Wrangler TOML"
+    Assert-FileExists "wrangler.jsonc"
+    Assert-FileNotExists "worker/wrangler.toml" "Worker-local Wrangler TOML"
+    Assert-FileNotExists "worker/wrangler.jsonc" "Worker-local Wrangler JSONC"
+    Assert-Contains "wrangler.jsonc" '"name"\s*:\s*"lbfl-socratic-ai"' "Socratic Worker has unique ownership identity"
+    Assert-Contains "wrangler.jsonc" '"main"\s*:\s*"worker/src/index\.ts"' "Socratic Worker root config owns entrypoint"
+    Assert-Contains "wrangler.jsonc" '"GEMINI_MODEL"\s*:\s*"gemini-2\.5-flash"' "Worker Gemini model contract configured"
+    Assert-Contains "wrangler.jsonc" '"ALLOWED_ORIGIN"\s*:\s*"https://learningbiologyforlife\.org"' "Worker primary allowed origin configured"
 }
 
 function Assert-LayoutContracts {
