@@ -80,12 +80,12 @@
  * Canonical Animal Diversity participates in the shared Zoology route,
  * while its existing dark components retain their light typography.
  */
-.lbfl-zoology-route .page__content .lbfl-hub-title,
-.lbfl-zoology-route .page__content .lbfl-section-title,
-.lbfl-zoology-route .page__content .lbfl-study-step h3,
-.lbfl-zoology-route .page__content .lbfl-principle-card h3,
-.lbfl-zoology-route .page__content .lbfl-route-card h3,
-.lbfl-zoology-route .page__content .lbfl-log-card h3 {
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-hub-title,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-section-title,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-study-step h3,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-principle-card h3,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-route-card h3,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-log-card h3 {
   color: #f8fafc !important;
 }
 
@@ -106,20 +106,23 @@ html.lbfl-zoology-route body.layout--single.wide .page__content {
 }
 
 .lbfl-zoology-route .page__content .educational-boundary strong {
-  color: var(--zoo-ink);
+  color: var(--zoo-ink) !important;
 }
 
 .lbfl-zoology-route .page__content .educational-boundary span[lang="bn"] {
-  color: var(--zoo-muted);
+  color: var(--zoo-ink) !important;
 }
 
-html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-title {
-  color: var(--zoo-heading-color);
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .contextual-sidebar-nav .sidebar-nav-title,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .contextual-sidebar-nav .sidebar-nav-title {
+  color: var(--zoo-ink) !important;
 }
 
-html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-link,
-html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-child-link {
-  color: var(--zoo-teal-strong);
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .contextual-sidebar-nav .sidebar-nav-link,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .contextual-sidebar-nav .sidebar-nav-child-link,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .contextual-sidebar-nav .sidebar-nav-link,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .contextual-sidebar-nav .sidebar-nav-child-link {
+  color: #174d47 !important;
 }
 
 .lbfl-zoology-route .page__content a {
@@ -320,27 +323,26 @@ html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-child-link {
   }
 }
 
-@media (max-width: 390px) {
-  /*
-   * The canonical Animal Diversity gateway and matrix keep dark, legacy
-   * component surfaces. At the 390px reading size, the Zoology foreground
-   * token otherwise wins for these unscoped text nodes.
-   */
-  .lbfl-zoology-route .page__content:has(.lbfl-hub-intro) .lbfl-outcome-card h2,
-  .lbfl-zoology-route .page__content:has(.lbfl-hub-intro) .lbfl-outcome-card h2 a,
-  .lbfl-zoology-route .page__content:has(.lbfl-hub-intro) .lbfl-outcome-card h3 {
-    color: #f8fafc !important;
-  }
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content > ul li {
+  color: var(--zoo-ink) !important;
+}
 
-  .lbfl-zoology-route .page__content:has(.animal-matrix-hero) .animal-matrix-hero,
-  .lbfl-zoology-route .page__content:has(.animal-matrix-hero) .animal-matrix-card {
-    color: #dbeafe !important;
-  }
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content > ul a {
+  color: var(--zoo-teal-strong) !important;
+}
 
-  .lbfl-zoology-route .page__content:has(.animal-matrix-hero) .animal-matrix-hero strong {
-    color: #f8fafc !important;
-  }
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content pre,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content pre code {
+  color: #f5fbf8 !important;
+  background: #102825 !important;
+}
 
+html.lbfl-zoology-route:has(.animal-matrix-hero) .lbfl-language-switcher__link {
+  color: var(--zoo-ink) !important;
+  background: #ffffff !important;
+}
+
+@media (max-width: 24rem) {
   .lbfl-zoology-cycle__steps {
     grid-template-columns: 1fr;
   }
@@ -356,4 +358,4 @@ html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-child-link {
     transition-duration: 0.01ms !important;
   }
 }
-118eb65b72ebd4f1ba9984114d78f8194f1ac95c
+
