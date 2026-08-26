@@ -19,6 +19,17 @@ const viewports = [
   { name: "desktop-1280", width: 1280, height: 900 },
 ];
 
+const animalDiversityHeadingContract = {
+  "/biology/animal-diversity/": [
+    { selector: ".lbfl-hub-title", expectedColor: "rgb(248, 250, 252)" },
+    { selector: ".lbfl-section-title", expectedColor: "rgb(248, 250, 252)" },
+    { selector: ".lbfl-principle-card h3", expectedColor: "rgb(248, 250, 252)" },
+  ],
+  "/biology/animal-diversity/complete-matrix/": [
+    { selector: ".animal-anchor-grid h3", expectedColor: "rgb(127, 255, 231)" },
+  ],
+};
+
 async function walk(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true }).catch(() => []);
   const files = [];
@@ -40,11 +51,19 @@ async function isLearnerContentPage(file) {
   if (/<meta[^>]+http-equiv=["']?refresh["']?/i.test(html)) return false;
   return html.includes('class="page"') && html.includes('class="page__content"');
 }
-
 const roots = [
   path.join(siteDir, "biology", "hsc-corner", "zoology"),
   path.join(siteDir, "biology", "higher-zoology-tree"),
+  path.join(siteDir, "biology", "animal-diversity"),
 ];
+
+for (const root of roots) {
+  const stat = await fs.stat(root).catch(() => null);
+  if (!stat?.isDirectory()) {
+    const relative = path.relative(siteDir, root).split(path.sep).join("/");
+    throw new Error(`Required rendered Zoology route root is missing: ${relative}`);
+  }
+}
 const discoveredFiles = (await Promise.all(roots.map(walk))).flat();
 const learnerFiles = [];
 for (const file of discoveredFiles) {
@@ -58,6 +77,7 @@ const browser = await chromium.launch({ headless: true });
 const results = [];
 
 for (const route of routes) {
+  const isAnimalDiversityRoute = route.startsWith("/biology/animal-diversity/");
   for (const viewport of viewports) {
     const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
     const blockedExternal = [];
@@ -99,25 +119,70 @@ for (const route of routes) {
     try {
       const response = await page.goto(`${baseUrl}${route}`, { waitUntil: "domcontentloaded", timeout: 15_000 });
       status = response?.status() ?? 0;
-      metrics = await page.evaluate(() => {
-        const resetButton = document.querySelector(".socratic-console-clear-btn");
-        return {
-          hasContent: Boolean(document.querySelector(".page__content")),
-          hasCycle: Boolean(document.querySelector("[data-zoology-learning-cycle]")),
-          hasStylesheet: Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some((link) =>
-            String(link.getAttribute("href") || "").includes("zoology-academic.css")),
-          horizontalOverflow: Math.max(0, document.documentElement.scrollWidth - window.innerWidth),
-          resetInquiryLabel: resetButton ? resetButton.textContent.trim() === "Reset inquiry" : true,
-        };
-      });
-      if (metrics.hasCycle && viewport.name === "mobile-390") {
+      const headingContract = animalDiversityHeadingContract[route] ?? [];
+
+metrics = await page.evaluate((contract) => {
+  const resetButton = document.querySelector(".socratic-console-clear-btn");
+
+  const darkHeadingChecks = contract.map(({ selector, expectedColor }) => {
+    const nodes = Array.from(document.querySelectorAll(selector));
+    const colors = nodes.map((node) => window.getComputedStyle(node).color);
+
+    return {
+      selector,
+      expectedColor,
+      count: nodes.length,
+      colors,
+      passed:
+        nodes.length > 0 &&
+        colors.every((color) => color === expectedColor),
+    };
+  });
+
+  return {
+    hasContent: Boolean(document.querySelector(".page__content")),
+    hasCycle: Boolean(document.querySelector("[data-zoology-learning-cycle]")),
+    hasStylesheet: Array.from(
+      document.querySelectorAll('link[rel="stylesheet"]')
+    ).some((link) =>
+      String(link.getAttribute("href") || "").includes("zoology-academic.css")
+    ),
+    horizontalOverflow:
+      Math.max(0, document.documentElement.scrollWidth - window.innerWidth),
+    resetInquiryLabel:
+      resetButton
+        ? resetButton.textContent.trim() === "Reset inquiry"
+        : true,
+    darkHeadingChecks,
+  };
+}, headingContract);
+      const fullPageAxe =
+        isAnimalDiversityRoute &&
+        viewport.name === "mobile-390";
+
+      const scopedCycleAxe =
+        !isAnimalDiversityRoute &&
+        metrics.hasCycle &&
+        viewport.name === "mobile-390";
+
+      if (fullPageAxe || scopedCycleAxe) {
         await page.addScriptTag({ content: axe.source });
-        const axeResult = await page.evaluate(async () => {
-          const target = document.querySelector("[data-zoology-learning-cycle]");
-          return window.axe.run(target, {
-            runOnly: { type: "tag", values: ["wcag2a", "wcag2aa"] },
-          });
-        });
+
+        const axeResult = await page.evaluate(
+          async ({ fullPage }) => {
+            const target = fullPage
+              ? document
+              : document.querySelector("[data-zoology-learning-cycle]");
+
+            return window.axe.run(target, {
+              runOnly: {
+                type: "tag",
+                values: ["wcag2a", "wcag2aa"],
+              },
+            });
+          },
+          { fullPage: fullPageAxe }
+        );
         axeViolations = axeResult.violations.map((violation) => ({
           id: violation.id,
           impact: violation.impact,
@@ -131,9 +196,11 @@ for (const route of routes) {
     const passed = status === 200 &&
       metrics?.hasContent === true &&
       metrics?.hasStylesheet === true &&
-      metrics?.hasCycle === true &&
+      (!isAnimalDiversityRoute || metrics?.hasContent === true) &&
+      (isAnimalDiversityRoute || metrics?.hasCycle === true) &&
       metrics?.resetInquiryLabel === true &&
       (metrics?.horizontalOverflow ?? 999) <= 2 &&
+      metrics?.darkHeadingChecks?.every((check) => check.passed) === true &&
       consoleErrors.length === 0 &&
       pageErrors.length === 0 &&
       localHttpErrors.length === 0 &&

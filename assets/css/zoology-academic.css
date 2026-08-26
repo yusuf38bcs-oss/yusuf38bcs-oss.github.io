@@ -75,6 +75,53 @@
   color: #315f59 !important;
 }
 
+/*
+ * Preserve established dark Animal Diversity component heading colors.
+ * Canonical Animal Diversity participates in the shared Zoology route,
+ * while its existing dark components retain their light typography.
+ */
+.lbfl-zoology-route .page__content .lbfl-hub-title,
+.lbfl-zoology-route .page__content .lbfl-section-title,
+.lbfl-zoology-route .page__content .lbfl-study-step h3,
+.lbfl-zoology-route .page__content .lbfl-principle-card h3,
+.lbfl-zoology-route .page__content .lbfl-route-card h3,
+.lbfl-zoology-route .page__content .lbfl-log-card h3 {
+  color: #f8fafc !important;
+}
+
+.lbfl-zoology-route .page__content .animal-anchor-grid h3 {
+  color: #7fffe7 !important;
+}
+
+/*
+ * Reconcile legacy dark-shell tokens with the Zoology light reading shell.
+ *
+ * production-hotfix.css still applies light body text to
+ * .layout--single.wide with !important. Zoology intentionally
+ * uses cream/soft reading surfaces, so restore the existing
+ * Zoology palette without introducing new color tokens.
+ */
+html.lbfl-zoology-route body.layout--single.wide .page__content {
+  color: var(--zoo-ink) !important;
+}
+
+.lbfl-zoology-route .page__content .educational-boundary strong {
+  color: var(--zoo-ink);
+}
+
+.lbfl-zoology-route .page__content .educational-boundary span[lang="bn"] {
+  color: var(--zoo-muted);
+}
+
+html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-title {
+  color: var(--zoo-heading-color);
+}
+
+html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-link,
+html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-child-link {
+  color: var(--zoo-teal-strong);
+}
+
 .lbfl-zoology-route .page__content a {
   color: var(--zoo-teal-strong);
   text-decoration-thickness: 0.08em;
