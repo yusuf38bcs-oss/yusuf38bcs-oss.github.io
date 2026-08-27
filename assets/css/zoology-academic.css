@@ -81,12 +81,16 @@
  * while its existing dark components retain their light typography.
  */
 html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-hub-title,
-html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-section-title,
 html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-study-step h3,
 html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-principle-card h3,
 html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-route-card h3,
 html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-log-card h3 {
   color: #f8fafc !important;
+}
+
+/* Section titles sit on the light reading surface, not inside dark cards. */
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-section-title {
+  color: var(--zoo-heading-color) !important;
 }
 
 .lbfl-zoology-route .page__content .animal-anchor-grid h3 {
@@ -105,11 +109,8 @@ html.lbfl-zoology-route body.layout--single.wide .page__content {
   color: var(--zoo-ink) !important;
 }
 
-.lbfl-zoology-route .page__content .educational-boundary strong {
-  color: var(--zoo-ink) !important;
-}
-
-.lbfl-zoology-route .page__content .educational-boundary span[lang="bn"] {
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .educational-boundary,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content .educational-boundary {
   color: var(--zoo-ink) !important;
 }
 
@@ -358,4 +359,3 @@ html.lbfl-zoology-route:has(.animal-matrix-hero) .lbfl-language-switcher__link {
     transition-duration: 0.01ms !important;
   }
 }
-

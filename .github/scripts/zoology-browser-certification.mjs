@@ -22,7 +22,7 @@ const viewports = [
 const animalDiversityHeadingContract = {
   "/biology/animal-diversity/": [
     { selector: ".lbfl-hub-title", expectedColor: "rgb(248, 250, 252)" },
-    { selector: ".lbfl-section-title", expectedColor: "rgb(248, 250, 252)" },
+    { selector: ".lbfl-section-title", expectedColor: "rgb(21, 63, 59)" },
     { selector: ".lbfl-principle-card h3", expectedColor: "rgb(248, 250, 252)" },
   ],
   "/biology/animal-diversity/complete-matrix/": [
