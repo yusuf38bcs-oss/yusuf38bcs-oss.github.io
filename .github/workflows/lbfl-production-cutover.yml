@@ -40,7 +40,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
           test -n "$ACCOUNT_ID"
           test -n "$API_TOKEN"
-          test "$(node -e "const c=require('./wrangler.jsonc'); process.stdout.write(c.name)")" = "$NEW_SERVICE"
+          grep -Eq '"name"[[:space:]]*:[[:space:]]*"lbfl-socratic-ai"' wrangler.jsonc
 
       - name: Capture current production and candidate state
         id: preflight
@@ -113,19 +113,27 @@ jobs:
               "$api"
           }
 
+          current_owner() {
+            curl --fail --silent --show-error -H "Authorization: Bearer $API_TOKEN" "$api" > "$RUNNER_TEMP/current-domains.json"
+            node - "$RUNNER_TEMP/current-domains.json" "$HOSTNAME" <<'NODE'
+            const fs=require('node:fs'); const [p,h]=process.argv.slice(2); const j=JSON.parse(fs.readFileSync(p,'utf8')); const d=(j.result||[]).find(x=>x.hostname===h); process.stdout.write(d?.service||'');
+            NODE
+          }
+
           rollback() {
             rc=$?
             if [[ "$changed" = "1" ]]; then
               echo "Post-cutover verification failed; restoring $OLD_SERVICE" >&2
               attach "$OLD_SERVICE" > cutover-evidence/rollback.json || true
+              restored=0
               for i in $(seq 1 30); do
-                owner="$(curl --silent --show-error -H "Authorization: Bearer $API_TOKEN" "$api" | node - "$HOSTNAME" <<'NODE'
-                let s=''; process.stdin.on('data',d=>s+=d); process.stdin.on('end',()=>{const p=JSON.parse(s); const d=(p.result||[]).find(x=>x.hostname===process.argv[2]); process.stdout.write(d?.service||'');});
-                NODE
-                )"
-                [[ "$owner" = "$OLD_SERVICE" ]] && break
+                owner="$(current_owner || true)"
+                if [[ "$owner" = "$OLD_SERVICE" ]]; then restored=1; break; fi
                 sleep 2
               done
+              if [[ "$restored" != "1" ]]; then
+                echo "CRITICAL: automatic rollback could not verify old owner" >&2
+              fi
             fi
             exit "$rc"
           }
@@ -134,39 +142,32 @@ jobs:
           attach "$NEW_SERVICE" > cutover-evidence/domain-attach.json
           changed=1
 
+          owner=""
           for i in $(seq 1 30); do
-            curl --fail --silent --show-error -H "Authorization: Bearer $API_TOKEN" "$api" > cutover-evidence/domains-after.json
-            owner="$(node - cutover-evidence/domains-after.json "$HOSTNAME" <<'NODE'
-            const fs=require('node:fs'); const [p,h]=process.argv.slice(2); const j=JSON.parse(fs.readFileSync(p,'utf8')); const d=(j.result||[]).find(x=>x.hostname===h); process.stdout.write(d?.service||'');
-            NODE
-            )"
+            owner="$(current_owner)"
             [[ "$owner" = "$NEW_SERVICE" ]] && break
             sleep 2
           done
           test "$owner" = "$NEW_SERVICE"
 
-          # Health + exact Worker version.
+          verified=0
           for i in $(seq 1 20); do
             if curl --fail --silent --show-error -D cutover-evidence/prod-health.headers \
               "https://$HOSTNAME/api/health" > cutover-evidence/prod-health.json; then
               if node - cutover-evidence/prod-health.json cutover-evidence/prod-health.headers "$CANDIDATE_VERSION" <<'NODE'
               const fs=require('node:fs'); const [hp,hh,expected]=process.argv.slice(2); const health=JSON.parse(fs.readFileSync(hp,'utf8')); const headers=fs.readFileSync(hh,'utf8'); const v=headers.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(health.ok!==true||health.gemini_key_configured!==true||v!==expected||health.worker_version_id!==expected) process.exit(1);
               NODE
-              then break; fi
+              then verified=1; break; fi
             fi
             sleep 2
           done
-          node - cutover-evidence/prod-health.json cutover-evidence/prod-health.headers "$CANDIDATE_VERSION" <<'NODE'
-          const fs=require('node:fs'); const [hp,hh,expected]=process.argv.slice(2); const health=JSON.parse(fs.readFileSync(hp,'utf8')); const headers=fs.readFileSync(hh,'utf8'); const v=headers.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(health.ok!==true) throw new Error('Production health not OK'); if(health.gemini_key_configured!==true) throw new Error('Production Gemini binding missing'); if(v!==expected||health.worker_version_id!==expected) throw new Error(`Production version ${v}/${health.worker_version_id} does not match ${expected}`); console.log(JSON.stringify(health,null,2));
-          NODE
+          test "$verified" = "1"
 
-          # Browser CORS contract.
           curl --fail --silent --show-error -D cutover-evidence/cors.headers -o /dev/null \
             -H 'Origin: https://learningbiologyforlife.org' \
             "https://$HOSTNAME/api/health"
           grep -Eiq '^access-control-allow-origin:\s*https://learningbiologyforlife\.org\s*$' cutover-evidence/cors.headers
 
-          # Genuine production Socratic execution, never fallback.
           curl --fail --silent --show-error -D cutover-evidence/socratic.headers \
             -H 'Origin: https://learningbiologyforlife.org' \
             -H 'Content-Type: application/json' \
@@ -195,8 +196,6 @@ jobs:
             echo "- Intended owner: \`$NEW_SERVICE\`"
             echo "- Hostname: \`$HOSTNAME\`"
             echo "- Candidate Worker version: \`$CANDIDATE_VERSION\`"
-            echo "- Health check: \`${CUTOVER_STATUS:-failed-or-rolled-back}\`"
-            echo "- Socratic check: \`${CUTOVER_STATUS:-failed-or-rolled-back}\`"
-            echo "- Browser CORS check: \`${CUTOVER_STATUS:-failed-or-rolled-back}\`"
+            echo "- Health/Socratic/CORS/version checks: \`${CUTOVER_STATUS:-failed-or-rolled-back}\`"
             echo "- Automatic rollback armed: \`yes\`"
           } >> "$GITHUB_STEP_SUMMARY"
