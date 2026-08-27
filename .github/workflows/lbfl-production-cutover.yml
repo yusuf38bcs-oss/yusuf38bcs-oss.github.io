@@ -32,16 +32,13 @@ jobs:
         with:
           ref: ${{ env.EXPECTED_HEAD }}
           persist-credentials: false
-
       - name: Fail closed on cutover prerequisites
         shell: bash
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
-          test -n "$ACCOUNT_ID"
-          test -n "$API_TOKEN"
+          test -n "$ACCOUNT_ID" && test -n "$API_TOKEN"
           grep -Eq '"name"[[:space:]]*:[[:space:]]*"lbfl-socratic-ai"' wrangler.jsonc
-
       - name: Capture current production and candidate state
         id: preflight
         shell: bash
@@ -51,14 +48,13 @@ jobs:
           api="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/workers/domains"
           curl --fail --silent --show-error -H "Authorization: Bearer $API_TOKEN" "$api" > cutover-evidence/domains-before.json
           node - cutover-evidence/domains-before.json "$HOSTNAME" "$OLD_SERVICE" "$GITHUB_OUTPUT" <<'NODE'
-          const fs = require('node:fs'); const [path, hostname, expectedService, output] = process.argv.slice(2); const payload = JSON.parse(fs.readFileSync(path, 'utf8')); if (payload.success !== true) throw new Error('Cloudflare domain listing failed'); const domain = (payload.result || []).find((x) => x.hostname === hostname); if (!domain) throw new Error(`Custom domain ${hostname} not found`); if (domain.service !== expectedService) throw new Error(`Expected current owner ${expectedService}, found ${domain.service}`); if (!domain.zone_id || !domain.zone_name || !domain.id) throw new Error('Current domain metadata incomplete'); fs.appendFileSync(output, `domain_id=${domain.id}\nzone_id=${domain.zone_id}\nzone_name=${domain.zone_name}\nold_service=${domain.service}\n`); console.log(JSON.stringify(domain, null, 2));
+          const fs=require('node:fs'); const [p,h,s,o]=process.argv.slice(2); const j=JSON.parse(fs.readFileSync(p,'utf8')); const d=(j.result||[]).find(x=>x.hostname===h); if(j.success!==true||!d) throw new Error('Current domain not found'); if(d.service!==s) throw new Error(`Expected ${s}, found ${d.service}`); if(!d.zone_id||!d.zone_name) throw new Error('Zone metadata missing'); fs.appendFileSync(o,`zone_id=${d.zone_id}\nzone_name=${d.zone_name}\nold_service=${d.service}\n`); console.log(JSON.stringify(d,null,2));
           NODE
           curl --fail --silent --show-error -D cutover-evidence/old-health.headers "https://$HOSTNAME/api/health" > cutover-evidence/old-health.json
           curl --fail --silent --show-error -D cutover-evidence/new-health.headers "$NEW_WORKER_URL/api/health" > cutover-evidence/new-health.json
           node - cutover-evidence/new-health.json cutover-evidence/new-health.headers "$GITHUB_OUTPUT" <<'NODE'
-          const fs = require('node:fs'); const [healthPath, headersPath, output] = process.argv.slice(2); const health = JSON.parse(fs.readFileSync(healthPath, 'utf8')); const headers = fs.readFileSync(headersPath, 'utf8'); const version = headers.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim() || ''; if (health.ok !== true) throw new Error('Candidate health not OK'); if (health.gemini_key_configured !== true) throw new Error('Candidate Gemini key not configured'); if (!/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(version)) throw new Error('Candidate version header missing'); if (health.worker_version_id !== version) throw new Error('Candidate body/header version mismatch'); fs.appendFileSync(output, `candidate_version=${version}\n`); console.log(JSON.stringify({candidate_version: version, health}, null, 2));
+          const fs=require('node:fs'); const [p,h,o]=process.argv.slice(2); const j=JSON.parse(fs.readFileSync(p,'utf8')); const hs=fs.readFileSync(h,'utf8'); const v=hs.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(j.ok!==true||j.gemini_key_configured!==true||j.worker_version_id!==v) throw new Error('Candidate not ready'); fs.appendFileSync(o,`candidate_version=${v}\n`); console.log(JSON.stringify({candidate_version:v,health:j},null,2));
           NODE
-
       - name: Transfer custom domain and verify with automatic rollback
         id: cutover
         env:
@@ -69,43 +65,30 @@ jobs:
         run: |
           set -Eeuo pipefail
           api="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/workers/domains"; changed=0
-          attach() { local service="$1"; node - "$HOSTNAME" "$service" "$ZONE_ID" "$ZONE_NAME" > "$RUNNER_TEMP/domain-body.json" <<'NODE'
-          const [hostname, service, zone_id, zone_name] = process.argv.slice(2); process.stdout.write(JSON.stringify({hostname, service, zone_id, zone_name}));
-          NODE
-          curl --fail --silent --show-error -X PUT -H 'Content-Type: application/json' -H "Authorization: Bearer $API_TOKEN" --data-binary "@$RUNNER_TEMP/domain-body.json" "$api"; }
-          current_owner() { curl --fail --silent --show-error -H "Authorization: Bearer $API_TOKEN" "$api" > "$RUNNER_TEMP/current-domains.json"; node - "$RUNNER_TEMP/current-domains.json" "$HOSTNAME" <<'NODE'
-          const fs=require('node:fs'); const [p,h]=process.argv.slice(2); const j=JSON.parse(fs.readFileSync(p,'utf8')); const d=(j.result||[]).find(x=>x.hostname===h); process.stdout.write(d?.service||'');
+          attach(){ local s="$1"; printf '{"hostname":"%s","service":"%s","zone_id":"%s","zone_name":"%s"}' "$HOSTNAME" "$s" "$ZONE_ID" "$ZONE_NAME" > "$RUNNER_TEMP/body.json"; curl --fail --silent --show-error -X PUT -H 'Content-Type: application/json' -H "Authorization: Bearer $API_TOKEN" --data-binary "@$RUNNER_TEMP/body.json" "$api"; }
+          owner(){ curl --fail --silent --show-error -H "Authorization: Bearer $API_TOKEN" "$api" > "$RUNNER_TEMP/domains.json"; node - "$RUNNER_TEMP/domains.json" "$HOSTNAME" <<'NODE'
+          const fs=require('node:fs'); const [p,h]=process.argv.slice(2); const j=JSON.parse(fs.readFileSync(p,'utf8')); process.stdout.write((j.result||[]).find(x=>x.hostname===h)?.service||'');
           NODE
           }
-          rollback() { rc=$?; if [[ "$changed" = "1" ]]; then echo "Post-cutover verification failed; restoring $OLD_SERVICE" >&2; attach "$OLD_SERVICE" > cutover-evidence/rollback.json || true; for i in $(seq 1 30); do [[ "$(current_owner || true)" = "$OLD_SERVICE" ]] && break; sleep 2; done; fi; exit "$rc"; }
+          rollback(){ rc=$?; if [[ "$changed" = 1 ]]; then echo "Verification failed; rolling back" >&2; attach "$OLD_SERVICE" > cutover-evidence/rollback.json || true; for i in $(seq 1 30); do [[ "$(owner || true)" = "$OLD_SERVICE" ]] && break; sleep 2; done; fi; exit "$rc"; }
           trap rollback ERR
-          attach "$NEW_SERVICE" > cutover-evidence/domain-attach.json; changed=1; owner=""
-          for i in $(seq 1 30); do owner="$(current_owner)"; [[ "$owner" = "$NEW_SERVICE" ]] && break; sleep 2; done
-          test "$owner" = "$NEW_SERVICE"; verified=0
+          attach "$NEW_SERVICE" > cutover-evidence/domain-attach.json; changed=1
+          for i in $(seq 1 30); do [[ "$(owner)" = "$NEW_SERVICE" ]] && break; sleep 2; done
+          test "$(owner)" = "$NEW_SERVICE"
+          ok=0
           for i in $(seq 1 20); do if curl --fail --silent --show-error -D cutover-evidence/prod-health.headers "https://$HOSTNAME/api/health" > cutover-evidence/prod-health.json; then if node - cutover-evidence/prod-health.json cutover-evidence/prod-health.headers "$CANDIDATE_VERSION" <<'NODE'
-          const fs=require('node:fs'); const [hp,hh,expected]=process.argv.slice(2); const health=JSON.parse(fs.readFileSync(hp,'utf8')); const headers=fs.readFileSync(hh,'utf8'); const v=headers.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(health.ok!==true||health.gemini_key_configured!==true||v!==expected||health.worker_version_id!==expected) process.exit(1);
+          const fs=require('node:fs'); const [p,h,e]=process.argv.slice(2); const j=JSON.parse(fs.readFileSync(p,'utf8')); const hs=fs.readFileSync(h,'utf8'); const v=hs.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; process.exit(j.ok===true&&j.gemini_key_configured===true&&j.worker_version_id===e&&v===e?0:1);
           NODE
-          then verified=1; break; fi; fi; sleep 2; done
-          test "$verified" = "1"
+          then ok=1; break; fi; fi; sleep 2; done
+          test "$ok" = 1
           curl --fail --silent --show-error -D cutover-evidence/cors.headers -o /dev/null -H 'Origin: https://learningbiologyforlife.org' "https://$HOSTNAME/api/health"
           grep -Eiq '^access-control-allow-origin:\s*https://learningbiologyforlife\.org\s*$' cutover-evidence/cors.headers
           curl --fail --silent --show-error -D cutover-evidence/socratic.headers -H 'Origin: https://learningbiologyforlife.org' -H 'Content-Type: application/json' --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/","attempt_count":1}' "https://$HOSTNAME/api/socratic" > cutover-evidence/socratic.json
           node - cutover-evidence/socratic.json cutover-evidence/socratic.headers "$CANDIDATE_VERSION" <<'NODE'
-          const fs=require('node:fs'); const [rp,hp,expected]=process.argv.slice(2); const r=JSON.parse(fs.readFileSync(rp,'utf8')); const h=fs.readFileSync(hp,'utf8'); for(const k of ['mastery_achieved','feedback_text','next_vector','strike_count']) if(!(k in r)) throw new Error(`Missing ${k}`); const fallback='Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.'; if(r.feedback_text===fallback) throw new Error('Production returned deterministic fallback'); const v=h.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(v!==expected) throw new Error(`Socratic response version ${v} != ${expected}`); console.log(JSON.stringify(r,null,2));
+          const fs=require('node:fs'); const [p,h,e]=process.argv.slice(2); const r=JSON.parse(fs.readFileSync(p,'utf8')); const hs=fs.readFileSync(h,'utf8'); for(const k of ['mastery_achieved','feedback_text','next_vector','strike_count']) if(!(k in r)) throw new Error(`Missing ${k}`); if(r.feedback_text==='Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.') throw new Error('Fallback detected'); const v=hs.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(v!==e) throw new Error('Version mismatch'); console.log(JSON.stringify(r,null,2));
           NODE
-          trap - ERR; echo "cutover_status=pass" >> "$GITHUB_OUTPUT"
-
+          trap - ERR; echo 'cutover_status=pass' >> "$GITHUB_OUTPUT"
       - name: Summarize controlled cutover
         if: always()
-        env:
-          CANDIDATE_VERSION: ${{ steps.preflight.outputs.candidate_version }}
-          CUTOVER_STATUS: ${{ steps.cutover.outputs.cutover_status }}
         shell: bash
-        run: |
-          echo "# LBFL controlled production cutover" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Previous owner: $OLD_SERVICE" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Intended owner: $NEW_SERVICE" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Hostname: $HOSTNAME" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Candidate Worker version: $CANDIDATE_VERSION" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Health/Socratic/CORS/version checks: ${CUTOVER_STATUS:-failed-or-rolled-back}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Automatic rollback armed: yes" >> "$GITHUB_STEP_SUMMARY"
+        run: echo "LBFL cutover status: ${{ steps.cutover.outputs.cutover_status || 'failed-or-rolled-back' }}" >> "$GITHUB_STEP_SUMMARY"
