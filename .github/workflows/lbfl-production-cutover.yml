@@ -49,10 +49,7 @@ jobs:
           set -euo pipefail
           mkdir -p cutover-evidence
           api="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/workers/domains"
-          curl --fail --silent --show-error \
-            -H "Authorization: Bearer $API_TOKEN" \
-            "$api" > cutover-evidence/domains-before.json
-
+          curl --fail --silent --show-error -H "Authorization: Bearer $API_TOKEN" "$api" > cutover-evidence/domains-before.json
           node - cutover-evidence/domains-before.json "$HOSTNAME" "$OLD_SERVICE" "$GITHUB_OUTPUT" <<'NODE'
           const fs = require('node:fs');
           const [path, hostname, expectedService, output] = process.argv.slice(2);
@@ -65,12 +62,8 @@ jobs:
           fs.appendFileSync(output, `domain_id=${domain.id}\nzone_id=${domain.zone_id}\nzone_name=${domain.zone_name}\nold_service=${domain.service}\n`);
           console.log(JSON.stringify(domain, null, 2));
           NODE
-
-          curl --fail --silent --show-error -D cutover-evidence/old-health.headers \
-            "https://$HOSTNAME/api/health" > cutover-evidence/old-health.json
-          curl --fail --silent --show-error -D cutover-evidence/new-health.headers \
-            "$NEW_WORKER_URL/api/health" > cutover-evidence/new-health.json
-
+          curl --fail --silent --show-error -D cutover-evidence/old-health.headers "https://$HOSTNAME/api/health" > cutover-evidence/old-health.json
+          curl --fail --silent --show-error -D cutover-evidence/new-health.headers "$NEW_WORKER_URL/api/health" > cutover-evidence/new-health.json
           node - cutover-evidence/new-health.json cutover-evidence/new-health.headers "$GITHUB_OUTPUT" <<'NODE'
           const fs = require('node:fs');
           const [healthPath, headersPath, output] = process.argv.slice(2);
@@ -98,28 +91,20 @@ jobs:
           set -Eeuo pipefail
           api="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/workers/domains"
           changed=0
-
           attach() {
             local service="$1"
             node - "$HOSTNAME" "$service" "$ZONE_ID" "$ZONE_NAME" > "$RUNNER_TEMP/domain-body.json" <<'NODE'
             const [hostname, service, zone_id, zone_name] = process.argv.slice(2);
             process.stdout.write(JSON.stringify({hostname, service, zone_id, zone_name}));
             NODE
-            curl --fail --silent --show-error \
-              -X PUT \
-              -H 'Content-Type: application/json' \
-              -H "Authorization: Bearer $API_TOKEN" \
-              --data-binary "@$RUNNER_TEMP/domain-body.json" \
-              "$api"
+            curl --fail --silent --show-error -X PUT -H 'Content-Type: application/json' -H "Authorization: Bearer $API_TOKEN" --data-binary "@$RUNNER_TEMP/domain-body.json" "$api"
           }
-
           current_owner() {
             curl --fail --silent --show-error -H "Authorization: Bearer $API_TOKEN" "$api" > "$RUNNER_TEMP/current-domains.json"
             node - "$RUNNER_TEMP/current-domains.json" "$HOSTNAME" <<'NODE'
             const fs=require('node:fs'); const [p,h]=process.argv.slice(2); const j=JSON.parse(fs.readFileSync(p,'utf8')); const d=(j.result||[]).find(x=>x.hostname===h); process.stdout.write(d?.service||'');
             NODE
           }
-
           rollback() {
             rc=$?
             if [[ "$changed" = "1" ]]; then
@@ -131,17 +116,13 @@ jobs:
                 if [[ "$owner" = "$OLD_SERVICE" ]]; then restored=1; break; fi
                 sleep 2
               done
-              if [[ "$restored" != "1" ]]; then
-                echo "CRITICAL: automatic rollback could not verify old owner" >&2
-              fi
+              if [[ "$restored" != "1" ]]; then echo "CRITICAL: automatic rollback could not verify old owner" >&2; fi
             fi
             exit "$rc"
           }
           trap rollback ERR
-
           attach "$NEW_SERVICE" > cutover-evidence/domain-attach.json
           changed=1
-
           owner=""
           for i in $(seq 1 30); do
             owner="$(current_owner)"
@@ -149,11 +130,9 @@ jobs:
             sleep 2
           done
           test "$owner" = "$NEW_SERVICE"
-
           verified=0
           for i in $(seq 1 20); do
-            if curl --fail --silent --show-error -D cutover-evidence/prod-health.headers \
-              "https://$HOSTNAME/api/health" > cutover-evidence/prod-health.json; then
+            if curl --fail --silent --show-error -D cutover-evidence/prod-health.headers "https://$HOSTNAME/api/health" > cutover-evidence/prod-health.json; then
               if node - cutover-evidence/prod-health.json cutover-evidence/prod-health.headers "$CANDIDATE_VERSION" <<'NODE'
               const fs=require('node:fs'); const [hp,hh,expected]=process.argv.slice(2); const health=JSON.parse(fs.readFileSync(hp,'utf8')); const headers=fs.readFileSync(hh,'utf8'); const v=headers.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(health.ok!==true||health.gemini_key_configured!==true||v!==expected||health.worker_version_id!==expected) process.exit(1);
               NODE
@@ -162,22 +141,12 @@ jobs:
             sleep 2
           done
           test "$verified" = "1"
-
-          curl --fail --silent --show-error -D cutover-evidence/cors.headers -o /dev/null \
-            -H 'Origin: https://learningbiologyforlife.org' \
-            "https://$HOSTNAME/api/health"
+          curl --fail --silent --show-error -D cutover-evidence/cors.headers -o /dev/null -H 'Origin: https://learningbiologyforlife.org' "https://$HOSTNAME/api/health"
           grep -Eiq '^access-control-allow-origin:\s*https://learningbiologyforlife\.org\s*$' cutover-evidence/cors.headers
-
-          curl --fail --silent --show-error -D cutover-evidence/socratic.headers \
-            -H 'Origin: https://learningbiologyforlife.org' \
-            -H 'Content-Type: application/json' \
-            --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/","attempt_count":1}' \
-            "https://$HOSTNAME/api/socratic" > cutover-evidence/socratic.json
-
+          curl --fail --silent --show-error -D cutover-evidence/socratic.headers -H 'Origin: https://learningbiologyforlife.org' -H 'Content-Type: application/json' --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/","attempt_count":1}' "https://$HOSTNAME/api/socratic" > cutover-evidence/socratic.json
           node - cutover-evidence/socratic.json cutover-evidence/socratic.headers "$CANDIDATE_VERSION" <<'NODE'
           const fs=require('node:fs'); const [rp,hp,expected]=process.argv.slice(2); const r=JSON.parse(fs.readFileSync(rp,'utf8')); const h=fs.readFileSync(hp,'utf8'); for(const k of ['mastery_achieved','feedback_text','next_vector','strike_count']) if(!(k in r)) throw new Error(`Missing ${k}`); const fallback='Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.'; if(r.feedback_text===fallback) throw new Error('Production returned deterministic fallback'); const v=h.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(v!==expected) throw new Error(`Socratic response version ${v} != ${expected}`); console.log(JSON.stringify(r,null,2));
           NODE
-
           trap - ERR
           echo "cutover_status=pass" >> "$GITHUB_OUTPUT"
           echo "Production domain retained on $NEW_SERVICE after all checks passed."
