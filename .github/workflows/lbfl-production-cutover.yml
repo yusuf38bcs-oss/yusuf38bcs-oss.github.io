@@ -69,8 +69,7 @@ jobs:
           const [healthPath, headersPath, output] = process.argv.slice(2);
           const health = JSON.parse(fs.readFileSync(healthPath, 'utf8'));
           const headers = fs.readFileSync(headersPath, 'utf8');
-          const match = headers.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im);
-          const version = match?.[1]?.trim() || '';
+          const version = headers.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim() || '';
           if (health.ok !== true) throw new Error('Candidate health not OK');
           if (health.gemini_key_configured !== true) throw new Error('Candidate Gemini key not configured');
           if (!/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(version)) throw new Error('Candidate version header missing');
@@ -82,7 +81,6 @@ jobs:
       - name: Transfer custom domain and verify with automatic rollback
         id: cutover
         env:
-          DOMAIN_ID: ${{ steps.preflight.outputs.domain_id }}
           ZONE_ID: ${{ steps.preflight.outputs.zone_id }}
           ZONE_NAME: ${{ steps.preflight.outputs.zone_name }}
           CANDIDATE_VERSION: ${{ steps.preflight.outputs.candidate_version }}
@@ -110,13 +108,10 @@ jobs:
             if [[ "$changed" = "1" ]]; then
               echo "Post-cutover verification failed; restoring $OLD_SERVICE" >&2
               attach "$OLD_SERVICE" > cutover-evidence/rollback.json || true
-              restored=0
               for i in $(seq 1 30); do
-                owner="$(current_owner || true)"
-                if [[ "$owner" = "$OLD_SERVICE" ]]; then restored=1; break; fi
+                [[ "$(current_owner || true)" = "$OLD_SERVICE" ]] && break
                 sleep 2
               done
-              if [[ "$restored" != "1" ]]; then echo "CRITICAL: automatic rollback could not verify old owner" >&2; fi
             fi
             exit "$rc"
           }
@@ -149,7 +144,6 @@ jobs:
           NODE
           trap - ERR
           echo "cutover_status=pass" >> "$GITHUB_OUTPUT"
-          echo "Production domain retained on $NEW_SERVICE after all checks passed."
 
       - name: Summarize controlled cutover
         if: always()
