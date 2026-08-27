@@ -343,6 +343,54 @@ html.lbfl-zoology-route:has(.animal-matrix-hero) .lbfl-language-switcher__link {
   background: #ffffff !important;
 }
 
+/*
+ * The two canonical Animal Diversity pages use legacy dark cards inside the
+ * Zoology reading shell. A server-rendered route class keeps these foreground
+ * repairs out of unrelated Zoology pages and avoids relying on :has() in the
+ * cascade that Axe inspects.
+ */
+body.lbfl-animal-diversity-document .educational-boundary,
+body.lbfl-animal-diversity-document .educational-boundary strong,
+body.lbfl-animal-diversity-document .educational-boundary span[lang="bn"],
+body.lbfl-animal-diversity-document .contextual-sidebar-nav .sidebar-nav-title,
+body.lbfl-animal-diversity-document .page__title,
+body.lbfl-animal-diversity-document .page__content > h1,
+body.lbfl-animal-diversity-document .page__content > ul li {
+  color: #102a2a !important;
+}
+
+body.lbfl-animal-diversity-document .contextual-sidebar-nav .sidebar-nav-link,
+body.lbfl-animal-diversity-document .contextual-sidebar-nav .sidebar-nav-child-link,
+body.lbfl-animal-diversity-document .page__content > ul a {
+  color: #073c37 !important;
+}
+
+body.lbfl-animal-diversity-document .lbfl-section-title {
+  color: #153f3b !important;
+}
+
+body.lbfl-animal-diversity-document .lbfl-hub-intro .lbfl-hub-title,
+body.lbfl-animal-diversity-document .lbfl-study-step h3,
+body.lbfl-animal-diversity-document .lbfl-principle-card h3,
+body.lbfl-animal-diversity-document .lbfl-route-card h3,
+body.lbfl-animal-diversity-document .lbfl-log-card h3,
+body.lbfl-animal-diversity-document .lbfl-outcome-card h2,
+body.lbfl-animal-diversity-document .lbfl-outcome-card h2 a,
+body.lbfl-animal-diversity-document .lbfl-outcome-card h3 {
+  color: #f8fafc !important;
+}
+
+body.lbfl-animal-diversity-document .page__content pre,
+body.lbfl-animal-diversity-document .page__content pre code {
+  color: #f5fbf8 !important;
+  background: #102825 !important;
+}
+
+body.lbfl-animal-diversity-document .lbfl-language-switcher__link {
+  color: #102a2a !important;
+  background: #ffffff !important;
+}
+
 @media (max-width: 24rem) {
   .lbfl-zoology-cycle__steps {
     grid-template-columns: 1fr;
