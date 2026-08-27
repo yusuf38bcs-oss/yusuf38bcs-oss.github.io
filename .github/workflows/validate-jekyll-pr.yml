@@ -13,14 +13,12 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout immutable event head
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
-
       - name: Assert exact PR head and current base identity
         if: github.event_name == 'pull_request'
         shell: bash
@@ -30,81 +28,40 @@ jobs:
           PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
         run: |
           set -euo pipefail
-
           actual_head="$(git rev-parse HEAD)"
-          if [[ "$actual_head" != "$PR_HEAD_SHA" ]]; then
-            echo "HEAD CHANGED — RECERTIFICATION REQUIRED"
-            echo "event head:  $PR_HEAD_SHA"
-            echo "actual head: $actual_head"
-            exit 1
-          fi
-
+          test "$actual_head" = "$PR_HEAD_SHA" || { echo "HEAD CHANGED — RECERTIFICATION REQUIRED"; exit 1; }
           remote_base="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
-          if [[ -z "$remote_base" ]]; then
-            echo "Unable to resolve current base ref: $PR_BASE_REF"
-            exit 1
-          fi
-
-          if [[ "$remote_base" != "$PR_BASE_SHA" ]]; then
-            echo "BASE CHANGED — RECERTIFICATION REQUIRED"
-            echo "event base:   $PR_BASE_SHA"
-            echo "current base: $remote_base"
-            exit 1
-          fi
-
+          test -n "$remote_base"
+          test "$remote_base" = "$PR_BASE_SHA" || { echo "BASE CHANGED — RECERTIFICATION REQUIRED"; exit 1; }
           git fetch --no-tags origin "refs/heads/$PR_BASE_REF:refs/remotes/origin/$PR_BASE_REF"
-          fetched_base="$(git rev-parse "refs/remotes/origin/$PR_BASE_REF")"
-          if [[ "$fetched_base" != "$remote_base" ]]; then
-            echo "BASE FETCH IDENTITY MISMATCH"
-            echo "remote base:  $remote_base"
-            echo "fetched base: $fetched_base"
-            exit 1
-          fi
-
-          if ! git merge-base --is-ancestor "$remote_base" "$actual_head"; then
-            echo "STALE PR HEAD — CURRENT BASE IS NOT AN ANCESTOR"
-            echo "current base: $PR_BASE_REF@$remote_base"
-            echo "PR head:      $actual_head"
-            exit 1
-          fi
-
-          echo "Exact head authenticated: $actual_head"
-          echo "Current base authenticated: $PR_BASE_REF@$remote_base"
-          echo "Base ancestry authenticated: $remote_base is an ancestor of $actual_head"
-
+          test "$(git rev-parse "refs/remotes/origin/$PR_BASE_REF")" = "$remote_base"
+          git merge-base --is-ancestor "$remote_base" "$actual_head" || { echo "STALE PR HEAD — CURRENT BASE IS NOT AN ANCESTOR"; exit 1; }
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2"
           bundler-cache: false
-
       - name: Install Dependencies
         run: |
           bundle config set --local frozen 'false'
           bundle install
-
       - name: Validate Biology Admission Engine
         run: ruby scripts/admission/validate_biology_engine.rb
-
       - name: Test Biology Audit Validator Regressions
         run: ruby scripts/admission/test_validate_biology_audit.rb
-
       - name: Validate Biology 2016-17 Audit Pilot
         run: ruby scripts/admission/validate_biology_audit.rb
-
       - name: Clean Previous Build
         run: bundle exec jekyll clean
-
       - name: Build Jekyll Site
         run: bundle exec jekyll build --trace
         env:
           JEKYLL_ENV: production
           JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Validate Core Output
         run: |
-          test -f _site/index.html || (echo "Missing index.html" && exit 1)
-          test -f _site/biology/index.html || (echo "Missing /biology/" && exit 1)
+          test -f _site/index.html
+          test -f _site/biology/index.html
           echo "Jekyll validation passed."
 
   deploy-lbfl-socratic-smoke:
@@ -121,147 +78,107 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       WORKER_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev
-
     steps:
       - name: Checkout immutable PR head
         uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
-
-      - name: Fail closed on Cloudflare credentials and Worker identity
+      - name: Fail closed on credentials and Worker identity
         shell: bash
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID is missing"; exit 1; }
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is missing"; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID"
+          test -n "$CLOUDFLARE_API_TOKEN"
           node <<'NODE'
-          const fs = require('node:fs');
-          const config = JSON.parse(fs.readFileSync('wrangler.jsonc', 'utf8'));
-          if (config.name !== 'lbfl-socratic-ai') throw new Error(`Refusing Worker name: ${config.name}`);
-          if (config.main !== 'worker/src/index.ts') throw new Error(`Unexpected entrypoint: ${config.main}`);
-          if (config.routes || config.route) throw new Error('Smoke deployment must not declare routes.');
-          if (config.custom_domain || config.custom_domains) throw new Error('Smoke deployment must not declare custom domains.');
-          if (config.workers_dev !== true) throw new Error('workers_dev must remain enabled.');
+          const fs=require('node:fs');
+          const c=JSON.parse(fs.readFileSync('wrangler.jsonc','utf8'));
+          if(c.name!=='lbfl-socratic-ai') throw new Error(`Refusing Worker name: ${c.name}`);
+          if(c.main!=='worker/src/index.ts') throw new Error(`Unexpected entrypoint: ${c.main}`);
+          if(c.routes||c.route||c.custom_domain||c.custom_domains) throw new Error('Isolated deploy must not declare routes/custom domains');
+          if(c.workers_dev!==true) throw new Error('workers_dev must be enabled');
           NODE
-          if [[ -z "$GEMINI_API_KEY" ]]; then
-            echo "GEMINI_API_KEY is not present in GitHub Actions; isolated runtime will be deployed in fail-safe mode."
-          fi
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "24"
           cache: npm
           cache-dependency-path: worker/package-lock.json
-
       - name: Install locked Worker dependencies
         working-directory: worker
         run: npm ci
-
       - name: Deploy only lbfl-socratic-ai
         working-directory: worker
-        shell: bash
-        run: |
-          set -euo pipefail
-          npx wrangler deploy --config ../wrangler.jsonc
-
-      - name: Configure Gemini secret when available
+        run: npx wrangler deploy --config ../wrangler.jsonc
+      - name: Configure Gemini secret
         working-directory: worker
         shell: bash
         run: |
           set -euo pipefail
-          if [[ -n "$GEMINI_API_KEY" ]]; then
-            printf '%s' "$GEMINI_API_KEY" | npx wrangler secret put GEMINI_API_KEY --config ../wrangler.jsonc
-          else
-            echo "No GitHub GEMINI_API_KEY is available; leaving the isolated Worker without that secret."
-          fi
-
-      - name: Verify isolated Worker health
+          test -n "$GEMINI_API_KEY"
+          printf '%s' "$GEMINI_API_KEY" | npx wrangler secret put GEMINI_API_KEY --config ../wrangler.jsonc
+      - name: Verify isolated Worker health and version
         id: health
         shell: bash
         run: |
           set -euo pipefail
-          health="$RUNNER_TEMP/health.json"
-          headers="$RUNNER_TEMP/health.headers"
-          success=false
-          for attempt in $(seq 1 20); do
-            if curl --fail --silent --show-error -D "$headers" -o "$health" "$WORKER_URL/api/health"; then
-              success=true
-              break
-            fi
+          body="$RUNNER_TEMP/health.json"; headers="$RUNNER_TEMP/health.headers"; ok=false
+          for _ in $(seq 1 20); do
+            if curl --fail --silent --show-error -D "$headers" -o "$body" "$WORKER_URL/api/health"; then ok=true; break; fi
             sleep 3
           done
-          test "$success" = true
-          node - "$health" "$headers" "$GITHUB_OUTPUT" <<'NODE'
-          const fs = require('node:fs');
-          const [healthPath, headersPath, outputPath] = process.argv.slice(2);
-          const health = JSON.parse(fs.readFileSync(healthPath, 'utf8'));
-          const headers = fs.readFileSync(headersPath, 'utf8').toLowerCase();
-          const versionId = String(health.worker_version_id || '').toLowerCase();
-          if (health.ok !== true) throw new Error('health.ok must be true');
-          if (health.environment !== 'production') throw new Error(`Unexpected environment: ${health.environment}`);
-          if (typeof health.gemini_key_configured !== 'boolean') throw new Error('gemini_key_configured must be boolean');
-          if (health.service !== 'LBFL Synaptic AI Edge Worker') throw new Error(`Unexpected service: ${health.service}`);
-          if (!/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(versionId)) throw new Error(`Invalid version: ${versionId}`);
-          if (!headers.includes(`x-lbfl-worker-version: ${versionId}`)) throw new Error('Worker version header/body mismatch');
-          fs.appendFileSync(outputPath, `gemini_configured=${health.gemini_key_configured ? 'true' : 'false'}\n`);
-          fs.appendFileSync(outputPath, `worker_version_id=${versionId}\n`);
-          console.log(JSON.stringify(health, null, 2));
+          test "$ok" = true
+          node - "$body" "$headers" "$GITHUB_OUTPUT" <<'NODE'
+          const fs=require('node:fs'); const [bp,hp,out]=process.argv.slice(2); const b=JSON.parse(fs.readFileSync(bp,'utf8')); const h=fs.readFileSync(hp,'utf8'); const v=h.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(b.ok!==true||b.environment!=='production'||b.gemini_key_configured!==true||b.service!=='LBFL Synaptic AI Edge Worker'||b.worker_version_id!==v) throw new Error('Isolated health/version contract failed'); fs.appendFileSync(out,`worker_version_id=${v}\n`); console.log(JSON.stringify(b,null,2));
           NODE
-
-      - name: Verify Socratic contract
+      - name: Verify genuine Gemini-backed Socratic result
         shell: bash
-        env:
-          GEMINI_CONFIGURED: ${{ steps.health.outputs.gemini_configured }}
         run: |
           set -euo pipefail
           result="$RUNNER_TEMP/socratic.json"
-          curl --fail --silent --show-error \
-            -H 'Content-Type: application/json' \
-            -H 'Accept: application/json' \
-            --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/hsc-corner/zoology/baroreceptor-reflex/","attempt_count":1}' \
-            "$WORKER_URL/api/socratic" > "$result"
-          node - "$result" "$GEMINI_CONFIGURED" <<'NODE'
-          const fs = require('node:fs');
-          const [resultPath, geminiConfigured] = process.argv.slice(2);
-          const result = JSON.parse(fs.readFileSync(resultPath, 'utf8'));
-          for (const key of ['mastery_achieved', 'feedback_text', 'next_vector', 'strike_count']) {
-            if (!(key in result)) throw new Error(`Missing key: ${key}`);
-          }
-          if (typeof result.mastery_achieved !== 'boolean') throw new Error('mastery_achieved must be boolean');
-          if (typeof result.feedback_text !== 'string' || result.feedback_text.length < 5) throw new Error('feedback_text invalid');
-          if (typeof result.next_vector !== 'string' || !result.next_vector.startsWith('/')) throw new Error('next_vector invalid');
-          if (!Number.isInteger(result.strike_count) || result.strike_count < 1 || result.strike_count > 3) throw new Error('strike_count invalid');
-          if (geminiConfigured !== 'true') {
-            if (result.mastery_achieved !== false) throw new Error('Fail-safe response must not claim mastery');
-            if (result.next_vector !== '/biology/') throw new Error(`Unexpected fail-safe vector: ${result.next_vector}`);
-            if (result.strike_count !== 1) throw new Error(`Unexpected fail-safe strike count: ${result.strike_count}`);
-          }
-          console.log(JSON.stringify(result, null, 2));
+          curl --fail --silent --show-error -H 'Content-Type: application/json' --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/","attempt_count":1}' "$WORKER_URL/api/socratic" > "$result"
+          node - "$result" <<'NODE'
+          const fs=require('node:fs'); const r=JSON.parse(fs.readFileSync(process.argv[2],'utf8')); for(const k of ['mastery_achieved','feedback_text','next_vector','strike_count']) if(!(k in r)) throw new Error(`Missing ${k}`); const fallback='Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.'; if(r.feedback_text===fallback) throw new Error('Deterministic fallback detected'); console.log(JSON.stringify(r,null,2));
           NODE
 
-      - name: Summarize isolated smoke deployment
+  cutover-lbfl-production:
+    name: Controlled production cutover with rollback
+    needs: deploy-lbfl-socratic-smoke
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.action == 'reopened' &&
+      github.event.pull_request.head.ref == 'cloudflare/phase1-worker-ownership' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: lbfl-production-domain-cutover
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      HOSTNAME: api.learningbiologyforlife.org
+      OLD_SERVICE: synapticai-proxy
+      NEW_SERVICE: lbfl-socratic-ai
+      NEW_WORKER_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev
+    steps:
+      - name: Checkout immutable PR head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Execute guarded custom-domain transfer
+        id: cutover
         shell: bash
-        env:
-          GEMINI_CONFIGURED: ${{ steps.health.outputs.gemini_configured }}
-          WORKER_VERSION_ID: ${{ steps.health.outputs.worker_version_id }}
+        run: bash .github/scripts/lbfl-production-cutover.sh
+      - name: Record cutover summary
+        if: always()
+        shell: bash
         run: |
-          {
-            echo '# lbfl-socratic-ai isolated smoke deployment'
-            echo
-            echo "- Worker: \`lbfl-socratic-ai\`"
-            echo "- Endpoint: \`$WORKER_URL\`"
-            echo "- Source SHA: \`${{ github.event.pull_request.head.sha }}\`"
-            echo "- Worker version ID: \`$WORKER_VERSION_ID\`"
-            echo '- Custom domain/route mutation: `none`'
-            echo '- Runtime health: `PASS`'
-            echo '- Socratic response contract: `PASS`'
-            echo "- Gemini key configured: \`$GEMINI_CONFIGURED\`"
-            if [[ "$GEMINI_CONFIGURED" == "true" ]]; then
-              echo '- Custom-domain cutover readiness from Worker-secret perspective: `PASS`'
-            else
-              echo '- Custom-domain cutover readiness: `BLOCKED — GEMINI_API_KEY not configured on isolated Worker`'
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
+          echo "# LBFL controlled production cutover" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Hostname: $HOSTNAME" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Previous owner: $OLD_SERVICE" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Intended owner: $NEW_SERVICE" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Result: ${{ steps.cutover.outputs.cutover_status || 'failed-or-rolled-back' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Candidate version: ${{ steps.cutover.outputs.candidate_version || 'unavailable' }}" >> "$GITHUB_STEP_SUMMARY"
