@@ -153,9 +153,42 @@ jobs:
           done
           test "$genuine" = true
 
+  confirm-production-worker-identity:
+    name: Confirm production Worker identity
+    needs: deploy-lbfl-socratic-smoke
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.action == 'reopened' &&
+      github.event.pull_request.head.ref == 'cloudflare/phase1-worker-ownership' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_WORKER_SCRIPT: ${{ vars.CLOUDFLARE_WORKER_SCRIPT }}
+    steps:
+      - name: Require repository production Worker variable
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_WORKER_SCRIPT" || {
+            echo "CLOUDFLARE_WORKER_SCRIPT is missing"
+            exit 1
+          }
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai" || {
+            echo "CLOUDFLARE_WORKER_SCRIPT is not lbfl-socratic-ai"
+            exit 1
+          }
+          echo "Confirmed CLOUDFLARE_WORKER_SCRIPT=lbfl-socratic-ai"
+          {
+            echo '# Production Worker identity confirmation'
+            echo '- Repository variable: `CLOUDFLARE_WORKER_SCRIPT`'
+            echo '- Required value: `lbfl-socratic-ai`'
+            echo '- Result: `PASS`'
+          } >> "$GITHUB_STEP_SUMMARY"
+
   cutover-lbfl-production:
     name: Controlled production cutover with rollback
-    needs: deploy-lbfl-socratic-smoke
+    needs: confirm-production-worker-identity
     if: >-
       github.event_name == 'pull_request' &&
       github.event.action == 'reopened' &&
