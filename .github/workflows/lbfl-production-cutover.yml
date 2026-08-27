@@ -25,7 +25,6 @@ jobs:
       NEW_SERVICE: lbfl-socratic-ai
       NEW_WORKER_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev
       EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
-
     steps:
       - name: Checkout immutable cutover head
         uses: actions/checkout@v5
@@ -70,7 +69,7 @@ jobs:
           const fs=require('node:fs'); const [p,h]=process.argv.slice(2); const j=JSON.parse(fs.readFileSync(p,'utf8')); process.stdout.write((j.result||[]).find(x=>x.hostname===h)?.service||'');
           NODE
           }
-          rollback(){ rc=$?; if [[ "$changed" = 1 ]]; then echo "Verification failed; rolling back" >&2; attach "$OLD_SERVICE" > cutover-evidence/rollback.json || true; for i in $(seq 1 30); do [[ "$(owner || true)" = "$OLD_SERVICE" ]] && break; sleep 2; done; fi; exit "$rc"; }
+          rollback(){ rc=$?; if [[ "$changed" = 1 ]]; then attach "$OLD_SERVICE" > cutover-evidence/rollback.json || true; for i in $(seq 1 30); do [[ "$(owner || true)" = "$OLD_SERVICE" ]] && break; sleep 2; done; fi; exit "$rc"; }
           trap rollback ERR
           attach "$NEW_SERVICE" > cutover-evidence/domain-attach.json; changed=1
           for i in $(seq 1 30); do [[ "$(owner)" = "$NEW_SERVICE" ]] && break; sleep 2; done
