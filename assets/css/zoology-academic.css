@@ -366,7 +366,7 @@ body.lbfl-animal-diversity-document .page__content > ul a {
 }
 
 body.lbfl-animal-diversity-document .lbfl-section-title {
-  color: #153f3b !important;
+  color: var(--zoo-heading-color) !important;
 }
 
 body.lbfl-animal-diversity-document .lbfl-hub-intro .lbfl-hub-title,
