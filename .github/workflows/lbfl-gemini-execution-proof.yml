@@ -1,9 +1,6 @@
 name: LBFL Gemini Execution Proof
 
 on:
-  pull_request:
-    branches: ["main"]
-    types: [opened, reopened, synchronize]
   workflow_dispatch:
 
 permissions:
@@ -12,11 +9,6 @@ permissions:
 jobs:
   prove-gemini-execution:
     name: Prove lbfl-socratic-ai uses Gemini
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'pull_request' &&
-       github.event.pull_request.head.ref == 'cloudflare/phase1-worker-ownership' &&
-       github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
@@ -24,21 +16,11 @@ jobs:
       WORKER_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev
 
     steps:
-      - name: Checkout immutable PR head
-        if: github.event_name == 'pull_request'
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          persist-credentials: false
-
       - name: Fail closed on prerequisites
         shell: bash
         run: |
           set -euo pipefail
           test -n "$GEMINI_API_KEY" || { echo "GEMINI_API_KEY is missing"; exit 1; }
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
-          fi
 
       - name: Verify Worker health and Gemini binding
         id: health
