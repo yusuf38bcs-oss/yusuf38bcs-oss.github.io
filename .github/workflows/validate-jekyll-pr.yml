@@ -91,6 +91,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
           test -n "$CLOUDFLARE_ACCOUNT_ID"
           test -n "$CLOUDFLARE_API_TOKEN"
+          test -n "$GEMINI_API_KEY"
           node <<'NODE'
           const fs=require('node:fs');
           const c=JSON.parse(fs.readFileSync('wrangler.jsonc','utf8'));
@@ -113,11 +114,7 @@ jobs:
         run: npx wrangler deploy --config ../wrangler.jsonc
       - name: Configure Gemini secret
         working-directory: worker
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -n "$GEMINI_API_KEY"
-          printf '%s' "$GEMINI_API_KEY" | npx wrangler secret put GEMINI_API_KEY --config ../wrangler.jsonc
+        run: printf '%s' "$GEMINI_API_KEY" | npx wrangler secret put GEMINI_API_KEY --config ../wrangler.jsonc
       - name: Verify isolated Worker health and version
         id: health
         shell: bash
@@ -132,15 +129,29 @@ jobs:
           node - "$body" "$headers" "$GITHUB_OUTPUT" <<'NODE'
           const fs=require('node:fs'); const [bp,hp,out]=process.argv.slice(2); const b=JSON.parse(fs.readFileSync(bp,'utf8')); const h=fs.readFileSync(hp,'utf8'); const v=h.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(b.ok!==true||b.environment!=='production'||b.gemini_key_configured!==true||b.service!=='LBFL Synaptic AI Edge Worker'||b.worker_version_id!==v) throw new Error('Isolated health/version contract failed'); fs.appendFileSync(out,`worker_version_id=${v}\n`); console.log(JSON.stringify(b,null,2));
           NODE
-      - name: Verify genuine Gemini-backed Socratic result
+      - name: Wait for genuine Gemini-backed Socratic execution
         shell: bash
         run: |
           set -euo pipefail
           result="$RUNNER_TEMP/socratic.json"
-          curl --fail --silent --show-error -H 'Content-Type: application/json' --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/","attempt_count":1}' "$WORKER_URL/api/socratic" > "$result"
-          node - "$result" <<'NODE'
-          const fs=require('node:fs'); const r=JSON.parse(fs.readFileSync(process.argv[2],'utf8')); for(const k of ['mastery_achieved','feedback_text','next_vector','strike_count']) if(!(k in r)) throw new Error(`Missing ${k}`); const fallback='Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.'; if(r.feedback_text===fallback) throw new Error('Deterministic fallback detected'); console.log(JSON.stringify(r,null,2));
+          genuine=false
+          for attempt in $(seq 1 15); do
+            curl --fail --silent --show-error \
+              -H 'Content-Type: application/json' \
+              --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/","attempt_count":1}' \
+              "$WORKER_URL/api/socratic" > "$result"
+            if node - "$result" <<'NODE'
+          const fs=require('node:fs'); const r=JSON.parse(fs.readFileSync(process.argv[2],'utf8')); for(const k of ['mastery_achieved','feedback_text','next_vector','strike_count']) if(!(k in r)) process.exit(1); const fallback='Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.'; process.exit(r.feedback_text===fallback ? 2 : 0);
           NODE
+            then
+              genuine=true
+              cat "$result"
+              break
+            fi
+            echo "Gemini-backed response not ready yet (attempt $attempt/15); retrying..."
+            sleep 4
+          done
+          test "$genuine" = true
 
   cutover-lbfl-production:
     name: Controlled production cutover with rollback
