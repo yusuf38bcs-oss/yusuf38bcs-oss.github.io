@@ -137,6 +137,28 @@ When `main` and `staging` diverge:
 
 Never reconcile by force-moving `staging` to `main`.
 
+## AI provider and Worker deployment control
+
+The public production AI endpoint is `https://api.learningbiologyforlife.org` and must be owned by the dedicated `lbfl-socratic-ai` Worker. The browser contract is provider-independent; provider credentials remain server-side Worker secrets.
+
+The active Socratic provider is OpenAI. The Worker must use the Responses API with strict Structured Outputs and `store: false`, and health must identify the active provider/model without exposing credentials.
+
+A provider migration is a production Worker change even when the custom-domain mapping does not change. Therefore:
+
+- normal PR synchronization must never deploy `lbfl-socratic-ai`;
+- provider migration requires an explicit migration event/action;
+- a direct provider credential/model/structured-output preflight must pass before Cloudflare mutation;
+- `CLOUDFLARE_WORKER_SCRIPT` must resolve exactly to `lbfl-socratic-ai`;
+- `api.learningbiologyforlife.org` must already belong to `lbfl-socratic-ai`, or a missing mapping may be repaired only to that Worker using known zone metadata;
+- an unexpected hostname owner is a hard failure and must never be overwritten;
+- production Worker code must be uploaded with `wrangler versions upload` and promoted with `wrangler versions deploy`; plain `wrangler deploy` is prohibited for this remotely managed custom-domain Worker because it can overwrite trigger configuration;
+- the previous production Worker version ID must be captured before promotion;
+- failed provider/version/CORS/Socratic verification must automatically redeploy the previous Worker version;
+- final custom-domain ownership must be rechecked after success or rollback;
+- API keys must never appear in source, workflow inputs, logs, artifacts, summaries, or frontend code.
+
+The legacy `/api/gemini` route may remain temporarily as a compatibility alias, but its name does not define or authorize the active provider. New clients use `/api/socratic`.
+
 ## Production certification
 
 Production certification must be dispatched from `main` with a full `expected_main_sha`. It must prove:
@@ -148,6 +170,8 @@ Production certification must be dispatched from `main` with a full `expected_ma
 - Worker health returns HTTP 200 and production identity;
 - browser/Axe/consent/reduced-motion/Save-Data gates pass where required; and
 - the certification credential is host-isolated and absent from evidence artifacts and summaries.
+
+For the AI Worker, production certification additionally proves active provider/model metadata, exact Worker-version header/body equality, canonical-origin CORS, and a genuine non-fallback Socratic response.
 
 ## Emergency rule
 
