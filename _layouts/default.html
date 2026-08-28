@@ -20,6 +20,8 @@
   {% assign lbfl_zoology_document = true %}
 {% elsif page.url contains '/biology/animal-diversity/' %}
   {% assign lbfl_zoology_document = true %}
+{% endif %}
+{% if page.url contains '/biology/animal-diversity/' %}
   {% assign lbfl_animal_diversity_document = true %}
 {% endif %}
 <html lang="{{ html_lang_base }}" xml:lang="{{ html_lang_base }}" dir="{{ html_dir }}" class="no-js{% if lbfl_home_v2_active %} lbfl-home-v2-document{% endif %}{% if lbfl_zoology_document %} lbfl-zoology-route{% endif %}">
