@@ -64,26 +64,34 @@ jobs:
           test -f _site/biology/index.html
           echo "Jekyll validation passed."
 
-  deploy-lbfl-socratic-smoke:
-    name: Deploy lbfl-socratic-ai isolated smoke
+  migrate-lbfl-openai:
+    name: Guarded LBFL OpenAI provider migration
     needs: validate
     if: >-
       github.event_name == 'pull_request' &&
+      github.event.action == 'reopened' &&
       github.event.pull_request.head.ref == 'cloudflare/phase1-worker-ownership' &&
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
+    concurrency:
+      group: lbfl-openai-provider-migration
+      cancel-in-progress: false
     env:
       CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      CLOUDFLARE_WORKER_SCRIPT: ${{ vars.CLOUDFLARE_WORKER_SCRIPT }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       WORKER_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev
+      PRODUCTION_URL: https://api.learningbiologyforlife.org
+      FALLBACK_TEXT: Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.
     steps:
       - name: Checkout immutable PR head
         uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
+
       - name: Fail closed on credentials and Worker identity
         shell: bash
         run: |
@@ -91,138 +99,158 @@ jobs:
           test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
           test -n "$CLOUDFLARE_ACCOUNT_ID"
           test -n "$CLOUDFLARE_API_TOKEN"
-          test -n "$GEMINI_API_KEY"
+          test -n "$OPENAI_API_KEY" || { echo "OPENAI_API_KEY is missing"; exit 1; }
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai"
           node <<'NODE'
           const fs=require('node:fs');
           const c=JSON.parse(fs.readFileSync('wrangler.jsonc','utf8'));
           if(c.name!=='lbfl-socratic-ai') throw new Error(`Refusing Worker name: ${c.name}`);
           if(c.main!=='worker/src/index.ts') throw new Error(`Unexpected entrypoint: ${c.main}`);
-          if(c.routes||c.route||c.custom_domain||c.custom_domains) throw new Error('Isolated deploy must not declare routes/custom domains');
-          if(c.workers_dev!==true) throw new Error('workers_dev must be enabled');
+          if(c.routes||c.route||c.custom_domain||c.custom_domains) throw new Error('Provider migration must not mutate routes/custom domains');
+          if(c.workers_dev!==true) throw new Error('workers_dev must remain enabled');
+          if(c.vars?.OPENAI_MODEL!=='gpt-5.6-terra') throw new Error(`Unexpected OpenAI model: ${c.vars?.OPENAI_MODEL}`);
           NODE
+
+      - name: Preflight OpenAI before Cloudflare mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          body="$RUNNER_TEMP/openai-preflight.json"
+          response="$RUNNER_TEMP/openai-preflight-response.json"
+          cat > "$body" <<'JSON'
+          {
+            "model": "gpt-5.6-terra",
+            "store": false,
+            "reasoning": {"effort": "low"},
+            "max_output_tokens": 200,
+            "input": [{"role":"user","content":"Return the required JSON status."}],
+            "text": {"format": {"type":"json_schema","name":"lbfl_preflight","strict":true,"schema":{"type":"object","properties":{"status":{"type":"string","enum":["LBFL_OPENAI_OK"]}},"required":["status"],"additionalProperties":false}}}
+          }
+          JSON
+          status="$(curl --silent --show-error -o "$response" -w '%{http_code}' \
+            -H 'Content-Type: application/json' \
+            -H "Authorization: Bearer $OPENAI_API_KEY" \
+            --data-binary "@$body" \
+            https://api.openai.com/v1/responses)"
+          echo "OpenAI preflight HTTP status: $status"
+          test "$status" = "200" || { node -e 'const fs=require("fs"); const x=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); console.error(x?.error?.message||"OpenAI preflight failed")' "$response"; exit 1; }
+          node - "$response" <<'NODE'
+          const fs=require('node:fs');
+          const data=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
+          const message=(data.output||[]).find(x=>x.type==='message');
+          const item=(message?.content||[]).find(x=>x.type==='output_text');
+          if(!item?.text) throw new Error('OpenAI preflight returned no output_text');
+          const parsed=JSON.parse(item.text);
+          if(parsed.status!=='LBFL_OPENAI_OK') throw new Error('OpenAI preflight schema result failed');
+          console.log('OpenAI key/model/Structured Outputs preflight: PASS');
+          NODE
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "24"
           cache: npm
           cache-dependency-path: worker/package-lock.json
+
       - name: Install locked Worker dependencies
         working-directory: worker
         run: npm ci
-      - name: Deploy only lbfl-socratic-ai
-        working-directory: worker
-        run: npx wrangler deploy --config ../wrangler.jsonc
-      - name: Configure Gemini secret
-        working-directory: worker
-        run: printf '%s' "$GEMINI_API_KEY" | npx wrangler secret put GEMINI_API_KEY --config ../wrangler.jsonc
-      - name: Verify isolated Worker health and version
-        id: health
+
+      - name: Capture current production Worker version
+        id: previous
         shell: bash
         run: |
           set -euo pipefail
-          body="$RUNNER_TEMP/health.json"; headers="$RUNNER_TEMP/health.headers"; ok=false
-          for _ in $(seq 1 20); do
-            if curl --fail --silent --show-error -D "$headers" -o "$body" "$WORKER_URL/api/health"; then ok=true; break; fi
+          headers="$RUNNER_TEMP/previous.headers"
+          curl --fail --silent --show-error -D "$headers" -o "$RUNNER_TEMP/previous.json" "$PRODUCTION_URL/api/health"
+          version="$(awk 'BEGIN{IGNORECASE=1} /^x-lbfl-worker-version:/ {gsub("\r",""); print $2; exit}' "$headers")"
+          [[ "$version" =~ ^[0-9a-fA-F-]{36}$ ]] || { echo "Unable to capture rollback Worker version"; exit 1; }
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Captured rollback version: $version"
+
+      - name: Configure OpenAI secret before code deployment
+        working-directory: worker
+        shell: bash
+        run: printf '%s' "$OPENAI_API_KEY" | npx wrangler secret put OPENAI_API_KEY --name lbfl-socratic-ai --config ../wrangler.jsonc
+
+      - name: Deploy OpenAI-backed lbfl-socratic-ai
+        id: deploy
+        working-directory: worker
+        shell: bash
+        run: npx wrangler deploy --config ../wrangler.jsonc
+
+      - name: Verify production OpenAI health, version, CORS, and Socratic execution
+        id: verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          health="$RUNNER_TEMP/health.json"
+          headers="$RUNNER_TEMP/health.headers"
+          ready=false
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent --show-error -D "$headers" -o "$health" "$PRODUCTION_URL/api/health"; then
+              if node - "$health" "$headers" <<'NODE'
+          const fs=require('node:fs');
+          const [bp,hp]=process.argv.slice(2);
+          const b=JSON.parse(fs.readFileSync(bp,'utf8'));
+          const h=fs.readFileSync(hp,'utf8');
+          const v=h.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||'';
+          const p=h.match(/^x-lbfl-ai-provider:\s*([^\r\n]+)/im)?.[1]?.trim()||'';
+          process.exit(b.ok===true&&b.environment==='production'&&b.provider==='openai'&&b.openai_key_configured===true&&b.model==='gpt-5.6-terra'&&b.worker_version_id===v&&p==='openai'?0:1);
+          NODE
+              then ready=true; break; fi
+            fi
             sleep 3
           done
-          test "$ok" = true
-          node - "$body" "$headers" "$GITHUB_OUTPUT" <<'NODE'
-          const fs=require('node:fs'); const [bp,hp,out]=process.argv.slice(2); const b=JSON.parse(fs.readFileSync(bp,'utf8')); const h=fs.readFileSync(hp,'utf8'); const v=h.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||''; if(b.ok!==true||b.environment!=='production'||b.gemini_key_configured!==true||b.service!=='LBFL Synaptic AI Edge Worker'||b.worker_version_id!==v) throw new Error('Isolated health/version contract failed'); fs.appendFileSync(out,`worker_version_id=${v}\n`); console.log(JSON.stringify(b,null,2));
-          NODE
-      - name: Wait for genuine Gemini-backed Socratic execution
-        shell: bash
-        run: |
-          set -euo pipefail
+          test "$ready" = true
+
+          curl --fail --silent --show-error -D "$RUNNER_TEMP/cors.headers" -o /dev/null \
+            -H 'Origin: https://learningbiologyforlife.org' "$PRODUCTION_URL/api/health"
+          grep -Eiq '^access-control-allow-origin:\s*https://learningbiologyforlife\.org\s*$' "$RUNNER_TEMP/cors.headers"
+
           result="$RUNNER_TEMP/socratic.json"
           genuine=false
-          for attempt in $(seq 1 15); do
+          for attempt in $(seq 1 8); do
             curl --fail --silent --show-error \
+              -H 'Origin: https://learningbiologyforlife.org' \
               -H 'Content-Type: application/json' \
               --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/","attempt_count":1}' \
-              "$WORKER_URL/api/socratic" > "$result"
-            if node - "$result" <<'NODE'
-          const fs=require('node:fs'); const r=JSON.parse(fs.readFileSync(process.argv[2],'utf8')); for(const k of ['mastery_achieved','feedback_text','next_vector','strike_count']) if(!(k in r)) process.exit(1); const fallback='Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.'; process.exit(r.feedback_text===fallback ? 2 : 0);
+              "$PRODUCTION_URL/api/socratic" > "$result"
+            if node - "$result" "$FALLBACK_TEXT" <<'NODE'
+          const fs=require('node:fs');
+          const [path,fallback]=process.argv.slice(2);
+          const r=JSON.parse(fs.readFileSync(path,'utf8'));
+          for(const k of ['mastery_achieved','feedback_text','next_vector','strike_count']) if(!(k in r)) process.exit(1);
+          process.exit(r.feedback_text===fallback ? 2 : 0);
           NODE
-            then
-              genuine=true
-              cat "$result"
-              break
-            fi
-            echo "Gemini-backed response not ready yet (attempt $attempt/15); retrying..."
-            sleep 4
+            then genuine=true; cat "$result"; break; fi
+            sleep 3
           done
           test "$genuine" = true
+          echo 'migration_status=pass' >> "$GITHUB_OUTPUT"
 
-  confirm-production-worker-identity:
-    name: Confirm production Worker identity
-    needs: deploy-lbfl-socratic-smoke
-    if: >-
-      github.event_name == 'pull_request' &&
-      github.event.action == 'reopened' &&
-      github.event.pull_request.head.ref == 'cloudflare/phase1-worker-ownership' &&
-      github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    env:
-      CLOUDFLARE_WORKER_SCRIPT: ${{ vars.CLOUDFLARE_WORKER_SCRIPT }}
-    steps:
-      - name: Require repository production Worker variable
+      - name: Roll back Worker version if verification failed
+        if: failure() && steps.previous.outputs.version != ''
+        working-directory: worker
         shell: bash
+        env:
+          PREVIOUS_VERSION: ${{ steps.previous.outputs.version }}
         run: |
           set -euo pipefail
-          test -n "$CLOUDFLARE_WORKER_SCRIPT" || {
-            echo "CLOUDFLARE_WORKER_SCRIPT is missing"
-            exit 1
-          }
-          test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai" || {
-            echo "CLOUDFLARE_WORKER_SCRIPT is not lbfl-socratic-ai"
-            exit 1
-          }
-          echo "Confirmed CLOUDFLARE_WORKER_SCRIPT=lbfl-socratic-ai"
-          {
-            echo '# Production Worker identity confirmation'
-            echo '- Repository variable: `CLOUDFLARE_WORKER_SCRIPT`'
-            echo '- Required value: `lbfl-socratic-ai`'
-            echo '- Result: `PASS`'
-          } >> "$GITHUB_STEP_SUMMARY"
+          echo "Verification failed; rolling back to $PREVIOUS_VERSION"
+          npx wrangler versions deploy "$PREVIOUS_VERSION@100%" -y --name lbfl-socratic-ai --config ../wrangler.jsonc
 
-  cutover-lbfl-production:
-    name: Controlled production cutover with rollback
-    needs: confirm-production-worker-identity
-    if: >-
-      github.event_name == 'pull_request' &&
-      github.event.action == 'reopened' &&
-      github.event.pull_request.head.ref == 'cloudflare/phase1-worker-ownership' &&
-      github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    concurrency:
-      group: lbfl-production-domain-cutover
-      cancel-in-progress: false
-    env:
-      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      HOSTNAME: api.learningbiologyforlife.org
-      OLD_SERVICE: synapticai-proxy
-      NEW_SERVICE: lbfl-socratic-ai
-      NEW_WORKER_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev
-    steps:
-      - name: Checkout immutable PR head
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          persist-credentials: false
-      - name: Execute guarded custom-domain transfer
-        id: cutover
-        shell: bash
-        run: bash .github/scripts/lbfl-production-cutover.sh
-      - name: Record cutover summary
+      - name: Record OpenAI provider migration summary
         if: always()
         shell: bash
         run: |
-          echo "# LBFL controlled production cutover" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Hostname: $HOSTNAME" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Previous owner: $OLD_SERVICE" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Intended owner: $NEW_SERVICE" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Result: ${{ steps.cutover.outputs.cutover_status || 'failed-or-rolled-back' }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Candidate version: ${{ steps.cutover.outputs.candidate_version || 'unavailable' }}" >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo '# LBFL OpenAI provider migration'
+            echo '- Worker: `lbfl-socratic-ai`'
+            echo '- Production endpoint: `https://api.learningbiologyforlife.org`'
+            echo '- Provider: `OpenAI`'
+            echo '- Model: `gpt-5.6-terra`'
+            echo '- Previous Worker version: `${{ steps.previous.outputs.version || 'not-captured' }}`'
+            echo '- Verification: `${{ steps.verify.outputs.migration_status || 'failed-or-rolled-back' }}`'
+            echo '- Custom-domain ownership mutation: `none`'
+          } >> "$GITHUB_STEP_SUMMARY"
