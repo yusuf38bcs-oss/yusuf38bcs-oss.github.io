@@ -1,142 +1,91 @@
-name: Deploy lbfl-socratic-ai smoke
+name: LBFL OpenAI production smoke
 
 on:
-  push:
-    branches:
-      - cloudflare/phase1-worker-ownership
-    paths:
-      - .github/workflows/cloudflare-lbfl-socratic-smoke.yml
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: lbfl-socratic-ai-smoke
+  group: lbfl-openai-production-smoke
   cancel-in-progress: false
 
 jobs:
-  deploy-and-smoke:
+  smoke:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 10
     env:
-      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      WORKER_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev
+      PRODUCTION_URL: https://api.learningbiologyforlife.org
+      FALLBACK_TEXT: Your answer could not be evaluated safely. Refine your explanation by naming the biological structure, causal mechanism, and expected outcome.
 
     steps:
-      - name: Check out exact branch head
-        uses: actions/checkout@v5
-        with:
-          persist-credentials: false
-
-      - name: Fail closed on credentials and deployment identity
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID is missing"; exit 1; }
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is missing"; exit 1; }
-          test -n "$GEMINI_API_KEY" || { echo "GEMINI_API_KEY is missing; refusing to create an unconfigured Worker"; exit 1; }
-          node <<'NODE'
-          const fs = require('node:fs');
-          const config = JSON.parse(fs.readFileSync('wrangler.jsonc', 'utf8'));
-          if (config.name !== 'lbfl-socratic-ai') throw new Error(`Refusing Worker name: ${config.name}`);
-          if (config.main !== 'worker/src/index.ts') throw new Error(`Unexpected entrypoint: ${config.main}`);
-          if (config.routes || config.route) throw new Error('Smoke deployment must not declare routes.');
-          if (config.custom_domain || config.custom_domains) throw new Error('Smoke deployment must not declare custom domains.');
-          if (config.workers_dev !== true) throw new Error('workers_dev must remain enabled for isolated smoke deployment.');
-          NODE
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-          cache: npm
-          cache-dependency-path: worker/package-lock.json
-
-      - name: Install locked Worker dependencies
-        working-directory: worker
-        shell: bash
-        run: npm ci
-
-      - name: Deploy only lbfl-socratic-ai
-        working-directory: worker
-        shell: bash
-        run: |
-          set -euo pipefail
-          npx wrangler deploy --config ../wrangler.jsonc
-
-      - name: Configure Gemini secret on lbfl-socratic-ai
-        working-directory: worker
-        shell: bash
-        run: |
-          set -euo pipefail
-          printf '%s' "$GEMINI_API_KEY" | npx wrangler secret put GEMINI_API_KEY --config ../wrangler.jsonc
-
-      - name: Verify isolated Worker health
+      - name: Verify OpenAI-backed Worker health and version
         shell: bash
         run: |
           set -euo pipefail
           health="$RUNNER_TEMP/health.json"
           headers="$RUNNER_TEMP/health.headers"
-          for attempt in $(seq 1 20); do
-            if curl --fail --silent --show-error -D "$headers" -o "$health" "$WORKER_URL/api/health"; then
-              break
-            fi
-            sleep 3
-          done
+          curl --fail --silent --show-error -D "$headers" -o "$health" "$PRODUCTION_URL/api/health"
           node - "$health" "$headers" <<'NODE'
-          const fs = require('node:fs');
-          const [healthPath, headersPath] = process.argv.slice(2);
-          const health = JSON.parse(fs.readFileSync(healthPath, 'utf8'));
-          const headers = fs.readFileSync(headersPath, 'utf8').toLowerCase();
-          if (health.ok !== true) throw new Error('health.ok must be true');
-          if (health.environment !== 'production') throw new Error(`Unexpected environment: ${health.environment}`);
-          if (health.gemini_key_configured !== true) throw new Error('Gemini secret is not configured');
-          if (health.service !== 'LBFL Synaptic AI Edge Worker') throw new Error(`Unexpected service: ${health.service}`);
-          if (!/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(String(health.worker_version_id || ''))) {
-            throw new Error(`Invalid Worker version id: ${health.worker_version_id}`);
-          }
-          if (!headers.includes(`x-lbfl-worker-version: ${String(health.worker_version_id).toLowerCase()}`)) {
-            throw new Error('Worker version header/body mismatch');
-          }
-          console.log(JSON.stringify(health, null, 2));
+          const fs=require('node:fs');
+          const [bp,hp]=process.argv.slice(2);
+          const b=JSON.parse(fs.readFileSync(bp,'utf8'));
+          const h=fs.readFileSync(hp,'utf8');
+          const version=h.match(/^x-lbfl-worker-version:\s*([^\r\n]+)/im)?.[1]?.trim()||'';
+          const provider=h.match(/^x-lbfl-ai-provider:\s*([^\r\n]+)/im)?.[1]?.trim()||'';
+          if(b.ok!==true) throw new Error('health.ok must be true');
+          if(b.environment!=='production') throw new Error(`Unexpected environment: ${b.environment}`);
+          if(b.provider!=='openai'||provider!=='openai') throw new Error('Worker is not serving OpenAI provider');
+          if(b.openai_key_configured!==true) throw new Error('OPENAI_API_KEY is not configured on Worker');
+          if(b.model!=='gpt-5.6-terra') throw new Error(`Unexpected model: ${b.model}`);
+          if(b.worker_version_id!==version) throw new Error('Worker version header/body mismatch');
+          if(!/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(version)) throw new Error('Invalid Worker version id');
+          console.log(JSON.stringify(b,null,2));
           NODE
 
-      - name: Verify Socratic contract through Gemini
+      - name: Verify browser CORS contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error -D "$RUNNER_TEMP/cors.headers" -o /dev/null \
+            -H 'Origin: https://learningbiologyforlife.org' "$PRODUCTION_URL/api/health"
+          grep -Eiq '^access-control-allow-origin:\s*https://learningbiologyforlife\.org\s*$' "$RUNNER_TEMP/cors.headers"
+
+      - name: Verify genuine OpenAI-backed Socratic result
         shell: bash
         run: |
           set -euo pipefail
           result="$RUNNER_TEMP/socratic.json"
           curl --fail --silent --show-error \
+            -H 'Origin: https://learningbiologyforlife.org' \
             -H 'Content-Type: application/json' \
             -H 'Accept: application/json' \
             --data '{"type":"socratic_reflex","anomaly_question":"Why does heart rate rise when arterial blood pressure suddenly falls?","student_hypothesis":"The baroreceptor reflex reduces vagal output and increases sympathetic drive to restore cardiac output and pressure.","page_context":"/biology/hsc-corner/zoology/baroreceptor-reflex/","attempt_count":1}' \
-            "$WORKER_URL/api/socratic" > "$result"
-          node - "$result" <<'NODE'
-          const fs = require('node:fs');
-          const result = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
-          const keys = ['mastery_achieved', 'feedback_text', 'next_vector', 'strike_count'];
-          for (const key of keys) {
-            if (!(key in result)) throw new Error(`Missing Socratic response key: ${key}`);
-          }
-          if (typeof result.mastery_achieved !== 'boolean') throw new Error('mastery_achieved must be boolean');
-          if (typeof result.feedback_text !== 'string' || result.feedback_text.length < 5) throw new Error('feedback_text invalid');
-          if (typeof result.next_vector !== 'string' || !result.next_vector.startsWith('/')) throw new Error('next_vector invalid');
-          if (!Number.isInteger(result.strike_count) || result.strike_count < 1 || result.strike_count > 3) throw new Error('strike_count invalid');
-          console.log(JSON.stringify(result, null, 2));
+            "$PRODUCTION_URL/api/socratic" > "$result"
+          node - "$result" "$FALLBACK_TEXT" <<'NODE'
+          const fs=require('node:fs');
+          const [path,fallback]=process.argv.slice(2);
+          const r=JSON.parse(fs.readFileSync(path,'utf8'));
+          for(const key of ['mastery_achieved','feedback_text','next_vector','strike_count']) if(!(key in r)) throw new Error(`Missing ${key}`);
+          if(r.feedback_text===fallback) throw new Error('Deterministic fallback detected');
+          if(typeof r.mastery_achieved!=='boolean') throw new Error('mastery_achieved must be boolean');
+          if(typeof r.feedback_text!=='string'||r.feedback_text.length<5) throw new Error('feedback_text invalid');
+          if(typeof r.next_vector!=='string'||!r.next_vector.startsWith('/')) throw new Error('next_vector invalid');
+          if(!Number.isInteger(r.strike_count)||r.strike_count<1||r.strike_count>3) throw new Error('strike_count invalid');
+          console.log(JSON.stringify(r,null,2));
           NODE
 
-      - name: Summarize isolated deployment
+      - name: Summarize production smoke
         shell: bash
         run: |
           {
-            echo '# lbfl-socratic-ai isolated smoke deployment'
-            echo
-            echo "- Worker: \`lbfl-socratic-ai\`"
-            echo "- Endpoint: \`$WORKER_URL\`"
-            echo "- Source SHA: \`$GITHUB_SHA\`"
-            echo '- Custom domain/route mutation: `none`'
-            echo '- Health: `PASS`'
-            echo '- Socratic contract: `PASS`'
+            echo '# LBFL OpenAI production smoke'
+            echo '- Worker: `lbfl-socratic-ai`'
+            echo '- Endpoint: `https://api.learningbiologyforlife.org`'
+            echo '- Provider: `OpenAI`'
+            echo '- Model: `gpt-5.6-terra`'
+            echo '- Health/version: `PASS`'
+            echo '- CORS: `PASS`'
+            echo '- Genuine Socratic execution: `PASS`'
+            echo '- Mutation: `none`'
           } >> "$GITHUB_STEP_SUMMARY"
