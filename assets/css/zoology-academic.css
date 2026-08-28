@@ -407,3 +407,24 @@ body.lbfl-animal-diversity-document .lbfl-language-switcher__link {
     transition-duration: 0.01ms !important;
   }
 }
+
+/*
+ * Exact-head browser evidence at e9785020 identified contrast regressions on
+ * the canonical Animal Diversity complete matrix. These rules intentionally
+ * apply only to the two server-labelled Animal Diversity documents and are
+ * stronger than legacy hotfix selectors loaded elsewhere in the cascade.
+ */
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content a {
+  color: #073c37 !important;
+}
+
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .contextual-sidebar-nav a.sidebar-nav-link,
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .contextual-sidebar-nav a.sidebar-nav-child-link {
+  color: #073c37 !important;
+}
+
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content pre,
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content pre code {
+  color: #f5fbf8 !important;
+  background: #102825 !important;
+}
