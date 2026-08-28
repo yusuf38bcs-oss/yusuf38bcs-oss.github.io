@@ -45,10 +45,10 @@ jobs:
 
       - name: Resolve the exact-head Cloudflare Pages preview
         id: preview
+        # This browser gate needs only the GitHub-authenticated Cloudflare
+        # deployment comment. Avoid privileged Cloudflare API calls here:
+        # they add latency and must not substitute for exact-head provenance.
         env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
@@ -61,8 +61,6 @@ jobs:
               --repository "$GITHUB_REPOSITORY" \
               --sha "$PR_HEAD_SHA" \
               --pr-number "$PR_NUMBER" \
-              --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" \
-              --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" \
               --wait-seconds 0 \
               --site-config _data/ai.yml \
               --output "$EVIDENCE_DIR/cloudflare-targets.json" \
