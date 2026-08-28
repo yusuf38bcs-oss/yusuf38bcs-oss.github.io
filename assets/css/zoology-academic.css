@@ -13,6 +13,7 @@
   --zoo-soft: #eef7f3;
   --zoo-teal: #147a6d;
   --zoo-teal-strong: #0d5f55;
+  --zoo-link: #073c37;
   --zoo-amber: #b77a21;
   --zoo-border: rgba(20, 122, 109, 0.18);
   --zoo-shadow: 0 0.8rem 2.2rem rgba(15, 62, 57, 0.07);
@@ -362,7 +363,7 @@ body.lbfl-animal-diversity-document .page__content > ul li {
 body.lbfl-animal-diversity-document .contextual-sidebar-nav .sidebar-nav-link,
 body.lbfl-animal-diversity-document .contextual-sidebar-nav .sidebar-nav-child-link,
 body.lbfl-animal-diversity-document .page__content > ul a {
-  color: #073c37 !important;
+  color: var(--zoo-link) !important;
 }
 
 body.lbfl-animal-diversity-document .lbfl-section-title {
@@ -415,12 +416,12 @@ body.lbfl-animal-diversity-document .lbfl-language-switcher__link {
  * stronger than legacy hotfix selectors loaded elsewhere in the cascade.
  */
 html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content a {
-  color: #073c37 !important;
+  color: var(--zoo-link) !important;
 }
 
 html.lbfl-zoology-route body.lbfl-animal-diversity-document .contextual-sidebar-nav a.sidebar-nav-link,
 html.lbfl-zoology-route body.lbfl-animal-diversity-document .contextual-sidebar-nav a.sidebar-nav-child-link {
-  color: #073c37 !important;
+  color: var(--zoo-link) !important;
 }
 
 html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content pre,
