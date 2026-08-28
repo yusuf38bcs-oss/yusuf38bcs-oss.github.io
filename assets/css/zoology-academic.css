@@ -138,6 +138,7 @@ html.lbfl-zoology-route:has(.animal-matrix-hero) .contextual-sidebar-nav .sideba
 .lbfl-zoology-route .page__content summary:focus-visible {
   outline: 3px solid rgba(20, 122, 109, 0.38);
   outline-offset: 3px;
+  background: rgba(20, 122, 109, 0.1);
 }
 
 .lbfl-zoology-route .page__content blockquote,
