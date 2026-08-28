@@ -119,6 +119,12 @@ for (const route of routes) {
     try {
       const response = await page.goto(`${baseUrl}${route}`, { waitUntil: "domcontentloaded", timeout: 15_000 });
       status = response?.status() ?? 0;
+
+      // The site has an 800 ms reveal on ordinary pages. Axe measures effective,
+      // composited colors, so evaluating before that reveal settles produces
+      // false contrast failures that learners cannot reproduce after load.
+      await page.waitForTimeout(1_000);
+
       const headingContract = animalDiversityHeadingContract[route] ?? [];
 
 metrics = await page.evaluate((contract) => {
