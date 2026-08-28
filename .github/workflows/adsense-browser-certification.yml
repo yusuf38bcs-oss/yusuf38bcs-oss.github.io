@@ -35,6 +35,8 @@ jobs:
       EVIDENCE_DIR: browser-certification
       PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
+      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
+      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
 
     steps:
       - name: Check out the immutable PR head
@@ -45,14 +47,19 @@ jobs:
 
       - name: Resolve the exact-head Cloudflare Pages preview
         id: preview
-        # This browser gate needs only the GitHub-authenticated Cloudflare
-        # deployment comment. Avoid privileged Cloudflare API calls here:
-        # they add latency and must not substitute for exact-head provenance.
+        # Resolve from authenticated Cloudflare Pages deployment metadata.
+        # The resolver remains fail-closed: only a successful, clean deployment
+        # whose metadata commit_hash equals the full PR_HEAD_SHA is accepted.
         env:
           GH_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
+          test -n "${CLOUDFLARE_API_TOKEN}" || {
+            echo "CLOUDFLARE_API_TOKEN is required for authoritative Pages provenance." >&2
+            exit 1
+          }
           mkdir -p "$EVIDENCE_DIR"
           preview_output="$RUNNER_TEMP/cloudflare-preview.out"
           for attempt in $(seq 1 40); do
@@ -61,6 +68,8 @@ jobs:
               --repository "$GITHUB_REPOSITORY" \
               --sha "$PR_HEAD_SHA" \
               --pr-number "$PR_NUMBER" \
+              --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" \
+              --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" \
               --wait-seconds 0 \
               --site-config _data/ai.yml \
               --output "$EVIDENCE_DIR/cloudflare-targets.json" \
