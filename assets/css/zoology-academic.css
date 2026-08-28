@@ -128,7 +128,7 @@ html.lbfl-zoology-route:has(.animal-matrix-hero) .contextual-sidebar-nav .sideba
 }
 
 .lbfl-zoology-route .page__content a {
-  color: var(--zoo-teal-strong);
+  color: var(--zoo-link) !important;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
 }
