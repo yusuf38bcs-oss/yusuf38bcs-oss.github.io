@@ -1,6 +1,6 @@
 export interface Env {
-  GEMINI_API_KEY: string;
-  GEMINI_MODEL?: string;
+  OPENAI_API_KEY: string;
+  OPENAI_MODEL?: string;
   ALLOWED_ORIGIN?: string;
   EXTRA_ALLOWED_ORIGINS?: string;
   ENVIRONMENT?: string;
@@ -24,9 +24,10 @@ type SocraticResult = {
 
 type JsonRecord = Record<string, unknown>;
 
-const WORKER_VERSION = "omega-2026-08-08.2";
+const WORKER_VERSION = "omega-2026-08-30.2";
 const SERVICE_NAME = "LBFL Synaptic AI Edge Worker";
-const DEFAULT_MODEL = "gemini-2.5-flash";
+const PROVIDER = "openai";
+const DEFAULT_MODEL = "gpt-5.6-terra";
 const MAX_BODY_BYTES = 12_000;
 const DEFAULT_ALLOWED_ORIGIN = "https://learningbiologyforlife.org";
 const FALLBACK_VECTOR = "/biology/";
@@ -200,7 +201,7 @@ function stripJsonFence(value: string): string {
     .trim();
 }
 
-function parseGeminiJson(text: string, attemptCount: number): SocraticResult {
+function parseOpenAiJson(text: string, attemptCount: number): SocraticResult {
   const normalized = stripJsonFence(text);
   const parsed = JSON.parse(normalized) as Partial<SocraticResult>;
   return normalizeResult(parsed, attemptCount);
@@ -213,12 +214,15 @@ function healthPayload(env: Env): JsonRecord {
     version: WORKER_VERSION,
     worker_version_id: runtimeWorkerVersionId(env),
     environment: env.ENVIRONMENT || "production",
-    model: env.GEMINI_MODEL || DEFAULT_MODEL,
-    gemini_key_configured: Boolean(env.GEMINI_API_KEY),
+    provider: PROVIDER,
+    model: env.OPENAI_MODEL || DEFAULT_MODEL,
+    openai_key_configured: Boolean(env.OPENAI_API_KEY),
+    provider_key_configured: Boolean(env.OPENAI_API_KEY),
     allowed_origins: allowedOrigins(env),
     routes: {
       health: ["GET /", "GET /health", "GET /api/health"],
-      socratic: ["POST /", "POST /api/socratic", "POST /api/gemini", "POST /socratic"]
+      socratic: ["POST /", "POST /api/socratic", "POST /api/openai", "POST /socratic"],
+      legacy_aliases: ["POST /api/gemini"]
     },
     safe_next_vectors: SAFE_NEXT_VECTORS,
     contract: {
@@ -229,8 +233,8 @@ function healthPayload(env: Env): JsonRecord {
 }
 
 function statusPage(env: Env): string {
-  const model = env.GEMINI_MODEL || DEFAULT_MODEL;
-  const keyStatus = env.GEMINI_API_KEY ? "Configured" : "Missing";
+  const model = env.OPENAI_MODEL || DEFAULT_MODEL;
+  const keyStatus = env.OPENAI_API_KEY ? "Configured" : "Missing";
 
   return `<!doctype html>
 <html lang="en">
@@ -246,7 +250,7 @@ function statusPage(env: Env): string {
       <div class="bg-gradient-to-br from-cyan-400/15 via-slate-900 to-blue-500/10 p-8 sm:p-12">
         <p class="mb-4 inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-cyan-200">Omega Edge Runtime</p>
         <h1 class="max-w-3xl text-4xl font-black tracking-tight text-white sm:text-6xl">${SERVICE_NAME}</h1>
-        <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">Production API bridge for Socratic Biology evaluation, Gemini structured JSON, UTF-8/Bangla-safe responses, route-safe next vectors, and stable Cloudflare edge delivery.</p>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">Production API bridge for Socratic Biology evaluation, OpenAI structured JSON, UTF-8/Bangla-safe responses, route-safe next vectors, and stable Cloudflare edge delivery.</p>
       </div>
       <div class="grid gap-4 p-6 sm:grid-cols-3 sm:p-8">
         <article class="rounded-3xl border border-slate-700/80 bg-slate-950/60 p-5">
@@ -254,8 +258,8 @@ function statusPage(env: Env): string {
           <p class="mt-3 text-2xl font-black text-emerald-300">Online</p>
         </article>
         <article class="rounded-3xl border border-slate-700/80 bg-slate-950/60 p-5">
-          <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Gemini Key</p>
-          <p class="mt-3 text-2xl font-black ${env.GEMINI_API_KEY ? "text-emerald-300" : "text-amber-300"}">${keyStatus}</p>
+          <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">OpenAI Key</p>
+          <p class="mt-3 text-2xl font-black ${env.OPENAI_API_KEY ? "text-emerald-300" : "text-amber-300"}">${keyStatus}</p>
         </article>
         <article class="rounded-3xl border border-slate-700/80 bg-slate-950/60 p-5">
           <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Model</p>
@@ -279,12 +283,16 @@ async function readJsonBody(request: Request): Promise<unknown> {
   return request.json();
 }
 
-async function callGemini(payload: SocraticPayload, env: Env): Promise<SocraticResult> {
-  if (!env.GEMINI_API_KEY) {
-    throw new Error("GEMINI_API_KEY is not configured.");
+type OpenAiResponse = {
+  output_text?: unknown;
+};
+
+async function callOpenAi(payload: SocraticPayload, env: Env): Promise<SocraticResult> {
+  if (!env.OPENAI_API_KEY) {
+    throw new Error("OPENAI_API_KEY is not configured.");
   }
 
-  const model = env.GEMINI_MODEL || DEFAULT_MODEL;
+  const model = env.OPENAI_MODEL || DEFAULT_MODEL;
   const allowedVectors = SAFE_NEXT_VECTORS.map((path) => `- ${path}`).join("\n");
 
   const systemInstruction = `
@@ -310,66 +318,65 @@ ${allowedVectors}
 `;
 
   const body = {
-    systemInstruction: {
-      parts: [{ text: systemInstruction }]
-    },
-    contents: [
-      {
-        role: "user",
-        parts: [
-          {
-            text: JSON.stringify({
-              anomaly_question: payload.anomaly_question,
-              student_hypothesis: payload.student_hypothesis,
-              page_context: payload.page_context,
-              attempt_count: payload.attempt_count,
-              verified_next_vectors: SAFE_NEXT_VECTORS
-            })
-          }
-        ]
-      }
-    ],
-    generationConfig: {
-      responseMimeType: "application/json",
-      responseSchema: {
-        type: "object",
-        properties: {
-          mastery_achieved: { type: "boolean" },
-          feedback_text: { type: "string" },
-          next_vector: { type: "string" },
-          strike_count: { type: "integer" }
-        },
-        required: ["mastery_achieved", "feedback_text", "next_vector", "strike_count"]
+    model,
+    instructions: systemInstruction,
+    input: JSON.stringify({
+      anomaly_question: payload.anomaly_question,
+      student_hypothesis: payload.student_hypothesis,
+      page_context: payload.page_context,
+      attempt_count: payload.attempt_count,
+      verified_next_vectors: SAFE_NEXT_VECTORS
+    }),
+    store: false,
+    text: {
+      format: {
+        type: "json_schema",
+        name: "socratic_result",
+        strict: true,
+        schema: {
+          type: "object",
+          additionalProperties: false,
+          properties: {
+            mastery_achieved: { type: "boolean" },
+            feedback_text: { type: "string" },
+            next_vector: { type: "string" },
+            strike_count: { type: "integer" }
+          },
+          required: ["mastery_achieved", "feedback_text", "next_vector", "strike_count"]
+        }
       }
     }
   };
 
   const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(env.GEMINI_API_KEY)}`,
+    "https://api.openai.com/v1/responses",
     {
       method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify(body)
+      headers: {
+        Authorization: `Bearer ${env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(20_000)
     }
   );
 
   if (!response.ok) {
-    const detail = await response.text().catch(() => "");
-    throw new Error(`Gemini API failed with status ${response.status}: ${detail.slice(0, 240)}`);
+    throw new Error(`OpenAI API failed with status ${response.status}.`);
   }
 
-  const data = (await response.json()) as any;
-  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+  const data = (await response.json()) as OpenAiResponse;
+  const text = data.output_text;
 
   if (!text || typeof text !== "string") {
-    throw new Error("Gemini returned empty structured output.");
+    throw new Error("OpenAI returned empty structured output.");
   }
 
-  return parseGeminiJson(text, payload.attempt_count);
+  return parseOpenAiJson(text, payload.attempt_count);
 }
 
 function isSocraticRoute(pathname: string): boolean {
-  return pathname === "/" || pathname === "/api/socratic" || pathname === "/api/gemini" || pathname === "/socratic";
+  return pathname === "/" || pathname === "/api/socratic" || pathname === "/api/openai" || pathname === "/api/gemini" || pathname === "/socratic";
 }
 
 function isHealthRoute(pathname: string): boolean {
@@ -403,7 +410,8 @@ export default {
     if (!isSocraticRoute(pathname)) {
       return json(request, env, {
         error: "Not found.",
-        valid_post_routes: ["/", "/api/socratic", "/api/gemini", "/socratic"]
+        valid_post_routes: ["/", "/api/socratic", "/api/openai", "/socratic"],
+        legacy_aliases: ["/api/gemini"]
       }, 404);
     }
 
@@ -434,7 +442,7 @@ export default {
     }
 
     try {
-      const result = await callGemini(payload, env);
+      const result = await callOpenAi(payload, env);
       return json(request, env, result);
     } catch (error) {
       console.error("[LBFL Worker Error]", error);
