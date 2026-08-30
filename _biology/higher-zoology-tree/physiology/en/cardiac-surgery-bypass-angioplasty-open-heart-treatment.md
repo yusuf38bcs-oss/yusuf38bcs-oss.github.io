@@ -199,6 +199,5 @@ Cardiac procedures teach that blocked flow needs restoration, but restored flow 
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf**.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, cardiovascular chapters.
 - Standard cardiovascular treatment education references.

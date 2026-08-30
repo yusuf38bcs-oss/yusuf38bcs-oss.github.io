@@ -5,6 +5,7 @@
  */
 
 .lbfl-zoology-route {
+  --zoo-heading-color: #153f3b;
   --zoo-ink: #102a2a;
   --zoo-muted: #496560;
   --zoo-paper: #fbfaf5;
@@ -12,6 +13,7 @@
   --zoo-soft: #eef7f3;
   --zoo-teal: #147a6d;
   --zoo-teal-strong: #0d5f55;
+  --zoo-link: #073c37;
   --zoo-amber: #b77a21;
   --zoo-border: rgba(20, 122, 109, 0.18);
   --zoo-shadow: 0 0.8rem 2.2rem rgba(15, 62, 57, 0.07);
@@ -48,7 +50,7 @@
 .lbfl-zoology-route .page__content h2,
 .lbfl-zoology-route .page__content h3,
 .lbfl-zoology-route .page__content h4 {
-  color: #153f3b !important;
+  color: var(--zoo-heading-color);
   font-family: inherit;
   text-wrap: balance;
 }
@@ -74,8 +76,59 @@
   color: #315f59 !important;
 }
 
+/*
+ * Preserve established dark Animal Diversity component heading colors.
+ * Canonical Animal Diversity participates in the shared Zoology route,
+ * while its existing dark components retain their light typography.
+ */
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-hub-title,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-study-step h3,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-principle-card h3,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-route-card h3,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-log-card h3 {
+  color: #f8fafc !important;
+}
+
+/* Section titles sit on the light reading surface, not inside dark cards. */
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .lbfl-section-title {
+  color: var(--zoo-heading-color) !important;
+}
+
+.lbfl-zoology-route .page__content .animal-anchor-grid h3 {
+  color: #7fffe7 !important;
+}
+
+/*
+ * Reconcile legacy dark-shell tokens with the Zoology light reading shell.
+ *
+ * production-hotfix.css still applies light body text to
+ * .layout--single.wide with !important. Zoology intentionally
+ * uses cream/soft reading surfaces, so restore the existing
+ * Zoology palette without introducing new color tokens.
+ */
+html.lbfl-zoology-route body.layout--single.wide .page__content {
+  color: var(--zoo-ink) !important;
+}
+
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .page__content .educational-boundary,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content .educational-boundary {
+  color: var(--zoo-ink) !important;
+}
+
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .contextual-sidebar-nav .sidebar-nav-title,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .contextual-sidebar-nav .sidebar-nav-title {
+  color: var(--zoo-ink) !important;
+}
+
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .contextual-sidebar-nav .sidebar-nav-link,
+html.lbfl-zoology-route:has(.lbfl-hub-intro) .contextual-sidebar-nav .sidebar-nav-child-link,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .contextual-sidebar-nav .sidebar-nav-link,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .contextual-sidebar-nav .sidebar-nav-child-link {
+  color: #174d47 !important;
+}
+
 .lbfl-zoology-route .page__content a {
-  color: var(--zoo-teal-strong);
+  color: var(--zoo-link) !important;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
 }
@@ -85,6 +138,7 @@
 .lbfl-zoology-route .page__content summary:focus-visible {
   outline: 3px solid rgba(20, 122, 109, 0.38);
   outline-offset: 3px;
+  background: rgba(20, 122, 109, 0.1);
 }
 
 .lbfl-zoology-route .page__content blockquote,
@@ -272,6 +326,73 @@
   }
 }
 
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content > ul li {
+  color: var(--zoo-ink) !important;
+}
+
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content > ul a {
+  color: var(--zoo-teal-strong) !important;
+}
+
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content pre,
+html.lbfl-zoology-route:has(.animal-matrix-hero) .page__content pre code {
+  color: #f5fbf8 !important;
+  background: #102825 !important;
+}
+
+html.lbfl-zoology-route:has(.animal-matrix-hero) .lbfl-language-switcher__link {
+  color: var(--zoo-ink) !important;
+  background: #ffffff !important;
+}
+
+/*
+ * The two canonical Animal Diversity pages use legacy dark cards inside the
+ * Zoology reading shell. A server-rendered route class keeps these foreground
+ * repairs out of unrelated Zoology pages and avoids relying on :has() in the
+ * cascade that Axe inspects.
+ */
+body.lbfl-animal-diversity-document .educational-boundary,
+body.lbfl-animal-diversity-document .educational-boundary strong,
+body.lbfl-animal-diversity-document .educational-boundary span[lang="bn"],
+body.lbfl-animal-diversity-document .contextual-sidebar-nav .sidebar-nav-title,
+body.lbfl-animal-diversity-document .page__title,
+body.lbfl-animal-diversity-document .page__content > h1,
+body.lbfl-animal-diversity-document .page__content > ul li {
+  color: #102a2a !important;
+}
+
+body.lbfl-animal-diversity-document .contextual-sidebar-nav .sidebar-nav-link,
+body.lbfl-animal-diversity-document .contextual-sidebar-nav .sidebar-nav-child-link,
+body.lbfl-animal-diversity-document .page__content > ul a {
+  color: var(--zoo-link) !important;
+}
+
+body.lbfl-animal-diversity-document .lbfl-section-title {
+  color: var(--zoo-heading-color) !important;
+}
+
+body.lbfl-animal-diversity-document .lbfl-hub-intro .lbfl-hub-title,
+body.lbfl-animal-diversity-document .lbfl-study-step h3,
+body.lbfl-animal-diversity-document .lbfl-principle-card h3,
+body.lbfl-animal-diversity-document .lbfl-route-card h3,
+body.lbfl-animal-diversity-document .lbfl-log-card h3,
+body.lbfl-animal-diversity-document .lbfl-outcome-card h2,
+body.lbfl-animal-diversity-document .lbfl-outcome-card h2 a,
+body.lbfl-animal-diversity-document .lbfl-outcome-card h3 {
+  color: #f8fafc !important;
+}
+
+body.lbfl-animal-diversity-document .page__content pre,
+body.lbfl-animal-diversity-document .page__content pre code {
+  color: #f5fbf8 !important;
+  background: #102825 !important;
+}
+
+body.lbfl-animal-diversity-document .lbfl-language-switcher__link {
+  color: #102a2a !important;
+  background: #ffffff !important;
+}
+
 @media (max-width: 24rem) {
   .lbfl-zoology-cycle__steps {
     grid-template-columns: 1fr;
@@ -287,4 +408,35 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/*
+ * Exact-head browser evidence at e9785020 identified contrast regressions on
+ * the canonical Animal Diversity complete matrix. These rules intentionally
+ * apply only to the two server-labelled Animal Diversity documents and are
+ * stronger than legacy hotfix selectors loaded elsewhere in the cascade.
+ */
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content a {
+  color: var(--zoo-link) !important;
+}
+
+/* Keep links inside legacy dark cards on their established light foreground. */
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content .lbfl-log-card a,
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content .lbfl-outcome-card a {
+  color: #5eead4 !important;
+}
+
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content .lbfl-outcome-card h2 a {
+  color: #f8fafc !important;
+}
+
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .contextual-sidebar-nav a.sidebar-nav-link,
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .contextual-sidebar-nav a.sidebar-nav-child-link {
+  color: var(--zoo-link) !important;
+}
+
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content pre,
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content pre code {
+  color: #f5fbf8 !important;
+  background: #102825 !important;
 }

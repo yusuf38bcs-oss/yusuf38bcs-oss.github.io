@@ -198,6 +198,5 @@ Respiratory system আমাদের শেখায়, জীবন একটি
 
 ## References
 
-- Uploaded source: **Respiratory.docx** — chapter note on human respiratory system.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, respiratory physiology chapters.
 - Respiratory System Master Series pages on Learning Biology For Life.

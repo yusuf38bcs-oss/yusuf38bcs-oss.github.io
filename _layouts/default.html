@@ -10,7 +10,21 @@
 {% assign html_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
 {% assign html_lang_base = html_lang | split: '-' | first | default: 'en' %}
 {% assign html_dir = page.dir | default: site.dir | default: 'ltr' %}
-<html lang="{{ html_lang_base }}" xml:lang="{{ html_lang_base }}" dir="{{ html_dir }}" class="no-js{% if lbfl_home_v2_active %} lbfl-home-v2-document{% endif %}">
+{% assign lbfl_zoology_document = false %}
+{% assign lbfl_animal_diversity_document = false %}
+{% if page.design_system == 'zoology' or page.academic_domain == 'zoology' %}
+  {% assign lbfl_zoology_document = true %}
+{% elsif page.url contains '/biology/hsc-corner/zoology/' %}
+  {% assign lbfl_zoology_document = true %}
+{% elsif page.url contains '/biology/higher-zoology-tree/' %}
+  {% assign lbfl_zoology_document = true %}
+{% elsif page.url contains '/biology/animal-diversity/' %}
+  {% assign lbfl_zoology_document = true %}
+{% endif %}
+{% if page.url contains '/biology/animal-diversity/' %}
+  {% assign lbfl_animal_diversity_document = true %}
+{% endif %}
+<html lang="{{ html_lang_base }}" xml:lang="{{ html_lang_base }}" dir="{{ html_dir }}" class="no-js{% if lbfl_home_v2_active %} lbfl-home-v2-document{% endif %}{% if lbfl_zoology_document %} lbfl-zoology-route{% endif %}">
   <head>
     {% if lbfl_home_v2_active %}
       {% include head/homepage-v2-critical.html %}
@@ -25,7 +39,7 @@
     {% endif %}
   </head>
 
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}{% if lbfl_home_v2_active %} lbfl-home-v2-active{% endif %}">
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}{% if lbfl_home_v2_active %} lbfl-home-v2-active{% endif %}{% if lbfl_animal_diversity_document %} lbfl-animal-diversity-document{% endif %}">
     {% if lbfl_gtm_allowed and lbfl_home_v2_active == false %}
       <!-- Google Tag Manager noscript fallback -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPZ6MPK4"

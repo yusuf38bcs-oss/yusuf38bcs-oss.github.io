@@ -152,6 +152,5 @@ Blood circulation teaches a life principle: survival depends on open pathways, d
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf** — class lecture slides on blood and circulation.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, chapters on blood, heart and circulation.
 - Standard HSC Zoology human physiology curriculum.

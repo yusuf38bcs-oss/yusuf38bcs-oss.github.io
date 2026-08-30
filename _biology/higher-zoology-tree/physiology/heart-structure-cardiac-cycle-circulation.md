@@ -344,5 +344,4 @@ Heart আমাদের শেখায়, strong system শুধু শক্�
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf** — heart structure, chamber, valve, myogenic control and circulation slides.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, cardiac muscle, cardiac cycle and circulation chapters.
