@@ -420,6 +420,16 @@ html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content a {
   color: var(--zoo-link) !important;
 }
 
+/* Keep links inside legacy dark cards on their established light foreground. */
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content .lbfl-log-card a,
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content .lbfl-outcome-card a {
+  color: #5eead4 !important;
+}
+
+html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content .lbfl-outcome-card h2 a {
+  color: #f8fafc !important;
+}
+
 html.lbfl-zoology-route body.lbfl-animal-diversity-document .contextual-sidebar-nav a.sidebar-nav-link,
 html.lbfl-zoology-route body.lbfl-animal-diversity-document .contextual-sidebar-nav a.sidebar-nav-child-link {
   color: var(--zoo-link) !important;
