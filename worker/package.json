@@ -1,11 +1,10 @@
 {
-  "name": "synapticai-proxy",
+  "name": "lbfl-socratic-ai",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev --config ../wrangler.jsonc",
-    "deploy": "wrangler deploy --config ../wrangler.jsonc"
+    "dev": "wrangler dev --config ../wrangler.jsonc"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "latest",
