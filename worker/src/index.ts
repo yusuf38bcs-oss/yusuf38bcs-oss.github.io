@@ -36,6 +36,7 @@ type OpenAIOutputItem = {
 };
 
 type OpenAIResponse = {
+  output_text?: unknown;
   output?: OpenAIOutputItem[];
   status?: string;
   error?: unknown;
@@ -292,6 +293,51 @@ async function readJsonBody(request: Request): Promise<unknown> {
   return request.json();
 }
 
+function asJsonRecord(value: unknown): JsonRecord | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return null;
+  }
+
+  return value as JsonRecord;
+}
+
+function extractOpenAiText(data: OpenAIResponse): string {
+  if (typeof data.output_text === "string" && data.output_text.trim()) {
+    return data.output_text.trim();
+  }
+
+  if (!Array.isArray(data.output)) {
+    throw new Error("OpenAI returned no output items.");
+  }
+
+  const textParts: string[] = [];
+
+  for (const item of data.output) {
+    const itemRecord = asJsonRecord(item);
+    if (!itemRecord || !Array.isArray(itemRecord.content)) continue;
+
+    for (const part of itemRecord.content) {
+      const partRecord = asJsonRecord(part);
+
+      if (
+        partRecord?.type === "output_text" &&
+        typeof partRecord.text === "string" &&
+        partRecord.text.trim()
+      ) {
+        textParts.push(partRecord.text);
+      }
+    }
+  }
+
+  const text = textParts.join("").trim();
+
+  if (!text) {
+    throw new Error("OpenAI returned empty structured output.");
+  }
+
+  return text;
+}
+
 async function callOpenAI(payload: SocraticPayload, env: Env): Promise<SocraticResult> {
   if (!env.OPENAI_API_KEY) {
     throw new Error("OPENAI_API_KEY is not configured.");
@@ -378,11 +424,7 @@ ${allowedVectors}
     throw new Error(`OpenAI refused the Socratic evaluation: ${cleanText(refusal, 240)}`);
   }
 
-  const text = message?.content?.find((item) => item.type === "output_text")?.text;
-
-  if (!text || typeof text !== "string") {
-    throw new Error(`OpenAI returned no structured output (status: ${data.status || "unknown"}).`);
-  }
+  const text = extractOpenAiText(data);
 
   return parseStructuredJson(text, payload.attempt_count);
 }
