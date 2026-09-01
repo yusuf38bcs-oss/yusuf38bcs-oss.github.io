@@ -58,6 +58,7 @@ classes: wide
   border: 1px solid rgba(80, 120, 160, 0.28);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.72);
+  color: #0f172a;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
