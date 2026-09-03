@@ -156,5 +156,4 @@ Blood teaches that life depends on transport and defence. A healthy society also
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf**.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, blood and hemostasis chapters.

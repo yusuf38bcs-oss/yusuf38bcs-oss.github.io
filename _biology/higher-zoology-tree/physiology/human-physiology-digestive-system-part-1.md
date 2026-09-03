@@ -11,7 +11,7 @@ title: "Human Physiology: Digestive System (Part 1)"
 excerpt: "মানবদেহের পরিপাক ও শোষণ প্রক্রিয়ার শারীরবৃত্তীয় বিশ্লেষণ। পরিপাক নালীর গঠন, প্রধান পরিপাক গ্রন্থি এবং খাদ্যের রাসায়নিক ভাঙন প্রক্রিয়ার মডুলার গাইড।"
 
 date: 2026-04-10T20:18:00.000Z
-last_modified_at: 2026-06-09T04:13:27.000Z
+last_modified_at: 2026-08-21T00:00:00.000Z
 
 permalink: /biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-1/
 
@@ -85,7 +85,7 @@ concept_level: "Core"
 
 <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
   <h3 style="color: #ffffff; font-size: 1.3rem; margin-top:0; color:#00d4b2;">🧠 ২. পরিপাক ও পরিপাকতন্ত্রের পরিচয়</h3>
-  <p style="color:#cbd5e1; line-height: 1.7;"><strong>পরিপাক (Digestion):</strong> যে শারীরবৃত্তীয় প্রক্রিয়ায় জটিল, অদ্রবণীয় ও অভিশোষণ অযোগ্য খাদ্যবস্তু নির্দিষ্ট এনজাইম এবং হরমোনের উপস্থিতিতে ভেঙে সরল, দ্রবণীয় ও কোষের শোষণযোগ্য উপাদানে পরিণত হয়, তাকে পরিপাক বলে।</p>
+  <p style="color:#cbd5e1; line-height: 1.7;"><strong>পরিপাক (Digestion):</strong> যে শারীরবৃত্তীয় প্রক্রিয়ায় জটিল ও শোষণ-অযোগ্য খাদ্য যান্ত্রিক প্রক্রিয়া এবং নির্দিষ্ট পরিপাক এনজাইমের ক্রিয়ায় ভেঙে সরল, দ্রবণীয় ও শোষণযোগ্য উপাদানে পরিণত হয়, তাকে পরিপাক বলে। হরমোন পরিপাকতন্ত্রের নিঃসরণ ও গতিশীলতা নিয়ন্ত্রণ করতে পারে, কিন্তু খাদ্য অণু ভাঙার এনজাইম নয়।</p>
 
   <h4 style="color: #ffffff; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">📍 পরিপাক নালীর লজিস্টিক ফ্লোচার্ট (Gastrointestinal Track):</h4>
   <div style="background: #131c2e; border: 1px solid rgba(0, 212, 178, 0.15); border-left: 5px solid #00d4b2; padding: 1.25rem; border-radius: 8px; font-family: monospace; font-weight: 700; color: #cbd5e1; font-size: 1rem; text-align: center; line-height: 1.6;">
@@ -106,17 +106,17 @@ concept_level: "Core"
   
   <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-top: 4px solid #3b82f6;">
     <h4 style="color: #ffffff; font-size: 1.15rem; margin-top: 0; font-weight: 700;">🌾 শর্করা (Carbohydrate) পরিপাক:</h4>
-    <p style="color: #cbd5e1; margin: 0; line-height: 1.6;">মুখগহ্বরে লালার <strong>টায়ালিন</strong> ও <strong>মল্টেজ</strong> এনজাইম জটিল শর্করা ভাঙার প্রাথমিক কাজ শুরু করে। পাকস্থলীতে শর্করা পরিপাককারী কোনো এনজাইম থাকে না। চূড়ান্ত পরিপাক সম্পন্ন হয় ক্ষুদ্রান্ত্রে অগ্ন্যাশয় ও আন্ত্রিক রসের অ্যামাইলোলাইটিক এনজাইম দ্বারা এবং শোষণের মূল একক <b>গ্লুকোজ</b> উৎপন্ন হয়।</p>
+    <p style="color: #cbd5e1; margin: 0; line-height: 1.6;">মুখগহ্বরে লালার <strong>টায়ালিন (salivary amylase)</strong> starch-এর প্রাথমিক ভাঙন শুরু করে। পাকস্থলীর অম্লীয় পরিবেশে এই কার্যক্রম দ্রুত কমে যায়। ক্ষুদ্রান্ত্রে pancreatic amylase starch breakdown চালিয়ে যায় এবং brush-border enzyme—বিশেষত <strong>maltase</strong>, sucrase ও lactase—disaccharide-কে absorbable monosaccharide-এ রূপান্তর করে।</p>
   </div>
 
   <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-top: 4px solid #00d4b2;">
     <h4 style="color: #ffffff; font-size: 1.15rem; margin-top: 0; font-weight: 700;">🥩 আমিষ (Protein) পরিপাক:</h4>
-    <p style="color: #cbd5e1; margin: 0; line-height: 1.6;">মুখগহ্বরে আমিষ পরিপাক হয় না। পাকস্থলীতে অম্লীয় পরিবেশে গ্যাস্ট্রিক রসের <strong>পেপসিন</strong> এনজাইম জটিল আমিষকে প্রোটিওজ ও পেপটোন-এ রূপান্তর করে। ক্ষুদ্রান্ত্রে অগ্ন্যাশয়ের ট্রিপসিন, কাইমোট্রিপসিন এবং পেপটিডেজ এনজাইমের প্রভাবে এটি চূড়ান্ত বিল্ডিং ব্লক <b>অ্যামাইনো এসিডে</b> পরিণত হয়।</p>
+    <p style="color: #cbd5e1; margin: 0; line-height: 1.6;">মুখগহ্বরে আমিষ পরিপাক হয় না। পাকস্থলীতে অম্লীয় পরিবেশে গ্যাস্ট্রিক রসের <strong>পেপসিন</strong> এনজাইম জটিল আমিষকে ছোট peptide-এ ভাঙতে শুরু করে। ক্ষুদ্রান্ত্রে অগ্ন্যাশয়ের protease এবং brush-border/intestinal peptidase-এর প্রভাবে protein digestion শেষ হয়ে absorbable amino acid ও ছোট peptide তৈরি হয়।</p>
   </div>
 
   <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-top: 4px solid #f59e0b;">
     <h4 style="color: #ffffff; font-size: 1.15rem; margin-top: 0; font-weight: 700;">🧈 স্নেহ (Lipid) পরিপাক:</h4>
-    <p style="color: #cbd5e1; margin: 0; line-height: 1.6;">যকৃৎ থেকে নিঃসৃত পিত্তলবণ (Bile Salts) চর্বিকে ক্ষুদ্র ক্ষুদ্র দানায় পরিণত করে, যাকে <strong>ইমালসিফিকেশন (Emulsification)</strong> বলে। ক্ষুদ্রান্ত্রে অগ্ন্যাশয় রস ও আন্ত্রিক রসের <strong>লাইপেজ</strong> এনজাইম এই ইমালসিফাইড চর্বিকে ভেঙে শোষণযোগ্য <b>ফ্যাটি এসিড ও গ্লিসারল</b>-এ রূপান্তর করে।</p>
+    <p style="color: #cbd5e1; margin: 0; line-height: 1.6;"><strong>Bile salts enzyme নয়</strong>; এগুলো বড় fat globule-কে ছোট droplet-এ emulsify করে এবং lipase-এর কার্যকর surface area বাড়ায়। ক্ষুদ্রান্ত্রে pancreatic lipase প্রধানত triglyceride hydrolysis করে fatty acid ও monoglyceride তৈরি করে, যা bile salt-এর সহায়তায় micelle গঠন করে absorption-এর জন্য প্রস্তুত হয়।</p>
   </div>
 </div>
 

@@ -318,6 +318,5 @@ Cardiac treatment teaches a powerful life lesson: damage can sometimes be bypass
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf** — coronary disease foundation: angina and heart attack mechanism.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, coronary circulation and cardiac function chapters.
 - NHLBI: Coronary heart disease treatment, stents, and CABG educational resources.

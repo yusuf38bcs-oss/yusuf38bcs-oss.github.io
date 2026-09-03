@@ -323,7 +323,6 @@ Circulatory disease আমাদের শেখায়: প্রতিদিন
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf** — angina and heart attack slides.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, coronary circulation and cardiovascular regulation chapters.
 - CDC heart attack symptoms and emergency awareness resources.
 - NHLBI coronary heart disease treatment and prevention resources.

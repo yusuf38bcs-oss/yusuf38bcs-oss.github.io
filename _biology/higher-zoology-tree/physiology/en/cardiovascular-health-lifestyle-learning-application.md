@@ -187,6 +187,5 @@ Circulation teaches discipline. Blood must flow through clear vessels, the heart
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf**.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, cardiovascular physiology chapters.
 - Standard cardiovascular prevention education references.

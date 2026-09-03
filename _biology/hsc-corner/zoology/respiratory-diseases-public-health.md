@@ -388,7 +388,6 @@ Respiratory disease আমাদের শেখায়: শরীরের ভ�
 
 ## References
 
-- Uploaded source: **Respiratory.docx** — respiratory disease notes: sinusitis, otitis media, bronchitis, pneumonia, TB, smoking damage, emphysema, pleurisy, fibrosis, CPR awareness, tidal volume.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, respiratory physiology chapters.
 - National Heart, Lung, and Blood Institute: Pneumonia, Asthma, COPD educational resources.
 - Centers for Disease Control and Prevention: Tuberculosis and Influenza educational resources.

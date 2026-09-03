@@ -3,6 +3,19 @@
   default.html already loads _includes/head.html.
 {% endcomment %}
 
+{% assign lbfl_zoology_route = false %}
+{% if page.url contains '/biology/hsc-corner/zoology/' %}
+  {% assign lbfl_zoology_route = true %}
+{% elsif page.url contains '/biology/higher-zoology-tree/' %}
+  {% assign lbfl_zoology_route = true %}
+{% elsif page.url contains '/biology/animal-diversity/' %}
+  {% assign lbfl_zoology_route = true %}
+{% endif %}
+{% if lbfl_zoology_route %}
+<link rel="stylesheet" href="{{ '/assets/css/zoology-academic.css' | relative_url }}">
+
+{% endif %}
+
 <link rel="stylesheet" href="{{ '/assets/css/respiratory-system.css' | relative_url }}">
 <script>
   (function () {

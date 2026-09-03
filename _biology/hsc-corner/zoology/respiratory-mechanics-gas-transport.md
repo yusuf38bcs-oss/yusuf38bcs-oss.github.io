@@ -412,6 +412,5 @@ CO₂ removal increases
 
 ## References
 
-- Uploaded source: **Respiratory.docx** — respiratory muscles, inspiration-expiration mechanism, neural and chemical control, gas transport and chloride shift notes.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, respiratory physiology chapters.
 - Standard HSC Zoology respiratory physiology curriculum notes.

@@ -223,6 +223,5 @@ Circulatory disease teaches that damage often begins silently. The same is true 
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf**.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, cardiovascular physiology chapters.
 - Standard cardiovascular health education references.

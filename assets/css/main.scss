@@ -344,3 +344,30 @@ $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
   padding-top: clamp(3rem, 7vw, 5.8rem) !important;
   padding-bottom: clamp(3.25rem, 8vw, 6.5rem) !important;
 }
+
+/* ==========================================================================
+   LBFL ACCESSIBILITY BASELINE
+   Visible heading-permalink keyboard focus + reduced-motion normalization.
+   ========================================================================== */
+
+.header-link:focus,
+.header-link:focus-visible {
+  opacity: 1 !important;
+  -webkit-transition: none !important;
+  transition: none !important;
+  outline: 2px solid #67e8f9 !important;
+  outline-offset: 0.2em;
+  border-radius: 0.15em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead,
+  #main {
+    animation: none !important;
+  }
+
+  .lbfl-skip-link,
+  .header-link {
+    transition: none !important;
+  }
+}

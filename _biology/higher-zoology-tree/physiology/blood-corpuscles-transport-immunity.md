@@ -293,5 +293,4 @@ Vaccination/immunization works because immune system can learn antigen pattern a
 
 ## References
 
-- Uploaded source: **Blood Circulation.pdf** — blood, plasma, RBC, blood corpuscles and lymph slides.
 - John E. Hall, *Guyton and Hall Textbook of Medical Physiology*, blood cells, immunity and hemostasis chapters.
