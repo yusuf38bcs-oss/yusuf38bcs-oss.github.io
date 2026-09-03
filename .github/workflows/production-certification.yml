@@ -155,7 +155,7 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
           test -n "$CLOUDFLARE_WORKER_SCRIPT"
-          test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy" || {
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai" || {
             echo "CLOUDFLARE_WORKER_SCRIPT must identify the public production Worker"
             exit 1
           }
@@ -423,7 +423,7 @@ jobs:
           test -n "$CLOUDFLARE_ACCOUNT_ID"
           test -n "$CLOUDFLARE_API_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
-          test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy"
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai"
           test -n "$INITIAL_DEPLOYMENT_ID"
           [[ "$INITIAL_WORKER_VERSION_ID" =~ ^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$ ]]
 
