@@ -419,7 +419,30 @@ env:
 jobs:
   current-head-governance:
     name: Trusted governance — current head
-    if: github.event.action != 'closed' && (github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'staging')
+    # Drafts rerun only when head/base/eligibility can invalidate a prior trusted status.
+    # Non-Drafts continue to evaluate on every configured PR/review event.
+    if: >-
+      github.event.action != 'closed' &&
+      (
+        github.event.pull_request.base.ref == 'main' ||
+        github.event.pull_request.base.ref == 'staging'
+      ) &&
+      (
+        github.event.pull_request.draft == false ||
+        (
+          github.event_name == 'pull_request_target' &&
+          (
+            contains(
+              fromJSON('["opened","synchronize","reopened","converted_to_draft"]'),
+              github.event.action
+            ) ||
+            (
+              github.event.action == 'edited' &&
+              github.event.changes.base != null
+            )
+          )
+        )
+      )
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     concurrency:
