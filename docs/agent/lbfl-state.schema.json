@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learningbiologyforlife.org/schemas/lbfl-state.schema.json",
+  "title": "LBFL Durable Execution State",
+  "type": "object",
+  "required": ["task_id", "mission", "authority", "nodes", "evidence", "decisions", "budgets", "retry_counts", "human_approvals", "blockers"],
+  "properties": {
+    "task_id": {"type": "string", "minLength": 1},
+    "mission": {"type": "string", "minLength": 1},
+    "authority": {
+      "type": "object",
+      "required": ["repository", "base_ref", "base_sha"],
+      "properties": {
+        "repository": {"type": "string"},
+        "base_ref": {"type": "string"},
+        "base_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "base_tree": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+        "candidate_sha": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+        "preview_identity": {"type": ["string", "null"]},
+        "deployment_identity": {"type": ["string", "null"]},
+        "worker_version": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "nodes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": {"type": "string"},
+          "started_at": {"type": ["string", "null"]},
+          "completed_at": {"type": ["string", "null"]},
+          "artifact_refs": {"type": "array", "items": {"type": "string"}},
+          "failure_route": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "state", "ref"],
+        "properties": {
+          "id": {"type": "string"},
+          "state": {"enum": ["VERIFIED", "CORROBORATED", "INFERRED", "UNVERIFIED", "CONFLICTED", "BLOCKED", "STALE", "SUPERSEDED", "ABSENT"]},
+          "ref": {"type": "string"},
+          "bound_sha": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+          "freshness_checked_at": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "decisions": {"type": "array", "items": {"type": "object"}},
+    "budgets": {
+      "type": "object",
+      "properties": {
+        "max_rounds": {"type": "integer", "minimum": 1},
+        "token_budget": {"type": ["integer", "null"], "minimum": 0},
+        "time_budget_minutes": {"type": ["integer", "null"], "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "retry_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "human_approvals": {"type": "array", "items": {"type": "object"}},
+    "blockers": {"type": "array", "items": {"type": "object"}},
+    "seen_failures": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+  },
+  "additionalProperties": false
+}

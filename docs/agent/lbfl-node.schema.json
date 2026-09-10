@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learningbiologyforlife.org/schemas/lbfl-node.schema.json",
+  "title": "LBFL Execution Graph Node",
+  "type": "object",
+  "required": ["id", "class", "job", "inputs", "outputs", "mutations", "failure"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "class": {"type": "string"},
+    "job": {"type": "string", "minLength": 1},
+    "inputs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "outputs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "mutations": {
+      "type": "object",
+      "required": ["allowed"],
+      "properties": {
+        "allowed": {"type": "boolean"},
+        "scope": {"type": "string"},
+        "production": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "failure": {"type": "object", "additionalProperties": {"type": "string"}},
+    "convergence": {
+      "type": "object",
+      "required": ["max_rounds", "dry_rounds"],
+      "properties": {
+        "max_rounds": {"type": "integer", "minimum": 1},
+        "dry_rounds": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
