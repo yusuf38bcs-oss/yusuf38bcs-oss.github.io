@@ -20,12 +20,22 @@
     </div>
 
     <figure class="lbfl-v3-hero__visual" data-v3-hero-visual>
-      <picture>
-        <source media="(max-width: 520px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-480.webp' | relative_url }}">
-        <source media="(max-width: 820px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-768.webp' | relative_url }}">
-        <source media="(max-width: 1280px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-1200.webp' | relative_url }}">
-        <img src="{{ '/assets/images/home/v3/lbfl-cell-1600.webp' | relative_url }}" width="1600" height="1200" alt="" decoding="async" fetchpriority="high">
-      </picture>
+      <template data-v3-hero-media>
+        <picture>
+          <source media="(max-width: 520px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-480.webp' | relative_url }}">
+          <source media="(max-width: 820px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-768.webp' | relative_url }}">
+          <source media="(max-width: 1280px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-1200.webp' | relative_url }}">
+          <img src="{{ '/assets/images/home/v3/lbfl-cell-1600.webp' | relative_url }}" width="1600" height="1200" alt="" decoding="async" fetchpriority="high">
+        </picture>
+      </template>
+      <noscript>
+        <picture>
+          <source media="(max-width: 520px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-480.webp' | relative_url }}">
+          <source media="(max-width: 820px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-768.webp' | relative_url }}">
+          <source media="(max-width: 1280px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-1200.webp' | relative_url }}">
+          <img src="{{ '/assets/images/home/v3/lbfl-cell-1600.webp' | relative_url }}" width="1600" height="1200" alt="" decoding="async" fetchpriority="high">
+        </picture>
+      </noscript>
       <figcaption>A eukaryotic animal cell representing observation, connection, and evidence-based reasoning.</figcaption>
     </figure>
   </div>
