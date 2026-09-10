@@ -9,6 +9,24 @@
     <title>{{ page.title | escape }}</title>
     <meta name="description" content="{{ page.description | escape }}">
     <link rel="stylesheet" href="{{ '/assets/css/homepage-v3.css' | relative_url }}">
+    <style>
+      @media (max-width: 1024px) {
+        .no-js .lbfl-v3-header__inner { flex-wrap: wrap; padding-block: 8px; }
+        .no-js .lbfl-v3-nav { display: flex; order: 3; flex: 1 0 100%; margin-left: 0; overflow-x: auto; }
+        .no-js .lbfl-v3-menu-button { display: none; }
+      }
+
+      @media print {
+        .lbfl-home-v3 .lbfl-v3-hero,
+        .lbfl-home-v3 .lbfl-v3-journey,
+        .lbfl-home-v3 .lbfl-v3-continue,
+        .lbfl-home-v3 .lbfl-v3-footer { background: #fff !important; color: #000 !important; }
+        .lbfl-home-v3 .lbfl-v3-hero *,
+        .lbfl-home-v3 .lbfl-v3-journey *,
+        .lbfl-home-v3 .lbfl-v3-continue *,
+        .lbfl-home-v3 .lbfl-v3-footer * { color: #000 !important; }
+      }
+    </style>
   </head>
   <body class="lbfl-home-v3">
     <a class="lbfl-v3-skip" href="#main-content">Skip to main content</a>
