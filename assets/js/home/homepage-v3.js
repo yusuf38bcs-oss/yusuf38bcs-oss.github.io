@@ -8,6 +8,15 @@
   const saveData = Boolean(navigator.connection && navigator.connection.saveData);
   root.dataset.saveData = saveData ? 'true' : 'false';
 
+  const heroVisual = document.querySelector('[data-v3-hero-visual]');
+  const heroMediaTemplate = heroVisual?.querySelector('template[data-v3-hero-media]');
+
+  if (saveData) {
+    heroVisual?.setAttribute('hidden', '');
+  } else if (heroMediaTemplate instanceof HTMLTemplateElement) {
+    heroMediaTemplate.replaceWith(heroMediaTemplate.content.cloneNode(true));
+  }
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   root.dataset.reducedMotion = reducedMotion ? 'true' : 'false';
 
