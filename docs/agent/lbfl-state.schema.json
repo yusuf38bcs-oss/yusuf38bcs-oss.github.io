@@ -3,22 +3,85 @@
   "$id": "https://learningbiologyforlife.org/schemas/lbfl-state.schema.json",
   "title": "LBFL Durable Execution State",
   "type": "object",
-  "required": ["task_id", "mission", "authority", "nodes", "evidence", "decisions", "budgets", "retry_counts", "human_approvals", "blockers"],
+  "required": [
+    "task_id",
+    "mission",
+    "authority",
+    "scope",
+    "nodes",
+    "evidence",
+    "decisions",
+    "budgets",
+    "retry_counts",
+    "human_approvals",
+    "blockers"
+  ],
   "properties": {
-    "task_id": {"type": "string", "minLength": 1},
-    "mission": {"type": "string", "minLength": 1},
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mission": {
+      "type": "string",
+      "minLength": 1
+    },
     "authority": {
       "type": "object",
-      "required": ["repository", "base_ref", "base_sha"],
+      "required": [
+        "repository",
+        "base_ref",
+        "base_sha"
+      ],
       "properties": {
-        "repository": {"type": "string"},
-        "base_ref": {"type": "string"},
-        "base_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-        "base_tree": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
-        "candidate_sha": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
-        "preview_identity": {"type": ["string", "null"]},
-        "deployment_identity": {"type": ["string", "null"]},
-        "worker_version": {"type": ["string", "null"]}
+        "repository": {
+          "type": "string"
+        },
+        "base_ref": {
+          "type": "string"
+        },
+        "base_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "base_tree": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "candidate_sha": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "preview_identity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deployment_identity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "worker_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deployment_operation_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
       },
       "additionalProperties": false
     },
@@ -26,13 +89,62 @@
       "type": "object",
       "additionalProperties": {
         "type": "object",
-        "required": ["status"],
+        "required": [
+          "status"
+        ],
         "properties": {
-          "status": {"type": "string"},
-          "started_at": {"type": ["string", "null"]},
-          "completed_at": {"type": ["string", "null"]},
-          "artifact_refs": {"type": "array", "items": {"type": "string"}},
-          "failure_route": {"type": ["string", "null"]}
+          "status": {
+            "enum": [
+              "PENDING",
+              "RUNNING",
+              "PASS",
+              "FAIL",
+              "HOLD",
+              "BLOCKED",
+              "ESCALATE",
+              "SKIPPED",
+              "STOPPED"
+            ]
+          },
+          "started_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "completed_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "artifact_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "failure_route": {
+            "anyOf": [
+              {
+                "enum": [
+                  "RETRY",
+                  "FALLBACK",
+                  "SKIP",
+                  "REPAIR",
+                  "ESCALATE",
+                  "HOLD",
+                  "FAIL_CLOSED",
+                  "STOP"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
         },
         "additionalProperties": false
       }
@@ -41,31 +153,269 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "state", "ref"],
+        "required": [
+          "id",
+          "state",
+          "ref"
+        ],
         "properties": {
-          "id": {"type": "string"},
-          "state": {"enum": ["VERIFIED", "CORROBORATED", "INFERRED", "UNVERIFIED", "CONFLICTED", "BLOCKED", "STALE", "SUPERSEDED", "ABSENT"]},
-          "ref": {"type": "string"},
-          "bound_sha": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
-          "freshness_checked_at": {"type": ["string", "null"]}
+          "id": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "VERIFIED",
+              "CORROBORATED",
+              "INFERRED",
+              "UNVERIFIED",
+              "CONFLICTED",
+              "BLOCKED",
+              "STALE",
+              "SUPERSEDED",
+              "ABSENT"
+            ]
+          },
+          "ref": {
+            "type": "string"
+          },
+          "bound_sha": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "freshness_checked_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
         },
         "additionalProperties": false
       }
     },
-    "decisions": {"type": "array", "items": {"type": "object"}},
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "decision",
+          "rationale",
+          "actor",
+          "decided_at",
+          "evidence_refs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "decision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "decided_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
     "budgets": {
       "type": "object",
       "properties": {
-        "max_rounds": {"type": "integer", "minimum": 1},
-        "token_budget": {"type": ["integer", "null"], "minimum": 0},
-        "time_budget_minutes": {"type": ["integer", "null"], "minimum": 0}
+        "max_rounds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "token_budget": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "time_budget_minutes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "max_rounds"
+      ]
+    },
+    "retry_counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "human_approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "actor",
+          "decision",
+          "exact_head",
+          "exact_base",
+          "authorized_scope",
+          "approved_at",
+          "authorization_ref",
+          "rollback_plan_ref",
+          "rollout_plan_ref"
+        ],
+        "properties": {
+          "actor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "decision": {
+            "enum": [
+              "APPROVED_FOR_EXACT_HEAD",
+              "HOLD",
+              "REJECTED"
+            ]
+          },
+          "exact_head": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "exact_base": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "authorized_scope": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "approved_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "authorization_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rollback_plan_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rollout_plan_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "status",
+          "summary",
+          "evidence_refs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "severity": {
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "status": {
+            "enum": [
+              "OPEN",
+              "HOLD",
+              "RESOLVED",
+              "SUPERSEDED"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "seen_failures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "target_environment",
+        "mutation_boundary"
+      ],
+      "properties": {
+        "target_environment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mutation_boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "paths": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
       },
       "additionalProperties": false
-    },
-    "retry_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
-    "human_approvals": {"type": "array", "items": {"type": "object"}},
-    "blockers": {"type": "array", "items": {"type": "object"}},
-    "seen_failures": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+    }
   },
   "additionalProperties": false
 }

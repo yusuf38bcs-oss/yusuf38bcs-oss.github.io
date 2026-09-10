@@ -2,158 +2,144 @@
 
 ## Status
 
-Architecture-only implementation for review. This package does **not** change learner-facing content, GitHub governance rules, Cloudflare configuration, Worker code, secrets, deployment state, or production behavior. The validator is not wired into CI.
+Architecture-only Draft candidate. This package does not itself authorize learner-facing changes, required GitHub checks, Cloudflare or Worker changes, merge, deployment, or production promotion.
 
-## Purpose
+## Core doctrine
 
-The LBFL skill library defines *what* specialist capabilities exist. This graph defines *how* those capabilities may be coordinated safely.
+> Skills are bounded nodes. Edges are authenticated data contracts. Verification occurs before authority increases. Production mutation requires candidate-bound planning, exact-head certification, and explicit human authorization.
 
-Core rule:
+## v1.1 hardening
 
-> Skills are bounded nodes. Edges are evidence/data contracts. Verification sits before authority or privilege increases. Durable state preserves what happened, why a route was chosen, and where execution can safely resume.
+Version 1.1:
 
-## Design principles
+- introduces audit planning before expensive specialist fan-out;
+- removes the direct risk-router to human-authority bypass;
+- makes edge contracts source-output and target-input explicit;
+- requires rollout and rollback planning before exact-head certification;
+- propagates exact authorization provenance into production;
+- introduces pre-authorized recovery after failed live certification;
+- independently certifies recovery;
+- strengthens durable approvals, decisions, blockers, node classes, failure routes, and mutation scopes.
 
-1. **Sequence is not dependency.** Create an edge only when the downstream node consumes an upstream output or requires its authority.
-2. **Authenticate before fan-out.** Establish repository/base/task authority once, then branch independent read-only audits.
-3. **Use deterministic code for plumbing.** Hashing, deduplication, joins, route/status checks, schema checks, SHA comparisons, and policy enforcement should not consume model calls without a documented reason.
-4. **Use models for judgment.** Research synthesis, academic reasoning, remediation design, and ambiguity classification may use model reasoning, but their outputs remain evidence-bound.
-5. **Structured outputs over transcript handoffs.** Nodes pass compact typed fields and artifact references. Reviewers should read authoritative artifacts directly where necessary.
-6. **Verification is a privilege boundary.** Information becomes evidence only after verification; recommendations become authorized mutations only after governance/human gates.
-7. **Failure stays local when safe.** Optional or independent branches may retry/fallback without repeating completed work. Release-critical identity, security, governance, or certification failures remain fail-closed.
-8. **Cycles must converge.** Every repair/research loop needs a completion test, maximum rounds, budget, prior-attempt memory, and escalation path.
-9. **No self-promotion.** Generation, verification, approval, and production mutation must not collapse into a single unreviewed authority context.
-10. **Exact-head freshness.** Candidate-bound evidence is invalidated when the relevant head/base identity changes.
+## Execution topology
 
-## Topology
+    authenticate_baseline
+            |
+            v
+      audit_plan_router
+       / / / | \ \
+      v v v  v  v v
+      selected specialist audits
+              |
+              v
+      synthesize_findings
+              |
+              v
+          risk_router
+       /       |        \
+ NO_REPAIR   REPAIR    HUMAN_DECISION_ONLY
+    |          |             |
+    |    remediation_design  |
+    |          |             |
+    | isolated_implementation|
+    |          |             |
+    | candidate_verification |
+    |       | PASS | REPAIR  |
+    |       v      +---------+
+    +--> release_plan
+              |
+              v
+    exact_head_certification
+              |
+              v
+    human_release_authority
+              |
+              v
+     production_deployment
+              |
+              v
+       live_certification
+         /           \
+       PASS         non-PASS
+        |              |
+        v              v
+ close_and_persist  production_recovery
+                       |
+                       v
+                recovery_certification
+                       |
+                       v
+                close_and_persist
 
-```text
-                              ┌─ academic_truth_audit ─────────┐
-                              ├─ ui_responsive_audit ──────────┤
-authenticate_baseline ────────├─ seo_route_audit ──────────────┤
-                              ├─ accessibility_audit ──────────┤── synthesize_findings
-                              ├─ security_supply_chain_audit ──┤
-                              └─ runtime_worker_audit ──────────┘
-                                                                  │
-                                                                  ▼
-                                                             risk_router
-                                                         ┌────────┴─────────┐
-                                                         │                  │
-                                                   no repair              repair
-                                                         │                  │
-                                                         │         remediation_design
-                                                         │                  │
-                                                         │       isolated_implementation
-                                                         │                  │
-                                                         │       verification_cycle
-                                                         │                  │
-                                                         └─────────┬────────┘
-                                                                   ▼
-                                                        exact_head_certification
-                                                                   │
-                                                        human_release_authority
-                                                                   │
-                                                         production_deployment
-                                                                   │
-                                                            live_certification
-                                                                   │
-                                                            close_and_persist
-```
+## Privilege boundary
 
-The six audit branches may run independently after baseline authentication. The release join waits only for evidence required by the selected route.
+Every production-deployment path must pass, in order:
 
-## Node contract
+    release_plan
+      -> exact_head_certification
+      -> human_release_authority
+      -> production_deployment
 
-Every production-grade node must declare:
+There is no direct route from risk classification to release authority.
 
-- one bounded job;
-- explicit inputs;
-- structured outputs;
-- mutation authority;
-- failure routing;
-- convergence rules when cyclic.
+## Rollback boundary
 
-The canonical graph is stored in [`lbfl-execution-graph.json`](./lbfl-execution-graph.json).
+Rollback and rollout plans are produced before certification.
+
+They are therefore candidate-bound evidence rather than plans invented after a production failure.
+
+A recovery mutation is reachable only after non-PASS live certification and must itself be independently certified.
+
+## Audit routing
+
+The audit-plan router chooses the smallest sufficient specialist set.
+
+Independent audits may execute in parallel.
+
+The deterministic synthesis node uses all-selected join semantics.
 
 ## Durable state
 
-[`lbfl-state.schema.json`](./lbfl-state.schema.json) defines compact continuation state for:
+Durable state records repository authority, exact candidate identity, evidence freshness, execution scope, retries, decisions, blockers, exact-head human approval, deployment identity, and recovery evidence.
 
-- task/mission;
-- authoritative repository/base/candidate identities;
-- completed nodes and artifact references;
-- evidence states and SHA binding;
-- decisions;
-- budgets and retry counts;
-- human approvals;
-- blockers and previously seen failures;
-- deployment/Worker identities when applicable.
+## Failure routing
 
-The goal is to resume from verified state instead of replaying a giant conversational transcript.
+Supported routes:
 
-## Failure routes
+- RETRY
+- FALLBACK
+- SKIP
+- REPAIR
+- ESCALATE
+- HOLD
+- FAIL_CLOSED
+- STOP
 
-- `RETRY` — transient tool/network failure.
-- `FALLBACK` — preferred source/model/service unavailable.
-- `SKIP` — optional branch failed and the selected route does not require it.
-- `REPAIR` — output failed validation and can be remediated within scope.
-- `ESCALATE` — risk, uncertainty, or conflict requires stronger review/human judgment.
-- `HOLD` — required evidence is incomplete.
-- `FAIL_CLOSED` — identity, security, governance, or release invariant is broken.
-- `STOP` — permission, safety, or resource boundary reached.
+Release-critical identity, security, governance, certification, or authority failures remain fail-closed.
 
-## Verification boundaries
+## Validation boundary
 
-```text
-information
-  -> evidence verification
-authenticated evidence
-  -> synthesis/policy verification
-recommended action
-  -> governance gate
-authorized candidate mutation
-  -> exact-head certification
-release candidate
-  -> explicit human authority
-production mutation
-  -> live runtime certification
-production fact
-```
+The hardened validator is installed in the next block.
 
-## Deterministic validator
+It must prove all production privilege paths rather than merely prove that one valid incoming certification edge exists.
 
-Run:
+## Production side-effect discipline
 
-```bash
-node .github/scripts/validate-lbfl-execution-graph.mjs
-```
+Production deployment and recovery do not automatically retry ambiguous production mutations. Each authorized deployment carries a candidate-bound `deployment_operation_id` through exact-head certification, human authorization, deployment, live certification, and recovery evidence. A failed or ambiguous production mutation routes to HOLD or ESCALATE rather than repeating an uncertain side effect. Recovery is a one-shot pre-authorized mutation followed by independent recovery certification.
 
-The validator checks structural invariants without external packages:
+Controlled non-production verification cycles declare an explicit completion test, durable budget reference, and escalation route.
 
-- unique node IDs;
-- every edge resolves to existing nodes;
-- required critical nodes exist;
-- production deployment is production-marked;
-- no non-deployment node declares production mutation;
-- production deployment has an incoming human-authorization edge;
-- human authority has an incoming exact-head-certification edge;
-- every mutation node has a downstream verification/certification path;
-- controlled cycles have finite convergence bounds;
-- release invariants are present.
+## Explicit non-scope
 
-It deliberately does **not** certify the quality of academic, UI, security, Cloudflare, or release evidence. Those remain separate specialist gates.
+This Draft candidate does not authorize:
 
-## Review boundary
-
-Adopting this graph does not itself authorize:
-
-- changing required GitHub checks;
-- wiring the validator into CI;
-- modifying existing PRs;
-- merging a candidate;
-- Cloudflare/Worker/DNS mutation;
-- secret changes;
-- AdSense/CMP activation;
+- Ready transition;
+- merge;
+- workflow or ruleset mutation;
+- required-check changes;
+- Cloudflare Pages deployment;
+- Worker or DNS mutation;
+- secret mutation;
+- OpenAI provider migration;
+- AdSense or CMP activation;
 - production promotion.
-
-Those are later graph nodes requiring their own exact evidence and explicit authority.

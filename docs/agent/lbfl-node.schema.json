@@ -3,33 +3,246 @@
   "$id": "https://learningbiologyforlife.org/schemas/lbfl-node.schema.json",
   "title": "LBFL Execution Graph Node",
   "type": "object",
-  "required": ["id", "class", "job", "inputs", "outputs", "mutations", "failure"],
+  "required": [
+    "id",
+    "class",
+    "job",
+    "inputs",
+    "input_sources",
+    "outputs",
+    "mutations",
+    "failure"
+  ],
   "properties": {
-    "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
-    "class": {"type": "string"},
-    "job": {"type": "string", "minLength": 1},
-    "inputs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
-    "outputs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "class": {
+      "enum": [
+        "deterministic_gate",
+        "specialist_audit",
+        "deterministic_join",
+        "policy_router",
+        "reasoning_node",
+        "mutation_node",
+        "controlled_cycle",
+        "human_gate",
+        "state_node"
+      ]
+    },
+    "job": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
     "mutations": {
       "type": "object",
-      "required": ["allowed"],
+      "required": [
+        "allowed"
+      ],
       "properties": {
-        "allowed": {"type": "boolean"},
-        "scope": {"type": "string"},
-        "production": {"type": "boolean"}
+        "allowed": {
+          "type": "boolean"
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "production": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "allowed": {
+                "const": true
+              }
+            },
+            "required": [
+              "allowed"
+            ]
+          },
+          "then": {
+            "required": [
+              "scope"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "production": {
+                "const": true
+              }
+            },
+            "required": [
+              "production"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed": {
+                "const": true
+              }
+            },
+            "required": [
+              "allowed",
+              "scope"
+            ]
+          }
+        }
+      ]
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "RETRY",
+          "FALLBACK",
+          "SKIP",
+          "REPAIR",
+          "ESCALATE",
+          "HOLD",
+          "FAIL_CLOSED",
+          "STOP"
+        ]
+      }
+    },
+    "convergence": {
+      "type": "object",
+      "required": [
+        "max_rounds",
+        "dry_rounds",
+        "completion_test",
+        "budget_ref",
+        "escalation_route"
+      ],
+      "properties": {
+        "max_rounds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "dry_rounds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "completion_test": {
+          "type": "string",
+          "minLength": 1
+        },
+        "budget_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "escalation_route": {
+          "enum": [
+            "RETRY",
+            "FALLBACK",
+            "SKIP",
+            "REPAIR",
+            "ESCALATE",
+            "HOLD",
+            "FAIL_CLOSED",
+            "STOP"
+          ]
+        }
       },
       "additionalProperties": false
     },
-    "failure": {"type": "object", "additionalProperties": {"type": "string"}},
-    "convergence": {
+    "input_sources": {
       "type": "object",
-      "required": ["max_rounds", "dry_rounds"],
+      "additionalProperties": {
+        "enum": [
+          "edge",
+          "state",
+          "context"
+        ]
+      }
+    },
+    "join_policy": {
+      "type": "object",
+      "required": [
+        "mode",
+        "selector_node",
+        "selector_output",
+        "aggregate_inputs"
+      ],
       "properties": {
-        "max_rounds": {"type": "integer", "minimum": 1},
-        "dry_rounds": {"type": "integer", "minimum": 1}
+        "mode": {
+          "const": "all_selected"
+        },
+        "selector_node": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selector_output": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aggregate_inputs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
       },
       "additionalProperties": false
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "class": {
+            "const": "deterministic_join"
+          }
+        },
+        "required": [
+          "class"
+        ]
+      },
+      "then": {
+        "required": [
+          "join_policy"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "class": {
+            "const": "controlled_cycle"
+          }
+        },
+        "required": [
+          "class"
+        ]
+      },
+      "then": {
+        "required": [
+          "convergence"
+        ]
+      }
+    }
+  ]
 }
