@@ -59,6 +59,22 @@ const allowedInputSources = [
   "context"
 ];
 
+const allowedRetryBackoffs = [
+  "CONSTANT",
+  "LINEAR",
+  "EXPONENTIAL"
+];
+
+const allowedRetryTerminalRoutes = [
+  "FALLBACK",
+  "SKIP",
+  "REPAIR",
+  "ESCALATE",
+  "HOLD",
+  "FAIL_CLOSED",
+  "STOP"
+];
+
 function loadJson(file) {
   return JSON.parse(
     fs.readFileSync(
@@ -94,9 +110,9 @@ function validateGraph(graph) {
     message =>
       errors.push(message);
 
-  if (graph.version !== "1.1.0") {
+  if (graph.version !== "1.2.0") {
     fail(
-      `expected graph version 1.1.0; found ${graph.version}`
+      `expected graph version 1.2.0; found ${graph.version}`
     );
   }
 
@@ -328,6 +344,99 @@ function validateGraph(graph) {
           `node ${node.id} has invalid failure route ${route}`
         );
       }
+    }
+
+    const retryableFailures =
+      Object.entries(
+        node.failure ??
+        {}
+      )
+        .filter(
+          ([, route]) =>
+            route ===
+            "RETRY"
+        )
+        .map(
+          ([name]) =>
+            name
+        )
+        .sort();
+
+    const retryPolicy =
+      node.retry_policy;
+
+    if (
+      retryableFailures.length > 0
+    ) {
+
+      if (
+        !Number.isInteger(
+          retryPolicy?.max_attempts
+        ) ||
+        retryPolicy.max_attempts < 1 ||
+        retryPolicy.max_attempts > 10
+      ) {
+        fail(
+          `node ${node.id} exposes RETRY without finite retry_policy.max_attempts`
+        );
+      }
+
+      const backoff =
+        retryPolicy?.backoff;
+
+      if (
+        !allowedRetryBackoffs.includes(
+          backoff?.strategy
+        ) ||
+        !Number.isInteger(
+          backoff?.initial_delay_ms
+        ) ||
+        backoff.initial_delay_ms < 0 ||
+        !Number.isFinite(
+          backoff?.multiplier
+        ) ||
+        backoff.multiplier < 1 ||
+        !Number.isInteger(
+          backoff?.max_delay_ms
+        ) ||
+        backoff.max_delay_ms <
+          backoff.initial_delay_ms
+      ) {
+        fail(
+          `node ${node.id} exposes RETRY without finite retry_policy.backoff semantics`
+        );
+      }
+
+      if (
+        !Array.isArray(
+          retryPolicy?.retryable_failures
+        ) ||
+        !sameSet(
+          retryPolicy.retryable_failures,
+          retryableFailures
+        )
+      ) {
+        fail(
+          `node ${node.id} retry_policy.retryable_failures must exactly match RETRY-mapped failures`
+        );
+      }
+
+      if (
+        !allowedRetryTerminalRoutes.includes(
+          retryPolicy?.terminal_route
+        )
+      ) {
+        fail(
+          `node ${node.id} exposes RETRY without non-RETRY terminal_route`
+        );
+      }
+    }
+    else if (
+      retryPolicy !== undefined
+    ) {
+      fail(
+        `node ${node.id} declares retry_policy without a RETRY failure route`
+      );
     }
 
     if (
@@ -586,6 +695,15 @@ function validateGraph(graph) {
           `edge ${edge.from} -> ${edge.to} sends undeclared target input ${field}`
         );
       }
+
+      if (
+        target.input_sources?.[field] !==
+          "edge"
+      ) {
+        fail(
+          `edge ${edge.from} -> ${edge.to} carries non-edge input ${field}`
+        );
+      }
     }
 
     for (
@@ -828,6 +946,72 @@ function validateGraph(graph) {
     "production_recovery"
   );
 
+  // External human authority provenance
+
+  const humanAuthority =
+    byId.get(
+      "human_release_authority"
+    );
+
+  if (
+    !humanAuthority?.inputs
+      ?.includes(
+        "human_approvals"
+      )
+  ) {
+    fail(
+      "human_release_authority must consume durable human_approvals state"
+    );
+  }
+
+  if (
+    humanAuthority
+      ?.input_sources
+      ?.human_approvals !==
+      "state"
+  ) {
+    fail(
+      "human_release_authority must source human_approvals from durable state"
+    );
+  }
+
+  const externalAuthority =
+    humanAuthority
+      ?.external_authority;
+
+  const expectedHumanMatchFields = [
+    "source",
+    "decision",
+    "exact_head",
+    "exact_base",
+    "authorized_scope",
+    "approved_at",
+    "authorization_ref",
+    "rollback_plan_ref",
+    "rollout_plan_ref",
+    "deployment_operation_id"
+  ];
+
+  if (
+    externalAuthority?.state_collection !==
+      "human_approvals" ||
+    externalAuthority?.required_source !==
+      "HUMAN_EXTERNAL" ||
+    externalAuthority?.required_decision !==
+      "APPROVED_FOR_EXACT_HEAD" ||
+    !Array.isArray(
+      externalAuthority?.match_fields
+    ) ||
+    !sameSet(
+      externalAuthority.match_fields,
+      expectedHumanMatchFields
+    )
+  ) {
+    fail(
+      "human_release_authority lacks exact external-authority provenance contract"
+    );
+  }
+
   // Production mutation boundary
 
   const productionMutators =
@@ -952,38 +1136,125 @@ function validateGraph(graph) {
     "rollout_plan"
   );
 
+  if (
+    byId.get(
+      "release_plan"
+    )?.outputs
+      ?.includes(
+        "deployment_operation_id"
+      )
+  ) {
+    fail(
+      "release_plan reasoning node may not produce deployment_operation_id"
+    );
+  }
+
+  for (
+    const field
+    of [
+      "rollback_plan",
+      "rollout_plan"
+    ]
+  ) {
+    requiresInput(
+      "exact_head_certification",
+      field
+    );
+
+    requiresOutput(
+      "exact_head_certification",
+      field
+    );
+  }
+
   requiresOutput(
-    "release_plan",
+    "exact_head_certification",
     "deployment_operation_id"
   );
 
+  const exactHead =
+    byId.get(
+      "exact_head_certification"
+    );
+
+  if (
+    exactHead?.class !==
+      "deterministic_gate"
+  ) {
+    fail(
+      "exact_head_certification must remain a deterministic_gate"
+    );
+  }
+
+  if (
+    exactHead?.inputs
+      ?.includes(
+        "deployment_operation_id"
+      )
+  ) {
+    fail(
+      "exact_head_certification must derive deployment_operation_id rather than consume it"
+    );
+  }
+
+  const operationRule =
+    exactHead
+      ?.deterministic_outputs
+      ?.deployment_operation_id;
+
+  const expectedOperationRecord = {
+    repository:
+      "authority.repository",
+    exact_base:
+      "authority.base_sha",
+    exact_head:
+      "candidate_head",
+    target_environment:
+      "scope.target_environment",
+    rollout_plan:
+      "rollout_plan",
+    rollback_plan:
+      "rollback_plan"
+  };
+
+  if (
+    operationRule?.algorithm !==
+      "SHA-256" ||
+    operationRule?.canonicalization !==
+      "RFC8785" ||
+    operationRule?.encoding !==
+      "sha256:<lowercase-hex>" ||
+    operationRule?.persist_to !==
+      "authority.deployment_operation_id" ||
+    JSON.stringify(
+      operationRule?.record
+    ) !==
+      JSON.stringify(
+        expectedOperationRecord
+      )
+  ) {
+    fail(
+      "exact_head_certification must deterministically derive deployment_operation_id using the canonical SHA-256 rule"
+    );
+  }
+
   for (
-    const id
+    const field
     of [
-      "exact_head_certification",
-      "human_release_authority"
+      "rollback_plan",
+      "rollout_plan",
+      "deployment_operation_id"
     ]
   ) {
+    requiresInput(
+      "human_release_authority",
+      field
+    );
 
-    for (
-      const field
-      of [
-        "rollback_plan",
-        "rollout_plan",
-        "deployment_operation_id"
-      ]
-    ) {
-
-      requiresInput(
-        id,
-        field
-      );
-
-      requiresOutput(
-        id,
-        field
-      );
-    }
+    requiresOutput(
+      "human_release_authority",
+      field
+    );
   }
 
   for (
@@ -1327,7 +1598,9 @@ function validateGraph(graph) {
   return errors;
 }
 
-function validateSchemas(
+// This is a bespoke LBFL structural/cross-contract check.
+// It does not execute general Draft 2020-12 instance or meta-schema validation.
+function validateSchemaContracts(
   nodeSchema,
   stateSchema
 ) {
@@ -1470,6 +1743,155 @@ function validateSchemas(
     }
   }
 
+
+  const retryPolicySchema =
+    nodeSchema
+      ?.properties
+      ?.retry_policy;
+
+  const retryRequired =
+    retryPolicySchema
+      ?.required ??
+    [];
+
+  for (
+    const key
+    of [
+      "max_attempts",
+      "backoff",
+      "retryable_failures",
+      "terminal_route"
+    ]
+  ) {
+
+    if (
+      !retryRequired.includes(
+        key
+      )
+    ) {
+      fail(
+        `retry_policy schema does not require ${key}`
+      );
+    }
+  }
+
+  if (
+    !sameSet(
+      retryPolicySchema
+        ?.properties
+        ?.backoff
+        ?.properties
+        ?.strategy
+        ?.enum ??
+        [],
+      allowedRetryBackoffs
+    )
+  ) {
+    fail(
+      "retry_policy backoff strategy enum is incomplete"
+    );
+  }
+
+  for (
+    const key
+    of [
+      "strategy",
+      "initial_delay_ms",
+      "multiplier",
+      "max_delay_ms"
+    ]
+  ) {
+    if (
+      !retryPolicySchema
+        ?.properties
+        ?.backoff
+        ?.required
+        ?.includes(
+          key
+        )
+    ) {
+      fail(
+        `retry_policy backoff schema does not require ${key}`
+      );
+    }
+  }
+
+  if (
+    !sameSet(
+      retryPolicySchema
+        ?.properties
+        ?.terminal_route
+        ?.enum ??
+        [],
+      allowedRetryTerminalRoutes
+    )
+  ) {
+    fail(
+      "retry_policy terminal-route enum is incomplete"
+    );
+  }
+
+  const deterministicOutputSchema =
+    nodeSchema
+      ?.properties
+      ?.deterministic_outputs
+      ?.properties
+      ?.deployment_operation_id;
+
+  if (
+    deterministicOutputSchema
+      ?.properties
+      ?.algorithm
+      ?.const !==
+      "SHA-256" ||
+    deterministicOutputSchema
+      ?.properties
+      ?.canonicalization
+      ?.const !==
+      "RFC8785" ||
+    deterministicOutputSchema
+      ?.properties
+      ?.encoding
+      ?.const !==
+      "sha256:<lowercase-hex>" ||
+    deterministicOutputSchema
+      ?.properties
+      ?.persist_to
+      ?.const !==
+      "authority.deployment_operation_id"
+  ) {
+    fail(
+      "deterministic deployment-operation schema contract is incomplete"
+    );
+  }
+
+  const externalAuthoritySchema =
+    nodeSchema
+      ?.properties
+      ?.external_authority;
+
+  if (
+    externalAuthoritySchema
+      ?.properties
+      ?.state_collection
+      ?.const !==
+      "human_approvals" ||
+    externalAuthoritySchema
+      ?.properties
+      ?.required_source
+      ?.const !==
+      "HUMAN_EXTERNAL" ||
+    externalAuthoritySchema
+      ?.properties
+      ?.required_decision
+      ?.const !==
+      "APPROVED_FOR_EXACT_HEAD"
+  ) {
+    fail(
+      "external human-authority schema contract is incomplete"
+    );
+  }
+
   const humanRequired =
     stateSchema
       ?.properties
@@ -1481,6 +1903,7 @@ function validateSchemas(
   for (
     const key
     of [
+      "source",
       "actor",
       "decision",
       "exact_head",
@@ -1488,6 +1911,7 @@ function validateSchemas(
       "authorized_scope",
       "approved_at",
       "authorization_ref",
+      "deployment_operation_id",
       "rollback_plan_ref",
       "rollout_plan_ref"
     ]
@@ -1502,6 +1926,51 @@ function validateSchemas(
         `human approval schema does not require ${key}`
       );
     }
+  }
+
+
+  const humanApprovalProps =
+    stateSchema
+      ?.properties
+      ?.human_approvals
+      ?.items
+      ?.properties ??
+    {};
+
+  if (
+    humanApprovalProps
+      .source
+      ?.const !==
+      "HUMAN_EXTERNAL"
+  ) {
+    fail(
+      "human approval state must require HUMAN_EXTERNAL source"
+    );
+  }
+
+  if (
+    humanApprovalProps
+      .deployment_operation_id
+      ?.pattern !==
+      "^sha256:[0-9a-f]{64}$"
+  ) {
+    fail(
+      "human approval state lacks deterministic deployment_operation_id pattern"
+    );
+  }
+
+  if (
+    stateSchema
+      ?.properties
+      ?.authority
+      ?.properties
+      ?.deployment_operation_id
+      ?.pattern !==
+      "^sha256:[0-9a-f]{64}$"
+  ) {
+    fail(
+      "durable authority deployment_operation_id lacks deterministic SHA-256 pattern"
+    );
   }
 
   const nodeStateProps =
@@ -1609,7 +2078,7 @@ const errors = [
     graph
   ),
 
-  ...validateSchemas(
+  ...validateSchemaContracts(
     nodeSchema,
     stateSchema
   )
@@ -1809,6 +2278,138 @@ else {
   }
 }
 
+
+// Negative self-test 4:
+// human authority must come from durable external state, never an edge-synthesized approval.
+
+const humanProvenanceGraph =
+  clone(graph);
+
+const humanProvenanceNode =
+  humanProvenanceGraph.nodes.find(
+    node =>
+      node.id ===
+      "human_release_authority"
+  );
+
+if (
+  !humanProvenanceNode
+) {
+  errors.push(
+    "negative human-provenance self-test setup failed"
+  );
+}
+else {
+  humanProvenanceNode
+    .input_sources
+    .human_approvals =
+      "edge";
+
+  const humanProvenanceErrors =
+    validateGraph(
+      humanProvenanceGraph
+    );
+
+  if (
+    !humanProvenanceErrors.some(
+      e =>
+        e.includes(
+          "must source human_approvals from durable state"
+        )
+    )
+  ) {
+    errors.push(
+      "negative self-test failed: edge-synthesized human authority was not specifically detected"
+    );
+  }
+}
+
+// Negative self-test 5:
+// deployment_operation_id must be derived by the deterministic exact-head gate.
+
+const operationIdentityGraph =
+  clone(graph);
+
+const operationIdentityNode =
+  operationIdentityGraph.nodes.find(
+    node =>
+      node.id ===
+      "exact_head_certification"
+  );
+
+if (
+  !operationIdentityNode
+) {
+  errors.push(
+    "negative operation-identity self-test setup failed"
+  );
+}
+else {
+  delete operationIdentityNode
+    .deterministic_outputs;
+
+  const operationIdentityErrors =
+    validateGraph(
+      operationIdentityGraph
+    );
+
+  if (
+    !operationIdentityErrors.some(
+      e =>
+        e.includes(
+          "must deterministically derive deployment_operation_id"
+        )
+    )
+  ) {
+    errors.push(
+      "negative self-test failed: missing deterministic deployment identity was not specifically detected"
+    );
+  }
+}
+
+// Negative self-test 6:
+// every RETRY route must retain a finite retry_policy.
+
+const boundedRetryGraph =
+  clone(graph);
+
+const boundedRetryNode =
+  boundedRetryGraph.nodes.find(
+    node =>
+      node.id ===
+      "authenticate_baseline"
+  );
+
+if (
+  !boundedRetryNode
+) {
+  errors.push(
+    "negative bounded-retry self-test setup failed"
+  );
+}
+else {
+  delete boundedRetryNode
+    .retry_policy;
+
+  const boundedRetryErrors =
+    validateGraph(
+      boundedRetryGraph
+    );
+
+  if (
+    !boundedRetryErrors.some(
+      e =>
+        e.includes(
+          "exposes RETRY without finite retry_policy.max_attempts"
+        )
+    )
+  ) {
+    errors.push(
+      "negative self-test failed: unbounded RETRY was not specifically detected"
+    );
+  }
+}
+
 if (
   errors.length
 ) {
@@ -1838,7 +2439,7 @@ console.log(
 );
 
 console.log(
-  "PASS: node classes, failure routes, mutation scopes, convergence, and input provenance are valid."
+  "PASS: node classes, failure routes, mutation scopes, bounded RETRY policies, convergence, and input provenance are valid."
 );
 
 console.log(
@@ -1858,7 +2459,7 @@ console.log(
 );
 
 console.log(
-  "PASS: rollback, rollout, and deployment_operation_id remain inside the certification/authorization chain."
+  "PASS: rollout/rollback plans remain candidate-bound and deployment_operation_id is deterministically derived by exact-head certification."
 );
 
 console.log(
@@ -1866,9 +2467,13 @@ console.log(
 );
 
 console.log(
-  "PASS: node and durable-state schema hardening detected."
+  "PASS: human release authority requires an externally recorded durable approval bound to the exact certified candidate."
 );
 
 console.log(
-  "PASS: negative self-tests detected bypass, missing rollback contract, and unsafe production RETRY."
+  "PASS: node/state schema structural contracts are present; this validator does not claim full Draft 2020-12 validation."
+);
+
+console.log(
+  "PASS: negative self-tests detected bypass, missing rollback contract, unsafe production RETRY, synthetic human authority, non-deterministic operation identity, and unbounded RETRY."
 );

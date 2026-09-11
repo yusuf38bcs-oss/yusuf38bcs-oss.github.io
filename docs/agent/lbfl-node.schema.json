@@ -166,6 +166,157 @@
       },
       "additionalProperties": false
     },
+    "retry_policy": {
+      "type": "object",
+      "required": [
+        "max_attempts",
+        "backoff",
+        "retryable_failures",
+        "terminal_route"
+      ],
+      "properties": {
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "backoff": {
+          "type": "object",
+          "required": [
+            "strategy",
+            "initial_delay_ms",
+            "multiplier",
+            "max_delay_ms"
+          ],
+          "properties": {
+            "strategy": {
+              "enum": [
+                "CONSTANT",
+                "LINEAR",
+                "EXPONENTIAL"
+              ]
+            },
+            "initial_delay_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 60000
+            },
+            "multiplier": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "max_delay_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 300000
+            }
+          },
+          "additionalProperties": false
+        },
+        "retryable_failures": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "terminal_route": {
+          "enum": [
+            "FALLBACK",
+            "SKIP",
+            "REPAIR",
+            "ESCALATE",
+            "HOLD",
+            "FAIL_CLOSED",
+            "STOP"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "deterministic_outputs": {
+      "type": "object",
+      "properties": {
+        "deployment_operation_id": {
+          "type": "object",
+          "required": [
+            "algorithm",
+            "canonicalization",
+            "record",
+            "encoding",
+            "persist_to"
+          ],
+          "properties": {
+            "algorithm": {
+              "const": "SHA-256"
+            },
+            "canonicalization": {
+              "const": "RFC8785"
+            },
+            "record": {
+              "type": "object",
+              "required": [
+                "repository",
+                "exact_base",
+                "exact_head",
+                "target_environment",
+                "rollout_plan",
+                "rollback_plan"
+              ],
+              "properties": {
+                "repository": { "const": "authority.repository" },
+                "exact_base": { "const": "authority.base_sha" },
+                "exact_head": { "const": "candidate_head" },
+                "target_environment": { "const": "scope.target_environment" },
+                "rollout_plan": { "const": "rollout_plan" },
+                "rollback_plan": { "const": "rollback_plan" }
+              },
+              "additionalProperties": false
+            },
+            "encoding": {
+              "const": "sha256:<lowercase-hex>"
+            },
+            "persist_to": {
+              "const": "authority.deployment_operation_id"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "external_authority": {
+      "type": "object",
+      "required": [
+        "state_collection",
+        "required_source",
+        "required_decision",
+        "match_fields"
+      ],
+      "properties": {
+        "state_collection": {
+          "const": "human_approvals"
+        },
+        "required_source": {
+          "const": "HUMAN_EXTERNAL"
+        },
+        "required_decision": {
+          "const": "APPROVED_FOR_EXACT_HEAD"
+        },
+        "match_fields": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "input_sources": {
       "type": "object",
       "additionalProperties": {
@@ -241,6 +392,63 @@
       "then": {
         "required": [
           "convergence"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "failure": {
+            "not": {
+              "additionalProperties": {
+                "not": {
+                  "const": "RETRY"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "failure"
+        ]
+      },
+      "then": {
+        "required": [
+          "retry_policy"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "exact_head_certification"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "deterministic_outputs"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "class": {
+            "const": "human_gate"
+          }
+        },
+        "required": [
+          "class"
+        ]
+      },
+      "then": {
+        "required": [
+          "external_authority"
         ]
       }
     }

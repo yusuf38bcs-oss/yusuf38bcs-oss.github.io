@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "name": "LBFL Evidence-Bound Execution Graph",
-  "purpose": "Coordinate LBFL research, academic, UI, SEO, accessibility, security, runtime, remediation, certification, and release work with explicit dependencies, durable state, fail-closed gates, and human authority.",
+  "purpose": "Coordinate LBFL research, academic, UI, SEO, accessibility, security, runtime, remediation, certification, and release work with explicit dependencies, durable state, fail-closed gates, bounded retries, deterministic deployment operation identity, and externally recorded human authority.",
   "defaults": {
     "mutation_allowed": false,
     "evidence_states": [
@@ -70,6 +70,19 @@
         "mission": "context",
         "repository_ref": "context",
         "target_environment": "context"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
       }
     },
     {
@@ -108,6 +121,19 @@
         "candidate_head": "edge",
         "check_set": "edge",
         "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
       }
     },
     {
@@ -145,6 +171,19 @@
         "candidate_head": "edge",
         "check_set": "edge",
         "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "render_unavailable"
+        ],
+        "terminal_route": "HOLD"
       }
     },
     {
@@ -182,6 +221,19 @@
         "candidate_head": "edge",
         "check_set": "edge",
         "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
       }
     },
     {
@@ -219,6 +271,19 @@
         "candidate_head": "edge",
         "check_set": "edge",
         "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
       }
     },
     {
@@ -257,6 +322,19 @@
         "candidate_head": "edge",
         "check_set": "edge",
         "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
       }
     },
     {
@@ -298,6 +376,19 @@
         "check_set": "edge",
         "evidence_refs": "edge",
         "target_environment": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
       }
     },
     {
@@ -477,6 +568,19 @@
         "stop_conditions": "edge",
         "required_gates": "edge",
         "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "write_conflict"
+        ],
+        "terminal_route": "HOLD"
       }
     },
     {
@@ -536,7 +640,7 @@
     {
       "id": "exact_head_certification",
       "class": "deterministic_gate",
-      "job": "Bind checks, preview, review state, governance evidence, rollout plan, and rollback plan to the exact candidate head and base.",
+      "job": "Bind checks, preview, review state, governance evidence, rollout/rollback plans, and a deterministically derived deployment operation identity to the exact candidate head and base.",
       "inputs": [
         "authority",
         "scope",
@@ -545,8 +649,7 @@
         "evidence_refs",
         "required_gates",
         "rollback_plan",
-        "rollout_plan",
-        "deployment_operation_id"
+        "rollout_plan"
       ],
       "outputs": [
         "authority",
@@ -578,14 +681,29 @@
         "evidence_refs": "edge",
         "required_gates": "edge",
         "rollback_plan": "edge",
-        "rollout_plan": "edge",
-        "deployment_operation_id": "edge"
+        "rollout_plan": "edge"
+      },
+      "deterministic_outputs": {
+        "deployment_operation_id": {
+          "algorithm": "SHA-256",
+          "canonicalization": "RFC8785",
+          "record": {
+            "repository": "authority.repository",
+            "exact_base": "authority.base_sha",
+            "exact_head": "candidate_head",
+            "target_environment": "scope.target_environment",
+            "rollout_plan": "rollout_plan",
+            "rollback_plan": "rollback_plan"
+          },
+          "encoding": "sha256:<lowercase-hex>",
+          "persist_to": "authority.deployment_operation_id"
+        }
       }
     },
     {
       "id": "human_release_authority",
       "class": "human_gate",
-      "job": "Require explicit human authorization for the exact certified candidate and bounded rollout and rollback scope.",
+      "job": "Require an externally recorded durable human approval matching the exact certified head, base, authorized scope, rollout/rollback references, and deterministic deployment operation identity; never synthesize approval from graph execution.",
       "inputs": [
         "authority",
         "scope",
@@ -598,7 +716,8 @@
         "evidence_refs",
         "rollback_plan",
         "rollout_plan",
-        "deployment_operation_id"
+        "deployment_operation_id",
+        "human_approvals"
       ],
       "outputs": [
         "authority",
@@ -631,7 +750,25 @@
         "evidence_refs": "edge",
         "rollback_plan": "edge",
         "rollout_plan": "edge",
-        "deployment_operation_id": "edge"
+        "deployment_operation_id": "edge",
+        "human_approvals": "state"
+      },
+      "external_authority": {
+        "state_collection": "human_approvals",
+        "required_source": "HUMAN_EXTERNAL",
+        "required_decision": "APPROVED_FOR_EXACT_HEAD",
+        "match_fields": [
+          "source",
+          "decision",
+          "exact_head",
+          "exact_base",
+          "authorized_scope",
+          "approved_at",
+          "authorization_ref",
+          "rollback_plan_ref",
+          "rollout_plan_ref",
+          "deployment_operation_id"
+        ]
       }
     },
     {
@@ -769,6 +906,19 @@
         "terminal_status": "edge",
         "evidence_refs": "edge",
         "residual_risks": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "state_persist_failed"
+        ],
+        "terminal_route": "ESCALATE"
       }
     },
     {
@@ -816,7 +966,7 @@
     {
       "id": "release_plan",
       "class": "reasoning_node",
-      "job": "Prepare candidate-bound rollout and rollback plans before exact-head certification.",
+      "job": "Prepare candidate-bound rollout and rollback plans before exact-head certification; deployment operation identity is derived later by the deterministic certification gate.",
       "inputs": [
         "authority",
         "scope",
@@ -833,8 +983,7 @@
         "evidence_refs",
         "required_gates",
         "rollback_plan",
-        "rollout_plan",
-        "deployment_operation_id"
+        "rollout_plan"
       ],
       "mutations": {
         "allowed": false
@@ -1241,8 +1390,7 @@
         "evidence_refs",
         "required_gates",
         "rollback_plan",
-        "rollout_plan",
-        "deployment_operation_id"
+        "rollout_plan"
       ]
     },
     {
@@ -1370,8 +1518,10 @@
     "Only failed local work is retried while still-fresh independent evidence remains reusable.",
     "Any non-PASS live certification must enter pre-authorized recovery before closure.",
     "Production mutation failures with ambiguous side effects may not be automatically retried.",
-    "Every authorized deployment carries a candidate-bound deployment_operation_id through certification, authorization, deployment, live certification, and recovery evidence.",
+    "Every authorized deployment carries a deployment_operation_id derived only by exact_head_certification as SHA-256 over an RFC8785 canonical record of repository, exact base, exact head, target environment, rollout plan, and rollback plan; reasoning nodes may not invent this identity.",
     "Production recovery is a one-shot pre-authorized mutation followed by independent certification; failure escalates rather than looping automatically.",
+    "Human release authority consumes an externally recorded durable human_approvals state record bound to exact head, exact base, authorized scope, rollout/rollback references, and deployment_operation_id.",
+    "Every node exposing RETRY declares a finite retry_policy whose retryable_failures exactly match RETRY-mapped failures and whose terminal_route is not RETRY.",
     "Every controlled cycle declares a completion test, durable budget reference, and escalation route."
   ]
 }

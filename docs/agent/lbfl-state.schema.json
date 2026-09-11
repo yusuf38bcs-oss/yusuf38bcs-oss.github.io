@@ -80,7 +80,8 @@
             "string",
             "null"
           ],
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^sha256:[0-9a-f]{64}$"
         }
       },
       "additionalProperties": false
@@ -279,6 +280,7 @@
       "items": {
         "type": "object",
         "required": [
+          "source",
           "actor",
           "decision",
           "exact_head",
@@ -286,10 +288,14 @@
           "authorized_scope",
           "approved_at",
           "authorization_ref",
+          "deployment_operation_id",
           "rollback_plan_ref",
           "rollout_plan_ref"
         ],
         "properties": {
+          "source": {
+            "const": "HUMAN_EXTERNAL"
+          },
           "actor": {
             "type": "string",
             "minLength": 1
@@ -324,6 +330,10 @@
           "authorization_ref": {
             "type": "string",
             "minLength": 1
+          },
+          "deployment_operation_id": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
           },
           "rollback_plan_ref": {
             "type": "string",
