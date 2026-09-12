@@ -1,6 +1,6 @@
 ---
-layout: single
-author_profile: true
+layout: legal
+author_profile: false
 author: "MD. Yusuf"
 title: "Terms & Conditions"
 permalink: /terms-and-conditions/
@@ -16,9 +16,8 @@ status: "Active"
 language: en
 toc: true
 toc_sticky: true
+last_modified_at: 2026-09-13
 ---
-
-# Terms & Conditions
 
 Welcome to **Learning Biology For Life**. By accessing or using this website, you agree to use the platform responsibly, ethically, and for lawful educational purposes.
 
