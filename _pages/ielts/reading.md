@@ -10,7 +10,7 @@ excerpt: "A local-first IELTS Reading Trainer for timed passage work, evidence-b
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/ielts-reading-trainer.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/ielts-reading-trainer.css' | relative_url }}?v=fdadda34a93672fc0d3b2b1450799a8e6edcd850">
 
 <section class="ielts-reading" data-ielts-reading-trainer data-certification-surface="phase-2d" aria-labelledby="ielts-reading-title">
   <header class="ielts-reading__header">
@@ -103,6 +103,6 @@ excerpt: "A local-first IELTS Reading Trainer for timed passage work, evidence-b
 <script>
   window.LBFL_IELTS_READING_SETS = {{ site.data.ielts_reading_sets | jsonify }};
 </script>
-<script src="{{ '/assets/js/ielts-reading-trainer.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/ielts-reading-trainer.js' | relative_url }}?v=0636f4dd1b5a5f2385f31f74f56a3002f13764fa" defer></script>
 
 <!-- Phase 2D exact-head certification surface: reading-evidence-loop-v1 -->
