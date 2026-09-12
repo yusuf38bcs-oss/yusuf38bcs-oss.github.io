@@ -1,6 +1,6 @@
 ---
-layout: single
-author_profile: true
+layout: legal
+author_profile: false
 author: "MD. YUSUF"
 title: "Disclaimer"
 permalink: /disclaimer/
@@ -13,10 +13,10 @@ pillar: "Legal"
 difficulty: "Advanced"
 xp: 500
 status: "Active"
+lang: en
+last_modified_at: 2026-09-13
 description: "Educational, medical, psychological, AI-assisted, assessment, religious-reflection, advertising, and external-link disclaimer for Learning Biology For Life."
 ---
-
-# Disclaimer
 
 **Effective Date:** June 17, 2026
 
