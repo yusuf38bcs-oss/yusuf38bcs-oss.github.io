@@ -20,7 +20,7 @@
           typeof HTMLDialogElement.prototype.showModal === 'function';
         root.classList.remove('v3-dialog-supported', 'v3-dialog-unsupported');
         root.classList.add(
-          + (dialogSupported ? 'v3-dialog-supported' : 'v3-dialog-unsupported')
+          dialogSupported ? 'v3-dialog-supported' : 'v3-dialog-unsupported'
         );
       }());
     </script>
