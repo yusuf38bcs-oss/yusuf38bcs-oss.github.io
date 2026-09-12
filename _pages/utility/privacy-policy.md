@@ -1,6 +1,6 @@
 ---
-layout: single
-author_profile: true
+layout: legal
+author_profile: false
 author: "MD. YUSUF"
 title: "Privacy Policy"
 permalink: /privacy-policy/
@@ -13,6 +13,8 @@ pillar: "Legal"
 difficulty: "Advanced"
 xp: 500
 status: "Active"
+lang: en
+last_modified_at: 2026-09-13
 description: "Privacy, cookies, analytics, advertising, newsletter, contact, and consent disclosures for Learning Biology For Life."
 ---
 
