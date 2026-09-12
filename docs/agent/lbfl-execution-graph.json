@@ -1,0 +1,1527 @@
+{
+  "version": "1.2.0",
+  "name": "LBFL Evidence-Bound Execution Graph",
+  "purpose": "Coordinate LBFL research, academic, UI, SEO, accessibility, security, runtime, remediation, certification, and release work with explicit dependencies, durable state, fail-closed gates, bounded retries, deterministic deployment operation identity, and externally recorded human authority.",
+  "defaults": {
+    "mutation_allowed": false,
+    "evidence_states": [
+      "VERIFIED",
+      "CORROBORATED",
+      "INFERRED",
+      "UNVERIFIED",
+      "CONFLICTED",
+      "BLOCKED",
+      "STALE",
+      "SUPERSEDED",
+      "ABSENT"
+    ],
+    "failure_routes": [
+      "RETRY",
+      "FALLBACK",
+      "SKIP",
+      "REPAIR",
+      "ESCALATE",
+      "HOLD",
+      "FAIL_CLOSED",
+      "STOP"
+    ],
+    "max_cycle_rounds": 6,
+    "dry_rounds_to_converge": 2,
+    "node_classes": [
+      "deterministic_gate",
+      "specialist_audit",
+      "deterministic_join",
+      "policy_router",
+      "reasoning_node",
+      "mutation_node",
+      "controlled_cycle",
+      "human_gate",
+      "state_node"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "authenticate_baseline",
+      "class": "deterministic_gate",
+      "job": "Authenticate current repository, branch, SHA/tree, deployment references, and task scope before downstream work.",
+      "inputs": [
+        "mission",
+        "repository_ref",
+        "target_environment"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "evidence_refs",
+        "status",
+        "target_environment",
+        "candidate_head",
+        "check_set"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "identity_mismatch": "FAIL_CLOSED",
+        "missing_authority": "HOLD",
+        "transient_tool_failure": "RETRY"
+      },
+      "input_sources": {
+        "mission": "context",
+        "repository_ref": "context",
+        "target_environment": "context"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
+      }
+    },
+    {
+      "id": "academic_truth_audit",
+      "class": "specialist_audit",
+      "job": "Audit scientific accuracy, curriculum alignment, source authority, and unresolved academic claims.",
+      "inputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "insufficient_evidence": "HOLD",
+        "source_conflict": "ESCALATE",
+        "transient_tool_failure": "RETRY"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "audit_plan": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
+      }
+    },
+    {
+      "id": "ui_responsive_audit",
+      "class": "specialist_audit",
+      "job": "Audit learner-visible UI, CSS/SCSS architecture, responsive behavior, typography, hierarchy, and interaction quality.",
+      "inputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "render_unavailable": "RETRY",
+        "identity_mismatch": "FAIL_CLOSED"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "audit_plan": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "render_unavailable"
+        ],
+        "terminal_route": "HOLD"
+      }
+    },
+    {
+      "id": "seo_route_audit",
+      "class": "specialist_audit",
+      "job": "Audit routes, canonicals, metadata, language alternates, sitemap behavior, internal linking, and indexability.",
+      "inputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "route_inventory_incomplete": "HOLD",
+        "transient_tool_failure": "RETRY"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "audit_plan": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
+      }
+    },
+    {
+      "id": "accessibility_audit",
+      "class": "specialist_audit",
+      "job": "Audit semantics, keyboard/focus, contrast, zoom/reflow, motion, touch targets, overflow, and no-JS resilience.",
+      "inputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "critical_violation": "HOLD",
+        "transient_tool_failure": "RETRY"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "audit_plan": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
+      }
+    },
+    {
+      "id": "security_supply_chain_audit",
+      "class": "specialist_audit",
+      "job": "Audit secrets exposure, workflow trust boundaries, permissions, dependency pinning, actions provenance, and static security findings.",
+      "inputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "secret_exposure": "FAIL_CLOSED",
+        "trust_boundary_violation": "FAIL_CLOSED",
+        "transient_tool_failure": "RETRY"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "audit_plan": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
+      }
+    },
+    {
+      "id": "runtime_worker_audit",
+      "class": "specialist_audit",
+      "job": "Audit Pages/Workers/API deployment identity, routes, provider/model diagnostics, CORS, health, observability, and incident context.",
+      "inputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs",
+        "target_environment"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs",
+        "target_environment"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "runtime_identity_unknown": "HOLD",
+        "provider_incident": "ESCALATE",
+        "transient_tool_failure": "RETRY"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "audit_plan": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "evidence_refs": "edge",
+        "target_environment": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "transient_tool_failure"
+        ],
+        "terminal_route": "HOLD"
+      }
+    },
+    {
+      "id": "synthesize_findings",
+      "class": "deterministic_join",
+      "job": "Join every audit selected by audit_plan, reject identity conflicts, normalize evidence, and preserve unresolved evidence.",
+      "inputs": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "synthesis_status",
+        "blockers",
+        "repair_candidates",
+        "evidence_refs",
+        "unknowns"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "required_branch_missing": "HOLD",
+        "evidence_conflict": "ESCALATE"
+      },
+      "join_policy": {
+        "mode": "all_selected",
+        "selector_node": "audit_plan_router",
+        "selector_output": "selected_audits",
+        "aggregate_inputs": [
+          "audit_result",
+          "evidence_refs"
+        ]
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "audit_plan": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "audit_result": "edge",
+        "evidence_refs": "edge"
+      }
+    },
+    {
+      "id": "risk_router",
+      "class": "policy_router",
+      "job": "Route the task by authenticated risk and evidence state; model judgment may classify, but allowed routes are deterministic.",
+      "inputs": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "synthesis_status",
+        "blockers",
+        "repair_candidates",
+        "evidence_refs",
+        "unknowns"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "route",
+        "risk_level",
+        "required_gates",
+        "repair_candidates",
+        "evidence_refs",
+        "unknowns",
+        "terminal_status",
+        "residual_risks"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "unclassifiable_risk": "ESCALATE"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "synthesis_status": "edge",
+        "blockers": "edge",
+        "repair_candidates": "edge",
+        "evidence_refs": "edge",
+        "unknowns": "edge"
+      }
+    },
+    {
+      "id": "remediation_design",
+      "class": "reasoning_node",
+      "job": "Design the smallest reversible, scope-bounded repair that closes authenticated blockers without weakening validators.",
+      "inputs": [
+        "authority",
+        "scope",
+        "repair_candidates",
+        "required_gates",
+        "evidence_refs"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "repair_plan",
+        "changed_file_boundary",
+        "expected_evidence",
+        "stop_conditions",
+        "required_gates",
+        "evidence_refs"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "scope_not_bounded": "HOLD",
+        "unsafe_repair": "STOP"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "repair_candidates": "edge",
+        "required_gates": "edge",
+        "evidence_refs": "edge"
+      }
+    },
+    {
+      "id": "isolated_implementation",
+      "class": "mutation_node",
+      "job": "Implement only the approved repair in an isolated branch/worktree or equivalent non-production candidate.",
+      "inputs": [
+        "authority",
+        "scope",
+        "repair_plan",
+        "changed_file_boundary",
+        "expected_evidence",
+        "stop_conditions",
+        "required_gates",
+        "evidence_refs"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "candidate_tree",
+        "changed_files",
+        "implementation_artifacts",
+        "expected_evidence",
+        "required_gates",
+        "evidence_refs"
+      ],
+      "mutations": {
+        "allowed": true,
+        "scope": "isolated_candidate_only",
+        "production": false
+      },
+      "failure": {
+        "scope_drift": "FAIL_CLOSED",
+        "write_conflict": "RETRY",
+        "permission_boundary": "STOP"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "repair_plan": "edge",
+        "changed_file_boundary": "edge",
+        "expected_evidence": "edge",
+        "stop_conditions": "edge",
+        "required_gates": "edge",
+        "evidence_refs": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "write_conflict"
+        ],
+        "terminal_route": "HOLD"
+      }
+    },
+    {
+      "id": "candidate_verification_cycle",
+      "class": "controlled_cycle",
+      "job": "Run bounded deterministic verification and normalize failures into repair candidates without bypassing exact-head recertification.",
+      "inputs": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "changed_files",
+        "implementation_artifacts",
+        "expected_evidence",
+        "required_gates",
+        "evidence_refs"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "evidence_refs",
+        "verification_status",
+        "failed_checks",
+        "repair_candidates",
+        "rounds",
+        "required_gates"
+      ],
+      "mutations": {
+        "allowed": true,
+        "scope": "isolated_candidate_repair_only",
+        "production": false
+      },
+      "failure": {
+        "nonconvergence": "ESCALATE",
+        "budget_exhausted": "STOP",
+        "identity_changed": "FAIL_CLOSED"
+      },
+      "convergence": {
+        "max_rounds": 6,
+        "dry_rounds": 2,
+        "completion_test": "verification_status == PASS",
+        "budget_ref": "budgets",
+        "escalation_route": "ESCALATE"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "candidate_head": "edge",
+        "changed_files": "edge",
+        "implementation_artifacts": "edge",
+        "expected_evidence": "edge",
+        "required_gates": "edge",
+        "evidence_refs": "edge"
+      }
+    },
+    {
+      "id": "exact_head_certification",
+      "class": "deterministic_gate",
+      "job": "Bind checks, preview, review state, governance evidence, rollout/rollback plans, and a deterministically derived deployment operation identity to the exact candidate head and base.",
+      "inputs": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "evidence_refs",
+        "required_gates",
+        "rollback_plan",
+        "rollout_plan"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "certification_status",
+        "exact_head",
+        "exact_base",
+        "preview_identity",
+        "unresolved_threads",
+        "governance_state",
+        "evidence_refs",
+        "rollback_plan",
+        "rollout_plan",
+        "deployment_operation_id"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "head_or_base_moved": "FAIL_CLOSED",
+        "required_check_failed": "HOLD",
+        "preview_identity_missing": "HOLD"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "evidence_refs": "edge",
+        "required_gates": "edge",
+        "rollback_plan": "edge",
+        "rollout_plan": "edge"
+      },
+      "deterministic_outputs": {
+        "deployment_operation_id": {
+          "algorithm": "SHA-256",
+          "canonicalization": "RFC8785",
+          "record": {
+            "repository": "authority.repository",
+            "exact_base": "authority.base_sha",
+            "exact_head": "candidate_head",
+            "target_environment": "scope.target_environment",
+            "rollout_plan": "rollout_plan",
+            "rollback_plan": "rollback_plan"
+          },
+          "encoding": "sha256:<lowercase-hex>",
+          "persist_to": "authority.deployment_operation_id"
+        }
+      }
+    },
+    {
+      "id": "human_release_authority",
+      "class": "human_gate",
+      "job": "Require an externally recorded durable human approval matching the exact certified head, base, authorized scope, rollout/rollback references, and deterministic deployment operation identity; never synthesize approval from graph execution.",
+      "inputs": [
+        "authority",
+        "scope",
+        "certification_status",
+        "exact_head",
+        "exact_base",
+        "preview_identity",
+        "unresolved_threads",
+        "governance_state",
+        "evidence_refs",
+        "rollback_plan",
+        "rollout_plan",
+        "deployment_operation_id",
+        "human_approvals"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "authorization_status",
+        "authorized_head",
+        "authorized_scope",
+        "authorization_ref",
+        "rollback_plan",
+        "rollout_plan",
+        "evidence_refs",
+        "deployment_operation_id"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "authorization_missing": "STOP",
+        "head_changed": "FAIL_CLOSED"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "certification_status": "edge",
+        "exact_head": "edge",
+        "exact_base": "edge",
+        "preview_identity": "edge",
+        "unresolved_threads": "edge",
+        "governance_state": "edge",
+        "evidence_refs": "edge",
+        "rollback_plan": "edge",
+        "rollout_plan": "edge",
+        "deployment_operation_id": "edge",
+        "human_approvals": "state"
+      },
+      "external_authority": {
+        "state_collection": "human_approvals",
+        "required_source": "HUMAN_EXTERNAL",
+        "required_decision": "APPROVED_FOR_EXACT_HEAD",
+        "match_fields": [
+          "source",
+          "decision",
+          "exact_head",
+          "exact_base",
+          "authorized_scope",
+          "approved_at",
+          "authorization_ref",
+          "rollback_plan_ref",
+          "rollout_plan_ref",
+          "deployment_operation_id"
+        ]
+      }
+    },
+    {
+      "id": "production_deployment",
+      "class": "mutation_node",
+      "job": "Perform only the explicitly authorized production mutation using the certified exact candidate and bounded rollout plan.",
+      "inputs": [
+        "authority",
+        "scope",
+        "authorization_status",
+        "authorized_head",
+        "authorized_scope",
+        "authorization_ref",
+        "rollback_plan",
+        "rollout_plan",
+        "evidence_refs",
+        "deployment_operation_id"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "deployment_status",
+        "deployment_identity",
+        "runtime_version",
+        "deployment_evidence",
+        "authorized_head",
+        "authorized_scope",
+        "authorization_ref",
+        "rollback_plan",
+        "evidence_refs",
+        "deployment_operation_id"
+      ],
+      "mutations": {
+        "allowed": true,
+        "scope": "explicit_authorization_only",
+        "production": true
+      },
+      "failure": {
+        "deployment_error": "HOLD",
+        "ambiguous_side_effect": "ESCALATE",
+        "identity_mismatch": "FAIL_CLOSED",
+        "permission_boundary": "STOP"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "authorization_status": "edge",
+        "authorized_head": "edge",
+        "authorized_scope": "edge",
+        "authorization_ref": "edge",
+        "rollback_plan": "edge",
+        "rollout_plan": "edge",
+        "evidence_refs": "edge",
+        "deployment_operation_id": "edge"
+      }
+    },
+    {
+      "id": "live_certification",
+      "class": "deterministic_gate",
+      "job": "Verify exact live identity and learner/runtime behavior; PASS may close and every non-PASS result enters pre-authorized recovery.",
+      "inputs": [
+        "authority",
+        "scope",
+        "deployment_identity",
+        "runtime_version",
+        "deployment_evidence",
+        "authorized_head",
+        "authorized_scope",
+        "authorization_ref",
+        "rollback_plan",
+        "evidence_refs",
+        "deployment_operation_id"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "live_status",
+        "terminal_status",
+        "production_evidence",
+        "evidence_refs",
+        "residual_risks",
+        "deployment_identity",
+        "authorized_head",
+        "authorized_scope",
+        "authorization_ref",
+        "rollback_plan",
+        "failure_evidence",
+        "deployment_operation_id"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "critical_live_failure": "ESCALATE",
+        "identity_mismatch": "FAIL_CLOSED"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "deployment_identity": "edge",
+        "runtime_version": "edge",
+        "deployment_evidence": "edge",
+        "authorized_head": "edge",
+        "authorized_scope": "edge",
+        "authorization_ref": "edge",
+        "rollback_plan": "edge",
+        "evidence_refs": "edge",
+        "deployment_operation_id": "edge"
+      }
+    },
+    {
+      "id": "close_and_persist",
+      "class": "state_node",
+      "job": "Persist terminal state, evidence references, residual risks, invalidated evidence, approvals, and the next safe resumption point.",
+      "inputs": [
+        "authority",
+        "scope",
+        "terminal_status",
+        "evidence_refs",
+        "residual_risks"
+      ],
+      "outputs": [
+        "final_state",
+        "continuation_ref"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "state_persist_failed": "RETRY"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "terminal_status": "edge",
+        "evidence_refs": "edge",
+        "residual_risks": "edge"
+      },
+      "retry_policy": {
+        "max_attempts": 3,
+        "backoff": {
+          "strategy": "EXPONENTIAL",
+          "initial_delay_ms": 1000,
+          "multiplier": 2,
+          "max_delay_ms": 8000
+        },
+        "retryable_failures": [
+          "state_persist_failed"
+        ],
+        "terminal_route": "ESCALATE"
+      }
+    },
+    {
+      "id": "audit_plan_router",
+      "class": "policy_router",
+      "job": "Select the smallest sufficient audit set from authenticated scope and risk before expensive specialist fan-out.",
+      "inputs": [
+        "authority",
+        "scope",
+        "evidence_refs",
+        "status",
+        "target_environment",
+        "candidate_head",
+        "check_set"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "evidence_refs",
+        "audit_plan",
+        "selected_audits",
+        "required_gates",
+        "risk_hint",
+        "target_environment",
+        "candidate_head",
+        "check_set"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "unclassifiable_scope": "ESCALATE",
+        "missing_required_audit": "HOLD"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "evidence_refs": "edge",
+        "status": "edge",
+        "target_environment": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge"
+      }
+    },
+    {
+      "id": "release_plan",
+      "class": "reasoning_node",
+      "job": "Prepare candidate-bound rollout and rollback plans before exact-head certification; deployment operation identity is derived later by the deterministic certification gate.",
+      "inputs": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "evidence_refs",
+        "required_gates"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "evidence_refs",
+        "required_gates",
+        "rollback_plan",
+        "rollout_plan"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "rollback_plan_missing": "HOLD",
+        "rollout_scope_unbounded": "STOP"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "candidate_head": "edge",
+        "check_set": "edge",
+        "evidence_refs": "edge",
+        "required_gates": "edge"
+      }
+    },
+    {
+      "id": "production_recovery",
+      "class": "mutation_node",
+      "job": "Execute only the pre-authorized rollback or recovery plan after non-PASS live certification.",
+      "inputs": [
+        "authority",
+        "scope",
+        "deployment_identity",
+        "authorized_head",
+        "authorized_scope",
+        "authorization_ref",
+        "rollback_plan",
+        "failure_evidence",
+        "evidence_refs",
+        "deployment_operation_id"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "recovery_status",
+        "recovery_identity",
+        "recovery_evidence",
+        "evidence_refs",
+        "residual_risks",
+        "deployment_operation_id"
+      ],
+      "mutations": {
+        "allowed": true,
+        "scope": "pre_authorized_recovery_only",
+        "production": true
+      },
+      "failure": {
+        "rollback_failed": "ESCALATE",
+        "ambiguous_side_effect": "ESCALATE",
+        "permission_boundary": "STOP",
+        "identity_mismatch": "FAIL_CLOSED"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "deployment_identity": "edge",
+        "authorized_head": "edge",
+        "authorized_scope": "edge",
+        "authorization_ref": "edge",
+        "rollback_plan": "edge",
+        "failure_evidence": "edge",
+        "evidence_refs": "edge",
+        "deployment_operation_id": "edge"
+      }
+    },
+    {
+      "id": "recovery_certification",
+      "class": "deterministic_gate",
+      "job": "Independently verify recovery identity and critical service health before closure or escalation.",
+      "inputs": [
+        "authority",
+        "scope",
+        "recovery_status",
+        "recovery_identity",
+        "recovery_evidence",
+        "evidence_refs",
+        "residual_risks",
+        "deployment_operation_id"
+      ],
+      "outputs": [
+        "authority",
+        "scope",
+        "terminal_status",
+        "evidence_refs",
+        "residual_risks"
+      ],
+      "mutations": {
+        "allowed": false
+      },
+      "failure": {
+        "recovery_unverified": "HOLD",
+        "critical_recovery_failure": "ESCALATE",
+        "identity_mismatch": "FAIL_CLOSED"
+      },
+      "input_sources": {
+        "authority": "edge",
+        "scope": "edge",
+        "recovery_status": "edge",
+        "recovery_identity": "edge",
+        "recovery_evidence": "edge",
+        "evidence_refs": "edge",
+        "residual_risks": "edge",
+        "deployment_operation_id": "edge"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "authenticate_baseline",
+      "to": "audit_plan_router",
+      "condition": "status == VERIFIED",
+      "contract": [
+        "authority",
+        "scope",
+        "evidence_refs",
+        "status",
+        "target_environment",
+        "candidate_head",
+        "check_set"
+      ]
+    },
+    {
+      "from": "audit_plan_router",
+      "to": "academic_truth_audit",
+      "condition": "selected_audits contains academic_truth_audit",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "audit_plan_router",
+      "to": "ui_responsive_audit",
+      "condition": "selected_audits contains ui_responsive_audit",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "audit_plan_router",
+      "to": "seo_route_audit",
+      "condition": "selected_audits contains seo_route_audit",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "audit_plan_router",
+      "to": "accessibility_audit",
+      "condition": "selected_audits contains accessibility_audit",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "audit_plan_router",
+      "to": "security_supply_chain_audit",
+      "condition": "selected_audits contains security_supply_chain_audit",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "audit_plan_router",
+      "to": "runtime_worker_audit",
+      "condition": "selected_audits contains runtime_worker_audit",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "evidence_refs",
+        "target_environment"
+      ]
+    },
+    {
+      "from": "academic_truth_audit",
+      "to": "synthesize_findings",
+      "condition": "terminal",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "ui_responsive_audit",
+      "to": "synthesize_findings",
+      "condition": "terminal",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "seo_route_audit",
+      "to": "synthesize_findings",
+      "condition": "terminal",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "accessibility_audit",
+      "to": "synthesize_findings",
+      "condition": "terminal",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "security_supply_chain_audit",
+      "to": "synthesize_findings",
+      "condition": "terminal",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "runtime_worker_audit",
+      "to": "synthesize_findings",
+      "condition": "terminal",
+      "contract": [
+        "authority",
+        "scope",
+        "audit_plan",
+        "candidate_head",
+        "check_set",
+        "audit_result",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "synthesize_findings",
+      "to": "risk_router",
+      "condition": "synthesis_status in [VERIFIED,CORROBORATED,BLOCKED,CONFLICTED]",
+      "contract": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "synthesis_status",
+        "blockers",
+        "repair_candidates",
+        "evidence_refs",
+        "unknowns"
+      ]
+    },
+    {
+      "from": "risk_router",
+      "to": "release_plan",
+      "condition": "route == NO_REPAIR_AND_CANDIDATE_EXISTS",
+      "contract": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "evidence_refs",
+        "required_gates"
+      ]
+    },
+    {
+      "from": "risk_router",
+      "to": "remediation_design",
+      "condition": "route == REPAIR",
+      "contract": [
+        "authority",
+        "scope",
+        "repair_candidates",
+        "required_gates",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "risk_router",
+      "to": "close_and_persist",
+      "condition": "route == HUMAN_DECISION_ONLY",
+      "contract": [
+        "authority",
+        "scope",
+        "terminal_status",
+        "evidence_refs",
+        "residual_risks"
+      ]
+    },
+    {
+      "from": "remediation_design",
+      "to": "isolated_implementation",
+      "condition": "repair_plan != null",
+      "contract": [
+        "authority",
+        "scope",
+        "repair_plan",
+        "changed_file_boundary",
+        "expected_evidence",
+        "stop_conditions",
+        "required_gates",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "isolated_implementation",
+      "to": "candidate_verification_cycle",
+      "condition": "candidate_head != null",
+      "contract": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "changed_files",
+        "implementation_artifacts",
+        "expected_evidence",
+        "required_gates",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "candidate_verification_cycle",
+      "to": "release_plan",
+      "condition": "verification_status == PASS",
+      "contract": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "evidence_refs",
+        "required_gates"
+      ]
+    },
+    {
+      "from": "candidate_verification_cycle",
+      "to": "remediation_design",
+      "condition": "verification_status == REPAIR",
+      "contract": [
+        "authority",
+        "scope",
+        "repair_candidates",
+        "required_gates",
+        "evidence_refs"
+      ]
+    },
+    {
+      "from": "release_plan",
+      "to": "exact_head_certification",
+      "condition": "rollback_plan != null and rollout_plan != null",
+      "contract": [
+        "authority",
+        "scope",
+        "candidate_head",
+        "check_set",
+        "evidence_refs",
+        "required_gates",
+        "rollback_plan",
+        "rollout_plan"
+      ]
+    },
+    {
+      "from": "exact_head_certification",
+      "to": "human_release_authority",
+      "condition": "certification_status == PASS",
+      "contract": [
+        "authority",
+        "scope",
+        "certification_status",
+        "exact_head",
+        "exact_base",
+        "preview_identity",
+        "unresolved_threads",
+        "governance_state",
+        "evidence_refs",
+        "rollback_plan",
+        "rollout_plan",
+        "deployment_operation_id"
+      ]
+    },
+    {
+      "from": "human_release_authority",
+      "to": "production_deployment",
+      "condition": "authorization_status == APPROVED_FOR_EXACT_HEAD",
+      "contract": [
+        "authority",
+        "scope",
+        "authorization_status",
+        "authorized_head",
+        "authorized_scope",
+        "authorization_ref",
+        "rollback_plan",
+        "rollout_plan",
+        "evidence_refs",
+        "deployment_operation_id"
+      ]
+    },
+    {
+      "from": "production_deployment",
+      "to": "live_certification",
+      "condition": "deployment_status == DEPLOYED",
+      "contract": [
+        "authority",
+        "scope",
+        "deployment_identity",
+        "runtime_version",
+        "deployment_evidence",
+        "authorized_head",
+        "authorized_scope",
+        "authorization_ref",
+        "rollback_plan",
+        "evidence_refs",
+        "deployment_operation_id"
+      ]
+    },
+    {
+      "from": "live_certification",
+      "to": "close_and_persist",
+      "condition": "live_status == PASS",
+      "contract": [
+        "authority",
+        "scope",
+        "terminal_status",
+        "evidence_refs",
+        "residual_risks"
+      ]
+    },
+    {
+      "from": "live_certification",
+      "to": "production_recovery",
+      "condition": "live_status != PASS",
+      "contract": [
+        "authority",
+        "scope",
+        "deployment_identity",
+        "authorized_head",
+        "authorized_scope",
+        "authorization_ref",
+        "rollback_plan",
+        "failure_evidence",
+        "evidence_refs",
+        "deployment_operation_id"
+      ]
+    },
+    {
+      "from": "production_recovery",
+      "to": "recovery_certification",
+      "condition": "terminal",
+      "contract": [
+        "authority",
+        "scope",
+        "recovery_status",
+        "recovery_identity",
+        "recovery_evidence",
+        "evidence_refs",
+        "residual_risks",
+        "deployment_operation_id"
+      ]
+    },
+    {
+      "from": "recovery_certification",
+      "to": "close_and_persist",
+      "condition": "terminal",
+      "contract": [
+        "authority",
+        "scope",
+        "terminal_status",
+        "evidence_refs",
+        "residual_risks"
+      ]
+    }
+  ],
+  "release_invariants": [
+    "No production mutation without release planning, exact-head certification, and explicit human authorization.",
+    "Every path to production deployment must traverse release_plan -> exact_head_certification -> human_release_authority in that order.",
+    "Every path to production recovery must already have traversed production deployment and live certification.",
+    "Rollback and rollout plans are candidate-bound evidence and must be certified before human release authorization.",
+    "Candidate generation, verification, approval, and production mutation may not collapse into one unreviewed authority context.",
+    "A head or base identity change invalidates candidate-bound certification and authorization.",
+    "Unresolved release-critical evidence cannot be converted to PASS by synthesis.",
+    "Every specialist audit is selected through audit_plan_router and synthesis waits for the selected audit set.",
+    "Every edge contract may carry only declared source outputs into declared target inputs.",
+    "Deterministic transforms and policy checks may not be replaced by model calls without a documented reason.",
+    "Only failed local work is retried while still-fresh independent evidence remains reusable.",
+    "Any non-PASS live certification must enter pre-authorized recovery before closure.",
+    "Production mutation failures with ambiguous side effects may not be automatically retried.",
+    "Every authorized deployment carries a deployment_operation_id derived only by exact_head_certification as SHA-256 over an RFC8785 canonical record of repository, exact base, exact head, target environment, rollout plan, and rollback plan; reasoning nodes may not invent this identity.",
+    "Production recovery is a one-shot pre-authorized mutation followed by independent certification; failure escalates rather than looping automatically.",
+    "Human release authority consumes an externally recorded durable human_approvals state record bound to exact head, exact base, authorized scope, rollout/rollback references, and deployment_operation_id.",
+    "Every node exposing RETRY declares a finite retry_policy whose retryable_failures exactly match RETRY-mapped failures and whose terminal_route is not RETRY.",
+    "Every controlled cycle declares a completion test, durable budget reference, and escalation route."
+  ]
+}
