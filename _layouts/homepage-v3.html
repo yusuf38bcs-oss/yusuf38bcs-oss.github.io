@@ -8,6 +8,22 @@
     <meta name="theme-color" content="#06272d">
     <title>{{ page.title | escape }}</title>
     <meta name="description" content="{{ page.description | escape }}">
+    <script>
+      /* LBFL V3 dialog support prepaint */
+      (function () {
+        var root = document.documentElement;
+        root.classList.remove('no-js');
+        root.classList.add('js');
+        var dialogSupported =
+          typeof HTMLDialogElement !== 'undefined' &&
+          HTMLDialogElement.prototype &&
+          typeof HTMLDialogElement.prototype.showModal === 'function';
+        root.classList.remove('v3-dialog-supported', 'v3-dialog-unsupported');
+        root.classList.add(
+          + (dialogSupported ? 'v3-dialog-supported' : 'v3-dialog-unsupported')
+        );
+      }());
+    </script>
     <link rel="stylesheet" href="{{ '/assets/css/homepage-v3.css' | relative_url }}?v=v3.4-0f050cf8-1e1df54dfee1-66f2c7cf5f3c">
     <style>
       @media (max-width: 1024px) {
