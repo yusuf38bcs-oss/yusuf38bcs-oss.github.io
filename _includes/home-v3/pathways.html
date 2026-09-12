@@ -1,0 +1,20 @@
+<section class="lbfl-v3-section lbfl-v3-pathways" aria-labelledby="lbfl-v3-pathways-title">
+  <div class="lbfl-v3-shell">
+    <header class="lbfl-v3-section__head">
+      <p class="lbfl-v3-kicker">01 · CHOOSE</p>
+      <h2 id="lbfl-v3-pathways-title">Choose a Learning Path</h2>
+      <p>Start from your curriculum, deepen a zoology idea, test a misconception, or enter guided inquiry.</p>
+    </header>
+    <div class="lbfl-v3-pathway-grid">
+      {% for pathway in site.data.homepage.pathways %}
+        <a class="lbfl-v3-pathway-card lbfl-v3-target" href="{{ pathway.url | relative_url }}">
+          <span class="lbfl-v3-pathway-card__number">{{ pathway.ordinal }}</span>
+          <span class="lbfl-v3-pathway-card__action">{{ pathway.thinking_action }}</span>
+          <h3>{{ pathway.title }}</h3>
+          <p>{{ pathway.promise }}</p>
+          <span class="lbfl-v3-pathway-card__cta">{{ pathway.cta_label }} <span aria-hidden="true">→</span></span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
