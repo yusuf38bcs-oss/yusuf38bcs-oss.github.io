@@ -28,6 +28,25 @@
           <img src="{{ '/assets/images/home/v3/lbfl-cell-1600.webp' | relative_url }}" width="1600" height="1200" alt="" decoding="async" fetchpriority="high">
         </picture>
       </template>
+      <script>
+        (() => {
+          const script = document.currentScript;
+          const visual = script ? script.closest('[data-v3-hero-visual]') : null;
+          const template = visual ? visual.querySelector('template[data-v3-hero-media]') : null;
+          const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+
+          if (!visual || !template) return;
+
+          if (saveData) {
+            visual.setAttribute('hidden', '');
+            return;
+          }
+
+          if ('content' in template) {
+            template.replaceWith(template.content.cloneNode(true));
+          }
+        })();
+      </script>
       <noscript>
         <picture>
           <source media="(max-width: 520px)" srcset="{{ '/assets/images/home/v3/lbfl-cell-480.webp' | relative_url }}">

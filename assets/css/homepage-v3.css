@@ -233,3 +233,35 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   .lbfl-home-v3 { background: white; color: black; }
   .lbfl-v3-section { break-inside: avoid; }
 }
+
+/* V3 dialog progressive-enhancement fallback */
+@media (max-width: 1024px) {
+  html:not(.v3-dialog-supported) .lbfl-v3-header__inner {
+    flex-wrap: wrap;
+    padding-block: 8px;
+  }
+
+  html:not(.v3-dialog-supported) .lbfl-v3-nav {
+    order: 3;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+
+  html:not(.v3-dialog-supported) .lbfl-v3-nav a {
+    flex: 1 1 auto;
+  }
+
+  html:not(.v3-dialog-supported) .lbfl-v3-menu-button {
+    display: none;
+  }
+
+  html.v3-dialog-supported .lbfl-v3-nav {
+    display: none;
+  }
+
+  html.v3-dialog-supported .lbfl-v3-menu-button {
+    display: inline-flex;
+  }
+}

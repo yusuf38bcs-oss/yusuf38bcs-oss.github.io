@@ -15,7 +15,7 @@ architecture:
   narrative: "Identity -> Choice -> Experience -> Method -> Feedback/Repair -> Evidence -> Action"
   css_owner: "assets/css/homepage-v3.css"
   js_owner: "assets/js/home/homepage-v3.js"
-  asset_revision: "v3.4-0f050cf8-a34cd46970eb-4e59e7ab4713"
+  asset_revision: "v3.4-0f050cf8-1e1df54dfee1-66f2c7cf5f3c"
   v2_inheritance: false
 constraints:
   remote_push: false
