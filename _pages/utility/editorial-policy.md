@@ -1,6 +1,6 @@
 ---
-layout: single
-author_profile: true
+layout: legal
+author_profile: false
 author: "MD. Yusuf"
 title: "Editorial Policy"
 permalink: /editorial-policy/
@@ -12,9 +12,9 @@ difficulty: "Foundation"
 xp: 100
 status: "Active"
 description: "Editorial method, verification principles, AI-assisted content policy, cognitive graph purpose, DOT-LINE-CIRCLE architecture, and correction process for Learning Biology For Life."
+lang: en
+last_modified_at: 2026-09-13
 ---
-
-# Editorial Policy
 
 Learning Biology For Life is an educational platform built to connect academic biology with practical life understanding, reflective thinking, and responsible learning. This editorial policy explains how content is planned, written, reviewed, corrected, and used to support learner reflection.
 
