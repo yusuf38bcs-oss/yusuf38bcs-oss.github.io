@@ -1,0 +1,20 @@
+<section class="lbfl-v3-section lbfl-v3-repair" aria-labelledby="lbfl-v3-repair-title">
+  <div class="lbfl-v3-shell">
+    <header class="lbfl-v3-section__head">
+      <p class="lbfl-v3-kicker">04 · REPAIR</p>
+      <p class="lbfl-v3-eyebrow--light">{{ site.data.homepage.assessment_loop.eyebrow }}</p>
+      <h2 id="lbfl-v3-repair-title">{{ site.data.homepage.assessment_loop.title }}</h2>
+      <p>{{ site.data.homepage.assessment_loop.summary }}</p>
+    </header>
+    <ol class="lbfl-v3-repair-grid">
+      {% for step in site.data.homepage.assessment_loop.steps %}
+        <li>
+          <span>{{ forloop.index | prepend: '0' }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.text }}</p>
+        </li>
+      {% endfor %}
+    </ol>
+    <p class="lbfl-v3-repair__result">{{ site.data.homepage.assessment_loop.result }}</p>
+  </div>
+</section>
