@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<main id="main" class="lbfl-legal" role="main" lang="{{ page.lang | default: 'en' }}">
+<div class="lbfl-legal" lang="{{ page.lang | default: 'en' }}">
   <p class="lbfl-legal__eyebrow">Learning Biology For Life · Trust Centre</p>
   <nav class="lbfl-legal__nav" aria-label="Legal and trust pages">
     <a href="{{ '/privacy-policy/' | relative_url }}">Privacy</a>
@@ -22,12 +22,12 @@ layout: default
     <h1>{{ page.title }}</h1>
     {{ content }}
   </article>
-</main>
+</div>
 
 <style>
   .lbfl-legal { max-width: 760px; margin-inline: auto; }
-  .lbfl-legal__eyebrow { color: #0f706d; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .lbfl-legal__eyebrow { color: #8FD9CE; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
   .lbfl-legal__nav { display: flex; flex-wrap: wrap; gap: .45rem .85rem; margin: 1rem 0; font-size: .9rem; }
   .lbfl-legal__nav a:focus-visible { outline: 3px solid #0f706d; outline-offset: 3px; }
-  .lbfl-legal__updated { color: #52615e; font-size: .9rem; }
+  .lbfl-legal__updated { color: #D5DEDA; font-size: .9rem; }
 </style>
