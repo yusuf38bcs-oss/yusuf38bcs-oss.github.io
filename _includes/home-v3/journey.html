@@ -1,0 +1,20 @@
+<section class="lbfl-v3-section lbfl-v3-journey" aria-labelledby="lbfl-v3-journey-title">
+  <div class="lbfl-v3-shell lbfl-v3-journey__grid">
+    <div>
+      <p class="lbfl-v3-kicker">02 · EXPERIENCE</p>
+      <p class="lbfl-v3-eyebrow--light">{{ site.data.homepage.featured_route.eyebrow }}</p>
+      <h2 id="lbfl-v3-journey-title">{{ site.data.homepage.featured_route.title }}</h2>
+      <p class="lbfl-v3-journey__accent">{{ site.data.homepage.featured_route.title_accent }}</p>
+      <p>{{ site.data.homepage.featured_route.summary }}</p>
+      <a class="lbfl-v3-button lbfl-v3-button--cream lbfl-v3-target" href="{{ site.data.homepage.featured_route.start_url | relative_url }}">Start the connected journey</a>
+    </div>
+    <ol class="lbfl-v3-journey__steps" aria-label="Six connected cell functions">
+      {% for item in site.data.homepage.latest_learning.items %}
+        <li>
+          <span class="lbfl-v3-journey__index">{{ forloop.index | prepend: '0' }}</span>
+          <div><strong>{{ item.function }}</strong><span>{{ item.title }}</span></div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
