@@ -1,0 +1,36 @@
+version: "3.4-shadow"
+status: "local-design-lab"
+authority:
+  staging_sha: "27dfc24b392029a17ad3a719af9f4626a7333d16"
+  tree_sha: "96431146e044ac62d5a6ea3021326369aa69da10"
+route:
+  lab: "/labs/homepage-v3/"
+  sitemap: false
+  robots: "noindex,nofollow"
+architecture:
+  narrative: "Identity -> Choice -> Experience -> Method -> Feedback/Repair -> Evidence -> Action"
+  css_owner: "assets/css/homepage-v3.css"
+  js_owner: "assets/js/home/homepage-v3.js"
+  v2_inheritance: false
+constraints:
+  remote_push: false
+  pull_request: false
+  root_activation: false
+  worker_mutation: false
+  adsense_cmp_mutation: false
+  v2_patch: false
+accessibility:
+  project_target_minimum_px: 44
+  wcag_target_size_minimum_px: 24
+  focus_not_obscured: "AA minimum plus stricter LBFL full-visibility preference"
+viewports:
+  - "320x800"
+  - "360x800"
+  - "390x844"
+  - "412x915"
+  - "480x900"
+  - "768x1024"
+  - "1024x768"
+  - "1366x768"
+  - "1440x900"
+  - "1920x1080"
