@@ -1,0 +1,140 @@
+name: CodeQL Exact-Head Security Scan
+
+on:
+  pull_request:
+    branches: ["staging", "main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/workflows/**"
+      - ".github/actions/**"
+      - ".github/scripts/**/*.js"
+      - ".github/scripts/**/*.mjs"
+      - ".github/scripts/**/*.cjs"
+      - "assets/js/**"
+      - "worker/**"
+      - "workers/**"
+      - "scripts/**/*.js"
+      - "scripts/**/*.mjs"
+      - "scripts/**/*.cjs"
+      - "**/package.json"
+      - "**/package-lock.json"
+      - "wrangler.toml"
+      - "wrangler.jsonc"
+      - "wrangler.*.toml"
+      - "wrangler.*.jsonc"
+  push:
+    branches: ["staging", "main"]
+    paths:
+      - ".github/workflows/**"
+      - ".github/actions/**"
+      - ".github/scripts/**/*.js"
+      - ".github/scripts/**/*.mjs"
+      - ".github/scripts/**/*.cjs"
+      - "assets/js/**"
+      - "worker/**"
+      - "workers/**"
+      - "scripts/**/*.js"
+      - "scripts/**/*.mjs"
+      - "scripts/**/*.cjs"
+      - "**/package.json"
+      - "**/package-lock.json"
+      - "wrangler.toml"
+      - "wrangler.jsonc"
+      - "wrangler.*.toml"
+      - "wrangler.*.jsonc"
+  schedule:
+    - cron: "17 2 * * 6"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: codeql-exact-head-${{ github.event.pull_request.head.sha || github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  analyze:
+    name: Analyze ${{ matrix.language }}
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language:
+          - javascript-typescript
+          - actions
+
+    env:
+      CODEQL_TARGET_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.CODEQL_TARGET_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Authenticate exact head and current base
+        shell: bash
+        env:
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+
+          actual_head="$(git rev-parse HEAD)"
+          test "$actual_head" = "$CODEQL_TARGET_SHA" || {
+            echo "HEAD CHANGED — CODEQL RECERTIFICATION REQUIRED"
+            echo "expected: $CODEQL_TARGET_SHA"
+            echo "actual:   $actual_head"
+            exit 1
+          }
+
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            test "$actual_head" = "$PR_HEAD_SHA" || {
+              echo "PR head identity mismatch"
+              exit 1
+            }
+
+            remote_base="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
+            test -n "$remote_base" || {
+              echo "Unable to resolve current base ref: $PR_BASE_REF"
+              exit 1
+            }
+            test "$remote_base" = "$PR_BASE_SHA" || {
+              echo "BASE CHANGED — CODEQL RECERTIFICATION REQUIRED"
+              echo "event base:   $PR_BASE_SHA"
+              echo "current base: $remote_base"
+              exit 1
+            }
+
+            git fetch --no-tags origin "refs/heads/$PR_BASE_REF:refs/remotes/origin/$PR_BASE_REF"
+            test "$(git rev-parse "refs/remotes/origin/$PR_BASE_REF")" = "$remote_base"
+            git merge-base --is-ancestor "$remote_base" "$actual_head" || {
+              echo "STALE PR HEAD — CURRENT BASE IS NOT AN ANCESTOR"
+              echo "base: $PR_BASE_REF@$remote_base"
+              echo "head: $actual_head"
+              exit 1
+            }
+          fi
+
+          echo "CodeQL exact-head identity authenticated: $actual_head"
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9 / CodeQL CLI 2.26.4
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9 / CodeQL CLI 2.26.4
+        with:
+          category: "/language:${{ matrix.language }}/exact-head"
