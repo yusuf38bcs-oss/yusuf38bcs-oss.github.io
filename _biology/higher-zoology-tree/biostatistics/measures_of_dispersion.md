@@ -1,5 +1,5 @@
 ---
-layout: null
+layout: none
 author_profile: false
 sitemap: false
 robots: noindex, follow
