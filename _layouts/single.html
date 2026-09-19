@@ -11,6 +11,11 @@ layout: default
   {% assign lbfl_zoology_route = true %}
 {% endif %}
 
+{% assign lbfl_content_owns_h1 = false %}
+{% if content contains '<h1' %}
+  {% assign lbfl_content_owns_h1 = true %}
+{% endif %}
+
 {% assign lbfl_overlay_image = page.header.overlay_image %}
 {% if lbfl_zoology_route and lbfl_overlay_image contains '/assets/images/biology/' %}
   {% assign lbfl_overlay_image = '' %}
@@ -21,9 +26,11 @@ layout: default
        style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if lbfl_overlay_image %}background-image: url('{{ lbfl_overlay_image | relative_url }}');{% endif %}">
     {% if page.header.overlay_filter %}
       <div class="wrapper">
-        <h1 id="page-title" class="page__title" itemprop="headline">
-          {{ page.title }}
-        </h1>
+        {% unless lbfl_content_owns_h1 %}
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            {{ page.title }}
+          </h1>
+        {% endunless %}
         {% if page.excerpt %}
           <p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
         {% endif %}
@@ -64,7 +71,11 @@ layout: default
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or lbfl_overlay_image %}
         <header>
-          {% if page.title %}<h1 id="page-title" class="page__title" itemprop="headline">{{ page.title }}</h1>{% endif %}
+          {% if page.title %}
+            {% unless lbfl_content_owns_h1 %}
+              <h1 id="page-title" class="page__title" itemprop="headline">{{ page.title }}</h1>
+            {% endunless %}
+          {% endif %}
           {% if page.read_time %}
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
           {% endif %}
