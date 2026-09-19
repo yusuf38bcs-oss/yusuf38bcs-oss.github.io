@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<div class="lbfl-legal" lang="{{ page.lang | default: 'en' }}">
+  <p class="lbfl-legal__eyebrow">Learning Biology For Life · Trust Centre</p>
+  <nav class="lbfl-legal__nav" aria-label="Legal and trust pages">
+    <a href="{{ '/privacy-policy/' | relative_url }}">Privacy</a>
+    <a href="{{ '/terms-and-conditions/' | relative_url }}">Terms</a>
+    <a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a>
+    <a href="{{ '/editorial-policy/' | relative_url }}">Editorial Policy</a>
+    <a href="{{ '/cookie-preferences/' | relative_url }}">Cookies</a>
+    <a href="{{ '/accessibility/' | relative_url }}">Accessibility</a>
+    <a href="{{ '/corrections/' | relative_url }}">Corrections</a>
+  </nav>
+  {% if page.last_modified_at or page.date %}
+    <p class="lbfl-legal__updated">Last updated: {{ page.last_modified_at | default: page.date | date: '%B %-d, %Y' }}</p>
+  {% endif %}
+  <article class="lbfl-legal__content" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="{{ page.title | escape }}">
+    <meta itemprop="description" content="{{ page.description | default: page.excerpt | strip_html | escape }}">
+    <h1>{{ page.title }}</h1>
+    {{ content }}
+  </article>
+</div>
+
+<style>
+  .lbfl-legal { max-width: 760px; margin-inline: auto; }
+  .lbfl-legal__eyebrow { color: #8FD9CE; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .lbfl-legal__nav { display: flex; flex-wrap: wrap; gap: .45rem .85rem; margin: 1rem 0; font-size: .9rem; }
+  .lbfl-legal__nav a:focus-visible { outline: 3px solid #0f706d; outline-offset: 3px; }
+  .lbfl-legal__updated { color: #D5DEDA; font-size: .9rem; }
+</style>

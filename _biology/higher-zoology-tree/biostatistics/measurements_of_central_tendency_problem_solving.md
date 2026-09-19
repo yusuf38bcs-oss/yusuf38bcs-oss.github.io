@@ -1,5 +1,5 @@
 ---
-layout: null
+layout: none
 permalink: /biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/
 sitemap: false
 robots: noindex

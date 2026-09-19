@@ -1,6 +1,6 @@
 ---
-layout: single
-author_profile: true
+layout: legal
+author_profile: false
 author: "MD. YUSUF"
 title: "Cookie Preferences"
 permalink: /cookie-preferences/
@@ -13,6 +13,8 @@ pillar: "Legal"
 difficulty: "Foundation"
 xp: 100
 status: "Active"
+lang: en
+last_modified_at: 2026-09-13
 description: "Cookie categories, consent choices, analytics, advertising, newsletter, and security storage information."
 ---
 

@@ -1,5 +1,5 @@
 ---
-layout: null
+layout: none
 permalink: /biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/
 sitemap: false
 robots: noindex
