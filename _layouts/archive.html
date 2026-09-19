@@ -2,6 +2,11 @@
 layout: default
 ---
 
+{% assign lbfl_content_owns_h1 = false %}
+{% if content contains '<h1' %}
+  {% assign lbfl_content_owns_h1 = true %}
+{% endif %}
+
 {% assign archive_items = page.posts %}
 {% if archive_items == nil and page.collection %}
   {% assign archive_items = site[page.collection] %}
@@ -12,9 +17,11 @@ layout: default
        style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if page.header.overlay_image %}background-image: url('{{ page.header.overlay_image | relative_url }}');{% endif %}">
     {% if page.header.overlay_filter %}
       <div class="wrapper">
-        <h1 id="page-title" class="page__title" itemprop="headline">
-          {{ page.title }}
-        </h1>
+        {% unless lbfl_content_owns_h1 %}
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            {{ page.title }}
+          </h1>
+        {% endunless %}
         {% if page.excerpt %}
           <p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
         {% endif %}
@@ -27,7 +34,11 @@ layout: default
   <div class="archive">
     {% unless page.header.overlay_color or page.header.overlay_image %}
       <header class="archive__header">
-        {% if page.title %}<h1 id="page-title" class="page__title">{{ page.title }}</h1>{% endif %}
+        {% if page.title %}
+          {% unless lbfl_content_owns_h1 %}
+            <h1 id="page-title" class="page__title">{{ page.title }}</h1>
+          {% endunless %}
+        {% endif %}
         {% if page.excerpt %}<p class="page__lead">{{ page.excerpt | markdownify | strip_html }}</p>{% endif %}
       </header>
     {% endunless %}
