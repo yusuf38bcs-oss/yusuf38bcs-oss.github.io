@@ -87,14 +87,6 @@ for (const route of routes) {
   const isAnimalDiversityRoute = route.startsWith("/biology/animal-diversity/");
   const isEcologyCourseRoute =
     route.startsWith("/biology/higher-zoology-tree/ecology/");
-  const isReplacementCourseRoute =
-    route.startsWith("/biology/higher-zoology-tree/human-physiology/") ||
-    route.startsWith("/biology/higher-zoology-tree/physiology/") ||
-    route.startsWith("/biology/hsc-corner/zoology/digestive-system/") ||
-    route.startsWith("/biology/hsc-corner/zoology/respiratory-") ||
-    route === "/biology/hsc-corner/zoology/baroreceptor-reflex/" ||
-    route.startsWith("/biology/higher-zoology-tree/genetics/") ||
-    route.startsWith("/biology/higher-zoology-tree/biostatistics/");
   for (const viewport of viewports) {
     const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
     const blockedExternal = [];
@@ -179,6 +171,7 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
   return {
     hasContent: Boolean(document.querySelector(".page__content")),
     hasCycle: Boolean(document.querySelector("[data-zoology-learning-cycle]")),
+    hasCourseOwnedShell: Boolean(document.querySelector("[data-lbfl-course-owned]")),
     hasStylesheet: Array.from(
       document.querySelectorAll('link[rel="stylesheet"]')
     ).some((link) =>
@@ -194,13 +187,14 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
     structureChecks,
   };
 }, { headingContract, structureContract });
+      const isCourseOwnedCandidate = metrics?.hasCourseOwnedShell === true;
       const fullPageAxe =
         (isAnimalDiversityRoute && viewport.name === "mobile-390") ||
-        isReplacementCourseRoute;
+        isCourseOwnedCandidate;
 
       const scopedCycleAxe =
         !isAnimalDiversityRoute &&
-        !isReplacementCourseRoute &&
+        !isCourseOwnedCandidate &&
         metrics.hasCycle &&
         viewport.name === "mobile-390";
 
@@ -241,7 +235,7 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
       metrics?.hasContent === true &&
       metrics?.hasStylesheet === true &&
       (!isAnimalDiversityRoute || metrics?.hasContent === true) &&
-      (isAnimalDiversityRoute ? metrics?.hasCycle === false : ((isEcologyCourseRoute || isReplacementCourseRoute) ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
+      (isAnimalDiversityRoute ? metrics?.hasCycle === false : ((isEcologyCourseRoute || metrics?.hasCourseOwnedShell === true) ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
       (!isAnimalDiversityRoute || metrics?.structureChecks?.h1Count === 1) &&
       metrics?.structureChecks?.requiredText?.every((check) => check.passed) !== false &&
       metrics?.structureChecks?.forbiddenText?.every((check) => check.passed) !== false &&
