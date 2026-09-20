@@ -5,7 +5,7 @@
       <h2 id="lbfl-v3-continue-title">Choose the Next Action</h2>
       <p>Move from explanation to practice, inquiry, or deeper reading without losing the learning thread.</p>
     </div>
-    <nav class="lbfl-v3-continue__links" aria-label="Continue exploring">
+    <nav class="lbfl-v3-continue__links lbfl-reflection-lab__grid" aria-label="Continue exploring">
       {% for item in site.data.homepage.reflection_lab.continue_links %}
         <a class="lbfl-v3-target" href="{{ item.url | relative_url }}">{{ item.label }} <span aria-hidden="true">→</span></a>
       {% endfor %}

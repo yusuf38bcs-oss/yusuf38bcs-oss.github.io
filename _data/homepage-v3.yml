@@ -1,5 +1,5 @@
 version: "3.5-premium-production-release"
-status: "production-release-candidate"
+status: "production-release-remediation-candidate"
 authority:
   production_base_sha: "c86996050f8bbdf5267c2d0c3b58dcc9dc07ce9c"
   certified_staging_merge_sha: "d0fd6427b9c61d267113b6a4796923a9929c9b70"
@@ -20,7 +20,7 @@ architecture:
   visual_direction: "Scientific editorial premium"
   css_owner: "assets/css/homepage-v3.css"
   js_owner: "assets/js/home/homepage-v3.js"
-  asset_revision: "v3.5-prod-c8699605-20260921"
+  asset_revision: "v3.5-prod-c8699605-r1-20260921"
   v2_inheritance: false
 constraints:
   root_activation: true

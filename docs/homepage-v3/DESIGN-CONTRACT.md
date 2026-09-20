@@ -25,3 +25,6 @@ Identity → Choice → Experience → Method → Feedback/Repair → Evidence �
 
 ## Scope
 The release contains the certified 23-path V3 namespace plus exactly one production activation path: `index.html`.
+
+## Responsive certification compatibility
+The production candidate exposes legacy certification class aliases on equivalent V3.5 regions so the existing Homepage Responsive Layout Certification can measure the new root without changing its workflow or importing V2 styling. The aliases map header, hero, connected journey, Synaptic Bridge, evidence, and continue-grid geometry only.

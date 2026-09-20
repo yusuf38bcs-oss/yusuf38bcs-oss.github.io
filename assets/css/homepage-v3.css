@@ -774,3 +774,60 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
     transform: none !important;
   }
 }
+
+
+/* Production certification aliases.
+   These classes map the existing responsive release contract onto V3.5
+   semantic regions without importing V2 presentation styles. */
+.lbfl-v3-journey__grid > .lbfl-home-v2__narrative-marker,
+.lbfl-v3-method__layout > .lbfl-home-v2__narrative-marker,
+.lbfl-v3-evidence__grid > .lbfl-home-v2__narrative-marker {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.lbfl-v3-journey__steps.lbfl-home-v2__learning-route {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.lbfl-v3-method__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+.lbfl-v3-method__layout .lbfl-v3-section__head {
+  margin-bottom: 0;
+}
+
+.lbfl-v3-method__layout .lbfl-v3-section__head--center {
+  margin-inline: 0;
+  text-align: left;
+}
+
+.lbfl-v3-method__layout .lbfl-v3-method-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lbfl-v3-method__layout .lbfl-v3-centered-action {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
+.lbfl-v3-evidence__grid > .lbfl-home-v2__narrative-marker {
+  margin-bottom: -6px;
+}
+
+@media (max-width: 1024px) {
+  .lbfl-v3-method__layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .lbfl-v3-method__layout .lbfl-v3-method-grid,
+  .lbfl-v3-continue__links.lbfl-reflection-lab__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

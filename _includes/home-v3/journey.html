@@ -1,5 +1,5 @@
 <section class="lbfl-v3-section lbfl-v3-journey" aria-labelledby="lbfl-v3-journey-title">
-  <div class="lbfl-v3-shell lbfl-v3-journey__grid">
+  <div class="lbfl-v3-shell lbfl-v3-journey__grid lbfl-home-v2__featured">\n    <p class="lbfl-v3-kicker lbfl-home-v2__narrative-marker">02 · EXPERIENCE</p>
     <div>
       <p class="lbfl-v3-kicker">02 · EXPERIENCE</p>
       <p class="lbfl-v3-eyebrow--light">{{ site.data.homepage.featured_route.eyebrow }}</p>
@@ -8,7 +8,7 @@
       <p>{{ site.data.homepage.featured_route.summary }}</p>
       <a class="lbfl-v3-button lbfl-v3-button--cream lbfl-v3-target" href="{{ site.data.homepage.featured_route.start_url | relative_url }}">Start the connected journey</a>
     </div>
-    <ol class="lbfl-v3-journey__steps" aria-label="Six connected cell functions">
+    <ol class="lbfl-v3-journey__steps lbfl-home-v2__learning-route" aria-label="Six connected cell functions">
       {% for item in site.data.homepage.latest_learning.items %}
         <li>
           <span class="lbfl-v3-journey__index">{{ forloop.index | prepend: '0' }}</span>
