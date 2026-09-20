@@ -1,6 +1,5 @@
 ---
-
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 
@@ -52,7 +51,7 @@ socratic_prompt: >-
 
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
-language: en
+language: bn
 curriculum_tracks:
   - HSC Zoology
   - NEET Biology
@@ -62,11 +61,18 @@ ib_theme: "Interaction and Interdependence"
 ib_subtopic: "Homeostasis and blood pressure regulation"
 hsc_alignment: "HSC Zoology: circulation, nervous regulation, and homeostatic feedback"
 concept_level: "Advanced"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 19
+page_id: human-physiology-l19
+previous: /biology/hsc-corner/zoology/respiratory-system-mind-mapping/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity/
 ---
 
 <div class="notice--info" markdown="1">
 
-# Baroreceptor Reflex: Blood Pressure Control
 ## ব্যারোরিসেপ্টর রিফ্লেক্স: রক্তচাপ নিয়ন্ত্রণের দ্রুত ব্যবস্থা
 
 **Core idea:** রক্তচাপ হঠাৎ বেড়ে বা কমে গেলে শরীর কয়েক সেকেন্ডের মধ্যে হৃদপিণ্ড ও রক্তনালীকে নির্দেশ দিয়ে চাপকে স্বাভাবিকের দিকে ফিরিয়ে আনে। এই দ্রুত নিয়ন্ত্রণ ব্যবস্থাই **Baroreceptor Reflex**।

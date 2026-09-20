@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -47,9 +47,15 @@ difficulty: "Intermediate"
 xp: 850
 time_min: 70
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 17
+page_id: human-physiology-l17
+previous: /biology/hsc-corner/zoology/respiratory-mechanics-gas-transport/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/respiratory-system-mind-mapping/
 ---
-
-# Human Respiratory System Part 3: শ্বাসনালীর রোগ, কারণ, লক্ষণ, স্বাস্থ্যসচেতনতা ও প্রতিরোধ
 
 ## Educational and Medical Safety Note
 
@@ -68,8 +74,6 @@ Affected part → Cause/trigger → Structural change → Functional failure →
 ## Why This Matters
 
 Respiratory disease শুধু ডাক্তারি বিষয় নয়; এটি biology, behaviour, environment, hygiene, public health এবং lifestyle-এর সম্মিলিত পাঠ। যদি cilia ধোঁয়ায় paralyzed হয়, mucus জমে bronchitis হতে পারে। যদি alveolar wall ভেঙে যায়, emphysema-তে gas exchange কমে। যদি bacteria/virus alveoli ভরাট করে, pneumonia-তে oxygenation কমে। যদি TB germs lung-এ active disease তৈরি করে, chronic cough ও community transmission-এর ঝুঁকি তৈরি হয়।
-
-{% include education/framework-links.html %}
 
 ## Public-Health Learning Focus
 
