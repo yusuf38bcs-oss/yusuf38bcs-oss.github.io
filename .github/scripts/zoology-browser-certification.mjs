@@ -16,6 +16,7 @@ const baseUrl = arg("--base-url", "http://127.0.0.1:4173").replace(/\/$/, "");
 const outputDir = path.resolve(arg("--output-dir", "zoology-browser-report"));
 const viewports = [
   { name: "mobile-390", width: 390, height: 844 },
+  { name: "tablet-768", width: 768, height: 1024 },
   { name: "desktop-1280", width: 1280, height: 900 },
 ];
 
@@ -86,6 +87,14 @@ for (const route of routes) {
   const isAnimalDiversityRoute = route.startsWith("/biology/animal-diversity/");
   const isEcologyCourseRoute =
     route.startsWith("/biology/higher-zoology-tree/ecology/");
+  const isReplacementCourseRoute =
+    route.startsWith("/biology/higher-zoology-tree/human-physiology/") ||
+    route.startsWith("/biology/higher-zoology-tree/physiology/") ||
+    route.startsWith("/biology/hsc-corner/zoology/digestive-system/") ||
+    route.startsWith("/biology/hsc-corner/zoology/respiratory-") ||
+    route === "/biology/hsc-corner/zoology/baroreceptor-reflex/" ||
+    route.startsWith("/biology/higher-zoology-tree/genetics/") ||
+    route.startsWith("/biology/higher-zoology-tree/biostatistics/");
   for (const viewport of viewports) {
     const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
     const blockedExternal = [];
@@ -186,11 +195,12 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
   };
 }, { headingContract, structureContract });
       const fullPageAxe =
-        isAnimalDiversityRoute &&
-        viewport.name === "mobile-390";
+        (isAnimalDiversityRoute && viewport.name === "mobile-390") ||
+        isReplacementCourseRoute;
 
       const scopedCycleAxe =
         !isAnimalDiversityRoute &&
+        !isReplacementCourseRoute &&
         metrics.hasCycle &&
         viewport.name === "mobile-390";
 
@@ -231,7 +241,7 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
       metrics?.hasContent === true &&
       metrics?.hasStylesheet === true &&
       (!isAnimalDiversityRoute || metrics?.hasContent === true) &&
-      (isAnimalDiversityRoute ? metrics?.hasCycle === false : (isEcologyCourseRoute ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
+      (isAnimalDiversityRoute ? metrics?.hasCycle === false : ((isEcologyCourseRoute || isReplacementCourseRoute) ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
       (!isAnimalDiversityRoute || metrics?.structureChecks?.h1Count === 1) &&
       metrics?.structureChecks?.requiredText?.every((check) => check.passed) !== false &&
       metrics?.structureChecks?.forbiddenText?.every((check) => check.passed) !== false &&
