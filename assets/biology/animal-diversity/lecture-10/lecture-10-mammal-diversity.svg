@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Mammalian diversity groups</title>
+<desc id="desc">Original educational diagram for LBFL Animal Diversity–II (223101).</desc>
+<style>
+.bg{fill:#fbfaf5} .box{fill:#fff;stroke:#0f5f5a;stroke-width:3;rx:16} .soft{fill:#e9f5f1;stroke:#0f5f5a;stroke-width:2;rx:16}
+.warm{fill:#fff3d6;stroke:#9a6a00;stroke-width:2;rx:16} .rose{fill:#fbe9e6;stroke:#a33c2b;stroke-width:2;rx:16}
+.line{stroke:#0f5f5a;stroke-width:4;fill:none;marker-end:url(#a)} .red{stroke:#a33c2b;stroke-width:4;fill:none;marker-end:url(#r)}
+.blue{stroke:#245b91;stroke-width:4;fill:none;marker-end:url(#b)} .dash{stroke:#667;stroke-width:2;stroke-dasharray:7 7;fill:none}
+.head{font:700 34px Arial,sans-serif;fill:#0f5f5a} .txt{font:26px Arial,sans-serif;fill:#163331}
+.small{font:21px Arial,sans-serif;fill:#324d4b} .tiny{font:18px Arial,sans-serif;fill:#445}
+</style>
+<defs>
+<marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0f5f5a"/></marker>
+<marker id="r" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a33c2b"/></marker>
+<marker id="b" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#245b91"/></marker>
+</defs>
+<rect class="bg" width="100%" height="100%"/>
+
+<text x="600" y="48" text-anchor="middle" class="head">Mammalia: reproductive and ecological diversity</text>
+<rect x="450" y="95" width="300" height="75" class="warm"/><text x="600" y="142" text-anchor="middle" class="txt">Mammalia</text>
+<rect x="90" y="285" width="280" height="100" class="soft"/><text x="230" y="325" text-anchor="middle" class="txt">Monotremes</text><text x="230" y="355" text-anchor="middle" class="tiny">egg-laying</text>
+<rect x="460" y="285" width="280" height="100" class="soft"/><text x="600" y="325" text-anchor="middle" class="txt">Marsupials</text><text x="600" y="355" text-anchor="middle" class="tiny">short gestation; pouch common</text>
+<rect x="830" y="285" width="280" height="100" class="soft"/><text x="970" y="325" text-anchor="middle" class="txt">Placentals</text><text x="970" y="355" text-anchor="middle" class="tiny">longer intrauterine development</text>
+<path d="M520 170 L230 285" class="line"/><path d="M600 170 L600 285" class="line"/><path d="M680 170 L970 285" class="line"/>
+<rect x="220" y="525" width="760" height="80" class="box"/><text x="600" y="558" text-anchor="middle" class="small">All remain mammals because deeper diagnostic characters persist:</text><text x="600" y="588" text-anchor="middle" class="tiny">hair • mammary glands • three middle-ear ossicles • mammalian jaw/teeth pattern</text>
+
+</svg>

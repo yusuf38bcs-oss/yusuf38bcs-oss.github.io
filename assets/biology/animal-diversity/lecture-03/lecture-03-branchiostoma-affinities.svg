@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Branchiostoma affinities</title>
+<desc id="desc">Original educational diagram for LBFL Animal Diversity–II (223101).</desc>
+<style>
+.bg{fill:#fbfaf5} .box{fill:#fff;stroke:#0f5f5a;stroke-width:3;rx:16} .soft{fill:#e9f5f1;stroke:#0f5f5a;stroke-width:2;rx:16}
+.warm{fill:#fff3d6;stroke:#9a6a00;stroke-width:2;rx:16} .rose{fill:#fbe9e6;stroke:#a33c2b;stroke-width:2;rx:16}
+.line{stroke:#0f5f5a;stroke-width:4;fill:none;marker-end:url(#a)} .red{stroke:#a33c2b;stroke-width:4;fill:none;marker-end:url(#r)}
+.blue{stroke:#245b91;stroke-width:4;fill:none;marker-end:url(#b)} .dash{stroke:#667;stroke-width:2;stroke-dasharray:7 7;fill:none}
+.head{font:700 34px Arial,sans-serif;fill:#0f5f5a} .txt{font:26px Arial,sans-serif;fill:#163331}
+.small{font:21px Arial,sans-serif;fill:#324d4b} .tiny{font:18px Arial,sans-serif;fill:#445}
+</style>
+<defs>
+<marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0f5f5a"/></marker>
+<marker id="r" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a33c2b"/></marker>
+<marker id="b" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#245b91"/></marker>
+</defs>
+<rect class="bg" width="100%" height="100%"/>
+
+<text x="600" y="50" text-anchor="middle" class="head">Branchiostoma: affinity evidence</text>
+<rect x="420" y="110" width="360" height="85" class="warm"/><text x="600" y="162" text-anchor="middle" class="txt">Branchiostoma</text>
+<rect x="70" y="300" width="300" height="190" class="soft"/><text x="220" y="340" text-anchor="middle" class="head">Chordate-like</text><text x="220" y="390" text-anchor="middle" class="small">notochord</text><text x="220" y="425" text-anchor="middle" class="small">dorsal nerve cord</text><text x="220" y="460" text-anchor="middle" class="small">pharyngeal slits</text>
+<rect x="450" y="300" width="300" height="190" class="box"/><text x="600" y="340" text-anchor="middle" class="head">Not vertebrate</text><text x="600" y="390" text-anchor="middle" class="small">no cranium</text><text x="600" y="425" text-anchor="middle" class="small">no vertebral column</text><text x="600" y="460" text-anchor="middle" class="small">no chambered heart</text>
+<rect x="830" y="300" width="300" height="190" class="soft"/><text x="980" y="340" text-anchor="middle" class="head">Modern meaning</text><text x="980" y="390" text-anchor="middle" class="small">early chordate branch</text><text x="980" y="425" text-anchor="middle" class="small">useful body-plan model</text><text x="980" y="460" text-anchor="middle" class="small">not a living ancestor</text>
+<path d="M520 195 L300 300" class="line"/><path d="M600 195 L600 300" class="line"/><path d="M680 195 L900 300" class="line"/>
+
+</svg>

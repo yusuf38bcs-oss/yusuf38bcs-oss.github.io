@@ -1,7 +1,3 @@
-# Animal Diversity asset staging
+# Animal Diversity assets
 
-Canonical asset root: `assets/biology/animal-diversity/`.
-
-Expected lecture directories are `lecture-01/` through `lecture-10/`.
-
-The received source package contains 32 SVG assets. They are intentionally not imported by this architecture commit. Import requires filename/hash mapping, alt-text/caption review, provenance review, duplicate-hash checks, and lecture binding.
+Canonical scientific assets for the ten-lecture Animal Diversity course are grouped by lecture. Asset hashes and ownership are recorded in `_data/animal-diversity-10-assets.yml`.
