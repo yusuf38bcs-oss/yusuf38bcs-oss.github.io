@@ -35,6 +35,11 @@ jobs:
           expected="5b097f55574ccd25b1d291c277ffa0e39991add1d80a8c0bb86e35107898e12e"
           test "$actual" = "$expected"
           tar -xzf .animal-diversity-import/payload.tar.gz
+
+          if ! grep -q '^require "date"$' .github/scripts/validate-animal-diversity-10.rb; then
+            sed -i '2irequire "date"' .github/scripts/validate-animal-diversity-10.rb
+          fi
+
           ruby .github/scripts/validate-animal-diversity-10.rb
 
           git add _biology/higher-zoology-tree/animal-diversity \
