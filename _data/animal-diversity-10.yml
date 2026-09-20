@@ -1,9 +1,18 @@
 course_id: animal-diversity-10
 course_title: Animal Diversity
+# Staging certification metadata synchronized after Ecology workflow repair (PR #309).
 gateway: /biology/animal-diversity/
 course_index: /biology/animal-diversity/course/
-release_status: HOLD
-decision: ANIMAL_DIVERSITY_10_IMPORT_CERTIFICATION_PENDING
+release_status: STAGING_CERTIFIED
+decision: ANIMAL_DIVERSITY_10_STAGING_CERTIFIED
+certification:
+  candidate_head: 2afab024cca87ef600c86ec1087843ea595f3f90
+  candidate_tree: ff71bfccfd1fb16175c9b6b26afb5cd3ccbda4f7
+  run_id: 35537043400
+  evidence_artifact: animal-diversity-10-2afab024cca87ef600c86ec1087843ea595f3f90
+  evidence_sha256: 4db952aac96c80de981baf7681d8883503237a0070489f72bcea5ca2edbd518e
+  integrated_staging_sha: 725d4f67961fa0a2cdbaf42129fc032c1ceef24d
+  integrated_staging_tree: ff71bfccfd1fb16175c9b6b26afb5cd3ccbda4f7
 source_package:
   filename: LBFL_Animal_Diversity_223101_COMPLETE_Lectures01-10_2026-09-20(1).zip
   sha256: 20740bb88892a1d0f0426f175f1bc7a8e69d694a8d1e5160ab2eea3e2edca16b
@@ -21,7 +30,7 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-01
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: null
   next: animal-diversity-lecture-02
 - lecture_number: '02'
@@ -32,7 +41,7 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-02
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: animal-diversity-lecture-01
   next: animal-diversity-lecture-03
 - lecture_number: '03'
@@ -43,7 +52,7 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-03
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: animal-diversity-lecture-02
   next: animal-diversity-lecture-04
 - lecture_number: '04'
@@ -54,7 +63,7 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-04
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: animal-diversity-lecture-03
   next: animal-diversity-lecture-05
 - lecture_number: '05'
@@ -65,7 +74,7 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-05
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: animal-diversity-lecture-04
   next: animal-diversity-lecture-06
 - lecture_number: '06'
@@ -76,7 +85,7 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-06
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: animal-diversity-lecture-05
   next: animal-diversity-lecture-07
 - lecture_number: '07'
@@ -87,7 +96,7 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-07
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: animal-diversity-lecture-06
   next: animal-diversity-lecture-08
 - lecture_number: 08
@@ -98,7 +107,7 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-08
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: animal-diversity-lecture-07
   next: animal-diversity-lecture-09
 - lecture_number: 09
@@ -109,7 +118,7 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-09
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: animal-diversity-lecture-08
   next: animal-diversity-lecture-10
 - lecture_number: '10'
@@ -120,6 +129,6 @@ lecture_slots:
   - bn
   - en
   asset_manifest: lecture-10
-  status: IMPORTED_CERTIFICATION_PENDING
+  status: CERTIFIED
   previous: animal-diversity-lecture-09
   next: null
