@@ -7,6 +7,7 @@ sidebar:
   nav: "ielts"
 author_profile: false
 excerpt: "A local-first IELTS Reading Trainer for timed passage work, evidence-based review and a browser-local error log."
+last_modified_at: 2026-09-20
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
@@ -14,7 +15,7 @@ excerpt: "A local-first IELTS Reading Trainer for timed passage work, evidence-b
 
 <section class="ielts-reading" data-ielts-reading-trainer data-certification-surface="phase-2d" aria-labelledby="ielts-reading-title">
   <header class="ielts-reading__header">
-    <p class="ielts-reading__eyebrow">Phase 2D · Reading Trainer MVP</p>
+    <p class="ielts-reading__eyebrow">Evidence-based reading practice</p>
     <h1 id="ielts-reading-title">Read for evidence, not familiarity.</h1>
     <p>Work through an original academic-style passage, answer under controlled time, then review the exact evidence behind each decision.</p>
   </header>
@@ -105,4 +106,3 @@ excerpt: "A local-first IELTS Reading Trainer for timed passage work, evidence-b
 </script>
 <script src="{{ '/assets/js/ielts-reading-trainer.js' | relative_url }}?v=0636f4dd1b5a5f2385f31f74f56a3002f13764fa" defer></script>
 
-<!-- Phase 2D exact-head certification surface: reading-evidence-loop-v1 -->
