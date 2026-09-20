@@ -35,12 +35,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail; test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy"; evidence="$RUNNER_TEMP/ecology-prod.json"; out="$RUNNER_TEMP/ecology-prod.out"
-          for attempt in $(seq 1 40); do : > "$out"; python3 .github/scripts/resolve-cloudflare-targets.py --repository "$GITHUB_REPOSITORY" --sha "$TARGET_MAIN_SHA" --pages-environment production --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" --cloudflare-worker-script "$CLOUDFLARE_WORKER_SCRIPT" --wait-seconds 0 --site-config _data/ai.yml --output "$evidence" --github-output "$out" || true; if python3 - "$evidence" "$TARGET_MAIN_SHA" <<'PY2'
-          import json,sys
-          e=json.load(open(sys.argv[1])); p=e.get('pages',{}); s=sys.argv[2]
-          raise SystemExit(0 if e.get('target_sha')==s and p.get('exact_head') is True and p.get('deployed_sha')==s and p.get('canonical') is True and p.get('branch')=='main' and p.get('environment')=='production' and p.get('status')=='success' and p.get('deployment_id') and str(p.get('url','')).startswith('https://') else 1)
-PY2
-          then cat "$out" >> "$GITHUB_OUTPUT"; exit 0; fi; sleep 15; done; cat "$evidence"; exit 1
+          for attempt in $(seq 1 40); do
+            : > "$out"
+            python3 .github/scripts/resolve-cloudflare-targets.py --repository "$GITHUB_REPOSITORY" --sha "$TARGET_MAIN_SHA" --pages-environment production --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" --cloudflare-worker-script "$CLOUDFLARE_WORKER_SCRIPT" --wait-seconds 0 --site-config _data/ai.yml --output "$evidence" --github-output "$out" || true
+            if python3 -c 'import json,sys; e=json.load(open(sys.argv[1])); p=e.get("pages",{}); s=sys.argv[2]; raise SystemExit(0 if e.get("target_sha")==s and p.get("exact_head") is True and p.get("deployed_sha")==s and p.get("canonical") is True and p.get("branch")=="main" and p.get("environment")=="production" and p.get("status")=="success" and p.get("deployment_id") and str(p.get("url","")).startswith("https://") else 1)' "$evidence" "$TARGET_MAIN_SHA"; then
+              cat "$out" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 15
+          done
+          cat "$evidence"
+          exit 1
       - name: Probe all 20 localized Ecology lecture pages
         env:
           EXACT_DEPLOYMENT_URL: ${{ steps.production.outputs.pages_url }}
