@@ -1,5 +1,21 @@
 # AdSense Review Checklist
 
+## 0. Current AdSense Decision Evidence
+
+As of 20 September 2026, the AdSense Sites panel for `learningbiologyforlife.org` reports:
+
+```text
+Approval status: Needs attention
+Issue: Low value content
+Ads settings: Confirmed
+Payments profile: Complete
+Ads.txt status shown in AdSense: Not found
+Ads.txt last-updated timestamp shown in AdSense: 5 July 2026, 12:40 AM GMT+6
+```
+
+Treat `Low value content` as the authoritative current approval blocker. The account-side `ads.txt` status is stale evidence until AdSense rechecks the live root file; repository and rendered-artifact checks must still require the exact publisher line.
+
+
 Use this checklist while `learningbiologyforlife.org` is under AdSense review.
 
 ## 1. Current AdSense Identity
