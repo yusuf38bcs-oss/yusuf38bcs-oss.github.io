@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 06 forms part of the canonical 29-lecture LBFL Ecology course. It develops population ecology: concept, density and dispersion through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Define a population operationally for an ecological study.
 - Distinguish population size, density, and spatial dispersion.
@@ -52,7 +51,7 @@ A population is a group of individuals of the same species occupying a defined a
 
 ## 2. Abundance and density
 
-**Population size, \(N\),** is the total number of individuals. **Density** is the number per unit area or volume. A thousand fish may represent high density in a small pond but low density in a large lake. Density is often more informative about crowding, competition, or transmission than total abundance.
+**Population size, <var>N</var>,** is the total number of individuals. **Density** is the number per unit area or volume. A thousand fish may represent high density in a small pond but low density in a large lake. Density is often more informative about crowding, competition, or transmission than total abundance.
 
 ## 3. Dispersion patterns
 
@@ -70,17 +69,17 @@ Direct census is possible for some populations. Others require quadrats, transec
 
 ## Basic density
 
-\[
-D=\frac{N}{A}
-\]
+<div class="ecology-equation-set" role="group" aria-label="Population density equation">
+<p class="ecology-equation"><strong>Density:</strong> <span aria-label="D equals N divided by A"><var>D</var> = <var>N</var>/<var>A</var></span></p>
+</div>
 
-where \(D\) is density, \(N\) is the number of individuals, and \(A\) is area or, where appropriate, volume.
+where <var>D</var> is density, <var>N</var> is the number of individuals, and <var>A</var> is area or, where appropriate, volume.
 
 ## Bangladesh Context
 
 Hilsa, wetland birds, urban mosquitoes, crop pests, and deer require different methods of population estimation. A change in detectability can create an apparent abundance trend even when true population size has not changed.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 Sample ten 1 m² quadrats in a field. Estimate mean density of a plant or burrow and explain how clumping would affect uncertainty.
 

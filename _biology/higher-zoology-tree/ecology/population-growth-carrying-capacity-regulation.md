@@ -37,13 +37,12 @@ synaptic_links:
 
 This Lecture 09 forms part of the canonical 29-lecture LBFL Ecology course. It develops population growth, carrying capacity and regulation through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Interpret Type I, Type II, and Type III survivorship curves.
 - Compare exponential and logistic population-growth models.
-- Interpret intrinsic rate of increase, \(r\), and carrying capacity, \(K\).
+- Interpret intrinsic rate of increase, <var>r</var>, and carrying capacity, <var>K</var>.
 - Identify assumptions and limitations of simple population models.
 
 ## 2. Exponential growth
@@ -52,7 +51,7 @@ When resources are effectively unlimited and the per-capita rate of increase rem
 
 ## 3. Logistic growth
 
-The logistic model introduces density dependence through a carrying capacity, \(K\). As population size approaches \(K\), resource limitation or other density-dependent processes reduce per-capita growth.
+The logistic model introduces density dependence through a carrying capacity, <var>K</var>. As population size approaches <var>K</var>, resource limitation or other density-dependent processes reduce per-capita growth.
 
 Carrying capacity is not an immutable number for a species. It changes with habitat quality, climate, resource supply, disease, and disturbance.
 
@@ -62,15 +61,12 @@ The exponential model can approximate the early phase of invasion or recovery. T
 
 ## Core growth equations
 
-\[
-\frac{dN}{dt}=rN,\qquad N_t=N_0e^{rt}
-\]
+<div class="ecology-equation-set" role="group" aria-label="Core population growth equations">
+<p class="ecology-equation"><strong>Exponential growth:</strong> <span aria-label="d N by d t equals r N; N sub t equals N sub zero times e to the power r t">d<var>N</var>/d<var>t</var> = <var>rN</var>; <var>N</var><sub>t</sub> = <var>N</var><sub>0</sub>e<sup><var>rt</var></sup></span></p>
+<p class="ecology-equation"><strong>Logistic growth:</strong> <span aria-label="d N by d t equals r N times one minus N divided by K">d<var>N</var>/d<var>t</var> = <var>rN</var>(1 − <var>N</var>/<var>K</var>)</span></p>
+</div>
 
-\[
-\frac{dN}{dt}=rN\left(1-\frac{N}{K}\right)
-\]
-
-The first describes exponential growth; the second introduces density dependence through carrying capacity \(K\).
+The first describes exponential growth; the second introduces density dependence through carrying capacity <var>K</var>.
 
 ## Integrated Perspective
 
@@ -90,9 +86,9 @@ A limiting factor reduces growth or performance. A regulating process creates de
 
 Population models can be applied cautiously to aquaculture stocking, mosquito outbreaks, invasive aquatic plants, or recovering wildlife populations. The model assumptions should be checked before management decisions are based on the prediction.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
-For \(N_0=100\), \(r=0.2\,yr^{-1}\), and \(t=3\) years, calculate exponential growth and then list the assumptions that make the prediction biologically plausible or implausible.
+For <var>N</var><sub>0</sub> = 100, <var>r</var> = 0.2 yr<sup>−1</sup>, and <var>t</var> = 3 years, calculate exponential growth and then list the assumptions that make the prediction biologically plausible or implausible.
 
 ## Common Misconceptions
 

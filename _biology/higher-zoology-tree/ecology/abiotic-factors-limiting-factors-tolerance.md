@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 04 forms part of the canonical 29-lecture LBFL Ecology course. It develops abiotic factors, limiting factors and tolerance through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Define a limiting factor and distinguish resource limitation from unsuitable environmental conditions.
 - Compare Liebig's law of the minimum with Shelford's law of tolerance.
@@ -119,7 +118,7 @@ In plants, salinity lowers external water potential, may cause ion toxicity, and
 
 In ponds, rice fields, shrimp ghers, freshwater wetlands, and coastal estuaries, dissolved oxygen, temperature, salinity, nutrients, water depth, and food can become limiting at different times. The limiting factor in the dry season may differ from the limiting factor during the monsoon.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 A pond has abundant food, but dissolved oxygen falls from 7 mg/L in the afternoon to 2 mg/L before dawn and fish mortality occurs near dawn. Propose a limiting-factor hypothesis and an experiment to test it.
 

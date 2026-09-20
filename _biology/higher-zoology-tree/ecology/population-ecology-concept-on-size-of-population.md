@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 07 forms part of the canonical 29-lecture LBFL Ecology course. It develops population size: birth, death, immigration and emigration through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Use births, deaths, immigration, and emigration to describe population change.
 - Distinguish total demographic counts from per-capita and age-specific rates.
@@ -56,13 +55,10 @@ A large population may produce more births simply because it contains more indiv
 
 ## Population balance and life-table quantities
 
-\[
-N_{t+1}=N_t+B-D+I-E
-\]
-
-\[
-l_x=\frac{n_x}{n_0}, \qquad q_x=\frac{d_x}{n_x}
-\]
+<div class="ecology-equation-set" role="group" aria-label="Population balance and life-table equations">
+<p class="ecology-equation"><strong>Population balance:</strong> <span aria-label="N sub t plus one equals N sub t plus births minus deaths plus immigration minus emigration"><var>N</var><sub>t+1</sub> = <var>N</var><sub>t</sub> + <var>B</var> − <var>D</var> + <var>I</var> − <var>E</var></span></p>
+<p class="ecology-equation"><strong>Life-table quantities:</strong> <span aria-label="l sub x equals n sub x divided by n sub zero; q sub x equals d sub x divided by n sub x"><var>l</var><sub>x</sub> = <var>n</var><sub>x</sub>/<var>n</var><sub>0</sub>; <var>q</var><sub>x</sub> = <var>d</var><sub>x</sub>/<var>n</var><sub>x</sub></span></p>
+</div>
 
 These expressions separate population change from age-specific survival and mortality.
 
@@ -70,7 +66,7 @@ These expressions separate population change from age-specific survival and mort
 
 Fisheries management can be strongly affected by juvenile mortality, breeding-season harvest, and migration timing. Catch totals alone do not reveal whether recruitment and age structure are sustainable.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 For a cohort with 100, 70, 49, and 35 survivors at successive ages, calculate survivorship proportions and interval mortality. Identify the interval with the greatest proportional mortality.
 
