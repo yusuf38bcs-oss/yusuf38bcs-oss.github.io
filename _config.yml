@@ -33,7 +33,6 @@ exclude:
   - wrangler.jsonc
   - worker
   - scripts
-  - biology/higher-zoology-tree/ecology/index.html
   - audit-reports
   - node_modules
   - vendor
