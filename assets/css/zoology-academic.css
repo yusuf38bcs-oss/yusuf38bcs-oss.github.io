@@ -462,3 +462,20 @@ html.lbfl-zoology-route .page__content .lbfl-framework-links p,
 html.lbfl-zoology-route .page__content .lbfl-framework-link span {
   color: #dbeafe !important;
 }
+
+/* ============================================================================
+   ECOLOGY P1 LIGHT-SHELL ACCESSIBILITY
+   Prevent the site's dark-theme foreground tokens from leaking into the
+   Zoology cream reading shell, educational notice, and contextual sidebar.
+   ============================================================================ */
+html.lbfl-zoology-route .educational-boundary,
+html.lbfl-zoology-route .educational-boundary strong,
+html.lbfl-zoology-route .educational-boundary span,
+html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-title {
+  color: var(--zoo-ink) !important;
+}
+
+html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-link,
+html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-child-link {
+  color: var(--zoo-link) !important;
+}
