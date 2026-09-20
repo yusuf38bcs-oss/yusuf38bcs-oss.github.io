@@ -10,10 +10,10 @@
 {% if lbfl_active_lang != lbfl_content_lang %}
   {% assign lbfl_language_fallback = true %}
 {% endif %}
-{% if page.robots %}
-<meta name="robots" content="{{ page.robots | escape }}">
-{% elsif lbfl_language_fallback %}
+{% if lbfl_language_fallback %}
 <meta name="robots" content="noindex, follow">
+{% elsif page.robots %}
+<meta name="robots" content="{{ page.robots | escape }}">
 {% endif %}
 {% include head/adsense.html %}
 
