@@ -1,13 +1,18 @@
-# Visual Regression Manifest
+# Visual Regression Manifest — Homepage V3.5
 
-D10 must manually inspect all ten viewports for:
-- header density and 44px controls;
+Human review must inspect all ten canonical viewports for:
+- header density, stability, and 44px controls;
 - hero first-screen hierarchy and CTA visibility;
-- cell crop/composition;
+- scientific-background restraint and absence of visual noise;
+- specimen crop, framing, caption hierarchy, and integration with the hero;
+- H1 / brand-line hierarchy and readable line wrapping;
 - English and Bangla typography;
-- pathway discoverability;
-- Journey/Method/Repair/Evidence rhythm;
-- no clipping, collision, accidental horizontal scrolling, or excessive whitespace;
+- pathway discoverability without repetitive card weight;
+- Journey / Method / Repair / Evidence tonal rhythm;
+- section-transition continuity;
+- normal-motion and reduced-motion behavior;
+- Save-Data state;
+- no clipping, collision, horizontal scrolling, or excessive whitespace;
 - footer legibility.
 
-D11 is prohibited until every D10 row is explicitly PASS for the current source digest.
+Promotion is prohibited until every viewport row is explicitly PASS for the same exact candidate head.

@@ -1,33 +1,36 @@
-version: "3.4-current-base-remediation"
-status: "draft-hold"
+version: "3.5-premium-current-base"
+status: "draft-certification"
 authority:
-  staging_sha: "0f050cf8fcb29fc73d21618ad8862dd1c14eb3b7"
-  tree_sha: "2ae892465e6cb51bfd9b6b1535480a681e311f19"
-  semantic_source_pr: 287
-  semantic_source_base_sha: "27dfc24b392029a17ad3a719af9f4626a7333d16"
-  semantic_source_head_sha: "9b4239c11b71ee22a5a3ef683207a9603750f7c6"
-  semantic_source_authority: "historical-only"
+  staging_sha: "c96e78c5c877e478eab98450e7e081aee55927bf"
+  tree_sha: "066e1ebb0b2e30dd010e76a81b155270c31d6189"
+  semantic_source_pr: 290
+  semantic_source_head_sha: "44723eed41dd40d9b152e333f108ed34ee66ea5b"
+  semantic_source_authority: "design-donor-only"
+  historical_design_pr: 287
+  historical_design_head_sha: "9b4239c11b71ee22a5a3ef683207a9603750f7c6"
 route:
   lab: "/labs/homepage-v3/"
   sitemap: false
   robots: "noindex,nofollow"
 architecture:
   narrative: "Identity -> Choice -> Experience -> Method -> Feedback/Repair -> Evidence -> Action"
+  visual_direction: "Scientific editorial premium"
   css_owner: "assets/css/homepage-v3.css"
   js_owner: "assets/js/home/homepage-v3.js"
-  asset_revision: "v3.4-0f050cf8-1e1df54dfee1-66f2c7cf5f3c"
+  asset_revision: "v3.5-premium-c96e78c5-20260921"
   v2_inheritance: false
 constraints:
-  remote_push: false
-  pull_request: false
   root_activation: false
   worker_mutation: false
   adsense_cmp_mutation: false
-  v2_patch: false
+  shared_layout_mutation: false
+  course_content_mutation: false
 accessibility:
   project_target_minimum_px: 44
   wcag_target_size_minimum_px: 24
   focus_not_obscured: "AA minimum plus stricter LBFL full-visibility preference"
+  reduced_motion: true
+  save_data: true
 viewports:
   - "320x800"
   - "360x800"
