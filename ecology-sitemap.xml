@@ -21,7 +21,9 @@ sitemap: false
 {% for lecture in ecology_lectures %}
   <url>
     <loc>{{ lecture.url | absolute_url | xml_escape }}</loc>
-    <lastmod>2026-09-20T16:03:08+06:00</lastmod>
+{% if lecture.last_modified_at %}
+    <lastmod>{{ lecture.last_modified_at | date_to_xmlschema }}</lastmod>
+{% endif %}
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

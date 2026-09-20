@@ -130,6 +130,9 @@ fail!("course index does not exactly match canonical lecture routes") unless row
 fail!("ecology-sitemap.xml missing") unless ECOLOGY_SITEMAP.file?
 ecology_sitemap_source = File.read(ECOLOGY_SITEMAP, encoding: "UTF-8")
 fail!("Ecology sitemap does not enumerate the ecology-29 collection") unless ecology_sitemap_source.include?('where: "course_id", "ecology-29"')
+fail!("Ecology sitemap must derive lecture lastmod from per-lecture metadata") unless ecology_sitemap_source.include?("lecture.last_modified_at")
+lecture_loop = ecology_sitemap_source[/\{% for lecture in ecology_lectures %\}(.*?)\{% endfor %\}/m, 1].to_s
+fail!("Ecology sitemap hard-codes lecture lastmod values") if lecture_loop.match?(/<lastmod>\s*20\d\d-/)
 robots_source = File.read(ROBOTS, encoding: "UTF-8")
 fail!("robots.txt does not advertise the Ecology sitemap") unless robots_source.include?("https://learningbiologyforlife.org/ecology-sitemap.xml")
 biology_hub_source = File.read(BIOLOGY_HUB, encoding: "UTF-8")

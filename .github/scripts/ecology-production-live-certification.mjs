@@ -1,8 +1,27 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import path from "node:path";
 
-const baseUrl = new URL("https://learningbiologyforlife.org");
+const args = process.argv.slice(2);
+const arg = (name, fallback = "") => {
+  const index = args.indexOf(name);
+  return index >= 0 ? (args[index + 1] ?? "") : fallback;
+};
+
+const baseUrl = new URL(arg("--base-url", "https://learningbiologyforlife.org"));
+assert.equal(baseUrl.href, "https://learningbiologyforlife.org/", "Production base URL must be the canonical LBFL origin");
+
+const exactDeploymentUrl = new URL(arg("--exact-deployment-url"));
+assert.equal(exactDeploymentUrl.protocol, "https:", "Exact Cloudflare deployment must use HTTPS");
+assert.ok(exactDeploymentUrl.hostname.endsWith(".pages.dev"), "Exact deployment must be a Cloudflare Pages URL");
+assert.equal(exactDeploymentUrl.pathname, "/", "Exact deployment URL must identify the deployment origin");
+assert.equal(exactDeploymentUrl.search, "", "Exact deployment URL must not contain a query");
+assert.equal(exactDeploymentUrl.hash, "", "Exact deployment URL must not contain a fragment");
+
+const requestedOutput = arg("--output");
+const output = "ecology-live-evidence/ecology-29-live.json";
+assert.equal(requestedOutput, output, "--output must use the fixed Ecology live-evidence path");
 
 const token = process.env.PRODUCTION_CERTIFICATION_BYPASS_TOKEN ?? "";
 assert.match(token, /^[0-9a-f]{64}$/, "Production certification bypass token is missing or invalid");
@@ -65,7 +84,7 @@ async function fetchText(url, accept = headers.Accept) {
         signal: AbortSignal.timeout(20000),
       });
       const text = await response.text();
-      if (response.status === 200) return {response, text};
+      if (response.status === 200) return {response, text, attempt};
       lastError = new Error(`${url} returned HTTP ${response.status}`);
     } catch (error) {
       lastError = error;
@@ -85,22 +104,50 @@ function canonicalHref(html) {
   return "";
 }
 
-for (const lecture of canonicalLectures) {
-  const url = new URL(lecture.route, baseUrl);
-  const {response, text} = await fetchText(url);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html/i, `${lecture.number} must return HTML`);
-  assert.ok(text.includes("data-zoology-learning-cycle"), `${lecture.number} is missing the Ecology/Zoology learning-cycle marker`);
-  const canonical = canonicalHref(text);
-  assert.ok(canonical, `${lecture.number} is missing a canonical link`);
-  assert.equal(new URL(canonical).pathname, lecture.route, `${lecture.number} canonical route mismatch`);
-  assert.ok(!/\b404\b[^<]*(?:not found|page)/i.test(text), `${lecture.number} looks like a 404 body`);
+function assertCanonical(html, expected, label) {
+  const canonical = canonicalHref(html);
+  assert.ok(canonical, `${label} is missing a canonical link`);
+  const actual = new URL(canonical);
+  assert.equal(actual.origin, expected.origin, `${label} canonical origin mismatch`);
+  assert.equal(actual.pathname, expected.pathname, `${label} canonical path mismatch`);
+  assert.equal(actual.search, "", `${label} canonical URL must not contain a query`);
+  assert.equal(actual.hash, "", `${label} canonical URL must not contain a fragment`);
+  assert.equal(actual.href, expected.href, `${label} canonical URL mismatch`);
 }
 
-const gatewayUrl = new URL("/biology/higher-zoology-tree/ecology/", baseUrl);
+function validatePage(text, response, expected, label) {
+  assert.match(response.headers.get("content-type") ?? "", /^text\/html/i, `${label} must return HTML`);
+  assert.ok(text.includes("data-zoology-learning-cycle"), `${label} is missing the Ecology/Zoology learning-cycle marker`);
+  assertCanonical(text, expected, label);
+  assert.ok(!/\b404\b[^<]*(?:not found|page)/i.test(text), `${label} looks like a 404 body`);
+}
+
+const results = [];
+for (const lecture of canonicalLectures) {
+  const expected = new URL(lecture.route, baseUrl);
+  const production = await fetchText(expected);
+  validatePage(production.text, production.response, expected, `Lecture ${lecture.number} production`);
+
+  const exact = new URL(lecture.route, exactDeploymentUrl);
+  const exactResult = await fetchText(exact);
+  validatePage(exactResult.text, exactResult.response, expected, `Lecture ${lecture.number} exact deployment`);
+
+  results.push({
+    number: lecture.number,
+    route: lecture.route,
+    production_http_status: production.response.status,
+    exact_deployment_http_status: exactResult.response.status,
+    canonical_match: true,
+  });
+}
+
+const gatewayRoute = "/biology/higher-zoology-tree/ecology/";
+const gatewayUrl = new URL(gatewayRoute, baseUrl);
 const gateway = await fetchText(gatewayUrl);
 assert.ok(gateway.text.includes("Start the 29-Lecture Ecology Course"), "Gateway does not expose the 29-lecture course CTA");
 
-const indexUrl = new URL("/biology/higher-zoology-tree/ecology/course-index/", baseUrl);
+const indexRoute = "/biology/higher-zoology-tree/ecology/course-index/";
+const indexUrl = new URL(indexRoute, baseUrl);
 const indexPage = await fetchText(indexUrl);
 assert.ok(indexPage.text.includes("Complete 29-Lecture Route Map"), "Course index marker is missing");
 
@@ -116,8 +163,30 @@ const robotsUrl = new URL("/robots.txt", baseUrl);
 const robots = await fetchText(robotsUrl, "text/plain,*/*");
 assert.ok(robots.text.includes("https://learningbiologyforlife.org/ecology-sitemap.xml"), "robots.txt does not advertise the Ecology sitemap");
 
+assert.equal(results.length, 29, "All 29 lecture probes must complete");
+assert.ok(results.every((x) => x.production_http_status === 200), "All production lecture probes must return 200");
+assert.ok(results.every((x) => x.exact_deployment_http_status === 200), "All exact-deployment lecture probes must return 200");
+assert.ok(results.every((x) => x.canonical_match === true), "All lecture canonicals must match the production URL");
+
+const report = {
+  token: "ECOLOGY_29_LIVE_PASS",
+  lecture_http_200: "29/29",
+  exact_deployment_http_200: "29/29",
+  canonical_origin_match: "29/29",
+  gateway_http_200: 200,
+  course_index_http_200: 200,
+  ecology_sitemap_http_200: 200,
+  robots_http_200: 200,
+  canonical_production_deployment: "PASS",
+};
+
+fs.mkdirSync(path.dirname(output), {recursive: true});
+fs.writeFileSync(output, JSON.stringify(report, null, 2) + "\n", "utf8");
+
 console.log("ECOLOGY_29_LIVE_PASS");
 console.log("lecture_http_200=29/29");
+console.log("exact_deployment_http_200=29/29");
+console.log("canonical_origin_match=29/29");
 console.log("gateway_http_200=200");
 console.log("course_index_http_200=200");
 console.log("ecology_sitemap_http_200=200");
