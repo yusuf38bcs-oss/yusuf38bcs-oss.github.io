@@ -44,6 +44,9 @@ OPERATIONAL_ROOT_FILES = (
     "convert_atom.py",
     "neural_candidates.csv",
     "Repository-Guardian.ps1",
+    "Invoke-PagesReorganization.ps1",
+    "Invoke-SafeNeuralPatch-v2.ps1",
+    "audit-patch.ps1",
 )
 REQUIRED_RENDERED_ROUTES = (
     "index.html",
