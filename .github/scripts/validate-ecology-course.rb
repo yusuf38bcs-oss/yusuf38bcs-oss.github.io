@@ -61,7 +61,7 @@ all_md.each do |p|
 end
 # Gateway/index identities
 root_fm,root_text,=fm(ROOT.join("_pages/ecology-v2-gateway.md")); fail!("gateway route") unless root_fm["permalink"]=="/biology/higher-zoology-tree/ecology/"
-bn_fm,bn_text,=fm(ECOLOGY.join("bn/index.md")); fail!("Bangla gateway route") unless bn_fm["permalink"]=="/biology/higher-zoology-tree/ecology/"
+bn_fm,bn_text,=fm(ROOT.join("_pages/ecology-v2-gateway.bn.md")); fail!("Bangla gateway route") unless bn_fm["permalink"]=="/biology/higher-zoology-tree/ecology/"
 en_fm,en_text,=fm(ECOLOGY.join("en/index.md")); fail!("English gateway route") unless en_fm["permalink"]=="/en/biology/higher-zoology-tree/ecology/"
 idx_fm,idx_text,=fm(ECOLOGY.join("course-index.md")); fail!("course index route") unless idx_fm["permalink"]=="/biology/higher-zoology-tree/ecology/course-index/"
 fail!("course index must expose 10 Bangla + 10 English public links") unless records.all?{|r| idx_text.include?(public_route(r))}

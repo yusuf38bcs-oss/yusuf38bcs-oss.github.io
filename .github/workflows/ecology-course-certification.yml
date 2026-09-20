@@ -18,6 +18,7 @@ on:
       - "robots.txt"
       - "_pages/hubs/biology.md"
       - "_pages/ecology-v2-gateway.md"
+      - "_pages/ecology-v2-gateway.bn.md"
   workflow_dispatch:
 permissions: {contents: read}
 concurrency:

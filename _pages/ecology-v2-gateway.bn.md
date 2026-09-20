@@ -19,7 +19,6 @@ classes: wide
 status: Active
 language: bn
 lang: bn
-lang-exclusive: [bn]
 page_id: ecology-v2-root-gateway
 related: true
 last_modified_at: 2026-09-20T19:00:00+06:00
