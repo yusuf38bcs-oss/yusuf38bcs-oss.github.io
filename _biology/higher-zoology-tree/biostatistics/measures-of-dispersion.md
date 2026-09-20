@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: biostatistics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -10,6 +10,10 @@ description: "Measures of dispersion in biostatistics explained in Bengali with 
 date: 2026-04-11T09:22:00.007Z
 last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/biostatistics/measures-of-dispersion/
+page_id: biostatistics-04
+course_id: biostatistics-09
+course_role: lecture
+lecture_number: 4
 categories:
   - Biology
   - Higher Zoology
@@ -39,6 +43,7 @@ classes: wide
 header:
   overlay_image: /assets/images/biology/biostatistics-banner.webp
 language: bn
+translation_status: single-source-unpaired
 curriculum_tracks:
   - HSC Zoology
   - IB Biology
@@ -52,9 +57,10 @@ difficulty: "Intermediate"
 xp: 700
 time_min: 55
 status: "Active"
+previous: /biology/higher-zoology-tree/biostatistics/measures-of-central-tendency/
+course_index: /biology/higher-zoology-tree/biostatistics/
+next: /biology/higher-zoology-tree/biostatistics/hypothesis_testing/
 ---
-
-# Measures of Dispersion: বিস্তারের পরিমাপ
 
 ## Concept Overview
 
@@ -65,8 +71,6 @@ status: "Active"
 ## Why This Matters
 
 Biological data naturally variable. Fish weight, plant height, blood pressure, seed germination, enzyme activity, species count—সব জায়গায় variation আছে। Dispersion না বুঝলে learner শুধু average দেখে ভুল সিদ্ধান্ত নিতে পারে। Scientific interpretation requires center + spread together.
-
-{% include education/framework-links.html %}
 
 ## Dispersion-Specific Learning Focus
 
@@ -189,7 +193,7 @@ Standard deviation:
 s = √14.5 ≈ 3.81
 ```
 
-Interpretation: observations are spread around the mean by about 3.81 units on average in SD sense.
+Interpretation: the sample standard deviation is about 3.81 units; SD summarizes variability around the mean but is not the mean absolute distance from the mean.
 
 ## Comparison Table
 
@@ -217,9 +221,6 @@ Interpretation: observations are spread around the mean by about 3.81 units on a
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Comparing SD of very different scales without considering CV.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Dispersion teaches that average life is not the whole truth. Two classes may have the same average score, but one class may be consistent while another is highly scattered. Biostatistics therefore teaches fairness: judge not only the center, but also the spread.
 
 ## Critical Thinking Questions
 
