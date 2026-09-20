@@ -41,7 +41,7 @@ records.each do |r|
   fail!("framework include remains #{r[:path]}") if r[:text].include?("framework-links.html")
   fail!("LOLO/LALA branding remains #{r[:path]}") if body.match?(/\b(?:LOLO|LALA)\b/)
   fail!("H1 count !=1 #{r[:path]}") unless body.scan(/^# (?!#)/).length==1
-  fail!("missing References #{r[:path]}") unless body.include?("## References")
+  fail!("missing References #{r[:path]}") unless body.lines.any? { |line| line.match?(/^##\\s+(?:\\d+\\.\\s+)?References\\b/i) }
   fail!("English mirror contains Bengali #{r[:path]}") if lang=="en" && r[:text].match?(BENGALI)
   mate=records.find{|x| x[:fm]["permalink"].to_s==d["translation_of"].to_s}
   fail!("translation pair missing #{r[:path]}") unless mate
