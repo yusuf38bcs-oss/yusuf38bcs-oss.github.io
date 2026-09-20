@@ -498,3 +498,8 @@ html.lbfl-zoology-route body.lbfl-ecology-course .page__content td {
   overflow-wrap: anywhere;
   word-break: normal;
 }
+
+/* Ecology light blockquotes must not inherit dark-card foreground tokens. */
+html.lbfl-zoology-route body.lbfl-ecology-course .page__content > blockquote > p {
+  color: var(--zoo-ink) !important;
+}
