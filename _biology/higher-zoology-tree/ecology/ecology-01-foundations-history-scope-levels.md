@@ -20,7 +20,7 @@ tags:
   - CLO1
 node_id: zoology-ecology-l01-foundations-history-scope-levels-bn
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: lecture
 network:
   - higher-zoology-tree
@@ -47,8 +47,9 @@ ib_theme: "Interaction and Interdependence"
 concept_level: Foundation
 lesson_order: 1
 lecture_number: "01"
+page_id: ecology-lecture-01
 translation_of: /en/biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels/
-gold_alignment: "LBFL Ecology V2 Detailed Course | Bangla master"
+gold_alignment: "LBFL Ecology Detailed Course | Bangla"
 status: Active
 published: true
 syllabus_topics:
@@ -59,7 +60,7 @@ math: true
 ---
 # লেকচার ০১: ইকোলজির ভিত্তি — ইতিহাস, পরিসর ও সংগঠনের স্তর
 
-এই lectureটি বর্তমান ১০-lecture Ecology V2 course-এর foundation। এখানে শুধু Ecology-এর definition দেওয়া হয়নি; বরং Ecology কীভাবে প্রশ্ন করে, কোন কোন scale-এ কাজ করে, কীভাবে evidence সংগ্রহ করে, কোন disciplines-এর সঙ্গে যুক্ত, এবং organism থেকে biosphere পর্যন্ত biological organization কীভাবে connected system তৈরি করে—এসব step-by-step ব্যাখ্যা করা হয়েছে।
+এই lectureটি বর্তমান ১০-lecture Ecology course-এর foundation। এখানে শুধু Ecology-এর definition দেওয়া হয়নি; বরং Ecology কীভাবে প্রশ্ন করে, কোন কোন scale-এ কাজ করে, কীভাবে evidence সংগ্রহ করে, কোন disciplines-এর সঙ্গে যুক্ত, এবং organism থেকে biosphere পর্যন্ত biological organization কীভাবে connected system তৈরি করে—এসব step-by-step ব্যাখ্যা করা হয়েছে।
 
 Bangla explanation-এর মধ্যে textbook, examination, research paper ও higher study-তে ব্যবহৃত গুরুত্বপূর্ণ technical English terms ইচ্ছাকৃতভাবে রাখা হয়েছে।
 
@@ -1246,6 +1247,5 @@ Ecology, organism, environment, biotic factor, abiotic factor, population, commu
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/biology/higher-zoology-tree/ecology/' | relative_url }})
-- [English version]({{ '/en/biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels/' | relative_url }})
 - [পরের lecture →]({{ '/biology/higher-zoology-tree/ecology/ecology-02-limiting-factors-liebig-shelford/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})

@@ -21,7 +21,7 @@ tags:
   - CLO2
 node_id: zoology-ecology-l04-abiotic-water-soil-salinity-bn
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: lecture
 network:
   - higher-zoology-tree
@@ -48,8 +48,9 @@ ib_theme: "Interaction and Interdependence"
 concept_level: Foundation
 lesson_order: 4
 lecture_number: "04"
+page_id: ecology-lecture-04
 translation_of: /en/biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity/
-gold_alignment: "LBFL Ecology V2 Detailed Course | Bangla master"
+gold_alignment: "LBFL Ecology Detailed Course | Bangla"
 status: Active
 published: true
 syllabus_topics:
@@ -453,7 +454,6 @@ Lecture 05
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/biology/higher-zoology-tree/ecology/' | relative_url }})
-- [English version]({{ '/en/biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity/' | relative_url }})
 - [← আগের lecture]({{ '/biology/higher-zoology-tree/ecology/ecology-03-abiotic-light-temperature/' | relative_url }})
 - [পরের lecture →]({{ '/biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})

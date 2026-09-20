@@ -4,12 +4,12 @@ require "yaml"; require "date"; require "pathname"; require "set"
 ROOT = Pathname.new(__dir__).join("../..").expand_path
 ECOLOGY = ROOT.join("_biology/higher-zoology-tree/ecology")
 SITE = ROOT.join("_site")
-COURSE_ID = "ecology-v2-10"
+COURSE_ID = "ecology-10"
 EXPECTED_PAIRS = 10
 EXPECTED_PAGES = 20
 BENGALI = /[\u0980-\u09FF]/
 
-def fail!(m); warn "ECOLOGY V2-10 CERTIFICATION FAIL: #{m}"; exit 1; end
+def fail!(m); warn "ECOLOGY 10 CERTIFICATION FAIL: #{m}"; exit 1; end
 
 def fm(path)
   text=File.read(path,encoding:"UTF-8"); m=text.match(/\A---\s*\n(.*?)\n---\s*\n/m); fail!("missing front matter #{path}") unless m
@@ -53,6 +53,8 @@ records.each do |r|
   fail!("translation pair not reciprocal #{r[:path]}") unless mate[:fm]["translation_of"].to_s==d["permalink"].to_s
   fail!("translation pair order mismatch #{r[:path]}") unless mate[:fm]["lecture_number"].to_s==d["lecture_number"].to_s
   fail!("Lecture 10 points to Lecture 11 #{r[:path]}") if d["lecture_number"].to_s=="10" && body.include?("ecology-11-")
+  fail!("learner-facing V2 terminology remains #{r[:path]}") if body.match?(/\bV2\b/)
+  fail!("duplicate language-navigation link remains #{r[:path]}") if body.match?(/\[(?:English version|Bangla version)\]/i)
 end
 # No retired ecology-29 content may remain in source.
 all_md.each do |p|
@@ -64,14 +66,17 @@ root_gateway = ROOT.join("biology/higher-zoology-tree/ecology/index.html"); fail
 bn_fm,bn_text,=fm(ROOT.join("_pages/ecology-v2-gateway.bn.md")); fail!("Bangla gateway route") unless bn_fm["permalink"]=="/biology/higher-zoology-tree/ecology/"
 en_fm,en_text,=fm(ECOLOGY.join("en/index.md")); fail!("English gateway route") unless en_fm["permalink"]=="/en/biology/higher-zoology-tree/ecology/"
 idx_fm,idx_text,=fm(ECOLOGY.join("course-index.md")); fail!("course index route") unless idx_fm["permalink"]=="/biology/higher-zoology-tree/ecology/course-index/"
-fail!("course index must expose 10 Bangla + 10 English public links") unless records.all?{|r| idx_text.include?(public_route(r))}
+english_records = records.select { |r| r[:fm]["language"] == "en" }
+fail!("course index must expose one English entry per lecture") unless english_records.all? { |r| idx_text.include?(public_route(r)) }
+fail!("course index must not duplicate Bangla/English columns") if idx_text.include?("| Bangla | English |")
+fail!("course index must not expose V2/master/mirror terminology") if idx_text.match?(/\bV2\b|Bangla master|clean-English mirror/i)
 # Sitemap source contract
 site_map=File.read(ROOT.join("ecology-sitemap.xml"),encoding:"UTF-8")
 records.each do |r|
   url="https://learningbiologyforlife.org#{public_route(r)}"
   fail!("sitemap source missing #{url}") unless site_map.include?(url)
 end
-puts "ECOLOGY_V2_10_SOURCE_PASS"
+puts "ECOLOGY_10_SOURCE_PASS"
 puts "lecture_pairs=10"; puts "lecture_pages=20"; puts "bangla=10"; puts "english=10"; puts "retired_previous_lectures=0"
 exit 0 unless SITE.directory?
 records.each do |r|
@@ -82,7 +87,15 @@ records.each do |r|
   fail!("framework panel present #{route}") if html.include?("lbfl-framework-links")
 end
 support_routes=["/biology/higher-zoology-tree/ecology/","/bn#{bn_fm["permalink"]}",en_fm["permalink"],idx_fm["permalink"]]
-support_routes.each{|route| fail!("support route missing #{route}") unless rendered(route).file?}
+support_routes.each do |route|
+  rp = rendered(route)
+  fail!("support route missing #{route}") unless rp.file?
+  html = File.read(rp, encoding: "UTF-8")
+  if route.include?("/ecology/")
+    fail!("shared learning cycle present on Ecology support route #{route}") if html.include?("data-zoology-learning-cycle")
+    fail!("framework panel present on Ecology support route #{route}") if html.include?("lbfl-framework-links")
+  end
+end
 sm=SITE.join("ecology-sitemap.xml"); fail!("sitemap not rendered") unless sm.file?; xml=File.read(sm,encoding:"UTF-8")
 records.each{|r| url="https://learningbiologyforlife.org#{public_route(r)}"; fail!("sitemap missing #{url}") unless xml.include?(url)}
-puts "ECOLOGY_V2_10_RENDER_PASS"; puts "rendered_lecture_pages=20"; puts "ECOLOGY_V2_10_EXACT_HEAD_PASS"
+puts "ECOLOGY_10_RENDER_PASS"; puts "rendered_lecture_pages=20"; puts "ECOLOGY_10_EXACT_HEAD_PASS"

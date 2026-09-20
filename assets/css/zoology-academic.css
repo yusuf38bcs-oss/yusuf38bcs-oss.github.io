@@ -479,3 +479,22 @@ html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-link,
 html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-child-link {
   color: var(--zoo-link) !important;
 }
+
+/* ============================================================================
+   ECOLOGY COURSE RESPONSIVE TABLES
+   Prefer wrapping over keyboard-inaccessible horizontal scrolling on the
+   lecture reading surface.
+   ============================================================================ */
+html.lbfl-zoology-route body.lbfl-ecology-course .page__content table {
+  display: table;
+  width: 100% !important;
+  table-layout: fixed;
+  overflow: visible;
+}
+
+html.lbfl-zoology-route body.lbfl-ecology-course .page__content th,
+html.lbfl-zoology-route body.lbfl-ecology-course .page__content td {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}

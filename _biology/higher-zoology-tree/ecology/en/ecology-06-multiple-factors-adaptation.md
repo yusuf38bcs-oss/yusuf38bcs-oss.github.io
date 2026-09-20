@@ -21,7 +21,7 @@ tags:
   - CLO2
 node_id: zoology-ecology-l06-multiple-factors-adaptation-en
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: lecture
 network:
   - higher-zoology-tree
@@ -47,8 +47,9 @@ ib_theme: "Interaction and Interdependence"
 concept_level: Intermediate
 lesson_order: 6
 lecture_number: "06"
+page_id: ecology-lecture-06
 translation_of: /biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation/
-gold_alignment: "LBFL Ecology V2 Detailed Course | English mirror"
+gold_alignment: "LBFL Ecology Detailed Course | English mirror"
 status: Active
 published: true
 syllabus_topics:
@@ -467,7 +468,6 @@ Lecture 07
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/en/biology/higher-zoology-tree/ecology/' | relative_url }})
-- [Bangla version]({{ '/biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation/' | relative_url }})
 - [← Previous lecture]({{ '/en/biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions/' | relative_url }})
 - [Next lecture →]({{ '/en/biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})

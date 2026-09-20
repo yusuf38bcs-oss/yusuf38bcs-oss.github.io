@@ -22,7 +22,7 @@ tags:
   - CLO4
 node_id: zoology-ecology-l07-case-study-sundarbans-salinity-bn
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: lecture
 network:
   - higher-zoology-tree
@@ -49,8 +49,9 @@ ib_theme: "Interaction and Interdependence"
 concept_level: Intermediate
 lesson_order: 7
 lecture_number: "07"
+page_id: ecology-lecture-07
 translation_of: /en/biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity/
-gold_alignment: "LBFL Ecology V2 Detailed Course | Bangla master"
+gold_alignment: "LBFL Ecology Detailed Course | Bangla"
 status: Active
 published: true
 syllabus_topics:
@@ -454,7 +455,6 @@ Lecture 08
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/biology/higher-zoology-tree/ecology/' | relative_url }})
-- [English version]({{ '/en/biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity/' | relative_url }})
 - [← আগের lecture]({{ '/biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation/' | relative_url }})
 - [পরের lecture →]({{ '/biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})

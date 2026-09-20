@@ -11,9 +11,11 @@ layout: default
   {% assign lbfl_zoology_route = true %}
 {% endif %}
 
-{% assign lbfl_ecology_lecture = false %}
-{% if page.course_id == 'ecology-v2-10' and page.course_role == 'lecture' %}
-  {% assign lbfl_ecology_lecture = true %}
+{% assign lbfl_ecology_surface = false %}
+{% if page.course_id == 'ecology-10' %}
+  {% assign lbfl_ecology_surface = true %}
+{% elsif page.url contains '/biology/higher-zoology-tree/ecology/' %}
+  {% assign lbfl_ecology_surface = true %}
 {% endif %}
 
 {% assign lbfl_content_owns_h1 = false %}
@@ -88,11 +90,11 @@ layout: default
       {% endunless %}
 
       <section class="page__content" itemprop="text">
-        {% unless lbfl_ecology_lecture %}
+        {% unless lbfl_ecology_surface %}
           {% include components/educational-boundary.html %}
         {% endunless %}
         {% if lbfl_zoology_route %}
-          {% unless lbfl_ecology_lecture %}
+          {% unless lbfl_ecology_surface %}
             {% include zoology/learning-cycle.html %}
           {% endunless %}
         {% endif %}

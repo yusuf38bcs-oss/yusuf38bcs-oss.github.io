@@ -34,6 +34,12 @@
 {% elsif page.page_id == 'higher-zoology-tree' or clean_path == '/biology/higher-zoology-tree/' %}
   {% assign english_path = '/biology/higher-zoology-tree/' %}
   {% assign bangla_path = '/bn/biology/higher-zoology-tree/' %}
+{% elsif clean_path == '/biology/higher-zoology-tree/ecology/course-index/' %}
+  {% assign english_path = '/biology/higher-zoology-tree/ecology/course-index/' %}
+  {% assign bangla_path = '/bn/biology/higher-zoology-tree/ecology/' %}
+{% elsif clean_path contains '/biology/higher-zoology-tree/ecology/' %}
+  {% assign english_path = clean_path | prepend: '/en' %}
+  {% assign bangla_path = clean_path | prepend: '/bn' %}
 {% elsif clean_path == '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' %}
   {% assign english_path = '/en/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' %}
   {% assign bangla_path = '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' %}

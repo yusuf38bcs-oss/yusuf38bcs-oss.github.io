@@ -20,7 +20,7 @@ tags:
   - CLO2
 node_id: zoology-ecology-l10-survivorship-growth-models-bn
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: lecture
 network:
   - higher-zoology-tree
@@ -47,8 +47,9 @@ ib_theme: "Interaction and Interdependence"
 concept_level: Intermediate
 lesson_order: 10
 lecture_number: "10"
+page_id: ecology-lecture-10
 translation_of: /en/biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/
-gold_alignment: "LBFL Ecology V2 Detailed Course | Bangla master"
+gold_alignment: "LBFL Ecology Detailed Course | Bangla"
 status: Active
 published: true
 syllabus_topics:
@@ -464,11 +465,10 @@ Survivorship Curves and Population Growth Models, Topic 7 — Population Ecology
 
 ## Course Completion
 
-Lecture 10-এর মাধ্যমে বর্তমান Ecology V2 Lectures 01–10 sequence সম্পূর্ণ হলো। পরবর্তী অধ্যয়ন, revision এবং language mirror access-এর জন্য course index ব্যবহার করুন।
+Lecture 10-এর মাধ্যমে বর্তমান Ecology Lectures 01–10 sequence সম্পূর্ণ হলো। পরবর্তী অধ্যয়ন, revision এবং language mirror access-এর জন্য course index ব্যবহার করুন।
 
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/biology/higher-zoology-tree/ecology/' | relative_url }})
-- [English version]({{ '/en/biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/' | relative_url }})
 - [← আগের lecture]({{ '/biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})

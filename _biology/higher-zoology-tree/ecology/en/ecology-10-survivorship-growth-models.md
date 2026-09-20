@@ -20,7 +20,7 @@ tags:
   - CLO2
 node_id: zoology-ecology-l10-survivorship-growth-models-en
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: lecture
 network:
   - higher-zoology-tree
@@ -46,8 +46,9 @@ ib_theme: "Interaction and Interdependence"
 concept_level: Intermediate
 lesson_order: 10
 lecture_number: "10"
+page_id: ecology-lecture-10
 translation_of: /biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/
-gold_alignment: "LBFL Ecology V2 Detailed Course | English mirror"
+gold_alignment: "LBFL Ecology Detailed Course | English mirror"
 status: Active
 published: true
 syllabus_topics:
@@ -498,11 +499,10 @@ Survivorship, Curves, and, Population, Growth, Models, Topic, Population, Ecolog
 
 ## Course Completion
 
-Lecture 10 completes the current Ecology V2 Lectures 01–10 sequence. Use the course index for revision, paired-language access, and the next stage of study.
+Lecture 10 completes the current Ecology Lectures 01–10 sequence. Use the course index for revision, paired-language access, and the next stage of study.
 
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/en/biology/higher-zoology-tree/ecology/' | relative_url }})
-- [Bangla version]({{ '/biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/' | relative_url }})
 - [← Previous lecture]({{ '/en/biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})

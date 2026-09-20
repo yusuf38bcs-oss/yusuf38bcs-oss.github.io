@@ -20,7 +20,7 @@ tags:
   - CLO2
 node_id: zoology-ecology-l09-demography-vital-rates-life-tables-en
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: lecture
 network:
   - higher-zoology-tree
@@ -46,8 +46,9 @@ ib_theme: "Interaction and Interdependence"
 concept_level: Intermediate
 lesson_order: 9
 lecture_number: "09"
+page_id: ecology-lecture-09
 translation_of: /biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables/
-gold_alignment: "LBFL Ecology V2 Detailed Course | English mirror"
+gold_alignment: "LBFL Ecology Detailed Course | English mirror"
 status: Active
 published: true
 syllabus_topics:
@@ -480,7 +481,6 @@ Lecture 10
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/en/biology/higher-zoology-tree/ecology/' | relative_url }})
-- [Bangla version]({{ '/biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables/' | relative_url }})
 - [← Previous lecture]({{ '/en/biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion/' | relative_url }})
 - [Next lecture →]({{ '/en/biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})

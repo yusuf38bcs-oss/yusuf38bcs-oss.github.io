@@ -13,14 +13,24 @@
 {% assign native_lang = page.lang | default: '' %}
 {% assign polyglot_lang = native_lang | default: site.active_lang | default: site.lang | default: 'en' %}
 {% assign base_path = page.permalink | default: page.url | default: '/' %}
-{% assign clean_base_path = base_path | replace_first: '/bn/', '/' %}
+{% assign clean_base_path = base_path | replace_first: '/bn/', '/' | replace_first: '/en/', '/' %}
 {% assign first_char = clean_base_path | slice: 0 %}
 {% unless first_char == '/' %}
   {% assign clean_base_path = clean_base_path | prepend: '/' %}
 {% endunless %}
 {% assign site_origin = site.url | default: '' %}
-{% assign en_url = site_origin | append: clean_base_path %}
+{% assign en_path = clean_base_path %}
 {% assign bn_path = clean_base_path | prepend: '/bn' %}
+{% if clean_base_path contains '/biology/higher-zoology-tree/ecology/' %}
+  {% if clean_base_path == '/biology/higher-zoology-tree/ecology/course-index/' %}
+    {% assign en_path = clean_base_path %}
+    {% assign bn_path = '/bn/biology/higher-zoology-tree/ecology/' %}
+  {% else %}
+    {% assign en_path = clean_base_path | prepend: '/en' %}
+    {% assign bn_path = clean_base_path | prepend: '/bn' %}
+  {% endif %}
+{% endif %}
+{% assign en_url = site_origin | append: en_path %}
 {% assign bn_url = site_origin | append: bn_path %}
 {% assign localized_url = en_url %}
 {% assign has_native_translation = false %}

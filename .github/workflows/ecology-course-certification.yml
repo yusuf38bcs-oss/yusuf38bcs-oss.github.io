@@ -1,4 +1,4 @@
-name: Ecology V2 10-Lecture Exact-Head Certification
+name: Ecology 10-Lecture Exact-Head Certification
 
 on:
   pull_request:
@@ -22,7 +22,7 @@ on:
   workflow_dispatch:
 permissions: {contents: read}
 concurrency:
-  group: ecology-v2-10-${{ github.event.pull_request.number || github.ref }}
+  group: ecology-10-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
   certify:
@@ -50,7 +50,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b
         with: {ruby-version: "3.2", bundler-cache: true}
-      - name: Validate Ecology V2 source contract
+      - name: Validate Ecology source contract
         run: ruby .github/scripts/validate-ecology-course.rb
       - name: Build exact-head production site
         run: JEKYLL_ENV=production bundle exec jekyll clean && JEKYLL_ENV=production bundle exec jekyll build --trace
@@ -64,18 +64,18 @@ jobs:
       - name: Serve exact-head build
         shell: bash
         run: |
-          python3 -m http.server 4173 --directory _site >/tmp/ecology-v2-http.log 2>&1 &
+          python3 -m http.server 4173 --directory _site >/tmp/ecology-http.log 2>&1 &
           for i in $(seq 1 20); do curl --fail --silent http://127.0.0.1:4173/biology/higher-zoology-tree/ecology/ >/dev/null && exit 0; sleep 1; done; exit 1
       - name: Certify bilingual presentation at 390/768/1280
-        run: node .github/scripts/ecology-presentation-browser-certification.mjs --site-dir _site --base-url http://127.0.0.1:4173 --output-dir ecology-v2-10-browser-report
+        run: node .github/scripts/ecology-presentation-browser-certification.mjs --site-dir _site --base-url http://127.0.0.1:4173 --output-dir ecology-10-browser-report
       - name: Preserve browser evidence
         if: always()
         uses: actions/upload-artifact@v4
-        with: {name: "ecology-v2-10-${{ env.CERTIFICATION_HEAD_SHA }}", path: ecology-v2-10-browser-report, if-no-files-found: error, retention-days: 30}
+        with: {name: "ecology-10-${{ env.CERTIFICATION_HEAD_SHA }}", path: ecology-10-browser-report, if-no-files-found: error, retention-days: 30}
       - name: Record exact-head PASS
         if: success()
         run: |
-          echo "ECOLOGY_V2_10_EXACT_HEAD_PASS" >> "$GITHUB_STEP_SUMMARY"
+          echo "ECOLOGY_10_EXACT_HEAD_PASS" >> "$GITHUB_STEP_SUMMARY"
           echo "- 10 lecture pairs / 20 learner pages" >> "$GITHUB_STEP_SUMMARY"
           echo "- 60 lecture viewport checks at 390 / 768 / 1280" >> "$GITHUB_STEP_SUMMARY"
           echo "- previous Ecology lecture set removed" >> "$GITHUB_STEP_SUMMARY"

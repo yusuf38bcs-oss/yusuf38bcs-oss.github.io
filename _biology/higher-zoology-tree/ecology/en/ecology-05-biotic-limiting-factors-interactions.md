@@ -21,7 +21,7 @@ tags:
   - CLO2
 node_id: zoology-ecology-l05-biotic-limiting-factors-interactions-en
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: lecture
 network:
   - higher-zoology-tree
@@ -47,8 +47,9 @@ ib_theme: "Interaction and Interdependence"
 concept_level: Intermediate
 lesson_order: 5
 lecture_number: "05"
+page_id: ecology-lecture-05
 translation_of: /biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions/
-gold_alignment: "LBFL Ecology V2 Detailed Course | English mirror"
+gold_alignment: "LBFL Ecology Detailed Course | English mirror"
 status: Active
 published: true
 syllabus_topics:
@@ -441,7 +442,6 @@ Lecture 06
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/en/biology/higher-zoology-tree/ecology/' | relative_url }})
-- [Bangla version]({{ '/biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions/' | relative_url }})
 - [← Previous lecture]({{ '/en/biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity/' | relative_url }})
 - [Next lecture →]({{ '/en/biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})

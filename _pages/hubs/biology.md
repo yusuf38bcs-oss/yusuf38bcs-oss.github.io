@@ -21,7 +21,7 @@ last_modified_at: 2026-09-20T18:00:00+06:00
     <li><a href="{{ '/biology/hsc-corner/botany/' | relative_url }}">HSC Botany</a>: cell structure, plant biology, genetics foundation, and molecular logic.</li>
     <li><a href="{{ '/biology/hsc-corner/zoology/' | relative_url }}">HSC Zoology</a>: animal life, human physiology, and functional biology.</li>
     <li><a href="{{ '/biology/higher-zoology-tree/' | relative_url }}">Higher Zoology Tree</a>: advanced Zoology, Animal Diversity, Physiology, Ecology, Genetics, and Biostatistics.</li>
-    <li><a href="{{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }}">Ecology V2 Lectures 01–10</a>: the current bilingual Ecology sequence with Bangla master lectures and clean-English mirrors.</li>
+    <li><a href="{{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }}">Ecology Lectures 01–10</a>: the current Ecology sequence from foundations and environmental limitation through population growth.</li>
     <li><a href="{{ '/biology/higher-zoology-tree/genetics/' | relative_url }}">Genetics Matrix</a>: completed 17-lecture route from heredity and Mendelian inheritance to molecular genetics, gene regulation, mutation, and responsible interpretation.</li>
     <li><a href="{{ '/mcq-arena/' | relative_url }}">MCQ Arena</a>: assessment, correction, source-lesson return, and applied recall.</li>
     <li><a href="{{ '/synaptic-bridge/' | relative_url }}">Synaptic Bridge</a>: life application and interdisciplinary reasoning.</li>
@@ -31,7 +31,7 @@ last_modified_at: 2026-09-20T18:00:00+06:00
   <div class="lbfl-info-grid">
     <section class="lbfl-info-card"><h3>HSC Foundation</h3><p>Botany and Zoology foundations for board-style learning, concept vocabulary, diagrams, and structured revision.</p></section>
     <section class="lbfl-info-card"><h3>Higher Zoology</h3><p>Animal diversity, physiology, ecology, genetics, and biostatistics as one connected academic tree.</p></section>
-    <section class="lbfl-info-card"><h3>Ecology Route</h3><p><a href="{{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }}">Open the current bilingual Ecology V2 Lectures 01–10 course</a> with paired Bangla and clean-English lecture routes.</p></section>
+    <section class="lbfl-info-card"><h3>Ecology Route</h3><p><a href="{{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }}">Open the current bilingual Ecology Lectures 01–10 course</a> with language handled by the site-wide language switcher.</p></section>
     <section class="lbfl-info-card"><h3>Genetics Route</h3><p>A completed course sequence for heredity, variation, gene interaction, chromosomes, DNA, expression, regulation, and mutation.</p></section>
     <section class="lbfl-info-card"><h3>Assessment Loop</h3><p>MCQ and model-test practice should identify weak concepts and send learners back to the correct source lesson.</p></section>
   </div>

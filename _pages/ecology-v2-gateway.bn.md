@@ -4,14 +4,14 @@ author_profile: true
 author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
-title: "Ecology V2: লেকচার ০১–১০"
-excerpt: "বর্তমান দশ-লেকচারের Ecology V2 ধারার Bangla gateway."
-description: "Learning Biology For Life Ecology V2 Bangla gateway for Lectures 01–10."
+title: "Ecology — লেকচার ০১–১০"
+excerpt: "Learning Biology For Life-এর দশ-লেকচারের Ecology পাঠপথ।"
+description: "Learning Biology For Life Ecology gateway for Lectures 01–10."
 permalink: /biology/higher-zoology-tree/ecology/
 categories: [Biology, Higher Zoology, Ecology]
-node_id: node-ecology-v2-bn
+node_id: node-ecology-bn
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: gateway
 toc: true
 toc_sticky: true
@@ -19,14 +19,14 @@ classes: wide
 status: Active
 language: bn
 lang: bn
-page_id: ecology-v2-root-gateway
+page_id: ecology-gateway
 related: true
-last_modified_at: 2026-09-20T19:00:00+06:00
+last_modified_at: 2026-09-20T22:04:00+06:00
 ---
 
-# Ecology V2: লেকচার ০১–১০
+# Ecology — লেকচার ০১–১০
 
-এটি বর্তমান LBFL Ecology V2 course-এর Bangla gateway। এই course-এ **১০টি বিস্তারিত Bangla master lecture** আছে এবং প্রতিটির একটি clean-English mirror রয়েছে।
+এই Ecology course-এ পরিবেশগত ভিত্তি থেকে population growth পর্যন্ত দশটি বিস্তারিত lecture রয়েছে। ভাষা পরিবর্তনের জন্য site header-এর **English | বাংলা** control ব্যবহার করুন।
 
 [Lecture 01 শুরু করুন →]({{ '/biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels/' | relative_url }})
 
@@ -42,5 +42,3 @@ last_modified_at: 2026-09-20T19:00:00+06:00
 8. Population characteristics, density এবং dispersion
 9. Demography, vital rates এবং life tables
 10. Survivorship curves এবং population growth models
-
-আগের Ecology lecture set অবসরপ্রাপ্ত। এই gateway কেবল V2 Lectures 01–10 ধারায় নির্দেশ করে।

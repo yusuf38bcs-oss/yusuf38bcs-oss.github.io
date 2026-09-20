@@ -20,7 +20,7 @@ tags:
   - CLO1
 node_id: zoology-ecology-l01-foundations-history-scope-levels-en
 parent_node: ecology
-course_id: ecology-v2-10
+course_id: ecology-10
 course_role: lecture
 network:
   - higher-zoology-tree
@@ -46,8 +46,9 @@ ib_theme: "Interaction and Interdependence"
 concept_level: Foundation
 lesson_order: 1
 lecture_number: "01"
+page_id: ecology-lecture-01
 translation_of: /biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels/
-gold_alignment: "LBFL Ecology V2 Detailed Course | English mirror"
+gold_alignment: "LBFL Ecology Detailed Course | English mirror"
 status: Active
 published: true
 syllabus_topics:
@@ -58,7 +59,7 @@ math: true
 ---
 # Ecology Lecture 01: Foundations of Ecology — History, Scope and Levels of Organization
 
-This is the fully detailed English mirror of Lecture 01. It is designed as a self-contained foundation for the current ten-lecture Ecology V2 course, with enough explanation, examples, diagrams, conceptual links, and review material that a student can build the core ideas without depending on a separate introductory guide.
+This is the fully detailed English mirror of Lecture 01. It is designed as a self-contained foundation for the current ten-lecture Ecology course, with enough explanation, examples, diagrams, conceptual links, and review material that a student can build the core ideas without depending on a separate introductory guide.
 
 
 ## Syllabus Alignment
@@ -1251,6 +1252,5 @@ Ecology, organism, environment, biotic factor, abiotic factor, population, commu
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/en/biology/higher-zoology-tree/ecology/' | relative_url }})
-- [Bangla version]({{ '/biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels/' | relative_url }})
 - [Next lecture →]({{ '/en/biology/higher-zoology-tree/ecology/ecology-02-limiting-factors-liebig-shelford/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
