@@ -27,7 +27,7 @@ const animalDiversityStructureContract = {
     forbiddenText: ["17-lecture", "Complete Matrix", "animal-diversity-10"],
   },
   "/biology/animal-diversity/course/": {
-    requiredText: ["Animal Diversity", "Lecture 01", "Lecture 10"],
+    requiredText: ["Animal Diversity", "Chordate Plan and Classification", "Homo sapiens: Eye and Ear"],
     forbiddenText: ["17-lecture", "Complete Matrix"],
   },
   "/biology/animal-diversity/complete-matrix/": {
