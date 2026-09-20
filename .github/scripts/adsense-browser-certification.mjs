@@ -32,6 +32,9 @@ function argument(name, fallback = "") {
 const previewUrl = argument("--url");
 const expectedSha = argument("--expected-sha");
 const outputDir = path.resolve(argument("--output-dir", "browser-certification"));
+const previewHost = new URL(previewUrl).hostname.toLowerCase();
+const EXPECTED_NONPRODUCTION_NOINDEX =
+  previewHost === "staging.learningbiologyforlife.org" || previewHost.endsWith(".pages.dev");
 
 if (!previewUrl || !expectedSha) {
   console.error("Usage: adsense-browser-certification.mjs --url URL --expected-sha SHA [--output-dir DIR]");
@@ -144,6 +147,9 @@ async function runViewport(browser, viewport) {
     await settle(page);
     await page.locator("#gdpr-banner[data-cookie-banner]").waitFor({ state: "visible", timeout: 10_000 });
 
+    const responseHeaders = response?.headers() || {};
+    const robotsHeader = responseHeaders["x-robots-tag"] || "";
+
     const layout = await page.evaluate(() => {
       const visible = (selector) => {
         const element = document.querySelector(selector);
@@ -223,7 +229,8 @@ async function runViewport(browser, viewport) {
       layout.bannerFits && layout.bannerVisible && layout.ctaVisible && layout.headingVisible &&
       layout.heroImageLoaded && !layout.horizontalOverflow && layout.logoVisible &&
       layout.menuOrNavVisible && layout.searchVisible &&
-      layout.meta.length === 1 && layout.meta[0] === EXPECTED_ACCOUNT;
+      layout.meta.length === 1 && layout.meta[0] === EXPECTED_ACCOUNT &&
+      (!EXPECTED_NONPRODUCTION_NOINDEX || robotsHeader.toLowerCase().includes("noindex"));
     const passed = layoutPassed && axeResult.length === 0 && focusPassed &&
       adRequests(probe.requests).length === 0 && probe.consoleErrors.length === 0 &&
       probe.pageErrors.length === 0;
@@ -244,6 +251,7 @@ async function runViewport(browser, viewport) {
       layoutPassed,
       pageErrors: probe.pageErrors,
       passed,
+      robotsHeader,
       status: response?.status() || 0,
     };
   } finally {
@@ -439,6 +447,7 @@ function markdown(report) {
     `- Consent matrix: **${report.consent.passed ? "PASS" : "FAIL"}**`,
     `- Reduced motion: **${report.reducedMotion.passed ? "PASS" : "FAIL"}**`,
     `- Save-Data: **${report.saveData.passed ? "PASS" : "FAIL"}**`,
+    `- Non-production X-Robots-Tag: **${report.nonProductionNoindexPassed ? "PASS" : "N/A"}**`,
     "",
     "The consent matrix covers fresh state, Accept, stored-choice reload, reset, and Decline. Every state must retain denied advertising defaults, emit analytics-only updates, and make zero AdSense/adsbygoogle requests.",
     ""
@@ -454,12 +463,15 @@ try {
   const consent = await runConsentMatrix(browser);
   const reducedMotion = await runReducedMotion(browser);
   const saveData = await runSaveData(browser);
+  const nonProductionNoindexPassed = !EXPECTED_NONPRODUCTION_NOINDEX ||
+    viewports.every((result) => result.robotsHeader.toLowerCase().includes("noindex"));
   report = {
     consent,
     expectedSha,
     generatedAt: new Date().toISOString(),
+    nonProductionNoindexPassed,
     passed: viewports.every((result) => result.passed) && consent.passed &&
-      reducedMotion.passed && saveData.passed,
+      reducedMotion.passed && saveData.passed && nonProductionNoindexPassed,
     previewUrl,
     reducedMotion,
     saveData,
