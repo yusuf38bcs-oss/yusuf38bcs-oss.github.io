@@ -103,14 +103,11 @@ html_files.each do |path|
   page_count += 1
   fail!("Missing Zoology stylesheet in #{path}") unless html.include?("/assets/css/zoology-academic.css")
 
-  ecology_lecture_page =
-    path.include?("/biology/higher-zoology-tree/ecology/") &&
-    !path.end_with?("/biology/higher-zoology-tree/ecology/index.html") &&
-    !path.end_with?("/biology/higher-zoology-tree/ecology/course-index/index.html")
+  ecology_course_surface = path.include?("/biology/higher-zoology-tree/ecology/")
 
-  if ecology_lecture_page
-    fail!("Ecology lecture unexpectedly renders LOLO/LALA learning cycle in #{path}") if html.include?("data-zoology-learning-cycle")
-    fail!("Ecology lecture unexpectedly renders framework panel in #{path}") if html.include?("lbfl-framework-links")
+  if ecology_course_surface
+    fail!("Ecology course surface unexpectedly renders LOLO/LALA learning cycle in #{path}") if html.include?("data-zoology-learning-cycle")
+    fail!("Ecology course surface unexpectedly renders framework panel in #{path}") if html.include?("lbfl-framework-links")
   else
     fail!("Missing LOLO/LALA learning cycle in #{path}") unless html.include?("data-zoology-learning-cycle")
   end
