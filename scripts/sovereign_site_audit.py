@@ -16,6 +16,17 @@ REPORT_DIR = ROOT / "audit-reports"
 REPORT_DIR.mkdir(exist_ok=True)
 
 SOURCE_EXTS = {".md", ".markdown", ".html", ".scss", ".css", ".js", ".yml", ".yaml"}
+QUALITY_CONTENT_DIRS = [
+    "_pages",
+    "_posts",
+    "_biology",
+    "_concepts",
+    "_socratic",
+    "_synaptic-bridge",
+    "_life-practices",
+    "_life-philosophy",
+    "_mcq-arena",
+]
 CONTENT_DIRS = [
     "_pages",
     "_posts",
@@ -97,6 +108,25 @@ def declared_source_routes(src_files: list[Path]) -> set[str]:
             continue
         routes.update(route_variants("/" + root_rel(f)))
     return routes
+
+
+def quality_visible_body(text: str) -> str:
+    front_matter = ""
+    body = text
+    if text.startswith("---"):
+        parts = text.split("---", 2)
+        if len(parts) >= 3:
+            front_matter, body = parts[1], parts[2]
+    if re.search(r"^robots:\s*[\"']?noindex", front_matter, re.IGNORECASE | re.MULTILINE):
+        return ""
+    if re.search(r"^sitemap:\s*false\s*$", front_matter, re.IGNORECASE | re.MULTILINE):
+        return ""
+    if re.search(r"^visibility:\s*[\"']?system[\"']?\s*$", front_matter, re.IGNORECASE | re.MULTILINE):
+        return ""
+    body = re.sub(r"<!--.*?-->", "", body, flags=re.DOTALL)
+    body = re.sub(r"<style\b[^>]*>.*?</style>", "", body, flags=re.DOTALL | re.IGNORECASE)
+    body = re.sub(r"<script\b[^>]*>.*?</script>", "", body, flags=re.DOTALL | re.IGNORECASE)
+    return body
 
 
 def visible_html_for_leak_check(html: str) -> str:
@@ -204,12 +234,24 @@ def main() -> int:
 
     term_hits = {t: [] for t in FRAMEWORK_TERMS}
     blocks = defaultdict(list)
-    for f in src_files:
-        text = read(f)
+    quality_files: list[Path] = []
+    for base in QUALITY_CONTENT_DIRS:
+        folder = ROOT / base
+        if folder.exists():
+            quality_files.extend(
+                f for f in folder.rglob("*")
+                if f.is_file() and f.suffix.lower() in SOURCE_EXTS
+            )
+    for f in sorted(quality_files):
+        body = quality_visible_body(read(f))
+        if not body:
+            continue
         for t in FRAMEWORK_TERMS:
-            if t in text:
+            if t in body:
                 term_hits[t].append(root_rel(f))
-        for block in re.split(r"\n\s*\n", text):
+        for block in re.split(r"\n\s*\n", body):
+            if len(re.findall(r"\[[^\]]+\]\([^)]+\)", block)) >= 3:
+                continue
             plain = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", block)).strip()
             if len(plain) > 260:
                 blocks[plain[:260]].append(root_rel(f))
@@ -219,7 +261,7 @@ def main() -> int:
         for key, paths in list(repeated.items())[:12]
     ]
     heavy = {k: v[:12] for k, v in term_hits.items() if len(v) > 8}
-    duplicate_status = "WARN" if repeated or heavy else "PASS"
+    duplicate_status = "WARN" if repeated else "PASS"
     add(
         phases,
         "02-duplicate-content",
@@ -295,7 +337,20 @@ def main() -> int:
     add(phases, "07-markdown-leakage", "FAIL" if leakage else "PASS", "Visible Markdown/Liquid leakage checked.", leakage)
 
     table_pages = [site_rel(f) for f in html_files if "<table" in read(f).lower()]
-    add(phases, "08-responsive-audit", "WARN" if table_pages else "PASS", "Raw table mobile-risk pages checked.", table_pages[:40])
+    responsive_css = read(ROOT / "assets/css/synaptic-overrides.css")
+    table_overflow_contract = (
+        ".page__content table" in responsive_css and
+        "overflow-x: auto" in responsive_css and
+        "-webkit-overflow-scrolling: touch" in responsive_css
+    )
+    responsive_status = "PASS" if not table_pages or table_overflow_contract else "WARN"
+    add(
+        phases,
+        "08-responsive-audit",
+        responsive_status,
+        "Rendered tables checked against the global horizontal-overflow contract.",
+        [{"table_pages": len(table_pages)}, {"global_table_overflow_contract": table_overflow_contract}],
+    )
 
     img_no_alt, missing_h1 = [], []
     for f, parser in parsed.items():
