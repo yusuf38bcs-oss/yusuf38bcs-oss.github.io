@@ -33,6 +33,7 @@ exclude:
   - gmail-gemini-ai-workplan.md
   - wrangler.jsonc
   - worker
+  - functions
   - scripts
   - audit-reports
   - node_modules
