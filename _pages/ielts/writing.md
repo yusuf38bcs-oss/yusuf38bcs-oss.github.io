@@ -7,6 +7,7 @@ sidebar:
   nav: "ielts"
 author_profile: false
 excerpt: "A local-first IELTS Academic Writing Lab for planning, timed writing and self-review."
+description: "Evidence-led IELTS Academic writing practice with planning, timed drafting, word-count feedback, criteria-based self-review and deliberate rewriting."
 last_modified_at: 2026-09-20
 ---
 
