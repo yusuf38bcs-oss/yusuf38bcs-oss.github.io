@@ -1,0 +1,44 @@
+<header class="lbfl-v3-header" data-v3-header>
+  <div class="lbfl-v3-shell lbfl-v3-header__inner">
+    <a class="lbfl-v3-brand lbfl-v3-target" href="{{ '/' | relative_url }}" aria-label="Learning Biology For Life home">
+      <span class="lbfl-v3-brand__mark" aria-hidden="true">LBFL</span>
+      <span class="lbfl-v3-brand__text">Learning Biology For Life</span>
+    </a>
+
+    <nav class="lbfl-v3-nav" aria-label="Primary">
+      <a class="lbfl-v3-target" href="{{ '/biology/' | relative_url }}">Biology</a>
+      <a class="lbfl-v3-target" href="{{ '/socratic/' | relative_url }}">Socratic 4.0</a>
+      <a class="lbfl-v3-target" href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+
+    <div class="lbfl-v3-header__actions">
+      <details class="lbfl-v3-language">
+        <summary class="lbfl-v3-target" aria-label="Choose language">EN <span aria-hidden="true">⌄</span></summary>
+        <div class="lbfl-v3-language__menu">
+          <a class="lbfl-v3-target" href="{{ '/' | relative_url }}" hreflang="en" lang="en">English</a>
+          <a class="lbfl-v3-target" href="{{ '/bn/' | relative_url }}" hreflang="bn" lang="bn">বাংলা</a>
+        </div>
+      </details>
+      <button class="lbfl-v3-menu-button lbfl-v3-target" type="button" data-v3-menu-open aria-haspopup="dialog" aria-controls="lbfl-v3-menu">
+        <span class="lbfl-v3-menu-button__icon" aria-hidden="true">☰</span>
+        <span class="lbfl-v3-visually-hidden">Open menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog class="lbfl-v3-dialog" id="lbfl-v3-menu" data-v3-menu aria-labelledby="lbfl-v3-menu-title">
+  <div class="lbfl-v3-dialog__panel">
+    <div class="lbfl-v3-dialog__head">
+      <h2 id="lbfl-v3-menu-title">Explore LBFL</h2>
+      <button class="lbfl-v3-target lbfl-v3-dialog__close" type="button" data-v3-menu-close aria-label="Close menu">×</button>
+    </div>
+    <nav aria-label="Mobile primary">
+      <a class="lbfl-v3-target" href="{{ '/biology/hsc-corner/' | relative_url }}">HSC Biology</a>
+      <a class="lbfl-v3-target" href="{{ '/biology/higher-zoology-tree/' | relative_url }}">Higher Zoology</a>
+      <a class="lbfl-v3-target" href="{{ '/mcq-arena/' | relative_url }}">MCQ Arena</a>
+      <a class="lbfl-v3-target" href="{{ '/socratic/' | relative_url }}">Socratic 4.0</a>
+      <a class="lbfl-v3-target" href="{{ '/about/' | relative_url }}">About LBFL</a>
+    </nav>
+  </div>
+</dialog>
