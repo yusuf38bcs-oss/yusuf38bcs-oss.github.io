@@ -17,6 +17,7 @@ on:
       - "ecology-sitemap.xml"
       - "robots.txt"
       - "_pages/hubs/biology.md"
+      - "_pages/ecology-v2-gateway.md"
   workflow_dispatch:
 permissions: {contents: read}
 concurrency:
