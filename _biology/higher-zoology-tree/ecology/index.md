@@ -7,6 +7,7 @@ sidebar:
 title: 'Ecology: Ecosystem Dynamics Matrix'
 excerpt: Explore the canonical 29-lecture LBFL Ecology course from environmental limits and populations to communities, ecosystems, biodiversity, conservation and Bangladesh field inquiry.
 description: Learning Biology For Life Ecology gateway for a complete 29-lecture Higher Zoology learning route.
+last_modified_at: 2026-09-20T16:03:08+06:00
 permalink: /biology/higher-zoology-tree/ecology/
 node_id: node-ecology
 pillar: Life Sciences
@@ -49,3 +50,10 @@ Ecology explains how organisms interact with one another and with their physical
 - [Corrections]({{ '/corrections/' | relative_url }})
 - [Accessibility Statement]({{ '/accessibility/' | relative_url }})
 - [Disclaimer]({{ '/disclaimer/' | relative_url }})
+
+## Search and Crawl Discovery
+
+- [Complete 29-Lecture Course Index]({{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }})
+- [Ecology XML Sitemap]({{ '/ecology-sitemap.xml' | relative_url }})
+
+The course index exposes every canonical lecture through ordinary HTML links so learners and search crawlers can discover the full sequence without JavaScript.

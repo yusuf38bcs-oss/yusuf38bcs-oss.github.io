@@ -1,0 +1,31 @@
+---
+layout: null
+permalink: /ecology-sitemap.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+{% assign ecology_lectures = site.biology | where: "course_id", "ecology-29" | where: "course_role", "lecture" | sort: "lecture_number" %}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ '/biology/higher-zoology-tree/ecology/' | absolute_url | xml_escape }}</loc>
+    <lastmod>2026-09-20T16:03:08+06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>{{ '/biology/higher-zoology-tree/ecology/course-index/' | absolute_url | xml_escape }}</loc>
+    <lastmod>2026-09-20T16:03:08+06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+{% for lecture in ecology_lectures %}
+  <url>
+    <loc>{{ lecture.url | absolute_url | xml_escape }}</loc>
+{% if lecture.last_modified_at %}
+    <lastmod>{{ lecture.last_modified_at | date_to_xmlschema }}</lastmod>
+{% endif %}
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+{% endfor %}
+</urlset>
