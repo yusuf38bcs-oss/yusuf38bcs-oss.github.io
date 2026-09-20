@@ -48,8 +48,7 @@ jobs:
                   _layouts/animal-diversity-course.html \
                   assets/biology/animal-diversity \
                   .github/scripts/validate-animal-diversity-10.rb \
-                  .github/scripts/animal-diversity-browser-certification.mjs \
-                  .github/workflows/animal-diversity-10-certification.yml
+                  .github/scripts/animal-diversity-browser-certification.mjs
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
