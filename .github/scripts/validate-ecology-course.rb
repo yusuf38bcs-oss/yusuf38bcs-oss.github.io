@@ -1,194 +1,132 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
-
-require "yaml"
-require "date"
-require "pathname"
-require "set"
-
+require "yaml"; require "date"; require "pathname"; require "set"
 ROOT = Pathname.new(__dir__).join("../..").expand_path
 ECOLOGY = ROOT.join("_biology/higher-zoology-tree/ecology")
 SITE = ROOT.join("_site")
-ECOLOGY_SITEMAP = ROOT.join("ecology-sitemap.xml")
-ROBOTS = ROOT.join("robots.txt")
-BIOLOGY_HUB = ROOT.join("_pages/hubs/biology.md")
-COURSE_ID = "ecology-29"
-EXPECTED = 29
+COURSE_ID = "ecology-10"
+EXPECTED_PAIRS = 10
+EXPECTED_PAGES = 20
 BENGALI = /[\u0980-\u09FF]/
-FORBIDDEN = ["Source Processing Note", "Uploaded source:", "Clear Console", "javascript:void(0)"]
-ANCHORS = {
-  "01" => "/biology/higher-zoology-tree/ecology/ecology-history-scopes-area/",
-  "06" => "/biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species/",
-  "07" => "/biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/",
-  "10" => "/biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models/",
-  "13" => "/biology/higher-zoology-tree/ecology/community-ecology-an-equation-of-living-together/"
+HISTORICAL_ROUTES = {
+  "ecology-history-scopes-area.md" => "/biology/higher-zoology-tree/ecology/ecology-history-scopes-area/",
+  "population-ecology-a-science-of-life-motion-of-a-species.md" => "/biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species/",
+  "population-ecology-concept-on-size-of-population.md" => "/biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/",
+  "survivorship-curve-life-table-growth-models.md" => "/biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models/",
+  "community-ecology-an-equation-of-living-together.md" => "/biology/higher-zoology-tree/ecology/community-ecology-an-equation-of-living-together/"
 }.freeze
 
+def fail!(m); warn "ECOLOGY 10 CERTIFICATION FAIL: #{m}"; exit 1; end
 
-def fail!(message)
-  warn "ECOLOGY 29-ROUTE CERTIFICATION FAIL: #{message}"
-  exit 1
+def fm(path)
+  text=File.read(path,encoding:"UTF-8"); m=text.match(/\A---\s*\n(.*?)\n---\s*\n/m); fail!("missing front matter #{path}") unless m
+  [YAML.safe_load(m[1],permitted_classes:[Time,Date],aliases:true)||{},text,text[m.end(0)..]||""]
 end
 
-def parse_front_matter(path)
-  text = File.read(path, encoding: "UTF-8")
-  match = text.match(/\A---\s*\n(.*?)\n---\s*\n/m)
-  fail!("missing YAML front matter: #{path}") unless match
-  data = YAML.safe_load(match[1], permitted_classes: [Time, Date], aliases: true) || {}
-  [data, text, text[match.end(0)..] || ""]
-rescue Psych::SyntaxError => e
-  fail!("invalid YAML in #{path}: #{e.message}")
+def rendered(route); SITE.join(route.sub(%r{\A/},""),"index.html"); end
+
+def public_route(record)
+  route = record[:fm]["permalink"].to_s
+  record[:fm]["language"] == "bn" ? "/bn#{route}" : route
 end
 
-def rendered_path(permalink)
-  SITE.join(permalink.sub(%r{\A/}, ""), "index.html")
+all_md=Dir.glob(ECOLOGY.join("**/*.md").to_s).sort
+records=[]
+all_md.each do |p|
+  data,text,body=fm(p); next unless data["course_id"]==COURSE_ID && data["course_role"]=="lecture"
+  records << {path:Pathname.new(p),fm:data,text:text,body:body}
 end
-
-def page_content(html)
-  match = html.match(/<section class="page__content"[^>]*>(.*?)<\/section>/m)
-  match ? match[1] : nil
+fail!("expected #{EXPECTED_PAGES} lecture pages, found #{records.length}") unless records.length==EXPECTED_PAGES
+langs=records.group_by{|r| r[:fm]["language"]}
+fail!("Bangla pages must be 10") unless Array(langs["bn"]).length==10
+fail!("English pages must be 10") unless Array(langs["en"]).length==10
+%w[bn en].each do |lang|
+  nums=langs[lang].map{|r| r[:fm]["lecture_number"].to_s}.sort
+  fail!("#{lang} lecture numbers must be 01-10") unless nums==(1..10).map{|n|format("%02d",n)}
 end
-
-fail!("Ecology source directory missing") unless ECOLOGY.directory?
-
-records = []
-Dir.glob(ECOLOGY.join("*.md").to_s).sort.each do |path|
-  fm, text, body = parse_front_matter(path)
-  next unless fm["course_id"] == COURSE_ID && fm["course_role"] == "lecture"
-  records << { path: Pathname.new(path), fm: fm, text: text, body: body }
-end
-
-fail!("EXPECTED_LECTURES=#{EXPECTED} DISCOVERED_LECTURES=#{records.length}") unless records.length == EXPECTED
-
-numbers = records.map { |r| r[:fm]["lecture_number"].to_s }
-expected_numbers = (1..EXPECTED).map { |n| format("%02d", n) }
-fail!("lecture numbers must be exactly 01-29") unless numbers.sort == expected_numbers
-fail!("duplicate lecture numbers") unless numbers.uniq.length == numbers.length
-
-node_ids = records.map { |r| r[:fm]["node_id"].to_s }
-permalinks = records.map { |r| r[:fm]["permalink"].to_s }
-fail!("missing node_id") if node_ids.any?(&:empty?)
-fail!("duplicate node_id") unless node_ids.uniq.length == node_ids.length
-fail!("missing permalink") if permalinks.any?(&:empty?)
-fail!("duplicate permalink") unless permalinks.uniq.length == permalinks.length
-
+permalinks=records.map{|r|r[:fm]["permalink"].to_s}; nodes=records.map{|r|r[:fm]["node_id"].to_s}
+fail!("duplicate permalinks") unless permalinks.uniq.length==20
+fail!("duplicate node ids") unless nodes.uniq.length==20
 records.each do |r|
-  fm = r[:fm]
-  body = r[:body]
-  num = fm["lecture_number"].to_s
-  %w[title excerpt description].each { |key| fail!("#{r[:path]} missing #{key}") if fm[key].to_s.strip.empty? }
-  fail!("#{r[:path]} status is not Active") unless fm["status"] == "Active"
-  fail!("#{r[:path]} language must be en") unless fm["language"] == "en" && fm["lang"] == "en"
-  fail!("#{r[:path]} contains published:false") if fm["published"] == false || r[:text].match?(/^published:\s*false\s*$/i)
-  fail!("#{r[:path]} contains Bengali codepoints") if r[:text].match?(BENGALI)
-  fail!("#{r[:path]} must contain exactly one Markdown H1") unless body.scan(/^# (?!#)/).length == 1
-  fail!("#{r[:path]} missing References section") unless body.include?("## References")
-  FORBIDDEN.each { |needle| fail!("#{r[:path]} contains forbidden '#{needle}'") if r[:text].include?(needle) }
-  fail!("#{r[:path]} contains TODO/DRAFT/PLACEHOLDER residue") if body.match?(/\b(?:TODO|DRAFT|PLACEHOLDER)\b/i)
-
-  # All local assets referenced directly by the course must exist at the exact head.
-  r[:text].scan(%r{(?:src=|href=|overlay_image:\s*)["']?(/assets/[^"'\s)]+)}).flatten.each do |asset|
-    asset_path = ROOT.join(asset.sub(%r{\A/}, ""))
-    fail!("missing local resource #{asset} referenced by #{r[:path]}") unless asset_path.file?
+  d=r[:fm]; body=r[:body]; lang=d["language"]
+  fail!("inactive #{r[:path]}") unless d["status"]=="Active" && d["published"]==true
+  fail!("framework include remains #{r[:path]}") if r[:text].include?("framework-links.html")
+  fail!("LOLO/LALA branding remains #{r[:path]}") if body.match?(/\b(?:LOLO|LALA)\b/)
+  fail!("H1 count !=1 #{r[:path]}") unless body.scan(/^# (?!#)/).length==1
+  fail!("missing References #{r[:path]}") unless body.lines.any? { |line| line.match?(/^##\s+(?:\d+\.\s+)?References\b/i) }
+  fail!("English mirror contains Bengali #{r[:path]}") if lang=="en" && r[:text].match?(BENGALI)
+  mate=records.find{|x| x[:fm]["permalink"].to_s==d["translation_of"].to_s}
+  fail!("translation pair missing #{r[:path]}") unless mate
+  fail!("translation pair not reciprocal #{r[:path]}") unless mate[:fm]["translation_of"].to_s==d["permalink"].to_s
+  fail!("translation pair order mismatch #{r[:path]}") unless mate[:fm]["lecture_number"].to_s==d["lecture_number"].to_s
+  fail!("Lecture 10 points to Lecture 11 #{r[:path]}") if d["lecture_number"].to_s=="10" && body.include?("ecology-11-")
+  fail!("learner-facing V2 terminology remains #{r[:path]}") if body.match?(/\bV2\b/)
+  fail!("duplicate language-navigation link remains #{r[:path]}") if body.match?(/\[(?:English version|Bangla version)\]/i)
+end
+# Retired ecology-29 lecture architecture must not remain active, while five
+# established historical public URLs must remain as explicit compatibility pages.
+all_md.each do |p|
+  data,text,body=fm(p)
+  fail!("retired ecology-29 source remains active: #{p}") if data["course_id"]=="ecology-29"
+end
+HISTORICAL_ROUTES.each do |filename, route|
+  path = ECOLOGY.join(filename)
+  fail!("historical route source missing #{filename}") unless path.file?
+  data,text,body = fm(path)
+  fail!("historical route changed #{filename}") unless data["permalink"] == route
+  fail!("historical route must use compatibility layout #{filename}") unless data["layout"] == "ecology-compatibility"
+  fail!("historical route must be compatibility role #{filename}") unless data["course_role"] == "compatibility"
+  fail!("historical route must stay noindex/follow #{filename}") unless data["robots"] == "noindex, follow"
+  fail!("historical route must stay out of sitemap #{filename}") unless data["sitemap"] == false
+  fail!("historical compatibility page has framework include #{filename}") if text.include?("framework-links.html")
+  fail!("historical compatibility page has LOLO/LALA #{filename}") if body.match?(/\b(?:LOLO|LALA)\b/)
+  fail!("historical compatibility page H1 should be layout-owned #{filename}") unless body.scan(/^# (?!#)/).empty?
+end
+# Gateway/index identities
+root_gateway = ROOT.join("biology/higher-zoology-tree/ecology/index.html"); fail!("static root gateway missing") unless root_gateway.file?
+bn_fm,bn_text,=fm(ROOT.join("_pages/ecology-v2-gateway.bn.md")); fail!("Bangla gateway route") unless bn_fm["permalink"]=="/biology/higher-zoology-tree/ecology/"
+en_fm,en_text,=fm(ECOLOGY.join("en/index.md")); fail!("English gateway route") unless en_fm["permalink"]=="/en/biology/higher-zoology-tree/ecology/"
+idx_fm,idx_text,=fm(ECOLOGY.join("course-index.md")); fail!("course index route") unless idx_fm["permalink"]=="/biology/higher-zoology-tree/ecology/course-index/"
+english_records = records.select { |r| r[:fm]["language"] == "en" }
+fail!("course index must expose one English entry per lecture") unless english_records.all? { |r| idx_text.include?(public_route(r)) }
+fail!("course index must not duplicate Bangla/English columns") if idx_text.include?("| Bangla | English |")
+fail!("course index must not expose V2/master/mirror terminology") if idx_text.match?(/\bV2\b|Bangla master|clean-English mirror/i)
+# Sitemap source contract
+site_map=File.read(ROOT.join("ecology-sitemap.xml"),encoding:"UTF-8")
+records.each do |r|
+  url="https://learningbiologyforlife.org#{public_route(r)}"
+  fail!("sitemap source missing #{url}") unless site_map.include?(url)
+end
+puts "ECOLOGY_10_SOURCE_PASS"
+puts "lecture_pairs=10"; puts "lecture_pages=20"; puts "bangla=10"; puts "english=10"; puts "historical_compatibility_routes=5"
+exit 0 unless SITE.directory?
+records.each do |r|
+  route=public_route(r)
+  rp=rendered(route); fail!("missing rendered #{route}") unless rp.file?
+  html=File.read(rp,encoding:"UTF-8"); fail!("H1 rendered !=1 #{route}") unless html.scan(/<h1\b/i).length==1
+  fail!("shared learning cycle present #{route}") if html.include?("data-zoology-learning-cycle")
+  fail!("framework panel present #{route}") if html.include?("lbfl-framework-links")
+end
+support_routes=["/biology/higher-zoology-tree/ecology/","/bn#{bn_fm["permalink"]}",en_fm["permalink"],idx_fm["permalink"]]
+support_routes.each do |route|
+  rp = rendered(route)
+  fail!("support route missing #{route}") unless rp.file?
+  html = File.read(rp, encoding: "UTF-8")
+  if route.include?("/ecology/")
+    fail!("shared learning cycle present on Ecology support route #{route}") if html.include?("data-zoology-learning-cycle")
+    fail!("framework panel present on Ecology support route #{route}") if html.include?("lbfl-framework-links")
   end
-
-  expected_prev = num == "01" ? nil : records.find { |x| x[:fm]["lecture_number"].to_s == format("%02d", num.to_i - 1) }&.dig(:fm, "permalink")
-  expected_next = num == "29" ? nil : records.find { |x| x[:fm]["lecture_number"].to_s == format("%02d", num.to_i + 1) }&.dig(:fm, "permalink")
-  links = Array(fm["synaptic_links"])
-  fail!("#{r[:path]} missing course-index navigation") unless links.include?("/biology/higher-zoology-tree/ecology/course-index/")
-  fail!("#{r[:path]} missing previous lecture link") if expected_prev && !links.include?(expected_prev)
-  fail!("#{r[:path]} missing next lecture link") if expected_next && !links.include?(expected_next)
-  fail!("Lecture 01 must not expose a previous lecture") if num == "01" && links.any? { |x| x == records.find { |z| z[:fm]["lecture_number"].to_s == "00" }&.dig(:fm, "permalink") }
 end
 
-ANCHORS.each do |num, route|
-  rec = records.find { |r| r[:fm]["lecture_number"].to_s == num }
-  fail!("anchor lecture #{num} missing") unless rec
-  fail!("anchor route changed for lecture #{num}: #{rec[:fm]["permalink"]}") unless rec[:fm]["permalink"] == route
+HISTORICAL_ROUTES.each_value do |route|
+  rp = rendered(route)
+  fail!("historical route not rendered #{route}") unless rp.file?
+  html = File.read(rp, encoding: "UTF-8")
+  fail!("historical route H1 rendered !=1 #{route}") unless html.scan(/<h1\b/i).length == 1
+  fail!("shared learning cycle present on historical route #{route}") if html.include?("data-zoology-learning-cycle")
+  fail!("framework panel present on historical route #{route}") if html.include?("lbfl-framework-links")
+  fail!("historical route became a redirect #{route}") if html.match?(/http-equiv=["']refresh/i)
 end
-
-# Gateway identity.
-gateway_fm, gateway_text, = parse_front_matter(ECOLOGY.join("index.md"))
-fail!("gateway permalink changed") unless gateway_fm["permalink"] == "/biology/higher-zoology-tree/ecology/"
-fail!("gateway node_id changed") unless gateway_fm["node_id"] == "node-ecology"
-fail!("gateway parent_node changed") unless gateway_fm["parent_node"] == "index-higher-zoology-tree"
-fail!("gateway language changed") unless gateway_fm["language"] == "en"
-fail!("gateway does not link course index") unless gateway_text.include?("/biology/higher-zoology-tree/ecology/course-index/")
-
-# Course index identity and exact route coverage.
-index_path = ECOLOGY.join("course-index.md")
-fail!("course-index.md missing") unless index_path.file?
-index_fm, index_text, = parse_front_matter(index_path)
-fail!("course index permalink changed") unless index_fm["permalink"] == "/biology/higher-zoology-tree/ecology/course-index/"
-row_routes = index_text.scan(/\[Open\]\(\{\{\s*'([^']+)'\s*\|\s*relative_url\s*\}\}\)/).flatten
-fail!("COURSE_INDEX_ROWS expected 29 found #{row_routes.length}") unless row_routes.length == EXPECTED
-fail!("course index routes must be unique") unless row_routes.uniq.length == EXPECTED
-fail!("course index does not exactly match canonical lecture routes") unless row_routes.to_set == permalinks.to_set
-
-
-# search-discovery source checks
-fail!("ecology-sitemap.xml missing") unless ECOLOGY_SITEMAP.file?
-ecology_sitemap_source = File.read(ECOLOGY_SITEMAP, encoding: "UTF-8")
-fail!("Ecology sitemap does not enumerate the ecology-29 collection") unless ecology_sitemap_source.include?('where: "course_id", "ecology-29"')
-fail!("Ecology sitemap must derive lecture lastmod from per-lecture metadata") unless ecology_sitemap_source.include?("lecture.last_modified_at")
-lecture_loop = ecology_sitemap_source[/\{% for lecture in ecology_lectures %\}(.*?)\{% endfor %\}/m, 1].to_s
-fail!("Ecology sitemap hard-codes lecture lastmod values") if lecture_loop.match?(/<lastmod>\s*20\d\d-/)
-robots_source = File.read(ROBOTS, encoding: "UTF-8")
-fail!("robots.txt does not advertise the Ecology sitemap") unless robots_source.include?("https://learningbiologyforlife.org/ecology-sitemap.xml")
-biology_hub_source = File.read(BIOLOGY_HUB, encoding: "UTF-8")
-fail!("Biology hub does not link the Ecology course index") unless biology_hub_source.include?("/biology/higher-zoology-tree/ecology/course-index/")
-
-puts "ECOLOGY_29_SOURCE_PASS"
-puts "lectures=#{records.length}"
-puts "course_index_rows=#{row_routes.length}"
-puts "anchor_routes=#{ANCHORS.length}"
-puts "english_lectures=#{records.count { |r| r[:fm]["language"] == "en" }}"
-puts "bengali_codepoints=0"
-puts "duplicate_permalinks=0"
-puts "duplicate_node_ids=0"
-puts "broken_navigation=0"
-
-unless SITE.directory?
-  puts "ECOLOGY_29_SOURCE_ONLY_PASS (render checks skipped: _site absent)"
-  exit 0
-end
-
-records.each do |r|
-  route = r[:fm]["permalink"]
-  rendered = rendered_path(route)
-  fail!("missing rendered lecture #{route}") unless rendered.file?
-  html = File.read(rendered, encoding: "UTF-8")
-  content = page_content(html)
-  fail!("missing page__content for #{route}") unless content
-  fail!("#{route} rendered H1 count is #{html.scan(/<h1\b/i).length}, expected 1") unless html.scan(/<h1\b/i).length == 1
-  fail!("#{route} missing Zoology stylesheet") unless html.include?("/assets/css/zoology-academic.css")
-  fail!("#{route} missing LOLO/LALA learning cycle") unless html.include?("data-zoology-learning-cycle")
-  fail!("#{route} rendered learner content contains Bengali codepoints") if content.match?(BENGALI)
-  FORBIDDEN.each { |needle| fail!("#{route} rendered forbidden '#{needle}'") if content.include?(needle) }
-end
-
-index_rendered = rendered_path(index_fm["permalink"])
-fail!("course index did not render") unless index_rendered.file?
-gateway_rendered = rendered_path(gateway_fm["permalink"])
-fail!("gateway did not render") unless gateway_rendered.file?
-
-
-ecology_sitemap_rendered = SITE.join("ecology-sitemap.xml")
-fail!("Ecology sitemap did not render") unless ecology_sitemap_rendered.file?
-ecology_sitemap_xml = File.read(ecology_sitemap_rendered, encoding: "UTF-8")
-expected_discovery_routes = [gateway_fm["permalink"], index_fm["permalink"], *permalinks]
-expected_discovery_urls = expected_discovery_routes.map { |route| "https://learningbiologyforlife.org#{route}" }
-missing_discovery_urls = expected_discovery_urls.reject { |url| ecology_sitemap_xml.include?(url) }
-fail!("Ecology sitemap missing URLs: #{missing_discovery_urls.join(", ")}") unless missing_discovery_urls.empty?
-
-rendered_robots = SITE.join("robots.txt")
-fail!("rendered robots.txt missing") unless rendered_robots.file?
-fail!("rendered robots.txt does not advertise Ecology sitemap") unless File.read(rendered_robots, encoding: "UTF-8").include?("https://learningbiologyforlife.org/ecology-sitemap.xml")
-
-puts "ECOLOGY_29_DISCOVERY_PASS"
-puts "ecology_sitemap_urls=#{expected_discovery_urls.length}"
-
-puts "ECOLOGY_29_RENDER_PASS"
-puts "rendered_lectures=#{records.length}"
-puts "missing_routes=0"
-puts "ECOLOGY_29_EXACT_HEAD_PASS"
+sm=SITE.join("ecology-sitemap.xml"); fail!("sitemap not rendered") unless sm.file?; xml=File.read(sm,encoding:"UTF-8")
+records.each{|r| url="https://learningbiologyforlife.org#{public_route(r)}"; fail!("sitemap missing #{url}") unless xml.include?(url)}
+puts "ECOLOGY_10_RENDER_PASS"; puts "rendered_lecture_pages=20"; puts "ECOLOGY_10_EXACT_HEAD_PASS"

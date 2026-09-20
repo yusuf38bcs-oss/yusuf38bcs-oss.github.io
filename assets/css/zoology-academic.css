@@ -440,3 +440,66 @@ html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content pre c
   color: #f5fbf8 !important;
   background: #102825 !important;
 }
+
+/* ============================================================================
+   ECOLOGY P1 DARK COMPONENT CONTRAST
+   Keep dark gateway/framework cards readable inside the light Zoology shell.
+   ============================================================================ */
+html.lbfl-zoology-route .page__content .lbfl-info-card h3,
+html.lbfl-zoology-route .page__content .lbfl-framework-links h2 {
+  color: #f8fafc !important;
+}
+
+html.lbfl-zoology-route .page__content .lbfl-info-card a,
+html.lbfl-zoology-route .page__content .lbfl-framework-link,
+html.lbfl-zoology-route .page__content .lbfl-framework-link strong {
+  color: #ccfbf1 !important;
+}
+
+html.lbfl-zoology-route .page__content .lbfl-info-card p,
+html.lbfl-zoology-route .page__content .lbfl-info-card li,
+html.lbfl-zoology-route .page__content .lbfl-framework-links p,
+html.lbfl-zoology-route .page__content .lbfl-framework-link span {
+  color: #dbeafe !important;
+}
+
+/* ============================================================================
+   ECOLOGY P1 LIGHT-SHELL ACCESSIBILITY
+   Prevent the site's dark-theme foreground tokens from leaking into the
+   Zoology cream reading shell, educational notice, and contextual sidebar.
+   ============================================================================ */
+html.lbfl-zoology-route .educational-boundary,
+html.lbfl-zoology-route .educational-boundary strong,
+html.lbfl-zoology-route .educational-boundary span,
+html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-title {
+  color: var(--zoo-ink) !important;
+}
+
+html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-link,
+html.lbfl-zoology-route .contextual-sidebar-nav .sidebar-nav-child-link {
+  color: var(--zoo-link) !important;
+}
+
+/* ============================================================================
+   ECOLOGY COURSE RESPONSIVE TABLES
+   Prefer wrapping over keyboard-inaccessible horizontal scrolling on the
+   lecture reading surface.
+   ============================================================================ */
+html.lbfl-zoology-route body.lbfl-ecology-course .page__content table {
+  display: table;
+  width: 100% !important;
+  table-layout: fixed;
+  overflow: visible;
+}
+
+html.lbfl-zoology-route body.lbfl-ecology-course .page__content th,
+html.lbfl-zoology-route body.lbfl-ecology-course .page__content td {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Ecology light blockquotes must not inherit dark-card foreground tokens. */
+html.lbfl-zoology-route body.lbfl-ecology-course .page__content > blockquote > p {
+  color: var(--zoo-ink) !important;
+}

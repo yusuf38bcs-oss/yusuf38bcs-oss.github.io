@@ -102,7 +102,15 @@ html_files.each do |path|
 
   page_count += 1
   fail!("Missing Zoology stylesheet in #{path}") unless html.include?("/assets/css/zoology-academic.css")
-  fail!("Missing LOLO/LALA learning cycle in #{path}") unless html.include?("data-zoology-learning-cycle")
+
+  ecology_course_surface = path.include?("/biology/higher-zoology-tree/ecology/")
+
+  if ecology_course_surface
+    fail!("Ecology course surface unexpectedly renders LOLO/LALA learning cycle in #{path}") if html.include?("data-zoology-learning-cycle")
+    fail!("Ecology course surface unexpectedly renders framework panel in #{path}") if html.include?("lbfl-framework-links")
+  else
+    fail!("Missing LOLO/LALA learning cycle in #{path}") unless html.include?("data-zoology-learning-cycle")
+  end
 
   forbidden_rendered.each do |needle|
     fail!("Learner-facing residue '#{needle}' remains in #{path}") if html.include?(needle)
