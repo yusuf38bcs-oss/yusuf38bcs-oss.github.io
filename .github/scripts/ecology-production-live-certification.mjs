@@ -19,8 +19,9 @@ assert.equal(exactDeploymentUrl.pathname, "/", "Exact deployment URL must identi
 assert.equal(exactDeploymentUrl.search, "", "Exact deployment URL must not contain a query");
 assert.equal(exactDeploymentUrl.hash, "", "Exact deployment URL must not contain a fragment");
 
-const output = arg("--output");
-assert.ok(output, "--output is required");
+const requestedOutput = arg("--output");
+const output = "ecology-live-evidence/ecology-29-live.json";
+assert.equal(requestedOutput, output, "--output must use the fixed Ecology live-evidence path");
 
 const token = process.env.PRODUCTION_CERTIFICATION_BYPASS_TOKEN ?? "";
 assert.match(token, /^[0-9a-f]{64}$/, "Production certification bypass token is missing or invalid");
@@ -162,28 +163,30 @@ const robotsUrl = new URL("/robots.txt", baseUrl);
 const robots = await fetchText(robotsUrl, "text/plain,*/*");
 assert.ok(robots.text.includes("https://learningbiologyforlife.org/ecology-sitemap.xml"), "robots.txt does not advertise the Ecology sitemap");
 
+assert.equal(results.length, 29, "All 29 lecture probes must complete");
+assert.ok(results.every((x) => x.production_http_status === 200), "All production lecture probes must return 200");
+assert.ok(results.every((x) => x.exact_deployment_http_status === 200), "All exact-deployment lecture probes must return 200");
+assert.ok(results.every((x) => x.canonical_match === true), "All lecture canonicals must match the production URL");
+
 const report = {
   token: "ECOLOGY_29_LIVE_PASS",
-  tested_at: new Date().toISOString(),
-  production_origin: baseUrl.origin,
-  exact_deployment_origin: exactDeploymentUrl.origin,
-  lecture_http_200: results.filter((x) => x.production_http_status === 200).length,
-  exact_deployment_http_200: results.filter((x) => x.exact_deployment_http_status === 200).length,
-  canonical_origin_match: results.filter((x) => x.canonical_match).length,
-  gateway_http_200: gateway.response.status,
-  course_index_http_200: indexPage.response.status,
-  ecology_sitemap_http_200: ecologySitemap.response.status,
-  robots_http_200: robots.response.status,
-  results,
+  lecture_http_200: "29/29",
+  exact_deployment_http_200: "29/29",
+  canonical_origin_match: "29/29",
+  gateway_http_200: 200,
+  course_index_http_200: 200,
+  ecology_sitemap_http_200: 200,
+  robots_http_200: 200,
+  canonical_production_deployment: "PASS",
 };
 
 fs.mkdirSync(path.dirname(output), {recursive: true});
 fs.writeFileSync(output, JSON.stringify(report, null, 2) + "\n", "utf8");
 
 console.log("ECOLOGY_29_LIVE_PASS");
-console.log(`lecture_http_200=${report.lecture_http_200}/29`);
-console.log(`exact_deployment_http_200=${report.exact_deployment_http_200}/29`);
-console.log(`canonical_origin_match=${report.canonical_origin_match}/29`);
+console.log("lecture_http_200=29/29");
+console.log("exact_deployment_http_200=29/29");
+console.log("canonical_origin_match=29/29");
 console.log("gateway_http_200=200");
 console.log("course_index_http_200=200");
 console.log("ecology_sitemap_http_200=200");
