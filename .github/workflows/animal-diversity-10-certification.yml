@@ -1,0 +1,28 @@
+name: Animal Diversity 10 Exact-Head Certification
+on:
+  pull_request:
+    paths:
+      - '_biology/higher-zoology-tree/animal-diversity/**'
+      - '_data/animal-diversity-10.yml'
+      - '_layouts/animal-diversity-course.html'
+      - 'assets/biology/animal-diversity/**'
+      - '.github/scripts/validate-animal-diversity-10.rb'
+      - '.github/workflows/animal-diversity-10-certification.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind exact head
+        run: |
+          echo "HEAD=$(git rev-parse HEAD)"
+          if [ -n "${{ github.event.pull_request.head.sha }}" ]; then
+            test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
+          fi
+      - name: Animal Diversity 10 source contract
+        run: ruby .github/scripts/validate-animal-diversity-10.rb
