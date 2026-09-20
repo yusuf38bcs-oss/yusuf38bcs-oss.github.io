@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -44,9 +44,15 @@ difficulty: "Foundation"
 xp: 700
 time_min: 55
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 24
+page_id: human-physiology-l24
+previous: /biology/higher-zoology-tree/physiology/cardiac-surgery-bypass-angioplasty-open-heart-treatment/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/higher-zoology-tree/physiology/human-blood-circulation-overview/
 ---
-
-# Blood Circulation Part 5: হৃদস্বাস্থ্য, জীবনচর্চা ও Biology থেকে বাস্তব উপকার
 
 ## Educational Safety Boundary
 

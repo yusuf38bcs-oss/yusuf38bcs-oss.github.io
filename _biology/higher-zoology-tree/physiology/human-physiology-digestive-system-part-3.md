@@ -1,6 +1,5 @@
 ---
-
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 
@@ -43,7 +42,7 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/physiology-banner.webp
-language: en
+language: bn
 curriculum_tracks:
   - HSC Zoology
   - NEET Biology
@@ -53,6 +52,14 @@ ib_theme: "Interaction and Interdependence"
 ib_subtopic: "Digestive regulation and applied physiology"
 hsc_alignment: "HSC Zoology: digestive regulation, disorders, and applied human physiology"
 concept_level: "Applied"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 28
+page_id: human-physiology-l28
+previous: /biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-2/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: null
 ---
 
 <div class="neural-banner-card" style="margin: 1.5em 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); background: #0b1329; padding: 10px;">

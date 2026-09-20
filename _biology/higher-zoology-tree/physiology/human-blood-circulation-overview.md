@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -49,9 +49,15 @@ difficulty: "Foundation"
 xp: 450
 time_min: 25
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 25
+page_id: human-physiology-l25
+previous: /biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-1/
 ---
-
-# Blood Circulation Revision Map: রক্ত, হৃদপিণ্ড, সঞ্চালন ও রোগ এক পাতায়
 
 ## Purpose of This Revision Map
 
@@ -210,9 +216,6 @@ Example:
 **Correct answer:** কারণ heartbeat-এর normal impulse সাধারণত SAN থেকে শুরু হয়।  
 **Validity logic:** SAN right atrium-এ spontaneous action potential তৈরি করে atrial contraction শুরু করে। AVN impulse delay ও conduction করে, কিন্তু primary pacemaker নয়।
 
-## Synaptic Bridge
-
-Blood circulation শেখায়: life is flow. Flow থেমে গেলে tissue suffer করে। চিন্তা, আচরণ, খাদ্য, ঘুম, stress and discipline—এসবেরও biological flow আছে। তাই circulation chapter শুধু heart diagram নয়; এটি জীবনের দায়িত্বশীল চলাচল, শুদ্ধ প্রবাহ এবং self-correction-এর পাঠ।
 
 ## References
 
