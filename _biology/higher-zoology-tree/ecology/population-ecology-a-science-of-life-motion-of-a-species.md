@@ -51,7 +51,7 @@ A population is a group of individuals of the same species occupying a defined a
 
 ## 2. Abundance and density
 
-**Population size, \(N\),** is the total number of individuals. **Density** is the number per unit area or volume. A thousand fish may represent high density in a small pond but low density in a large lake. Density is often more informative about crowding, competition, or transmission than total abundance.
+**Population size, \\(N\\),** is the total number of individuals. **Density** is the number per unit area or volume. A thousand fish may represent high density in a small pond but low density in a large lake. Density is often more informative about crowding, competition, or transmission than total abundance.
 
 ## 3. Dispersion patterns
 
@@ -69,11 +69,11 @@ Direct census is possible for some populations. Others require quadrats, transec
 
 ## Basic density
 
-\[
+\\[
 D=\frac{N}{A}
-\]
+\\]
 
-where \(D\) is density, \(N\) is the number of individuals, and \(A\) is area or, where appropriate, volume.
+where \\(D\\) is density, \\(N\\) is the number of individuals, and \\(A\\) is area or, where appropriate, volume.
 
 ## Bangladesh Context
 

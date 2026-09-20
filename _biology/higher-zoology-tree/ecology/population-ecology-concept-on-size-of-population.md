@@ -55,13 +55,13 @@ A large population may produce more births simply because it contains more indiv
 
 ## Population balance and life-table quantities
 
-\[
+\\[
 N_{t+1}=N_t+B-D+I-E
-\]
+\\]
 
-\[
+\\[
 l_x=\frac{n_x}{n_0}, \qquad q_x=\frac{d_x}{n_x}
-\]
+\\]
 
 These expressions separate population change from age-specific survival and mortality.
 

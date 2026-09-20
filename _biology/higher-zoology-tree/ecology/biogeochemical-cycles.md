@@ -55,7 +55,7 @@ Atmospheric carbon dioxide is fixed by photosynthesis and returned through respi
 
 ## 3. Nitrogen cycle
 
-Atmospheric nitrogen gas is unavailable to most organisms without transformation. **Nitrogen fixation** converts \(N_2\) into biologically available forms. **Nitrification** converts reduced nitrogen to nitrate. **Assimilation** incorporates inorganic nitrogen into biomass. **Mineralization** releases ammonium from organic matter. **Denitrification** converts nitrate to gaseous nitrogen compounds under suitable conditions.
+Atmospheric nitrogen gas is unavailable to most organisms without transformation. **Nitrogen fixation** converts \\(N_2\\) into biologically available forms. **Nitrification** converts reduced nitrogen to nitrate. **Assimilation** incorporates inorganic nitrogen into biomass. **Mineralization** releases ammonium from organic matter. **Denitrification** converts nitrate to gaseous nitrogen compounds under suitable conditions.
 
 ## 4. Phosphorus cycle
 
@@ -69,9 +69,9 @@ Sulfur moves among rocks, oceans, the atmosphere, and organisms, with microbial 
 
 A useful steady-state approximation is:
 
-\[
+\\[
 \tau\approx\frac{\text{pool size}}{\text{outflow rate}}
-\]
+\\]
 
 It should be interpreted carefully when pools and fluxes are rapidly changing.
 

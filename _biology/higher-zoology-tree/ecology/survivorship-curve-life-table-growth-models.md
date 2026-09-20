@@ -42,7 +42,7 @@ This Lecture 10 forms part of the canonical 29-lecture LBFL Ecology course. It d
 
 - Interpret Type I, Type II, and Type III survivorship curves.
 - Compare exponential and logistic population-growth models.
-- Interpret intrinsic rate of increase, \(r\), and carrying capacity, \(K\).
+- Interpret intrinsic rate of increase, \\(r\\), and carrying capacity, \\(K\\).
 - Identify assumptions and limitations of simple population models.
 
 ## 1. Survivorship curves
@@ -57,7 +57,7 @@ When resources are effectively unlimited and the per-capita rate of increase rem
 
 ## 3. Logistic growth
 
-The logistic model introduces density dependence through a carrying capacity, \(K\). As population size approaches \(K\), resource limitation or other density-dependent processes reduce per-capita growth.
+The logistic model introduces density dependence through a carrying capacity, \\(K\\). As population size approaches \\(K\\), resource limitation or other density-dependent processes reduce per-capita growth.
 
 Carrying capacity is not an immutable number for a species. It changes with habitat quality, climate, resource supply, disease, and disturbance.
 
@@ -67,15 +67,15 @@ The exponential model can approximate the early phase of invasion or recovery. T
 
 ## Core growth equations
 
-\[
+\\[
 \frac{dN}{dt}=rN,\qquad N_t=N_0e^{rt}
-\]
+\\]
 
-\[
+\\[
 \frac{dN}{dt}=rN\left(1-\frac{N}{K}\right)
-\]
+\\]
 
-The first describes exponential growth; the second introduces density dependence through carrying capacity \(K\).
+The first describes exponential growth; the second introduces density dependence through carrying capacity \\(K\\).
 
 ## Integrated Perspective
 
@@ -83,11 +83,11 @@ The first describes exponential growth; the second introduces density dependence
 
 A life table summarizes survival and mortality by age or stage. Common columns include:
 
-- \(x\): age or stage
-- \(n_x\): number alive at age \(x\)
-- \(l_x\): proportion of the initial cohort surviving to age \(x\)
-- \(d_x\): deaths during the interval
-- \(q_x\): probability of dying during the interval
+- \\(x\\): age or stage
+- \\(n_x\\): number alive at age \\(x\\)
+- \\(l_x\\): proportion of the initial cohort surviving to age \\(x\\)
+- \\(d_x\\): deaths during the interval
+- \\(q_x\\): probability of dying during the interval
 
 A **cohort life table** follows one cohort through time. A **static or time-specific life table** samples different age classes at one time and may require assumptions about stable age structure.
 
@@ -101,7 +101,7 @@ Population models can be applied cautiously to aquaculture stocking, mosquito ou
 
 ## Application Exercise
 
-For \(N_0=100\), \(r=0.2\,yr^{-1}\), and \(t=3\) years, calculate exponential growth and then list the assumptions that make the prediction biologically plausible or implausible.
+For \\(N_0=100\\), \\(r=0.2\,yr^{-1}\\), and \\(t=3\\) years, calculate exponential growth and then list the assumptions that make the prediction biologically plausible or implausible.
 
 ## Common Misconceptions
 

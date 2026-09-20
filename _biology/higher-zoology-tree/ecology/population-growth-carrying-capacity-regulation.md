@@ -42,7 +42,7 @@ This Lecture 09 forms part of the canonical 29-lecture LBFL Ecology course. It d
 
 - Interpret Type I, Type II, and Type III survivorship curves.
 - Compare exponential and logistic population-growth models.
-- Interpret intrinsic rate of increase, \(r\), and carrying capacity, \(K\).
+- Interpret intrinsic rate of increase, \\(r\\), and carrying capacity, \\(K\\).
 - Identify assumptions and limitations of simple population models.
 
 ## 2. Exponential growth
@@ -51,7 +51,7 @@ When resources are effectively unlimited and the per-capita rate of increase rem
 
 ## 3. Logistic growth
 
-The logistic model introduces density dependence through a carrying capacity, \(K\). As population size approaches \(K\), resource limitation or other density-dependent processes reduce per-capita growth.
+The logistic model introduces density dependence through a carrying capacity, \\(K\\). As population size approaches \\(K\\), resource limitation or other density-dependent processes reduce per-capita growth.
 
 Carrying capacity is not an immutable number for a species. It changes with habitat quality, climate, resource supply, disease, and disturbance.
 
@@ -61,15 +61,15 @@ The exponential model can approximate the early phase of invasion or recovery. T
 
 ## Core growth equations
 
-\[
+\\[
 \frac{dN}{dt}=rN,\qquad N_t=N_0e^{rt}
-\]
+\\]
 
-\[
+\\[
 \frac{dN}{dt}=rN\left(1-\frac{N}{K}\right)
-\]
+\\]
 
-The first describes exponential growth; the second introduces density dependence through carrying capacity \(K\).
+The first describes exponential growth; the second introduces density dependence through carrying capacity \\(K\\).
 
 ## Integrated Perspective
 
@@ -91,7 +91,7 @@ Population models can be applied cautiously to aquaculture stocking, mosquito ou
 
 ## Application Exercise
 
-For \(N_0=100\), \(r=0.2\,yr^{-1}\), and \(t=3\) years, calculate exponential growth and then list the assumptions that make the prediction biologically plausible or implausible.
+For \\(N_0=100\\), \\(r=0.2\,yr^{-1}\\), and \\(t=3\\) years, calculate exponential growth and then list the assumptions that make the prediction biologically plausible or implausible.
 
 ## Common Misconceptions
 

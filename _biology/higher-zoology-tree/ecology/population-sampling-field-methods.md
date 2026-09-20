@@ -75,17 +75,17 @@ Observed abundance depends on both true abundance and detection. Vegetation dens
 
 ## Quadrat density
 
-\[
+\\[
 \bar D=\frac{\sum_{i=1}^{q}n_i}{qA}
-\]
+\\]
 
-where \(q\) is the number of quadrats, \(A\) is the area of each quadrat, and \(n_i\) is the count in quadrat \(i\).
+where \\(q\\) is the number of quadrats, \\(A\\) is the area of each quadrat, and \\(n_i\\) is the count in quadrat \\(i\\).
 
 ## Integrated Perspective
 
 ### 1. Mark–recapture logic
 
-Suppose \(M\) individuals are captured, marked, and released. In a later sample, \(C\) individuals are captured and \(R\) of them are marked. If marked animals have mixed back into the population and capture probabilities are comparable, the marked proportion in the second sample can be used to estimate total population size.
+Suppose \\(M\\) individuals are captured, marked, and released. In a later sample, \\(C\\) individuals are captured and \\(R\\) of them are marked. If marked animals have mixed back into the population and capture probabilities are comparable, the marked proportion in the second sample can be used to estimate total population size.
 
 ### 2. Assumptions
 

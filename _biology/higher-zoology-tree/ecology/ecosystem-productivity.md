@@ -59,17 +59,17 @@ Only part of the production at one trophic level becomes production at the next.
 
 ## Productivity and trophic transfer
 
-\[
+\\[
 NPP=GPP-R_a
-\]
+\\]
 
-where \(R_a\) is autotrophic respiration.
+where \\(R_a\\) is autotrophic respiration.
 
-\[
+\\[
 TE=\frac{P_{n+1}}{P_n}\times100
-\]
+\\]
 
-where \(P_n\) and \(P_{n+1}\) are production at consecutive trophic levels.
+where \\(P_n\\) and \\(P_{n+1}\\) are production at consecutive trophic levels.
 
 ## Bangladesh Context
 

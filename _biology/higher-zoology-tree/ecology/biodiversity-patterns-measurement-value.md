@@ -51,7 +51,7 @@ Species richness counts species but ignores relative abundance. Diversity indice
 
 The **Shannon index** is sensitive to both common and relatively rare species. **Simpson's concentration** gives stronger weight to common species and dominance.
 
-Different texts use \(D\), \(1-D\), or \(1/D\). The formula must therefore always be stated before interpretation.
+Different texts use \\(D\\), \\(1-D\\), or \\(1/D\\). The formula must therefore always be stated before interpretation.
 
 ## 4. Evenness
 
@@ -63,21 +63,21 @@ A diversity index has no universal threshold that automatically means “good ec
 
 ## Population and diversity calculations
 
-\[
+\\[
 \hat N=\frac{MC}{R}
-\]
+\\]
 
-\[
+\\[
 H'=-\sum_{i=1}^{S}p_i\ln p_i
-\]
+\\]
 
-\[
+\\[
 D=\sum_{i=1}^{S}p_i^2
-\]
+\\]
 
-\[
+\\[
 J'=\frac{H'}{\ln S}
-\]
+\\]
 
 Always state which Simpson formulation is being reported.
 
@@ -85,7 +85,7 @@ Always state which Simpson formulation is being reported.
 
 ### 2. Richness, evenness, and diversity
 
-**Species richness, \(S\),** is the number of species present. **Evenness** describes how equally individuals are distributed among those species. **Diversity** combines information about richness and relative abundance.
+**Species richness, \\(S\\),** is the number of species present. **Evenness** describes how equally individuals are distributed among those species. **Diversity** combines information about richness and relative abundance.
 
 Two forests can each contain ten species, yet differ greatly in diversity if one forest is dominated by a single species while the other has a more even abundance distribution.
 
@@ -99,7 +99,7 @@ Capture–recapture can be useful for mobile animals when marking is ethical and
 
 ## Application Exercise
 
-Calculate a population estimate for \(M=40\), \(C=50\), \(R=10\). Then compare two four-species communities, [25,25,25,25] and [70,10,10,10], in terms of richness and evenness.
+Calculate a population estimate for \\(M=40\\), \\(C=50\\), \\(R=10\\). Then compare two four-species communities, [25,25,25,25] and [70,10,10,10], in terms of richness and evenness.
 
 ## Common Misconceptions
 

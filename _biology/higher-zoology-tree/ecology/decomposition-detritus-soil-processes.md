@@ -57,9 +57,9 @@ Decomposition depends on litter chemistry, temperature, moisture, oxygen, and th
 
 A useful steady-state approximation is:
 
-\[
+\\[
 \tau\approx\frac{\text{pool size}}{\text{outflow rate}}
-\]
+\\]
 
 It should be interpreted carefully when pools and fluxes are rapidly changing.
 

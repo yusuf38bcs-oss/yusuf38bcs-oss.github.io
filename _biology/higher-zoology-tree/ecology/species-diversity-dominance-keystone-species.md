@@ -77,7 +77,7 @@ Some organisms alter the physical environment and thereby change resource availa
 
 ### 2. Richness, evenness, and diversity
 
-**Species richness, \(S\),** is the number of species present. **Evenness** describes how equally individuals are distributed among those species. **Diversity** combines information about richness and relative abundance.
+**Species richness, \\(S\\),** is the number of species present. **Evenness** describes how equally individuals are distributed among those species. **Diversity** combines information about richness and relative abundance.
 
 Two forests can each contain ten species, yet differ greatly in diversity if one forest is dominated by a single species while the other has a more even abundance distribution.
 

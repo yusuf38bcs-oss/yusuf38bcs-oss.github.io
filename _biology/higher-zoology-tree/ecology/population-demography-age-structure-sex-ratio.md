@@ -53,11 +53,11 @@ A large population may produce more births simply because it contains more indiv
 
 A life table summarizes survival and mortality by age or stage. Common columns include:
 
-- \(x\): age or stage
-- \(n_x\): number alive at age \(x\)
-- \(l_x\): proportion of the initial cohort surviving to age \(x\)
-- \(d_x\): deaths during the interval
-- \(q_x\): probability of dying during the interval
+- \\(x\\): age or stage
+- \\(n_x\\): number alive at age \\(x\\)
+- \\(l_x\\): proportion of the initial cohort surviving to age \\(x\\)
+- \\(d_x\\): deaths during the interval
+- \\(q_x\\): probability of dying during the interval
 
 A **cohort life table** follows one cohort through time. A **static or time-specific life table** samples different age classes at one time and may require assumptions about stable age structure.
 
@@ -67,13 +67,13 @@ Average lifespan does not reveal when mortality occurs. Two populations can have
 
 ## Population balance and life-table quantities
 
-\[
+\\[
 N_{t+1}=N_t+B-D+I-E
-\]
+\\]
 
-\[
+\\[
 l_x=\frac{n_x}{n_0}, \qquad q_x=\frac{d_x}{n_x}
-\]
+\\]
 
 These expressions separate population change from age-specific survival and mortality.
 
