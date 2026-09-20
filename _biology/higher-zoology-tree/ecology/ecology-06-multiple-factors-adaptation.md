@@ -78,7 +78,7 @@ clo_alignment:
 
 **Multiple stress একসঙ্গে কাজ করলে organism-এর response single-factor response থেকে কেন আলাদা হয়, এবং organism কীভাবে adaptation, acclimation ও plasticity দিয়ে cope করে?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 1. Factor interaction-এ additive, synergistic ও antagonistic effect distinguish করতে পারবে।
 2. Primary, secondary ও hierarchical limitation explain করতে পারবে।

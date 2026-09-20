@@ -76,7 +76,7 @@ math: true
 
 **Survivorship curve এবং exponential/logistic model population dynamics-এর different aspect কীভাবে reveal করে?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 1. Type I, II ও III survivorship curve interpret করতে পারবে।
 2. Survivorship pattern life-history strategy-এর সঙ্গে relate করতে পারবে without rigid classification।

@@ -78,7 +78,7 @@ math: true
 
 **Water availability, soil properties, salinity, oxygen ও environmental gradient কীভাবে habitat quality এবং species distribution নির্ধারণ করে?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 1. Terrestrial organism-এর water balance এবং aquatic organism-এর osmotic challenge explain করতে পারবে।
 2. Soil texture, structure, pH, organic matter, aeration ও nutrient availability বর্ণনা করতে পারবে।

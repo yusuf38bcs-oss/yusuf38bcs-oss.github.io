@@ -77,7 +77,7 @@ clo_alignment:
 
 **অনেক environmental requirement যথেষ্ট থাকলেও কেন একটি resource বা condition organism-এর survival, growth, reproduction বা distribution সীমাবদ্ধ করতে পারে?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 1. Limiting factor, ecological optimum, tolerance range, stress zone ও intolerance zone সংজ্ঞায়িত করতে পারবে।
 2. Liebig's Law of the Minimum ও Shelford's Law of Tolerance ব্যাখ্যা ও তুলনা করতে পারবে।

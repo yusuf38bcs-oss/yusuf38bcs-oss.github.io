@@ -79,7 +79,7 @@ Bangla explanation-এর মধ্যে textbook, examination, research paper 
 
 **Ecology কীভাবে organism থেকে biosphere পর্যন্ত জীবনের distribution, abundance, interaction এবং environment-এর সঙ্গে সম্পর্ককে একটি connected system হিসেবে ব্যাখ্যা করে?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 Lecture শেষে student পারবে:
 

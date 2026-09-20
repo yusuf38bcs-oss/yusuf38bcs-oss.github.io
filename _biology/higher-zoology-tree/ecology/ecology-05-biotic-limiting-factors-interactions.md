@@ -77,7 +77,7 @@ clo_alignment:
 
 **অন্য organism কীভাবে একটি species-এর survival, abundance ও distribution limit, facilitate বা indirectভাবে reshape করতে পারে?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 1. Positive, negative ও neutral effect ব্যবহার করে major species interaction classify করতে পারবে।
 2. Intraspecific/inter-specific competition এবং exploitation/interference competition distinguish করতে পারবে।

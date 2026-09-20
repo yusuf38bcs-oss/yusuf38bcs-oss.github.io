@@ -78,7 +78,7 @@ math: true
 
 **Light ও temperature কীভাবে energy source, biological signal, physiological constraint এবং species distribution-এর determinant হিসেবে কাজ করে?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 1. Light intensity, spectral quality, photoperiod ও light attenuation ব্যাখ্যা করতে পারবে।
 2. Light-এর সঙ্গে photosynthesis, behaviour ও biological timing-এর relationship ব্যাখ্যা করতে পারবে।

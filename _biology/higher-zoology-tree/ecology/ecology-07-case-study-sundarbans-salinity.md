@@ -82,7 +82,7 @@ clo_alignment:
 
 **Bangladesh Sundarbans-এ salinity কীভাবে direct ও indirect limiting factor-এর hierarchy-এর অংশ হিসেবে কাজ করে?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 1. Sundarbans-কে freshwater ও marine influence দ্বারা shaped tidal mangrove ecosystem হিসেবে describe করতে পারবে।
 2. Spatial ও seasonal salinity variation-এর major driver explain করতে পারবে।

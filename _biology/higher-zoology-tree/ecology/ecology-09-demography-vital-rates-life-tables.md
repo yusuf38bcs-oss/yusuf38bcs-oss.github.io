@@ -76,7 +76,7 @@ math: true
 
 **Birth, death, immigration, emigration এবং age-specific survival কীভাবে population change determine করে?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 1. Basic population-balance equation লিখে interpret করতে পারবে।
 2. Natality, mortality, immigration ও emigration distinguish করতে পারবে।

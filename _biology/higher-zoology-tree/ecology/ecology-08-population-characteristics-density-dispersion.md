@@ -76,7 +76,7 @@ math: true
 
 **Population growth বা decline explain করার আগে ecological population কীভাবে define, measure এবং spatially describe করা উচিত?**
 
-## শিখন উদ্দেশ্য ও শিখনফল — LOLO
+## শিখন উদ্দেশ্য ও শিখনফল
 
 1. Ecological population operationalভাবে define করতে পারবে।
 2. Population size, density, relative abundance ও occupancy distinguish করতে পারবে।
