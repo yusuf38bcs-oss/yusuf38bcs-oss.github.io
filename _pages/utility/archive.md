@@ -6,7 +6,8 @@ description: "Global archive page for Learning Biology For Life, indexing posts 
 layout: archive
 author_profile: false
 classes: wide
-sitemap: true
+sitemap: false
+robots: noindex
 ---
 
 # Learning Archive
