@@ -4,6 +4,7 @@
 
 {% seo %}
 {% include head/polyglot-seo-overrides.html %}
+{% include head/nonproduction-noindex.html %}
 {% assign lbfl_content_lang = page.lang | default: site.default_lang | default: site.lang | default: 'en' %}
 {% assign lbfl_active_lang = site.active_lang | default: site.default_lang | default: site.lang | default: 'en' %}
 {% assign lbfl_language_fallback = false %}
