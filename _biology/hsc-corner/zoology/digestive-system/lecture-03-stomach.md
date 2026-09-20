@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 title: "Digestive System Lecture 03: Oesophagus and Stomach"
 permalink: /biology/hsc-corner/zoology/digestive-system/stomach/
 categories: [Biology, HSC Corner, Zoology]
@@ -9,9 +9,15 @@ toc_sticky: true
 classes: wide
 language: bn
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 3
+page_id: human-physiology-l03
+previous: /biology/hsc-corner/zoology/digestive-system/oral-cavity-saliva-teeth/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/digestive-system/liver-bile/
 ---
-
-# Digestive System Lecture 03: Oesophagus and Stomach
 
 ## Learning Objectives
 
