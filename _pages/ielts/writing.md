@@ -14,7 +14,7 @@ last_modified_at: 2026-09-20
 
 <section class="ielts-writing" data-ielts-writing-lab aria-labelledby="ielts-writing-title">
   <header class="ielts-writing__header">
-    <p class="ielts-writing__eyebrow">Phase 2B · Writing Lab MVP</p>
+    <p class="ielts-writing__eyebrow">Evidence-led academic writing practice</p>
     <h1 id="ielts-writing-title">Write with evidence. Revise with intention.</h1>
     <p>Practise Academic Writing Task 1 and Task 2 through a focused loop: plan, write, count, review, and rewrite.</p>
   </header>
