@@ -27,7 +27,11 @@
 {% endif %}
 
 {% if boundary_needed %}
-  {% if detailed_boundary %}
+  {% if page.course_id == 'ecology-29' %}
+    <div class="notice--info educational-boundary educational-boundary--compact" role="note" aria-label="Educational note">
+      <strong>Educational note:</strong> This page supports academic biology learning and exam preparation. Verify syllabus-specific details with your teacher, textbook, and institution.
+    </div>
+  {% elsif detailed_boundary %}
     <div class="notice--info educational-boundary educational-boundary--detailed" role="note" aria-label="Educational boundary">
       <strong>Educational boundary:</strong> This page is for classroom learning and reflective study. It does not replace professional clinical evaluation, diagnosis, treatment, counselling, or legal guidance. For personal health or mental-health concerns, consult a qualified professional.
       <br>

@@ -4,19 +4,19 @@ author_profile: true
 author: MD. Yusuf
 sidebar:
   nav: synaptic_nav
-title: 'Population Size: Birth, Death, Immigration and Emigration'
-excerpt: 'A structured Higher Zoology Ecology lecture on population size: birth, death, immigration and emigration, using mechanism, evidence, application, inquiry and assessment for LBFL learners.'
-description: 'A structured Higher Zoology Ecology lecture on population size: birth, death, immigration and emigration, using mechanism, evidence, application, inquiry and assessment for LBFL learners.'
-permalink: /biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/
+title: 'Demography: Natality, Mortality, Age Structure and Sex Ratio'
+excerpt: 'A structured Higher Zoology Ecology lecture on demography: natality, mortality, age structure and sex ratio, using mechanism, evidence, application, inquiry and assessment for LBFL learners.'
+description: 'A structured Higher Zoology Ecology lecture on demography: natality, mortality, age structure and sex ratio, using mechanism, evidence, application, inquiry and assessment for LBFL learners.'
+permalink: /biology/higher-zoology-tree/ecology/population-demography-age-structure-sex-ratio/
 categories:
 - Biology
 - Higher Zoology
 - Ecology
-node_id: zoology-ecology-population-ecology-concept-on-size-of-population
+node_id: ecology-lecture-08
 parent_node: ecology
 course_id: ecology-29
 course_role: lecture
-lecture_number: '07'
+lecture_number: 08
 toc: true
 toc_sticky: true
 classes: wide
@@ -28,14 +28,14 @@ curriculum_tracks:
 concept_level: Intermediate
 related: true
 synaptic_links:
-- /biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species/
+- /biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/
 - /biology/higher-zoology-tree/ecology/course-index/
-- /biology/higher-zoology-tree/ecology/population-demography-age-structure-sex-ratio/
+- /biology/higher-zoology-tree/ecology/population-growth-carrying-capacity-regulation/
 ---
 
-# Population Size: Birth, Death, Immigration and Emigration
+# Demography: Natality, Mortality, Age Structure and Sex Ratio
 
-This Lecture 07 forms part of the canonical 29-lecture LBFL Ecology course. It develops population size: birth, death, immigration and emigration through ecological mechanisms, evidence, interpretation and application.
+This Lecture 08 forms part of the canonical 29-lecture LBFL Ecology course. It develops demography: natality, mortality, age structure and sex ratio through ecological mechanisms, evidence, interpretation and application.
 
 {% include education/framework-links.html %}
 
@@ -46,13 +46,25 @@ This Lecture 07 forms part of the canonical 29-lecture LBFL Ecology course. It d
 - Compare cohort and static life tables.
 - Interpret common life-table columns such as survivorship and interval mortality.
 
-## 1. Population bookkeeping
-
-Population size changes through four major flows: birth, death, immigration, and emigration. Migration can be ignored only when a population is effectively closed over the period of study.
-
 ## 2. Why rates matter
 
 A large population may produce more births simply because it contains more individuals. Per-capita and age-specific rates allow fairer comparisons. A population with many adults can still be declining if juvenile survival and recruitment are poor.
+
+## 3. Life tables
+
+A life table summarizes survival and mortality by age or stage. Common columns include:
+
+- \(x\): age or stage
+- \(n_x\): number alive at age \(x\)
+- \(l_x\): proportion of the initial cohort surviving to age \(x\)
+- \(d_x\): deaths during the interval
+- \(q_x\): probability of dying during the interval
+
+A **cohort life table** follows one cohort through time. A **static or time-specific life table** samples different age classes at one time and may require assumptions about stable age structure.
+
+## 4. Why life tables are useful
+
+Average lifespan does not reveal when mortality occurs. Two populations can have similar mean longevity but very different juvenile and adult mortality schedules. Conservation or harvest management should therefore identify the life stage that most strongly limits population renewal.
 
 ## Population balance and life-table quantities
 
@@ -96,6 +108,6 @@ For a cohort with 100, 70, 49, and 35 survivors at successive ages, calculate su
 
 ## Course Navigation
 
-- [Previous lecture]({{ '/biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species/' | relative_url }})
+- [Previous lecture]({{ '/biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/' | relative_url }})
 - [Ecology Course Index]({{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }})
-- [Next lecture]({{ '/biology/higher-zoology-tree/ecology/population-demography-age-structure-sex-ratio/' | relative_url }})
+- [Next lecture]({{ '/biology/higher-zoology-tree/ecology/population-growth-carrying-capacity-regulation/' | relative_url }})

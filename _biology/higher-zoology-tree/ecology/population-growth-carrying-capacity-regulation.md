@@ -4,19 +4,19 @@ author_profile: true
 author: MD. Yusuf
 sidebar:
   nav: synaptic_nav
-title: Survivorship Curves, Life Tables and Growth Models
-excerpt: A structured Higher Zoology Ecology lecture on survivorship curves, life tables and growth models, using mechanism, evidence, application, inquiry and assessment for LBFL learners.
-description: A structured Higher Zoology Ecology lecture on survivorship curves, life tables and growth models, using mechanism, evidence, application, inquiry and assessment for LBFL learners.
-permalink: /biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models/
+title: Population Growth, Carrying Capacity and Regulation
+excerpt: A structured Higher Zoology Ecology lecture on population growth, carrying capacity and regulation, using mechanism, evidence, application, inquiry and assessment for LBFL learners.
+description: A structured Higher Zoology Ecology lecture on population growth, carrying capacity and regulation, using mechanism, evidence, application, inquiry and assessment for LBFL learners.
+permalink: /biology/higher-zoology-tree/ecology/population-growth-carrying-capacity-regulation/
 categories:
 - Biology
 - Higher Zoology
 - Ecology
-node_id: zoology-ecology-survivorship-curve-life-table-growth-models
+node_id: ecology-lecture-09
 parent_node: ecology
 course_id: ecology-29
 course_role: lecture
-lecture_number: '10'
+lecture_number: 09
 toc: true
 toc_sticky: true
 classes: wide
@@ -28,14 +28,14 @@ curriculum_tracks:
 concept_level: Intermediate
 related: true
 synaptic_links:
-- /biology/higher-zoology-tree/ecology/population-growth-carrying-capacity-regulation/
+- /biology/higher-zoology-tree/ecology/population-demography-age-structure-sex-ratio/
 - /biology/higher-zoology-tree/ecology/course-index/
-- /biology/higher-zoology-tree/ecology/life-history-strategies-ecological-tradeoffs/
+- /biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models/
 ---
 
-# Survivorship Curves, Life Tables and Growth Models
+# Population Growth, Carrying Capacity and Regulation
 
-This Lecture 10 forms part of the canonical 29-lecture LBFL Ecology course. It develops survivorship curves, life tables and growth models through ecological mechanisms, evidence, interpretation and application.
+This Lecture 09 forms part of the canonical 29-lecture LBFL Ecology course. It develops population growth, carrying capacity and regulation through ecological mechanisms, evidence, interpretation and application.
 
 {% include education/framework-links.html %}
 
@@ -45,12 +45,6 @@ This Lecture 10 forms part of the canonical 29-lecture LBFL Ecology course. It d
 - Compare exponential and logistic population-growth models.
 - Interpret intrinsic rate of increase, \(r\), and carrying capacity, \(K\).
 - Identify assumptions and limitations of simple population models.
-
-## 1. Survivorship curves
-
-A **Type I** curve shows high survival through early and middle life followed by increasing mortality at older ages. A **Type II** curve approximates a constant mortality risk across ages. A **Type III** curve shows very high early mortality, with relatively better survival among those that reach later stages.
-
-Real species rarely fit these ideal curves perfectly. Survivorship can differ by sex, habitat, population, and life stage.
 
 ## 2. Exponential growth
 
@@ -80,21 +74,17 @@ The first describes exponential growth; the second introduces density dependence
 
 ## Integrated Perspective
 
-### 3. Life tables
+### 1. Density dependence
 
-A life table summarizes survival and mortality by age or stage. Common columns include:
+Competition, disease transmission, territorial conflict, and some forms of predation often intensify as population density rises. When per-capita population growth declines with density, the resulting negative feedback can regulate population size.
 
-- \(x\): age or stage
-- \(n_x\): number alive at age \(x\)
-- \(l_x\): proportion of the initial cohort surviving to age \(x\)
-- \(d_x\): deaths during the interval
-- \(q_x\): probability of dying during the interval
+### 2. Density-independent forces
 
-A **cohort life table** follows one cohort through time. A **static or time-specific life table** samples different age classes at one time and may require assumptions about stable age structure.
+Cyclones, floods, fire, extreme temperatures, and toxic spills can cause major mortality without depending directly on population density. Even so, exposure can still vary among habitats or social groups, so the label should be used carefully.
 
-### 4. Why life tables are useful
+### 3. Limitation versus regulation
 
-Average lifespan does not reveal when mortality occurs. Two populations can have similar mean longevity but very different juvenile and adult mortality schedules. Conservation or harvest management should therefore identify the life stage that most strongly limits population renewal.
+A limiting factor reduces growth or performance. A regulating process creates density-dependent feedback that tends to push population size toward a characteristic range. Every regulator limits growth at some stage, but not every limiting factor regulates a population.
 
 ## Bangladesh Context
 
@@ -126,6 +116,6 @@ For \(N_0=100\), \(r=0.2\,yr^{-1}\), and \(t=3\) years, calculate exponential gr
 
 ## Course Navigation
 
-- [Previous lecture]({{ '/biology/higher-zoology-tree/ecology/population-growth-carrying-capacity-regulation/' | relative_url }})
+- [Previous lecture]({{ '/biology/higher-zoology-tree/ecology/population-demography-age-structure-sex-ratio/' | relative_url }})
 - [Ecology Course Index]({{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }})
-- [Next lecture]({{ '/biology/higher-zoology-tree/ecology/life-history-strategies-ecological-tradeoffs/' | relative_url }})
+- [Next lecture]({{ '/biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models/' | relative_url }})
