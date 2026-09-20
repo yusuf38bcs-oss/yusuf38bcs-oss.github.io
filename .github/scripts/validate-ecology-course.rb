@@ -18,6 +18,11 @@ end
 
 def rendered(route); SITE.join(route.sub(%r{\A/},""),"index.html"); end
 
+def public_route(record)
+  route = record[:fm]["permalink"].to_s
+  record[:fm]["language"] == "bn" ? "/bn#{route}" : route
+end
+
 all_md=Dir.glob(ECOLOGY.join("**/*.md").to_s).sort
 records=[]
 all_md.each do |p|
@@ -56,22 +61,28 @@ all_md.each do |p|
 end
 # Gateway/index identities
 root_fm,root_text,=fm(ECOLOGY.join("index.md")); fail!("gateway route") unless root_fm["permalink"]=="/biology/higher-zoology-tree/ecology/"
+bn_fm,bn_text,=fm(ECOLOGY.join("bn/index.md")); fail!("Bangla gateway route") unless bn_fm["permalink"]=="/biology/higher-zoology-tree/ecology/"
 en_fm,en_text,=fm(ECOLOGY.join("en/index.md")); fail!("English gateway route") unless en_fm["permalink"]=="/en/biology/higher-zoology-tree/ecology/"
 idx_fm,idx_text,=fm(ECOLOGY.join("course-index.md")); fail!("course index route") unless idx_fm["permalink"]=="/biology/higher-zoology-tree/ecology/course-index/"
-fail!("course index must expose 10 Bangla + 10 English links") unless records.all?{|r| idx_text.include?(r[:fm]["permalink"])}
+fail!("course index must expose 10 Bangla + 10 English public links") unless records.all?{|r| idx_text.include?(public_route(r))}
 # Sitemap source contract
 site_map=File.read(ROOT.join("ecology-sitemap.xml"),encoding:"UTF-8")
-fail!("sitemap course id") unless site_map.include?('where: "course_id", "ecology-v2-10"')
+records.each do |r|
+  url="https://learningbiologyforlife.org#{public_route(r)}"
+  fail!("sitemap source missing #{url}") unless site_map.include?(url)
+end
 puts "ECOLOGY_V2_10_SOURCE_PASS"
 puts "lecture_pairs=10"; puts "lecture_pages=20"; puts "bangla=10"; puts "english=10"; puts "retired_previous_lectures=0"
 exit 0 unless SITE.directory?
 records.each do |r|
-  rp=rendered(r[:fm]["permalink"]); fail!("missing rendered #{r[:fm]["permalink"]}") unless rp.file?
-  html=File.read(rp,encoding:"UTF-8"); fail!("H1 rendered !=1 #{r[:fm]["permalink"]}") unless html.scan(/<h1\b/i).length==1
-  fail!("shared learning cycle present #{r[:fm]["permalink"]}") if html.include?("data-zoology-learning-cycle")
-  fail!("framework panel present #{r[:fm]["permalink"]}") if html.include?("lbfl-framework-links")
+  route=public_route(r)
+  rp=rendered(route); fail!("missing rendered #{route}") unless rp.file?
+  html=File.read(rp,encoding:"UTF-8"); fail!("H1 rendered !=1 #{route}") unless html.scan(/<h1\b/i).length==1
+  fail!("shared learning cycle present #{route}") if html.include?("data-zoology-learning-cycle")
+  fail!("framework panel present #{route}") if html.include?("lbfl-framework-links")
 end
-[root_fm,en_fm,idx_fm].each{|d| fail!("support route missing #{d['permalink']}") unless rendered(d["permalink"]).file?}
+support_routes=[root_fm["permalink"],"/bn#{bn_fm["permalink"]}",en_fm["permalink"],idx_fm["permalink"]]
+support_routes.each{|route| fail!("support route missing #{route}") unless rendered(route).file?}
 sm=SITE.join("ecology-sitemap.xml"); fail!("sitemap not rendered") unless sm.file?; xml=File.read(sm,encoding:"UTF-8")
-records.each{|r| url="https://learningbiologyforlife.org#{r[:fm]['permalink']}"; fail!("sitemap missing #{url}") unless xml.include?(url)}
+records.each{|r| url="https://learningbiologyforlife.org#{public_route(r)}"; fail!("sitemap missing #{url}") unless xml.include?(url)}
 puts "ECOLOGY_V2_10_RENDER_PASS"; puts "rendered_lecture_pages=20"; puts "ECOLOGY_V2_10_EXACT_HEAD_PASS"

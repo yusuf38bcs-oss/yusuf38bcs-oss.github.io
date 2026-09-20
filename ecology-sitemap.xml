@@ -4,15 +4,29 @@ permalink: /ecology-sitemap.xml
 sitemap: false
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-{% assign ecology_lectures = site.biology | where: "course_id", "ecology-v2-10" | where: "course_role", "lecture" | sort: "lesson_order" %}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>{{ '/biology/higher-zoology-tree/ecology/' | absolute_url | xml_escape }}</loc><lastmod>2026-09-20T18:00:00+06:00</lastmod></url>
-  <url><loc>{{ '/en/biology/higher-zoology-tree/ecology/' | absolute_url | xml_escape }}</loc><lastmod>2026-09-20T18:00:00+06:00</lastmod></url>
-  <url><loc>{{ '/biology/higher-zoology-tree/ecology/course-index/' | absolute_url | xml_escape }}</loc><lastmod>2026-09-20T18:00:00+06:00</lastmod></url>
-{% for lecture in ecology_lectures %}
-  <url>
-    <loc>{{ lecture.url | absolute_url | xml_escape }}</loc>
-    {% if lecture.last_modified_at %}<lastmod>{{ lecture.last_modified_at | date_to_xmlschema }}</lastmod>{% endif %}
-  </url>
-{% endfor %}
+  <url><loc>https://learningbiologyforlife.org/biology/higher-zoology-tree/ecology/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/biology/higher-zoology-tree/ecology/course-index/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-02-limiting-factors-liebig-shelford/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-02-limiting-factors-liebig-shelford/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-03-abiotic-light-temperature/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-03-abiotic-light-temperature/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/bn/biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
+  <url><loc>https://learningbiologyforlife.org/en/biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/</loc><lastmod>2026-09-20T19:00:00+06:00</lastmod></url>
 </urlset>

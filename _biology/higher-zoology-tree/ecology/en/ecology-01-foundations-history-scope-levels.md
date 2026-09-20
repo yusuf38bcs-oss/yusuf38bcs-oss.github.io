@@ -58,7 +58,7 @@ math: true
 ---
 # Ecology Lecture 01: Foundations of Ecology — History, Scope and Levels of Organization
 
-This is the fully detailed English mirror of Lecture 01. It is designed as a self-contained foundation for the 26-lecture Ecology course, with enough explanation, examples, diagrams, conceptual links, and review material that a student can build the core ideas without depending on a separate introductory guide.
+This is the fully detailed English mirror of Lecture 01. It is designed as a self-contained foundation for the current ten-lecture Ecology V2 course, with enough explanation, examples, diagrams, conceptual links, and review material that a student can build the core ideas without depending on a separate introductory guide.
 
 
 ## Syllabus Alignment

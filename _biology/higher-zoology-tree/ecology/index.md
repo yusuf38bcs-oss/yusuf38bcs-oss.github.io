@@ -19,6 +19,8 @@ classes: wide
 status: Active
 language: en
 lang: en
+lang-exclusive: [en]
+page_id: ecology-v2-root-gateway
 related: true
 last_modified_at: 2026-09-20T18:00:00+06:00
 ---
@@ -42,4 +44,4 @@ This is the current LBFL Ecology course. It contains **10 detailed lectures**, e
 9. Demography, vital rates and life tables
 10. Survivorship curves and population growth models
 
-The earlier Ecology lecture set has been retired. The links below point only to the V2 Lectures 01–10 course.
+The earlier Ecology lecture set has been retired. This gateway points only to the V2 Lectures 01–10 course. Bangla lectures are served under `/bn/` and English mirrors under `/en/`.
