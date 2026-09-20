@@ -32,6 +32,7 @@ CONTENT_DIRS = [
 ]
 PRIVATE_PARTS = {".git", "_site", "node_modules", "vendor", ".bundle", "audit-reports", ".github"}
 FRAMEWORK_TERMS = ["LOLO", "LALA", "Bloom", "CQ Studio", "Practical Learning Framework", "Editorial Alignment"]
+UTILITY_HTML_IGNORE = {"google218dd4de4fb99bef.html", "bn/google218dd4de4fb99bef.html"}
 CRITICAL_LEAK_PATTERNS = [
     r"(^|>)\s*#{2,6}\s+",
     r"\{\%\s*(include|assign|if|endif|for|endfor)",
@@ -290,7 +291,7 @@ def main() -> int:
 
     img_no_alt, missing_h1 = [], []
     for f, parser in parsed.items():
-        if f in indexable_pages and parser.h1 == 0:
+        if f in indexable_pages and site_rel(f) not in UTILITY_HTML_IGNORE and parser.h1 == 0:
             missing_h1.append(site_rel(f))
         for img in parser.images:
             if "alt" not in img:
@@ -303,8 +304,8 @@ def main() -> int:
         [{"images_missing_alt": img_no_alt[:30]}, {"indexable_pages_missing_h1": missing_h1[:30]}],
     )
 
-    titles = Counter(p.title for p in indexable_pages.values() if p.title)
-    no_desc = [site_rel(f) for f, p in indexable_pages.items() if not p.meta_desc]
+    titles = Counter(p.title for f, p in indexable_pages.items() if p.title and site_rel(f) not in UTILITY_HTML_IGNORE)
+    no_desc = [site_rel(f) for f, p in indexable_pages.items() if site_rel(f) not in UTILITY_HTML_IGNORE and not p.meta_desc]
     dup_titles = [t for t, c in titles.items() if c > 3]
     add(
         phases,
@@ -325,7 +326,7 @@ def main() -> int:
         ]
         if not (SITE / r).exists()
     ]
-    thin_ignore = {"google218dd4de4fb99bef.html", "bn/google218dd4de4fb99bef.html"}
+    thin_ignore = UTILITY_HTML_IGNORE
     thin = []
     for f in indexable_pages:
         r = site_rel(f)
