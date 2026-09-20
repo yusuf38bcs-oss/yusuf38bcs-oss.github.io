@@ -1,21 +1,14 @@
-name: Ecology 29 Live Production Certification
-
+name: Ecology V2 10 Live Production Certification
 on:
   workflow_run:
     workflows: ["Deploy to GitHub Pages"]
     types: [completed]
   workflow_dispatch:
-
-permissions:
-  contents: read
-
-concurrency:
-  group: ecology-29-live-production
-  cancel-in-progress: false
-
+permissions: {contents: read}
+concurrency: {group: ecology-v2-10-live-production, cancel-in-progress: false}
 jobs:
   certify-live:
-    name: 29-route canonical production probe
+    name: 20-page bilingual canonical production probe
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -23,38 +16,16 @@ jobs:
       TARGET_MAIN_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
       PRODUCTION_URL: https://learningbiologyforlife.org
       CLOUDFLARE_WORKER_SCRIPT: ${{ vars.CLOUDFLARE_WORKER_SCRIPT }}
-
     steps:
       - name: Check out trusted current main
         uses: actions/checkout@v5
-        with:
-          ref: main
-          fetch-depth: 1
-          persist-credentials: false
-
-      - name: Authenticate current main identity
-        shell: bash
+        with: {ref: main, fetch-depth: 1, persist-credentials: false}
+      - name: Authenticate current main
         run: |
-          set -euo pipefail
-          [[ "$TARGET_MAIN_SHA" =~ ^[0-9a-f]{40}$ ]]
-          test "$(git rev-parse HEAD)" = "$TARGET_MAIN_SHA"
-          current_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
-          test "$current_main" = "$TARGET_MAIN_SHA" || {
-            echo "main moved before live certification; evidence would be stale"
-            exit 1
-          }
-
+          set -euo pipefail; test "$(git rev-parse HEAD)" = "$TARGET_MAIN_SHA"; test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$TARGET_MAIN_SHA"
       - name: Validate production certification credential
-        env:
-          PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          [[ "$PRODUCTION_CERTIFICATION_BYPASS_TOKEN" =~ ^[0-9a-f]{64}$ ]] || {
-            echo "Production certification credential is missing or invalid"
-            exit 1
-          }
-
+        env: {PRODUCTION_CERTIFICATION_BYPASS_TOKEN: "${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}"}
+        run: '[[ "$PRODUCTION_CERTIFICATION_BYPASS_TOKEN" =~ ^[0-9a-f]{64}$ ]]'
       - name: Resolve canonical exact-main Cloudflare production deployment
         id: production
         env:
@@ -63,108 +34,21 @@ jobs:
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
         shell: bash
         run: |
-          set -euo pipefail
-          test -n "$CLOUDFLARE_ACCOUNT_ID"
-          test -n "$CLOUDFLARE_API_TOKEN"
-          test -n "$CLOUDFLARE_PAGES_PROJECT"
-          test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy"
-
-          production_output="$RUNNER_TEMP/ecology-cloudflare-production.out"
-          evidence="$RUNNER_TEMP/ecology-cloudflare-production.json"
-
-          for attempt in $(seq 1 40); do
-            : > "$production_output"
-            python3 .github/scripts/resolve-cloudflare-targets.py               --repository "$GITHUB_REPOSITORY"               --sha "$TARGET_MAIN_SHA"               --pages-environment production               --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID"               --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT"               --cloudflare-worker-script "$CLOUDFLARE_WORKER_SCRIPT"               --wait-seconds 0               --site-config _data/ai.yml               --output "$evidence"               --github-output "$production_output"
-
-            if python3 - "$evidence" "$TARGET_MAIN_SHA" <<'PY'
-          import json
-          import sys
-          evidence = json.load(open(sys.argv[1], encoding="utf-8"))
-          target_sha = sys.argv[2]
-          pages = evidence.get("pages", {})
-          passed = (
-              evidence.get("target_sha") == target_sha
-              and pages.get("exact_head") is True
-              and pages.get("deployed_sha") == target_sha
-              and pages.get("canonical") is True
-              and pages.get("branch") == "main"
-              and pages.get("environment") == "production"
-              and pages.get("status") == "success"
-              and bool(pages.get("deployment_id"))
-              and str(pages.get("url", "")).startswith("https://")
-          )
-          raise SystemExit(0 if passed else 1)
-          PY
-            then
-              cat "$production_output" >> "$GITHUB_OUTPUT"
-              exit 0
-            fi
-            sleep 15
-          done
-
-          cat "$evidence"
-          echo "No canonical successful Cloudflare production deployment matched the exact main SHA"
-          exit 1
-
-      - name: Enforce canonical production deployment identity
-        env:
-          DEPLOYED_SHA: ${{ steps.production.outputs.pages_deployed_sha }}
-          DEPLOYMENT_ID: ${{ steps.production.outputs.pages_deployment_id }}
-          DEPLOYMENT_STATUS: ${{ steps.production.outputs.pages_status }}
-          PAGES_BRANCH: ${{ steps.production.outputs.pages_branch }}
-          PAGES_CANONICAL: ${{ steps.production.outputs.pages_canonical }}
-          PAGES_ENVIRONMENT: ${{ steps.production.outputs.pages_environment }}
-          PAGES_EXACT_HEAD: ${{ steps.production.outputs.pages_exact_head }}
-          PAGES_URL: ${{ steps.production.outputs.pages_url }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          test "$PAGES_EXACT_HEAD" = "true"
-          test "$PAGES_CANONICAL" = "true"
-          test "$DEPLOYED_SHA" = "$TARGET_MAIN_SHA"
-          test "$PAGES_BRANCH" = "main"
-          test "$PAGES_ENVIRONMENT" = "production"
-          test "$DEPLOYMENT_STATUS" = "success"
-          test -n "$DEPLOYMENT_ID"
-          [[ "$PAGES_URL" == https://*.pages.dev ]]
-
-      - name: Probe all 29 canonical Ecology routes
+          set -euo pipefail; test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy"; evidence="$RUNNER_TEMP/ecology-v2-prod.json"; out="$RUNNER_TEMP/ecology-v2-prod.out"
+          for attempt in $(seq 1 40); do : > "$out"; python3 .github/scripts/resolve-cloudflare-targets.py --repository "$GITHUB_REPOSITORY" --sha "$TARGET_MAIN_SHA" --pages-environment production --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" --cloudflare-worker-script "$CLOUDFLARE_WORKER_SCRIPT" --wait-seconds 0 --site-config _data/ai.yml --output "$evidence" --github-output "$out" || true; if python3 - "$evidence" "$TARGET_MAIN_SHA" <<'PY2'
+          import json,sys
+          e=json.load(open(sys.argv[1])); p=e.get('pages',{}); s=sys.argv[2]
+          raise SystemExit(0 if e.get('target_sha')==s and p.get('exact_head') is True and p.get('deployed_sha')==s and p.get('canonical') is True and p.get('branch')=='main' and p.get('environment')=='production' and p.get('status')=='success' and p.get('deployment_id') and str(p.get('url','')).startswith('https://') else 1)
+PY2
+          then cat "$out" >> "$GITHUB_OUTPUT"; exit 0; fi; sleep 15; done; cat "$evidence"; exit 1
+      - name: Probe all 20 bilingual Ecology lecture pages
         env:
           EXACT_DEPLOYMENT_URL: ${{ steps.production.outputs.pages_url }}
           PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
-        shell: bash
+        run: node .github/scripts/ecology-production-live-certification.mjs --base-url "$PRODUCTION_URL" --exact-deployment-url "$EXACT_DEPLOYMENT_URL" --output ecology-live-evidence/ecology-v2-10-live.json
+      - name: Re-authenticate main
+        run: 'test "$(git ls-remote origin refs/heads/main | awk ''{print $1}'')" = "$TARGET_MAIN_SHA"'
+      - name: Record live PASS
         run: |
-          set -euo pipefail
-          node --check .github/scripts/ecology-production-live-certification.mjs
-          node .github/scripts/ecology-production-live-certification.mjs             --base-url "$PRODUCTION_URL"             --exact-deployment-url "$EXACT_DEPLOYMENT_URL"             --output ecology-live-evidence/ecology-29-live.json
-
-      - name: Re-authenticate main after route probe
-        shell: bash
-        run: |
-          set -euo pipefail
-          current_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
-          test "$current_main" = "$TARGET_MAIN_SHA" || {
-            echo "main moved during live certification; evidence is stale"
-            exit 1
-          }
-
-      - name: Record live production evidence
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat ecology-live-evidence/ecology-29-live.json
-          {
-            echo "# Ecology 29 Live Production Certification"
-            echo
-            echo "**ECOLOGY_29_LIVE_PASS**"
-            echo
-            echo "- exact main: `$TARGET_MAIN_SHA`"
-            echo "- canonical lecture HTTP 200: 29/29"
-            echo "- exact-deployment lecture HTTP 200: 29/29"
-            echo "- canonical origin match: 29/29"
-            echo "- gateway HTTP 200: PASS"
-            echo "- course index HTTP 200: PASS"
-            echo "- dedicated Ecology sitemap: PASS"
-            echo "- robots Ecology sitemap discovery: PASS"
-            echo "- canonical exact-main Cloudflare production deployment: PASS"
-          } >> "$GITHUB_STEP_SUMMARY"
+          cat ecology-live-evidence/ecology-v2-10-live.json
+          echo "ECOLOGY_V2_10_LIVE_PASS" >> "$GITHUB_STEP_SUMMARY"

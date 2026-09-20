@@ -1,59 +1,45 @@
 ---
 layout: single
 author_profile: true
-author: MD. Yusuf
+author: "MD. Yusuf"
 sidebar:
-  nav: synaptic_nav
-title: 'Ecology: Ecosystem Dynamics Matrix'
-excerpt: Explore the canonical 29-lecture LBFL Ecology course from environmental limits and populations to communities, ecosystems, biodiversity, conservation and Bangladesh field inquiry.
-description: Learning Biology For Life Ecology gateway for a complete 29-lecture Higher Zoology learning route.
-last_modified_at: 2026-09-20T16:03:08+06:00
+  nav: "synaptic_nav"
+title: "Ecology V2: Lectures 01–10"
+excerpt: "A bilingual ten-lecture Ecology sequence for Higher Zoology, with Bangla master lectures and clean-English mirrors."
+description: "Learning Biology For Life Ecology V2 gateway for the published bilingual Lectures 01–10 sequence."
 permalink: /biology/higher-zoology-tree/ecology/
+categories: [Biology, Higher Zoology, Ecology]
 node_id: node-ecology
-pillar: Life Sciences
-difficulty: Intermediate
-xp: 450
-time_min: 35
-status: Active
 parent_node: index-higher-zoology-tree
-network:
-- index-higher-zoology-tree
+course_id: ecology-v2-10
+course_role: gateway
+toc: true
+toc_sticky: true
+classes: wide
+status: Active
 language: en
 lang: en
-curriculum_tracks:
-- Higher Zoology
-concept_level: Gateway
-course_id: ecology-29
-course_role: gateway
+related: true
+last_modified_at: 2026-09-20T18:00:00+06:00
 ---
 
-Ecology explains how organisms interact with one another and with their physical environment. This gateway now leads to a complete 29-lecture sequence that connects ecological mechanism, evidence, quantitative reasoning, field methods, conservation and Bangladesh applications.
+# Ecology V2: Lectures 01–10
 
-## Start the Complete Course
+This is the current LBFL Ecology course. It contains **10 detailed lectures**, each published as a **Bangla master** and a **clean-English mirror**.
 
-[**Start the 29-Lecture Ecology Course →**]({{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }})
+[Open the complete bilingual course index →]({{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }})
 
-{% include education/framework-links.html %}
+## Course scope
 
-## Core Learning Route
+1. Foundations of Ecology: history, scope and levels of organization
+2. Environmental factors and limiting-factor principles
+3. Light, temperature and organism distribution
+4. Water, soil, salinity and environmental gradients
+5. Biotic limiting factors and species interactions
+6. Multiple environmental factors and ecological adaptation
+7. Bangladesh case study: Sundarbans salinization
+8. Population characteristics, density and dispersion
+9. Demography, vital rates and life tables
+10. Survivorship curves and population growth models
 
-- **Foundations:** history, organization, habitat, niche, limiting factors, tolerance and adaptation.
-- **Population ecology:** density, dispersion, vital rates, demography, growth, survivorship, life history and sampling.
-- **Community ecology:** competition, consumer-resource interactions, positive interactions, diversity, keystone effects and succession.
-- **Ecosystem ecology:** structure, food webs, energy flow, productivity, decomposition and nutrient cycles.
-- **Biodiversity and conservation:** measurement, loss, fragmentation, invasive species, restoration and protected-area reasoning.
-- **Bangladesh application:** wetlands, rivers, Sundarbans, char landscapes, GIS/remote sensing and field inquiry.
-
-## Editorial and Learner Trust
-
-- [Editorial Policy]({{ '/editorial-policy/' | relative_url }})
-- [Corrections]({{ '/corrections/' | relative_url }})
-- [Accessibility Statement]({{ '/accessibility/' | relative_url }})
-- [Disclaimer]({{ '/disclaimer/' | relative_url }})
-
-## Search and Crawl Discovery
-
-- [Complete 29-Lecture Course Index]({{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }})
-- [Ecology XML Sitemap]({{ '/ecology-sitemap.xml' | relative_url }})
-
-The course index exposes every canonical lecture through ordinary HTML links so learners and search crawlers can discover the full sequence without JavaScript.
+The earlier Ecology lecture set has been retired. The links below point only to the V2 Lectures 01–10 course.
