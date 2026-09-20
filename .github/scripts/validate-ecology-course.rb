@@ -8,6 +8,13 @@ COURSE_ID = "ecology-10"
 EXPECTED_PAIRS = 10
 EXPECTED_PAGES = 20
 BENGALI = /[\u0980-\u09FF]/
+HISTORICAL_ROUTES = {
+  "ecology-history-scopes-area.md" => "/biology/higher-zoology-tree/ecology/ecology-history-scopes-area/",
+  "population-ecology-a-science-of-life-motion-of-a-species.md" => "/biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species/",
+  "population-ecology-concept-on-size-of-population.md" => "/biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/",
+  "survivorship-curve-life-table-growth-models.md" => "/biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models/",
+  "community-ecology-an-equation-of-living-together.md" => "/biology/higher-zoology-tree/ecology/community-ecology-an-equation-of-living-together/"
+}.freeze
 
 def fail!(m); warn "ECOLOGY 10 CERTIFICATION FAIL: #{m}"; exit 1; end
 
@@ -56,10 +63,24 @@ records.each do |r|
   fail!("learner-facing V2 terminology remains #{r[:path]}") if body.match?(/\bV2\b/)
   fail!("duplicate language-navigation link remains #{r[:path]}") if body.match?(/\[(?:English version|Bangla version)\]/i)
 end
-# No retired ecology-29 content may remain in source.
+# Retired ecology-29 lecture architecture must not remain active, while five
+# established historical public URLs must remain as explicit compatibility pages.
 all_md.each do |p|
   data,text,body=fm(p)
-  fail!("retired ecology-29 source remains: #{p}") if data["course_id"]=="ecology-29"
+  fail!("retired ecology-29 source remains active: #{p}") if data["course_id"]=="ecology-29"
+end
+HISTORICAL_ROUTES.each do |filename, route|
+  path = ECOLOGY.join(filename)
+  fail!("historical route source missing #{filename}") unless path.file?
+  data,text,body = fm(path)
+  fail!("historical route changed #{filename}") unless data["permalink"] == route
+  fail!("historical route must use compatibility layout #{filename}") unless data["layout"] == "ecology-compatibility"
+  fail!("historical route must be compatibility role #{filename}") unless data["course_role"] == "compatibility"
+  fail!("historical route must stay noindex/follow #{filename}") unless data["robots"] == "noindex, follow"
+  fail!("historical route must stay out of sitemap #{filename}") unless data["sitemap"] == false
+  fail!("historical compatibility page has framework include #{filename}") if text.include?("framework-links.html")
+  fail!("historical compatibility page has LOLO/LALA #{filename}") if body.match?(/\b(?:LOLO|LALA)\b/)
+  fail!("historical compatibility page H1 should be layout-owned #{filename}") unless body.scan(/^# (?!#)/).empty?
 end
 # Gateway/index identities
 root_gateway = ROOT.join("biology/higher-zoology-tree/ecology/index.html"); fail!("static root gateway missing") unless root_gateway.file?
@@ -77,7 +98,7 @@ records.each do |r|
   fail!("sitemap source missing #{url}") unless site_map.include?(url)
 end
 puts "ECOLOGY_10_SOURCE_PASS"
-puts "lecture_pairs=10"; puts "lecture_pages=20"; puts "bangla=10"; puts "english=10"; puts "retired_previous_lectures=0"
+puts "lecture_pairs=10"; puts "lecture_pages=20"; puts "bangla=10"; puts "english=10"; puts "historical_compatibility_routes=5"
 exit 0 unless SITE.directory?
 records.each do |r|
   route=public_route(r)
@@ -95,6 +116,16 @@ support_routes.each do |route|
     fail!("shared learning cycle present on Ecology support route #{route}") if html.include?("data-zoology-learning-cycle")
     fail!("framework panel present on Ecology support route #{route}") if html.include?("lbfl-framework-links")
   end
+end
+
+HISTORICAL_ROUTES.each_value do |route|
+  rp = rendered(route)
+  fail!("historical route not rendered #{route}") unless rp.file?
+  html = File.read(rp, encoding: "UTF-8")
+  fail!("historical route H1 rendered !=1 #{route}") unless html.scan(/<h1\b/i).length == 1
+  fail!("shared learning cycle present on historical route #{route}") if html.include?("data-zoology-learning-cycle")
+  fail!("framework panel present on historical route #{route}") if html.include?("lbfl-framework-links")
+  fail!("historical route became a redirect #{route}") if html.match?(/http-equiv=["']refresh/i)
 end
 sm=SITE.join("ecology-sitemap.xml"); fail!("sitemap not rendered") unless sm.file?; xml=File.read(sm,encoding:"UTF-8")
 records.each{|r| url="https://learningbiologyforlife.org#{public_route(r)}"; fail!("sitemap missing #{url}") unless xml.include?(url)}

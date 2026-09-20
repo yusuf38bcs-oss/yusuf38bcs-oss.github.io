@@ -7,6 +7,7 @@ on:
     paths:
       - "_biology/higher-zoology-tree/ecology/**"
       - "_layouts/single.html"
+      - "_layouts/ecology-compatibility.html"
       - "_includes/head/head.html"
       - "assets/css/zoology-academic.css"
       - ".github/scripts/validate-ecology-course.rb"
@@ -78,4 +79,4 @@ jobs:
           echo "ECOLOGY_10_EXACT_HEAD_PASS" >> "$GITHUB_STEP_SUMMARY"
           echo "- 10 lecture pairs / 20 learner pages" >> "$GITHUB_STEP_SUMMARY"
           echo "- 60 lecture viewport checks at 390 / 768 / 1280" >> "$GITHUB_STEP_SUMMARY"
-          echo "- previous Ecology lecture set removed" >> "$GITHUB_STEP_SUMMARY"
+          echo "- previous Ecology lecture architecture retired; 5 historical URLs preserved as compatibility pages" >> "$GITHUB_STEP_SUMMARY"
