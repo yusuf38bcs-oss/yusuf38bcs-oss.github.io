@@ -2,14 +2,14 @@
 layout: single
 title: "Genetics Course Note"
 permalink: /biology/higher-zoology-tree/genetics/test-safe-file/
-robots: noindex
+robots: "noindex, follow"
+sitemap: false
 visibility: system
 index_in_matrix: false
 searchable: false
 learning_node: false
 ---
 
-<meta name="robots" content="noindex, follow">
 
 # Genetics Course Note
 
