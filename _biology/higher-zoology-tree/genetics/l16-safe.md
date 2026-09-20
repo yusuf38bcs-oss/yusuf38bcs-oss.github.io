@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 16
+page_id: genetics-17-l16
+previous: /biology/higher-zoology-tree/genetics/lecture-15/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/lecture-17/
 ---
-
-# Genetics Lecture 16: Translation and Genetic Code
 
 ## Concept Overview
 
@@ -77,8 +83,6 @@ Functional protein
 
 Protein cell-এর enzyme, structure, transporter, receptor, hormone and regulatory machinery তৈরি করে। তাই translation বুঝলে learner দেখতে পায় কীভাবে DNA sequence শেষ পর্যন্ত cell function and phenotype-এ পৌঁছায়। Genetic code translation-এর dictionary হিসেবে কাজ করে।
 
-{% include education/framework-links.html %}
-
 ## Learning Focus
 
 এই lecture central LBFL framework-কে RNA-to-protein conversion-এ প্রয়োগ করে। Learner-এর focus হবে genetic code, codon, anticodon, mRNA, tRNA, ribosome, amino acid, start codon, stop codon, initiation, elongation, termination and protein synthesis logic.
@@ -95,7 +99,7 @@ Genetic code is the rule system that connects mRNA codons with amino acids.
 Example:
 
 ```text
-AUG = start codon and methionine
+AUG commonly serves as the start codon when recognized in an initiation context and also specifies methionine at internal coding positions
 UAA, UAG, UGA = stop codons
 ```
 
@@ -121,7 +125,7 @@ Amino acid: methionine
   <section class="lbfl-info-card"><h3>tRNA</h3><p>Brings specific amino acids and contains anticodon.</p></section>
   <section class="lbfl-info-card"><h3>Ribosome</h3><p>Reads mRNA codons and helps form peptide bonds.</p></section>
   <section class="lbfl-info-card"><h3>Amino acid</h3><p>Building block of protein.</p></section>
-  <section class="lbfl-info-card"><h3>Start codon</h3><p>Signals the beginning of translation.</p></section>
+  <section class="lbfl-info-card"><h3>Start codon</h3><p>An AUG recognized in the proper initiation context usually establishes the translation reading frame; AUG can also encode methionine internally.</p></section>
   <section class="lbfl-info-card"><h3>Stop codon</h3><p>Signals termination of translation.</p></section>
 </div>
 
@@ -240,9 +244,6 @@ A mutation can change a codon. Depending on the change, the protein may be unaff
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Thinking every mutation changes phenotype. Some mutations are silent or context-dependent.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Translation teaches that information must be interpreted through a code. In learning life, words, actions and intentions also need the right code of interpretation. Without correct decoding, even accurate information can produce wrong action.
 
 ## Critical Thinking Questions
 

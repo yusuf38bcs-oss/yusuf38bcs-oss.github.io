@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Intermediate"
 xp: 700
 time_min: 55
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 10
+page_id: genetics-17-l10
+previous: /biology/higher-zoology-tree/genetics/gene-mapping/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/lecture-11/
 ---
-
-# Genetics Lecture 10: Chromosome Patterns
 
 ## Concept Overview
 
@@ -78,8 +84,6 @@ Inheritance pattern
 ## Why This Matters
 
 Mendelian ratios gene-level logic শেখায়, কিন্তু chromosome patterns inheritance-এর physical basis বুঝতে সাহায্য করে। Autosomes, sex chromosomes, haploid/diploid state, chromosome pairing and sex-determination systems না বুঝলে linkage, gene mapping, sex-linked inheritance or chromosomal abnormalities বোঝা অসম্পূর্ণ থাকে।
-
-{% include education/framework-links.html %}
 
 ## Chromosome-Pattern Learning Focus
 
@@ -225,9 +229,6 @@ Altered developmental or inheritance outcome
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Assuming all species use the human XX-XY system. Sex determination varies across organisms.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Chromosome patterns teach organization. The same information becomes meaningful only when arranged properly. In learning life, scattered facts become useful when organized into patterns, relationships and systems.
 
 ## Critical Thinking Questions
 
