@@ -1,5 +1,6 @@
 course_id: animal-diversity-10
 course_title: Animal Diversity
+# Staging certification metadata synchronized after Ecology workflow repair (PR #309).
 gateway: /biology/animal-diversity/
 course_index: /biology/animal-diversity/course/
 release_status: STAGING_CERTIFIED
