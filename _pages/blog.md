@@ -1,18 +1,28 @@
 ---
-layout: single
-title: "Blog"
+layout: none
+title: "Blog Archive Redirect"
 permalink: /blog/
-excerpt: "Learning Biology For Life blog archive and learning updates."
-toc: false
-classes: wide
+sitemap: false
+robots: noindex
+visibility: system
+searchable: false
+learning_node: false
 ---
-
-# Blog
-
-This route preserves the public blog archive link used across the site.
-
-## Continue Learning
-
-- [Learning Archive]({{ '/archive/' | relative_url }})
-- [Biology Hub]({{ '/biology/' | relative_url }})
-- [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="This legacy blog route forwards to the Learning Biology For Life archive.">
+  <link rel="canonical" href="{{ '/archive/' | absolute_url }}">
+  <meta http-equiv="refresh" content="0; url={{ '/archive/' | relative_url }}">
+  <title>Redirecting to the Learning Archive | Learning Biology For Life</title>
+</head>
+<body>
+  <main>
+    <h1>Redirecting to the Learning Archive</h1>
+    <p>The former blog route now points to the consolidated Learning Biology For Life archive.</p>
+    <p><a href="{{ '/archive/' | relative_url }}">Continue to the Learning Archive</a>.</p>
+  </main>
+</body>
+</html>
