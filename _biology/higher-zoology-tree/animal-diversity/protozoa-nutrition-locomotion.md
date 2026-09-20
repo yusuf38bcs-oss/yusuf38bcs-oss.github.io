@@ -1,25 +1,14 @@
 ---
-layout: null
+layout: animal-diversity-compatibility
+title: "Protozoa: Nutrition and Locomotion — Retired lesson"
 permalink: /biology/higher-zoology-tree/animal-diversity/protozoa-nutrition-locomotion/
 sitemap: false
-robots: noindex
+robots: "noindex, follow"
 status: retired
 course_status: compatibility
+page_id: animal-diversity-retired-05
 ---
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="robots" content="noindex, follow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Protozoa: Nutrition and Locomotion — Retired lesson</title>
-</head>
-<body>
-  <main>
-    <h1>Protozoa: Nutrition and Locomotion</h1>
-    <p>This lesson belongs to the retired Animal Diversity course architecture.</p>
-    <p>The previous lesson content is no longer presented as part of the current canonical course. This address is preserved so older bookmarks and shared links do not become a broken route.</p>
-    <p><a href="{{ '/biology/animal-diversity/' | relative_url }}">Open the Animal Diversity gateway</a></p>
-  </main>
-</body>
-</html>
+
+This lesson belongs to the retired Animal Diversity course architecture.\n\nThe previous lesson content is no longer presented as part of the current course. This address is preserved so older bookmarks and shared links do not become a broken route.
+
+[Open the Animal Diversity gateway]({{ '/biology/animal-diversity/' | relative_url }})

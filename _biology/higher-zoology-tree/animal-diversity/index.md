@@ -22,7 +22,7 @@ Animal Diversity is the Higher Zoology course for comparing animal form, classif
 
 ## Course scope
 
-The reconstructed course uses one logical course identity, `animal-diversity-10`, with route-aware language handling. The supplied lecture package is present for review, but lecture pages are not published from this reconstruction branch until scientific review, structural normalization, asset binding, and exact-head certification are complete.
+The reconstructed course uses one ten-lecture structure with route-aware language handling. The supplied lecture package is present for review, but lecture pages are not published from this reconstruction branch until scientific review, structural normalization, asset binding, and exact-head certification are complete.
 
 ## Curriculum context
 
