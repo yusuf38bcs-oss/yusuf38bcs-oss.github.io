@@ -2,14 +2,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-const args = process.argv.slice(2);
-const value = (flag, fallback = "") => {
-  const index = args.indexOf(flag);
-  return index >= 0 ? args[index + 1] : fallback;
-};
-
-const baseUrl = new URL(value("--base-url", "https://learningbiologyforlife.org"));
-assert.equal(baseUrl.origin, "https://learningbiologyforlife.org", "Live certification is restricted to the canonical production origin");
+const baseUrl = new URL("https://learningbiologyforlife.org");
 
 const token = process.env.PRODUCTION_CERTIFICATION_BYPASS_TOKEN ?? "";
 assert.match(token, /^[0-9a-f]{64}$/, "Production certification bypass token is missing or invalid");
