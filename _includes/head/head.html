@@ -4,8 +4,16 @@
 
 {% seo %}
 {% include head/polyglot-seo-overrides.html %}
+{% assign lbfl_content_lang = page.lang | default: site.default_lang | default: site.lang | default: 'en' %}
+{% assign lbfl_active_lang = site.active_lang | default: site.default_lang | default: site.lang | default: 'en' %}
+{% assign lbfl_language_fallback = false %}
+{% if lbfl_active_lang != lbfl_content_lang %}
+  {% assign lbfl_language_fallback = true %}
+{% endif %}
 {% if page.robots %}
 <meta name="robots" content="{{ page.robots | escape }}">
+{% elsif lbfl_language_fallback %}
+<meta name="robots" content="noindex, follow">
 {% endif %}
 {% include head/adsense.html %}
 
