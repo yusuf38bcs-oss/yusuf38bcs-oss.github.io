@@ -242,6 +242,9 @@ def rendered_findings(site_dir: Path | None, state: dict[str, str | bool | None]
             continue
         if expected_meta and html.count(expected_meta) != 1:
             findings.append(Finding("critical", "VERIFICATION_META_COUNT", relative, "Rendered route must contain exactly one AdSense verification meta tag.", str(html.count(expected_meta))))
+        h1_count = len(re.findall(r"<h1\\b", html, re.IGNORECASE))
+        if h1_count != 1:
+            findings.append(Finding("high", "RENDERED_H1_OWNERSHIP", relative, "Required review route must render exactly one H1.", str(h1_count)))
         if state.get("mode") == "review" and ADSENSE_SCRIPT_HOST in html:
             findings.append(Finding("critical", "REVIEW_MODE_AD_SCRIPT", relative, "Rendered review-mode page contains an AdSense script request."))
 
