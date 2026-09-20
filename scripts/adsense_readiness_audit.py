@@ -24,6 +24,7 @@ ADSENSE_SCRIPT_HOST = "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
 VERIFICATION_META_NAME = "google-adsense-account"
 CENTRAL_ADSENSE_INCLUDE = Path("_includes/head/adsense.html")
 ANALYTICS_CONSENT_INCLUDE = Path("_includes/head/analytics-consent.html")
+NONPRODUCTION_MIDDLEWARE = Path("functions/_middleware.js")
 HEAD_ENTRYPOINTS = (
     Path("_includes/head/head.html"),
     Path("_includes/head/homepage-v2-critical.html"),
@@ -174,6 +175,14 @@ def source_findings(root: Path) -> tuple[list[Finding], dict[str, str | bool | N
         text = read_text(root / entrypoint)
         if "{% include head/adsense.html %}" not in text:
             findings.append(Finding("critical", "VERIFICATION_INCLUDE_MISSING", str(entrypoint), "Head entrypoint does not include the central AdSense boundary."))
+
+    middleware = read_text(root / NONPRODUCTION_MIDDLEWARE)
+    if not middleware:
+        findings.append(Finding("high", "NONPRODUCTION_NOINDEX_MISSING", str(NONPRODUCTION_MIDDLEWARE), "Cloudflare Pages staging/preview middleware is missing."))
+    else:
+        for token in ("staging.learningbiologyforlife.org", ".pages.dev", "X-Robots-Tag", "noindex, follow"):
+            if token not in middleware:
+                findings.append(Finding("high", "NONPRODUCTION_NOINDEX_INCOMPLETE", str(NONPRODUCTION_MIDDLEWARE), "Non-production middleware is missing a required noindex control.", token))
 
     analytics = read_text(root / ANALYTICS_CONSENT_INCLUDE)
     if not analytics:
