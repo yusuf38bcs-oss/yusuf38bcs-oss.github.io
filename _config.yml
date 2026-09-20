@@ -46,6 +46,9 @@ exclude:
   - convert_atom.py
   - neural_candidates.csv
   - Repository-Guardian.ps1
+  - Invoke-PagesReorganization.ps1
+  - Invoke-SafeNeuralPatch-v2.ps1
+  - audit-patch.ps1
 
 # AdSense sanitation exact-head certification boundary; report heading is generated generically.: this marker keeps the Pages preview aligned with the certified PR head.
 # -----------------------------------------------------------------------------
