@@ -7,6 +7,7 @@ sidebar:
   nav: "ielts"
 author_profile: false
 excerpt: "A local-first IELTS Academic Writing Lab for planning, timed writing and self-review."
+last_modified_at: 2026-09-20
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
@@ -36,7 +37,7 @@ excerpt: "A local-first IELTS Academic Writing Lab for planning, timed writing a
         </select>
       </div>
     </div>
-    <p class="ielts-writing__privacy">Your plan, writing and self-review are stored only in this browser. No account, AI scoring, band prediction or submission is used in this MVP.</p>
+    <p class="ielts-writing__privacy">Your plan, writing and self-review are stored only in this browser. No account, AI scoring, band prediction or backend submission is used.</p>
   </section>
 
   <section class="ielts-writing__panel ielts-writing__prompt" aria-labelledby="writing-prompt-title">
