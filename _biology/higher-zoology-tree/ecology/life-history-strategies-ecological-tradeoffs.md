@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 11 forms part of the canonical 29-lecture LBFL Ecology course. It develops life-history strategies and ecological trade-offs through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Distinguish density-dependent from density-independent population effects.
 - Explain negative feedback in population regulation.
@@ -78,7 +77,7 @@ Phenotypic plasticity allows the same genotype to produce different phenotypes i
 
 Mosquitoes, crop pests, fish stocks, rodents, and wetland birds are not regulated by the same processes. Weather forcing, density dependence, disease, harvesting, and natural-enemy dynamics must be separated.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 Classify food competition, cyclone mortality, contagious disease, nest-site shortage, and a sudden pesticide spill as density-dependent, density-independent, or context-dependent, and justify each decision.
 

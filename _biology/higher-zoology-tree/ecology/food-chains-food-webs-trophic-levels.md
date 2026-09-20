@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 20 forms part of the canonical 29-lecture LBFL Ecology course. It develops food chains, food webs and trophic levels through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Integrate biotic and abiotic components in the ecosystem concept.
 - Explain the roles of producers, consumers, detritivores, and decomposers.
@@ -72,7 +71,7 @@ Food webs connect many food chains. Omnivory, scavenging, seasonal diet shifts, 
 
 Ponds and wetlands contain grazing and detrital pathways at the same time. Mangrove leaf litter can also enter estuarine detrital food webs, linking terrestrial vegetation with aquatic consumers.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 Build a ten-node pond food web using resource-to-consumer arrows. Mark the detrital pathway and include at least one omnivore.
 

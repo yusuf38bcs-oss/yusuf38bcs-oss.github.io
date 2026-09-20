@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 17 forms part of the canonical 29-lecture LBFL Ecology course. It develops species diversity, dominance and keystone species through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Distinguish keystone, dominant, and foundation species.
 - Explain direct and indirect effects in trophic cascades.
@@ -78,7 +77,7 @@ Some organisms alter the physical environment and thereby change resource availa
 
 ### 2. Richness, evenness, and diversity
 
-**Species richness, \(S\),** is the number of species present. **Evenness** describes how equally individuals are distributed among those species. **Diversity** combines information about richness and relative abundance.
+**Species richness, <var>S</var>,** is the number of species present. **Evenness** describes how equally individuals are distributed among those species. **Diversity** combines information about richness and relative abundance.
 
 Two forests can each contain ten species, yet differ greatly in diversity if one forest is dominated by a single species while the other has a more even abundance distribution.
 
@@ -90,7 +89,7 @@ A dominant species contributes strongly to abundance, biomass, basal area, or co
 
 Mangrove trees can act as habitat-forming foundation species, while predators, crabs, and decomposers occupy different interaction roles. Calling a species 'keystone' requires evidence of disproportionate ecological effect.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 Draw a six-species food web and remove one predator in a thought experiment. Predict one direct and two indirect consequences, then identify data that would test those predictions.
 

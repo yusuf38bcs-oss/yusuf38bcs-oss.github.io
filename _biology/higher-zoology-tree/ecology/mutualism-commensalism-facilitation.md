@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 16 forms part of the canonical 29-lecture LBFL Ecology course. It develops mutualism, commensalism and facilitation through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Classify major positive and negative species interactions.
 - Compare competition, predation, herbivory, parasitism, mutualism, and facilitation.
@@ -73,7 +72,7 @@ Harvesting, hunting, fishing, pesticides, invasive species, habitat conversion, 
 
 A rice-field food web can include crop plants, herbivorous insects, spiders, frogs, birds, microbes, and people. Broad-spectrum pesticide use may reduce pests and their natural enemies at the same time, changing later pest dynamics.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 Construct an interaction web for a pond or rice field with at least eight organisms. Label competition, predation, herbivory, parasitism, and mutualism, then predict the effect of removing one species.
 

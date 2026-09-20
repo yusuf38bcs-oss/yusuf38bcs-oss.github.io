@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 12 forms part of the canonical 29-lecture LBFL Ecology course. It develops population sampling: quadrat, mark–recapture and field design through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Distinguish a census from a sample.
 - Select random, systematic, or stratified sampling for different ecological questions.
@@ -76,17 +75,17 @@ Observed abundance depends on both true abundance and detection. Vegetation dens
 
 ## Quadrat density
 
-\[
-\bar D=\frac{\sum_{i=1}^{q}n_i}{qA}
-\]
+<div class="ecology-equation-set" role="group" aria-label="Mean quadrat density equation">
+<p class="ecology-equation"><strong>Mean density:</strong> <span aria-label="D bar equals the sum of n sub i from i equals one to q divided by q times A">D̄ = Σ<sub>i=1</sub><sup>q</sup><var>n</var><sub>i</sub> / (<var>qA</var>)</span></p>
+</div>
 
-where \(q\) is the number of quadrats, \(A\) is the area of each quadrat, and \(n_i\) is the count in quadrat \(i\).
+where <var>q</var> is the number of quadrats, <var>A</var> is the area of each quadrat, and <var>n</var><sub>i</sub> is the count in quadrat <var>i</var>.
 
 ## Integrated Perspective
 
 ### 1. Mark–recapture logic
 
-Suppose \(M\) individuals are captured, marked, and released. In a later sample, \(C\) individuals are captured and \(R\) of them are marked. If marked animals have mixed back into the population and capture probabilities are comparable, the marked proportion in the second sample can be used to estimate total population size.
+Suppose <var>M</var> individuals are captured, marked, and released. In a later sample, <var>C</var> individuals are captured and <var>R</var> of them are marked. If marked animals have mixed back into the population and capture probabilities are comparable, the marked proportion in the second sample can be used to estimate total population size.
 
 ### 2. Assumptions
 
@@ -98,7 +97,7 @@ Violating these assumptions can produce substantial bias.
 
 Mangrove vegetation can be stratified by salinity zone, wetland birds by habitat type, crop pests by field block, and aquatic plants by depth. Seasonal accessibility can bias sampling if difficult sites are systematically omitted.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 Design a 30-sample campus tree survey. Choose random, systematic, or stratified sampling and explain how roadsides, pond edges, and interior green spaces affect the design.
 

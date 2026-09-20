@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 13 forms part of the canonical 29-lecture LBFL Ecology course. It develops community ecology: living together through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Describe community composition, dominance, physiognomy, and trophic structure.
 - Distinguish species richness, evenness, and diversity.
@@ -52,7 +51,7 @@ A community is an assemblage of populations that occur together and interact. Co
 
 ## 2. Richness, evenness, and diversity
 
-**Species richness, \(S\),** is the number of species present. **Evenness** describes how equally individuals are distributed among those species. **Diversity** combines information about richness and relative abundance.
+**Species richness, <var>S</var>,** is the number of species present. **Evenness** describes how equally individuals are distributed among those species. **Diversity** combines information about richness and relative abundance.
 
 Two forests can each contain ten species, yet differ greatly in diversity if one forest is dominated by a single species while the other has a more even abundance distribution.
 
@@ -78,7 +77,7 @@ Species do not interact equally strongly with every other species. A few strong 
 
 Forest–tea garden edges, wetland–cropland boundaries, riverbank–settlement interfaces, and mangrove–mudflat transitions provide accessible examples of ecotones and edge effects.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 Survey a small community and record richness, the most abundant species, visible vertical layers, and any edge–interior difference. Write a short structural description.
 

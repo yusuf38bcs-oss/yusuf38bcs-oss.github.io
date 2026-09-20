@@ -37,9 +37,8 @@ synaptic_links:
 
 This Lecture 18 forms part of the canonical 29-lecture LBFL Ecology course. It develops ecological succession, disturbance, stability and resilience through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
 
-## Learning Objectives and Outcomes — LOLO
+## Key Ideas
 
 - Compare primary and secondary succession.
 - Explain facilitation, inhibition, and tolerance models of succession.
@@ -80,7 +79,7 @@ The literature uses these terms in different ways, so operational definitions sh
 
 River chars, cyclone-affected coastal vegetation, abandoned fields, landslide scars, and newly accreted mudflats provide natural settings for studying succession under repeated disturbance.
 
-## Learning Activity and Application — LALA
+## Application and Practice
 
 Design a chronosequence using sites of different ages after disturbance. Choose four variables to measure and explain the main limitation of substituting space for time.
 
