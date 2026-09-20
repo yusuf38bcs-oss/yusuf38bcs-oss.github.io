@@ -55,12 +55,11 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          cache: npm
+          node-version: "24"
 
-      - name: Install browser dependencies
+      - name: Install pinned browser dependencies
         run: |
-          npm ci
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
           npx playwright install --with-deps chromium
 
       - name: Serve exact build
