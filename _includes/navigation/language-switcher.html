@@ -40,6 +40,9 @@
 {% elsif clean_path contains '/biology/higher-zoology-tree/ecology/' %}
   {% assign english_path = clean_path | prepend: '/en' %}
   {% assign bangla_path = clean_path | prepend: '/bn' %}
+{% elsif clean_path contains '/biology/animal-diversity/' %}
+  {% assign english_path = clean_path %}
+  {% assign bangla_path = clean_path | prepend: '/bn' %}
 {% elsif clean_path == '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' %}
   {% assign english_path = '/en/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' %}
   {% assign bangla_path = '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' %}
@@ -74,8 +77,7 @@
 
 <nav class="lbfl-language-switcher" aria-label="Language switcher">
   <a class="lbfl-language-switcher__link{% if active_lang == 'en' %} is-active{% endif %}"
-     href="{{ english_href }}"
-     hreflang="en"
+     hreflang="en" href="{{ english_href }}"
      title="English version"
      aria-label="English version"{% if active_lang == 'en' %} aria-current="page"{% endif %}>Eng</a>
   <span class="lbfl-language-switcher__divider" aria-hidden="true">|</span>

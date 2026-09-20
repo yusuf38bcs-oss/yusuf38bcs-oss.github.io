@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Living Reptilia classification</title>
+<desc id="desc">Original educational diagram for LBFL Animal Diversity–II (223101).</desc>
+<style>
+.bg{fill:#fbfaf5} .box{fill:#fff;stroke:#0f5f5a;stroke-width:3;rx:16} .soft{fill:#e9f5f1;stroke:#0f5f5a;stroke-width:2;rx:16}
+.warm{fill:#fff3d6;stroke:#9a6a00;stroke-width:2;rx:16} .rose{fill:#fbe9e6;stroke:#a33c2b;stroke-width:2;rx:16}
+.line{stroke:#0f5f5a;stroke-width:4;fill:none;marker-end:url(#a)} .red{stroke:#a33c2b;stroke-width:4;fill:none;marker-end:url(#r)}
+.blue{stroke:#245b91;stroke-width:4;fill:none;marker-end:url(#b)} .dash{stroke:#667;stroke-width:2;stroke-dasharray:7 7;fill:none}
+.head{font:700 34px Arial,sans-serif;fill:#0f5f5a} .txt{font:26px Arial,sans-serif;fill:#163331}
+.small{font:21px Arial,sans-serif;fill:#324d4b} .tiny{font:18px Arial,sans-serif;fill:#445}
+</style>
+<defs>
+<marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0f5f5a"/></marker>
+<marker id="r" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a33c2b"/></marker>
+<marker id="b" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#245b91"/></marker>
+</defs>
+<rect class="bg" width="100%" height="100%"/>
+
+<text x="600" y="48" text-anchor="middle" class="head">Living Reptilia: NU-friendly order map</text>
+<rect x="460" y="90" width="280" height="70" class="warm"/><text x="600" y="133" text-anchor="middle" class="txt">Reptilia</text>
+<rect x="70" y="280" width="230" height="90" class="soft"/><text x="185" y="335" text-anchor="middle" class="txt">Testudines</text>
+<rect x="340" y="280" width="230" height="90" class="soft"/><text x="455" y="335" text-anchor="middle" class="txt">Rhynchocephalia</text>
+<rect x="630" y="280" width="230" height="90" class="soft"/><text x="745" y="335" text-anchor="middle" class="txt">Squamata</text>
+<rect x="900" y="280" width="230" height="90" class="soft"/><text x="1015" y="335" text-anchor="middle" class="txt">Crocodylia</text>
+<path d="M520 160 L185 280" class="line"/><path d="M565 160 L455 280" class="line"/><path d="M635 160 L745 280" class="line"/><path d="M680 160 L1015 280" class="line"/>
+<text x="185" y="430" text-anchor="middle" class="small">turtles</text><text x="455" y="430" text-anchor="middle" class="small">tuatara</text><text x="745" y="430" text-anchor="middle" class="small">lizards + snakes</text><text x="1015" y="430" text-anchor="middle" class="small">crocodilians</text>
+<rect x="220" y="555" width="760" height="80" class="rose"/><text x="600" y="588" text-anchor="middle" class="small">Modern phylogeny places birds within Archosauria.</text><text x="600" y="618" text-anchor="middle" class="tiny">NU exam framework still treats Aves separately; name your framework.</text>
+
+</svg>

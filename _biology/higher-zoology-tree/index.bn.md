@@ -49,7 +49,7 @@ concept_level: "Gateway"
 ## প্রধান শাখাসমূহ
 
 <div class="lbfl-info-grid">
-  <section class="lbfl-info-card"><h3>প্রাণিবৈচিত্র্য ম্যাট্রিক্স</h3><p>Classification, body plan, representative animals, structure-function logic এবং evolutionary diversity।</p><p><a href="{{ '/biology/animal-diversity/' | relative_url }}">প্রাণিবৈচিত্র্য খুলুন</a></p></section>
+  <section class="lbfl-info-card"><h3>প্রাণিবৈচিত্র্য</h3><p>Classification, body plan, representative animals, structure-function logic এবং evolutionary diversity।</p><p><a href="{{ '/biology/animal-diversity/' | relative_url }}">প্রাণিবৈচিত্র্য খুলুন</a></p></section>
   <section class="lbfl-info-card"><h3>মানব শারীরবিদ্যা ম্যাট্রিক্স</h3><p>Homeostasis, organ systems, regulation, health awareness এবং practical life interpretation।</p><p><a href="{{ '/biology/higher-zoology-tree/human-physiology/' | relative_url }}">মানব শারীরবিদ্যা খুলুন</a></p></section>
   <section class="lbfl-info-card"><h3>বাস্ততত্ত্ব ম্যাট্রিক্স</h3><p>Organism-environment relationship, population, community, ecosystem dynamics এবং stewardship thinking।</p><p><a href="{{ '/biology/higher-zoology-tree/ecology/' | relative_url }}">বাস্ততত্ত্ব খুলুন</a></p></section>
   <section class="lbfl-info-card"><h3>জিনতত্ত্ব ম্যাট্রিক্স</h3><p>বংশগতি ও Mendelian inheritance থেকে molecular genetics, gene regulation, mutation এবং responsible interpretation পর্যন্ত সম্পন্ন ১৭-লেকচার course।</p><p><a href="{{ '/biology/higher-zoology-tree/genetics/' | relative_url }}">জিনতত্ত্ব খুলুন</a></p></section>
