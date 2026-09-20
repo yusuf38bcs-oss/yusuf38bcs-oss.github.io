@@ -214,6 +214,10 @@ def main() -> int:
             if len(plain) > 260:
                 blocks[plain[:260]].append(root_rel(f))
     repeated = {k: sorted(set(v)) for k, v in blocks.items() if len(set(v)) > 2}
+    repeated_samples = [
+        {"snippet": key[:180], "paths": paths[:12]}
+        for key, paths in list(repeated.items())[:12]
+    ]
     heavy = {k: v[:12] for k, v in term_hits.items() if len(v) > 8}
     duplicate_status = "WARN" if repeated or heavy else "PASS"
     add(
@@ -221,7 +225,11 @@ def main() -> int:
         "02-duplicate-content",
         duplicate_status,
         "Repeated long blocks and framework boilerplate checked across all output collections.",
-        [{"repeated_groups": len(repeated)}, {"heavy_terms": heavy}],
+        [
+            {"repeated_groups": len(repeated)},
+            {"repeated_group_samples": repeated_samples},
+            {"heavy_terms": heavy},
+        ],
     )
 
     site_paths = {"/" + site_rel(f) for f in html_files}
@@ -333,15 +341,24 @@ def main() -> int:
         words = re.findall(r"[A-Za-z\u0980-\u09FF]+", re.sub(r"<[^>]+>", " ", read(f)))
         if len(words) < 80 and r not in thin_ignore:
             thin.append(r)
+    wip_pages = []
+    wip_re = re.compile(r"\b(?:MVP|coming soon|under construction)\b", re.IGNORECASE)
+    for f in indexable_pages:
+        visible = visible_html_for_leak_check(read(f))
+        visible_text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", visible)).strip()
+        if wip_re.search(visible_text):
+            wip_pages.append(site_rel(f))
     excluded_nonindexable = len(parsed) - len(indexable_pages)
+    adsense_status = "FAIL" if ads_missing else ("WARN" if thin or wip_pages else "PASS")
     add(
         phases,
         "11-adsense-readiness",
-        "FAIL" if ads_missing else ("WARN" if thin else "PASS"),
-        "Required AdSense/trust routes and indexable thin-page candidates checked. Noindex and redirect-only pages are excluded from the quality sample.",
+        adsense_status,
+        "Required trust routes, indexable thin-page candidates, and visible unfinished-product markers checked. Noindex and redirect-only pages are excluded from the quality sample.",
         [
             {"missing": ads_missing},
             {"indexable_thin_pages_sample": thin[:40]},
+            {"indexable_wip_marker_pages": wip_pages[:40]},
             {"nonindexable_or_redirect_pages_excluded": excluded_nonindexable},
         ],
     )
