@@ -32,6 +32,7 @@ CONTENT_DIRS = [
 ]
 PRIVATE_PARTS = {".git", "_site", "node_modules", "vendor", ".bundle", "audit-reports", ".github"}
 FRAMEWORK_TERMS = ["LOLO", "LALA", "Bloom", "CQ Studio", "Practical Learning Framework", "Editorial Alignment"]
+UTILITY_HTML_IGNORE = {"google218dd4de4fb99bef.html", "bn/google218dd4de4fb99bef.html"}
 CRITICAL_LEAK_PATTERNS = [
     r"(^|>)\s*#{2,6}\s+",
     r"\{\%\s*(include|assign|if|endif|for|endfor)",
@@ -113,6 +114,8 @@ class PageParser(HTMLParser):
         self.ids: set[str] = set()
         self.title = ""
         self.meta_desc = False
+        self.noindex = False
+        self.refresh = False
         self.h1 = 0
         self._title = False
 
@@ -128,8 +131,15 @@ class PageParser(HTMLParser):
             self.h1 += 1
         if tag == "title":
             self._title = True
-        if tag == "meta" and attrs.get("name", "").lower() == "description" and attrs.get("content", "").strip():
-            self.meta_desc = True
+        if tag == "meta":
+            meta_name = attrs.get("name", "").lower()
+            meta_content = attrs.get("content", "").strip()
+            if meta_name == "description" and meta_content:
+                self.meta_desc = True
+            if meta_name == "robots" and "noindex" in meta_content.lower():
+                self.noindex = True
+            if attrs.get("http-equiv", "").lower() == "refresh":
+                self.refresh = True
 
     def handle_endtag(self, tag):
         if tag == "title":
@@ -162,6 +172,7 @@ def main() -> int:
     html_files = site_html_files()
     src_files = source_files()
     parsed = parse_pages(html_files)
+    indexable_pages = {f: p for f, p in parsed.items() if not p.noindex and not p.refresh}
     source_routes = declared_source_routes(src_files)
 
     add(
@@ -280,17 +291,29 @@ def main() -> int:
 
     img_no_alt, missing_h1 = [], []
     for f, parser in parsed.items():
-        if parser.h1 == 0:
+        if f in indexable_pages and site_rel(f) not in UTILITY_HTML_IGNORE and parser.h1 == 0:
             missing_h1.append(site_rel(f))
         for img in parser.images:
             if "alt" not in img:
                 img_no_alt.append(site_rel(f))
-    add(phases, "09-accessibility", "WARN" if img_no_alt or missing_h1 else "PASS", "Basic accessibility heuristics checked.", [{"images_missing_alt": img_no_alt[:30]}, {"pages_missing_h1": missing_h1[:30]}])
+    add(
+        phases,
+        "09-accessibility",
+        "WARN" if img_no_alt or missing_h1 else "PASS",
+        "Basic accessibility heuristics checked; noindex/redirect pages are excluded from H1 ownership warnings.",
+        [{"images_missing_alt": img_no_alt[:30]}, {"indexable_pages_missing_h1": missing_h1[:30]}],
+    )
 
-    titles = Counter(p.title for p in parsed.values() if p.title)
-    no_desc = [site_rel(f) for f, p in parsed.items() if not p.meta_desc]
+    titles = Counter(p.title for f, p in indexable_pages.items() if p.title and site_rel(f) not in UTILITY_HTML_IGNORE)
+    no_desc = [site_rel(f) for f, p in indexable_pages.items() if site_rel(f) not in UTILITY_HTML_IGNORE and not p.meta_desc]
     dup_titles = [t for t, c in titles.items() if c > 3]
-    add(phases, "10-seo", "WARN" if dup_titles or len(no_desc) > 25 else "PASS", "Title and description coverage checked.", [{"duplicate_titles": dup_titles[:20]}, {"missing_description_sample": no_desc[:30]}])
+    add(
+        phases,
+        "10-seo",
+        "WARN" if dup_titles or len(no_desc) > 25 else "PASS",
+        "Indexable title and description coverage checked; noindex/redirect pages are excluded.",
+        [{"duplicate_titles": dup_titles[:20]}, {"indexable_missing_description_sample": no_desc[:30]}],
+    )
 
     ads_missing = [
         r for r in [
@@ -303,14 +326,25 @@ def main() -> int:
         ]
         if not (SITE / r).exists()
     ]
-    thin_ignore = {"google218dd4de4fb99bef.html", "bn/google218dd4de4fb99bef.html"}
+    thin_ignore = UTILITY_HTML_IGNORE
     thin = []
-    for f in html_files:
+    for f in indexable_pages:
         r = site_rel(f)
         words = re.findall(r"[A-Za-z\u0980-\u09FF]+", re.sub(r"<[^>]+>", " ", read(f)))
         if len(words) < 80 and r not in thin_ignore:
             thin.append(r)
-    add(phases, "11-adsense-readiness", "FAIL" if ads_missing else ("WARN" if thin else "PASS"), "Legal pages and thin page sample checked.", [{"missing": ads_missing}, {"thin_pages_sample": thin[:40]}])
+    excluded_nonindexable = len(parsed) - len(indexable_pages)
+    add(
+        phases,
+        "11-adsense-readiness",
+        "FAIL" if ads_missing else ("WARN" if thin else "PASS"),
+        "Required AdSense/trust routes and indexable thin-page candidates checked. Noindex and redirect-only pages are excluded from the quality sample.",
+        [
+            {"missing": ads_missing},
+            {"indexable_thin_pages_sample": thin[:40]},
+            {"nonindexable_or_redirect_pages_excluded": excluded_nonindexable},
+        ],
+    )
 
     site_size = sum(f.stat().st_size for f in SITE.rglob("*") if f.is_file()) if SITE.exists() else 0
     add(phases, "12-performance-budget", "WARN" if site_size > 150_000_000 else "PASS", "Built site size checked.", [{"site_size_mb": round(site_size / 1024 / 1024, 2)}])
