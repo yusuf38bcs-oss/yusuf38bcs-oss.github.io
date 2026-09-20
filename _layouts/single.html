@@ -24,18 +24,16 @@ layout: default
 {% if page.header.overlay_color or lbfl_overlay_image %}
   <div class="page__hero{% if page.header.overlay_color or lbfl_overlay_image %}--overlay{% endif %}"
        style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if lbfl_overlay_image %}background-image: url('{{ lbfl_overlay_image | relative_url }}');{% endif %}">
-    {% if page.header.overlay_filter %}
-      <div class="wrapper">
-        {% unless lbfl_content_owns_h1 %}
-          <h1 id="page-title" class="page__title" itemprop="headline">
-            {{ page.title }}
-          </h1>
-        {% endunless %}
-        {% if page.excerpt %}
-          <p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
-        {% endif %}
-      </div>
-    {% endif %}
+    <div class="wrapper">
+      {% unless lbfl_content_owns_h1 %}
+        <h1 id="page-title" class="page__title" itemprop="headline">
+          {{ page.title }}
+        </h1>
+      {% endunless %}
+      {% if page.excerpt %}
+        <p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+      {% endif %}
+    </div>
   </div>
 {% endif %}
 
