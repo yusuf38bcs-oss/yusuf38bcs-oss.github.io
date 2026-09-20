@@ -1,0 +1,74 @@
+name: Animal Diversity Import Bootstrap
+
+on:
+  push:
+    branches:
+      - animal-diversity/10-course-reconstruction
+    paths:
+      - '.animal-diversity-import/payload.tar.gz'
+      - '.github/workflows/animal-diversity-import-bootstrap.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out payload commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: animal-diversity/10-course-reconstruction
+          fetch-depth: 0
+
+      - name: Authenticate payload commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
+
+      - name: Verify and import normalized course payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual="$(sha256sum .animal-diversity-import/payload.tar.gz | awk '{print $1}')"
+          expected="5b097f55574ccd25b1d291c277ffa0e39991add1d80a8c0bb86e35107898e12e"
+          test "$actual" = "$expected"
+
+          tar -xzf .animal-diversity-import/payload.tar.gz
+
+          python3 - <<'PY'
+from pathlib import Path
+p = Path("_includes/navigation/language-switcher.html")
+s = p.read_text(encoding="utf-8")
+needle = """{% elsif clean_path contains '/biology/higher-zoology-tree/ecology/' %}
+  {% assign english_path = clean_path | prepend: '/en' %}
+  {% assign bangla_path = clean_path | prepend: '/bn' %}
+"""
+addition = needle + """{% elsif clean_path contains '/biology/animal-diversity/' %}
+  {% assign english_path = clean_path %}
+  {% assign bangla_path = clean_path | prepend: '/bn' %}
+"""
+if "{% elsif clean_path contains '/biology/animal-diversity/' %}" not in s:
+    if needle not in s:
+        raise SystemExit("Animal Diversity language-switcher insertion point missing")
+    s = s.replace(needle, addition, 1)
+p.write_text(s, encoding="utf-8")
+PY
+
+          ruby .github/scripts/validate-animal-diversity-10.rb
+
+          git add _biology/higher-zoology-tree/animal-diversity \
+                  _data/animal-diversity-10.yml \
+                  _data/animal-diversity-10-assets.yml \
+                  _layouts/animal-diversity-course.html \
+                  assets/biology/animal-diversity \
+                  .github/scripts/validate-animal-diversity-10.rb \
+                  .github/scripts/animal-diversity-browser-certification.mjs \
+                  .github/workflows/animal-diversity-10-certification.yml \
+                  _includes/navigation/language-switcher.html
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Animal Diversity: import reviewed ten-lecture course"
+          git push origin HEAD:animal-diversity/10-course-reconstruction
