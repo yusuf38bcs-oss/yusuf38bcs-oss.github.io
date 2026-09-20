@@ -4,6 +4,9 @@
 
 {% seo %}
 {% include head/polyglot-seo-overrides.html %}
+{% if page.robots %}
+<meta name="robots" content="{{ page.robots | escape }}">
+{% endif %}
 {% include head/adsense.html %}
 
 <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
