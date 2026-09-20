@@ -22,6 +22,7 @@ minimal_mistakes_skin: dark
 include:
   - _pages
   - _redirects
+  - ads.txt
 
 exclude:
   - README.md
@@ -46,6 +47,9 @@ exclude:
   - convert_atom.py
   - neural_candidates.csv
   - Repository-Guardian.ps1
+  - Invoke-PagesReorganization.ps1
+  - Invoke-SafeNeuralPatch-v2.ps1
+  - audit-patch.ps1
 
 # AdSense sanitation exact-head certification boundary; report heading is generated generically.: this marker keeps the Pages preview aligned with the certified PR head.
 # -----------------------------------------------------------------------------
@@ -135,6 +139,22 @@ collections:
     permalink: /mcq-arena/:path/
 
 defaults:
+  - scope:
+      path: _pages/redirects
+    values:
+      robots: "noindex, follow"
+      sitemap: false
+      visibility: system
+      searchable: false
+      learning_node: false
+  - scope:
+      path: _biology/higher-zoology-tree/genetics/test-safe-file.md
+    values:
+      robots: "noindex, follow"
+      sitemap: false
+      visibility: system
+      searchable: false
+      learning_node: false
   - scope:
       path: about.bn.md
       type: pages
