@@ -25,10 +25,10 @@ jobs:
       PRODUCTION_URL: https://learningbiologyforlife.org
 
     steps:
-      - name: Check out exact deployed main SHA
+      - name: Check out trusted current main
         uses: actions/checkout@v5
         with:
-          ref: ${{ env.TARGET_MAIN_SHA }}
+          ref: main
           fetch-depth: 1
           persist-credentials: false
 
@@ -50,11 +50,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p ecology-live-evidence
           endpoint="https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$TARGET_MAIN_SHA/check-runs"
           for attempt in $(seq 1 80); do
-            curl --fail --silent --show-error               -H "Authorization: Bearer $GH_TOKEN"               -H "Accept: application/vnd.github+json"               "$endpoint" > ecology-live-evidence/check-runs.json
-            if python3 - ecology-live-evidence/check-runs.json <<'PY'
+            curl --fail --silent --show-error               -H "Authorization: Bearer $GH_TOKEN"               -H "Accept: application/vnd.github+json"               "$endpoint" > "$RUNNER_TEMP/ecology-check-runs.json"
+            if python3 - "$RUNNER_TEMP/ecology-check-runs.json" <<'PY'
           import json
           import sys
           data = json.load(open(sys.argv[1], encoding="utf-8"))
@@ -63,7 +62,7 @@ jobs:
           raise SystemExit(0 if ok else 1)
           PY
             then
-              python3 - ecology-live-evidence/check-runs.json > ecology-live-evidence/cloudflare-pages.json <<'PY'
+              python3 - "$RUNNER_TEMP/ecology-check-runs.json" > "$RUNNER_TEMP/cloudflare-pages.json" <<'PY'
           import json
           import sys
           data = json.load(open(sys.argv[1], encoding="utf-8"))
@@ -85,7 +84,7 @@ jobs:
             fi
             if [ "$attempt" -eq 80 ]; then
               echo "Exact-main Cloudflare Pages success was not observed"
-              cat ecology-live-evidence/check-runs.json
+              cat "$RUNNER_TEMP/ecology-check-runs.json"
               exit 1
             fi
             sleep 15
@@ -125,7 +124,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat ecology-live-evidence/ecology-29-live.json
           {
             echo "# Ecology 29 Live Production Certification"
             echo
