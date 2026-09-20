@@ -72,7 +72,7 @@ math: true
 | Lecture | 04 / 26 |
 | Syllabus | Topic 3 — Abiotic Factors |
 | CLO | CLO1, CLO2 |
-| Version | V2 fully detailed |
+| Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
 
 ## Lecture Question
@@ -427,7 +427,7 @@ Abiotic Ecology II: Water, Soil, Salinity and Environmental Gradients, Topic 3 �
 - Gurevitch, Scheiner & Fox. The Ecology of Plants.
 - Chapin, Matson & Vitousek. Principles of Terrestrial Ecosystem Ecology.
 
-### V2 review-এ ব্যবহৃত verified online support
+### Course review-এ ব্যবহৃত verified online support
 
 - OpenStax Biology 2e Ecology chapters: https://openstax.org/books/biology-2e/pages/44-introduction
 - OpenStax Population Demography: https://openstax.org/books/biology-2e/pages/45-1-population-demography

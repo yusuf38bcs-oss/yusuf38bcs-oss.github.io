@@ -71,7 +71,7 @@ clo_alignment:
 | Lecture | 05 / 26 |
 | Syllabus | Topic 4 — Biotic Limiting Factors |
 | CLO | CLO1, CLO2 |
-| Version | V2 fully detailed |
+| Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
 
 ## Lecture Question
@@ -412,7 +412,7 @@ Biotic Limiting Factors and Species Interactions, Topic 4 — Biotic Limiting Fa
 - Cain, Bowman & Hacker. Ecology.
 - Ricklefs. The Economy of Nature.
 
-### V2 review-এ ব্যবহৃত verified online support
+### Course review-এ ব্যবহৃত verified online support
 
 - OpenStax Biology 2e Ecology chapters: https://openstax.org/books/biology-2e/pages/44-introduction
 - OpenStax Population Demography: https://openstax.org/books/biology-2e/pages/45-1-population-demography

@@ -72,7 +72,7 @@ clo_alignment:
 | Lecture | 06 / 26 |
 | Syllabus | Topics 5–6 — Interaction of Multiple Factors; Adaptations |
 | CLO | CLO1, CLO2 |
-| Version | V2 fully detailed |
+| Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
 
 ## Lecture Question
@@ -430,7 +430,7 @@ Multiple Environmental Factors and Ecological Adaptation, Topics 5–6 — Inter
 - Cain, Bowman & Hacker. Ecology.
 - Gurevitch, Scheiner & Fox. The Ecology of Plants.
 
-### V2 review-এ ব্যবহৃত verified online support
+### Course review-এ ব্যবহৃত verified online support
 
 - OpenStax Biology 2e Ecology chapters: https://openstax.org/books/biology-2e/pages/44-introduction
 - OpenStax Population Demography: https://openstax.org/books/biology-2e/pages/45-1-population-demography

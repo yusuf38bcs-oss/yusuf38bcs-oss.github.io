@@ -71,7 +71,7 @@ clo_alignment:
 | Lecture | 02 / 26 |
 | Syllabus | Topic 2 — Principle of Limiting Factors |
 | CLO | CLO1, CLO2 |
-| Version | V2 fully detailed |
+| Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
 
 ## Lecture Question
@@ -415,7 +415,7 @@ Environmental Factors and the Principle of Limiting Factors, Topic 2 — Princip
 - Begon, Townsend & Harper. Ecology: From Individuals to Ecosystems.
 - Odum & Barrett. Fundamentals of Ecology.
 
-### V2 review-এ ব্যবহৃত verified online support
+### Course review-এ ব্যবহৃত verified online support
 
 - OpenStax Biology 2e Ecology chapters: https://openstax.org/books/biology-2e/pages/44-introduction
 - OpenStax Population Demography: https://openstax.org/books/biology-2e/pages/45-1-population-demography

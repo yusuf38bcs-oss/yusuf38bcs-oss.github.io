@@ -71,7 +71,7 @@ This Version 2 lecture is written as a **self-contained teaching note**, not a s
 | Lecture | 03 / 26 |
 | Syllabus | Topic 3 — Abiotic Factors |
 | CLO | CLO1, CLO2 |
-| Version | V2 fully detailed |
+| Version | Current detailed course |
 | Suggested class use | 2-hour lecture + guided reading/problem work |
 
 ## Lecture Question
@@ -412,7 +412,7 @@ Abiotic, Ecology, I, Light, Temperature, and, Organism, Distribution, Topic, Abi
 - Cain, Bowman & Hacker. Ecology.
 - Gurevitch, Scheiner & Fox. The Ecology of Plants.
 
-### Verified online support used during V2 review
+### Verified online support used during Course review
 
 - OpenStax Biology 2e Ecology chapters: https://openstax.org/books/biology-2e/pages/44-introduction
 - OpenStax Population Demography: https://openstax.org/books/biology-2e/pages/45-1-population-demography

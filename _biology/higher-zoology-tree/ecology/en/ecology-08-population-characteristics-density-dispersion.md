@@ -69,7 +69,7 @@ This Version 2 lecture is written as a **self-contained teaching note**, not a s
 | Lecture | 08 / 26 |
 | Syllabus | Topic 7 — Population Ecology |
 | CLO | CLO2 |
-| Version | V2 fully detailed |
+| Version | Current detailed course |
 | Suggested class use | 2-hour lecture + guided reading/problem work |
 
 ## Lecture Question
@@ -439,7 +439,7 @@ Population, Ecology, I, Population, Characteristics, Density, and, Dispersion, T
 - Begon, Townsend & Harper. Ecology: From Individuals to Ecosystems.
 - Cain, Bowman & Hacker. Ecology.
 
-### Verified online support used during V2 review
+### Verified online support used during Course review
 
 - OpenStax Biology 2e Ecology chapters: https://openstax.org/books/biology-2e/pages/44-introduction
 - OpenStax Population Demography: https://openstax.org/books/biology-2e/pages/45-1-population-demography

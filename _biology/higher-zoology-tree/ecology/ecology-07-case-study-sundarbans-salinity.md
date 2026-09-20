@@ -76,7 +76,7 @@ clo_alignment:
 | Lecture | 07 / 26 |
 | Syllabus | Topics 3–6 — Integrated case study |
 | CLO | CLO1, CLO2, CLO4 |
-| Version | V2 fully detailed |
+| Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
 
 ## Lecture Question
@@ -428,7 +428,7 @@ Bangladesh Case Study I: Sundarbans Salinization and the Hierarchy of Limiting F
 - Begon, Townsend & Harper. Ecology: From Individuals to Ecosystems.
 - Chapin, Matson & Vitousek. Principles of Terrestrial Ecosystem Ecology.
 
-### V2 review-এ ব্যবহৃত verified online support
+### Course review-এ ব্যবহৃত verified online support
 
 - OpenStax Biology 2e Ecology chapters: https://openstax.org/books/biology-2e/pages/44-introduction
 - OpenStax Population Demography: https://openstax.org/books/biology-2e/pages/45-1-population-demography
