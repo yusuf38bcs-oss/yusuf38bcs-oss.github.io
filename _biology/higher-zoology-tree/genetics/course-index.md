@@ -1,10 +1,10 @@
 ---
-layout: single
+layout: genetics-course
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
-title: "Genetics Course Index"
+title: "Genetics — 17 Lecture Course"
 excerpt: "A route-preserving 17-lecture Genetics course map from heredity and Mendelian ratios to molecular genetics, gene regulation and responsible interpretation."
 description: "Genetics course index for Learning Biology For Life, listing the complete 17-lecture route map with foundations, Mendelian inheritance, gene interaction, chromosome logic, molecular genetics and final synthesis."
 permalink: /biology/higher-zoology-tree/genetics/course-index/
@@ -19,69 +19,43 @@ toc: true
 toc_sticky: true
 node_id: genetics-course-index
 parent_node: genetics
+translation_status: single-source-unpaired
+page_id: genetics-course-index
+course_id: genetics-17
+course_role: index
 ---
 
-# Genetics Course Index
+This is the canonical Genetics sequence for Learning Biology For Life.
 
-This page is the production gateway for the **17-lecture Genetics route set** of Learning Biology For Life. The course moves from basic heredity to Mendelian reasoning, gene interaction, chromosome logic, molecular genetics, gene regulation and responsible interpretation.
+| Lecture | Topic |
+|---:|---|
+| 01 | [Foundations of Genetics]({{ '/biology/higher-zoology-tree/genetics/foundations-of-genetics/' | relative_url }}) |
+| 02 | [Genetic Terminology]({{ '/biology/higher-zoology-tree/genetics/genetic-terminology/' | relative_url }}) |
+| 03 | [Mendel and Pea Plant]({{ '/biology/higher-zoology-tree/genetics/mendel-and-pea-plant/' | relative_url }}) |
+| 04 | [Monohybrid Cross]({{ '/biology/higher-zoology-tree/genetics/monohybrid-cross/' | relative_url }}) |
+| 05 | [Dihybrid Cross]({{ '/biology/higher-zoology-tree/genetics/dihybrid-cross/' | relative_url }}) |
+| 06 | [Gene Interaction]({{ '/biology/higher-zoology-tree/genetics/gene-interaction/' | relative_url }}) |
+| 07 | [Epistasis and Gene Ratios]({{ '/biology/higher-zoology-tree/genetics/epistasis-gene-ratios/' | relative_url }}) |
+| 08 | [Linkage]({{ '/biology/higher-zoology-tree/genetics/linkage/' | relative_url }}) |
+| 09 | [Gene Mapping]({{ '/biology/higher-zoology-tree/genetics/gene-mapping/' | relative_url }}) |
+| 10 | [Chromosome Patterns]({{ '/biology/higher-zoology-tree/genetics/chromosome-patterns/' | relative_url }}) |
+| 11 | [Sex-Linked Inheritance]({{ '/biology/higher-zoology-tree/genetics/lecture-11/' | relative_url }}) |
+| 12 | [Chromosomal Mutation and Abnormalities]({{ '/biology/higher-zoology-tree/genetics/lecture-12/' | relative_url }}) |
+| 13 | [DNA as Genetic Material]({{ '/biology/higher-zoology-tree/genetics/lecture-13/' | relative_url }}) |
+| 14 | [DNA Replication]({{ '/biology/higher-zoology-tree/genetics/lecture-14/' | relative_url }}) |
+| 15 | [Central Dogma and Transcription]({{ '/biology/higher-zoology-tree/genetics/lecture-15/' | relative_url }}) |
+| 16 | [Translation and Genetic Code]({{ '/biology/higher-zoology-tree/genetics/lecture-16/' | relative_url }}) |
+| 17 | [Gene Regulation, Mutation and Course Synthesis]({{ '/biology/higher-zoology-tree/genetics/lecture-17/' | relative_url }}) |
 
-{% include education/framework-links.html %}
+## Study Strategy
 
-## Course Architecture
+1. Learn the vocabulary before solving crosses.
+2. Distinguish allele segregation from independent assortment.
+3. Treat linkage and recombination as chromosome-position phenomena.
+4. Connect chromosome behaviour to molecular information.
+5. Interpret ratios and molecular mechanisms as models with stated assumptions.
+6. Finish by integrating regulation, mutation, phenotype and environment.
 
-```text
-Foundation
-  ↓
-Mendelian inheritance
-  ↓
-Gene interaction and modified ratios
-  ↓
-Chromosome-based inheritance
-  ↓
-Molecular genetics
-  ↓
-Gene regulation, mutation and synthesis
-```
+## Compatibility
 
-## Complete Lecture Route Map
-
-| No. | Lecture | Main focus | Route |
-|---:|---|---|---|
-| 01 | Foundations of Genetics | heredity, variation, gene, trait, chromosome | [Open]({{ '/biology/higher-zoology-tree/genetics/foundations-of-genetics/' | relative_url }}) |
-| 02 | Genetic Terminology | allele, locus, genotype, phenotype, dominance | [Open]({{ '/biology/higher-zoology-tree/genetics/genetic-terminology/' | relative_url }}) |
-| 03 | Mendel and Pea Plant | Mendel's method, pea traits, pure line, controlled cross | [Open]({{ '/biology/higher-zoology-tree/genetics/mendel-and-pea-plant/' | relative_url }}) |
-| 04 | Monohybrid Cross | law of dominance, segregation, 3:1 ratio | [Open]({{ '/biology/higher-zoology-tree/genetics/monohybrid-cross/' | relative_url }}) |
-| 05 | Dihybrid Cross | independent assortment, four gametes, 9:3:3:1 ratio | [Open]({{ '/biology/higher-zoology-tree/genetics/dihybrid-cross/' | relative_url }}) |
-| 06 | Gene Interaction | non-allelic interaction and modified Mendelian logic | [Open]({{ '/biology/higher-zoology-tree/genetics/gene-interaction/' | relative_url }}) |
-| 07 | Epistasis and Gene Ratios | 9:7, 9:3:4, 12:3:1, 13:3, 15:1 ratios | [Open]({{ '/biology/higher-zoology-tree/genetics/epistasis-gene-ratios/' | relative_url }}) |
-| 08 | Linkage | linked genes, crossing over, recombination | [Open]({{ '/biology/higher-zoology-tree/genetics/linkage/' | relative_url }}) |
-| 09 | Gene Mapping | recombination frequency, map unit, centiMorgan | [Open]({{ '/biology/higher-zoology-tree/genetics/gene-mapping/' | relative_url }}) |
-| 10 | Chromosome Patterns | autosomes, sex chromosomes, karyotype, sex determination | [Open]({{ '/biology/higher-zoology-tree/genetics/chromosome-patterns/' | relative_url }}) |
-| 11 | Sex-Linked Inheritance | X-linked, Y-linked, carrier state, pedigree clues | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-11/' | relative_url }}) |
-| 12 | Chromosomal Mutation and Abnormalities | deletion, duplication, nondisjunction, aneuploidy | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-12/' | relative_url }}) |
-| 13 | DNA as Genetic Material | nucleotide, base pairing, chromosome chemistry | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-13/' | relative_url }}) |
-| 14 | DNA Replication | semi-conservative replication, replication fork, enzymes | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-14/' | relative_url }}) |
-| 15 | Central Dogma and Transcription | DNA to RNA, template strand, RNA processing | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-15/' | relative_url }}) |
-| 16 | Translation and Genetic Code | codon, anticodon, ribosome, protein synthesis | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-16/' | relative_url }}) |
-| 17 | Gene Regulation, Mutation, and Course Synthesis | regulation, mutation-to-phenotype logic, final synthesis | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-17/' | relative_url }}) |
-
-## Recommended Learning Path
-
-<div class="lbfl-info-grid">
-  <section class="lbfl-info-card"><h3>Start with vocabulary</h3><p>Complete Lectures 01–02 before solving inheritance problems.</p></section>
-  <section class="lbfl-info-card"><h3>Build Mendelian logic</h3><p>Use Lectures 03–05 to understand crosses, ratios and laws.</p></section>
-  <section class="lbfl-info-card"><h3>Handle exceptions</h3><p>Study Lectures 06–09 to interpret modified ratios, linkage and mapping.</p></section>
-  <section class="lbfl-info-card"><h3>Shift to chromosomes</h3><p>Use Lectures 10–12 to understand chromosome-based inheritance and variation.</p></section>
-  <section class="lbfl-info-card"><h3>Move molecular</h3><p>Use Lectures 13–16 to connect DNA information with expression.</p></section>
-  <section class="lbfl-info-card"><h3>Synthesize responsibly</h3><p>Use Lecture 17 to connect regulation, mutation, context and interpretation.</p></section>
-</div>
-
-## Final Route Integrity Note
-
-The public routes are preserved. This index improves title clarity and course sequencing without migrating URLs or changing navigation.
-
-## Related Paths
-
-- [Genetics Matrix]({{ '/biology/higher-zoology-tree/genetics/' | relative_url }})
-- [Higher Zoology Tree]({{ '/biology/higher-zoology-tree/' | relative_url }})
-- [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
+Older Genetics learning notes remain only as historical compatibility routes where needed; they are not parallel course tracks.
