@@ -84,6 +84,8 @@ const results = [];
 
 for (const route of routes) {
   const isAnimalDiversityRoute = route.startsWith("/biology/animal-diversity/");
+  const isEcologyCourseRoute =
+    route.startsWith("/biology/higher-zoology-tree/ecology/");
   for (const viewport of viewports) {
     const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
     const blockedExternal = [];
@@ -229,7 +231,7 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
       metrics?.hasContent === true &&
       metrics?.hasStylesheet === true &&
       (!isAnimalDiversityRoute || metrics?.hasContent === true) &&
-      (isAnimalDiversityRoute ? metrics?.hasCycle === false : metrics?.hasCycle === true) &&
+      (isAnimalDiversityRoute ? metrics?.hasCycle === false : (isEcologyCourseRoute ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
       (!isAnimalDiversityRoute || metrics?.structureChecks?.h1Count === 1) &&
       metrics?.structureChecks?.requiredText?.every((check) => check.passed) !== false &&
       metrics?.structureChecks?.forbiddenText?.every((check) => check.passed) !== false &&
