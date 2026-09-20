@@ -105,7 +105,7 @@ t = 5 / 2.025
 Using Welch's degrees-of-freedom approximation:
 
 ```text
-df ≈ 16.99
+df ≈ 17.17
 ```
 
 For a two-sided test this t statistic corresponds to a p-value of roughly 0.024. Under the model, the data therefore provide evidence against equal population means at α = 0.05.
