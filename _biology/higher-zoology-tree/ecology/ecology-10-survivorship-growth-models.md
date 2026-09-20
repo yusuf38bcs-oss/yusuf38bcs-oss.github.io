@@ -462,26 +462,13 @@ Survivorship Curves and Population Growth Models, Topic 7 — Population Ecology
 - OpenStax Population Dynamics and Regulation: https://openstax.org/books/biology-2e/pages/45-4-population-dynamics-and-regulation
 - OpenStax Community Ecology: https://openstax.org/books/biology-2e/pages/45-6-community-ecology
 
-## Synaptic Bridge to Next Lecture
+## Course Completion
 
-Lecture 11 growth model থেকে population regulation mechanism, density dependence, density-independent force ও life-history strategy-তে যাবে।
-
-```text
-Current concept
-      ↓
-Mechanism
-      ↓
-Evidence
-      ↓
-Next ecological process
-      ↓
-Lecture 11
-```
+Lecture 10-এর মাধ্যমে বর্তমান Ecology V2 Lectures 01–10 sequence সম্পূর্ণ হলো। পরবর্তী অধ্যয়ন, revision এবং language mirror access-এর জন্য course index ব্যবহার করুন।
 
 ## Course Navigation
 
 - [Ecology Course Hub]({{ '/biology/higher-zoology-tree/ecology/' | relative_url }})
 - [English version]({{ '/en/biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/' | relative_url }})
 - [← আগের lecture]({{ '/biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables/' | relative_url }})
-- [পরের lecture →]({{ '/biology/higher-zoology-tree/ecology/ecology-11-population-regulation-life-history/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})

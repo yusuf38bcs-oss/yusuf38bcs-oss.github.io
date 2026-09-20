@@ -496,21 +496,9 @@ Survivorship, Curves, and, Population, Growth, Models, Topic, Population, Ecolog
 - OpenStax Population Dynamics and Regulation: https://openstax.org/books/biology-2e/pages/45-4-population-dynamics-and-regulation
 - OpenStax Community Ecology: https://openstax.org/books/biology-2e/pages/45-6-community-ecology
 
-## Synaptic Bridge to the Next Lecture
+## Course Completion
 
-Lecture 11 will move from growth models to mechanisms of population regulation, density dependence, density-independent forces, and life-history strategies.
-
-```text
-Current lecture
-      ↓
-Concept understood
-      ↓
-Mechanism and evidence
-      ↓
-Next ecological level / process
-      ↓
-Lecture 11
-```
+Lecture 10 completes the current Ecology V2 Lectures 01–10 sequence. Use the course index for revision, paired-language access, and the next stage of study.
 
 ## Course Navigation
 
