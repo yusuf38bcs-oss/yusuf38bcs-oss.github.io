@@ -40,6 +40,9 @@
 {% elsif clean_path contains '/biology/higher-zoology-tree/ecology/' %}
   {% assign english_path = clean_path | prepend: '/en' %}
   {% assign bangla_path = clean_path | prepend: '/bn' %}
+{% elsif clean_path contains '/biology/animal-diversity/' %}
+  {% assign english_path = clean_path %}
+  {% assign bangla_path = clean_path | prepend: '/bn' %}
 {% elsif clean_path == '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' %}
   {% assign english_path = '/en/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' %}
   {% assign bangla_path = '/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/' %}
