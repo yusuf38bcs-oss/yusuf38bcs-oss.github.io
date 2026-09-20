@@ -65,7 +65,7 @@ jobs:
           echo "Current base authenticated: $PR_BASE_REF@$remote_base"
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1 # immutable SHA recommended by GitHub Docs
         with:
           ruby-version: "3.2"
           bundler-cache: true
