@@ -17,7 +17,7 @@ on:
       - "ecology-sitemap.xml"
       - "robots.txt"
       - "_pages/hubs/biology.md"
-      - "_pages/ecology-v2-gateway.md"
+      - "biology/higher-zoology-tree/ecology/index.html"
       - "_pages/ecology-v2-gateway.bn.md"
   workflow_dispatch:
 permissions: {contents: read}
