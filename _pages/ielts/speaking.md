@@ -7,13 +7,14 @@ sidebar:
   nav: "ielts"
 author_profile: false
 excerpt: "A local-first IELTS Speaking Simulator for structured preparation, timed speaking and deliberate self-review."
+last_modified_at: 2026-09-20
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
 
 <section class="ielts-speaking" data-ielts-speaking-simulator data-certification-surface="phase-2c" aria-labelledby="ielts-speaking-title">
   <header class="ielts-speaking__header">
-    <p class="ielts-speaking__eyebrow">Phase 2C · Speaking Simulator MVP</p>
+    <p class="ielts-speaking__eyebrow">Structured speaking practice</p>
     <h1 id="ielts-speaking-title">Think clearly. Speak deliberately.</h1>
     <p>Practise structured spoken English through preparation, timed response, self-review and focused retry.</p>
   </header>
@@ -74,7 +75,7 @@ excerpt: "A local-first IELTS Speaking Simulator for structured preparation, tim
   <section class="ielts-speaking__panel" aria-labelledby="speaking-notes-title">
     <p class="ielts-speaking__label">2 · Speak</p>
     <h2 id="speaking-notes-title">Record evidence from the attempt</h2>
-    <p class="ielts-speaking__help">Phase 2C does not record microphone audio. After speaking aloud, write only the phrases, hesitations or ideas you want to examine.</p>
+    <p class="ielts-speaking__help">This trainer does not record microphone audio. After speaking aloud, write only the phrases, hesitations or ideas you want to examine.</p>
     <label class="ielts-speaking__field-label" for="speakingNotes">Attempt notes</label>
     <textarea id="speakingNotes" rows="7" data-speaking-notes placeholder="Example: repeated 'I think'; lost the sequence after the example; useful phrase: from my perspective..."></textarea>
   </section>
@@ -108,7 +109,6 @@ excerpt: "A local-first IELTS Speaking Simulator for structured preparation, tim
   </aside>
 </section>
 
-<!-- Phase 2C exact-head certification surface: elapsed-timer-v3 -->
 <script>
   window.LBFL_IELTS_SPEAKING_PROMPTS = {{ site.data.ielts_speaking_prompts | jsonify }};
 </script>
