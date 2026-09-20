@@ -37,9 +37,7 @@ synaptic_links:
 
 This Lecture 14 forms part of the canonical 29-lecture LBFL Ecology course. It develops competition, niche overlap and resource partitioning through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Explain the competitive exclusion principle and its assumptions.
 - Describe spatial, dietary, and temporal resource partitioning.
@@ -82,7 +80,7 @@ Generalists use a broad range of resources or conditions; specialists use a narr
 
 Intertidal crabs, estuarine fish, mosquitoes, bats, and seasonal breeders provide examples of daily, tidal, and seasonal biological timing. Harvest that concentrates during spawning periods can turn timing into a management issue.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Two similar bird species feed at different forest heights. Write a resource-partitioning hypothesis and list the additional evidence needed before claiming character displacement.
 

@@ -37,9 +37,7 @@ synaptic_links:
 
 This Lecture 02 forms part of the canonical 29-lecture LBFL Ecology course. It develops levels of ecological organization and systems thinking through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Explain the scope of ecology and major stages in its historical development.
 - Distinguish organism, population, community, ecosystem, landscape, and biosphere levels.
@@ -78,7 +76,7 @@ Physiology explains tolerance mechanisms. Genetics and evolution explain variati
 
 Bangladesh contains floodplains, haors, beels, river chars, hill forests, coastal mudflats, mangroves, agricultural systems, and dense urban ecosystems within a small geographic area. These systems provide strong examples for studying scale, interaction, disturbance, and ecosystem management.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Choose one local ecosystem and write separate ecological questions at organism, population, community, ecosystem, and landscape levels. Explain how changing scale changes the question.
 

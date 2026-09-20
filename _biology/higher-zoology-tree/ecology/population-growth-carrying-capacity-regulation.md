@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/population-demography-age-structure-sex-ratio/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models/
+math: true
 ---
 
 # Population Growth, Carrying Capacity and Regulation
 
 This Lecture 09 forms part of the canonical 29-lecture LBFL Ecology course. It develops population growth, carrying capacity and regulation through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Interpret Type I, Type II, and Type III survivorship curves.
 - Compare exponential and logistic population-growth models.
@@ -90,7 +89,7 @@ A limiting factor reduces growth or performance. A regulating process creates de
 
 Population models can be applied cautiously to aquaculture stocking, mosquito outbreaks, invasive aquatic plants, or recovering wildlife populations. The model assumptions should be checked before management decisions are based on the prediction.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 For \(N_0=100\), \(r=0.2\,yr^{-1}\), and \(t=3\) years, calculate exponential growth and then list the assumptions that make the prediction biologically plausible or implausible.
 

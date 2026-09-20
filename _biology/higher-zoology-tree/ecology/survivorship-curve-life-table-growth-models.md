@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/population-growth-carrying-capacity-regulation/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/life-history-strategies-ecological-tradeoffs/
+math: true
 ---
 
 # Survivorship Curves, Life Tables and Growth Models
 
 This Lecture 10 forms part of the canonical 29-lecture LBFL Ecology course. It develops survivorship curves, life tables and growth models through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Interpret Type I, Type II, and Type III survivorship curves.
 - Compare exponential and logistic population-growth models.
@@ -100,7 +99,7 @@ Average lifespan does not reveal when mortality occurs. Two populations can have
 
 Population models can be applied cautiously to aquaculture stocking, mosquito outbreaks, invasive aquatic plants, or recovering wildlife populations. The model assumptions should be checked before management decisions are based on the prediction.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 For \(N_0=100\), \(r=0.2\,yr^{-1}\), and \(t=3\) years, calculate exponential growth and then list the assumptions that make the prediction biologically plausible or implausible.
 

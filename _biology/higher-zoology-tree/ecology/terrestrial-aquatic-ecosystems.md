@@ -37,9 +37,7 @@ synaptic_links:
 
 This Lecture 25 forms part of the canonical 29-lecture LBFL Ecology course. It develops terrestrial and aquatic ecosystem patterns through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Explain how climate change interacts with land-use change, pollution, and biological invasion.
 - Distinguish resistance, resilience, recovery, and transformation.
@@ -89,7 +87,7 @@ This creates a landscape mosaic rather than one uniform successional stage.
 
 Coastal salinity, cyclone exposure, wetland conversion, urban heat, water pollution, and sea-level change interact rather than occurring as isolated problems. Integrated management must link upstream and downstream processes, land use, biodiversity, livelihoods, and monitoring.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Choose a Bangladesh ecosystem and build a Driver → Mechanism → Indicator → Mitigation/Adaptation matrix containing climate, land-use, and pollution drivers. Add uncertainty and trade-offs.
 

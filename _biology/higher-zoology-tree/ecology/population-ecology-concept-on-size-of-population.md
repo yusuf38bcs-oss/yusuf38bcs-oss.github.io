@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/population-demography-age-structure-sex-ratio/
+math: true
 ---
 
 # Population Size: Birth, Death, Immigration and Emigration
 
 This Lecture 07 forms part of the canonical 29-lecture LBFL Ecology course. It develops population size: birth, death, immigration and emigration through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Use births, deaths, immigration, and emigration to describe population change.
 - Distinguish total demographic counts from per-capita and age-specific rates.
@@ -70,7 +69,7 @@ These expressions separate population change from age-specific survival and mort
 
 Fisheries management can be strongly affected by juvenile mortality, breeding-season harvest, and migration timing. Catch totals alone do not reveal whether recruitment and age structure are sustainable.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 For a cohort with 100, 70, 49, and 35 survivors at successive ages, calculate survivorship proportions and interval mortality. Identify the interval with the greatest proportional mortality.
 

@@ -37,9 +37,7 @@ synaptic_links:
 
 This Lecture 05 forms part of the canonical 29-lecture LBFL Ecology course. It develops adaptation, acclimatization and environmental response through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Distinguish additive, synergistic, and antagonistic effects among environmental factors.
 - Apply the idea of primary and secondary limiting factors.
@@ -74,7 +72,7 @@ Phenotypic plasticity allows the same genotype to produce different phenotypes i
 
 Coastal organisms may face heat, humidity, salinity, tidal inundation, food variation, and disturbance simultaneously. Dry-season freshwater fish can experience a different combination: low water depth, high temperature, crowding, and low dissolved oxygen.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Analyze a hypothetical insect that survives well at 30°C with high humidity, less well at 35°C, and very poorly at 35°C with low humidity. Explain the possible synergy and propose morphological, physiological, and behavioural responses.
 

@@ -37,9 +37,7 @@ synaptic_links:
 
 This Lecture 27 forms part of the canonical 29-lecture LBFL Ecology course. It develops biodiversity loss, extinction, invasive species and fragmentation through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Explain major anthropogenic drivers of biodiversity loss and ecosystem change.
 - Compare in situ and ex situ conservation approaches.
@@ -90,7 +88,7 @@ Organic pollutants include many hydrocarbons, pesticides, and persistent organic
 
 Conservation problems in Bangladesh include mangrove management, haor wetlands, hill forests, migratory-bird habitat, river biodiversity, and urban green space. Effective plans must consider ecological evidence together with livelihood and governance realities.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Create a management matrix for a wetland with encroachment, nutrient pollution, fishing pressure, and an invasive plant. For each threat, list a pressure indicator, response indicator, intervention, and monitoring metric.
 

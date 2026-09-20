@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/decomposition-detritus-soil-processes/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/terrestrial-aquatic-ecosystems/
+math: true
 ---
 
 # Carbon, Nitrogen, Phosphorus and Water Cycles
 
 This Lecture 24 forms part of the canonical 29-lecture LBFL Ecology course. It develops carbon, nitrogen, phosphorus and water cycles through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Distinguish reservoirs from fluxes in biogeochemical cycles.
 - Trace major pathways in carbon, nitrogen, phosphorus, sulfur, and water cycles.
@@ -80,7 +79,7 @@ It should be interpreted carefully when pools and fluxes are rapidly changing.
 
 Fertilizer runoff and sewage can increase nitrogen and phosphorus loading in ponds and wetlands. Flood pulses can redistribute nutrients across large areas, while decomposition can alter oxygen conditions.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Trace one nitrogen atom from fertilizer through a plant, consumer, detritus, ammonium, nitrate, and finally atmospheric nitrogen. Name the process at each transformation.
 

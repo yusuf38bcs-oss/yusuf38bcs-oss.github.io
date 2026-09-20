@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/life-history-strategies-ecological-tradeoffs/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/community-ecology-an-equation-of-living-together/
+math: true
 ---
 
 # Population Sampling: Quadrat, Mark–Recapture and Field Design
 
 This Lecture 12 forms part of the canonical 29-lecture LBFL Ecology course. It develops population sampling: quadrat, mark–recapture and field design through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Distinguish a census from a sample.
 - Select random, systematic, or stratified sampling for different ecological questions.
@@ -98,7 +97,7 @@ Violating these assumptions can produce substantial bias.
 
 Mangrove vegetation can be stratified by salinity zone, wetland birds by habitat type, crop pests by field block, and aquatic plants by depth. Seasonal accessibility can bias sampling if difficult sites are systematically omitted.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Design a 30-sample campus tree survey. Choose random, systematic, or stratified sampling and explain how roadsides, pond edges, and interior green spaces affect the design.
 

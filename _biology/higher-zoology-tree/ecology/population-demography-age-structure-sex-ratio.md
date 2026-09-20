@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/population-growth-carrying-capacity-regulation/
+math: true
 ---
 
 # Demography: Natality, Mortality, Age Structure and Sex Ratio
 
 This Lecture 08 forms part of the canonical 29-lecture LBFL Ecology course. It develops demography: natality, mortality, age structure and sex ratio through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Use births, deaths, immigration, and emigration to describe population change.
 - Distinguish total demographic counts from per-capita and age-specific rates.
@@ -82,7 +81,7 @@ These expressions separate population change from age-specific survival and mort
 
 Fisheries management can be strongly affected by juvenile mortality, breeding-season harvest, and migration timing. Catch totals alone do not reveal whether recruitment and age structure are sustainable.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 For a cohort with 100, 70, 49, and 35 survivors at successive ages, calculate survivorship proportions and interval mortality. Identify the interval with the greatest proportional mortality.
 

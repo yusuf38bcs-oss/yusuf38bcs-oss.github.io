@@ -86,6 +86,13 @@ records.each do |r|
   FORBIDDEN.each { |needle| fail!("#{r[:path]} contains forbidden '#{needle}'") if r[:text].include?(needle) }
   fail!("#{r[:path]} contains TODO/DRAFT/PLACEHOLDER residue") if body.match?(/\b(?:TODO|DRAFT|PLACEHOLDER)\b/i)
 
+  # Ecology P1 lecture-only presentation contract.
+  fail!("#{r[:path]} must not embed the global educational framework panel") if body.include?("education/framework-links.html")
+  fail!("#{r[:path]} retains LOLO/LALA branding") if body.match?(/\b(?:LOLO|LALA)\b/)
+  has_tex = (body.include?("\\[") && body.include?("\\]")) || (body.include?("\\(") && body.include?("\\)"))
+  fail!("#{r[:path]} contains TeX but is missing math:true") if has_tex && fm["math"] != true
+  fail!("#{r[:path]} declares math:true without TeX delimiters") if fm["math"] == true && !has_tex
+
   # All local assets referenced directly by the course must exist at the exact head.
   r[:text].scan(%r{(?:src=|href=|overlay_image:\s*)["']?(/assets/[^"'\s)]+)}).flatten.each do |asset|
     asset_path = ROOT.join(asset.sub(%r{\A/}, ""))
@@ -162,7 +169,12 @@ records.each do |r|
   fail!("missing page__content for #{route}") unless content
   fail!("#{route} rendered H1 count is #{html.scan(/<h1\b/i).length}, expected 1") unless html.scan(/<h1\b/i).length == 1
   fail!("#{route} missing Zoology stylesheet") unless html.include?("/assets/css/zoology-academic.css")
-  fail!("#{route} missing LOLO/LALA learning cycle") unless html.include?("data-zoology-learning-cycle")
+  fail!("#{route} must not render the shared LOLO/LALA learning cycle") if html.include?("data-zoology-learning-cycle")
+  fail!("#{route} must not render the global educational framework panel") if html.include?("lbfl-framework-links")
+  fail!("#{route} still renders LOLO/LALA branding") if content.match?(/\b(?:LOLO|LALA)\b/)
+  if r[:fm]["math"] == true
+    fail!("#{route} math page is missing the conditional MathJax loader") unless html.include?("MathJax-script")
+  end
   fail!("#{route} rendered learner content contains Bengali codepoints") if content.match?(BENGALI)
   FORBIDDEN.each { |needle| fail!("#{route} rendered forbidden '#{needle}'") if content.include?(needle) }
 end

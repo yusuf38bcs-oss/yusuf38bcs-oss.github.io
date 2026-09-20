@@ -117,7 +117,10 @@ function assertCanonical(html, expected, label) {
 
 function validatePage(text, response, expected, label) {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html/i, `${label} must return HTML`);
-  assert.ok(text.includes("data-zoology-learning-cycle"), `${label} is missing the Ecology/Zoology learning-cycle marker`);
+  assert.ok(text.includes('class="page__content"'), `${label} is missing the learner content shell`);
+  assert.ok(!text.includes("data-zoology-learning-cycle"), `${label} must not render the shared LOLO/LALA learning-cycle panel`);
+  assert.ok(!text.includes("lbfl-framework-links"), `${label} must not render the global educational framework panel`);
+  assert.ok(!/\b(?:LOLO|LALA)\b/.test(text), `${label} still exposes LOLO/LALA branding`);
   assertCanonical(text, expected, label);
   assert.ok(!/\b404\b[^<]*(?:not found|page)/i.test(text), `${label} looks like a 404 body`);
 }

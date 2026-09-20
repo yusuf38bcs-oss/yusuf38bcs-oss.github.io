@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/population-sampling-field-methods/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/competition-niche-resource-partitioning/
+math: true
 ---
 
 # Community Ecology: Living Together
 
 This Lecture 13 forms part of the canonical 29-lecture LBFL Ecology course. It develops community ecology: living together through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Describe community composition, dominance, physiognomy, and trophic structure.
 - Distinguish species richness, evenness, and diversity.
@@ -78,7 +77,7 @@ Species do not interact equally strongly with every other species. A few strong 
 
 Forest–tea garden edges, wetland–cropland boundaries, riverbank–settlement interfaces, and mangrove–mudflat transitions provide accessible examples of ecotones and edge effects.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Survey a small community and record richness, the most abundant species, visible vertical layers, and any edge–interior difference. Write a short structural description.
 

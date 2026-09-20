@@ -37,9 +37,7 @@ synaptic_links:
 
 This Lecture 03 forms part of the canonical 29-lecture LBFL Ecology course. It develops habitat, ecological niche, ecotone and edge effect through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Distinguish habitat from ecological niche.
 - Explain fundamental and realized niches.
@@ -76,7 +74,7 @@ An **ecotone** is a transition between ecological communities or ecosystem types
 
 Wetland conversion can reduce habitat area while also changing food, nesting sites, hydrology, disturbance, and microclimate. It therefore affects multiple niche dimensions at once.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Build a five-dimensional niche profile for a familiar bird, fish, or insect using food, microhabitat, climate, activity time, and breeding site. Identify the dimension most vulnerable to disturbance.
 

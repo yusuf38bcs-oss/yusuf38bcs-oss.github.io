@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/ecosystem-productivity/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/biogeochemical-cycles/
+math: true
 ---
 
 # Decomposition, Detritus and Soil Processes
 
 This Lecture 23 forms part of the canonical 29-lecture LBFL Ecology course. It develops decomposition, detritus and soil processes through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Distinguish reservoirs from fluxes in biogeochemical cycles.
 - Trace major pathways in carbon, nitrogen, phosphorus, sulfur, and water cycles.
@@ -82,7 +81,7 @@ Soil pH changes nutrient solubility, microbial activity, and toxicity. Organic m
 
 Fertilizer runoff and sewage can increase nitrogen and phosphorus loading in ponds and wetlands. Flood pulses can redistribute nutrients across large areas, while decomposition can alter oxygen conditions.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Trace one nitrogen atom from fertilizer through a plant, consumer, detritus, ammonium, nitrate, and finally atmospheric nitrogen. Name the process at each transformation.
 

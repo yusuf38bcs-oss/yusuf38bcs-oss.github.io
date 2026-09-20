@@ -440,3 +440,25 @@ html.lbfl-zoology-route body.lbfl-animal-diversity-document .page__content pre c
   color: #f5fbf8 !important;
   background: #102825 !important;
 }
+
+/* ============================================================================
+   ECOLOGY P1 DARK COMPONENT CONTRAST
+   Keep dark gateway/framework cards readable inside the light Zoology shell.
+   ============================================================================ */
+html.lbfl-zoology-route .page__content .lbfl-info-card h3,
+html.lbfl-zoology-route .page__content .lbfl-framework-links h2 {
+  color: #f8fafc !important;
+}
+
+html.lbfl-zoology-route .page__content .lbfl-info-card a,
+html.lbfl-zoology-route .page__content .lbfl-framework-link,
+html.lbfl-zoology-route .page__content .lbfl-framework-link strong {
+  color: #ccfbf1 !important;
+}
+
+html.lbfl-zoology-route .page__content .lbfl-info-card p,
+html.lbfl-zoology-route .page__content .lbfl-info-card li,
+html.lbfl-zoology-route .page__content .lbfl-framework-links p,
+html.lbfl-zoology-route .page__content .lbfl-framework-link span {
+  color: #dbeafe !important;
+}

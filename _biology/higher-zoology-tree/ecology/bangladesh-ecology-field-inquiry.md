@@ -36,9 +36,7 @@ synaptic_links:
 
 This Lecture 29 forms part of the canonical 29-lecture LBFL Ecology course. It develops bangladesh ecology: wetlands, rivers, sundarbans and applied field inquiry through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Explain why salinity in the Sundarbans should be analyzed as part of a coupled environmental system.
 - Distinguish direct physiological effects of salinity from indirect community and ecosystem effects.
@@ -132,7 +130,7 @@ Two images should be compared carefully. Differences in season, tide, cloud cove
 
 The Sundarbans case links coastal hydrology, salinity, tree regeneration, canopy structure, soil processes, and food-web consequences. It is therefore well suited to integrated ecological reasoning rather than single-factor explanation.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Create low-, moderate-, and high-salinity zones. Predict changes in salt-sensitive tree performance, salt-tolerant species, canopy openness, and soil processes. Separate direct predictions from indirect inferences.
 

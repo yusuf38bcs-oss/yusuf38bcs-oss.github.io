@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/mutualism-commensalism-facilitation/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/succession-disturbance-stability-resilience/
+math: true
 ---
 
 # Species Diversity, Dominance and Keystone Species
 
 This Lecture 17 forms part of the canonical 29-lecture LBFL Ecology course. It develops species diversity, dominance and keystone species through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Distinguish keystone, dominant, and foundation species.
 - Explain direct and indirect effects in trophic cascades.
@@ -90,7 +89,7 @@ A dominant species contributes strongly to abundance, biomass, basal area, or co
 
 Mangrove trees can act as habitat-forming foundation species, while predators, crabs, and decomposers occupy different interaction roles. Calling a species 'keystone' requires evidence of disproportionate ecological effect.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Draw a six-species food web and remove one predator in a thought experiment. Predict one direct and two indirect consequences, then identify data that would test those predictions.
 

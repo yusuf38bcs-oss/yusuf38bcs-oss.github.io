@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/adaptation-acclimatization-environmental-response/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/
+math: true
 ---
 
 # Population Ecology: Concept, Density and Dispersion
 
 This Lecture 06 forms part of the canonical 29-lecture LBFL Ecology course. It develops population ecology: concept, density and dispersion through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Define a population operationally for an ecological study.
 - Distinguish population size, density, and spatial dispersion.
@@ -80,7 +79,7 @@ where \(D\) is density, \(N\) is the number of individuals, and \(A\) is area or
 
 Hilsa, wetland birds, urban mosquitoes, crop pests, and deer require different methods of population estimation. A change in detectability can create an apparent abundance trend even when true population size has not changed.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Sample ten 1 m² quadrats in a field. Estimate mean density of a plant or burrow and explain how clumping would affect uncertainty.
 

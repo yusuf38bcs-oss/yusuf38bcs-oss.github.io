@@ -9,6 +9,12 @@ on:
       - "_includes/components/educational-boundary.html"
       - "_includes/zoology/learning-cycle.html"
       - ".github/scripts/validate-ecology-course.rb"
+      - ".github/scripts/validate-zoology-academic-design.rb"
+      - ".github/scripts/zoology-browser-certification.mjs"
+      - ".github/scripts/ecology-presentation-browser-certification.mjs"
+      - "assets/css/zoology-academic.css"
+      - "_includes/head/head.html"
+      - "_layouts/single.html"
       - ".github/workflows/ecology-course-certification.yml"
       - ".github/workflows/ecology-production-live-certification.yml"
       - ".github/scripts/ecology-production-live-certification.mjs"
@@ -90,6 +96,52 @@ jobs:
         shell: bash
         run: ruby .github/scripts/validate-ecology-course.rb
 
+      - name: Set up Node for Ecology presentation certification
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install pinned browser dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check .github/scripts/ecology-presentation-browser-certification.mjs
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+
+      - name: Serve exact-head Jekyll build
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle exec ruby -run -e httpd _site -p 4173 > "$RUNNER_TEMP/ecology-p1-http.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/ecology-p1-http.pid"
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4173/biology/higher-zoology-tree/ecology/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/ecology-p1-http.log"
+          exit 1
+
+      - name: Certify Ecology P1 presentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/scripts/ecology-presentation-browser-certification.mjs \
+            --site-dir _site \
+            --base-url http://127.0.0.1:4173 \
+            --output-dir ecology-presentation-report
+
+      - name: Preserve Ecology P1 browser evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ecology-presentation-${{ env.CERTIFICATION_HEAD_SHA }}
+          path: ecology-presentation-report
+          if-no-files-found: warn
+          retention-days: 30
+
       - name: Record exact-head PASS summary
         if: ${{ success() }}
         shell: bash
@@ -106,4 +158,9 @@ jobs:
             echo "- rendered missing routes: 0"
             echo "- search discovery sitemap: PASS"
             echo "- Biology hub crawl path: PASS"
+            echo "- lecture-only rendering: PASS"
+            echo "- 29 lectures × 390/768/1280 browser matrix: PASS"
+            echo "- serious/critical Axe violations: 0"
+            echo "- conditional math rendering: PASS"
+            echo "- dark-card contrast contract: PASS"
           } >> "$GITHUB_STEP_SUMMARY"

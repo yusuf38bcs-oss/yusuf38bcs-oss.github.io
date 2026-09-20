@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/terrestrial-aquatic-ecosystems/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/biodiversity-loss-extinction-invasive-species/
+math: true
 ---
 
 # Biodiversity: Patterns, Measurement and Biological Value
 
 This Lecture 26 forms part of the canonical 29-lecture LBFL Ecology course. It develops biodiversity: patterns, measurement and biological value through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Calculate a Lincoln–Petersen population estimate.
 - Identify major mark–recapture assumptions and sources of bias.
@@ -98,7 +97,7 @@ A dominant species contributes strongly to abundance, biomass, basal area, or co
 
 Capture–recapture can be useful for mobile animals when marking is ethical and assumptions are plausible. Diversity indices can compare forest, wetland, and agricultural communities only when sampling effort and methods are comparable.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 Calculate a population estimate for \(M=40\), \(C=50\), \(R=10\). Then compare two four-species communities, [25,25,25,25] and [70,10,10,10], in terms of richness and evenness.
 

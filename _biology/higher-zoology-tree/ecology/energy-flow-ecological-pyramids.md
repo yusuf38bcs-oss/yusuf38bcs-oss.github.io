@@ -31,15 +31,14 @@ synaptic_links:
 - /biology/higher-zoology-tree/ecology/food-chains-food-webs-trophic-levels/
 - /biology/higher-zoology-tree/ecology/course-index/
 - /biology/higher-zoology-tree/ecology/ecosystem-productivity/
+math: true
 ---
 
 # Energy Flow and Ecological Pyramids
 
 This Lecture 21 forms part of the canonical 29-lecture LBFL Ecology course. It develops energy flow and ecological pyramids through ecological mechanisms, evidence, interpretation and application.
 
-{% include education/framework-links.html %}
-
-## Learning Objectives and Outcomes — LOLO
+## Learning Objectives
 
 - Distinguish gross primary production, net primary production, and respiration.
 - Explain trophic transfer and why energy dissipates as heat.
@@ -78,7 +77,7 @@ where \(P_n\) and \(P_{n+1}\) are production at consecutive trophic levels.
 
 Productivity in floodplains, rice fields, ponds, haors, and mangroves changes with season, water depth, nutrients, and light. Fish yield may respond to primary productivity, but food-web structure and harvest pressure also matter.
 
-## Learning Activity and Application — LALA
+## Application Exercise
 
 If producer production is 10,000 kJ m⁻² yr⁻¹ and herbivore production is 1,200 kJ m⁻² yr⁻¹, calculate trophic transfer efficiency and explain why it need not equal 10%.
 
