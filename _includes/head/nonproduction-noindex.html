@@ -1,0 +1,25 @@
+{% comment %}
+  Safety net for non-production hosts that share the production Jekyll artifact.
+  Canonical URLs remain production-owned through site.url; this runtime marker
+  prevents staging and Cloudflare preview hosts from being intentionally indexable.
+  An edge-level X-Robots-Tag/noindex rule remains the stronger infrastructure control.
+{% endcomment %}
+<script>
+(function () {
+  "use strict";
+  var host = (window.location && window.location.hostname ? window.location.hostname : "").toLowerCase();
+  var nonProductionHost =
+    host === "staging.learningbiologyforlife.org" ||
+    host.endsWith(".pages.dev");
+
+  if (!nonProductionHost) return;
+
+  var robots = document.querySelector('meta[name="robots"]');
+  if (!robots) {
+    robots = document.createElement("meta");
+    robots.setAttribute("name", "robots");
+    document.head.appendChild(robots);
+  }
+  robots.setAttribute("content", "noindex, follow");
+})();
+</script>
