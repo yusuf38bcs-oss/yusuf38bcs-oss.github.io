@@ -7,6 +7,7 @@ sidebar:
 title: Ecology Course Index
 excerpt: Complete route map for the canonical 29-lecture LBFL Higher Zoology Ecology course.
 description: The complete 29-lecture Learning Biology For Life Ecology course index, from foundations and population ecology through conservation and Bangladesh field inquiry.
+last_modified_at: 2026-09-20T16:03:08+06:00
 permalink: /biology/higher-zoology-tree/ecology/course-index/
 categories:
 - Biology
