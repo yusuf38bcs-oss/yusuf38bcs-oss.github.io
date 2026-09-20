@@ -6,13 +6,16 @@ classes: wide ielts-practice-page
 sidebar:
   nav: "ielts"
 author_profile: false
+excerpt: "A 20-minute IELTS practice rotation for listening, reading, writing and speaking with browser-local reflection."
+description: "Daily IELTS practice with a 20-minute rotation, deliberate review, vocabulary work and local reflection."
+last_modified_at: 2026-09-20
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
 
 <section class="ielts-practice" data-ielts-daily-practice>
   <header class="ielts-practice__header">
-    <p class="ielts-practice__eyebrow">Phase 2A · Daily Practice MVP</p>
+    <p class="ielts-practice__eyebrow">Daily deliberate practice</p>
     <h1>Daily 20-Minute IELTS Practice</h1>
     <p>Follow the fixed rotation <strong>Listening → Reading → Writing → Speaking</strong>. Today’s skill is selected automatically from the learner’s local date.</p>
   </header>
@@ -77,7 +80,7 @@ author_profile: false
   </section>
 
   <aside class="ielts-practice__privacy">
-    <strong>Local-first MVP.</strong> This page uses browser storage only for the current daily session. No account, microphone, AI scoring, or backend submission is used in Phase 2A.
+    <strong>Local-first practice.</strong> This page uses browser storage only for the current daily session. No account, microphone, AI scoring, or backend submission is used.
   </aside>
 </section>
 
