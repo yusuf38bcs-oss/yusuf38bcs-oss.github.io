@@ -1,0 +1,139 @@
+name: Ecology 29 Live Production Certification
+
+on:
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: read
+
+concurrency:
+  group: ecology-29-live-production
+  cancel-in-progress: false
+
+jobs:
+  certify-live:
+    name: 29-route canonical production probe
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      TARGET_MAIN_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+      PRODUCTION_URL: https://learningbiologyforlife.org
+
+    steps:
+      - name: Check out trusted current main
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Authenticate current main identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$TARGET_MAIN_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$(git rev-parse HEAD)" = "$TARGET_MAIN_SHA"
+          current_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$current_main" = "$TARGET_MAIN_SHA" || {
+            echo "main moved before live certification; evidence would be stale"
+            exit 1
+          }
+
+      - name: Wait for exact-main Cloudflare Pages success
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          endpoint="https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$TARGET_MAIN_SHA/check-runs"
+          for attempt in $(seq 1 80); do
+            curl --fail --silent --show-error               -H "Authorization: Bearer $GH_TOKEN"               -H "Accept: application/vnd.github+json"               "$endpoint" > "$RUNNER_TEMP/ecology-check-runs.json"
+            if python3 - "$RUNNER_TEMP/ecology-check-runs.json" <<'PY'
+          import json
+          import sys
+          data = json.load(open(sys.argv[1], encoding="utf-8"))
+          runs = [r for r in data.get("check_runs", []) if r.get("name") == "Cloudflare Pages"]
+          ok = any(r.get("status") == "completed" and r.get("conclusion") == "success" for r in runs)
+          raise SystemExit(0 if ok else 1)
+          PY
+            then
+              python3 - "$RUNNER_TEMP/ecology-check-runs.json" > "$RUNNER_TEMP/cloudflare-pages.json" <<'PY'
+          import json
+          import sys
+          data = json.load(open(sys.argv[1], encoding="utf-8"))
+          runs = [
+              {
+                  "name": r.get("name"),
+                  "status": r.get("status"),
+                  "conclusion": r.get("conclusion"),
+                  "details_url": r.get("details_url"),
+                  "started_at": r.get("started_at"),
+                  "completed_at": r.get("completed_at"),
+              }
+              for r in data.get("check_runs", [])
+              if r.get("name") == "Cloudflare Pages"
+          ]
+          print(json.dumps(runs, indent=2))
+          PY
+              break
+            fi
+            if [ "$attempt" -eq 80 ]; then
+              echo "Exact-main Cloudflare Pages success was not observed"
+              cat "$RUNNER_TEMP/ecology-check-runs.json"
+              exit 1
+            fi
+            sleep 15
+          done
+
+      - name: Validate production certification credential
+        env:
+          PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$PRODUCTION_CERTIFICATION_BYPASS_TOKEN" =~ ^[0-9a-f]{64}$ ]] || {
+            echo "Production certification credential is missing or invalid"
+            exit 1
+          }
+
+      - name: Probe all 29 canonical Ecology routes
+        env:
+          PRODUCTION_CERTIFICATION_BYPASS_TOKEN: ${{ secrets.PRODUCTION_CERTIFICATION_BYPASS_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --version
+          node .github/scripts/ecology-production-live-certification.mjs             --base-url "$PRODUCTION_URL"             --output ecology-live-evidence/ecology-29-live.json
+
+      - name: Re-authenticate main after route probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$current_main" = "$TARGET_MAIN_SHA" || {
+            echo "main moved during live certification; evidence is stale"
+            exit 1
+          }
+
+      - name: Record live production evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "# Ecology 29 Live Production Certification"
+            echo
+            echo "**ECOLOGY_29_LIVE_PASS**"
+            echo
+            echo "- exact main: `$TARGET_MAIN_SHA`"
+            echo "- canonical lecture HTTP 200: 29/29"
+            echo "- gateway HTTP 200: PASS"
+            echo "- course index HTTP 200: PASS"
+            echo "- dedicated Ecology sitemap: PASS"
+            echo "- robots Ecology sitemap discovery: PASS"
+            echo "- exact-main Cloudflare Pages check: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"

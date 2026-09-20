@@ -9,6 +9,9 @@ require "set"
 ROOT = Pathname.new(__dir__).join("../..").expand_path
 ECOLOGY = ROOT.join("_biology/higher-zoology-tree/ecology")
 SITE = ROOT.join("_site")
+ECOLOGY_SITEMAP = ROOT.join("ecology-sitemap.xml")
+ROBOTS = ROOT.join("robots.txt")
+BIOLOGY_HUB = ROOT.join("_pages/hubs/biology.md")
 COURSE_ID = "ecology-29"
 EXPECTED = 29
 BENGALI = /[\u0980-\u09FF]/
@@ -122,6 +125,16 @@ fail!("COURSE_INDEX_ROWS expected 29 found #{row_routes.length}") unless row_rou
 fail!("course index routes must be unique") unless row_routes.uniq.length == EXPECTED
 fail!("course index does not exactly match canonical lecture routes") unless row_routes.to_set == permalinks.to_set
 
+
+# search-discovery source checks
+fail!("ecology-sitemap.xml missing") unless ECOLOGY_SITEMAP.file?
+ecology_sitemap_source = File.read(ECOLOGY_SITEMAP, encoding: "UTF-8")
+fail!("Ecology sitemap does not enumerate the ecology-29 collection") unless ecology_sitemap_source.include?('where: "course_id", "ecology-29"')
+robots_source = File.read(ROBOTS, encoding: "UTF-8")
+fail!("robots.txt does not advertise the Ecology sitemap") unless robots_source.include?("https://learningbiologyforlife.org/ecology-sitemap.xml")
+biology_hub_source = File.read(BIOLOGY_HUB, encoding: "UTF-8")
+fail!("Biology hub does not link the Ecology course index") unless biology_hub_source.include?("/biology/higher-zoology-tree/ecology/course-index/")
+
 puts "ECOLOGY_29_SOURCE_PASS"
 puts "lectures=#{records.length}"
 puts "course_index_rows=#{row_routes.length}"
@@ -155,6 +168,22 @@ index_rendered = rendered_path(index_fm["permalink"])
 fail!("course index did not render") unless index_rendered.file?
 gateway_rendered = rendered_path(gateway_fm["permalink"])
 fail!("gateway did not render") unless gateway_rendered.file?
+
+
+ecology_sitemap_rendered = SITE.join("ecology-sitemap.xml")
+fail!("Ecology sitemap did not render") unless ecology_sitemap_rendered.file?
+ecology_sitemap_xml = File.read(ecology_sitemap_rendered, encoding: "UTF-8")
+expected_discovery_routes = [gateway_fm["permalink"], index_fm["permalink"], *permalinks]
+expected_discovery_urls = expected_discovery_routes.map { |route| "https://learningbiologyforlife.org#{route}" }
+missing_discovery_urls = expected_discovery_urls.reject { |url| ecology_sitemap_xml.include?(url) }
+fail!("Ecology sitemap missing URLs: #{missing_discovery_urls.join(", ")}") unless missing_discovery_urls.empty?
+
+rendered_robots = SITE.join("robots.txt")
+fail!("rendered robots.txt missing") unless rendered_robots.file?
+fail!("rendered robots.txt does not advertise Ecology sitemap") unless File.read(rendered_robots, encoding: "UTF-8").include?("https://learningbiologyforlife.org/ecology-sitemap.xml")
+
+puts "ECOLOGY_29_DISCOVERY_PASS"
+puts "ecology_sitemap_urls=#{expected_discovery_urls.length}"
 
 puts "ECOLOGY_29_RENDER_PASS"
 puts "rendered_lectures=#{records.length}"

@@ -6,3 +6,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://learningbiologyforlife.org/sitemap.xml
+Sitemap: https://learningbiologyforlife.org/ecology-sitemap.xml
