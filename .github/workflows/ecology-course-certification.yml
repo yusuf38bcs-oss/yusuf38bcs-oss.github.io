@@ -1,0 +1,102 @@
+name: Ecology 29-Route Exact-Head Certification
+
+on:
+  pull_request:
+    branches: ["staging", "main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "_biology/higher-zoology-tree/ecology/**"
+      - "_includes/components/educational-boundary.html"
+      - "_includes/zoology/learning-cycle.html"
+      - ".github/scripts/validate-ecology-course.rb"
+      - ".github/workflows/ecology-course-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ecology-29-route-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: certify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CERTIFICATION_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out immutable candidate head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.CERTIFICATION_HEAD_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Authenticate exact head and current protected base
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -euo pipefail
+          actual_head="$(git rev-parse HEAD)"
+          if [[ "$actual_head" != "$PR_HEAD_SHA" ]]; then
+            echo "HEAD CHANGED — RECERTIFICATION REQUIRED"
+            exit 1
+          fi
+          remote_base="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
+          if [[ -z "$remote_base" || "$remote_base" != "$PR_BASE_SHA" ]]; then
+            echo "BASE CHANGED — RECERTIFICATION REQUIRED"
+            echo "event base:   $PR_BASE_SHA"
+            echo "current base: $remote_base"
+            exit 1
+          fi
+          git fetch --no-tags origin "refs/heads/$PR_BASE_REF:refs/remotes/origin/$PR_BASE_REF"
+          if ! git merge-base --is-ancestor "$remote_base" "$actual_head"; then
+            echo "STALE PR HEAD — CURRENT BASE IS NOT AN ANCESTOR"
+            exit 1
+          fi
+          echo "Exact head authenticated: $actual_head"
+          echo "Current base authenticated: $PR_BASE_REF@$remote_base"
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Validate Ecology source contract
+        shell: bash
+        run: ruby .github/scripts/validate-ecology-course.rb
+
+      - name: Build exact-head production site
+        shell: bash
+        run: |
+          set -euo pipefail
+          JEKYLL_ENV=production bundle exec jekyll clean
+          JEKYLL_ENV=production bundle exec jekyll build --trace
+
+      - name: Validate all 29 rendered Ecology routes
+        shell: bash
+        run: ruby .github/scripts/validate-ecology-course.rb
+
+      - name: Record exact-head PASS summary
+        if: ${{ success() }}
+        shell: bash
+        run: |
+          {
+            echo "# Ecology 29-Route Exact-Head Certification"
+            echo
+            echo "ECOLOGY_29_EXACT_HEAD_PASS"
+            echo
+            echo "- exact head: $CERTIFICATION_HEAD_SHA"
+            echo "- canonical lectures: 29"
+            echo "- immutable historical anchors: 5"
+            echo "- Bengali codepoints in canonical E1 learner content: 0"
+            echo "- rendered missing routes: 0"
+          } >> "$GITHUB_STEP_SUMMARY"

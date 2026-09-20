@@ -1,62 +1,51 @@
 ---
 layout: single
 author_profile: true
-author: "MD. Yusuf"
+author: MD. Yusuf
 sidebar:
-  nav: "synaptic_nav"
-title: "Ecology: Ecosystem Dynamics Matrix"
-excerpt: "Examine energy configurations, population trophic cascades, and biodiversity conservation matrices across ecosystems."
-date: 2026-06-13T12:25:00.000Z
+  nav: synaptic_nav
+title: 'Ecology: Ecosystem Dynamics Matrix'
+excerpt: Explore the canonical 29-lecture LBFL Ecology course from environmental limits and populations to communities, ecosystems, biodiversity, conservation and Bangladesh field inquiry.
+description: Learning Biology For Life Ecology gateway for a complete 29-lecture Higher Zoology learning route.
 permalink: /biology/higher-zoology-tree/ecology/
 node_id: node-ecology
-pillar: "Life Sciences"
-difficulty: "Intermediate"
+pillar: Life Sciences
+difficulty: Intermediate
 xp: 450
 time_min: 35
-status: "Active"
+status: Active
 parent_node: index-higher-zoology-tree
 network:
-  - index-higher-zoology-tree
+- index-higher-zoology-tree
 language: en
+lang: en
 curriculum_tracks:
-  - HSC Zoology
-  - NEET Biology
-  - IB Biology
-neet_alignment: "NCERT Biology: Organisms and Populations; Ecosystem; Biodiversity and Conservation"
-ib_theme: "Interaction and Interdependence"
-ib_subtopic: "Ecology and ecosystem gateway"
-hsc_alignment: "HSC Zoology: ecology, population, community, ecosystem, and conservation"
-concept_level: "Gateway"
+- Higher Zoology
+concept_level: Gateway
+course_id: ecology-29
+course_role: gateway
 ---
 
-Ecology explains how organisms interact with one another and with their physical environment. This hub connects population dynamics, community structure, ecosystem energy flow, biodiversity, conservation, and human responsibility.
+Ecology explains how organisms interact with one another and with their physical environment. This gateway now leads to a complete 29-lecture sequence that connects ecological mechanism, evidence, quantitative reasoning, field methods, conservation and Bangladesh applications.
+
+## Start the Complete Course
+
+[**Start the 29-Lecture Ecology Course →**]({{ '/biology/higher-zoology-tree/ecology/course-index/' | relative_url }})
+
+{% include education/framework-links.html %}
 
 ## Core Learning Route
 
-- **Organism and environment:** habitat, niche, adaptation, tolerance, and limiting factors.
-- **Population ecology:** population size, density, dispersion, growth models, survivorship, and life tables.
-- **Community ecology:** interaction, competition, predation, parasitism, mutualism, succession, and stability.
-- **Ecosystem ecology:** food chain, food web, trophic level, productivity, nutrient cycling, and energy transfer.
-- **Conservation:** biodiversity, threats, restoration, and sustainable ecosystem thinking.
+- **Foundations:** history, organization, habitat, niche, limiting factors, tolerance and adaptation.
+- **Population ecology:** density, dispersion, vital rates, demography, growth, survivorship, life history and sampling.
+- **Community ecology:** competition, consumer-resource interactions, positive interactions, diversity, keystone effects and succession.
+- **Ecosystem ecology:** structure, food webs, energy flow, productivity, decomposition and nutrient cycles.
+- **Biodiversity and conservation:** measurement, loss, fragmentation, invasive species, restoration and protected-area reasoning.
+- **Bangladesh application:** wetlands, rivers, Sundarbans, char landscapes, GIS/remote sensing and field inquiry.
 
-## Available Ecology Logs
+## Editorial and Learner Trust
 
-- [Ecology: History, Scope and Area]({{ '/biology/higher-zoology-tree/ecology/ecology-history-scopes-area/' | relative_url }})
-- [Survivorship Curve, Life Table and Growth Models]({{ '/biology/higher-zoology-tree/ecology/survivorship-curve-life-table-growth-models/' | relative_url }})
-- [Community Ecology: An Equation of Living Together]({{ '/biology/higher-zoology-tree/ecology/community-ecology-an-equation-of-living-together/' | relative_url }})
-- [Population Ecology: Concept on Size of Population]({{ '/biology/higher-zoology-tree/ecology/population-ecology-concept-on-size-of-population/' | relative_url }})
-- [Population Ecology: A Science of Life Motion of a Species]({{ '/biology/higher-zoology-tree/ecology/population-ecology-a-science-of-life-motion-of-a-species/' | relative_url }})
-
-## Study Sequence
-
-1. Define organism, population, community, ecosystem, and biosphere.
-2. Connect each level with a real example.
-3. Practice graphs: exponential growth, logistic growth, and survivorship curves.
-4. Convert ecology facts into cause-effect chains.
-5. Finish with conservation reasoning and applied MCQs.
-
-## Connected Nodes
-
-- [Higher Zoology Tree]({{ '/biology/higher-zoology-tree/' | relative_url }})
-- [Animal Diversity Matrix]({{ '/biology/higher-zoology-tree/animal-diversity/' | relative_url }})
-- [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
+- [Editorial Policy]({{ '/editorial-policy/' | relative_url }})
+- [Corrections]({{ '/corrections/' | relative_url }})
+- [Accessibility Statement]({{ '/accessibility/' | relative_url }})
+- [Disclaimer]({{ '/disclaimer/' | relative_url }})
