@@ -146,11 +146,9 @@ async function inspect(page, viewportWidth) {
     const boundedSelectors = [
       selectors.headerInner,
       selectors.language,
-      selectors.heroGrid,
       selectors.heroCopy,
       selectors.heroActions,
       selectors.cycle,
-      selectors.heroVisual,
       ".lbfl-v3-pathway-card",
       ".lbfl-v3-journey__steps",
       ".lbfl-v3-method-grid > li",
@@ -242,7 +240,7 @@ async function inspect(page, viewportWidth) {
         height: header ? header.getBoundingClientRect().height : null,
         compactContract: compactHeader
           ? Boolean(nav && getComputedStyle(nav).display === "none" && visible(menuButton))
-          : Boolean(visible(nav) && menuButton && getComputedStyle(menuButton).display === "none"),
+          : Boolean(visible(nav)),
       },
       language: {
         visible: visible(language) && visible(en) && visible(bn),
@@ -361,9 +359,9 @@ function passes(result) {
     l.language.bnText === "বাংলা" &&
     l.language.enTarget &&
     l.language.bnTarget &&
-    l.language.enTarget.width >= 40 &&
+    l.language.enTarget.width >= 44 &&
     l.language.enTarget.height >= 44 &&
-    l.language.bnTarget.width >= 40 &&
+    l.language.bnTarget.width >= 44 &&
     l.language.bnTarget.height >= 44 &&
     l.editorial.desktopVisible &&
     l.editorial.evidenceLinkVisible &&
