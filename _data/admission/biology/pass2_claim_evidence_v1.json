@@ -1,0 +1,1330 @@
+{
+  "schema": "lbfl-admission-biology-pass2-claim-evidence-v1",
+  "version": "R2.4-0.1",
+  "exact_parent_pr": 349,
+  "exact_parent_head": "e07addcc58e2e3528fde7940e1b5e7f71a8c240b",
+  "purpose": "Acquire independent Biology reference artifacts and enforce the row-level Pass-2 unlock contract before lecture-gap remediation.",
+  "unlock_rule": "lecture_gap_remediation_authority may be true only when pass_1=PASS, pass_2=PASS, additional_reference_id is an ACQUIRED authenticated additional reference, exact_edition_identity and authorization_evidence are present, artifact identity includes reproducible custody and SHA-256, claim_id/printed_page/claim_locator are present, scientific_crosscheck is non-empty, and every material disagreement has an explicit disposition.",
+  "acquisition_artifacts": [
+    {
+      "artifact_id": "P1-ABUL-HASAN-2020-SCAN",
+      "paper_id": "BIO-P1",
+      "drive_file_id": "1Fj4CRRCABkK4CChF7zJxMHDHpaiImFmE",
+      "title": "Bio 1st(Hasan Sir-20.pdf",
+      "size_bytes": 105433902,
+      "acquisition_status": "ACQUIRED",
+      "exact_edition_identity_status": "PENDING_INTERNAL_INSPECTION",
+      "authorization_evidence_status": "PENDING_INTERNAL_INSPECTION",
+      "artifact_hash_status": "PENDING_SHA256",
+      "notes": [
+        "Public Drive artifact acquired successfully within connector size limit.",
+        "Title/imprint/authorization pages must be inspected before this source can satisfy Pass 2."
+      ]
+    },
+    {
+      "artifact_id": "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+      "paper_id": "BIO-P1",
+      "drive_file_id": "1aqkkmjCfiMklIfhVvoO6njceC2uhvN08",
+      "title": "উদ্ভিদবিজ্ঞান_আজিবুর_রহমান_স্যার দাগানো বই.pdf",
+      "size_bytes": 180899124,
+      "acquisition_status": "ACQUIRED",
+      "exact_edition_identity_status": "PENDING_INTERNAL_INSPECTION",
+      "authorization_evidence_status": "PENDING_INTERNAL_INSPECTION",
+      "artifact_hash_status": "PENDING_SHA256",
+      "notes": [
+        "Public Drive artifact acquired successfully.",
+        "Retail/web metadata identifies the Akkharpatra Biology First Paper family, but exact scan edition/authorization must be established from the artifact itself."
+      ]
+    },
+    {
+      "artifact_id": "P1-ABDUL-ALIM-SCAN",
+      "paper_id": "BIO-P1",
+      "drive_file_id": "1ai08obdXOzDbZ8F_GpXlMRSJu2gDtk09",
+      "title": "Biology 1st-Abdul Alim Sir Dagano book.pdf",
+      "size_bytes": 85686581,
+      "acquisition_status": "ACQUIRED",
+      "exact_edition_identity_status": "PENDING_INTERNAL_INSPECTION",
+      "authorization_evidence_status": "PENDING_INTERNAL_INSPECTION",
+      "artifact_hash_status": "PENDING_SHA256",
+      "notes": [
+        "Public Drive artifact acquired successfully.",
+        "Exact publisher/edition/authorization remain unverified until internal title/imprint pages are inspected."
+      ]
+    },
+    {
+      "artifact_id": "P1-ABUL-HASAN-2026-SCAN",
+      "paper_id": "BIO-P1",
+      "drive_file_id": "1WYF4h2rWiUs1Ry1t3AyIME7dwnVPshLb",
+      "title": "আবুল হাসান জীববিজ্ঞান ১ম পত্র ২০২৬ [students.bd].pdf",
+      "size_bytes": 477689463,
+      "acquisition_status": "BLOCKED_CONNECTOR_SIZE_LIMIT",
+      "exact_edition_identity_status": "METADATA_ONLY",
+      "authorization_evidence_status": "BOOK_FAMILY_LINEAGE_ONLY",
+      "artifact_hash_status": "PENDING_SHA256",
+      "notes": [
+        "Metadata is readable, but full artifact download exceeds the current 256 MiB connector limit.",
+        "Do not use this row for printed-page evidence until the artifact can be inspected."
+      ]
+    },
+    {
+      "artifact_id": "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+      "paper_id": "BIO-P2",
+      "drive_file_id": "1oVKZfc3rIcYpSuOqx0AikFpo09n_tRs0",
+      "title": "জীববিজ্ঞান ২য় পত্র নূর-ই-পারভীন ম্যাম.pdf",
+      "size_bytes": 160103759,
+      "acquisition_status": "ACQUIRED",
+      "exact_edition_identity_status": "PENDING_INTERNAL_INSPECTION",
+      "authorization_evidence_status": "PENDING_INTERNAL_INSPECTION",
+      "artifact_hash_status": "PENDING_SHA256",
+      "notes": [
+        "Public Drive artifact acquired successfully.",
+        "Current public bookseller metadata identifies an Akkharpatra edition, but the scan's own title/imprint/authorization pages must establish exact identity."
+      ]
+    },
+    {
+      "artifact_id": "P2-MAJEDA-BEGUM-SCAN",
+      "paper_id": "BIO-P2",
+      "drive_file_id": "1pJDfLKYoAxMZEaN4vQHNpG99oRUJeqMZ",
+      "title": "জীববিজ্ঞান ২য় পত্র মাজেদা বেগম.pdf",
+      "size_bytes": 231644934,
+      "acquisition_status": "ACQUIRED",
+      "exact_edition_identity_status": "PENDING_INTERNAL_INSPECTION",
+      "authorization_evidence_status": "PENDING_INTERNAL_INSPECTION",
+      "artifact_hash_status": "PENDING_SHA256",
+      "notes": [
+        "Public Drive artifact acquired successfully.",
+        "Exact edition, publisher and authorization statement remain unverified until internal pages are inspected."
+      ]
+    },
+    {
+      "artifact_id": "P2-GAZI-AJMOL-2026-PRIMARY-SCAN",
+      "paper_id": "BIO-P2",
+      "drive_file_id": "1rAGELjtQ7PQb6npv8BfZ-NB7as7_nzsQ",
+      "title": "জীববিজ্ঞান ২য় পত্র গাজী আজমল ২০২৬ [students.bd].pdf",
+      "size_bytes": 188339062,
+      "acquisition_status": "ACQUIRED_PRIMARY",
+      "exact_edition_identity_status": "PARTIALLY_AUTHENTICATED_BY_USER_PHOTOGRAPHS",
+      "authorization_evidence_status": "VISIBLE_CURRENT_SYLLABUS_APPROVAL_LINEAGE",
+      "artifact_hash_status": "PENDING_SHA256",
+      "notes": [
+        "This is the already selected primary Second Paper source, not an independent Pass-2 supplementary source.",
+        "Independent Pass 2 still requires a separate authenticated additional reference."
+      ]
+    }
+  ],
+  "row_contract": {
+    "required_on_pass_2": [
+      "matrix_id",
+      "additional_reference_id",
+      "exact_edition_identity",
+      "authorization_evidence",
+      "artifact_identity.drive_file_id",
+      "artifact_identity.size_bytes",
+      "artifact_identity.sha256",
+      "artifact_identity.custody_reference",
+      "claim_id",
+      "printed_page",
+      "claim_locator",
+      "scientific_crosscheck[]",
+      "disagreement_disposition",
+      "pass_1=PASS",
+      "pass_2=PASS",
+      "lecture_gap_remediation_authority=true"
+    ]
+  },
+  "rows": [
+    {
+      "matrix_id": "BIO-P1-C01-B01-full-topic",
+      "chapter_id": "BIO-P1-C01",
+      "topic_id": "B01",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-NCBI-MBOC-MEMBRANE-STRUCTURE",
+          "SCI-NCBI-MBOC-MEMBRANE-TRANSPORT",
+          "SCI-OPENSTAX-BIO2E-PASSIVE-TRANSPORT",
+          "SCI-OPENSTAX-BIO2E-ACTIVE-TRANSPORT"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C01-B02-full-topic",
+      "chapter_id": "BIO-P1-C01",
+      "topic_id": "B02",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-EUKARYOTIC-CELLS"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C01-B03-nucleus-chromosome-molecular-biology",
+      "chapter_id": "BIO-P1-C01",
+      "topic_id": "B03",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-DNA"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C02-B04-full-topic",
+      "chapter_id": "BIO-P1-C02",
+      "topic_id": "B04",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-CELL-CYCLE",
+          "SCI-OPENSTAX-BIO2E-MEIOSIS"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C03-B05-carbohydrate-protein-lipid-enzyme",
+      "chapter_id": "BIO-P1-C03",
+      "topic_id": "B05",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-MACROMOLECULES"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C04-B06-full-topic",
+      "chapter_id": "BIO-P1-C04",
+      "topic_id": "B06",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-VIRUSES",
+          "SCI-OPENSTAX-BIO2E-PROKARYOTES"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C05-B07-algae-fungi-lichen-as-source-supported",
+      "chapter_id": "BIO-P1-C05",
+      "topic_id": "B07",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-PROTISTS",
+          "SCI-OPENSTAX-BIO2E-FUNGI"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C06-B08-full-topic",
+      "chapter_id": "BIO-P1-C06",
+      "topic_id": "B08",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-BRYOPHYTES",
+          "SCI-OPENSTAX-BIO2E-PTERIDOPHYTES"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C07-B09-gymnosperm-angiosperm-plant-family-scope-as-verified",
+      "chapter_id": "BIO-P1-C07",
+      "topic_id": "B09",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-GYMNOSPERMS"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C08-B10-full-topic",
+      "chapter_id": "BIO-P1-C08",
+      "topic_id": "B10",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-PLANT-TISSUES"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C09-B11-full-topic",
+      "chapter_id": "BIO-P1-C09",
+      "topic_id": "B11",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-PLANT-TRANSPORT"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C09-B12-full-topic",
+      "chapter_id": "BIO-P1-C09",
+      "topic_id": "B12",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-PHOTOSYNTHESIS",
+          "SCI-OPENSTAX-BIO2E-CELLULAR-RESPIRATION"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C10-B13-reproduction",
+      "chapter_id": "BIO-P1-C10",
+      "topic_id": "B13",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-PLANT-REPRODUCTION"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002",
+            "D-R2-3-003"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C11-B14-full-topic",
+      "chapter_id": "BIO-P1-C11",
+      "topic_id": "B14",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-BIOTECH"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C12-B15-full-topic",
+      "chapter_id": "BIO-P1-C12",
+      "topic_id": "B15",
+      "additional_reference_candidates": [
+        "P1-ABUL-HASAN-2020-SCAN",
+        "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+        "P1-ABDUL-ALIM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-ECOLOGY",
+          "SCI-OPENSTAX-BIO2E-BIODIVERSITY",
+          "SCI-OPENSTAX-BIO2E-CONSERVATION"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-001",
+            "D-R2-3-002"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C01-B16-full-topic",
+      "chapter_id": "BIO-P2-C01",
+      "topic_id": "B16",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-ANIMAL-CLASSIFICATION"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C02-B17-hydra-grasshopper-rohu",
+      "chapter_id": "BIO-P2-C02",
+      "topic_id": "B17",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-ANIMAL-CLASSIFICATION"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004",
+            "D-R2-3-005"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C03-B18-full-topic",
+      "chapter_id": "BIO-P2-C03",
+      "topic_id": "B18",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-AAP2E-DIGESTION"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C04-B19-full-topic",
+      "chapter_id": "BIO-P2-C04",
+      "topic_id": "B19",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-AAP2E-BLOOD",
+          "SCI-OPENSTAX-AAP2E-HEART"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C05-B20-full-topic",
+      "chapter_id": "BIO-P2-C05",
+      "topic_id": "B20",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-AAP-RESPIRATORY"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C06-B21-full-topic",
+      "chapter_id": "BIO-P2-C06",
+      "topic_id": "B21",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-AAP2E-URINARY"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C07-B22-full-topic",
+      "chapter_id": "BIO-P2-C07",
+      "topic_id": "B22",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-AAP2E-MUSCLE"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C08-B23-nervous-system-sense-organs",
+      "chapter_id": "BIO-P2-C08",
+      "topic_id": "B23",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-AAP2E-NERVOUS"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C08-B24-endocrine-homeostasis",
+      "chapter_id": "BIO-P2-C08",
+      "topic_id": "B24",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-AAP2E-ENDOCRINE"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C09-B25-full-topic",
+      "chapter_id": "BIO-P2-C09",
+      "topic_id": "B25",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-AAP2E-REPRODUCTION"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C10-B26-full-topic",
+      "chapter_id": "BIO-P2-C10",
+      "topic_id": "B26",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-AAP-IMMUNITY"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C11-B27-genetics-inheritance",
+      "chapter_id": "BIO-P2-C11",
+      "topic_id": "B27",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-GENETICS"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C11-B28-evolution",
+      "chapter_id": "BIO-P2-C11",
+      "topic_id": "B28",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-EVOLUTION",
+          "SCI-OPENSTAX-BIO2E-BEHAVIOR"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C12-B28-animal-behaviour",
+      "chapter_id": "BIO-P2-C12",
+      "topic_id": "B28",
+      "additional_reference_candidates": [
+        "P2-NUR-E-PARVEEN-AKKHARPATRA-SCAN",
+        "P2-MAJEDA-BEGUM-SCAN"
+      ],
+      "additional_reference_id": null,
+      "exact_edition_identity": null,
+      "authorization_evidence": null,
+      "artifact_identity": {
+        "drive_file_id": null,
+        "size_bytes": null,
+        "sha256": null,
+        "custody_reference": null
+      },
+      "claim_id": null,
+      "printed_page": null,
+      "claim_locator": null,
+      "scientific_crosscheck": [
+        [
+          "SCI-OPENSTAX-BIO2E-EVOLUTION",
+          "SCI-OPENSTAX-BIO2E-BEHAVIOR"
+        ]
+      ],
+      "disagreement_disposition": {
+        "disagreement_refs": [
+          [
+            "D-R2-3-004"
+          ]
+        ],
+        "status": "OPEN_EXPLICIT",
+        "disposition_note": null
+      },
+      "pass_1": "PASS",
+      "pass_2": "BLOCKED",
+      "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
+      "lecture_gap_remediation_authority": false
+    }
+  ],
+  "summary": {
+    "rows": 29,
+    "acquired_additional_artifacts": 5,
+    "blocked_large_artifacts": 1,
+    "pass_1": 29,
+    "pass_2": 0,
+    "pass_2_blocked": 29,
+    "lecture_gap_remediation_authority_rows": 0
+  },
+  "boundaries": {
+    "new_lecture_authoring": false,
+    "new_model_test_authoring": false,
+    "chapter_completion": false,
+    "verified_primary_promotion": false,
+    "matrix_qyi_release": false,
+    "ready_merge_production": false
+  }
+}
