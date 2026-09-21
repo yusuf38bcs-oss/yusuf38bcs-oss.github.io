@@ -503,3 +503,132 @@ html.lbfl-zoology-route body.lbfl-ecology-course .page__content td {
 html.lbfl-zoology-route body.lbfl-ecology-course .page__content > blockquote > p {
   color: var(--zoo-ink) !important;
 }
+
+/* ============================================================================
+   COURSE-OWNED LIGHT SHELL + DARK QUIZ ACCESSIBILITY
+   Exact-head browser evidence from the canonical Biostatistics, Genetics and
+   Human Physiology successors identified shared contrast leakage from legacy
+   dark-theme tokens. Keep the remediation inside explicitly course-owned
+   shells so Homepage V3, Ecology, Animal Diversity and unrelated pages retain
+   their established visual systems.
+   ============================================================================ */
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__meta,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__lead {
+  color: var(--zoo-muted) !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .lbfl-course-nav a {
+  color: var(--zoo-link) !important;
+}
+
+/* Course tables wrap on the reading surface instead of creating an unfocusable
+   horizontal scroll region under the full-page WCAG browser contract. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content table {
+  display: table;
+  width: 100% !important;
+  table-layout: fixed;
+  overflow: visible;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content th,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content td {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Inline code belongs to the light reading shell unless it is inside <pre>. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content :not(pre) > code {
+  color: var(--zoo-ink) !important;
+  background: var(--zoo-soft) !important;
+}
+
+/* quiz-render.html and the MCQ arena intentionally use dark component
+   surfaces. Restore their light/accent foregrounds after the generic legacy
+   token normalizer above. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .quiz-engine-card,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena {
+  color: #f8fafc !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .quiz-engine-card h2,
+html.lbfl-zoology-route [data-lbfl-course-owned] .quiz-engine-card .question-node > p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .quiz-engine-card .feedback-box strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena .mcq-arena-title,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena .question-text-line,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena .result-score-title {
+  color: #f8fafc !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .quiz-engine-card .option-label-wrapper > span,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena .option-label-wrapper {
+  color: #dbeafe !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .quiz-engine-card .option-label-wrapper strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .quiz-engine-card .question-node > p > span,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena .mcq-status-badge .status-text,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena .mcq-timer-node .timer-countdown,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena .result-score-numeric {
+  color: #5eead4 !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .quiz-engine-card .feedback-box p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena .mcq-arena-desc,
+html.lbfl-zoology-route [data-lbfl-course-owned] .premium-mcq-arena .mcq-timer-node {
+  color: #dbeafe !important;
+}
+
+/* ============================================================================
+   COURSE-OWNED SECOND-PASS CONTRAST FIX
+   Combined validation at 2e05982a identified two remaining shared families:
+   light-shell header h2 text inheriting legacy pale foregrounds, and one
+   legacy #0b1324 Human Physiology challenge card whose intended light text
+   was overwritten by the Zoology light-shell normalizer.
+   ============================================================================ */
+
+/* Course-owned lecture headers live on the cream reading surface. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content header > h2 {
+  color: var(--zoo-heading-color) !important;
+}
+
+/* Legacy teal accent on a light card needs the stronger course link token. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content [style*="color:#1abc9c"],
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content [style*="color: #1abc9c"] {
+  color: var(--zoo-teal-strong) !important;
+}
+
+/* Preserve the intentional dark Human Physiology challenge surface instead
+   of converting its descendant foregrounds to the light-shell palette. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] {
+  color: #f8fafc !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] h2,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] h3,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] h4,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] [style*="color:#1abc9c"],
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] [style*="color: #1abc9c"] {
+  color: #5eead4 !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] span {
+  color: #dbeafe !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] p[style*="color:#ffffff"],
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] p[style*="color: #ffffff"] {
+  color: #f8fafc !important;
+}
+
+/* HSC Human Physiology Markdown section headers may render inside semantic
+   <header> wrappers that are not descendants of .page__content. Keep those
+   light-shell headings on the Zoology heading token without touching quiz
+   headings, which use classed div containers rather than semantic headers. */
+html.lbfl-zoology-route .lbfl-human-physiology-course header > h2 {
+  color: var(--zoo-heading-color) !important;
+}
