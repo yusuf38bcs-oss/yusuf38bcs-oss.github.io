@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -43,9 +43,15 @@ difficulty: "Advanced"
 xp: 900
 time_min: 80
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 23
+page_id: human-physiology-l23
+previous: /biology/higher-zoology-tree/physiology/circulatory-diseases-causes-symptoms-treatment-awareness/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application/
 ---
-
-# Blood Circulation Part 4: Coronary Bypass, Angioplasty, Open-heart Surgery ও চিকিৎসা-পদ্ধতির Biology
 
 ## Medical Safety Boundary
 
@@ -304,9 +310,6 @@ Treatment depends on:
 | Medicine unnecessary after stent | antiplatelet and risk-factor medicines are often crucial |
 | Surgery means lifestyle no longer matters | lifestyle remains essential after any procedure |
 
-## Synaptic Bridge
-
-Cardiac treatment teaches a powerful life lesson: damage can sometimes be bypassed, repaired, or supported—but prevention is always better than rescue. A stent opens a narrowed segment; a bypass creates a new route; but daily habits decide whether the disease process slows or continues. Biology therefore becomes a map of responsibility.
 
 ## Critical Thinking Questions
 

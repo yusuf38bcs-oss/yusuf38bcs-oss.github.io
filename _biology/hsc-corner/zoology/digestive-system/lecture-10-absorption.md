@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 title: "Digestive System Lecture 10: Absorption of Digested Food"
 permalink: /biology/hsc-corner/zoology/digestive-system/absorption/
 categories: [Biology, HSC Corner, Zoology]
@@ -9,9 +9,15 @@ toc_sticky: true
 classes: wide
 language: bn
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 10
+page_id: human-physiology-l10
+previous: /biology/hsc-corner/zoology/digestive-system/lipid-digestion/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/digestive-system/lecture-11/
 ---
-
-# Digestive System Lecture 10: Absorption of Digested Food
 
 ## Learning Objectives
 

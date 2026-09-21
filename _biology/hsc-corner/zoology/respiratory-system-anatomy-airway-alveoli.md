@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -45,9 +45,15 @@ difficulty: "Foundation"
 xp: 650
 time_min: 50
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 15
+page_id: human-physiology-l15
+previous: /biology/hsc-corner/zoology/digestive-system/revision/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/respiratory-mechanics-gas-transport/
 ---
-
-# Human Respiratory System Part 1: শ্বাসনালীর গঠন, ফুসফুস ও অ্যালভিওলাই
 
 ## Concept Overview
 
@@ -58,8 +64,6 @@ status: "Active"
 ## Why This Matters
 
 যদি তুমি শ্বসনতন্ত্রের পথ না জানো, তাহলে pneumonia, bronchitis, asthma, emphysema, sinusitis বা TB কোথায় আঘাত করে তা বুঝবে না। আবার যদি alveoli না বোঝো, তাহলে gas exchange, oxygen transport, respiratory distress অথবা smoking damage—কোনোটাই পরিষ্কার হবে না। তাই **structure first, mechanism next**—এই নিয়মে এই series শুরু করছি।
-
-{% include education/framework-links.html %}
 
 ## Anatomy-Specific Learning Focus
 

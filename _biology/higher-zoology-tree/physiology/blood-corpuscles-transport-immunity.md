@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -44,9 +44,15 @@ difficulty: "Foundation"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 20
+page_id: human-physiology-l20
+previous: /biology/hsc-corner/zoology/baroreceptor-reflex/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation/
 ---
-
-# Blood Circulation Part 1: রক্ত, রক্তরস, রক্তকণিকা, পরিবহন ও প্রতিরক্ষা
 
 ## Concept Overview
 
@@ -57,8 +63,6 @@ status: "Active"
 ## Why This Matters
 
 রক্তকে বুঝতে না পারলে physiology-র কোনো সিস্টেমই পুরোপুরি বোঝা যায় না। শ্বাসতন্ত্র oxygen দেয়, কিন্তু oxygen tissue-এ পৌঁছায় RBC-এর hemoglobin দিয়ে। digestive system nutrient দেয়, কিন্তু nutrient পৌঁছায় plasma দিয়ে। immune defence কাজ করে WBC ও antibody দিয়ে। bleeding বন্ধ হয় platelet ও clotting factor দিয়ে। তাই blood হলো body-wide transport, defence and repair network।
-
-{% include education/framework-links.html %}
 
 ## Blood-Specific Learning Focus
 
@@ -279,9 +283,6 @@ Vaccination/immunization works because immune system can learn antigen pattern a
 | Platelet | cell fragments | clotting | hemostasis |
 | Lymph | modified tissue fluid | drainage, immunity, fat absorption | lymphocyte, no RBC |
 
-## Synaptic Bridge
-
-রক্ত আমাদের শেখায়—জীবন একা একা চলে না; প্রতিটি cell অন্য cell-এর উপর নির্ভর করে। এক cell oxygen পায় RBC-এর মাধ্যমে, nutrient পায় plasma-এর মাধ্যমে, protection পায় WBC-এর মাধ্যমে, injury হলে repair শুরু হয় platelet দিয়ে। এই biology জীবনের বাস্তব শিক্ষাও দেয়: শরীর যেমন teamwork ছাড়া বাঁচে না, সমাজও দায়িত্ব, সেবা ও পারস্পরিক সহায়তা ছাড়া সুস্থ থাকে না।
 
 ## Critical Thinking Questions
 

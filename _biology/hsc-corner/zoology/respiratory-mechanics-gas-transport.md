@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -46,9 +46,15 @@ difficulty: "Intermediate"
 xp: 800
 time_min: 65
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 16
+page_id: human-physiology-l16
+previous: /biology/hsc-corner/zoology/respiratory-system-anatomy-airway-alveoli/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/respiratory-diseases-public-health/
 ---
-
-# Human Respiratory System Part 2: শ্বাস-প্রশ্বাসের মেকানিজম, নিয়ন্ত্রণ ও গ্যাস পরিবহন
 
 ## Concept Overview
 
@@ -66,8 +72,6 @@ Volume কমলে Pressure বাড়ে → বাতাস বের হয়
 ## Why This Matters
 
 Respiratory physiology-র ভুল বোঝাবুঝির বড় কারণ হলো শিক্ষার্থীরা anatomy আলাদা, breathing আলাদা, gas transport আলাদা, এবং disease আলাদা করে মুখস্থ করে। বাস্তবে এগুলো একই system-এর ধারাবাহিক অংশ। যদি diaphragm কাজ না করে, air entry কমে; air entry কমলে alveolar O₂ কমে; O₂ gradient কমলে blood oxygenation কমে; CO₂ জমলে pH বদলায়; pH বদলালে respiratory center ventilation rate পরিবর্তন করে।
-
-{% include education/framework-links.html %}
 
 ## Mechanics-Specific Learning Focus
 

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 title: "Digestive System Lecture 04: Liver, Gallbladder and Bile"
 permalink: /biology/hsc-corner/zoology/digestive-system/liver-bile/
 categories: [Biology, HSC Corner, Zoology]
@@ -9,9 +9,15 @@ toc_sticky: true
 classes: wide
 language: bn
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 4
+page_id: human-physiology-l04
+previous: /biology/hsc-corner/zoology/digestive-system/stomach/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/digestive-system/pancreas/
 ---
-
-# Digestive System Lecture 04: Liver, Gallbladder and Bile
 
 ## Learning Objectives
 

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 title: "Digestive System Lecture 13: Digestive Health Issues"
 permalink: /biology/hsc-corner/zoology/digestive-system/health-issues/
 categories: [Biology, HSC Corner, Zoology]
@@ -9,9 +9,15 @@ toc_sticky: true
 classes: wide
 language: bn
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 13
+page_id: human-physiology-l13
+previous: /biology/hsc-corner/zoology/digestive-system/large-intestine/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/digestive-system/revision/
 ---
-
-# Digestive System Lecture 13: Digestive Health Issues
 
 ## Learning Boundary
 
