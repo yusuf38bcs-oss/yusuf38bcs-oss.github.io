@@ -1,0 +1,58 @@
+name: Admission R2.1 Curriculum Architecture Certification
+
+on:
+  pull_request:
+    paths:
+      - "_data/admission/curriculum_architecture_v1.json"
+      - "_data/admission/biology/reuse_audit_v1.json"
+      - "_data/admission/biology/engine_v1.json"
+      - "_data/admission/biology/curriculum_coverage_v1.json"
+      - "scripts/admission/validate_curriculum_architecture.rb"
+      - "scripts/admission/validate_biology_engine.rb"
+      - "scripts/admission/validate_biology_curriculum_coverage.rb"
+      - ".github/workflows/admission-curriculum-architecture-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: admission-r2-1-curriculum-architecture-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: Four-subject architecture and Biology reuse contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out immutable candidate head
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Enforce exact checked-out identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+          printf 'Admission R2.1 architecture certification head: %s\n' "$PR_HEAD_SHA"
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Validate Biology Admission engine
+        run: ruby scripts/admission/validate_biology_engine.rb
+
+      - name: Validate existing Biology curriculum coverage
+        run: ruby scripts/admission/validate_biology_curriculum_coverage.rb
+
+      - name: Validate R2.1 curriculum architecture and Biology reuse audit
+        run: ruby scripts/admission/validate_curriculum_architecture.rb
