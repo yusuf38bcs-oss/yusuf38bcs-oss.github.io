@@ -12,7 +12,9 @@
   color: var(--ae-ink);
 }
 .admission-evidence *, .admission-evidence *::before, .admission-evidence *::after { box-sizing: border-box; }
-.admission-evidence a { overflow-wrap: anywhere; }
+.admission-evidence a { color: var(--ae-teal-dark); overflow-wrap: anywhere; }
+.admission-evidence a:visited { color: #244f4b; }
+.admission-evidence a:focus-visible { outline: 3px solid #0f766e; outline-offset: 3px; border-radius: 4px; }
 .admission-evidence__hero {
   padding: clamp(1.25rem, 3vw, 2.2rem);
   border-radius: 24px;
@@ -57,7 +59,8 @@
 }
 .admission-evidence__panel { padding: clamp(1rem,2vw,1.5rem); margin: 1rem 0; }
 .admission-evidence__landing-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-.admission-evidence__paper-card { display:block; padding:1.25rem; text-decoration:none !important; }
+.admission-evidence__paper-card { display:block; padding:1.25rem; color:var(--ae-ink) !important; text-decoration:none !important; }
+.admission-evidence__paper-card .admission-evidence__kicker { color: var(--ae-teal-dark); }
 .admission-evidence__paper-card:hover { border-color: var(--ae-teal); }
 .admission-evidence__paper-card h2 { margin-top:0; }
 .admission-evidence__questions { list-style:none; margin:1rem 0; padding:0; display:grid; gap:1rem; }
