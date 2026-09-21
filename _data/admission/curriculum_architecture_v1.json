@@ -1,0 +1,158 @@
+{
+  "schema": "lbfl-admission-curriculum-architecture-v1",
+  "version": "R2.1-0.1",
+  "parent_contract": {
+    "parent_pr": 345,
+    "parent_head": "5d1368228ca369febdd12f984a4ee6f796a2b435",
+    "stacked_on": "admission/r2-b01-primary-nctb-evidence-20260921"
+  },
+  "purpose": "Define a fail-closed four-subject Admission curriculum architecture before large-scale lecture or model-test authoring.",
+  "boundary": {
+    "chapter_taxonomy_authenticated": false,
+    "chapter_completion_allowed": false,
+    "new_model_test_batch_allowed": false,
+    "historical_occurrence_substitution_allowed": false,
+    "f_v2_promotion_allowed": false,
+    "matrix_qyi_release_allowed": false,
+    "ready_merge_production_authority": false
+  },
+  "chapter_complete_contract": {
+    "required": [
+      "authenticated_curriculum_source",
+      "authenticated_exact_authorized_textbook_edition_or_equivalent_primary_source",
+      "chapter_to_topic_mapping",
+      "learning_routes",
+      "retrieval_practice",
+      "application_practice",
+      "chapter_model_test",
+      "complete_question_explanations",
+      "distractor_or_error_logic",
+      "repair_routes",
+      "second_content_verification"
+    ],
+    "rule": "A chapter remains incomplete until every required dimension is independently satisfied. Existing historical-question occurrence cannot substitute for curriculum coverage."
+  },
+  "subject_order": [
+    "PHY",
+    "CHEM",
+    "MATH",
+    "BIO"
+  ],
+  "subjects": [
+    {
+      "subject_id": "PHY",
+      "name": "Physics",
+      "route_slug": "physics",
+      "architecture_status": "paper-shell-established-chapter-taxonomy-pending",
+      "papers": [
+        {
+          "paper_id": "PHY-P1",
+          "name": "Physics First Paper",
+          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
+          "chapters": []
+        },
+        {
+          "paper_id": "PHY-P2",
+          "name": "Physics Second Paper",
+          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
+          "chapters": []
+        }
+      ]
+    },
+    {
+      "subject_id": "CHEM",
+      "name": "Chemistry",
+      "route_slug": "chemistry",
+      "architecture_status": "paper-shell-established-chapter-taxonomy-pending",
+      "papers": [
+        {
+          "paper_id": "CHEM-P1",
+          "name": "Chemistry First Paper",
+          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
+          "chapters": []
+        },
+        {
+          "paper_id": "CHEM-P2",
+          "name": "Chemistry Second Paper",
+          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
+          "chapters": []
+        }
+      ]
+    },
+    {
+      "subject_id": "MATH",
+      "name": "Higher Mathematics",
+      "route_slug": "higher-mathematics",
+      "architecture_status": "paper-shell-established-chapter-taxonomy-pending",
+      "papers": [
+        {
+          "paper_id": "MATH-P1",
+          "name": "Higher Mathematics First Paper",
+          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
+          "chapters": []
+        },
+        {
+          "paper_id": "MATH-P2",
+          "name": "Higher Mathematics Second Paper",
+          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
+          "chapters": []
+        }
+      ]
+    },
+    {
+      "subject_id": "BIO",
+      "name": "Biology",
+      "route_slug": "biology",
+      "architecture_status": "paper-shell-established-existing-topic-taxonomy-preserved",
+      "topic_taxonomy": {
+        "source": "_data/admission/biology/engine_v1.json",
+        "expected_topic_ids": [
+          "B01",
+          "B02",
+          "B03",
+          "B04",
+          "B05",
+          "B06",
+          "B07",
+          "B08",
+          "B09",
+          "B10",
+          "B11",
+          "B12",
+          "B13",
+          "B14",
+          "B15",
+          "B16",
+          "B17",
+          "B18",
+          "B19",
+          "B20",
+          "B21",
+          "B22",
+          "B23",
+          "B24",
+          "B25",
+          "B26",
+          "B27",
+          "B28"
+        ],
+        "chapter_mapping_status": "pending-authenticated-source-mapping",
+        "note": "B01-B28 are Admission topic identities and must not be silently treated as textbook chapter identities."
+      },
+      "papers": [
+        {
+          "paper_id": "BIO-P1",
+          "name": "Biology First Paper",
+          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
+          "chapters": []
+        },
+        {
+          "paper_id": "BIO-P2",
+          "name": "Biology Second Paper",
+          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
+          "chapters": []
+        }
+      ]
+    }
+  ]
+}
