@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 title: "Digestive System Lecture 01: Human Digestive System Overview"
 permalink: /biology/hsc-corner/zoology/digestive-system/human-digestive-system-overview/
 categories: [Biology, HSC Corner, Zoology]
@@ -9,9 +9,15 @@ toc_sticky: true
 classes: wide
 language: bn
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 1
+page_id: human-physiology-l01
+previous: null
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/digestive-system/oral-cavity-saliva-teeth/
 ---
-
-# Digestive System Lecture 01: Human Digestive System Overview
 
 ## Learning Objectives
 

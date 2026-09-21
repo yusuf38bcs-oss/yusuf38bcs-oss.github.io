@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<div data-lbfl-course-owned="human-physiology" class="lbfl-course-shell lbfl-human-physiology-course">
+  <article class="page" itemscope itemtype="https://schema.org/CollectionPage" lang="{{ page.language | default: 'bn' }}">
+    <div class="page__inner-wrap">
+      <header>
+        <p class="page__meta">Higher Zoology · Human Physiology</p>
+        <h1 class="page__title" itemprop="headline">{{ page.title }}</h1>
+        {% if page.excerpt %}<p class="page__lead">{{ page.excerpt }}</p>{% endif %}
+      </header>
+      <section class="page__content" itemprop="text">{{ content }}</section>
+    </div>
+  </article>
+</div>

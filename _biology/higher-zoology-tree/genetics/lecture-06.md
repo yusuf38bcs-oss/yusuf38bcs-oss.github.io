@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 6
+page_id: genetics-17-l06
+previous: /biology/higher-zoology-tree/genetics/dihybrid-cross/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/epistasis-gene-ratios/
 ---
-
-# Genetics Lecture 06: Gene Interaction
 
 ## Concept Overview
 
@@ -78,8 +84,6 @@ Modified phenotype ratio
 ## Why This Matters
 
 Gene interaction helps learners move beyond the simple “one gene = one trait” idea. It teaches that phenotype often emerges from networks. This prepares learners for epistasis, complementary genes, duplicate genes, polygenic traits, molecular genetics and real-life biological complexity.
-
-{% include education/framework-links.html %}
 
 ## Gene-Interaction Learning Focus
 
@@ -213,9 +217,6 @@ Modified ratio appears
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Calling epistatic and hypostatic genes alleles of the same gene. They are at different loci.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Gene interaction teaches network thinking. A result may not come from one cause; it may emerge from several interacting causes. In learning, behaviour, leadership and life decisions, outcomes also depend on interacting variables rather than isolated factors.
 
 ## Critical Thinking Questions
 

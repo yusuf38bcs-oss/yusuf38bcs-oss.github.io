@@ -1,6 +1,5 @@
 ---
-
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 
@@ -42,7 +41,7 @@ classes: wide
 
 header:
   overlay_image: /assets/images/biology/physiology-banner.webp
-language: en
+language: bn
 curriculum_tracks:
   - HSC Zoology
   - NEET Biology
@@ -52,6 +51,14 @@ ib_theme: "Form and Function"
 ib_subtopic: "Digestive system structure and digestion"
 hsc_alignment: "HSC Zoology: digestive system, alimentary canal, and digestive glands"
 concept_level: "Core"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 26
+page_id: human-physiology-l26
+previous: /biology/higher-zoology-tree/physiology/human-blood-circulation-overview/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/higher-zoology-tree/physiology/human-physiology-digestive-system-part-2/
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">

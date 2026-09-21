@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: biostatistics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -10,6 +10,10 @@ description: "A clean Biostatistics lesson on measures of central tendency: mean
 date: 2026-05-05T06:20:00.000Z
 last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/biostatistics/measures-of-central-tendency/
+page_id: biostatistics-03
+course_id: biostatistics-09
+course_role: lecture
+lecture_number: 3
 categories:
   - Biology
   - Higher Zoology
@@ -39,6 +43,7 @@ classes: wide
 header:
   overlay_image: /assets/images/biology/biostatistics-banner.webp
 language: bn
+translation_status: single-source-unpaired
 curriculum_tracks:
   - HSC Zoology
   - IB Biology
@@ -52,9 +57,10 @@ difficulty: "Foundation"
 xp: 700
 time_min: 55
 status: "Active"
+previous: /biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon/
+course_index: /biology/higher-zoology-tree/biostatistics/
+next: /biology/higher-zoology-tree/biostatistics/measures-of-dispersion/
 ---
-
-# Measures of Central Tendency: কেন্দ্রীয় প্রবণতার পরিমাপ
 
 ## Concept Overview
 
@@ -70,8 +76,6 @@ Which value represents the dataset most usefully?
 ## Why This Matters
 
 Fish length, plant height, blood pressure, seed germination, exam score or species count—যেকোনো biological dataset বিশ্লেষণের প্রথম ধাপ হলো center বোঝা। কিন্তু সব data-র জন্য একই measure best নয়। Symmetric data-তে mean useful, skewed data-তে median safer, categorical/frequency data-তে mode useful হতে পারে।
-
-{% include education/framework-links.html %}
 
 ## Central-Tendency Learning Focus
 
@@ -228,9 +232,6 @@ Interpretation: The 190 g fish pulls mean upward. Median may better represent th
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Confusing central tendency with dispersion. Center and spread answer different questions.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Central tendency teaches that a complex group can sometimes be summarized by a representative value, but every summary has limits. In learning and life, average is useful, but it should never hide variation, outliers or individual realities.
 
 ## Critical Thinking Questions
 

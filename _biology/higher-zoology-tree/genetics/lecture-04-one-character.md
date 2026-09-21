@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Foundation"
 xp: 700
 time_min: 55
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 4
+page_id: genetics-17-l04
+previous: /biology/higher-zoology-tree/genetics/mendel-and-pea-plant/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/dihybrid-cross/
 ---
-
-# Genetics Lecture 04: Monohybrid Cross
 
 ## Concept Overview
 
@@ -80,8 +86,6 @@ Genotype and phenotype ratio appear
 ## Why This Matters
 
 Monohybrid cross শেখা ছাড়া genetics problem solving শুরু করা যায় না। এটি learner-কে allele, gamete, genotype, phenotype, dominance, recessiveness, Punnett square and probability একসাথে ব্যবহার করতে শেখায়। Monohybrid cross হলো inheritance reasoning-এর first training ground.
-
-{% include education/framework-links.html %}
 
 ## Monohybrid Learning Focus
 
@@ -233,9 +237,6 @@ This logic is used to identify whether a dominant phenotype individual is homozy
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Using 3:1 ratio without explaining segregation.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Monohybrid cross teaches that hidden factors can reappear later. A learner may not see an ability, weakness or habit in one situation, but it may reappear under different conditions. Genetics trains us to respect hidden structure behind visible outcomes.
 
 ## Critical Thinking Questions
 

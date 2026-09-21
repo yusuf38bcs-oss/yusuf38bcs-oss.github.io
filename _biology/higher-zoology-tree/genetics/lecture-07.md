@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -54,9 +54,15 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 7
+page_id: genetics-17-l07
+previous: /biology/higher-zoology-tree/genetics/gene-interaction/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/linkage/
 ---
-
-# Genetics Lecture 07: Epistasis and Gene Ratios
 
 ## Concept Overview
 
@@ -79,8 +85,6 @@ But gene interaction may combine phenotype classes:
 ## Why This Matters
 
 Simple Mendelian ratio শেখা genetics-এর শুরু; modified ratio শেখা genetics-এর systems thinking. Biology-তে অনেক trait single gene pair দিয়ে explain করা যায় না। Epistasis learner-কে শেখায় phenotype হলো gene network, pathway and masking effect-এর ফল।
-
-{% include education/framework-links.html %}
 
 ## Epistasis Learning Focus
 
@@ -229,9 +233,6 @@ Infer possible gene interaction mechanism
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Ignoring pathway logic. Many modified ratios make sense only when gene products are seen as steps in a pathway.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Epistasis teaches that visible outcomes can be shaped by hidden interactions. In life, one factor may mask or amplify another factor: motivation may be masked by stress, talent by poor environment, or discipline by distraction. Systems thinking begins when we stop searching for one cause only.
 
 ## Critical Thinking Questions
 

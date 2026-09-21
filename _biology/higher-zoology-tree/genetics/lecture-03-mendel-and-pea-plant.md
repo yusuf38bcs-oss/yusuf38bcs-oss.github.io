@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Foundation"
 xp: 650
 time_min: 50
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 3
+page_id: genetics-17-l03
+previous: /biology/higher-zoology-tree/genetics/genetic-terminology/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/monohybrid-cross/
 ---
-
-# Genetics Lecture 03: Mendel and Pea Plant
 
 ## Concept Overview
 
@@ -80,8 +86,6 @@ Inheritance law
 ## Why This Matters
 
 Mendel শেখায় কীভাবে biology-তে disciplined experiment করতে হয়। তিনি শুধু plant cross করেননি; তিনি variables control করেছেন, generations track করেছেন, offspring count করেছেন, ratio দেখেছেন, তারপর principle তৈরি করেছেন। তাই Mendelism হলো genetics-এর পাশাপাশি scientific thinking-এরও foundation.
-
-{% include education/framework-links.html %}
 
 ## Mendel-Learning Focus
 
@@ -182,9 +186,6 @@ This pattern led to the ideas of dominance, recessiveness and segregation.
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Thinking hidden recessive trait disappears in F1. It is masked, not destroyed.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Mendel teaches that deep discovery often comes from simple questions asked with disciplined method. In learning life, clarity comes when we isolate variables, observe patiently, count honestly and avoid premature conclusions.
 
 ## Critical Thinking Questions
 

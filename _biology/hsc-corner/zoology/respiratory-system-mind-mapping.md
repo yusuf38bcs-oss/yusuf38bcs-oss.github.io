@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -46,9 +46,15 @@ difficulty: "Foundation"
 xp: 450
 time_min: 25
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 18
+page_id: human-physiology-l18
+previous: /biology/hsc-corner/zoology/respiratory-diseases-public-health/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/baroreceptor-reflex/
 ---
-
-# Respiratory System Revision Map: শ্বাসনালীর গঠন, মেকানিজম, গ্যাস পরিবহন ও রোগ
 
 ## Purpose of This Revision Map
 
@@ -192,9 +198,6 @@ Example:
 **Correct answer:** Gas exchange.  
 **Validity logic:** Alveolus thin wall, moist surface এবং dense capillary network থাকার কারণে O₂ ও CO₂ diffusion-এর প্রধান site। Trachea বা bronchi airflow passage হলেও gas exchange-এর প্রধান site নয়।
 
-## Synaptic Bridge
-
-Respiratory system আমাদের শেখায়, জীবন একটি continuous exchange: আমরা পরিবেশ থেকে oxygen নিই এবং metabolic waste CO₂ পরিবেশে ফিরিয়ে দিই। তাই নিজের শ্বাসকে রক্ষা করা মানে পরিবেশকে রক্ষা করা, clean air নিশ্চিত করা, smoking বর্জন করা এবং অসুস্থতার লক্ষণকে অবহেলা না করা।
 
 ## References
 

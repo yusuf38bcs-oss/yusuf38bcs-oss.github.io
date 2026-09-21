@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -45,9 +45,15 @@ difficulty: "Intermediate"
 xp: 850
 time_min: 75
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 22
+page_id: human-physiology-l22
+previous: /biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/higher-zoology-tree/physiology/cardiac-surgery-bypass-angioplasty-open-heart-treatment/
 ---
-
-# Blood Circulation Part 3: সঞ্চালনজনিত রোগ — কারণ, লক্ষণ, চিকিৎসা-সচেতনতা ও প্রতিরোধ
 
 ## Educational and Medical Safety Note
 
@@ -309,9 +315,6 @@ Circulatory disease management may include:
 
 এসব সিদ্ধান্ত patient-specific। নিজে নিজে medicine শুরু/বন্ধ করা বিপজ্জনক।
 
-## Synaptic Bridge
-
-Circulatory disease আমাদের শেখায়: প্রতিদিনের ছোট সিদ্ধান্ত—খাদ্য, ঘুম, হাঁটা, ধূমপান, stress, salt intake, medical checkup—ধীরে ধীরে vessel wall and heart function-এ প্রভাব ফেলে। Biology here becomes accountability: invisible plaque grows from visible habits.
 
 ## Critical Thinking Questions
 

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 title: "Digestive System Lecture 12: Large Intestine and Defecation"
 permalink: /biology/hsc-corner/zoology/digestive-system/large-intestine/
 categories: [Biology, HSC Corner, Zoology]
@@ -9,9 +9,15 @@ toc_sticky: true
 classes: wide
 language: bn
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 12
+page_id: human-physiology-l12
+previous: /biology/hsc-corner/zoology/digestive-system/lecture-11/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/digestive-system/health-issues/
 ---
-
-# Digestive System Lecture 12: Large Intestine and Defecation
 
 ## Learning Objectives
 

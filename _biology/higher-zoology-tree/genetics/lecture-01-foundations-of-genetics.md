@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Foundation"
 xp: 650
 time_min: 50
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 1
+page_id: genetics-17-l01
+previous: null
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/genetic-terminology/
 ---
-
-# Genetics Lecture 01: Foundations of Genetics
 
 ## Concept Overview
 
@@ -75,8 +81,6 @@ Why do offspring show both similarity and variation?
 
 Genetics শুধু inheritance ratio শেখার বিষয় নয়। এটি family resemblance, disease tendency, crop improvement, animal breeding, biodiversity, evolution, biotechnology, forensic biology and biological identity বোঝার foundation। যদি gene, trait, chromosome and variation পরিষ্কার না হয়, তাহলে Mendelian genetics, molecular genetics or population genetics কোনোটি গভীরভাবে বোঝা যায় না।
 
-{% include education/framework-links.html %}
-
 ## Genetics Foundation Learning Focus
 
 এই lecture central LBFL framework-কে Genetics foundation-এ প্রয়োগ করে। Learner-এর focus হবে heredity, variation, gene, trait, character, chromosome, DNA, genotype, phenotype, and inheritance flow.
@@ -91,7 +95,7 @@ Genetics শুধু inheritance ratio শেখার বিষয় নয়। �
 ## Core Terms
 
 <div class="lbfl-info-grid">
-  <section class="lbfl-info-card"><h3>Gene</h3><p>DNA-এর functional unit যা কোনো trait নিয়ন্ত্রণে ভূমিকা রাখে।</p></section>
+  <section class="lbfl-info-card"><h3>Gene</h3><p>DNA sequence বা genomic unit যা functional RNA/protein product বা regulatory function-এর মাধ্যমে phenotype ও cellular function-এ অবদান রাখতে পারে।</p></section>
   <section class="lbfl-info-card"><h3>Trait</h3><p>একটি inherited feature-এর প্রকাশিত রূপ।</p><p><strong>Example:</strong> tallness, seed colour, blood group.</p></section>
   <section class="lbfl-info-card"><h3>Character</h3><p>যে broad feature পর্যবেক্ষণ করা হয়।</p><p><strong>Example:</strong> plant height.</p></section>
   <section class="lbfl-info-card"><h3>Chromosome</h3><p>DNA and protein-এর organized structure যেখানে genes অবস্থান করে।</p></section>
@@ -126,7 +130,7 @@ A gene does not usually act like a visible object. It contributes to a biologica
 ```text
 Gene information
   ↓
-RNA / protein or regulatory effect
+functional RNA, protein, or regulatory effect
   ↓
 Cellular function
   ↓
@@ -179,9 +183,6 @@ Similarity + variation
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Ignoring environment. Phenotype can be affected by both genotype and environment.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Genetics teaches that visible outcomes often have hidden information behind them. A learner's behaviour, performance or response may also arise from hidden patterns: habit, memory, environment, motivation and self-discipline. Biology therefore trains us to look beneath the surface before judging an outcome.
 
 ## Critical Thinking Questions
 

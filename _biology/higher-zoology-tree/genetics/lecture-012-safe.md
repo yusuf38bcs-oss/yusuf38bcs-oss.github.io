@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -54,9 +54,15 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 12
+page_id: genetics-17-l12
+previous: /biology/higher-zoology-tree/genetics/lecture-11/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/lecture-13/
 ---
-
-# Genetics Lecture 12: Chromosomal Mutation and Abnormalities
 
 ## Concept Overview
 
@@ -77,8 +83,6 @@ Variation, disorder or evolutionary consequence may appear
 ## Why This Matters
 
 Chromosomal mutation Genetics-এর genome-level thinking শেখায়। এটি learner-কে বুঝতে সাহায্য করে যে inheritance শুধু allele pair নয়; chromosome number, segment arrangement and gene dosage-ও biological outcome নির্ধারণে গুরুত্বপূর্ণ। Agriculture, evolution, cytogenetics, karyotype analysis and medical genetics-এর foundational concept এখানে গড়ে ওঠে।
-
-{% include education/framework-links.html %}
 
 ## Chromosomal-Mutation Learning Focus
 
@@ -122,7 +126,7 @@ Numerical change affects chromosome number.
 
 <div class="lbfl-info-grid lbfl-info-grid--compact">
   <section class="lbfl-info-card"><h3>Aneuploidy</h3><p>Gain or loss of one or a few chromosomes.</p><p><strong>Example logic:</strong> 2n + 1 or 2n - 1.</p></section>
-  <section class="lbfl-info-card"><h3>Euploidy / Polyploidy</h3><p>Change involving whole sets of chromosomes.</p><p><strong>Example logic:</strong> 3n, 4n or more.</p></section>
+  <section class="lbfl-info-card"><h3>Euploid whole-set change</h3><p>Change involving complete chromosome sets. <strong>Polyploidy</strong> specifically means more than two complete sets, such as 3n or 4n.</p></section>
 </div>
 
 ## Nondisjunction
@@ -202,9 +206,6 @@ Textbook examples of chromosomal conditions are used in Biology education to exp
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Using classroom examples as medical conclusions. Educational genetics is not clinical diagnosis.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Chromosomal mutation teaches that structure matters. A system may contain the same elements, but if parts are missing, repeated, reversed or misplaced, the outcome changes. In learning life, organization, balance and placement also determine whether knowledge becomes useful.
 
 ## Critical Thinking Questions
 

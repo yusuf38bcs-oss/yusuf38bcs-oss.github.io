@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: biostatistics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -9,6 +9,10 @@ excerpt: "Population, sample, parameter, statistic, variable, data, observation 
 date: 2026-04-05T15:48:00.006Z
 last_modified_at: 2026-07-02T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics/
+page_id: biostatistics-01
+course_id: biostatistics-09
+course_role: lecture
+lecture_number: 1
 categories:
   - Biology
   - Higher Zoology
@@ -36,6 +40,7 @@ classes: wide
 header:
   overlay_image: /assets/images/biology/biostatistics-banner.webp
 language: bn
+translation_status: single-source-unpaired
 curriculum_tracks:
   - HSC Zoology
   - IB Biology
@@ -49,9 +54,10 @@ difficulty: "Foundation"
 xp: 650
 time_min: 50
 status: "Active"
+previous: null
+course_index: /biology/higher-zoology-tree/biostatistics/
+next: /biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon/
 ---
-
-# Basic Concepts of Biostatistics: জীবপরিসংখ্যানের মৌলিক ধারণা
 
 ## Concept Overview
 
@@ -62,8 +68,6 @@ Biostatistics আমাদের শেখায়: সংখ্যা শুধ�
 ## Why This Matters
 
 একজন zoology learner যখন fish length, plant height, blood pressure, survival rate, disease frequency, species richness or exam score নিয়ে কাজ করে, তখন সে biological data নিয়ে কাজ করছে। সেই data থেকে valid conclusion বের করতে হলে জানতে হবে কোন data কাকে represent করছে, কোন variable কী ধরনের, sample কতটা reliable, এবং কোন statistical method ব্যবহারযোগ্য।
-
-{% include education/framework-links.html %}
 
 ## Biostatistics-Specific Learning Focus
 
@@ -161,9 +165,6 @@ Interpret biologically
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Statistical significance-কে biological importance-এর সমান ধরে নেওয়া।</p></section>
 </div>
 
-## Synaptic Bridge
-
-Biostatistics teaches disciplined thinking. Life gives us observations, but wisdom requires sampling, classification, comparison and careful inference. A learner who understands data becomes less dependent on guesswork and more capable of evidence-based decision-making.
 
 ## Critical Thinking Questions
 

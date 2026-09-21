@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,13 +53,19 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 14
+page_id: genetics-17-l14
+previous: /biology/higher-zoology-tree/genetics/lecture-13/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/lecture-15/
 ---
-
-# Genetics Lecture 14: DNA Replication
 
 ## Concept Overview
 
-**DNA replication** হলো DNA molecule-এর accurate copying process. Cell division-এর আগে genetic information copy হতে হয়, যেন daughter cells বা offspring একই hereditary instruction পেতে পারে। DNA replication-এর সবচেয়ে গুরুত্বপূর্ণ বৈশিষ্ট্য হলো এটি **semi-conservative**: প্রতিটি নতুন DNA molecule-এ একটি পুরনো strand এবং একটি নতুন strand থাকে।
+**DNA replication** হলো DNA molecule-এর high-fidelity copying process with proofreading and repair, although rare errors can remain. Cell division-এর আগে genetic information copy হতে হয়, যেন daughter cells বা offspring একই hereditary instruction পেতে পারে। DNA replication-এর সবচেয়ে গুরুত্বপূর্ণ বৈশিষ্ট্য হলো এটি **semi-conservative**: প্রতিটি নতুন DNA molecule-এ একটি পুরনো strand এবং একটি নতুন strand থাকে।
 
 Core idea:
 
@@ -68,15 +74,13 @@ Parental DNA double helix
   ↓ strands separate
 Each strand acts as template
   ↓ complementary bases added
-Two identical DNA molecules form
+Two high-fidelity daughter DNA molecules form
   ↓ each has one old strand + one new strand
 ```
 
 ## Why This Matters
 
 Inheritance continuity DNA replication-এর উপর নির্ভর করে। Replication না হলে mitosis, meiosis, growth, repair, reproduction and genetic continuity কোনোটি সম্ভব নয়। একই সাথে replication error mutation-এর source হতে পারে। তাই DNA replication শেখা মানে heredity and variation-এর molecular balance বোঝা।
-
-{% include education/framework-links.html %}
 
 ## Replication Learning Focus
 
@@ -207,9 +211,6 @@ This connects DNA replication with both genetic stability and genetic variation.
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Thinking replication errors are always harmful. Some mutations are harmful, some neutral, and rarely some may be useful depending on context.</p></section>
 </div>
 
-## Synaptic Bridge
-
-DNA replication teaches continuity with correction. A living system preserves essential information but also has mechanisms to detect errors. In learning life, responsible growth also needs faithful transmission, careful checking and correction before mistakes become permanent habits.
 
 ## Critical Thinking Questions
 
