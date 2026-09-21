@@ -59,6 +59,7 @@ async function inspect(page, viewportWidth) {
       heroTitle: ".lbfl-v3-hero h1",
       heroBrandLine: ".lbfl-v3-hero__brand-line",
       heroPromise: ".lbfl-v3-hero__promise",
+      heroControls: ".lbfl-v3-hero__controls",
       heroActions: ".lbfl-v3-actions",
       cycle: ".lbfl-v3-cycle",
       heroVisual: ".lbfl-v3-hero__visual",
@@ -147,6 +148,7 @@ async function inspect(page, viewportWidth) {
       selectors.headerInner,
       selectors.language,
       selectors.heroCopy,
+      selectors.heroControls,
       selectors.heroActions,
       selectors.cycle,
       ".lbfl-v3-pathway-card",
@@ -265,11 +267,13 @@ async function inspect(page, viewportWidth) {
           visible(title) &&
           visible(element(selectors.heroBrandLine)) &&
           visible(element(selectors.heroPromise)) &&
+          visible(element(selectors.heroControls)) &&
           visible(element(selectors.heroActions)) &&
           visible(element(selectors.cycle)),
         gridColumns: columns(selectors.heroGrid),
         expectedGridColumns: expectedHeroColumns,
         copyContained: contains(selectors.heroGrid, selectors.heroCopy),
+        controlsContained: contains(selectors.heroGrid, selectors.heroControls),
         visualVisible: visible(visual) && Boolean(heroImage && heroImage.complete && heroImage.naturalWidth > 0),
         visualContained: contains(selectors.heroGrid, selectors.heroVisual),
         visualAfterCopy: (() => {
@@ -277,12 +281,43 @@ async function inspect(page, viewportWidth) {
           const artwork = rect(selectors.heroVisual);
           return phoneLayout ? Boolean(copy && artwork && artwork.top >= copy.bottom - tolerance) : true;
         })(),
+        visualBeforeControls: (() => {
+          const artwork = rect(selectors.heroVisual);
+          const controls = rect(selectors.heroControls);
+          return phoneLayout ? Boolean(artwork && controls && controls.top >= artwork.bottom - tolerance) : true;
+        })(),
+        copyVisualGap: phoneLayout ? gap(selectors.heroCopy, selectors.heroVisual) : null,
+        visualControlsGap: phoneLayout ? gap(selectors.heroVisual, selectors.heroControls) : null,
+        mobileActionsFullWidth: (() => {
+          if (!phoneLayout) return true;
+          const controls = rect(selectors.heroControls);
+          const links = Array.from(document.querySelectorAll(".lbfl-v3-actions a")).map(rectOf).filter(Boolean);
+          return Boolean(controls && links.length === 2 && links.every((link) => link.width >= controls.width - 4));
+        })(),
+        cycleAfterActions: (() => {
+          if (!phoneLayout) return true;
+          const actions = rect(selectors.heroActions);
+          const cycle = rect(selectors.cycle);
+          return Boolean(actions && cycle && cycle.top >= actions.bottom - tolerance);
+        })(),
+        desktopControlsBelowCopy: (() => {
+          if (phoneLayout) return true;
+          const copy = rect(selectors.heroCopy);
+          const controls = rect(selectors.heroControls);
+          return Boolean(copy && controls && controls.top >= copy.bottom - tolerance);
+        })(),
+        desktopControlsLeftAligned: (() => {
+          if (phoneLayout) return true;
+          const copy = rect(selectors.heroCopy);
+          const controls = rect(selectors.heroControls);
+          return Boolean(copy && controls && Math.abs(copy.left - controls.left) <= 4);
+        })(),
         titleBrandGap: gap(selectors.heroTitle, selectors.heroBrandLine),
         brandPromiseGap: gap(selectors.heroBrandLine, selectors.heroPromise),
         titleLineHeightRatio,
         titleFontFamily: titleStyle ? titleStyle.fontFamily : "",
         titleFontWeight: titleStyle ? titleStyle.fontWeight : "",
-        actionsTopGap: gap(selectors.heroPromise, selectors.heroActions),
+        actionsTopGap: phoneLayout ? null : gap(selectors.heroPromise, selectors.heroActions),
         cycleColumns: columns(selectors.cycle),
         specimenVisible: visible(element(selectors.specimenLabel)) && visible(element(selectors.specimenNote)),
       },
@@ -370,18 +405,33 @@ function passes(result) {
     l.hero.visible &&
     l.hero.gridColumns === l.hero.expectedGridColumns &&
     l.hero.copyContained &&
+    l.hero.controlsContained &&
     l.hero.visualVisible &&
     l.hero.visualContained &&
     l.hero.visualAfterCopy &&
+    l.hero.visualBeforeControls &&
+    l.hero.mobileActionsFullWidth &&
+    l.hero.cycleAfterActions &&
+    l.hero.desktopControlsBelowCopy &&
+    l.hero.desktopControlsLeftAligned &&
     l.hero.titleBrandGap !== null &&
     l.hero.titleBrandGap >= 18 &&
     l.hero.titleBrandGap <= 42 &&
     l.hero.brandPromiseGap !== null &&
     l.hero.brandPromiseGap >= 6 &&
     l.hero.brandPromiseGap <= 20 &&
-    l.hero.actionsTopGap !== null &&
-    l.hero.actionsTopGap >= 18 &&
-    l.hero.actionsTopGap <= 36 &&
+    (
+      l.phoneLayout
+        ? (
+            l.hero.copyVisualGap !== null &&
+            l.hero.copyVisualGap >= 20 &&
+            l.hero.copyVisualGap <= 36 &&
+            l.hero.visualControlsGap !== null &&
+            l.hero.visualControlsGap >= 18 &&
+            l.hero.visualControlsGap <= 34
+          )
+        : true
+    ) &&
     l.hero.titleLineHeightRatio >= 1.0 &&
     l.hero.titleLineHeightRatio <= 1.08 &&
     /Manrope/i.test(l.hero.titleFontFamily) &&
@@ -420,10 +470,18 @@ function summarizeFailure(result) {
   if (!/EDITORIAL\s*&\s*EVIDENCE/i.test(l.editorial.kicker)) reasons.push("editorial-kicker");
   if (!l.hero.visible) reasons.push("hero-visibility");
   if (l.hero.gridColumns !== l.hero.expectedGridColumns) reasons.push(`hero-columns=${l.hero.gridColumns}/${l.hero.expectedGridColumns}`);
-  if (!l.hero.visualVisible || !l.hero.visualContained || !l.hero.visualAfterCopy) reasons.push("specimen-layout");
+  if (!l.hero.visualVisible || !l.hero.visualContained || !l.hero.visualAfterCopy || !l.hero.visualBeforeControls) reasons.push("specimen-layout");
+  if (!l.hero.controlsContained) reasons.push("hero-controls-containment");
+  if (!l.hero.mobileActionsFullWidth) reasons.push("mobile-actions-width");
+  if (!l.hero.cycleAfterActions) reasons.push("mobile-cycle-order");
+  if (!l.hero.desktopControlsBelowCopy) reasons.push("desktop-controls-order");
+  if (!l.hero.desktopControlsLeftAligned) reasons.push("desktop-controls-alignment");
   if (!(l.hero.titleBrandGap >= 18 && l.hero.titleBrandGap <= 42)) reasons.push(`title-brand-gap=${l.hero.titleBrandGap}`);
   if (!(l.hero.brandPromiseGap >= 6 && l.hero.brandPromiseGap <= 20)) reasons.push(`brand-promise-gap=${l.hero.brandPromiseGap}`);
-  if (!(l.hero.actionsTopGap >= 18 && l.hero.actionsTopGap <= 36)) reasons.push(`promise-actions-gap=${l.hero.actionsTopGap}`);
+  if (l.phoneLayout) {
+    if (!(l.hero.copyVisualGap >= 20 && l.hero.copyVisualGap <= 36)) reasons.push(`copy-visual-gap=${l.hero.copyVisualGap}`);
+    if (!(l.hero.visualControlsGap >= 18 && l.hero.visualControlsGap <= 34)) reasons.push(`visual-controls-gap=${l.hero.visualControlsGap}`);
+  }
   if (!(l.hero.titleLineHeightRatio >= 1.0 && l.hero.titleLineHeightRatio <= 1.08)) reasons.push(`h1-line-height=${l.hero.titleLineHeightRatio}`);
   if (l.hero.cycleColumns !== 4) reasons.push(`cycle-columns=${l.hero.cycleColumns}`);
   for (const key of ["pathway", "journey", "method", "repair", "evidence", "evidenceCard", "continue"]) {
@@ -481,7 +539,7 @@ function summarizeFailure(result) {
   const report = {
     targetUrl,
     generatedAt: new Date().toISOString(),
-    contract: "homepage-v3.5.1",
+    contract: "homepage-v3.5.2-mobile-composition",
     passed: results.every((result) => result.passed),
     results,
   };
