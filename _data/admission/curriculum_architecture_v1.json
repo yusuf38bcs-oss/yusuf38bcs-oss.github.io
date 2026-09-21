@@ -1,12 +1,12 @@
 {
   "schema": "lbfl-admission-curriculum-architecture-v1",
-  "version": "R2.4-0.2",
+  "version": "R2.4.2-0.1",
   "parent_contract": {
-    "parent_pr": 349,
-    "parent_head": "e07addcc58e2e3528fde7940e1b5e7f71a8c240b",
-    "stacked_on": "admission/r2-3-biology-page-evidence-population-20260922"
+    "parent_pr": 350,
+    "parent_head": "4975362ba27308393d827f66cd468235b4c520c9",
+    "stacked_on": "admission/r2-4-pass2-claim-evidence-unlock-contract-20260922"
   },
-  "purpose": "Preserve the Admission curriculum architecture while adding the row-level Biology Pass-2 evidence unlock contract and recording acquisition of additional reference artifacts before lecture-gap remediation.",
+  "purpose": "Preserve the Admission curriculum architecture, current B01 draft-only remediation gateway, and fail-closed final Pass-2 contract while adding a reproducible physical-copy evidence route for exact-edition/page verification when digital scan extraction or SHA-256 acquisition is blocked.",
   "boundary": {
     "chapter_taxonomy_authenticated": false,
     "chapter_completion_allowed": false,
@@ -25,7 +25,10 @@
     "biology_lecture_gap_remediation_authority_rows": 0,
     "biology_drive_stable_metadata_bound_artifacts": 5,
     "biology_draft_remediation_gateway_active": true,
-    "biology_draft_remediation_authority_rows": 1
+    "biology_draft_remediation_authority_rows": 1,
+    "biology_physical_copy_pass2_route_supported": true,
+    "biology_source_families_corroborated": 2,
+    "biology_physical_copy_evidence_intake_rows": 1
   },
   "chapter_complete_contract": {
     "required": [
@@ -114,7 +117,7 @@
       "subject_id": "BIO",
       "name": "Biology",
       "route_slug": "biology",
-      "architecture_status": "24-chapter-mapping-authenticated-pass2-blocked-b01-draft-only-gateway-open",
+      "architecture_status": "24-chapter-mapping-authenticated-pass2-blocked-b01-draft-gateway-plus-physical-copy-evidence-route",
       "topic_taxonomy": {
         "source": "_data/admission/biology/engine_v1.json",
         "expected_topic_ids": [
@@ -147,7 +150,7 @@
           "B27",
           "B28"
         ],
-        "chapter_mapping_status": "curriculum-mapping-authenticated-source-populated-pass2-blocked-draft-only-gateway-active",
+        "chapter_mapping_status": "curriculum-mapping-authenticated-source-populated-pass2-blocked-draft-and-physical-evidence-gateways-active",
         "note": "B01-B28 are Admission topic identities and must not be silently treated as textbook chapter identities."
       },
       "papers": [
