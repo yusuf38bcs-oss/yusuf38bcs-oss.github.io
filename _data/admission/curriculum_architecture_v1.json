@@ -1,12 +1,12 @@
 {
   "schema": "lbfl-admission-curriculum-architecture-v1",
-  "version": "R2.4-0.1",
+  "version": "R2.4.1-0.1",
   "parent_contract": {
-    "parent_pr": 349,
-    "parent_head": "e07addcc58e2e3528fde7940e1b5e7f71a8c240b",
-    "stacked_on": "admission/r2-3-biology-page-evidence-population-20260922"
+    "parent_pr": 350,
+    "parent_head": "a738298473017304ba556cb97d3879328a0b7160",
+    "stacked_on": "admission/r2-4-pass2-claim-evidence-unlock-contract-20260922"
   },
-  "purpose": "Preserve the Admission curriculum architecture while adding the row-level Biology Pass-2 evidence unlock contract and recording acquisition of additional reference artifacts before lecture-gap remediation.",
+  "purpose": "Preserve the Admission curriculum architecture while adding a fail-closed narrow evidence gateway for non-publishable shadow drafting when exact scan-edition/page/hash evidence is temporarily unavailable.",
   "boundary": {
     "chapter_taxonomy_authenticated": false,
     "chapter_completion_allowed": false,
@@ -22,7 +22,9 @@
     "biology_additional_reference_artifacts_acquired": true,
     "biology_pass2_unlock_contract_active": true,
     "biology_pass2_verified_rows": 0,
-    "biology_lecture_gap_remediation_authority_rows": 0
+    "biology_lecture_gap_remediation_authority_rows": 0,
+    "biology_narrow_evidence_gateway_active": true,
+    "biology_shadow_draft_authority_rows": 1
   },
   "chapter_complete_contract": {
     "required": [
@@ -111,7 +113,7 @@
       "subject_id": "BIO",
       "name": "Biology",
       "route_slug": "biology",
-      "architecture_status": "24-chapter-mapping-authenticated-pass2-acquisition-active-no-unlocked-rows",
+      "architecture_status": "24-chapter-mapping-authenticated-r2-4-1-narrow-gateway-active-pass2-still-blocked",
       "topic_taxonomy": {
         "source": "_data/admission/biology/engine_v1.json",
         "expected_topic_ids": [
@@ -144,7 +146,7 @@
           "B27",
           "B28"
         ],
-        "chapter_mapping_status": "curriculum-mapping-authenticated-source-populated-pass2-evidence-acquisition-active",
+        "chapter_mapping_status": "curriculum-mapping-authenticated-source-family-corroborated-narrow-shadow-gateway-active",
         "note": "B01-B28 are Admission topic identities and must not be silently treated as textbook chapter identities."
       },
       "papers": [
@@ -535,5 +537,6 @@
   "biology_claim_source_matrix": "_data/admission/biology/claim_source_matrix_v1.json",
   "biology_reference_registry": "_data/admission/biology/reference_registry_v1.json",
   "biology_second_verification": "_data/admission/biology/r2-3_second_verification_v1.json",
-  "biology_pass2_claim_evidence": "_data/admission/biology/pass2_claim_evidence_v1.json"
+  "biology_pass2_claim_evidence": "_data/admission/biology/pass2_claim_evidence_v1.json",
+  "biology_narrow_evidence_gateway": "_data/admission/biology/narrow_evidence_gateway_v1.json"
 }
