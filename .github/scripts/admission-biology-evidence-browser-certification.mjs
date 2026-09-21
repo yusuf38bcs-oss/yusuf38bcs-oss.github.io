@@ -240,8 +240,9 @@ async function certifyJourney(browser) {
     checks.modelTest = new URL(page.url()).pathname.endsWith("/admission/foundation-model-test-01/") &&
       await page.locator('fieldset[data-question-id]').count() === 30;
 
-    await page.locator('button[type="submit"]').click();
-    const result = page.locator("[data-admission-result]");
+    const quizForm = page.locator('[data-admission-quiz]');
+    await quizForm.locator('button[type="submit"]').click();
+    const result = quizForm.locator("[data-admission-result]");
     await result.waitFor({ state: "visible" });
     checks.submitResult = /Score:\s*0\s*\/\s*30/i.test(await result.innerText());
 
@@ -254,12 +255,12 @@ async function certifyJourney(browser) {
       await repairPage.close();
     }
 
-    await page.locator("[data-admission-reset]").click();
+    await quizForm.locator("[data-admission-reset]").click();
     checks.reset = await result.isHidden() &&
       await page.locator("fieldset[data-result]").count() === 0;
 
-    await page.locator('[data-question-id="admission-foundation-01-q01"] input[value="1"]').check();
-    await page.locator('button[type="submit"]').click();
+    await quizForm.locator('[data-question-id="admission-foundation-01-q01"] input[value="1"]').check();
+    await quizForm.locator('button[type="submit"]').click();
     await result.waitFor({ state: "visible" });
     checks.retry = /Score:\s*1\s*\/\s*30/i.test(await result.innerText());
 
