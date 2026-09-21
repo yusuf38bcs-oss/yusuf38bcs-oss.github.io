@@ -10,6 +10,8 @@ REUSE_PATH = File.join(ROOT, "_data/admission/biology/reuse_audit_v1.json")
 CHAPTER_MAP_PATH = File.join(ROOT, "_data/admission/biology/chapter_map_v1.json")
 REFERENCE_POLICY_PATH = File.join(ROOT, "_data/admission/biology/reference_policy_v1.json")
 CLAIM_MATRIX_PATH = File.join(ROOT, "_data/admission/biology/claim_source_matrix_v1.json")
+REFERENCE_REGISTRY_PATH = File.join(ROOT, "_data/admission/biology/reference_registry_v1.json")
+SECOND_VERIFICATION_PATH = File.join(ROOT, "_data/admission/biology/r2-3_second_verification_v1.json")
 SOURCE_EVIDENCE_PATH = File.join(ROOT, "_data/admission/biology/sources/r2-2-shared-syllabus-photo-set.json")
 EDITORIAL_POLICY_PATH = File.join(ROOT, "_pages/utility/editorial-policy.md")
 
@@ -74,6 +76,8 @@ reuse = load_json(REUSE_PATH)
 chapter_map = load_json(CHAPTER_MAP_PATH)
 reference_policy = load_json(REFERENCE_POLICY_PATH)
 claim_matrix = load_json(CLAIM_MATRIX_PATH)
+reference_registry = load_json(REFERENCE_REGISTRY_PATH)
+second_verification = load_json(SECOND_VERIFICATION_PATH)
 source_evidence = load_json(SOURCE_EVIDENCE_PATH)
 editorial_policy = File.read(EDITORIAL_POLICY_PATH, encoding: "UTF-8")
 
@@ -81,8 +85,8 @@ expected_topic_ids = Array(engine["taxonomy"]).map { |topic| topic["id"] }
 coverage_by_id = Array(coverage["topics"]).to_h { |topic| [topic["id"], topic] }
 
 errors << "architecture schema mismatch" unless architecture["schema"] == "lbfl-admission-curriculum-architecture-v1"
-errors << "architecture version must be R2.2-0.1" unless architecture["version"] == "R2.2-0.1"
-errors << "architecture parent head mismatch" unless architecture.dig("parent_contract", "parent_head") == "af233662565dff7802598d60861fe64f9e305df6"
+errors << "architecture version must be R2.3-0.1" unless architecture["version"] == "R2.3-0.1"
+errors << "architecture parent head mismatch" unless architecture.dig("parent_contract", "parent_head") == "c89e126a6e5e8372f761c825729bca6df628ab4a"
 
 subjects = Array(architecture["subjects"])
 subject_ids = subjects.map { |subject| subject["subject_id"] }
@@ -100,10 +104,10 @@ bio = subjects.find { |subject| subject["subject_id"] == "BIO" }
 if bio.nil?
   errors << "BIO subject missing"
 else
-  errors << "BIO architecture status mismatch" unless bio["architecture_status"] == "24-chapter-curriculum-mapping-authenticated-multireference-verification-pending"
+  errors << "BIO architecture status mismatch" unless bio["architecture_status"] == "24-chapter-mapping-authenticated-r2-3-source-populated-second-verification-blocked"
   errors << "BIO engine taxonomy source changed" unless bio.dig("topic_taxonomy", "source") == "_data/admission/biology/engine_v1.json"
   errors << "BIO topic IDs changed" unless Array(bio.dig("topic_taxonomy", "expected_topic_ids")) == expected_topic_ids
-  errors << "BIO chapter mapping status mismatch" unless bio.dig("topic_taxonomy", "chapter_mapping_status") == "curriculum-mapping-authenticated-multireference-claim-verification-pending"
+  errors << "BIO chapter mapping status mismatch" unless bio.dig("topic_taxonomy", "chapter_mapping_status") == "curriculum-mapping-authenticated-source-populated-claim-page-and-second-verification-pending"
 
   bio_chapters = Array(bio["papers"]).flat_map { |paper| Array(paper["chapters"]) }
   errors << "BIO architecture must contain exactly 24 chapter rows" unless bio_chapters.length == 24
@@ -118,6 +122,9 @@ end
 boundary = architecture["boundary"] || {}
 errors << "global four-subject taxonomy must remain unauthenticated" unless boundary["chapter_taxonomy_authenticated"] == false
 errors << "Biology taxonomy must be authenticated" unless boundary["biology_chapter_taxonomy_authenticated"] == true
+errors << "Biology source population must be complete" unless boundary["biology_claim_source_population_complete"] == true
+errors << "Biology claim-page verification must remain incomplete" unless boundary["biology_claim_page_verification_complete"] == false
+errors << "Biology second verification must remain incomplete" unless boundary["biology_second_verification_complete"] == false
 %w[
   chapter_completion_allowed
   new_model_test_batch_allowed
@@ -132,6 +139,8 @@ end
 errors << "reference policy path mismatch" unless architecture["reference_policy"] == "_data/admission/biology/reference_policy_v1.json"
 errors << "chapter map path mismatch" unless architecture["biology_chapter_map"] == "_data/admission/biology/chapter_map_v1.json"
 errors << "claim matrix path mismatch" unless architecture["biology_claim_source_matrix"] == "_data/admission/biology/claim_source_matrix_v1.json"
+errors << "reference registry path mismatch" unless architecture["biology_reference_registry"] == "_data/admission/biology/reference_registry_v1.json"
+errors << "second verification path mismatch" unless architecture["biology_second_verification"] == "_data/admission/biology/r2-3_second_verification_v1.json"
 
 errors << "chapter-map schema mismatch" unless chapter_map["schema"] == "lbfl-admission-biology-24-chapter-map-v1"
 errors << "chapter-map version mismatch" unless chapter_map["version"] == "R2.2-0.1"
@@ -218,15 +227,72 @@ errors << "historical substitution must be prohibited" unless reference_policy.d
 errors << "editorial policy page is missing permanent multi-reference rule" unless editorial_policy.include?(PERMANENT_RULE)
 
 errors << "claim-matrix schema mismatch" unless claim_matrix["schema"] == "lbfl-admission-biology-claim-source-matrix-v1"
+errors << "claim-matrix version mismatch" unless claim_matrix["version"] == "R2.3-0.1"
+errors << "claim-matrix status mismatch" unless claim_matrix["status"] == "all-rows-source-populated-claim-page-and-second-verification-pending"
+errors << "claim-matrix registry path mismatch" unless claim_matrix["reference_registry"] == "_data/admission/biology/reference_registry_v1.json"
 matrix_rows = Array(claim_matrix["rows"])
 errors << "claim matrix must have 29 chapter-topic rows" unless matrix_rows.length == 29
 errors << "claim matrix must cover 24 chapters" unless matrix_rows.map { |row| row["chapter_id"] }.uniq.length == 24
 errors << "claim matrix must cover all 28 topics" unless matrix_rows.map { |row| row["topic_id"] }.uniq.sort == expected_topic_ids.sort
+errors << "primary chapter-range population must be 29" unless claim_matrix.dig("summary", "primary_chapter_range_populated_rows") == 29
+errors << "supplementary candidate population must be 29" unless claim_matrix.dig("summary", "supplementary_candidate_populated_rows") == 29
+errors << "scientific locator population must be 29" unless claim_matrix.dig("summary", "scientific_locator_populated_rows") == 29
+errors << "additional authorized claim-page population must remain zero" unless claim_matrix.dig("summary", "additional_authorized_claim_page_populated_rows") == 0
 errors << "claim matrix page-verified count must remain zero" unless claim_matrix.dig("summary", "page_verified_claim_rows") == 0
 errors << "claim matrix second-verified count must remain zero" unless claim_matrix.dig("summary", "second_verified_rows") == 0
+
 matrix_rows.each do |row|
-  errors << "#{row['matrix_id']}: page verification must remain pending" unless row["claim_verification_status"] == "scope-mapped-page-level-claim-verification-pending"
-  errors << "#{row['matrix_id']}: second verification must remain not-run" unless row["second_verification_status"] == "not-run"
+  label = row["matrix_id"]
+  locator = row["primary_textbook_chapter_locator"] || {}
+  errors << "#{label}: primary printed chapter range missing" unless locator["locator_type"] == "printed-chapter-page-range" && locator["page_start"].is_a?(Integer) && locator["page_start"].positive? && locator["page_end"].is_a?(Integer) && locator["page_end"] >= locator["page_start"]
+  errors << "#{label}: primary chapter locator must not claim row-level verification" unless locator["evidence_scope"].to_s.include?("does not by itself verify")
+  errors << "#{label}: supplementary candidates missing" if Array(row["supplementary_book_candidates"]).empty?
+  errors << "#{label}: unverified candidates must not enter supplementary_authorized_books" unless Array(row["supplementary_authorized_books"]).empty?
+  errors << "#{label}: authoritative scientific locator missing" if Array(row["scientific_references"]).empty?
+  errors << "#{label}: scientific locator state mismatch" unless row["scientific_locator_status"] == "populated-web-locators-verified"
+  errors << "#{label}: page-evidence state mismatch" unless row["page_evidence_status"] == "primary-chapter-range-populated-additional-book-claim-pages-pending"
+  errors << "#{label}: claim verification must remain pending" unless row["claim_verification_status"] == "source-populated-claim-page-verification-pending"
+  errors << "#{label}: disagreement refs must be explicit array" unless row["disagreement_refs"].is_a?(Array)
+  errors << "#{label}: second verification must remain blocked" unless row["second_verification_status"] == "blocked-pending-claim-page-evidence-from-additional-authorized-reference"
+end
+
+errors << "reference-registry schema mismatch" unless reference_registry["schema"] == "lbfl-admission-biology-reference-registry-v1"
+errors << "reference-registry version mismatch" unless reference_registry["version"] == "R2.3-0.1"
+errors << "reference-registry parent mismatch" unless reference_registry["exact_parent_head"] == "c89e126a6e5e8372f761c825729bca6df628ab4a"
+book_candidates = Array(reference_registry["textbook_reference_candidates"])
+scientific_refs = Array(reference_registry["scientific_references"])
+disagreements = Array(reference_registry["known_disagreements"])
+errors << "expected 5 HSC reference candidates" unless book_candidates.length == 5
+errors << "expected at least 30 authoritative scientific locators" unless scientific_refs.length >= 30
+errors << "expected 5 explicit disagreement records" unless disagreements.length == 5
+book_candidates.each do |source|
+  errors << "#{source['source_id']}: candidate must not claim page locator" unless source["claim_page_locator_available"] == false
+  errors << "#{source['source_id']}: authorization status missing" if blank?(source["authorization_status"])
+end
+scientific_ids = scientific_refs.map { |source| source["source_id"] }
+errors << "scientific source IDs must be unique" unless scientific_ids.uniq.length == scientific_ids.length
+scientific_refs.each do |source|
+  errors << "#{source['source_id']}: scientific locator must be verified" unless source["verification_status"] == "web-locator-verified"
+  errors << "#{source['source_id']}: scientific URL missing" if blank?(source["url"])
+end
+matrix_rows.each do |row|
+  unknown = Array(row["scientific_references"]) - scientific_ids
+  errors << "#{row['matrix_id']}: unknown scientific refs: #{unknown.join(', ')}" if unknown.any?
+end
+
+errors << "second-verification schema mismatch" unless second_verification["schema"] == "lbfl-admission-biology-r2-3-second-verification-v1"
+errors << "second-verification version mismatch" unless second_verification["version"] == "R2.3-0.1"
+errors << "second-verification parent mismatch" unless second_verification["exact_parent_head"] == "c89e126a6e5e8372f761c825729bca6df628ab4a"
+verification_rows = Array(second_verification["rows"])
+errors << "second-verification must contain 29 rows" unless verification_rows.length == 29
+errors << "pass-1 source population count must be 29" unless second_verification.dig("summary", "pass_1_source_population") == 29
+errors << "pass-2 verified count must remain zero" unless second_verification.dig("summary", "pass_2_verified") == 0
+errors << "pass-2 blocked count must be 29" unless second_verification.dig("summary", "pass_2_blocked") == 29
+verification_rows.each do |row|
+  errors << "#{row['matrix_id']}: pass 1 must be PASS" unless row.dig("pass_1_source_population", "status") == "PASS"
+  errors << "#{row['matrix_id']}: pass 2 must be BLOCKED" unless row.dig("pass_2_independent_claim_verification", "status") == "BLOCKED"
+  errors << "#{row['matrix_id']}: lecture authority must remain false" unless row["lecture_authoring_authority"] == false
+  errors << "#{row['matrix_id']}: model-test authority must remain false" unless row["model_test_authority"] == false
 end
 
 errors << "source evidence schema mismatch" unless source_evidence["schema"] == "lbfl-admission-biology-r2-2-source-evidence-v1"
@@ -247,7 +313,7 @@ coverage_by_id.each do |id, topic|
     errors << "#{id}: inherited coverage status invalid"
   end
 end
-errors << "R2.2 must not change existing B01-B28 completion arithmetic" unless coverage.dig("summary", "complete_topics") == 0 && coverage.dig("summary", "partial_topics") == 6 && coverage.dig("summary", "gap_topics") == 22
+errors << "R2.3 must not change existing B01-B28 completion arithmetic" unless coverage.dig("summary", "complete_topics") == 0 && coverage.dig("summary", "partial_topics") == 6 && coverage.dig("summary", "gap_topics") == 22
 
 unless reuse["schema"] == "lbfl-admission-biology-reuse-audit-v1"
   errors << "R2.1 reuse audit schema changed unexpectedly"
@@ -275,13 +341,13 @@ matrix_boundaries = claim_matrix["boundaries"] || {}
 end
 
 if errors.any?
-  warn "Admission R2.2 Biology Chapter Mapping Validation: FAIL"
+  warn "Admission R2.3 Biology Evidence Population Validation: FAIL"
   errors.each { |error| warn "- #{error}" }
   exit 1
 end
 
-puts "Admission R2.2 Biology Chapter Mapping Validation: PASS"
+puts "Admission R2.3 Biology Evidence Population Validation: PASS"
 puts "biology_chapters=24 p1=12 p2=12 periods_p1=#{EXPECTED_P1_PERIODS} periods_p2=#{EXPECTED_P2_PERIODS}"
-puts "chapter_topic_rows=#{matrix_rows.length} unique_topics=#{matrix_rows.map { |row| row['topic_id'] }.uniq.length} page_verified_claim_rows=0 second_verified_rows=0"
-puts "multi_reference_rule=active single_book_dependency=false silent_reconciliation=false"
-puts "new_lectures=false new_model_tests=false b01_b28_completion_unchanged=true matrix_qyi_release=false ready_merge_production=false"
+puts "chapter_topic_rows=#{matrix_rows.length} unique_topics=#{matrix_rows.map { |row| row['topic_id'] }.uniq.length} source_populated_rows=29 page_verified_claim_rows=0 second_verified_rows=0"
+puts "multi_reference_rule=active textbook_candidates=#{book_candidates.length} scientific_locators=#{scientific_refs.length} disagreements=#{disagreements.length} single_book_dependency=false silent_reconciliation=false"
+puts "pass1_source_population=29 pass2_verified=0 pass2_blocked=29 new_lectures=false new_model_tests=false b01_b28_completion_unchanged=true matrix_qyi_release=false ready_merge_production=false"
