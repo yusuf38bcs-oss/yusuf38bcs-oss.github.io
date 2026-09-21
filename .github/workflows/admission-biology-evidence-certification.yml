@@ -1,0 +1,110 @@
+name: Admission Biology Evidence Certification
+
+on:
+  pull_request:
+    paths:
+      - "_data/admission/biology/**"
+      - "_pages/admission/**"
+      - "_includes/admission/**"
+      - "assets/css/admission-biology-evidence.css"
+      - ".github/scripts/admission-biology-evidence-browser-certification.mjs"
+      - ".github/workflows/admission-biology-evidence-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: admission-biology-evidence-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: Evidence routes, audit contract, Axe and keyboard
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out immutable candidate head
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Enforce exact checked-out identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+          printf 'Admission evidence certification head: %s\n' "$PR_HEAD_SHA"
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Install Ruby dependencies
+        run: |
+          bundle config set --local frozen 'false'
+          bundle install
+
+      - name: Validate Biology Admission engine
+        run: ruby scripts/admission/validate_biology_engine.rb
+
+      - name: Run Biology audit-validator regressions
+        run: ruby scripts/admission/test_validate_biology_audit.rb
+
+      - name: Validate 2016-17 Biology evidence ledgers
+        run: ruby scripts/admission/validate_biology_audit.rb
+
+      - name: Build exact Jekyll candidate
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bundle exec jekyll build --trace
+
+      - name: Assert evidence routes exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f _site/admission/index.html
+          test -f _site/admission/biology/index.html
+          test -f _site/admission/biology/du/2016-17/index.html
+          test -f _site/admission/biology/medical/2016-17/index.html
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+
+      - name: Install browser certification runtime
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.10.3
+          npx playwright install --with-deps chromium
+
+      - name: Serve exact build
+        run: |
+          python3 -m http.server 4000 --directory _site > /tmp/lbfl-admission-server.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4000/admission/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/lbfl-admission-server.log
+          exit 1
+
+      - name: Certify evidence viewer in browser
+        run: node .github/scripts/admission-biology-evidence-browser-certification.mjs
+
+      - name: Upload Admission evidence certification
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: admission-biology-evidence-${{ env.PR_HEAD_SHA }}
+          path: admission-biology-evidence-report/
+          if-no-files-found: warn
+          retention-days: 14

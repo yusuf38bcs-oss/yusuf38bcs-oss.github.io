@@ -227,6 +227,7 @@ async function inspect(page, viewportWidth) {
 
     return {
       v3Document: root.classList.contains("lbfl-home-v3-document") && body.classList.contains("lbfl-home-v3"),
+      englishBanglaSampleAbsent: !document.querySelector(".lbfl-v3-bangla-sample"),
       viewportMetaPassed: Boolean(
         viewportMeta &&
         /(?:^|,)\s*width=device-width\s*(?:,|$)/i.test(viewportMeta.content) &&
@@ -354,11 +355,15 @@ async function inspectMenu(page, viewportWidth) {
 
   await button.click();
   const dialog = page.locator("[data-v3-menu]");
+  const admission = dialog.locator("a[href='/admission/'], a[href$='/admission/']");
+  const ielts = dialog.locator("a[href='/ielts/'], a[href$='/ielts/']");
   const editorial = dialog.locator("a[href*='editorial-policy']");
   const contact = dialog.locator("a[href*='contact']");
 
   const passed =
     (await dialog.isVisible()) &&
+    (await admission.isVisible()) &&
+    (await ielts.isVisible()) &&
     (await editorial.isVisible()) &&
     (await contact.isVisible());
 
@@ -366,6 +371,8 @@ async function inspectMenu(page, viewportWidth) {
     applicable: true,
     passed,
     dialogVisible: await dialog.isVisible(),
+    admissionVisible: await admission.isVisible(),
+    ieltsVisible: await ielts.isVisible(),
     editorialVisible: await editorial.isVisible(),
     contactVisible: await contact.isVisible(),
   };
@@ -381,6 +388,7 @@ function passes(result) {
   const l = result.layout;
   const base =
     l.v3Document &&
+    l.englishBanglaSampleAbsent &&
     l.viewportMetaPassed &&
     !l.documentOverflow &&
     l.clipped.length === 0 &&
@@ -460,6 +468,7 @@ function summarizeFailure(result) {
   const reasons = [];
   const l = result.layout;
   if (!l.v3Document) reasons.push("missing-v3-root");
+  if (!l.englishBanglaSampleAbsent) reasons.push("english-bangla-body-sample-present");
   if (!l.viewportMetaPassed) reasons.push("viewport-meta");
   if (l.documentOverflow) reasons.push("document-overflow");
   if (l.clipped.length) reasons.push(`clipped=${l.clipped.join(",")}`);
@@ -490,7 +499,7 @@ function summarizeFailure(result) {
     if (actual !== expected) reasons.push(`${key}-columns=${actual}/${expected}`);
   }
   if (!l.sectionOrder) reasons.push("section-order");
-  if (!result.menu.passed) reasons.push("menu-contract");
+  if (!result.menu.passed) reasons.push("menu-contract-admission-ielts-editorial-contact");
   if (result.consoleErrors.length) reasons.push(`console=${result.consoleErrors.length}`);
   if (result.pageErrors.length) reasons.push(`page=${result.pageErrors.length}`);
   return reasons;
