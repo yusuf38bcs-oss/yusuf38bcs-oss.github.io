@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Bufo portal systems</title>
+<desc id="desc">Original educational diagram for LBFL Animal Diversity–II (223101).</desc>
+<style>
+.bg{fill:#fbfaf5} .box{fill:#fff;stroke:#0f5f5a;stroke-width:3;rx:16} .soft{fill:#e9f5f1;stroke:#0f5f5a;stroke-width:2;rx:16}
+.warm{fill:#fff3d6;stroke:#9a6a00;stroke-width:2;rx:16} .rose{fill:#fbe9e6;stroke:#a33c2b;stroke-width:2;rx:16}
+.line{stroke:#0f5f5a;stroke-width:4;fill:none;marker-end:url(#a)} .red{stroke:#a33c2b;stroke-width:4;fill:none;marker-end:url(#r)}
+.blue{stroke:#245b91;stroke-width:4;fill:none;marker-end:url(#b)} .dash{stroke:#667;stroke-width:2;stroke-dasharray:7 7;fill:none}
+.head{font:700 34px Arial,sans-serif;fill:#0f5f5a} .txt{font:26px Arial,sans-serif;fill:#163331}
+.small{font:21px Arial,sans-serif;fill:#324d4b} .tiny{font:18px Arial,sans-serif;fill:#445}
+</style>
+<defs>
+<marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0f5f5a"/></marker>
+<marker id="r" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a33c2b"/></marker>
+<marker id="b" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#245b91"/></marker>
+</defs>
+<rect class="bg" width="100%" height="100%"/>
+
+<text x="600" y="48" text-anchor="middle" class="head">Bufo: two portal systems</text>
+<text x="300" y="105" text-anchor="middle" class="head">Hepatic portal</text><text x="900" y="105" text-anchor="middle" class="head">Renal portal</text>
+<rect x="60" y="170" width="220" height="80" class="box"/><text x="170" y="220" text-anchor="middle" class="small">Gut + spleen</text>
+<rect x="350" y="170" width="220" height="80" class="soft"/><text x="460" y="220" text-anchor="middle" class="small">Hepatic portal v.</text>
+<rect x="205" y="350" width="220" height="80" class="warm"/><text x="315" y="400" text-anchor="middle" class="small">Liver sinusoids</text>
+<path d="M280 210 L350 210" class="line"/><path d="M460 250 C460 300 360 320 315 350" class="line"/>
+<rect x="650" y="170" width="220" height="80" class="box"/><text x="760" y="205" text-anchor="middle" class="small">Hindlimbs +</text><text x="760" y="232" text-anchor="middle" class="tiny">posterior body</text>
+<rect x="940" y="170" width="220" height="80" class="soft"/><text x="1050" y="220" text-anchor="middle" class="small">Renal portal v.</text>
+<rect x="795" y="350" width="220" height="80" class="warm"/><text x="905" y="400" text-anchor="middle" class="small">Kidney capillaries</text>
+<path d="M870 210 L940 210" class="line"/><path d="M1050 250 C1050 300 950 320 905 350" class="line"/>
+<rect x="390" y="545" width="420" height="80" class="box"/><text x="600" y="595" text-anchor="middle" class="small">Venous return → sinus venosus → right atrium</text>
+<path d="M315 430 C315 490 470 510 520 545" class="blue"/><path d="M905 430 C905 490 750 510 680 545" class="blue"/>
+
+</svg>

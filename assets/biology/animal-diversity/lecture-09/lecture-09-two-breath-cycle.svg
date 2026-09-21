@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Avian two-breath cycle</title>
+<desc id="desc">Original educational diagram for LBFL Animal Diversity–II (223101).</desc>
+<style>
+.bg{fill:#fbfaf5} .box{fill:#fff;stroke:#0f5f5a;stroke-width:3;rx:16} .soft{fill:#e9f5f1;stroke:#0f5f5a;stroke-width:2;rx:16}
+.warm{fill:#fff3d6;stroke:#9a6a00;stroke-width:2;rx:16} .rose{fill:#fbe9e6;stroke:#a33c2b;stroke-width:2;rx:16}
+.line{stroke:#0f5f5a;stroke-width:4;fill:none;marker-end:url(#a)} .red{stroke:#a33c2b;stroke-width:4;fill:none;marker-end:url(#r)}
+.blue{stroke:#245b91;stroke-width:4;fill:none;marker-end:url(#b)} .dash{stroke:#667;stroke-width:2;stroke-dasharray:7 7;fill:none}
+.head{font:700 34px Arial,sans-serif;fill:#0f5f5a} .txt{font:26px Arial,sans-serif;fill:#163331}
+.small{font:21px Arial,sans-serif;fill:#324d4b} .tiny{font:18px Arial,sans-serif;fill:#445}
+</style>
+<defs>
+<marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0f5f5a"/></marker>
+<marker id="r" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a33c2b"/></marker>
+<marker id="b" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#245b91"/></marker>
+</defs>
+<rect class="bg" width="100%" height="100%"/>
+
+<text x="600" y="48" text-anchor="middle" class="head">Avian two-breath cycle for one parcel of air</text>
+<rect x="60" y="145" width="200" height="90" class="soft"/><text x="160" y="180" text-anchor="middle" class="small">Inspiration 1</text><text x="160" y="210" text-anchor="middle" class="tiny">fresh air → posterior sacs</text>
+<rect x="330" y="145" width="200" height="90" class="warm"/><text x="430" y="180" text-anchor="middle" class="small">Expiration 1</text><text x="430" y="210" text-anchor="middle" class="tiny">posterior sacs → lung</text>
+<rect x="600" y="145" width="200" height="90" class="soft"/><text x="700" y="180" text-anchor="middle" class="small">Inspiration 2</text><text x="700" y="210" text-anchor="middle" class="tiny">lung → anterior sacs</text>
+<rect x="870" y="145" width="200" height="90" class="warm"/><text x="970" y="180" text-anchor="middle" class="small">Expiration 2</text><text x="970" y="210" text-anchor="middle" class="tiny">anterior sacs → outside</text>
+<path d="M260 190 L330 190" class="line"/><path d="M530 190 L600 190" class="line"/><path d="M800 190 L870 190" class="line"/>
+<rect x="260" y="370" width="680" height="120" class="box"/><text x="600" y="412" text-anchor="middle" class="small">Why efficient?</text><text x="600" y="450" text-anchor="middle" class="small">palaeopulmonic parabronchi receive largely unidirectional airflow during both phases</text>
+<text x="600" y="610" text-anchor="middle" class="tiny">The simplified “two-breath” model tracks a parcel of air; real airflow includes aerodynamic valving and species variation.</text>
+
+</svg>

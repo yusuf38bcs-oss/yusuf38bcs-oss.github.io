@@ -1,0 +1,22 @@
+<section class="lbfl-v3-section lbfl-v3-method" aria-labelledby="lbfl-v3-method-title">
+  <div class="lbfl-v3-shell">
+    <header class="lbfl-v3-section__head lbfl-v3-section__head--center">
+      <p class="lbfl-v3-kicker">03 · THINK</p>
+      <p class="lbfl-v3-eyebrow--light">{{ site.data.homepage.synaptic_bridge.eyebrow }}</p>
+      <h2 id="lbfl-v3-method-title">{{ site.data.homepage.synaptic_bridge.name }}</h2>
+      <p>{{ site.data.homepage.synaptic_bridge.summary }}</p>
+    </header>
+    <ol class="lbfl-v3-method-grid">
+      {% for principle in site.data.homepage.synaptic_bridge.principles %}
+        <li>
+          <span class="lbfl-v3-method-grid__number">{{ forloop.index | prepend: '0' }}</span>
+          <h3>{{ principle.title }}</h3>
+          <p>{{ principle.text }}</p>
+        </li>
+      {% endfor %}
+    </ol>
+    <div class="lbfl-v3-centered-action">
+      <a class="lbfl-v3-button lbfl-v3-button--primary lbfl-v3-target" href="{{ site.data.homepage.synaptic_bridge.action_url | relative_url }}">{{ site.data.homepage.synaptic_bridge.action_label }}</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Chondrichthyes classification</title>
+<desc id="desc">Original educational diagram for LBFL Animal Diversity–II (223101).</desc>
+<style>
+.bg{fill:#fbfaf5} .box{fill:#fff;stroke:#0f5f5a;stroke-width:3;rx:16} .soft{fill:#e9f5f1;stroke:#0f5f5a;stroke-width:2;rx:16}
+.warm{fill:#fff3d6;stroke:#9a6a00;stroke-width:2;rx:16} .rose{fill:#fbe9e6;stroke:#a33c2b;stroke-width:2;rx:16}
+.line{stroke:#0f5f5a;stroke-width:4;fill:none;marker-end:url(#a)} .red{stroke:#a33c2b;stroke-width:4;fill:none;marker-end:url(#r)}
+.blue{stroke:#245b91;stroke-width:4;fill:none;marker-end:url(#b)} .dash{stroke:#667;stroke-width:2;stroke-dasharray:7 7;fill:none}
+.head{font:700 34px Arial,sans-serif;fill:#0f5f5a} .txt{font:26px Arial,sans-serif;fill:#163331}
+.small{font:21px Arial,sans-serif;fill:#324d4b} .tiny{font:18px Arial,sans-serif;fill:#445}
+</style>
+<defs>
+<marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0f5f5a"/></marker>
+<marker id="r" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a33c2b"/></marker>
+<marker id="b" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#245b91"/></marker>
+</defs>
+<rect class="bg" width="100%" height="100%"/>
+
+<text x="600" y="48" text-anchor="middle" class="head">Chondrichthyes: modern higher-level map</text>
+<rect x="445" y="95" width="310" height="75" class="warm"/><text x="600" y="142" text-anchor="middle" class="txt">Chondrichthyes</text>
+<rect x="150" y="255" width="320" height="80" class="soft"/><text x="310" y="305" text-anchor="middle" class="txt">Elasmobranchii</text>
+<rect x="730" y="255" width="320" height="80" class="soft"/><text x="890" y="305" text-anchor="middle" class="txt">Holocephali</text>
+<path d="M520 170 L310 255" class="line"/><path d="M680 170 L890 255" class="line"/>
+<rect x="90" y="430" width="230" height="90" class="box"/><text x="205" y="465" text-anchor="middle" class="small">Sharks</text><text x="205" y="495" text-anchor="middle" class="tiny">e.g., Carcharhiniformes</text>
+<rect x="350" y="430" width="230" height="90" class="box"/><text x="465" y="465" text-anchor="middle" class="small">Skates + rays</text><text x="465" y="495" text-anchor="middle" class="tiny">Batoidea</text>
+<rect x="770" y="430" width="240" height="90" class="box"/><text x="890" y="465" text-anchor="middle" class="small">Chimaeras</text><text x="890" y="495" text-anchor="middle" class="tiny">Chimaeriformes</text>
+<path d="M270 335 L205 430" class="line"/><path d="M350 335 L465 430" class="line"/><path d="M890 335 L890 430" class="line"/>
+<text x="600" y="630" text-anchor="middle" class="small">NU exam classifications may use older subclasses/orders; state the adopted scheme clearly.</text>
+
+</svg>

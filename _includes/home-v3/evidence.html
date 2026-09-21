@@ -1,0 +1,25 @@
+<section class="lbfl-v3-section lbfl-v3-evidence" aria-labelledby="lbfl-v3-evidence-title">
+  <div class="lbfl-v3-shell lbfl-v3-evidence__grid">
+    <div class="lbfl-v3-evidence__intro">
+      <p class="lbfl-v3-kicker">05 · EVIDENCE</p>
+      <h2 id="lbfl-v3-evidence-title">Built for Learning. Designed for Verification.</h2>
+      <p>{{ site.data.homepage.editorial_trust.summary }}</p>
+      <nav class="lbfl-v3-evidence__links" aria-label="Editorial accountability">
+        <a class="lbfl-v3-target" href="{{ '/editorial-policy/' | relative_url }}">Editorial Policy</a>
+        <a class="lbfl-v3-target" href="{{ '/contact/' | relative_url }}">Report a Correction</a>
+        <a class="lbfl-v3-target" href="{{ '/about/' | relative_url }}">About the Editorial Lead</a>
+      </nav>
+      <p class="lbfl-v3-accountability">Editorial accountability — {{ site.data.homepage.editorial_trust.author }}, {{ site.data.homepage.editorial_trust.role }}</p>
+      <p class="lbfl-v3-bangla-sample" lang="bn">জীববিজ্ঞান শিখি পর্যবেক্ষণ, প্রশ্ন, সংযোগ ও প্রমাণভিত্তিক ব্যাখ্যার মাধ্যমে।</p>
+    </div>
+    <div class="lbfl-v3-evidence__cards">
+      {% for method in site.data.homepage.editorial_trust.methods %}
+        <article>
+          <span aria-hidden="true">0{{ forloop.index }}</span>
+          <h3>{{ method.title }}</h3>
+          <p>{{ method.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

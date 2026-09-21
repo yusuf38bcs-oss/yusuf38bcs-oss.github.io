@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Branchiostoma circulation</title>
+<desc id="desc">Original educational diagram for LBFL Animal Diversity–II (223101).</desc>
+<style>
+.bg{fill:#fbfaf5} .box{fill:#fff;stroke:#0f5f5a;stroke-width:3;rx:16} .soft{fill:#e9f5f1;stroke:#0f5f5a;stroke-width:2;rx:16}
+.warm{fill:#fff3d6;stroke:#9a6a00;stroke-width:2;rx:16} .rose{fill:#fbe9e6;stroke:#a33c2b;stroke-width:2;rx:16}
+.line{stroke:#0f5f5a;stroke-width:4;fill:none;marker-end:url(#a)} .red{stroke:#a33c2b;stroke-width:4;fill:none;marker-end:url(#r)}
+.blue{stroke:#245b91;stroke-width:4;fill:none;marker-end:url(#b)} .dash{stroke:#667;stroke-width:2;stroke-dasharray:7 7;fill:none}
+.head{font:700 34px Arial,sans-serif;fill:#0f5f5a} .txt{font:26px Arial,sans-serif;fill:#163331}
+.small{font:21px Arial,sans-serif;fill:#324d4b} .tiny{font:18px Arial,sans-serif;fill:#445}
+</style>
+<defs>
+<marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0f5f5a"/></marker>
+<marker id="r" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a33c2b"/></marker>
+<marker id="b" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#245b91"/></marker>
+</defs>
+<rect class="bg" width="100%" height="100%"/>
+
+<text x="600" y="50" text-anchor="middle" class="head">Branchiostoma: simplified circulation</text>
+<rect x="450" y="95" width="300" height="70" class="box"/><text x="600" y="138" text-anchor="middle" class="small">Sinus venosus / ventral aorta region</text>
+<rect x="130" y="245" width="260" height="75" class="soft"/><text x="260" y="291" text-anchor="middle" class="small">Afferent branchial vessels</text>
+<rect x="470" y="245" width="260" height="75" class="warm"/><text x="600" y="291" text-anchor="middle" class="small">Pharyngeal capillaries</text>
+<rect x="810" y="245" width="260" height="75" class="soft"/><text x="940" y="291" text-anchor="middle" class="small">Efferent vessels → dorsal aorta</text>
+<path d="M520 165 C440 200 330 210 260 245" class="blue"/><path d="M390 282 L470 282" class="blue"/><path d="M730 282 L810 282" class="red"/>
+<rect x="810" y="435" width="260" height="75" class="box"/><text x="940" y="481" text-anchor="middle" class="small">Body tissues</text>
+<rect x="130" y="435" width="260" height="75" class="box"/><text x="260" y="481" text-anchor="middle" class="small">Venous return</text>
+<path d="M940 320 L940 435" class="red"/><path d="M810 472 C650 585 440 585 390 472" class="blue"/><path d="M260 435 C260 350 420 220 520 165" class="blue"/>
+<text x="600" y="650" text-anchor="middle" class="small">No chambered heart: contractile vessels and vascular regions maintain flow.</text>
+
+</svg>

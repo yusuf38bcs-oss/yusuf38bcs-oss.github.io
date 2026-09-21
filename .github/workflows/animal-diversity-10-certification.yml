@@ -1,0 +1,88 @@
+name: Animal Diversity 10 Exact-Head Certification
+
+on:
+  pull_request:
+    paths:
+      - '_biology/higher-zoology-tree/animal-diversity/**'
+      - '_data/animal-diversity-10.yml'
+      - '_data/animal-diversity-10-assets.yml'
+      - '_layouts/animal-diversity-course.html'
+      - '_includes/navigation/language-switcher.html'
+      - 'assets/biology/animal-diversity/**'
+      - '.github/scripts/validate-animal-diversity-10.rb'
+      - '.github/scripts/animal-diversity-browser-certification.mjs'
+      - '.github/workflows/animal-diversity-10-certification.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out immutable candidate head
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Authenticate exact head and current base
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}" || { echo 'HEAD CHANGED'; exit 1; }
+          git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=1
+          test "$(git rev-parse FETCH_HEAD)" = "${{ github.event.pull_request.base.sha }}" || { echo 'BASE CHANGED'; exit 1; }
+          git merge-base --is-ancestor FETCH_HEAD HEAD || { echo 'STALE PR HEAD'; exit 1; }
+
+      - name: Validate Animal Diversity source contract
+        run: ruby .github/scripts/validate-animal-diversity-10.rb
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build exact-head production site
+        run: bundle exec jekyll build
+
+      - name: Validate rendered contract
+        run: ruby .github/scripts/validate-animal-diversity-10.rb
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install pinned browser dependencies
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+
+      - name: Serve exact build
+        run: |
+          python3 -m http.server 4173 --directory _site > /tmp/ad-http.log 2>&1 &
+          for i in {1..30}; do
+            curl -fsS http://127.0.0.1:4173/biology/animal-diversity/ >/dev/null && break
+            sleep 1
+          done
+
+      - name: Browser, responsive and Axe certification
+        run: node .github/scripts/animal-diversity-browser-certification.mjs http://127.0.0.1:4173
+
+      - name: Record exact-head PASS
+        run: |
+          echo 'ANIMAL_DIVERSITY_10_SOURCE_PASS' >> "$GITHUB_STEP_SUMMARY"
+          echo 'ANIMAL_DIVERSITY_10_RENDER_PASS' >> "$GITHUB_STEP_SUMMARY"
+          echo 'ANIMAL_DIVERSITY_10_BROWSER_PASS' >> "$GITHUB_STEP_SUMMARY"
+          echo 'ANIMAL_DIVERSITY_10_EXACT_HEAD_PASS' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Preserve exact-head evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: animal-diversity-10-${{ github.event.pull_request.head.sha || github.sha }}
+          path: animal-diversity-browser-report/

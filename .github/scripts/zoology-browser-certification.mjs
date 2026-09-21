@@ -19,15 +19,21 @@ const viewports = [
   { name: "desktop-1280", width: 1280, height: 900 },
 ];
 
-const animalDiversityHeadingContract = {
-  "/biology/animal-diversity/": [
-    { selector: ".lbfl-hub-title", expectedColor: "rgb(248, 250, 252)" },
-    { selector: ".lbfl-section-title", expectedColor: "rgb(21, 63, 59)" },
-    { selector: ".lbfl-principle-card h3", expectedColor: "rgb(248, 250, 252)" },
-  ],
-  "/biology/animal-diversity/complete-matrix/": [
-    { selector: ".animal-anchor-grid h3", expectedColor: "rgb(127, 255, 231)" },
-  ],
+const animalDiversityHeadingContract = {};
+
+const animalDiversityStructureContract = {
+  "/biology/animal-diversity/": {
+    requiredText: ["Animal Diversity", "Open Animal Diversity Course"],
+    forbiddenText: ["17-lecture", "Complete Matrix", "animal-diversity-10"],
+  },
+  "/biology/animal-diversity/course/": {
+    requiredText: ["Animal Diversity", "Chordate Plan and Classification", "Homo sapiens: Eye and Ear"],
+    forbiddenText: ["17-lecture", "Complete Matrix"],
+  },
+  "/biology/animal-diversity/complete-matrix/": {
+    requiredText: ["retired", "Animal Diversity gateway"],
+    forbiddenText: ["LOLO", "LALA"],
+  },
 };
 
 async function walk(dir) {
@@ -78,6 +84,8 @@ const results = [];
 
 for (const route of routes) {
   const isAnimalDiversityRoute = route.startsWith("/biology/animal-diversity/");
+  const isEcologyCourseRoute =
+    route.startsWith("/biology/higher-zoology-tree/ecology/");
   for (const viewport of viewports) {
     const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
     const blockedExternal = [];
@@ -126,8 +134,9 @@ for (const route of routes) {
       await page.waitForTimeout(1_000);
 
       const headingContract = animalDiversityHeadingContract[route] ?? [];
+      const structureContract = animalDiversityStructureContract[route] ?? { requiredText: [], forbiddenText: [] };
 
-metrics = await page.evaluate((contract) => {
+metrics = await page.evaluate(({ headingContract: contract, structureContract }) => {
   const resetButton = document.querySelector(".socratic-console-clear-btn");
 
   const darkHeadingChecks = contract.map(({ selector, expectedColor }) => {
@@ -145,6 +154,19 @@ metrics = await page.evaluate((contract) => {
     };
   });
 
+  const bodyText = document.body?.innerText ?? "";
+  const structureChecks = {
+    h1Count: document.querySelectorAll("h1").length,
+    requiredText: (structureContract.requiredText ?? []).map((text) => ({
+      text,
+      passed: bodyText.includes(text),
+    })),
+    forbiddenText: (structureContract.forbiddenText ?? []).map((text) => ({
+      text,
+      passed: !bodyText.includes(text),
+    })),
+  };
+
   return {
     hasContent: Boolean(document.querySelector(".page__content")),
     hasCycle: Boolean(document.querySelector("[data-zoology-learning-cycle]")),
@@ -160,8 +182,9 @@ metrics = await page.evaluate((contract) => {
         ? resetButton.textContent.trim() === "Reset inquiry"
         : true,
     darkHeadingChecks,
+    structureChecks,
   };
-}, headingContract);
+}, { headingContract, structureContract });
       const fullPageAxe =
         isAnimalDiversityRoute &&
         viewport.name === "mobile-390";
@@ -208,7 +231,10 @@ metrics = await page.evaluate((contract) => {
       metrics?.hasContent === true &&
       metrics?.hasStylesheet === true &&
       (!isAnimalDiversityRoute || metrics?.hasContent === true) &&
-      (isAnimalDiversityRoute || metrics?.hasCycle === true) &&
+      (isAnimalDiversityRoute ? metrics?.hasCycle === false : (isEcologyCourseRoute ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
+      (!isAnimalDiversityRoute || metrics?.structureChecks?.h1Count === 1) &&
+      metrics?.structureChecks?.requiredText?.every((check) => check.passed) !== false &&
+      metrics?.structureChecks?.forbiddenText?.every((check) => check.passed) !== false &&
       metrics?.resetInquiryLabel === true &&
       (metrics?.horizontalOverflow ?? 999) <= 2 &&
       metrics?.darkHeadingChecks?.every((check) => check.passed) === true &&

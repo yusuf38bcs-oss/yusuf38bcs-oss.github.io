@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Labeo branchial circulation</title>
+<desc id="desc">Original educational diagram for LBFL Animal Diversity–II (223101).</desc>
+<style>
+.bg{fill:#fbfaf5} .box{fill:#fff;stroke:#0f5f5a;stroke-width:3;rx:16} .soft{fill:#e9f5f1;stroke:#0f5f5a;stroke-width:2;rx:16}
+.warm{fill:#fff3d6;stroke:#9a6a00;stroke-width:2;rx:16} .rose{fill:#fbe9e6;stroke:#a33c2b;stroke-width:2;rx:16}
+.line{stroke:#0f5f5a;stroke-width:4;fill:none;marker-end:url(#a)} .red{stroke:#a33c2b;stroke-width:4;fill:none;marker-end:url(#r)}
+.blue{stroke:#245b91;stroke-width:4;fill:none;marker-end:url(#b)} .dash{stroke:#667;stroke-width:2;stroke-dasharray:7 7;fill:none}
+.head{font:700 34px Arial,sans-serif;fill:#0f5f5a} .txt{font:26px Arial,sans-serif;fill:#163331}
+.small{font:21px Arial,sans-serif;fill:#324d4b} .tiny{font:18px Arial,sans-serif;fill:#445}
+</style>
+<defs>
+<marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0f5f5a"/></marker>
+<marker id="r" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a33c2b"/></marker>
+<marker id="b" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#245b91"/></marker>
+</defs>
+<rect class="bg" width="100%" height="100%"/>
+
+<text x="600" y="48" text-anchor="middle" class="head">Labeo: branchial blood pathway</text>
+<rect x="55" y="150" width="175" height="80" class="box"/><text x="142" y="198" text-anchor="middle" class="small">Heart</text>
+<rect x="285" y="150" width="200" height="80" class="soft"/><text x="385" y="185" text-anchor="middle" class="small">Ventral aorta</text><text x="385" y="213" text-anchor="middle" class="tiny">deoxygenated blood</text>
+<rect x="540" y="150" width="200" height="80" class="soft"/><text x="640" y="185" text-anchor="middle" class="small">Afferent branchial</text><text x="640" y="213" text-anchor="middle" class="tiny">arteries</text>
+<rect x="795" y="150" width="160" height="80" class="warm"/><text x="875" y="198" text-anchor="middle" class="small">Gills</text>
+<rect x="1000" y="150" width="160" height="80" class="rose"/><text x="1080" y="185" text-anchor="middle" class="small">Efferent</text><text x="1080" y="213" text-anchor="middle" class="tiny">branchial aa.</text>
+<path d="M230 190 L285 190" class="blue"/><path d="M485 190 L540 190" class="blue"/><path d="M740 190 L795 190" class="blue"/><path d="M955 190 L1000 190" class="red"/>
+<rect x="480" y="390" width="240" height="80" class="box"/><text x="600" y="438" text-anchor="middle" class="small">Dorsal aorta → body</text>
+<path d="M1080 230 C1080 320 780 350 670 390" class="red"/>
+<rect x="470" y="565" width="260" height="75" class="soft"/><text x="600" y="610" text-anchor="middle" class="small">Systemic veins → heart</text>
+<path d="M600 470 L600 565" class="blue"/>
+<text x="600" y="690" text-anchor="middle" class="tiny">Single circulation: heart → gills → body → heart.</text>
+
+</svg>
