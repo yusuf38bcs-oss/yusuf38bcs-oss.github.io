@@ -154,23 +154,27 @@ async function runViewport(browser, viewport) {
       };
       const banner = document.querySelector("#gdpr-banner[data-cookie-banner]");
       const bannerRect = banner?.getBoundingClientRect();
-      const heroImage = document.querySelector(".lbfl-premium-cell__image");
+      const isV3 = document.documentElement.classList.contains("lbfl-home-v3-document") &&
+        document.body.classList.contains("lbfl-home-v3");
+      const heroImage = document.querySelector(".lbfl-v3-hero__visual img");
       return {
+        isV3,
         bannerFits: Boolean(
           bannerRect && bannerRect.left >= -1 && bannerRect.right <= window.innerWidth + 1 &&
           bannerRect.top >= -1 && bannerRect.bottom <= window.innerHeight + 1
         ),
         bannerVisible: visible("#gdpr-banner[data-cookie-banner]"),
-        ctaVisible: visible('.lbfl-premium-hero a[href="/biology/hsc-corner/"]'),
-        headingVisible: visible(".lbfl-premium-hero h1"),
+        ctaVisible: visible('.lbfl-v3-actions a[href="/biology/"], .lbfl-v3-actions a[href$="/biology/"]'),
+        headingVisible: visible(".lbfl-v3-hero h1"),
         heroImageLoaded: Boolean(heroImage?.complete && heroImage.naturalWidth > 0),
         horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
-        logoVisible: visible('.lbfl-premium-header__brand[aria-label="Learning Biology For Life home"]'),
-        menuOrNavVisible: visible('.lbfl-premium-header__desktop-nav') || visible('.lbfl-premium-header__menu > summary'),
+        logoVisible: visible('.lbfl-v3-brand[aria-label="Learning Biology For Life home"]'),
+        menuOrNavVisible: visible(".lbfl-v3-nav") || visible(".lbfl-v3-menu-button"),
         meta: Array.from(document.querySelectorAll('meta[name="google-adsense-account"]')).map(
           (element) => element.content
         ),
-        searchVisible: visible('.lbfl-premium-header__search > summary'),
+        languageVisible: visible(".lbfl-v3-language-switcher"),
+        editorialVisible: visible('.lbfl-v3-nav a[href*="editorial-policy"]') || Boolean(document.querySelector('[data-v3-menu] a[href*="editorial-policy"]')),
         viewport: { height: window.innerHeight, width: window.innerWidth },
       };
     });
@@ -220,9 +224,9 @@ async function runViewport(browser, viewport) {
     );
     const layoutPassed = response?.status() === 200 &&
       layout.viewport.width === viewport.width && layout.viewport.height === viewport.height &&
-      layout.bannerFits && layout.bannerVisible && layout.ctaVisible && layout.headingVisible &&
+      layout.isV3 && layout.bannerFits && layout.bannerVisible && layout.ctaVisible && layout.headingVisible &&
       layout.heroImageLoaded && !layout.horizontalOverflow && layout.logoVisible &&
-      layout.menuOrNavVisible && layout.searchVisible &&
+      layout.menuOrNavVisible && layout.languageVisible && layout.editorialVisible &&
       layout.meta.length === 1 && layout.meta[0] === EXPECTED_ACCOUNT;
     const passed = layoutPassed && axeResult.length === 0 && focusPassed &&
       adRequests(probe.requests).length === 0 && probe.consoleErrors.length === 0 &&
@@ -348,7 +352,7 @@ async function runReducedMotion(browser) {
         return token.endsWith("ms") ? Number.parseFloat(token) / 1000 : Number.parseFloat(token) || 0;
       });
       const offenders = [];
-      document.querySelectorAll(".lbfl-home-v2 *, .lbfl-premium-header *, #gdpr-banner *").forEach((element) => {
+      document.querySelectorAll(".lbfl-home-v3 *, .lbfl-v3-header *, #gdpr-banner *").forEach((element) => {
         const style = getComputedStyle(element);
         const longest = Math.max(
           0,
@@ -357,9 +361,9 @@ async function runReducedMotion(browser) {
         );
         if (longest > 0.02) offenders.push({ duration: longest, tag: element.tagName, className: element.className });
       });
-      const root = document.querySelector("[data-homepage-v2]");
+      const root = document.documentElement;
       return {
-        dataset: root?.dataset.reducedMotion,
+        dataset: root.dataset.reducedMotion,
         mediaMatches: matchMedia("(prefers-reduced-motion: reduce)").matches,
         offenders: offenders.slice(0, 20),
       };
@@ -397,7 +401,7 @@ async function runSaveData(browser) {
     await page.goto(previewUrl, { waitUntil: "domcontentloaded", timeout: 60_000 });
     await settle(page);
     const state = await page.evaluate(() => ({
-      dataset: document.querySelector("[data-homepage-v2]")?.dataset.saveData,
+      dataset: document.documentElement.dataset.saveData,
       navigatorSaveData: Boolean(navigator.connection?.saveData),
     }));
     const documentRequest = probe.requests.find((request) => request.resourceType === "document");
