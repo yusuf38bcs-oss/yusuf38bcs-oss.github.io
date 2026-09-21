@@ -1,0 +1,125 @@
+baseline:
+  repository: yusuf38bcs-oss/yusuf38bcs-oss.github.io
+  branch: main
+  commit: aab010145138dbc835fd8625c666ac03aab9f71d
+  tree: db08ada27eae7a2e1514cc59743bd1ca38f1536e
+  target: WCAG 2.2 Level AA
+  packet_state: HOLD
+  authority: non-authorizing audit evidence only
+
+files:
+  - path: _sass/core/_variables.scss
+    audit_role: primary design tokens
+    static_status: ACTIVE — production-proven
+    evidence: imported by assets/css/main.scss as core/variables before Minimal Mistakes
+
+  - path: _sass/core/_mixins.scss
+    audit_role: global mixins
+    static_status: ACTIVE — production-proven
+    evidence: imported by assets/css/main.scss as core/mixins
+
+  - path: assets/css/main.scss
+    audit_role: production master stylesheet / import graph
+    static_status: ACTIVE — production-proven
+    evidence: Jekyll front-matter stylesheet entrypoint; imports component/layout stack and contains final lbfl masthead rules
+
+  - path: _sass/components/_navigation.scss
+    audit_role: navigation / masthead styling
+    static_status: ACTIVE — production-proven
+    runtime_status: UNRESOLVED — evidence insufficient
+    evidence: imported by main.scss; defines separate neural-site-masthead architecture not used by current masthead include markup
+    note: do not classify the neural selector family as legacy/shadowed until browser matched-rule evidence exists
+
+  - path: _sass/components/_masthead-logo-firewall.scss
+    audit_role: masthead/logo defensive overrides
+    static_status: DORMANT — no production path proven
+    evidence: no import/reference found in repository search at baseline
+    note: not deletion authority
+
+  - path: _sass/layout/_page-layouts.scss
+    audit_role: page + sidebar grid/layout
+    static_status: DORMANT — no production path proven
+    evidence: no import/reference found in repository search at baseline
+    note: not deletion authority
+
+  - path: _sass/layout/_synaptic.scss
+    audit_role: general synaptic/layout styling
+    static_status: ACTIVE — production-proven
+    evidence: imported by main.scss as layout/synaptic
+
+  - path: _sass/components/_cards.scss
+    audit_role: archive/card styling
+    static_status: ACTIVE — production-proven
+    evidence: imported by main.scss as components/cards
+
+  - path: _sass/components/_synaptic-glow.scss
+    audit_role: archive/card glow behaviour
+    static_status: ACTIVE — production-proven
+    evidence: imported by main.scss as components/synaptic-glow
+
+  - path: _sass/layout/_omega-overrides.scss
+    audit_role: high-precedence global overrides
+    static_status: ACTIVE — production-proven
+    evidence: imported late by main.scss as layout/omega-overrides
+
+  - path: _includes/masthead.html
+    audit_role: masthead compatibility/wrapper include
+    static_status: ACTIVE — production-proven
+    evidence: _layouts/default.html includes masthead.html for non-home-v2 pages; wrapper includes navigation/masthead.html
+
+  - path: _includes/navigation/masthead.html
+    audit_role: main navigation/masthead markup
+    static_status: ACTIVE — production-proven
+    evidence: reached through default.html → masthead.html; markup uses lbfl selector family
+
+  - path: _includes/navigation/contextual-sidebar.html
+    audit_role: contextual sidebar
+    static_status: ACTIVE — conditional/route-specific
+    evidence: included conditionally by single.html and directly by archive.html; rendered content depends on page.sidebar/nav data
+
+  - path: _includes/navigation/sidebar-academic.html
+    audit_role: academic sidebar variant
+    static_status: DORMANT — no production path proven
+    evidence: no direct include reference found at baseline
+    note: dynamic/transitive invocation still must be ruled out before deletion
+
+  - path: _includes/navigation/sidebar-socratic.html
+    audit_role: socratic sidebar variant
+    static_status: DORMANT — no production path proven
+    evidence: no direct include reference found at baseline
+    note: dynamic/transitive invocation still must be ruled out before deletion
+
+  - path: _includes/archive-single.html
+    audit_role: archive-single compatibility wrapper
+    static_status: ACTIVE — conditional/route-specific
+    evidence: wrapper forwards to components/archive-single.html and is directly included by multiple category, hub, and utility pages
+
+  - path: _includes/components/archive-single.html
+    audit_role: actual archive-single implementation
+    static_status: ACTIVE — conditional/route-specific
+    evidence: directly included by archive.html and reached through archive-single compatibility wrapper
+
+  - path: _includes/components/neural-pagination.html
+    audit_role: pagination markup + embedded styles
+    static_status: ACTIVE — conditional/route-specific
+    evidence: directly included by archive.html; renders when paginator.total_pages > 1; contains embedded style block
+
+  - path: _layouts/archive.html
+    audit_role: archive page assembly
+    static_status: ACTIVE — conditional/route-specific
+    evidence: multiple pages declare layout: archive; layout invokes archive card, pagination, and contextual sidebar surfaces
+
+  - path: _layouts/single.html
+    audit_role: single-page assembly/sidebar invocation
+    static_status: ACTIVE — conditional/route-specific
+    evidence: multiple pages declare layout: single; layout conditionally invokes contextual sidebar
+
+f0_unresolved:
+  - winning computed selectors on representative routes
+  - runtime presence of neural-site-masthead selector family
+  - exact cascade winners across main.scss, omega-overrides, component rules, and embedded pagination styles
+  - deployment/browser identity binding for the baseline commit
+  - route-level differences in sidebar/archive/pagination behavior
+
+pass_rule: >
+  F0 remains HOLD until all eleven gates in README.md are evidenced on the same exact head.
