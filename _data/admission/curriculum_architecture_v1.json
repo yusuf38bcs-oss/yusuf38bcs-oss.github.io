@@ -1,12 +1,12 @@
 {
   "schema": "lbfl-admission-curriculum-architecture-v1",
-  "version": "R2.3-0.1",
+  "version": "R2.4-0.1",
   "parent_contract": {
-    "parent_pr": 348,
-    "parent_head": "c89e126a6e5e8372f761c825729bca6df628ab4a",
-    "stacked_on": "admission/r2-2-biology-24-chapter-multireference-20260922"
+    "parent_pr": 349,
+    "parent_head": "e07addcc58e2e3528fde7940e1b5e7f71a8c240b",
+    "stacked_on": "admission/r2-3-biology-page-evidence-population-20260922"
   },
-  "purpose": "Preserve the four-subject Admission architecture while populating all 29 Biology chapter-topic claim-source rows with primary chapter page ranges, supplementary HSC reference candidates, authoritative scientific locators, explicit disagreement records, and a fail-closed independent second-verification gate.",
+  "purpose": "Preserve the Admission curriculum architecture while adding the row-level Biology Pass-2 evidence unlock contract and recording acquisition of additional reference artifacts before lecture-gap remediation.",
   "boundary": {
     "chapter_taxonomy_authenticated": false,
     "chapter_completion_allowed": false,
@@ -18,7 +18,11 @@
     "biology_chapter_taxonomy_authenticated": true,
     "biology_claim_source_population_complete": true,
     "biology_claim_page_verification_complete": false,
-    "biology_second_verification_complete": false
+    "biology_second_verification_complete": false,
+    "biology_additional_reference_artifacts_acquired": true,
+    "biology_pass2_unlock_contract_active": true,
+    "biology_pass2_verified_rows": 0,
+    "biology_lecture_gap_remediation_authority_rows": 0
   },
   "chapter_complete_contract": {
     "required": [
@@ -107,7 +111,7 @@
       "subject_id": "BIO",
       "name": "Biology",
       "route_slug": "biology",
-      "architecture_status": "24-chapter-mapping-authenticated-r2-3-source-populated-second-verification-blocked",
+      "architecture_status": "24-chapter-mapping-authenticated-pass2-acquisition-active-no-unlocked-rows",
       "topic_taxonomy": {
         "source": "_data/admission/biology/engine_v1.json",
         "expected_topic_ids": [
@@ -140,7 +144,7 @@
           "B27",
           "B28"
         ],
-        "chapter_mapping_status": "curriculum-mapping-authenticated-source-populated-claim-page-and-second-verification-pending",
+        "chapter_mapping_status": "curriculum-mapping-authenticated-source-populated-pass2-evidence-acquisition-active",
         "note": "B01-B28 are Admission topic identities and must not be silently treated as textbook chapter identities."
       },
       "papers": [
@@ -530,5 +534,6 @@
   "biology_chapter_map": "_data/admission/biology/chapter_map_v1.json",
   "biology_claim_source_matrix": "_data/admission/biology/claim_source_matrix_v1.json",
   "biology_reference_registry": "_data/admission/biology/reference_registry_v1.json",
-  "biology_second_verification": "_data/admission/biology/r2-3_second_verification_v1.json"
+  "biology_second_verification": "_data/admission/biology/r2-3_second_verification_v1.json",
+  "biology_pass2_claim_evidence": "_data/admission/biology/pass2_claim_evidence_v1.json"
 }
