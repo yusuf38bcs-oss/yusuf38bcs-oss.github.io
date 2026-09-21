@@ -1,0 +1,859 @@
+{
+  "schema": "lbfl-admission-biology-r2-3-second-verification-v1",
+  "version": "R2.3-0.1",
+  "exact_parent_head": "c89e126a6e5e8372f761c825729bca6df628ab4a",
+  "matrix": "_data/admission/biology/claim_source_matrix_v1.json",
+  "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+  "verification_rule": "Second verification may PASS only after an independent reviewer/check reopens the exact claim against an authenticated NCTB-authorized HSC source with an inspectable claim-level page locator and checks relevant scientific references/disagreements. Chapter-range or commercial identity metadata alone cannot satisfy this gate.",
+  "rows": [
+    {
+      "matrix_id": "BIO-P1-C01-B01-full-topic",
+      "chapter_id": "BIO-P1-C01",
+      "topic_id": "B01",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C01-B02-full-topic",
+      "chapter_id": "BIO-P1-C01",
+      "topic_id": "B02",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C01-B03-nucleus-chromosome-molecular-biology",
+      "chapter_id": "BIO-P1-C01",
+      "topic_id": "B03",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C02-B04-full-topic",
+      "chapter_id": "BIO-P1-C02",
+      "topic_id": "B04",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C03-B05-carbohydrate-protein-lipid-enzyme",
+      "chapter_id": "BIO-P1-C03",
+      "topic_id": "B05",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C04-B06-full-topic",
+      "chapter_id": "BIO-P1-C04",
+      "topic_id": "B06",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C05-B07-algae-fungi-lichen-as-source-supported",
+      "chapter_id": "BIO-P1-C05",
+      "topic_id": "B07",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C06-B08-full-topic",
+      "chapter_id": "BIO-P1-C06",
+      "topic_id": "B08",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C07-B09-gymnosperm-angiosperm-plant-family-scope-as-verified",
+      "chapter_id": "BIO-P1-C07",
+      "topic_id": "B09",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C08-B10-full-topic",
+      "chapter_id": "BIO-P1-C08",
+      "topic_id": "B10",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C09-B11-full-topic",
+      "chapter_id": "BIO-P1-C09",
+      "topic_id": "B11",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C09-B12-full-topic",
+      "chapter_id": "BIO-P1-C09",
+      "topic_id": "B12",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C10-B13-reproduction",
+      "chapter_id": "BIO-P1-C10",
+      "topic_id": "B13",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C11-B14-full-topic",
+      "chapter_id": "BIO-P1-C11",
+      "topic_id": "B14",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P1-C12-B15-full-topic",
+      "chapter_id": "BIO-P1-C12",
+      "topic_id": "B15",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C01-B16-full-topic",
+      "chapter_id": "BIO-P2-C01",
+      "topic_id": "B16",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C02-B17-hydra-grasshopper-rohu",
+      "chapter_id": "BIO-P2-C02",
+      "topic_id": "B17",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C03-B18-full-topic",
+      "chapter_id": "BIO-P2-C03",
+      "topic_id": "B18",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C04-B19-full-topic",
+      "chapter_id": "BIO-P2-C04",
+      "topic_id": "B19",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C05-B20-full-topic",
+      "chapter_id": "BIO-P2-C05",
+      "topic_id": "B20",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C06-B21-full-topic",
+      "chapter_id": "BIO-P2-C06",
+      "topic_id": "B21",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C07-B22-full-topic",
+      "chapter_id": "BIO-P2-C07",
+      "topic_id": "B22",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C08-B23-nervous-system-sense-organs",
+      "chapter_id": "BIO-P2-C08",
+      "topic_id": "B23",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C08-B24-endocrine-homeostasis",
+      "chapter_id": "BIO-P2-C08",
+      "topic_id": "B24",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C09-B25-full-topic",
+      "chapter_id": "BIO-P2-C09",
+      "topic_id": "B25",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C10-B26-full-topic",
+      "chapter_id": "BIO-P2-C10",
+      "topic_id": "B26",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C11-B27-genetics-inheritance",
+      "chapter_id": "BIO-P2-C11",
+      "topic_id": "B27",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C11-B28-evolution",
+      "chapter_id": "BIO-P2-C11",
+      "topic_id": "B28",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    },
+    {
+      "matrix_id": "BIO-P2-C12-B28-animal-behaviour",
+      "chapter_id": "BIO-P2-C12",
+      "topic_id": "B28",
+      "pass_1_source_population": {
+        "status": "PASS",
+        "checks": [
+          "canonical chapter/topic row exists",
+          "inspected primary textbook chapter page range is recorded",
+          "supplementary HSC reference candidate(s) are recorded without being mislabelled as verified authorized exact editions",
+          "at least one authoritative scientific digital locator is recorded",
+          "known source/scope disagreements are explicit where applicable"
+        ]
+      },
+      "pass_2_independent_claim_verification": {
+        "status": "BLOCKED",
+        "blocker": "No inspectable claim-level page locator from an additional authenticated NCTB-authorized HSC reference has been supplied for this row.",
+        "required_before_pass": [
+          "exact supplementary authorized book identity/edition",
+          "edition-specific authorization/custody evidence",
+          "claim-to-printed-page mapping",
+          "independent re-open/recheck of the claim",
+          "scientific cross-check where needed",
+          "explicit disposition of any material disagreement"
+        ]
+      },
+      "lecture_authoring_authority": false,
+      "model_test_authority": false
+    }
+  ],
+  "summary": {
+    "rows": 29,
+    "pass_1_source_population": 29,
+    "pass_2_verified": 0,
+    "pass_2_blocked": 29,
+    "lecture_authoring_authority": false,
+    "model_test_authority": false
+  }
+}
