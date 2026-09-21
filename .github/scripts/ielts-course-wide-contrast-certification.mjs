@@ -32,7 +32,7 @@ async function settle(page) {
 }
 
 async function inspect(page, responseStatus) {
-  return page.evaluate(async ({ axeSource, responseStatus }) => {
+  return page.evaluate(async ({ responseStatus }) => {
     const visible = (element) => {
       if (!element) return false;
       const style = getComputedStyle(element);
@@ -51,9 +51,6 @@ async function inspect(page, responseStatus) {
       ".ielts-practice__panel, .ielts-writing__panel, .ielts-speaking__panel, .ielts-reading__panel"
     )).filter(visible);
 
-    // Inject the exact pinned axe runtime used by the workflow.
-    // eslint-disable-next-line no-eval
-    eval(axeSource);
     const axeResult = await window.axe.run(document, {
       runOnly: { type: "rule", values: ["color-contrast"] },
     });
@@ -75,7 +72,7 @@ async function inspect(page, responseStatus) {
         })),
       })),
     };
-  }, { axeSource: axe.source, responseStatus });
+  }, { responseStatus });
 }
 
 await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -97,11 +94,12 @@ try {
       });
       page.on("pageerror", (error) => pageErrors.push(String(error)));
 
-      const response = await page.goto(`${BASE_URL}${route.replace(/^\//, "")}`, {
+      const response = await page.goto(`${BASE_URL}${route}`, {
         waitUntil: "domcontentloaded",
         timeout: 45000,
       });
       await settle(page);
+      await page.addScriptTag({ content: axe.source });
 
       const state = await inspect(page, response?.status() || 0);
       const passed =
