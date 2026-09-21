@@ -1,9 +1,9 @@
 {
   "schema": "lbfl-admission-biology-pass2-claim-evidence-v1",
-  "version": "R2.4-0.1",
+  "version": "R2.4-0.2",
   "exact_parent_pr": 349,
   "exact_parent_head": "e07addcc58e2e3528fde7940e1b5e7f71a8c240b",
-  "purpose": "Acquire independent Biology reference artifacts and enforce the row-level Pass-2 unlock contract before lecture-gap remediation.",
+  "purpose": "Acquire independent Biology reference artifacts, bind reproducible Drive custody metadata, enforce final Pass-2 requirements, and permit only a separately governed draft-only remediation gateway where exact internal scan evidence remains unavailable.",
   "unlock_rule": "lecture_gap_remediation_authority may be true only when pass_1=PASS, pass_2=PASS, additional_reference_id is an ACQUIRED authenticated additional reference, exact_edition_identity and authorization_evidence are present, artifact identity includes reproducible custody and SHA-256, claim_id/printed_page/claim_locator are present, scientific_crosscheck is non-empty, and every material disagreement has an explicit disposition.",
   "acquisition_artifacts": [
     {
@@ -18,8 +18,13 @@
       "artifact_hash_status": "PENDING_SHA256",
       "notes": [
         "Public Drive artifact acquired successfully within connector size limit.",
-        "Title/imprint/authorization pages must be inspected before this source can satisfy Pass 2."
-      ]
+        "Title/imprint/authorization pages must be inspected before this source can satisfy Pass 2.",
+        "Stable Drive file ID + byte size + modified-time fingerprint is recorded as a reproducible custody locator; it is not a substitute for SHA-256."
+      ],
+      "drive_created_time": "2021-02-05T07:25:29.640Z",
+      "drive_modified_time": "2021-02-05T07:54:40.845Z",
+      "drive_identity_fingerprint": "gdrive:1Fj4CRRCABkK4CChF7zJxMHDHpaiImFmE:105433902:2021-02-05T07:54:40.845Z",
+      "custody_status": "DRIVE_STABLE_METADATA_BOUND"
     },
     {
       "artifact_id": "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
@@ -33,8 +38,13 @@
       "artifact_hash_status": "PENDING_SHA256",
       "notes": [
         "Public Drive artifact acquired successfully.",
-        "Retail/web metadata identifies the Akkharpatra Biology First Paper family, but exact scan edition/authorization must be established from the artifact itself."
-      ]
+        "Retail/web metadata identifies the Akkharpatra Biology First Paper family, but exact scan edition/authorization must be established from the artifact itself.",
+        "Stable Drive file ID + byte size + modified-time fingerprint is recorded as a reproducible custody locator; it is not a substitute for SHA-256."
+      ],
+      "drive_created_time": "2023-11-22T14:23:45.957Z",
+      "drive_modified_time": "2023-11-22T14:09:05.695Z",
+      "drive_identity_fingerprint": "gdrive:1aqkkmjCfiMklIfhVvoO6njceC2uhvN08:180899124:2023-11-22T14:09:05.695Z",
+      "custody_status": "DRIVE_STABLE_METADATA_BOUND"
     },
     {
       "artifact_id": "P1-ABDUL-ALIM-SCAN",
@@ -48,8 +58,13 @@
       "artifact_hash_status": "PENDING_SHA256",
       "notes": [
         "Public Drive artifact acquired successfully.",
-        "Exact publisher/edition/authorization remain unverified until internal title/imprint pages are inspected."
-      ]
+        "Exact publisher/edition/authorization remain unverified until internal title/imprint pages are inspected.",
+        "Stable Drive file ID + byte size + modified-time fingerprint is recorded as a reproducible custody locator; it is not a substitute for SHA-256."
+      ],
+      "drive_created_time": "2023-11-22T14:04:13.727Z",
+      "drive_modified_time": "2023-11-22T13:58:55.243Z",
+      "drive_identity_fingerprint": "gdrive:1ai08obdXOzDbZ8F_GpXlMRSJu2gDtk09:85686581:2023-11-22T13:58:55.243Z",
+      "custody_status": "DRIVE_STABLE_METADATA_BOUND"
     },
     {
       "artifact_id": "P1-ABUL-HASAN-2026-SCAN",
@@ -78,8 +93,13 @@
       "artifact_hash_status": "PENDING_SHA256",
       "notes": [
         "Public Drive artifact acquired successfully.",
-        "Current public bookseller metadata identifies an Akkharpatra edition, but the scan's own title/imprint/authorization pages must establish exact identity."
-      ]
+        "Current public bookseller metadata identifies an Akkharpatra edition, but the scan's own title/imprint/authorization pages must establish exact identity.",
+        "Stable Drive file ID + byte size + modified-time fingerprint is recorded as a reproducible custody locator; it is not a substitute for SHA-256."
+      ],
+      "drive_created_time": "2023-02-06T16:59:14.655Z",
+      "drive_modified_time": "2023-02-06T16:51:07.094Z",
+      "drive_identity_fingerprint": "gdrive:1oVKZfc3rIcYpSuOqx0AikFpo09n_tRs0:160103759:2023-02-06T16:51:07.094Z",
+      "custody_status": "DRIVE_STABLE_METADATA_BOUND"
     },
     {
       "artifact_id": "P2-MAJEDA-BEGUM-SCAN",
@@ -93,8 +113,13 @@
       "artifact_hash_status": "PENDING_SHA256",
       "notes": [
         "Public Drive artifact acquired successfully.",
-        "Exact edition, publisher and authorization statement remain unverified until internal pages are inspected."
-      ]
+        "Exact edition, publisher and authorization statement remain unverified until internal pages are inspected.",
+        "Stable Drive file ID + byte size + modified-time fingerprint is recorded as a reproducible custody locator; it is not a substitute for SHA-256."
+      ],
+      "drive_created_time": "2023-02-06T19:30:07.468Z",
+      "drive_modified_time": "2023-02-23T09:54:28.032Z",
+      "drive_identity_fingerprint": "gdrive:1pJDfLKYoAxMZEaN4vQHNpG99oRUJeqMZ:231644934:2023-02-23T09:54:28.032Z",
+      "custody_status": "DRIVE_STABLE_METADATA_BOUND"
     },
     {
       "artifact_id": "P2-GAZI-AJMOL-2026-PRIMARY-SCAN",
@@ -1317,7 +1342,8 @@
     "pass_1": 29,
     "pass_2": 0,
     "pass_2_blocked": 29,
-    "lecture_gap_remediation_authority_rows": 0
+    "lecture_gap_remediation_authority_rows": 0,
+    "drive_stable_metadata_bound": 5
   },
   "boundaries": {
     "new_lecture_authoring": false,
@@ -1325,6 +1351,7 @@
     "chapter_completion": false,
     "verified_primary_promotion": false,
     "matrix_qyi_release": false,
-    "ready_merge_production": false
+    "ready_merge_production": false,
+    "draft_only_remediation_gateway_separate": true
   }
 }
