@@ -164,7 +164,7 @@ async function runViewport(browser, viewport) {
           bannerRect.top >= -1 && bannerRect.bottom <= window.innerHeight + 1
         ),
         bannerVisible: visible("#gdpr-banner[data-cookie-banner]"),
-        ctaVisible: visible('.lbfl-v3-actions a[href="/biology/"], .lbfl-v3-actions a[href$="/biology/"]'),
+        ctaVisible: visible('.lbfl-v3-actions a[href="/biology/hsc-corner/"], .lbfl-v3-actions a[href$="/biology/hsc-corner/"]'),
         headingVisible: visible(".lbfl-v3-hero h1"),
         heroImageLoaded: Boolean(heroImage?.complete && heroImage.naturalWidth > 0),
         horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
