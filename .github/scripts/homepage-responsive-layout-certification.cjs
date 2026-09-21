@@ -350,11 +350,25 @@ async function inspect(page, viewportWidth) {
 async function inspectFallbackNavigation(page, viewportWidth) {
   if (viewportWidth > 1024) return { applicable: false, passed: true };
 
+  await page.addInitScript(() => {
+    if (typeof HTMLDialogElement !== "undefined" && HTMLDialogElement.prototype) {
+      try {
+        Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
+          value: undefined,
+          configurable: true,
+          writable: true,
+        });
+      } catch {
+        try { HTMLDialogElement.prototype.showModal = undefined; } catch {}
+      }
+    }
+  });
+
+  await page.reload({ waitUntil: "domcontentloaded", timeout: 45000 });
+  await settle(page);
+
   return page.evaluate(() => {
     const root = document.documentElement;
-    const hadSupportClass = root.classList.contains("v3-dialog-supported");
-    root.classList.remove("v3-dialog-supported");
-
     const visible = (target) => {
       if (!target) return false;
       const style = getComputedStyle(target);
@@ -369,18 +383,20 @@ async function inspectFallbackNavigation(page, viewportWidth) {
 
     const result = {
       applicable: true,
+      unsupportedClass: root.classList.contains("v3-dialog-unsupported"),
+      supportedClassAbsent: !root.classList.contains("v3-dialog-supported"),
       navVisible: visible(nav),
       menuHidden: !visible(menuButton),
       admissionVisible: visible(admission),
       ieltsVisible: visible(ielts),
     };
     result.passed =
+      result.unsupportedClass &&
+      result.supportedClassAbsent &&
       result.navVisible &&
       result.menuHidden &&
       result.admissionVisible &&
       result.ieltsVisible;
-
-    if (hadSupportClass) root.classList.add("v3-dialog-supported");
     return result;
   });
 }
@@ -570,16 +586,18 @@ function summarizeFailure(result) {
 
       const layout = await inspect(page, viewport.width);
       const menu = await inspectMenu(page, viewport.width);
+
+      await page.screenshot({
+        fullPage: true,
+        path: path.join(outputDir, `homepage-${viewport.name}.png`),
+      });
+
       const fallback = await inspectFallbackNavigation(page, viewport.width);
       const result = { ...viewport, layout, menu, fallback, consoleErrors, pageErrors };
       result.passed = passes(result);
       result.failureReasons = result.passed ? [] : summarizeFailure(result);
       results.push(result);
 
-      await page.screenshot({
-        fullPage: true,
-        path: path.join(outputDir, `homepage-${viewport.name}.png`),
-      });
       await context.close();
     }
   } finally {
