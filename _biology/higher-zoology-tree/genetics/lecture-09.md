@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 9
+page_id: genetics-17-l09
+previous: /biology/higher-zoology-tree/genetics/linkage/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/chromosome-patterns/
 ---
-
-# Genetics Lecture 09: Gene Mapping
 
 ## Concept Overview
 
@@ -79,8 +85,6 @@ Linkage map constructed
 
 Gene mapping learner-কে chromosome-কে একটি linear information map হিসেবে দেখতে শেখায়। Linkage শুধু বলে genes together move করে; gene mapping বলে কতটা close বা far they are. Modern genomics, breeding, disease-gene tracking, chromosome analysis and evolutionary genetics-এর foundation এই mapping logic-এর উপর দাঁড়িয়ে আছে।
 
-{% include education/framework-links.html %}
-
 ## Gene-Mapping Learning Focus
 
 এই lecture central LBFL framework-কে recombination-based mapping-এ প্রয়োগ করে। Learner-এর focus হবে linked genes, crossing over, parental type, recombinant type, recombination frequency, map unit, centiMorgan, gene distance and simple map construction.
@@ -100,15 +104,15 @@ In linked genes, parental types are usually more frequent than recombinant types
 Recombination frequency (%) = (Number of recombinant offspring / Total offspring) × 100
 ```
 
-This percentage is used as an estimate of genetic distance.
+For short intervals, this percentage is a useful estimate of genetic distance. As loci become farther apart, multiple crossovers can restore parental combinations and make observed recombination underestimate the true map distance; mapping functions or multi-locus data are then needed.
 
 ## Map Unit and CentiMorgan
 
 ```text
-1% recombination = 1 map unit = 1 centiMorgan (cM)
+For short genetic distances, approximately 1% observed recombination ≈ 1 map unit ≈ 1 centiMorgan (cM)
 ```
 
-So if recombination frequency between two genes is 12%, the estimated distance between the genes is about:
+For a short interval with 12% observed recombination, the first-order map-distance estimate is about:
 
 ```text
 12 map units or 12 cM
@@ -217,9 +221,6 @@ A full three-point test cross also uses double crossovers, but this lecture focu
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Assuming recombination frequency above 50% is meaningful for simple linkage mapping.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Gene mapping teaches distance through change. The more often two things separate, the farther apart they may be in the system. In learning and life, repeated separation between intention and action may reveal hidden distance between value, habit and environment. Mapping helps us see where correction is needed.
 
 ## Critical Thinking Questions
 

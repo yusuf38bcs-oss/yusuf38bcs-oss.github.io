@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Intermediate"
 xp: 800
 time_min: 65
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 17
+page_id: genetics-17-l17
+previous: /biology/higher-zoology-tree/genetics/lecture-16/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: null
 ---
-
-# Genetics Lecture 17: Gene Regulation, Mutation, and Course Synthesis
 
 ## Concept Overview
 
@@ -78,8 +84,6 @@ Evolution, disease tendency, breeding and biodiversity context
 ## Why This Matters
 
 Gene regulation and mutation genetics-এর bridge topic. DNA sequence থাকলেই সব gene সবসময় express হয় না। Cell type, developmental stage, environment, regulatory signals and molecular control decide which genes are active, when, where and how much. Mutation আবার sequence or chromosome-level change তৈরি করে variation-এর source হয়।
-
-{% include education/framework-links.html %}
 
 ## Learning Focus
 
@@ -214,9 +218,6 @@ Genetics is powerful but should be interpreted responsibly.
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Using genetics language to label people. Genetics education should increase understanding and responsibility, not stigma.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Gene regulation teaches disciplined expression. Having information is not enough; expression must be timely, contextual and purposeful. In learning life, knowledge also needs regulation: when to speak, when to act, when to pause, when to revise and when to apply.
 
 ## Critical Thinking Questions
 

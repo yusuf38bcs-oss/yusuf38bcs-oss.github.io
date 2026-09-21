@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Foundation"
 xp: 650
 time_min: 50
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 2
+page_id: genetics-17-l02
+previous: /biology/higher-zoology-tree/genetics/foundations-of-genetics/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/mendel-and-pea-plant/
 ---
-
-# Genetics Lecture 02: Genetic Terminology
 
 ## Concept Overview
 
@@ -66,8 +72,6 @@ Genetics শেখার সবচেয়ে বড় বাধা হলো termin
 ## Why This Matters
 
 Genetics problems সাধারণত শব্দ দিয়ে শুরু হয়, ratio দিয়ে শেষ হয়। যদি learner বুঝতে না পারে কোন parent homozygous, কোন trait recessive, কোন genotype heterozygous, কোন phenotype visible, তাহলে calculation ঠিক হলেও biological interpretation ভুল হতে পারে। তাই terminology হলো Genetics problem-solving-এর grammar.
-
-{% include education/framework-links.html %}
 
 ## Terminology Learning Focus
 
@@ -189,9 +193,6 @@ If Tt × tt → Tt and tt → tall and dwarf
 
 So offspring pattern helps reveal the hidden genotype.
 
-## Synaptic Bridge
-
-Genetic terminology teaches precision. One word can change the whole meaning of a problem. In life and leadership too, vague language creates wrong decisions; precise language builds clear thinking.
 
 ## Critical Thinking Questions
 

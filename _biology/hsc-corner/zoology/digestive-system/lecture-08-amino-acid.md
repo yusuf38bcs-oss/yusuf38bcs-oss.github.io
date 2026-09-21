@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 title: "Digestive System Lecture 08: Amino Acid Pathway"
 permalink: /biology/hsc-corner/zoology/digestive-system/amino-acid-pathway/
 categories: [Biology, HSC Corner, Zoology]
@@ -9,9 +9,15 @@ toc_sticky: true
 classes: wide
 language: bn
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 8
+page_id: human-physiology-l08
+previous: /biology/hsc-corner/zoology/digestive-system/carbohydrate-digestion/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/digestive-system/lipid-digestion/
 ---
-
-# Digestive System Lecture 08: Amino Acid Pathway
 
 ## Learning Objectives
 

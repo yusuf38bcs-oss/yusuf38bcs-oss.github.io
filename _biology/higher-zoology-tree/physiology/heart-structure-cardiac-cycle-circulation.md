@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -45,9 +45,15 @@ difficulty: "Intermediate"
 xp: 850
 time_min: 70
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 21
+page_id: human-physiology-l21
+previous: /biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/higher-zoology-tree/physiology/circulatory-diseases-causes-symptoms-treatment-awareness/
 ---
-
-# Blood Circulation Part 2: হৃদপিণ্ডের গঠন, Myogenic Movement, Systole-Diastole ও রক্তসঞ্চালন
 
 ## Concept Overview
 
@@ -58,8 +64,6 @@ Heart-এর বিশেষত্ব হলো এটি **myogenic**—অর�
 ## Why This Matters
 
 রক্ত নিজে চলতে পারে না; heart pressure তৈরি করে। Valve না থাকলে blood backward flow করত। SAN না থাকলে rhythmic beat তৈরি হত না। AVN delay না করলে atria ঠিকমতো ventricles-এ blood দিতে পারত না। Systemic circulation না থাকলে tissues oxygen পেত না; pulmonary circulation না থাকলে blood oxygenated হত না। তাই heart হলো structure, electricity, pressure, valve and vessel-এর সমন্বিত machine।
-
-{% include education/framework-links.html %}
 
 ## Heart-Specific Learning Focus
 
@@ -330,9 +334,6 @@ Pulmonary artery deoxygenated blood বহন করে, আর pulmonary vein o
   <section class="lbfl-info-card"><h3>Pulmonary circulation</h3><p><strong>Must remember:</strong> RV → lungs → LA.</p><p><strong>Common mistake:</strong> pulmonary artery oxygenated ভাবা.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Heart আমাদের শেখায়, strong system শুধু শক্তি দিয়ে চলে না; timing, valve discipline, feedback and rhythm দরকার। জীবনের ক্ষেত্রেও কাজের pressure, rest, rhythm, boundary and direction না থাকলে flow ভেঙে যায়। Cardiac cycle তাই শুধু biology নয়; এটি disciplined movement-এর living model।
 
 ## Critical Thinking Questions
 

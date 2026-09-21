@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<div data-lbfl-course-owned="biostatistics" class="lbfl-course-shell lbfl-biostatistics-course">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork" lang="{{ page.language | default: 'bn' }}">
+    <div class="page__inner-wrap">
+      <header>
+        <p class="page__meta">Biostatistics · Lecture {{ page.lecture_number }} of 9</p>
+        <h1 class="page__title" itemprop="headline">{{ page.title }}</h1>
+        {% if page.excerpt %}<p class="page__lead">{{ page.excerpt }}</p>{% endif %}
+      </header>
+      <section class="page__content" itemprop="text">
+        {{ content }}
+      </section>
+      <nav class="lbfl-course-nav" aria-label="Biostatistics course navigation">
+        {% if page.previous and page.previous != 'null' %}<a href="{{ page.previous | relative_url }}">← Previous</a>{% endif %}
+        <a href="{{ page.course_index | default: '/biology/higher-zoology-tree/biostatistics/' | relative_url }}">Course index</a>
+        {% if page.next and page.next != 'null' %}<a href="{{ page.next | relative_url }}">Next →</a>{% endif %}
+      </nav>
+    </div>
+  </article>
+</div>

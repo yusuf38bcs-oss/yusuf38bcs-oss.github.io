@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 11
+page_id: genetics-17-l11
+previous: /biology/higher-zoology-tree/genetics/chromosome-patterns/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/lecture-12/
 ---
-
-# Genetics Lecture 11: Sex-Linked Inheritance
 
 ## Concept Overview
 
@@ -76,8 +82,6 @@ Sex-linked trait transmission
 ## Why This Matters
 
 Sex-linked inheritance chromosome pattern-এর practical application. Autosomal inheritance বোঝার পর learner যদি sex chromosome-based transmission না বোঝে, তাহলে pedigree, carrier state, criss-cross inheritance, X-linked recessive trait and Y-linked transmission ভুল বুঝতে পারে।
-
-{% include education/framework-links.html %}
 
 ## Sex-Linked Learning Focus
 
@@ -189,9 +193,6 @@ Examples such as colour blindness or haemophilia are commonly used in textbooks 
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Using pedigree clues as medical certainty. Pedigree interpretation needs expert context for real families.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Sex-linked inheritance teaches that context changes expression. The same allele can have different transmission consequences depending on chromosomal context. In learning and life, a trait, habit or pressure may also express differently depending on environment, role and relationship pattern.
 
 ## Critical Thinking Questions
 

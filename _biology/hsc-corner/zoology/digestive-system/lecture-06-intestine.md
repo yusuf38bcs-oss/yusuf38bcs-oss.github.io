@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 title: "Digestive System Lecture 06: Small Intestine and Absorptive Surface"
 permalink: /biology/hsc-corner/zoology/digestive-system/intestine/
 categories: [Biology, HSC Corner, Zoology]
@@ -9,9 +9,15 @@ toc_sticky: true
 classes: wide
 language: bn
 status: "Active"
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 6
+page_id: human-physiology-l06
+previous: /biology/hsc-corner/zoology/digestive-system/pancreas/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/digestive-system/carbohydrate-digestion/
 ---
-
-# Digestive System Lecture 06: Small Intestine and Absorptive Surface
 
 ## Learning Objectives
 

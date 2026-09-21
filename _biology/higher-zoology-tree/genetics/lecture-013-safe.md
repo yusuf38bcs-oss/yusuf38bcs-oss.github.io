@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 13
+page_id: genetics-17-l13
+previous: /biology/higher-zoology-tree/genetics/lecture-12/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/lecture-14/
 ---
-
-# Genetics Lecture 13: DNA as Genetic Material
 
 ## Concept Overview
 
@@ -78,8 +84,6 @@ Mutation creates variation
 ## Why This Matters
 
 Mendel gene-এর behaviour দেখেছিলেন, কিন্তু gene কী দিয়ে তৈরি তা জানতেন না। DNA as genetic material বুঝলে Mendelian genetics molecular genetics-এর সঙ্গে যুক্ত হয়। তখন learner বুঝতে পারে allele, mutation, chromosome, gene expression and inheritance একই information system-এর বিভিন্ন স্তর।
-
-{% include education/framework-links.html %}
 
 ## DNA-Learning Focus
 
@@ -208,9 +212,6 @@ This connects molecular genetics with phenotype.
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Memorizing A-T and G-C without understanding template-based copying.</p></section>
 </div>
 
-## Synaptic Bridge
-
-DNA teaches that information becomes powerful when it is stable, copyable and expressible. In learning life, knowledge also matters when it can be stored clearly, transmitted accurately, expressed responsibly and revised when correction is needed.
 
 ## Critical Thinking Questions
 

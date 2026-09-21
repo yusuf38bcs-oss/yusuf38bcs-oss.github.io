@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: human-physiology-lecture
 title: "Digestive System Lecture 02: Oral Cavity, Teeth and Saliva"
 permalink: /biology/hsc-corner/zoology/digestive-system/oral-cavity-saliva-teeth/
 categories: [Biology, HSC Corner, Zoology]
@@ -10,9 +10,15 @@ classes: wide
 language: bn
 status: "Active"
 last_modified_at: 2026-08-21T00:00:00.000Z
+translation_status: single-source-unpaired
+course_id: human-physiology-01
+course_role: lecture
+lecture_number: 2
+page_id: human-physiology-l02
+previous: /biology/hsc-corner/zoology/digestive-system/human-digestive-system-overview/
+course_index: /biology/higher-zoology-tree/human-physiology/course-index/
+next: /biology/hsc-corner/zoology/digestive-system/stomach/
 ---
-
-# Digestive System Lecture 02: Oral Cavity, Teeth and Saliva
 
 ## Learning Objectives
 
