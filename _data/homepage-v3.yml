@@ -1,26 +1,27 @@
-version: "3.5-premium-current-base"
-status: "draft-certification"
+version: "3.5.1-premium-visual-correction-successor"
+status: "current-main-visual-correction-candidate"
 authority:
-  staging_sha: "c96e78c5c877e478eab98450e7e081aee55927bf"
-  tree_sha: "066e1ebb0b2e30dd010e76a81b155270c31d6189"
-  semantic_source_pr: 290
-  semantic_source_head_sha: "44723eed41dd40d9b152e333f108ed34ee66ea5b"
-  semantic_source_authority: "design-donor-only"
-  historical_design_pr: 287
-  historical_design_head_sha: "9b4239c11b71ee22a5a3ef683207a9603750f7c6"
+  production_base_sha: "4bc3a7e4551322450db4639b11ae871379eb3c05"
+  certified_staging_merge_sha: "d0fd6427b9c61d267113b6a4796923a9929c9b70"
+  semantic_source_pr: 311
+  semantic_source_head_sha: "34ebf5859b64b0c10734bdc111bdd2d0d83a2032"
+  semantic_source_authority: "production-intent-donor-only"
+  historical_design_pr: 290
+  historical_design_head_sha: "44723eed41dd40d9b152e333f108ed34ee66ea5b"
 route:
+  production: "/"
   lab: "/labs/homepage-v3/"
-  sitemap: false
-  robots: "noindex,nofollow"
+  production_robots: "index,follow"
+  lab_robots: "noindex,nofollow"
 architecture:
   narrative: "Identity -> Choice -> Experience -> Method -> Feedback/Repair -> Evidence -> Action"
   visual_direction: "Scientific editorial premium"
   css_owner: "assets/css/homepage-v3.css"
   js_owner: "assets/js/home/homepage-v3.js"
-  asset_revision: "v3.5-premium-c96e78c5-20260921"
+  asset_revision: "v3.5.1-main-4bc3a7e-20260921"
   v2_inheritance: false
 constraints:
-  root_activation: false
+  root_activation: true
   worker_mutation: false
   adsense_cmp_mutation: false
   shared_layout_mutation: false
