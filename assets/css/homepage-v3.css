@@ -395,7 +395,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   letter-spacing: -0.035em;
 }
 
-.lbfl-v3-hero__brand-line {
+.lbfl-home-v3 .lbfl-v3-hero__brand-line {
   margin-top: clamp(22px, 2.4vw, 28px);
   color: var(--v3-gold-300);
   font-size: clamp(1.02rem, 1.55vw, 1.28rem);
@@ -404,7 +404,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   text-transform: uppercase;
 }
 
-.lbfl-v3-hero__promise {
+.lbfl-home-v3 .lbfl-v3-hero__promise {
   max-width: 590px;
   margin-top: 10px;
   color: #d9e6e4;
