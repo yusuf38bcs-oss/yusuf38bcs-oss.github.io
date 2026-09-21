@@ -8,7 +8,7 @@ on:
       - "_pages/ielts/**"
       - "assets/css/ielts-hub.css"
       - "assets/css/ielts-reading-trainer.css"
-      - "assets/js/ielts-**"
+      - "assets/js/ielts-*.js"
       - ".github/scripts/ielts-course-wide-contrast-certification.mjs"
       - ".github/workflows/ielts-course-wide-contrast-certification.yml"
   workflow_dispatch:
