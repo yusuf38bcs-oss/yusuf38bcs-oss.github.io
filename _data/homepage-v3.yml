@@ -1,5 +1,5 @@
-version: "3.5.2-mobile-hero-composition-successor"
-status: "current-main-mobile-hero-candidate"
+version: "3.5.3-navigation-language-successor"
+status: "converged-staging-navigation-language-candidate"
 authority:
   production_base_sha: "ed46bf7ddb4bf16180cfe2f6e086b336fabd7d47"
   certified_staging_merge_sha: "d0fd6427b9c61d267113b6a4796923a9929c9b70"
@@ -18,7 +18,7 @@ architecture:
   visual_direction: "Scientific editorial premium"
   css_owner: "assets/css/homepage-v3.css"
   js_owner: "assets/js/home/homepage-v3.js"
-  asset_revision: "v3.5.2-main-ed46bf7-20260921"
+  asset_revision: "v3.5.3-staging-e7e54235-20260921"
   v2_inheritance: false
 constraints:
   root_activation: true
