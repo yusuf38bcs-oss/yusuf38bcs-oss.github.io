@@ -624,3 +624,11 @@ html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1
 html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1324"] p[style*="color: #ffffff"] {
   color: #f8fafc !important;
 }
+
+/* HSC Human Physiology Markdown section headers may render inside semantic
+   <header> wrappers that are not descendants of .page__content. Keep those
+   light-shell headings on the Zoology heading token without touching quiz
+   headings, which use classed div containers rather than semantic headers. */
+html.lbfl-zoology-route .lbfl-human-physiology-course header > h2 {
+  color: var(--zoo-heading-color) !important;
+}
