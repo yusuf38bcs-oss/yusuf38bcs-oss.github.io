@@ -16,6 +16,7 @@ const baseUrl = arg("--base-url", "http://127.0.0.1:4173").replace(/\/$/, "");
 const outputDir = path.resolve(arg("--output-dir", "zoology-browser-report"));
 const viewports = [
   { name: "mobile-390", width: 390, height: 844 },
+  { name: "tablet-768", width: 768, height: 1024 },
   { name: "desktop-1280", width: 1280, height: 900 },
 ];
 
@@ -170,6 +171,7 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
   return {
     hasContent: Boolean(document.querySelector(".page__content")),
     hasCycle: Boolean(document.querySelector("[data-zoology-learning-cycle]")),
+    hasCourseOwnedShell: Boolean(document.querySelector("[data-lbfl-course-owned]")),
     hasStylesheet: Array.from(
       document.querySelectorAll('link[rel="stylesheet"]')
     ).some((link) =>
@@ -185,12 +187,14 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
     structureChecks,
   };
 }, { headingContract, structureContract });
+      const isCourseOwnedCandidate = metrics?.hasCourseOwnedShell === true;
       const fullPageAxe =
-        isAnimalDiversityRoute &&
-        viewport.name === "mobile-390";
+        (isAnimalDiversityRoute && viewport.name === "mobile-390") ||
+        isCourseOwnedCandidate;
 
       const scopedCycleAxe =
         !isAnimalDiversityRoute &&
+        !isCourseOwnedCandidate &&
         metrics.hasCycle &&
         viewport.name === "mobile-390";
 
@@ -231,7 +235,7 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
       metrics?.hasContent === true &&
       metrics?.hasStylesheet === true &&
       (!isAnimalDiversityRoute || metrics?.hasContent === true) &&
-      (isAnimalDiversityRoute ? metrics?.hasCycle === false : (isEcologyCourseRoute ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
+      (isAnimalDiversityRoute ? metrics?.hasCycle === false : ((isEcologyCourseRoute || metrics?.hasCourseOwnedShell === true) ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
       (!isAnimalDiversityRoute || metrics?.structureChecks?.h1Count === 1) &&
       metrics?.structureChecks?.requiredText?.every((check) => check.passed) !== false &&
       metrics?.structureChecks?.forbiddenText?.every((check) => check.passed) !== false &&
