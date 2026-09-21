@@ -106,7 +106,8 @@
     "granted": {
       "shadow_lecture_outline": true,
       "shadow_claim_inventory": true,
-      "shadow_missing_content_draft": true
+      "shadow_missing_content_draft": true,
+      "physical_copy_evidence_intake": true
     },
     "prohibited": {
       "pass_2_promotion": true,
@@ -124,8 +125,45 @@
       "pass_2": "BLOCKED",
       "lecture_gap_remediation_authority": false,
       "verified_primary": false,
-      "topic_complete": false
+      "topic_complete": false,
+      "physical_copy_gateway_ready": true
+    },
+    "preferred_resolution_route": {
+      "route": "PHYSICAL_COPY_CUSTODY_IF_SCAN_IMPRINT_REMAINS_UNREADABLE",
+      "rationale": "The established LBFL evidence model already allows reproducible physical-copy identity as an alternative to digital SHA-256. This avoids blocking the curriculum indefinitely on an image-only or connector-limited PDF while preserving exact-edition and page-level evidence.",
+      "authority": "ELIGIBLE_FOR_PASS2_ONLY_AFTER_ALL_PHYSICAL_COPY_FIELDS_AND_SECOND_PASS_ARE_COMPLETE"
     }
   },
-  "invariant": "The narrow gateway creates preparation authority only. It must never be interpreted as evidence completion, publication authority, Pass-2 success, or a substitute for exact-edition/page/hash evidence."
+  "invariant": "The narrow gateway creates preparation authority only. It must never be interpreted as evidence completion, publication authority, Pass-2 success, or a substitute for exact-edition/page/hash evidence.",
+  "artifact_identity_routes": {
+    "rule": "Pass 2 may use exactly one reproducible artifact-identity route. Digital PDF evidence requires SHA-256 of the exact inspected bytes. A maintainer-owned physical-copy route may substitute for an unavailable PDF hash only when the exact book identity and custody are reproducible and every cited printed page is captured as a hashed page image.",
+    "digital_pdf": {
+      "mode": "digital_pdf",
+      "required": [
+        "drive_file_id_or_stable_artifact_locator",
+        "file_size_bytes",
+        "sha256",
+        "custody_reference"
+      ]
+    },
+    "physical_copy": {
+      "mode": "physical_copy",
+      "required": [
+        "book_title",
+        "author_or_authors",
+        "paper_id",
+        "publisher",
+        "exact_edition_or_printing_or_revision_identity",
+        "nctb_authorization_evidence",
+        "physical_copy_custody_reference",
+        "front_matter_capture_ids[]",
+        "front_matter_capture_sha256[]",
+        "claim_page_capture_ids[]",
+        "claim_page_capture_sha256[]",
+        "printed_page",
+        "claim_locator"
+      ],
+      "rule": "The physical-copy route does not authenticate an unrelated digital scan. The physical book itself becomes the inspected primary artifact; the PDF may remain supplementary."
+    }
+  }
 }
