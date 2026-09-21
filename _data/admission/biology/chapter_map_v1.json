@@ -1,0 +1,1148 @@
+{
+  "schema": "lbfl-admission-biology-24-chapter-map-v1",
+  "version": "R2.2-0.1",
+  "exact_parent_head": "af233662565dff7802598d60861fe64f9e305df6",
+  "source_evidence_ref": "BIO-R2-2-SHARED-SYLLABUS-PHOTO-SET-20260922",
+  "reference_policy_ref": "LBFL-BIOLOGY-MULTI-REFERENCE-EDITORIAL-RULE",
+  "mapping_status": "curriculum-mapping-authenticated-multireference-claim-verification-pending",
+  "principles": [
+    "The 24 textbook/syllabus chapter identities are canonical curriculum containers for Admission Biology.",
+    "B01-B28 remain Admission topic identities and may map many-to-one or one-to-many across chapters.",
+    "Existing LBFL routes are reuse candidates only until claim-level source reconciliation passes.",
+    "Higher Zoology enrichment must not silently count as complete HSC chapter coverage.",
+    "No chapter is complete in this packet."
+  ],
+  "papers": [
+    {
+      "paper_id": "BIO-P1",
+      "name": "Biology First Paper",
+      "chapter_count": 12,
+      "total_periods": 140,
+      "chapters": [
+        {
+          "chapter_id": "BIO-P1-C01",
+          "paper_id": "BIO-P1",
+          "chapter_no": 1,
+          "bn_title": "কোষ ও এর গঠন",
+          "en_title": "Cell and its Structure",
+          "printed_pages": {
+            "start": 15,
+            "end": 110
+          },
+          "nctb_periods": 25,
+          "topic_mappings": [
+            {
+              "topic_id": "B01",
+              "facet": "full-topic"
+            },
+            {
+              "topic_id": "B02",
+              "facet": "full-topic"
+            },
+            {
+              "topic_id": "B03",
+              "facet": "nucleus-chromosome-molecular-biology"
+            }
+          ],
+          "reuse_class": "strong-partial-direct-mix",
+          "reuse_routes": [
+            {
+              "path": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
+              "class": "direct-hsc-candidate"
+            },
+            {
+              "path": "_biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory.md",
+              "class": "direct-hsc-candidate"
+            },
+            {
+              "path": "_biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model.md",
+              "class": "direct-hsc-candidate"
+            },
+            {
+              "path": "_biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory.md",
+              "class": "direct-hsc-candidate"
+            },
+            {
+              "path": "_biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network.md",
+              "class": "direct-hsc-candidate"
+            },
+            {
+              "path": "_biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome.md",
+              "class": "direct-hsc-candidate"
+            },
+            {
+              "path": "_biology/hsc-corner/botany/lecture-06-mitochondria.md",
+              "class": "direct-hsc-candidate"
+            },
+            {
+              "path": "_biology/higher-zoology-tree/genetics/course-index.md",
+              "class": "supplemental-molecular"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Admission-aligned membrane transport sequence covering diffusion, osmosis and active transport.",
+            "Integrated HSC nucleus/chromosome sequence reconciled against the chapter source bundle.",
+            "Claim-level reconciliation of molecular-biology coverage so Genetics-course reuse does not silently exceed or omit HSC scope."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C02",
+          "paper_id": "BIO-P1",
+          "chapter_no": 2,
+          "bn_title": "কোষ বিভাজন",
+          "en_title": "Cell Division",
+          "printed_pages": {
+            "start": 111,
+            "end": 146
+          },
+          "nctb_periods": 8,
+          "topic_mappings": [
+            {
+              "topic_id": "B04",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "partial",
+          "reuse_routes": [
+            {
+              "path": "_biology/mitosis.md",
+              "class": "partial-direct-candidate"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Full cell-cycle sequence.",
+            "Meiosis I and II.",
+            "Synapsis, chiasma and crossing-over.",
+            "Cytokinesis and mitosis-versus-meiosis comparison aligned to the HSC chapter."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C03",
+          "paper_id": "BIO-P1",
+          "chapter_no": 3,
+          "bn_title": "কোষ রসায়ন",
+          "en_title": "Cell Chemistry",
+          "printed_pages": {
+            "start": 147,
+            "end": 204
+          },
+          "nctb_periods": 8,
+          "topic_mappings": [
+            {
+              "topic_id": "B05",
+              "facet": "carbohydrate-protein-lipid-enzyme"
+            }
+          ],
+          "unmapped_engine_facets": [
+            "B05 nucleic-acid chemistry is primarily supported under BIO-P1-C01/B03 in this photographed chapter architecture and must not be silently forced into Chapter 3."
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Carbohydrate chemistry and biological roles.",
+            "Protein/amino-acid chemistry and structure-function relationships.",
+            "Lipid chemistry and biological roles.",
+            "Enzyme properties, factors and mechanism of action."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C04",
+          "paper_id": "BIO-P1",
+          "chapter_no": 4,
+          "bn_title": "অণুজীব",
+          "en_title": "Microorganism",
+          "printed_pages": {
+            "start": 205,
+            "end": 264
+          },
+          "nctb_periods": 15,
+          "topic_mappings": [
+            {
+              "topic_id": "B06",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Viruses and viral structure/reproduction.",
+            "Bacteria and prokaryotic organization.",
+            "Cyanobacteria and other syllabus microorganisms.",
+            "Viroid/prion and pathogen-identification boundaries where present in the authorized reference bundle."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C05",
+          "paper_id": "BIO-P1",
+          "chapter_no": 5,
+          "bn_title": "শৈবাল ও ছত্রাক",
+          "en_title": "Algae and Fungi",
+          "printed_pages": {
+            "start": 265,
+            "end": 304
+          },
+          "nctb_periods": 10,
+          "topic_mappings": [
+            {
+              "topic_id": "B07",
+              "facet": "algae-fungi-lichen-as-source-supported"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Major algal groups and representatives.",
+            "Major fungal groups and representatives.",
+            "Reproduction and diagnostic traits.",
+            "Lichen coverage only to the extent verified in the selected authorized references."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C06",
+          "paper_id": "BIO-P1",
+          "chapter_no": 6,
+          "bn_title": "ব্রায়োফাইটা ও টেরিডোফাইটা",
+          "en_title": "Bryophyta and Pteridophyta",
+          "printed_pages": {
+            "start": 305,
+            "end": 324
+          },
+          "nctb_periods": 8,
+          "topic_mappings": [
+            {
+              "topic_id": "B08",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Bryophyte diagnostic features and life cycle.",
+            "Pteridophyte diagnostic features and life cycle.",
+            "Alternation of generations and representative examples."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C07",
+          "paper_id": "BIO-P1",
+          "chapter_no": 7,
+          "bn_title": "নগ্নবীজী ও আবৃতবীজী উদ্ভিদ",
+          "en_title": "Gymnosperm and Angiosperm",
+          "printed_pages": {
+            "start": 325,
+            "end": 362
+          },
+          "nctb_periods": 8,
+          "topic_mappings": [
+            {
+              "topic_id": "B09",
+              "facet": "gymnosperm-angiosperm-plant-family-scope-as-verified"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Gymnosperm diagnostic features and representatives.",
+            "Angiosperm/monocot-dicot diagnostic features.",
+            "Plant-family and floral-character coverage only as supported by the source bundle."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C08",
+          "paper_id": "BIO-P1",
+          "chapter_no": 8,
+          "bn_title": "টিস্যু ও টিস্যুতন্ত্র",
+          "en_title": "Tissue and Tissue System",
+          "printed_pages": {
+            "start": 363,
+            "end": 392
+          },
+          "nctb_periods": 7,
+          "topic_mappings": [
+            {
+              "topic_id": "B10",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Meristematic and permanent tissues.",
+            "Epidermal, ground and vascular tissue systems.",
+            "Vascular bundles and source-supported internal anatomy/secondary-growth claims."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C09",
+          "paper_id": "BIO-P1",
+          "chapter_no": 9,
+          "bn_title": "উদ্ভিদ শারীরতত্ত্ব",
+          "en_title": "Plant Physiology",
+          "printed_pages": {
+            "start": 393,
+            "end": 460
+          },
+          "nctb_periods": 19,
+          "topic_mappings": [
+            {
+              "topic_id": "B11",
+              "facet": "full-topic"
+            },
+            {
+              "topic_id": "B12",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Water absorption, mineral nutrition and ascent/transport of sap.",
+            "Stomata and transpiration.",
+            "Photosynthesis including source-supported C3/C4/CAM distinctions.",
+            "Cellular respiration: glycolysis, Krebs cycle, electron transport and aerobic/anaerobic comparisons within HSC scope."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C10",
+          "paper_id": "BIO-P1",
+          "chapter_no": 10,
+          "bn_title": "উদ্ভিদ প্রজনন",
+          "en_title": "Plant Reproduction",
+          "printed_pages": {
+            "start": 461,
+            "end": 488
+          },
+          "nctb_periods": 4,
+          "topic_mappings": [
+            {
+              "topic_id": "B13",
+              "facet": "reproduction"
+            }
+          ],
+          "unmapped_engine_facets": [
+            "B13 plant-growth facet requires a separate authenticated source mapping.",
+            "B13 plant-hormone facet requires a separate authenticated source mapping."
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Asexual/vegetative reproduction.",
+            "Sexual reproduction, pollination and fertilisation.",
+            "Seed/fruit formation and germination only as verified in the reference bundle.",
+            "Parthenogenesis/artificial propagation where supported by the photographed syllabus and authorized texts."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C11",
+          "paper_id": "BIO-P1",
+          "chapter_no": 11,
+          "bn_title": "জীবপ্রযুক্তি",
+          "en_title": "Biotechnology",
+          "printed_pages": {
+            "start": 489,
+            "end": 530
+          },
+          "nctb_periods": 10,
+          "topic_mappings": [
+            {
+              "topic_id": "B14",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Recombinant-DNA workflow.",
+            "Restriction enzymes, vectors and cloning.",
+            "PCR and gene-transfer concepts within HSC scope.",
+            "Tissue culture, totipotency and GMO applications."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P1-C12",
+          "paper_id": "BIO-P1",
+          "chapter_no": 12,
+          "bn_title": "জীবের পরিবেশ, বিস্তার ও সংরক্ষণ",
+          "en_title": "Environment, Distribution and Conservation of Organisms",
+          "printed_pages": {
+            "start": 531,
+            "end": 586
+          },
+          "nctb_periods": 18,
+          "topic_mappings": [
+            {
+              "topic_id": "B15",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "partial-supplemental",
+          "reuse_routes": [
+            {
+              "path": "_biology/higher-zoology-tree/ecology/course-index.md",
+              "class": "supplemental-ecology-course"
+            }
+          ],
+          "missing_lecture_claims": [
+            "HSC-specific organism distribution and environmental relationships.",
+            "Biodiversity concepts and Bangladesh-relevant examples.",
+            "Threatened/endangered species and conservation.",
+            "In-situ/ex-situ conservation and source-specific terminology."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        }
+      ]
+    },
+    {
+      "paper_id": "BIO-P2",
+      "name": "Biology Second Paper",
+      "chapter_count": 12,
+      "total_periods": 141,
+      "chapters": [
+        {
+          "chapter_id": "BIO-P2-C01",
+          "paper_id": "BIO-P2",
+          "chapter_no": 1,
+          "bn_title": "প্রাণীর বিভিন্নতা ও শ্রেণিবিন্যাস",
+          "en_title": "Animal Diversity and Classification",
+          "printed_pages": {
+            "start": 1,
+            "end": 58
+          },
+          "nctb_periods": 7,
+          "topic_mappings": [
+            {
+              "topic_id": "B16",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "partial-supplemental",
+          "reuse_routes": [
+            {
+              "path": "_biology/higher-zoology-tree/animal-diversity/course-index.md",
+              "class": "supplemental-higher-zoology"
+            },
+            {
+              "path": "_biology/higher-zoology-tree/animal-diversity/lecture-01-chordate-plan-classification.md",
+              "class": "supplemental-chordate"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Complete HSC phylum/classification breadth beyond the existing chordate-heavy Higher Zoology course.",
+            "Diagnostic characters, symmetry/coelom and prescribed classification boundaries exactly as mapped from the HSC reference bundle."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C02",
+          "paper_id": "BIO-P2",
+          "chapter_no": 2,
+          "bn_title": "প্রাণীর পরিচিতি",
+          "en_title": "Introduction to Animals",
+          "printed_pages": {
+            "start": 59,
+            "end": 146
+          },
+          "nctb_periods": 25,
+          "topic_mappings": [
+            {
+              "topic_id": "B17",
+              "facet": "hydra-grasshopper-rohu"
+            }
+          ],
+          "reuse_class": "partial",
+          "reuse_routes": [
+            {
+              "path": "_biology/higher-zoology-tree/animal-diversity/lecture-06-labeo-rohita.md",
+              "class": "partial-representative-animal"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Complete Hydra HSC lecture sequence.",
+            "Complete grasshopper/Poekilocerus pictus HSC lecture sequence.",
+            "Reconcile Labeo rohita coverage to the exact HSC representative-animal scope rather than treating the Higher Zoology lecture as automatically complete."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C03",
+          "paper_id": "BIO-P2",
+          "chapter_no": 3,
+          "bn_title": "মানব শারীরতত্ত্ব : পরিপাক ও শোষণ",
+          "en_title": "Human Physiology: Digestion and Absorption",
+          "printed_pages": {
+            "start": 147,
+            "end": 187
+          },
+          "nctb_periods": 12,
+          "topic_mappings": [
+            {
+              "topic_id": "B18",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "strong-direct",
+          "reuse_routes": [
+            {
+              "path": "_biology/hsc-corner/zoology/digestive-system/index.md",
+              "class": "direct-hsc-course"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Claim-by-claim reconciliation against the multi-reference bundle; write new material only for verified uncovered claims."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C04",
+          "paper_id": "BIO-P2",
+          "chapter_no": 4,
+          "bn_title": "মানব শারীরতত্ত্ব : রক্ত সংবহন",
+          "en_title": "Human Physiology: Blood Circulation",
+          "printed_pages": {
+            "start": 188,
+            "end": 237
+          },
+          "nctb_periods": 14,
+          "topic_mappings": [
+            {
+              "topic_id": "B19",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "strong",
+          "reuse_routes": [
+            {
+              "path": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
+              "class": "hsc-aligned-revision"
+            },
+            {
+              "path": "_biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md",
+              "class": "hsc-aligned"
+            },
+            {
+              "path": "_biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation.md",
+              "class": "hsc-aligned"
+            },
+            {
+              "path": "_biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity.md",
+              "class": "hsc-aligned-partial"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Reconcile the existing series against the exact HSC blood-circulation claims; do not count enrichment/clinical material as required curriculum coverage."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C05",
+          "paper_id": "BIO-P2",
+          "chapter_no": 5,
+          "bn_title": "মানব শারীরতত্ত্ব : শ্বসন ও শ্বাসক্রিয়া",
+          "en_title": "Human Physiology: Respiration and Breathing",
+          "printed_pages": {
+            "start": 238,
+            "end": 262
+          },
+          "nctb_periods": 10,
+          "topic_mappings": [
+            {
+              "topic_id": "B20",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "strong-direct",
+          "reuse_routes": [
+            {
+              "path": "_biology/hsc-corner/zoology/respiratory-system-lecture.md",
+              "class": "direct-hsc-course"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Claim-by-claim HSC source reconciliation; retain disease/public-health enrichment as supplemental where it exceeds curriculum scope."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C06",
+          "paper_id": "BIO-P2",
+          "chapter_no": 6,
+          "bn_title": "মানব শারীরতত্ত্ব : বর্জ্য ও নিষ্কাশন",
+          "en_title": "Human Physiology: Wastes and Excretion",
+          "printed_pages": {
+            "start": 263,
+            "end": 286
+          },
+          "nctb_periods": 6,
+          "topic_mappings": [
+            {
+              "topic_id": "B21",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Kidney and nephron structure.",
+            "Urine formation and renal flow.",
+            "Excretory products and source-supported urea-cycle concepts.",
+            "Osmoregulation and regulatory boundaries."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C07",
+          "paper_id": "BIO-P2",
+          "chapter_no": 7,
+          "bn_title": "মানব শারীরতত্ত্ব : চলন ও অঙ্গ চালনা",
+          "en_title": "Human Physiology: Locomotion and Movement",
+          "printed_pages": {
+            "start": 287,
+            "end": 329
+          },
+          "nctb_periods": 12,
+          "topic_mappings": [
+            {
+              "topic_id": "B22",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Skeleton and bone/cartilage.",
+            "Joints, tendon and ligament.",
+            "Skeletal muscle structure and contraction.",
+            "Integrated locomotion mechanics within HSC scope."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C08",
+          "paper_id": "BIO-P2",
+          "chapter_no": 8,
+          "bn_title": "মানব শারীরতত্ত্ব : সমন্বয় ও নিয়ন্ত্রণ",
+          "en_title": "Human Physiology: Coordination and Control",
+          "printed_pages": {
+            "start": 330,
+            "end": 378
+          },
+          "nctb_periods": 12,
+          "topic_mappings": [
+            {
+              "topic_id": "B23",
+              "facet": "nervous-system-sense-organs"
+            },
+            {
+              "topic_id": "B24",
+              "facet": "endocrine-homeostasis"
+            }
+          ],
+          "reuse_class": "partial-supplemental",
+          "reuse_routes": [
+            {
+              "path": "_biology/cranial-nerve-axis.md",
+              "class": "supplemental-advanced-neural"
+            },
+            {
+              "path": "_biology/higher-zoology-tree/animal-diversity/lecture-10-homo-sapiens-eye-ear.md",
+              "class": "supplemental-sense-organs"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Integrated neuron, CNS/PNS and reflex sequence.",
+            "HSC cranial/spinal nerve coverage.",
+            "Eye and ear coverage reconciled to HSC scope.",
+            "Endocrine glands, hormones, feedback and homeostasis."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C09",
+          "paper_id": "BIO-P2",
+          "chapter_no": 9,
+          "bn_title": "মানব জীবনের ধারাবাহিকতা",
+          "en_title": "Continuity of Human Life",
+          "printed_pages": {
+            "start": 379,
+            "end": 425
+          },
+          "nctb_periods": 11,
+          "topic_mappings": [
+            {
+              "topic_id": "B25",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "none",
+          "reuse_routes": [],
+          "missing_lecture_claims": [
+            "Male and female reproductive systems.",
+            "Gametogenesis and fertilisation.",
+            "Embryonic development, placenta and embryonic layers within HSC scope."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C10",
+          "paper_id": "BIO-P2",
+          "chapter_no": 10,
+          "bn_title": "মানবদেহের প্রতিরক্ষা",
+          "en_title": "Human Body Defense",
+          "printed_pages": {
+            "start": 426,
+            "end": 454
+          },
+          "nctb_periods": 9,
+          "topic_mappings": [
+            {
+              "topic_id": "B26",
+              "facet": "full-topic"
+            }
+          ],
+          "reuse_class": "partial",
+          "reuse_routes": [
+            {
+              "path": "_biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity.md",
+              "class": "partial-hsc-aligned"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Complete innate-versus-adaptive immunity sequence.",
+            "Antibody/antigen and immune-response logic.",
+            "Vaccination and source-supported immune-system cells/organs beyond existing blood-corpuscle coverage."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C11",
+          "paper_id": "BIO-P2",
+          "chapter_no": 11,
+          "bn_title": "জিনতত্ত্ব ও বিবর্তন",
+          "en_title": "Genetics and Evolution",
+          "printed_pages": {
+            "start": 455,
+            "end": 506
+          },
+          "nctb_periods": 15,
+          "topic_mappings": [
+            {
+              "topic_id": "B27",
+              "facet": "genetics-inheritance"
+            },
+            {
+              "topic_id": "B28",
+              "facet": "evolution"
+            }
+          ],
+          "reuse_class": "strong-genetics-partial-overall",
+          "reuse_routes": [
+            {
+              "path": "_biology/higher-zoology-tree/genetics/course-index.md",
+              "class": "strong-supplemental-genetics"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Reconcile the 17-lecture Genetics course against HSC genetics scope.",
+            "Complete HSC evolution concepts, evidence, living fossil/vestigial-organ examples and source-supported mechanisms."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        },
+        {
+          "chapter_id": "BIO-P2-C12",
+          "paper_id": "BIO-P2",
+          "chapter_no": 12,
+          "bn_title": "প্রাণীর আচরণ",
+          "en_title": "Animal Behaviour",
+          "printed_pages": {
+            "start": 507,
+            "end": 533
+          },
+          "nctb_periods": 8,
+          "topic_mappings": [
+            {
+              "topic_id": "B28",
+              "facet": "animal-behaviour"
+            }
+          ],
+          "reuse_class": "supplemental-only",
+          "reuse_routes": [
+            {
+              "path": "_biology/higher-zoology-tree/human-behaviour/index.md",
+              "class": "supplemental-not-hsc-animal-behaviour"
+            }
+          ],
+          "missing_lecture_claims": [
+            "Complete HSC animal-behaviour course.",
+            "Innate and learned behaviour distinctions where prescribed.",
+            "Taxis, migration, communication/social behaviour and other source-supported animal-behaviour concepts.",
+            "Do not substitute the Human Behaviour enrichment node for this HSC chapter."
+          ],
+          "reference_bundle": {
+            "curriculum_sources": [
+              "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE"
+            ],
+            "nctb_authorized_textbooks": [
+              "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
+            ],
+            "supplementary_authorized_books": [],
+            "scientific_references": [],
+            "disagreements": [],
+            "unresolved_questions": []
+          },
+          "reference_bundle_status": "multi-reference-expansion-and-claim-page-mapping-pending",
+          "claim_source_matrix_status": "chapter-topic-scope-established-claim-level-page-verification-pending",
+          "chapter_completion_status": "incomplete"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_chapters": 24,
+    "first_paper_chapters": 12,
+    "second_paper_chapters": 12,
+    "direct_or_strong_reuse": 5,
+    "partial_or_supplemental_reuse": 7,
+    "no_obvious_reuse": 12,
+    "complete_chapters": 0
+  },
+  "boundaries": {
+    "writes_new_lectures": false,
+    "writes_new_model_tests": false,
+    "changes_b01_b28_completion_status": false,
+    "authorizes_matrix_qyi": false,
+    "authorizes_ready_merge_production": false
+  }
+}
