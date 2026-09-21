@@ -2,11 +2,14 @@
 title: "IELTS Band 8 Roadmap"
 permalink: /ielts/band-8-roadmap/
 layout: single
-classes: wide
+classes: wide ielts-static-page
 sidebar:
   nav: "ielts"
 author_profile: false
 ---
+
+<link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
+
 
 Band 8 requires accurate understanding, clear organization, flexible vocabulary, grammatical control, and the ability to develop ideas naturally rather than reproduce memorised templates.
 
