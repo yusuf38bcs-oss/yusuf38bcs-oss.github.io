@@ -244,6 +244,10 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   .lbfl-v3-section { break-inside: avoid; }
 }
 
+.lbfl-v3-nav__fallback-only {
+  display: none;
+}
+
 /* V3 dialog progressive-enhancement fallback */
 @media (max-width: 1024px) {
   html:not(.v3-dialog-supported) .lbfl-v3-header__inner {
@@ -261,6 +265,10 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
   html:not(.v3-dialog-supported) .lbfl-v3-nav a {
     flex: 1 1 auto;
+  }
+
+  html:not(.v3-dialog-supported) .lbfl-v3-nav .lbfl-v3-nav__fallback-only {
+    display: inline-flex;
   }
 
   html:not(.v3-dialog-supported) .lbfl-v3-menu-button {
