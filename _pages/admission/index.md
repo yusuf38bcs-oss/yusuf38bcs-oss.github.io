@@ -29,7 +29,17 @@ toc_sticky: true
 
   <section class="lbfl-assessment-panel" aria-labelledby="release-boundary">
     <h2 id="release-boundary">Truthful release boundary</h2>
-    <p>This is a teacher-authored Foundation Sprint. It is not a historical DU question census, a Medical evidence matrix, a completeness claim, or a final Question-Yield Intelligence release. PR #237 remains the separate evidence-reconciliation track.</p>
+    <p>This is a teacher-authored Foundation Sprint. Historical Biology evidence is published separately as transparent 2016–17 DU and Medical full secondary reconstructions. Independent paper-level verification remains pending, and no predictive ranking release is authorized.</p>
+  </section>
+
+  <section class="lbfl-assessment-panel" aria-labelledby="biology-evidence-title">
+    <h2 id="biology-evidence-title">Admission Biology Evidence</h2>
+    <p>The governed evidence viewer exposes the current 2016–17 Biology reconstruction directly from the audited data ledgers, with source provenance and evidence-state boundaries visible on every paper.</p>
+    <nav class="lbfl-assessment-links" aria-label="Admission Biology evidence links">
+      <a href="{{ '/admission/biology/' | relative_url }}">Open Admission Biology Evidence</a>
+      <a href="{{ '/admission/biology/du/2016-17/' | relative_url }}">DU Science 2016–17 · F-S2/V1 · 30/30</a>
+      <a href="{{ '/admission/biology/medical/2016-17/' | relative_url }}">Medical 2016–17 · F-S2/V1 · 30/30</a>
+    </nav>
   </section>
 
   <section class="lbfl-assessment-panel" aria-labelledby="progress-title">
