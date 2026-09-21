@@ -1,8 +1,8 @@
 {
   "schema": "lbfl-admission-biology-draft-remediation-gateway-v1",
-  "version": "R2.4-0.1",
+  "version": "R2.4.2-0.1",
   "exact_parent_pr": 350,
-  "purpose": "Provide a narrow, non-publishing authoring gateway when image-only reference scans are acquired and custody-bound but exact internal imprint/authorization/claim-page extraction is still blocked. This gateway must never be confused with Pass-2 verification.",
+  "purpose": "Preserve the existing B01 non-publishing draft-remediation gateway while adding a fail-closed final-evidence fallback: when a connector-accessible PDF cannot yield reproducible internal imprint/page/hash evidence, an exact maintainer-owned physical NCTB-authorized textbook copy may become the inspected artifact if its identity, authorization, custody, front matter, claim pages and capture hashes are independently verified.",
   "policy": {
     "final_pass2_unchanged": true,
     "verified_primary_promotion": false,
@@ -41,7 +41,9 @@
         "prepare an isolated non-public draft remediation for the explicitly recorded B01 missing-lecture claims",
         "annotate every section with DRAFT_EVIDENCE_PENDING",
         "retain source placeholders for exact printed-page citations",
-        "prepare claim checklist for later page binding"
+        "prepare claim checklist for later page binding",
+        "receive and ledger exact physical-copy front-matter captures",
+        "receive and ledger exact physical-copy B01 claim-page captures"
       ],
       "prohibited_actions": [
         "set pass_2=PASS",
@@ -54,7 +56,9 @@
       ],
       "pass_2": "BLOCKED",
       "lecture_gap_remediation_authority": false,
-      "draft_remediation_authority": true
+      "draft_remediation_authority": true,
+      "physical_copy_evidence_intake": true,
+      "final_evidence_gateway_id": "R2.4.2-PHYSICAL-COPY-PASS2"
     }
   ],
   "summary": {
@@ -62,6 +66,105 @@
     "open_draft_only_rows": 1,
     "pass2_verified_rows": 0,
     "lecture_gap_remediation_authority_rows": 0,
-    "draft_remediation_authority_rows": 1
+    "draft_remediation_authority_rows": 1,
+    "source_families_corroborated": 2,
+    "physical_copy_evidence_intake_rows": 1
+  },
+  "exact_parent_head": "4975362ba27308393d827f66cd468235b4c520c9",
+  "source_family_corroboration": [
+    {
+      "source_family_id": "P1-ABDUL-ALIM-MOBIN",
+      "candidate_artifact_id": "P1-ABDUL-ALIM-SCAN",
+      "drive_file_id": "1ai08obdXOzDbZ8F_GpXlMRSJu2gDtk09",
+      "drive_title": "Biology 1st-Abdul Alim Sir Dagano book.pdf",
+      "drive_size_bytes": 85686581,
+      "drive_created_time": "2023-11-22T14:04:13.727Z",
+      "drive_modified_time": "2023-11-22T13:58:55.243Z",
+      "custody_status": "DRIVE_STABLE_METADATA_BOUND",
+      "corroboration_status": "BOOK_FAMILY_CORROBORATED_EXACT_SCAN_EDITION_NOT_YET_AUTHENTICATED",
+      "corroboration": [
+        {
+          "source_class": "institutional_book_list",
+          "source_name": "Millennium Scholastic School & College HSC Science Book List 2020-2021",
+          "finding": "The list states that subject teachers recommended more than one NCTB-approved book and includes Biology First Paper by Dr. Abdul Alim / Dr. Md. Razaul Karim, Mobin Publications.",
+          "url": "https://bogra.millenniumscholastic.astutebd.com/Uploads/millenniumscholastic/Bogra/Document/HSC-Book-List-2020-2021-Science-Gp-pdf_millenniumscholastic928202033013PM.pdf"
+        },
+        {
+          "source_class": "publisher_catalogue",
+          "source_name": "PBS / Mobin Publications catalogue",
+          "finding": "Publisher catalogue independently confirms the Abdul Alim Biology First Paper book family under Mobin Publications.",
+          "url": "https://pbs.com.bd/publisher/1777/mobin-publications"
+        }
+      ]
+    },
+    {
+      "source_family_id": "P1-AJIBUR-RAHMAN-AKKHARPATRA",
+      "candidate_artifact_id": "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+      "drive_file_id": "1aqkkmjCfiMklIfhVvoO6njceC2uhvN08",
+      "drive_title": "উদ্ভিদবিজ্ঞান_আজিবুর_রহমান_স্যার দাগানো বই.pdf",
+      "drive_size_bytes": 180899124,
+      "drive_created_time": "2023-11-22T14:23:45.957Z",
+      "drive_modified_time": "2023-11-22T14:09:05.695Z",
+      "custody_status": "DRIVE_STABLE_METADATA_BOUND",
+      "corroboration_status": "BOOK_FAMILY_CORROBORATED_EXACT_SCAN_EDITION_NOT_YET_AUTHENTICATED",
+      "corroboration": [
+        {
+          "source_class": "institutional_book_list",
+          "source_name": "Millennium Scholastic School & College HSC Science Book List 2020-2021",
+          "finding": "The list states that subject teachers recommended more than one NCTB-approved book and includes Biology First Paper by Prof. Dr. Md. Azibur Rahman / Debashish Roy, Akkharpatra Publications.",
+          "url": "https://bogra.millenniumscholastic.astutebd.com/Uploads/millenniumscholastic/Bogra/Document/HSC-Book-List-2020-2021-Science-Gp-pdf_millenniumscholastic928202033013PM.pdf"
+        },
+        {
+          "source_class": "current_bookseller_metadata",
+          "source_name": "PBS Akkharpatra Biology First Paper",
+          "finding": "Current metadata independently identifies the Akkharpatra Biology First Paper book family; exact scan edition must still be authenticated internally.",
+          "url": "https://pbs.com.bd/book/2206991/akkharpatra-jibbiggan-1st-paper-class-11-12"
+        }
+      ]
+    }
+  ],
+  "final_evidence_resolution_gateway": {
+    "gateway_id": "R2.4.2-PHYSICAL-COPY-PASS2",
+    "status": "READY_FOR_EVIDENCE_INTAKE",
+    "rationale": "Digital scans remain useful custody-bound references, but connector/image limitations must not force permanent blockage. The exact physical textbook itself may become the inspected artifact, without treating the unrelated PDF as authenticated.",
+    "artifact_identity_modes": {
+      "digital_pdf": {
+        "final_pass2_eligible": true,
+        "required": [
+          "stable artifact locator",
+          "file size",
+          "SHA-256 of exact inspected PDF bytes",
+          "exact edition/imprint/authorization evidence",
+          "claim-to-printed-page mapping",
+          "independent second verification"
+        ]
+      },
+      "physical_copy": {
+        "final_pass2_eligible": true,
+        "required": [
+          "book title",
+          "author/authors",
+          "paper identity",
+          "publisher",
+          "exact edition/printing/revision identity",
+          "NCTB authorization evidence attributable to that exact copy/edition",
+          "reproducible physical-copy custody reference",
+          "front-matter capture IDs and SHA-256 values",
+          "claim-page capture IDs and SHA-256 values",
+          "printed page visible",
+          "claim locator",
+          "scientific cross-check",
+          "explicit disagreement disposition",
+          "independent second verification"
+        ]
+      }
+    },
+    "invariants": [
+      "Physical-copy evidence does not authenticate a separate PDF scan.",
+      "Drive file ID/size/modified time is custody metadata, not a substitute for SHA-256.",
+      "Book-family corroboration is not exact-edition authentication.",
+      "Draft-remediation authority is not final lecture-gap remediation authority.",
+      "Pass 2 remains fail-closed until every required field for one artifact-identity mode is complete."
+    ]
   }
 }
