@@ -372,15 +372,32 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 .lbfl-v3-hero__grid {
   position: relative;
   grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
-  gap: clamp(38px, 6vw, 88px);
+  grid-template-areas:
+    "copy visual"
+    "controls visual";
+  column-gap: clamp(38px, 6vw, 88px);
+  row-gap: 0;
+  align-items: start;
 }
 
 .lbfl-v3-hero__copy {
+  grid-area: copy;
   max-width: 700px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+}
+
+.lbfl-v3-hero__controls {
+  grid-area: controls;
+  width: 100%;
+  max-width: 700px;
+  margin-top: 28px;
+}
+
+.lbfl-v3-hero__controls .lbfl-v3-actions {
+  margin-top: 0;
 }
 
 .lbfl-v3-eyebrow {
@@ -468,6 +485,8 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 }
 
 .lbfl-v3-hero__visual {
+  grid-area: visual;
+  align-self: center;
   margin: 0;
   padding: clamp(14px, 1.7vw, 22px);
   border: 1px solid rgba(169, 229, 219, 0.18);
@@ -724,7 +743,33 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
   .lbfl-v3-hero__grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    grid-template-areas:
+      "copy"
+      "visual"
+      "controls";
+    gap: 0;
+  }
+
+  .lbfl-v3-hero__copy {
+    margin-bottom: 26px;
+  }
+
+  .lbfl-v3-hero__controls {
+    width: 100%;
+    max-width: none;
+    margin-top: 0;
+  }
+
+  .lbfl-v3-hero__controls .lbfl-v3-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .lbfl-v3-hero__controls .lbfl-v3-button {
+    width: 100%;
   }
 
   .lbfl-v3-hero h1 {
@@ -747,13 +792,24 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   }
 
   .lbfl-v3-hero__visual {
+    width: 100%;
     max-width: 460px;
-    padding: 12px;
-    border-radius: 24px;
+    margin: 0 auto 24px;
+    padding: 10px;
+    border-radius: 22px;
+  }
+
+  .lbfl-v3-hero__visual::before {
+    inset: -10px;
+    border-radius: 30px;
   }
 
   .lbfl-v3-hero__visual picture {
-    border-radius: 16px;
+    border-radius: 15px;
+  }
+
+  .lbfl-v3-hero__visual figcaption {
+    margin: 14px 4px 0;
   }
 
   .lbfl-v3-pathway-card::before {
