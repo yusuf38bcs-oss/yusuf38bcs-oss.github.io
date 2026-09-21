@@ -5,8 +5,8 @@ import process from "node:process";
 import axe from "axe-core";
 import { chromium } from "playwright";
 
-const baseUrl = (process.env.LBFL_ADMISSION_BASE_URL || "http://127.0.0.1:4000").replace(/\/$/, "");
-const outputDir = process.env.LBFL_ADMISSION_REPORT_DIR || "admission-biology-evidence-report";
+const baseUrl = "http://127.0.0.1:4000";
+const outputDir = "admission-biology-evidence-report";
 
 const viewports = [
   { name: "mobile-390", width: 390, height: 844 },
