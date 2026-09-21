@@ -1,8 +1,8 @@
 {
   "schema": "lbfl-admission-biology-pass2-claim-evidence-v1",
   "version": "R2.4.1-0.1",
-  "exact_parent_pr": 349,
-  "exact_parent_head": "e07addcc58e2e3528fde7940e1b5e7f71a8c240b",
+  "exact_parent_pr": 350,
+  "exact_parent_head": "a738298473017304ba556cb97d3879328a0b7160",
   "purpose": "Preserve the Pass-2 claim evidence contract while recording source-family corroboration and a separate non-publishable narrow drafting gateway. Pass 2 remains blocked until exact-edition, authorization, SHA-256/custody and printed-page evidence are complete.",
   "unlock_rule": "lecture_gap_remediation_authority may be true only when pass_1=PASS, pass_2=PASS, additional_reference_id is an ACQUIRED authenticated additional reference, exact_edition_identity and authorization_evidence are present, artifact identity includes reproducible custody and SHA-256, claim_id/printed_page/claim_locator are present, scientific_crosscheck is non-empty, and every material disagreement has an explicit disposition.",
   "acquisition_artifacts": [
