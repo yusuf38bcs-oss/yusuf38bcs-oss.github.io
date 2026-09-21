@@ -1,12 +1,12 @@
 {
   "schema": "lbfl-admission-curriculum-architecture-v1",
-  "version": "R2.2-0.1",
+  "version": "R2.3-0.1",
   "parent_contract": {
-    "parent_pr": 347,
-    "parent_head": "af233662565dff7802598d60861fe64f9e305df6",
-    "stacked_on": "admission/r2-1-curriculum-architecture-biology-reuse-20260921"
+    "parent_pr": 348,
+    "parent_head": "c89e126a6e5e8372f761c825729bca6df628ab4a",
+    "stacked_on": "admission/r2-2-biology-24-chapter-multireference-20260922"
   },
-  "purpose": "Define the four-subject Admission curriculum architecture and establish the authenticated 24-chapter Biology map before new lecture/model-test authoring.",
+  "purpose": "Preserve the four-subject Admission architecture while populating all 29 Biology chapter-topic claim-source rows with primary chapter page ranges, supplementary HSC reference candidates, authoritative scientific locators, explicit disagreement records, and a fail-closed independent second-verification gate.",
   "boundary": {
     "chapter_taxonomy_authenticated": false,
     "chapter_completion_allowed": false,
@@ -15,7 +15,10 @@
     "f_v2_promotion_allowed": false,
     "matrix_qyi_release_allowed": false,
     "ready_merge_production_authority": false,
-    "biology_chapter_taxonomy_authenticated": true
+    "biology_chapter_taxonomy_authenticated": true,
+    "biology_claim_source_population_complete": true,
+    "biology_claim_page_verification_complete": false,
+    "biology_second_verification_complete": false
   },
   "chapter_complete_contract": {
     "required": [
@@ -104,7 +107,7 @@
       "subject_id": "BIO",
       "name": "Biology",
       "route_slug": "biology",
-      "architecture_status": "24-chapter-curriculum-mapping-authenticated-multireference-verification-pending",
+      "architecture_status": "24-chapter-mapping-authenticated-r2-3-source-populated-second-verification-blocked",
       "topic_taxonomy": {
         "source": "_data/admission/biology/engine_v1.json",
         "expected_topic_ids": [
@@ -137,7 +140,7 @@
           "B27",
           "B28"
         ],
-        "chapter_mapping_status": "curriculum-mapping-authenticated-multireference-claim-verification-pending",
+        "chapter_mapping_status": "curriculum-mapping-authenticated-source-populated-claim-page-and-second-verification-pending",
         "note": "B01-B28 are Admission topic identities and must not be silently treated as textbook chapter identities."
       },
       "papers": [
@@ -525,5 +528,7 @@
   ],
   "reference_policy": "_data/admission/biology/reference_policy_v1.json",
   "biology_chapter_map": "_data/admission/biology/chapter_map_v1.json",
-  "biology_claim_source_matrix": "_data/admission/biology/claim_source_matrix_v1.json"
+  "biology_claim_source_matrix": "_data/admission/biology/claim_source_matrix_v1.json",
+  "biology_reference_registry": "_data/admission/biology/reference_registry_v1.json",
+  "biology_second_verification": "_data/admission/biology/r2-3_second_verification_v1.json"
 }
