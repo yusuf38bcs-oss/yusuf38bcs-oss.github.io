@@ -256,8 +256,21 @@ async function certifyJourney(browser) {
     }
 
     await quizForm.locator("[data-admission-reset]").click();
-    checks.reset = await result.isHidden() &&
-      await page.locator("fieldset[data-result]").count() === 0;
+    const resetState = await quizForm.evaluate((form) => {
+      const resultNode = form.querySelector("[data-admission-result]");
+      return {
+        hiddenAttribute: Boolean(resultNode && resultNode.hidden),
+        resultEmpty: Boolean(resultNode && resultNode.innerHTML === ""),
+        checkedAnswers: form.querySelectorAll('input[type="radio"]:checked').length,
+        gradedFieldsets: form.querySelectorAll("fieldset[data-result]").length,
+      };
+    });
+    checks.resetState = resetState;
+    checks.reset =
+      resetState.hiddenAttribute &&
+      resetState.resultEmpty &&
+      resetState.checkedAnswers === 0 &&
+      resetState.gradedFieldsets === 0;
 
     await quizForm.locator('[data-question-id="admission-foundation-01-q01"] input[value="1"]').check();
     await quizForm.locator('button[type="submit"]').click();
