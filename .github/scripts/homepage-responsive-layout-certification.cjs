@@ -347,6 +347,44 @@ async function inspect(page, viewportWidth) {
   }, viewportWidth);
 }
 
+async function inspectFallbackNavigation(page, viewportWidth) {
+  if (viewportWidth > 1024) return { applicable: false, passed: true };
+
+  return page.evaluate(() => {
+    const root = document.documentElement;
+    const hadSupportClass = root.classList.contains("v3-dialog-supported");
+    root.classList.remove("v3-dialog-supported");
+
+    const visible = (target) => {
+      if (!target) return false;
+      const style = getComputedStyle(target);
+      const rect = target.getBoundingClientRect();
+      return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity || 1) > 0 && rect.width > 0 && rect.height > 0;
+    };
+
+    const nav = document.querySelector(".lbfl-v3-nav");
+    const menuButton = document.querySelector("[data-v3-menu-open]");
+    const admission = nav ? nav.querySelector("a[href='/admission/'], a[href$='/admission/']") : null;
+    const ielts = nav ? nav.querySelector("a[href='/ielts/'], a[href$='/ielts/']") : null;
+
+    const result = {
+      applicable: true,
+      navVisible: visible(nav),
+      menuHidden: !visible(menuButton),
+      admissionVisible: visible(admission),
+      ieltsVisible: visible(ielts),
+    };
+    result.passed =
+      result.navVisible &&
+      result.menuHidden &&
+      result.admissionVisible &&
+      result.ieltsVisible;
+
+    if (hadSupportClass) root.classList.add("v3-dialog-supported");
+    return result;
+  });
+}
+
 async function inspectMenu(page, viewportWidth) {
   if (viewportWidth > 1024) return { applicable: false, passed: true };
 
@@ -456,6 +494,7 @@ function passes(result) {
     l.sectionOrder &&
     l.footerVisible &&
     result.menu.passed &&
+    result.fallback.passed &&
     result.consoleErrors.length === 0 &&
     result.pageErrors.length === 0;
 
@@ -500,6 +539,7 @@ function summarizeFailure(result) {
   }
   if (!l.sectionOrder) reasons.push("section-order");
   if (!result.menu.passed) reasons.push("menu-contract-admission-ielts-editorial-contact");
+  if (!result.fallback.passed) reasons.push("compact-fallback-admission-ielts");
   if (result.consoleErrors.length) reasons.push(`console=${result.consoleErrors.length}`);
   if (result.pageErrors.length) reasons.push(`page=${result.pageErrors.length}`);
   return reasons;
@@ -530,7 +570,8 @@ function summarizeFailure(result) {
 
       const layout = await inspect(page, viewport.width);
       const menu = await inspectMenu(page, viewport.width);
-      const result = { ...viewport, layout, menu, consoleErrors, pageErrors };
+      const fallback = await inspectFallbackNavigation(page, viewport.width);
+      const result = { ...viewport, layout, menu, fallback, consoleErrors, pageErrors };
       result.passed = passes(result);
       result.failureReasons = result.passed ? [] : summarizeFailure(result);
       results.push(result);
@@ -548,7 +589,7 @@ function summarizeFailure(result) {
   const report = {
     targetUrl,
     generatedAt: new Date().toISOString(),
-    contract: "homepage-v3.5.2-mobile-composition",
+    contract: "homepage-v3.5.3-navigation-language-fallback",
     passed: results.every((result) => result.passed),
     results,
   };
@@ -560,7 +601,7 @@ function summarizeFailure(result) {
     console.log(
       `${result.name}px: ${result.passed ? "PASS" : "FAIL"} overflow=${
         result.layout.documentOverflow || result.layout.innerOverflow.length > 0
-      } clipped=${result.layout.clipped.length} menu=${result.menu.passed}${details}`
+      } clipped=${result.layout.clipped.length} menu=${result.menu.passed} fallback=${result.fallback.passed}${details}`
     );
   }
 
