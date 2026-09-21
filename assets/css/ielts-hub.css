@@ -914,3 +914,331 @@
     animation-duration: 0.01ms !important;
   }
 }
+
+/* =========================================================
+   IELTS course-wide contrast invariant
+   WCAG 2.1 AA target:
+   - normal text >= 4.5:1
+   - large text >= 3:1
+   - focus/UI boundaries >= 3:1
+   Light IELTS surfaces own dark foregrounds explicitly.
+   Dark IELTS surfaces own light foregrounds explicitly.
+   ========================================================= */
+
+:is(
+  .ielts-hub-page,
+  .ielts-practice-page,
+  .ielts-writing-page,
+  .ielts-speaking-page,
+  .ielts-reading-page,
+  .ielts-static-page
+) {
+  --ielts-contrast-ink: #102033;
+  --ielts-contrast-body: #33485b;
+  --ielts-contrast-muted: #536579;
+  --ielts-contrast-link: #075f59;
+  --ielts-contrast-link-hover: #064e4a;
+  --ielts-contrast-border: #9aaab8;
+  --ielts-contrast-focus: #b7791f;
+  --ielts-contrast-primary: #0b5f59;
+  --ielts-contrast-primary-hover: #084c48;
+  --ielts-contrast-dark: #071426;
+  --ielts-contrast-on-dark: #ffffff;
+  --ielts-contrast-on-dark-muted: #e2e8f0;
+  --ielts-contrast-on-dark-accent: #a9fff5;
+}
+
+/* Theme-normalization: prevent global skin colors from leaking into IELTS light surfaces. */
+:is(
+  .ielts-hub-page,
+  .ielts-practice-page,
+  .ielts-writing-page,
+  .ielts-speaking-page,
+  .ielts-reading-page,
+  .ielts-static-page
+) :is(.page__content, .sidebar) {
+  color: var(--ielts-contrast-ink);
+}
+
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) :is(h1, h2, h3, h4, h5, h6, strong, label, legend, summary) {
+  color: var(--ielts-contrast-ink) !important;
+}
+
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) :is(p, li, dd, dt, small, span) {
+  color: inherit;
+}
+
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) a:not(.btn):not(.ielts-skill-card) {
+  color: var(--ielts-contrast-link) !important;
+  text-decoration-color: currentColor;
+}
+
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) a:not(.btn):not(.ielts-skill-card):hover {
+  color: var(--ielts-contrast-link-hover) !important;
+}
+
+/* Light cards and generated controls must never inherit pale text. */
+:is(
+  .ielts-hub__section,
+  .ielts-hub__journey,
+  .ielts-skill-card,
+  .ielts-practice__status,
+  .ielts-practice__panel,
+  .ielts-writing__panel,
+  .ielts-speaking__panel,
+  .ielts-reading__panel,
+  .ielts-static__panel
+) {
+  color: var(--ielts-contrast-ink) !important;
+}
+
+:is(
+  .ielts-hub__section,
+  .ielts-hub__journey,
+  .ielts-skill-card,
+  .ielts-practice__status,
+  .ielts-practice__panel,
+  .ielts-writing__panel,
+  .ielts-speaking__panel,
+  .ielts-reading__panel,
+  .ielts-static__panel
+) :is(h1, h2, h3, h4, h5, h6, strong, label, legend) {
+  color: var(--ielts-contrast-ink) !important;
+}
+
+:is(
+  .ielts-hub__section,
+  .ielts-hub__journey,
+  .ielts-skill-card,
+  .ielts-practice__status,
+  .ielts-practice__panel,
+  .ielts-writing__panel,
+  .ielts-speaking__panel,
+  .ielts-reading__panel,
+  .ielts-static__panel
+) :is(p, li, small) {
+  color: var(--ielts-contrast-body) !important;
+}
+
+:is(
+  .ielts-practice__save-status,
+  .ielts-writing__threshold,
+  .ielts-writing__help,
+  .ielts-writing__save-status,
+  .ielts-writing__review-summary,
+  .ielts-speaking__help,
+  .ielts-speaking__review-summary,
+  .ielts-speaking__save-status,
+  .ielts-reading__help,
+  .ielts-reading__save-status,
+  .ielts-reading__error-meta
+) {
+  color: var(--ielts-contrast-muted) !important;
+}
+
+/* Small teal labels remain >= 4.5:1 on white/light-paper backgrounds. */
+:is(
+  .ielts-hub__section,
+  .ielts-hub__journey,
+  .ielts-skill-card,
+  .ielts-practice__status,
+  .ielts-practice__panel,
+  .ielts-writing__panel,
+  .ielts-speaking__panel,
+  .ielts-reading__panel
+) :is(
+  .ielts-hub__eyebrow,
+  .ielts-practice__eyebrow,
+  .ielts-practice__label,
+  .ielts-writing__eyebrow,
+  .ielts-writing__label,
+  .ielts-speaking__eyebrow,
+  .ielts-speaking__label,
+  .ielts-reading__eyebrow,
+  .ielts-reading__label,
+  .ielts-reading__question-type
+) {
+  color: #087f74 !important;
+}
+
+/* Dark IELTS surfaces own their light foregrounds explicitly. */
+:is(
+  .ielts-hub__hero,
+  .ielts-practice__header,
+  .ielts-writing__header,
+  .ielts-speaking__header,
+  .ielts-reading__header,
+  .ielts-practice__timer,
+  .ielts-writing__timer-box,
+  .ielts-writing__word-count,
+  .ielts-speaking__timer-box,
+  .ielts-reading__timer-box
+) {
+  color: var(--ielts-contrast-on-dark) !important;
+}
+
+:is(
+  .ielts-hub__hero,
+  .ielts-practice__header,
+  .ielts-writing__header,
+  .ielts-speaking__header,
+  .ielts-reading__header,
+  .ielts-practice__timer,
+  .ielts-writing__timer-box,
+  .ielts-writing__word-count,
+  .ielts-speaking__timer-box,
+  .ielts-reading__timer-box
+) :is(h1, h2, h3, h4, strong) {
+  color: var(--ielts-contrast-on-dark) !important;
+}
+
+:is(
+  .ielts-hub__hero,
+  .ielts-practice__header,
+  .ielts-writing__header,
+  .ielts-speaking__header,
+  .ielts-reading__header
+) :is(p, span) {
+  color: var(--ielts-contrast-on-dark-muted) !important;
+}
+
+:is(
+  .ielts-hub__hero,
+  .ielts-practice__header,
+  .ielts-writing__header,
+  .ielts-speaking__header,
+  .ielts-reading__header,
+  .ielts-practice__timer,
+  .ielts-writing__timer-box,
+  .ielts-speaking__timer-box,
+  .ielts-reading__timer-box
+) :is(
+  .ielts-hub__eyebrow,
+  .ielts-practice__eyebrow,
+  .ielts-practice__label,
+  .ielts-writing__eyebrow,
+  .ielts-writing__label,
+  .ielts-speaking__eyebrow,
+  .ielts-speaking__label,
+  .ielts-reading__eyebrow,
+  .ielts-reading__label
+) {
+  color: var(--ielts-contrast-on-dark-accent) !important;
+}
+
+/* Buttons use deterministic AA-safe states instead of theme inheritance. */
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) .btn {
+  border: 1px solid var(--ielts-contrast-border) !important;
+  color: var(--ielts-contrast-ink) !important;
+  background: #ffffff !important;
+}
+
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) .btn:hover:not(:disabled) {
+  border-color: var(--ielts-contrast-primary) !important;
+  color: var(--ielts-contrast-primary-hover) !important;
+  background: #f4fbfa !important;
+}
+
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) .btn--primary {
+  border-color: var(--ielts-contrast-primary) !important;
+  color: #ffffff !important;
+  background: var(--ielts-contrast-primary) !important;
+}
+
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) .btn--primary:hover:not(:disabled) {
+  border-color: var(--ielts-contrast-primary-hover) !important;
+  color: #ffffff !important;
+  background: var(--ielts-contrast-primary-hover) !important;
+}
+
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) :is(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--ielts-contrast-focus) !important;
+  outline-offset: 3px !important;
+}
+
+/* IELTS sidebar navigation is part of the IELTS contrast contract too. */
+:is(
+  .ielts-hub-page,
+  .ielts-practice-page,
+  .ielts-writing-page,
+  .ielts-speaking-page,
+  .ielts-reading-page,
+  .ielts-static-page
+) .sidebar :is(.nav__sub-title, .nav__items a, .nav__items li) {
+  color: var(--ielts-contrast-ink) !important;
+}
+
+:is(
+  .ielts-hub-page,
+  .ielts-practice-page,
+  .ielts-writing-page,
+  .ielts-speaking-page,
+  .ielts-reading-page,
+  .ielts-static-page
+) .sidebar .nav__items a:hover {
+  color: var(--ielts-contrast-link-hover) !important;
+}
+
