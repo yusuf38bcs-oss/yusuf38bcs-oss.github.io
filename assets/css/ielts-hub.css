@@ -1264,3 +1264,41 @@
   color: var(--ielts-contrast-link-hover) !important;
 }
 
+/* Own the remaining surfaces that the site skin otherwise paints dark. */
+.ielts-static-page .page__inner-wrap {
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border: 1px solid var(--ielts-border);
+  border-radius: 1.25rem;
+  color: var(--ielts-contrast-ink) !important;
+  background: #ffffff !important;
+}
+
+.ielts-static-page .page__content {
+  color: var(--ielts-contrast-body) !important;
+}
+
+.ielts-static-page :is(.page__title, .page__content h1, .page__content h2, .page__content h3) {
+  color: var(--ielts-contrast-ink) !important;
+}
+
+:is(
+  .ielts-hub__notice,
+  .ielts-practice__privacy,
+  .ielts-writing__notice,
+  .ielts-speaking__notice,
+  .ielts-reading__notice
+) {
+  color: var(--ielts-contrast-ink) !important;
+  background: #fff8e8 !important;
+}
+
+:is(
+  .ielts-hub__notice,
+  .ielts-practice__privacy,
+  .ielts-writing__notice,
+  .ielts-speaking__notice,
+  .ielts-reading__notice
+) :is(strong, p, span, a) {
+  color: var(--ielts-contrast-ink) !important;
+}
+
