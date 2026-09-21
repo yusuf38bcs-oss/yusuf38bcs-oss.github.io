@@ -288,10 +288,34 @@ const markdown = [
         "## Failures",
         "",
         ...failures.map((failure) => {
-          const http = failure.localHttpErrors?.length
-            ? `; local HTTP ${failure.localHttpErrors.map((item) => `${item.status} ${item.url}`).join(", ")}`
-            : "";
-          return `- ${failure.route} @ ${failure.viewport}${http}`;
+          const reasons = [];
+          if (failure.status !== 200) reasons.push(`status=${failure.status}`);
+          if (failure.metrics?.hasContent !== true) reasons.push("missing-page-content");
+          if (failure.metrics?.hasStylesheet !== true) reasons.push("missing-zoology-stylesheet");
+          if (
+            !failure.route.startsWith("/biology/animal-diversity/") &&
+            !failure.route.startsWith("/biology/higher-zoology-tree/ecology/") &&
+            failure.metrics?.hasCourseOwnedShell !== true &&
+            failure.metrics?.hasCycle !== true
+          ) reasons.push("missing-learning-cycle");
+          if (
+            (failure.route.startsWith("/biology/higher-zoology-tree/ecology/") ||
+              failure.metrics?.hasCourseOwnedShell === true) &&
+            failure.metrics?.hasCycle === true
+          ) reasons.push("unexpected-learning-cycle");
+          if ((failure.metrics?.horizontalOverflow ?? 999) > 2) {
+            reasons.push(`horizontal-overflow=${failure.metrics?.horizontalOverflow}`);
+          }
+          if (failure.metrics?.resetInquiryLabel !== true) reasons.push("reset-inquiry-label");
+          if (failure.consoleErrors?.length) reasons.push(`console-errors=${failure.consoleErrors.length}`);
+          if (failure.pageErrors?.length) reasons.push(`page-errors=${failure.pageErrors.length}`);
+          if (failure.localHttpErrors?.length) reasons.push(
+            `local-http=${failure.localHttpErrors.map((item) => `${item.status}:${item.url}`).join(",")}`
+          );
+          if (failure.axeViolations?.length) reasons.push(
+            `axe=${failure.axeViolations.map((item) => `${item.id}(${item.nodes})`).join(",")}`
+          );
+          return `- ${failure.route} @ ${failure.viewport} — ${reasons.length ? reasons.join("; ") : "unspecified-contract-failure"}`;
         }),
       ]
     : [
