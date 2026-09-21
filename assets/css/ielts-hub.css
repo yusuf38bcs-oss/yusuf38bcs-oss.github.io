@@ -1302,3 +1302,21 @@
   color: var(--ielts-contrast-ink) !important;
 }
 
+/* Plain IELTS pages: override explicit global dark-skin descendant colors. */
+.ielts-static-page .page__content :is(p, li, dd, dt, em, span) {
+  color: var(--ielts-contrast-body) !important;
+}
+
+.ielts-static-page .page__content :is(strong, b) {
+  color: var(--ielts-contrast-ink) !important;
+}
+
+.ielts-static-page .page__content a {
+  color: var(--ielts-contrast-link) !important;
+  text-decoration-color: currentColor !important;
+}
+
+.ielts-static-page .page__content a:hover {
+  color: var(--ielts-contrast-link-hover) !important;
+}
+
