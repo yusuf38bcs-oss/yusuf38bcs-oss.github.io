@@ -1,10 +1,10 @@
 {
   "schema": "lbfl-admission-biology-claim-source-matrix-v1",
-  "version": "R2.2-0.1",
+  "version": "R2.3-0.1",
   "chapter_map": "_data/admission/biology/chapter_map_v1.json",
   "reference_policy": "_data/admission/biology/reference_policy_v1.json",
-  "matrix_purpose": "Connect the 24 authenticated curriculum chapter containers to B01-B28 topic scopes, current LBFL reuse routes, source classes and unresolved lecture/source work. This is not yet a page-level claim verification ledger.",
-  "status": "scope-crosswalk-established-page-level-claim-source-verification-pending",
+  "matrix_purpose": "Populate all 29 chapter-topic rows with authenticated primary chapter page ranges, additional HSC reference candidates, authoritative scientific digital locators, explicit disagreements, and fail-closed verification status. Claim-level page verification from additional authorized HSC references is still pending.",
+  "status": "all-rows-source-populated-claim-page-and-second-verification-pending",
   "rows": [
     {
       "matrix_id": "BIO-P1-C01-B01-full-topic",
@@ -23,7 +23,12 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-NCBI-MBOC-MEMBRANE-STRUCTURE",
+        "SCI-NCBI-MBOC-MEMBRANE-TRANSPORT",
+        "SCI-OPENSTAX-BIO2E-PASSIVE-TRANSPORT",
+        "SCI-OPENSTAX-BIO2E-ACTIVE-TRANSPORT"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
@@ -63,12 +68,29 @@
         "Integrated HSC nucleus/chromosome sequence reconciled against the chapter source bundle.",
         "Claim-level reconciliation of molecular-biology coverage so Genetics-course reuse does not silently exceed or omit HSC scope."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 15,
+        "page_end": 110,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C01-B02-full-topic",
@@ -87,7 +109,9 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-EUKARYOTIC-CELLS"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
@@ -127,12 +151,29 @@
         "Integrated HSC nucleus/chromosome sequence reconciled against the chapter source bundle.",
         "Claim-level reconciliation of molecular-biology coverage so Genetics-course reuse does not silently exceed or omit HSC scope."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 15,
+        "page_end": 110,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C01-B03-nucleus-chromosome-molecular-biology",
@@ -151,7 +192,9 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-DNA"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
@@ -191,12 +234,29 @@
         "Integrated HSC nucleus/chromosome sequence reconciled against the chapter source bundle.",
         "Claim-level reconciliation of molecular-biology coverage so Genetics-course reuse does not silently exceed or omit HSC scope."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 15,
+        "page_end": 110,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C02-B04-full-topic",
@@ -215,7 +275,10 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-CELL-CYCLE",
+        "SCI-OPENSTAX-BIO2E-MEIOSIS"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/mitosis.md",
@@ -228,12 +291,29 @@
         "Synapsis, chiasma and crossing-over.",
         "Cytokinesis and mitosis-versus-meiosis comparison aligned to the HSC chapter."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 111,
+        "page_end": 146,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C03-B05-carbohydrate-protein-lipid-enzyme",
@@ -252,7 +332,9 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-MACROMOLECULES"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Carbohydrate chemistry and biological roles.",
@@ -261,13 +343,30 @@
         "Enzyme properties, factors and mechanism of action."
       ],
       "unresolved_engine_facets": [
-        [
-          "B05 nucleic-acid chemistry is primarily supported under BIO-P1-C01/B03 in this photographed chapter architecture and must not be silently forced into Chapter 3."
-        ]
+        "B05 nucleic-acid chemistry is primarily supported under BIO-P1-C01/B03 in this photographed chapter architecture and must not be silently forced into Chapter 3."
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 147,
+        "page_end": 204,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
+      ],
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C04-B06-full-topic",
@@ -286,7 +385,10 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-VIRUSES",
+        "SCI-OPENSTAX-BIO2E-PROKARYOTES"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Viruses and viral structure/reproduction.",
@@ -294,12 +396,29 @@
         "Cyanobacteria and other syllabus microorganisms.",
         "Viroid/prion and pathogen-identification boundaries where present in the authorized reference bundle."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 205,
+        "page_end": 264,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C05-B07-algae-fungi-lichen-as-source-supported",
@@ -318,7 +437,10 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-PROTISTS",
+        "SCI-OPENSTAX-BIO2E-FUNGI"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Major algal groups and representatives.",
@@ -326,12 +448,29 @@
         "Reproduction and diagnostic traits.",
         "Lichen coverage only to the extent verified in the selected authorized references."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 265,
+        "page_end": 304,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C06-B08-full-topic",
@@ -350,19 +489,39 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-BRYOPHYTES",
+        "SCI-OPENSTAX-BIO2E-PTERIDOPHYTES"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Bryophyte diagnostic features and life cycle.",
         "Pteridophyte diagnostic features and life cycle.",
         "Alternation of generations and representative examples."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 305,
+        "page_end": 324,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C07-B09-gymnosperm-angiosperm-plant-family-scope-as-verified",
@@ -381,19 +540,38 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-GYMNOSPERMS"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Gymnosperm diagnostic features and representatives.",
         "Angiosperm/monocot-dicot diagnostic features.",
         "Plant-family and floral-character coverage only as supported by the source bundle."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 325,
+        "page_end": 362,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C08-B10-full-topic",
@@ -412,19 +590,38 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-PLANT-TISSUES"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Meristematic and permanent tissues.",
         "Epidermal, ground and vascular tissue systems.",
         "Vascular bundles and source-supported internal anatomy/secondary-growth claims."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 363,
+        "page_end": 392,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C09-B11-full-topic",
@@ -443,7 +640,9 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-PLANT-TRANSPORT"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Water absorption, mineral nutrition and ascent/transport of sap.",
@@ -451,12 +650,29 @@
         "Photosynthesis including source-supported C3/C4/CAM distinctions.",
         "Cellular respiration: glycolysis, Krebs cycle, electron transport and aerobic/anaerobic comparisons within HSC scope."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 393,
+        "page_end": 460,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C09-B12-full-topic",
@@ -475,7 +691,10 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-PHOTOSYNTHESIS",
+        "SCI-OPENSTAX-BIO2E-CELLULAR-RESPIRATION"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Water absorption, mineral nutrition and ascent/transport of sap.",
@@ -483,12 +702,29 @@
         "Photosynthesis including source-supported C3/C4/CAM distinctions.",
         "Cellular respiration: glycolysis, Krebs cycle, electron transport and aerobic/anaerobic comparisons within HSC scope."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 393,
+        "page_end": 460,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C10-B13-reproduction",
@@ -507,7 +743,9 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-PLANT-REPRODUCTION"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Asexual/vegetative reproduction.",
@@ -516,14 +754,32 @@
         "Parthenogenesis/artificial propagation where supported by the photographed syllabus and authorized texts."
       ],
       "unresolved_engine_facets": [
-        [
-          "B13 plant-growth facet requires a separate authenticated source mapping.",
-          "B13 plant-hormone facet requires a separate authenticated source mapping."
-        ]
+        "B13 plant-growth facet requires a separate authenticated source mapping.",
+        "B13 plant-hormone facet requires a separate authenticated source mapping."
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 461,
+        "page_end": 488,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
+      ],
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002",
+        "D-R2-3-003"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C11-B14-full-topic",
@@ -542,7 +798,9 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-BIOTECH"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Recombinant-DNA workflow.",
@@ -550,12 +808,29 @@
         "PCR and gene-transfer concepts within HSC scope.",
         "Tissue culture, totipotency and GMO applications."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 489,
+        "page_end": 530,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P1-C12-B15-full-topic",
@@ -574,7 +849,11 @@
         "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-ECOLOGY",
+        "SCI-OPENSTAX-BIO2E-BIODIVERSITY",
+        "SCI-OPENSTAX-BIO2E-CONSERVATION"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/higher-zoology-tree/ecology/course-index.md",
@@ -587,12 +866,29 @@
         "Threatened/endangered species and conservation.",
         "In-situ/ex-situ conservation and source-specific terminology."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 531,
+        "page_end": 586,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+        "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-001",
+        "D-R2-3-002"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C01-B16-full-topic",
@@ -611,7 +907,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-ANIMAL-CLASSIFICATION"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/higher-zoology-tree/animal-diversity/course-index.md",
@@ -626,12 +924,29 @@
         "Complete HSC phylum/classification breadth beyond the existing chordate-heavy Higher Zoology course.",
         "Diagnostic characters, symmetry/coelom and prescribed classification boundaries exactly as mapped from the HSC reference bundle."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 1,
+        "page_end": 58,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C02-B17-hydra-grasshopper-rohu",
@@ -650,7 +965,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-ANIMAL-CLASSIFICATION"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/higher-zoology-tree/animal-diversity/lecture-06-labeo-rohita.md",
@@ -662,12 +979,30 @@
         "Complete grasshopper/Poekilocerus pictus HSC lecture sequence.",
         "Reconcile Labeo rohita coverage to the exact HSC representative-animal scope rather than treating the Higher Zoology lecture as automatically complete."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 59,
+        "page_end": 146,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004",
+        "D-R2-3-005"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C03-B18-full-topic",
@@ -686,7 +1021,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-AAP2E-DIGESTION"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/hsc-corner/zoology/digestive-system/index.md",
@@ -696,12 +1033,29 @@
       "missing_lecture_claims": [
         "Claim-by-claim reconciliation against the multi-reference bundle; write new material only for verified uncovered claims."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 147,
+        "page_end": 187,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C04-B19-full-topic",
@@ -720,7 +1074,10 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-AAP2E-BLOOD",
+        "SCI-OPENSTAX-AAP2E-HEART"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
@@ -742,12 +1099,29 @@
       "missing_lecture_claims": [
         "Reconcile the existing series against the exact HSC blood-circulation claims; do not count enrichment/clinical material as required curriculum coverage."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 188,
+        "page_end": 237,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C05-B20-full-topic",
@@ -766,7 +1140,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-AAP-RESPIRATORY"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/hsc-corner/zoology/respiratory-system-lecture.md",
@@ -776,12 +1152,29 @@
       "missing_lecture_claims": [
         "Claim-by-claim HSC source reconciliation; retain disease/public-health enrichment as supplemental where it exceeds curriculum scope."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 238,
+        "page_end": 262,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C06-B21-full-topic",
@@ -800,7 +1193,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-AAP2E-URINARY"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Kidney and nephron structure.",
@@ -808,12 +1203,29 @@
         "Excretory products and source-supported urea-cycle concepts.",
         "Osmoregulation and regulatory boundaries."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 263,
+        "page_end": 286,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C07-B22-full-topic",
@@ -832,7 +1244,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-AAP2E-MUSCLE"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Skeleton and bone/cartilage.",
@@ -840,12 +1254,29 @@
         "Skeletal muscle structure and contraction.",
         "Integrated locomotion mechanics within HSC scope."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 287,
+        "page_end": 329,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C08-B23-nervous-system-sense-organs",
@@ -864,7 +1295,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-AAP2E-NERVOUS"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/cranial-nerve-axis.md",
@@ -881,12 +1314,29 @@
         "Eye and ear coverage reconciled to HSC scope.",
         "Endocrine glands, hormones, feedback and homeostasis."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 330,
+        "page_end": 378,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C08-B24-endocrine-homeostasis",
@@ -905,7 +1355,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-AAP2E-ENDOCRINE"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/cranial-nerve-axis.md",
@@ -922,12 +1374,29 @@
         "Eye and ear coverage reconciled to HSC scope.",
         "Endocrine glands, hormones, feedback and homeostasis."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 330,
+        "page_end": 378,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C09-B25-full-topic",
@@ -946,19 +1415,38 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-AAP2E-REPRODUCTION"
+      ],
       "lbfl_reuse_routes": [],
       "missing_lecture_claims": [
         "Male and female reproductive systems.",
         "Gametogenesis and fertilisation.",
         "Embryonic development, placenta and embryonic layers within HSC scope."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 379,
+        "page_end": 425,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C10-B26-full-topic",
@@ -977,7 +1465,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-AAP-IMMUNITY"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity.md",
@@ -989,12 +1479,29 @@
         "Antibody/antigen and immune-response logic.",
         "Vaccination and source-supported immune-system cells/organs beyond existing blood-corpuscle coverage."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 426,
+        "page_end": 454,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C11-B27-genetics-inheritance",
@@ -1013,7 +1520,9 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-GENETICS"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/higher-zoology-tree/genetics/course-index.md",
@@ -1024,12 +1533,29 @@
         "Reconcile the 17-lecture Genetics course against HSC genetics scope.",
         "Complete HSC evolution concepts, evidence, living fossil/vestigial-organ examples and source-supported mechanisms."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 455,
+        "page_end": 506,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "single-scientific-locator-populated-additional-crosscheck-preferred",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C11-B28-evolution",
@@ -1048,7 +1574,10 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-EVOLUTION",
+        "SCI-OPENSTAX-BIO2E-BEHAVIOR"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/higher-zoology-tree/genetics/course-index.md",
@@ -1059,12 +1588,29 @@
         "Reconcile the 17-lecture Genetics course against HSC genetics scope.",
         "Complete HSC evolution concepts, evidence, living fossil/vestigial-organ examples and source-supported mechanisms."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 455,
+        "page_end": 506,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     },
     {
       "matrix_id": "BIO-P2-C12-B28-animal-behaviour",
@@ -1083,7 +1629,10 @@
         "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026"
       ],
       "supplementary_authorized_books": [],
-      "scientific_references": [],
+      "scientific_references": [
+        "SCI-OPENSTAX-BIO2E-EVOLUTION",
+        "SCI-OPENSTAX-BIO2E-BEHAVIOR"
+      ],
       "lbfl_reuse_routes": [
         {
           "path": "_biology/higher-zoology-tree/human-behaviour/index.md",
@@ -1096,18 +1645,40 @@
         "Taxis, migration, communication/social behaviour and other source-supported animal-behaviour concepts.",
         "Do not substitute the Human Behaviour enrichment node for this HSC chapter."
       ],
-      "unresolved_engine_facets": [
-        []
+      "unresolved_engine_facets": [],
+      "claim_verification_status": "source-populated-claim-page-verification-pending",
+      "disagreement_status": "explicitly-recorded",
+      "second_verification_status": "blocked-pending-claim-page-evidence-from-additional-authorized-reference",
+      "reference_registry": "_data/admission/biology/reference_registry_v1.json",
+      "primary_textbook_chapter_locator": {
+        "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+        "locator_type": "printed-chapter-page-range",
+        "page_start": 507,
+        "page_end": 533,
+        "evidence_scope": "Authenticates the chapter container/range from the inspected physical book; does not by itself verify each substantial scientific claim."
+      },
+      "supplementary_book_candidates": [
+        "BIO-P2-LECTURE-2024-CANDIDATE",
+        "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+        "BIO-P2-ABDUL-ALIM-2023-CANDIDATE"
       ],
-      "claim_verification_status": "scope-mapped-page-level-claim-verification-pending",
-      "disagreement_status": "none-recorded-yet",
-      "second_verification_status": "not-run"
+      "scientific_locator_status": "populated-web-locators-verified",
+      "page_evidence_status": "primary-chapter-range-populated-additional-book-claim-pages-pending",
+      "independent_scientific_crosscheck_status": "multi-source-scientific-locators-populated",
+      "disagreement_refs": [
+        "D-R2-3-004"
+      ]
     }
   ],
   "summary": {
     "rows": 29,
     "unique_chapters": 24,
     "unique_topics": 28,
+    "primary_chapter_range_populated_rows": 29,
+    "supplementary_candidate_populated_rows": 29,
+    "scientific_locator_populated_rows": 29,
+    "disagreement_recorded_rows": 29,
+    "additional_authorized_claim_page_populated_rows": 0,
     "page_verified_claim_rows": 0,
     "second_verified_rows": 0
   },
@@ -1116,5 +1687,6 @@
     "may_complete_chapter": false,
     "may_authorize_new_model_test_batch": false,
     "may_authorize_matrix_qyi": false
-  }
+  },
+  "reference_registry": "_data/admission/biology/reference_registry_v1.json"
 }
