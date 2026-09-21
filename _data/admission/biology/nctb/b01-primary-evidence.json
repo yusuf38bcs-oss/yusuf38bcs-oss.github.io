@@ -1,0 +1,42 @@
+{
+  "evidence_id": "NCTB-B01-PRIMARY-001",
+  "topic_id": "B01",
+  "topic_name": "Cell Architecture, Membrane & Transport",
+  "source_class": "official-nctb-primary-publication-candidate",
+  "authority": "National Curriculum and Textbook Board (NCTB), Bangladesh",
+  "book_title": "উচ্চ মাধ্যমিক স্তরের শিক্ষাক্রম — জীববিজ্ঞান (Higher Secondary Curriculum — Biology)",
+  "subject": "Biology",
+  "part_or_volume": null,
+  "edition_or_curriculum_version": null,
+  "edition_status": "not-verified",
+  "publication_year": null,
+  "publisher": "National Curriculum and Textbook Board (NCTB), Bangladesh",
+  "isbn_or_official_identifier_if_available": null,
+  "source_url_or_custody_reference": "https://nctb.gov.bd/site/files/e977a7e5-be01-4c42-99ac-bc966d334ae7/উচ্চ-মাধ্যমিক-স্তরের-শিক্ষাক্রম",
+  "custody_type": "official_nctb_listing_download_artifact_not_retrieved",
+  "retrieval_date": "2026-09-21",
+  "file_name": null,
+  "file_size_if_available": null,
+  "file_sha256": null,
+  "page_start": null,
+  "page_end": null,
+  "page_labels_if_printed_numbers_differ": null,
+  "claim_mappings": [],
+  "verification_status": "not-verified",
+  "verification_method": "Read-only verification of the official NCTB higher-secondary curriculum listing. The Biology entry is present, but the underlying downloadable artifact could not be retrieved as bytes in this verification pass; therefore edition, page mapping and SHA-256 remain unverified.",
+  "verified_at": null,
+  "verification_pass_1": {
+    "status": "HOLD",
+    "checked_at": "2026-09-21",
+    "findings": [
+      "Official NCTB higher-secondary curriculum listing contains a Biology entry.",
+      "Current NCTB 2025-26 HSC textbook download page does not list a Biology textbook.",
+      "The underlying Biology curriculum artifact was not retrievable as inspectable bytes in this pass."
+    ]
+  },
+  "verification_pass_2": {
+    "status": "not-run",
+    "reason": "Pass 1 did not establish an exact primary artifact, page locations or cryptographic identity."
+  },
+  "notes": "Fail-closed evidence record. This record must not authorize nctb_source.status=verified-primary or B01=complete until an exact NCTB-issued primary artifact is retrieved, hashed, page-mapped and independently rechecked."
+}
