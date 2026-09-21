@@ -4,6 +4,16 @@ on:
   pull_request:
     paths:
       - "index.html"
+      - "index.bn.html"
+      - "_layouts/homepage-v3.html"
+      - "_includes/home-v3/**"
+      - "_data/homepage-v3.yml"
+      - "assets/css/homepage-v3.css"
+      - "assets/js/home/homepage-v3.js"
+      - "assets/images/home/v3/**"
+      - ".github/scripts/homepage-responsive-layout-certification.cjs"
+      - ".github/workflows/homepage-responsive-layout-certification.yml"
+      # Keep legacy root dependencies in scope while production transitions from V2.
       - "_layouts/default.html"
       - "_includes/home/**"
       - "_includes/head/homepage-v2-*.html"
@@ -12,8 +22,6 @@ on:
       - "_sass/**"
       - "assets/js/home/homepage-v2.js"
       - "assets/images/home/**"
-      - ".github/scripts/homepage-responsive-layout-certification.cjs"
-      - ".github/workflows/homepage-responsive-layout-certification.yml"
   workflow_dispatch:
 
 permissions:
@@ -25,7 +33,7 @@ concurrency:
 
 jobs:
   certify:
-    name: Compact and desktop narrative-layout contract
+    name: V3 compact and desktop visual contract
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
@@ -86,7 +94,7 @@ jobs:
           cat /tmp/lbfl-homepage-server.log
           exit 1
 
-      - name: Certify compact and desktop layouts
+      - name: Certify V3 compact and desktop layouts
         env:
           LBFL_HOMEPAGE_URL: http://127.0.0.1:4000/
           LBFL_REPORT_DIR: homepage-responsive-layout-report
