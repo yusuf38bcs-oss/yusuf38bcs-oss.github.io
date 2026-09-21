@@ -1,10 +1,15 @@
-name: Admission R2.1 Curriculum Architecture Certification
+name: Admission Curriculum Architecture Certification
 
 on:
   pull_request:
     paths:
+      - "_pages/utility/editorial-policy.md"
       - "_data/admission/curriculum_architecture_v1.json"
       - "_data/admission/biology/reuse_audit_v1.json"
+      - "_data/admission/biology/chapter_map_v1.json"
+      - "_data/admission/biology/reference_policy_v1.json"
+      - "_data/admission/biology/claim_source_matrix_v1.json"
+      - "_data/admission/biology/sources/r2-2-shared-syllabus-photo-set.json"
       - "_data/admission/biology/engine_v1.json"
       - "_data/admission/biology/curriculum_coverage_v1.json"
       - "scripts/admission/validate_curriculum_architecture.rb"
@@ -17,12 +22,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: admission-r2-1-curriculum-architecture-${{ github.event.pull_request.number || github.ref }}
+  group: admission-curriculum-architecture-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   certify:
-    name: Four-subject architecture and Biology reuse contract
+    name: R2.2 Biology 24-chapter and multi-reference contract
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -40,7 +45,7 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
-          printf 'Admission R2.1 architecture certification head: %s\n' "$PR_HEAD_SHA"
+          printf 'Admission R2.2 architecture certification head: %s\n' "$PR_HEAD_SHA"
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
@@ -51,8 +56,8 @@ jobs:
       - name: Validate Biology Admission engine
         run: ruby scripts/admission/validate_biology_engine.rb
 
-      - name: Validate existing Biology curriculum coverage
+      - name: Validate inherited Biology curriculum coverage
         run: ruby scripts/admission/validate_biology_curriculum_coverage.rb
 
-      - name: Validate R2.1 curriculum architecture and Biology reuse audit
+      - name: Validate R2.2 24-chapter architecture and multi-reference evidence contract
         run: ruby scripts/admission/validate_curriculum_architecture.rb
