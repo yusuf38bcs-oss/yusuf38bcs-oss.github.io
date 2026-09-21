@@ -12,6 +12,7 @@ on:
       - "_data/admission/biology/reference_registry_v1.json"
       - "_data/admission/biology/r2-3_second_verification_v1.json"
       - "_data/admission/biology/pass2_claim_evidence_v1.json"
+      - "_data/admission/biology/draft_remediation_gateway_v1.json"
       - "_data/admission/biology/sources/r2-2-shared-syllabus-photo-set.json"
       - "_data/admission/biology/engine_v1.json"
       - "_data/admission/biology/curriculum_coverage_v1.json"
@@ -30,7 +31,7 @@ concurrency:
 
 jobs:
   certify:
-    name: R2.4 Biology Pass-2 claim evidence unlock contract
+    name: R2.4 Biology Pass-2 + narrow draft gateway
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -48,7 +49,7 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
-          printf 'Admission R2.4 Pass-2 certification head: %s\n' "$PR_HEAD_SHA"
+          printf 'Admission R2.4 Pass-2 + draft-gateway certification head: %s\n' "$PR_HEAD_SHA"
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
@@ -62,5 +63,5 @@ jobs:
       - name: Validate inherited Biology curriculum coverage
         run: ruby scripts/admission/validate_biology_curriculum_coverage.rb
 
-      - name: Validate R2.4 Pass-2 claim evidence unlock contract
+      - name: Validate R2.4 Pass-2 + narrow draft remediation gateway
         run: ruby scripts/admission/validate_curriculum_architecture.rb
