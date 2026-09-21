@@ -52,6 +52,8 @@ async function inspect(page, viewportWidth) {
       language: ".lbfl-v3-language-switcher",
       languageEn: ".lbfl-v3-language-switcher a[lang='en']",
       languageBn: ".lbfl-v3-language-switcher a[lang='bn']",
+      desktopAdmission: ".lbfl-v3-nav a[href='/admission/'], .lbfl-v3-nav a[href$='/admission/']",
+      desktopIelts: ".lbfl-v3-nav a[href='/ielts/'], .lbfl-v3-nav a[href$='/ielts/']",
       desktopEditorial: ".lbfl-v3-nav a[href*='editorial-policy']",
       hero: ".lbfl-v3-hero",
       heroGrid: ".lbfl-v3-hero__grid",
@@ -184,6 +186,8 @@ async function inspect(page, viewportWidth) {
     const language = element(selectors.language);
     const en = element(selectors.languageEn);
     const bn = element(selectors.languageBn);
+    const desktopAdmission = element(selectors.desktopAdmission);
+    const desktopIelts = element(selectors.desktopIelts);
     const desktopEditorial = element(selectors.desktopEditorial);
 
     const title = element(selectors.heroTitle);
@@ -254,6 +258,12 @@ async function inspect(page, viewportWidth) {
         bnHref: bn ? bn.getAttribute("href") : null,
         enTarget: targetSize(selectors.languageEn),
         bnTarget: targetSize(selectors.languageBn),
+      },
+      navigation: {
+        desktopAdmissionVisible: compactHeader ? true : visible(desktopAdmission),
+        desktopIeltsVisible: compactHeader ? true : visible(desktopIelts),
+        desktopAdmissionHref: desktopAdmission ? desktopAdmission.getAttribute("href") : null,
+        desktopIeltsHref: desktopIelts ? desktopIelts.getAttribute("href") : null,
       },
       editorial: {
         desktopVisible: compactHeader ? true : visible(desktopEditorial),
@@ -384,6 +394,69 @@ async function inspectMenu(page, viewportWidth) {
   return result;
 }
 
+
+async function inspectNavigationTraversal(browser, viewport) {
+  const compactHeader = viewport.width <= 1024;
+  const context = await browser.newContext({
+    viewport: { width: viewport.width, height: viewport.height },
+    reducedMotion: "no-preference",
+  });
+  const page = await context.newPage();
+  const targets = [
+    { name: "Admission", href: "/admission/" },
+    { name: "IELTS English Hub", href: "/ielts/" },
+  ];
+  const traversals = [];
+
+  try {
+    for (const target of targets) {
+      await page.goto(targetUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
+      await settle(page);
+
+      let scope;
+      if (compactHeader) {
+        const button = page.locator("[data-v3-menu-open]");
+        if (!(await button.isVisible())) {
+          traversals.push({ ...target, visible: false, status: 0, pathname: null, passed: false });
+          continue;
+        }
+        await button.click();
+        scope = page.locator("[data-v3-menu]");
+      } else {
+        scope = page.locator(".lbfl-v3-nav");
+      }
+
+      const link = scope.locator(`a[href="${target.href}"], a[href$="${target.href}"]`).first();
+      const visible = await link.isVisible().catch(() => false);
+      if (!visible) {
+        traversals.push({ ...target, visible: false, status: 0, pathname: null, passed: false });
+        continue;
+      }
+
+      const navigationPromise = page.waitForNavigation({ waitUntil: "domcontentloaded", timeout: 45000 });
+      await link.click();
+      const response = await navigationPromise;
+      await settle(page);
+      const pathname = new URL(page.url()).pathname;
+      traversals.push({
+        ...target,
+        visible: true,
+        status: response ? response.status() : 0,
+        pathname,
+        passed: Boolean(response && response.status() === 200 && pathname === target.href),
+      });
+    }
+  } finally {
+    await context.close();
+  }
+
+  return {
+    mode: compactHeader ? "compact-dialog" : "desktop-primary",
+    passed: traversals.length === targets.length && traversals.every((item) => item.passed),
+    traversals,
+  };
+}
+
 function passes(result) {
   const l = result.layout;
   const base =
@@ -406,6 +479,8 @@ function passes(result) {
     l.language.enTarget.height >= 44 &&
     l.language.bnTarget.width >= 44 &&
     l.language.bnTarget.height >= 44 &&
+    l.navigation.desktopAdmissionVisible &&
+    l.navigation.desktopIeltsVisible &&
     l.editorial.desktopVisible &&
     l.editorial.evidenceLinkVisible &&
     l.editorial.footerLinkVisible &&
@@ -456,6 +531,7 @@ function passes(result) {
     l.sectionOrder &&
     l.footerVisible &&
     result.menu.passed &&
+    result.navigationTraversal.passed &&
     result.consoleErrors.length === 0 &&
     result.pageErrors.length === 0;
 
@@ -475,6 +551,7 @@ function summarizeFailure(result) {
   if (l.innerOverflow.length) reasons.push(`inner-overflow=${l.innerOverflow.join(",")}`);
   if (!l.header.visible || !l.header.compactContract) reasons.push("header-contract");
   if (!l.language.visible || !/বাংলা/.test(l.language.text)) reasons.push("bilingual-switch");
+  if (!l.navigation.desktopAdmissionVisible || !l.navigation.desktopIeltsVisible) reasons.push("desktop-admission-ielts-discoverability");
   if (!l.editorial.desktopVisible || !l.editorial.evidenceLinkVisible || !l.editorial.footerLinkVisible) reasons.push("editorial-discoverability");
   if (!/EDITORIAL\s*&\s*EVIDENCE/i.test(l.editorial.kicker)) reasons.push("editorial-kicker");
   if (!l.hero.visible) reasons.push("hero-visibility");
@@ -500,6 +577,7 @@ function summarizeFailure(result) {
   }
   if (!l.sectionOrder) reasons.push("section-order");
   if (!result.menu.passed) reasons.push("menu-contract-admission-ielts-editorial-contact");
+  if (!result.navigationTraversal.passed) reasons.push("admission-ielts-route-traversal");
   if (result.consoleErrors.length) reasons.push(`console=${result.consoleErrors.length}`);
   if (result.pageErrors.length) reasons.push(`page=${result.pageErrors.length}`);
   return reasons;
@@ -530,7 +608,8 @@ function summarizeFailure(result) {
 
       const layout = await inspect(page, viewport.width);
       const menu = await inspectMenu(page, viewport.width);
-      const result = { ...viewport, layout, menu, consoleErrors, pageErrors };
+      const navigationTraversal = await inspectNavigationTraversal(browser, viewport);
+      const result = { ...viewport, layout, menu, navigationTraversal, consoleErrors, pageErrors };
       result.passed = passes(result);
       result.failureReasons = result.passed ? [] : summarizeFailure(result);
       results.push(result);
@@ -548,7 +627,7 @@ function summarizeFailure(result) {
   const report = {
     targetUrl,
     generatedAt: new Date().toISOString(),
-    contract: "homepage-v3.5.2-mobile-composition",
+    contract: "homepage-v3.5.3-desktop-admission-ielts-navigation",
     passed: results.every((result) => result.passed),
     results,
   };
@@ -560,7 +639,7 @@ function summarizeFailure(result) {
     console.log(
       `${result.name}px: ${result.passed ? "PASS" : "FAIL"} overflow=${
         result.layout.documentOverflow || result.layout.innerOverflow.length > 0
-      } clipped=${result.layout.clipped.length} menu=${result.menu.passed}${details}`
+      } clipped=${result.layout.clipped.length} menu=${result.menu.passed} navTraversal=${result.navigationTraversal.passed}${details}`
     );
   }
 
