@@ -37,6 +37,30 @@ def mapping_has_valid_page?(mapping)
   start_page.positive? && end_page.positive? && start_page <= end_page
 end
 
+def valid_authorization_evidence?(authorization)
+  return false unless authorization.is_a?(Hash)
+  return false unless authorization["status"] == "verified"
+
+  %w[reference details approval_identity authorization_statement].any? do |field|
+    !blank_value?(authorization[field])
+  end
+end
+
+def valid_artifact_identity?(evidence)
+  artifact_type = evidence["artifact_type"]
+
+  case artifact_type
+  when "digital"
+    sha256 = evidence["file_sha256"].to_s
+    sha256.match?(/\A[0-9a-fA-F]{64}\z/)
+  when "physical"
+    !blank_value?(evidence["physical_copy_custody_reference"]) &&
+      !blank_value?(evidence["physical_copy_identity"])
+  else
+    false
+  end
+end
+
 ledger = JSON.parse(File.read(LEDGER, encoding: "UTF-8"))
 engine = JSON.parse(File.read(ENGINE, encoding: "UTF-8"))
 model = File.read(MODEL_TEST, encoding: "UTF-8")
@@ -160,12 +184,21 @@ topics.each do |topic|
       required_fields = %w[
         evidence_id
         topic_id
+        source_class
         authority
+        authorization_model
+        authorization_status
+        authorization_evidence
+        author
         book_title
+        subject
+        part_or_volume
         edition_or_curriculum_version
+        publisher
+        artifact_type
         source_url_or_custody_reference
         retrieval_date
-        file_sha256
+        required_claims
         claim_mappings
         verification_status
         verification_method
@@ -174,9 +207,13 @@ topics.each do |topic|
       errors << "#{id}: evidence #{ref} missing required fields: #{missing.join(", ")}" if missing.any?
 
       errors << "#{id}: evidence #{ref} topic_id mismatch" unless evidence["topic_id"] == id
-
-      sha256 = evidence["file_sha256"].to_s
-      errors << "#{id}: evidence #{ref} file_sha256 must be exactly 64 hexadecimal characters" unless sha256.match?(/\A[0-9a-fA-F]{64}\z/)
+      errors << "#{id}: evidence #{ref} source_class must be nctb-authorized-hsc-textbook" unless evidence["source_class"] == "nctb-authorized-hsc-textbook"
+      unless %w[privately-published-nctb-authorized-textbook nctb-published-textbook].include?(evidence["authorization_model"])
+        errors << "#{id}: evidence #{ref} has unsupported authorization_model"
+      end
+      errors << "#{id}: evidence #{ref} authorization_status must be verified-for-exact-edition" unless evidence["authorization_status"] == "verified-for-exact-edition"
+      errors << "#{id}: evidence #{ref} lacks edition-specific NCTB authorization evidence" unless valid_authorization_evidence?(evidence["authorization_evidence"])
+      errors << "#{id}: evidence #{ref} lacks a reproducible artifact identity" unless valid_artifact_identity?(evidence)
 
       errors << "#{id}: evidence #{ref} verification_status must be verified-primary" unless evidence["verification_status"] == "verified-primary"
 
@@ -187,10 +224,28 @@ topics.each do |topic|
         end
       end
 
+      required_claims = evidence["required_claims"]
+      if !required_claims.is_a?(Array) || required_claims.empty?
+        errors << "#{id}: evidence #{ref} requires a non-empty required_claims set"
+        required_claim_ids = []
+      else
+        required_claim_ids = required_claims.filter_map do |claim|
+          if !claim.is_a?(Hash) || blank_value?(claim["claim_id"]) || blank_value?(claim["claim"])
+            errors << "#{id}: evidence #{ref} contains an invalid required claim"
+            nil
+          else
+            claim["claim_id"]
+          end
+        end
+        errors << "#{id}: evidence #{ref} has duplicate required claim IDs" unless required_claim_ids.uniq.length == required_claim_ids.length
+      end
+
       mappings = evidence["claim_mappings"]
       if !mappings.is_a?(Array) || mappings.empty?
         errors << "#{id}: evidence #{ref} requires at least one claim mapping"
+        mapped_verified_ids = []
       else
+        mapped_verified_ids = []
         mappings.each_with_index do |mapping, index|
           label = "#{id}: evidence #{ref} claim mapping #{index + 1}"
           unless mapping.is_a?(Hash)
@@ -201,7 +256,7 @@ topics.each do |topic|
           errors << "#{label} missing claim_id" if blank_value?(mapping["claim_id"])
           errors << "#{label} missing claim" if blank_value?(mapping["claim"])
           errors << "#{label} evidence_status must be verified" unless mapping["evidence_status"] == "verified"
-          errors << "#{label} requires valid page information" unless mapping_has_valid_page?(mapping)
+          errors << "#{label} requires valid printed/PDF page information" unless mapping_has_valid_page?(mapping)
 
           if mapping["page_start"] || mapping["page_end"]
             unless mapping["page_start"].is_a?(Integer) && mapping["page_end"].is_a?(Integer) &&
@@ -210,7 +265,16 @@ topics.each do |topic|
               errors << "#{label} has invalid page range"
             end
           end
+
+          if mapping["evidence_status"] == "verified" && mapping_has_valid_page?(mapping)
+            mapped_verified_ids << mapping["claim_id"]
+          end
         end
+      end
+
+      missing_claim_ids = required_claim_ids - mapped_verified_ids
+      if missing_claim_ids.any?
+        errors << "#{id}: evidence #{ref} does not verify all required claims: #{missing_claim_ids.join(", ")}"
       end
     end
   end
@@ -252,4 +316,5 @@ end
 puts "Admission R2 Curriculum Coverage Validation: PASS"
 puts "topics=#{topics.length} complete=#{actual_complete} partial=#{actual_partial} gap=#{actual_gap}"
 puts "nctb_evidence_records=#{evidence_by_id.length}"
+puts "verified_primary_contract=nctb_authorized_exact_edition artifact_identity page_mapped_claims second_pass"
 puts "historical_occurrence_substitution=false matrix_qyi_release=false f_v2_promotion=false"
