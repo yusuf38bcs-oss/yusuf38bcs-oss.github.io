@@ -300,6 +300,18 @@ async function inspect(page, viewportWidth) {
           const cycle = rect(selectors.cycle);
           return Boolean(actions && cycle && cycle.top >= actions.bottom - tolerance);
         })(),
+        desktopControlsBelowCopy: (() => {
+          if (phoneLayout) return true;
+          const copy = rect(selectors.heroCopy);
+          const controls = rect(selectors.heroControls);
+          return Boolean(copy && controls && controls.top >= copy.bottom - tolerance);
+        })(),
+        desktopControlsLeftAligned: (() => {
+          if (phoneLayout) return true;
+          const copy = rect(selectors.heroCopy);
+          const controls = rect(selectors.heroControls);
+          return Boolean(copy && controls && Math.abs(copy.left - controls.left) <= 4);
+        })(),
         titleBrandGap: gap(selectors.heroTitle, selectors.heroBrandLine),
         brandPromiseGap: gap(selectors.heroBrandLine, selectors.heroPromise),
         titleLineHeightRatio,
@@ -400,6 +412,8 @@ function passes(result) {
     l.hero.visualBeforeControls &&
     l.hero.mobileActionsFullWidth &&
     l.hero.cycleAfterActions &&
+    l.hero.desktopControlsBelowCopy &&
+    l.hero.desktopControlsLeftAligned &&
     l.hero.titleBrandGap !== null &&
     l.hero.titleBrandGap >= 18 &&
     l.hero.titleBrandGap <= 42 &&
@@ -416,11 +430,7 @@ function passes(result) {
             l.hero.visualControlsGap >= 18 &&
             l.hero.visualControlsGap <= 34
           )
-        : (
-            l.hero.actionsTopGap !== null &&
-            l.hero.actionsTopGap >= 18 &&
-            l.hero.actionsTopGap <= 36
-          )
+        : true
     ) &&
     l.hero.titleLineHeightRatio >= 1.0 &&
     l.hero.titleLineHeightRatio <= 1.08 &&
@@ -464,13 +474,13 @@ function summarizeFailure(result) {
   if (!l.hero.controlsContained) reasons.push("hero-controls-containment");
   if (!l.hero.mobileActionsFullWidth) reasons.push("mobile-actions-width");
   if (!l.hero.cycleAfterActions) reasons.push("mobile-cycle-order");
+  if (!l.hero.desktopControlsBelowCopy) reasons.push("desktop-controls-order");
+  if (!l.hero.desktopControlsLeftAligned) reasons.push("desktop-controls-alignment");
   if (!(l.hero.titleBrandGap >= 18 && l.hero.titleBrandGap <= 42)) reasons.push(`title-brand-gap=${l.hero.titleBrandGap}`);
   if (!(l.hero.brandPromiseGap >= 6 && l.hero.brandPromiseGap <= 20)) reasons.push(`brand-promise-gap=${l.hero.brandPromiseGap}`);
   if (l.phoneLayout) {
     if (!(l.hero.copyVisualGap >= 20 && l.hero.copyVisualGap <= 36)) reasons.push(`copy-visual-gap=${l.hero.copyVisualGap}`);
     if (!(l.hero.visualControlsGap >= 18 && l.hero.visualControlsGap <= 34)) reasons.push(`visual-controls-gap=${l.hero.visualControlsGap}`);
-  } else if (!(l.hero.actionsTopGap >= 18 && l.hero.actionsTopGap <= 36)) {
-    reasons.push(`promise-actions-gap=${l.hero.actionsTopGap}`);
   }
   if (!(l.hero.titleLineHeightRatio >= 1.0 && l.hero.titleLineHeightRatio <= 1.08)) reasons.push(`h1-line-height=${l.hero.titleLineHeightRatio}`);
   if (l.hero.cycleColumns !== 4) reasons.push(`cycle-columns=${l.hero.cycleColumns}`);
