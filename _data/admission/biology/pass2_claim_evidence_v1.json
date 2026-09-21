@@ -132,10 +132,9 @@
       "additional_reference_id",
       "exact_edition_identity",
       "authorization_evidence",
-      "artifact_identity.drive_file_id",
-      "artifact_identity.size_bytes",
-      "artifact_identity.sha256",
-      "artifact_identity.custody_reference",
+      "artifact_identity_mode = digital_pdf OR physical_copy",
+      "digital_pdf route: stable artifact locator + size_bytes + sha256 + custody_reference",
+      "physical_copy route: exact physical-copy identity + physical custody + hashed front-matter captures + hashed claim-page captures",
       "claim_id",
       "printed_page",
       "claim_locator",
@@ -144,7 +143,8 @@
       "pass_1=PASS",
       "pass_2=PASS",
       "lecture_gap_remediation_authority=true"
-    ]
+    ],
+    "artifact_identity_rule": "Exactly one mode must be satisfied on Pass 2: digital_pdf (stable locator + size + exact SHA-256 + custody) OR physical_copy (exact edition/authorization + reproducible physical custody + hashed front-matter and claim-page captures)."
   },
   "rows": [
     {
@@ -196,6 +196,20 @@
         "authority_class": "NON_PUBLISHABLE_SHADOW_DRAFT_ONLY",
         "pass_2_still_required": true,
         "publication_authority": false
+      },
+      "artifact_identity_mode": null,
+      "physical_copy_gateway": {
+        "eligible": true,
+        "status": "READY_FOR_EVIDENCE_INTAKE",
+        "required_before_pass2": [
+          "exact physical book title/author/publisher/paper",
+          "exact edition/printing/revision identity",
+          "NCTB authorization evidence visible on/in the exact copy or independently attributable to that exact edition",
+          "reproducible custody reference",
+          "hashed front-matter captures",
+          "hashed B01 claim-page captures with printed page visible",
+          "independent second verification"
+        ]
       }
     },
     {
@@ -1352,7 +1366,8 @@
     "shadow_draft_gateway_active": true,
     "shadow_draft_authority_rows": 1,
     "claim_page_binding_complete": false,
-    "exact_scan_edition_authentication_complete": false
+    "exact_scan_edition_authentication_complete": false,
+    "physical_copy_pass2_route_supported": true
   },
   "narrow_gateway": "_data/admission/biology/narrow_evidence_gateway_v1.json"
 }
