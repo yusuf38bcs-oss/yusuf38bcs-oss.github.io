@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 15
+page_id: genetics-17-l15
+previous: /biology/higher-zoology-tree/genetics/lecture-14/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/lecture-16/
 ---
-
-# Genetics Lecture 15: Central Dogma and Transcription
 
 ## Concept Overview
 
@@ -78,8 +84,6 @@ Phenotype
 ## Why This Matters
 
 Mendelian genetics trait transmission explain করে; molecular genetics explain করে trait কীভাবে তৈরি হয়। Central dogma learner-কে inheritance থেকে expression-এর দিকে নিয়ে যায়। DNA শুধু information store করে না; সেই information transcribed and translated হয়ে biological function তৈরি করে।
-
-{% include education/framework-links.html %}
 
 ## Learning Focus
 
@@ -214,9 +218,6 @@ So central dogma should be learned as a core information-flow model, not as an o
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Thinking every RNA becomes protein. Some RNAs function without translation.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Central dogma teaches that stored information must be expressed through a proper channel. In learning life, knowledge also needs expression: reading becomes understanding, understanding becomes action, and action becomes character only through disciplined translation into practice.
 
 ## Critical Thinking Questions
 

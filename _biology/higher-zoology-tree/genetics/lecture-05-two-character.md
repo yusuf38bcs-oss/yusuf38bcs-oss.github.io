@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,13 +53,19 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 5
+page_id: genetics-17-l05
+previous: /biology/higher-zoology-tree/genetics/monohybrid-cross/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/gene-interaction/
 ---
-
-# Genetics Lecture 05: Dihybrid Cross
 
 ## Concept Overview
 
-**Dihybrid cross** হলো এমন genetic cross যেখানে একসাথে দুটি contrasting character অনুসরণ করা হয়। Mendel pea plant-এ seed shape and seed colour একসাথে অনুসরণ করে দেখিয়েছিলেন যে এক gene pair-এর allele অন্য gene pair-এর allele থেকে independently gamete-এ যেতে পারে, যদি genes different chromosomes-এ থাকে বা sufficiently far apart থাকে।
+**Dihybrid cross** হলো এমন genetic cross যেখানে একসাথে দুটি contrasting character অনুসরণ করা হয়। Mendel pea plant-এ seed shape and seed colour একসাথে অনুসরণ করে দেখিয়েছিলেন যে এক gene pair-এর allele অন্য gene pair-এর allele থেকে independently gamete-এ যেতে পারে, যদি genes different chromosomes-এ থাকে; একই chromosome-এ খুব দূরে থাকা genes-এর observed recombination 50% এর কাছাকাছি যেতে পারে, তবে two-point data তখন unlinked genes থেকে তাদের সহজে আলাদা করতে পারে না।
 
 Classic example:
 
@@ -78,8 +84,6 @@ F2 phenotypic ratio: 9 : 3 : 3 : 1
 ## Why This Matters
 
 Dihybrid cross learner-কে একসাথে probability, gamete formation, allele assortment and phenotype ratio বুঝতে শেখায়। Monohybrid cross একটি character শেখায়; dihybrid cross শেখায় inheritance is combinational. এটি Mendel's second law বা **law of independent assortment** বোঝার foundation.
-
-{% include education/framework-links.html %}
 
 ## Dihybrid Learning Focus
 
@@ -126,7 +130,7 @@ Each gamete receives one allele from each gene pair.
 
 ## Law of Independent Assortment
 
-Law of independent assortment states that alleles of different gene pairs assort independently into gametes during gamete formation, when the genes are on different chromosomes or sufficiently far apart.
+Law of independent assortment states that alleles of different gene pairs assort independently into gametes during gamete formation, when genes are on different chromosomes; loci far apart on one chromosome can approach 50% observed recombination, so simple two-point data may mimic independent assortment.
 
 ```text
 R/r pair separates
@@ -226,9 +230,6 @@ Linkage likely
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Memorizing 9:3:3:1 without understanding the 4 gametes and 16 combinations.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Dihybrid cross teaches combination thinking. Outcomes are not always controlled by one factor. In biology and life, multiple variables can assort, combine and produce new patterns. A disciplined learner asks: which factors are independent, which are linked, and which are interacting?
 
 ## Critical Thinking Questions
 

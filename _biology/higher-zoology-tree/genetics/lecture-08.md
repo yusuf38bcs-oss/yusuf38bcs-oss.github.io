@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: genetics-lecture
 author_profile: true
 author: "MD. Yusuf"
 sidebar:
@@ -53,9 +53,15 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 60
 status: "Active"
+translation_status: single-source-unpaired
+course_id: genetics-17
+course_role: lecture
+lecture_number: 8
+page_id: genetics-17-l08
+previous: /biology/higher-zoology-tree/genetics/epistasis-gene-ratios/
+course_index: /biology/higher-zoology-tree/genetics/course-index/
+next: /biology/higher-zoology-tree/genetics/gene-mapping/
 ---
-
-# Genetics Lecture 08: Linkage
 
 ## Concept Overview
 
@@ -76,8 +82,6 @@ Recombinant combinations become less frequent
 ## Why This Matters
 
 Linkage learner-কে বোঝায় যে inheritance শুধু allele segregation নয়; chromosome position-ও গুরুত্বপূর্ণ। Gene mapping, recombination frequency, chromosome behaviour, genetic distance and modern genomics linkage concept-এর উপর দাঁড়িয়ে আছে।
-
-{% include education/framework-links.html %}
 
 ## Linkage Learning Focus
 
@@ -191,9 +195,6 @@ This is an approximation used for mapping gene order and relative distance.
   <section class="lbfl-info-card"><h3>Mistake 4</h3><p>Forgetting that parental combinations are usually more frequent than recombinant combinations in linked genes.</p></section>
 </div>
 
-## Synaptic Bridge
-
-Linkage teaches proximity effects. Things close together influence each other and often move together. In learning, habits, thoughts and environments also form linkage groups: a routine can pull attention, motivation and performance together. Change often begins by understanding what is linked.
 
 ## Critical Thinking Questions
 
