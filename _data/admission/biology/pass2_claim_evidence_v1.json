@@ -1,9 +1,9 @@
 {
   "schema": "lbfl-admission-biology-pass2-claim-evidence-v1",
-  "version": "R2.4-0.1",
+  "version": "R2.4.1-0.1",
   "exact_parent_pr": 349,
   "exact_parent_head": "e07addcc58e2e3528fde7940e1b5e7f71a8c240b",
-  "purpose": "Acquire independent Biology reference artifacts and enforce the row-level Pass-2 unlock contract before lecture-gap remediation.",
+  "purpose": "Preserve the Pass-2 claim evidence contract while recording source-family corroboration and a separate non-publishable narrow drafting gateway. Pass 2 remains blocked until exact-edition, authorization, SHA-256/custody and printed-page evidence are complete.",
   "unlock_rule": "lecture_gap_remediation_authority may be true only when pass_1=PASS, pass_2=PASS, additional_reference_id is an ACQUIRED authenticated additional reference, exact_edition_identity and authorization_evidence are present, artifact identity includes reproducible custody and SHA-256, claim_id/printed_page/claim_locator are present, scientific_crosscheck is non-empty, and every material disagreement has an explicit disposition.",
   "acquisition_artifacts": [
     {
@@ -34,7 +34,14 @@
       "notes": [
         "Public Drive artifact acquired successfully.",
         "Retail/web metadata identifies the Akkharpatra Biology First Paper family, but exact scan edition/authorization must be established from the artifact itself."
-      ]
+      ],
+      "book_family_corroboration_status": "CORROBORATED_BOOK_FAMILY_NOT_EXACT_SCAN_EDITION",
+      "book_family_corroboration_refs": [
+        "R2.4.1-CORR-MILLENNIUM-AJIBUR",
+        "R2.4.1-CORR-PBS-AKKHARPATRA"
+      ],
+      "page_image_inspection_status": "FRONT_MATTER_PAGE_IMAGES_ACCESSIBLE",
+      "checksum_provider_status": "SHA256_NOT_RETURNED_BY_DRIVE_METADATA"
     },
     {
       "artifact_id": "P1-ABDUL-ALIM-SCAN",
@@ -49,7 +56,14 @@
       "notes": [
         "Public Drive artifact acquired successfully.",
         "Exact publisher/edition/authorization remain unverified until internal title/imprint pages are inspected."
-      ]
+      ],
+      "book_family_corroboration_status": "CORROBORATED_BOOK_FAMILY_NOT_EXACT_SCAN_EDITION",
+      "book_family_corroboration_refs": [
+        "R2.4.1-CORR-MILLENNIUM-ABDUL-ALIM",
+        "R2.4.1-CORR-PBS-MOBIN"
+      ],
+      "page_image_inspection_status": "FRONT_MATTER_PAGE_IMAGES_ACCESSIBLE",
+      "checksum_provider_status": "SHA256_NOT_RETURNED_BY_DRIVE_METADATA"
     },
     {
       "artifact_id": "P1-ABUL-HASAN-2026-SCAN",
@@ -175,7 +189,14 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "shadow_draft_gateway": {
+        "gateway_id": "R2.4.1-B01-SHADOW-DRAFT-G1",
+        "authority": true,
+        "authority_class": "NON_PUBLISHABLE_SHADOW_DRAFT_ONLY",
+        "pass_2_still_required": true,
+        "publication_authority": false
+      }
     },
     {
       "matrix_id": "BIO-P1-C01-B02-full-topic",
@@ -1317,7 +1338,9 @@
     "pass_1": 29,
     "pass_2": 0,
     "pass_2_blocked": 29,
-    "lecture_gap_remediation_authority_rows": 0
+    "lecture_gap_remediation_authority_rows": 0,
+    "book_family_corroborated_artifacts": 2,
+    "shadow_draft_authority_rows": 1
   },
   "boundaries": {
     "new_lecture_authoring": false,
@@ -1325,6 +1348,11 @@
     "chapter_completion": false,
     "verified_primary_promotion": false,
     "matrix_qyi_release": false,
-    "ready_merge_production": false
-  }
+    "ready_merge_production": false,
+    "shadow_draft_gateway_active": true,
+    "shadow_draft_authority_rows": 1,
+    "claim_page_binding_complete": false,
+    "exact_scan_edition_authentication_complete": false
+  },
+  "narrow_gateway": "_data/admission/biology/narrow_evidence_gateway_v1.json"
 }
