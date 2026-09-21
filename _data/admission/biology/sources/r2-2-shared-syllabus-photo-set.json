@@ -1,0 +1,156 @@
+{
+  "schema": "lbfl-admission-biology-r2-2-source-evidence-v1",
+  "version": "R2.2-0.1",
+  "source_set_id": "BIO-R2-2-SHARED-SYLLABUS-PHOTO-SET-20260922",
+  "custody": "User-provided photographs of the selected Biology First Paper and Biology Second Paper books in this conversation. The repository records immutable photo hashes and the claims each image supports; the photographs themselves are not committed.",
+  "evidence_scope": {
+    "supports": [
+      "Biology First Paper chapter titles, order, printed chapter page ranges and NCTB syllabus period allocation",
+      "Biology Second Paper chapter titles, order, printed chapter page ranges and NCTB syllabus period allocation",
+      "Biology First Paper statement that the book was published as an approved Classes XI-XII textbook under the National Curriculum 2012 / NCTB notice-direction framework",
+      "Biology Second Paper publication and edition lineage, including explicit NCTB-approved editions and the 2026 revised edition"
+    ],
+    "does_not_by_itself_support": [
+      "a complete digital hash of either physical book",
+      "page-level scientific claim mapping for every chapter",
+      "all future NCTB-authorized reference books",
+      "automatic chapter completion or model-test authority"
+    ]
+  },
+  "first_paper": {
+    "source_id": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+    "title": "জীববিজ্ঞান প্রথম পত্র",
+    "class_level": "একাদশ-দ্বাদশ শ্রেণি",
+    "publisher": "লেকচার পাবলিকেশন্স লি.",
+    "visible_author_line": [
+      "প্রফেসর মাহফুজা হক",
+      "মিলন কান্তি",
+      "ড. আ. ন. ম. আল মামুন চৌধুরী",
+      "ড. মোহাম্মদ ওমর ফারুক রাসেল"
+    ],
+    "authorization_evidence": {
+      "status": "verified-book-family-current-curriculum-origin",
+      "visible_statement_summary": "The photographed preface states that, following NCTB notices/directives and the National Curriculum 2012, the book was published in June 2015 as an approved textbook for Classes XI-XII.",
+      "exact_current_printing_edition_status": "not-visible-in-provided-images",
+      "exact_current_printing_authorization_reference_status": "not-visible-in-provided-images"
+    }
+  },
+  "second_paper": {
+    "source_id": "BIO-P2-GAZI-AJMOL-PHYSICAL-COPY-2026",
+    "title": "জীববিজ্ঞান দ্বিতীয় পত্র",
+    "class_level": "একাদশ-দ্বাদশ শ্রেণি",
+    "visible_authors": [
+      "গাজী আজমল",
+      "গাজী আসমত"
+    ],
+    "publisher": "গাজী পাবলিশার্স",
+    "edition_or_revision": "সংশোধিত সংস্করণ ২০২৬",
+    "authorization_evidence": {
+      "status": "verified-authorization-lineage-and-inspected-revision",
+      "visible_lineage": [
+        "১৮তম সংস্করণ: ১৯৯৮ (এনসিটিবি কর্তৃক অনুমোদিত)",
+        "বর্তমান সিলেবাস অনুযায়ী প্রথম প্রকাশ: ২০১৪ (এনসিটিবি কর্তৃক অনুমোদিত)",
+        "সংশোধিত সংস্করণ: ২০২৬"
+      ],
+      "note": "The visible page establishes the inspected 2026 revision and an NCTB-approved current-syllabus lineage beginning in 2014. It does not show a separate 2026 approval number."
+    }
+  },
+  "images": [
+    {
+      "file": "27408.jpg",
+      "sha256": "80edbd954c46ec9ab82337b96cddac6112789350995d44779c7e885ee6101ea6",
+      "bytes": 450303,
+      "role": "Biology First Paper cover"
+    },
+    {
+      "file": "27409.jpg",
+      "sha256": "a367016408f6a4194466ab7ba486e8db4d396802d8af3b698a46d6f23938a9d6",
+      "bytes": 439704,
+      "role": "Biology First Paper NCTB syllabus page"
+    },
+    {
+      "file": "27410.jpg",
+      "sha256": "2edb911a25f6067a7e0e338329b4ee6ff14fd9d8e72aec8d10142b2bc87366ce",
+      "bytes": 520097,
+      "role": "Biology First Paper NCTB syllabus page"
+    },
+    {
+      "file": "27411.jpg",
+      "sha256": "15efecd356523b4ccdd775d0e207c3426bfeaf87f39addf20545c26ad0837ab6",
+      "bytes": 540171,
+      "role": "Biology First Paper contents page"
+    },
+    {
+      "file": "27412.jpg",
+      "sha256": "dae4128c2b8aed3fa5ab3b2e15b25d0a66099906690c212d6e33f87e00f1211d",
+      "bytes": 629866,
+      "role": "Biology First Paper contents page"
+    },
+    {
+      "file": "27413.jpg",
+      "sha256": "71b0fee727ba7a16e053f7525034931a14cc32d1ca28cc18d2e6f5f83c46b4aa",
+      "bytes": 670039,
+      "role": "Biology First Paper contents page"
+    },
+    {
+      "file": "27414.jpg",
+      "sha256": "1b0236279b00cb580e5b2b985d4f0e323193c61df8c9318185972f1dd4743e28",
+      "bytes": 482047,
+      "role": "Biology Second Paper cover"
+    },
+    {
+      "file": "27415.jpg",
+      "sha256": "def5672316c91c28152be3b23962fe13d46103d870037319e8d2aea97dd71ae8",
+      "bytes": 598054,
+      "role": "Biology Second Paper contents page"
+    },
+    {
+      "file": "27416.jpg",
+      "sha256": "4cfd70f6614db517fabde33a3ecbbbc34be0e97bdc7a4a3bdceb68b7b86232d9",
+      "bytes": 626436,
+      "role": "Biology Second Paper contents page"
+    },
+    {
+      "file": "27417.jpg",
+      "sha256": "951f70f525e608b997666812038c16e118c51976f824824bce28f5ac2503ad1c",
+      "bytes": 599552,
+      "role": "Biology Second Paper contents page"
+    },
+    {
+      "file": "27418.jpg",
+      "sha256": "ec133670a9d7a045d22a7598de9e95eda2bfba92cb294d01876dbfa25e74fbc1",
+      "bytes": 687047,
+      "role": "Biology Second Paper NCTB syllabus page"
+    },
+    {
+      "file": "27419.jpg",
+      "sha256": "a68c6d84c2673998a2c3e0d957d82656d55a39daa9e8a776ca59d949e482374e",
+      "bytes": 615023,
+      "role": "Biology Second Paper NCTB syllabus page"
+    },
+    {
+      "file": "27420.jpg",
+      "sha256": "50dc17d27cf915a2c3c30b0047adc940ee16245da1dd22e4322bdce6eab58781",
+      "bytes": 696492,
+      "role": "Biology Second Paper NCTB syllabus page"
+    },
+    {
+      "file": "27421.jpg",
+      "sha256": "3a44d19ed259e7ee450fe8163d0e13c26d71d5f1fe38f8c64979f649d32aa5db",
+      "bytes": 706435,
+      "role": "Biology Second Paper NCTB syllabus page"
+    },
+    {
+      "file": "27424.jpg",
+      "sha256": "c41e318d4b526255aa06357a9dfdff1ac2277eff7053d61e93f56d5869da4fd2",
+      "bytes": 507282,
+      "role": "Biology Second Paper publication/edition/authorization lineage page"
+    },
+    {
+      "file": "27425.jpg",
+      "sha256": "b7102147d88e499c9ba0c58452246a8b5ae16a8eca0dadfc2fb716663cdef745",
+      "bytes": 671447,
+      "role": "Biology First Paper preface with NCTB/current-curriculum approval statement"
+    }
+  ]
+}
