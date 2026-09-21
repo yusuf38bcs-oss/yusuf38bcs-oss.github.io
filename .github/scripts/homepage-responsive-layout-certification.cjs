@@ -52,6 +52,7 @@ async function inspect(page, viewportWidth) {
       language: ".lbfl-v3-language-switcher",
       languageEn: ".lbfl-v3-language-switcher a[lang='en']",
       languageBn: ".lbfl-v3-language-switcher a[lang='bn']",
+      banglaBodySample: ".lbfl-v3-bangla-sample",
       desktopEditorial: ".lbfl-v3-nav a[href*='editorial-policy']",
       hero: ".lbfl-v3-hero",
       heroGrid: ".lbfl-v3-hero__grid",
@@ -253,6 +254,7 @@ async function inspect(page, viewportWidth) {
         bnHref: bn ? bn.getAttribute("href") : null,
         enTarget: targetSize(selectors.languageEn),
         bnTarget: targetSize(selectors.languageBn),
+        bodyBanglaSampleAbsent: !element(selectors.banglaBodySample),
       },
       editorial: {
         desktopVisible: compactHeader ? true : visible(desktopEditorial),
@@ -354,11 +356,15 @@ async function inspectMenu(page, viewportWidth) {
 
   await button.click();
   const dialog = page.locator("[data-v3-menu]");
+  const admission = dialog.locator("a[href='/admission/'], a[href$='/admission/']");
+  const ielts = dialog.locator("a[href='/ielts/'], a[href$='/ielts/']");
   const editorial = dialog.locator("a[href*='editorial-policy']");
   const contact = dialog.locator("a[href*='contact']");
 
   const passed =
     (await dialog.isVisible()) &&
+    (await admission.isVisible()) &&
+    (await ielts.isVisible()) &&
     (await editorial.isVisible()) &&
     (await contact.isVisible());
 
@@ -366,6 +372,8 @@ async function inspectMenu(page, viewportWidth) {
     applicable: true,
     passed,
     dialogVisible: await dialog.isVisible(),
+    admissionVisible: await admission.isVisible(),
+    ieltsVisible: await ielts.isVisible(),
     editorialVisible: await editorial.isVisible(),
     contactVisible: await contact.isVisible(),
   };
@@ -398,6 +406,7 @@ function passes(result) {
     l.language.enTarget.height >= 44 &&
     l.language.bnTarget.width >= 44 &&
     l.language.bnTarget.height >= 44 &&
+    l.language.bodyBanglaSampleAbsent &&
     l.editorial.desktopVisible &&
     l.editorial.evidenceLinkVisible &&
     l.editorial.footerLinkVisible &&
@@ -466,6 +475,7 @@ function summarizeFailure(result) {
   if (l.innerOverflow.length) reasons.push(`inner-overflow=${l.innerOverflow.join(",")}`);
   if (!l.header.visible || !l.header.compactContract) reasons.push("header-contract");
   if (!l.language.visible || !/বাংলা/.test(l.language.text)) reasons.push("bilingual-switch");
+  if (!l.language.bodyBanglaSampleAbsent) reasons.push("english-body-bangla-sample");
   if (!l.editorial.desktopVisible || !l.editorial.evidenceLinkVisible || !l.editorial.footerLinkVisible) reasons.push("editorial-discoverability");
   if (!/EDITORIAL\s*&\s*EVIDENCE/i.test(l.editorial.kicker)) reasons.push("editorial-kicker");
   if (!l.hero.visible) reasons.push("hero-visibility");
@@ -539,7 +549,7 @@ function summarizeFailure(result) {
   const report = {
     targetUrl,
     generatedAt: new Date().toISOString(),
-    contract: "homepage-v3.5.2-mobile-composition",
+    contract: "homepage-v3.5.3-menu-language",
     passed: results.every((result) => result.passed),
     results,
   };
