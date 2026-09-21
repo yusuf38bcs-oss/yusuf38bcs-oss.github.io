@@ -1,0 +1,131 @@
+{
+  "schema": "lbfl-admission-biology-narrow-evidence-gateway-v1",
+  "version": "R2.4.1-0.1",
+  "exact_parent_pr": 350,
+  "exact_parent_head": "a738298473017304ba556cb97d3879328a0b7160",
+  "purpose": "Provide a fail-closed, claim-scoped fallback path when acquired NCTB-authorized textbook scans cannot yet yield reproducible exact-edition/imprint or printed-page extraction, without weakening Pass-2, verified-primary, chapter-completion, publication, or model-test gates.",
+  "unresolved_primary_blockers": [
+    "Exact internal imprint/edition/authorization extraction from the acquired scan is not yet reproducibly transcribed.",
+    "Claim-level printed-page binding is not yet complete for any of the 29 matrix rows.",
+    "Provider metadata does not currently expose a SHA-256 checksum for the inspected Drive PDFs; SHA-256 remains required before Pass 2."
+  ],
+  "evidence_tiers": [
+    {
+      "tier": "G0",
+      "name": "artifact_acquired",
+      "authority": "candidate-only"
+    },
+    {
+      "tier": "G1",
+      "name": "book_family_corroborated",
+      "authority": "source-family reference candidate only"
+    },
+    {
+      "tier": "G2",
+      "name": "exact_scan_edition_authenticated",
+      "authority": "eligible for claim-page binding"
+    },
+    {
+      "tier": "G3",
+      "name": "claim_page_bound_and_scientifically_crosschecked",
+      "authority": "eligible for independent Pass 2"
+    },
+    {
+      "tier": "G4",
+      "name": "independent_pass2",
+      "authority": "lecture-gap remediation may unlock"
+    },
+    {
+      "tier": "G5",
+      "name": "full_completion_contract",
+      "authority": "topic/chapter completion subject to all other curriculum dimensions"
+    }
+  ],
+  "source_family_corroboration": [
+    {
+      "source_family_id": "P1-ABDUL-ALIM-MOBIN",
+      "candidate_artifact_id": "P1-ABDUL-ALIM-SCAN",
+      "paper_id": "BIO-P1",
+      "status": "CORROBORATED_BOOK_FAMILY_NOT_EXACT_SCAN_EDITION",
+      "corroboration": [
+        {
+          "source_class": "institutional_book_list",
+          "source_name": "Millennium Scholastic School & College HSC Science Book List 2020-2021",
+          "finding": "The document states that subject teachers recommended more than one book approved by NCTB and lists Biology First Paper by Dr. Abdul Alim / Dr. Md. Razaul Karim, Mobin Publications.",
+          "url": "https://bogra.millenniumscholastic.astutebd.com/Uploads/millenniumscholastic/Bogra/Document/HSC-Book-List-2020-2021-Science-Gp-pdf_millenniumscholastic928202033013PM.pdf"
+        },
+        {
+          "source_class": "publisher_catalogue",
+          "source_name": "PBS / Mobin Publications catalogue",
+          "finding": "Current publisher catalogue independently confirms Biology First Paper by Dr. Md. Abdul Alim under Mobin Publications.",
+          "url": "https://pbs.com.bd/publisher/1777/mobin-publications"
+        }
+      ],
+      "exact_scan_edition_status": "BLOCKED_PENDING_INTERNAL_IMPRINT_TRANSCRIPTION",
+      "page_image_access_status": "AVAILABLE_FOR_FRONT_MATTER_INSPECTION",
+      "sha256_status": "BLOCKED_PROVIDER_METADATA_DID_NOT_RETURN_SHA256"
+    },
+    {
+      "source_family_id": "P1-AJIBUR-RAHMAN-AKKHARPATRA",
+      "candidate_artifact_id": "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+      "paper_id": "BIO-P1",
+      "status": "CORROBORATED_BOOK_FAMILY_NOT_EXACT_SCAN_EDITION",
+      "corroboration": [
+        {
+          "source_class": "institutional_book_list",
+          "source_name": "Millennium Scholastic School & College HSC Science Book List 2020-2021",
+          "finding": "The document states that subject teachers recommended more than one book approved by NCTB and lists Biology First Paper by Prof. Dr. Md. Azibur Rahman / Debashish Roy, Akkharpatra Publications.",
+          "url": "https://bogra.millenniumscholastic.astutebd.com/Uploads/millenniumscholastic/Bogra/Document/HSC-Book-List-2020-2021-Science-Gp-pdf_millenniumscholastic928202033013PM.pdf"
+        },
+        {
+          "source_class": "current_bookseller_metadata",
+          "source_name": "PBS Akkharpatra Biology First Paper",
+          "finding": "Current metadata identifies the book family as Akkharpatra Biology First Paper by Prof. Dr. Md. Azibur Rahman, 13th Edition 2026, 752 pages.",
+          "url": "https://pbs.com.bd/book/2206991/akkharpatra-jibbiggan-1st-paper-class-11-12"
+        }
+      ],
+      "exact_scan_edition_status": "BLOCKED_PENDING_INTERNAL_IMPRINT_TRANSCRIPTION",
+      "page_image_access_status": "AVAILABLE_FOR_FRONT_MATTER_INSPECTION",
+      "sha256_status": "BLOCKED_PROVIDER_METADATA_DID_NOT_RETURN_SHA256"
+    }
+  ],
+  "narrow_gateway": {
+    "gateway_id": "R2.4.1-B01-SHADOW-DRAFT-G1",
+    "matrix_id": "BIO-P1-C01-B01-full-topic",
+    "topic_id": "B01",
+    "status": "OPEN",
+    "authority_class": "NON_PUBLISHABLE_SHADOW_DRAFT_ONLY",
+    "rationale": "B01 has authenticated curriculum mapping, Pass-1 multi-reference source population, at least two institutionally corroborated NCTB-approved textbook families, and authoritative scientific cross-checks. Exact scan edition identity and claim-page binding are still blocked, so only non-publishable shadow drafting may proceed.",
+    "prerequisites": {
+      "curriculum_mapping_authenticated": true,
+      "pass_1": "PASS",
+      "corroborated_textbook_families_minimum": 2,
+      "scientific_crosscheck_required": true,
+      "disagreement_must_remain_explicit": true
+    },
+    "granted": {
+      "shadow_lecture_outline": true,
+      "shadow_claim_inventory": true,
+      "shadow_missing_content_draft": true
+    },
+    "prohibited": {
+      "pass_2_promotion": true,
+      "lecture_gap_remediation_authority": true,
+      "verified_primary_promotion": true,
+      "topic_or_chapter_completion": true,
+      "chapter_model_test_authoring": true,
+      "learner_route_publication": true,
+      "matrix_qyi_release": true,
+      "ready_merge_production": true
+    },
+    "sunset_condition": "This gateway closes for B01 when one additional reference reaches exact-scan edition authentication + reproducible SHA-256/custody + claim-level printed-page binding, followed by independent Pass 2.",
+    "current_state": {
+      "shadow_draft_authority": true,
+      "pass_2": "BLOCKED",
+      "lecture_gap_remediation_authority": false,
+      "verified_primary": false,
+      "topic_complete": false
+    }
+  },
+  "invariant": "The narrow gateway creates preparation authority only. It must never be interpreted as evidence completion, publication authority, Pass-2 success, or a substitute for exact-edition/page/hash evidence."
+}
