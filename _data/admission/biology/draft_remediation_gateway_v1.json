@@ -1,0 +1,67 @@
+{
+  "schema": "lbfl-admission-biology-draft-remediation-gateway-v1",
+  "version": "R2.4-0.1",
+  "exact_parent_pr": 350,
+  "purpose": "Provide a narrow, non-publishing authoring gateway when image-only reference scans are acquired and custody-bound but exact internal imprint/authorization/claim-page extraction is still blocked. This gateway must never be confused with Pass-2 verification.",
+  "policy": {
+    "final_pass2_unchanged": true,
+    "verified_primary_promotion": false,
+    "chapter_completion": false,
+    "model_test_authoring": false,
+    "public_route_linking": false,
+    "production_release": false,
+    "matrix_qyi_release": false,
+    "draft_output_must_be_marked": "DRAFT_EVIDENCE_PENDING",
+    "draft_output_must_remain_isolated": true
+  },
+  "gateway_requirements": [
+    "canonical NCTB curriculum/chapter mapping is authenticated",
+    "R2.3 source population pass is PASS",
+    "at least one selected primary HSC textbook chapter range is recorded",
+    "at least one independent additional reference artifact for the same paper is ACQUIRED and has stable Drive custody metadata",
+    "at least one authoritative scientific cross-check locator exists for the row",
+    "all known disagreements remain explicit",
+    "Pass 2 remains BLOCKED",
+    "no completion/promotion/publication authority is implied"
+  ],
+  "rows": [
+    {
+      "matrix_id": "BIO-P1-C01-B01-full-topic",
+      "chapter_id": "BIO-P1-C01",
+      "topic_id": "B01",
+      "gateway_status": "OPEN_DRAFT_ONLY",
+      "rationale": [
+        "Biology First Paper Chapter 1 curriculum container is authenticated.",
+        "R2.3 source population for B01 is PASS.",
+        "Three independent First Paper reference scans are acquired; five acquired references overall have stable Drive custody metadata.",
+        "B01 has multiple authoritative scientific cross-check locators for membrane structure, passive transport and active transport.",
+        "Exact additional-reference imprint/authorization and printed claim-page extraction remain unresolved, so final Pass 2 stays BLOCKED."
+      ],
+      "allowed_actions": [
+        "prepare an isolated non-public draft remediation for the explicitly recorded B01 missing-lecture claims",
+        "annotate every section with DRAFT_EVIDENCE_PENDING",
+        "retain source placeholders for exact printed-page citations",
+        "prepare claim checklist for later page binding"
+      ],
+      "prohibited_actions": [
+        "set pass_2=PASS",
+        "set lecture_gap_remediation_authority=true",
+        "mark B01 complete",
+        "publish/link the draft from an Admission gateway",
+        "author or publish chapter model tests",
+        "promote verified-primary",
+        "Ready/merge/production action"
+      ],
+      "pass_2": "BLOCKED",
+      "lecture_gap_remediation_authority": false,
+      "draft_remediation_authority": true
+    }
+  ],
+  "summary": {
+    "gateway_rows": 1,
+    "open_draft_only_rows": 1,
+    "pass2_verified_rows": 0,
+    "lecture_gap_remediation_authority_rows": 0,
+    "draft_remediation_authority_rows": 1
+  }
+}
