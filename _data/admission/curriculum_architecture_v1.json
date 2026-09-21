@@ -1,12 +1,12 @@
 {
   "schema": "lbfl-admission-curriculum-architecture-v1",
-  "version": "R2.1-0.1",
+  "version": "R2.2-0.1",
   "parent_contract": {
-    "parent_pr": 345,
-    "parent_head": "5d1368228ca369febdd12f984a4ee6f796a2b435",
-    "stacked_on": "admission/r2-b01-primary-nctb-evidence-20260921"
+    "parent_pr": 347,
+    "parent_head": "af233662565dff7802598d60861fe64f9e305df6",
+    "stacked_on": "admission/r2-1-curriculum-architecture-biology-reuse-20260921"
   },
-  "purpose": "Define a fail-closed four-subject Admission curriculum architecture before large-scale lecture or model-test authoring.",
+  "purpose": "Define the four-subject Admission curriculum architecture and establish the authenticated 24-chapter Biology map before new lecture/model-test authoring.",
   "boundary": {
     "chapter_taxonomy_authenticated": false,
     "chapter_completion_allowed": false,
@@ -14,7 +14,8 @@
     "historical_occurrence_substitution_allowed": false,
     "f_v2_promotion_allowed": false,
     "matrix_qyi_release_allowed": false,
-    "ready_merge_production_authority": false
+    "ready_merge_production_authority": false,
+    "biology_chapter_taxonomy_authenticated": true
   },
   "chapter_complete_contract": {
     "required": [
@@ -103,7 +104,7 @@
       "subject_id": "BIO",
       "name": "Biology",
       "route_slug": "biology",
-      "architecture_status": "paper-shell-established-existing-topic-taxonomy-preserved",
+      "architecture_status": "24-chapter-curriculum-mapping-authenticated-multireference-verification-pending",
       "topic_taxonomy": {
         "source": "_data/admission/biology/engine_v1.json",
         "expected_topic_ids": [
@@ -136,23 +137,393 @@
           "B27",
           "B28"
         ],
-        "chapter_mapping_status": "pending-authenticated-source-mapping",
+        "chapter_mapping_status": "curriculum-mapping-authenticated-multireference-claim-verification-pending",
         "note": "B01-B28 are Admission topic identities and must not be silently treated as textbook chapter identities."
       },
       "papers": [
         {
           "paper_id": "BIO-P1",
           "name": "Biology First Paper",
-          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
-          "chapters": []
+          "chapter_taxonomy_status": "curriculum-mapping-authenticated",
+          "chapters": [
+            {
+              "chapter_id": "BIO-P1-C01",
+              "chapter_no": 1,
+              "bn_title": "কোষ ও এর গঠন",
+              "en_title": "Cell and its Structure",
+              "printed_pages": {
+                "start": 15,
+                "end": 110
+              },
+              "nctb_periods": 25,
+              "topic_ids": [
+                "B01",
+                "B02",
+                "B03"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C02",
+              "chapter_no": 2,
+              "bn_title": "কোষ বিভাজন",
+              "en_title": "Cell Division",
+              "printed_pages": {
+                "start": 111,
+                "end": 146
+              },
+              "nctb_periods": 8,
+              "topic_ids": [
+                "B04"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C03",
+              "chapter_no": 3,
+              "bn_title": "কোষ রসায়ন",
+              "en_title": "Cell Chemistry",
+              "printed_pages": {
+                "start": 147,
+                "end": 204
+              },
+              "nctb_periods": 8,
+              "topic_ids": [
+                "B05"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C04",
+              "chapter_no": 4,
+              "bn_title": "অণুজীব",
+              "en_title": "Microorganism",
+              "printed_pages": {
+                "start": 205,
+                "end": 264
+              },
+              "nctb_periods": 15,
+              "topic_ids": [
+                "B06"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C05",
+              "chapter_no": 5,
+              "bn_title": "শৈবাল ও ছত্রাক",
+              "en_title": "Algae and Fungi",
+              "printed_pages": {
+                "start": 265,
+                "end": 304
+              },
+              "nctb_periods": 10,
+              "topic_ids": [
+                "B07"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C06",
+              "chapter_no": 6,
+              "bn_title": "ব্রায়োফাইটা ও টেরিডোফাইটা",
+              "en_title": "Bryophyta and Pteridophyta",
+              "printed_pages": {
+                "start": 305,
+                "end": 324
+              },
+              "nctb_periods": 8,
+              "topic_ids": [
+                "B08"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C07",
+              "chapter_no": 7,
+              "bn_title": "নগ্নবীজী ও আবৃতবীজী উদ্ভিদ",
+              "en_title": "Gymnosperm and Angiosperm",
+              "printed_pages": {
+                "start": 325,
+                "end": 362
+              },
+              "nctb_periods": 8,
+              "topic_ids": [
+                "B09"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C08",
+              "chapter_no": 8,
+              "bn_title": "টিস্যু ও টিস্যুতন্ত্র",
+              "en_title": "Tissue and Tissue System",
+              "printed_pages": {
+                "start": 363,
+                "end": 392
+              },
+              "nctb_periods": 7,
+              "topic_ids": [
+                "B10"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C09",
+              "chapter_no": 9,
+              "bn_title": "উদ্ভিদ শারীরতত্ত্ব",
+              "en_title": "Plant Physiology",
+              "printed_pages": {
+                "start": 393,
+                "end": 460
+              },
+              "nctb_periods": 19,
+              "topic_ids": [
+                "B11",
+                "B12"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C10",
+              "chapter_no": 10,
+              "bn_title": "উদ্ভিদ প্রজনন",
+              "en_title": "Plant Reproduction",
+              "printed_pages": {
+                "start": 461,
+                "end": 488
+              },
+              "nctb_periods": 4,
+              "topic_ids": [
+                "B13"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C11",
+              "chapter_no": 11,
+              "bn_title": "জীবপ্রযুক্তি",
+              "en_title": "Biotechnology",
+              "printed_pages": {
+                "start": 489,
+                "end": 530
+              },
+              "nctb_periods": 10,
+              "topic_ids": [
+                "B14"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P1-C12",
+              "chapter_no": 12,
+              "bn_title": "জীবের পরিবেশ, বিস্তার ও সংরক্ষণ",
+              "en_title": "Environment, Distribution and Conservation of Organisms",
+              "printed_pages": {
+                "start": 531,
+                "end": 586
+              },
+              "nctb_periods": 18,
+              "topic_ids": [
+                "B15"
+              ],
+              "chapter_completion_status": "incomplete"
+            }
+          ]
         },
         {
           "paper_id": "BIO-P2",
           "name": "Biology Second Paper",
-          "chapter_taxonomy_status": "pending-authenticated-source-mapping",
-          "chapters": []
+          "chapter_taxonomy_status": "curriculum-mapping-authenticated",
+          "chapters": [
+            {
+              "chapter_id": "BIO-P2-C01",
+              "chapter_no": 1,
+              "bn_title": "প্রাণীর বিভিন্নতা ও শ্রেণিবিন্যাস",
+              "en_title": "Animal Diversity and Classification",
+              "printed_pages": {
+                "start": 1,
+                "end": 58
+              },
+              "nctb_periods": 7,
+              "topic_ids": [
+                "B16"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C02",
+              "chapter_no": 2,
+              "bn_title": "প্রাণীর পরিচিতি",
+              "en_title": "Introduction to Animals",
+              "printed_pages": {
+                "start": 59,
+                "end": 146
+              },
+              "nctb_periods": 25,
+              "topic_ids": [
+                "B17"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C03",
+              "chapter_no": 3,
+              "bn_title": "মানব শারীরতত্ত্ব : পরিপাক ও শোষণ",
+              "en_title": "Human Physiology: Digestion and Absorption",
+              "printed_pages": {
+                "start": 147,
+                "end": 187
+              },
+              "nctb_periods": 12,
+              "topic_ids": [
+                "B18"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C04",
+              "chapter_no": 4,
+              "bn_title": "মানব শারীরতত্ত্ব : রক্ত সংবহন",
+              "en_title": "Human Physiology: Blood Circulation",
+              "printed_pages": {
+                "start": 188,
+                "end": 237
+              },
+              "nctb_periods": 14,
+              "topic_ids": [
+                "B19"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C05",
+              "chapter_no": 5,
+              "bn_title": "মানব শারীরতত্ত্ব : শ্বসন ও শ্বাসক্রিয়া",
+              "en_title": "Human Physiology: Respiration and Breathing",
+              "printed_pages": {
+                "start": 238,
+                "end": 262
+              },
+              "nctb_periods": 10,
+              "topic_ids": [
+                "B20"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C06",
+              "chapter_no": 6,
+              "bn_title": "মানব শারীরতত্ত্ব : বর্জ্য ও নিষ্কাশন",
+              "en_title": "Human Physiology: Wastes and Excretion",
+              "printed_pages": {
+                "start": 263,
+                "end": 286
+              },
+              "nctb_periods": 6,
+              "topic_ids": [
+                "B21"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C07",
+              "chapter_no": 7,
+              "bn_title": "মানব শারীরতত্ত্ব : চলন ও অঙ্গ চালনা",
+              "en_title": "Human Physiology: Locomotion and Movement",
+              "printed_pages": {
+                "start": 287,
+                "end": 329
+              },
+              "nctb_periods": 12,
+              "topic_ids": [
+                "B22"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C08",
+              "chapter_no": 8,
+              "bn_title": "মানব শারীরতত্ত্ব : সমন্বয় ও নিয়ন্ত্রণ",
+              "en_title": "Human Physiology: Coordination and Control",
+              "printed_pages": {
+                "start": 330,
+                "end": 378
+              },
+              "nctb_periods": 12,
+              "topic_ids": [
+                "B23",
+                "B24"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C09",
+              "chapter_no": 9,
+              "bn_title": "মানব জীবনের ধারাবাহিকতা",
+              "en_title": "Continuity of Human Life",
+              "printed_pages": {
+                "start": 379,
+                "end": 425
+              },
+              "nctb_periods": 11,
+              "topic_ids": [
+                "B25"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C10",
+              "chapter_no": 10,
+              "bn_title": "মানবদেহের প্রতিরক্ষা",
+              "en_title": "Human Body Defense",
+              "printed_pages": {
+                "start": 426,
+                "end": 454
+              },
+              "nctb_periods": 9,
+              "topic_ids": [
+                "B26"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C11",
+              "chapter_no": 11,
+              "bn_title": "জিনতত্ত্ব ও বিবর্তন",
+              "en_title": "Genetics and Evolution",
+              "printed_pages": {
+                "start": 455,
+                "end": 506
+              },
+              "nctb_periods": 15,
+              "topic_ids": [
+                "B27",
+                "B28"
+              ],
+              "chapter_completion_status": "incomplete"
+            },
+            {
+              "chapter_id": "BIO-P2-C12",
+              "chapter_no": 12,
+              "bn_title": "প্রাণীর আচরণ",
+              "en_title": "Animal Behaviour",
+              "printed_pages": {
+                "start": 507,
+                "end": 533
+              },
+              "nctb_periods": 8,
+              "topic_ids": [
+                "B28"
+              ],
+              "chapter_completion_status": "incomplete"
+            }
+          ]
         }
       ]
     }
-  ]
+  ],
+  "reference_policy": "_data/admission/biology/reference_policy_v1.json",
+  "biology_chapter_map": "_data/admission/biology/chapter_map_v1.json",
+  "biology_claim_source_matrix": "_data/admission/biology/claim_source_matrix_v1.json"
 }
