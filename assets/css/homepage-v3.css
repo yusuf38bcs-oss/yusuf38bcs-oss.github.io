@@ -199,7 +199,7 @@
   .lbfl-v3-shell { width: min(calc(100% - 28px), var(--v3-shell)); }
   .lbfl-v3-brand__text { display: none; }
   .lbfl-v3-language-switcher { gap: 2px; }
-  .lbfl-v3-language-switcher a { min-width: 40px; padding-inline: 4px; font-size: 0.84rem; }
+  .lbfl-v3-language-switcher a { min-width: 44px; padding-inline: 4px; font-size: 0.84rem; }
   .lbfl-v3-hero { padding: 40px 0 56px; }
   .lbfl-v3-hero__grid { grid-template-columns: 1fr; }
   .lbfl-v3-hero h1 { font-size: clamp(2.45rem, 12.3vw, 3.9rem); }
@@ -377,6 +377,10 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
 .lbfl-v3-hero__copy {
   max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .lbfl-v3-eyebrow {
@@ -709,7 +713,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
 @media (max-width: 700px) {
   .lbfl-v3-hero {
-    padding: 44px 0 58px;
+    padding: 40px 0 52px;
   }
 
   .lbfl-v3-hero::after {
@@ -720,7 +724,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
   .lbfl-v3-hero__grid {
     grid-template-columns: 1fr;
-    gap: 34px;
+    gap: 30px;
   }
 
   .lbfl-v3-hero h1 {
@@ -733,11 +737,11 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   }
 
   .lbfl-v3-cycle {
-    margin-top: 24px;
+    margin-top: 20px;
   }
 
   .lbfl-v3-cycle li {
-    min-height: 62px;
+    min-height: 58px;
     padding: 10px 6px;
     text-align: center;
   }
