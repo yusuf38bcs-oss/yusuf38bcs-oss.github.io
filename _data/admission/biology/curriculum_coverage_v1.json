@@ -58,7 +58,8 @@
       "nctb_source": {
         "status": "topic-aligned-primary-page-verification-pending",
         "refs": [
-          "NCTB-HSC-BIOLOGY-1-CELL-MEMBRANE"
+          "NCTB-HSC-BIOLOGY-1-CELL-MEMBRANE",
+          "NCTB-B01-PRIMARY-001"
         ]
       },
       "status": "partial"
