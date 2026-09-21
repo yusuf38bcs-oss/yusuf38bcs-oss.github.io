@@ -1,0 +1,73 @@
+{
+  "schema": "lbfl-admission-biology-reference-policy-v1",
+  "version": "R2.2-0.1",
+  "policy_id": "LBFL-BIOLOGY-MULTI-REFERENCE-EDITORIAL-RULE",
+  "permanent_rule": "LBFL will not depend on a single guidebook or textbook. Curriculum boundaries will follow NCTB. Explanations will be developed through cross-verification among NCTB-authorized HSC texts and appropriate authoritative scientific references. Every substantial source-dependent claim will identify its reference, and uncertainty or disagreement among sources will be stated rather than silently reconciled.",
+  "hierarchy": [
+    {
+      "class": "curriculum_authority",
+      "role": "Defines official paper, chapter and topic boundary.",
+      "examples": [
+        "NCTB Higher Secondary Biology curriculum/syllabus"
+      ],
+      "required_for_curriculum_mapping": true
+    },
+    {
+      "class": "nctb_authorized_textbook",
+      "role": "Primary curricular evidence and page-level textbook support.",
+      "required_for_verified_curricular_claim": true
+    },
+    {
+      "class": "supplementary_authorized_book",
+      "role": "Cross-checks explanations, examples, diagrams, terminology and alternative authorized treatments.",
+      "required_when_available": false,
+      "preferred_for_substantial_claims": true
+    },
+    {
+      "class": "scientific_reference",
+      "role": "Clarifies mechanisms, resolves outdated/ambiguous textbook treatment, and supports deeper scientific explanation.",
+      "required_when": "Textbook treatment is incomplete, disputed, outdated, or scientifically insufficient."
+    },
+    {
+      "class": "historical_exam_evidence",
+      "role": "Documents examination occurrence only.",
+      "prohibition": "Must not substitute for curriculum coverage or textbook/scientific verification."
+    }
+  ],
+  "claim_rules": {
+    "substantial_source_dependent_claim_requires_reference": true,
+    "curriculum_boundary_follows_nctb": true,
+    "single_book_dependency_prohibited": true,
+    "disagreements_must_be_explicit": true,
+    "silent_reconciliation_prohibited": true,
+    "fabricated_reference_prohibited": true,
+    "historical_occurrence_substitution_prohibited": true
+  },
+  "verified_primary_contract": {
+    "minimum": [
+      "authenticated NCTB curriculum mapping",
+      "at least one authenticated NCTB-authorized HSC textbook source",
+      "claim-to-source-page mapping",
+      "reproducible source/custody identity",
+      "independent second verification"
+    ],
+    "multi_reference_expectation": "Additional authorized books and/or authoritative scientific references should be added where available and are required when a claim is disputed, ambiguous, incomplete, outdated or materially strengthened by cross-verification.",
+    "note": "verified-primary is a claim-evidence status, not a declaration that one textbook is the sole authority."
+  },
+  "reference_bundle_schema": {
+    "curriculum_sources": [],
+    "nctb_authorized_textbooks": [],
+    "supplementary_authorized_books": [],
+    "scientific_references": [],
+    "disagreements": [],
+    "unresolved_questions": []
+  },
+  "chapter_complete_reference_gate": {
+    "curriculum_sources_min": 1,
+    "nctb_authorized_textbooks_min": 1,
+    "all_substantial_claims_referenced": true,
+    "unresolved_material_disagreement_allowed": false,
+    "second_verification_required": true
+  },
+  "status": "active"
+}
