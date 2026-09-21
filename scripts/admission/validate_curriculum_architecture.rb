@@ -57,7 +57,7 @@ EXPECTED_CHAPTERS = {
 def load_json(path)
   JSON.parse(File.read(path, encoding: "UTF-8"))
 rescue Errno::ENOENT
-  abort "Admission R2.4 Biology Pass-2 + Draft Gateway Validation: FAIL\n- missing file: #{path}"
+  abort "Admission R2.4.2 Biology Physical-Copy Gateway Validation: FAIL\n- missing file: #{path}"
 rescue JSON::ParserError => e
   abort "Admission R2.4 Biology Pass-2 + Draft Gateway Validation: FAIL\n- invalid JSON #{path}: #{e.message}"
 end
@@ -89,8 +89,8 @@ expected_topic_ids = Array(engine["taxonomy"]).map { |topic| topic["id"] }
 coverage_by_id = Array(coverage["topics"]).to_h { |topic| [topic["id"], topic] }
 
 errors << "architecture schema mismatch" unless architecture["schema"] == "lbfl-admission-curriculum-architecture-v1"
-errors << "architecture version must be R2.4-0.2" unless architecture["version"] == "R2.4-0.2"
-errors << "architecture parent head mismatch" unless architecture.dig("parent_contract", "parent_head") == "e07addcc58e2e3528fde7940e1b5e7f71a8c240b"
+errors << "architecture version must be R2.4.2-0.1" unless architecture["version"] == "R2.4.2-0.1"
+errors << "architecture parent head mismatch" unless architecture.dig("parent_contract", "parent_head") == "4975362ba27308393d827f66cd468235b4c520c9"
 
 subjects = Array(architecture["subjects"])
 subject_ids = subjects.map { |subject| subject["subject_id"] }
@@ -108,10 +108,10 @@ bio = subjects.find { |subject| subject["subject_id"] == "BIO" }
 if bio.nil?
   errors << "BIO subject missing"
 else
-  errors << "BIO architecture status mismatch" unless bio["architecture_status"] == "24-chapter-mapping-authenticated-pass2-blocked-b01-draft-only-gateway-open"
+  errors << "BIO architecture status mismatch" unless bio["architecture_status"] == "24-chapter-mapping-authenticated-pass2-blocked-b01-draft-gateway-plus-physical-copy-evidence-route"
   errors << "BIO engine taxonomy source changed" unless bio.dig("topic_taxonomy", "source") == "_data/admission/biology/engine_v1.json"
   errors << "BIO topic IDs changed" unless Array(bio.dig("topic_taxonomy", "expected_topic_ids")) == expected_topic_ids
-  errors << "BIO chapter mapping status mismatch" unless bio.dig("topic_taxonomy", "chapter_mapping_status") == "curriculum-mapping-authenticated-source-populated-pass2-blocked-draft-only-gateway-active"
+  errors << "BIO chapter mapping status mismatch" unless bio.dig("topic_taxonomy", "chapter_mapping_status") == "curriculum-mapping-authenticated-source-populated-pass2-blocked-draft-and-physical-evidence-gateways-active"
 
   bio_chapters = Array(bio["papers"]).flat_map { |paper| Array(paper["chapters"]) }
   errors << "BIO architecture must contain exactly 24 chapter rows" unless bio_chapters.length == 24
@@ -136,6 +136,9 @@ errors << "lecture-gap remediation authority row count must remain zero" unless 
 errors << "stable Drive custody metadata count must be 5" unless boundary["biology_drive_stable_metadata_bound_artifacts"] == 5
 errors << "draft-remediation gateway must be active" unless boundary["biology_draft_remediation_gateway_active"] == true
 errors << "draft-remediation authority row count must be 1" unless boundary["biology_draft_remediation_authority_rows"] == 1
+errors << "physical-copy Pass-2 route must be supported" unless boundary["biology_physical_copy_pass2_route_supported"] == true
+errors << "source-family corroboration count must be 2" unless boundary["biology_source_families_corroborated"] == 2
+errors << "physical-copy evidence intake row count must be 1" unless boundary["biology_physical_copy_evidence_intake_rows"] == 1
 %w[
   chapter_completion_allowed
   new_model_test_batch_allowed
@@ -309,8 +312,8 @@ verification_rows.each do |row|
 end
 
 errors << "Pass-2 ledger schema mismatch" unless pass2_ledger["schema"] == "lbfl-admission-biology-pass2-claim-evidence-v1"
-errors << "Pass-2 ledger version mismatch" unless pass2_ledger["version"] == "R2.4-0.2"
-errors << "Pass-2 ledger parent mismatch" unless pass2_ledger["exact_parent_head"] == "e07addcc58e2e3528fde7940e1b5e7f71a8c240b"
+errors << "Pass-2 ledger version mismatch" unless pass2_ledger["version"] == "R2.4.2-0.1"
+errors << "Pass-2 ledger parent mismatch" unless pass2_ledger["exact_parent_head"] == "4975362ba27308393d827f66cd468235b4c520c9"
 pass2_rows = Array(pass2_ledger["rows"])
 pass2_artifacts = Array(pass2_ledger["acquisition_artifacts"])
 errors << "Pass-2 ledger must contain 29 rows" unless pass2_rows.length == 29
@@ -347,10 +350,32 @@ pass2_rows.each do |row|
     errors << "#{label}: exact edition identity missing" if blank?(row["exact_edition_identity"])
     errors << "#{label}: authorization evidence missing" if blank?(row["authorization_evidence"])
     artifact = row["artifact_identity"] || {}
-    errors << "#{label}: Drive artifact identity missing" if blank?(artifact["drive_file_id"])
-    errors << "#{label}: artifact size missing" unless artifact["size_bytes"].is_a?(Integer) && artifact["size_bytes"].positive?
-    errors << "#{label}: SHA-256 missing" unless sha256?(artifact["sha256"])
-    errors << "#{label}: custody reference missing" if blank?(artifact["custody_reference"])
+    identity_mode = row["artifact_identity_mode"]
+
+    case identity_mode
+    when "digital_pdf"
+      errors << "#{label}: digital artifact locator missing" if blank?(artifact["drive_file_id"])
+      errors << "#{label}: digital artifact size missing" unless artifact["size_bytes"].is_a?(Integer) && artifact["size_bytes"].positive?
+      errors << "#{label}: digital SHA-256 missing" unless sha256?(artifact["sha256"])
+      errors << "#{label}: digital custody reference missing" if blank?(artifact["custody_reference"])
+    when "physical_copy"
+      physical = artifact["physical_copy_identity"] || {}
+      %w[book_title author_or_authors paper_id publisher exact_edition_or_printing_or_revision_identity nctb_authorization_evidence physical_copy_custody_reference].each do |field|
+        errors << "#{label}: physical-copy #{field} missing" if blank?(physical[field])
+      end
+      front_ids = Array(artifact["front_matter_capture_ids"])
+      front_hashes = Array(artifact["front_matter_capture_sha256"])
+      claim_ids = Array(artifact["claim_page_capture_ids"])
+      claim_hashes = Array(artifact["claim_page_capture_sha256"])
+      errors << "#{label}: physical-copy front-matter capture IDs missing" if front_ids.empty?
+      errors << "#{label}: physical-copy front-matter hashes missing" if front_hashes.empty?
+      errors << "#{label}: physical-copy claim-page capture IDs missing" if claim_ids.empty?
+      errors << "#{label}: physical-copy claim-page hashes missing" if claim_hashes.empty?
+      errors << "#{label}: invalid physical-copy front-matter SHA-256" unless front_hashes.all? { |value| sha256?(value) }
+      errors << "#{label}: invalid physical-copy claim-page SHA-256" unless claim_hashes.all? { |value| sha256?(value) }
+    else
+      errors << "#{label}: artifact_identity_mode must be digital_pdf or physical_copy on Pass 2"
+    end
     errors << "#{label}: claim_id missing" if blank?(row["claim_id"])
     errors << "#{label}: printed_page missing" if blank?(row["printed_page"])
     errors << "#{label}: claim_locator missing" if blank?(row["claim_locator"])
@@ -367,8 +392,9 @@ end
 
 
 errors << "draft gateway schema mismatch" unless draft_gateway["schema"] == "lbfl-admission-biology-draft-remediation-gateway-v1"
-errors << "draft gateway version mismatch" unless draft_gateway["version"] == "R2.4-0.1"
+errors << "draft gateway version mismatch" unless draft_gateway["version"] == "R2.4.2-0.1"
 errors << "draft gateway parent mismatch" unless draft_gateway["exact_parent_pr"] == 350
+errors << "draft gateway exact parent head mismatch" unless draft_gateway["exact_parent_head"] == "4975362ba27308393d827f66cd468235b4c520c9"
 gateway_policy = draft_gateway["policy"] || {}
 errors << "draft gateway must preserve final Pass-2" unless gateway_policy["final_pass2_unchanged"] == true
 errors << "draft gateway must not promote verified-primary" unless gateway_policy["verified_primary_promotion"] == false
@@ -388,10 +414,45 @@ errors << "B01 draft gateway status mismatch" unless gateway_row["gateway_status
 errors << "B01 final Pass-2 must remain BLOCKED" unless gateway_row["pass_2"] == "BLOCKED"
 errors << "B01 final lecture-gap authority must remain false" unless gateway_row["lecture_gap_remediation_authority"] == false
 errors << "B01 draft-only remediation authority must be true" unless gateway_row["draft_remediation_authority"] == true
+errors << "B01 physical-copy evidence intake must be true" unless gateway_row["physical_copy_evidence_intake"] == true
+errors << "B01 final evidence gateway ID mismatch" unless gateway_row["final_evidence_gateway_id"] == "R2.4.2-PHYSICAL-COPY-PASS2"
 errors << "draft gateway summary row count mismatch" unless draft_gateway.dig("summary", "gateway_rows") == 1
 errors << "draft gateway Pass-2 verified count must remain zero" unless draft_gateway.dig("summary", "pass2_verified_rows") == 0
 errors << "draft gateway lecture-gap authority count must remain zero" unless draft_gateway.dig("summary", "lecture_gap_remediation_authority_rows") == 0
 errors << "draft gateway draft-authority count must be one" unless draft_gateway.dig("summary", "draft_remediation_authority_rows") == 1
+errors << "draft gateway corroborated source-family count must be two" unless draft_gateway.dig("summary", "source_families_corroborated") == 2
+errors << "draft gateway physical-copy intake count must be one" unless draft_gateway.dig("summary", "physical_copy_evidence_intake_rows") == 1
+
+source_families = Array(draft_gateway["source_family_corroboration"])
+errors << "expected exactly two corroborated source families" unless source_families.length == 2
+errors << "corroborated source families must retain stable Drive custody" unless source_families.all? { |source| source["custody_status"] == "DRIVE_STABLE_METADATA_BOUND" }
+errors << "corroborated source families must not claim exact scan edition" unless source_families.all? { |source| source["corroboration_status"] == "BOOK_FAMILY_CORROBORATED_EXACT_SCAN_EDITION_NOT_YET_AUTHENTICATED" }
+
+final_gateway = draft_gateway["final_evidence_resolution_gateway"] || {}
+errors << "physical-copy final evidence gateway ID mismatch" unless final_gateway["gateway_id"] == "R2.4.2-PHYSICAL-COPY-PASS2"
+errors << "physical-copy final evidence gateway must be ready" unless final_gateway["status"] == "READY_FOR_EVIDENCE_INTAKE"
+errors << "digital PDF artifact identity mode missing" unless final_gateway.dig("artifact_identity_modes", "digital_pdf", "final_pass2_eligible") == true
+errors << "physical-copy artifact identity mode missing" unless final_gateway.dig("artifact_identity_modes", "physical_copy", "final_pass2_eligible") == true
+
+errors << "Pass-2 ledger must support physical-copy route" unless pass2_ledger.dig("boundaries", "physical_copy_pass2_route_supported") == true
+errors << "Pass-2 ledger must support digital PDF route" unless pass2_ledger.dig("boundaries", "digital_pdf_pass2_route_supported") == true
+errors << "book-family corroboration must not equal exact edition" unless pass2_ledger.dig("boundaries", "book_family_corroboration_not_equal_exact_edition") == true
+errors << "Pass-2 ledger source-family count must be two" unless pass2_ledger.dig("summary", "source_families_corroborated") == 2
+errors << "Pass-2 ledger physical-copy intake count must be one" unless pass2_ledger.dig("summary", "physical_copy_evidence_intake_rows") == 1
+
+b01_pass2 = pass2_rows.find { |row| row["matrix_id"] == "BIO-P1-C01-B01-full-topic" }
+if b01_pass2.nil?
+  errors << "B01 Pass-2 row missing"
+else
+  physical_gateway = b01_pass2["physical_copy_gateway"] || {}
+  errors << "B01 physical-copy gateway ID mismatch" unless physical_gateway["gateway_id"] == "R2.4.2-PHYSICAL-COPY-PASS2"
+  errors << "B01 physical-copy gateway must be eligible" unless physical_gateway["eligible"] == true
+  errors << "B01 physical-copy gateway status mismatch" unless physical_gateway["status"] == "READY_FOR_EVIDENCE_INTAKE"
+  errors << "B01 physical-copy gateway must still require final Pass 2" unless physical_gateway["final_pass2_still_required"] == true
+  errors << "B01 physical-copy gateway must not grant publication authority" unless physical_gateway["publication_authority"] == false
+  errors << "B01 Pass 2 must remain BLOCKED" unless b01_pass2["pass_2"] == "BLOCKED"
+  errors << "B01 lecture-gap remediation authority must remain false" unless b01_pass2["lecture_gap_remediation_authority"] == false
+end
 
 errors << "source evidence schema mismatch" unless source_evidence["schema"] == "lbfl-admission-biology-r2-2-source-evidence-v1"
 errors << "source evidence set ID mismatch" unless source_evidence["source_set_id"] == "BIO-R2-2-SHARED-SYLLABUS-PHOTO-SET-20260922"
@@ -444,8 +505,8 @@ if errors.any?
   exit 1
 end
 
-puts "Admission R2.4 Biology Pass-2 + Draft Gateway Validation: PASS"
+puts "Admission R2.4.2 Biology Physical-Copy Gateway Validation: PASS"
 puts "biology_chapters=24 p1=12 p2=12 periods_p1=#{EXPECTED_P1_PERIODS} periods_p2=#{EXPECTED_P2_PERIODS}"
 puts "chapter_topic_rows=#{matrix_rows.length} unique_topics=#{matrix_rows.map { |row| row['topic_id'] }.uniq.length} source_populated_rows=29 page_verified_claim_rows=0 second_verified_rows=0"
 puts "multi_reference_rule=active textbook_candidates=#{book_candidates.length} scientific_locators=#{scientific_refs.length} disagreements=#{disagreements.length} single_book_dependency=false silent_reconciliation=false"
-puts "pass1_source_population=29 pass2_verified=0 pass2_blocked=29 acquired_additional_artifacts=#{pass2_ledger.dig('summary', 'acquired_additional_artifacts')} stable_drive_custody=#{pass2_ledger.dig('summary', 'drive_stable_metadata_bound')} lecture_gap_remediation_authority=0 draft_remediation_authority=1 new_public_lectures=false new_model_tests=false b01_b28_completion_unchanged=true matrix_qyi_release=false ready_merge_production=false"
+puts "pass1_source_population=29 pass2_verified=0 pass2_blocked=29 acquired_additional_artifacts=#{pass2_ledger.dig('summary', 'acquired_additional_artifacts')} stable_drive_custody=#{pass2_ledger.dig('summary', 'drive_stable_metadata_bound')} source_families_corroborated=2 physical_copy_intake=1 lecture_gap_remediation_authority=0 draft_remediation_authority=1 new_public_lectures=false new_model_tests=false b01_b28_completion_unchanged=true matrix_qyi_release=false ready_merge_production=false"
