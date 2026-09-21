@@ -339,10 +339,28 @@ pass2_rows.each do |row|
     errors << "#{label}: exact edition identity missing" if blank?(row["exact_edition_identity"])
     errors << "#{label}: authorization evidence missing" if blank?(row["authorization_evidence"])
     artifact = row["artifact_identity"] || {}
-    errors << "#{label}: Drive artifact identity missing" if blank?(artifact["drive_file_id"])
-    errors << "#{label}: artifact size missing" unless artifact["size_bytes"].is_a?(Integer) && artifact["size_bytes"].positive?
-    errors << "#{label}: SHA-256 missing" unless sha256?(artifact["sha256"])
-    errors << "#{label}: custody reference missing" if blank?(artifact["custody_reference"])
+    identity_mode = row["artifact_identity_mode"]
+
+    case identity_mode
+    when "digital_pdf"
+      errors << "#{label}: digital artifact locator missing" if blank?(artifact["drive_file_id"])
+      errors << "#{label}: digital artifact size missing" unless artifact["size_bytes"].is_a?(Integer) && artifact["size_bytes"].positive?
+      errors << "#{label}: digital SHA-256 missing" unless sha256?(artifact["sha256"])
+      errors << "#{label}: digital custody reference missing" if blank?(artifact["custody_reference"])
+    when "physical_copy"
+      physical = artifact["physical_copy_identity"] || {}
+      %w[book_title author_or_authors paper_id publisher exact_edition_or_printing_or_revision_identity nctb_authorization_evidence physical_copy_custody_reference].each do |field|
+        errors << "#{label}: physical-copy #{field} missing" if blank?(physical[field])
+      end
+      front_hashes = Array(artifact["front_matter_capture_sha256"])
+      claim_hashes = Array(artifact["claim_page_capture_sha256"])
+      errors << "#{label}: physical-copy front-matter capture hashes missing" if front_hashes.empty?
+      errors << "#{label}: physical-copy claim-page capture hashes missing" if claim_hashes.empty?
+      errors << "#{label}: invalid physical-copy front-matter capture SHA-256" unless front_hashes.all? { |value| sha256?(value) }
+      errors << "#{label}: invalid physical-copy claim-page capture SHA-256" unless claim_hashes.all? { |value| sha256?(value) }
+    else
+      errors << "#{label}: artifact_identity_mode must be digital_pdf or physical_copy on Pass 2"
+    end
     errors << "#{label}: claim_id missing" if blank?(row["claim_id"])
     errors << "#{label}: printed_page missing" if blank?(row["printed_page"])
     errors << "#{label}: claim_locator missing" if blank?(row["claim_locator"])
@@ -371,6 +389,8 @@ errors << "narrow gateway Pass 2 must remain BLOCKED" unless gw.dig("current_sta
 errors << "narrow gateway must not grant lecture remediation authority" unless gw.dig("current_state", "lecture_gap_remediation_authority") == false
 errors << "narrow gateway must not grant verified-primary" unless gw.dig("current_state", "verified_primary") == false
 errors << "narrow gateway must not grant topic completion" unless gw.dig("current_state", "topic_complete") == false
+errors << "physical-copy gateway must be ready" unless gw.dig("current_state", "physical_copy_gateway_ready") == true
+errors << "physical-copy intake must be granted" unless gw.dig("granted", "physical_copy_evidence_intake") == true
 
 gw_prohibited = gw["prohibited"] || {}
 %w[pass_2_promotion lecture_gap_remediation_authority verified_primary_promotion topic_or_chapter_completion chapter_model_test_authoring learner_route_publication matrix_qyi_release ready_merge_production].each do |key|
@@ -383,6 +403,14 @@ errors << "corroborated families must remain BIO-P1" unless corroborated.all? { 
 errors << "corroborated families cannot claim exact scan edition" unless corroborated.all? { |source| source["status"] == "CORROBORATED_BOOK_FAMILY_NOT_EXACT_SCAN_EDITION" }
 errors << "corroborated families must retain exact-scan blocker" unless corroborated.all? { |source| source["exact_scan_edition_status"] == "BLOCKED_PENDING_INTERNAL_IMPRINT_TRANSCRIPTION" }
 errors << "corroborated families must retain SHA-256 blocker" unless corroborated.all? { |source| source["sha256_status"] == "BLOCKED_PROVIDER_METADATA_DID_NOT_RETURN_SHA256" }
+
+routes = narrow_gateway["artifact_identity_routes"] || {}
+errors << "digital PDF identity route missing" unless routes.dig("digital_pdf", "mode") == "digital_pdf"
+errors << "physical-copy identity route missing" unless routes.dig("physical_copy", "mode") == "physical_copy"
+errors << "physical-copy route must require hashed front matter" unless Array(routes.dig("physical_copy", "required")).include?("front_matter_capture_sha256[]")
+errors << "physical-copy route must require hashed claim pages" unless Array(routes.dig("physical_copy", "required")).include?("claim_page_capture_sha256[]")
+errors << "preferred physical-copy resolution route missing" unless gw.dig("preferred_resolution_route", "route") == "PHYSICAL_COPY_CUSTODY_IF_SCAN_IMPRINT_REMAINS_UNREADABLE"
+
 
 errors << "Pass-2 ledger must bind narrow gateway" unless pass2_ledger["narrow_gateway"] == "_data/admission/biology/narrow_evidence_gateway_v1.json"
 errors << "book-family corroborated artifact count must be two" unless pass2_ledger.dig("summary", "book_family_corroborated_artifacts") == 2
@@ -400,6 +428,9 @@ else
   errors << "B01 shadow authority must be non-publishable" unless shadow["authority_class"] == "NON_PUBLISHABLE_SHADOW_DRAFT_ONLY"
   errors << "B01 shadow gateway must still require Pass 2" unless shadow["pass_2_still_required"] == true
   errors << "B01 shadow gateway must not grant publication authority" unless shadow["publication_authority"] == false
+  physical_gateway = b01_pass2["physical_copy_gateway"] || {}
+  errors << "B01 physical-copy gateway must be eligible" unless physical_gateway["eligible"] == true
+  errors << "B01 physical-copy gateway intake status mismatch" unless physical_gateway["status"] == "READY_FOR_EVIDENCE_INTAKE"
   errors << "B01 final lecture remediation authority must remain false" unless b01_pass2["lecture_gap_remediation_authority"] == false
   errors << "B01 Pass 2 must remain BLOCKED" unless b01_pass2["pass_2"] == "BLOCKED"
 end
