@@ -1,10 +1,10 @@
 {
   "schema": "lbfl-admission-biology-pass2-claim-evidence-v1",
-  "version": "R2.4-0.2",
-  "exact_parent_pr": 349,
-  "exact_parent_head": "e07addcc58e2e3528fde7940e1b5e7f71a8c240b",
-  "purpose": "Acquire independent Biology reference artifacts, bind reproducible Drive custody metadata, enforce final Pass-2 requirements, and permit only a separately governed draft-only remediation gateway where exact internal scan evidence remains unavailable.",
-  "unlock_rule": "lecture_gap_remediation_authority may be true only when pass_1=PASS, pass_2=PASS, additional_reference_id is an ACQUIRED authenticated additional reference, exact_edition_identity and authorization_evidence are present, artifact identity includes reproducible custody and SHA-256, claim_id/printed_page/claim_locator are present, scientific_crosscheck is non-empty, and every material disagreement has an explicit disposition.",
+  "version": "R2.4.2-0.1",
+  "exact_parent_pr": 350,
+  "exact_parent_head": "4975362ba27308393d827f66cd468235b4c520c9",
+  "purpose": "Acquire independent Biology reference artifacts, preserve stable Drive custody metadata, enforce fail-closed Pass-2 requirements, retain the isolated B01 draft-only remediation gateway, and support a reproducible physical-copy artifact route when digital scan extraction remains blocked.",
+  "unlock_rule": "lecture_gap_remediation_authority may be true only when pass_1=PASS, pass_2=PASS, exact edition/authorization is authenticated, claim_id/printed_page/claim_locator are bound, scientific cross-checks are present, disagreements are explicitly disposed, and exactly one artifact-identity mode is complete: digital_pdf with exact SHA-256/custody OR physical_copy with exact physical identity/custody plus hashed front-matter and claim-page captures.",
   "acquisition_artifacts": [
     {
       "artifact_id": "P1-ABUL-HASAN-2020-SCAN",
@@ -138,15 +138,31 @@
     }
   ],
   "row_contract": {
-    "required_on_pass_2": [
+    "artifact_identity_rule": "Exactly one artifact-identity mode must satisfy final Pass 2: digital_pdf or physical_copy.",
+    "digital_pdf_required_on_pass_2": [
+      "stable artifact locator",
+      "size_bytes",
+      "sha256",
+      "custody_reference",
+      "exact_edition_identity",
+      "authorization_evidence"
+    ],
+    "physical_copy_required_on_pass_2": [
+      "book_title",
+      "author_or_authors",
+      "paper_id",
+      "publisher",
+      "exact_edition_or_printing_or_revision_identity",
+      "nctb_authorization_evidence",
+      "physical_copy_custody_reference",
+      "front_matter_capture_ids[]",
+      "front_matter_capture_sha256[]",
+      "claim_page_capture_ids[]",
+      "claim_page_capture_sha256[]"
+    ],
+    "shared_required_on_pass_2": [
       "matrix_id",
       "additional_reference_id",
-      "exact_edition_identity",
-      "authorization_evidence",
-      "artifact_identity.drive_file_id",
-      "artifact_identity.size_bytes",
-      "artifact_identity.sha256",
-      "artifact_identity.custody_reference",
       "claim_id",
       "printed_page",
       "claim_locator",
@@ -200,7 +216,26 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null,
+      "physical_copy_gateway": {
+        "gateway_id": "R2.4.2-PHYSICAL-COPY-PASS2",
+        "eligible": true,
+        "status": "READY_FOR_EVIDENCE_INTAKE",
+        "final_pass2_still_required": true,
+        "publication_authority": false,
+        "required_before_pass2": [
+          "exact physical book identity",
+          "exact edition/printing/revision",
+          "NCTB authorization attributable to exact copy/edition",
+          "reproducible custody reference",
+          "hashed title/imprint/authorization captures",
+          "hashed B01 claim-page captures with printed page visible",
+          "claim-level scientific cross-check",
+          "explicit disagreement disposition",
+          "independent second verification"
+        ]
+      }
     },
     {
       "matrix_id": "BIO-P1-C01-B02-full-topic",
@@ -241,7 +276,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C01-B03-nucleus-chromosome-molecular-biology",
@@ -282,7 +318,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C02-B04-full-topic",
@@ -324,7 +361,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C03-B05-carbohydrate-protein-lipid-enzyme",
@@ -365,7 +403,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C04-B06-full-topic",
@@ -407,7 +446,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C05-B07-algae-fungi-lichen-as-source-supported",
@@ -449,7 +489,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C06-B08-full-topic",
@@ -491,7 +532,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C07-B09-gymnosperm-angiosperm-plant-family-scope-as-verified",
@@ -532,7 +574,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C08-B10-full-topic",
@@ -573,7 +616,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C09-B11-full-topic",
@@ -614,7 +658,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C09-B12-full-topic",
@@ -656,7 +701,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C10-B13-reproduction",
@@ -698,7 +744,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C11-B14-full-topic",
@@ -739,7 +786,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P1-C12-B15-full-topic",
@@ -782,7 +830,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C01-B16-full-topic",
@@ -821,7 +870,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C02-B17-hydra-grasshopper-rohu",
@@ -861,7 +911,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C03-B18-full-topic",
@@ -900,7 +951,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C04-B19-full-topic",
@@ -940,7 +992,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C05-B20-full-topic",
@@ -979,7 +1032,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C06-B21-full-topic",
@@ -1018,7 +1072,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C07-B22-full-topic",
@@ -1057,7 +1112,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C08-B23-nervous-system-sense-organs",
@@ -1096,7 +1152,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C08-B24-endocrine-homeostasis",
@@ -1135,7 +1192,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C09-B25-full-topic",
@@ -1174,7 +1232,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C10-B26-full-topic",
@@ -1213,7 +1272,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C11-B27-genetics-inheritance",
@@ -1252,7 +1312,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C11-B28-evolution",
@@ -1292,7 +1353,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     },
     {
       "matrix_id": "BIO-P2-C12-B28-animal-behaviour",
@@ -1332,7 +1394,8 @@
       "pass_1": "PASS",
       "pass_2": "BLOCKED",
       "pass_2_blocker": "Exact additional-reference edition/authorization plus claim-level printed-page evidence has not yet been independently inspected for this row.",
-      "lecture_gap_remediation_authority": false
+      "lecture_gap_remediation_authority": false,
+      "artifact_identity_mode": null
     }
   ],
   "summary": {
@@ -1343,7 +1406,9 @@
     "pass_2": 0,
     "pass_2_blocked": 29,
     "lecture_gap_remediation_authority_rows": 0,
-    "drive_stable_metadata_bound": 5
+    "drive_stable_metadata_bound": 5,
+    "source_families_corroborated": 2,
+    "physical_copy_evidence_intake_rows": 1
   },
   "boundaries": {
     "new_lecture_authoring": false,
@@ -1352,6 +1417,11 @@
     "verified_primary_promotion": false,
     "matrix_qyi_release": false,
     "ready_merge_production": false,
-    "draft_only_remediation_gateway_separate": true
+    "draft_only_remediation_gateway_separate": true,
+    "physical_copy_pass2_route_supported": true,
+    "digital_pdf_pass2_route_supported": true,
+    "book_family_corroboration_not_equal_exact_edition": true,
+    "pass2_verified_rows": 0,
+    "lecture_gap_remediation_authority_rows": 0
   }
 }
