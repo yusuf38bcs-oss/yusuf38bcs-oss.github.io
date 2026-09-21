@@ -1,0 +1,314 @@
+{
+  "schema": "lbfl-admission-biology-reuse-audit-v1",
+  "version": "R2.1-0.1",
+  "audited_parent_head": "5d1368228ca369febdd12f984a4ee6f796a2b435",
+  "taxonomy_source": "_data/admission/biology/engine_v1.json",
+  "coverage_source": "_data/admission/biology/curriculum_coverage_v1.json",
+  "audit_rule": "Repository-path reuse candidates are inventory findings only. They do not promote curriculum status and do not prove NCTB-authorized textbook alignment.",
+  "reuse_status_vocabulary": [
+    "strong-reuse-candidate",
+    "partial-reuse-candidate",
+    "no-obvious-existing-route"
+  ],
+  "summary": {
+    "total_topics": 28,
+    "strong_reuse_candidates": 8,
+    "partial_reuse_candidates": 6,
+    "no_obvious_existing_route": 14
+  },
+  "topics": [
+    {
+      "topic_id": "B01",
+      "coverage_status_at_parent": "partial",
+      "reuse_status": "partial-reuse-candidate",
+      "candidate_paths": [
+        "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
+        "_biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory.md",
+        "_biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model.md"
+      ],
+      "gap_note": "Strong cell/membrane material exists; exact transport coverage and chapter-source alignment still require audit.",
+      "next_action": "Map existing cell lectures to the authenticated chapter and add only the missing transport/remediation elements."
+    },
+    {
+      "topic_id": "B02",
+      "coverage_status_at_parent": "partial",
+      "reuse_status": "strong-reuse-candidate",
+      "candidate_paths": [
+        "_biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory.md",
+        "_biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network.md",
+        "_biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome.md",
+        "_biology/hsc-corner/botany/lecture-06-mitochondria.md",
+        "_biology/hsc-corner/botany/structures-functions-cell-organelles-part-1.md",
+        "_biology/hsc-corner/botany/structures-functions-cell-organelles-part-2.md"
+      ],
+      "gap_note": "Multiple organelle-focused HSC routes already exist; completeness against the exact authorized textbook remains unverified.",
+      "next_action": "Prefer reuse and source reconciliation before writing any new organelle lecture."
+    },
+    {
+      "topic_id": "B03",
+      "coverage_status_at_parent": "partial",
+      "reuse_status": "partial-reuse-candidate",
+      "candidate_paths": [
+        "_biology/hsc-corner/botany/human-body-mysterious-workspace-central-dogma.md",
+        "_biology/higher-zoology-tree/genetics/course-index.md"
+      ],
+      "gap_note": "Molecular/genetic material exists but is distributed across different learning contexts and is not yet audited as one Admission chapter sequence.",
+      "next_action": "Reconcile nucleus/chromosome/molecular claims and identify exact gaps before authoring."
+    },
+    {
+      "topic_id": "B04",
+      "coverage_status_at_parent": "partial",
+      "reuse_status": "partial-reuse-candidate",
+      "candidate_paths": [
+        "_biology/mitosis.md",
+        "_biology/higher-zoology-tree/genetics/course-index.md"
+      ],
+      "gap_note": "A mitosis route exists, but a complete HSC-aligned mitosis/meiosis sequence is not yet established.",
+      "next_action": "Audit mitosis coverage and author only the missing meiosis/cell-cycle portions."
+    },
+    {
+      "topic_id": "B05",
+      "coverage_status_at_parent": "partial",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical standalone biomolecules-and-enzymes lecture family was found in the current repository tree beyond Foundation Sprint material.",
+      "next_action": "Create a source-grounded canonical lecture set after authenticated chapter mapping."
+    },
+    {
+      "topic_id": "B06",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical microorganisms course route was found.",
+      "next_action": "Author only after chapter mapping and exact source authentication."
+    },
+    {
+      "topic_id": "B07",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical algae/fungi/lichen course route was found.",
+      "next_action": "Author only after chapter mapping and exact source authentication."
+    },
+    {
+      "topic_id": "B08",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical bryophyte/pteridophyte course route was found.",
+      "next_action": "Author only after chapter mapping and exact source authentication."
+    },
+    {
+      "topic_id": "B09",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical gymnosperm/angiosperm/plant-family course route was found.",
+      "next_action": "Author only after chapter mapping and exact source authentication."
+    },
+    {
+      "topic_id": "B10",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical plant-tissue/anatomy course route was found.",
+      "next_action": "Author only after chapter mapping and exact source authentication."
+    },
+    {
+      "topic_id": "B11",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical water/mineral transport/transpiration course route was found.",
+      "next_action": "Author only after chapter mapping and exact source authentication."
+    },
+    {
+      "topic_id": "B12",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical photosynthesis/cellular-respiration course route was found.",
+      "next_action": "Author only after chapter mapping and exact source authentication."
+    },
+    {
+      "topic_id": "B13",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical plant growth/hormone/reproduction course route was found.",
+      "next_action": "Author only after chapter mapping and exact source authentication."
+    },
+    {
+      "topic_id": "B14",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical biotechnology course route was found.",
+      "next_action": "Author only after chapter mapping and exact source authentication."
+    },
+    {
+      "topic_id": "B15",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "strong-reuse-candidate",
+      "candidate_paths": [
+        "_biology/higher-zoology-tree/ecology/course-index.md",
+        "_biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels.md",
+        "_biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion.md",
+        "_biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models.md"
+      ],
+      "gap_note": "A structured Ecology course exists, but Biodiversity/Conservation claims must be mapped explicitly to the Admission topic and exact HSC source.",
+      "next_action": "Reuse the Ecology course, then add only uncovered biodiversity/conservation material."
+    },
+    {
+      "topic_id": "B16",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "strong-reuse-candidate",
+      "candidate_paths": [
+        "_biology/higher-zoology-tree/animal-diversity/course-index.md",
+        "_biology/higher-zoology-tree/animal-diversity/lecture-01-chordate-plan-classification.md",
+        "_biology/higher-zoology-tree/animal-diversity/protozoa-body-covering-skeletal-structure-locomotion.md"
+      ],
+      "gap_note": "A substantial Animal Diversity course exists and is a strong reuse base; HSC chapter alignment still requires explicit mapping.",
+      "next_action": "Build Admission chapter wrappers over canonical diversity lectures rather than duplicating them."
+    },
+    {
+      "topic_id": "B17",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "strong-reuse-candidate",
+      "candidate_paths": [
+        "_biology/higher-zoology-tree/animal-diversity/lecture-02-ascidia.md",
+        "_biology/higher-zoology-tree/animal-diversity/lecture-03-branchiostoma.md",
+        "_biology/higher-zoology-tree/animal-diversity/lecture-05-scoliodon.md",
+        "_biology/higher-zoology-tree/animal-diversity/lecture-06-labeo-rohita.md",
+        "_biology/higher-zoology-tree/animal-diversity/lecture-07-bufo.md",
+        "_biology/higher-zoology-tree/animal-diversity/lecture-08-hemidactylus.md",
+        "_biology/higher-zoology-tree/animal-diversity/lecture-09-columba-livia.md"
+      ],
+      "gap_note": "Representative-animal lectures already exist for several syllabus organisms, but the exact HSC representative-animal set must be authenticated.",
+      "next_action": "Map textbook-required representatives to existing lectures and author only missing organisms/features."
+    },
+    {
+      "topic_id": "B18",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "strong-reuse-candidate",
+      "candidate_paths": [
+        "_biology/hsc-corner/zoology/digestive-system/index.md",
+        "_biology/hsc-corner/zoology/digestive-system/lecture-01-human-digestive-system-overview.md",
+        "_biology/hsc-corner/zoology/digestive-system/lecture-10-absorption.md",
+        "_biology/hsc-corner/zoology/digestive-system/lecture-14-revision.md"
+      ],
+      "gap_note": "A dedicated multi-lecture HSC digestive-system series already exists, including absorption and revision.",
+      "next_action": "Reuse the canonical digestive series and map chapter-test repair links directly to it."
+    },
+    {
+      "topic_id": "B19",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "strong-reuse-candidate",
+      "candidate_paths": [
+        "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
+        "_biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md",
+        "_biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation.md",
+        "_biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity.md"
+      ],
+      "gap_note": "Multiple circulation/blood lectures exist and provide a strong reuse base.",
+      "next_action": "Audit exact HSC blood/circulation claims and reuse these routes as repair destinations."
+    },
+    {
+      "topic_id": "B20",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "strong-reuse-candidate",
+      "candidate_paths": [
+        "_biology/hsc-corner/zoology/respiratory-system-lecture.md",
+        "_biology/hsc-corner/zoology/respiratory-system-anatomy-airway-alveoli.md",
+        "_biology/hsc-corner/zoology/respiratory-mechanics-gas-transport.md",
+        "_biology/hsc-corner/zoology/respiratory-system-mind-mapping.md"
+      ],
+      "gap_note": "A dedicated HSC respiratory-system lecture family already exists.",
+      "next_action": "Reuse the respiratory series and add only authenticated missing claims."
+    },
+    {
+      "topic_id": "B21",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical excretion/osmoregulation lecture family was found.",
+      "next_action": "Author after exact chapter/source mapping."
+    },
+    {
+      "topic_id": "B22",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical locomotion/skeleton/joint/muscle lecture family was found.",
+      "next_action": "Author after exact chapter/source mapping."
+    },
+    {
+      "topic_id": "B23",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "partial-reuse-candidate",
+      "candidate_paths": [
+        "_biology/cranial-nerve-axis.md",
+        "_biology/higher-zoology-tree/animal-diversity/lecture-10-homo-sapiens-eye-ear.md"
+      ],
+      "gap_note": "Nerve-axis and eye/ear material exists, but a coherent HSC nervous-system and sense-organ chapter sequence is not yet established.",
+      "next_action": "Reuse relevant neural and sensory material, then fill verified chapter gaps."
+    },
+    {
+      "topic_id": "B24",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical endocrine/homeostasis course family was found.",
+      "next_action": "Author after exact chapter/source mapping."
+    },
+    {
+      "topic_id": "B25",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "no-obvious-existing-route",
+      "candidate_paths": [],
+      "gap_note": "No obvious canonical human reproduction/embryology course family was found.",
+      "next_action": "Author after exact chapter/source mapping."
+    },
+    {
+      "topic_id": "B26",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "partial-reuse-candidate",
+      "candidate_paths": [
+        "_biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity.md"
+      ],
+      "gap_note": "An immunity-related physiology lecture exists, but it does not yet establish a complete HSC immunity chapter.",
+      "next_action": "Audit reuse scope and author only the missing immune-system material."
+    },
+    {
+      "topic_id": "B27",
+      "coverage_status_at_parent": "partial",
+      "reuse_status": "strong-reuse-candidate",
+      "candidate_paths": [
+        "_biology/higher-zoology-tree/genetics/course-index.md",
+        "_biology/higher-zoology-tree/genetics/lecture-01-foundations-of-genetics.md",
+        "_biology/higher-zoology-tree/genetics/lecture-03-mendel-and-pea-plant.md",
+        "_biology/higher-zoology-tree/genetics/lecture-04-one-character.md",
+        "_biology/higher-zoology-tree/genetics/lecture-05-two-character.md"
+      ],
+      "gap_note": "A substantial Genetics course already exists and is the strongest reuse base for this topic.",
+      "next_action": "Map the authenticated Admission/HSC genetics chapter to the canonical Genetics course before adding new content."
+    },
+    {
+      "topic_id": "B28",
+      "coverage_status_at_parent": "gap",
+      "reuse_status": "partial-reuse-candidate",
+      "candidate_paths": [
+        "_biology/higher-zoology-tree/human-behaviour/index.md"
+      ],
+      "gap_note": "A Human Behaviour gateway exists, but no complete evolution-plus-animal-behaviour HSC sequence is established.",
+      "next_action": "Audit the behaviour material and create only the missing evolution/behaviour curriculum components."
+    }
+  ],
+  "boundaries": {
+    "changes_existing_topic_status": false,
+    "creates_new_lectures": false,
+    "creates_new_model_tests": false,
+    "establishes_primary_source_verification": false,
+    "authorizes_matrix_qyi": false
+  }
+}
