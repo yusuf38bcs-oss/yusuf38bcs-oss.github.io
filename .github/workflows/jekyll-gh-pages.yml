@@ -57,7 +57,42 @@ jobs:
           test -f _site/assets/css/biology-matrix.css || (echo "Missing biology-matrix.css" && exit 1)
           test -f _site/assets/js/core/ai-core.js || (echo "Missing ai-core.js" && exit 1)
 
-          if grep -q 'data-homepage-v2' _site/index.html; then
+          if grep -q 'lbfl-home-v3-document' _site/index.html; then
+            echo "Validating Homepage v3 production output."
+            grep -q 'class="lbfl-home-v3"' _site/index.html || (echo "Homepage v3 body root missing" && exit 1)
+            grep -q 'assets/css/homepage-v3.css' _site/index.html || (echo "Homepage v3 stylesheet missing" && exit 1)
+            grep -q 'assets/js/home/homepage-v3.js' _site/index.html || (echo "Homepage v3 runtime missing" && exit 1)
+            grep -q 'hreflang="bn"' _site/index.html || (echo "Homepage v3 Bangla language target missing" && exit 1)
+            grep -q 'বাংলা' _site/index.html || (echo "Homepage v3 visible Bangla label missing" && exit 1)
+            grep -q '/editorial-policy/' _site/index.html || (echo "Homepage v3 Editorial navigation missing" && exit 1)
+
+            readarray -t ADSENSE_POLICY < <(ruby -ryaml -e '
+              policy = YAML.safe_load(
+                File.read("_data/adsense.yml"),
+                permitted_classes: [],
+                permitted_symbols: [],
+                aliases: false
+              ) || {}
+              puts policy.fetch("mode", "")
+              puts policy.fetch("certified_cmp_ready", false)
+            ')
+            ADSENSE_MODE="${ADSENSE_POLICY[0]:-}"
+            ADSENSE_CMP_READY="${ADSENSE_POLICY[1]:-false}"
+            if [[ "$ADSENSE_MODE" == "live" && "$ADSENSE_CMP_READY" == "true" ]]; then
+              grep -q 'GTM-WPZ6MPK4' _site/index.html || (echo "Homepage v3 GTM configuration missing in certified live mode" && exit 1)
+            elif grep -q 'GTM-WPZ6MPK4' _site/index.html; then
+              echo "Homepage v3 GTM must remain suppressed outside certified live mode"
+              exit 1
+            else
+              echo "Homepage v3 GTM suppression matches the current AdSense policy."
+            fi
+
+            grep -q 'analytics_storage.*denied' _site/index.html || (echo "Homepage v3 denied consent default missing" && exit 1)
+            if grep -q 'synaptic-floating-ai-root' _site/index.html; then
+              echo "Legacy Synaptic floating AI widget must not be injected into Homepage v3"
+              exit 1
+            fi
+          elif grep -q 'data-homepage-v2' _site/index.html; then
             echo "Validating Homepage v2 production output."
             grep -q 'id="lbfl-home-v2"' _site/index.html || (echo "Homepage v2 root missing" && exit 1)
             grep -q 'assets/js/home/homepage-v2.js' _site/index.html || (echo "Homepage v2 runtime missing" && exit 1)
