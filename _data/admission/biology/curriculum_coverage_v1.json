@@ -1,0 +1,856 @@
+{
+  "schema": "lbfl-admission-biology-curriculum-coverage-v1",
+  "version": "R2-0.1",
+  "generated_from_engine_version": "1.0",
+  "scope": "Curriculum coverage only. Historical-question occurrence, evidence-state promotion, Matrix/QYI ranking and predictive claims are outside this ledger.",
+  "boundary": {
+    "historical_occurrence_substitution_allowed": false,
+    "matrix_qyi_release_allowed": false,
+    "f_v2_promotion_allowed": false,
+    "nctb_page_level_primary_verification_complete": false
+  },
+  "status_contract": {
+    "topic_status": [
+      "gap",
+      "partial",
+      "complete"
+    ],
+    "rule": "complete requires learning content, practice, model-test coverage, explanation, and verified primary NCTB source. No topic is complete in R2-0.1."
+  },
+  "summary": {
+    "total_topics": 28,
+    "complete_topics": 0,
+    "partial_topics": 6,
+    "gap_topics": 22
+  },
+  "topics": [
+    {
+      "id": "B01",
+      "bn": "কোষের গঠন, কোষঝিল্লি ও পরিবহন",
+      "en": "Cell Architecture, Membrane & Transport",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "present",
+        "routes": [
+          "/admission/day-1/"
+        ]
+      },
+      "practice": {
+        "status": "present",
+        "routes": [
+          "/admission/day-1/",
+          "/admission/day-6/",
+          "/admission/day-7/"
+        ]
+      },
+      "model_test_coverage": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q25"
+        ]
+      },
+      "explanation": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q25"
+        ]
+      },
+      "nctb_source": {
+        "status": "topic-aligned-primary-page-verification-pending",
+        "refs": [
+          "NCTB-HSC-BIOLOGY-1-CELL-MEMBRANE"
+        ]
+      },
+      "status": "partial"
+    },
+    {
+      "id": "B02",
+      "bn": "কোষীয় অঙ্গাণু",
+      "en": "Cell Organelles",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "present",
+        "routes": [
+          "/admission/day-1/"
+        ]
+      },
+      "practice": {
+        "status": "present",
+        "routes": [
+          "/admission/day-1/",
+          "/admission/day-6/",
+          "/admission/day-7/"
+        ]
+      },
+      "model_test_coverage": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q24"
+        ]
+      },
+      "explanation": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q24"
+        ]
+      },
+      "nctb_source": {
+        "status": "topic-aligned-primary-page-verification-pending",
+        "refs": [
+          "NCTB-HSC-BIOLOGY-1-CELL-ORGANELLES"
+        ]
+      },
+      "status": "partial"
+    },
+    {
+      "id": "B03",
+      "bn": "নিউক্লিয়াস, ক্রোমোজোম ও আণবিক জীববিজ্ঞান",
+      "en": "Nucleus, Chromosome & Molecular Biology",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "present",
+        "routes": [
+          "/admission/day-5/"
+        ]
+      },
+      "practice": {
+        "status": "present",
+        "routes": [
+          "/admission/day-5/",
+          "/admission/day-6/",
+          "/admission/day-7/"
+        ]
+      },
+      "model_test_coverage": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q29"
+        ]
+      },
+      "explanation": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q29"
+        ]
+      },
+      "nctb_source": {
+        "status": "topic-aligned-primary-page-verification-pending",
+        "refs": [
+          "NCTB-HSC-BIOLOGY-1-MOLECULAR-BIOLOGY"
+        ]
+      },
+      "status": "partial"
+    },
+    {
+      "id": "B04",
+      "bn": "কোষচক্র, মাইটোসিস ও মিয়োসিস",
+      "en": "Cell Cycle, Mitosis & Meiosis",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "present",
+        "routes": [
+          "/admission/day-2/"
+        ]
+      },
+      "practice": {
+        "status": "present",
+        "routes": [
+          "/admission/day-2/",
+          "/admission/day-6/",
+          "/admission/day-7/"
+        ]
+      },
+      "model_test_coverage": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q26",
+          "admission-foundation-01-q27"
+        ]
+      },
+      "explanation": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q26",
+          "admission-foundation-01-q27"
+        ]
+      },
+      "nctb_source": {
+        "status": "topic-aligned-primary-page-verification-pending",
+        "refs": [
+          "NCTB-HSC-BIOLOGY-1-CELL-DIVISION"
+        ]
+      },
+      "status": "partial"
+    },
+    {
+      "id": "B05",
+      "bn": "জৈব অণু ও এনজাইম",
+      "en": "Biomolecules & Enzymes",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "present",
+        "routes": [
+          "/admission/day-3/"
+        ]
+      },
+      "practice": {
+        "status": "present",
+        "routes": [
+          "/admission/day-3/"
+        ]
+      },
+      "model_test_coverage": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q30"
+        ]
+      },
+      "explanation": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q30"
+        ]
+      },
+      "nctb_source": {
+        "status": "topic-aligned-primary-page-verification-pending",
+        "refs": [
+          "NCTB-HSC-BIOLOGY-1-BIOMOLECULES"
+        ]
+      },
+      "status": "partial"
+    },
+    {
+      "id": "B06",
+      "bn": "অণুজীব",
+      "en": "Microorganisms",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B07",
+      "bn": "শৈবাল, ছত্রাক ও লাইকেন",
+      "en": "Algae, Fungi & Lichens",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B08",
+      "bn": "ব্রায়োফাইটা ও টেরিডোফাইটা",
+      "en": "Bryophyta & Pteridophyta",
+      "lane": "University Edge",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B09",
+      "bn": "জিমনোস্পার্ম, অ্যাঞ্জিওস্পার্ম ও উদ্ভিদ পরিবার",
+      "en": "Gymnosperm, Angiosperm & Plant Families",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B10",
+      "bn": "উদ্ভিদ টিস্যু ও অঙ্গসংস্থান",
+      "en": "Plant Tissue & Anatomy",
+      "lane": "University Edge",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B11",
+      "bn": "পানি, খনিজ পরিবহন ও প্রস্বেদন",
+      "en": "Water, Mineral Transport & Transpiration",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B12",
+      "bn": "সালোকসংশ্লেষণ ও কোষীয় শ্বসন",
+      "en": "Photosynthesis & Cellular Respiration",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B13",
+      "bn": "উদ্ভিদ বৃদ্ধি, হরমোন ও প্রজনন",
+      "en": "Plant Growth, Hormones & Reproduction",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B14",
+      "bn": "জীবপ্রযুক্তি",
+      "en": "Biotechnology",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B15",
+      "bn": "বাস্তুবিদ্যা, জীববৈচিত্র্য ও সংরক্ষণ",
+      "en": "Ecology, Biodiversity & Conservation",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B16",
+      "bn": "প্রাণিবৈচিত্র্য ও শ্রেণিবিন্যাস",
+      "en": "Animal Diversity & Classification",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B17",
+      "bn": "প্রতীক/প্রতিনিধি প্রাণী",
+      "en": "Representative Animals",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B18",
+      "bn": "পরিপাক ও শোষণ",
+      "en": "Digestion & Absorption",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B19",
+      "bn": "রক্ত ও সঞ্চালন",
+      "en": "Blood & Circulation",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B20",
+      "bn": "শ্বসন ও গ্যাস বিনিময়",
+      "en": "Respiration & Gas Exchange",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B21",
+      "bn": "রেচন ও অসমোরেগুলেশন",
+      "en": "Excretion & Osmoregulation",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B22",
+      "bn": "চলন, কঙ্কাল, সন্ধি ও পেশি",
+      "en": "Locomotion: Skeleton, Joint & Muscle",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B23",
+      "bn": "স্নায়ুতন্ত্র ও ইন্দ্রিয় অঙ্গ",
+      "en": "Nervous System & Sense Organs",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B24",
+      "bn": "অন্তঃক্ষরা তন্ত্র ও হোমিওস্ট্যাসিস",
+      "en": "Endocrine & Homeostasis",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B25",
+      "bn": "মানব প্রজনন ও ভ্রূণতত্ত্ব",
+      "en": "Human Reproduction & Embryology",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B26",
+      "bn": "রোগপ্রতিরোধ",
+      "en": "Immunity",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    },
+    {
+      "id": "B27",
+      "bn": "বংশগতি ও জেনেটিক্স",
+      "en": "Genetics & Inheritance",
+      "lane": "Common Core",
+      "learning_content": {
+        "status": "present",
+        "routes": [
+          "/admission/day-4/"
+        ]
+      },
+      "practice": {
+        "status": "present",
+        "routes": [
+          "/admission/day-4/",
+          "/admission/day-6/",
+          "/admission/day-7/"
+        ]
+      },
+      "model_test_coverage": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q28"
+        ]
+      },
+      "explanation": {
+        "status": "present",
+        "question_ids": [
+          "admission-foundation-01-q28"
+        ]
+      },
+      "nctb_source": {
+        "status": "topic-aligned-primary-page-verification-pending",
+        "refs": [
+          "NCTB-HSC-BIOLOGY-GENETICS-INHERITANCE"
+        ]
+      },
+      "status": "partial"
+    },
+    {
+      "id": "B28",
+      "bn": "বিবর্তন ও প্রাণী আচরণ",
+      "en": "Evolution & Animal Behaviour",
+      "lane": "University Edge",
+      "learning_content": {
+        "status": "gap",
+        "routes": []
+      },
+      "practice": {
+        "status": "gap",
+        "routes": []
+      },
+      "model_test_coverage": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "explanation": {
+        "status": "gap",
+        "question_ids": []
+      },
+      "nctb_source": {
+        "status": "not-yet-mapped",
+        "refs": []
+      },
+      "status": "gap"
+    }
+  ]
+}
