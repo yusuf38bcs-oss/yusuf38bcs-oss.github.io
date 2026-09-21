@@ -6,11 +6,62 @@ ROOT = File.expand_path("../..", __dir__)
 LEDGER = File.join(ROOT, "_data/admission/biology/curriculum_coverage_v1.json")
 ENGINE = File.join(ROOT, "_data/admission/biology/engine_v1.json")
 MODEL_TEST = File.join(ROOT, "_pages/admission/foundation-model-test-01.md")
+NCTB_DIR = File.join(ROOT, "_data/admission/biology/nctb")
+
+def blank_value?(value)
+  value.nil? || (value.respond_to?(:empty?) && value.empty?)
+end
+
+def valid_page_value?(value)
+  return value.positive? if value.is_a?(Integer)
+  return false unless value.is_a?(String)
+
+  text = value.strip
+  return false if text.empty?
+
+  !%w[unknown tbd pending null].include?(text.downcase)
+end
+
+def mapping_has_valid_page?(mapping)
+  return true if valid_page_value?(mapping["page"])
+  return true if valid_page_value?(mapping["pdf_page"])
+  return true if valid_page_value?(mapping["printed_page"])
+
+  pages = mapping["pages"]
+  return true if pages.is_a?(Array) && pages.any? && pages.all? { |page| valid_page_value?(page) }
+
+  start_page = mapping["page_start"]
+  end_page = mapping["page_end"]
+  return false unless start_page.is_a?(Integer) && end_page.is_a?(Integer)
+
+  start_page.positive? && end_page.positive? && start_page <= end_page
+end
 
 ledger = JSON.parse(File.read(LEDGER, encoding: "UTF-8"))
 engine = JSON.parse(File.read(ENGINE, encoding: "UTF-8"))
 model = File.read(MODEL_TEST, encoding: "UTF-8")
 errors = []
+
+evidence_by_id = {}
+if Dir.exist?(NCTB_DIR)
+  Dir.glob(File.join(NCTB_DIR, "*.json")).sort.each do |path|
+    begin
+      record = JSON.parse(File.read(path, encoding: "UTF-8"))
+    rescue JSON::ParserError => e
+      errors << "NCTB evidence JSON parse failed for #{File.basename(path)}: #{e.message}"
+      next
+    end
+
+    evidence_id = record["evidence_id"].to_s.strip
+    if evidence_id.empty?
+      errors << "NCTB evidence file #{File.basename(path)} is missing evidence_id"
+      next
+    end
+
+    errors << "duplicate NCTB evidence_id #{evidence_id}" if evidence_by_id.key?(evidence_id)
+    evidence_by_id[evidence_id] = { "record" => record, "path" => path }
+  end
+end
 
 expected_ids = engine.fetch("taxonomy").map { |topic| topic.fetch("id") }
 topics = ledger.fetch("topics", [])
@@ -97,6 +148,71 @@ topics.each do |topic|
     errors << "#{id}: pending NCTB alignment requires at least one ref" if refs.empty?
   when "verified-primary"
     errors << "#{id}: verified-primary requires at least one ref" if refs.empty?
+
+    refs.each do |ref|
+      evidence_entry = evidence_by_id[ref]
+      unless evidence_entry
+        errors << "#{id}: verified-primary ref #{ref.inspect} does not resolve to an NCTB evidence record"
+        next
+      end
+
+      evidence = evidence_entry["record"]
+      required_fields = %w[
+        evidence_id
+        topic_id
+        authority
+        book_title
+        edition_or_curriculum_version
+        source_url_or_custody_reference
+        retrieval_date
+        file_sha256
+        claim_mappings
+        verification_status
+        verification_method
+      ]
+      missing = required_fields.select { |field| blank_value?(evidence[field]) }
+      errors << "#{id}: evidence #{ref} missing required fields: #{missing.join(", ")}" if missing.any?
+
+      errors << "#{id}: evidence #{ref} topic_id mismatch" unless evidence["topic_id"] == id
+
+      sha256 = evidence["file_sha256"].to_s
+      errors << "#{id}: evidence #{ref} file_sha256 must be exactly 64 hexadecimal characters" unless sha256.match?(/\A[0-9a-fA-F]{64}\z/)
+
+      errors << "#{id}: evidence #{ref} verification_status must be verified-primary" unless evidence["verification_status"] == "verified-primary"
+
+      %w[verification_pass_1 verification_pass_2].each do |pass_field|
+        pass = evidence[pass_field]
+        unless pass.is_a?(Hash) && pass["status"] == "PASS"
+          errors << "#{id}: evidence #{ref} #{pass_field} must record PASS"
+        end
+      end
+
+      mappings = evidence["claim_mappings"]
+      if !mappings.is_a?(Array) || mappings.empty?
+        errors << "#{id}: evidence #{ref} requires at least one claim mapping"
+      else
+        mappings.each_with_index do |mapping, index|
+          label = "#{id}: evidence #{ref} claim mapping #{index + 1}"
+          unless mapping.is_a?(Hash)
+            errors << "#{label} must be an object"
+            next
+          end
+
+          errors << "#{label} missing claim_id" if blank_value?(mapping["claim_id"])
+          errors << "#{label} missing claim" if blank_value?(mapping["claim"])
+          errors << "#{label} evidence_status must be verified" unless mapping["evidence_status"] == "verified"
+          errors << "#{label} requires valid page information" unless mapping_has_valid_page?(mapping)
+
+          if mapping["page_start"] || mapping["page_end"]
+            unless mapping["page_start"].is_a?(Integer) && mapping["page_end"].is_a?(Integer) &&
+                   mapping["page_start"].positive? && mapping["page_end"].positive? &&
+                   mapping["page_start"] <= mapping["page_end"]
+              errors << "#{label} has invalid page range"
+            end
+          end
+        end
+      end
+    end
   end
 
   if status == "complete"
@@ -135,4 +251,5 @@ end
 
 puts "Admission R2 Curriculum Coverage Validation: PASS"
 puts "topics=#{topics.length} complete=#{actual_complete} partial=#{actual_partial} gap=#{actual_gap}"
+puts "nctb_evidence_records=#{evidence_by_id.length}"
 puts "historical_occurrence_substitution=false matrix_qyi_release=false f_v2_promotion=false"
