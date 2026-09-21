@@ -15,7 +15,7 @@
       "partial",
       "complete"
     ],
-    "rule": "complete requires learning content, practice, model-test coverage, explanation, and verified primary NCTB source. No topic is complete in R2-0.1."
+    "rule": "complete requires learning content, practice, model-test coverage, explanation, and verified primary evidence from an authenticated NCTB-authorized HSC textbook edition/copy. NCTB publication is not required."
   },
   "summary": {
     "total_topics": 28,
@@ -58,8 +58,10 @@
       "nctb_source": {
         "status": "topic-aligned-primary-page-verification-pending",
         "refs": [
-          "NCTB-HSC-BIOLOGY-1-CELL-MEMBRANE",
           "NCTB-B01-PRIMARY-001"
+        ],
+        "alignment_refs": [
+          "NCTB-HSC-BIOLOGY-1-CELL-MEMBRANE"
         ]
       },
       "status": "partial"
