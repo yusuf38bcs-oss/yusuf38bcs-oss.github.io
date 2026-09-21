@@ -961,6 +961,28 @@
 }
 
 :is(
+  .ielts-hub-page,
+  .ielts-practice-page,
+  .ielts-writing-page,
+  .ielts-speaking-page,
+  .ielts-reading-page,
+  .ielts-static-page
+) :is(.page__title, .page__content h1, .page__content h2, .page__content h3, .page__content h4) {
+  color: var(--ielts-contrast-ink) !important;
+}
+
+:is(
+  .ielts-hub-page,
+  .ielts-practice-page,
+  .ielts-writing-page,
+  .ielts-speaking-page,
+  .ielts-reading-page,
+  .ielts-static-page
+) :is(.breadcrumbs, .breadcrumbs a) {
+  color: var(--ielts-contrast-body) !important;
+}
+
+:is(
   .ielts-hub,
   .ielts-practice,
   .ielts-writing,
