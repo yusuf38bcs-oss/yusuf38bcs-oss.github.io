@@ -13,6 +13,7 @@ CLAIM_MATRIX_PATH = File.join(ROOT, "_data/admission/biology/claim_source_matrix
 REFERENCE_REGISTRY_PATH = File.join(ROOT, "_data/admission/biology/reference_registry_v1.json")
 SECOND_VERIFICATION_PATH = File.join(ROOT, "_data/admission/biology/r2-3_second_verification_v1.json")
 PASS2_LEDGER_PATH = File.join(ROOT, "_data/admission/biology/pass2_claim_evidence_v1.json")
+DRAFT_GATEWAY_PATH = File.join(ROOT, "_data/admission/biology/draft_remediation_gateway_v1.json")
 SOURCE_EVIDENCE_PATH = File.join(ROOT, "_data/admission/biology/sources/r2-2-shared-syllabus-photo-set.json")
 EDITORIAL_POLICY_PATH = File.join(ROOT, "_pages/utility/editorial-policy.md")
 
@@ -56,9 +57,9 @@ EXPECTED_CHAPTERS = {
 def load_json(path)
   JSON.parse(File.read(path, encoding: "UTF-8"))
 rescue Errno::ENOENT
-  abort "Admission R2.4 Biology Pass-2 Unlock Validation: FAIL\n- missing file: #{path}"
+  abort "Admission R2.4 Biology Pass-2 + Draft Gateway Validation: FAIL\n- missing file: #{path}"
 rescue JSON::ParserError => e
-  abort "Admission R2.4 Biology Pass-2 Unlock Validation: FAIL\n- invalid JSON #{path}: #{e.message}"
+  abort "Admission R2.4 Biology Pass-2 + Draft Gateway Validation: FAIL\n- invalid JSON #{path}: #{e.message}"
 end
 
 def blank?(value)
@@ -80,6 +81,7 @@ claim_matrix = load_json(CLAIM_MATRIX_PATH)
 reference_registry = load_json(REFERENCE_REGISTRY_PATH)
 second_verification = load_json(SECOND_VERIFICATION_PATH)
 pass2_ledger = load_json(PASS2_LEDGER_PATH)
+draft_gateway = load_json(DRAFT_GATEWAY_PATH)
 source_evidence = load_json(SOURCE_EVIDENCE_PATH)
 editorial_policy = File.read(EDITORIAL_POLICY_PATH, encoding: "UTF-8")
 
@@ -87,7 +89,7 @@ expected_topic_ids = Array(engine["taxonomy"]).map { |topic| topic["id"] }
 coverage_by_id = Array(coverage["topics"]).to_h { |topic| [topic["id"], topic] }
 
 errors << "architecture schema mismatch" unless architecture["schema"] == "lbfl-admission-curriculum-architecture-v1"
-errors << "architecture version must be R2.4-0.1" unless architecture["version"] == "R2.4-0.1"
+errors << "architecture version must be R2.4-0.2" unless architecture["version"] == "R2.4-0.2"
 errors << "architecture parent head mismatch" unless architecture.dig("parent_contract", "parent_head") == "e07addcc58e2e3528fde7940e1b5e7f71a8c240b"
 
 subjects = Array(architecture["subjects"])
@@ -106,10 +108,10 @@ bio = subjects.find { |subject| subject["subject_id"] == "BIO" }
 if bio.nil?
   errors << "BIO subject missing"
 else
-  errors << "BIO architecture status mismatch" unless bio["architecture_status"] == "24-chapter-mapping-authenticated-pass2-acquisition-active-no-unlocked-rows"
+  errors << "BIO architecture status mismatch" unless bio["architecture_status"] == "24-chapter-mapping-authenticated-pass2-blocked-b01-draft-only-gateway-open"
   errors << "BIO engine taxonomy source changed" unless bio.dig("topic_taxonomy", "source") == "_data/admission/biology/engine_v1.json"
   errors << "BIO topic IDs changed" unless Array(bio.dig("topic_taxonomy", "expected_topic_ids")) == expected_topic_ids
-  errors << "BIO chapter mapping status mismatch" unless bio.dig("topic_taxonomy", "chapter_mapping_status") == "curriculum-mapping-authenticated-source-populated-pass2-evidence-acquisition-active"
+  errors << "BIO chapter mapping status mismatch" unless bio.dig("topic_taxonomy", "chapter_mapping_status") == "curriculum-mapping-authenticated-source-populated-pass2-blocked-draft-only-gateway-active"
 
   bio_chapters = Array(bio["papers"]).flat_map { |paper| Array(paper["chapters"]) }
   errors << "BIO architecture must contain exactly 24 chapter rows" unless bio_chapters.length == 24
@@ -131,6 +133,9 @@ errors << "additional reference acquisition flag must be true" unless boundary["
 errors << "Pass-2 unlock contract must be active" unless boundary["biology_pass2_unlock_contract_active"] == true
 errors << "Pass-2 verified row count must remain zero" unless boundary["biology_pass2_verified_rows"] == 0
 errors << "lecture-gap remediation authority row count must remain zero" unless boundary["biology_lecture_gap_remediation_authority_rows"] == 0
+errors << "stable Drive custody metadata count must be 5" unless boundary["biology_drive_stable_metadata_bound_artifacts"] == 5
+errors << "draft-remediation gateway must be active" unless boundary["biology_draft_remediation_gateway_active"] == true
+errors << "draft-remediation authority row count must be 1" unless boundary["biology_draft_remediation_authority_rows"] == 1
 %w[
   chapter_completion_allowed
   new_model_test_batch_allowed
@@ -148,6 +153,7 @@ errors << "claim matrix path mismatch" unless architecture["biology_claim_source
 errors << "reference registry path mismatch" unless architecture["biology_reference_registry"] == "_data/admission/biology/reference_registry_v1.json"
 errors << "second verification path mismatch" unless architecture["biology_second_verification"] == "_data/admission/biology/r2-3_second_verification_v1.json"
 errors << "Pass-2 ledger path mismatch" unless architecture["biology_pass2_claim_evidence"] == "_data/admission/biology/pass2_claim_evidence_v1.json"
+errors << "draft-remediation gateway path mismatch" unless architecture["biology_draft_remediation_gateway"] == "_data/admission/biology/draft_remediation_gateway_v1.json"
 
 errors << "chapter-map schema mismatch" unless chapter_map["schema"] == "lbfl-admission-biology-24-chapter-map-v1"
 errors << "chapter-map version mismatch" unless chapter_map["version"] == "R2.2-0.1"
@@ -303,7 +309,7 @@ verification_rows.each do |row|
 end
 
 errors << "Pass-2 ledger schema mismatch" unless pass2_ledger["schema"] == "lbfl-admission-biology-pass2-claim-evidence-v1"
-errors << "Pass-2 ledger version mismatch" unless pass2_ledger["version"] == "R2.4-0.1"
+errors << "Pass-2 ledger version mismatch" unless pass2_ledger["version"] == "R2.4-0.2"
 errors << "Pass-2 ledger parent mismatch" unless pass2_ledger["exact_parent_head"] == "e07addcc58e2e3528fde7940e1b5e7f71a8c240b"
 pass2_rows = Array(pass2_ledger["rows"])
 pass2_artifacts = Array(pass2_ledger["acquisition_artifacts"])
@@ -314,6 +320,8 @@ errors << "Pass-1 count must remain 29" unless pass2_ledger.dig("summary", "pass
 errors << "Pass-2 count must remain zero" unless pass2_ledger.dig("summary", "pass_2") == 0
 errors << "Pass-2 blocked count must remain 29" unless pass2_ledger.dig("summary", "pass_2_blocked") == 29
 errors << "lecture-gap authority count must remain zero" unless pass2_ledger.dig("summary", "lecture_gap_remediation_authority_rows") == 0
+errors << "stable Drive custody metadata count must be 5" unless pass2_ledger.dig("summary", "drive_stable_metadata_bound") == 5
+errors << "draft-only remediation gateway separation must be explicit" unless pass2_ledger.dig("boundaries", "draft_only_remediation_gateway_separate") == true
 
 acquired_ids = pass2_artifacts.select { |artifact| artifact["acquisition_status"] == "ACQUIRED" }.map { |artifact| artifact["artifact_id"] }
 errors << "acquired artifact IDs must be unique" unless acquired_ids.uniq.length == acquired_ids.length
@@ -322,6 +330,11 @@ pass2_artifacts.each do |artifact|
   errors << "#{artifact['artifact_id']}: Drive identity missing" if blank?(artifact["drive_file_id"])
   errors << "#{artifact['artifact_id']}: artifact title missing" if blank?(artifact["title"])
   errors << "#{artifact['artifact_id']}: artifact size missing" unless artifact["size_bytes"].is_a?(Integer) && artifact["size_bytes"].positive?
+  if artifact["custody_status"] == "DRIVE_STABLE_METADATA_BOUND"
+    errors << "#{artifact['artifact_id']}: Drive created time missing" if blank?(artifact["drive_created_time"])
+    errors << "#{artifact['artifact_id']}: Drive modified time missing" if blank?(artifact["drive_modified_time"])
+    errors << "#{artifact['artifact_id']}: stable Drive fingerprint missing" if blank?(artifact["drive_identity_fingerprint"])
+  end
 end
 
 pass2_rows.each do |row|
@@ -351,6 +364,34 @@ pass2_rows.each do |row|
     errors << "#{label}: blocker missing" if blank?(row["pass_2_blocker"])
   end
 end
+
+
+errors << "draft gateway schema mismatch" unless draft_gateway["schema"] == "lbfl-admission-biology-draft-remediation-gateway-v1"
+errors << "draft gateway version mismatch" unless draft_gateway["version"] == "R2.4-0.1"
+errors << "draft gateway parent mismatch" unless draft_gateway["exact_parent_pr"] == 350
+gateway_policy = draft_gateway["policy"] || {}
+errors << "draft gateway must preserve final Pass-2" unless gateway_policy["final_pass2_unchanged"] == true
+errors << "draft gateway must not promote verified-primary" unless gateway_policy["verified_primary_promotion"] == false
+errors << "draft gateway must not complete chapters" unless gateway_policy["chapter_completion"] == false
+errors << "draft gateway must not authorize model tests" unless gateway_policy["model_test_authoring"] == false
+errors << "draft gateway must not link public routes" unless gateway_policy["public_route_linking"] == false
+errors << "draft gateway must not authorize production" unless gateway_policy["production_release"] == false
+errors << "draft gateway must not authorize Matrix/QYI" unless gateway_policy["matrix_qyi_release"] == false
+errors << "draft gateway must require DRAFT_EVIDENCE_PENDING" unless gateway_policy["draft_output_must_be_marked"] == "DRAFT_EVIDENCE_PENDING"
+errors << "draft gateway outputs must remain isolated" unless gateway_policy["draft_output_must_remain_isolated"] == true
+
+gateway_rows = Array(draft_gateway["rows"])
+errors << "draft gateway must contain exactly one row" unless gateway_rows.length == 1
+gateway_row = gateway_rows.first || {}
+errors << "draft gateway must target B01 only" unless gateway_row["matrix_id"] == "BIO-P1-C01-B01-full-topic"
+errors << "B01 draft gateway status mismatch" unless gateway_row["gateway_status"] == "OPEN_DRAFT_ONLY"
+errors << "B01 final Pass-2 must remain BLOCKED" unless gateway_row["pass_2"] == "BLOCKED"
+errors << "B01 final lecture-gap authority must remain false" unless gateway_row["lecture_gap_remediation_authority"] == false
+errors << "B01 draft-only remediation authority must be true" unless gateway_row["draft_remediation_authority"] == true
+errors << "draft gateway summary row count mismatch" unless draft_gateway.dig("summary", "gateway_rows") == 1
+errors << "draft gateway Pass-2 verified count must remain zero" unless draft_gateway.dig("summary", "pass2_verified_rows") == 0
+errors << "draft gateway lecture-gap authority count must remain zero" unless draft_gateway.dig("summary", "lecture_gap_remediation_authority_rows") == 0
+errors << "draft gateway draft-authority count must be one" unless draft_gateway.dig("summary", "draft_remediation_authority_rows") == 1
 
 errors << "source evidence schema mismatch" unless source_evidence["schema"] == "lbfl-admission-biology-r2-2-source-evidence-v1"
 errors << "source evidence set ID mismatch" unless source_evidence["source_set_id"] == "BIO-R2-2-SHARED-SYLLABUS-PHOTO-SET-20260922"
@@ -398,13 +439,13 @@ matrix_boundaries = claim_matrix["boundaries"] || {}
 end
 
 if errors.any?
-  warn "Admission R2.4 Biology Pass-2 Unlock Validation: FAIL"
+  warn "Admission R2.4 Biology Pass-2 + Draft Gateway Validation: FAIL"
   errors.each { |error| warn "- #{error}" }
   exit 1
 end
 
-puts "Admission R2.4 Biology Pass-2 Unlock Validation: PASS"
+puts "Admission R2.4 Biology Pass-2 + Draft Gateway Validation: PASS"
 puts "biology_chapters=24 p1=12 p2=12 periods_p1=#{EXPECTED_P1_PERIODS} periods_p2=#{EXPECTED_P2_PERIODS}"
 puts "chapter_topic_rows=#{matrix_rows.length} unique_topics=#{matrix_rows.map { |row| row['topic_id'] }.uniq.length} source_populated_rows=29 page_verified_claim_rows=0 second_verified_rows=0"
 puts "multi_reference_rule=active textbook_candidates=#{book_candidates.length} scientific_locators=#{scientific_refs.length} disagreements=#{disagreements.length} single_book_dependency=false silent_reconciliation=false"
-puts "pass1_source_population=29 pass2_verified=0 pass2_blocked=29 acquired_additional_artifacts=#{pass2_ledger.dig('summary', 'acquired_additional_artifacts')} lecture_gap_remediation_authority=0 new_lectures=false new_model_tests=false b01_b28_completion_unchanged=true matrix_qyi_release=false ready_merge_production=false"
+puts "pass1_source_population=29 pass2_verified=0 pass2_blocked=29 acquired_additional_artifacts=#{pass2_ledger.dig('summary', 'acquired_additional_artifacts')} stable_drive_custody=#{pass2_ledger.dig('summary', 'drive_stable_metadata_bound')} lecture_gap_remediation_authority=0 draft_remediation_authority=1 new_public_lectures=false new_model_tests=false b01_b28_completion_unchanged=true matrix_qyi_release=false ready_merge_production=false"
