@@ -7,18 +7,608 @@
   "component_scope": [
     "mcq"
   ],
-  "paper_audit_state": "U",
-  "verification_status": "unstarted",
-  "paper_complete": false,
-  "expected_biology_question_count": null,
-  "audited_question_count": 0,
-  "zero_claims_allowed": false,
+  "paper_audit_state": "F-S2",
+  "verification_status": "V1",
+  "paper_complete": true,
+  "expected_biology_question_count": 30,
+  "expected_count_verification_status": "V1",
+  "audited_question_count": 30,
+  "zero_claims_allowed": true,
   "matrix_release_allowed": false,
-  "sources": [],
-  "questions": [],
+  "sources": [
+    {
+      "source_id": "UCC-DU-A-2016-17-PDF",
+      "tier": "C2",
+      "kind": "secondary-question-bank-paper-copy",
+      "url": "https://drive.google.com/file/d/1tUSVRCDaECSSqVITJ4vm3fnhXWs7-7LL/view?usp=sharing",
+      "status": "reviewed",
+      "supports": "Eight-page UCC-formatted copy titled 'DU Questions A 16-17-Copy.pdf'. Its Biology section spans the end of printed page 30 and printed page 31, is numbered 1-30 locally, and includes a secondary answer key. Used to establish a complete F-S2 Biology reconstruction; not treated as an official paper or official answer key."
+    },
+    {
+      "source_id": "SATT-DU-A-2016-17",
+      "tier": "C1",
+      "kind": "community-reviewed-question-bank",
+      "url": "https://sattacademy.com/admission-mcq/sub_cat%3D3118%26subject%3Dall",
+      "status": "reviewed",
+      "supports": "Community-reviewed locator for Dhaka University A/Ka Unit 2016-17. Used as corroborating session/question-bank context, not as sole completeness authority."
+    },
+    {
+      "source_id": "BISSOY-DU-A-2016-17-C4",
+      "tier": "C1",
+      "kind": "community-question-bank-item",
+      "url": "https://www.bissoy.com/mcq/100869",
+      "status": "reviewed",
+      "supports": "DU A Unit 2016-17 Biology item asking the first stable product of C4 plants; answer Oxaloacetic acid."
+    },
+    {
+      "source_id": "BISSOY-DU-A-2016-17-RENIN",
+      "tier": "C1",
+      "kind": "community-question-bank-item",
+      "url": "https://www.bissoy.com/mcq/95017",
+      "status": "reviewed",
+      "supports": "DU A Unit 2016-17 Biology item asking where renin is produced; answer kidney."
+    },
+    {
+      "source_id": "BISSOY-DU-A-2016-17-MERISTEM",
+      "tier": "C1",
+      "kind": "community-question-bank-item",
+      "url": "https://www.bissoy.com/mcq/95005",
+      "status": "reviewed",
+      "supports": "DU A Unit 2016-17 Biology item asking which technique produces disease-free plantlets; answer meristem culture."
+    },
+    {
+      "source_id": "BISSOY-DU-A-2016-17-SOMATOTROPIN",
+      "tier": "C1",
+      "kind": "community-question-bank-item",
+      "url": "https://www.bissoy.com/mcq/95021",
+      "status": "reviewed",
+      "supports": "DU A Unit 2016-17 Biology item asking which hormone is associated with human bone growth; answer Somatotropin."
+    },
+    {
+      "source_id": "BDQB-DU-A-MARK-DISTRIBUTION",
+      "tier": "C2",
+      "kind": "secondary-format-reference",
+      "url": "https://bdquestionbank.com/dhaka-university-a-unit-du-a-unit-subject-wise-mark-distribution/",
+      "status": "reviewed",
+      "supports": "Historical A Unit mark-distribution reference: Physics, Chemistry, Mathematics and Biology are each 30 marks; used only as format corroboration."
+    },
+    {
+      "source_id": "BABAR-DU-A-2016-17-ENGLISH",
+      "tier": "C2",
+      "kind": "session-specific-subject-transcription",
+      "url": "https://www.babarenglish.com/post/university-admission-test-english-dhaka-university-a-unit-2016-2017-session-english-questions",
+      "status": "reviewed",
+      "supports": "Session-specific DU A Unit 2016-17 English transcription with a 30-question subject block; corroborates the per-subject format, not Biology content."
+    },
+    {
+      "source_id": "STUDOCU-DU-A-2016-17-PAPER",
+      "tier": "C2",
+      "kind": "secondary-paper-copy-mirror",
+      "url": "https://www.studocu.com/row/document/university-of-dhaka/mathmetics-practice-test/du-questions-a-16-17-copy/80424559",
+      "status": "reviewed",
+      "supports": "Secondary mirror/locator for the same 'DU Questions A 16-17-Copy' material; used as a corroborating locator only, not as official provenance."
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "DU-2016-17-MCQ-001",
+      "question_no": 1,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B04",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Stage of mitosis when the nucleolus disappears",
+      "answer": "Prophase",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-002",
+      "question_no": 2,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B06",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Microorganism causing potato scab disease",
+      "answer": "Streptomyces scabies",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-003",
+      "question_no": 3,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B14",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Bacterial gene source used for insect-resistant GM brinjal in Bangladesh",
+      "answer": "Bacillus thuringiensis",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-004",
+      "question_no": 4,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B14",
+      "secondary_topic_ids": [
+        "B13"
+      ],
+      "question_fingerprint": "Technique used to produce disease-free plantlets",
+      "answer": "Meristem culture",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF",
+        "BISSOY-DU-A-2016-17-MERISTEM"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-005",
+      "question_no": 5,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B13",
+      "secondary_topic_ids": [
+        "B15"
+      ],
+      "question_fingerprint": "Plant showing viviparous germination",
+      "answer": "Rhizophora conjugata",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-006",
+      "question_no": 6,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B12",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "First stable product of C4 photosynthesis",
+      "answer": "Oxaloacetic acid",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF",
+        "BISSOY-DU-A-2016-17-C4"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-007",
+      "question_no": 7,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B09",
+      "secondary_topic_ids": [
+        "B13"
+      ],
+      "question_fingerprint": "Type of placentation in Cucumis sativus",
+      "answer": "Parietal",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-008",
+      "question_no": 8,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B02",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Starch-storing leucoplast",
+      "answer": "Amyloplast",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-009",
+      "question_no": 9,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B06",
+      "secondary_topic_ids": [
+        "B07"
+      ],
+      "question_fingerprint": "Organism containing C-phycocyanin",
+      "answer": "Nostoc",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-010",
+      "question_no": 10,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B10",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Tissue type forming jute fibre",
+      "answer": "Secondary phloem tissue",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-011",
+      "question_no": 11,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B08",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Origin of rhizophore",
+      "answer": "Stem",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-012",
+      "question_no": 12,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B13",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Example of haploid parthenogenesis",
+      "answer": "Solanum nigrum",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-013",
+      "question_no": 13,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B12",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Pathway that produces 3-PGA",
+      "answer": "Calvin cycle",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-014",
+      "question_no": 14,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B13",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Stage associated with development of the tube nucleus",
+      "answer": "Development of male gametophyte",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-015",
+      "question_no": 15,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B07",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Commercial source of penicillin",
+      "answer": "Penicillium chrysogenum",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-016",
+      "question_no": 16,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B25",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Cell lineage that produces sperm",
+      "answer": "Spermatogonia",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-017",
+      "question_no": 17,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B24",
+      "secondary_topic_ids": [
+        "B21"
+      ],
+      "question_fingerprint": "Site of renin production in the human body",
+      "answer": "Kidney",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF",
+        "BISSOY-DU-A-2016-17-RENIN"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-018",
+      "question_no": 18,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B23",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Location of the organ of Corti",
+      "answer": "Cochlea",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-019",
+      "question_no": 19,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B16",
+      "secondary_topic_ids": [
+        "B26"
+      ],
+      "question_fingerprint": "Parasite causing elephantiasis",
+      "answer": "Wuchereria bancrofti",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-020",
+      "question_no": 20,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B27",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Sex-linked human characteristic",
+      "answer": "Colour blindness",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-021",
+      "question_no": 21,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B24",
+      "secondary_topic_ids": [
+        "B22"
+      ],
+      "question_fingerprint": "Hormone associated with human bone growth",
+      "answer": "Somatotropin",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF",
+        "BISSOY-DU-A-2016-17-SOMATOTROPIN"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-022",
+      "question_no": 22,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B16",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Identify the organism that is not a fish",
+      "answer": "Silverfish",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-023",
+      "question_no": 23,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B20",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Membrane covering the lungs",
+      "answer": "Pleura",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-024",
+      "question_no": 24,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B19",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Factor not required for blood clotting",
+      "answer": "Insulin",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-025",
+      "question_no": 25,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B16",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Phylum to which coral belongs",
+      "answer": "Cnidaria",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-026",
+      "question_no": 26,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B16",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Scale type found in Chondrichthyes",
+      "answer": "Placoid",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-027",
+      "question_no": 27,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B16",
+      "secondary_topic_ids": [],
+      "question_fingerprint": "Multinucleate stage of the malaria parasite",
+      "answer": "Schizont",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-028",
+      "question_no": 28,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B17",
+      "secondary_topic_ids": [
+        "B16"
+      ],
+      "question_fingerprint": "Structure not found in Hydra",
+      "answer": "Mesoderm",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-029",
+      "question_no": 29,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B17",
+      "secondary_topic_ids": [
+        "B16"
+      ],
+      "question_fingerprint": "Order of Rohu (Labeo rohita)",
+      "answer": "Cypriniformes",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    },
+    {
+      "question_id": "DU-2016-17-MCQ-030",
+      "question_no": 30,
+      "question_no_scope": "biology-section-local-secondary-reconstruction",
+      "paper_question_no": null,
+      "component": "mcq",
+      "primary_topic_id": "B26",
+      "secondary_topic_ids": [
+        "B19"
+      ],
+      "question_fingerprint": "Blood cell type that helps protect against disease",
+      "answer": "Leucocytes",
+      "source_refs": [
+        "UCC-DU-A-2016-17-PDF"
+      ],
+      "verification_status": "V1"
+    }
+  ],
+  "derived_topic_counts": {
+    "B02": 1,
+    "B04": 1,
+    "B06": 2,
+    "B07": 1,
+    "B08": 1,
+    "B09": 1,
+    "B10": 1,
+    "B12": 2,
+    "B13": 3,
+    "B14": 2,
+    "B16": 5,
+    "B17": 2,
+    "B19": 1,
+    "B20": 1,
+    "B23": 1,
+    "B24": 2,
+    "B25": 1,
+    "B26": 1,
+    "B27": 1
+  },
+  "sequence_reconstruction": {
+    "expected_slots": 30,
+    "resolved_question_identities": 30,
+    "resolved_original_positions": 0,
+    "unresolved_question_identities": 0,
+    "full_sequence_reconstructed": true,
+    "numbering_scope": "biology-section-local-secondary-reconstruction"
+  },
+  "reconciliation_summary": {
+    "expected_biology_opportunities": 30,
+    "expected_count_basis": "The reviewed UCC secondary copy contains a Biology section explicitly numbered 1-30; the historical 30-mark-per-subject A Unit format independently corroborates the expected block size.",
+    "source_backed_rows": 30,
+    "original_paper_question_numbers_resolved": 0,
+    "full_biology_block_completeness_established": true,
+    "independent_authoritative_verification_pending": true
+  },
   "research_notes": [
-    "No acceptable full 2016-17 DU Biology paper/source has been admitted to the audit ledger yet.",
-    "This file intentionally remains U rather than using inferred zeros or reconstructed counts.",
-    "The DU written component is not asserted for this session until the historical paper format is source-verified."
+    "The archived UCC-formatted 'DU Questions A 16-17-Copy.pdf' provides a complete 30-question Biology section across printed pages 30-31 and a secondary answer key. This supports F-S2/V1 reconstruction but is not treated as an official question paper or official answer key.",
+    "No official answer key is assumed or required for this F-S2 state. Answer fields are secondary-source reconstructions and remain V1 pending independent scientific/source reconciliation.",
+    "The earlier Dr. Siddiq continuous transcription is incomplete across multiple subjects and its continuous numbers must not be treated as original paper positions. All paper_question_no values therefore remain null.",
+    "question_no 1-30 preserves the Biology-section-local order shown in the reviewed secondary paper copy; it does not claim a global original booklet position.",
+    "All 30 Biology identities are now represented. Topic-level zero claims are schema-legal for a complete F-S2 component, but matrix_release_allowed remains false.",
+    "Renin remains B24 Endocrine & Homeostasis with B21 secondary; meristem culture remains B14 Biotechnology with B13 secondary; Hydra and Rohu representative-animal items remain B17.",
+    "Matrix publication and final QYI contribution remain blocked by the engine-wide release gate and by the absence of F-V2 independent verification."
   ]
 }
