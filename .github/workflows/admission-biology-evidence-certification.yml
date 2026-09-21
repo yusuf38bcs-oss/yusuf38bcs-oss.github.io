@@ -7,6 +7,8 @@ on:
       - "_pages/admission/**"
       - "_includes/admission/**"
       - "assets/css/admission-biology-evidence.css"
+      - "assets/js/learning/admission-foundation.js"
+      - "scripts/admission/validate_foundation_model_test.rb"
       - ".github/scripts/admission-biology-evidence-browser-certification.mjs"
       - ".github/workflows/admission-biology-evidence-certification.yml"
   workflow_dispatch:
@@ -20,7 +22,7 @@ concurrency:
 
 jobs:
   certify:
-    name: Evidence routes, audit contract, Axe and keyboard
+    name: R1 integrity, full journey, evidence, Axe and keyboard
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -60,20 +62,31 @@ jobs:
       - name: Validate 2016-17 Biology evidence ledgers
         run: ruby scripts/admission/validate_biology_audit.rb
 
+      - name: Validate Foundation Model Test integrity
+        run: ruby scripts/admission/validate_foundation_model_test.rb
+
       - name: Build exact Jekyll candidate
         env:
           JEKYLL_ENV: production
           JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bundle exec jekyll build --trace
 
-      - name: Assert evidence routes exist
+      - name: Assert Admission R1 routes and sitemap entries exist
         shell: bash
         run: |
           set -euo pipefail
           test -f _site/admission/index.html
+          for day in 1 2 3 4 5 6 7; do
+            test -f "_site/admission/day-${day}/index.html"
+          done
+          test -f _site/admission/foundation-model-test-01/index.html
           test -f _site/admission/biology/index.html
           test -f _site/admission/biology/du/2016-17/index.html
           test -f _site/admission/biology/medical/2016-17/index.html
+          test -f _site/sitemap.xml
+          grep -q '/admission/foundation-model-test-01/' _site/sitemap.xml
+          grep -q '/admission/biology/du/2016-17/' _site/sitemap.xml
+          grep -q '/admission/biology/medical/2016-17/' _site/sitemap.xml
 
       - name: Set up Node
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
@@ -97,7 +110,7 @@ jobs:
           cat /tmp/lbfl-admission-server.log
           exit 1
 
-      - name: Certify evidence viewer in browser
+      - name: Certify Admission R1 routes and full learner journey in browser
         run: node .github/scripts/admission-biology-evidence-browser-certification.mjs
 
       - name: Upload Admission evidence certification
