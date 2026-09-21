@@ -55,9 +55,9 @@ EXPECTED_CHAPTERS = {
 def load_json(path)
   JSON.parse(File.read(path, encoding: "UTF-8"))
 rescue Errno::ENOENT
-  abort "Admission R2.2 Biology Chapter Mapping Validation: FAIL\n- missing file: #{path}"
+  abort "Admission R2.3 Biology Evidence Population Validation: FAIL\n- missing file: #{path}"
 rescue JSON::ParserError => e
-  abort "Admission R2.2 Biology Chapter Mapping Validation: FAIL\n- invalid JSON #{path}: #{e.message}"
+  abort "Admission R2.3 Biology Evidence Population Validation: FAIL\n- invalid JSON #{path}: #{e.message}"
 end
 
 def blank?(value)
