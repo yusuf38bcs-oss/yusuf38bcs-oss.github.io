@@ -10,7 +10,7 @@ author_profile: false
 
 <link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
 
-<section class="ielts-static" aria-label="IELTS learning content">
+<section class="ielts-static" aria-label="IELTS learning content" markdown="1">
 
 Build accuracy through prediction, focused note-taking, signal words, detail recognition, and transcript-based correction.
 

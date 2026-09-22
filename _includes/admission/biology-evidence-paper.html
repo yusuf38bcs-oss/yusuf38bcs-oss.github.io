@@ -1,0 +1,90 @@
+{% assign record = include.record %}
+{% assign exam_label = include.exam_label %}
+<section class="admission-evidence" data-admission-evidence data-exam="{{ record.exam }}" data-paper-state="{{ record.paper_audit_state }}" data-verification-status="{{ record.verification_status }}" data-record-count="{{ record.audited_question_count }}" data-matrix-release="{{ record.matrix_release_allowed }}">
+  <header class="admission-evidence__hero">
+    <p class="admission-evidence__kicker">Admission Biology Evidence · {{ record.session }}</p>
+    <h1>{{ exam_label }} Biology — {{ record.session }}</h1>
+    <p>This page publishes the current evidence ledger directly from LBFL's audited Admission Biology data. It is a full secondary reconstruction with independent paper-level verification still pending.</p>
+  </header>
+
+  <div class="admission-evidence__status-grid" aria-label="Evidence status">
+    <div class="admission-evidence__status"><strong>{{ record.paper_audit_state }}</strong><span>Paper audit state</span></div>
+    <div class="admission-evidence__status"><strong>{{ record.verification_status }}</strong><span>Paper verification status</span></div>
+    <div class="admission-evidence__status"><strong>{{ record.audited_question_count }} / {{ record.expected_biology_question_count }}</strong><span>Biology records represented</span></div>
+    <div class="admission-evidence__status"><strong>Not released</strong><span>Predictive ranking authority</span></div>
+  </div>
+
+  <aside class="admission-evidence__boundary" data-evidence-boundary>
+    <strong>Evidence boundary:</strong>
+    secondary-source reconstruction only. The records below are published for transparent study and source review; they are not presented as an institution-issued paper or institution-issued answer key, and they do not authorize predictive ranking.
+  </aside>
+
+  <section class="admission-evidence__panel" aria-labelledby="questions-title">
+    <h2 id="questions-title">Reconstructed Biology records</h2>
+    <ol class="admission-evidence__questions">
+      {% for question in record.questions %}
+        {% assign topic_label = question.primary_topic_id %}
+        {% for topic in site.data.admission.biology.engine_v1.taxonomy %}
+          {% if topic.id == question.primary_topic_id %}
+            {% assign topic_label = topic.en %}
+          {% endif %}
+        {% endfor %}
+        <li class="admission-evidence__question" data-question-verification="{{ question.verification_status }}">
+          <article>
+            <div class="admission-evidence__question-head">
+              <h3>Biology record {{ question.question_no }}</h3>
+              <span class="admission-evidence__chip">{{ question.verification_status }}</span>
+            </div>
+            <div class="admission-evidence__meta">
+              <span class="admission-evidence__chip">{{ question.primary_topic_id }} · {{ topic_label }}</span>
+              <span class="admission-evidence__chip">{{ question.component | upcase }}</span>
+              {% if question.paper_question_no %}
+                <span class="admission-evidence__chip">Paper position {{ question.paper_question_no }}</span>
+              {% else %}
+                <span class="admission-evidence__chip">Original paper position not claimed</span>
+              {% endif %}
+            </div>
+            <p><strong>Question fingerprint:</strong> {{ question.question_fingerprint }}</p>
+            <p class="admission-evidence__answer"><strong>Recorded answer:</strong> {{ question.answer }}</p>
+            <p><strong>Evidence sources:</strong></p>
+            <ul class="admission-evidence__source-links">
+              {% for source_ref in question.source_refs %}
+                {% for source in record.sources %}
+                  {% if source.source_id == source_ref %}
+                    <li>
+                      {% if source.inspectable == false %}
+                        <span>{{ source.source_id }}</span> · {{ source.tier }} · {{ source.status }} · custody metadata only
+                      {% else %}
+                        <a href="{{ source.url }}">{{ source.source_id }}</a> · {{ source.tier }} · {{ source.status }}
+                      {% endif %}
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </article>
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="admission-evidence__panel" aria-labelledby="sources-title">
+    <h2 id="sources-title">Source provenance</h2>
+    <div class="admission-evidence__sources">
+      {% for source in record.sources %}
+        <article class="admission-evidence__source">
+          {% if source.inspectable == false %}
+            <h3>{{ source.source_id }}</h3>
+            <p><strong>Custody metadata only:</strong> the underlying source artifact is not publicly inspectable from this repository.</p>
+          {% else %}
+            <h3><a href="{{ source.url }}">{{ source.source_id }}</a></h3>
+          {% endif %}
+          <p><strong>{{ source.tier }}</strong> · {{ source.kind }} · {{ source.status }}</p>
+          <p>{{ source.supports }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <p class="admission-evidence__back"><a href="{{ '/admission/biology/' | relative_url }}">← Back to Admission Biology Evidence</a></p>
+</section>

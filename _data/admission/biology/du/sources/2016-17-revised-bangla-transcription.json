@@ -1,0 +1,263 @@
+{
+  "schema": "lbfl-du-2016-17-revised-transcription-source-v1",
+  "exam": "DU",
+  "session": "2016-17",
+  "unit": "A/Ka (Science)",
+  "source_class": "user-provided-revised-bengali-transcription-custody-only",
+  "evidence_tier": "B2",
+  "source_artifact": {
+    "filename": "DU_2016_2017_Bangla_Question_Transcription_REVISED.pdf",
+    "sha256": "2a1e7099ca051ad12c14296a40032f33258277fc1ccffc655fc924ca1f557a64",
+    "file_size_bytes": 482386,
+    "page_count": 26,
+    "pdf_title": "DU_2016_2017_Bangla_Question_Transcription_REVISED",
+    "custody": "User-provided conversation attachment; PDF bytes are not committed to the repository and are not represented as a publicly inspectable source artifact.",
+    "publicly_inspectable": false
+  },
+  "scope": {
+    "subjects_in_pdf": [
+      "Physics",
+      "Chemistry",
+      "Mathematics",
+      "Biology",
+      "Bangla",
+      "English"
+    ],
+    "biology_pages": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "biology_local_question_count": 30,
+    "biology_numbering_scope": "Biology-section-local order in the revised transcription"
+  },
+  "editorial_boundary": {
+    "language_editing": "The revised PDF states that Physics, Chemistry, Mathematics and Biology were edited into Bengali-primary language while scientific names, formulae, symbols, units, standard notation and meaning-dependent technical terms were retained as needed.",
+    "bangla_section": "Question and option wording is treated as exam material; only visible typographic and spacing errors were corrected in the revised PDF.",
+    "english_section": "Original English passage, sentences and options were retained, with Bengali directions/meaning edited.",
+    "answer_key_status": "The printed source answer keys were preserved as found in the underlying source and were not independently verified."
+  },
+  "evidence_boundary": {
+    "official_du_paper": false,
+    "official_du_answer_key": false,
+    "independent_authoritative_verification_complete": false,
+    "suitable_for_f_s2_secondary_reconstruction": true,
+    "suitable_for_f_v2_promotion": false,
+    "public_source_traceability": false,
+    "custody_metadata_only": true
+  },
+  "biology_reconciliation": [
+    {
+      "local_no": 1,
+      "question_id": "DU-2016-17-MCQ-001",
+      "source_answer_letter": "A",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 2,
+      "question_id": "DU-2016-17-MCQ-002",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 3,
+      "question_id": "DU-2016-17-MCQ-003",
+      "source_answer_letter": "C",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 4,
+      "question_id": "DU-2016-17-MCQ-004",
+      "source_answer_letter": "A",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 5,
+      "question_id": "DU-2016-17-MCQ-005",
+      "source_answer_letter": "D",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 6,
+      "question_id": "DU-2016-17-MCQ-006",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 7,
+      "question_id": "DU-2016-17-MCQ-007",
+      "source_answer_letter": "D",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 8,
+      "question_id": "DU-2016-17-MCQ-008",
+      "source_answer_letter": "A",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 9,
+      "question_id": "DU-2016-17-MCQ-009",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 10,
+      "question_id": "DU-2016-17-MCQ-010",
+      "source_answer_letter": "D",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 11,
+      "question_id": "DU-2016-17-MCQ-011",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 12,
+      "question_id": "DU-2016-17-MCQ-012",
+      "source_answer_letter": "A",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 13,
+      "question_id": "DU-2016-17-MCQ-013",
+      "source_answer_letter": "C",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 14,
+      "question_id": "DU-2016-17-MCQ-014",
+      "source_answer_letter": "D",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 15,
+      "question_id": "DU-2016-17-MCQ-015",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 16,
+      "question_id": "DU-2016-17-MCQ-016",
+      "source_answer_letter": "A",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 17,
+      "question_id": "DU-2016-17-MCQ-017",
+      "source_answer_letter": "D",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 18,
+      "question_id": "DU-2016-17-MCQ-018",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 19,
+      "question_id": "DU-2016-17-MCQ-019",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 20,
+      "question_id": "DU-2016-17-MCQ-020",
+      "source_answer_letter": "A",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 21,
+      "question_id": "DU-2016-17-MCQ-021",
+      "source_answer_letter": "D",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 22,
+      "question_id": "DU-2016-17-MCQ-022",
+      "source_answer_letter": "C",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 23,
+      "question_id": "DU-2016-17-MCQ-023",
+      "source_answer_letter": "C",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 24,
+      "question_id": "DU-2016-17-MCQ-024",
+      "source_answer_letter": "C",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 25,
+      "question_id": "DU-2016-17-MCQ-025",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 26,
+      "question_id": "DU-2016-17-MCQ-026",
+      "source_answer_letter": "D",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 27,
+      "question_id": "DU-2016-17-MCQ-027",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 28,
+      "question_id": "DU-2016-17-MCQ-028",
+      "source_answer_letter": "C",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 29,
+      "question_id": "DU-2016-17-MCQ-029",
+      "source_answer_letter": "A",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    },
+    {
+      "local_no": 30,
+      "question_id": "DU-2016-17-MCQ-030",
+      "source_answer_letter": "B",
+      "verification_status": "V1",
+      "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
+    }
+  ],
+  "inspectable_in_repository": false
+}

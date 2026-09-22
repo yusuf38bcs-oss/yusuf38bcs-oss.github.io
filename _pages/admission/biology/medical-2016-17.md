@@ -1,0 +1,13 @@
+---
+title: "Medical Biology Evidence — 2016–17"
+permalink: /admission/biology/medical/2016-17/
+layout: single
+classes: wide admission-biology-evidence-page
+author_profile: false
+robots: index,follow
+description: "Bangladesh Medical Admission 2016–17 Biology full secondary reconstruction with transparent source provenance."
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/admission-biology-evidence.css' | relative_url }}">
+{% assign record = site.data.admission.biology.medical["2016-17"] %}
+{% include admission/biology-evidence-paper.html record=record exam_label="Bangladesh Medical Admission" %}
