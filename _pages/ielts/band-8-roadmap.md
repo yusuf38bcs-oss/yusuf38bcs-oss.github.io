@@ -6,8 +6,11 @@ classes: wide ielts-static-page
 sidebar:
   nav: "ielts"
 author_profile: false
----\n\n<section class="ielts-static" aria-label="IELTS learning content">\n\n<link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
+---
 
+<link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
+
+<section class="ielts-static" aria-label="IELTS learning content">
 
 Band 8 requires accurate understanding, clear organization, flexible vocabulary, grammatical control, and the ability to develop ideas naturally rather than reproduce memorised templates.
 
@@ -24,4 +27,6 @@ Band 8 requires accurate understanding, clear organization, flexible vocabulary,
 
 **Listening → Reading → Writing → Speaking**
 
-[Start Daily Practice](/ielts/daily-practice/)\n\n</section>\n
+[Start Daily Practice](/ielts/daily-practice/)
+
+</section>
