@@ -6,8 +6,11 @@ classes: wide ielts-static-page
 sidebar:
   nav: "ielts"
 author_profile: false
----\n\n<section class="ielts-static" aria-label="IELTS learning content">\n\n<link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
+---
 
+<link rel="stylesheet" href="{{ '/assets/css/ielts-hub.css' | relative_url }}">
+
+<section class="ielts-static" aria-label="IELTS learning content">
 
 Build accuracy through prediction, focused note-taking, signal words, detail recognition, and transcript-based correction.
 
@@ -19,4 +22,6 @@ Build accuracy through prediction, focused note-taking, signal words, detail rec
 - Map and diagram labelling
 - Summary and paraphrasing drills
 
-[Start the daily practice rotation](/ielts/daily-practice/)\n\n</section>\n
+[Start the daily practice rotation](/ielts/daily-practice/)
+
+</section>
