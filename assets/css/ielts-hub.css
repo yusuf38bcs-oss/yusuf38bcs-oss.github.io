@@ -1301,6 +1301,10 @@
   color: var(--ielts-contrast-body) !important;
 }
 
+.ielts-static-page .page__content .ielts-static {
+  color: var(--ielts-contrast-body) !important;
+}
+
 .ielts-static-page :is(.page__title, .page__content h1, .page__content h2, .page__content h3) {
   color: var(--ielts-contrast-ink) !important;
 }
