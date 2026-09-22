@@ -5,7 +5,7 @@ author: "MD. Yusuf"
 sidebar:
   nav: "zoology_practical_213106"
 title: "Practical 02 — Permanent Slides"
-excerpt: "Whole animals, arthropod mouth parts, parasites, larval forms and invertebrate histological slides."
+excerpt: "A 43-preparation teaching bank covering whole animals, arthropod mouth parts, parasites, larval forms and invertebrate histology; syllabus minimum ≥20."
 permalink: /biology/higher-zoology-tree/practical/permanent-slides/
 categories:
   - Biology
