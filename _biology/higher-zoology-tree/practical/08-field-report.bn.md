@@ -2,6 +2,8 @@
 layout: single
 author_profile: true
 author: "MD. Yusuf"
+sidebar:
+  nav: "zoology_practical_213106"
 title: "Practical 08 — Field Visit & Scientific Report"
 excerpt: "Field visit, ≥10 preserved invertebrate samples, quadrat density and Shannon–Wiener diversity report."
 permalink: /biology/higher-zoology-tree/practical/field-report/
