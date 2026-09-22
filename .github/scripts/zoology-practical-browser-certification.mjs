@@ -150,14 +150,44 @@ try {
       }, { childRoutes, isGateway: spec.name === "gateway" });
 
       const focus = await page.evaluate(() => {
+        const visible = (element) => {
+          if (!element) return false;
+          const style = getComputedStyle(element);
+          const rect = element.getBoundingClientRect();
+          return style.display !== "none" &&
+            style.visibility !== "hidden" &&
+            Number(style.opacity || 1) > 0 &&
+            rect.width > 0 &&
+            rect.height > 0;
+        };
+        const candidates = Array.from(document.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), ' +
+          'select:not([disabled]), textarea:not([disabled]), summary, iframe, ' +
+          '[contenteditable="true"], [tabindex]:not([tabindex="-1"])'
+        )).filter((element) => visible(element) && element.tabIndex >= 0);
         const first = document.querySelector(".contextual-sidebar-nav a[href]");
-        if (!first) return { present: false };
-        return { present: true, href: first.getAttribute("href") };
+        if (!first) {
+          return {
+            present: false,
+            tabbableCount: candidates.length,
+            sidebarTabPosition: -1
+          };
+        }
+        return {
+          present: true,
+          href: first.getAttribute("href"),
+          tabbableCount: candidates.length,
+          sidebarTabPosition: candidates.indexOf(first) + 1
+        };
       });
       let keyboardPassed = false;
-      if (focus.present) {
-        for (let i = 0; i < 160; i += 1) {
+      let keyboardTabsUsed = 0;
+      let keyboardFocusVisible = false;
+      if (focus.present && focus.sidebarTabPosition > 0) {
+        const maxTabs = focus.tabbableCount + 1;
+        for (let i = 0; i < maxTabs; i += 1) {
           await page.keyboard.press("Tab");
+          keyboardTabsUsed = i + 1;
           const active = await page.evaluate(() => {
             const el = document.activeElement;
             if (!el || el === document.body) return null;
@@ -167,11 +197,18 @@ try {
             };
           });
           if (active?.inSidebar) {
+            keyboardFocusVisible = active.focusVisible;
             keyboardPassed = active.focusVisible;
             break;
           }
         }
       }
+      const keyboardDiagnostic = {
+        tabbableCount: focus.tabbableCount || 0,
+        sidebarTabPosition: focus.sidebarTabPosition || -1,
+        tabsUsed: keyboardTabsUsed,
+        focusVisible: keyboardFocusVisible
+      };
 
       const passed =
         response?.status() === 200 &&
@@ -194,6 +231,7 @@ try {
         status: response?.status() || 0,
         state,
         keyboardPassed,
+        keyboardDiagnostic,
         axeViolations,
         consoleErrors,
         pageErrors,
