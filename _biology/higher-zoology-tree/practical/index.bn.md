@@ -60,7 +60,7 @@ time_min: 60
 | No. | Module | Coverage |
 |---:|---|---|
 | 01 | [Museum Specimens]({{ '/biology/higher-zoology-tree/practical/museum-specimens/' | relative_url }}) | **48/48 unique NU syllabus labels** |
-| 02 | [Permanent Slides]({{ '/biology/higher-zoology-tree/practical/permanent-slides/' | relative_url }}) | 30-slide canonical teaching set; ≥20 syllabus requirement |
+| 02 | [Permanent Slides]({{ '/biology/higher-zoology-tree/practical/permanent-slides/' | relative_url }}) | 43-preparation reference bank; ≥20 syllabus requirement |
 | 03 | [Whole Mounts]({{ '/biology/higher-zoology-tree/practical/whole-mounts/' | relative_url }}) | preparation + study workflow |
 | 04 | [Dissection]({{ '/biology/higher-zoology-tree/practical/dissection/' | relative_url }}) | external morphology + all listed major/minor systems |
 | 05 | [Temporary Mounts]({{ '/biology/higher-zoology-tree/practical/temporary-mounts/' | relative_url }}) | earthworm brain, cockroach salivary gland, prawn statocyst |
