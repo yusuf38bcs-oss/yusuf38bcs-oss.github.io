@@ -21,8 +21,9 @@
       "tier": "B2",
       "kind": "user-provided-revised-bengali-transcription-custody-record",
       "url": "https://github.com/yusuf38bcs-oss/yusuf38bcs-oss.github.io/blob/2e0aaab8104c859a93c713be35c78a575b5abe34/_data/admission/biology/du/sources/2016-17-revised-bangla-transcription.json",
-      "status": "reviewed",
-      "supports": "Immutable repository custody record for the user-provided 26-page file 'DU_2016_2017_Bangla_Question_Transcription_REVISED.pdf' (SHA-256 2a1e7099ca051ad12c14296a40032f33258277fc1ccffc655fc924ca1f557a64). Biology appears on pages 14-17 as a complete local 1-30 block with the printed source answer key preserved. The transcription is derivative, not an official DU paper or official answer key, and the answers remain independently unverified."
+      "status": "custody-only-not-publicly-inspectable",
+      "supports": "Repository custody metadata for the user-provided 26-page derivative transcription. The underlying PDF bytes are not committed or publicly inspectable; rows relying only on this record remain V1 and must not be described as publicly source-traceable or independently verified.",
+      "inspectable": false
     },
     {
       "source_id": "SATT-DU-A-2016-17",
