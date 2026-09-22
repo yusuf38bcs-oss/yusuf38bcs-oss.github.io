@@ -2,6 +2,8 @@
 layout: single
 author_profile: true
 author: "MD. Yusuf"
+sidebar:
+  nav: "zoology_practical_213106"
 title: "Practical 03 — Whole Mount Preparation"
 excerpt: "Preparation and study of whole mounts of different non-chordates."
 permalink: /biology/higher-zoology-tree/practical/whole-mounts/
