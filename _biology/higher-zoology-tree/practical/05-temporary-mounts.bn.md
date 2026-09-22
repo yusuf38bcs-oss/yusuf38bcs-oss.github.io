@@ -2,6 +2,8 @@
 layout: single
 author_profile: true
 author: "MD. Yusuf"
+sidebar:
+  nav: "zoology_practical_213106"
 title: "Practical 05 — Temporary Mounting"
 excerpt: "Temporary mounting of earthworm brain, cockroach salivary gland and prawn statocyst."
 permalink: /biology/higher-zoology-tree/practical/temporary-mounts/
