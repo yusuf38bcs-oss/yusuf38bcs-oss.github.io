@@ -2,6 +2,8 @@
 layout: single
 author_profile: true
 author: "MD. Yusuf"
+sidebar:
+  nav: "zoology_practical_213106"
 title: "Practical 07 — Zooplankton Quantification & Diversity"
 excerpt: "Quantify zooplankton from three water bodies and compare diversity using Simpson and Shannon indices."
 permalink: /biology/higher-zoology-tree/practical/zooplankton/
