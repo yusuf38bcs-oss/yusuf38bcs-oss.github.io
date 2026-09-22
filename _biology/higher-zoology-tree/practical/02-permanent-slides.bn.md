@@ -41,7 +41,7 @@ time_min: 150
 
 # Study of Permanent Slides
 
-NU syllabus অনুযায়ী **at least 20 slides** study করতে হবে। নিচে 30-slide canonical set দেওয়া হলো যাতে departmental availability অনুযায়ী ≥20 নির্বাচন করা যায়।
+NU syllabus অনুযায়ী **at least 20 slides** study করতে হবে। নিচে **43-preparation reference bank** দেওয়া হলো; departmental availability ও course requirement অনুযায়ী এখান থেকে ≥20 preparation নির্বাচন করা যাবে।
 
 ## A. Whole Animals — Protozoans, Rotifers & Arthropods
 
