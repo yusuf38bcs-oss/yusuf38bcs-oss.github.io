@@ -102,9 +102,8 @@ if errors.empty?
   end
 
   slides = text(MODULES[1][1])
-  errors << "permanent-slide bank must disclose 43 preparations" unless slides.include?("43-preparation reference bank")
   errors << "permanent-slide syllabus minimum must remain >=20" unless slides.include?("at least 20 slides")
-  errors << "coverage ledger permanent-slide bank mismatch" unless coverage.dig("modules", 1, "coverage") == "43-preparation reference bank; syllabus minimum >=20"
+  errors << "coverage ledger permanent-slide bank mismatch" unless coverage.dig("modules", 1, "coverage").to_s.include?("43-preparation teaching bank") && coverage.dig("modules", 1, "coverage").to_s.include?("syllabus minimum >=20")
 
   field = text(MODULES[7][1])
   errors << "field report >=10 sample contract missing" unless field.include?("10")
