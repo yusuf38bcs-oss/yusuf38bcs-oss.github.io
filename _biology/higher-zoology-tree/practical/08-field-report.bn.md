@@ -20,10 +20,11 @@ course_role: practical-lecture
 page_id: zoology-practical-field-report
 language: bn
 lang: bn
-locale: bn_BD
+locale: bn-BD
 toc: true
 toc_sticky: true
-classes: wide
+math: true
+classes: wide zoology-practical-page
 related: true
 status: Draft-Ready
 published: true
