@@ -17,12 +17,12 @@
   "matrix_release_allowed": false,
   "sources": [
     {
-      "source_id": "UCC-DU-A-2016-17-PDF",
-      "tier": "C2",
-      "kind": "secondary-question-bank-paper-copy",
-      "url": "https://drive.google.com/file/d/1tUSVRCDaECSSqVITJ4vm3fnhXWs7-7LL/view?usp=sharing",
+      "source_id": "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION",
+      "tier": "B2",
+      "kind": "user-provided-revised-bengali-transcription-custody-record",
+      "url": "https://github.com/yusuf38bcs-oss/yusuf38bcs-oss.github.io/blob/2e0aaab8104c859a93c713be35c78a575b5abe34/_data/admission/biology/du/sources/2016-17-revised-bangla-transcription.json",
       "status": "reviewed",
-      "supports": "Eight-page UCC-formatted copy titled 'DU Questions A 16-17-Copy.pdf'. Its Biology section spans the end of printed page 30 and printed page 31, is numbered 1-30 locally, and includes a secondary answer key. Used to establish a complete F-S2 Biology reconstruction; not treated as an official paper or official answer key."
+      "supports": "Immutable repository custody record for the user-provided 26-page file 'DU_2016_2017_Bangla_Question_Transcription_REVISED.pdf' (SHA-256 2a1e7099ca051ad12c14296a40032f33258277fc1ccffc655fc924ca1f557a64). Biology appears on pages 14-17 as a complete local 1-30 block with the printed source answer key preserved. The transcription is derivative, not an official DU paper or official answer key, and the answers remain independently unverified."
     },
     {
       "source_id": "SATT-DU-A-2016-17",
@@ -79,14 +79,6 @@
       "url": "https://www.babarenglish.com/post/university-admission-test-english-dhaka-university-a-unit-2016-2017-session-english-questions",
       "status": "reviewed",
       "supports": "Session-specific DU A Unit 2016-17 English transcription with a 30-question subject block; corroborates the per-subject format, not Biology content."
-    },
-    {
-      "source_id": "STUDOCU-DU-A-2016-17-PAPER",
-      "tier": "C2",
-      "kind": "secondary-paper-copy-mirror",
-      "url": "https://www.studocu.com/row/document/university-of-dhaka/mathmetics-practice-test/du-questions-a-16-17-copy/80424559",
-      "status": "reviewed",
-      "supports": "Secondary mirror/locator for the same 'DU Questions A 16-17-Copy' material; used as a corroborating locator only, not as official provenance."
     }
   ],
   "questions": [
@@ -101,7 +93,7 @@
       "question_fingerprint": "Stage of mitosis when the nucleolus disappears",
       "answer": "Prophase",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -116,7 +108,7 @@
       "question_fingerprint": "Microorganism causing potato scab disease",
       "answer": "Streptomyces scabies",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -131,7 +123,7 @@
       "question_fingerprint": "Bacterial gene source used for insect-resistant GM brinjal in Bangladesh",
       "answer": "Bacillus thuringiensis",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -148,7 +140,7 @@
       "question_fingerprint": "Technique used to produce disease-free plantlets",
       "answer": "Meristem culture",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF",
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION",
         "BISSOY-DU-A-2016-17-MERISTEM"
       ],
       "verification_status": "V1"
@@ -166,7 +158,7 @@
       "question_fingerprint": "Plant showing viviparous germination",
       "answer": "Rhizophora conjugata",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -181,7 +173,7 @@
       "question_fingerprint": "First stable product of C4 photosynthesis",
       "answer": "Oxaloacetic acid",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF",
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION",
         "BISSOY-DU-A-2016-17-C4"
       ],
       "verification_status": "V1"
@@ -199,7 +191,7 @@
       "question_fingerprint": "Type of placentation in Cucumis sativus",
       "answer": "Parietal",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -214,7 +206,7 @@
       "question_fingerprint": "Starch-storing leucoplast",
       "answer": "Amyloplast",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -231,7 +223,7 @@
       "question_fingerprint": "Organism containing C-phycocyanin",
       "answer": "Nostoc",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -246,7 +238,7 @@
       "question_fingerprint": "Tissue type forming jute fibre",
       "answer": "Secondary phloem tissue",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -261,7 +253,7 @@
       "question_fingerprint": "Origin of rhizophore",
       "answer": "Stem",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -276,7 +268,7 @@
       "question_fingerprint": "Example of haploid parthenogenesis",
       "answer": "Solanum nigrum",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -291,7 +283,7 @@
       "question_fingerprint": "Pathway that produces 3-PGA",
       "answer": "Calvin cycle",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -306,7 +298,7 @@
       "question_fingerprint": "Stage associated with development of the tube nucleus",
       "answer": "Development of male gametophyte",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -321,7 +313,7 @@
       "question_fingerprint": "Commercial source of penicillin",
       "answer": "Penicillium chrysogenum",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -336,7 +328,7 @@
       "question_fingerprint": "Cell lineage that produces sperm",
       "answer": "Spermatogonia",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -353,7 +345,7 @@
       "question_fingerprint": "Site of renin production in the human body",
       "answer": "Kidney",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF",
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION",
         "BISSOY-DU-A-2016-17-RENIN"
       ],
       "verification_status": "V1"
@@ -369,7 +361,7 @@
       "question_fingerprint": "Location of the organ of Corti",
       "answer": "Cochlea",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -386,7 +378,7 @@
       "question_fingerprint": "Parasite causing elephantiasis",
       "answer": "Wuchereria bancrofti",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -401,7 +393,7 @@
       "question_fingerprint": "Sex-linked human characteristic",
       "answer": "Colour blindness",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -418,7 +410,7 @@
       "question_fingerprint": "Hormone associated with human bone growth",
       "answer": "Somatotropin",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF",
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION",
         "BISSOY-DU-A-2016-17-SOMATOTROPIN"
       ],
       "verification_status": "V1"
@@ -434,7 +426,7 @@
       "question_fingerprint": "Identify the organism that is not a fish",
       "answer": "Silverfish",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -449,7 +441,7 @@
       "question_fingerprint": "Membrane covering the lungs",
       "answer": "Pleura",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -464,7 +456,7 @@
       "question_fingerprint": "Factor not required for blood clotting",
       "answer": "Insulin",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -479,7 +471,7 @@
       "question_fingerprint": "Phylum to which coral belongs",
       "answer": "Cnidaria",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -494,7 +486,7 @@
       "question_fingerprint": "Scale type found in Chondrichthyes",
       "answer": "Placoid",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -509,7 +501,7 @@
       "question_fingerprint": "Multinucleate stage of the malaria parasite",
       "answer": "Schizont",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -526,7 +518,7 @@
       "question_fingerprint": "Structure not found in Hydra",
       "answer": "Mesoderm",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -543,7 +535,7 @@
       "question_fingerprint": "Order of Rohu (Labeo rohita)",
       "answer": "Cypriniformes",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     },
@@ -560,7 +552,7 @@
       "question_fingerprint": "Blood cell type that helps protect against disease",
       "answer": "Leucocytes",
       "source_refs": [
-        "UCC-DU-A-2016-17-PDF"
+        "USER-DU-A-2016-17-REVISED-BN-TRANSCRIPTION"
       ],
       "verification_status": "V1"
     }
@@ -596,19 +588,21 @@
   },
   "reconciliation_summary": {
     "expected_biology_opportunities": 30,
-    "expected_count_basis": "The reviewed UCC secondary copy contains a Biology section explicitly numbered 1-30; the historical 30-mark-per-subject A Unit format independently corroborates the expected block size.",
+    "expected_count_basis": "The reviewed user-provided revised Bengali transcription contains a Biology section explicitly numbered 1-30 on pages 14-17; its front-page subject table also records 30 questions for Biology. Historical A/Ka Unit format references are retained only as corroboration.",
     "source_backed_rows": 30,
     "original_paper_question_numbers_resolved": 0,
     "full_biology_block_completeness_established": true,
     "independent_authoritative_verification_pending": true
   },
   "research_notes": [
-    "The archived UCC-formatted 'DU Questions A 16-17-Copy.pdf' provides a complete 30-question Biology section across printed pages 30-31 and a secondary answer key. This supports F-S2/V1 reconstruction but is not treated as an official question paper or official answer key.",
-    "No official answer key is assumed or required for this F-S2 state. Answer fields are secondary-source reconstructions and remain V1 pending independent scientific/source reconciliation.",
+    "The user-provided 'DU_2016_2017_Bangla_Question_Transcription_REVISED.pdf' is now the sole complete 30-row transcription source for DU 2016-17 Biology in this ledger. Its exact attachment identity is recorded by SHA-256 in the repository custody record; the PDF itself is not committed.",
+    "The revised transcription contains all six subject blocks and states that scientific names, formulae, symbols, units, standard notation and meaning-dependent technical terms were retained as needed while Bengali language/typography was edited. The Biology block is pages 14-17 and is locally numbered 1-30.",
+    "The transcription explicitly states that printed source answer keys were preserved as found and were not independently verified. Accordingly, the ledger remains F-S2/V1 and no official DU answer key is claimed.",
+    "The earlier UCC Google Drive question-bank PDF source and the Studocu mirror have been removed from active provenance and from every DU Biology question source_refs entry.",
     "The earlier Dr. Siddiq continuous transcription is incomplete across multiple subjects and its continuous numbers must not be treated as original paper positions. All paper_question_no values therefore remain null.",
-    "question_no 1-30 preserves the Biology-section-local order shown in the reviewed secondary paper copy; it does not claim a global original booklet position.",
-    "All 30 Biology identities are now represented. Topic-level zero claims are schema-legal for a complete F-S2 component, but matrix_release_allowed remains false.",
+    "question_no 1-30 preserves the Biology-section-local order shown in the revised Bengali transcription; it does not claim a global original booklet position.",
+    "All 30 Biology identities remain represented. Topic-level zero claims are schema-legal for a complete F-S2 component, but matrix_release_allowed remains false.",
     "Renin remains B24 Endocrine & Homeostasis with B21 secondary; meristem culture remains B14 Biotechnology with B13 secondary; Hydra and Rohu representative-animal items remain B17.",
-    "Matrix publication and final QYI contribution remain blocked by the engine-wide release gate and by the absence of F-V2 independent verification."
+    "Matrix publication and final QYI contribution remain blocked by the engine-wide release gate and by the absence of F-V2 independent authoritative verification."
   ]
 }
