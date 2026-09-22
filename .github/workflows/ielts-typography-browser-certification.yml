@@ -1,0 +1,125 @@
+name: IELTS Typography and Browser Certification
+
+on:
+  pull_request:
+    branches: ["staging"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "_pages/ielts/**"
+      - "assets/css/ielts-hub.css"
+      - "assets/css/ielts-reading-trainer.css"
+      - ".github/scripts/ielts-typography-browser-certification.mjs"
+      - ".github/scripts/resolve-cloudflare-targets.py"
+      - ".github/workflows/ielts-typography-browser-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+concurrency:
+  group: ielts-typography-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: Exact-preview typography and browser state
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      EVIDENCE_DIR: ielts-typography-browser-report
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      PR_NUMBER: ${{ github.event.pull_request.number || '' }}
+      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
+      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
+
+    steps:
+      - name: Check out immutable candidate head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Enforce exact checked-out identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+
+      - name: Resolve exact-head Cloudflare Pages preview
+        id: preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          mkdir -p "$EVIDENCE_DIR"
+          preview_output="$RUNNER_TEMP/cloudflare-preview.out"
+          for attempt in $(seq 1 40); do
+            : > "$preview_output"
+            python3 .github/scripts/resolve-cloudflare-targets.py               --repository "$GITHUB_REPOSITORY"               --sha "$PR_HEAD_SHA"               --pr-number "$PR_NUMBER"               --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID"               --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT"               --wait-seconds 0               --site-config _data/ai.yml               --output "$EVIDENCE_DIR/cloudflare-targets.json"               --github-output "$preview_output"
+            if python3 -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); sys.exit(0 if d["pages"]["exact_head"] and d["pages"]["deployment_id"] else 1)' "$EVIDENCE_DIR/cloudflare-targets.json"; then
+              cat "$preview_output" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 15
+          done
+          cat "$EVIDENCE_DIR/cloudflare-targets.json"
+          exit 1
+
+      - name: Enforce immutable preview identity
+        env:
+          PAGES_EXACT_HEAD: ${{ steps.preview.outputs.pages_exact_head }}
+          PAGES_URL: ${{ steps.preview.outputs.pages_url }}
+          PAGES_DEPLOYMENT_ID: ${{ steps.preview.outputs.pages_deployment_id }}
+          PAGES_DEPLOYED_SHA: ${{ steps.preview.outputs.pages_deployed_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$PAGES_EXACT_HEAD" = "true"
+          test "$PAGES_DEPLOYED_SHA" = "$PR_HEAD_SHA"
+          test -n "$PAGES_URL"
+          test -n "$PAGES_DEPLOYMENT_ID"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install browser runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Certify IELTS typography and browser state
+        env:
+          PAGES_URL: ${{ steps.preview.outputs.pages_url }}
+          PAGES_DEPLOYMENT_ID: ${{ steps.preview.outputs.pages_deployment_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/scripts/ielts-typography-browser-certification.mjs             --url "$PAGES_URL"             --expected-sha "$PR_HEAD_SHA"             --deployment-id "$PAGES_DEPLOYMENT_ID"             --output-dir "$EVIDENCE_DIR"
+
+      - name: Add IELTS evidence to summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f "$EVIDENCE_DIR/report.md" ]]; then
+            cat "$EVIDENCE_DIR/report.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' 'IELTS typography/browser report was not produced.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve IELTS typography/browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ielts-typography-browser-${{ env.PR_HEAD_SHA }}
+          path: ${{ env.EVIDENCE_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
