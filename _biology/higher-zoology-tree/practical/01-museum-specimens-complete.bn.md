@@ -1003,3 +1003,796 @@ Figure-এ minimum:
 | Phylum | Brachiopoda |
 | Subphylum | Linguliformea |
 | Class | Lingulata |
+| Order | Lingulida |
+| Family | Lingulidae |
+| Genus | *Lingula* |
+| Representative | *L. anatina* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Shell two valves কিন্তু valves **dorsal and ventral**, bivalve mollusc-এর left-right নয়।
+- Shell elongated, tongue-shaped এবং comparatively thin।
+- Long muscular **pedicle** posteriorly emerges।
+- Valves mainly organophosphatic/chitinous composition।
+- Lophophore internal feeding organ।
+
+**Diagnostic character:** Tongue-shaped brachiopod shell with long pedicle and dorsoventral valves.
+
+### Practical identification
+
+> Dorsoventral bivalved shell ও long pedicle-এর কারণে specimen-টি *Lingula*।
+
+
+---
+
+## 28. Dentalium — *Dentalium* sp.
+
+**Common name:** Tusk shell  
+**Figure:** `museum-specimens/dentalium.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Scaphopoda |
+| Order | Dentaliida |
+| Family | Dentaliidae |
+| Genus | *Dentalium* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Shell long, tubular, slightly curved ও tusk-like।
+- Shell **open at both ends**।
+- Anterior wider aperture থেকে foot/head region বের হয়।
+- Posterior aperture narrow।
+- Feeding captacula thread-like structures হিসেবে ব্যবহৃত হয়।
+
+**Diagnostic character:** Curved tusk-shaped tubular shell open at both ends.
+
+### Practical identification
+
+> দুই প্রান্তে open, curved tusk-like shell থাকার কারণে specimen-টি *Dentalium*।
+
+
+---
+
+## 29. Chiton — *Chiton* sp.
+
+**Common name:** Chiton / coat-of-mail shell  
+**Figure:** `museum-specimens/chiton.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Polyplacophora |
+| Clade | Neoloricata |
+| Order | Chitonida |
+| Family | Chitonidae |
+| Genus | *Chiton* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Body oval ও dorsoventrally flattened।
+- Dorsal surface-এ **8 overlapping shell plates** থাকে।
+- Plates-এর চারদিকে muscular **girdle**।
+- Ventral side-এ broad creeping foot।
+- Head poorly differentiated; multiple gills pallial groove-এ।
+
+**Diagnostic character:** Eight dorsal shell plates surrounded by a broad girdle.
+
+### Practical identification
+
+> Eight dorsal plates ও broad girdle থাকার কারণে specimen-টি *Chiton*।
+
+
+---
+
+## 30. Neopilina — *Neopilina galatheae*
+
+**Common name:** Living monoplacophoran  
+**Figure:** `museum-specimens/neopilina.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Monoplacophora |
+| Order | Neopilinida |
+| Family | Neopilinidae |
+| Genus | *Neopilina* |
+| Species | *N. galatheae* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Shell single, cap-like ও bilaterally symmetrical।
+- Broad ventral foot থাকে।
+- Several organs—gills, nephridia, retractor muscles—**serially repeated**।
+- Head reduced; shell limpet-like।
+- Deep-sea mollusc হিসেবে পরিচিত।
+
+**Diagnostic character:** Single cap-like shell plus serial repetition of paired internal structures.
+
+### Practical identification
+
+> Cap-like univalve shell এবং serially repeated organs-এর কারণে specimen-টি *Neopilina*।
+
+
+---
+
+## 31. Pila — *Pila globosa*
+
+**Common name:** Indian apple snail  
+**Figure:** `museum-specimens/pila.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Gastropoda |
+| Subclass | Caenogastropoda |
+| Order/group | Architaenioglossa |
+| Family | Ampullariidae |
+| Genus | *Pila* |
+| Species | *P. globosa* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Shell globose ও spirally coiled।
+- Usually dextral।
+- Large body whorl ও short spire।
+- Broad aperture **operculum** দিয়ে close করা যায়।
+- Living animal-এ muscular foot এবং tentacled head।
+
+**Diagnostic character:** Globose dextral shell with broad operculate aperture.
+
+### Practical identification
+
+> Globose coiled shell, broad aperture এবং operculum থাকার কারণে specimen-টি *Pila*।
+
+
+---
+
+## 32. Mytilus — *Mytilus edulis*
+
+**Common name:** Blue mussel  
+**Figure:** `museum-specimens/mytilus.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Bivalvia |
+| Subclass | Autobranchia |
+| Order | Mytilida |
+| Family | Mytilidae |
+| Genus | *Mytilus* |
+| Representative | *M. edulis* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Shell elongated, wedge-shaped ও equivalve but inequilateral।
+- Umbo near anterior end।
+- External shell সাধারণত dark blue/blackish।
+- Attachment-এর জন্য **byssus threads** তৈরি করে।
+- Anterior adductor comparatively small; posterior adductor larger।
+
+**Diagnostic character:** Wedge-shaped mussel shell with anterior umbo and byssal attachment.
+
+### Practical identification
+
+> Elongated wedge-shaped shell এবং byssal attachment-এর কারণে specimen-টি *Mytilus*।
+
+
+---
+
+## 33. Unio — *Unio pictorum*
+
+**Common name:** Freshwater mussel / painter's mussel  
+**Figure:** `museum-specimens/unio.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Bivalvia |
+| Subclass | Autobranchia |
+| Clade | Palaeoheterodonta |
+| Order | Unionida |
+| Family | Unionidae |
+| Genus | *Unio* |
+| Representative | *U. pictorum* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Freshwater bivalve with two laterally placed valves।
+- Dorsal margin-এ umbo ও hinge apparatus।
+- Shell interior nacreous।
+- Adult-এ broad, hatchet-shaped muscular foot।
+- Hinge-এ cardinal/lateral teeth থাকতে পারে; byssus adult stage-এ absent।
+
+**Diagnostic character:** Freshwater unionid shell with umbo, hinge teeth and nacreous inner surface.
+
+### Practical identification
+
+> Freshwater bivalved shell, dorsal umbo ও unionid hinge characters-এর কারণে specimen-টি *Unio*।
+
+
+---
+
+## 34. Nautilus — *Nautilus pompilius*
+
+**Common name:** Chambered nautilus  
+**Figure:** `museum-specimens/nautilus.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Cephalopoda |
+| Subclass | Nautiloidea |
+| Order | Nautilida |
+| Family | Nautilidae |
+| Genus | *Nautilus* |
+| Representative | *N. pompilius* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Large external **planispirally coiled chambered shell**।
+- Septa shell-কে chambers-এ divide করে; siphuncle chambers traverse করে।
+- Head-এ numerous tentacles/cirri, typical octopus suckers absent।
+- Large hood shell opening close করতে সাহায্য করে।
+- Living animal outermost chamber-এ থাকে।
+
+**Diagnostic character:** External chambered coiled shell with many suckerless tentacles.
+
+### Practical identification
+
+> External chambered shell এবং numerous suckerless tentacles-এর কারণে specimen-টি *Nautilus*।
+
+
+---
+
+## 35. Sepia — *Sepia officinalis*
+
+**Common name:** Cuttlefish  
+**Figure:** `museum-specimens/sepia.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Cephalopoda |
+| Subclass | Coleoidea |
+| Clade | Decapodiformes |
+| Order | Sepiida |
+| Family | Sepiidae |
+| Genus | *Sepia* |
+| Representative | *S. officinalis* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Body oval/flattened mantle with lateral fin running along much of mantle margin।
+- Eight short arms + **two long retractile tentacles**।
+- Internal calcareous **cuttlebone** present।
+- Large eyes; funnel and ink sac present।
+- Tentacular clubs bear suckers।
+
+**Diagnostic character:** Cuttlebone + 8 arms and 2 tentacles + broad lateral fin.
+
+### Practical identification
+
+> Internal cuttlebone, ten appendages এবং mantle fin-এর কারণে specimen-টি *Sepia*।
+
+
+---
+
+## 36. Loligo — *Loligo vulgaris*
+
+**Common name:** Squid  
+**Figure:** `museum-specimens/loligo.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Cephalopoda |
+| Subclass | Coleoidea |
+| Clade | Decapodiformes |
+| Order | Myopsida |
+| Family | Loliginidae |
+| Genus | *Loligo* |
+| Representative | *L. vulgaris* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Body elongated, streamlined mantle।
+- Eight arms + **two long tentacles**।
+- Posterior/lateral mantle-এ paired triangular/rhomboid fins।
+- Internal chitinous **pen/gladius** present।
+- Arms/tentacles bear suckers।
+
+**Diagnostic character:** Elongated squid body with ten appendages, paired fins and internal pen.
+
+### Practical identification
+
+> Elongated mantle, 8 arms + 2 tentacles এবং paired fins-এর কারণে specimen-টি *Loligo*।
+
+
+---
+
+## 37. Octopus — *Octopus vulgaris*
+
+**Common name:** Common octopus  
+**Figure:** `museum-specimens/octopus.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Mollusca |
+| Class | Cephalopoda |
+| Subclass | Coleoidea |
+| Order | Octopoda |
+| Family | Octopodidae |
+| Genus | *Octopus* |
+| Representative | *O. vulgaris* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Head well developed with large eyes।
+- Mouth-এর চারদিকে exactly **8 muscular arms**।
+- Arms-এ numerous suckers।
+- External shell absent; no long feeding tentacle pair।
+- Muscular mantle ও funnel present।
+
+**Diagnostic character:** Eight sucker-bearing arms and no external shell.
+
+### Practical identification
+
+> Eight sucker-bearing arms এবং shell-এর অনুপস্থিতির কারণে specimen-টি *Octopus*।
+
+
+---
+
+## 38. Eupagurus — *Eupagurus* (traditional) — commonly *Pagurus* in modern usage
+
+**Common name:** Hermit crab  
+**Figure:** `museum-specimens/eupagurus.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Arthropoda |
+| Subphylum | Crustacea / Pancrustacea |
+| Class | Malacostraca |
+| Order | Decapoda |
+| Infraorder | Anomura |
+| Family | Paguridae |
+| Modern representative genus | *Pagurus* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Cephalothorax heavily calcified; abdomen soft, curved ও asymmetrical।
+- Soft abdomen সাধারণত empty gastropod shell-এর ভিতরে থাকে।
+- First pereiopods chelate; chelae often unequal।
+- Abdominal appendages asymmetrically reduced।
+- Uropods abdomen-কে shell-এর ভিতরে anchor করতে সাহায্য করে।
+
+**Diagnostic character:** Soft asymmetrical coiled abdomen adapted to occupation of a gastropod shell.
+
+### Practical identification
+
+> Soft asymmetrical abdomen এবং borrowed gastropod shell ব্যবহারের কারণে specimen-টি hermit crab—traditional *Eupagurus*।
+
+**Taxonomy / syllabus note:** WoRMS-এ বহু *Eupagurus* species modern *Pagurus* বা অন্য pagurid genera-তে accepted।
+
+
+---
+
+## 39. Limulus — *Limulus polyphemus*
+
+**Common name:** Horseshoe crab  
+**Figure:** `museum-specimens/limulus.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Arthropoda |
+| Subphylum | Chelicerata |
+| Traditional class | Merostomata |
+| Order | Xiphosura |
+| Family | Limulidae |
+| Genus | *Limulus* |
+| Representative | *L. polyphemus* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Broad horseshoe-shaped **prosoma** with hard dorsal shield।
+- Posterior opisthosoma followed by long pointed **telson**।
+- Antennae absent; chelicerae present।
+- Ventral opisthosoma-তে book gills।
+- Lateral compound eyes visible dorsally।
+
+**Diagnostic character:** Horseshoe-shaped prosomal shield + long sword-like telson.
+
+### Practical identification
+
+> Horseshoe-shaped carapace ও long telson-এর কারণে specimen-টি *Limulus*।
+
+
+---
+
+## 40. Millipedes — Millipede — representative *Julus* / Class Diplopoda
+
+**Common name:** Millipede  
+**Figure:** `museum-specimens/millipedes.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Arthropoda |
+| Subphylum | Myriapoda |
+| Class | Diplopoda |
+| Representative order | Julida |
+| Representative genus | *Julus* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Body usually cylindrical ও elongated।
+- Most apparent trunk **diplosegments**-এ two pairs of legs।
+- Head-এ one pair antennae।
+- First trunk segment forms **collum**।
+- Defensive glands (repugnatorial glands) many segments-এ থাকতে পারে।
+
+**Diagnostic character:** Two pairs of legs on most diplosegments.
+
+### Practical identification
+
+> Most trunk diplosegments-এ two pairs of legs থাকার কারণে specimen-টি Millipede, Class **Diplopoda**।
+
+
+---
+
+## 41. Centipedes — Centipede — representative *Scolopendra*
+
+**Common name:** Centipede  
+**Figure:** `museum-specimens/centipedes.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Arthropoda |
+| Subphylum | Myriapoda |
+| Class | Chilopoda |
+| Order | Scolopendromorpha |
+| Family | Scolopendridae |
+| Representative genus | *Scolopendra* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Body dorsoventrally flattened; head + long trunk।
+- Each typical trunk segment-এ one pair of legs।
+- Head-এ one pair long antennae।
+- First trunk appendages modified into venom-bearing **forcipules**।
+- Fast terrestrial predator।
+
+**Diagnostic character:** One pair legs per segment + venomous forcipules.
+
+### Practical identification
+
+> One pair legs per trunk segment এবং forcipules থাকার কারণে specimen-টি Centipede, Class **Chilopoda**।
+
+
+---
+
+## 42. Palaemon — *Palaemon* sp. (representative *P. serratus*)
+
+**Common name:** Prawn  
+**Figure:** `museum-specimens/palaemon.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Arthropoda |
+| Subphylum | Crustacea / Pancrustacea |
+| Class | Malacostraca |
+| Order | Decapoda |
+| Infraorder | Caridea |
+| Family | Palaemonidae |
+| Genus | *Palaemon* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Body cephalothorax ও segmented abdomen-এ divided।
+- Cephalothorax carapace-covered এবং anteriorly **rostrum**।
+- Five pairs pereiopods; anterior pairs chelate হতে পারে।
+- Two pairs antennae এবং stalked compound eyes।
+- Pleopods abdominally; telson + uropods form tail fan।
+
+**Diagnostic character:** Caridean prawn with rostrum, five walking-leg pairs and tail fan.
+
+### Practical identification
+
+> Rostrum, decapod pereiopods এবং tail fan-এর কারণে specimen-টি *Palaemon*।
+
+
+---
+
+## 43. Antedon — *Antedon bifida*
+
+**Common name:** Feather star  
+**Figure:** `museum-specimens/antedon.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Echinodermata |
+| Subphylum | Pelmatozoa |
+| Class | Crinoidea |
+| Subclass | Articulata |
+| Order | Comatulida |
+| Family | Antedonidae |
+| Genus | *Antedon* |
+| Representative | *A. bifida* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Central disc থেকে five primary arms arise করে, usually bifurcate হয়ে 10 arms produce।
+- Arms-এ numerous lateral **pinnules**, feather-like appearance দেয়।
+- Adult free-moving but aboral **cirri** দিয়ে temporarily attach করতে পারে।
+- Mouth এবং anus oral/upward surface-এ।
+- Adult permanent stalk absent।
+
+**Diagnostic character:** Feather-like pinnulate arms and aboral cirri; no adult stalk.
+
+### Practical identification
+
+> Pinnulate feather-like arms এবং aboral cirri-এর কারণে specimen-টি *Antedon*।
+
+
+---
+
+## 44. Asterias — *Asterias rubens*
+
+**Common name:** Common starfish  
+**Figure:** `museum-specimens/asterias.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Echinodermata |
+| Class | Asteroidea |
+| Clade | Forcipulatacea |
+| Order | Forcipulatida |
+| Family | Asteriidae |
+| Genus | *Asterias* |
+| Representative | *A. rubens* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Central disc থেকে usually five broad arms/rays।
+- Arms disc-এর সঙ্গে broadly continuous।
+- Oral side-এ open **ambulacral grooves** ও sucker-bearing tube feet।
+- Aboral surface-এ spines, papulae এবং pedicellariae।
+- Madreporite aboral side-এ visible।
+
+**Diagnostic character:** Broad five-rayed star with open ambulacral grooves and sucker-bearing tube feet.
+
+### Practical identification
+
+> Five broad arms, open ambulacral grooves এবং sucker-bearing tube feet-এর কারণে specimen-টি *Asterias*।
+
+
+---
+
+## 45. Echinus — *Echinus esculentus*
+
+**Common name:** Sea urchin  
+**Figure:** `museum-specimens/echinus.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Echinodermata |
+| Class | Echinoidea |
+| Order | Camarodonta |
+| Family | Echinidae |
+| Genus | *Echinus* |
+| Representative | *E. esculentus* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Body globular; arms absent।
+- Fused calcareous plates rigid **test** তৈরি করে।
+- Test-এ many movable spines।
+- Five ambulacral + five interambulacral zones।
+- Oral side-এ Aristotle's lantern।
+
+**Diagnostic character:** Globular rigid test with movable spines and five ambulacral zones.
+
+### Practical identification
+
+> Globular test, movable spines এবং five ambulacral zones-এর কারণে specimen-টি *Echinus*।
+
+
+---
+
+## 46. Holothuria — *Holothuria* sp. (e.g., *H. atra*)
+
+**Common name:** Sea cucumber  
+**Figure:** `museum-specimens/holothuria.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Echinodermata |
+| Class | Holothuroidea |
+| Order | Holothuriida |
+| Family | Holothuriidae |
+| Genus | *Holothuria* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Body cucumber-shaped, elongated ও leathery।
+- Rigid external test absent; skeleton reduced to microscopic ossicles।
+- Mouth-এর চারদিকে oral tentacles।
+- Ventral tube feet often more developed।
+- Internal respiratory trees present।
+
+**Diagnostic character:** Soft cucumber-shaped echinoderm with oral tentacles and reduced ossicles.
+
+### Practical identification
+
+> Cucumber-shaped soft body ও oral tentacles-এর কারণে specimen-টি *Holothuria*।
+
+
+---
+
+## 47. Ophiura — *Ophiura ophiura*
+
+**Common name:** Brittle star  
+**Figure:** `museum-specimens/ophiura.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Echinodermata |
+| Class | Ophiuroidea |
+| Order-level clade | Amphilepidida / Ophiurina |
+| Family | Ophiuridae |
+| Genus | *Ophiura* |
+| Representative | *O. ophiura* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Central disc sharply demarcated from arms।
+- Five long, slender, highly flexible arms।
+- Arms articulated by vertebral ossicles and move mainly sideways।
+- Ambulacral grooves closed; tube feet generally without terminal suckers।
+- Anus absent in typical ophiuroids।
+
+**Diagnostic character:** Clearly distinct disc with long slender jointed brittle-star arms.
+
+### Practical identification
+
+> Distinct central disc এবং long flexible articulated arms-এর কারণে specimen-টি *Ophiura*।
+
+
+---
+
+## 48. Cucumaria — *Cucumaria frondosa*
+
+**Common name:** Dendrochirotid sea cucumber  
+**Figure:** `museum-specimens/cucumaria.svg`
+
+### Classification
+
+| Rank | Taxon |
+|---|---|
+| Kingdom | Animalia |
+| Phylum | Echinodermata |
+| Class | Holothuroidea |
+| Clade | Dendrochirotacea |
+| Order | Dendrochirotida |
+| Family | Cucumariidae |
+| Genus | *Cucumaria* |
+| Representative | *C. frondosa* |
+
+### শনাক্তকারী বৈশিষ্ট্য
+
+- Body short/stout, cucumber-like ও leathery।
+- Mouth-এর চারদিকে **10 branched dendritic tentacles**।
+- Tube feet often arranged in five longitudinal rows।
+- Body wall-এ calcareous ossicles।
+- Respiratory trees internal।
+
+**Diagnostic character:** Sea cucumber with conspicuous branched dendritic oral tentacles.
+
+### Practical identification
+
+> Branched oral tentacles এবং stout cucumber-like body-এর কারণে specimen-টি *Cucumaria*।
+
+
+---
+
+# High-yield Comparison Table
+
+| Pair | Fast distinction |
+|---|---|
+| *Metaphire/Pheretima* vs *Lumbricus* | perichaetine/anterior clitellum vs fewer chaetae/posterior clitellum |
+| *Hirudo* vs *Piscicola* | broad medicinal leech vs narrow fish leech with conspicuous posterior sucker |
+| *Fasciola* vs *Schistosoma* | leaf-shaped hermaphrodite vs dioecious, male gynecophoral canal |
+| *Wuchereria* vs *Loa* microfilaria | tail-tip without nuclei vs nuclei extend to tail tip |
+| *Sepia* vs *Loligo* vs *Octopus* | cuttlebone + broad fin / pen + squid fins / 8 arms only |
+| Millipede vs Centipede | 2 pairs legs per diplosegment vs 1 pair per segment + forcipules |
+| *Asterias* vs *Ophiura* | broad rays continuous with disc vs sharply distinct disc + slender arms |
+| *Holothuria* vs *Cucumaria* | general sea cucumber vs conspicuous branched dendritic oral tentacles |
+
+# Syllabus Nomenclature Notes
+
+- **Metaphere:** source spelling preserved; probable *Metaphire* but independent specimen-label verification required.
+- **Pheretima:** separate syllabus label retained; traditional *P. posthuma* is commonly treated today as *Metaphire posthuma*.
+- **Diphyllobothrium:** syllabus label retained; broad fish tapeworm is now commonly *Dibothriocephalus latus*.
+- **Hymenolepis nana:** syllabus/CDC usage retained; NCBI lists *Rodentolepis nana* as current name.
+- **Convoluta:** traditional flatworm placement differs from modern Xenacoelomorpha/Acoela.
+- **Sipunculus:** traditional Phylum Sipuncula remains useful for exam alignment; modern phylogeny nests sipunculans within Annelida.
+- **Eupagurus:** traditional hermit-crab genus label; many species now placed in *Pagurus* or other pagurid genera.
+
+# Spotting Template
+
+```text
+Specimen:
+Phylum:
+Class:
+Order/Family (if required):
+
+Identifying characters:
+1.
+2.
+3.
+
+Diagnostic character:
+
+Conclusion:
+উপরের diagnostic characters-এর ভিত্তিতে specimen-টি __________ হিসেবে শনাক্ত করা হলো।
+```
