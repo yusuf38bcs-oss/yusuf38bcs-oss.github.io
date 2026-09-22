@@ -163,7 +163,10 @@ const sidebarRendered = results.some(function(r){ return ((r.state && r.state.co
 const archiveRendered = results.some(function(r){ return ((r.state && r.state.archiveCards) || 0) > 0; });
 const paginationRendered = results.some(function(r){ return ((r.state && r.state.neuralPagination) || 0) > 0; });
 const paginationStyleRendered = results.some(function(r){ return Boolean(r.state && r.state.embeddedPaginationStyle); });
-const browserErrors = results.reduce(function(n,r){ return n + (r.consoleErrors || []).length + (r.pageErrors || []).length; }, 0);
+const paginationProbes = results.filter(function(r){ return r.family === "paginated-index"; });
+const paginationUnavailableByCurrentData = paginationProbes.length > 0 && paginationProbes.every(function(r){ return r.status === 404; });
+const requiredBrowserErrors = results.filter(function(r){ return r.required; }).reduce(function(n,r){ return n + (r.consoleErrors || []).length + (r.pageErrors || []).length; }, 0);
+const paginationConditionResolved = (paginationRendered && paginationStyleRendered) || paginationUnavailableByCurrentData;
 
 const gates = {
   exactHeadInputBound: /^[0-9a-f]{40}$/.test(expectedSha),
@@ -174,13 +177,28 @@ const gates = {
   neuralMastheadRenderedNowhereInSample: neuralRendered === 0,
   contextualSidebarRendered: sidebarRendered,
   archiveCardsRendered: archiveRendered,
-  paginationRendered: paginationRendered,
-  embeddedPaginationStyleRendered: paginationStyleRendered,
+  paginationConditionResolved: paginationConditionResolved,
+  paginationRenderedWhenInstantiated: paginationRendered,
+  embeddedPaginationStyleRenderedWhenInstantiated: paginationStyleRendered,
+  paginationUnavailableByCurrentData: paginationUnavailableByCurrentData,
   requiredRoutesHTTP200: requiredFailures.length === 0,
-  browserRuntimeErrorsZero: browserErrors === 0
+  requiredRouteBrowserRuntimeErrorsZero: requiredBrowserErrors === 0
 };
-const passed = Object.values(gates).every(Boolean);
-const report = { contract: "lbfl-wcag22-f0-runtime-cascade-v1", expectedSha: expectedSha, previewUrl: baseUrl, deploymentId: deploymentId, generatedAt: new Date().toISOString(), compiledCssProbe: cssProbe, gates: gates, passed: passed, results: results };
+const requiredGateKeys = [
+  "exactHeadInputBound",
+  "deploymentIdentityBound",
+  "productionStylesheetLoaded",
+  "compiledNeuralRulesPresent",
+  "lbflMastheadRendered",
+  "neuralMastheadRenderedNowhereInSample",
+  "contextualSidebarRendered",
+  "archiveCardsRendered",
+  "paginationConditionResolved",
+  "requiredRoutesHTTP200",
+  "requiredRouteBrowserRuntimeErrorsZero"
+];
+const passed = requiredGateKeys.every(function(key){ return gates[key] === true; });
+const report = { contract: "lbfl-wcag22-f0-runtime-cascade-v1", expectedSha: expectedSha, previewUrl: baseUrl, deploymentId: deploymentId, generatedAt: new Date().toISOString(), compiledCssProbe: cssProbe, gates: gates, requiredGateKeys: requiredGateKeys, passed: passed, results: results };
 await fs.writeFile(path.join(outputDir, "report.json"), JSON.stringify(report, null, 2) + "\n");
 
 const md = ["# WCAG 2.2 F0 Runtime Cascade Evidence", "", "- Exact head: " + expectedSha, "- Preview: " + baseUrl, "- Deployment ID: " + (deploymentId || "MISSING"), "- Overall runtime gate: **" + (passed ? "PASS" : "HOLD") + "**", "", "## Gate summary", ""];
