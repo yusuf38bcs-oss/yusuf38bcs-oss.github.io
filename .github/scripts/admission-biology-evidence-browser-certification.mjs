@@ -44,16 +44,35 @@ async function keyboardProbe(page) {
     const scope = document.querySelector("main") || document.body;
     const selector = 'a[href], button:not([disabled]), input:not([disabled]), summary, [tabindex]:not([tabindex="-1"])';
     let index = 0;
-    for (const el of scope.querySelectorAll(selector)) {
+    const visibleElements = Array.from(scope.querySelectorAll(selector)).filter((el) => {
       const style = getComputedStyle(el);
       const rect = el.getBoundingClientRect();
-      const visible =
+      return (
         style.display !== "none" &&
         style.visibility !== "hidden" &&
         Number(style.opacity || 1) > 0 &&
         rect.width > 0 &&
-        rect.height > 0;
-      if (visible) el.dataset.keyboardProbeId = `kb-${index++}`;
+        rect.height > 0
+      );
+    });
+
+    const radioGroups = new Map();
+    for (const el of visibleElements) {
+      if (el instanceof HTMLInputElement && el.type === "radio") {
+        const key = el.name || `__unnamed-${index}`;
+        if (!radioGroups.has(key)) radioGroups.set(key, []);
+        radioGroups.get(key).push(el);
+        continue;
+      }
+      el.dataset.keyboardProbeId = `kb-${index++}`;
+    }
+
+    // Radio groups expose one Tab stop at a time; certify one representative
+    // per group (checked radio when present, otherwise the first enabled radio).
+    for (const radios of radioGroups.values()) {
+      const representative = radios.find((el) => el.checked && !el.disabled) ||
+        radios.find((el) => !el.disabled);
+      if (representative) representative.dataset.keyboardProbeId = `kb-${index++}`;
     }
   });
 
