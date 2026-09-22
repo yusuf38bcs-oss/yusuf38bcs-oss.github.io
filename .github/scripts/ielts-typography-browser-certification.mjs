@@ -98,7 +98,8 @@ async function inspect(page, status) {
       visibleMainImages,
       fontsStatus: document.fonts ? document.fonts.status : "unsupported",
       interAvailable: document.fonts ? document.fonts.check("16px Inter") : null,
-      openSansAvailable: document.fonts ? document.fonts.check('16px "Open Sans"') : null
+      openSansAvailable: document.fonts ? document.fonts.check('16px "Open Sans"') : null,
+      navigatorSaveData: Boolean(navigator.connection && navigator.connection.saveData)
     };
   }, { status, rootSelector });
 }
@@ -205,7 +206,7 @@ try {
         paragraphLine !== null &&
         paragraphLine >= paragraphSize * 1.4
       );
-      const saveDataResolved = state.visibleMainImages.length === 0 || navigator === undefined ? true : true;
+      const saveDataResolved = state.navigatorSaveData === true;
 
       const passed =
         state.status === 200 &&
