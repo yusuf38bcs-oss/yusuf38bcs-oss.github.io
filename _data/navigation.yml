@@ -25,6 +25,8 @@ main:
         url: "/biology/higher-zoology-tree/genetics/"
       - title: "Biostatistics"
         url: "/biology/higher-zoology-tree/biostatistics/"
+      - title: "Practical-I"
+        url: "/biology/higher-zoology-tree/practical/"
   - title: "MCQ Arena"
     url: "/mcq-arena/"
   - title: "Socratic 4.0"
