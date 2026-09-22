@@ -5,6 +5,9 @@ require "json"
 ROOT = File.expand_path("../..", __dir__)
 INDEX = "_biology/higher-zoology-tree/practical/index.bn.md"
 COVERAGE = "_data/zoology-practical-213106-coverage.json"
+NAVIGATION = "_data/navigation.yml"
+HIGHER_ZOOLOGY_EN = "_biology/higher-zoology-tree/index.md"
+HIGHER_ZOOLOGY_BN = "_biology/higher-zoology-tree/index.bn.md"
 
 MODULES = [
   ["01", "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md", "/biology/higher-zoology-tree/practical/museum-specimens/"],
@@ -27,7 +30,7 @@ def frontmatter_value(content, key)
 end
 
 errors = []
-all_paths = [INDEX, COVERAGE] + MODULES.map { |row| row[1] }
+all_paths = [INDEX, COVERAGE, NAVIGATION, HIGHER_ZOOLOGY_EN, HIGHER_ZOOLOGY_BN] + MODULES.map { |row| row[1] }
 all_paths.each { |path| errors << "missing file: #{path}" unless File.file?(File.join(ROOT, path)) }
 
 if errors.empty?
@@ -35,6 +38,7 @@ if errors.empty?
   errors << "gateway permalink mismatch" unless frontmatter_value(index, "permalink") == "/biology/higher-zoology-tree/practical/"
   errors << "gateway course_id mismatch" unless frontmatter_value(index, "course_id") == "zoology-practical-213106"
   errors << "gateway must remain published for preview certification" unless frontmatter_value(index, "published") == "true"
+  errors << "gateway sidebar must use zoology_practical_213106" unless frontmatter_value(index, "sidebar").nil? || index.include?('nav: "zoology_practical_213106"')
 
   permalinks = [frontmatter_value(index, "permalink")]
   MODULES.each do |id, file, permalink|
@@ -45,9 +49,22 @@ if errors.empty?
     errors << "#{id}: course_id mismatch" unless frontmatter_value(content, "course_id") == "zoology-practical-213106"
     errors << "#{id}: course_role must be practical-lecture" unless frontmatter_value(content, "course_role") == "practical-lecture"
     errors << "#{id}: published must remain true" unless frontmatter_value(content, "published") == "true"
+    errors << "#{id}: dedicated practical sidebar missing" unless content.include?('nav: "zoology_practical_213106"')
     errors << "#{id}: gateway link missing" unless index.include?(permalink)
   end
   errors << "duplicate practical permalink" unless permalinks.compact.uniq.length == permalinks.compact.length
+
+  navigation = text(NAVIGATION)
+  errors << "Higher Zoology main navigation is missing Practical-I" unless navigation.include?('title: "Practical-I"') && navigation.include?('url: "/biology/higher-zoology-tree/practical/"')
+  errors << "dedicated Practical-I sidebar collection missing" unless navigation.include?("zoology_practical_213106:")
+  MODULES.each do |_id, _file, permalink|
+    errors << "dedicated Practical-I sidebar missing #{permalink}" unless navigation.include?(permalink)
+  end
+
+  higher_en = text(HIGHER_ZOOLOGY_EN)
+  higher_bn = text(HIGHER_ZOOLOGY_BN)
+  errors << "English Higher Zoology gateway missing Practical-I link" unless higher_en.include?("/biology/higher-zoology-tree/practical/")
+  errors << "Bangla Higher Zoology gateway missing Practical-I link" unless higher_bn.include?("/biology/higher-zoology-tree/practical/")
 
   coverage = JSON.parse(text(COVERAGE))
   errors << "coverage course code mismatch" unless coverage["course_code"] == "213106"
@@ -78,4 +95,4 @@ if errors.any?
 end
 
 puts "Zoology Practical-I 213106 Certification: PASS"
-puts "gateway=1 modules=8 museum_unique=48/48 shared_css_changes=none"
+puts "gateway=1 modules=8 museum_unique=48/48 navigation=integrated shared_css_changes=none"
