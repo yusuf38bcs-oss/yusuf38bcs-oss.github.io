@@ -183,23 +183,40 @@ try {
       let keyboardPassed = false;
       let keyboardTabsUsed = 0;
       let keyboardFocusVisible = false;
+      let keyboardCycleComplete = false;
+      let keyboardSafetyLimitReached = false;
       if (focus.present && focus.sidebarTabPosition > 0) {
-        const maxTabs = focus.tabbableCount + 1;
-        for (let i = 0; i < maxTabs; i += 1) {
+        const seenFocusTargets = new Set();
+        const safetyLimit = Math.max(512, (focus.tabbableCount || 0) * 6 + 32);
+        for (let i = 0; i < safetyLimit; i += 1) {
           await page.keyboard.press("Tab");
           keyboardTabsUsed = i + 1;
           const active = await page.evaluate(() => {
             const el = document.activeElement;
             if (!el || el === document.body) return null;
+            const allElements = Array.from(document.querySelectorAll("*"));
             return {
+              elementIndex: allElements.indexOf(el),
+              tagName: el.tagName,
+              href: el instanceof HTMLAnchorElement ? el.getAttribute("href") : null,
               inSidebar: Boolean(el.closest?.(".contextual-sidebar-nav")),
               focusVisible: el.matches?.(":focus-visible") || false
             };
           });
-          if (active?.inSidebar) {
+          if (!active) continue;
+          if (active.inSidebar) {
             keyboardFocusVisible = active.focusVisible;
             keyboardPassed = active.focusVisible;
             break;
+          }
+          const focusKey = String(active.elementIndex);
+          if (seenFocusTargets.has(focusKey)) {
+            keyboardCycleComplete = true;
+            break;
+          }
+          seenFocusTargets.add(focusKey);
+          if (i === safetyLimit - 1) {
+            keyboardSafetyLimitReached = true;
           }
         }
       }
@@ -207,7 +224,9 @@ try {
         tabbableCount: focus.tabbableCount || 0,
         sidebarTabPosition: focus.sidebarTabPosition || -1,
         tabsUsed: keyboardTabsUsed,
-        focusVisible: keyboardFocusVisible
+        focusVisible: keyboardFocusVisible,
+        cycleComplete: keyboardCycleComplete,
+        safetyLimitReached: keyboardSafetyLimitReached
       };
 
       const passed =
