@@ -2,6 +2,8 @@
 layout: single
 author_profile: true
 author: "MD. Yusuf"
+sidebar:
+  nav: "zoology_practical_213106"
 title: "Practical 02 — Permanent Slides"
 excerpt: "Whole animals, arthropod mouth parts, parasites, larval forms and invertebrate histological slides."
 permalink: /biology/higher-zoology-tree/practical/permanent-slides/
