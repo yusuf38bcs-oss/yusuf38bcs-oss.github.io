@@ -139,7 +139,7 @@ try {
         const elements = [];
         for (const item of critical) elements.push(await inspectWithCdp(page, cdp, styleSheets, item[0], item[1], item[2]));
         results.push({ viewport: vp.name, width: vp.width, route: spec.route, family: spec.family, required: spec.required, status: status, finalUrl: page.url(), state: st, elements: elements, consoleErrors: consoleErrors, pageErrors: pageErrors });
-        await page.screenshot({ path: path.join(outputDir, vp.name + "-" + spec.name + ".png"), fullPage: true });
+        try {\n          await page.screenshot({ path: path.join(outputDir, vp.name + "-" + spec.name + ".png"), fullPage: true });\n        } catch (error) {\n          results[results.length - 1].screenshotWarning = String(error);\n          console.warn("F0 screenshot warning " + vp.name + " " + spec.route + ": " + String(error));\n        }
       } else {
         results.push({ viewport: vp.name, width: vp.width, route: spec.route, family: spec.family, required: spec.required, status: status, missing: true, consoleErrors: consoleErrors, pageErrors: pageErrors });
       }
