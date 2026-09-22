@@ -505,3 +505,5 @@ await fs.writeFile(path.join(outputDir, "browser-certification.json"), jsonRepor
 await fs.writeFile(path.join(outputDir, "browser-certification.md"), markdownReport);
 console.log(markdownReport);
 process.exit(report.passed ? 0 : 1);
+
+// Practical-I final exact-head recertification anchor; no runtime behavior change.
