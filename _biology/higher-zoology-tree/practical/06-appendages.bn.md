@@ -2,6 +2,8 @@
 layout: single
 author_profile: true
 author: "MD. Yusuf"
+sidebar:
+  nav: "zoology_practical_213106"
 title: "Practical 06 — Appendages of Cockroach and Prawn"
 excerpt: "Locomotory, prehensile, food-capture, copulatory, defensive and offensive appendages/organs of cockroach and prawn."
 permalink: /biology/higher-zoology-tree/practical/appendages/
