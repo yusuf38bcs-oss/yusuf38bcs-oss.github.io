@@ -2,6 +2,8 @@
 layout: single
 author_profile: true
 author: "MD. Yusuf"
+sidebar:
+  nav: "zoology_practical_213106"
 title: "Zoology Practical-I — NU Honours 1st Year"
 excerpt: "NU Honours 1st Year Zoology Practical-I (213106): museum specimens, permanent slides, whole mounts, dissection, temporary mounts, appendages, zooplankton and field report."
 permalink: /biology/higher-zoology-tree/practical/
