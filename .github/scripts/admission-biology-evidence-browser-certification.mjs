@@ -26,7 +26,7 @@ const routes = [
   { route: "/admission/foundation-model-test-01/", kind: "model-test" },
   { route: "/admission/biology/", kind: "index" },
   { route: "/admission/biology/du/2016-17/", kind: "paper", exam: "DU", v2Questions: 0 },
-  { route: "/admission/biology/medical/2016-17/", kind: "paper", exam: "Medical", v2Questions: 30 },
+  { route: "/admission/biology/medical/2016-17/", kind: "paper", exam: "Medical", v2Questions: 22 },
 ];
 
 async function settle(page) {
@@ -41,22 +41,71 @@ async function keyboardProbe(page) {
   await page.evaluate(() => {
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     window.scrollTo(0, 0);
+    const scope = document.querySelector("main") || document.body;
+    const selector = 'a[href], button:not([disabled]), input:not([disabled]), summary, [tabindex]:not([tabindex="-1"])';
+    let index = 0;
+    const visibleElements = Array.from(scope.querySelectorAll(selector)).filter((el) => {
+      const style = getComputedStyle(el);
+      const rect = el.getBoundingClientRect();
+      return (
+        style.display !== "none" &&
+        style.visibility !== "hidden" &&
+        Number(style.opacity || 1) > 0 &&
+        rect.width > 0 &&
+        rect.height > 0
+      );
+    });
+
+    const radioGroups = new Map();
+    for (const el of visibleElements) {
+      if (el instanceof HTMLInputElement && el.type === "radio") {
+        const key = el.name || `__unnamed-${index}`;
+        if (!radioGroups.has(key)) radioGroups.set(key, []);
+        radioGroups.get(key).push(el);
+        continue;
+      }
+      el.dataset.keyboardProbeId = `kb-${index++}`;
+    }
+
+    // Radio groups expose one Tab stop at a time; certify one representative
+    // per group (checked radio when present, otherwise the first enabled radio).
+    for (const radios of radioGroups.values()) {
+      const representative = radios.find((el) => el.checked && !el.disabled) ||
+        radios.find((el) => !el.disabled);
+      if (representative) representative.dataset.keyboardProbeId = `kb-${index++}`;
+    }
   });
-  for (let i = 0; i < 20; i += 1) {
+
+  const expected = await page.evaluate(() =>
+    Array.from(document.querySelectorAll("[data-keyboard-probe-id]")).map((el) => el.dataset.keyboardProbeId)
+  );
+  if (expected.length === 0) return false;
+
+  const visited = new Set();
+  const limit = expected.length * 3 + 20;
+  for (let i = 0; i < limit; i += 1) {
     await page.keyboard.press("Tab");
     const result = await page.evaluate(() => {
       const el = document.activeElement;
-      if (!el || !["A", "BUTTON", "INPUT", "SUMMARY"].includes(el.tagName)) return null;
+      if (!(el instanceof HTMLElement)) return null;
+      const id = el.dataset.keyboardProbeId;
+      if (!id) return null;
       const rect = el.getBoundingClientRect();
       const style = getComputedStyle(el);
       return {
+        id,
         visible: rect.width > 0 && rect.height > 0 && style.visibility !== "hidden" && style.display !== "none",
-        inViewport: rect.bottom >= 0 && rect.top <= innerHeight && rect.right >= 0 && rect.left <= innerWidth,
+        focusVisible: el.matches(":focus-visible"),
       };
     });
-    if (result?.visible && result?.inViewport) return true;
+    if (result?.id && result.visible && result.focusVisible) visited.add(result.id);
+    if (visited.size === expected.length) break;
   }
-  return false;
+
+  await page.evaluate(() => {
+    document.querySelectorAll("[data-keyboard-probe-id]").forEach((el) => delete el.dataset.keyboardProbeId);
+  });
+  return visited.size === expected.length;
 }
 
 async function inspect(page, spec, responseStatus) {

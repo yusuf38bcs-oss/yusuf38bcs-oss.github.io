@@ -51,7 +51,13 @@
               {% for source_ref in question.source_refs %}
                 {% for source in record.sources %}
                   {% if source.source_id == source_ref %}
-                    <li><a href="{{ source.url }}">{{ source.source_id }}</a> · {{ source.tier }} · {{ source.status }}</li>
+                    <li>
+                      {% if source.inspectable == false %}
+                        <span>{{ source.source_id }}</span> · {{ source.tier }} · {{ source.status }} · custody metadata only
+                      {% else %}
+                        <a href="{{ source.url }}">{{ source.source_id }}</a> · {{ source.tier }} · {{ source.status }}
+                      {% endif %}
+                    </li>
                   {% endif %}
                 {% endfor %}
               {% endfor %}
@@ -67,7 +73,12 @@
     <div class="admission-evidence__sources">
       {% for source in record.sources %}
         <article class="admission-evidence__source">
-          <h3><a href="{{ source.url }}">{{ source.source_id }}</a></h3>
+          {% if source.inspectable == false %}
+            <h3>{{ source.source_id }}</h3>
+            <p><strong>Custody metadata only:</strong> the underlying source artifact is not publicly inspectable from this repository.</p>
+          {% else %}
+            <h3><a href="{{ source.url }}">{{ source.source_id }}</a></h3>
+          {% endif %}
           <p><strong>{{ source.tier }}</strong> · {{ source.kind }} · {{ source.status }}</p>
           <p>{{ source.supports }}</p>
         </article>

@@ -3,7 +3,7 @@
   "exam": "DU",
   "session": "2016-17",
   "unit": "A/Ka (Science)",
-  "source_class": "user-provided-revised-bengali-transcription",
+  "source_class": "user-provided-revised-bengali-transcription-custody-only",
   "evidence_tier": "B2",
   "source_artifact": {
     "filename": "DU_2016_2017_Bangla_Question_Transcription_REVISED.pdf",
@@ -11,7 +11,8 @@
     "file_size_bytes": 482386,
     "page_count": 26,
     "pdf_title": "DU_2016_2017_Bangla_Question_Transcription_REVISED",
-    "custody": "User-provided conversation attachment; PDF bytes are not committed to the repository."
+    "custody": "User-provided conversation attachment; PDF bytes are not committed to the repository and are not represented as a publicly inspectable source artifact.",
+    "publicly_inspectable": false
   },
   "scope": {
     "subjects_in_pdf": [
@@ -42,7 +43,9 @@
     "official_du_answer_key": false,
     "independent_authoritative_verification_complete": false,
     "suitable_for_f_s2_secondary_reconstruction": true,
-    "suitable_for_f_v2_promotion": false
+    "suitable_for_f_v2_promotion": false,
+    "public_source_traceability": false,
+    "custody_metadata_only": true
   },
   "biology_reconciliation": [
     {
@@ -255,5 +258,6 @@
       "verification_status": "V1",
       "note": "Question identity/order and source answer letter checked against Biology pages 14-17 of the revised transcription."
     }
-  ]
+  ],
+  "inspectable_in_repository": false
 }

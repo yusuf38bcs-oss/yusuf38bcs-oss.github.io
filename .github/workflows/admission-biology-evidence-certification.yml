@@ -4,11 +4,13 @@ on:
   pull_request:
     paths:
       - "_data/admission/biology/**"
+      - "_data/admission/30_day_source_contract_v1.json"
       - "_pages/admission/**"
       - "_includes/admission/**"
       - "assets/css/admission-biology-evidence.css"
       - "assets/js/learning/admission-foundation.js"
       - "scripts/admission/validate_foundation_model_test.rb"
+      - "scripts/admission/validate_30_day_source_contract.rb"
       - ".github/scripts/admission-biology-evidence-browser-certification.mjs"
       - ".github/workflows/admission-biology-evidence-certification.yml"
   workflow_dispatch:
@@ -64,6 +66,9 @@ jobs:
 
       - name: Validate Foundation Model Test integrity
         run: ruby scripts/admission/validate_foundation_model_test.rb
+
+      - name: Validate 30-day source contract
+        run: ruby scripts/admission/validate_30_day_source_contract.rb
 
       - name: Build exact Jekyll candidate
         env:
