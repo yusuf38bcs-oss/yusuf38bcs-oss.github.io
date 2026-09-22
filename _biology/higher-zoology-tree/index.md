@@ -53,6 +53,7 @@ By using this gateway, learners should be able to select the correct Zoology bra
   <section class="lbfl-info-card"><h3>Ecology Matrix</h3><p>Organism-environment relationship, population, community, ecosystem dynamics, and stewardship thinking.</p><p><a href="{{ '/biology/higher-zoology-tree/ecology/' | relative_url }}">Open Ecology</a></p></section>
   <section class="lbfl-info-card"><h3>Genetics Matrix</h3><p>Completed 17-lecture course from heredity and Mendelian inheritance to molecular genetics, gene regulation, mutation, and responsible interpretation.</p><p><a href="{{ '/biology/higher-zoology-tree/genetics/' | relative_url }}">Open Genetics</a></p></section>
   <section class="lbfl-info-card"><h3>Biostatistics Terminal</h3><p>Data, distribution, central tendency, dispersion, hypothesis testing, chi-square, and evidence-based reasoning.</p><p><a href="{{ '/biology/higher-zoology-tree/biostatistics/' | relative_url }}">Open Biostatistics</a></p></section>
+  <section class="lbfl-info-card"><h3>Zoology Practical-I</h3><p>NU Honours 1st Year Practical-I (213106): museum specimens, permanent slides, whole mounts, dissection, temporary mounts, appendages, zooplankton, and field report.</p><p><a href="{{ '/biology/higher-zoology-tree/practical/' | relative_url }}">Open Zoology Practical-I</a></p></section>
 </div>
 
 ## Recommended Learning Sequence
@@ -62,7 +63,8 @@ By using this gateway, learners should be able to select the correct Zoology bra
 3. Study Ecology to connect organisms with environment and community.
 4. Study Genetics to understand heredity, variation, molecular information, and responsible interpretation.
 5. Use Biostatistics to interpret evidence, distribution, and biological data.
-6. Finish with MCQ Arena and Socratic reflection to test understanding.
+6. Use Zoology Practical-I to connect museum identification, slides, dissection, temporary mounts, appendages, zooplankton, and field evidence with theory.
+7. Finish with MCQ Arena and Socratic reflection to test understanding.
 
 ## Synaptic Bridge
 
@@ -78,5 +80,6 @@ Higher Zoology connects academic knowledge with the reality of life. A physiolog
 
 - [Biology Matrix Hub]({{ '/biology/' | relative_url }})
 - [Genetics Matrix]({{ '/biology/higher-zoology-tree/genetics/' | relative_url }})
+- [Zoology Practical-I]({{ '/biology/higher-zoology-tree/practical/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
 - [Synaptic Bridge]({{ '/synaptic-bridge/' | relative_url }})
