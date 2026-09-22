@@ -85,6 +85,9 @@
           } else {
             mistakes.push({
               number: index + 1,
+              questionId: question.getAttribute("data-question-id") || "",
+              topicId: question.getAttribute("data-topic-id") || "",
+              sourceRef: question.getAttribute("data-source-ref") || "",
               subject: question.getAttribute("data-subject") || "Foundation",
               repair: question.getAttribute("data-repair") || "/admission/",
               explanation: question.getAttribute("data-explanation") || "Return to the source concept and retest later."
@@ -92,7 +95,12 @@
           }
         });
         var state = progressState();
-        state.attempts.push({ date: new Date().toISOString(), score: score, total: questions.length });
+        state.attempts.push({
+          date: new Date().toISOString(),
+          testId: form.getAttribute("data-test-id") || "",
+          score: score,
+          total: questions.length
+        });
         writeJSON(PROGRESS_KEY, state);
         var errors = readJSON(ERROR_KEY, []);
         errors.push({ date: new Date().toISOString(), score: score, total: questions.length, mistakes: mistakes });

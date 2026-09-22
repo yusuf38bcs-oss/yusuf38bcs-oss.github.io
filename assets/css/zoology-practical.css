@@ -1,0 +1,47 @@
+/* Zoology Practical-I (213106) — route-scoped accessibility support.
+   This file is loaded only by the nine Practical-I pages. */
+
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote {
+  margin-inline: 0;
+  padding: 1rem 1.1rem;
+  border: 1px solid #c9ddd8 !important;
+  border-left: 0.25rem solid #0f706d !important;
+  background: #f5f9f8 !important;
+  color: #17353a !important;
+}
+
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote p,
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote strong,
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote em,
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote a {
+  color: #17353a !important;
+}
+
+.zoology-practical-page .page__content code.highlighter-rouge,
+.zoology-practical-page .page__content :not(pre) > code {
+  background: #eef3f2;
+  color: #102a43;
+  border: 1px solid #d4e0dd;
+}
+
+.zoology-practical-page .zoology-practical-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: 1rem;
+  border-radius: 0.25rem;
+  outline-offset: 0.2rem;
+}
+
+.zoology-practical-page .zoology-practical-table-scroll:focus-visible {
+  outline: 3px solid #0f706d;
+}
+
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .zoology-practical-table-scroll > table {
+  display: table !important;
+  width: max-content !important;
+  min-width: 100%;
+  max-width: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
