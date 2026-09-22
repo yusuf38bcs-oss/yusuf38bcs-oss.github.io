@@ -183,6 +183,16 @@
 .lbfl-v3-dialog nav { display: grid; gap: 6px; margin-top: 18px; }
 .lbfl-v3-dialog nav a { display: flex; align-items: center; padding: 10px 12px; border-radius: 10px; background: var(--v3-cream-50); text-decoration: none; font-weight: 800; }
 
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .lbfl-v3-header__inner { gap: 10px; }
+  .lbfl-v3-brand__text { display: none; }
+  .lbfl-v3-nav { gap: 2px; }
+  .lbfl-v3-nav a { padding-inline: 7px; font-size: 0.78rem; white-space: nowrap; }
+  .lbfl-v3-header__actions { gap: 2px; }
+  .lbfl-v3-language-switcher { gap: 1px; }
+  .lbfl-v3-language-switcher a { min-width: 38px; padding-inline: 3px; font-size: 0.78rem; }
+}
+
 @media (max-width: 1024px) {
   .lbfl-home-v3 { --v3-header: 66px; }
   .lbfl-v3-nav { display: none; }
