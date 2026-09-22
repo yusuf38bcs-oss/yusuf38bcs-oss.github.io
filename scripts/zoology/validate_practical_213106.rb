@@ -78,6 +78,20 @@ if errors.empty?
   errors << "museum page must disclose 48/48 unique coverage" unless museum.include?("48/48 unique syllabus labels")
   errors << "museum duplicate Echinus note missing" unless museum.include?("Echinus")
   errors << "museum figure policy missing" unless museum.include?("Figure Policy")
+  museum_numbers = museum.scan(/^##\s+(\d+)\./).flatten.map(&:to_i)
+  errors << "museum must contain exactly numbered specimens 1..48" unless museum_numbers == (1..48).to_a
+  (1..48).each do |number|
+    start_at = museum.index(/^##\s+#{number}\./)
+    next_at = number < 48 ? museum.index(/^##\s+#{number + 1}\./) : museum.length
+    section = start_at && next_at ? museum[start_at...next_at] : ""
+    errors << "museum specimen #{number}: identifying characters missing" unless section.include?("### শনাক্তকারী বৈশিষ্ট্য")
+    errors << "museum specimen #{number}: practical identification missing" unless section.include?("### Practical identification")
+  end
+
+  slides = text(MODULES[1][1])
+  errors << "permanent-slide bank must declare 43 preparations" unless slides.include?("43-preparation teaching bank")
+  errors << "permanent-slide bank must not claim a fixed canonical 30" if slides.include?("30-slide canonical set")
+  errors << "coverage ledger must record the 43-preparation bank" unless coverage.dig("modules", 1, "coverage").to_s.include?("43-preparation")
   specimen_numbers = museum.scan(/^##\s+(\d+)\./).flatten.map(&:to_i)
   errors << "museum specimen sections must enumerate exactly 1..48" unless specimen_numbers == (1..48).to_a
   (1..48).each do |number|
@@ -99,6 +113,12 @@ if errors.empty?
   zoop = text(MODULES[6][1])
   errors << "zooplankton three-water-body contract missing" unless zoop.match?(/3 different water bodies/i)
   errors << "zooplankton diversity methods missing" unless zoop.match?(/Simpson/i) && zoop.match?(/Shannon/i)
+  errors << "zooplankton original-water back-calculation missing" unless zoop.include?("Original-water density") && zoop.include?("V_{\\text{filtered}}")
+  errors << "zooplankton MathJax flag missing" unless frontmatter_value(zoop, "math") == "true"
+  errors << "zooplankton locale must be BCP-47 bn-BD" unless frontmatter_value(zoop, "locale") == "bn-BD"
+
+  errors << "field report MathJax flag missing" unless frontmatter_value(field, "math") == "true"
+  errors << "field report locale must be BCP-47 bn-BD" unless frontmatter_value(field, "locale") == "bn-BD"
 end
 
 if errors.any?
