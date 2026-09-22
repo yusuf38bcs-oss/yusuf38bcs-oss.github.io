@@ -38,7 +38,7 @@ if errors.empty?
   errors << "gateway permalink mismatch" unless frontmatter_value(index, "permalink") == "/biology/higher-zoology-tree/practical/"
   errors << "gateway course_id mismatch" unless frontmatter_value(index, "course_id") == "zoology-practical-213106"
   errors << "gateway must remain published for preview certification" unless frontmatter_value(index, "published") == "true"
-  errors << "gateway sidebar must use zoology_practical_213106" unless frontmatter_value(index, "sidebar").nil? || index.include?('nav: "zoology_practical_213106"')
+  errors << "gateway sidebar must use zoology_practical_213106" unless index.include?('nav: "zoology_practical_213106"')
 
   permalinks = [frontmatter_value(index, "permalink")]
   MODULES.each do |id, file, permalink|
