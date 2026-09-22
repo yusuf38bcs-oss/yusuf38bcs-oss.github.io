@@ -1,0 +1,190 @@
+{
+  "schema": "lbfl-admission-biology-b01-shadow-remediation-v1",
+  "version": "R2.4.2-0.1",
+  "exact_parent_pr": 350,
+  "exact_parent_head": "4975362ba27308393d827f66cd468235b4c520c9",
+  "gateway_id": "R2.4.1-B01-SHADOW-DRAFT-G1",
+  "status": "DRAFT_EVIDENCE_PENDING",
+  "routable": false,
+  "public_permalink": null,
+  "topic_id": "B01",
+  "matrix_id": "BIO-P1-C01-B01-full-topic",
+  "chapter_id": "BIO-P1-C01",
+  "title_bn": "কোষঝিল্লির মাধ্যমে পদার্থ পরিবহন — Shadow Remediation Draft",
+  "title_en": "Membrane Transport — Shadow Remediation Draft",
+  "scope": {
+    "allowed": [
+      "diffusion",
+      "osmosis",
+      "active transport",
+      "comparison among the three transport mechanisms",
+      "HSC-level examples and misconceptions"
+    ],
+    "excluded": [
+      "B02 organelle content",
+      "B03 nucleus/chromosome/molecular-biology content",
+      "chapter model test",
+      "public learner route",
+      "verified-primary promotion",
+      "topic or chapter completion"
+    ]
+  },
+  "existing_coverage_audit": {
+    "plasma_membrane_and_fluid_mosaic": {
+      "route": "_biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model.md",
+      "status": "substantive-existing-coverage"
+    },
+    "transport_terms_in_existing_route": {
+      "finding": "The existing plasma-membrane lecture names diffusion, osmosis and active transport as concepts that follow selective permeability, but does not provide a complete Admission-aligned teaching sequence for the three mechanisms.",
+      "status": "gap-confirmed"
+    }
+  },
+  "source_contract": {
+    "curriculum_source": "NCTB-HSC-BIOLOGY-CURRICULUM-SHARED-PHOTO-EVIDENCE",
+    "selected_primary_textbook": "BIO-P1-LECTURE-PUBLICATIONS-PHYSICAL-COPY",
+    "primary_chapter_page_range": {
+      "start": 15,
+      "end": 110
+    },
+    "additional_reference_candidates": [
+      "P1-ABDUL-ALIM-SCAN",
+      "P1-AJIBUR-RAHMAN-AKKHARPATRA-SCAN",
+      "P1-ABUL-HASAN-2020-SCAN"
+    ],
+    "scientific_crosschecks": [
+      "SCI-NCBI-MBOC-MEMBRANE-TRANSPORT",
+      "SCI-OPENSTAX-BIO2E-PASSIVE-TRANSPORT",
+      "SCI-OPENSTAX-BIO2E-ACTIVE-TRANSPORT"
+    ],
+    "claim_page_binding_status": "PENDING",
+    "independent_pass_2": "BLOCKED"
+  },
+  "claim_inventory": [
+    {
+      "claim_id": "B01-TR-01-DIFFUSION",
+      "term_bn": "ব্যাপন",
+      "term_en": "Diffusion",
+      "draft_definition_bn": "কোনো পদার্থের কণাগুলো তাদের নিজস্ব গতির ফলে উচ্চ ঘনত্বের অঞ্চল থেকে নিম্ন ঘনত্বের অঞ্চলের দিকে নিটভাবে ছড়িয়ে পড়াকে ব্যাপন বলে।",
+      "draft_core_logic": [
+        "নিট গতি concentration gradient-এর দিকে হয়: উচ্চ ঘনত্ব → নিম্ন ঘনত্ব।",
+        "এটি passive process; কোষের ATP সরাসরি প্রয়োজন হয় না।",
+        "সব diffusion-এ membrane আবশ্যক নয়; কিন্তু membrane transport-এর প্রেক্ষিতে উপযুক্ত পদার্থ plasma membrane অতিক্রম করতে পারে।"
+      ],
+      "hsc_examples": [
+        "O2-এর কোষে প্রবেশ এবং CO2-এর কোষ থেকে বের হওয়া—পরিস্থিতি ও concentration gradient উপযোগী হলে।"
+      ],
+      "misconception_checks": [
+        "Diffusion মানেই water movement নয়; water-এর membrane-mediated diffusion-কে HSC context-এ osmosis হিসেবে আলাদা করে শেখানো হয়.",
+        "Diffusion-এ কণাগুলো একদিকে চলা বন্ধ করে না; equilibrium-এও random movement চলতে থাকে, কিন্তু net movement থাকে না."
+      ],
+      "printed_page_locator": null,
+      "claim_locator": null,
+      "evidence_status": "DRAFT_PENDING_PAGE_BINDING"
+    },
+    {
+      "claim_id": "B01-TR-02-OSMOSIS",
+      "term_bn": "অভিস্রবণ",
+      "term_en": "Osmosis",
+      "draft_definition_bn": "একটি নির্বাচনীভাবে ভেদ্য ঝিল্লির মাধ্যমে পানির অণুর উচ্চ water potential/কম দ্রব-ঘনত্বের দিক থেকে নিম্ন water potential/বেশি দ্রব-ঘনত্বের দিকে নিট গমনকে অভিস্রবণ বলা হয়।",
+      "draft_core_logic": [
+        "Osmosis specifically concerns water movement across a selectively permeable membrane.",
+        "এটি passive process; ATP-এর সরাসরি ব্যবহার প্রয়োজন হয় না.",
+        "জলীয় ভারসাম্য, cell swelling, plasmolysis/deplasmolysis বোঝার ভিত্তি এই ধারণা."
+      ],
+      "hsc_examples": [
+        "উদ্ভিদকোষে পানি প্রবেশ করে turgidity সৃষ্টি করা.",
+        "Hypertonic পরিবেশে পানি বেরিয়ে গেলে plant cell-এর protoplast সঙ্কুচিত হওয়ার ভিত্তি."
+      ],
+      "misconception_checks": [
+        "Osmosis solute-এর diffusion নয়; এটি water-এর net movement.",
+        "শুধু 'কম concentration থেকে বেশি concentration' বলা অস্পষ্ট—কোন concentration (solute না water) বোঝানো হচ্ছে তা স্পষ্ট করতে হবে."
+      ],
+      "printed_page_locator": null,
+      "claim_locator": null,
+      "evidence_status": "DRAFT_PENDING_PAGE_BINDING"
+    },
+    {
+      "claim_id": "B01-TR-03-ACTIVE-TRANSPORT",
+      "term_bn": "সক্রিয় পরিবহন",
+      "term_en": "Active Transport",
+      "draft_definition_bn": "কোষঝিল্লির carrier বা transport protein-এর সাহায্যে শক্তি ব্যয় করে কোনো পদার্থকে তার concentration/electrochemical gradient-এর বিপরীতে পরিবহন করাকে সক্রিয় পরিবহন বলা হয়।",
+      "draft_core_logic": [
+        "সাধারণত gradient-এর বিপরীতে পদার্থ পরিবহন করা হয়.",
+        "শক্তি প্রয়োজন; primary active transport-এ ATP সরাসরি ব্যবহৃত হতে পারে.",
+        "Specific membrane proteins transport selectivity তৈরি করে."
+      ],
+      "hsc_examples": [
+        "উদ্ভিদের root hair cell-এ mineral ion uptake যখন ion concentration gradient-এর বিপরীতে ঘটে.",
+        "Na+/K+ pump একটি standard scientific example; HSC scope অনুযায়ী ব্যবহার করতে হবে."
+      ],
+      "misconception_checks": [
+        "সব protein-mediated transport active নয়; facilitated diffusion-এ ATP লাগে না.",
+        "Active transport-কে শুধু 'low to high concentration' হিসেবে মুখস্থ করলে electrochemical gradient-এর ধারণা হারিয়ে যায়."
+      ],
+      "printed_page_locator": null,
+      "claim_locator": null,
+      "evidence_status": "DRAFT_PENDING_PAGE_BINDING"
+    }
+  ],
+  "comparison_draft": {
+    "columns": [
+      "Feature",
+      "Diffusion",
+      "Osmosis",
+      "Active transport"
+    ],
+    "rows": [
+      [
+        "Energy",
+        "No direct ATP use",
+        "No direct ATP use",
+        "Energy required"
+      ],
+      [
+        "Direction",
+        "Down concentration gradient",
+        "Water moves down water-potential gradient",
+        "Can move against concentration/electrochemical gradient"
+      ],
+      [
+        "Membrane requirement",
+        "Not always; membrane context depends on substance",
+        "Selectively permeable membrane required",
+        "Membrane transport protein required"
+      ],
+      [
+        "Main transported entity",
+        "Many particles/molecules",
+        "Water",
+        "Specific ions/molecules"
+      ],
+      [
+        "Biological role",
+        "Gas/small-molecule exchange",
+        "Water balance",
+        "Selective uptake/ion balance"
+      ]
+    ]
+  },
+  "remediation_outline": [
+    "Recall selective permeability from the existing plasma-membrane lecture.",
+    "Teach diffusion with gradient-first reasoning.",
+    "Teach osmosis as the water-specific membrane case and connect to plant-cell water balance.",
+    "Teach active transport as energy-dependent, protein-mediated transport against a gradient.",
+    "Use a three-column comparison to prevent concept mixing.",
+    "Add HSC-focused misconceptions and short retrieval prompts.",
+    "Bind each substantial claim to exact printed pages before final remediation authority."
+  ],
+  "release_guard": {
+    "pass_2": "BLOCKED",
+    "lecture_gap_remediation_authority": false,
+    "draft_remediation_authority": true,
+    "verified_primary": false,
+    "topic_complete": false,
+    "chapter_complete": false,
+    "model_test_authority": false,
+    "public_linking_authority": false,
+    "matrix_qyi_release": false,
+    "ready_merge_production": false
+  }
+}

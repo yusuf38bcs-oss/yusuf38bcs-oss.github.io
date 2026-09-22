@@ -1,0 +1,85 @@
+{
+  "evidence_id": "NCTB-B01-PRIMARY-001",
+  "topic_id": "B01",
+  "topic_name": "Cell Architecture, Membrane & Transport",
+  "source_class": "nctb-authorized-hsc-textbook-candidate",
+  "authority": "National Curriculum and Textbook Board (NCTB), Bangladesh — curriculum and textbook authorization authority",
+  "authorization_model": "privately-published-nctb-authorized-textbook",
+  "authorization_status": "not-verified-for-exact-edition",
+  "authorization_evidence": {
+    "status": "pending",
+    "requirement": "Verify the exact inspected edition/copy against its NCTB authorization statement, approval identity, approved manuscript identity, or other edition-specific NCTB authorization evidence."
+  },
+  "author": "ড. মোহাম্মদ আবুল হাসান / Dr. Mohammad Abul Hasan",
+  "author_identity_status": "candidate-not-yet-verified-from-exact-imprint",
+  "book_title": "জীববিজ্ঞান প্রথম পত্র (উদ্ভিদবিদ্যা) / Biology First Paper (Botany)",
+  "subject": "Biology",
+  "part_or_volume": "Biology First Paper / Botany",
+  "edition_or_curriculum_version": null,
+  "edition_status": "not-verified",
+  "publication_year": null,
+  "publisher": "Hasan Book House",
+  "publisher_status": "candidate-not-yet-verified-from-exact-imprint",
+  "isbn_or_official_identifier_if_available": null,
+  "artifact_type": null,
+  "source_url_or_custody_reference": null,
+  "custody_type": null,
+  "physical_copy_custody_reference": null,
+  "physical_copy_identity": null,
+  "retrieval_date": "2026-09-21",
+  "file_name": null,
+  "file_size_if_available": null,
+  "file_sha256": null,
+  "page_start": null,
+  "page_end": null,
+  "page_labels_if_printed_numbers_differ": null,
+  "claim_mappings": [],
+  "verification_status": "not-verified",
+  "verification_method": "Evidence model corrected to recognize an NCTB-authorized, privately authored and privately published HSC Biology textbook as an eligible primary curriculum source. This candidate record does not yet prove the exact edition, edition-specific NCTB authorization, artifact/copy identity, printed pages, claim mappings, or second-pass verification.",
+  "verified_at": null,
+  "verification_pass_1": {
+    "status": "HOLD",
+    "checked_at": "2026-09-21",
+    "findings": [
+      "NCTB publication and NCTB textbook authorization are distinct evidence models.",
+      "For B01, the appropriate source class is an NCTB-authorized HSC Biology First Paper textbook, not necessarily an NCTB-published book.",
+      "Dr. Mohammad Abul Hasan's Biology First Paper / Botany is the candidate source family for B01.",
+      "The exact inspected edition/copy and its edition-specific NCTB authorization have not yet been authenticated."
+    ]
+  },
+  "verification_pass_2": {
+    "status": "not-run",
+    "reason": "Pass 1 has not yet established the exact authorized edition/copy, reproducible artifact identity, printed page mappings, or complete B01 claim coverage."
+  },
+  "notes": "Fail-closed candidate record. NCTB-authorized does not mean NCTB-published. This record must not authorize nctb_source.status=verified-primary or B01=complete until the exact textbook edition/copy is authenticated as NCTB-authorized, its artifact identity is reproducible (digital SHA-256 or physical-copy custody identity), required B01 claims are mapped to printed pages, and a separate recheck passes.",
+  "required_claims": [
+    {
+      "claim_id": "B01-C01",
+      "claim": "Prokaryotic and eukaryotic cell architecture relevant to the B01 scope."
+    },
+    {
+      "claim_id": "B01-C02",
+      "claim": "Cell wall structure/function relevant to the B01 scope."
+    },
+    {
+      "claim_id": "B01-C03",
+      "claim": "Plasma membrane structure and selective permeability."
+    },
+    {
+      "claim_id": "B01-C04",
+      "claim": "Fluid mosaic concept/model of the plasma membrane."
+    },
+    {
+      "claim_id": "B01-C05",
+      "claim": "Diffusion as passive movement relevant to membrane transport."
+    },
+    {
+      "claim_id": "B01-C06",
+      "claim": "Osmosis as movement of water across a selectively permeable membrane."
+    },
+    {
+      "claim_id": "B01-C07",
+      "claim": "Active transport as energy-dependent membrane transport."
+    }
+  ]
+}

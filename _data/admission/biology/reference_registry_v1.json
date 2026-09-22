@@ -1,0 +1,568 @@
+{
+  "schema": "lbfl-admission-biology-reference-registry-v1",
+  "version": "R2.3-0.1",
+  "exact_parent_head": "c89e126a6e5e8372f761c825729bca6df628ab4a",
+  "retrieval_date": "2026-09-22",
+  "policy": "Only evidence with an inspectable locator may be used for verification. Commercial metadata may identify a book family/edition candidate but is not claim-page evidence.",
+  "textbook_reference_candidates": [
+    {
+      "source_id": "BIO-P1-ABUL-HASAN-2026-CANDIDATE",
+      "class": "supplementary-authorized-book-family-candidate",
+      "title": "জীববিজ্ঞান প্রথম পত্র - একাদশ-দ্বাদশ শ্রেণি",
+      "author_display": [
+        "ড. মোহাম্মদ আবুল হাসান",
+        "seller metadata conflict: ডঃ আবুল হাসান চৌধুরী"
+      ],
+      "publisher": "Hasan Book House",
+      "edition": "2026",
+      "identity_urls": [
+        "https://www.rokomari.com/book/573116/biology-1st-part-class-xi-xii",
+        "https://bdbooks.net/product/biology-paper-1-class-xi-and-xii-edition-2026-english-version",
+        "https://www.eboighar.com.bd/bn/booksdetails/77033/জীববিজ্ঞান-১ম-পত্র-একাদশ--দ্বাদশ"
+      ],
+      "authorization_evidence_url": "https://bn.thereport.live/সর্বাধিক-পঠিত/জীববিজ্ঞান-বইয়ে-কোরানের-আয়াত-বিস্মিত-শিক্ষার্থী-শিক্ষাবিদরা/11363",
+      "authorization_status": "book-family-authorization-lineage-supported-exact-2026-authorization-pending",
+      "authorization_note": "Public reporting states that the book received NCTB approval in 1998 and again for the revised curriculum in 2013, while also reporting that later market editions could contain publisher changes beyond the approved manuscript.",
+      "locator_type": "identity-and-authorization-lineage-only",
+      "claim_page_locator_available": false
+    },
+    {
+      "source_id": "BIO-P1-ZAKIR-HOSSAIN-2023-CANDIDATE",
+      "class": "supplementary-hsc-textbook-candidate",
+      "title": "জীববিজ্ঞান ১ম পত্র",
+      "authors": [
+        "প্রফেসর ড. জাকির হোসেন",
+        "কাজী তাজুল ইসলাম"
+      ],
+      "publisher": "মেট্রো পাবলিকেশন্স",
+      "edition": "1st Published, 2023",
+      "identity_url": "https://www.rokomari.com/book/286673/biology-1st-paper",
+      "authorization_status": "not-independently-established",
+      "locator_type": "identity-only",
+      "claim_page_locator_available": false
+    },
+    {
+      "source_id": "BIO-P2-LECTURE-2024-CANDIDATE",
+      "class": "supplementary-hsc-textbook-candidate",
+      "title": "লেকচার জীব বিজ্ঞান ২য় পত্র",
+      "authors": [
+        "মিলন কান্তি",
+        "প্রফেসর মোঃ আশরাফ উদ্দিন",
+        "ড. মোহাম্মদ রফিকুল ইসলাম",
+        "নাদীরা আক্তার"
+      ],
+      "publisher": "Lecture Publication, Bangladesh",
+      "edition": "August 2024",
+      "identity_url": "https://eboighar.com/booksdetails/67087/লেকচার-জীব-বিজ্ঞান-২য়-পত্র",
+      "authorization_status": "nctb-syllabus-alignment-described-exact-book-authorization-not-established",
+      "locator_type": "identity-only",
+      "claim_page_locator_available": false
+    },
+    {
+      "source_id": "BIO-P2-ASHRAF-UDDIN-2025-CANDIDATE",
+      "class": "supplementary-hsc-textbook-candidate",
+      "title": "Biology Second Paper Class XI-XII - Exam 2027",
+      "authors": [
+        "Prof. Md. Ashraf Uddin",
+        "Nadira Akter",
+        "Milan Kanti",
+        "Dr. Ashfaqul Muid Khandaker"
+      ],
+      "edition": "August 2025",
+      "identity_url": "https://www.rokomari.com/book/521884/biology-second-paper-class-xi-xii",
+      "authorization_status": "nctb-approved-syllabus-alignment-described-exact-book-authorization-not-established",
+      "locator_type": "identity-only",
+      "claim_page_locator_available": false
+    },
+    {
+      "source_id": "BIO-P2-ABDUL-ALIM-2023-CANDIDATE",
+      "class": "supplementary-hsc-textbook-candidate",
+      "title": "জীববিজ্ঞান ২য় পত্র - রঙিন সংস্করণ",
+      "author": "ড. মোঃ আব্দুল আলীম",
+      "publisher": "মুবীন পাবলিকেশন্স",
+      "edition": "9th Edition, 2023",
+      "identity_url": "https://www.rokomari.com/book/84291/biology-2nd-part",
+      "authorization_status": "not-independently-established",
+      "locator_type": "identity-only",
+      "claim_page_locator_available": false
+    }
+  ],
+  "scientific_references": [
+    {
+      "source_id": "SCI-NCBI-MBOC-MEMBRANE-STRUCTURE",
+      "class": "authoritative-scientific-reference",
+      "title": "Molecular Biology of the Cell, 4th ed. — Membrane Structure",
+      "publisher": "NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK21055/",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-NCBI-MBOC-MEMBRANE-TRANSPORT",
+      "class": "authoritative-scientific-reference",
+      "title": "Molecular Biology of the Cell, 4th ed. — Principles of Membrane Transport",
+      "publisher": "NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK26815/",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-PASSIVE-TRANSPORT",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 5.2 Passive Transport",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/5-2-passive-transport",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-ACTIVE-TRANSPORT",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 5.3 Active Transport",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/5-3-active-transport",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-EUKARYOTIC-CELLS",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 4.3 Eukaryotic Cells",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-DNA",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 14.2 DNA Structure and Sequencing",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/14-2-dna-structure-and-sequencing",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-CELL-CYCLE",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 10.2 The Cell Cycle",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/10-2-the-cell-cycle",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-MEIOSIS",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — Chapter 11 Meiosis summary",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/11-chapter-summary",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-MACROMOLECULES",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 3.1 Synthesis of Biological Macromolecules",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/3-1-synthesis-of-biological-macromolecules",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-VIRUSES",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 21.1 Viral Evolution, Morphology, and Classification",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/21-1-viral-evolution-morphology-and-classification",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-PROKARYOTES",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — Chapter 22 Prokaryotes",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/22-introduction",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-PROTISTS",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 23.2 Characteristics of Protists",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/23-2-characteristics-of-protists",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-FUNGI",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 24.2 Classifications of Fungi",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/24-2-classifications-of-fungi",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-BRYOPHYTES",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 25.3 Bryophytes",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/25-3-bryophytes",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-PTERIDOPHYTES",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 25.4 Seedless Vascular Plants",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/25-4-seedless-vascular-plants",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-GYMNOSPERMS",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 26.2 Gymnosperms",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/26-2-gymnosperms",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-PLANT-TISSUES",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology — 30.1 The Plant Body",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology/pages/30-1-the-plant-body",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-PLANT-TRANSPORT",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 30.5 Transport of Water and Solutes in Plants",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/30-5-transport-of-water-and-solutes-in-plants",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-PHOTOSYNTHESIS",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 8.3 Using Light Energy to Make Organic Molecules",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-CELLULAR-RESPIRATION",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 7.7 Regulation of Cellular Respiration",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/7-7-regulation-of-cellular-respiration",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-PLANT-REPRODUCTION",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 32.1 Reproductive Development and Structure",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/32-1-reproductive-development-and-structure",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-BIOTECH",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 17.1 Biotechnology",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/17-1-biotechnology",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-ECOLOGY",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 44.1 The Scope of Ecology",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/44-1-the-scope-of-ecology",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-BIODIVERSITY",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 47.1 The Biodiversity Crisis",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/47-1-the-biodiversity-crisis",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-CONSERVATION",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 47.4 Preserving Biodiversity",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/47-4-preserving-biodiversity",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-ANIMAL-CLASSIFICATION",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — Chapter 27 Animal Diversity",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/27-introduction",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP2E-DIGESTION",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology 2e — 23.1 Overview of the Digestive System",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-1-overview-of-the-digestive-system",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP2E-BLOOD",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology 2e — 18.1 An Overview of Blood",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-1-an-overview-of-blood",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP2E-HEART",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology 2e — 19.1 Heart Anatomy",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/19-1-heart-anatomy",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP-RESPIRATORY",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology — Chapter 22 Respiratory System",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology/pages/22-introduction",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP2E-URINARY",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology 2e — Chapter 25 Urinary System",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/25-introduction",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP2E-MUSCLE",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology 2e — Chapter 10 Muscle Tissue",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-introduction",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP2E-NERVOUS",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology 2e — Chapter 14 Somatic Nervous System",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/14-introduction",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP2E-ENDOCRINE",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology 2e — Chapter 17 Endocrine System",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-introduction",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP2E-REPRODUCTION",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology 2e — Chapter 27 Reproductive System",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-introduction",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-AAP-IMMUNITY",
+      "class": "authoritative-scientific-reference",
+      "title": "Anatomy and Physiology — Chapter 21 Lymphatic System and Immunity",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology/pages/21-introduction",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-GENETICS",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 12.3 Laws of Inheritance",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/12-3-laws-of-inheritance",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-EVOLUTION",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — Chapter 19 Evolution summary",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/19-chapter-summary",
+      "locator_type": "digital-chapter",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    },
+    {
+      "source_id": "SCI-OPENSTAX-BIO2E-BEHAVIOR",
+      "class": "authoritative-scientific-reference",
+      "title": "Biology 2e — 45.7 Behavioral Biology",
+      "publisher": "OpenStax",
+      "url": "https://openstax.org/books/biology-2e/pages/45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior",
+      "locator_type": "digital-section",
+      "verification_status": "web-locator-verified",
+      "claim_page_locator_available": false,
+      "note": "Digital section/chapter locator supports scientific cross-checking; it is not a substitute for page-level evidence from an NCTB-authorized HSC textbook."
+    }
+  ],
+  "known_disagreements": [
+    {
+      "disagreement_id": "D-R2-3-001",
+      "subject": "Abul Hasan 2026 author display",
+      "evidence": [
+        "Rokomari identifies Dr. Mohammod Abul Hasan.",
+        "eBoighar identifies Dr. Abul Hasan Chowdhury."
+      ],
+      "disposition": "Do not normalize the exact 2026 author/imprint identity until the physical title/imprint page is inspected."
+    },
+    {
+      "disagreement_id": "D-R2-3-002",
+      "subject": "Abul Hasan authorization lineage versus later edition changes",
+      "evidence": [
+        "Public reporting says the book was NCTB-approved in 1998 and again in 2013.",
+        "The same reporting quotes the publisher describing later expanded editions and raises whether later content exactly matches the approved manuscript."
+      ],
+      "disposition": "Treat approval as book-family lineage only; exact current edition authorization remains pending."
+    },
+    {
+      "disagreement_id": "D-R2-3-003",
+      "subject": "B13 engine scope versus photographed Chapter 10",
+      "evidence": [
+        "B13 includes plant growth, hormones and reproduction.",
+        "The authenticated Chapter 10 mapping supports reproduction but does not establish the growth/hormone facets."
+      ],
+      "disposition": "Keep growth and hormone facets explicitly unmapped."
+    },
+    {
+      "disagreement_id": "D-R2-3-004",
+      "subject": "Gazi Ajmol 2026 revision authorization identity",
+      "evidence": [
+        "The physical edition page shows a 2014 current-syllabus publication as NCTB-approved and a 2026 revised edition.",
+        "No separate 2026 approval number is visible in the supplied image."
+      ],
+      "disposition": "Use 2026 as inspected revision; preserve 2014 as visible approved current-syllabus lineage."
+    },
+    {
+      "disagreement_id": "D-R2-3-005",
+      "subject": "HSC representative-animal scope versus Higher Zoology reuse",
+      "evidence": [
+        "Authenticated HSC Chapter 2 scope is Hydra, grasshopper/Poekilocerus and Rohu/Labeo.",
+        "Existing Higher Zoology includes several additional representative animals."
+      ],
+      "disposition": "Only Labeo is direct reuse candidate; other Higher Zoology animals remain supplemental."
+    }
+  ]
+}

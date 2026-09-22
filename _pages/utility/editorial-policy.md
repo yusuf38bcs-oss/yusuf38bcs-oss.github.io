@@ -13,7 +13,7 @@ xp: 100
 status: "Active"
 description: "Editorial method, verification principles, AI-assisted content policy, cognitive graph purpose, DOT-LINE-CIRCLE architecture, and correction process for Learning Biology For Life."
 lang: en
-last_modified_at: 2026-09-13
+last_modified_at: 2026-09-22
 ---
 
 Learning Biology For Life is an educational platform built to connect academic biology with practical life understanding, reflective thinking, and responsible learning. This editorial policy explains how content is planned, written, reviewed, corrected, and used to support learner reflection.
@@ -68,6 +68,14 @@ This method reflects the platform framework for enhancing critical thinking thro
 Learning content is prepared through textbook-based explanation, academic reasoning, and practical observation. References may include standard Biology, Zoology, Physiology, Genetics, Ecology, Biostatistics, research-methodology, and behaviour-science texts.
 
 Where possible, technical statements should be checked against recognized textbooks, official educational materials, peer-reviewed literature, or institutional sources. If a topic has uncertainty or evolving evidence, the page should clearly state that limitation.
+
+### HSC and Admission multi-reference rule
+
+> **LBFL will not depend on a single guidebook or textbook. Curriculum boundaries will follow NCTB. Explanations will be developed through cross-verification among NCTB-authorized HSC texts and appropriate authoritative scientific references. Every substantial source-dependent claim will identify its reference, and uncertainty or disagreement among sources will be stated rather than silently reconciled.**
+
+For HSC and Admission content, NCTB curriculum/syllabus material defines the curriculum boundary. NCTB-authorized HSC textbooks provide primary curricular evidence; additional authorized books may be used for cross-checking terminology, diagrams, examples, and alternative explanations. Standard academic textbooks, peer-reviewed literature, and authoritative institutional sources may be used to clarify mechanisms, resolve ambiguity, or update scientific interpretation when school-level texts are incomplete or inconsistent.
+
+Historical university or medical admission questions are examination evidence, not curriculum authority. Their occurrence must not substitute for syllabus coverage, textbook verification, or scientific source checking.
 
 ## 6. Science, Reflection, and Faith Boundary
 

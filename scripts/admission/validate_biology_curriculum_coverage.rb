@@ -1,0 +1,320 @@
+# frozen_string_literal: true
+
+require "json"
+
+ROOT = File.expand_path("../..", __dir__)
+LEDGER = File.join(ROOT, "_data/admission/biology/curriculum_coverage_v1.json")
+ENGINE = File.join(ROOT, "_data/admission/biology/engine_v1.json")
+MODEL_TEST = File.join(ROOT, "_pages/admission/foundation-model-test-01.md")
+NCTB_DIR = File.join(ROOT, "_data/admission/biology/nctb")
+
+def blank_value?(value)
+  value.nil? || (value.respond_to?(:empty?) && value.empty?)
+end
+
+def valid_page_value?(value)
+  return value.positive? if value.is_a?(Integer)
+  return false unless value.is_a?(String)
+
+  text = value.strip
+  return false if text.empty?
+
+  !%w[unknown tbd pending null].include?(text.downcase)
+end
+
+def mapping_has_valid_page?(mapping)
+  return true if valid_page_value?(mapping["page"])
+  return true if valid_page_value?(mapping["pdf_page"])
+  return true if valid_page_value?(mapping["printed_page"])
+
+  pages = mapping["pages"]
+  return true if pages.is_a?(Array) && pages.any? && pages.all? { |page| valid_page_value?(page) }
+
+  start_page = mapping["page_start"]
+  end_page = mapping["page_end"]
+  return false unless start_page.is_a?(Integer) && end_page.is_a?(Integer)
+
+  start_page.positive? && end_page.positive? && start_page <= end_page
+end
+
+def valid_authorization_evidence?(authorization)
+  return false unless authorization.is_a?(Hash)
+  return false unless authorization["status"] == "verified"
+
+  %w[reference details approval_identity authorization_statement].any? do |field|
+    !blank_value?(authorization[field])
+  end
+end
+
+def valid_artifact_identity?(evidence)
+  artifact_type = evidence["artifact_type"]
+
+  case artifact_type
+  when "digital"
+    sha256 = evidence["file_sha256"].to_s
+    sha256.match?(/\A[0-9a-fA-F]{64}\z/)
+  when "physical"
+    !blank_value?(evidence["physical_copy_custody_reference"]) &&
+      !blank_value?(evidence["physical_copy_identity"])
+  else
+    false
+  end
+end
+
+ledger = JSON.parse(File.read(LEDGER, encoding: "UTF-8"))
+engine = JSON.parse(File.read(ENGINE, encoding: "UTF-8"))
+model = File.read(MODEL_TEST, encoding: "UTF-8")
+errors = []
+
+evidence_by_id = {}
+if Dir.exist?(NCTB_DIR)
+  Dir.glob(File.join(NCTB_DIR, "*.json")).sort.each do |path|
+    begin
+      record = JSON.parse(File.read(path, encoding: "UTF-8"))
+    rescue JSON::ParserError => e
+      errors << "NCTB evidence JSON parse failed for #{File.basename(path)}: #{e.message}"
+      next
+    end
+
+    evidence_id = record["evidence_id"].to_s.strip
+    if evidence_id.empty?
+      errors << "NCTB evidence file #{File.basename(path)} is missing evidence_id"
+      next
+    end
+
+    errors << "duplicate NCTB evidence_id #{evidence_id}" if evidence_by_id.key?(evidence_id)
+    evidence_by_id[evidence_id] = { "record" => record, "path" => path }
+  end
+end
+
+expected_ids = engine.fetch("taxonomy").map { |topic| topic.fetch("id") }
+topics = ledger.fetch("topics", [])
+ids = topics.map { |topic| topic["id"] }
+
+errors << "expected 28 taxonomy rows, found #{topics.length}" unless topics.length == 28
+errors << "coverage IDs do not exactly match engine taxonomy order" unless ids == expected_ids
+errors << "duplicate topic IDs detected" unless ids.uniq.length == ids.length
+
+boundary = ledger.fetch("boundary", {})
+errors << "historical occurrence substitution must remain disabled" unless boundary["historical_occurrence_substitution_allowed"] == false
+errors << "Matrix/QYI release must remain disabled" unless boundary["matrix_qyi_release_allowed"] == false
+errors << "F-V2 promotion must remain disabled" unless boundary["f_v2_promotion_allowed"] == false
+errors << "page-level primary NCTB verification must not be claimed complete" unless boundary["nctb_page_level_primary_verification_complete"] == false
+
+question_topics = {}
+model.scan(/<fieldset\b[^>]*data-question-id="([^"]+)"[^>]*data-topic-id="([^"]+)"[^>]*>/) do |question_id, topic_id|
+  question_topics[question_id] = topic_id
+end
+
+topic_statuses = %w[gap partial complete]
+component_statuses = %w[gap present]
+source_statuses = %w[not-yet-mapped topic-aligned-primary-page-verification-pending verified-primary]
+all_model_ids = []
+
+topics.each do |topic|
+  id = topic.fetch("id")
+  status = topic["status"]
+  errors << "#{id}: invalid topic status #{status.inspect}" unless topic_statuses.include?(status)
+
+  %w[learning_content practice model_test_coverage explanation nctb_source].each do |field|
+    errors << "#{id}: missing #{field}" unless topic.key?(field)
+  end
+
+  learning = topic.fetch("learning_content", {})
+  practice = topic.fetch("practice", {})
+  model_cov = topic.fetch("model_test_coverage", {})
+  explanation = topic.fetch("explanation", {})
+  source = topic.fetch("nctb_source", {})
+
+  errors << "#{id}: invalid learning status" unless component_statuses.include?(learning["status"])
+  errors << "#{id}: invalid practice status" unless component_statuses.include?(practice["status"])
+  errors << "#{id}: invalid model-test status" unless component_statuses.include?(model_cov["status"])
+  errors << "#{id}: invalid explanation status" unless component_statuses.include?(explanation["status"])
+  errors << "#{id}: invalid NCTB source status" unless source_statuses.include?(source["status"])
+
+  routes = Array(learning["routes"]) + Array(practice["routes"])
+  routes.each do |route|
+    errors << "#{id}: route must be root-relative: #{route.inspect}" unless route.is_a?(String) && route.start_with?("/")
+  end
+
+  question_ids = Array(model_cov["question_ids"])
+  explanation_ids = Array(explanation["question_ids"])
+  all_model_ids.concat(question_ids)
+
+  if model_cov["status"] == "present"
+    errors << "#{id}: present model coverage requires question IDs" if question_ids.empty?
+  elsif question_ids.any?
+    errors << "#{id}: gap model coverage must not list question IDs"
+  end
+
+  if explanation["status"] == "present"
+    errors << "#{id}: present explanation requires question IDs" if explanation_ids.empty?
+  elsif explanation_ids.any?
+    errors << "#{id}: gap explanation must not list question IDs"
+  end
+
+  question_ids.each do |question_id|
+    errors << "#{id}: unknown Foundation Test question #{question_id}" unless question_topics.key?(question_id)
+    if question_topics[question_id] && question_topics[question_id] != id
+      errors << "#{id}: #{question_id} is bound to #{question_topics[question_id]} in the Foundation Test"
+    end
+  end
+
+  explanation_ids.each do |question_id|
+    errors << "#{id}: explanation #{question_id} is not part of model coverage" unless question_ids.include?(question_id)
+  end
+
+  refs = Array(source["refs"])
+  case source["status"]
+  when "not-yet-mapped"
+    errors << "#{id}: unmapped NCTB source must not carry refs" if refs.any?
+  when "topic-aligned-primary-page-verification-pending"
+    errors << "#{id}: pending NCTB alignment requires at least one ref" if refs.empty?
+  when "verified-primary"
+    errors << "#{id}: verified-primary requires at least one ref" if refs.empty?
+
+    refs.each do |ref|
+      evidence_entry = evidence_by_id[ref]
+      unless evidence_entry
+        errors << "#{id}: verified-primary ref #{ref.inspect} does not resolve to an NCTB evidence record"
+        next
+      end
+
+      evidence = evidence_entry["record"]
+      required_fields = %w[
+        evidence_id
+        topic_id
+        source_class
+        authority
+        authorization_model
+        authorization_status
+        authorization_evidence
+        author
+        book_title
+        subject
+        part_or_volume
+        edition_or_curriculum_version
+        publisher
+        artifact_type
+        source_url_or_custody_reference
+        retrieval_date
+        required_claims
+        claim_mappings
+        verification_status
+        verification_method
+      ]
+      missing = required_fields.select { |field| blank_value?(evidence[field]) }
+      errors << "#{id}: evidence #{ref} missing required fields: #{missing.join(", ")}" if missing.any?
+
+      errors << "#{id}: evidence #{ref} topic_id mismatch" unless evidence["topic_id"] == id
+      errors << "#{id}: evidence #{ref} source_class must be nctb-authorized-hsc-textbook" unless evidence["source_class"] == "nctb-authorized-hsc-textbook"
+      unless %w[privately-published-nctb-authorized-textbook nctb-published-textbook].include?(evidence["authorization_model"])
+        errors << "#{id}: evidence #{ref} has unsupported authorization_model"
+      end
+      errors << "#{id}: evidence #{ref} authorization_status must be verified-for-exact-edition" unless evidence["authorization_status"] == "verified-for-exact-edition"
+      errors << "#{id}: evidence #{ref} lacks edition-specific NCTB authorization evidence" unless valid_authorization_evidence?(evidence["authorization_evidence"])
+      errors << "#{id}: evidence #{ref} lacks a reproducible artifact identity" unless valid_artifact_identity?(evidence)
+
+      errors << "#{id}: evidence #{ref} verification_status must be verified-primary" unless evidence["verification_status"] == "verified-primary"
+
+      %w[verification_pass_1 verification_pass_2].each do |pass_field|
+        pass = evidence[pass_field]
+        unless pass.is_a?(Hash) && pass["status"] == "PASS"
+          errors << "#{id}: evidence #{ref} #{pass_field} must record PASS"
+        end
+      end
+
+      required_claims = evidence["required_claims"]
+      if !required_claims.is_a?(Array) || required_claims.empty?
+        errors << "#{id}: evidence #{ref} requires a non-empty required_claims set"
+        required_claim_ids = []
+      else
+        required_claim_ids = required_claims.filter_map do |claim|
+          if !claim.is_a?(Hash) || blank_value?(claim["claim_id"]) || blank_value?(claim["claim"])
+            errors << "#{id}: evidence #{ref} contains an invalid required claim"
+            nil
+          else
+            claim["claim_id"]
+          end
+        end
+        errors << "#{id}: evidence #{ref} has duplicate required claim IDs" unless required_claim_ids.uniq.length == required_claim_ids.length
+      end
+
+      mappings = evidence["claim_mappings"]
+      if !mappings.is_a?(Array) || mappings.empty?
+        errors << "#{id}: evidence #{ref} requires at least one claim mapping"
+        mapped_verified_ids = []
+      else
+        mapped_verified_ids = []
+        mappings.each_with_index do |mapping, index|
+          label = "#{id}: evidence #{ref} claim mapping #{index + 1}"
+          unless mapping.is_a?(Hash)
+            errors << "#{label} must be an object"
+            next
+          end
+
+          errors << "#{label} missing claim_id" if blank_value?(mapping["claim_id"])
+          errors << "#{label} missing claim" if blank_value?(mapping["claim"])
+          errors << "#{label} evidence_status must be verified" unless mapping["evidence_status"] == "verified"
+          errors << "#{label} requires valid printed/PDF page information" unless mapping_has_valid_page?(mapping)
+
+          if mapping["page_start"] || mapping["page_end"]
+            unless mapping["page_start"].is_a?(Integer) && mapping["page_end"].is_a?(Integer) &&
+                   mapping["page_start"].positive? && mapping["page_end"].positive? &&
+                   mapping["page_start"] <= mapping["page_end"]
+              errors << "#{label} has invalid page range"
+            end
+          end
+
+          if mapping["evidence_status"] == "verified" && mapping_has_valid_page?(mapping)
+            mapped_verified_ids << mapping["claim_id"]
+          end
+        end
+      end
+
+      missing_claim_ids = required_claim_ids - mapped_verified_ids
+      if missing_claim_ids.any?
+        errors << "#{id}: evidence #{ref} does not verify all required claims: #{missing_claim_ids.join(", ")}"
+      end
+    end
+  end
+
+  if status == "complete"
+    complete_components =
+      learning["status"] == "present" &&
+      practice["status"] == "present" &&
+      model_cov["status"] == "present" &&
+      explanation["status"] == "present" &&
+      source["status"] == "verified-primary"
+    errors << "#{id}: complete topic does not satisfy the curriculum-completion contract" unless complete_components
+  end
+
+  if status == "gap"
+    any_present = [learning, practice, model_cov, explanation].any? { |component| component["status"] == "present" }
+    errors << "#{id}: gap topic contains present curriculum coverage" if any_present
+  end
+end
+
+errors << "Foundation Model Test question ID reused across curriculum topics" unless all_model_ids.uniq.length == all_model_ids.length
+
+summary = ledger.fetch("summary", {})
+actual_complete = topics.count { |topic| topic["status"] == "complete" }
+actual_partial = topics.count { |topic| topic["status"] == "partial" }
+actual_gap = topics.count { |topic| topic["status"] == "gap" }
+errors << "summary total_topics mismatch" unless summary["total_topics"] == topics.length
+errors << "summary complete_topics mismatch" unless summary["complete_topics"] == actual_complete
+errors << "summary partial_topics mismatch" unless summary["partial_topics"] == actual_partial
+errors << "summary gap_topics mismatch" unless summary["gap_topics"] == actual_gap
+errors << "summary counts do not total 28" unless actual_complete + actual_partial + actual_gap == 28
+
+if errors.any?
+  warn "Admission R2 Curriculum Coverage Validation: FAIL"
+  errors.each { |error| warn "- #{error}" }
+  exit 1
+end
+
+puts "Admission R2 Curriculum Coverage Validation: PASS"
+puts "topics=#{topics.length} complete=#{actual_complete} partial=#{actual_partial} gap=#{actual_gap}"
+puts "nctb_evidence_records=#{evidence_by_id.length}"
+puts "verified_primary_contract=nctb_authorized_exact_edition artifact_identity page_mapped_claims second_pass"
+puts "historical_occurrence_substitution=false matrix_qyi_release=false f_v2_promotion=false"
