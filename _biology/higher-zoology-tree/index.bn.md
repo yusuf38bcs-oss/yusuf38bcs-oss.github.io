@@ -54,6 +54,7 @@ concept_level: "Gateway"
   <section class="lbfl-info-card"><h3>বাস্ততত্ত্ব ম্যাট্রিক্স</h3><p>Organism-environment relationship, population, community, ecosystem dynamics এবং stewardship thinking।</p><p><a href="{{ '/biology/higher-zoology-tree/ecology/' | relative_url }}">বাস্ততত্ত্ব খুলুন</a></p></section>
   <section class="lbfl-info-card"><h3>জিনতত্ত্ব ম্যাট্রিক্স</h3><p>বংশগতি ও Mendelian inheritance থেকে molecular genetics, gene regulation, mutation এবং responsible interpretation পর্যন্ত সম্পন্ন ১৭-লেকচার course।</p><p><a href="{{ '/biology/higher-zoology-tree/genetics/' | relative_url }}">জিনতত্ত্ব খুলুন</a></p></section>
   <section class="lbfl-info-card"><h3>জীবপরিসংখ্যান টার্মিনাল</h3><p>Data, distribution, central tendency, dispersion, hypothesis testing, chi-square এবং evidence-based reasoning।</p><p><a href="{{ '/biology/higher-zoology-tree/biostatistics/' | relative_url }}">জীবপরিসংখ্যান খুলুন</a></p></section>
+  <section class="lbfl-info-card"><h3>প্রাণিবিজ্ঞান প্র্যাক্টিক্যাল-I</h3><p>NU Honours 1st Year Practical-I (213106): museum specimens, permanent slides, whole mounts, dissection, temporary mounts, appendages, zooplankton এবং field report।</p><p><a href="{{ '/biology/higher-zoology-tree/practical/' | relative_url }}">প্র্যাক্টিক্যাল-I খুলুন</a></p></section>
 </div>
 
 ## প্রস্তাবিত শেখার ক্রম
@@ -63,7 +64,8 @@ concept_level: "Gateway"
 3. জীব, পরিবেশ ও community সম্পর্ক বোঝার জন্য Ecology পড়ুন।
 4. বংশগতি, variation, molecular information এবং responsible interpretation বোঝার জন্য Genetics পড়ুন।
 5. Evidence, distribution এবং biological data ব্যাখ্যার জন্য Biostatistics ব্যবহার করুন।
-6. বোঝাপড়া যাচাই করার জন্য MCQ Arena এবং Socratic reflection দিয়ে শেষ করুন।
+6. Museum identification, slide, dissection, temporary mount, appendage, zooplankton ও field evidence-কে theory-এর সঙ্গে যুক্ত করতে Zoology Practical-I ব্যবহার করুন।
+7. বোঝাপড়া যাচাই করার জন্য MCQ Arena এবং Socratic reflection দিয়ে শেষ করুন।
 
 ## Synaptic Bridge
 
@@ -79,5 +81,6 @@ concept_level: "Gateway"
 
 - [জীববিজ্ঞান ম্যাট্রিক্স হাব]({{ '/biology/' | relative_url }})
 - [জিনতত্ত্ব ম্যাট্রিক্স]({{ '/biology/higher-zoology-tree/genetics/' | relative_url }})
+- [প্রাণিবিজ্ঞান প্র্যাক্টিক্যাল-I]({{ '/biology/higher-zoology-tree/practical/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
 - [Synaptic Bridge]({{ '/synaptic-bridge/' | relative_url }})
