@@ -15,6 +15,12 @@
   {% assign clean_path = clean_path | prepend: '/' %}
 {% endunless %}
 {% assign site_origin = site.url | default: '' %}
+{% assign explicit_alternate_url = page.alternate_url | default: '' %}
+{% assign explicit_alternate_lang = page.alternate_lang | default: '' %}
+{% assign lbfl_unpaired_translation = false %}
+{% if page.translation_status == 'single-source-unpaired' %}
+  {% assign lbfl_unpaired_translation = true %}
+{% endif %}
 
 {% assign english_path = clean_path %}
 {% assign bangla_path = '/bn/' %}
@@ -72,9 +78,26 @@
   {% assign bangla_path = '/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/' %}
 {% endif %}
 
+{% if explicit_alternate_url != '' %}
+  {% if active_lang == 'bn' %}
+    {% assign bangla_path = base_path %}
+    {% assign english_path = explicit_alternate_url %}
+  {% elsif active_lang == 'en' %}
+    {% assign english_path = base_path %}
+    {% assign bangla_path = explicit_alternate_url %}
+  {% elsif explicit_alternate_lang == 'en' %}
+    {% assign bangla_path = base_path %}
+    {% assign english_path = explicit_alternate_url %}
+  {% elsif explicit_alternate_lang == 'bn' %}
+    {% assign english_path = base_path %}
+    {% assign bangla_path = explicit_alternate_url %}
+  {% endif %}
+{% endif %}
+
 {% assign english_href = site_origin | append: english_path %}
 {% assign bangla_href = site_origin | append: bangla_path %}
 
+{% unless lbfl_unpaired_translation %}
 <nav class="lbfl-language-switcher" aria-label="Language switcher">
   <a class="lbfl-language-switcher__link{% if active_lang == 'en' %} is-active{% endif %}"
      hreflang="en" href="{{ english_href }}"
@@ -87,3 +110,4 @@
      title="বাংলা সংস্করণ"
      aria-label="বাংলা সংস্করণ"{% if active_lang == 'bn' %} aria-current="page"{% endif %}>বাংলা</a>
 </nav>
+{% endunless %}

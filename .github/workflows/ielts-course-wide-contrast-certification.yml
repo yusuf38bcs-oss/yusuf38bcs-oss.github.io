@@ -1,0 +1,106 @@
+name: IELTS Course-wide Contrast Certification
+
+on:
+  pull_request:
+    branches: ["staging"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "_pages/ielts/**"
+      - "assets/css/ielts-hub.css"
+      - "assets/css/ielts-reading-trainer.css"
+      - "assets/js/ielts-*.js"
+      - ".github/scripts/ielts-course-wide-contrast-certification.mjs"
+      - ".github/workflows/ielts-course-wide-contrast-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ielts-course-wide-contrast-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contrast:
+    name: All IELTS routes WCAG AA contrast
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out immutable candidate head
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Enforce exact checked-out identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+          printf 'IELTS contrast certification head: %s\n' "$PR_HEAD_SHA"
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Install Ruby dependencies
+        run: |
+          bundle config set --local frozen 'false'
+          bundle install
+
+      - name: Build exact Jekyll candidate
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bundle exec jekyll build --trace
+
+      - name: Assert all IELTS routes exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f _site/ielts/index.html
+          test -f _site/ielts/band-8-roadmap/index.html
+          test -f _site/ielts/daily-practice/index.html
+          test -f _site/ielts/listening/index.html
+          test -f _site/ielts/reading/index.html
+          test -f _site/ielts/writing/index.html
+          test -f _site/ielts/speaking/index.html
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+
+      - name: Install browser contrast runtime
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+
+      - name: Serve exact build
+        run: |
+          python3 -m http.server 4000 --directory _site > /tmp/lbfl-ielts-contrast-server.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4000/ielts/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/lbfl-ielts-contrast-server.log
+          exit 1
+
+      - name: Certify all IELTS contrast surfaces
+        run: node .github/scripts/ielts-course-wide-contrast-certification.mjs
+
+      - name: Upload IELTS contrast evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ielts-course-wide-contrast-${{ env.PR_HEAD_SHA }}
+          path: ielts-course-wide-contrast-report/
+          if-no-files-found: warn
+          retention-days: 30
