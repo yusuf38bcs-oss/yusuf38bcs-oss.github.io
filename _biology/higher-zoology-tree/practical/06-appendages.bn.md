@@ -20,10 +20,10 @@ course_role: practical-lecture
 page_id: zoology-practical-appendages
 language: bn
 lang: bn
-locale: bn_BD
+locale: bn-BD
 toc: true
 toc_sticky: true
-classes: wide
+classes: wide zoology-practical-page
 related: true
 status: Draft-Ready
 published: true
@@ -35,6 +35,9 @@ concept_level: Practical / Laboratory
 difficulty: Intermediate
 time_min: 120
 ---
+
+<link rel="stylesheet" href="{{ '/assets/css/zoology-practical.css' | relative_url }}">
+<script src="{{ '/assets/js/zoology-practical.js' | relative_url }}" defer></script>
 
 # Study of Appendages — Cockroach and Prawn
 
