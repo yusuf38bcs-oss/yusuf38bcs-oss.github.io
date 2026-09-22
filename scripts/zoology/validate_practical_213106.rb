@@ -78,6 +78,19 @@ if errors.empty?
   errors << "museum page must disclose 48/48 unique coverage" unless museum.include?("48/48 unique syllabus labels")
   errors << "museum duplicate Echinus note missing" unless museum.include?("Echinus")
   errors << "museum figure policy missing" unless museum.include?("Figure Policy")
+  specimen_numbers = museum.scan(/^##\s+(\d+)\./).flatten.map(&:to_i)
+  errors << "museum specimen sections must enumerate exactly 1..48" unless specimen_numbers == (1..48).to_a
+  (1..48).each do |number|
+    section = museum[/^##\s+#{number}\.\s.*?(?=^##\s+#{number + 1}\.\s|^#\s+High-yield|\z)/m]
+    next errors << "museum specimen #{number} section missing" unless section
+    errors << "museum specimen #{number} identifying characters missing" unless section.include?("### শনাক্তকারী বৈশিষ্ট্য")
+    errors << "museum specimen #{number} practical identification missing" unless section.include?("### Practical identification")
+  end
+
+  slides = text(MODULES[1][1])
+  errors << "permanent-slide bank must disclose 43 preparations" unless slides.include?("43-preparation reference bank")
+  errors << "permanent-slide syllabus minimum must remain >=20" unless slides.include?("at least 20 slides")
+  errors << "coverage ledger permanent-slide bank mismatch" unless coverage.dig("modules", 1, "coverage") == "43-preparation reference bank; syllabus minimum >=20"
 
   field = text(MODULES[7][1])
   errors << "field report >=10 sample contract missing" unless field.include?("10")
