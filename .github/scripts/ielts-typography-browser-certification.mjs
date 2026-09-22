@@ -92,7 +92,7 @@ async function inspect(page, status) {
       rootFontFamily: rootStyle ? rootStyle.fontFamily : null,
       rootFontSize: rootStyle ? rootStyle.fontSize : null,
       rootLineHeight: rootStyle ? rootStyle.lineHeight : null,
-      headingVisible: Boolean(Array.from(document.querySelectorAll(rootSelector + " h1")).find(visible)),
+      headingVisible: Boolean(Array.from(document.querySelectorAll(rootSelector + " h1, .ielts-static-page .page__title")).find(visible)),
       horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 2,
       samples,
       visibleMainImages,
