@@ -1,19 +1,20 @@
 /* Zoology Practical-I (213106) — route-scoped accessibility support.
    This file is loaded only by the nine Practical-I pages. */
 
-.zoology-practical-page .page__content blockquote {
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote {
   margin-inline: 0;
   padding: 1rem 1.1rem;
-  border-left: 0.25rem solid #0f706d;
-  background: #f5f9f8;
-  color: #17353a;
+  border: 1px solid #c9ddd8 !important;
+  border-left: 0.25rem solid #0f706d !important;
+  background: #f5f9f8 !important;
+  color: #17353a !important;
 }
 
-.zoology-practical-page .page__content blockquote p,
-.zoology-practical-page .page__content blockquote strong,
-.zoology-practical-page .page__content blockquote em,
-.zoology-practical-page .page__content blockquote a {
-  color: inherit !important;
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote p,
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote strong,
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote em,
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .page__content blockquote a {
+  color: #17353a !important;
 }
 
 .zoology-practical-page .page__content code.highlighter-rouge,
@@ -36,11 +37,11 @@
   outline: 3px solid #0f706d;
 }
 
-.zoology-practical-page .zoology-practical-table-scroll > table {
+html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page .zoology-practical-table-scroll > table {
   display: table !important;
-  width: max-content;
+  width: max-content !important;
   min-width: 100%;
-  max-width: none;
-  margin: 0;
+  max-width: none !important;
+  margin: 0 !important;
   overflow: visible !important;
 }
