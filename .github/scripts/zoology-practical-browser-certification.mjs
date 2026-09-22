@@ -111,12 +111,25 @@ try {
         const gatewayLinks = Array.from(document.querySelectorAll('a[href*="/biology/higher-zoology-tree/practical/"]'))
           .map((a) => new URL(a.href, location.href).pathname);
         const tables = Array.from(document.querySelectorAll("table")).map((table) => {
-          const wrapper = table.closest(".table-wrapper");
-          const target = wrapper || table;
+          const wrapper = table.closest(".zoology-practical-table-scroll");
+          if (!wrapper) {
+            return {
+              wrapperPresent: false,
+              wrapperFocusable: false,
+              scrollContractPassed: false,
+              tableWidth: table.scrollWidth,
+              containerWidth: table.clientWidth
+            };
+          }
+          const style = getComputedStyle(wrapper);
+          const needsHorizontalScroll = table.scrollWidth > wrapper.clientWidth + 2;
+          const scrollable = ["auto", "scroll"].includes(style.overflowX);
           return {
+            wrapperPresent: true,
+            wrapperFocusable: wrapper.tabIndex >= 0,
+            scrollContractPassed: wrapper.tabIndex >= 0 && (!needsHorizontalScroll || scrollable),
             tableWidth: table.scrollWidth,
-            containerWidth: target.clientWidth,
-            contained: table.scrollWidth <= target.clientWidth + 2 || getComputedStyle(target).overflowX === "auto"
+            containerWidth: wrapper.clientWidth
           };
         });
 
@@ -131,7 +144,7 @@ try {
           sidebarHasAllChildren: childRoutes.every((route) => sidebarLinks.includes(route)),
           gatewayHasAllChildren: isGateway ? childRoutes.every((route) => gatewayLinks.includes(route)) : true,
           horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 2,
-          tablesContained: tables.every((table) => table.contained),
+          tablesContained: tables.every((table) => table.scrollContractPassed),
           tableCount: tables.length
         };
       }, { childRoutes, isGateway: spec.name === "gateway" });
