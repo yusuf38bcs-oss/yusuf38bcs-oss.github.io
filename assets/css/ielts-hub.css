@@ -10,6 +10,16 @@
   --ielts-border: #dce5ee;
 }
 
+/* IELTS typography contract — scoped to IELTS learning surfaces only. */
+.ielts-hub,
+.ielts-practice,
+.ielts-static,
+.ielts-reading,
+.ielts-writing,
+.ielts-speaking {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
 .ielts-hub-page .page__title {
   display: none;
 }
@@ -348,6 +358,20 @@
   .ielts-practice__panel .btn {
     flex: 1 1 100%;
     text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ielts-hub *,
+  .ielts-practice *,
+  .ielts-static *,
+  .ielts-reading *,
+  .ielts-writing *,
+  .ielts-speaking * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
   }
 }
 
