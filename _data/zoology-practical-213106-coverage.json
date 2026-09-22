@@ -1,0 +1,71 @@
+{
+  "course_code": "213106",
+  "course_title": "Zoology Practical-I",
+  "date": "2026-09-22",
+  "museum_specimens": {
+    "printed_entries": 49,
+    "unique_labels": 48,
+    "covered_unique_labels": 48,
+    "coverage": "48/48",
+    "duplicate_printed_label": "Echinus"
+  },
+  "modules": [
+    {
+      "id": "01",
+      "name": "Museum Specimens",
+      "status": "complete-content",
+      "coverage": "48/48 unique syllabus labels"
+    },
+    {
+      "id": "02",
+      "name": "Permanent Slides",
+      "status": "complete-teaching-set",
+      "coverage": "30-slide canonical set; syllabus minimum >=20"
+    },
+    {
+      "id": "03",
+      "name": "Whole Mounts",
+      "status": "complete-core-protocol",
+      "coverage": "general preparation + 10 suggested whole mounts"
+    },
+    {
+      "id": "04",
+      "name": "Dissection",
+      "status": "complete-syllabus-map",
+      "coverage": "all listed major/minor systems + external morphology"
+    },
+    {
+      "id": "05",
+      "name": "Temporary Mounts",
+      "status": "complete",
+      "coverage": "3/3 required"
+    },
+    {
+      "id": "06",
+      "name": "Appendages",
+      "status": "complete",
+      "coverage": "cockroach + prawn functional categories"
+    },
+    {
+      "id": "07",
+      "name": "Zooplankton",
+      "status": "complete",
+      "coverage": "3 water bodies + counting + Simpson + Shannon + 20-mark report"
+    },
+    {
+      "id": "08",
+      "name": "Field Report",
+      "status": "complete",
+      "coverage": ">=10 samples + quadrat + Shannon + 17-mark report"
+    }
+  ],
+  "nomenclature_flags": [
+    "Metaphere spelling/identity requires departmental specimen-label verification",
+    "Pheretima retained separately because syllabus lists it separately",
+    "Traditional Diphyllobothrium latum mapped to modern Dibothriocephalus latus",
+    "Hymenolepis nana retains syllabus/CDC usage; NCBI current name Rodentolepis nana",
+    "Convoluta modern placement Xenacoelomorpha/Acoela differs from traditional Platyhelminthes",
+    "Sipunculus traditional phylum framing differs from modern annelid phylogeny",
+    "Eupagurus is a traditional genus label with many species moved to Pagurus/other genera"
+  ]
+}
