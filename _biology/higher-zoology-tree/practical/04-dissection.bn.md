@@ -2,6 +2,8 @@
 layout: single
 author_profile: true
 author: "MD. Yusuf"
+sidebar:
+  nav: "zoology_practical_213106"
 title: "Practical 04 — External Morphology & Dissection"
 excerpt: "External morphology and major/minor dissections of earthworm, cockroach, grasshopper, prawn, Pila and Lamellidens."
 permalink: /biology/higher-zoology-tree/practical/dissection/
