@@ -2,6 +2,8 @@
 layout: single
 author_profile: true
 author: "MD. Yusuf"
+sidebar:
+  nav: "zoology_practical_213106"
 title: "Practical 01 — Museum Specimens: Complete NU 48/48"
 excerpt: "NU Honours Zoology Practical-I museum spotting: 48/48 unique syllabus labels with classification, figure cues and diagnostic characters."
 permalink: /biology/higher-zoology-tree/practical/museum-specimens/
