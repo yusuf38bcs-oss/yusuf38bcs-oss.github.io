@@ -20,10 +20,11 @@ course_role: practical-lecture
 page_id: zoology-practical-zooplankton
 language: bn
 lang: bn
-locale: bn_BD
+locale: bn-BD
 toc: true
 toc_sticky: true
-classes: wide
+math: true
+classes: wide zoology-practical-page
 related: true
 status: Draft-Ready
 published: true
@@ -84,12 +85,25 @@ time_min: 180
 A fixed “magic factor” মুখস্থ করার বদলে counted volume ব্যবহার করো:
 
 \[
-\text{Density (individuals/mL)}
+\text{Concentrate density (individuals/mL)}
 =
 \frac{\text{Total individuals counted}}
 {\text{Total chamber volume examined (mL)}}
 \times \text{Dilution factor}
 \]
+
+এই মানটি **concentrated sample-এর density**। Plankton net বা অন্য concentration step ব্যবহার করলে original water-body volume-এ back-calculate করতে হবে:
+
+\[
+\text{Original-water density}
+=
+\text{Concentrate density}
+\times
+\frac{V_{\text{concentrate}}}
+{V_{\text{filtered}}}
+\]
+
+where \(V_{\text{concentrate}}\) = final concentrate volume and \(V_{\text{filtered}}\) = original filtered water volume, একই unit-এ। Direct unconcentrated sample হলে ratio = 1।
 
 If grid area and chamber depth are known:
 
