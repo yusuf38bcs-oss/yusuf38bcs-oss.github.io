@@ -1,10 +1,16 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "synapticai-proxy",
+  "name": "lbfl-socratic-ai",
   "main": "worker/src/index.ts",
   "compatibility_date": "2026-06-18",
   "workers_dev": true,
   "preview_urls": true,
+  "routes": [
+    {
+      "pattern": "api.learningbiologyforlife.org",
+      "custom_domain": true
+    }
+  ],
   "vars": {
     "OPENAI_MODEL": "gpt-5.6-terra",
     "ALLOWED_ORIGIN": "https://learningbiologyforlife.org",
