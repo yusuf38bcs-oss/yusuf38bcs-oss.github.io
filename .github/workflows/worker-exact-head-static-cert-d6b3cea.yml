@@ -21,7 +21,7 @@ jobs:
       - name: Check out immutable Worker candidate
         uses: actions/checkout@v5
         with:
-          ref: \${{ env.TARGET_SHA }}
+          ref: ${{ env.TARGET_SHA }}
           fetch-depth: 0
           persist-credentials: false
 
@@ -116,7 +116,7 @@ jobs:
           ./worker/node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/root-dry-run"
 
       - name: Summarize
-        if: \${{ always() }}
+        if: ${{ always() }}
         shell: bash
         run: |
           echo "Worker exact-head static certification target: $TARGET_SHA" >> "$GITHUB_STEP_SUMMARY"
