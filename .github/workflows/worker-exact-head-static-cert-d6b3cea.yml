@@ -1,0 +1,124 @@
+name: Worker exact-head static certification
+
+on:
+  push:
+    branches:
+      - "ops/worker-cert-d6b3cea-20260923"
+
+permissions:
+  contents: read
+
+jobs:
+  certify:
+    name: Worker static type config d6b3cea
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      TARGET_SHA: d6b3cea459b27c36e6fe33502410fc3f72acf225
+      BASE_SHA: 4f10f3125487827548a3dcb3bcd0622d0a3b0e02
+
+    steps:
+      - name: Check out immutable Worker candidate
+        uses: actions/checkout@v5
+        with:
+          ref: \${{ env.TARGET_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Enforce immutable target and three-file boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          actual="$(git diff --name-only "$BASE_SHA"...HEAD | sort)"
+          expected="$(printf '%s\n' worker/src/index.ts worker/wrangler.toml wrangler.jsonc | sort)"
+          test "$actual" = "$expected"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install Worker dependencies from lockfile
+        working-directory: worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts
+
+      - name: Type-check Worker source
+        working-directory: worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --lib ES2022,DOM --types @cloudflare/workers-types src/index.ts
+
+      - name: Verify OpenAI runtime contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          src = Path("worker/src/index.ts").read_text(encoding="utf-8")
+          worker_toml = Path("worker/wrangler.toml").read_text(encoding="utf-8")
+          root = Path("wrangler.jsonc").read_text(encoding="utf-8")
+
+          required_src = [
+              "OPENAI_API_KEY",
+              "OPENAI_MODEL",
+              'const AI_PROVIDER = "openai"',
+              'const DEFAULT_MODEL = "gpt-5.6-terra"',
+              '"X-LBFL-AI-Provider": AI_PROVIDER',
+              "worker_version_id: runtimeWorkerVersionId(env)",
+              "https://api.openai.com/v1/responses",
+              "store: false",
+              'type: "json_schema"',
+              'pathname === "/api/socratic"',
+              'pathname === "/api/openai"',
+          ]
+          for needle in required_src:
+              if needle not in src:
+                  raise SystemExit(f"missing Worker contract: {needle}")
+
+          forbidden = [
+              "GEMINI_API_KEY",
+              "GEMINI_MODEL",
+              "generativelanguage.googleapis.com",
+          ]
+          for needle in forbidden:
+              if needle in src or needle in worker_toml or needle in root:
+                  raise SystemExit(f"stale Gemini runtime contract remains: {needle}")
+
+          for cfg in (worker_toml, root):
+              for needle in (
+                  "synapticai-proxy",
+                  "OPENAI_MODEL",
+                  "gpt-5.6-terra",
+                  "CF_VERSION_METADATA",
+              ):
+                  if needle not in cfg:
+                      raise SystemExit(f"missing runtime config contract: {needle}")
+
+          print("OpenAI runtime contract: PASS")
+          PY
+
+      - name: Wrangler dry-run worker config
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./worker/node_modules/.bin/wrangler deploy --dry-run --config worker/wrangler.toml --outdir "$RUNNER_TEMP/worker-dry-run"
+
+      - name: Wrangler dry-run root runtime contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./worker/node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/root-dry-run"
+
+      - name: Summarize
+        if: \${{ always() }}
+        shell: bash
+        run: |
+          echo "Worker exact-head static certification target: $TARGET_SHA" >> "$GITHUB_STEP_SUMMARY"
+          echo "Mutation: none" >> "$GITHUB_STEP_SUMMARY"
+          echo "Deployment: none" >> "$GITHUB_STEP_SUMMARY"
