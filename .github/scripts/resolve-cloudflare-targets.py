@@ -257,7 +257,7 @@ def cloudflare_pages_preview(
 def cloudflare_worker_version_for_sha(
     account_id: str, script_name: str, target_sha: str, token: str
 ) -> str:
-    """Find the exact PR-preview Worker version through Cloudflare build metadata."""
+    """Find an exact Worker version from Builds metadata or version annotations."""
     if not account_id or not script_name or not token:
         return ""
     account = urllib.parse.quote(account_id, safe="")
@@ -277,21 +277,38 @@ def cloudflare_worker_version_for_sha(
     if not version_ids:
         return ""
 
+    expected_tag = f"main-{target_sha[:12]}"
+    expected_message = f"LBFL exact-main {target_sha}"
     unique_version_ids = list(dict.fromkeys(version_ids))[:50]
     for version_id in unique_version_ids:
-        # Cloudflare documents one version ID per request even though the query
-        # parameter is plural. Comma-joining IDs returns HTTP 400.
+        # First preserve the established Workers Builds provenance path.
         query = urllib.parse.urlencode({"version_ids": version_id})
         builds_result = cloudflare_api_get(
             f"/accounts/{account}/builds/builds?{query}", token
         )
         builds = builds_result.get("builds") if isinstance(builds_result, dict) else {}
-        if not isinstance(builds, dict):
-            continue
-        build = builds.get(version_id)
-        metadata = build.get("build_trigger_metadata") if isinstance(build, dict) else {}
-        commit_hash = str(metadata.get("commit_hash") or "").lower()
-        if commit_hash == target_sha:
+        if isinstance(builds, dict):
+            build = builds.get(version_id)
+            metadata = build.get("build_trigger_metadata") if isinstance(build, dict) else {}
+            commit_hash = str(metadata.get("commit_hash") or "").lower()
+            if commit_hash == target_sha:
+                return version_id
+
+        # Wrangler uploads in CI carry Worker-version provenance annotations.
+        # Cloudflare documents workers/commit_sha as a full CI commit SHA.
+        details = cloudflare_api_get(
+            f"/accounts/{account}/workers/workers/{script}/versions/"
+            f"{urllib.parse.quote(version_id, safe='')}",
+            token,
+        )
+        annotations = details.get("annotations") if isinstance(details, dict) else {}
+        annotations = annotations if isinstance(annotations, dict) else {}
+        annotation_sha = str(annotations.get("workers/commit_sha") or "").lower()
+        annotation_tag = str(annotations.get("workers/tag") or "")
+        annotation_message = str(annotations.get("workers/message") or "")
+        if annotation_sha == target_sha:
+            return version_id
+        if annotation_tag == expected_tag and annotation_message == expected_message:
             return version_id
     return ""
 
@@ -441,7 +458,7 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
         args.cloudflare_account_id, args.cloudflare_worker_script, target_sha, token
     )
     worker_version_source = (
-        "cloudflare_worker_build_api_full_sha_pending_endpoint_version_binding"
+        "cloudflare_worker_version_metadata_full_sha_pending_endpoint_version_binding"
         if worker_version_id
         else ""
     )
@@ -497,7 +514,7 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
     if worker_metadata_exact_head:
         worker_source = (
             worker_version_source
-            or "cloudflare_worker_build_api_full_sha_pending_endpoint_version_binding"
+            or "cloudflare_worker_version_metadata_full_sha_pending_endpoint_version_binding"
         )
     elif worker_comment_url:
         worker_source = "cloudflare_structured_short_sha_comment_unverified"
