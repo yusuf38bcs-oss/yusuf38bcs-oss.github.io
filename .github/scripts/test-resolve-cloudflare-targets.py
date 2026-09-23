@@ -204,6 +204,8 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
                         }
                     }
                 }
+            if path.endswith(f"/workers/workers/lbfl-socratic-ai/versions/{version_one}"):
+                return {"id": version_one, "annotations": {"workers/commit_sha": "0" * 40}}
             if f"version_ids={version_two}" in path:
                 return {
                     "builds": {
@@ -227,6 +229,40 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
         build_calls = [path for path in calls if "/builds/builds?" in path]
         self.assertEqual(len(build_calls), 2)
         self.assertTrue(all("%2C" not in path and "," not in path for path in build_calls))
+
+    def test_worker_version_annotations_bind_direct_wrangler_deploy(self) -> None:
+        version_id = "33333333-3333-3333-3333-333333333333"
+        calls: list[str] = []
+
+        def fake_get(path: str, token: str) -> Any:
+            calls.append(path)
+            if path.endswith("/workers/scripts/lbfl-socratic-ai/versions"):
+                return {"items": [{"id": version_id}]}
+            if f"version_ids={version_id}" in path:
+                return {"builds": {}}
+            if path.endswith(f"/workers/workers/lbfl-socratic-ai/versions/{version_id}"):
+                return {
+                    "id": version_id,
+                    "annotations": {
+                        "workers/commit_sha": TARGET_SHA,
+                        "workers/repository_url": "https://github.com/yusuf38bcs-oss/yusuf38bcs-oss.github.io",
+                        "workers/message": f"LBFL exact-main {TARGET_SHA}",
+                        "workers/tag": f"main-{TARGET_SHA[:12]}",
+                    },
+                }
+            self.fail(f"Unexpected API path: {path}")
+
+        original = resolver.cloudflare_api_get
+        resolver.cloudflare_api_get = fake_get
+        try:
+            actual = resolver.cloudflare_worker_version_for_sha(
+                "account", "lbfl-socratic-ai", TARGET_SHA, "token"
+            )
+        finally:
+            resolver.cloudflare_api_get = original
+
+        self.assertEqual(actual, version_id)
+        self.assertTrue(any("/workers/workers/" in path for path in calls))
 
     def test_worker_build_uuid_is_extracted_from_matching_bot_comment(self) -> None:
         body = f"""## Deploying with Cloudflare Workers
