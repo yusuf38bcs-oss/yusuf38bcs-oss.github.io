@@ -40,6 +40,10 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       EVIDENCE_DIR: worker-production-evidence
+      LBFL_GITHUB_OWNER_ID: ${{ github.repository_owner_id }}
+      LBFL_GITHUB_REPO_ID: ${{ github.repository_id }}
+      LBFL_GITHUB_OWNER: ${{ github.repository_owner }}
+      LBFL_GITHUB_REPO: ${{ github.event.repository.name }}
 
     steps:
       - name: Check out immutable candidate
@@ -95,13 +99,13 @@ jobs:
           ./worker/node_modules/.bin/wrangler deploy --dry-run --config worker/wrangler.toml --outdir "$RUNNER_TEMP/worker-dry-run"
           ./worker/node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/root-dry-run"
 
-      - name: Verify Cloudflare Worker, production build trigger, and current ingress
+      - name: Configure or verify Cloudflare production trigger and current ingress
         id: cloudflare
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p "$EVIDENCE_DIR"
-          python3 .github/scripts/cloudflare-worker-production.py             --mode preflight             --sha "$TARGET_SHA"             --output "$EVIDENCE_DIR/preflight.json"             --github-output "$GITHUB_OUTPUT"
+          python3 .github/scripts/cloudflare-worker-production.py             --mode configure             --sha "$TARGET_SHA"             --output "$EVIDENCE_DIR/preflight.json"             --github-output "$GITHUB_OUTPUT"
 
       - name: Verify current canonical Socratic contract
         shell: bash
@@ -151,13 +155,13 @@ jobs:
           git fetch --no-tags --depth=1 origin main
           test "$(git rev-parse origin/main)" = "$TARGET_SHA"
 
-      - name: Trigger exact-SHA production Worker build and wait for live identity
+      - name: Await exact-SHA Cloudflare production build and live identity
         id: deploy
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p "$EVIDENCE_DIR"
-          python3 .github/scripts/cloudflare-worker-production.py             --mode deploy             --sha "$TARGET_SHA"             --output "$EVIDENCE_DIR/deployment.json"             --github-output "$GITHUB_OUTPUT"
+          python3 .github/scripts/cloudflare-worker-production.py             --mode await             --sha "$TARGET_SHA"             --output "$EVIDENCE_DIR/deployment.json"             --github-output "$GITHUB_OUTPUT"
 
       - name: Verify canonical and direct Socratic contracts at deployed version
         shell: bash
