@@ -15,6 +15,14 @@ on:
       - ".github/scripts/verify-cloudflare-jsd-equivalence.py"
       - ".github/workflows/jekyll-gh-pages.yml"
       - ".github/workflows/production-certification.yml"
+      - ".github/workflows/worker-production-deployment.yml"
+      - ".github/scripts/cloudflare-worker-production.py"
+      - "worker/**"
+      - "wrangler.jsonc"
+      - "_data/ai.yml"
+  workflow_run:
+    workflows: ["Worker Production Deployment"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       expected_main_sha:
@@ -26,16 +34,17 @@ permissions:
   contents: read
 
 concurrency:
-  group: production-certification-${{ github.event.pull_request.head.sha || inputs.expected_main_sha || github.run_id }}
+  group: production-certification-${{ github.event.workflow_run.head_sha || github.event.pull_request.head.sha || inputs.expected_main_sha || github.run_id }}
   cancel-in-progress: false
 
 jobs:
   certification-contract:
     name: Certification contract (exact head)
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      CERTIFICATION_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CERTIFICATION_HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.event.pull_request.head.sha || inputs.expected_main_sha || github.sha }}
 
     steps:
       - name: Check out the immutable candidate
@@ -90,14 +99,14 @@ jobs:
   production-certification:
     name: Main/deployment identity, health, and browser matrix
     needs: certification-contract
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     env:
-      CLOUDFLARE_WORKER_SCRIPT: ${{ vars.CLOUDFLARE_WORKER_SCRIPT }}
+      CLOUDFLARE_WORKER_SCRIPT: lbfl-socratic-ai
       EVIDENCE_DIR: production-certification
       PRODUCTION_URL: https://learningbiologyforlife.org
-      TARGET_MAIN_SHA: ${{ inputs.expected_main_sha }}
+      TARGET_MAIN_SHA: ${{ inputs.expected_main_sha || github.event.workflow_run.head_sha }}
       WORKER_HEALTH_URL: https://api.learningbiologyforlife.org/api/health
       WORKER_DIRECT_HEALTH_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev/api/health
 
@@ -117,14 +126,12 @@ jobs:
             echo "expected_main_sha must be a full lowercase commit SHA"
             exit 1
           }
-          test "$GITHUB_REF" = "refs/heads/main" || {
-            echo "Dispatch this workflow from the main branch"
-            exit 1
-          }
-          test "$GITHUB_SHA" = "$TARGET_MAIN_SHA" || {
-            echo "The dispatch SHA does not equal expected_main_sha"
-            exit 1
-          }
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            test "$GITHUB_REF" = "refs/heads/main" || {
+              echo "Dispatch this workflow from the main branch"
+              exit 1
+            }
+          fi
           test "$(git rev-parse HEAD)" = "$TARGET_MAIN_SHA"
           git fetch --no-tags --depth=1 origin main
           test "$(git rev-parse origin/main)" = "$TARGET_MAIN_SHA" || {
@@ -337,6 +344,8 @@ jobs:
             const versionId = response.headers.get("x-lbfl-worker-version") ?? "";
             assert.equal(health.ok, true, "Worker health must report ok=true");
             assert.equal(health.environment, "production", "Worker must report production");
+            assert.equal(health.provider, "openai", "Worker must report OpenAI provider");
+            assert.equal(health.model, "gpt-5.6-terra", "Worker must report the governed model");
             assert.equal(typeof health.service, "string", "Worker service must be present");
             assert.ok(health.service.length > 0, "Worker service must be non-empty");
             assert.equal(typeof health.version, "string", "Worker version must be present");
@@ -364,7 +373,9 @@ jobs:
             fs.writeFileSync(output, `${JSON.stringify({
               environment: health.environment,
               expected_worker_version_id: expectedVersionId,
+              model: health.model,
               ok: health.ok,
+              provider: health.provider,
               service: health.service,
               status: response.status,
               tested_at: new Date().toISOString(),
