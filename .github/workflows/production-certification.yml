@@ -99,6 +99,7 @@ jobs:
       PRODUCTION_URL: https://learningbiologyforlife.org
       TARGET_MAIN_SHA: ${{ inputs.expected_main_sha }}
       WORKER_HEALTH_URL: https://api.learningbiologyforlife.org/api/health
+      WORKER_DIRECT_HEALTH_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev/api/health
 
     steps:
       - name: Check out the requested immutable main SHA
@@ -155,7 +156,7 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
           test -n "$CLOUDFLARE_WORKER_SCRIPT"
-          test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy" || {
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai" || {
             echo "CLOUDFLARE_WORKER_SCRIPT must identify the public production Worker"
             exit 1
           }
@@ -376,6 +377,79 @@ jobs:
           });
           NODE
 
+      - name: Verify direct workers.dev ingress matches canonical Worker
+        env:
+          EXPECTED_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - "$WORKER_DIRECT_HEALTH_URL" "$EVIDENCE_DIR/worker-direct-health.json" "$EXPECTED_WORKER_VERSION_ID" <<'NODE'
+          const assert = require("node:assert/strict");
+          const fs = require("node:fs");
+
+          (async () => {
+            const [url, output, expectedVersionId] = process.argv.slice(2);
+            assert.match(
+              expectedVersionId,
+              /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i,
+              "Resolved Worker version must be a UUID",
+            );
+            const healthUrl = new URL(url);
+            assert.equal(healthUrl.protocol, "https:", "Direct Worker health must use HTTPS");
+            assert.equal(
+              healthUrl.hostname,
+              "lbfl-socratic-ai.yusuf-38bcs.workers.dev",
+              "Direct Worker health must use the canonical workers.dev diagnostic host",
+            );
+            assert.equal(healthUrl.port, "", "Direct Worker health must use the default HTTPS port");
+
+            const response = await fetch(url, {
+              headers: { Accept: "application/json" },
+              redirect: "error",
+              signal: AbortSignal.timeout(15_000),
+            });
+            assert.equal(response.status, 200, "Direct Worker health must return HTTP 200");
+            assert.match(
+              response.headers.get("content-type") ?? "",
+              /^application\/json/i,
+              "Direct Worker health must return JSON",
+            );
+
+            const health = await response.json();
+            const versionId = response.headers.get("x-lbfl-worker-version") ?? "";
+            assert.equal(health.ok, true, "Direct Worker health must report ok=true");
+            assert.equal(health.environment, "production", "Direct Worker must report production");
+            assert.equal(health.provider, "openai", "Direct Worker must report OpenAI provider");
+            assert.equal(health.model, "gpt-5.6-terra", "Direct Worker must report the governed model");
+            assert.equal(
+              versionId,
+              expectedVersionId,
+              "Direct workers.dev ingress must serve the version resolved for TARGET_MAIN_SHA",
+            );
+            assert.equal(
+              health.worker_version_id,
+              expectedVersionId,
+              "Direct Worker body must report the exact resolved version",
+            );
+
+            fs.writeFileSync(output, `${JSON.stringify({
+              environment: health.environment,
+              expected_worker_version_id: expectedVersionId,
+              model: health.model,
+              ok: health.ok,
+              provider: health.provider,
+              service: health.service,
+              status: response.status,
+              tested_at: new Date().toISOString(),
+              version: health.version,
+              worker_version_id: versionId,
+            }, null, 2)}\n`);
+          })().catch((error) => {
+            console.error(error);
+            process.exitCode = 1;
+          });
+          NODE
+
       - name: Install pinned browser-test dependencies
         shell: bash
         run: |
@@ -423,7 +497,7 @@ jobs:
           test -n "$CLOUDFLARE_ACCOUNT_ID"
           test -n "$CLOUDFLARE_API_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
-          test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy"
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai"
           test -n "$INITIAL_DEPLOYMENT_ID"
           [[ "$INITIAL_WORKER_VERSION_ID" =~ ^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$ ]]
 
