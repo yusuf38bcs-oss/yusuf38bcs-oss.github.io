@@ -99,6 +99,19 @@ def select_build_token(account_id: str, worker_tag: str, token: str) -> dict[str
     if len(tokens) == 1:
         return tokens[0]
 
+    try:
+        verified = request_json("GET", "/user/tokens/verify", token)
+    except RuntimeError:
+        verified = {}
+    current_token_id = str(verified.get("id") or "") if isinstance(verified, dict) else ""
+    same_credential = [
+        item for item in tokens
+        if current_token_id and str(item.get("cloudflare_token_id") or "") == current_token_id
+    ]
+    if same_credential:
+        same_credential.sort(key=lambda item: str(item.get("build_token_uuid") or ""))
+        return same_credential[0]
+
     tag = urllib.parse.quote(worker_tag, safe="")
     try:
         history = request_json("GET", f"/accounts/{account}/builds/workers/{tag}/builds", token)
