@@ -103,10 +103,13 @@ def select_build_token(account_id: str, token: str) -> dict[str, Any]:
             for needle in ("lbfl", "socratic", "worker")
         )
     ]
-    require(
-        len(preferred) == 1,
-        "Multiple Workers Builds tokens exist and no single LBFL-specific token can be selected safely",
-    )
+    if len(preferred) != 1:
+        names = [str(item.get("build_token_name") or "<unnamed>") for item in tokens]
+        raise RuntimeError(
+            "Multiple Workers Builds tokens exist and no single LBFL-specific token can be selected safely; "
+            + "available token names: "
+            + ", ".join(names)
+        )
     return preferred[0]
 
 
