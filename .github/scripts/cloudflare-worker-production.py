@@ -86,105 +86,38 @@ def production_triggers(account_id: str, worker_tag: str, token: str) -> list[di
     return candidates
 
 
-def select_build_token(account_id: str, worker_tag: str, token: str) -> dict[str, Any]:
+def ensure_build_token(account_id: str, token: str) -> tuple[dict[str, Any], bool]:
     account = urllib.parse.quote(account_id, safe="")
+    token_name = "LBFL exact-main Worker Builds"
     result = request_json("GET", f"/accounts/{account}/builds/tokens?per_page=200", token)
     tokens = [
         item for item in records(result, "items", "tokens")
         if UUID_RE.fullmatch(str(item.get("build_token_uuid") or "")) is not None
     ]
-    require(bool(tokens), "No Cloudflare Workers Builds token is available")
-    by_uuid = {str(item.get("build_token_uuid")): item for item in tokens}
+    exact = [item for item in tokens if str(item.get("build_token_name") or "") == token_name]
+    require(len(exact) <= 1, f"Multiple build tokens named {token_name!r} exist")
+    if exact:
+        return exact[0], False
 
-    if len(tokens) == 1:
-        return tokens[0]
+    verified = request_json("GET", "/user/tokens/verify", token)
+    require(isinstance(verified, dict), "Cloudflare token verification did not return an object")
+    cloudflare_token_id = str(verified.get("id") or "")
+    require(bool(cloudflare_token_id), "Cloudflare API token ID is unavailable")
 
-    try:
-        verified = request_json("GET", "/user/tokens/verify", token)
-    except RuntimeError:
-        verified = {}
-    current_token_id = str(verified.get("id") or "") if isinstance(verified, dict) else ""
-    same_credential = [
-        item for item in tokens
-        if current_token_id and str(item.get("cloudflare_token_id") or "") == current_token_id
-    ]
-    if same_credential:
-        same_credential.sort(key=lambda item: str(item.get("build_token_uuid") or ""))
-        return same_credential[0]
-
-    tag = urllib.parse.quote(worker_tag, safe="")
-    try:
-        history = request_json("GET", f"/accounts/{account}/builds/workers/{tag}/builds", token)
-    except RuntimeError:
-        history = []
-    for build in records(history, "items", "builds"):
-        build_token_uuid = str(build.get("build_token_uuid") or "")
-        if not build_token_uuid:
-            trigger = build.get("trigger")
-            if isinstance(trigger, dict):
-                build_token_uuid = str(trigger.get("build_token_uuid") or "")
-        if build_token_uuid in by_uuid:
-            return by_uuid[build_token_uuid]
-
-    # If this Worker has never used Workers Builds, select only a token that has
-    # already completed a successful Workers Build elsewhere in this account.
-    # Build tokens are account deployment credentials; successful recent use is
-    # stronger evidence than guessing from Cloudflare's timestamp-based names.
-    scripts_result = request_json("GET", f"/accounts/{account}/workers/scripts", token)
-    successful_uses: list[tuple[str, str]] = []
-    for script in records(scripts_result, "items", "scripts"):
-        tag_value = str(script.get("tag") or "")
-        if not tag_value:
-            continue
-        try:
-            other_history = request_json(
-                "GET",
-                f"/accounts/{account}/builds/workers/{urllib.parse.quote(tag_value, safe='')}/builds",
-                token,
-            )
-        except RuntimeError:
-            continue
-        for build in records(other_history, "items", "builds"):
-            if str(build.get("build_outcome") or "").lower() != "success":
-                continue
-            build_token_uuid = str(build.get("build_token_uuid") or "")
-            if not build_token_uuid:
-                trigger = build.get("trigger")
-                if isinstance(trigger, dict):
-                    build_token_uuid = str(trigger.get("build_token_uuid") or "")
-            if build_token_uuid not in by_uuid:
-                continue
-            timestamp = str(
-                build.get("completed_on")
-                or build.get("finished_on")
-                or build.get("created_on")
-                or build.get("created_at")
-                or ""
-            )
-            successful_uses.append((timestamp, build_token_uuid))
-    if successful_uses:
-        successful_uses.sort(reverse=True)
-        return by_uuid[successful_uses[0][1]]
-
-    preferred = [
-        item for item in tokens
-        if any(
-            needle in str(item.get("build_token_name") or "").lower()
-            for needle in ("lbfl", "socratic")
-        )
-    ]
-    if len(preferred) == 1:
-        return preferred[0]
-
-    safe = [
-        f"{item.get('build_token_name') or '<unnamed>'} [{item.get('build_token_uuid')}]"
-        for item in tokens
-    ]
-    raise RuntimeError(
-        "Multiple Workers Builds tokens exist and no token can be bound to lbfl-socratic-ai "
-        "from prior build history or an unambiguous LBFL-specific name; available tokens: "
-        + ", ".join(safe)
+    created = request_json(
+        "POST",
+        f"/accounts/{account}/builds/tokens",
+        token,
+        {
+            "build_token_name": token_name,
+            "build_token_secret": token,
+            "cloudflare_token_id": cloudflare_token_id,
+        },
     )
+    require(isinstance(created, dict), "Cloudflare did not return the created build token")
+    require(UUID_RE.fullmatch(str(created.get("build_token_uuid") or "")) is not None, "Created build token UUID is missing")
+    require(str(created.get("build_token_name") or "") == token_name, "Created build token name mismatch")
+    return created, True
 
 def ensure_repo_connection(account_id: str, token: str) -> dict[str, Any]:
     owner_id = os.environ.get("LBFL_GITHUB_OWNER_ID", "").strip()
@@ -219,7 +152,7 @@ def ensure_production_trigger(account_id: str, worker_tag: str, token: str) -> t
     if candidates:
         return candidates[0], False
 
-    build_token = select_build_token(account_id, worker_tag, token)
+    build_token, build_token_created = ensure_build_token(account_id, token)
     connection = ensure_repo_connection(account_id, token)
     account = urllib.parse.quote(account_id, safe="")
     created = request_json(
@@ -250,6 +183,7 @@ def ensure_production_trigger(account_id: str, worker_tag: str, token: str) -> t
     )
     require(isinstance(created, dict), "Cloudflare did not return the created production trigger")
     require(UUID_RE.fullmatch(str(created.get("trigger_uuid") or "")) is not None, "Created trigger UUID is missing")
+    created["lbfl_build_token_created"] = build_token_created
     return created, True
 
 
@@ -439,6 +373,9 @@ def main() -> int:
         "trigger_uuid": trigger.get("trigger_uuid"),
         "trigger_name": trigger.get("trigger_name"),
         "trigger_created": trigger_created,
+        "build_token_created": bool(trigger.get("lbfl_build_token_created")),
+        "build_token_name": trigger.get("build_token_name"),
+        "build_token_uuid": trigger.get("build_token_uuid"),
         "root_directory": trigger.get("root_directory"),
         "build_command": trigger.get("build_command"),
         "deploy_command": trigger.get("deploy_command"),
