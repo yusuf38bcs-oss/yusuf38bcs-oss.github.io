@@ -15,7 +15,7 @@ jobs:
     env:
       TARGET_MAIN_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
       PRODUCTION_URL: https://learningbiologyforlife.org
-      CLOUDFLARE_WORKER_SCRIPT: ${{ vars.CLOUDFLARE_WORKER_SCRIPT }}
+      CLOUDFLARE_WORKER_SCRIPT: lbfl-socratic-ai
     steps:
       - name: Check out trusted current main
         uses: actions/checkout@v5
