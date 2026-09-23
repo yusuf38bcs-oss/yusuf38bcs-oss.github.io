@@ -86,7 +86,7 @@ def production_triggers(account_id: str, worker_tag: str, token: str) -> list[di
     return candidates
 
 
-def select_build_token(account_id: str, token: str) -> dict[str, Any]:
+def select_build_token(account_id: str, worker_tag: str, token: str) -> dict[str, Any]:
     account = urllib.parse.quote(account_id, safe="")
     result = request_json("GET", f"/accounts/{account}/builds/tokens?per_page=200", token)
     tokens = [
@@ -94,24 +94,44 @@ def select_build_token(account_id: str, token: str) -> dict[str, Any]:
         if UUID_RE.fullmatch(str(item.get("build_token_uuid") or "")) is not None
     ]
     require(bool(tokens), "No Cloudflare Workers Builds token is available")
+    by_uuid = {str(item.get("build_token_uuid")): item for item in tokens}
+
     if len(tokens) == 1:
         return tokens[0]
+
+    tag = urllib.parse.quote(worker_tag, safe="")
+    try:
+        history = request_json("GET", f"/accounts/{account}/builds/workers/{tag}/builds", token)
+    except RuntimeError:
+        history = []
+    for build in records(history, "items", "builds"):
+        build_token_uuid = str(build.get("build_token_uuid") or "")
+        if not build_token_uuid:
+            trigger = build.get("trigger")
+            if isinstance(trigger, dict):
+                build_token_uuid = str(trigger.get("build_token_uuid") or "")
+        if build_token_uuid in by_uuid:
+            return by_uuid[build_token_uuid]
+
     preferred = [
         item for item in tokens
         if any(
             needle in str(item.get("build_token_name") or "").lower()
-            for needle in ("lbfl", "socratic", "worker")
+            for needle in ("lbfl", "socratic")
         )
     ]
-    if len(preferred) != 1:
-        names = [str(item.get("build_token_name") or "<unnamed>") for item in tokens]
-        raise RuntimeError(
-            "Multiple Workers Builds tokens exist and no single LBFL-specific token can be selected safely; "
-            + "available token names: "
-            + ", ".join(names)
-        )
-    return preferred[0]
+    if len(preferred) == 1:
+        return preferred[0]
 
+    safe = [
+        f"{item.get('build_token_name') or '<unnamed>'} [{item.get('build_token_uuid')}]"
+        for item in tokens
+    ]
+    raise RuntimeError(
+        "Multiple Workers Builds tokens exist and no token can be bound to lbfl-socratic-ai "
+        "from prior build history or an unambiguous LBFL-specific name; available tokens: "
+        + ", ".join(safe)
+    )
 
 def ensure_repo_connection(account_id: str, token: str) -> dict[str, Any]:
     owner_id = os.environ.get("LBFL_GITHUB_OWNER_ID", "").strip()
@@ -146,7 +166,7 @@ def ensure_production_trigger(account_id: str, worker_tag: str, token: str) -> t
     if candidates:
         return candidates[0], False
 
-    build_token = select_build_token(account_id, token)
+    build_token = select_build_token(account_id, worker_tag, token)
     connection = ensure_repo_connection(account_id, token)
     account = urllib.parse.quote(account_id, safe="")
     created = request_json(
