@@ -170,7 +170,7 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
 
 | Status | Name | Latest Commit | Preview URL | Updated (UTC) |
 | -|-|-|-|-|
-| ✅ Deployment successful! | synapticai-proxy | a6af6203 | <a href='https://deadbeef-synapticai-proxy.example.workers.dev'>Commit Preview URL</a> | Aug 08 2026 |
+| ✅ Deployment successful! | lbfl-socratic-ai | a6af6203 | <a href='https://deadbeef-lbfl-socratic-ai.example.workers.dev'>Commit Preview URL</a> | Aug 08 2026 |
 """
         url, claim = resolver.find_preview(
             [{"user": BOT, "body": body}],
@@ -178,7 +178,7 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
             resolver.WORKER_URL_RE,
         )
         self.assertEqual(
-            url, "https://deadbeef-synapticai-proxy.example.workers.dev"
+            url, "https://deadbeef-lbfl-socratic-ai.example.workers.dev"
         )
         self.assertEqual(claim, TARGET_SHA[:8])
 
@@ -218,7 +218,7 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
         resolver.cloudflare_api_get = fake_get
         try:
             actual = resolver.cloudflare_worker_version_for_sha(
-                "account", "synapticai-proxy", TARGET_SHA, "token"
+                "account", "lbfl-socratic-ai", TARGET_SHA, "token"
             )
         finally:
             resolver.cloudflare_api_get = original
@@ -231,11 +231,11 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
     def test_worker_build_uuid_is_extracted_from_matching_bot_comment(self) -> None:
         body = f"""## Deploying with Cloudflare Workers
 
-[View logs](https://dash.cloudflare.com/?to=/account/workers/services/view/synapticai-proxy/production/builds/{BUILD_UUID})
+[View logs](https://dash.cloudflare.com/?to=/account/workers/services/view/lbfl-socratic-ai/production/builds/{BUILD_UUID})
 
 | Status | Name | Latest Commit | Preview URL | Updated (UTC) |
 | -|-|-|-|-|
-| Deployment successful! | synapticai-proxy | {TARGET_SHA[:8]} | <a href='https://{VERSION_ID[:8]}-synapticai-proxy.example.workers.dev'>Commit Preview URL</a> | Aug 08 2026 |
+| Deployment successful! | lbfl-socratic-ai | {TARGET_SHA[:8]} | <a href='https://{VERSION_ID[:8]}-lbfl-socratic-ai.example.workers.dev'>Commit Preview URL</a> | Aug 08 2026 |
 """
         actual = resolver.find_worker_build_uuid(
             [{"user": BOT, "body": body}], TARGET_SHA
@@ -257,7 +257,7 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
             if path == f"/accounts/account/builds/builds/{BUILD_UUID}/logs":
                 return {
                     "lines": [
-                        ["1786191880342", "Uploaded synapticai-proxy"],
+                        ["1786191880342", "Uploaded lbfl-socratic-ai"],
                         ["1786191880342", f"Worker Version ID: {VERSION_ID}"],
                     ],
                     "cursor": None,
@@ -265,7 +265,7 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
                 }
 
             if path == (
-                f"/accounts/account/workers/scripts/synapticai-proxy/"
+                f"/accounts/account/workers/scripts/lbfl-socratic-ai/"
                 f"versions/{VERSION_ID}"
             ):
                 return {
@@ -287,9 +287,9 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
         try:
             actual = resolver.cloudflare_worker_version_from_build_log(
                 "account",
-                "synapticai-proxy",
+                "lbfl-socratic-ai",
                 TARGET_SHA,
-                f"https://{VERSION_ID[:8]}-synapticai-proxy.example.workers.dev",
+                f"https://{VERSION_ID[:8]}-lbfl-socratic-ai.example.workers.dev",
                 BUILD_UUID,
                 "token",
             )
@@ -316,9 +316,9 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
         try:
             actual = resolver.cloudflare_worker_version_from_build_log(
                 "account",
-                "synapticai-proxy",
+                "lbfl-socratic-ai",
                 TARGET_SHA,
-                f"https://{VERSION_ID[:8]}-synapticai-proxy.example.workers.dev",
+                f"https://{VERSION_ID[:8]}-lbfl-socratic-ai.example.workers.dev",
                 BUILD_UUID,
                 "token",
             )
@@ -395,7 +395,7 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
             pages_environment="production",
             cloudflare_account_id="account",
             cloudflare_pages_project="project",
-            cloudflare_worker_script="synapticai-proxy",
+            cloudflare_worker_script="lbfl-socratic-ai",
             pages_override="",
             worker_override="",
             site_config="_data/ai.yml",
@@ -435,7 +435,7 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
             pages_environment="preview",
             cloudflare_account_id="account",
             cloudflare_pages_project="project",
-            cloudflare_worker_script="synapticai-proxy",
+            cloudflare_worker_script="lbfl-socratic-ai",
             pages_override="",
             worker_override="",
             site_config="_data/ai.yml",
