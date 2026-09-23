@@ -72,7 +72,10 @@ Figure-এ minimum:
 ## 1. Sycon — *Sycon ciliatum*
 
 **Common name:** Calcareous sponge / purse sponge  
-**Figure:** `museum-specimens/sycon.svg`
+<figure class="museum-specimen-figure" data-specimen="sycon">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/sycon.svg' | relative_url }}" alt="Educational schematic of Sycon — Sycon ciliatum; Porous body + terminal osculum + calcareous spicules. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Sycon — Sycon ciliatum — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -109,7 +112,10 @@ Figure-এ minimum:
 ## 2. Physalia — *Physalia physalis*
 
 **Common name:** Portuguese man-of-war  
-**Figure:** `museum-specimens/physalia.svg`
+<figure class="museum-specimen-figure" data-specimen="physalia">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/physalia.svg' | relative_url }}" alt="Educational schematic of Physalia — Physalia physalis; Large gas-filled pneumatophore with long trailing tentacles. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Physalia — Physalia physalis — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -145,7 +151,10 @@ Figure-এ minimum:
 ## 3. Metridium — *Metridium senile*
 
 **Common name:** Frilled sea anemone  
-**Figure:** `museum-specimens/metridium.svg`
+<figure class="museum-specimen-figure" data-specimen="metridium">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/metridium.svg' | relative_url }}" alt="Educational schematic of Metridium — Metridium senile; Large soft sea-anemone polyp with broad pedal disc. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Metridium — Metridium senile — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -180,7 +189,10 @@ Figure-এ minimum:
 ## 4. Adamsia — *Adamsia palliata*
 
 **Common name:** Cloak anemone / hermit-crab anemone  
-**Figure:** `museum-specimens/adamsia.svg`
+<figure class="museum-specimen-figure" data-specimen="adamsia">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/adamsia.svg' | relative_url }}" alt="Educational schematic of Adamsia — Adamsia palliata; Sea-anemone polyp associated with a gastropod shell. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Adamsia — Adamsia palliata — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -215,7 +227,10 @@ Figure-এ minimum:
 ## 5. Arenicola — *Arenicola marina*
 
 **Common name:** Lugworm  
-**Figure:** `museum-specimens/arenicola.svg`
+<figure class="museum-specimen-figure" data-specimen="arenicola">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/arenicola.svg' | relative_url }}" alt="Educational schematic of Arenicola — Arenicola marina; Robust segmented polychaete with paired bushy gills. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Arenicola — Arenicola marina — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -250,7 +265,10 @@ Figure-এ minimum:
 ## 6. Tubifex — *Tubifex tubifex*
 
 **Common name:** Sludge worm  
-**Figure:** `museum-specimens/tubifex.svg`
+<figure class="museum-specimen-figure" data-specimen="tubifex">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/tubifex.svg' | relative_url }}" alt="Educational schematic of Tubifex — Tubifex tubifex; Very slender aquatic annelid with true segmentation. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Tubifex — Tubifex tubifex — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -286,7 +304,10 @@ Figure-এ minimum:
 ## 7. Metaphere — “Metaphere” — syllabus label; probable *Metaphire* sp.
 
 **Common name:** Earthworm-type megascolecid  
-**Figure:** `museum-specimens/metaphere.svg`
+<figure class="museum-specimen-figure" data-specimen="metaphere">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/metaphere.svg' | relative_url }}" alt="Educational schematic of Metaphere — probable Metaphire sp.; Earthworm morphology with megascolecid pattern. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Metaphere — probable Metaphire sp. — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -322,7 +343,10 @@ Figure-এ minimum:
 ## 8. Tomopteris — *Tomopteris* sp.
 
 **Common name:** Pelagic polychaete  
-**Figure:** `museum-specimens/tomopteris.svg`
+<figure class="museum-specimen-figure" data-specimen="tomopteris">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/tomopteris.svg' | relative_url }}" alt="Educational schematic of Tomopteris — Tomopteris sp.; Pelagic polychaete with conspicuous paddle-like parapodia. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Tomopteris — Tomopteris sp. — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -356,7 +380,10 @@ Figure-এ minimum:
 ## 9. Amphitrite — *Amphitrite ornata*
 
 **Common name:** Terebellid / spaghetti worm  
-**Figure:** `museum-specimens/amphitrite.svg`
+<figure class="museum-specimen-figure" data-specimen="amphitrite">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/amphitrite.svg' | relative_url }}" alt="Educational schematic of Amphitrite — Amphitrite ornata; Numerous long feeding tentacles plus anterior branched gills. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Amphitrite — Amphitrite ornata — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -391,7 +418,10 @@ Figure-এ minimum:
 ## 10. Lumbricus — *Lumbricus terrestris*
 
 **Common name:** Common earthworm  
-**Figure:** `museum-specimens/lumbricus.svg`
+<figure class="museum-specimen-figure" data-specimen="lumbricus">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/lumbricus.svg' | relative_url }}" alt="Educational schematic of Lumbricus — Lumbricus terrestris; Earthworm with few paired chaetae and posterior clitellum. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Lumbricus — Lumbricus terrestris — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -425,7 +455,10 @@ Figure-এ minimum:
 ## 11. Ancylostoma — *Ancylostoma duodenale*
 
 **Common name:** Old World hookworm  
-**Figure:** `museum-specimens/ancylostoma.svg`
+<figure class="museum-specimen-figure" data-specimen="ancylostoma">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/ancylostoma.svg' | relative_url }}" alt="Educational schematic of Ancylostoma — Ancylostoma duodenale; Hooked anterior end with toothed buccal capsule. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Ancylostoma — Ancylostoma duodenale — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -460,7 +493,10 @@ Figure-এ minimum:
 ## 12. Enterobius — *Enterobius vermicularis*
 
 **Common name:** Pinworm  
-**Figure:** `museum-specimens/enterobius.svg`
+<figure class="museum-specimen-figure" data-specimen="enterobius">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/enterobius.svg' | relative_url }}" alt="Educational schematic of Enterobius — Enterobius vermicularis; Cephalic alae with a long pointed female tail. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Enterobius — Enterobius vermicularis — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -495,7 +531,10 @@ Figure-এ minimum:
 ## 13. Wuchereria — *Wuchereria bancrofti*
 
 **Common name:** Filarial worm  
-**Figure:** `museum-specimens/wuchereria.svg`
+<figure class="museum-specimen-figure" data-specimen="wuchereria">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/wuchereria.svg' | relative_url }}" alt="Educational schematic of Wuchereria — Wuchereria bancrofti; Sheathed microfilaria with terminal tail free of nuclei. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Wuchereria — Wuchereria bancrofti — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -532,7 +571,10 @@ Figure-এ minimum:
 ## 14. Trichinella — *Trichinella spiralis*
 
 **Common name:** Trichina worm  
-**Figure:** `museum-specimens/trichinella.svg`
+<figure class="museum-specimen-figure" data-specimen="trichinella">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/trichinella.svg' | relative_url }}" alt="Educational schematic of Trichinella — Trichinella spiralis; Coiled larva embedded in striated skeletal muscle. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Trichinella — Trichinella spiralis — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -567,7 +609,10 @@ Figure-এ minimum:
 ## 15. Dracunculus — *Dracunculus medinensis*
 
 **Common name:** Guinea worm  
-**Figure:** `museum-specimens/dracunculus.svg`
+<figure class="museum-specimen-figure" data-specimen="dracunculus">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/dracunculus.svg' | relative_url }}" alt="Educational schematic of Dracunculus — Dracunculus medinensis; Exceptionally long thread-like gravid female nematode. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Dracunculus — Dracunculus medinensis — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -602,7 +647,10 @@ Figure-এ minimum:
 ## 16. Loa — *Loa loa*
 
 **Common name:** African eye worm  
-**Figure:** `museum-specimens/loa.svg`
+<figure class="museum-specimen-figure" data-specimen="loa">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/loa.svg' | relative_url }}" alt="Educational schematic of Loa — Loa loa; Sheathed microfilaria with nuclei continuing to tail tip. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Loa — Loa loa — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -637,7 +685,10 @@ Figure-এ minimum:
 ## 17. Trichuris — *Trichuris trichiura*
 
 **Common name:** Whipworm  
-**Figure:** `museum-specimens/trichuris.svg`
+<figure class="museum-specimen-figure" data-specimen="trichuris">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/trichuris.svg' | relative_url }}" alt="Educational schematic of Trichuris — Trichuris trichiura; Whip-like body; eggs have bipolar plugs. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Trichuris — Trichuris trichiura — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -672,7 +723,10 @@ Figure-এ minimum:
 ## 18. Hirudo — *Hirudo medicinalis*
 
 **Common name:** Medicinal leech  
-**Figure:** `museum-specimens/hirudo.svg`
+<figure class="museum-specimen-figure" data-specimen="hirudo">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/hirudo.svg' | relative_url }}" alt="Educational schematic of Hirudo — Hirudo medicinalis; Flattened annelid with two suckers and no chaetae. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Hirudo — Hirudo medicinalis — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -707,7 +761,10 @@ Figure-এ minimum:
 ## 19. Piscicola — *Piscicola geometra*
 
 **Common name:** Fish leech  
-**Figure:** `museum-specimens/piscicola.svg`
+<figure class="museum-specimen-figure" data-specimen="piscicola">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/piscicola.svg' | relative_url }}" alt="Educational schematic of Piscicola — Piscicola geometra; Slender fish leech with markedly developed posterior sucker. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Piscicola — Piscicola geometra — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -743,7 +800,10 @@ Figure-এ minimum:
 ## 20. Pheretima — *Pheretima* — traditional syllabus label
 
 **Common name:** Earthworm  
-**Figure:** `museum-specimens/pheretima.svg`
+<figure class="museum-specimen-figure" data-specimen="pheretima">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/pheretima.svg' | relative_url }}" alt="Educational schematic of Pheretima — traditional syllabus label; Traditional perichaetine earthworm with anterior clitellum. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Pheretima — traditional syllabus label — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -779,7 +839,10 @@ Figure-এ minimum:
 ## 21. Sipunculus — *Sipunculus nudus*
 
 **Common name:** Peanut worm  
-**Figure:** `museum-specimens/sipunculus.svg`
+<figure class="museum-specimen-figure" data-specimen="sipunculus">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/sipunculus.svg' | relative_url }}" alt="Educational schematic of Sipunculus — Sipunculus nudus; Unsegmented peanut-shaped trunk with retractile introvert. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Sipunculus — Sipunculus nudus — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -816,7 +879,10 @@ Figure-এ minimum:
 ## 22. Fasciola — *Fasciola hepatica*
 
 **Common name:** Liver fluke  
-**Figure:** `museum-specimens/fasciola.svg`
+<figure class="museum-specimen-figure" data-specimen="fasciola">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/fasciola.svg' | relative_url }}" alt="Educational schematic of Fasciola — Fasciola hepatica; Leaf-shaped body with cephalic cone and two suckers. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Fasciola — Fasciola hepatica — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -851,7 +917,10 @@ Figure-এ minimum:
 ## 23. Schistosoma — *Schistosoma* sp. (e.g., *S. mansoni*)
 
 **Common name:** Blood fluke  
-**Figure:** `museum-specimens/schistosoma.svg`
+<figure class="museum-specimen-figure" data-specimen="schistosoma">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/schistosoma.svg' | relative_url }}" alt="Educational schematic of Schistosoma — Schistosoma sp.; Dioecious blood fluke with male gynecophoral canal. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Schistosoma — Schistosoma sp. — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -885,7 +954,10 @@ Figure-এ minimum:
 ## 24. Convoluta — *Convoluta convoluta*
 
 **Common name:** Acoel flatworm  
-**Figure:** `museum-specimens/convoluta.svg`
+<figure class="museum-specimen-figure" data-specimen="convoluta">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/convoluta.svg' | relative_url }}" alt="Educational schematic of Convoluta — Convoluta convoluta; Minute ciliated acoel with flattened body. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Convoluta — Convoluta convoluta — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -921,7 +993,10 @@ Figure-এ minimum:
 ## 25. Diphyllobothrium — Traditional *Diphyllobothrium latum* = modern *Dibothriocephalus latus*
 
 **Common name:** Broad fish tapeworm  
-**Figure:** `museum-specimens/diphyllobothrium.svg`
+<figure class="museum-specimen-figure" data-specimen="diphyllobothrium">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/diphyllobothrium.svg' | relative_url }}" alt="Educational schematic of Diphyllobothrium — Dibothriocephalus latus; Scolex with two bothria and broad proglottids. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Diphyllobothrium — Dibothriocephalus latus — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -956,7 +1031,10 @@ Figure-এ minimum:
 ## 26. Hymenolepis — Traditional *Hymenolepis nana* = current *Rodentolepis nana* in NCBI
 
 **Common name:** Dwarf tapeworm  
-**Figure:** `museum-specimens/hymenolepis.svg`
+<figure class="museum-specimen-figure" data-specimen="hymenolepis">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/hymenolepis.svg' | relative_url }}" alt="Educational schematic of Hymenolepis — Rodentolepis nana; Four-suckered scolex with hooked rostellum. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Hymenolepis — Rodentolepis nana — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -993,7 +1071,10 @@ Figure-এ minimum:
 ## 27. Lingula — *Lingula anatina*
 
 **Common name:** Tongue shell  
-**Figure:** `museum-specimens/lingula.svg`
+<figure class="museum-specimen-figure" data-specimen="lingula">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/lingula.svg' | relative_url }}" alt="Educational schematic of Lingula — Lingula anatina; Tongue-shaped brachiopod shell with long pedicle. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Lingula — Lingula anatina — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1028,7 +1109,10 @@ Figure-এ minimum:
 ## 28. Dentalium — *Dentalium* sp.
 
 **Common name:** Tusk shell  
-**Figure:** `museum-specimens/dentalium.svg`
+<figure class="museum-specimen-figure" data-specimen="dentalium">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/dentalium.svg' | relative_url }}" alt="Educational schematic of Dentalium — Dentalium sp.; Curved tubular tusk shell open at both ends. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Dentalium — Dentalium sp. — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1061,7 +1145,10 @@ Figure-এ minimum:
 ## 29. Chiton — *Chiton* sp.
 
 **Common name:** Chiton / coat-of-mail shell  
-**Figure:** `museum-specimens/chiton.svg`
+<figure class="museum-specimen-figure" data-specimen="chiton">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/chiton.svg' | relative_url }}" alt="Educational schematic of Chiton — Chiton sp.; Eight dorsal shell plates surrounded by a girdle. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Chiton — Chiton sp. — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1095,7 +1182,10 @@ Figure-এ minimum:
 ## 30. Neopilina — *Neopilina galatheae*
 
 **Common name:** Living monoplacophoran  
-**Figure:** `museum-specimens/neopilina.svg`
+<figure class="museum-specimen-figure" data-specimen="neopilina">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/neopilina.svg' | relative_url }}" alt="Educational schematic of Neopilina — Neopilina galatheae; Cap-like shell with serially repeated paired structures. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Neopilina — Neopilina galatheae — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1129,7 +1219,10 @@ Figure-এ minimum:
 ## 31. Pila — *Pila globosa*
 
 **Common name:** Indian apple snail  
-**Figure:** `museum-specimens/pila.svg`
+<figure class="museum-specimen-figure" data-specimen="pila">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/pila.svg' | relative_url }}" alt="Educational schematic of Pila — Pila globosa; Globose dextral shell with broad operculate aperture. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Pila — Pila globosa — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1164,7 +1257,10 @@ Figure-এ minimum:
 ## 32. Mytilus — *Mytilus edulis*
 
 **Common name:** Blue mussel  
-**Figure:** `museum-specimens/mytilus.svg`
+<figure class="museum-specimen-figure" data-specimen="mytilus">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/mytilus.svg' | relative_url }}" alt="Educational schematic of Mytilus — Mytilus edulis; Wedge-shaped mussel shell with byssal attachment. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Mytilus — Mytilus edulis — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1199,7 +1295,10 @@ Figure-এ minimum:
 ## 33. Unio — *Unio pictorum*
 
 **Common name:** Freshwater mussel / painter's mussel  
-**Figure:** `museum-specimens/unio.svg`
+<figure class="museum-specimen-figure" data-specimen="unio">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/unio.svg' | relative_url }}" alt="Educational schematic of Unio — Unio pictorum; Freshwater unionid shell with umbo and hinge teeth. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Unio — Unio pictorum — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1235,7 +1334,10 @@ Figure-এ minimum:
 ## 34. Nautilus — *Nautilus pompilius*
 
 **Common name:** Chambered nautilus  
-**Figure:** `museum-specimens/nautilus.svg`
+<figure class="museum-specimen-figure" data-specimen="nautilus">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/nautilus.svg' | relative_url }}" alt="Educational schematic of Nautilus — Nautilus pompilius; External chambered coiled shell with many tentacles. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Nautilus — Nautilus pompilius — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1270,7 +1372,10 @@ Figure-এ minimum:
 ## 35. Sepia — *Sepia officinalis*
 
 **Common name:** Cuttlefish  
-**Figure:** `museum-specimens/sepia.svg`
+<figure class="museum-specimen-figure" data-specimen="sepia">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/sepia.svg' | relative_url }}" alt="Educational schematic of Sepia — Sepia officinalis; Cuttlebone with 8 arms and 2 long tentacles. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Sepia — Sepia officinalis — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1306,7 +1411,10 @@ Figure-এ minimum:
 ## 36. Loligo — *Loligo vulgaris*
 
 **Common name:** Squid  
-**Figure:** `museum-specimens/loligo.svg`
+<figure class="museum-specimen-figure" data-specimen="loligo">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/loligo.svg' | relative_url }}" alt="Educational schematic of Loligo — Loligo vulgaris; Elongated squid with ten appendages and internal pen. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Loligo — Loligo vulgaris — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1342,7 +1450,10 @@ Figure-এ minimum:
 ## 37. Octopus — *Octopus vulgaris*
 
 **Common name:** Common octopus  
-**Figure:** `museum-specimens/octopus.svg`
+<figure class="museum-specimen-figure" data-specimen="octopus">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/octopus.svg' | relative_url }}" alt="Educational schematic of Octopus — Octopus vulgaris; Eight sucker-bearing arms and no external shell. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Octopus — Octopus vulgaris — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1377,7 +1488,10 @@ Figure-এ minimum:
 ## 38. Eupagurus — *Eupagurus* (traditional) — commonly *Pagurus* in modern usage
 
 **Common name:** Hermit crab  
-**Figure:** `museum-specimens/eupagurus.svg`
+<figure class="museum-specimen-figure" data-specimen="eupagurus">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/eupagurus.svg' | relative_url }}" alt="Educational schematic of Eupagurus — traditional hermit crab; Soft asymmetrical abdomen adapted to a gastropod shell. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Eupagurus — traditional hermit crab — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1414,7 +1528,10 @@ Figure-এ minimum:
 ## 39. Limulus — *Limulus polyphemus*
 
 **Common name:** Horseshoe crab  
-**Figure:** `museum-specimens/limulus.svg`
+<figure class="museum-specimen-figure" data-specimen="limulus">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/limulus.svg' | relative_url }}" alt="Educational schematic of Limulus — Limulus polyphemus; Horseshoe-shaped shield with a long sword-like telson. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Limulus — Limulus polyphemus — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1449,7 +1566,10 @@ Figure-এ minimum:
 ## 40. Millipedes — Millipede — representative *Julus* / Class Diplopoda
 
 **Common name:** Millipede  
-**Figure:** `museum-specimens/millipedes.svg`
+<figure class="museum-specimen-figure" data-specimen="millipedes">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/millipedes.svg' | relative_url }}" alt="Educational schematic of Millipedes — representative Julus; Two pairs of legs on most diplosegments. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Millipedes — representative Julus — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1482,7 +1602,10 @@ Figure-এ minimum:
 ## 41. Centipedes — Centipede — representative *Scolopendra*
 
 **Common name:** Centipede  
-**Figure:** `museum-specimens/centipedes.svg`
+<figure class="museum-specimen-figure" data-specimen="centipedes">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/centipedes.svg' | relative_url }}" alt="Educational schematic of Centipedes — representative Scolopendra; One pair of legs per segment with venomous forcipules. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Centipedes — representative Scolopendra — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1516,7 +1639,10 @@ Figure-এ minimum:
 ## 42. Palaemon — *Palaemon* sp. (representative *P. serratus*)
 
 **Common name:** Prawn  
-**Figure:** `museum-specimens/palaemon.svg`
+<figure class="museum-specimen-figure" data-specimen="palaemon">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/palaemon.svg' | relative_url }}" alt="Educational schematic of Palaemon — Palaemon sp.; Caridean prawn with rostrum and tail fan. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Palaemon — Palaemon sp. — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1551,7 +1677,10 @@ Figure-এ minimum:
 ## 43. Antedon — *Antedon bifida*
 
 **Common name:** Feather star  
-**Figure:** `museum-specimens/antedon.svg`
+<figure class="museum-specimen-figure" data-specimen="antedon">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/antedon.svg' | relative_url }}" alt="Educational schematic of Antedon — Antedon bifida; Feather-like pinnulate arms with aboral cirri. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Antedon — Antedon bifida — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1587,7 +1716,10 @@ Figure-এ minimum:
 ## 44. Asterias — *Asterias rubens*
 
 **Common name:** Common starfish  
-**Figure:** `museum-specimens/asterias.svg`
+<figure class="museum-specimen-figure" data-specimen="asterias">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/asterias.svg' | relative_url }}" alt="Educational schematic of Asterias — Asterias rubens; Broad five-rayed star with open ambulacral grooves. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Asterias — Asterias rubens — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1622,7 +1754,10 @@ Figure-এ minimum:
 ## 45. Echinus — *Echinus esculentus*
 
 **Common name:** Sea urchin  
-**Figure:** `museum-specimens/echinus.svg`
+<figure class="museum-specimen-figure" data-specimen="echinus">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/echinus.svg' | relative_url }}" alt="Educational schematic of Echinus — Echinus esculentus; Globular rigid test with movable spines. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Echinus — Echinus esculentus — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1656,7 +1791,10 @@ Figure-এ minimum:
 ## 46. Holothuria — *Holothuria* sp. (e.g., *H. atra*)
 
 **Common name:** Sea cucumber  
-**Figure:** `museum-specimens/holothuria.svg`
+<figure class="museum-specimen-figure" data-specimen="holothuria">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/holothuria.svg' | relative_url }}" alt="Educational schematic of Holothuria — Holothuria sp.; Soft cucumber-shaped echinoderm with oral tentacles. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Holothuria — Holothuria sp. — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1689,7 +1827,10 @@ Figure-এ minimum:
 ## 47. Ophiura — *Ophiura ophiura*
 
 **Common name:** Brittle star  
-**Figure:** `museum-specimens/ophiura.svg`
+<figure class="museum-specimen-figure" data-specimen="ophiura">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/ophiura.svg' | relative_url }}" alt="Educational schematic of Ophiura — Ophiura ophiura; Distinct disc with long slender brittle-star arms. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Ophiura — Ophiura ophiura — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 
@@ -1723,7 +1864,10 @@ Figure-এ minimum:
 ## 48. Cucumaria — *Cucumaria frondosa*
 
 **Common name:** Dendrochirotid sea cucumber  
-**Figure:** `museum-specimens/cucumaria.svg`
+<figure class="museum-specimen-figure" data-specimen="cucumaria">
+  <img src="{{ '/assets/biology/higher-zoology-tree/practical/museum-specimens/cucumaria.svg' | relative_url }}" alt="Educational schematic of Cucumaria — Cucumaria frondosa; Sea cucumber with branched dendritic oral tentacles. Not to scale." loading="lazy" decoding="async" width="960" height="640">
+  <figcaption><strong>Figure:</strong> Cucumaria — Cucumaria frondosa — LBFL original schematic; not to scale.</figcaption>
+</figure>
 
 ### Classification
 

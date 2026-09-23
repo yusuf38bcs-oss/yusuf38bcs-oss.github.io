@@ -5,6 +5,7 @@ require "json"
 ROOT = File.expand_path("../..", __dir__)
 INDEX = "_biology/higher-zoology-tree/practical/index.bn.md"
 COVERAGE = "_data/zoology-practical-213106-coverage.json"
+FIGURE_MANIFEST = "_data/zoology-practical-museum-figures.json"
 NAVIGATION = "_data/navigation.yml"
 HIGHER_ZOOLOGY_EN = "_biology/higher-zoology-tree/index.md"
 HIGHER_ZOOLOGY_BN = "_biology/higher-zoology-tree/index.bn.md"
@@ -30,7 +31,7 @@ def frontmatter_value(content, key)
 end
 
 errors = []
-all_paths = [INDEX, COVERAGE, NAVIGATION, HIGHER_ZOOLOGY_EN, HIGHER_ZOOLOGY_BN] + MODULES.map { |row| row[1] }
+all_paths = [INDEX, COVERAGE, FIGURE_MANIFEST, NAVIGATION, HIGHER_ZOOLOGY_EN, HIGHER_ZOOLOGY_BN] + MODULES.map { |row| row[1] }
 all_paths.each { |path| errors << "missing file: #{path}" unless File.file?(File.join(ROOT, path)) }
 
 if errors.empty?
@@ -78,6 +79,23 @@ if errors.empty?
   errors << "museum page must disclose 48/48 unique coverage" unless museum.include?("48/48 unique syllabus labels")
   errors << "museum duplicate Echinus note missing" unless museum.include?("Echinus")
   errors << "museum figure policy missing" unless museum.include?("Figure Policy")
+  figure_manifest = JSON.parse(text(FIGURE_MANIFEST))
+  figures = Array(figure_manifest["figures"])
+  errors << "museum figure manifest must contain exactly 48 figures" unless figures.length == 48
+  errors << "museum figure manifest slugs must be unique" unless figures.map { |f| f["slug"] }.uniq.length == 48
+  errors << "museum figure manifest numbers must be 1..48" unless figures.map { |f| f["number"] } == (1..48).to_a
+  figures.each do |figure|
+    slug = figure["slug"].to_s
+    asset = figure["asset"].to_s.sub(%r{\A/}, "")
+    errors << "museum figure #{slug}: asset missing" unless File.file?(File.join(ROOT, asset))
+    errors << "museum figure #{slug}: alt missing" if figure["alt"].to_s.strip.empty?
+    errors << "museum figure #{slug}: ownership missing" if figure["ownership"].to_s.strip.empty?
+    errors << "museum figure #{slug}: licence basis missing" if figure["licence_basis"].to_s.strip.empty?
+    errors << "museum figure #{slug}: provenance missing" if figure["provenance"].to_s.strip.empty?
+    errors << "museum figure #{slug}: rendered figure markup missing" unless museum.include?("data-specimen=\"#{slug}\"")
+    errors << "museum figure #{slug}: canonical asset path missing from source" unless museum.include?(figure["asset"].to_s)
+  end
+  errors << "raw filename-only Figure declarations remain" if museum.include?("**Figure:** `museum-specimens/")
   museum_numbers = museum.scan(/^##\s+(\d+)\./).flatten.map(&:to_i)
   errors << "museum must contain exactly numbered specimens 1..48" unless museum_numbers == (1..48).to_a
   (1..48).each do |number|
@@ -127,4 +145,4 @@ if errors.any?
 end
 
 puts "Zoology Practical-I 213106 Certification: PASS"
-puts "gateway=1 modules=8 museum_unique=48/48 navigation=integrated shared_css_changes=none"
+puts "gateway=1 modules=8 museum_unique=48/48 museum_figures=48/48 navigation=integrated shared_css_changes=none"

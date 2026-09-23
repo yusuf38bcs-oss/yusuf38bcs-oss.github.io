@@ -13,6 +13,8 @@ on:
       - "assets/css/zoology-practical.css"
       - "assets/js/zoology-practical.js"
       - "_data/zoology-practical-213106-coverage.json"
+      - "_data/zoology-practical-museum-figures.json"
+      - "assets/biology/higher-zoology-tree/practical/museum-specimens/**"
       - "scripts/zoology/validate_practical_213106.rb"
       - ".github/workflows/zoology-practical-213106-certification.yml"
   workflow_dispatch:
@@ -78,3 +80,23 @@ jobs:
           test -f _site/biology/higher-zoology-tree/practical/appendages/index.html
           test -f _site/biology/higher-zoology-tree/practical/zooplankton/index.html
           test -f _site/biology/higher-zoology-tree/practical/field-report/index.html
+
+
+      - name: Assert Museum 48/48 rendered figure contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          ASSET_DIR="_site/assets/biology/higher-zoology-tree/practical/museum-specimens"
+          PAGE="_site/biology/higher-zoology-tree/practical/museum-specimens/index.html"
+          test -d "$ASSET_DIR"
+          test "$(find "$ASSET_DIR" -maxdepth 1 -type f -name '*.svg' | wc -l | tr -d ' ')" = "48"
+          test "$(grep -o 'class="museum-specimen-figure"' "$PAGE" | wc -l | tr -d ' ')" = "48"
+          if grep -Eq '<code>museum-specimens/[^<]+\.svg</code>' "$PAGE"; then
+            echo "Raw filename-only museum figure reference leaked into rendered page" >&2
+            exit 1
+          fi
+          for asset in "$ASSET_DIR"/*.svg; do
+            test -s "$asset"
+            grep -q 'role="img"' "$asset"
+            grep -q 'not to scale' "$asset"
+          done

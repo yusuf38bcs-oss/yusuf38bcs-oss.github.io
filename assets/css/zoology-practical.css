@@ -45,3 +45,10 @@ html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page 
   margin: 0 !important;
   overflow: visible !important;
 }
+
+
+/* Museum Specimens — canonical local figure component */
+.zoology-practical-page .museum-specimen-figure { margin:1.25rem 0 1.5rem; padding:.75rem; border:1px solid #c9ddd8; border-radius:.75rem; background:#fbfaf6; }
+.zoology-practical-page .museum-specimen-figure img { display:block; width:min(100%,60rem); height:auto; margin-inline:auto; border-radius:.5rem; background:#fff; }
+.zoology-practical-page .museum-specimen-figure figcaption { margin-top:.65rem; color:#17353a; font-size:.95rem; line-height:1.55; }
+@media (max-width:30rem){ .zoology-practical-page .museum-specimen-figure{padding:.5rem;margin-inline:0;} }
