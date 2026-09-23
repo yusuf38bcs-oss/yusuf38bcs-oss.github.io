@@ -166,7 +166,7 @@ jobs:
         run: |
           set -euo pipefail
           short_sha="${TARGET_SHA:0:12}"
-          ./worker/node_modules/.bin/wrangler deploy             --config wrangler.jsonc             --message "LBFL exact-main $TARGET_SHA"             --tag "main-$short_sha"             --yes 2>&1 | tee "$RUNNER_TEMP/wrangler-deploy.log"
+          ./worker/node_modules/.bin/wrangler deploy             --config wrangler.jsonc             --message "LBFL exact-main $TARGET_SHA"             --tag "main-$short_sha" 2>&1 | tee "$RUNNER_TEMP/wrangler-deploy.log"
           cp "$RUNNER_TEMP/wrangler-deploy.log" "$EVIDENCE_DIR/wrangler-deploy.log" 2>/dev/null || {
             mkdir -p "$EVIDENCE_DIR"
             cp "$RUNNER_TEMP/wrangler-deploy.log" "$EVIDENCE_DIR/wrangler-deploy.log"
