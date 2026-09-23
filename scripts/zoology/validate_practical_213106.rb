@@ -78,7 +78,7 @@ if errors.empty?
   museum = text(MODULES[0][1])
   errors << "museum page must disclose 48/48 unique coverage" unless museum.include?("48/48 unique syllabus labels")
   errors << "museum duplicate Echinus note missing" unless museum.include?("Echinus")
-  errors << "museum figure policy missing" unless museum.include?("Figure Policy")
+  errors << "museum learner-facing figure guide missing" unless museum.include?("Figure Guide")
   figure_manifest = JSON.parse(text(FIGURE_MANIFEST))
   figures = Array(figure_manifest["figures"])
   errors << "museum figure manifest must contain exactly 48 figures" unless figures.length == 48
@@ -87,14 +87,14 @@ if errors.empty?
   figures.each do |figure|
     slug = figure["slug"].to_s
     asset = figure["asset"].to_s.sub(%r{\A/}, "")
-    errors << "museum figure #{slug}: asset missing" unless File.file?(File.join(ROOT, asset))
-    errors << "museum figure #{slug}: alt missing" if figure["alt"].to_s.strip.empty?
-    errors << "museum figure #{slug}: ownership missing" if figure["ownership"].to_s.strip.empty?
-    errors << "museum figure #{slug}: licence basis missing" if figure["licence_basis"].to_s.strip.empty?
-    errors << "museum figure #{slug}: provenance missing" if figure["provenance"].to_s.strip.empty?
-    errors << "museum figure #{slug}: rendered figure markup missing" unless museum.include?("data-specimen=\"#{slug}\"")
-    errors << "museum figure #{slug}: canonical asset path missing from source" unless museum.include?(figure["asset"].to_s)
+    errors << "museum figure #{slug}: retained audit asset missing" unless File.file?(File.join(ROOT, asset))
+    errors << "museum figure #{slug}: visual status must be pending-verified-image" unless figure["visual_status"] == "pending-verified-image"
+    errors << "museum figure #{slug}: public_render must be false" unless figure["public_render"] == false
+    errors << "museum figure #{slug}: provenance note missing" if figure["provenance_note"].to_s.strip.empty?
   end
+  errors << "museum schematic figure markup must not render publicly" if museum.include?("museum-specimen-figure")
+  errors << "museum public page must not expose internal asset path" if museum.include?("/assets/biology/higher-zoology-tree/practical/museum-specimens/")
+  errors << "museum public page must not expose local asset path wording" if museum.match?(/local asset path/i)
   errors << "raw filename-only Figure declarations remain" if museum.include?("**Figure:** `museum-specimens/")
   museum_numbers = museum.scan(/^##\s+(\d+)\./).flatten.map(&:to_i)
   errors << "museum must contain exactly numbered specimens 1..48" unless museum_numbers == (1..48).to_a
@@ -145,4 +145,4 @@ if errors.any?
 end
 
 puts "Zoology Practical-I 213106 Certification: PASS"
-puts "gateway=1 modules=8 museum_unique=48/48 museum_figures=48/48 navigation=integrated shared_css_changes=none"
+puts "gateway=1 modules=8 museum_unique=48/48 museum_figures=0_public/48_pending_verified navigation=integrated shared_css_changes=none"

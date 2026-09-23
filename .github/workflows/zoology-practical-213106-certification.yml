@@ -82,7 +82,7 @@ jobs:
           test -f _site/biology/higher-zoology-tree/practical/field-report/index.html
 
 
-      - name: Assert Museum 48/48 rendered figure contract
+      - name: Assert Museum verified-image hotfix contract
         shell: bash
         run: |
           set -euo pipefail
@@ -90,13 +90,12 @@ jobs:
           PAGE="_site/biology/higher-zoology-tree/practical/museum-specimens/index.html"
           test -d "$ASSET_DIR"
           test "$(find "$ASSET_DIR" -maxdepth 1 -type f -name '*.svg' | wc -l | tr -d ' ')" = "48"
-          test "$(grep -o 'class="museum-specimen-figure"' "$PAGE" | wc -l | tr -d ' ')" = "48"
-          if grep -Eq '<code>museum-specimens/[^<]+\.svg</code>' "$PAGE"; then
-            echo "Raw filename-only museum figure reference leaked into rendered page" >&2
+          test "$(grep -o 'class="museum-specimen-figure"' "$PAGE" | wc -l | tr -d ' ')" = "0"
+          if grep -Fq '/assets/biology/higher-zoology-tree/practical/museum-specimens/' "$PAGE"; then
+            echo "Internal museum asset path leaked into student-facing page" >&2
             exit 1
           fi
-          for asset in "$ASSET_DIR"/*.svg; do
-            test -s "$asset"
-            grep -q 'role="img"' "$asset"
-            grep -q 'not to scale' "$asset"
-          done
+          if grep -Eqi 'local asset path' "$PAGE"; then
+            echo "Developer-facing asset-path wording leaked into student-facing page" >&2
+            exit 1
+          fi
