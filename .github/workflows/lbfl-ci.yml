@@ -397,7 +397,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
-          CLOUDFLARE_WORKER_SCRIPT: ${{ vars.CLOUDFLARE_WORKER_SCRIPT }}
+          CLOUDFLARE_WORKER_SCRIPT: lbfl-socratic-ai
           PREVIEW_WAIT_SECONDS: ${{ steps.target.outputs.release_certification_required == 'true' && '600' || '0' }}
         run: |
           set -euo pipefail
