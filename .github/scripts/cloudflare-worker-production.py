@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Preflight or trigger an exact-main Cloudflare Workers Build for LBFL."""
+"""Configure or observe exact-main Cloudflare Workers Builds for LBFL."""
 
 from __future__ import annotations
 
@@ -74,7 +74,7 @@ def find_worker_tag(account_id: str, token: str) -> str:
     raise RuntimeError(f"Cloudflare Worker {SCRIPT_NAME!r} was not found")
 
 
-def find_production_trigger(account_id: str, worker_tag: str, token: str) -> dict[str, Any]:
+def production_triggers(account_id: str, worker_tag: str, token: str) -> list[dict[str, Any]]:
     tag = urllib.parse.quote(worker_tag, safe="")
     result = request_json("GET", f"/accounts/{urllib.parse.quote(account_id)}/builds/workers/{tag}/triggers", token)
     candidates: list[dict[str, Any]] = []
@@ -83,11 +83,109 @@ def find_production_trigger(account_id: str, worker_tag: str, token: str) -> dic
         excludes = [str(v) for v in (trigger.get("branch_excludes") or [])]
         if PRODUCTION_BRANCH in includes and PRODUCTION_BRANCH not in excludes:
             candidates.append(trigger)
-    require(len(candidates) == 1, f"Expected exactly one production build trigger for main; found {len(candidates)}")
-    trigger = candidates[0]
+    return candidates
+
+
+def select_build_token(account_id: str, token: str) -> dict[str, Any]:
+    account = urllib.parse.quote(account_id, safe="")
+    result = request_json("GET", f"/accounts/{account}/builds/tokens?per_page=200", token)
+    tokens = [
+        item for item in records(result, "items", "tokens")
+        if UUID_RE.fullmatch(str(item.get("build_token_uuid") or "")) is not None
+    ]
+    require(bool(tokens), "No Cloudflare Workers Builds token is available")
+    if len(tokens) == 1:
+        return tokens[0]
+    preferred = [
+        item for item in tokens
+        if any(
+            needle in str(item.get("build_token_name") or "").lower()
+            for needle in ("lbfl", "socratic", "worker")
+        )
+    ]
+    require(
+        len(preferred) == 1,
+        "Multiple Workers Builds tokens exist and no single LBFL-specific token can be selected safely",
+    )
+    return preferred[0]
+
+
+def ensure_repo_connection(account_id: str, token: str) -> dict[str, Any]:
+    owner_id = os.environ.get("LBFL_GITHUB_OWNER_ID", "").strip()
+    repo_id = os.environ.get("LBFL_GITHUB_REPO_ID", "").strip()
+    owner = os.environ.get("LBFL_GITHUB_OWNER", "").strip()
+    repo_name = os.environ.get("LBFL_GITHUB_REPO", "").strip()
+    require(owner_id.isdigit(), "LBFL_GITHUB_OWNER_ID is missing or invalid")
+    require(repo_id.isdigit(), "LBFL_GITHUB_REPO_ID is missing or invalid")
+    require(bool(owner), "LBFL_GITHUB_OWNER is missing")
+    require(bool(repo_name), "LBFL_GITHUB_REPO is missing")
+    account = urllib.parse.quote(account_id, safe="")
+    result = request_json(
+        "PUT",
+        f"/accounts/{account}/builds/repos/connections",
+        token,
+        {
+            "provider_type": "github",
+            "provider_account_id": owner_id,
+            "provider_account_name": owner,
+            "repo_id": repo_id,
+            "repo_name": repo_name,
+        },
+    )
+    require(isinstance(result, dict), "Repository connection upsert did not return an object")
+    require(UUID_RE.fullmatch(str(result.get("repo_connection_uuid") or "")) is not None, "Repository connection UUID is missing")
+    return result
+
+
+def ensure_production_trigger(account_id: str, worker_tag: str, token: str) -> tuple[dict[str, Any], bool]:
+    candidates = production_triggers(account_id, worker_tag, token)
+    require(len(candidates) <= 1, f"Expected at most one production trigger for main; found {len(candidates)}")
+    if candidates:
+        return candidates[0], False
+
+    build_token = select_build_token(account_id, token)
+    connection = ensure_repo_connection(account_id, token)
+    account = urllib.parse.quote(account_id, safe="")
+    created = request_json(
+        "POST",
+        f"/accounts/{account}/builds/triggers",
+        token,
+        {
+            "external_script_id": worker_tag,
+            "repo_connection_uuid": connection["repo_connection_uuid"],
+            "build_token_uuid": build_token["build_token_uuid"],
+            "trigger_name": "LBFL exact-main production Worker",
+            "build_command": "cd worker && npm ci --ignore-scripts",
+            "deploy_command": "./worker/node_modules/.bin/wrangler deploy --config wrangler.jsonc",
+            "root_directory": "/",
+            "branch_includes": [PRODUCTION_BRANCH],
+            "branch_excludes": [],
+            "path_includes": [
+                "worker/**",
+                "wrangler.jsonc",
+                "_data/ai.yml",
+                ".github/scripts/cloudflare-worker-production.py",
+                ".github/workflows/worker-production-deployment.yml",
+                ".github/workflows/production-certification.yml",
+            ],
+            "path_excludes": [],
+            "build_caching_enabled": True,
+        },
+    )
+    require(isinstance(created, dict), "Cloudflare did not return the created production trigger")
+    require(UUID_RE.fullmatch(str(created.get("trigger_uuid") or "")) is not None, "Created trigger UUID is missing")
+    return created, True
+
+
+def validate_trigger(trigger: dict[str, Any]) -> None:
     require(UUID_RE.fullmatch(str(trigger.get("trigger_uuid") or "")) is not None, "Production trigger UUID is missing")
-    require(bool(str(trigger.get("deploy_command") or "").strip()), "Production trigger has no deploy command")
-    return trigger
+    require(PRODUCTION_BRANCH in [str(v) for v in (trigger.get("branch_includes") or [])], "Production trigger does not include main")
+    require(PRODUCTION_BRANCH not in [str(v) for v in (trigger.get("branch_excludes") or [])], "Production trigger excludes main")
+    require(str(trigger.get("root_directory") or "") == "/", "Production trigger root_directory must be /")
+    require(
+        str(trigger.get("deploy_command") or "") == "./worker/node_modules/.bin/wrangler deploy --config wrangler.jsonc",
+        "Production trigger deploy command is not the governed Wrangler command",
+    )
 
 
 def active_version(account_id: str, token: str) -> tuple[str, dict[str, Any]]:
@@ -163,31 +261,6 @@ def verify_ingress_pair(expected_version_id: str | None = None) -> dict[str, Any
     return {"canonical": canonical, "direct": direct}
 
 
-def get_build(account_id: str, build_uuid: str, token: str) -> dict[str, Any]:
-    account = urllib.parse.quote(account_id, safe="")
-    build = urllib.parse.quote(build_uuid, safe="")
-    result = request_json("GET", f"/accounts/{account}/builds/builds/{build}", token)
-    require(isinstance(result, dict), "Cloudflare build lookup did not return an object")
-    return result
-
-
-def wait_for_build(account_id: str, build_uuid: str, token: str, target_sha: str) -> dict[str, Any]:
-    terminal_failures = {"fail", "skipped", "cancelled", "terminated"}
-    for _ in range(120):
-        build = get_build(account_id, build_uuid, token)
-        outcome = str(build.get("build_outcome") or "").lower()
-        metadata = build.get("build_trigger_metadata")
-        metadata = metadata if isinstance(metadata, dict) else {}
-        if outcome == "success":
-            require(str(metadata.get("branch") or "") == PRODUCTION_BRANCH, "Build branch is not main")
-            require(str(metadata.get("commit_hash") or "").lower() == target_sha, "Build commit SHA does not match exact main")
-            return build
-        if outcome in terminal_failures:
-            raise RuntimeError(f"Cloudflare Worker build ended with outcome={outcome}")
-        time.sleep(10)
-    raise RuntimeError("Timed out waiting for the Cloudflare Worker build")
-
-
 def build_for_version(account_id: str, version_id: str, token: str) -> dict[str, Any] | None:
     account = urllib.parse.quote(account_id, safe="")
     query = urllib.parse.urlencode({"version_ids": version_id})
@@ -201,7 +274,7 @@ def build_for_version(account_id: str, version_id: str, token: str) -> dict[str,
     return None
 
 
-def version_for_sha(account_id: str, token: str, target_sha: str) -> str:
+def version_for_sha(account_id: str, token: str, target_sha: str) -> tuple[str, dict[str, Any] | None]:
     account = urllib.parse.quote(account_id, safe="")
     script = urllib.parse.quote(SCRIPT_NAME, safe="")
     result = request_json("GET", f"/accounts/{account}/workers/scripts/{script}/versions", token)
@@ -213,18 +286,22 @@ def version_for_sha(account_id: str, token: str, target_sha: str) -> str:
         build = build_for_version(account_id, version_id, token)
         metadata = build.get("build_trigger_metadata") if isinstance(build, dict) else {}
         metadata = metadata if isinstance(metadata, dict) else {}
-        if str(metadata.get("commit_hash") or "").lower() == target_sha:
-            return version_id
-    return ""
+        if (
+            str(metadata.get("commit_hash") or "").lower() == target_sha
+            and str(metadata.get("branch") or "") == PRODUCTION_BRANCH
+            and str(build.get("build_outcome") or "").lower() == "success"
+        ):
+            return version_id, build
+    return "", None
 
 
-def wait_for_exact_version(account_id: str, token: str, target_sha: str) -> str:
-    for _ in range(90):
-        version_id = version_for_sha(account_id, token, target_sha)
-        if version_id:
-            return version_id
+def wait_for_exact_version(account_id: str, token: str, target_sha: str) -> tuple[str, dict[str, Any]]:
+    for _ in range(120):
+        version_id, build = version_for_sha(account_id, token, target_sha)
+        if version_id and isinstance(build, dict):
+            return version_id, build
         time.sleep(10)
-    raise RuntimeError("Timed out resolving a Worker version whose build metadata matches exact main")
+    raise RuntimeError("Timed out resolving a successful Worker build/version for exact main")
 
 
 def wait_for_active_version(account_id: str, token: str, expected_version_id: str) -> dict[str, Any]:
@@ -257,7 +334,7 @@ def write_github_outputs(path: str, values: dict[str, str]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=("preflight", "deploy"), required=True)
+    parser.add_argument("--mode", choices=("configure", "await"), required=True)
     parser.add_argument("--sha", default="")
     parser.add_argument("--output", required=True)
     parser.add_argument("--github-output", default="")
@@ -273,7 +350,8 @@ def main() -> int:
         require(SHA_RE.fullmatch(args.sha) is not None, "--sha must be an exact 40-character lowercase SHA")
 
     worker_tag = find_worker_tag(account_id, token)
-    trigger = find_production_trigger(account_id, worker_tag, token)
+    trigger, trigger_created = ensure_production_trigger(account_id, worker_tag, token)
+    validate_trigger(trigger)
     current_version_id, current_deployment = active_version(account_id, token)
     current_ingress = verify_ingress_pair(current_version_id)
 
@@ -284,6 +362,7 @@ def main() -> int:
         "production_branch": PRODUCTION_BRANCH,
         "trigger_uuid": trigger.get("trigger_uuid"),
         "trigger_name": trigger.get("trigger_name"),
+        "trigger_created": trigger_created,
         "root_directory": trigger.get("root_directory"),
         "build_command": trigger.get("build_command"),
         "deploy_command": trigger.get("deploy_command"),
@@ -292,30 +371,24 @@ def main() -> int:
         "current_ingress": current_ingress,
     }
 
-    if args.mode == "deploy":
-        require(bool(args.sha), "--sha is required for deploy mode")
-        account = urllib.parse.quote(account_id, safe="")
-        trigger_uuid = urllib.parse.quote(str(trigger["trigger_uuid"]), safe="")
-        started = request_json(
-            "POST",
-            f"/accounts/{account}/builds/triggers/{trigger_uuid}/builds",
-            token,
-            {"branch": PRODUCTION_BRANCH, "commit_hash": args.sha},
-        )
-        require(isinstance(started, dict), "Cloudflare build trigger did not return an object")
-        build_uuid = str(started.get("build_uuid") or "")
-        require(UUID_RE.fullmatch(build_uuid) is not None, "Cloudflare build trigger returned no build UUID")
-
-        build = wait_for_build(account_id, build_uuid, token, args.sha)
-        version_id = wait_for_exact_version(account_id, token, args.sha)
+    if args.mode == "await":
+        require(bool(args.sha), "--sha is required for await mode")
+        version_id, build = wait_for_exact_version(account_id, token, args.sha)
+        metadata = build.get("build_trigger_metadata")
+        metadata = metadata if isinstance(metadata, dict) else {}
+        require(str(metadata.get("commit_hash") or "").lower() == args.sha, "Resolved build commit SHA is not exact main")
+        require(str(metadata.get("branch") or "") == PRODUCTION_BRANCH, "Resolved build branch is not main")
+        require(str(build.get("build_outcome") or "").lower() == "success", "Resolved build did not succeed")
         deployment = wait_for_active_version(account_id, token, version_id)
         ingress = wait_for_live_ingress(version_id)
+        build_uuid = str(build.get("build_uuid") or "")
+        require(UUID_RE.fullmatch(build_uuid) is not None, "Resolved exact-main build UUID is missing")
 
         evidence.update({
             "target_sha": args.sha,
             "build_uuid": build_uuid,
             "build_outcome": build.get("build_outcome"),
-            "build_trigger_metadata": build.get("build_trigger_metadata"),
+            "build_trigger_metadata": metadata,
             "worker_version_id": version_id,
             "active_deployment_id": deployment.get("id"),
             "live_ingress": ingress,
@@ -336,6 +409,7 @@ def main() -> int:
                 "active_worker_version_id": current_version_id,
                 "worker_tag": worker_tag,
                 "trigger_uuid": str(trigger["trigger_uuid"]),
+                "trigger_created": "true" if trigger_created else "false",
             },
         )
 
