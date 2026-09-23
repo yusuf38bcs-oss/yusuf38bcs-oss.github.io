@@ -34,7 +34,7 @@ jobs:
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
         shell: bash
         run: |
-          set -euo pipefail; test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy"; evidence="$RUNNER_TEMP/ecology-prod.json"; out="$RUNNER_TEMP/ecology-prod.out"
+          set -euo pipefail; test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai"; evidence="$RUNNER_TEMP/ecology-prod.json"; out="$RUNNER_TEMP/ecology-prod.out"
           for attempt in $(seq 1 40); do
             : > "$out"
             python3 .github/scripts/resolve-cloudflare-targets.py --repository "$GITHUB_REPOSITORY" --sha "$TARGET_MAIN_SHA" --pages-environment production --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" --cloudflare-worker-script "$CLOUDFLARE_WORKER_SCRIPT" --wait-seconds 0 --site-config _data/ai.yml --output "$evidence" --github-output "$out" || true
