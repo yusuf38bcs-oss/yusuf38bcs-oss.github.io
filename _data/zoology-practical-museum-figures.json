@@ -1,0 +1,878 @@
+{
+  "schema_version": "1.0",
+  "course_code": "213106",
+  "generated_at": "2026-09-24",
+  "canonical_asset_root": "/assets/biology/higher-zoology-tree/practical/museum-specimens/",
+  "rights_policy": "All repository figures in this packet are newly generated LBFL-original schematic SVGs from existing LBFL specimen descriptions; no third-party visual bytes are embedded.",
+  "library_inventory": {
+    "source_deck": "Non_Chordate_Museum_Specimens_Clean_Complete.pptx",
+    "extracted_reference_figures": 18,
+    "exact_syllabus_label_matches": 15,
+    "related_but_not_exact_matches": 3,
+    "note": "Library figures were inventoried as reference evidence only. Repository assets are new original schematics so provenance is explicit."
+  },
+  "figures": [
+    {
+      "number": 1,
+      "title": "Sycon — Sycon ciliatum",
+      "slug": "sycon",
+      "phylum": "Porifera",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/sycon.svg",
+      "alt": "Educational schematic of Sycon — Sycon ciliatum; Porous body + terminal osculum + calcareous spicules. Not to scale.",
+      "diagnostic_labels": [
+        "osculum",
+        "calcareous spicules",
+        "ostia"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 2,
+      "title": "Physalia — Physalia physalis",
+      "slug": "physalia",
+      "phylum": "Cnidaria",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/physalia.svg",
+      "alt": "Educational schematic of Physalia — Physalia physalis; Large gas-filled pneumatophore with long trailing tentacles. Not to scale.",
+      "diagnostic_labels": [
+        "pneumatophore",
+        "crest",
+        "long tentacles"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 3,
+      "title": "Metridium — Metridium senile",
+      "slug": "metridium",
+      "phylum": "Cnidaria",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/metridium.svg",
+      "alt": "Educational schematic of Metridium — Metridium senile; Large soft sea-anemone polyp with broad pedal disc. Not to scale.",
+      "diagnostic_labels": [
+        "oral disc",
+        "tentacles",
+        "pedal disc"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 4,
+      "title": "Adamsia — Adamsia palliata",
+      "slug": "adamsia",
+      "phylum": "Cnidaria",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/adamsia.svg",
+      "alt": "Educational schematic of Adamsia — Adamsia palliata; Sea-anemone polyp associated with a gastropod shell. Not to scale.",
+      "diagnostic_labels": [
+        "oral tentacles",
+        "pedal disc",
+        "shell association"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 5,
+      "title": "Arenicola — Arenicola marina",
+      "slug": "arenicola",
+      "phylum": "Annelida",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/arenicola.svg",
+      "alt": "Educational schematic of Arenicola — Arenicola marina; Robust segmented polychaete with paired bushy gills. Not to scale.",
+      "diagnostic_labels": [
+        "segments",
+        "branchiae",
+        "swollen anterior"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 6,
+      "title": "Tubifex — Tubifex tubifex",
+      "slug": "tubifex",
+      "phylum": "Annelida",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/tubifex.svg",
+      "alt": "Educational schematic of Tubifex — Tubifex tubifex; Very slender aquatic annelid with true segmentation. Not to scale.",
+      "diagnostic_labels": [
+        "slender body",
+        "segments",
+        "chaetae"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 7,
+      "title": "Metaphere — probable Metaphire sp.",
+      "slug": "metaphere",
+      "phylum": "Annelida",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/metaphere.svg",
+      "alt": "Educational schematic of Metaphere — probable Metaphire sp.; Earthworm morphology with megascolecid pattern. Not to scale.",
+      "diagnostic_labels": [
+        "segments",
+        "clitellum",
+        "perichaetine setae"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + related Library core-deck reference reviewed; figure follows syllabus label, not substitute taxon",
+      "library_reference_status": "related-not-substitute"
+    },
+    {
+      "number": 8,
+      "title": "Tomopteris — Tomopteris sp.",
+      "slug": "tomopteris",
+      "phylum": "Annelida",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/tomopteris.svg",
+      "alt": "Educational schematic of Tomopteris — Tomopteris sp.; Pelagic polychaete with conspicuous paddle-like parapodia. Not to scale.",
+      "diagnostic_labels": [
+        "transparent body",
+        "paddle-like parapodia",
+        "head cirri"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 9,
+      "title": "Amphitrite — Amphitrite ornata",
+      "slug": "amphitrite",
+      "phylum": "Annelida",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/amphitrite.svg",
+      "alt": "Educational schematic of Amphitrite — Amphitrite ornata; Numerous long feeding tentacles plus anterior branched gills. Not to scale.",
+      "diagnostic_labels": [
+        "feeding tentacles",
+        "branched gills",
+        "segments"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 10,
+      "title": "Lumbricus — Lumbricus terrestris",
+      "slug": "lumbricus",
+      "phylum": "Annelida",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/lumbricus.svg",
+      "alt": "Educational schematic of Lumbricus — Lumbricus terrestris; Earthworm with few paired chaetae and posterior clitellum. Not to scale.",
+      "diagnostic_labels": [
+        "segments",
+        "paired chaetae",
+        "posterior clitellum"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 11,
+      "title": "Ancylostoma — Ancylostoma duodenale",
+      "slug": "ancylostoma",
+      "phylum": "Nematoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/ancylostoma.svg",
+      "alt": "Educational schematic of Ancylostoma — Ancylostoma duodenale; Hooked anterior end with toothed buccal capsule. Not to scale.",
+      "diagnostic_labels": [
+        "hooked anterior",
+        "buccal capsule",
+        "copulatory bursa"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 12,
+      "title": "Enterobius — Enterobius vermicularis",
+      "slug": "enterobius",
+      "phylum": "Nematoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/enterobius.svg",
+      "alt": "Educational schematic of Enterobius — Enterobius vermicularis; Cephalic alae with a long pointed female tail. Not to scale.",
+      "diagnostic_labels": [
+        "cephalic alae",
+        "pointed female tail"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 13,
+      "title": "Wuchereria — Wuchereria bancrofti",
+      "slug": "wuchereria",
+      "phylum": "Nematoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/wuchereria.svg",
+      "alt": "Educational schematic of Wuchereria — Wuchereria bancrofti; Sheathed microfilaria with terminal tail free of nuclei. Not to scale.",
+      "diagnostic_labels": [
+        "sheath",
+        "slender microfilaria",
+        "tail tip without nuclei"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 14,
+      "title": "Trichinella — Trichinella spiralis",
+      "slug": "trichinella",
+      "phylum": "Nematoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/trichinella.svg",
+      "alt": "Educational schematic of Trichinella — Trichinella spiralis; Coiled larva embedded in striated skeletal muscle. Not to scale.",
+      "diagnostic_labels": [
+        "coiled larva",
+        "muscle fibre",
+        "capsule"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 15,
+      "title": "Dracunculus — Dracunculus medinensis",
+      "slug": "dracunculus",
+      "phylum": "Nematoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/dracunculus.svg",
+      "alt": "Educational schematic of Dracunculus — Dracunculus medinensis; Exceptionally long thread-like gravid female nematode. Not to scale.",
+      "diagnostic_labels": [
+        "very long female",
+        "thread-like body"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 16,
+      "title": "Loa — Loa loa",
+      "slug": "loa",
+      "phylum": "Nematoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/loa.svg",
+      "alt": "Educational schematic of Loa — Loa loa; Sheathed microfilaria with nuclei continuing to tail tip. Not to scale.",
+      "diagnostic_labels": [
+        "sheath",
+        "nuclei to tail tip",
+        "slender body"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 17,
+      "title": "Trichuris — Trichuris trichiura",
+      "slug": "trichuris",
+      "phylum": "Nematoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/trichuris.svg",
+      "alt": "Educational schematic of Trichuris — Trichuris trichiura; Whip-like body; eggs have bipolar plugs. Not to scale.",
+      "diagnostic_labels": [
+        "thin anterior",
+        "thick posterior",
+        "bipolar plugs"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 18,
+      "title": "Hirudo — Hirudo medicinalis",
+      "slug": "hirudo",
+      "phylum": "Annelida",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/hirudo.svg",
+      "alt": "Educational schematic of Hirudo — Hirudo medicinalis; Flattened annelid with two suckers and no chaetae. Not to scale.",
+      "diagnostic_labels": [
+        "anterior sucker",
+        "posterior sucker",
+        "flattened annuli"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 19,
+      "title": "Piscicola — Piscicola geometra",
+      "slug": "piscicola",
+      "phylum": "Annelida",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/piscicola.svg",
+      "alt": "Educational schematic of Piscicola — Piscicola geometra; Slender fish leech with markedly developed posterior sucker. Not to scale.",
+      "diagnostic_labels": [
+        "slender body",
+        "posterior sucker",
+        "fish-leech form"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 20,
+      "title": "Pheretima — traditional syllabus label",
+      "slug": "pheretima",
+      "phylum": "Annelida",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/pheretima.svg",
+      "alt": "Educational schematic of Pheretima — traditional syllabus label; Traditional perichaetine earthworm with anterior clitellum. Not to scale.",
+      "diagnostic_labels": [
+        "segments",
+        "clitellum 14–16",
+        "perichaetine setae"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 21,
+      "title": "Sipunculus — Sipunculus nudus",
+      "slug": "sipunculus",
+      "phylum": "Sipuncula",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/sipunculus.svg",
+      "alt": "Educational schematic of Sipunculus — Sipunculus nudus; Unsegmented peanut-shaped trunk with retractile introvert. Not to scale.",
+      "diagnostic_labels": [
+        "peanut-shaped trunk",
+        "retractile introvert",
+        "unsegmented"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 22,
+      "title": "Fasciola — Fasciola hepatica",
+      "slug": "fasciola",
+      "phylum": "Platyhelminthes",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/fasciola.svg",
+      "alt": "Educational schematic of Fasciola — Fasciola hepatica; Leaf-shaped body with cephalic cone and two suckers. Not to scale.",
+      "diagnostic_labels": [
+        "leaf-shaped body",
+        "cephalic cone",
+        "two suckers"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 23,
+      "title": "Schistosoma — Schistosoma sp.",
+      "slug": "schistosoma",
+      "phylum": "Platyhelminthes",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/schistosoma.svg",
+      "alt": "Educational schematic of Schistosoma — Schistosoma sp.; Dioecious blood fluke with male gynecophoral canal. Not to scale.",
+      "diagnostic_labels": [
+        "male/female pair",
+        "gynecophoral canal",
+        "elongated body"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 24,
+      "title": "Convoluta — Convoluta convoluta",
+      "slug": "convoluta",
+      "phylum": "Xenacoelomorpha",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/convoluta.svg",
+      "alt": "Educational schematic of Convoluta — Convoluta convoluta; Minute ciliated acoel with flattened body. Not to scale.",
+      "diagnostic_labels": [
+        "flattened body",
+        "ciliated surface",
+        "simple acoel form"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 25,
+      "title": "Diphyllobothrium — Dibothriocephalus latus",
+      "slug": "diphyllobothrium",
+      "phylum": "Platyhelminthes",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/diphyllobothrium.svg",
+      "alt": "Educational schematic of Diphyllobothrium — Dibothriocephalus latus; Scolex with two bothria and broad proglottids. Not to scale.",
+      "diagnostic_labels": [
+        "two bothria",
+        "broad proglottids",
+        "rosette uterus"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 26,
+      "title": "Hymenolepis — Rodentolepis nana",
+      "slug": "hymenolepis",
+      "phylum": "Platyhelminthes",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/hymenolepis.svg",
+      "alt": "Educational schematic of Hymenolepis — Rodentolepis nana; Four-suckered scolex with hooked rostellum. Not to scale.",
+      "diagnostic_labels": [
+        "four suckers",
+        "hooked rostellum",
+        "polar filaments"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 27,
+      "title": "Lingula — Lingula anatina",
+      "slug": "lingula",
+      "phylum": "Brachiopoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/lingula.svg",
+      "alt": "Educational schematic of Lingula — Lingula anatina; Tongue-shaped brachiopod shell with long pedicle. Not to scale.",
+      "diagnostic_labels": [
+        "tongue-shaped valves",
+        "long pedicle",
+        "dorsal/ventral valves"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 28,
+      "title": "Dentalium — Dentalium sp.",
+      "slug": "dentalium",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/dentalium.svg",
+      "alt": "Educational schematic of Dentalium — Dentalium sp.; Curved tubular tusk shell open at both ends. Not to scale.",
+      "diagnostic_labels": [
+        "tusk-shaped shell",
+        "open at both ends",
+        "curved tube"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 29,
+      "title": "Chiton — Chiton sp.",
+      "slug": "chiton",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/chiton.svg",
+      "alt": "Educational schematic of Chiton — Chiton sp.; Eight dorsal shell plates surrounded by a girdle. Not to scale.",
+      "diagnostic_labels": [
+        "eight shell plates",
+        "girdle",
+        "broad foot"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 30,
+      "title": "Neopilina — Neopilina galatheae",
+      "slug": "neopilina",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/neopilina.svg",
+      "alt": "Educational schematic of Neopilina — Neopilina galatheae; Cap-like shell with serially repeated paired structures. Not to scale.",
+      "diagnostic_labels": [
+        "cap-like shell",
+        "serial repetition",
+        "broad foot"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 31,
+      "title": "Pila — Pila globosa",
+      "slug": "pila",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/pila.svg",
+      "alt": "Educational schematic of Pila — Pila globosa; Globose dextral shell with broad operculate aperture. Not to scale.",
+      "diagnostic_labels": [
+        "globose shell",
+        "aperture",
+        "operculum"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 32,
+      "title": "Mytilus — Mytilus edulis",
+      "slug": "mytilus",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/mytilus.svg",
+      "alt": "Educational schematic of Mytilus — Mytilus edulis; Wedge-shaped mussel shell with byssal attachment. Not to scale.",
+      "diagnostic_labels": [
+        "wedge-shaped valves",
+        "umbo",
+        "byssus threads"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 33,
+      "title": "Unio — Unio pictorum",
+      "slug": "unio",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/unio.svg",
+      "alt": "Educational schematic of Unio — Unio pictorum; Freshwater unionid shell with umbo and hinge teeth. Not to scale.",
+      "diagnostic_labels": [
+        "two valves",
+        "umbo",
+        "hinge teeth"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 34,
+      "title": "Nautilus — Nautilus pompilius",
+      "slug": "nautilus",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/nautilus.svg",
+      "alt": "Educational schematic of Nautilus — Nautilus pompilius; External chambered coiled shell with many tentacles. Not to scale.",
+      "diagnostic_labels": [
+        "coiled shell",
+        "chambers",
+        "many tentacles"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 35,
+      "title": "Sepia — Sepia officinalis",
+      "slug": "sepia",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/sepia.svg",
+      "alt": "Educational schematic of Sepia — Sepia officinalis; Cuttlebone with 8 arms and 2 long tentacles. Not to scale.",
+      "diagnostic_labels": [
+        "eight arms",
+        "two tentacles",
+        "cuttlebone"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 36,
+      "title": "Loligo — Loligo vulgaris",
+      "slug": "loligo",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/loligo.svg",
+      "alt": "Educational schematic of Loligo — Loligo vulgaris; Elongated squid with ten appendages and internal pen. Not to scale.",
+      "diagnostic_labels": [
+        "elongated mantle",
+        "eight arms",
+        "two tentacles"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 37,
+      "title": "Octopus — Octopus vulgaris",
+      "slug": "octopus",
+      "phylum": "Mollusca",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/octopus.svg",
+      "alt": "Educational schematic of Octopus — Octopus vulgaris; Eight sucker-bearing arms and no external shell. Not to scale.",
+      "diagnostic_labels": [
+        "eight arms",
+        "suckers",
+        "large head"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 38,
+      "title": "Eupagurus — traditional hermit crab",
+      "slug": "eupagurus",
+      "phylum": "Arthropoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/eupagurus.svg",
+      "alt": "Educational schematic of Eupagurus — traditional hermit crab; Soft asymmetrical abdomen adapted to a gastropod shell. Not to scale.",
+      "diagnostic_labels": [
+        "gastropod shell",
+        "asymmetrical abdomen",
+        "chelae"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 39,
+      "title": "Limulus — Limulus polyphemus",
+      "slug": "limulus",
+      "phylum": "Arthropoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/limulus.svg",
+      "alt": "Educational schematic of Limulus — Limulus polyphemus; Horseshoe-shaped shield with a long sword-like telson. Not to scale.",
+      "diagnostic_labels": [
+        "prosomal shield",
+        "opisthosoma",
+        "telson"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 40,
+      "title": "Millipedes — representative Julus",
+      "slug": "millipedes",
+      "phylum": "Arthropoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/millipedes.svg",
+      "alt": "Educational schematic of Millipedes — representative Julus; Two pairs of legs on most diplosegments. Not to scale.",
+      "diagnostic_labels": [
+        "cylindrical trunk",
+        "diplosegments",
+        "two leg pairs"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 41,
+      "title": "Centipedes — representative Scolopendra",
+      "slug": "centipedes",
+      "phylum": "Arthropoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/centipedes.svg",
+      "alt": "Educational schematic of Centipedes — representative Scolopendra; One pair of legs per segment with venomous forcipules. Not to scale.",
+      "diagnostic_labels": [
+        "flattened trunk",
+        "one leg pair/segment",
+        "forcipules"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 42,
+      "title": "Palaemon — Palaemon sp.",
+      "slug": "palaemon",
+      "phylum": "Arthropoda",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/palaemon.svg",
+      "alt": "Educational schematic of Palaemon — Palaemon sp.; Caridean prawn with rostrum and tail fan. Not to scale.",
+      "diagnostic_labels": [
+        "rostrum",
+        "five walking-leg pairs",
+        "tail fan"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + related Library core-deck reference reviewed; figure follows syllabus label, not substitute taxon",
+      "library_reference_status": "related-not-substitute"
+    },
+    {
+      "number": 43,
+      "title": "Antedon — Antedon bifida",
+      "slug": "antedon",
+      "phylum": "Echinodermata",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/antedon.svg",
+      "alt": "Educational schematic of Antedon — Antedon bifida; Feather-like pinnulate arms with aboral cirri. Not to scale.",
+      "diagnostic_labels": [
+        "pinnulate arms",
+        "central disc",
+        "cirri"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 44,
+      "title": "Asterias — Asterias rubens",
+      "slug": "asterias",
+      "phylum": "Echinodermata",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/asterias.svg",
+      "alt": "Educational schematic of Asterias — Asterias rubens; Broad five-rayed star with open ambulacral grooves. Not to scale.",
+      "diagnostic_labels": [
+        "five rays",
+        "ambulacral grooves",
+        "tube feet"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + related Library core-deck reference reviewed; figure follows syllabus label, not substitute taxon",
+      "library_reference_status": "related-not-substitute"
+    },
+    {
+      "number": 45,
+      "title": "Echinus — Echinus esculentus",
+      "slug": "echinus",
+      "phylum": "Echinodermata",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/echinus.svg",
+      "alt": "Educational schematic of Echinus — Echinus esculentus; Globular rigid test with movable spines. Not to scale.",
+      "diagnostic_labels": [
+        "globular test",
+        "movable spines",
+        "ambulacral zones"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 46,
+      "title": "Holothuria — Holothuria sp.",
+      "slug": "holothuria",
+      "phylum": "Echinodermata",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/holothuria.svg",
+      "alt": "Educational schematic of Holothuria — Holothuria sp.; Soft cucumber-shaped echinoderm with oral tentacles. Not to scale.",
+      "diagnostic_labels": [
+        "cucumber-shaped body",
+        "oral tentacles",
+        "tube feet"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
+      "library_reference_status": "exact"
+    },
+    {
+      "number": 47,
+      "title": "Ophiura — Ophiura ophiura",
+      "slug": "ophiura",
+      "phylum": "Echinodermata",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/ophiura.svg",
+      "alt": "Educational schematic of Ophiura — Ophiura ophiura; Distinct disc with long slender brittle-star arms. Not to scale.",
+      "diagnostic_labels": [
+        "central disc",
+        "five slender arms",
+        "jointed arms"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    },
+    {
+      "number": 48,
+      "title": "Cucumaria — Cucumaria frondosa",
+      "slug": "cucumaria",
+      "phylum": "Echinodermata",
+      "asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/cucumaria.svg",
+      "alt": "Educational schematic of Cucumaria — Cucumaria frondosa; Sea cucumber with branched dendritic oral tentacles. Not to scale.",
+      "diagnostic_labels": [
+        "cucumber-shaped body",
+        "branched oral tentacles",
+        "tube feet"
+      ],
+      "source": "LBFL existing Practical-I specimen description",
+      "ownership": "LBFL-created in this packet",
+      "licence_basis": "original project asset; no external visual embedded",
+      "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
+      "library_reference_status": "none"
+    }
+  ]
+}
