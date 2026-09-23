@@ -1,4 +1,5 @@
-endpoint: "https://synapticai-proxy.yusuf-38bcs.workers.dev"
+# Canonical production Worker: lbfl-socratic-ai; ingress: api.learningbiologyforlife.org
+endpoint: "https://api.learningbiologyforlife.org"
 cooldownMs: 1200
 maxRetries: 3
 cacheEnabled: true

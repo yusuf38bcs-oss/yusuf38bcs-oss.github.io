@@ -1,8 +1,12 @@
-name = "synapticai-proxy"
+name = "lbfl-socratic-ai"
 main = "src/index.ts"
 compatibility_date = "2026-06-18"
 workers_dev = true
 preview_urls = true
+
+[[routes]]
+pattern = "api.learningbiologyforlife.org"
+custom_domain = true
 
 [version_metadata]
 binding = "CF_VERSION_METADATA"

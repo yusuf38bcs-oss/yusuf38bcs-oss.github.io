@@ -1,0 +1,222 @@
+name: Worker Production Deployment
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "worker/**"
+      - "wrangler.jsonc"
+      - "_data/ai.yml"
+      - ".github/scripts/cloudflare-worker-production.py"
+      - ".github/scripts/verify-worker-contract.mjs"
+      - ".github/workflows/worker-production-deployment.yml"
+      - ".github/workflows/production-certification.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "worker/**"
+      - "wrangler.jsonc"
+      - "_data/ai.yml"
+      - ".github/scripts/cloudflare-worker-production.py"
+      - ".github/scripts/verify-worker-contract.mjs"
+      - ".github/workflows/worker-production-deployment.yml"
+      - ".github/workflows/production-certification.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: worker-production-${{ github.event.pull_request.head.sha || github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Exact-head static and live-identity preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      TARGET_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      EVIDENCE_DIR: worker-production-evidence
+
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Authenticate candidate and canonical Worker identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            git fetch --no-tags --depth=1 origin main
+            test "$(git rev-parse origin/main)" = "${{ github.event.pull_request.base.sha }}" || {
+              echo "main moved after the PR event; synchronize before promotion"
+              exit 1
+            }
+          else
+            test "$GITHUB_REF" = "refs/heads/main"
+            git fetch --no-tags --depth=1 origin main
+            test "$(git rev-parse origin/main)" = "$TARGET_SHA"
+          fi
+          grep -q '"name": "lbfl-socratic-ai"' wrangler.jsonc
+          grep -q '^name = "lbfl-socratic-ai"$' worker/wrangler.toml
+          grep -q '"OPENAI_MODEL": "gpt-5.6-terra"' wrangler.jsonc
+          grep -q '^OPENAI_MODEL = "gpt-5.6-terra"$' worker/wrangler.toml
+          grep -q '"pattern": "api.learningbiologyforlife.org"' wrangler.jsonc
+          grep -q 'pattern = "api.learningbiologyforlife.org"' worker/wrangler.toml
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install Worker dependencies
+        working-directory: worker
+        shell: bash
+        run: npm ci --ignore-scripts
+
+      - name: Type-check OpenAI Worker
+        working-directory: worker
+        shell: bash
+        run: npx tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --lib ES2022 --types @cloudflare/workers-types src/index.ts
+
+      - name: Wrangler dry-run both canonical configs
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./worker/node_modules/.bin/wrangler deploy --dry-run --config worker/wrangler.toml --outdir "$RUNNER_TEMP/worker-dry-run"
+          ./worker/node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/root-dry-run"
+
+      - name: Verify current Worker identity and both live ingress paths
+        id: preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$EVIDENCE_DIR"
+          python3 .github/scripts/cloudflare-worker-production.py             --mode preflight             --sha "$TARGET_SHA"             --output "$EVIDENCE_DIR/preflight.json"             --github-output "$GITHUB_OUTPUT"
+
+      - name: Verify current canonical and direct Socratic contracts
+        shell: bash
+        env:
+          EXPECTED_VERSION_ID: ${{ steps.preflight.outputs.active_worker_version_id }}
+        run: |
+          set -euo pipefail
+          node .github/scripts/verify-worker-contract.mjs             --base-url https://api.learningbiologyforlife.org             --expected-worker-version-id "$EXPECTED_VERSION_ID"             --output "$EVIDENCE_DIR/canonical-current-contract.json"
+          node .github/scripts/verify-worker-contract.mjs             --base-url https://lbfl-socratic-ai.yusuf-38bcs.workers.dev             --expected-worker-version-id "$EXPECTED_VERSION_ID"             --output "$EVIDENCE_DIR/direct-current-contract.json"
+
+      - name: Preserve preflight evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: worker-production-preflight-${{ env.TARGET_SHA }}
+          path: ${{ env.EVIDENCE_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
+
+  deploy:
+    name: Deploy exact current main to lbfl-socratic-ai
+    needs: preflight
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      TARGET_SHA: ${{ github.sha }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      EVIDENCE_DIR: worker-production-evidence
+
+    steps:
+      - name: Check out exact current main
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Re-authenticate main immediately before deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          git fetch --no-tags --depth=1 origin main
+          test "$(git rev-parse origin/main)" = "$TARGET_SHA"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install immutable Worker dependencies
+        working-directory: worker
+        shell: bash
+        run: npm ci --ignore-scripts
+
+      - name: Deploy exact main with SHA-bound Cloudflare version annotations
+        id: wrangler
+        shell: bash
+        run: |
+          set -euo pipefail
+          short_sha="${TARGET_SHA:0:12}"
+          ./worker/node_modules/.bin/wrangler deploy             --config wrangler.jsonc             --message "LBFL exact-main $TARGET_SHA"             --tag "main-$short_sha"             --yes 2>&1 | tee "$RUNNER_TEMP/wrangler-deploy.log"
+          cp "$RUNNER_TEMP/wrangler-deploy.log" "$EVIDENCE_DIR/wrangler-deploy.log" 2>/dev/null || {
+            mkdir -p "$EVIDENCE_DIR"
+            cp "$RUNNER_TEMP/wrangler-deploy.log" "$EVIDENCE_DIR/wrangler-deploy.log"
+          }
+
+      - name: Resolve exact-main Worker UUID and verify both live ingress paths
+        id: deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/cloudflare-worker-production.py             --mode verify             --sha "$TARGET_SHA"             --output "$EVIDENCE_DIR/deployment.json"             --github-output "$GITHUB_OUTPUT"
+
+      - name: Verify canonical and direct Socratic contracts at deployed UUID
+        shell: bash
+        env:
+          EXPECTED_VERSION_ID: ${{ steps.deployment.outputs.worker_version_id }}
+        run: |
+          set -euo pipefail
+          node .github/scripts/verify-worker-contract.mjs             --base-url https://api.learningbiologyforlife.org             --expected-worker-version-id "$EXPECTED_VERSION_ID"             --output "$EVIDENCE_DIR/canonical-deployed-contract.json"
+          node .github/scripts/verify-worker-contract.mjs             --base-url https://lbfl-socratic-ai.yusuf-38bcs.workers.dev             --expected-worker-version-id "$EXPECTED_VERSION_ID"             --output "$EVIDENCE_DIR/direct-deployed-contract.json"
+
+      - name: Re-authenticate main after production mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 origin main
+          test "$(git rev-parse origin/main)" = "$TARGET_SHA"
+
+      - name: Record deployment identity
+        shell: bash
+        env:
+          WORKER_VERSION_ID: ${{ steps.deployment.outputs.worker_version_id }}
+          DEPLOYMENT_ID: ${{ steps.deployment.outputs.deployment_id }}
+        run: |
+          {
+            echo "# Worker Production Deployment"
+            echo "- exact main: `$TARGET_SHA`"
+            echo "- Worker: `lbfl-socratic-ai`"
+            echo "- Worker version UUID: `$WORKER_VERSION_ID`"
+            echo "- deployment UUID: `$DEPLOYMENT_ID`"
+            echo "- canonical ingress: `https://api.learningbiologyforlife.org`"
+            echo "- direct ingress: `https://lbfl-socratic-ai.yusuf-38bcs.workers.dev`"
+            echo "- provider/model: `openai / gpt-5.6-terra`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Preserve deployment evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: worker-production-deployment-${{ env.TARGET_SHA }}
+          path: ${{ env.EVIDENCE_DIR }}
+          if-no-files-found: warn
+          retention-days: 30

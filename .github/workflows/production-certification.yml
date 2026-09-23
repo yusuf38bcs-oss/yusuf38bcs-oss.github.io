@@ -15,6 +15,14 @@ on:
       - ".github/scripts/verify-cloudflare-jsd-equivalence.py"
       - ".github/workflows/jekyll-gh-pages.yml"
       - ".github/workflows/production-certification.yml"
+      - ".github/workflows/worker-production-deployment.yml"
+      - ".github/scripts/cloudflare-worker-production.py"
+      - "worker/**"
+      - "wrangler.jsonc"
+      - "_data/ai.yml"
+  workflow_run:
+    workflows: ["Worker Production Deployment"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       expected_main_sha:
@@ -26,16 +34,17 @@ permissions:
   contents: read
 
 concurrency:
-  group: production-certification-${{ github.event.pull_request.head.sha || inputs.expected_main_sha || github.run_id }}
+  group: production-certification-${{ github.event.workflow_run.head_sha || github.event.pull_request.head.sha || inputs.expected_main_sha || github.run_id }}
   cancel-in-progress: false
 
 jobs:
   certification-contract:
     name: Certification contract (exact head)
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      CERTIFICATION_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CERTIFICATION_HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.event.pull_request.head.sha || inputs.expected_main_sha || github.sha }}
 
     steps:
       - name: Check out the immutable candidate
@@ -90,15 +99,16 @@ jobs:
   production-certification:
     name: Main/deployment identity, health, and browser matrix
     needs: certification-contract
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     env:
-      CLOUDFLARE_WORKER_SCRIPT: ${{ vars.CLOUDFLARE_WORKER_SCRIPT }}
+      CLOUDFLARE_WORKER_SCRIPT: lbfl-socratic-ai
       EVIDENCE_DIR: production-certification
       PRODUCTION_URL: https://learningbiologyforlife.org
-      TARGET_MAIN_SHA: ${{ inputs.expected_main_sha }}
+      TARGET_MAIN_SHA: ${{ inputs.expected_main_sha || github.event.workflow_run.head_sha }}
       WORKER_HEALTH_URL: https://api.learningbiologyforlife.org/api/health
+      WORKER_DIRECT_HEALTH_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev/api/health
 
     steps:
       - name: Check out the requested immutable main SHA
@@ -116,14 +126,12 @@ jobs:
             echo "expected_main_sha must be a full lowercase commit SHA"
             exit 1
           }
-          test "$GITHUB_REF" = "refs/heads/main" || {
-            echo "Dispatch this workflow from the main branch"
-            exit 1
-          }
-          test "$GITHUB_SHA" = "$TARGET_MAIN_SHA" || {
-            echo "The dispatch SHA does not equal expected_main_sha"
-            exit 1
-          }
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            test "$GITHUB_REF" = "refs/heads/main" || {
+              echo "Dispatch this workflow from the main branch"
+              exit 1
+            }
+          fi
           test "$(git rev-parse HEAD)" = "$TARGET_MAIN_SHA"
           git fetch --no-tags --depth=1 origin main
           test "$(git rev-parse origin/main)" = "$TARGET_MAIN_SHA" || {
@@ -155,7 +163,7 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
           test -n "$CLOUDFLARE_WORKER_SCRIPT"
-          test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy" || {
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai" || {
             echo "CLOUDFLARE_WORKER_SCRIPT must identify the public production Worker"
             exit 1
           }
@@ -336,6 +344,8 @@ jobs:
             const versionId = response.headers.get("x-lbfl-worker-version") ?? "";
             assert.equal(health.ok, true, "Worker health must report ok=true");
             assert.equal(health.environment, "production", "Worker must report production");
+            assert.equal(health.provider, "openai", "Worker must report OpenAI provider");
+            assert.equal(health.model, "gpt-5.6-terra", "Worker must report the governed model");
             assert.equal(typeof health.service, "string", "Worker service must be present");
             assert.ok(health.service.length > 0, "Worker service must be non-empty");
             assert.equal(typeof health.version, "string", "Worker version must be present");
@@ -363,7 +373,82 @@ jobs:
             fs.writeFileSync(output, `${JSON.stringify({
               environment: health.environment,
               expected_worker_version_id: expectedVersionId,
+              model: health.model,
               ok: health.ok,
+              provider: health.provider,
+              service: health.service,
+              status: response.status,
+              tested_at: new Date().toISOString(),
+              version: health.version,
+              worker_version_id: versionId,
+            }, null, 2)}\n`);
+          })().catch((error) => {
+            console.error(error);
+            process.exitCode = 1;
+          });
+          NODE
+
+      - name: Verify direct workers.dev ingress matches canonical Worker
+        env:
+          EXPECTED_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - "$WORKER_DIRECT_HEALTH_URL" "$EVIDENCE_DIR/worker-direct-health.json" "$EXPECTED_WORKER_VERSION_ID" <<'NODE'
+          const assert = require("node:assert/strict");
+          const fs = require("node:fs");
+
+          (async () => {
+            const [url, output, expectedVersionId] = process.argv.slice(2);
+            assert.match(
+              expectedVersionId,
+              /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i,
+              "Resolved Worker version must be a UUID",
+            );
+            const healthUrl = new URL(url);
+            assert.equal(healthUrl.protocol, "https:", "Direct Worker health must use HTTPS");
+            assert.equal(
+              healthUrl.hostname,
+              "lbfl-socratic-ai.yusuf-38bcs.workers.dev",
+              "Direct Worker health must use the canonical workers.dev diagnostic host",
+            );
+            assert.equal(healthUrl.port, "", "Direct Worker health must use the default HTTPS port");
+
+            const response = await fetch(url, {
+              headers: { Accept: "application/json" },
+              redirect: "error",
+              signal: AbortSignal.timeout(15_000),
+            });
+            assert.equal(response.status, 200, "Direct Worker health must return HTTP 200");
+            assert.match(
+              response.headers.get("content-type") ?? "",
+              /^application\/json/i,
+              "Direct Worker health must return JSON",
+            );
+
+            const health = await response.json();
+            const versionId = response.headers.get("x-lbfl-worker-version") ?? "";
+            assert.equal(health.ok, true, "Direct Worker health must report ok=true");
+            assert.equal(health.environment, "production", "Direct Worker must report production");
+            assert.equal(health.provider, "openai", "Direct Worker must report OpenAI provider");
+            assert.equal(health.model, "gpt-5.6-terra", "Direct Worker must report the governed model");
+            assert.equal(
+              versionId,
+              expectedVersionId,
+              "Direct workers.dev ingress must serve the version resolved for TARGET_MAIN_SHA",
+            );
+            assert.equal(
+              health.worker_version_id,
+              expectedVersionId,
+              "Direct Worker body must report the exact resolved version",
+            );
+
+            fs.writeFileSync(output, `${JSON.stringify({
+              environment: health.environment,
+              expected_worker_version_id: expectedVersionId,
+              model: health.model,
+              ok: health.ok,
+              provider: health.provider,
               service: health.service,
               status: response.status,
               tested_at: new Date().toISOString(),
@@ -423,7 +508,7 @@ jobs:
           test -n "$CLOUDFLARE_ACCOUNT_ID"
           test -n "$CLOUDFLARE_API_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
-          test "$CLOUDFLARE_WORKER_SCRIPT" = "synapticai-proxy"
+          test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai"
           test -n "$INITIAL_DEPLOYMENT_ID"
           [[ "$INITIAL_WORKER_VERSION_ID" =~ ^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$ ]]
 
