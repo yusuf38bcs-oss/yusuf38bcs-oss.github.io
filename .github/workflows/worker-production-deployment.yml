@@ -130,6 +130,9 @@ jobs:
       TARGET_SHA: ${{ github.sha }}
       CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_WORKER_DEPLOY_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
+      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
       EVIDENCE_DIR: worker-production-evidence
 
     steps:
@@ -160,17 +163,62 @@ jobs:
         shell: bash
         run: npm ci --ignore-scripts
 
-      - name: Deploy exact main with SHA-bound Cloudflare version annotations
+      - name: Deploy exact main with least-privilege Cloudflare credential fallback
         id: wrangler
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p "$EVIDENCE_DIR"
           short_sha="${TARGET_SHA:0:12}"
-          ./worker/node_modules/.bin/wrangler deploy             --config wrangler.jsonc             --message "LBFL exact-main $TARGET_SHA"             --tag "main-$short_sha" 2>&1 | tee "$RUNNER_TEMP/wrangler-deploy.log"
-          cp "$RUNNER_TEMP/wrangler-deploy.log" "$EVIDENCE_DIR/wrangler-deploy.log" 2>/dev/null || {
-            mkdir -p "$EVIDENCE_DIR"
-            cp "$RUNNER_TEMP/wrangler-deploy.log" "$EVIDENCE_DIR/wrangler-deploy.log"
+
+          candidates=(
+            "CLOUDFLARE_WORKER_DEPLOY_TOKEN"
+            "CF_API_TOKEN"
+            "CLOUDFLARE_TOKEN"
+            "CLOUDFLARE_API_TOKEN"
+          )
+
+          selected_name=""
+          for name in "${candidates[@]}"; do
+            candidate="${!name:-}"
+            [[ -n "$candidate" ]] || continue
+
+            echo "::add-mask::$candidate"
+            attempt_log="$RUNNER_TEMP/wrangler-deploy-${name}.log"
+
+            set +e
+            CLOUDFLARE_API_TOKEN="$candidate"               ./worker/node_modules/.bin/wrangler deploy                 --config wrangler.jsonc                 --message "LBFL exact-main $TARGET_SHA"                 --tag "main-$short_sha"                 > >(tee "$attempt_log") 2>&1
+            status=$?
+            set -e
+
+            cat "$attempt_log" >> "$EVIDENCE_DIR/wrangler-deploy.log"
+
+            if [[ $status -eq 0 ]]; then
+              selected_name="$name"
+              {
+                echo "CLOUDFLARE_API_TOKEN<<__LBFL_CF_TOKEN__"
+                echo "$candidate"
+                echo "__LBFL_CF_TOKEN__"
+              } >> "$GITHUB_ENV"
+              echo "credential_name=$name" >> "$GITHUB_OUTPUT"
+              break
+            fi
+
+            if grep -Eq "No access to the specified resource|HTTP 403|code[=: ]+10000" "$attempt_log"; then
+              echo "$name lacks Worker deployment authority; trying the next configured credential." >&2
+              continue
+            fi
+
+            echo "$name failed for a non-permission reason; refusing credential fallback." >&2
+            exit "$status"
+          done
+
+          [[ -n "$selected_name" ]] || {
+            echo "No configured Cloudflare credential could deploy lbfl-socratic-ai." >&2
+            exit 1
           }
+
+          echo "Authorized deployment credential selected from configured GitHub secrets: $selected_name"
 
       - name: Resolve exact-main Worker UUID and verify both live ingress paths
         id: deployment
