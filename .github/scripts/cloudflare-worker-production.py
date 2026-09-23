@@ -126,6 +126,46 @@ def select_build_token(account_id: str, worker_tag: str, token: str) -> dict[str
         if build_token_uuid in by_uuid:
             return by_uuid[build_token_uuid]
 
+    # If this Worker has never used Workers Builds, select only a token that has
+    # already completed a successful Workers Build elsewhere in this account.
+    # Build tokens are account deployment credentials; successful recent use is
+    # stronger evidence than guessing from Cloudflare's timestamp-based names.
+    scripts_result = request_json("GET", f"/accounts/{account}/workers/scripts", token)
+    successful_uses: list[tuple[str, str]] = []
+    for script in records(scripts_result, "items", "scripts"):
+        tag_value = str(script.get("tag") or "")
+        if not tag_value:
+            continue
+        try:
+            other_history = request_json(
+                "GET",
+                f"/accounts/{account}/builds/workers/{urllib.parse.quote(tag_value, safe='')}/builds",
+                token,
+            )
+        except RuntimeError:
+            continue
+        for build in records(other_history, "items", "builds"):
+            if str(build.get("build_outcome") or "").lower() != "success":
+                continue
+            build_token_uuid = str(build.get("build_token_uuid") or "")
+            if not build_token_uuid:
+                trigger = build.get("trigger")
+                if isinstance(trigger, dict):
+                    build_token_uuid = str(trigger.get("build_token_uuid") or "")
+            if build_token_uuid not in by_uuid:
+                continue
+            timestamp = str(
+                build.get("completed_on")
+                or build.get("finished_on")
+                or build.get("created_on")
+                or build.get("created_at")
+                or ""
+            )
+            successful_uses.append((timestamp, build_token_uuid))
+    if successful_uses:
+        successful_uses.sort(reverse=True)
+        return by_uuid[successful_uses[0][1]]
+
     preferred = [
         item for item in tokens
         if any(
