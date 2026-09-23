@@ -9,7 +9,8 @@
     "extracted_reference_figures": 18,
     "exact_syllabus_label_matches": 15,
     "related_but_not_exact_matches": 3,
-    "note": "Library figures were inventoried as reference evidence only. Repository assets are new original schematics so provenance is explicit."
+    "note": "Earlier Practical work contains high-quality specimen-style images for the 18-specimen core set. Exact-match assets will be restored through a verified-image replacement packet; schematic SVGs are not public-facing.",
+    "verified_reference_deck": "Non_Chordate_Museum_Specimens_Clean_Complete.pptx"
   },
   "figures": [
     {
@@ -28,7 +29,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/sycon.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 2,
@@ -46,7 +51,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/physalia.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 3,
@@ -64,7 +73,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/metridium.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 4,
@@ -82,7 +95,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/adamsia.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 5,
@@ -100,7 +117,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/arenicola.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 6,
@@ -118,7 +139,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/tubifex.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 7,
@@ -136,7 +161,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + related Library core-deck reference reviewed; figure follows syllabus label, not substitute taxon",
-      "library_reference_status": "related-not-substitute"
+      "library_reference_status": "related-not-substitute",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/metaphere.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 8,
@@ -154,7 +183,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/tomopteris.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 9,
@@ -172,7 +205,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/amphitrite.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 10,
@@ -190,7 +227,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/lumbricus.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 11,
@@ -208,7 +249,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/ancylostoma.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 12,
@@ -225,7 +270,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/enterobius.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 13,
@@ -243,7 +292,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/wuchereria.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 14,
@@ -261,7 +314,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/trichinella.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 15,
@@ -278,7 +335,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/dracunculus.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 16,
@@ -296,7 +357,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/loa.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 17,
@@ -314,7 +379,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/trichuris.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 18,
@@ -332,7 +401,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/hirudo.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 19,
@@ -350,7 +423,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/piscicola.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 20,
@@ -368,7 +445,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/pheretima.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 21,
@@ -386,7 +467,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/sipunculus.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 22,
@@ -404,7 +489,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/fasciola.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 23,
@@ -422,7 +511,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/schistosoma.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 24,
@@ -440,7 +533,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/convoluta.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 25,
@@ -458,7 +555,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/diphyllobothrium.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 26,
@@ -476,7 +577,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/hymenolepis.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 27,
@@ -494,7 +599,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/lingula.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 28,
@@ -512,7 +621,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/dentalium.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 29,
@@ -530,7 +643,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/chiton.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 30,
@@ -548,7 +665,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/neopilina.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 31,
@@ -566,7 +687,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/pila.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 32,
@@ -584,7 +709,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/mytilus.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 33,
@@ -602,7 +731,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/unio.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 34,
@@ -620,7 +753,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/nautilus.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 35,
@@ -638,7 +775,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/sepia.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 36,
@@ -656,7 +797,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/loligo.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 37,
@@ -674,7 +819,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/octopus.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 38,
@@ -692,7 +841,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/eupagurus.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 39,
@@ -710,7 +863,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/limulus.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 40,
@@ -728,7 +885,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/millipedes.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 41,
@@ -746,7 +907,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/centipedes.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 42,
@@ -764,7 +929,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + related Library core-deck reference reviewed; figure follows syllabus label, not substitute taxon",
-      "library_reference_status": "related-not-substitute"
+      "library_reference_status": "related-not-substitute",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/palaemon.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 43,
@@ -782,7 +951,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/antedon.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 44,
@@ -800,7 +973,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + related Library core-deck reference reviewed; figure follows syllabus label, not substitute taxon",
-      "library_reference_status": "related-not-substitute"
+      "library_reference_status": "related-not-substitute",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/asterias.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 45,
@@ -818,7 +995,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/echinus.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 46,
@@ -836,7 +1017,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content + exact-specimen Library core-deck reference reviewed",
-      "library_reference_status": "exact"
+      "library_reference_status": "exact",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/holothuria.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 47,
@@ -854,7 +1039,11 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/ophiura.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     },
     {
       "number": 48,
@@ -872,7 +1061,12 @@
       "ownership": "LBFL-created in this packet",
       "licence_basis": "original project asset; no external visual embedded",
       "provenance": "LBFL page content; original schematic generated from diagnostic morphology",
-      "library_reference_status": "none"
+      "library_reference_status": "none",
+      "visual_status": "pending-verified-image",
+      "public_render": false,
+      "retired_asset": "/assets/biology/higher-zoology-tree/practical/museum-specimens/cucumaria.svg",
+      "provenance_note": "PR #372 schematic retired from public rendering after visual-quality review on 2026-09-24."
     }
-  ]
+  ],
+  "visual_policy": "Public rendering is limited to verified specimen images. The schematic SVGs from PR #372 are retained internally for audit/history but retired from the student-facing page pending verified replacement."
 }
