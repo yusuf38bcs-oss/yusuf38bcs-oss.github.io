@@ -47,3 +47,31 @@ html.lbfl-zoology-route body.layout--single.wide article.zoology-practical-page 
 }
 
 
+
+
+/* Museum verified-image R1 — restored taxon-matched Practical deck assets. */
+.zoology-practical-page .museum-verified-figure {
+  margin: 1rem 0 1.5rem;
+}
+.zoology-practical-page .museum-verified-image {
+  width: min(100%, 42rem);
+  aspect-ratio: 4 / 3;
+  margin-inline: auto;
+  background-image: url("/assets/biology/higher-zoology-tree/practical/museum-specimens/museum-verified-core15.webp");
+  background-size: 300% 500%;
+  background-position: var(--museum-x) var(--museum-y);
+  background-repeat: no-repeat;
+  border: 1px solid #c9ddd8;
+  border-radius: .75rem;
+  background-color: #fff;
+}
+.zoology-practical-page .museum-verified-figure figcaption {
+  width: min(100%, 42rem);
+  margin: .55rem auto 0;
+  color: #334e52;
+  font-size: .92rem;
+  line-height: 1.5;
+}
+@media (max-width: 30rem) {
+  .zoology-practical-page .museum-verified-figure { margin-block: .85rem 1.25rem; }
+}

@@ -59,11 +59,16 @@ NU list-এ `Echinus` দুইবার printed; তাই 49 printed entries �
 
 Figure specimen শনাক্তকরণে সহায়ক; চূড়ান্ত identification করতে নিচের **visible morphology**, **diagnostic character** এবং **classification** একসঙ্গে ব্যবহার করবে।
 
-> শুধুমাত্র verified specimen image-ই এখানে দেখানো হবে। Internal asset path, build metadata বা repository implementation detail student-facing page-এ দেখানো হবে না।
+> শুধুমাত্র taxon-matched, provenance-bound verified specimen image-ই এখানে দেখানো হবে। বর্তমানে ১৫টি exact-match image restored; অন্য ৩৩টি visual slot verification pending। Internal asset path, build metadata বা repository implementation detail student-facing page-এ দেখানো হবে না।
 
 ---
 
 ## 1. Sycon — *Sycon ciliatum*
+
+<figure class="museum-verified-figure" data-specimen="sycon">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Sycon ciliatum showing the vase-shaped porous body and terminal osculum." style="--museum-x:0%;--museum-y:0%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Sycon ciliatum</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
 
 **Common name:** Calcareous sponge / purse sponge  
 
@@ -170,6 +175,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 
 ## 4. Adamsia — *Adamsia palliata*
 
+<figure class="museum-verified-figure" data-specimen="adamsia">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Adamsia palliata showing the sea-anemone body attached to a gastropod shell." style="--museum-x:50%;--museum-y:0%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Adamsia palliata</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
+
 **Common name:** Cloak anemone / hermit-crab anemone  
 
 ### Classification
@@ -237,6 +247,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 ---
 
 ## 6. Tubifex — *Tubifex tubifex*
+
+<figure class="museum-verified-figure" data-specimen="tubifex">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Tubifex tubifex showing slender reddish segmented worms." style="--museum-x:100%;--museum-y:0%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Tubifex tubifex</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
 
 **Common name:** Sludge worm  
 
@@ -375,6 +390,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 
 ## 10. Lumbricus — *Lumbricus terrestris*
 
+<figure class="museum-verified-figure" data-specimen="lumbricus">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Lumbricus terrestris showing the segmented earthworm body and clitellum." style="--museum-x:0%;--museum-y:25%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Lumbricus terrestris</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
+
 **Common name:** Common earthworm  
 
 ### Classification
@@ -407,6 +427,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 ---
 
 ## 11. Ancylostoma — *Ancylostoma duodenale*
+
+<figure class="museum-verified-figure" data-specimen="ancylostoma">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Ancylostoma duodenale showing the characteristic curved anterior region." style="--museum-x:50%;--museum-y:25%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Ancylostoma duodenale</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
 
 **Common name:** Old World hookworm  
 
@@ -442,6 +467,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 
 ## 12. Enterobius — *Enterobius vermicularis*
 
+<figure class="museum-verified-figure" data-specimen="enterobius">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Enterobius vermicularis showing the slender pinworm form and pointed female tail." style="--museum-x:100%;--museum-y:25%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Enterobius vermicularis</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
+
 **Common name:** Pinworm  
 
 ### Classification
@@ -475,6 +505,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 ---
 
 ## 13. Wuchereria — *Wuchereria bancrofti*
+
+<figure class="museum-verified-figure" data-specimen="wuchereria">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Wuchereria bancrofti with adult filarial worms and a microfilarial reference inset." style="--museum-x:0%;--museum-y:50%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Wuchereria bancrofti</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
 
 **Common name:** Filarial worm  
 
@@ -648,6 +683,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 
 ## 18. Hirudo — *Hirudo medicinalis*
 
+<figure class="museum-verified-figure" data-specimen="hirudo">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Hirudo medicinalis showing the flattened annulated leech body and suckers." style="--museum-x:50%;--museum-y:50%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Hirudo medicinalis</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
+
 **Common name:** Medicinal leech  
 
 ### Classification
@@ -788,6 +828,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 
 ## 22. Fasciola — *Fasciola hepatica*
 
+<figure class="museum-verified-figure" data-specimen="fasciola">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Fasciola hepatica showing the leaf-shaped fluke body." style="--museum-x:100%;--museum-y:50%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Fasciola hepatica</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
+
 **Common name:** Liver fluke  
 
 ### Classification
@@ -821,6 +866,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 ---
 
 ## 23. Schistosoma — *Schistosoma* sp. (e.g., *S. mansoni*)
+
+<figure class="museum-verified-figure" data-specimen="schistosoma">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Schistosoma showing the elongated paired blood-fluke morphology." style="--museum-x:0%;--museum-y:75%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Schistosoma</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
 
 **Common name:** Blood fluke  
 
@@ -1092,6 +1142,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 
 ## 31. Pila — *Pila globosa*
 
+<figure class="museum-verified-figure" data-specimen="pila">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Pila globosa showing multiple views of the globose apple-snail shell and living snail." style="--museum-x:50%;--museum-y:75%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Pila globosa</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
+
 **Common name:** Indian apple snail  
 
 ### Classification
@@ -1299,6 +1354,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 
 ## 37. Octopus — *Octopus vulgaris*
 
+<figure class="museum-verified-figure" data-specimen="octopus">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Octopus vulgaris showing the body and eight sucker-bearing arms." style="--museum-x:100%;--museum-y:75%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Octopus vulgaris</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
+
 **Common name:** Common octopus  
 
 ### Classification
@@ -1434,6 +1494,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 ---
 
 ## 41. Centipedes — Centipede — representative *Scolopendra*
+
+<figure class="museum-verified-figure" data-specimen="centipedes">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Scolopendra showing the flattened segmented centipede body with one pair of legs per segment." style="--museum-x:0%;--museum-y:100%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Scolopendra sp. — centipede</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
 
 **Common name:** Centipede  
 
@@ -1571,6 +1636,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 
 ## 45. Echinus — *Echinus esculentus*
 
+<figure class="museum-verified-figure" data-specimen="echinus">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Echinus esculentus showing spiny sea-urchin test and diagnostic views." style="--museum-x:50%;--museum-y:100%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Echinus esculentus</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
+
 **Common name:** Sea urchin  
 
 ### Classification
@@ -1603,6 +1673,11 @@ Figure specimen শনাক্তকরণে সহায়ক; চূড়ান�
 ---
 
 ## 46. Holothuria — *Holothuria* sp. (e.g., *H. atra*)
+
+<figure class="museum-verified-figure" data-specimen="holothuria">
+  <div class="museum-verified-image" role="img" aria-label="Verified specimen-style image of Holothuria showing the elongated cucumber-shaped body and oral tentacles." style="--museum-x:100%;--museum-y:100%;"></div>
+  <figcaption><strong>Verified figure:</strong> <em>Holothuria</em> — preserved LBFL Practical museum-deck image.</figcaption>
+</figure>
 
 **Common name:** Sea cucumber  
 
