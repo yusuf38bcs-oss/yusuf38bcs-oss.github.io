@@ -84,15 +84,35 @@ if errors.empty?
   errors << "museum figure manifest must contain exactly 48 figures" unless figures.length == 48
   errors << "museum figure manifest slugs must be unique" unless figures.map { |f| f["slug"] }.uniq.length == 48
   errors << "museum figure manifest numbers must be 1..48" unless figures.map { |f| f["number"] } == (1..48).to_a
+  verified_slugs = %w[sycon adamsia tubifex lumbricus ancylostoma enterobius wuchereria hirudo fasciola schistosoma pila octopus centipedes echinus holothuria]
+  sprite_asset = "assets/biology/higher-zoology-tree/practical/museum-specimens/museum-verified-core15.webp"
+  errors << "museum verified sprite asset missing" unless File.file?(File.join(ROOT, sprite_asset))
+  verified_count = 0
+  pending_count = 0
   figures.each do |figure|
     slug = figure["slug"].to_s
-    asset = figure["asset"].to_s.sub(%r{\A/}, "")
-    errors << "museum figure #{slug}: retained audit asset missing" unless File.file?(File.join(ROOT, asset))
-    errors << "museum figure #{slug}: visual status must be pending-verified-image" unless figure["visual_status"] == "pending-verified-image"
-    errors << "museum figure #{slug}: public_render must be false" unless figure["public_render"] == false
+    audit_asset = figure["asset"].to_s.sub(%r{\A/}, "")
+    errors << "museum figure #{slug}: retained audit asset missing" unless File.file?(File.join(ROOT, audit_asset))
     errors << "museum figure #{slug}: provenance note missing" if figure["provenance_note"].to_s.strip.empty?
+    if verified_slugs.include?(slug)
+      verified_count += 1
+      errors << "museum figure #{slug}: visual status must be verified-image" unless figure["visual_status"] == "verified-image"
+      errors << "museum figure #{slug}: public_render must be true" unless figure["public_render"] == true
+      errors << "museum figure #{slug}: verified asset mismatch" unless figure["verified_asset"] == "/#{sprite_asset}"
+      errors << "museum figure #{slug}: sprite position missing" unless figure["sprite_position"].is_a?(Hash)
+      errors << "museum figure #{slug}: verified alt missing" if figure["verified_alt"].to_s.strip.empty?
+      errors << "museum figure #{slug}: public figure markup missing" unless museum.include?("data-specimen=\"#{slug}\"")
+    else
+      pending_count += 1
+      errors << "museum figure #{slug}: visual status must remain pending-verified-image" unless figure["visual_status"] == "pending-verified-image"
+      errors << "museum figure #{slug}: public_render must remain false" unless figure["public_render"] == false
+      errors << "museum figure #{slug}: unverified figure rendered publicly" if museum.include?("data-specimen=\"#{slug}\"")
+    end
   end
-  errors << "museum schematic figure markup must not render publicly" if museum.include?("museum-specimen-figure")
+  errors << "museum verified image count must be 15" unless verified_count == 15
+  errors << "museum pending image count must be 33" unless pending_count == 33
+  errors << "museum retired schematic figure markup must not render publicly" if museum.include?("museum-specimen-figure")
+  errors << "museum verified figure count must be 15" unless museum.scan(/class="museum-verified-figure"/).length == 15
   errors << "museum public page must not expose internal asset path" if museum.include?("/assets/biology/higher-zoology-tree/practical/museum-specimens/")
   errors << "museum public page must not expose local asset path wording" if museum.match?(/local asset path/i)
   errors << "raw filename-only Figure declarations remain" if museum.include?("**Figure:** `museum-specimens/")
@@ -145,4 +165,4 @@ if errors.any?
 end
 
 puts "Zoology Practical-I 213106 Certification: PASS"
-puts "gateway=1 modules=8 museum_unique=48/48 museum_figures=0_public/48_pending_verified navigation=integrated shared_css_changes=none"
+puts "gateway=1 modules=8 museum_unique=48/48 museum_images=15_verified/33_pending navigation=integrated shared_css_changes=none"
