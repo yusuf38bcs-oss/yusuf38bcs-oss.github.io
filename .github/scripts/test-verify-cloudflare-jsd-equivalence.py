@@ -24,6 +24,34 @@ VALID_JSD = (
     b"else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);}})();</script>"
 )
 
+FONT_PRECONNECT_1 = b'<link rel="preconnect" href="https://fonts.googleapis.com">'
+FONT_PRECONNECT_2 = b'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+FONT_STYLESHEET = (
+    b'<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400'
+    b'&family=Open+Sans:wght@400&display=swap" rel="stylesheet">'
+)
+CF_FONT_STYLE = (
+    b'<style type="text/css">'
+    b"@font-face {font-family:'Inter';font-style:normal;font-weight:400;"
+    b"src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);font-display:swap;}"
+    b"@font-face {font-family:'Open Sans';font-style:normal;font-weight:400;"
+    b"src:url(/cf-fonts/v/open-sans/5.2.7/latin/wght/normal.woff2);font-display:swap;}"
+    b"</style>"
+)
+EXACT_WITH_FONTS = (
+    b"<!doctype html>\n<html><head>\n"
+    + FONT_PRECONNECT_1 + b"\n"
+    + FONT_PRECONNECT_2 + b"\n"
+    + FONT_STYLESHEET + b"\n"
+    + b"</head><body><main class=\"lbfl-home-v3\">LBFL</main>\n  </body></html>\n"
+)
+CANONICAL_WITH_FONTS = (
+    EXACT_WITH_FONTS
+    .replace(FONT_PRECONNECT_1, b"    ")
+    .replace(FONT_PRECONNECT_2, b"    ")
+    .replace(FONT_STYLESHEET, CF_FONT_STYLE)
+)
+
 
 def canonical_with(*scripts: bytes, suffix: bytes = b"") -> bytes:
     injection = b"".join(scripts) + suffix
@@ -43,6 +71,7 @@ def test_valid_single_injection() -> None:
     normalized, report = normalize_canonical(canonical_with(VALID_JSD), EXACT)
     assert normalized == EXACT
     assert report["injection_count"] == 1
+    assert report["cloudflare_fonts_rewrite_count"] == 0
     assert report["normalized_match"] is True
     assert report["jsd_path"] == "/cdn-cgi/challenge-platform/scripts/jsd/main.js"
 
@@ -51,8 +80,44 @@ def test_zero_injection_exact_match_passes() -> None:
     normalized, report = normalize_canonical(EXACT, EXACT)
     assert normalized == EXACT
     assert report["injection_count"] == 0
+    assert report["cloudflare_fonts_rewrite_count"] == 0
     assert report["normalized_match"] is True
     assert report["jsd_path"] is None
+
+
+def test_cloudflare_fonts_rewrite_passes() -> None:
+    normalized, report = normalize_canonical(CANONICAL_WITH_FONTS, EXACT_WITH_FONTS)
+    assert report["injection_count"] == 0
+    assert report["cloudflare_fonts_rewrite_count"] == 1
+    assert report["cloudflare_font_families"] == [["Inter", "Open Sans"]]
+    assert report["normalized_match"] is True
+    assert b"/cf-fonts/" not in normalized
+    assert b"fonts.googleapis.com" not in normalized
+
+
+def test_cloudflare_fonts_plus_jsd_passes() -> None:
+    canonical = CANONICAL_WITH_FONTS.replace(
+        b"</body>",
+        VALID_JSD + b"</body>",
+    )
+    normalized, report = normalize_canonical(canonical, EXACT_WITH_FONTS)
+    assert report["injection_count"] == 1
+    assert report["cloudflare_fonts_rewrite_count"] == 1
+    assert report["normalized_match"] is True
+    assert b"/cdn-cgi/challenge-platform/" not in normalized
+
+
+def test_cloudflare_fonts_family_mismatch_fails() -> None:
+    invalid = CANONICAL_WITH_FONTS.replace(b"'Open Sans'", b"'Roboto'")
+    require_failure(invalid, EXACT_WITH_FONTS, "family mismatch")
+
+
+def test_cloudflare_fonts_external_source_fails() -> None:
+    invalid = CANONICAL_WITH_FONTS.replace(
+        b"/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2",
+        b"https://example.com/inter.woff2",
+    )
+    require_failure(invalid, EXACT_WITH_FONTS, "unexpected construct")
 
 
 def test_multiple_injections_fail() -> None:
@@ -78,7 +143,11 @@ def test_unrelated_content_difference_fails() -> None:
 
 
 def test_script_must_be_last_non_whitespace_body_content() -> None:
-    require_failure(canonical_with(VALID_JSD, suffix=b"<p>unexpected</p>"), EXACT, "final non-whitespace")
+    require_failure(
+        canonical_with(VALID_JSD, suffix=b"<p>unexpected</p>"),
+        EXACT,
+        "final non-whitespace",
+    )
 
 
 def test_exact_artifact_must_not_contain_challenge_marker() -> None:
@@ -86,13 +155,21 @@ def test_exact_artifact_must_not_contain_challenge_marker() -> None:
         b"LBFL",
         b"LBFL /cdn-cgi/challenge-platform/scripts/jsd/api.js",
     )
-    require_failure(canonical_with(VALID_JSD), exact_with_marker, "Exact deployment unexpectedly")
+    require_failure(
+        canonical_with(VALID_JSD),
+        exact_with_marker,
+        "Exact deployment unexpectedly",
+    )
 
 
 def run_all() -> None:
     tests = [
         test_valid_single_injection,
         test_zero_injection_exact_match_passes,
+        test_cloudflare_fonts_rewrite_passes,
+        test_cloudflare_fonts_plus_jsd_passes,
+        test_cloudflare_fonts_family_mismatch_fails,
+        test_cloudflare_fonts_external_source_fails,
         test_multiple_injections_fail,
         test_non_jsd_challenge_path_fails,
         test_unrecognized_wrapper_fails,

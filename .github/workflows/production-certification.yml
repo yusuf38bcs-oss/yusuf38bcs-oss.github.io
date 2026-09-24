@@ -279,15 +279,29 @@ jobs:
             "$EXACT_DEPLOYMENT_URL/")"
           test "$production_status" = "200"
           test "$deployment_status" = "200"
-          grep -q 'data-homepage-v2' "$EVIDENCE_DIR/production-homepage.html"
+
+          if grep -q 'lbfl-home-v3-document' "$EVIDENCE_DIR/production-homepage.html"; then
+            grep -q 'class="lbfl-home-v3"' "$EVIDENCE_DIR/production-homepage.html"
+            grep -q 'assets/js/home/homepage-v3.js' "$EVIDENCE_DIR/production-homepage.html"
+            homepage_contract="v3"
+          elif grep -q 'data-homepage-v2' "$EVIDENCE_DIR/production-homepage.html"; then
+            grep -q 'id="lbfl-home-v2"' "$EVIDENCE_DIR/production-homepage.html"
+            grep -q 'assets/js/home/homepage-v2.js' "$EVIDENCE_DIR/production-homepage.html"
+            homepage_contract="v2"
+          else
+            echo "Canonical production does not match a recognized Homepage contract"
+            exit 1
+          fi
+
           python3 .github/scripts/verify-cloudflare-jsd-equivalence.py \
             --canonical "$EVIDENCE_DIR/production-homepage.html" \
             --exact "$EVIDENCE_DIR/exact-deployment-homepage.html" \
             --normalized-output "$EVIDENCE_DIR/production-homepage.normalized.html" \
             --report "$EVIDENCE_DIR/cloudflare-jsd-equivalence.json"
-          printf 'canonical=%s\nexact_deployment=%s\ncontent_match=true\ncloudflare_jsd_normalized=true\n' \
+          printf 'canonical=%s\nexact_deployment=%s\ncontent_match=true\nhomepage_contract=%s\ncloudflare_managed_transforms_normalized=true\n' \
             "$production_status" \
             "$deployment_status" \
+            "$homepage_contract" \
             > "$EVIDENCE_DIR/production-http-status.txt"
 
       - name: Set up Node
