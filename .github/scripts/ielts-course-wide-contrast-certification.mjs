@@ -17,6 +17,16 @@ const ROUTES = [
   "/ielts/speaking/",
 ];
 
+const REQUIRED_SURFACES = {
+  "/ielts/": [".ielts-hub", ".ielts-skill-card"],
+  "/ielts/band-8-roadmap/": [".ielts-static"],
+  "/ielts/daily-practice/": [".ielts-practice", ".ielts-practice__panel"],
+  "/ielts/listening/": [".ielts-static"],
+  "/ielts/reading/": [".ielts-reading", ".ielts-reading__panel"],
+  "/ielts/writing/": [".ielts-writing", ".ielts-writing__panel"],
+  "/ielts/speaking/": [".ielts-speaking", ".ielts-speaking__panel"],
+};
+
 const VIEWPORTS = [
   { name: "mobile-390", width: 390, height: 844 },
   { name: "tablet-768", width: 768, height: 1024 },
@@ -31,8 +41,8 @@ async function settle(page) {
   });
 }
 
-async function inspect(page, responseStatus) {
-  return page.evaluate(async ({ responseStatus }) => {
+async function inspect(page, responseStatus, requiredSelectors) {
+  return page.evaluate(async ({ responseStatus, requiredSelectors }) => {
     const visible = (element) => {
       if (!element) return false;
       const style = getComputedStyle(element);
@@ -46,10 +56,10 @@ async function inspect(page, responseStatus) {
       );
     };
 
-    const requiredSurfaces = Array.from(document.querySelectorAll(
-      ".page__title, .sidebar .nav__items a, .ielts-skill-card, " +
-      ".ielts-practice__panel, .ielts-writing__panel, .ielts-speaking__panel, .ielts-reading__panel"
-    )).filter(visible);
+    const requiredSurfaces = requiredSelectors.map((selector) => ({
+      selector,
+      visible: Array.from(document.querySelectorAll(selector)).some(visible),
+    }));
 
     const axeResult = await window.axe.run(document, {
       runOnly: { type: "rule", values: ["color-contrast"] },
@@ -60,7 +70,10 @@ async function inspect(page, responseStatus) {
       bodyClasses: Array.from(document.body.classList),
       horizontalOverflow:
         document.documentElement.scrollWidth > document.documentElement.clientWidth + 2,
-      requiredSurfaceCount: requiredSurfaces.length,
+      requiredSurfaceCount: requiredSurfaces.filter((surface) => surface.visible).length,
+      missingRequiredSurfaces: requiredSurfaces
+        .filter((surface) => !surface.visible)
+        .map((surface) => surface.selector),
       violations: axeResult.violations.map((violation) => ({
         id: violation.id,
         impact: violation.impact,
@@ -72,7 +85,7 @@ async function inspect(page, responseStatus) {
         })),
       })),
     };
-  }, { responseStatus });
+  }, { responseStatus, requiredSelectors });
 }
 
 await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -101,10 +114,12 @@ try {
       await settle(page);
       await page.addScriptTag({ content: axe.source });
 
-      const state = await inspect(page, response?.status() || 0);
+      const requiredSelectors = REQUIRED_SURFACES[route] || [".page__title"];
+      const state = await inspect(page, response?.status() || 0, requiredSelectors);
       const passed =
         state.responseStatus === 200 &&
         !state.horizontalOverflow &&
+        state.missingRequiredSurfaces.length === 0 &&
         state.violations.length === 0 &&
         consoleErrors.length === 0 &&
         pageErrors.length === 0;
@@ -137,8 +152,8 @@ const report = {
   rule: {
     normalText: ">= 4.5:1",
     largeText: ">= 3:1",
-    uiFocusBoundary: ">= 3:1 by owned IELTS focus token",
-    renderedEnforcement: "axe color-contrast on all IELTS routes",
+    uiFocusBoundary: "not asserted by this contrast-only workflow",
+    renderedEnforcement: "axe color-contrast plus route-specific visible-surface guards on all IELTS routes",
   },
   passed: results.every((result) => result.passed),
   results,
