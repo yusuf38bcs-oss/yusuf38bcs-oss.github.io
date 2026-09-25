@@ -108,7 +108,7 @@ layout: default
           {% include components/educational-boundary.html %}
         {% endunless %}
         {% if lbfl_zoology_route %}
-          {% unless lbfl_ecology_surface %}
+          {% unless lbfl_ecology_surface or lbfl_course_owned_surface %}
             {% include zoology/learning-cycle.html %}
           {% endunless %}
         {% endif %}
