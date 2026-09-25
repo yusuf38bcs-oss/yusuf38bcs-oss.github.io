@@ -3,6 +3,16 @@
   Use this include instead of repeating the full LOLO/LALA, Bloom, CQ, Rubric, and Practical framework explanations on every page.
 {% endcomment %}
 
+{% assign lbfl_suppress_framework_links = false %}
+{% if page.url contains '/biology/higher-zoology-tree/biostatistics/' %}
+  {% assign lbfl_suppress_framework_links = true %}
+{% elsif page.url contains '/biology/higher-zoology-tree/genetics/' %}
+  {% assign lbfl_suppress_framework_links = true %}
+{% elsif page.url contains '/biology/higher-zoology-tree/physiology/' %}
+  {% assign lbfl_suppress_framework_links = true %}
+{% endif %}
+
+{% unless lbfl_suppress_framework_links %}
 <section class="lbfl-framework-links" aria-labelledby="lbfl-framework-links-heading">
   <h2 id="lbfl-framework-links-heading">LBFL Educational Framework</h2>
   <p>Use the central framework pages below for the full method. This page keeps only the topic-specific learning path so learners do not meet the same boilerplate repeatedly.</p>
@@ -30,3 +40,4 @@
     </a>
   </div>
 </section>
+{% endunless %}
