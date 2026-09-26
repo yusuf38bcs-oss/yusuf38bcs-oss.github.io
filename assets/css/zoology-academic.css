@@ -632,3 +632,69 @@ html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1
 html.lbfl-zoology-route .lbfl-human-physiology-course header > h2 {
   color: var(--zoo-heading-color) !important;
 }
+
+
+/* ============================================================================
+   COURSE-OWNED THIRD-PASS CONTRAST FIX
+   Exact-head browser evidence at 1d1b6fbd found 15 serious Axe contrast
+   failures limited to five legacy Biostatistics/Physiology routes. Keep this
+   repair inside data-lbfl-course-owned and target only the proven light/dark
+   surface families; do not alter Ecology, Animal Diversity, Practical, IELTS,
+   Homepage, Admission, or the global Minimal Mistakes palette.
+   ============================================================================ */
+
+/* Legacy Biostatistics modules set pale body text at the module root even
+   where paragraphs/lists sit directly on the cream reading shell. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ul,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ol,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ul li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ol li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ul strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ol strong {
+  color: var(--zoo-ink) !important;
+}
+
+/* Generic production hotfixes can re-introduce pale blockquote text after the
+   Zoology light-shell blockquote background is applied. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content blockquote,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content blockquote p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content blockquote strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content blockquote em {
+  color: var(--zoo-ink) !important;
+}
+
+/* Legacy .concept-block is intentionally dark and therefore keeps light
+   typography instead of inheriting the shared light-shell h3 normalizer. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block {
+  color: #dbeafe !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block h3,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block h4 {
+  color: #f8fafc !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block span {
+  color: #dbeafe !important;
+}
+
+/* Shared Zoology table cells are dark on light by default. Only rows that
+   explicitly declare the legacy #131c2e dark surface need their foreground
+   switched back to a light accessible value. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="#131c2e"] > th,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="#131c2e"] > td,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="rgb(19, 28, 46)"] > th,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="rgb(19, 28, 46)"] > td {
+  color: #f8fafc !important;
+}
+
+/* The legacy footer combines a muted foreground with opacity: .5 on cream,
+   producing an effective contrast below AA. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .footer-line {
+  color: var(--zoo-muted) !important;
+  opacity: 1 !important;
+}
