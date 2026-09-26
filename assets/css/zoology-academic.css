@@ -698,3 +698,34 @@ html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .footer-line {
   color: var(--zoo-muted) !important;
   opacity: 1 !important;
 }
+
+
+/* ============================================================================
+   COURSE-OWNED FOURTH-PASS CONTRAST FIX
+   The 710d5855 browser artifact narrowed the remaining failures to legacy
+   inline dark-card declarations that the shared Zoology shell intentionally
+   normalizes to white, plus table headers whose shared th rule intentionally
+   normalizes their background to --zoo-soft. Align the foreground with the
+   rendered surface instead of the legacy inline declaration.
+   ============================================================================ */
+
+/* These inline-dark legacy cards are rendered on the light Zoology surface by
+   the shared normalizer above. Override their stale pale inline foregrounds. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#090d16"] p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#090d16"] li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#090d16"] strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#090d16"] span,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#131c2e"] p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#131c2e"] li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#131c2e"] strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#131c2e"] span {
+  color: var(--zoo-ink) !important;
+}
+
+/* Shared Zoology th cells always render on --zoo-soft. Keep their foreground
+   dark even when the legacy source row requested a dark background. The
+   dark-row td rule above remains intentionally light because td backgrounds
+   do not receive the shared th surface. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content th {
+  color: #123835 !important;
+}
