@@ -632,3 +632,110 @@ html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#0b1
 html.lbfl-zoology-route .lbfl-human-physiology-course header > h2 {
   color: var(--zoo-heading-color) !important;
 }
+
+
+/* ============================================================================
+   COURSE-OWNED THIRD-PASS CONTRAST FIX
+   Exact-head browser evidence at 1d1b6fbd found 15 serious Axe contrast
+   failures limited to five legacy Biostatistics/Physiology routes. Keep this
+   repair inside data-lbfl-course-owned and target only the proven light/dark
+   surface families; do not alter Ecology, Animal Diversity, Practical, IELTS,
+   Homepage, Admission, or the global Minimal Mistakes palette.
+   ============================================================================ */
+
+/* Legacy Biostatistics modules set pale body text at the module root even
+   where paragraphs/lists sit directly on the cream reading shell. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ul,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ol,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ul li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ol li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ul strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .biostats-module > ol strong {
+  color: var(--zoo-ink) !important;
+}
+
+/* Generic production hotfixes can re-introduce pale blockquote text after the
+   Zoology light-shell blockquote background is applied. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content blockquote,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content blockquote p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content blockquote strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content blockquote em {
+  color: var(--zoo-ink) !important;
+}
+
+/* Legacy .concept-block is intentionally dark and therefore keeps light
+   typography instead of inheriting the shared light-shell h3 normalizer. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block {
+  color: #dbeafe !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block h3,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block h4 {
+  color: #f8fafc !important;
+}
+
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .concept-block span {
+  color: #dbeafe !important;
+}
+
+/* Shared Zoology table cells are dark on light by default. Only rows that
+   explicitly declare the legacy #131c2e dark surface need their foreground
+   switched back to a light accessible value. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="#131c2e"] > th,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="#131c2e"] > td,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="rgb(19, 28, 46)"] > th,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="rgb(19, 28, 46)"] > td {
+  color: #f8fafc !important;
+}
+
+/* The legacy footer combines a muted foreground with opacity: .5 on cream,
+   producing an effective contrast below AA. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content .footer-line {
+  color: var(--zoo-muted) !important;
+  opacity: 1 !important;
+}
+
+
+/* ============================================================================
+   COURSE-OWNED FOURTH-PASS CONTRAST FIX
+   The 710d5855 browser artifact narrowed the remaining failures to legacy
+   inline dark-card declarations that the shared Zoology shell intentionally
+   normalizes to white, plus table headers whose shared th rule intentionally
+   normalizes their background to --zoo-soft. Align the foreground with the
+   rendered surface instead of the legacy inline declaration.
+   ============================================================================ */
+
+/* These inline-dark legacy cards are rendered on the light Zoology surface by
+   the shared normalizer above. Override their stale pale inline foregrounds. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#090d16"] p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#090d16"] li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#090d16"] strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#090d16"] span,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#131c2e"] p,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#131c2e"] li,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#131c2e"] strong,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#131c2e"] span {
+  color: var(--zoo-ink) !important;
+}
+
+/* Shared Zoology th cells always render on --zoo-soft. Keep their foreground
+   dark even when the legacy source row requested a dark background. The
+   dark-row td rule above remains intentionally light because td backgrounds
+   do not receive the shared th surface. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content th {
+  color: #123835 !important;
+}
+
+
+/* Final specificity correction: shared Zoology th backgrounds are always
+   --zoo-soft, so even legacy rows declaring #131c2e must retain dark header
+   text. Match the earlier dark-row selector specificity and win by source
+   order; td cells on those rows intentionally remain light. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="#131c2e"] > th,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="rgb(19, 28, 46)"] > th {
+  color: #123835 !important;
+}
