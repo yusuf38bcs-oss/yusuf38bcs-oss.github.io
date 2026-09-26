@@ -729,3 +729,13 @@ html.lbfl-zoology-route [data-lbfl-course-owned] .page__content div[style*="#131
 html.lbfl-zoology-route [data-lbfl-course-owned] .page__content th {
   color: #123835 !important;
 }
+
+
+/* Final specificity correction: shared Zoology th backgrounds are always
+   --zoo-soft, so even legacy rows declaring #131c2e must retain dark header
+   text. Match the earlier dark-row selector specificity and win by source
+   order; td cells on those rows intentionally remain light. */
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="#131c2e"] > th,
+html.lbfl-zoology-route [data-lbfl-course-owned] .page__content tr[style*="rgb(19, 28, 46)"] > th {
+  color: #123835 !important;
+}
