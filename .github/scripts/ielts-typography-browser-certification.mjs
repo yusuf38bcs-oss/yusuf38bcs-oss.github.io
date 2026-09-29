@@ -32,7 +32,7 @@ const viewports = [
   { name: "desktop-1440", width: 1440, height: 900 }
 ];
 
-const rootSelector = ".ielts-hub, .ielts-practice, .ielts-writing, .ielts-speaking, .ielts-reading, .ielts-static";
+const rootSelector = ":is(.ielts-hub, .ielts-practice, .ielts-writing, .ielts-speaking, .ielts-reading, .ielts-static)";
 
 function numericPx(value) {
   const n = Number.parseFloat(String(value || ""));
