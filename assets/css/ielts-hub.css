@@ -1260,6 +1260,29 @@
   .ielts-speaking,
   .ielts-reading,
   .ielts-static
+) .btn:disabled,
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
+) .btn--primary:disabled {
+  border-color: #94a3b8 !important;
+  color: #475569 !important;
+  background: #eef2f7 !important;
+  opacity: 1 !important;
+  cursor: not-allowed;
+}
+
+:is(
+  .ielts-hub,
+  .ielts-practice,
+  .ielts-writing,
+  .ielts-speaking,
+  .ielts-reading,
+  .ielts-static
 ) :is(a, button, input, select, textarea, [tabindex]):focus-visible {
   outline: 3px solid var(--ielts-contrast-focus) !important;
   outline-offset: 3px !important;

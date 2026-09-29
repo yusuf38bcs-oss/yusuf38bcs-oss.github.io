@@ -32,7 +32,7 @@ const viewports = [
   { name: "desktop-1440", width: 1440, height: 900 }
 ];
 
-const rootSelector = ".ielts-hub, .ielts-practice, .ielts-writing, .ielts-speaking, .ielts-reading, .ielts-static";
+const rootSelector = ":is(.ielts-hub, .ielts-practice, .ielts-writing, .ielts-speaking, .ielts-reading, .ielts-static)";
 
 function numericPx(value) {
   const n = Number.parseFloat(String(value || ""));
@@ -200,7 +200,7 @@ try {
       const paragraph = state.samples.find(function(s){ return s.tag === "P"; });
       const paragraphSize = paragraph ? numericPx(paragraph.fontSize) : null;
       const paragraphLine = paragraph ? numericPx(paragraph.lineHeight) : null;
-      const readableParagraph = !paragraph || (
+      const readableParagraph = Boolean(paragraph) && (
         paragraphSize !== null &&
         paragraphSize >= 15 &&
         paragraphLine !== null &&

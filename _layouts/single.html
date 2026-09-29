@@ -18,6 +18,15 @@ layout: default
   {% assign lbfl_ecology_surface = true %}
 {% endif %}
 
+{% assign lbfl_course_owned_surface = false %}
+{% if page.url contains '/biology/higher-zoology-tree/biostatistics/' %}
+  {% assign lbfl_course_owned_surface = true %}
+{% elsif page.url contains '/biology/higher-zoology-tree/genetics/' %}
+  {% assign lbfl_course_owned_surface = true %}
+{% elsif page.url contains '/biology/higher-zoology-tree/physiology/' %}
+  {% assign lbfl_course_owned_surface = true %}
+{% endif %}
+
 {% assign lbfl_content_owns_h1 = false %}
 {% if content contains '<h1' %}
   {% assign lbfl_content_owns_h1 = true %}
@@ -74,7 +83,7 @@ layout: default
 {% endif %}
 
 <div id="main" role="main">
-  <article class="page{% if page.course_id == 'zoology-practical-213106' %} zoology-practical-page{% endif %}" itemscope itemtype="https://schema.org/CreativeWork"{% if page.locale %} lang="{{ page.locale | replace: '_', '-' }}"{% endif %}>
+  <article class="page{% if page.course_id == 'zoology-practical-213106' %} zoology-practical-page{% endif %}"{% if lbfl_course_owned_surface %} data-lbfl-course-owned{% endif %} itemscope itemtype="https://schema.org/CreativeWork"{% if page.locale %} lang="{{ page.locale | replace: '_', '-' }}"{% endif %}>
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
@@ -99,7 +108,7 @@ layout: default
           {% include components/educational-boundary.html %}
         {% endunless %}
         {% if lbfl_zoology_route %}
-          {% unless lbfl_ecology_surface %}
+          {% unless lbfl_ecology_surface or lbfl_course_owned_surface %}
             {% include zoology/learning-cycle.html %}
           {% endunless %}
         {% endif %}
