@@ -1,0 +1,59 @@
+name: HSC Botany BOT-07 Learner Content Certification
+
+on:
+  pull_request:
+    paths:
+      - "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md"
+      - "_biology/hsc-corner/botany/lecture-06-mitochondria.md"
+      - "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md"
+      - "_data/academic/hsc_botany_chapter01_scope_v1.json"
+      - "docs/academic/CONV-03C01_BOT07_CONTENT_REVIEW.md"
+      - "scripts/academic/validate_botany_learner_content.py"
+      - "scripts/academic/validate_botany_chapter01_scope.py"
+      - ".github/workflows/hsc-botany-bot07-content-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hsc-botany-bot07-content-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: CONV-03C-01 BOT-07 learner content
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Enforce exact checked-out identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+          printf 'CONV-03C-01 exact head: %s\n' "$PR_HEAD_SHA"
+
+      - name: Validate BOT-07 learner content
+        run: python3 scripts/academic/validate_botany_learner_content.py
+
+      - name: Validate Chapter-01 scope after BOT-07
+        run: python3 scripts/academic/validate_botany_chapter01_scope.py
+
+      - name: Preserve BOT-07 certification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hsc-botany-bot07-content-${{ env.PR_HEAD_SHA }}
+          path: |
+            bot07-learner-content-report.json
+            hsc-botany-chapter01-scope-report.json
+          if-no-files-found: error

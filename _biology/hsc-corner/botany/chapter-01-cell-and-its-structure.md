@@ -7,7 +7,7 @@ sidebar:
 title: 'অধ্যায় ১: কোষ ও এর গঠন'
 excerpt: HSC Biology 1st Paper Botany Chapter 1 clean lecture index.
 date: 2026-07-04 00:00:00+06:00
-last_modified_at: '2026-09-30T00:00:00.000+06:00'
+last_modified_at: '2026-10-01T00:20:00.000+06:00'
 permalink: /biology/hsc-corner/botany/chapter-01-cell-and-its-structure/
 categories:
 - Biology
@@ -30,7 +30,9 @@ synaptic_links:
 - /biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/
 - /biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/
 - /biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/
+- /biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/
 - /biology/hsc-corner/botany/lecture-06-mitochondria/
+- /biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/
 toc: true
 toc_sticky: true
 classes: wide
@@ -42,8 +44,29 @@ concept_level: Chapter Gateway
 contract_state: convergence-pending
 chapter_completion: not-certified
 source_scope: NCTB curriculum 2012 pp.31-33
-source_custody: curriculum-acquired-textbook-pending
-seo_description: Cell theory, plasma membrane, ribosome, ER, Golgi, lysosome, peroxisome ও mitochondria-এর HSC Botany learning
-  path।
+source_custody: curriculum-authoring-authorized-textbook-alignment-optional
+seo_description: Cell theory, plasma membrane, ribosome, ER, Golgi, lysosome, peroxisome, mitochondria, cell wall ও vacuole-এর HSC Botany learning path।
 ---
-<div class="lbfl-botany-index"><section class="lbfl-clean-hero"><span class="lbfl-clean-kicker">অধ্যায় ০১ · Convergence in Progress</span><h2>কোষ ও এর গঠন</h2><p>বর্তমানে ছয়টি প্রকাশিত পাঠ ধারাবাহিকভাবে সাজানো আছে। এটি Chapter 01-এর সম্পূর্ণতা ঘোষণা নয়; official NCTB curriculum mapping সম্পন্ন হলেও textbook-page custody ও missing-topic authoring এখনো বাকি।</p></section><h2>সক্রিয় লেকচার</h2><div class="lbfl-clean-grid"><article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০১</span><h3><a href="/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/">কোষ, প্রোটোপ্লাজম ও কোষতত্ত্ব</a></h3><p>Cell foundation, protoplasm এবং cell theory।</p></article><article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০২</span><h3><a href="/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/">Plasma Membrane and Fluid Mosaic Model</a></h3><p>Selective boundary, phospholipid bilayer ও transport।</p></article><article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৩</span><h3><a href="/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/">Cytoplasm and Ribosome</a></h3><p>Cell workspace, 70S/80S ribosome ও protein synthesis।</p></article><article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৪</span><h3><a href="/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/">Endoplasmic Reticulum</a></h3><p>Rough/Smooth ER, processing ও ER–Golgi transport।</p></article><article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৫</span><h3><a href="/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/">Golgi Body, Lysosome and Peroxisome</a></h3><p>Packaging, autophagy/recycling ও oxidative protection।</p></article><article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৬</span><h3><a href="/biology/hsc-corner/botany/lecture-06-mitochondria/">Mitochondria</a></h3><p>Cristae, matrix, ATP ও energy conversion।</p></article></div><h2>Official NCTB coverage gaps</h2><p>NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33) অনুযায়ী বর্তমান ছয়টি পাঠের বাইরে cell wall, chloroplast, vacuole, centriole/microtubule structures, nucleus–nucleolus–chromatin/chromosome-এর পূর্ণ coverage, cell chemical components, prokaryotic–eukaryotic comparison, cell size/shape/inclusions এবং microscopy/practical coverage এখনো অসম্পূর্ণ। তাই নতুন lesson architecture textbook-page evidence ছাড়া final করা হচ্ছে না।</p><p><a class="lbfl-text-link" href="/biology/hsc-corner/botany/">← Botany Index</a></p></div>
+<div class="lbfl-botany-index">
+<section class="lbfl-clean-hero">
+<span class="lbfl-clean-kicker">অধ্যায় ০১ · Convergence in Progress</span>
+<h2>কোষ ও এর গঠন</h2>
+<p>বর্তমানে সাতটি প্রকাশযোগ্য বাংলা পাঠ ধারাবাহিকভাবে সাজানো আছে। Lecture 07 — <strong>Cell Wall and Vacuole</strong> official NCTB Chapter-01 topic map-এর <code>cell-wall</code> ও <code>vacuole</code> coverage যোগ করে। Chapter 01 এখনো <strong>not-certified</strong>; বাকি curriculum gaps সম্পন্ন ও independently certified না হওয়া পর্যন্ত strict promotion হবে না।</p>
+</section>
+
+<h2>সক্রিয় লেকচার</h2>
+<div class="lbfl-clean-grid">
+<article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০১</span><h3><a href="/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/">কোষ, প্রোটোপ্লাজম ও কোষতত্ত্ব</a></h3><p>Cell foundation, protoplasm এবং cell theory।</p></article>
+<article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০২</span><h3><a href="/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/">Plasma Membrane and Fluid Mosaic Model</a></h3><p>Selective boundary, phospholipid bilayer ও transport।</p></article>
+<article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৩</span><h3><a href="/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/">Cytoplasm and Ribosome</a></h3><p>Cell workspace, 70S/80S ribosome ও protein synthesis।</p></article>
+<article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৪</span><h3><a href="/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/">Endoplasmic Reticulum</a></h3><p>Rough/Smooth ER, processing ও ER–Golgi transport।</p></article>
+<article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৫</span><h3><a href="/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/">Golgi Body, Lysosome and Peroxisome</a></h3><p>Packaging, autophagy/recycling ও oxidative protection।</p></article>
+<article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৬</span><h3><a href="/biology/hsc-corner/botany/lecture-06-mitochondria/">Mitochondria</a></h3><p>Cristae, matrix, ATP ও energy conversion।</p></article>
+<article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৭</span><h3><a href="/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/">Cell Wall and Vacuole</a></h3><p>Primary/secondary wall, middle lamella, tonoplast, cell sap ও turgor system।</p></article>
+</div>
+
+<h2>Remaining official NCTB coverage gaps</h2>
+<p>NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33) অনুযায়ী Lecture 07-এর পরও chloroplast, centriole/microtubule structures, nucleus–nucleolus–chromatin/chromosome-এর পূর্ণ coverage, cell chemical components, prokaryotic–eukaryotic comparison, cell size/shape/inclusions এবং microscopy/practical coverage অসম্পূর্ণ। এগুলো পৃথক learner-content gate-এর মাধ্যমে ক্রমান্বয়ে পূরণ হবে।</p>
+
+<p><a class="lbfl-text-link" href="/biology/hsc-corner/botany/">← Botany Index</a></p>
+</div>
