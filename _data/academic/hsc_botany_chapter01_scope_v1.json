@@ -10,7 +10,7 @@
   "state": "learner-content-in-progress",
   "strict_child_authorized": false,
   "missing_lesson_authoring_authorized": true,
-  "reason": "CONV-03C-01 implements the first authorized learner-content unit. bot-07 closes the NCTB curriculum gaps for cell wall and vacuole using the official Chapter-01 curriculum map plus authoritative biology references. Chapter 01 remains convergence-pending and not-certified because nine curriculum gaps remain.",
+  "reason": "CONV-03C-01 implements and certifies BOT-07 as the first source-bound learner-content unit. BOT-07 closes the NCTB curriculum gaps for cell wall and vacuole with 10 MCQs, 3 CQs, four authoritative science references and an academic-review PASS. Chapter 01 remains convergence-pending and not-certified because nine curriculum gaps remain.",
   "primary_curriculum_custody": {
     "obtained": true,
     "authority": "National Curriculum and Textbook Board (NCTB), Bangladesh",
@@ -745,7 +745,7 @@
         "cell-wall",
         "vacuole"
       ],
-      "authoring_status": "implemented-candidate",
+      "authoring_status": "implemented-certified",
       "implementation": {
         "source_file": "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md",
         "route": "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/",
@@ -853,7 +853,7 @@
       "cq_count": 3,
       "academic_review_file": "docs/academic/CONV-03C01_BOT07_CONTENT_REVIEW.md",
       "scientific_reference_minimum": 2,
-      "status": "candidate-exact-head-certification-required"
+      "status": "exact-head-certified"
     }
   ],
   "remaining_curriculum_gaps": [
