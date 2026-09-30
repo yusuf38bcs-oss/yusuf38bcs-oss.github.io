@@ -1,0 +1,51 @@
+name: Academic Course Contract Certification
+
+on:
+  pull_request:
+    paths:
+      - "_data/academic/course_contract_v1.json"
+      - "scripts/academic/validate_course_contract.py"
+      - "docs/architecture/CONV-00B_ACADEMIC_COURSE_CONTRACT.md"
+      - "_biology/**"
+      - ".github/workflows/academic-course-contract-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: academic-course-contract-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: CONV-00B academic pathway contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Enforce exact checked-out identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+          printf 'CONV-00B exact head: %s\n' "$PR_HEAD_SHA"
+
+      - name: Validate Academic Course Contract
+        run: python3 scripts/academic/validate_course_contract.py
+
+      - name: Preserve contract evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academic-course-contract-${{ env.PR_HEAD_SHA }}
+          path: academic-course-contract-report.json
+          if-no-files-found: error
