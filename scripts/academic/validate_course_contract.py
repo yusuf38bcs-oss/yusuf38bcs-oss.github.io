@@ -157,8 +157,6 @@ def main():
                 module_routes[mroute] = f"{cid}/{mid}"
                 pathway_ref = mod.get("pathway_ref")
                 if pathway_ref is not None:
-                    require(pathway_ref in ids, f"{cid}/{mid}: unknown pathway_ref {pathway_ref}")
-                    require(pathway_ref != cid, f"{cid}/{mid}: self pathway_ref is forbidden")
                     module_route_refs[mroute] = pathway_ref
                 expected_prev = None if idx == 0 else mods[idx-1].get("module_id")
                 expected_next = None if idx == len(mods)-1 else mods[idx+1].get("module_id")
@@ -176,6 +174,12 @@ def main():
         for prereq in course.get("prerequisites", []):
             require(prereq in ids, f"{cid}: unknown prerequisite {prereq}")
             require(prereq != cid, f"{cid}: self prerequisite is forbidden")
+
+    for route, pathway_ref in module_route_refs.items():
+        owner = module_routes.get(route, route)
+        owner_course = owner.split("/", 1)[0]
+        require(pathway_ref in ids, f"{owner}: unknown pathway_ref {pathway_ref}")
+        require(pathway_ref != owner_course, f"{owner}: self pathway_ref is forbidden")
 
     graph = {cid: list(course.get("prerequisites", [])) for cid, course in ids.items()}
     check_cycles(graph)
