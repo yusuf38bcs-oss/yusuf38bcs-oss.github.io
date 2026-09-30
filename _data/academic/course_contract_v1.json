@@ -1,0 +1,913 @@
+{
+  "schema": "lbfl-academic-course-contract-v1",
+  "version": "CONV-00B-1.0.0",
+  "authorized_base_sha": "3bb09212cbd3dbf1ec0440d4ca31821a02ae8475",
+  "objective": "Create one machine-verifiable academic pathway contract without redesigning or rewriting learner content.",
+  "enforcement_model": {
+    "states": [
+      "strict",
+      "progressive"
+    ],
+    "strict_meaning": "Gateway identity and ordered module sequence are release-blocking.",
+    "progressive_meaning": "Gateway identity is release-blocking; module-level convergence remains explicitly pending until promoted."
+  },
+  "gateway_discovery": {
+    "patterns": [
+      "_biology/higher-zoology-tree/*/index.md",
+      "_biology/higher-zoology-tree/*/course-index.md",
+      "_biology/hsc-corner/*/index.md",
+      "_biology/hsc-corner/*/*/index.md"
+    ],
+    "explicit_files": [
+      "_biology/higher-zoology-tree/practical/index.bn.md"
+    ]
+  },
+  "exclusions": {
+    "admission_pr_356": "Separate evidence-acquisition stream; CONV-00B does not authorize Admission R2 publication or merge.",
+    "learner_content_rewrite": false,
+    "route_migration": false
+  },
+  "pathways": [
+    {
+      "course_id": "higher-zoology-animal-diversity",
+      "title": "Animal Diversity Course — Lectures 01–10",
+      "academic_level": "Higher Zoology",
+      "pathway_kind": "course",
+      "canonical_route": "/biology/animal-diversity/course/",
+      "gateway_files": [
+        "_biology/higher-zoology-tree/animal-diversity/index.md",
+        "_biology/higher-zoology-tree/animal-diversity/course-index.md"
+      ],
+      "authority": {
+        "type": "LBFL academic sequence",
+        "label": "Higher Zoology Animal Diversity course map"
+      },
+      "status": "governed",
+      "enforcement": "strict",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "lecture self-check",
+          "short answer",
+          "MCQ"
+        ],
+        "boundary": "academic learning"
+      },
+      "legacy_routes": [
+        "/biology/animal-diversity/"
+      ],
+      "modules": [
+        {
+          "module_id": "ad-01",
+          "order": 1,
+          "title": "Chordate Plan and Classification",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-01-chordate-plan-classification.md",
+          "route": "/biology/animal-diversity/lecture-01-chordate-plan-classification/",
+          "previous": null,
+          "next": "ad-02"
+        },
+        {
+          "module_id": "ad-02",
+          "order": 2,
+          "title": "Ascidia",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-02-ascidia.md",
+          "route": "/biology/animal-diversity/lecture-02-ascidia/",
+          "previous": "ad-01",
+          "next": "ad-03"
+        },
+        {
+          "module_id": "ad-03",
+          "order": 3,
+          "title": "Branchiostoma",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-03-branchiostoma.md",
+          "route": "/biology/animal-diversity/lecture-03-branchiostoma/",
+          "previous": "ad-02",
+          "next": "ad-04"
+        },
+        {
+          "module_id": "ad-04",
+          "order": 4,
+          "title": "Myxine and Petromyzon",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-04-myxine-petromyzon.md",
+          "route": "/biology/animal-diversity/lecture-04-myxine-petromyzon/",
+          "previous": "ad-03",
+          "next": "ad-05"
+        },
+        {
+          "module_id": "ad-05",
+          "order": 5,
+          "title": "Scoliodon",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-05-scoliodon.md",
+          "route": "/biology/animal-diversity/lecture-05-scoliodon/",
+          "previous": "ad-04",
+          "next": "ad-06"
+        },
+        {
+          "module_id": "ad-06",
+          "order": 6,
+          "title": "Labeo rohita",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-06-labeo-rohita.md",
+          "route": "/biology/animal-diversity/lecture-06-labeo-rohita/",
+          "previous": "ad-05",
+          "next": "ad-07"
+        },
+        {
+          "module_id": "ad-07",
+          "order": 7,
+          "title": "Bufo",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-07-bufo.md",
+          "route": "/biology/animal-diversity/lecture-07-bufo/",
+          "previous": "ad-06",
+          "next": "ad-08"
+        },
+        {
+          "module_id": "ad-08",
+          "order": 8,
+          "title": "Hemidactylus",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-08-hemidactylus.md",
+          "route": "/biology/animal-diversity/lecture-08-hemidactylus/",
+          "previous": "ad-07",
+          "next": "ad-09"
+        },
+        {
+          "module_id": "ad-09",
+          "order": 9,
+          "title": "Columba livia",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-09-columba-livia.md",
+          "route": "/biology/animal-diversity/lecture-09-columba-livia/",
+          "previous": "ad-08",
+          "next": "ad-10"
+        },
+        {
+          "module_id": "ad-10",
+          "order": 10,
+          "title": "Homo sapiens: Eye and Ear",
+          "source_file": "_biology/higher-zoology-tree/animal-diversity/lecture-10-homo-sapiens-eye-ear.md",
+          "route": "/biology/animal-diversity/lecture-10-homo-sapiens-eye-ear/",
+          "previous": "ad-09",
+          "next": null
+        }
+      ]
+    },
+    {
+      "course_id": "higher-zoology-ecology",
+      "title": "Ecology Course — Lectures 01–10",
+      "academic_level": "Higher Zoology",
+      "pathway_kind": "course",
+      "canonical_route": "/biology/higher-zoology-tree/ecology/course-index/",
+      "gateway_files": [
+        "_biology/higher-zoology-tree/ecology/course-index.md"
+      ],
+      "authority": {
+        "type": "LBFL academic sequence",
+        "label": "Higher Zoology Ecology 10-lecture course"
+      },
+      "status": "governed",
+      "enforcement": "strict",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "lecture self-check",
+          "evidence interpretation",
+          "MCQ"
+        ],
+        "boundary": "academic learning"
+      },
+      "legacy_routes": [
+        "/biology/higher-zoology-tree/ecology/"
+      ],
+      "modules": [
+        {
+          "module_id": "eco-01",
+          "order": 1,
+          "title": "Foundations of Ecology",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-01-foundations-history-scope-levels.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels/",
+          "previous": null,
+          "next": "eco-02"
+        },
+        {
+          "module_id": "eco-02",
+          "order": 2,
+          "title": "Limiting Factors",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-02-limiting-factors-liebig-shelford.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-02-limiting-factors-liebig-shelford/",
+          "previous": "eco-01",
+          "next": "eco-03"
+        },
+        {
+          "module_id": "eco-03",
+          "order": 3,
+          "title": "Abiotic Ecology I",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-03-abiotic-light-temperature.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-03-abiotic-light-temperature/",
+          "previous": "eco-02",
+          "next": "eco-04"
+        },
+        {
+          "module_id": "eco-04",
+          "order": 4,
+          "title": "Abiotic Ecology II",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-04-abiotic-water-soil-salinity.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity/",
+          "previous": "eco-03",
+          "next": "eco-05"
+        },
+        {
+          "module_id": "eco-05",
+          "order": 5,
+          "title": "Biotic Limiting Factors",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-05-biotic-limiting-factors-interactions.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions/",
+          "previous": "eco-04",
+          "next": "eco-06"
+        },
+        {
+          "module_id": "eco-06",
+          "order": 6,
+          "title": "Multiple Factors and Adaptation",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-06-multiple-factors-adaptation.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation/",
+          "previous": "eco-05",
+          "next": "eco-07"
+        },
+        {
+          "module_id": "eco-07",
+          "order": 7,
+          "title": "Sundarbans Salinity Case",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-07-case-study-sundarbans-salinity.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity/",
+          "previous": "eco-06",
+          "next": "eco-08"
+        },
+        {
+          "module_id": "eco-08",
+          "order": 8,
+          "title": "Population Characteristics",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-08-population-characteristics-density-dispersion.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion/",
+          "previous": "eco-07",
+          "next": "eco-09"
+        },
+        {
+          "module_id": "eco-09",
+          "order": 9,
+          "title": "Demography and Life Tables",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-09-demography-vital-rates-life-tables.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables/",
+          "previous": "eco-08",
+          "next": "eco-10"
+        },
+        {
+          "module_id": "eco-10",
+          "order": 10,
+          "title": "Survivorship and Growth",
+          "source_file": "_biology/higher-zoology-tree/ecology/en/ecology-10-survivorship-growth-models.md",
+          "route": "/en/biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/",
+          "previous": "eco-09",
+          "next": null
+        }
+      ]
+    },
+    {
+      "course_id": "higher-zoology-genetics",
+      "title": "Genetics Course Index",
+      "academic_level": "Higher Zoology",
+      "pathway_kind": "course",
+      "canonical_route": "/biology/higher-zoology-tree/genetics/course-index/",
+      "gateway_files": [
+        "_biology/higher-zoology-tree/genetics/index.md",
+        "_biology/higher-zoology-tree/genetics/course-index.md"
+      ],
+      "authority": {
+        "type": "LBFL academic sequence",
+        "label": "Higher Zoology Genetics 17-lecture course"
+      },
+      "status": "governed",
+      "enforcement": "strict",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "problem solving",
+          "short answer",
+          "MCQ"
+        ],
+        "boundary": "academic learning"
+      },
+      "legacy_routes": [
+        "/biology/higher-zoology-tree/genetics/"
+      ],
+      "modules": [
+        {
+          "module_id": "gen-01",
+          "order": 1,
+          "title": "Foundations of Genetics",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-01-foundations-of-genetics.md",
+          "route": "/biology/higher-zoology-tree/genetics/foundations-of-genetics/",
+          "previous": null,
+          "next": "gen-02"
+        },
+        {
+          "module_id": "gen-02",
+          "order": 2,
+          "title": "Genetic Terminology",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-02-genetic-terminology.md",
+          "route": "/biology/higher-zoology-tree/genetics/genetic-terminology/",
+          "previous": "gen-01",
+          "next": "gen-03"
+        },
+        {
+          "module_id": "gen-03",
+          "order": 3,
+          "title": "Mendel and Pea Plant",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-03-mendel-and-pea-plant.md",
+          "route": "/biology/higher-zoology-tree/genetics/mendel-and-pea-plant/",
+          "previous": "gen-02",
+          "next": "gen-04"
+        },
+        {
+          "module_id": "gen-04",
+          "order": 4,
+          "title": "Monohybrid Cross",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-04-one-character.md",
+          "route": "/biology/higher-zoology-tree/genetics/monohybrid-cross/",
+          "previous": "gen-03",
+          "next": "gen-05"
+        },
+        {
+          "module_id": "gen-05",
+          "order": 5,
+          "title": "Dihybrid Cross",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-05-two-character.md",
+          "route": "/biology/higher-zoology-tree/genetics/dihybrid-cross/",
+          "previous": "gen-04",
+          "next": "gen-06"
+        },
+        {
+          "module_id": "gen-06",
+          "order": 6,
+          "title": "Gene Interaction",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-06.md",
+          "route": "/biology/higher-zoology-tree/genetics/gene-interaction/",
+          "previous": "gen-05",
+          "next": "gen-07"
+        },
+        {
+          "module_id": "gen-07",
+          "order": 7,
+          "title": "Epistasis and Gene Ratios",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-07.md",
+          "route": "/biology/higher-zoology-tree/genetics/epistasis-gene-ratios/",
+          "previous": "gen-06",
+          "next": "gen-08"
+        },
+        {
+          "module_id": "gen-08",
+          "order": 8,
+          "title": "Linkage",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-08.md",
+          "route": "/biology/higher-zoology-tree/genetics/linkage/",
+          "previous": "gen-07",
+          "next": "gen-09"
+        },
+        {
+          "module_id": "gen-09",
+          "order": 9,
+          "title": "Gene Mapping",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-09.md",
+          "route": "/biology/higher-zoology-tree/genetics/gene-mapping/",
+          "previous": "gen-08",
+          "next": "gen-10"
+        },
+        {
+          "module_id": "gen-10",
+          "order": 10,
+          "title": "Chromosome Patterns",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-10-basic.md",
+          "route": "/biology/higher-zoology-tree/genetics/chromosome-patterns/",
+          "previous": "gen-09",
+          "next": "gen-11"
+        },
+        {
+          "module_id": "gen-11",
+          "order": 11,
+          "title": "Sex-Linked Inheritance",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-011.md",
+          "route": "/biology/higher-zoology-tree/genetics/lecture-11/",
+          "previous": "gen-10",
+          "next": "gen-12"
+        },
+        {
+          "module_id": "gen-12",
+          "order": 12,
+          "title": "Chromosomal Mutation and Abnormalities",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-012-safe.md",
+          "route": "/biology/higher-zoology-tree/genetics/lecture-12/",
+          "previous": "gen-11",
+          "next": "gen-13"
+        },
+        {
+          "module_id": "gen-13",
+          "order": 13,
+          "title": "DNA as Genetic Material",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-013-safe.md",
+          "route": "/biology/higher-zoology-tree/genetics/lecture-13/",
+          "previous": "gen-12",
+          "next": "gen-14"
+        },
+        {
+          "module_id": "gen-14",
+          "order": 14,
+          "title": "DNA Replication",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-014-safe.md",
+          "route": "/biology/higher-zoology-tree/genetics/lecture-14/",
+          "previous": "gen-13",
+          "next": "gen-15"
+        },
+        {
+          "module_id": "gen-15",
+          "order": 15,
+          "title": "Central Dogma and Transcription",
+          "source_file": "_biology/higher-zoology-tree/genetics/lecture-015-safe.md",
+          "route": "/biology/higher-zoology-tree/genetics/lecture-15/",
+          "previous": "gen-14",
+          "next": "gen-16"
+        },
+        {
+          "module_id": "gen-16",
+          "order": 16,
+          "title": "Translation and Genetic Code",
+          "source_file": "_biology/higher-zoology-tree/genetics/l16-safe.md",
+          "route": "/biology/higher-zoology-tree/genetics/lecture-16/",
+          "previous": "gen-15",
+          "next": "gen-17"
+        },
+        {
+          "module_id": "gen-17",
+          "order": 17,
+          "title": "Gene Regulation, Mutation, and Synthesis",
+          "source_file": "_biology/higher-zoology-tree/genetics/l17-safe.md",
+          "route": "/biology/higher-zoology-tree/genetics/lecture-17/",
+          "previous": "gen-16",
+          "next": null
+        }
+      ]
+    },
+    {
+      "course_id": "hsc-zoology-digestive-system",
+      "title": "Digestive System: 14-Lecture Ecosystem",
+      "academic_level": "HSC Biology 2nd Paper",
+      "pathway_kind": "course",
+      "canonical_route": "/biology/hsc-corner/zoology/digestive-system/",
+      "gateway_files": [
+        "_biology/hsc-corner/zoology/digestive-system/index.md"
+      ],
+      "authority": {
+        "type": "curriculum alignment",
+        "label": "HSC Biology 2nd Paper digestive-system sequence"
+      },
+      "status": "governed",
+      "enforcement": "strict",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "HSC CQ",
+          "short answer",
+          "MCQ",
+          "revision"
+        ],
+        "boundary": "academic learning; health content is educational"
+      },
+      "legacy_routes": [],
+      "modules": [
+        {
+          "module_id": "dig-01",
+          "order": 1,
+          "title": "Overview",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-01-human-digestive-system-overview.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/human-digestive-system-overview/",
+          "previous": null,
+          "next": "dig-02"
+        },
+        {
+          "module_id": "dig-02",
+          "order": 2,
+          "title": "Oral Cavity",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-02-oral-cavity-saliva-teeth.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/oral-cavity-saliva-teeth/",
+          "previous": "dig-01",
+          "next": "dig-03"
+        },
+        {
+          "module_id": "dig-03",
+          "order": 3,
+          "title": "Oesophagus and Stomach",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-03-stomach.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/stomach/",
+          "previous": "dig-02",
+          "next": "dig-04"
+        },
+        {
+          "module_id": "dig-04",
+          "order": 4,
+          "title": "Liver and Bile",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-04-liver-bile.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/liver-bile/",
+          "previous": "dig-03",
+          "next": "dig-05"
+        },
+        {
+          "module_id": "dig-05",
+          "order": 5,
+          "title": "Pancreas",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-05-pancreas.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/pancreas/",
+          "previous": "dig-04",
+          "next": "dig-06"
+        },
+        {
+          "module_id": "dig-06",
+          "order": 6,
+          "title": "Small Intestine",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-06-intestine.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/intestine/",
+          "previous": "dig-05",
+          "next": "dig-07"
+        },
+        {
+          "module_id": "dig-07",
+          "order": 7,
+          "title": "Carbohydrate Digestion",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-07-carbohydrate-digestion.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/carbohydrate-digestion/",
+          "previous": "dig-06",
+          "next": "dig-08"
+        },
+        {
+          "module_id": "dig-08",
+          "order": 8,
+          "title": "Amino Acid Pathway",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-08-amino-acid.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/amino-acid-pathway/",
+          "previous": "dig-07",
+          "next": "dig-09"
+        },
+        {
+          "module_id": "dig-09",
+          "order": 9,
+          "title": "Lipid Digestion",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-09-lipid-digestion.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/lipid-digestion/",
+          "previous": "dig-08",
+          "next": "dig-10"
+        },
+        {
+          "module_id": "dig-10",
+          "order": 10,
+          "title": "Absorption",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-10-absorption.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/absorption/",
+          "previous": "dig-09",
+          "next": "dig-11"
+        },
+        {
+          "module_id": "dig-11",
+          "order": 11,
+          "title": "Regulation",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-11-summary.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/lecture-11/",
+          "previous": "dig-10",
+          "next": "dig-12"
+        },
+        {
+          "module_id": "dig-12",
+          "order": 12,
+          "title": "Large Intestine",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-12-large-intestine.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/large-intestine/",
+          "previous": "dig-11",
+          "next": "dig-13"
+        },
+        {
+          "module_id": "dig-13",
+          "order": 13,
+          "title": "Health Issues",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-13-health-issues.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/health-issues/",
+          "previous": "dig-12",
+          "next": "dig-14"
+        },
+        {
+          "module_id": "dig-14",
+          "order": 14,
+          "title": "Master Revision",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/lecture-14-revision.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/revision/",
+          "previous": "dig-13",
+          "next": null
+        }
+      ]
+    },
+    {
+      "course_id": "nu-zoology-practical-213106",
+      "title": "Zoology Practical-I — NU Honours 1st Year",
+      "academic_level": "NU Honours Zoology 1st Year",
+      "pathway_kind": "practical-course",
+      "canonical_route": "/biology/higher-zoology-tree/practical/",
+      "gateway_files": [
+        "_biology/higher-zoology-tree/practical/index.bn.md"
+      ],
+      "authority": {
+        "type": "institutional curriculum alignment",
+        "label": "National University B.Sc. Honours 1st Year Zoology — Zoology Practical-I (213106)"
+      },
+      "status": "governed",
+      "enforcement": "strict",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "practical identification",
+          "laboratory record",
+          "calculation",
+          "field report",
+          "viva"
+        ],
+        "boundary": "institution-approved laboratory and field safety"
+      },
+      "legacy_routes": [],
+      "modules": [
+        {
+          "module_id": "prac-01",
+          "order": 1,
+          "title": "Museum Specimens",
+          "source_file": "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md",
+          "route": "/biology/higher-zoology-tree/practical/museum-specimens/",
+          "previous": null,
+          "next": "prac-02"
+        },
+        {
+          "module_id": "prac-02",
+          "order": 2,
+          "title": "Permanent Slides",
+          "source_file": "_biology/higher-zoology-tree/practical/02-permanent-slides.bn.md",
+          "route": "/biology/higher-zoology-tree/practical/permanent-slides/",
+          "previous": "prac-01",
+          "next": "prac-03"
+        },
+        {
+          "module_id": "prac-03",
+          "order": 3,
+          "title": "Whole Mounts",
+          "source_file": "_biology/higher-zoology-tree/practical/03-whole-mounts.bn.md",
+          "route": "/biology/higher-zoology-tree/practical/whole-mounts/",
+          "previous": "prac-02",
+          "next": "prac-04"
+        },
+        {
+          "module_id": "prac-04",
+          "order": 4,
+          "title": "Dissection",
+          "source_file": "_biology/higher-zoology-tree/practical/04-dissection.bn.md",
+          "route": "/biology/higher-zoology-tree/practical/dissection/",
+          "previous": "prac-03",
+          "next": "prac-05"
+        },
+        {
+          "module_id": "prac-05",
+          "order": 5,
+          "title": "Temporary Mounts",
+          "source_file": "_biology/higher-zoology-tree/practical/05-temporary-mounts.bn.md",
+          "route": "/biology/higher-zoology-tree/practical/temporary-mounts/",
+          "previous": "prac-04",
+          "next": "prac-06"
+        },
+        {
+          "module_id": "prac-06",
+          "order": 6,
+          "title": "Appendages",
+          "source_file": "_biology/higher-zoology-tree/practical/06-appendages.bn.md",
+          "route": "/biology/higher-zoology-tree/practical/appendages/",
+          "previous": "prac-05",
+          "next": "prac-07"
+        },
+        {
+          "module_id": "prac-07",
+          "order": 7,
+          "title": "Zooplankton",
+          "source_file": "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md",
+          "route": "/biology/higher-zoology-tree/practical/zooplankton/",
+          "previous": "prac-06",
+          "next": "prac-08"
+        },
+        {
+          "module_id": "prac-08",
+          "order": 8,
+          "title": "Field Report",
+          "source_file": "_biology/higher-zoology-tree/practical/08-field-report.bn.md",
+          "route": "/biology/higher-zoology-tree/practical/field-report/",
+          "previous": "prac-07",
+          "next": null
+        }
+      ]
+    },
+    {
+      "course_id": "hsc-botany",
+      "title": "HSC Biology 1st Paper — Botany",
+      "academic_level": "HSC Biology 1st Paper",
+      "pathway_kind": "gateway",
+      "canonical_route": "/biology/hsc-corner/botany/",
+      "gateway_files": [
+        "_biology/hsc-corner/botany/index.md"
+      ],
+      "authority": {
+        "type": "curriculum alignment",
+        "label": "HSC Biology 1st Paper Botany learning gateway"
+      },
+      "status": "convergence-pending",
+      "enforcement": "progressive",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "chapter review",
+          "MCQ",
+          "short answer"
+        ],
+        "boundary": "academic learning"
+      },
+      "legacy_routes": [],
+      "convergence_wave": 3,
+      "convergence_target": "Promote chapter-by-chapter only after canonical chapter identity, lesson sequence, source authority and assessment links are registered."
+    },
+    {
+      "course_id": "hsc-zoology",
+      "title": "HSC Zoology Gateway",
+      "academic_level": "HSC Biology 2nd Paper",
+      "pathway_kind": "gateway",
+      "canonical_route": "/biology/hsc-corner/zoology/",
+      "gateway_files": [
+        "_biology/hsc-corner/zoology/index.md"
+      ],
+      "authority": {
+        "type": "curriculum alignment",
+        "label": "HSC Zoology structured topic gateway"
+      },
+      "status": "convergence-pending",
+      "enforcement": "progressive",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "CQ",
+          "MCQ",
+          "diagram",
+          "short answer"
+        ],
+        "boundary": "academic learning"
+      },
+      "legacy_routes": [],
+      "convergence_wave": 4,
+      "convergence_target": "Split the mixed gateway into explicit governed course families while preserving canonical routes and return-to-source assessment links."
+    },
+    {
+      "course_id": "higher-zoology-human-physiology",
+      "title": "Human Physiology Matrix",
+      "academic_level": "Higher Zoology",
+      "pathway_kind": "gateway",
+      "canonical_route": "/biology/higher-zoology-tree/human-physiology/",
+      "gateway_files": [
+        "_biology/higher-zoology-tree/human-physiology/index.md"
+      ],
+      "authority": {
+        "type": "LBFL academic gateway",
+        "label": "Human physiology systems and homeostasis gateway"
+      },
+      "status": "convergence-pending",
+      "enforcement": "progressive",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "system reasoning",
+          "short answer",
+          "MCQ"
+        ],
+        "boundary": "education only; no diagnosis or treatment advice"
+      },
+      "legacy_routes": [],
+      "convergence_wave": 1,
+      "convergence_target": "Resolve overlap with the Physiology gateway, declare canonical system-course ownership, and register deterministic module sequences."
+    },
+    {
+      "course_id": "higher-zoology-biostatistics",
+      "title": "Biostatistics Terminal",
+      "academic_level": "Higher Zoology",
+      "pathway_kind": "gateway",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/",
+      "gateway_files": [
+        "_biology/higher-zoology-tree/biostatistics/index.md"
+      ],
+      "authority": {
+        "type": "LBFL academic gateway",
+        "label": "Biostatistics and biological data interpretation"
+      },
+      "status": "convergence-pending",
+      "enforcement": "progressive",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "worked problem",
+          "data interpretation",
+          "MCQ"
+        ],
+        "boundary": "academic learning"
+      },
+      "legacy_routes": [],
+      "convergence_wave": 2,
+      "convergence_target": "Normalize duplicate topic files, define one ordered quantitative sequence, and bind each module to worked assessment evidence."
+    },
+    {
+      "course_id": "higher-zoology-physiology",
+      "title": "Physiology: The Mechanisms of Life",
+      "academic_level": "Higher Zoology",
+      "pathway_kind": "gateway",
+      "canonical_route": "/biology/higher-zoology-tree/physiology/",
+      "gateway_files": [
+        "_biology/higher-zoology-tree/physiology/index.md"
+      ],
+      "authority": {
+        "type": "LBFL academic gateway",
+        "label": "Physiology system-series gateway"
+      },
+      "status": "convergence-pending",
+      "enforcement": "progressive",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "mechanism explanation",
+          "diagram",
+          "MCQ"
+        ],
+        "boundary": "education only; no diagnosis or treatment advice"
+      },
+      "legacy_routes": [],
+      "convergence_wave": 5,
+      "convergence_target": "Reconcile this gateway with Human Physiology and HSC system courses, preserving the correct academic level and canonical ownership."
+    },
+    {
+      "course_id": "higher-zoology-human-behaviour",
+      "title": "Human Behaviour Node",
+      "academic_level": "Applied Higher Zoology",
+      "pathway_kind": "applied-gateway",
+      "canonical_route": "/biology/higher-zoology-tree/human-behaviour/",
+      "gateway_files": [
+        "_biology/higher-zoology-tree/human-behaviour/index.md"
+      ],
+      "authority": {
+        "type": "LBFL enrichment",
+        "label": "Behaviour, nervous regulation and reflective life application"
+      },
+      "status": "convergence-pending",
+      "enforcement": "progressive",
+      "prerequisites": [],
+      "assessment": {
+        "mode": [
+          "reflection",
+          "evidence question"
+        ],
+        "boundary": "enrichment; not a validated personality or clinical assessment"
+      },
+      "legacy_routes": [],
+      "convergence_wave": 6,
+      "convergence_target": "Separate academic biological mechanisms from reflective enrichment and declare evidence/assessment boundaries."
+    },
+    {
+      "course_id": "higher-zoology-research-methodology",
+      "title": "Research Methodology Terminal",
+      "academic_level": "Higher Zoology / Research Methods",
+      "pathway_kind": "research-gateway",
+      "canonical_route": "/biology/higher-zoology-tree/research-methodology/",
+      "gateway_files": [
+        "_biology/higher-zoology-tree/research-methodology/index.md"
+      ],
+      "authority": {
+        "type": "LBFL academic gateway",
+        "label": "Scientific inquiry, data handling and academic biology writing"
+      },
+      "status": "convergence-pending",
+      "enforcement": "progressive",
+      "prerequisites": [
+        "higher-zoology-biostatistics"
+      ],
+      "assessment": {
+        "mode": [
+          "research question",
+          "method selection",
+          "data interpretation",
+          "report writing"
+        ],
+        "boundary": "academic research learning"
+      },
+      "legacy_routes": [],
+      "convergence_wave": 7,
+      "convergence_target": "Define a deterministic research-method sequence and bind statistical prerequisites, evidence handling, reporting and integrity checks."
+    }
+  ]
+}
