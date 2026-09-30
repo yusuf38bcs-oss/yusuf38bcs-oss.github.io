@@ -32,7 +32,7 @@ These five sequences are represented explicitly in the registry and are checked 
 | Wave | Pathway | Required convergence |
 |---:|---|---|
 | 1 | Human Physiology | **CONV-01 implemented:** integration gateway owns no duplicate lessons; circulation, respiration, and digestion point to their canonical course owners and form a strict 3-module integration sequence. |
-| 2 | Biostatistics | Normalize duplicate topic files, order the quantitative course, bind worked assessments. |
+| 2 | Biostatistics | **CONV-02 implemented:** canonical aliases are separated from learning nodes and a strict 9-module sequence now runs from data foundations through inference, chi-square, correlation and regression. |
 | 3 | HSC Botany | Promote chapter-by-chapter with canonical chapter identity, lesson sequence, authority and assessment. |
 | 4 | HSC Zoology | Split the mixed gateway into governed course families while preserving return-to-source links. |
 | 5 | Physiology | Reconcile Higher Zoology, Human Physiology and HSC system-course ownership. |
@@ -52,7 +52,7 @@ PR #356 and Admission R2 remain a separate evidence-acquisition stream. CONV-00B
 After CONV-00B is certified:
 
 1. **CONV-01 — Human Physiology ownership and course map**
-2. **CONV-02 — Biostatistics deterministic course sequence**
+2. **CONV-02 — Biostatistics deterministic course sequence** — implemented
 3. **CONV-03 — HSC Botany chapter contract**
 4. **CONV-04 — HSC Zoology family decomposition**
 5. Later waves continue until every progressive pathway can be promoted to strict.
@@ -63,3 +63,8 @@ No pathway should be promoted by visual similarity alone. Promotion requires an 
 ## CONV-01 execution note
 
 Human Physiology is promoted from `progressive` to `strict` by CONV-01. The gateway is explicitly an integration layer, while course ownership remains with the existing circulation, respiration and digestion sources. Systems without a certified canonical owner remain outside the governed module count.
+
+
+## CONV-02 execution note
+
+Biostatistics is promoted from `progressive` to `strict` by CONV-02. The course registry now treats the canonical nine-module quantitative sequence as the learning pathway and records the three historical underscore/combined URLs as compatibility aliases rather than independent learning nodes. No lesson content or public route is migrated by this architecture gate.
