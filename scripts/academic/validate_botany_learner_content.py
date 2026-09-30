@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 LESSON = ROOT / "_biology" / "hsc-corner" / "botany" / "lecture-07-cell-wall-vacuole.md"
 PREV = ROOT / "_biology" / "hsc-corner" / "botany" / "lecture-06-mitochondria.md"
 GATEWAY = ROOT / "_biology" / "hsc-corner" / "botany" / "chapter-01-cell-and-its-structure.md"
+BOTANY_INDEX = ROOT / "_biology" / "hsc-corner" / "botany" / "index.md"
 SCOPE = ROOT / "_data" / "academic" / "hsc_botany_chapter01_scope_v1.json"
 REVIEW = ROOT / "docs" / "academic" / "CONV-03C01_BOT07_CONTENT_REVIEW.md"
 REPORT = ROOT / "bot07-learner-content-report.json"
@@ -50,10 +51,12 @@ def main():
     require(LESSON.is_file(), "BOT-07 lesson file missing")
     require(REVIEW.is_file(), "BOT-07 academic review file missing")
     require(GATEWAY.is_file(), "Chapter-01 gateway missing")
+    require(BOTANY_INDEX.is_file(), "Top-level Botany gateway missing")
     require(PREV.is_file(), "BOT-06 previous lesson missing")
     lesson = LESSON.read_text(encoding="utf-8") if LESSON.is_file() else ""
     review = REVIEW.read_text(encoding="utf-8") if REVIEW.is_file() else ""
     gateway = GATEWAY.read_text(encoding="utf-8") if GATEWAY.is_file() else ""
+    botany_index = BOTANY_INDEX.read_text(encoding="utf-8") if BOTANY_INDEX.is_file() else ""
     prev = PREV.read_text(encoding="utf-8") if PREV.is_file() else ""
     scope = load_json(SCOPE)
 
@@ -62,6 +65,7 @@ def main():
     require(fm_scalar(lesson, "authoring_model") == "curriculum-bound-edition-neutral", "BOT-07 authoring model mismatch")
     require(fm_scalar(lesson, "source_scope") == "NCTB curriculum 2012 pp.31-33", "BOT-07 source_scope mismatch")
     require(fm_scalar(lesson, "content_review_id") == "conv-03c01-bot07", "BOT-07 review ID mismatch")
+    require(fm_scalar(lesson, "translation_status") == "single-source-unpaired", "BOT-07 must remain explicitly unpaired until an English mirror exists")
     require(set(fm_list(lesson, "nctb_topic_ids")) == EXPECTED_TOPICS, "BOT-07 NCTB topic mapping mismatch")
     require(set(fm_list(lesson, "gap_ids")) == EXPECTED_GAPS, "BOT-07 closed-gap frontmatter mismatch")
 
@@ -96,9 +100,13 @@ def main():
     require("ACADEMIC CONTENT REVIEW: PASS" in review, "Academic review must record PASS")
     for url in REQUIRED_SCIENCE_URLS:
         require(url in review, f"Academic review missing source URL: {url}")
-    require("exact NCTB curriculum topic IDs" not in review or True, "")
+    require("`cell-wall`" in review and "`vacuole`" in review, "Academic review must explicitly name both authorized NCTB topic IDs")
+    require("`gap-01-cell-wall`" in review and "`gap-03-vacuole`" in review, "Academic review must explicitly bind both closed curriculum gaps")
 
     require(EXPECTED_ROUTE in gateway, "Chapter gateway must link BOT-07")
+    require(EXPECTED_ROUTE in botany_index, "Top-level Botany gateway must expose BOT-07")
+    require("active-chapter-01-lessons: 01-07" in botany_index, "Top-level Botany lesson-count marker must be 01-07")
+    require("সাতটি সক্রিয় পাঠ" in botany_index, "Top-level Botany gateway must describe seven active Chapter-01 lessons")
     require(fm_scalar(gateway, "chapter_completion") == "not-certified", "Chapter 01 must remain not-certified")
     require(fm_scalar(gateway, "contract_state") == "convergence-pending", "Chapter 01 must remain convergence-pending")
     require(EXPECTED_ROUTE in prev, "BOT-06 must link forward to BOT-07")
@@ -113,6 +121,11 @@ def main():
         require(implementation.get("mcq_count") == 10, "Contract BOT-07 MCQ count mismatch")
         require(implementation.get("cq_count") == 3, "Contract BOT-07 CQ count mismatch")
         require(implementation.get("academic_review_file") == "docs/academic/CONV-03C01_BOT07_CONTENT_REVIEW.md", "Contract review file mismatch")
+        require(implementation.get("status") == "candidate-exact-head-certification-required", "Repository contract must remain candidate-bound; exact-head PASS lives in external workflow evidence")
+        historical = implementation.get("historical_certification", {})
+        require(historical.get("certified_head_sha") == "f7239f4ac42eb564e137da5278e4d94763f8ed71", "Historical BOT-07 certification head drift")
+        require(historical.get("certification_run_id") == 36758752854, "Historical BOT-07 certification run drift")
+        require(historical.get("merge_commit_sha") == "b210ad75d7c7f92e95d7fae1438736a6bab54d1a", "Historical BOT-07 merge identity drift")
 
     topic_map = scope.get("topic_lesson_map", [])
     for tid in EXPECTED_TOPICS:
