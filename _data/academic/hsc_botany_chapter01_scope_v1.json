@@ -1,68 +1,82 @@
 {
   "schema": "lbfl-hsc-botany-chapter01-scope-v1",
-  "version": "CONV-03A-1.0.0",
-  "authorized_base_sha": "a6b5eed429c5b77f8242ce30a98993c08021c3fa",
+  "version": "CONV-03B1-1.0.0",
+  "authorized_base_sha": "3626353584608434123ee71c32e368c078f5d3b0",
   "parent_course_id": "hsc-botany",
   "chapter_id": "hsc-botany-chapter-01-cell-and-its-structure",
   "title": "HSC Biology 1st Paper — Chapter 01: Cell and Its Structure",
   "canonical_route": "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
   "gateway_file": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
-  "state": "scope-audited-convergence-pending",
+  "state": "primary-curriculum-mapped-convergence-pending",
   "strict_child_authorized": false,
   "missing_lesson_authoring_authorized": false,
-  "reason": "Current six published lessons have assessment coverage but do not cover the authenticated Chapter 01 scope. Primary textbook/page custody has not yet been acquired for missing-lesson authoring.",
+  "reason": "Official NCTB Biology curriculum pages 31–33 now replace secondary-syllabus assumptions for Chapter 01 scope. The six published lessons cover only part of that primary curriculum. Full NCTB textbook-chapter/page custody is still required before missing-lesson authoring.",
+  "primary_curriculum_custody": {
+    "obtained": true,
+    "authority": "National Curriculum and Textbook Board (NCTB), Bangladesh",
+    "document_title": "জাতীয় শিক্ষাক্রম ২০১২ — জীববিজ্ঞান (একাদশ ও দ্বাদশ শ্রেণি)",
+    "official_index_url": "https://nctb.gov.bd/pages/files/6922dbc6933eb65569e0c702",
+    "official_pdf_url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-nctb/2024/12/ca39e59575134a74b26a35b760d193eb.pdf",
+    "chapter_heading": "প্রথম অধ্যায়: কোষ ও এর গঠন",
+    "pdf_page_range": [31, 32, 33],
+    "allocated_periods": 25
+  },
+  "primary_textbook_custody": {
+    "nctb_textbook_chapter_pages_obtained": false,
+    "required_before_missing_lesson_authoring": true,
+    "note": "CONV-03B.1 establishes primary curriculum custody, not full textbook-chapter custody."
+  },
   "source_evidence": [
     {
-      "source_class": "government-teacher-portal",
-      "authority_level": "official-platform-corroboration",
-      "title": "Plastid — Class XI Biology 1st Paper, Chapter 01",
-      "url": "https://teachers.gov.bd/index.php/content/details/1693014",
-      "supports": ["plastid", "chapter-01-membership"]
+      "source_class": "official-nctb-curriculum-index",
+      "authority_level": "primary-authority",
+      "title": "উচ্চ মাধ্যমিক স্তরের শিক্ষাক্রম — জীববিজ্ঞান",
+      "url": "https://nctb.gov.bd/pages/files/6922dbc6933eb65569e0c702",
+      "supports": ["official-document-provenance", "biology-curriculum-download"]
     },
     {
-      "source_class": "government-teacher-portal",
-      "authority_level": "official-platform-corroboration",
-      "title": "Nucleus — Class XI Biology 1st Paper, Chapter 01",
-      "url": "https://teachers.gov.bd/index.php/content/details/1689155",
-      "supports": ["nucleus", "chapter-01-membership"]
-    },
-    {
-      "source_class": "government-teacher-portal",
-      "authority_level": "official-platform-corroboration",
-      "title": "Chloroplast — Class XI Biology 1st Paper, Chapter 01",
-      "url": "https://teachers.gov.bd/content/details/1726819",
-      "supports": ["chloroplast", "chapter-01-membership"]
-    },
-    {
-      "source_class": "secondary-syllabus-index",
-      "authority_level": "secondary-curriculum-map",
-      "title": "HSC Biology 1st Paper Syllabus — Chapter 01",
-      "url": "https://www.biologybd.com/11s1.html",
+      "source_class": "official-nctb-curriculum-pdf",
+      "authority_level": "primary-authority",
+      "title": "জাতীয় শিক্ষাক্রম ২০১২ — জীববিজ্ঞান (একাদশ ও দ্বাদশ শ্রেণি)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-nctb/2024/12/ca39e59575134a74b26a35b760d193eb.pdf",
+      "page_range": [31, 32, 33],
       "supports": [
-        "cell-wall",
-        "plasma-membrane",
+        "cell-wall-plasmalemma",
         "cytoplasm-organelles",
-        "ribosome",
-        "golgi",
-        "lysosome",
-        "endoplasmic-reticulum",
-        "mitochondrion",
-        "chloroplast",
-        "centriole",
-        "nucleus",
-        "chromosome",
-        "dna-rna",
-        "dna-replication",
-        "transcription",
-        "translation",
-        "gene-genetic-code"
+        "nucleus-nucleolus-chromatin-chromosome",
+        "cell-chemical-components",
+        "prokaryotic-eukaryotic-comparison",
+        "unicellular-multicellular-organization",
+        "cell-size-shape-inclusions",
+        "cell-theory-history",
+        "microscopy-mounting-drawing",
+        "organelle-structure-function",
+        "practical-applied-observation"
       ]
     }
   ],
-  "primary_text_custody": {
-    "nctb_primary_text_or_page_evidence_obtained": false,
-    "required_before_missing_lesson_authoring": true
-  },
+  "retired_secondary_assumptions": [
+    {
+      "topic_id": "dna-rna-structure",
+      "previous_basis": "secondary-syllabus-index",
+      "status": "not-asserted-by-acquired-nctb-pages-31-33"
+    },
+    {
+      "topic_id": "dna-replication",
+      "previous_basis": "secondary-syllabus-index",
+      "status": "not-asserted-by-acquired-nctb-pages-31-33"
+    },
+    {
+      "topic_id": "transcription-translation",
+      "previous_basis": "secondary-syllabus-index",
+      "status": "not-asserted-by-acquired-nctb-pages-31-33"
+    },
+    {
+      "topic_id": "gene-genetic-code",
+      "previous_basis": "secondary-syllabus-index",
+      "status": "not-asserted-by-acquired-nctb-pages-31-33"
+    }
+  ],
   "published_lessons": [
     {
       "lesson_id": "bot-01",
@@ -113,38 +127,244 @@
       "cq": true
     }
   ],
-  "planned_lessons": [
+  "topic_lesson_map": [
     {
-      "provisional_order": 7,
-      "topic": "Plastid and Chloroplast",
-      "required": true,
+      "topic_id": "cell-wall",
+      "nctb_scope": "Cell wall",
+      "source_pages": [31, 32, 33],
       "status": "missing",
-      "authoring_blocked_until_primary_text": true
+      "existing_lessons": [],
+      "gap_id": "gap-01-cell-wall",
+      "missing_lesson_requirement": "new-or-expanded-lesson-required"
     },
     {
-      "provisional_order": 8,
-      "topic": "Nucleus and Chromosome",
-      "required": true,
+      "topic_id": "plasmalemma",
+      "nctb_scope": "Plasmalemma / plasma membrane",
+      "source_pages": [31, 32, 33],
+      "status": "covered",
+      "existing_lessons": ["bot-02"],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
+    },
+    {
+      "topic_id": "cytoplasm",
+      "nctb_scope": "Cytoplasm",
+      "source_pages": [31, 32, 33],
+      "status": "covered",
+      "existing_lessons": ["bot-03"],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
+    },
+    {
+      "topic_id": "ribosome",
+      "nctb_scope": "Ribosome — structure, location and function",
+      "source_pages": [31, 32, 33],
+      "status": "covered",
+      "existing_lessons": ["bot-03"],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
+    },
+    {
+      "topic_id": "endoplasmic-reticulum",
+      "nctb_scope": "Endoplasmic reticulum (RER and SER) — structure, location and function",
+      "source_pages": [31, 32, 33],
+      "status": "covered",
+      "existing_lessons": ["bot-04"],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
+    },
+    {
+      "topic_id": "golgi-apparatus",
+      "nctb_scope": "Golgi apparatus — structure, location and function",
+      "source_pages": [31, 32, 33],
+      "status": "covered",
+      "existing_lessons": ["bot-05"],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
+    },
+    {
+      "topic_id": "mitochondrion",
+      "nctb_scope": "Mitochondrion — structure, location and function",
+      "source_pages": [31, 32, 33],
+      "status": "covered",
+      "existing_lessons": ["bot-06"],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
+    },
+    {
+      "topic_id": "chloroplast",
+      "nctb_scope": "Chloroplast — structure, location and function",
+      "source_pages": [31, 32, 33],
       "status": "missing",
-      "authoring_blocked_until_primary_text": true
+      "existing_lessons": [],
+      "gap_id": "gap-02-chloroplast",
+      "missing_lesson_requirement": "new-lesson-required"
+    },
+    {
+      "topic_id": "lysosome",
+      "nctb_scope": "Lysosome — structure, location and function",
+      "source_pages": [31, 32, 33],
+      "status": "covered",
+      "existing_lessons": ["bot-05"],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
+    },
+    {
+      "topic_id": "vacuole",
+      "nctb_scope": "Vacuole — structure, location and function",
+      "source_pages": [31, 32, 33],
+      "status": "missing",
+      "existing_lessons": [],
+      "gap_id": "gap-03-vacuole",
+      "missing_lesson_requirement": "new-or-expanded-lesson-required"
+    },
+    {
+      "topic_id": "centriole-microtubule",
+      "nctb_scope": "Centrioles / microtubule structures — structure, location and function",
+      "source_pages": [31, 32, 33],
+      "status": "missing",
+      "existing_lessons": [],
+      "gap_id": "gap-04-centriole-microtubule",
+      "missing_lesson_requirement": "new-or-expanded-lesson-required"
+    },
+    {
+      "topic_id": "nucleus-nucleolus-chromatin-chromosome",
+      "nctb_scope": "Nucleus, nucleolus and nuclear components including chromatin/chromosome",
+      "source_pages": [31, 32, 33],
+      "status": "partial",
+      "existing_lessons": ["bot-01"],
+      "gap_id": "gap-05-nuclear-components",
+      "missing_lesson_requirement": "new-lesson-required"
+    },
+    {
+      "topic_id": "cell-chemical-components",
+      "nctb_scope": "Chemical components of the cell — water, ions, carbohydrates, proteins and lipids",
+      "source_pages": [31, 32, 33],
+      "status": "missing",
+      "existing_lessons": [],
+      "gap_id": "gap-06-cell-chemical-components",
+      "missing_lesson_requirement": "new-lesson-required"
+    },
+    {
+      "topic_id": "prokaryotic-eukaryotic-comparison",
+      "nctb_scope": "Comparison of prokaryotic and eukaryotic cells",
+      "source_pages": [31, 32, 33],
+      "status": "partial",
+      "existing_lessons": ["bot-03", "bot-04", "bot-06"],
+      "gap_id": "gap-07-prokaryotic-eukaryotic-comparison",
+      "missing_lesson_requirement": "dedicated-comparison-required"
+    },
+    {
+      "topic_id": "unicellular-multicellular-organization",
+      "nctb_scope": "Unicellular and multicellular organization",
+      "source_pages": [31, 32, 33],
+      "status": "covered",
+      "existing_lessons": ["bot-01"],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
+    },
+    {
+      "topic_id": "cell-size-shape-inclusions",
+      "nctb_scope": "Cell size, shape and inclusions",
+      "source_pages": [31, 32, 33],
+      "status": "missing",
+      "existing_lessons": [],
+      "gap_id": "gap-08-cell-size-shape-inclusions",
+      "missing_lesson_requirement": "new-or-expanded-lesson-required"
+    },
+    {
+      "topic_id": "cell-theory-history",
+      "nctb_scope": "Cell theory and brief history of cell discovery",
+      "source_pages": [31, 32, 33],
+      "status": "partial",
+      "existing_lessons": ["bot-01"],
+      "gap_id": "gap-09-cell-discovery-history",
+      "missing_lesson_requirement": "history-expansion-required"
+    },
+    {
+      "topic_id": "microscopy-mounting-drawing",
+      "nctb_scope": "Microscopic observation, preparation, mounting and drawing",
+      "source_pages": [31, 32, 33],
+      "status": "partial",
+      "existing_lessons": ["bot-01"],
+      "gap_id": "gap-10-microscopy-mounting-drawing",
+      "missing_lesson_requirement": "practical-lesson-required"
+    },
+    {
+      "topic_id": "organelle-structure-function",
+      "nctb_scope": "Structure–function relationships of cell organelles",
+      "source_pages": [31, 32, 33],
+      "status": "covered",
+      "existing_lessons": ["bot-02", "bot-03", "bot-04", "bot-05", "bot-06"],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
+    },
+    {
+      "topic_id": "practical-applied-observation",
+      "nctb_scope": "Practical/applied observations and exercises",
+      "source_pages": [31, 32, 33],
+      "status": "partial",
+      "existing_lessons": ["bot-01", "bot-02", "bot-03", "bot-04", "bot-05", "bot-06"],
+      "gap_id": "gap-11-chapter-practical-integration",
+      "missing_lesson_requirement": "practical-integration-required"
     }
   ],
-  "coverage_units": [
-    {"topic_id": "cell-foundation-theory", "status": "covered", "evidence": ["bot-01"]},
-    {"topic_id": "cell-wall", "status": "missing", "evidence": []},
-    {"topic_id": "plasma-membrane", "status": "covered", "evidence": ["bot-02"]},
-    {"topic_id": "cytoplasm-ribosome", "status": "covered", "evidence": ["bot-03"]},
-    {"topic_id": "endoplasmic-reticulum", "status": "covered", "evidence": ["bot-04"]},
-    {"topic_id": "golgi-lysosome", "status": "covered", "evidence": ["bot-05"]},
-    {"topic_id": "mitochondrion", "status": "covered", "evidence": ["bot-06"]},
-    {"topic_id": "plastid-chloroplast", "status": "missing", "evidence": []},
-    {"topic_id": "centriole", "status": "missing", "evidence": []},
-    {"topic_id": "nucleus", "status": "missing", "evidence": []},
-    {"topic_id": "chromosome", "status": "missing", "evidence": []},
-    {"topic_id": "dna-rna-structure", "status": "missing", "evidence": []},
-    {"topic_id": "dna-replication", "status": "missing", "evidence": []},
-    {"topic_id": "transcription-translation", "status": "missing", "evidence": []},
-    {"topic_id": "gene-genetic-code", "status": "missing", "evidence": []}
+  "provisional_missing_lesson_buckets": [
+    {
+      "bucket_id": "gap-01-cell-wall",
+      "topics": ["cell-wall"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-02-chloroplast",
+      "topics": ["chloroplast"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-03-vacuole",
+      "topics": ["vacuole"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-04-centriole-microtubule",
+      "topics": ["centriole-microtubule"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-05-nuclear-components",
+      "topics": ["nucleus-nucleolus-chromatin-chromosome"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-06-cell-chemical-components",
+      "topics": ["cell-chemical-components"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-07-prokaryotic-eukaryotic-comparison",
+      "topics": ["prokaryotic-eukaryotic-comparison"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-08-cell-size-shape-inclusions",
+      "topics": ["cell-size-shape-inclusions"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-09-cell-discovery-history",
+      "topics": ["cell-theory-history"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-10-microscopy-mounting-drawing",
+      "topics": ["microscopy-mounting-drawing"],
+      "architecture_status": "provisional-not-authorized"
+    },
+    {
+      "bucket_id": "gap-11-chapter-practical-integration",
+      "topics": ["practical-applied-observation"],
+      "architecture_status": "provisional-not-authorized"
+    }
   ],
   "assessment_audit": {
     "published_lessons": 6,
@@ -162,8 +382,9 @@
     ]
   },
   "promotion_gate": {
-    "require_primary_text_custody": true,
-    "require_all_required_coverage_units_covered": true,
+    "require_primary_curriculum_custody": true,
+    "require_primary_textbook_chapter_custody_before_authoring": true,
+    "require_all_required_topic_map_entries_covered": true,
     "require_each_published_lesson_mcq_and_cq": true,
     "require_canonical_route_integrity": true,
     "parent_hsc_botany_remains_progressive": true

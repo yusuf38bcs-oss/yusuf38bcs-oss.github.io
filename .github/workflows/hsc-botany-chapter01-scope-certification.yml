@@ -1,4 +1,4 @@
-name: HSC Botany Chapter-01 Scope Certification
+name: HSC Botany Chapter-01 Primary Curriculum Map Certification
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md"
       - "_biology/hsc-corner/botany/lecture-*.md"
       - "scripts/academic/validate_botany_chapter01_scope.py"
-      - "docs/architecture/CONV-03A_HSC_BOTANY_CHAPTER01_SCOPE.md"
+      - "docs/architecture/CONV-03B1_HSC_BOTANY_PRIMARY_CURRICULUM_MAP.md"
       - ".github/workflows/hsc-botany-chapter01-scope-certification.yml"
   workflow_dispatch:
 
@@ -15,12 +15,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: hsc-botany-ch01-scope-${{ github.event.pull_request.number || github.ref }}
+  group: hsc-botany-ch01-primary-map-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   certify:
-    name: CONV-03A Botany Chapter-01 scope integrity
+    name: CONV-03B.1 NCTB primary curriculum map integrity
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -38,15 +38,15 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
-          printf 'CONV-03A exact head: %s\n' "$PR_HEAD_SHA"
+          printf 'CONV-03B.1 exact head: %s\n' "$PR_HEAD_SHA"
 
-      - name: Validate HSC Botany Chapter-01 scope contract
+      - name: Validate NCTB Chapter-01 source custody and topic map
         run: python3 scripts/academic/validate_botany_chapter01_scope.py
 
-      - name: Preserve CONV-03A evidence
+      - name: Preserve CONV-03B.1 evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: hsc-botany-chapter01-scope-${{ env.PR_HEAD_SHA }}
+          name: hsc-botany-chapter01-primary-map-${{ env.PR_HEAD_SHA }}
           path: hsc-botany-chapter01-scope-report.json
           if-no-files-found: error
