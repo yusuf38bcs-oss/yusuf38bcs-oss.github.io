@@ -828,31 +828,117 @@
     },
     {
       "course_id": "higher-zoology-biostatistics",
-      "title": "Biostatistics Terminal",
-      "academic_level": "Higher Zoology",
-      "pathway_kind": "gateway",
+      "title": "Biostatistics Course — Biological Data to Inference",
+      "academic_level": "Higher Zoology / Research Methods",
+      "pathway_kind": "course",
       "canonical_route": "/biology/higher-zoology-tree/biostatistics/",
       "gateway_files": [
         "_biology/higher-zoology-tree/biostatistics/index.md"
       ],
       "authority": {
-        "type": "LBFL academic gateway",
-        "label": "Biostatistics and biological data interpretation"
+        "type": "LBFL academic sequence",
+        "label": "Biostatistics quantitative learning sequence for biological data interpretation"
       },
-      "status": "convergence-pending",
-      "enforcement": "progressive",
+      "status": "governed",
+      "enforcement": "strict",
       "prerequisites": [],
       "assessment": {
         "mode": [
           "worked problem",
           "data interpretation",
+          "method selection",
           "MCQ"
         ],
-        "boundary": "academic learning"
+        "boundary": "academic learning; statistical significance must not be presented as biological importance by itself"
       },
-      "legacy_routes": [],
-      "convergence_wave": 2,
-      "convergence_target": "Normalize duplicate topic files, define one ordered quantitative sequence, and bind each module to worked assessment evidence."
+      "legacy_routes": [
+        "/biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving/",
+        "/biology/higher-zoology-tree/biostatistics/measures_of_dispersion/",
+        "/biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test/"
+      ],
+      "modules": [
+        {
+          "module_id": "bio-01",
+          "order": 1,
+          "title": "Basic Concepts of Biostatistics",
+          "source_file": "_biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics.md",
+          "route": "/biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics/",
+          "previous": null,
+          "next": "bio-02"
+        },
+        {
+          "module_id": "bio-02",
+          "order": 2,
+          "title": "Frequency Distribution, Histogram and Polygon",
+          "source_file": "_biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon.md",
+          "route": "/biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon/",
+          "previous": "bio-01",
+          "next": "bio-03"
+        },
+        {
+          "module_id": "bio-03",
+          "order": 3,
+          "title": "Measures of Central Tendency",
+          "source_file": "_biology/higher-zoology-tree/biostatistics/measures-of-central-tendency.md",
+          "route": "/biology/higher-zoology-tree/biostatistics/measures-of-central-tendency/",
+          "previous": "bio-02",
+          "next": "bio-04"
+        },
+        {
+          "module_id": "bio-04",
+          "order": 4,
+          "title": "Measures of Dispersion",
+          "source_file": "_biology/higher-zoology-tree/biostatistics/measures-of-dispersion.md",
+          "route": "/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/",
+          "previous": "bio-03",
+          "next": "bio-05"
+        },
+        {
+          "module_id": "bio-05",
+          "order": 5,
+          "title": "Hypothesis Testing",
+          "source_file": "_biology/higher-zoology-tree/biostatistics/hypothesis_testing.md",
+          "route": "/biology/higher-zoology-tree/biostatistics/hypothesis_testing/",
+          "previous": "bio-04",
+          "next": "bio-06"
+        },
+        {
+          "module_id": "bio-06",
+          "order": 6,
+          "title": "Z-Test Problem Solving",
+          "source_file": "_biology/higher-zoology-tree/biostatistics/z_test_problem_solving.md",
+          "route": "/biology/higher-zoology-tree/biostatistics/z_test_problem_solving/",
+          "previous": "bio-05",
+          "next": "bio-07"
+        },
+        {
+          "module_id": "bio-07",
+          "order": 7,
+          "title": "T-Test: Significant Difference Between Means",
+          "source_file": "_biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means.md",
+          "route": "/biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means/",
+          "previous": "bio-06",
+          "next": "bio-08"
+        },
+        {
+          "module_id": "bio-08",
+          "order": 8,
+          "title": "Chi-Square Test",
+          "source_file": "_biology/higher-zoology-tree/biostatistics/chi_square_test.md",
+          "route": "/biology/higher-zoology-tree/biostatistics/chi_square_test/",
+          "previous": "bio-07",
+          "next": "bio-09"
+        },
+        {
+          "module_id": "bio-09",
+          "order": 9,
+          "title": "Correlation and Regression",
+          "source_file": "_biology/higher-zoology-tree/biostatistics/correlation_and_regression.md",
+          "route": "/biology/higher-zoology-tree/biostatistics/correlation_and_regression/",
+          "previous": "bio-08",
+          "next": null
+        }
+      ]
     },
     {
       "course_id": "higher-zoology-physiology",
