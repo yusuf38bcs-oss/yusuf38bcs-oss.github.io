@@ -1,0 +1,52 @@
+name: HSC Botany Chapter-01 Scope Certification
+
+on:
+  pull_request:
+    paths:
+      - "_data/academic/hsc_botany_chapter01_scope_v1.json"
+      - "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md"
+      - "_biology/hsc-corner/botany/lecture-*.md"
+      - "scripts/academic/validate_botany_chapter01_scope.py"
+      - "docs/architecture/CONV-03A_HSC_BOTANY_CHAPTER01_SCOPE.md"
+      - ".github/workflows/hsc-botany-chapter01-scope-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hsc-botany-ch01-scope-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: CONV-03A Botany Chapter-01 scope integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Enforce exact checked-out identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+          printf 'CONV-03A exact head: %s\n' "$PR_HEAD_SHA"
+
+      - name: Validate HSC Botany Chapter-01 scope contract
+        run: python3 scripts/academic/validate_botany_chapter01_scope.py
+
+      - name: Preserve CONV-03A evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hsc-botany-chapter01-scope-${{ env.PR_HEAD_SHA }}
+          path: hsc-botany-chapter01-scope-report.json
+          if-no-files-found: error
