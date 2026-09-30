@@ -1,0 +1,171 @@
+{
+  "schema": "lbfl-hsc-botany-chapter01-scope-v1",
+  "version": "CONV-03A-1.0.0",
+  "authorized_base_sha": "a6b5eed429c5b77f8242ce30a98993c08021c3fa",
+  "parent_course_id": "hsc-botany",
+  "chapter_id": "hsc-botany-chapter-01-cell-and-its-structure",
+  "title": "HSC Biology 1st Paper — Chapter 01: Cell and Its Structure",
+  "canonical_route": "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
+  "gateway_file": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
+  "state": "scope-audited-convergence-pending",
+  "strict_child_authorized": false,
+  "missing_lesson_authoring_authorized": false,
+  "reason": "Current six published lessons have assessment coverage but do not cover the authenticated Chapter 01 scope. Primary textbook/page custody has not yet been acquired for missing-lesson authoring.",
+  "source_evidence": [
+    {
+      "source_class": "government-teacher-portal",
+      "authority_level": "official-platform-corroboration",
+      "title": "Plastid — Class XI Biology 1st Paper, Chapter 01",
+      "url": "https://teachers.gov.bd/index.php/content/details/1693014",
+      "supports": ["plastid", "chapter-01-membership"]
+    },
+    {
+      "source_class": "government-teacher-portal",
+      "authority_level": "official-platform-corroboration",
+      "title": "Nucleus — Class XI Biology 1st Paper, Chapter 01",
+      "url": "https://teachers.gov.bd/index.php/content/details/1689155",
+      "supports": ["nucleus", "chapter-01-membership"]
+    },
+    {
+      "source_class": "government-teacher-portal",
+      "authority_level": "official-platform-corroboration",
+      "title": "Chloroplast — Class XI Biology 1st Paper, Chapter 01",
+      "url": "https://teachers.gov.bd/content/details/1726819",
+      "supports": ["chloroplast", "chapter-01-membership"]
+    },
+    {
+      "source_class": "secondary-syllabus-index",
+      "authority_level": "secondary-curriculum-map",
+      "title": "HSC Biology 1st Paper Syllabus — Chapter 01",
+      "url": "https://www.biologybd.com/11s1.html",
+      "supports": [
+        "cell-wall",
+        "plasma-membrane",
+        "cytoplasm-organelles",
+        "ribosome",
+        "golgi",
+        "lysosome",
+        "endoplasmic-reticulum",
+        "mitochondrion",
+        "chloroplast",
+        "centriole",
+        "nucleus",
+        "chromosome",
+        "dna-rna",
+        "dna-replication",
+        "transcription",
+        "translation",
+        "gene-genetic-code"
+      ]
+    }
+  ],
+  "primary_text_custody": {
+    "nctb_primary_text_or_page_evidence_obtained": false,
+    "required_before_missing_lesson_authoring": true
+  },
+  "published_lessons": [
+    {
+      "lesson_id": "bot-01",
+      "order": 1,
+      "source_file": "_biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory.md",
+      "route": "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/",
+      "mcq": true,
+      "cq": true
+    },
+    {
+      "lesson_id": "bot-02",
+      "order": 2,
+      "source_file": "_biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model.md",
+      "route": "/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/",
+      "mcq": true,
+      "cq": true
+    },
+    {
+      "lesson_id": "bot-03",
+      "order": 3,
+      "source_file": "_biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory.md",
+      "route": "/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/",
+      "mcq": true,
+      "cq": true
+    },
+    {
+      "lesson_id": "bot-04",
+      "order": 4,
+      "source_file": "_biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network.md",
+      "route": "/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/",
+      "mcq": true,
+      "cq": true
+    },
+    {
+      "lesson_id": "bot-05",
+      "order": 5,
+      "source_file": "_biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome.md",
+      "route": "/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/",
+      "mcq": true,
+      "cq": true
+    },
+    {
+      "lesson_id": "bot-06",
+      "order": 6,
+      "source_file": "_biology/hsc-corner/botany/lecture-06-mitochondria.md",
+      "route": "/biology/hsc-corner/botany/lecture-06-mitochondria/",
+      "mcq": true,
+      "cq": true
+    }
+  ],
+  "planned_lessons": [
+    {
+      "provisional_order": 7,
+      "topic": "Plastid and Chloroplast",
+      "required": true,
+      "status": "missing",
+      "authoring_blocked_until_primary_text": true
+    },
+    {
+      "provisional_order": 8,
+      "topic": "Nucleus and Chromosome",
+      "required": true,
+      "status": "missing",
+      "authoring_blocked_until_primary_text": true
+    }
+  ],
+  "coverage_units": [
+    {"topic_id": "cell-foundation-theory", "status": "covered", "evidence": ["bot-01"]},
+    {"topic_id": "cell-wall", "status": "missing", "evidence": []},
+    {"topic_id": "plasma-membrane", "status": "covered", "evidence": ["bot-02"]},
+    {"topic_id": "cytoplasm-ribosome", "status": "covered", "evidence": ["bot-03"]},
+    {"topic_id": "endoplasmic-reticulum", "status": "covered", "evidence": ["bot-04"]},
+    {"topic_id": "golgi-lysosome", "status": "covered", "evidence": ["bot-05"]},
+    {"topic_id": "mitochondrion", "status": "covered", "evidence": ["bot-06"]},
+    {"topic_id": "plastid-chloroplast", "status": "missing", "evidence": []},
+    {"topic_id": "centriole", "status": "missing", "evidence": []},
+    {"topic_id": "nucleus", "status": "missing", "evidence": []},
+    {"topic_id": "chromosome", "status": "missing", "evidence": []},
+    {"topic_id": "dna-rna-structure", "status": "missing", "evidence": []},
+    {"topic_id": "dna-replication", "status": "missing", "evidence": []},
+    {"topic_id": "transcription-translation", "status": "missing", "evidence": []},
+    {"topic_id": "gene-genetic-code", "status": "missing", "evidence": []}
+  ],
+  "assessment_audit": {
+    "published_lessons": 6,
+    "lessons_with_mcq": 6,
+    "lessons_with_cq": 6,
+    "assessment_coverage": "6/6 current published lessons",
+    "chapter_completion_assessment_authorized": false
+  },
+  "route_integrity": {
+    "forbid_prefix": "/bn/biology/hsc-corner/botany/",
+    "canonical_bengali_prefix": "/biology/hsc-corner/botany/",
+    "fixed_routes": [
+      "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/",
+      "/biology/hsc-corner/botany/lecture-06-mitochondria/"
+    ]
+  },
+  "promotion_gate": {
+    "require_primary_text_custody": true,
+    "require_all_required_coverage_units_covered": true,
+    "require_each_published_lesson_mcq_and_cq": true,
+    "require_canonical_route_integrity": true,
+    "parent_hsc_botany_remains_progressive": true
+  }
+}
