@@ -74,6 +74,7 @@ def main():
     canonical_routes = {}
     gateway_files = {}
     module_routes = {}
+    module_route_refs = {}
     strict_count = 0
     progressive_count = 0
     module_count = 0
@@ -154,6 +155,9 @@ def main():
                 if mroute in module_routes:
                     fail(f"Duplicate module route {mroute}: {module_routes[mroute]} and {cid}/{mid}")
                 module_routes[mroute] = f"{cid}/{mid}"
+                pathway_ref = mod.get("pathway_ref")
+                if pathway_ref is not None:
+                    module_route_refs[mroute] = pathway_ref
                 expected_prev = None if idx == 0 else mods[idx-1].get("module_id")
                 expected_next = None if idx == len(mods)-1 else mods[idx+1].get("module_id")
                 require(mod.get("previous") == expected_prev, f"{cid}/{mid}: previous must be {expected_prev!r}")
@@ -171,6 +175,12 @@ def main():
             require(prereq in ids, f"{cid}: unknown prerequisite {prereq}")
             require(prereq != cid, f"{cid}: self prerequisite is forbidden")
 
+    for route, pathway_ref in module_route_refs.items():
+        owner = module_routes.get(route, route)
+        owner_course = owner.split("/", 1)[0]
+        require(pathway_ref in ids, f"{owner}: unknown pathway_ref {pathway_ref}")
+        require(pathway_ref != owner_course, f"{owner}: self pathway_ref is forbidden")
+
     graph = {cid: list(course.get("prerequisites", [])) for cid, course in ids.items()}
     check_cycles(graph)
 
@@ -184,7 +194,13 @@ def main():
     canonical_set = set(canonical_routes)
     for route, owner in module_routes.items():
         if route in canonical_set:
-            fail(f"Module route collides with a canonical pathway route: {route} ({owner})")
+            canonical_owner = canonical_routes[route]
+            declared_ref = module_route_refs.get(route)
+            if declared_ref != canonical_owner:
+                fail(
+                    f"Module route collides with canonical pathway route {route}: "
+                    f"{owner} must declare pathway_ref={canonical_owner}"
+                )
 
     report = {
         "schema": contract.get("schema"),
