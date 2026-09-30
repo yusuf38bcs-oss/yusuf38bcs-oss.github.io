@@ -91,7 +91,7 @@ def main():
         require(term.lower() in lesson.lower(), f"BOT-07 missing required concept: {term}")
 
     require("exact wording" in lesson.lower() and "দাবি" in lesson, "BOT-07 must state the private-textbook provenance boundary")
-    require("named private hsc biology textbook" not in lesson.lower(), "BOT-07 must not name a private HSC textbook as authority")
+    require("named private hsc biology textbook edition-এর exact wording বা page number এই lesson-এ দাবি করা হয়নি" in lesson.lower(), "BOT-07 must explicitly preserve the private-textbook non-claim boundary")
 
     require("ACADEMIC CONTENT REVIEW: PASS" in review, "Academic review must record PASS")
     for url in REQUIRED_SCIENCE_URLS:
