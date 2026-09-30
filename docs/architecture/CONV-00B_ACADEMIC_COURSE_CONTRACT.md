@@ -31,7 +31,7 @@ These five sequences are represented explicitly in the registry and are checked 
 
 | Wave | Pathway | Required convergence |
 |---:|---|---|
-| 1 | Human Physiology | Resolve overlap with Physiology; declare canonical system-course ownership and module sequence. |
+| 1 | Human Physiology | **CONV-01 implemented:** integration gateway owns no duplicate lessons; circulation, respiration, and digestion point to their canonical course owners and form a strict 3-module integration sequence. |
 | 2 | Biostatistics | Normalize duplicate topic files, order the quantitative course, bind worked assessments. |
 | 3 | HSC Botany | Promote chapter-by-chapter with canonical chapter identity, lesson sequence, authority and assessment. |
 | 4 | HSC Zoology | Split the mixed gateway into governed course families while preserving return-to-source links. |
@@ -58,3 +58,8 @@ After CONV-00B is certified:
 5. Later waves continue until every progressive pathway can be promoted to strict.
 
 No pathway should be promoted by visual similarity alone. Promotion requires an explicit source/gateway identity, stable canonical route, deterministic module sequence where applicable, and an assessment boundary.
+
+
+## CONV-01 execution note
+
+Human Physiology is promoted from `progressive` to `strict` by CONV-01. The gateway is explicitly an integration layer, while course ownership remains with the existing circulation, respiration and digestion sources. Systems without a certified canonical owner remain outside the governed module count.

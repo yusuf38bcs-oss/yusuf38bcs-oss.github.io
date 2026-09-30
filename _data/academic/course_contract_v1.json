@@ -769,31 +769,59 @@
     },
     {
       "course_id": "higher-zoology-human-physiology",
-      "title": "Human Physiology Matrix",
-      "academic_level": "Higher Zoology",
-      "pathway_kind": "gateway",
+      "title": "Human Physiology Integration Gateway",
+      "academic_level": "Higher Zoology — integrative physiology",
+      "pathway_kind": "integration-gateway",
       "canonical_route": "/biology/higher-zoology-tree/human-physiology/",
       "gateway_files": [
         "_biology/higher-zoology-tree/human-physiology/index.md"
       ],
       "authority": {
-        "type": "LBFL academic gateway",
-        "label": "Human physiology systems and homeostasis gateway"
+        "type": "LBFL academic integration gateway",
+        "label": "Cross-system Human Physiology navigation over canonical system-course owners"
       },
-      "status": "convergence-pending",
-      "enforcement": "progressive",
+      "status": "governed",
+      "enforcement": "strict",
       "prerequisites": [],
       "assessment": {
         "mode": [
-          "system reasoning",
+          "system comparison",
+          "mechanism explanation",
           "short answer",
           "MCQ"
         ],
-        "boundary": "education only; no diagnosis or treatment advice"
+        "boundary": "education only; health examples do not provide diagnosis or treatment advice"
       },
       "legacy_routes": [],
-      "convergence_wave": 1,
-      "convergence_target": "Resolve overlap with the Physiology gateway, declare canonical system-course ownership, and register deterministic module sequences."
+      "modules": [
+        {
+          "module_id": "hp-01",
+          "order": 1,
+          "title": "Transport and Circulation",
+          "source_file": "_biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md",
+          "route": "/biology/higher-zoology-tree/physiology/blood-circulation/",
+          "previous": null,
+          "next": "hp-02"
+        },
+        {
+          "module_id": "hp-02",
+          "order": 2,
+          "title": "Respiration and Gas Exchange",
+          "source_file": "_biology/hsc-corner/zoology/respiratory-system-lecture.md",
+          "route": "/biology/hsc-corner/zoology/respiratory-system-lecture/",
+          "previous": "hp-01",
+          "next": "hp-03"
+        },
+        {
+          "module_id": "hp-03",
+          "order": 3,
+          "title": "Digestion and Absorption",
+          "source_file": "_biology/hsc-corner/zoology/digestive-system/index.md",
+          "route": "/biology/hsc-corner/zoology/digestive-system/",
+          "previous": "hp-02",
+          "next": null
+        }
+      ]
     },
     {
       "course_id": "higher-zoology-biostatistics",

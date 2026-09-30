@@ -4,10 +4,10 @@ author_profile: true
 author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
-title: "Human Physiology Matrix"
-excerpt: "A structured gateway for studying human body systems, homeostasis, health, behaviour, and reflective life application."
+title: "Human Physiology Integration Gateway"
+excerpt: "A governed integration gateway linking the current circulation, respiration, and digestion course families without duplicating their canonical ownership."
 date: 2026-06-13T12:20:00.000Z
-last_modified_at: 2026-07-02T00:00:00.000Z
+last_modified_at: 2026-09-30T00:00:00.000Z
 permalink: /biology/higher-zoology-tree/human-physiology/
 node_id: node-human-physiology
 pillar: "Life Sciences"
@@ -26,67 +26,47 @@ curriculum_tracks:
   - IB Biology
 neet_alignment: "NCERT Biology: Human Physiology"
 ib_theme: "Form and Function"
-ib_subtopic: "Human physiology gateway"
-hsc_alignment: "HSC Zoology: human physiology and organ-system integration"
-concept_level: "Gateway"
+ib_subtopic: "Human physiology integration gateway"
+hsc_alignment: "HSC Zoology: organ-system integration across circulation, respiration, and digestion"
+concept_level: "Integration Gateway"
+course_id: higher-zoology-human-physiology
+course_role: integration-gateway
+contract_state: governed
 ---
 
-Human Physiology Matrix studies the body as a living network of regulation. Every system has inputs, processes, outputs, and feedback. Circulation transports materials, respiration exchanges gases, digestion transforms food, the nervous system coordinates rapid response, the endocrine system regulates slower signals, and homeostasis keeps the body stable.
+# Human Physiology Integration Gateway
 
-## Why This Matters
+Human Physiology is the **integration layer**, not a second copy of the underlying courses. It connects the currently governed system families while preserving one canonical owner for each course.
 
-Human physiology is not only a chapter group. It is the biological language of health, behaviour, energy, stress, discipline, fatigue, appetite, emotion, and survival. When a learner understands physiology, the body becomes readable: heartbeat, breathing, digestion, sleep, stress, and motivation become signals that can be studied and corrected.
+## Academic ownership
 
-{% include education/framework-links.html %}
+| Sequence | System family | Canonical academic owner | Open |
+|---:|---|---|---|
+| 01 | Transport and circulation | Higher Zoology Physiology — Blood Circulation series | [Open circulation]({{ '/biology/higher-zoology-tree/physiology/blood-circulation/' | relative_url }}) |
+| 02 | Respiration and gas exchange | HSC Zoology — Respiratory System series | [Open respiration]({{ '/biology/hsc-corner/zoology/respiratory-system-lecture/' | relative_url }}) |
+| 03 | Digestion and absorption | HSC Zoology — Digestive System 14-lecture course | [Open digestion]({{ '/biology/hsc-corner/zoology/digestive-system/' | relative_url }}) |
 
-## Physiology-Specific Learning Focus
+The order above is the governed **integration sequence** for this gateway. It does not relocate the underlying lessons and does not create duplicate course ownership.
 
-This gateway applies the central LBFL framework to organ-system regulation. Learners should focus on structure, function, feedback, homeostasis, health relevance, and life application rather than repeating the full LOLO/LALA framework on every physiology page.
+## How to study the integration sequence
 
-## Core Learning Route
+1. **Circulation:** trace transport, heart function, blood flow, pressure and feedback.
+2. **Respiration:** connect ventilation, gas exchange and gas transport with circulation.
+3. **Digestion:** connect nutrient breakdown and absorption with delivery to tissues.
+4. Compare each system using the same reasoning frame: **structure → function → regulation → feedback → evidence**.
+5. Return to the canonical system course for its own assessment, revision and source material.
 
-- **Transport and circulation:** blood, plasma, RBC, WBC, platelets, lymph, heart, blood vessels, cardiac cycle, coronary flow, blood pressure, reflex control, tissue perfusion and cardiovascular disease prevention.
-- **Respiration:** ventilation, gas exchange, oxygen transport, carbon dioxide removal, and respiratory control.
-- **Digestion and metabolism:** food processing, absorption, enzyme action, and energy release.
-- **Neural and endocrine coordination:** rapid electrical signalling and slower hormonal regulation.
-- **Homeostasis:** feedback loops that stabilize temperature, pH, glucose, water balance, and blood pressure.
+## Current scope boundary
 
-## Available Physiology Connections
+The present governed gateway includes only the three system families above. Nervous coordination, endocrine regulation, renal/osmotic control, thermoregulation and other physiology systems are **not counted as completed modules here** until their canonical course ownership and sequence are separately certified.
 
-- [Blood Circulation Master Series]({{ '/biology/higher-zoology-tree/physiology/blood-circulation/' | relative_url }})
-  - [Part 1: রক্ত, রক্তরস, রক্তকণিকা, পরিবহন ও প্রতিরক্ষা]({{ '/biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity/' | relative_url }})
-  - [Part 2: হৃদপিণ্ডের গঠন, cardiac cycle ও রক্তসঞ্চালন]({{ '/biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation/' | relative_url }})
-  - [Part 3: সঞ্চালনজনিত রোগ]({{ '/biology/higher-zoology-tree/physiology/circulatory-diseases-causes-symptoms-treatment-awareness/' | relative_url }})
-  - [Part 4: CABG, angioplasty, stent ও open-heart surgery]({{ '/biology/higher-zoology-tree/physiology/cardiac-surgery-bypass-angioplasty-open-heart-treatment/' | relative_url }})
-  - [Part 5: হৃদস্বাস্থ্য ও জীবনচর্চা]({{ '/biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application/' | relative_url }})
-  - [Revision Map: Blood Circulation Overview]({{ '/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/' | relative_url }})
-- [Zoology Foundation]({{ '/biology/hsc-corner/zoology/' | relative_url }})
-- [Baroreceptor Reflex]({{ '/biology/hsc-corner/zoology/baroreceptor-reflex/' | relative_url }})
-- [Respiratory System Lecture]({{ '/biology/hsc-corner/zoology/respiratory-system-lecture/' | relative_url }})
-- [Respiratory System Mind Mapping]({{ '/biology/hsc-corner/zoology/respiratory-system-mind-mapping/' | relative_url }})
-- [Human Behaviour Node]({{ '/biology/higher-zoology-tree/human-behaviour/' | relative_url }})
+## Assessment boundary
 
-## Recommended Study Sequence
+Use system comparison, mechanism explanation, diagrams, short answers and MCQs to test understanding. Health-related examples are educational; this pathway does not provide diagnosis, treatment advice or individual clinical assessment.
 
-1. Draw the organ system before reading the explanation.
-2. Identify input, process, output, and feedback.
-3. Connect each system with homeostasis.
-4. Convert mechanisms into flowcharts and MCQs.
-5. Apply the mechanism to health, behaviour, or daily decision-making.
-
-## Synaptic Bridge
-
-Human physiology forms one of the strongest bridges between biology and life. Digestion can explain nutrition and discipline. Hormones can explain energy, stress, and emotional patterns. Nervous coordination can explain reaction, restraint, and leadership behaviour. Circulation can explain flow, pressure, discipline, prevention and heart-health responsibility. Physiology teaches learners that many life responses begin as biological signals, but reflection can guide their final direction.
-
-## Critical Thinking Questions
-
-1. How does a physiological feedback loop protect the body from instability?
-2. Which daily behaviour can be better understood if we trace its biological trigger first?
-3. Why does blood circulation provide one of the clearest bridges between academic biology and practical health discipline?
-
-## Connected Nodes
+## Connected academic routes
 
 - [Higher Zoology Tree]({{ '/biology/higher-zoology-tree/' | relative_url }})
-- [Zoology Foundation]({{ '/biology/hsc-corner/zoology/' | relative_url }})
+- [Physiology gateway]({{ '/biology/higher-zoology-tree/physiology/' | relative_url }})
+- [HSC Zoology gateway]({{ '/biology/hsc-corner/zoology/' | relative_url }})
 - [MCQ Arena]({{ '/mcq-arena/' | relative_url }})
-- [Synaptic Bridge]({{ '/synaptic-bridge/' | relative_url }})
