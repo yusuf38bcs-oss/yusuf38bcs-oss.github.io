@@ -26,6 +26,20 @@ const routes = [
   "/ielts/speaking/"
 ];
 
+const BODY_PARAGRAPH_SELECTORS = {
+  "/ielts/": ".ielts-hub__intro",
+  "/ielts/band-8-roadmap/": ".ielts-static p",
+  "/ielts/daily-practice/":
+    ".ielts-practice__header > p:not(.ielts-practice__eyebrow)",
+  "/ielts/listening/": ".ielts-static p",
+  "/ielts/reading/":
+    ".ielts-reading__header > p:not(.ielts-reading__eyebrow)",
+  "/ielts/writing/":
+    ".ielts-writing__header > p:not(.ielts-writing__eyebrow)",
+  "/ielts/speaking/":
+    ".ielts-speaking__header > p:not(.ielts-speaking__eyebrow)"
+};
+
 const viewports = [
   { name: "mobile-390", width: 390, height: 844 },
   { name: "tablet-768", width: 768, height: 1024 },
@@ -45,8 +59,8 @@ async function settle(page) {
   await page.evaluate(async function(){ if (document.fonts && document.fonts.ready) await document.fonts.ready; });
 }
 
-async function inspect(page, status) {
-  return page.evaluate(function({ status, rootSelector }) {
+async function inspect(page, status, bodyParagraphSelector) {
+  return page.evaluate(function({ status, rootSelector, bodyParagraphSelector }) {
     const visible = function(el) {
       if (!el) return false;
       const s = getComputedStyle(el);
@@ -60,6 +74,7 @@ async function inspect(page, status) {
       const s = getComputedStyle(el);
       return {
         selector,
+        visible: true,
         tag: el.tagName,
         text: (el.textContent || "").trim().slice(0, 120),
         fontFamily: s.fontFamily,
@@ -72,10 +87,11 @@ async function inspect(page, status) {
 
     const root = Array.from(document.querySelectorAll(rootSelector)).find(visible);
     const rootStyle = root ? getComputedStyle(root) : null;
+    const bodyParagraph = sample(bodyParagraphSelector);
     const samples = [
       sample(rootSelector),
       sample(rootSelector + " h1"),
-      sample(rootSelector + " p"),
+      bodyParagraph,
       sample(rootSelector + " .btn"),
       sample(rootSelector + " textarea"),
       sample(rootSelector + " select"),
@@ -94,6 +110,7 @@ async function inspect(page, status) {
       rootLineHeight: rootStyle ? rootStyle.lineHeight : null,
       headingVisible: Boolean(Array.from(document.querySelectorAll(rootSelector + " h1, .ielts-static-page .page__title")).find(visible)),
       horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 2,
+      bodyParagraph,
       samples,
       visibleMainImages,
       fontsStatus: document.fonts ? document.fonts.status : "unsupported",
@@ -101,7 +118,7 @@ async function inspect(page, status) {
       openSansAvailable: document.fonts ? document.fonts.check('16px "Open Sans"') : null,
       navigatorSaveData: Boolean(navigator.connection && navigator.connection.saveData)
     };
-  }, { status, rootSelector });
+  }, { status, rootSelector, bodyParagraphSelector });
 }
 
 async function inspectReducedMotion(page) {
@@ -192,15 +209,17 @@ try {
 
       const response = await page.goto(baseUrl + route, { waitUntil: "domcontentloaded", timeout: 45000 });
       await settle(page);
-      const state = await inspect(page, response ? response.status() : 0);
+      const bodyParagraphSelector = BODY_PARAGRAPH_SELECTORS[route];
+      if (!bodyParagraphSelector) throw new Error("Missing body-copy selector for " + route);
+      const state = await inspect(page, response ? response.status() : 0, bodyParagraphSelector);
       const motion = await inspectReducedMotion(page);
       const spacing = await inspectTextSpacing(page);
 
       const familiesSansLike = state.samples.every(function(s){ return sansLike(s.fontFamily); });
-      const paragraph = state.samples.find(function(s){ return s.tag === "P"; });
+      const paragraph = state.bodyParagraph;
       const paragraphSize = paragraph ? numericPx(paragraph.fontSize) : null;
       const paragraphLine = paragraph ? numericPx(paragraph.lineHeight) : null;
-      const readableParagraph = Boolean(paragraph) && (
+      const readableParagraph = Boolean(paragraph) && paragraph.visible === true && (
         paragraphSize !== null &&
         paragraphSize >= 15 &&
         paragraphLine !== null &&

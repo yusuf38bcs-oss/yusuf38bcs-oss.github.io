@@ -16,6 +16,7 @@ on:
       - "_data/homepage-v3.yml"
       - "assets/css/homepage-v3.css"
       - "assets/js/home/homepage-v3.js"
+      - "assets/images/home/v3/**"
       - "scripts/site_audit_engine.py"
       - "_life-practices/research-highlights/**"
       - "_data/adsense.yml"
