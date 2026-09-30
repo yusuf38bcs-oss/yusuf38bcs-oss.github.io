@@ -41,7 +41,7 @@ def fm_scalar(text, key):
     return m.group(1).strip() if m else None
 
 def fm_list(text, key):
-    m = re.search(rf"(?ms)^{re.escape(key)}:\s*\n((?:- .+\n?)+)", text)
+    m = re.search(rf"(?m)^{re.escape(key)}:\s*\n((?:- [^\n]+\n?)+)", text)
     if not m:
         return []
     return [line[2:].strip() for line in m.group(1).splitlines() if line.startswith("- ")]
