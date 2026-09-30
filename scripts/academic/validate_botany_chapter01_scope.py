@@ -10,9 +10,15 @@ COURSE_CONTRACT = ROOT / "_data" / "academic" / "course_contract_v1.json"
 REPORT = ROOT / "hsc-botany-chapter01-scope-report.json"
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
 
-EXPECTED_BASE = "8771910b7a11adca87ba495d14b4124d61a8657b"
-EXPECTED_VERSION = "CONV-03C01-1.0.0"
+EXPECTED_BASE = "b210ad75d7c7f92e95d7fae1438736a6bab54d1a"
+EXPECTED_VERSION = "CONV-03C01-R1-1.0.0"
 EXPECTED_PAGES = [31, 32, 33]
+EXPECTED_CURRICULUM_INDEX = "https://nctb.gov.bd/pages/files/6922dbc6933eb65569e0c702"
+EXPECTED_CURRICULUM_PDF = "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-nctb/2024/12/ca39e59575134a74b26a35b760d193eb.pdf"
+EXPECTED_CURRENT_TEXTBOOK_PAGE = "https://nctb.gov.bd/pages/static-pages/6922e145933eb65569e2b37b"
+EXPECTED_HISTORICAL_BOT07_HEAD = "f7239f4ac42eb564e137da5278e4d94763f8ed71"
+EXPECTED_HISTORICAL_BOT07_MERGE = "b210ad75d7c7f92e95d7fae1438736a6bab54d1a"
+EXPECTED_HISTORICAL_BOT07_BLOB = "3a6cfb3a68f0aa6517c91f1c61f7f0f9f77762ae"
 EXPECTED_TOPIC_IDS = {
     "cell-wall","plasmalemma","cytoplasm","ribosome","endoplasmic-reticulum",
     "golgi-apparatus","mitochondrion","chloroplast","lysosome","vacuole",
@@ -60,11 +66,11 @@ def main():
     course = load_json(COURSE_CONTRACT)
 
     require(scope.get("schema") == "lbfl-hsc-botany-chapter01-scope-v1", "Unexpected scope schema")
-    require(scope.get("version") == EXPECTED_VERSION, "Unexpected CONV-03C-01 scope version")
+    require(scope.get("version") == EXPECTED_VERSION, "Unexpected CONV-03C-01R1 scope version")
     base = scope.get("authorized_base_sha", "")
     require(bool(SHA40.fullmatch(base)), "authorized_base_sha must be a lowercase 40-character SHA")
     require(base == EXPECTED_BASE, f"Authorized base drift: {base}")
-    require(scope.get("state") == "learner-content-in-progress", "Unexpected Chapter-01 state")
+    require(scope.get("state") == "learner-content-postmerge-integrity-remediation", "Unexpected Chapter-01 remediation state")
     require(scope.get("strict_child_authorized") is False, "Chapter 01 must remain non-strict")
     require(scope.get("missing_lesson_authoring_authorized") is True, "Learner-content authoring authority must remain enabled")
 
@@ -85,8 +91,20 @@ def main():
 
     curriculum = scope.get("primary_curriculum_custody", {})
     require(curriculum.get("obtained") is True, "Primary NCTB curriculum custody must remain true")
+    require(curriculum.get("official_index_url") == EXPECTED_CURRICULUM_INDEX, "Official NCTB curriculum index identity drift")
+    require(curriculum.get("official_pdf_url") == EXPECTED_CURRICULUM_PDF, "Official NCTB Biology curriculum PDF identity drift")
     require(curriculum.get("pdf_page_range") == EXPECTED_PAGES, "NCTB Chapter-01 pages must remain 31–33")
     require(curriculum.get("allocated_periods") == 25, "NCTB Chapter-01 allocation must remain 25 periods")
+
+    textbook = scope.get("primary_textbook_custody", {})
+    require(textbook.get("official_current_textbook_page_url") == EXPECTED_CURRENT_TEXTBOOK_PAGE, "Current official XI–XII textbook-page identity drift")
+    require(textbook.get("current_applicable_edition_selected") is False, "No private textbook edition may be silently selected")
+    require(textbook.get("current_nctb_approval_verified") is False, "No private-edition approval may be claimed without custody")
+    require(textbook.get("textbook_bytes_obtained") is False, "Private textbook bytes must remain unclaimed")
+    require(textbook.get("file_sha256") is None, "Private textbook SHA-256 must remain null without custody")
+    require(textbook.get("required_before_missing_lesson_authoring") is False, "Private textbook custody must not block curriculum-bound authoring")
+    require(textbook.get("required_before_textbook_specific_claims") is True, "Private textbook custody must remain required for textbook-specific claims")
+    require(textbook.get("role") == "optional-corroborative-alignment-not-normative-authoring-gate", "Private textbook role drift")
 
     policy = scope.get("authoring_authority_policy", {})
     require(policy.get("model") == "curriculum-bound-edition-neutral", "Authoring model must remain edition-neutral")
@@ -173,7 +191,13 @@ def main():
         require(bot07_impl.get("cq_count") == 3, "bot-07 CQ count contract must be 3")
         require(bot07_impl.get("scientific_reference_minimum") == 2, "bot-07 reference minimum must remain 2")
         require(bot07_impl.get("academic_review_file") == "docs/academic/CONV-03C01_BOT07_CONTENT_REVIEW.md", "bot-07 academic review file mismatch")
-        require(bot07_impl.get("status") in {"candidate-exact-head-certification-required","exact-head-certified"}, "bot-07 implementation status invalid")
+        require(bot07_impl.get("status") == "candidate-exact-head-certification-required", "In-repository BOT-07 state must remain candidate-bound; exact-head PASS is external evidence")
+        historical = bot07_impl.get("historical_certification", {})
+        require(historical.get("certified_head_sha") == EXPECTED_HISTORICAL_BOT07_HEAD, "Historical BOT-07 certified head drift")
+        require(historical.get("certification_run_id") == 36758752854, "Historical BOT-07 certification run drift")
+        require(historical.get("source_blob_sha") == EXPECTED_HISTORICAL_BOT07_BLOB, "Historical BOT-07 source blob drift")
+        require(historical.get("merge_commit_sha") == EXPECTED_HISTORICAL_BOT07_MERGE, "Historical BOT-07 merge identity drift")
+        require(historical.get("status") == "superseded-by-postmerge-integrity-remediation", "Historical BOT-07 evidence must be marked superseded by R1")
 
     assessment = scope.get("assessment_audit", {})
     require(assessment.get("published_lessons") == 7, "Assessment lesson count must be 7")
