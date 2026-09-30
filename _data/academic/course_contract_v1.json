@@ -801,7 +801,8 @@
           "source_file": "_biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md",
           "route": "/biology/higher-zoology-tree/physiology/blood-circulation/",
           "previous": null,
-          "next": "hp-02"
+          "next": "hp-02",
+          "pathway_ref": "higher-zoology-physiology"
         },
         {
           "module_id": "hp-02",
@@ -810,7 +811,8 @@
           "source_file": "_biology/hsc-corner/zoology/respiratory-system-lecture.md",
           "route": "/biology/hsc-corner/zoology/respiratory-system-lecture/",
           "previous": "hp-01",
-          "next": "hp-03"
+          "next": "hp-03",
+          "pathway_ref": "hsc-zoology"
         },
         {
           "module_id": "hp-03",
@@ -819,7 +821,8 @@
           "source_file": "_biology/hsc-corner/zoology/digestive-system/index.md",
           "route": "/biology/hsc-corner/zoology/digestive-system/",
           "previous": "hp-02",
-          "next": null
+          "next": null,
+          "pathway_ref": "hsc-zoology-digestive-system"
         }
       ]
     },
