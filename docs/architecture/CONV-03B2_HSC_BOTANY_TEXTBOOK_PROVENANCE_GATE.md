@@ -1,147 +1,182 @@
-# CONV-03B.2 — HSC Botany Chapter-01 Textbook Provenance & Page-Custody Gate
+# CONV-03B.2 — HSC Botany Authoring Authority & Textbook-Alignment Boundary
 
 **Authorized base:** `8f306f14f0570df5bc46d65f91702984c3c4d692`  
 **Parent pathway:** `hsc-botany`  
-**Mode:** evidence-first / provenance correction / fail-closed / no lesson authoring
+**Mode:** primary-curriculum authority / edition-neutral authoring / fail-closed textbook claims
 
-## Objective
+## Executive resolution
 
-CONV-03B.2 was opened to execute the next gate after the NCTB curriculum map: acquire an applicable HSC Biology 1st Paper textbook, bind the eleven remaining Chapter-01 gaps to exact textbook pages, consolidate those gaps into a final lesson architecture, and only then authorize missing-lesson authoring.
+CONV-03B.2 began with an assumption that learner-content creation must wait until LBFL selected and byte-acquired a single current NCTB-approved Biology 1st Paper textbook edition.
 
-The source audit reached a material provenance correction before page mapping could be completed.
+Fresh official-source review shows that assumption is too strong and structurally unsound.
 
-## Provenance correction
+The current official NCTB 2025–26 XI–XII textbook page exposes exactly five centrally distributed/common textbook rows:
 
-The current NCTB XI–XII textbook page does not expose a centrally published Biology textbook download alongside the board-published common higher-secondary books.
+1. সাহিত্যপাঠ
+2. সহপাঠ
+3. English for Today
+4. তথ্য ও যোগাযোগ প্রযুক্তি
+5. তথ্য ও যোগাযোগ প্রযুক্তি (ইংলিশ ভার্সন)
 
-Official current textbook page:
+It does **not** expose Biology, Physics, Chemistry, or Higher Mathematics as downloadable subject-textbook rows.
 
-`https://nctb.gov.bd/pages/static-pages/6922e145933eb65569e2b37b`
+Separately, the official NCTB Biology document already in custody is **National Curriculum 2012 — Biology (XI–XII)**. It is a curriculum document, not a private Biology textbook.
 
-NCTB also publishes approval/re-approval registers for XI–XII subject textbooks. Those registers describe the approved books as privately published and identify subject, paper, author, publisher and approved price.
+Historical NCTB approval registers prove that XI–XII Biology 1st Paper has had multiple privately published NCTB-approved editions. The 2018–2021 register explicitly lists several Biology 1st Paper author/publisher combinations. That evidence establishes the private-edition approval model, but it does not establish a single current-2026 canonical private edition.
 
-Official NCTB register:
+Therefore a single private textbook edition cannot be treated as the normative authoring authority for LBFL.
 
-`https://nctb.gov.bd/pages/files/6922da5f933eb65569e040f1`
+## Corrected source hierarchy
 
-Official historical attachment used to authenticate the model:
+### Tier 1 — normative scope authority
 
-`https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-nctb/2024/12/849ea804187344b4a7dd84cf0e10cd34.pdf`
+The official NCTB Biology curriculum is the governing source for:
 
-That attachment includes multiple **Biology 1st Paper** editions among NCTB-approved/re-approved privately published XI–XII textbooks. It establishes the approval model; because it is historical, it does **not** establish that any particular edition is the currently applicable 2026 edition.
+- Chapter identity;
+- required topic scope;
+- learning outcomes and expected coverage;
+- period allocation;
+- practical/assessment expectations.
 
-Therefore the precise custody target is not “a single centrally published NCTB Biology textbook.” The target is:
+For Chapter 01, the authoritative range remains:
 
-> a current applicable **NCTB-approved HSC Biology 1st Paper textbook edition**, with exact edition identity, approval provenance, inspected bytes, SHA-256, Chapter-01 page range, and page-level claim mapping.
+**NCTB Biology curriculum 2012, PDF pages 31–33, 25 periods.**
 
-## False lead rejected
+### Tier 2 — scientific content authority
 
-A candidate URL surfaced during browser discovery:
+Every new or expanded learner lesson must be written against:
 
-`https://nctb.gov.bd/publication/20252026/science/xi_xii/biology_xi_v2_20240313.pdf`
+- its exact NCTB curriculum `topic_id`; and
+- at least two authoritative biology references for substantive scientific claims; and
+- an LBFL academic review before merge.
 
-A subsequent direct read-only retrieval and browser check returned 404 and could not locate the artifact through the NCTB publication pages. It is therefore **not** recorded as source custody and must not be used for page-level evidence.
+This supports academically correct, curriculum-bound content without making unsupported claims about a particular commercial edition.
 
-## Current custody state
+### Tier 3 — private textbook alignment
 
-The contract now records:
+A current NCTB-approved private Biology 1st Paper edition may later be acquired and used for corroborative alignment.
 
-- NCTB curriculum custody: **acquired**;
-- NCTB-approved private-textbook model: **authenticated**;
-- current applicable Biology 1st Paper edition selected: **no**;
-- current NCTB approval of a selected edition verified: **no**;
-- selected textbook bytes acquired: **no**;
-- SHA-256: **not available**;
-- Chapter-01 textbook page range: **not available**;
-- eleven gap-to-textbook-page bindings: **pending**;
-- final lesson count: **not authorized**;
-- deterministic missing-lesson sequence: **not authorized**;
-- missing-lesson authoring: **not authorized**.
+Until exact edition custody exists, LBFL must not:
 
-## Eleven gap buckets remain explicit
+- claim exact agreement with a named private edition;
+- cite unverified private-textbook page numbers;
+- present a private publisher's wording as canonical NCTB wording.
 
-1. `gap-01-cell-wall`
-2. `gap-02-chloroplast`
-3. `gap-03-vacuole`
-4. `gap-04-centriole-microtubule`
-5. `gap-05-nuclear-components`
-6. `gap-06-cell-chemical-components`
-7. `gap-07-prokaryotic-eukaryotic-comparison`
-8. `gap-08-cell-size-shape-inclusions`
-9. `gap-09-cell-discovery-history`
-10. `gap-10-microscopy-mounting-drawing`
-11. `gap-11-chapter-practical-integration`
+Private textbook alignment is therefore **optional for authoring** and **required only for textbook-specific claims**.
 
-Every gap now has a textbook-page binding record with the explicit state:
+## Why this resolves the blocker
 
-`pending-current-approved-edition-custody`
+The previous gate conflated two different questions:
 
-No page number is invented.
+1. **What must students learn?** — answered by the official NCTB curriculum.
+2. **How does a particular approved publisher present it?** — answered by a private textbook edition.
 
-## Current public-market candidates are not custody evidence
+Only the first question is necessary to begin evidence-based learner-content creation.
 
-Current commercial/catalog records can demonstrate that HSC Biology 1st Paper editions continue to exist, but a retailer, blog, scan mirror or download site does not prove current NCTB approval or primary custody.
+Requiring one private edition before authoring would create three problems:
 
-Accordingly, such sources may assist discovery only. They cannot set:
+- it would make one publisher an artificial normative authority;
+- it would freeze authoring when current private-edition approval evidence is not publicly discoverable;
+- it would contradict the multi-edition approval model shown in NCTB's own historical registers.
 
-- `current_nctb_approval_verified = true`;
-- `textbook_bytes_obtained = true`;
-- a SHA-256;
-- Chapter-01 page labels;
-- verified gap mappings;
-- authoring authority.
+CONV-03B.2 therefore separates **authoring authority** from **textbook-alignment authority**.
 
-## Promotion / authoring gate
+## Authorized authoring architecture
 
-Before CONV-03B.2 may authorize lesson architecture, all of the following must be true for one selected edition:
+The 11 unresolved Chapter-01 coverage gaps are now consolidated into the following deterministic authoring baseline.
 
-1. exact book title and Biology paper identity are recorded;
-2. author(s), publisher and edition/year are verified;
-3. current NCTB approval/applicability is verified from primary or sufficiently authoritative evidence;
-4. the exact textbook artifact is in reproducible custody;
-5. SHA-256 is computed from the exact inspected bytes;
-6. Chapter 01 is located with exact PDF and/or printed page labels;
-7. all eleven gap buckets are mapped to exact textbook pages or explicitly documented as absent;
-8. gap buckets are then consolidated into existing-lesson expansions versus new lessons;
-9. a deterministic final lesson sequence is approved;
-10. only then may `missing_lesson_authoring_authorized` become true.
+| Action | Type | Curriculum gaps |
+|---|---|---|
+| `expand-bot-01` | expand existing lesson | cell size/shape/inclusions; cell discovery history |
+| `bot-07` — Cell Wall and Vacuole | new lesson | cell wall; vacuole |
+| `bot-08` — Plastid and Chloroplast | new lesson | chloroplast |
+| `bot-09` — Centriole and Microtubule Structures | new lesson | centriole/microtubule |
+| `bot-10` — Nucleus, Nucleolus, Chromatin and Chromosome | new lesson | nuclear components |
+| `bot-11` — Chemical Components of the Cell | new lesson | cell chemical components |
+| `bot-12` — Prokaryotic and Eukaryotic Cells | new lesson | prokaryotic/eukaryotic comparison |
+| `bot-pr01` — Microscopy, Mounting, Drawing and Cell Observation | practical module | microscopy/mounting/drawing; chapter practical integration |
 
-## Validator behavior
+This mapping covers all 11 gap IDs exactly once.
 
-The CONV-03B.2 validator fails closed if:
+The numbering above is an **authoring baseline**, not strict chapter certification. The new/expanded content must still pass its own academic, route, assessment, and browser gates before Chapter 01 can be promoted.
 
-- the base SHA changes silently;
-- the HSC Botany parent is promoted prematurely;
-- the NCTB curriculum custody record drifts;
-- the textbook provenance model is rewritten as a centrally published NCTB Biology book without evidence;
-- the official NCTB textbook-page or approval-register provenance disappears;
-- a current edition is falsely marked selected/approved;
-- byte custody, SHA-256 or page range is claimed without source evidence;
-- any of the eleven gap-page binding rows disappears;
-- a pending gap is assigned invented page labels;
-- final lesson count or deterministic sequence is authorized;
-- existing-lesson expansion or new-lesson creation is authorized;
-- missing-lesson authoring or strict Chapter-01 promotion is enabled.
+## Current authority
 
-## Disposition
+After this change:
 
-**CONV-03B.2 SOURCE GATE: HOLD**
+`missing_lesson_authoring_authorized = true`
 
-This is an evidence HOLD, not a technical CI failure.
+`strict_child_authorized = false`
 
-The repository may merge the provenance correction and fail-closed guardrail without representing CONV-03B.2 content acquisition as complete. The actual textbook-page acquisition sub-gate remains open until a current applicable NCTB-approved Biology 1st Paper edition is authenticated and its Chapter-01 bytes/pages are inspected.
+`textbook_specific_wording_or_page_claims_authorized = false`
+
+This means learner-content creation may begin, but Chapter 01 remains convergence-pending and not-certified.
+
+## Textbook alignment ledger
+
+The existing 11 textbook page-binding entries are preserved, but their role changes from blocking authoring to optional corroborative alignment.
+
+Each remains:
+
+- no selected current edition;
+- no claimed page number;
+- no claimed page-label mapping;
+- no verified textbook claim mapping.
+
+Status:
+
+`optional-textbook-alignment-pending`
+
+## Fail-closed authoring rules
+
+A new or expanded lesson must not be merged merely because authoring is authorized.
+
+Each lesson must:
+
+1. map to one or more authorized NCTB Chapter-01 topic IDs;
+2. preserve the edition-neutral boundary;
+3. use at least two authoritative biology references for substantive scientific claims;
+4. include the appropriate LBFL assessment surface;
+5. pass content review and normal repository certification;
+6. avoid claiming private-textbook wording or page alignment without exact custody.
+
+## Strict promotion remains blocked
+
+HSC Botany remains:
+
+`progressive / convergence-pending`
+
+Chapter 01 remains:
+
+`not-certified`
+
+Strict Chapter-01 promotion still requires:
+
+- all required curriculum topics to become covered;
+- every new/expanded lesson to pass academic content certification;
+- MCQ/CQ or practical assessment coverage as appropriate;
+- canonical route integrity;
+- deterministic navigation;
+- chapter-level final review.
 
 ## Non-authority
 
-This change does not:
+CONV-03B.2 does not:
 
-- select a textbook edition;
-- promote a commercial scan or mirror to primary authority;
-- assign textbook page numbers;
-- consolidate the eleven gaps into final lessons;
-- write Lecture 07 or any other missing lesson;
-- rewrite the six published lesson bodies;
+- select a private Biology textbook edition;
+- claim current NCTB approval for a private edition;
+- claim private textbook bytes or SHA-256 custody;
+- cite unverified private textbook pages;
 - promote Chapter 01 to strict;
-- promote `hsc-botany` to strict;
+- promote the parent HSC Botany course to strict;
+- write the learner-content lessons themselves;
 - modify Worker, Cloudflare, DNS, AdSense or production runtime;
 - modify Admission PR #356.
+
+## Next gate
+
+After CONV-03B.2 is merged, learner-content creation may start with an isolated content PR, beginning with the first authorized action:
+
+**`expand-bot-01` or `bot-07 — Cell Wall and Vacuole`**
+
+Each content PR must remain source-bound and independently certified before merge.
