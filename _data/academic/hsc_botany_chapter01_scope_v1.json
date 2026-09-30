@@ -1,16 +1,16 @@
 {
   "schema": "lbfl-hsc-botany-chapter01-scope-v1",
-  "version": "CONV-03C01-1.0.0",
-  "authorized_base_sha": "8771910b7a11adca87ba495d14b4124d61a8657b",
+  "version": "CONV-03C01-R1-1.0.0",
+  "authorized_base_sha": "b210ad75d7c7f92e95d7fae1438736a6bab54d1a",
   "parent_course_id": "hsc-botany",
   "chapter_id": "hsc-botany-chapter-01-cell-and-its-structure",
   "title": "HSC Biology 1st Paper — Chapter 01: Cell and Its Structure",
   "canonical_route": "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
   "gateway_file": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
-  "state": "learner-content-in-progress",
+  "state": "learner-content-postmerge-integrity-remediation",
   "strict_child_authorized": false,
   "missing_lesson_authoring_authorized": true,
-  "reason": "CONV-03C-01 implements and certifies BOT-07 as the first source-bound learner-content unit. BOT-07 closes the NCTB curriculum gaps for cell wall and vacuole with 10 MCQs, 3 CQs, four authoritative science references and an academic-review PASS. Chapter 01 remains convergence-pending and not-certified because nine curriculum gaps remain.",
+  "reason": "CONV-03C-01R1 remediates five post-merge integrity findings without changing the academic scope of BOT-07. Lecture 07 remains implemented for cell-wall and vacuole, but its in-repository certification state is deliberately candidate-bound until the remediation exact-head gate completes externally. Chapter 01 remains convergence-pending and not-certified.",
   "primary_curriculum_custody": {
     "obtained": true,
     "authority": "National Curriculum and Textbook Board (NCTB), Bangladesh",
@@ -745,12 +745,13 @@
         "cell-wall",
         "vacuole"
       ],
-      "authoring_status": "implemented-certified",
+      "authoring_status": "implemented-candidate",
       "implementation": {
         "source_file": "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md",
         "route": "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/",
         "content_review": "docs/academic/CONV-03C01_BOT07_CONTENT_REVIEW.md",
-        "exact_head_certification_required": true
+        "exact_head_certification_required": true,
+        "integrity_remediation": "CONV-03C-01R1"
       }
     },
     {
@@ -853,7 +854,20 @@
       "cq_count": 3,
       "academic_review_file": "docs/academic/CONV-03C01_BOT07_CONTENT_REVIEW.md",
       "scientific_reference_minimum": 2,
-      "status": "exact-head-certified"
+      "status": "candidate-exact-head-certification-required",
+      "historical_certification": {
+        "pr_number": 385,
+        "certified_head_sha": "f7239f4ac42eb564e137da5278e4d94763f8ed71",
+        "certification_run_id": 36758752854,
+        "source_blob_sha": "3a6cfb3a68f0aa6517c91f1c61f7f0f9f77762ae",
+        "merge_commit_sha": "b210ad75d7c7f92e95d7fae1438736a6bab54d1a",
+        "status": "superseded-by-postmerge-integrity-remediation"
+      },
+      "current_certification": {
+        "status": "candidate-exact-head-certification-required",
+        "evidence_location": "GitHub exact-head workflow and merge-authorization record",
+        "self_embedded_head_sha": false
+      }
     }
   ],
   "remaining_curriculum_gaps": [
