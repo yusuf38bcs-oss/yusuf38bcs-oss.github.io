@@ -1,4 +1,4 @@
-name: HSC Botany Chapter-01 Textbook Provenance Gate Certification
+name: HSC Botany Chapter-01 Authoring Authority Certification
 
 on:
   pull_request:
@@ -15,12 +15,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: hsc-botany-ch01-textbook-gate-${{ github.event.pull_request.number || github.ref }}
+  group: hsc-botany-ch01-authoring-authority-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   certify:
-    name: CONV-03B.2 textbook provenance and custody HOLD
+    name: CONV-03B.2 curriculum authoring authority
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -40,13 +40,13 @@ jobs:
           test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
           printf 'CONV-03B.2 exact head: %s\n' "$PR_HEAD_SHA"
 
-      - name: Validate textbook provenance and page-custody gate
+      - name: Validate curriculum authoring authority and textbook-alignment boundary
         run: python3 scripts/academic/validate_botany_chapter01_scope.py
 
       - name: Preserve CONV-03B.2 evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: hsc-botany-chapter01-textbook-gate-${{ env.PR_HEAD_SHA }}
+          name: hsc-botany-chapter01-authoring-authority-${{ env.PR_HEAD_SHA }}
           path: hsc-botany-chapter01-scope-report.json
           if-no-files-found: error
