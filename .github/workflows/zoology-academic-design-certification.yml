@@ -7,6 +7,7 @@ on:
       - "_biology/hsc-corner/zoology/**"
       - "_biology/higher-zoology-tree/**"
       - "_includes/zoology/**"
+      - "_includes/education/framework-links.html"
       - "_includes/head/custom.html"
       - "_includes/body/synaptic-ai.html"
       - "_layouts/single.html"
