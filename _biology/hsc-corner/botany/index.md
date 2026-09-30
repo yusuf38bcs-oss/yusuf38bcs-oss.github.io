@@ -7,7 +7,7 @@ sidebar:
 title: 'উদ্ভিদবিজ্ঞান: HSC Biology 1st Paper Botany'
 excerpt: উচ্চ মাধ্যমিক জীববিজ্ঞান ১ম পত্রের উদ্ভিদবিজ্ঞান শেখার পরিচ্ছন্ন অধ্যায় ও লেকচার সূচি।
 date: 2026-06-09 05:00:00+00:00
-last_modified_at: '2026-07-22T00:00:00.000+06:00'
+last_modified_at: '2026-10-01T00:55:00.000+06:00'
 permalink: /biology/hsc-corner/botany/
 node_id: index-hsc-botany
 pillar: Life Sciences
@@ -26,7 +26,7 @@ hsc_alignment: 'HSC Biology 1st Paper: Botany learning gateway'
 concept_level: Gateway
 seo_description: HSC Botany-এর audited chapter ও interactive lecture index।
 ---
-<!-- lbfl-botany-index-release: 2026-07-22; active-chapter-01-lessons: 01-06 -->
+<!-- lbfl-botany-index-release: 2026-10-01; active-chapter-01-lessons: 01-07 -->
 <div class="lbfl-botany-index">
   <section class="lbfl-clean-hero">
     <span class="lbfl-clean-kicker">HSC Biology 1st Paper · Botany</span>
@@ -39,7 +39,7 @@ seo_description: HSC Botany-এর audited chapter ও interactive lecture index
     <article class="lbfl-clean-card">
       <span class="lbfl-tag">অধ্যায় ০১</span>
       <h3><a href="/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/">কোষ ও এর গঠন</a></h3>
-      <p>Cell foundation থেকে mitochondria পর্যন্ত ছয়টি সক্রিয় পাঠ।</p>
+      <p>Cell foundation থেকে Cell Wall and Vacuole পর্যন্ত সাতটি সক্রিয় পাঠ।</p>
     </article>
     <article class="lbfl-clean-card">
       <span class="lbfl-tag">অধ্যায় ০২</span>
@@ -79,6 +79,11 @@ seo_description: HSC Botany-এর audited chapter ও interactive lecture index
       <span class="lbfl-tag">লেকচার ০৬</span>
       <h3><a href="/biology/hsc-corner/botany/lecture-06-mitochondria/">Mitochondria</a></h3>
       <p>Cristae, matrix, ATP ও energy conversion।</p>
+    </article>
+    <article class="lbfl-clean-card">
+      <span class="lbfl-tag">লেকচার ০৭</span>
+      <h3><a href="/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/">Cell Wall and Vacuole</a></h3>
+      <p>Primary/secondary wall, middle lamella, tonoplast, cell sap ও turgor system।</p>
     </article>
   </div>
 </div>

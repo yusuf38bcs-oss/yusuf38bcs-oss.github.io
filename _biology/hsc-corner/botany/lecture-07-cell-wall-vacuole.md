@@ -51,6 +51,7 @@ classes: wide
 language: bn
 lang: bn
 audio_language: bn-BD
+translation_status: single-source-unpaired
 curriculum_tracks:
 - HSC Botany
 - HSC Biology

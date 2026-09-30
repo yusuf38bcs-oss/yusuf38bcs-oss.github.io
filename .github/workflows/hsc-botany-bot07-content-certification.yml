@@ -6,6 +6,7 @@ on:
       - "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md"
       - "_biology/hsc-corner/botany/lecture-06-mitochondria.md"
       - "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md"
+      - "_biology/hsc-corner/botany/index.md"
       - "_data/academic/hsc_botany_chapter01_scope_v1.json"
       - "docs/academic/CONV-03C01_BOT07_CONTENT_REVIEW.md"
       - "scripts/academic/validate_botany_learner_content.py"
