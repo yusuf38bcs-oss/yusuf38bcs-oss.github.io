@@ -1,16 +1,16 @@
 {
   "schema": "lbfl-hsc-botany-chapter01-scope-v1",
-  "version": "CONV-03B2-1.0.0",
+  "version": "CONV-03B2-2.0.0",
   "authorized_base_sha": "8f306f14f0570df5bc46d65f91702984c3c4d692",
   "parent_course_id": "hsc-botany",
   "chapter_id": "hsc-botany-chapter-01-cell-and-its-structure",
   "title": "HSC Biology 1st Paper — Chapter 01: Cell and Its Structure",
   "canonical_route": "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
   "gateway_file": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
-  "state": "textbook-provenance-gated-convergence-pending",
+  "state": "curriculum-authoring-authorized-textbook-alignment-pending",
   "strict_child_authorized": false,
-  "missing_lesson_authoring_authorized": false,
-  "reason": "Official NCTB curriculum custody and the 20-topic Chapter-01 map remain authoritative. CONV-03B.2 corrects the textbook provenance model: current NCTB XI-XII common-book pages do not expose a centrally published Biology textbook, while official NCTB approval registers show that Biology 1st Paper editions are privately published and NCTB-approved/re-approved. No current applicable approved edition has yet been selected and byte-acquired, so exact textbook-page binding, final lesson architecture, and missing-lesson authoring remain blocked.",
+  "missing_lesson_authoring_authorized": true,
+  "reason": "Deep provenance review resolved the prior blocker. The current NCTB 2025-26 XI-XII textbook page exposes only five centrally distributed/common textbooks and does not list Biology as a downloadable textbook row; the Biology PDF on the NCTB curriculum page is the National Curriculum 2012 document, not a private Biology textbook. Historical NCTB registers prove that Biology 1st Paper has multiple privately published approved editions, but do not establish a unique current-2026 canonical edition. Therefore a single private textbook edition is not a sound normative authoring gate. Official NCTB curriculum pages 31–33 remain the normative scope authority. Learner-content authoring is now authorized on an edition-neutral basis, while textbook-specific alignment claims remain blocked until exact edition custody exists.",
   "primary_curriculum_custody": {
     "obtained": true,
     "authority": "National Curriculum and Textbook Board (NCTB), Bangladesh",
@@ -26,12 +26,12 @@
     "allocated_periods": 25
   },
   "primary_textbook_custody": {
-    "custody_model": "nctb-approved-private-hsc-textbook",
+    "custody_model": "nctb-approved-private-hsc-textbook-optional-alignment",
     "centrally_published_nctb_biology_pdf_exposed_on_current_textbook_page": false,
     "official_current_textbook_page_url": "https://nctb.gov.bd/pages/static-pages/6922e145933eb65569e2b37b",
     "official_approval_register_url": "https://nctb.gov.bd/pages/files/6922da5f933eb65569e040f1",
     "official_historical_approval_attachment_url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-nctb/2024/12/849ea804187344b4a7dd84cf0e10cd34.pdf",
-    "provenance_finding": "NCTB approval registers identify privately published XI-XII subject textbooks and include multiple Biology 1st Paper editions. The historical register proves the approval model but does not by itself prove current-2026 approval of any particular edition.",
+    "provenance_finding": "Official NCTB current XI-XII textbook pages expose common centrally distributed books but no Biology textbook row. Historical NCTB approval registers show multiple private Biology 1st Paper editions, so no single private edition is established as the current canonical authoring authority. Textbook custody remains useful corroborative evidence, not a prerequisite for curriculum-bound learner-content authoring.",
     "current_applicable_edition_selected": false,
     "current_nctb_approval_verified": false,
     "selected_edition": null,
@@ -39,7 +39,9 @@
     "file_sha256": null,
     "chapter01_page_range": null,
     "gap_page_bindings_complete": false,
-    "required_before_missing_lesson_authoring": true
+    "required_before_missing_lesson_authoring": false,
+    "required_before_textbook_specific_claims": true,
+    "role": "optional-corroborative-alignment-not-normative-authoring-gate"
   },
   "source_evidence": [
     {
@@ -83,8 +85,18 @@
       "url": "https://nctb.gov.bd/pages/static-pages/6922e145933eb65569e2b37b",
       "supports": [
         "central-publication-boundary",
-        "current-common-textbook-page"
-      ]
+        "current-common-textbook-page",
+        "five-common-textbook-rows",
+        "biology-not-listed-as-downloadable-textbook"
+      ],
+      "observed_textbook_rows": [
+        "সাহিত্যপাঠ",
+        "সহপাঠ",
+        "English for Today",
+        "তথ্য ও যোগাযোগ প্রযুক্তি",
+        "তথ্য ও যোগাযোগ প্রযুক্তি (ইংলিশ ভার্সন)"
+      ],
+      "observation": "Official current XI-XII textbook page does not expose Biology, Physics, Chemistry, or Higher Mathematics as downloadable subject-textbook rows."
     },
     {
       "source_class": "official-nctb-approved-textbook-register",
@@ -577,19 +589,19 @@
   },
   "promotion_gate": {
     "require_primary_curriculum_custody": true,
+    "require_authoring_plan_coverage_all_gaps": true,
     "require_all_required_topic_map_entries_covered": true,
     "require_each_published_lesson_mcq_and_cq": true,
+    "require_each_new_or_expanded_lesson_content_certification": true,
     "require_canonical_route_integrity": true,
     "parent_hsc_botany_remains_progressive": true,
-    "require_current_applicable_nctb_approved_textbook_edition": true,
-    "require_selected_textbook_bytes_and_sha256": true,
-    "require_exact_textbook_page_binding_for_all_gaps": true,
-    "require_final_lesson_architecture_authorization": true
+    "forbid_textbook_specific_claims_without_custody": true,
+    "textbook_alignment_optional_for_authoring": true
   },
   "textbook_page_gap_bindings": [
     {
       "gap_id": "gap-01-cell-wall",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -597,7 +609,7 @@
     },
     {
       "gap_id": "gap-02-chloroplast",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -605,7 +617,7 @@
     },
     {
       "gap_id": "gap-03-vacuole",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -613,7 +625,7 @@
     },
     {
       "gap_id": "gap-04-centriole-microtubule",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -621,7 +633,7 @@
     },
     {
       "gap_id": "gap-05-nuclear-components",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -629,7 +641,7 @@
     },
     {
       "gap_id": "gap-06-cell-chemical-components",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -637,7 +649,7 @@
     },
     {
       "gap_id": "gap-07-prokaryotic-eukaryotic-comparison",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -645,7 +657,7 @@
     },
     {
       "gap_id": "gap-08-cell-size-shape-inclusions",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -653,7 +665,7 @@
     },
     {
       "gap_id": "gap-09-cell-discovery-history",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -661,7 +673,7 @@
     },
     {
       "gap_id": "gap-10-microscopy-mounting-drawing",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -669,7 +681,7 @@
     },
     {
       "gap_id": "gap-11-chapter-practical-integration",
-      "status": "pending-current-approved-edition-custody",
+      "status": "optional-textbook-alignment-pending",
       "textbook_page_start": null,
       "textbook_page_end": null,
       "printed_page_labels": null,
@@ -677,11 +689,145 @@
     }
   ],
   "lesson_architecture_authorization": {
-    "gap_consolidation_status": "blocked-on-current-approved-textbook-custody",
-    "final_lesson_count_status": "not-authorized",
-    "deterministic_sequence_authorized": false,
-    "expansion_of_existing_lessons_authorized": false,
-    "creation_of_new_lessons_authorized": false,
-    "missing_lesson_authoring_authorized": false
-  }
+    "gap_consolidation_status": "authorized-from-primary-curriculum",
+    "final_lesson_count_status": "authoring-baseline-authorized-not-strict-certified",
+    "deterministic_sequence_authorized": true,
+    "expansion_of_existing_lessons_authorized": true,
+    "creation_of_new_lessons_authorized": true,
+    "missing_lesson_authoring_authorized": true,
+    "strict_release_authorized": false
+  },
+  "authoring_authority_policy": {
+    "normative_scope_source": "official-nctb-curriculum-pdf",
+    "normative_scope_pages": [
+      31,
+      32,
+      33
+    ],
+    "model": "curriculum-bound-edition-neutral",
+    "learner_content_authoring_authorized": true,
+    "textbook_specific_wording_or_page_claims_authorized": false,
+    "minimum_authoring_evidence": [
+      "exact NCTB curriculum topic_id mapping",
+      "at least two authoritative biology references for substantive scientific claims",
+      "LBFL academic review before merge"
+    ],
+    "prohibited_without_textbook_custody": [
+      "claiming exact agreement with a named private textbook edition",
+      "citing unverified textbook page numbers",
+      "representing private-edition wording as NCTB canonical wording"
+    ]
+  },
+  "authoring_plan": [
+    {
+      "action_id": "expand-bot-01",
+      "action": "expand-existing-lesson",
+      "lesson_id": "bot-01",
+      "title": "Cell, Protoplasm and Cell Theory",
+      "gap_ids": [
+        "gap-08-cell-size-shape-inclusions",
+        "gap-09-cell-discovery-history"
+      ],
+      "topic_ids": [
+        "cell-size-shape-inclusions",
+        "cell-theory-history"
+      ],
+      "authoring_status": "authorized"
+    },
+    {
+      "action_id": "bot-07",
+      "action": "create-new-lesson",
+      "lesson_id": "bot-07",
+      "title": "Cell Wall and Vacuole",
+      "gap_ids": [
+        "gap-01-cell-wall",
+        "gap-03-vacuole"
+      ],
+      "topic_ids": [
+        "cell-wall",
+        "vacuole"
+      ],
+      "authoring_status": "authorized"
+    },
+    {
+      "action_id": "bot-08",
+      "action": "create-new-lesson",
+      "lesson_id": "bot-08",
+      "title": "Plastid and Chloroplast",
+      "gap_ids": [
+        "gap-02-chloroplast"
+      ],
+      "topic_ids": [
+        "chloroplast"
+      ],
+      "authoring_status": "authorized"
+    },
+    {
+      "action_id": "bot-09",
+      "action": "create-new-lesson",
+      "lesson_id": "bot-09",
+      "title": "Centriole and Microtubule Structures",
+      "gap_ids": [
+        "gap-04-centriole-microtubule"
+      ],
+      "topic_ids": [
+        "centriole-microtubule"
+      ],
+      "authoring_status": "authorized"
+    },
+    {
+      "action_id": "bot-10",
+      "action": "create-new-lesson",
+      "lesson_id": "bot-10",
+      "title": "Nucleus, Nucleolus, Chromatin and Chromosome",
+      "gap_ids": [
+        "gap-05-nuclear-components"
+      ],
+      "topic_ids": [
+        "nucleus-nucleolus-chromatin-chromosome"
+      ],
+      "authoring_status": "authorized"
+    },
+    {
+      "action_id": "bot-11",
+      "action": "create-new-lesson",
+      "lesson_id": "bot-11",
+      "title": "Chemical Components of the Cell",
+      "gap_ids": [
+        "gap-06-cell-chemical-components"
+      ],
+      "topic_ids": [
+        "cell-chemical-components"
+      ],
+      "authoring_status": "authorized"
+    },
+    {
+      "action_id": "bot-12",
+      "action": "create-new-lesson",
+      "lesson_id": "bot-12",
+      "title": "Prokaryotic and Eukaryotic Cells",
+      "gap_ids": [
+        "gap-07-prokaryotic-eukaryotic-comparison"
+      ],
+      "topic_ids": [
+        "prokaryotic-eukaryotic-comparison"
+      ],
+      "authoring_status": "authorized"
+    },
+    {
+      "action_id": "bot-pr01",
+      "action": "create-practical-module",
+      "lesson_id": "bot-pr01",
+      "title": "Microscopy, Mounting, Drawing and Cell Observation",
+      "gap_ids": [
+        "gap-10-microscopy-mounting-drawing",
+        "gap-11-chapter-practical-integration"
+      ],
+      "topic_ids": [
+        "microscopy-mounting-drawing",
+        "practical-applied-observation"
+      ],
+      "authoring_status": "authorized"
+    }
+  ]
 }
