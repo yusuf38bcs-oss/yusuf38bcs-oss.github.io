@@ -324,11 +324,15 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tabs {
 }
 
 html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tablist {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 0 0 0.85rem;
   padding: 0;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tabs.is-enhanced .lbfl-academic-tablist {
+  display: flex;
 }
 
 html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tab {
