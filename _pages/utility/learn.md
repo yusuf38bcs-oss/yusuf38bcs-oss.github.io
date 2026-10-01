@@ -61,31 +61,31 @@ description: "The canonical Learning Biology For Life guide for understanding, r
     <h3>LOLO / LALA</h3>
     <p>Use objectives and outcomes to define what should be learned, then activities and applications to make the learning observable.</p>
     <p><strong>Supports:</strong> Understand, Apply, Reflect.</p>
-    <p><a href="{{ '/frameworks/lolo-lala/' | relative_url }}">Open the LOLO / LALA reference</a></p>
+    <p class="lbfl-academic-actions"><a class="lbfl-academic-button" href="{{ '/frameworks/lolo-lala/' | relative_url }}">Open the LOLO / LALA reference</a></p>
   </section>
   <section class="lbfl-academic-card">
     <h3>Bloom Taxonomy</h3>
     <p>Use Bloom levels to vary cognitive demand from recall and understanding to application, analysis, evaluation, and creation.</p>
     <p><strong>Supports:</strong> Retrieve, Explain, Apply.</p>
-    <p><a href="{{ '/frameworks/bloom-taxonomy/' | relative_url }}">Open the Bloom Taxonomy reference</a></p>
+    <p class="lbfl-academic-actions"><a class="lbfl-academic-button" href="{{ '/frameworks/bloom-taxonomy/' | relative_url }}">Open the Bloom Taxonomy reference</a></p>
   </section>
   <section class="lbfl-academic-card">
     <h3>CQ Studio</h3>
     <p>Use the CQ reference when a stimulus requires knowledge, explanation, application, analysis, or evaluation in a structured answer.</p>
     <p><strong>Supports:</strong> Explain, Apply.</p>
-    <p><a href="{{ '/frameworks/cq-studio/' | relative_url }}">Open the CQ Studio reference</a></p>
+    <p class="lbfl-academic-actions"><a class="lbfl-academic-button" href="{{ '/frameworks/cq-studio/' | relative_url }}">Open the CQ Studio reference</a></p>
   </section>
   <section class="lbfl-academic-card">
     <h3>Assessment Rubric</h3>
     <p>Use the rubric to check whether an answer is accurate, relevant, mechanism-based, stimulus-linked, and supported by reasoning.</p>
     <p><strong>Supports:</strong> Reflect, Repair.</p>
-    <p><a href="{{ '/frameworks/assessment-rubric/' | relative_url }}">Open the Assessment Rubric</a></p>
+    <p class="lbfl-academic-actions"><a class="lbfl-academic-button" href="{{ '/frameworks/assessment-rubric/' | relative_url }}">Open the Assessment Rubric</a></p>
   </section>
   <section class="lbfl-academic-card">
     <h3>Practical Learning Framework</h3>
     <p>Use observation, mechanism, evidence, and application to connect academic biology with practical work and real contexts.</p>
     <p><strong>Supports:</strong> Apply, Reflect.</p>
-    <p><a href="{{ '/frameworks/practical-framework/' | relative_url }}">Open the Practical Learning reference</a></p>
+    <p class="lbfl-academic-actions"><a class="lbfl-academic-button" href="{{ '/frameworks/practical-framework/' | relative_url }}">Open the Practical Learning reference</a></p>
   </section>
 </div>
 
