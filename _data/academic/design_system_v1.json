@@ -1,0 +1,90 @@
+{
+  "schema": "lbfl-academic-design-system-v1",
+  "version": "CONV-04B-1.0.0",
+  "authorized_base_sha": "9f20bfa7398db8c2e5f1dbdd3db61c43eef3e5bf",
+  "activation": {
+    "front_matter": {
+      "academic_system": "v1"
+    },
+    "html_class": "lbfl-academic-v1",
+    "body_class": "lbfl-academic-v1-active",
+    "article_class": "lbfl-academic-surface",
+    "article_attribute": "data-lbfl-academic-surface",
+    "role_attribute": "data-lbfl-academic-role"
+  },
+  "roles": [
+    "platform_home",
+    "academic_gateway",
+    "chapter_index",
+    "lecture",
+    "assessment_gateway",
+    "assessment",
+    "practical",
+    "revision",
+    "reflection_gateway",
+    "reflection",
+    "application"
+  ],
+  "tokens": [
+    "--lbfl-academic-paper",
+    "--lbfl-academic-surface",
+    "--lbfl-academic-soft",
+    "--lbfl-academic-ink",
+    "--lbfl-academic-muted",
+    "--lbfl-academic-heading",
+    "--lbfl-academic-link",
+    "--lbfl-academic-accent",
+    "--lbfl-academic-border",
+    "--lbfl-academic-focus",
+    "--lbfl-academic-radius",
+    "--lbfl-academic-shadow",
+    "--lbfl-academic-measure",
+    "--lbfl-academic-space"
+  ],
+  "components": {
+    "grid": "lbfl-academic-grid",
+    "card": "lbfl-academic-card",
+    "lead": "lbfl-academic-lead",
+    "stepper": "lbfl-academic-stepper",
+    "comparison": "lbfl-academic-comparison",
+    "flow": "lbfl-academic-flow",
+    "term": "lbfl-academic-term",
+    "misconception": "lbfl-academic-misconception",
+    "evidence": "lbfl-academic-evidence",
+    "table_wrap": "lbfl-academic-table-wrap",
+    "callout": "lbfl-academic-callout",
+    "actions": "lbfl-academic-actions",
+    "button": "lbfl-academic-button",
+    "details": "lbfl-academic-details",
+    "tabs": "lbfl-academic-tabs"
+  },
+  "accessibility": {
+    "target_min_css_px": 24,
+    "preferred_control_css_px": 40,
+    "reflow_css_px": 320,
+    "text_spacing": true,
+    "keyboard_focus": true,
+    "reduced_motion": true
+  },
+  "legacy_bridge": {
+    "reason": "Opt-in Academic v1 surfaces must neutralize authenticated priority cascade debt for legacy hero height, ordinary-content word fragmentation, global button controls, and retained interactive motion until later consolidation phases remove the upstream rules.",
+    "allowed_important_properties": [
+      "min-height",
+      "height",
+      "overflow-wrap",
+      "word-break",
+      "background",
+      "color",
+      "padding",
+      "border",
+      "border-radius",
+      "border-color",
+      "font-family",
+      "font-weight",
+      "transition",
+      "transform",
+      "box-shadow",
+      "cursor"
+    ]
+  }
+}

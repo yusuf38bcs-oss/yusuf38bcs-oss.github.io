@@ -1,0 +1,647 @@
+/* ==========================================================================
+   LBFL ACADEMIC DESIGN SYSTEM — CONV-04B
+   Version: CONV-04B-1.0.0
+
+   Activation is explicit: page.academic_system: v1.
+   Every selector is scoped to html.lbfl-academic-v1. This is an owned design
+   system, not a new global hotfix layer.
+
+   A small legacy bridge uses priority declarations only to neutralize
+   already-authenticated global cascade debt on opted-in academic surfaces.
+   The bridge disappears
+   when the legacy cascade is consolidated in later CONV-04 phases.
+   ========================================================================== */
+
+html.lbfl-academic-v1 {
+  --lbfl-academic-paper: #f8fafc;
+  --lbfl-academic-surface: #ffffff;
+  --lbfl-academic-soft: #f0fdfa;
+  --lbfl-academic-ink: #172033;
+  --lbfl-academic-muted: #526174;
+  --lbfl-academic-heading: #102a43;
+  --lbfl-academic-link: #075985;
+  --lbfl-academic-accent: #0b5f56;
+  --lbfl-academic-border: #cbd5e1;
+  --lbfl-academic-focus: #1d4ed8;
+  --lbfl-academic-radius: 0.9rem;
+  --lbfl-academic-shadow: 0 0.65rem 1.8rem rgba(15, 23, 42, 0.08);
+  --lbfl-academic-measure: 72ch;
+  --lbfl-academic-space: clamp(1rem, 2.2vw, 1.5rem);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) body {
+  background: var(--lbfl-academic-paper);
+}
+
+/* Single-layout contextual navigation sits outside the owned article surface. */
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav {
+  color: var(--lbfl-academic-ink);
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: var(--lbfl-academic-surface);
+  box-shadow: var(--lbfl-academic-shadow);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-title {
+  color: var(--lbfl-academic-heading);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .header-matrix-line {
+  background: var(--lbfl-academic-border);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-link,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-child-link {
+  color: var(--lbfl-academic-link);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-link:focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-child-link:focus-visible {
+  outline: 3px solid var(--lbfl-academic-focus);
+  outline-offset: 3px;
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] {
+  color: var(--lbfl-academic-ink);
+  font-family: Inter, "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__inner-wrap {
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: clamp(0.9rem, 3vw, 2rem);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content {
+  color: var(--lbfl-academic-ink);
+  font-size: clamp(1rem, 0.97rem + 0.16vw, 1.08rem);
+  line-height: 1.72;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content > * {
+  max-width: var(--lbfl-academic-measure);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content > .lbfl-academic-grid,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content > .lbfl-academic-comparison,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content > .lbfl-academic-flow,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content > .lbfl-academic-table-wrap,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content > figure,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content > table {
+  max-width: 100%;
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h4 {
+  color: var(--lbfl-academic-heading);
+  font-family: inherit;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h1 {
+  font-size: clamp(2rem, 1.55rem + 2vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h2 {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.45rem, 1.2rem + 1vw, 2rem);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h3 {
+  margin-top: 1.6rem;
+  font-size: clamp(1.18rem, 1.05rem + 0.5vw, 1.5rem);
+}
+
+/*
+   Transitional dark-component bridge.
+   Historical Botany cards remain dark until their content is migrated to
+   shared Academic v1 components. Keep their headings readable while the
+   light-surface heading defaults are active.
+*/
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero h4 {
+  color: #f8fafc;
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] a:not(.lbfl-academic-button) {
+  color: var(--lbfl-academic-link);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+
+/* Linked headings inside retained dark Botany components stay high contrast. */
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h2 a,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h3 a,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h2 a,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h2 a,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-info-card a {
+  color: #67e8f9;
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] img,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] svg,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] video {
+  max-width: 100%;
+  height: auto;
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] :focus-visible {
+  outline: 3px solid var(--lbfl-academic-focus);
+  outline-offset: 3px;
+}
+
+/*
+   Retained dark migration surfaces need a focus indicator that remains
+   visible both against the dark component and against the surrounding
+   light Academic v1 page. The white inner ring plus teal outer ring
+   provides that two-edge contrast without changing component semantics.
+*/
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card:focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-info-card :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card:focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-framework-link:focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero :focus-visible {
+  outline: 3px solid #f8fafc;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #0f766e;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-lead {
+  color: var(--lbfl-academic-muted);
+  font-size: clamp(1.08rem, 1rem + 0.35vw, 1.24rem);
+  line-height: 1.65;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-grid,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-comparison {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--lbfl-academic-space);
+  margin-block: 1.25rem;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-card,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-term,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-callout,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-evidence,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-misconception {
+  padding: var(--lbfl-academic-space);
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: var(--lbfl-academic-surface);
+  box-shadow: var(--lbfl-academic-shadow);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-card > :first-child,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-term > :first-child,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-callout > :first-child,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-evidence > :first-child,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-misconception > :first-child {
+  margin-top: 0;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-evidence {
+  border-left: 0.3rem solid #1e40af;
+  background: #eff6ff;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-misconception {
+  border-left: 0.3rem solid #b91c1c;
+  background: #fff1f2;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-callout {
+  border-left: 0.3rem solid var(--lbfl-academic-accent);
+  background: var(--lbfl-academic-soft);
+}
+
+/* Role-owned educational boundary on the Academic v1 light reading surface. */
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .educational-boundary {
+  border-left-color: var(--lbfl-academic-accent);
+  background: #ecfeff;
+  color: var(--lbfl-academic-ink);
+  box-shadow: var(--lbfl-academic-shadow);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .educational-boundary strong {
+  color: var(--lbfl-academic-heading);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .educational-boundary span[lang="bn"] {
+  color: var(--lbfl-academic-muted);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-stepper {
+  margin: 1.25rem 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: lbfl-academic-step;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-stepper > li {
+  position: relative;
+  margin: 0 0 0.85rem;
+  padding: 0.9rem 1rem 0.9rem 3.35rem;
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: var(--lbfl-academic-surface);
+  counter-increment: lbfl-academic-step;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-stepper > li::before {
+  content: counter(lbfl-academic-step);
+  position: absolute;
+  inset: 0.85rem auto auto 0.9rem;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--lbfl-academic-accent);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: stretch;
+  margin-block: 1.25rem;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-flow > * {
+  flex: 1 1 10rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: 0.75rem;
+  background: var(--lbfl-academic-soft);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap {
+  width: 100%;
+  margin-block: 1.25rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: var(--lbfl-academic-surface);
+}
+
+/*
+   Keyboard contract for genuinely two-dimensional overflow tables:
+   markup must add tabindex="0", role="region", and an accessible name
+   (aria-label or aria-labelledby) to the wrapper.
+*/
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap[tabindex="0"]:focus-visible {
+  outline: 3px solid var(--lbfl-academic-focus);
+  outline-offset: 3px;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap table {
+  display: table;
+  width: 100%;
+  min-width: 36rem;
+  max-width: none;
+  margin: 0;
+  overflow: visible;
+  overflow-x: visible;
+  border-collapse: collapse;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap th,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap td {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--lbfl-academic-border);
+  vertical-align: top;
+  text-align: left;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap th {
+  background: #e2e8f0;
+  color: var(--lbfl-academic-heading);
+}
+
+/*
+   Progressive tabs primitive.
+   Baseline/no-JavaScript behavior keeps every panel visible and readable.
+   A future enhancement script may add tab semantics and hide inactive panels
+   only after successful initialization.
+*/
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tabs {
+  margin-block: 1.25rem;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tablist {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 0.85rem;
+  padding: 0;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tabs.is-enhanced .lbfl-academic-tablist {
+  display: flex;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tab {
+  min-height: 2.5rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: 0.65rem;
+  background: var(--lbfl-academic-surface);
+  color: var(--lbfl-academic-link);
+  font: inherit;
+  font-weight: 750;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tab[aria-selected="true"] {
+  border-color: var(--lbfl-academic-accent);
+  background: var(--lbfl-academic-soft);
+  color: var(--lbfl-academic-heading);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tab-panel {
+  margin-block: 0.85rem;
+  padding: var(--lbfl-academic-space);
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: var(--lbfl-academic-surface);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tab-panel > :first-child {
+  margin-top: 0;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] details.lbfl-academic-details {
+  margin-block: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: var(--lbfl-academic-surface);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] details.lbfl-academic-details > summary {
+  min-height: 2.5rem;
+  cursor: pointer;
+  font-weight: 750;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-block: 1.25rem;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-button,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--lbfl-academic-accent);
+  border-radius: 0.7rem;
+  background: var(--lbfl-academic-accent);
+  color: #ffffff;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+/*
+   Legacy global button rules use priority declarations on every <button>.
+   Academic v1 therefore owns these two semantic control classes with an
+   exact, validator-bound priority bridge so their component state is not
+   replaced by the legacy gradient/geometry.
+*/
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button {
+  padding: 0.6rem 1rem !important;
+  border: 2px solid var(--lbfl-academic-accent) !important;
+  border-radius: 0.7rem !important;
+  background: var(--lbfl-academic-accent) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-weight: 750 !important;
+  transition: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-tab {
+  padding: 0.55rem 0.85rem !important;
+  border: 1px solid var(--lbfl-academic-border) !important;
+  border-radius: 0.65rem !important;
+  background: var(--lbfl-academic-surface) !important;
+  color: var(--lbfl-academic-link) !important;
+  font-family: inherit !important;
+  font-weight: 750 !important;
+  transition: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-tab[aria-selected="true"] {
+  border-color: var(--lbfl-academic-accent) !important;
+  background: var(--lbfl-academic-soft) !important;
+  color: var(--lbfl-academic-heading) !important;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button:disabled,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-tab:disabled {
+  border-color: var(--lbfl-academic-border) !important;
+  background: #e2e8f0 !important;
+  color: #64748b !important;
+  cursor: not-allowed !important;
+}
+
+/* Academic v1 owns the injected Zoology learning cycle when legacy Zoology CSS is withheld. */
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle {
+  margin: 0 0 2rem;
+  padding: var(--lbfl-academic-space);
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: linear-gradient(145deg, #ffffff, var(--lbfl-academic-soft));
+  box-shadow: var(--lbfl-academic-shadow);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--lbfl-academic-accent);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__title {
+  margin: 0;
+  color: var(--lbfl-academic-heading);
+  font-size: clamp(1.12rem, 1.02rem + 0.45vw, 1.4rem);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: lbfl-zoology-cycle;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps li {
+  min-width: 0;
+  padding: 0.8rem;
+  border-top: 2px solid color-mix(in srgb, var(--lbfl-academic-accent) 28%, transparent);
+  background: var(--lbfl-academic-surface);
+  counter-increment: lbfl-zoology-cycle;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps li::before {
+  content: counter(lbfl-zoology-cycle, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.2rem;
+  color: #7a4f10;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps strong {
+  display: block;
+  color: var(--lbfl-academic-heading);
+  font-size: 0.88rem;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps span {
+  display: block;
+  margin-top: 0.18rem;
+  color: var(--lbfl-academic-muted);
+  font-size: 0.78rem;
+  line-height: 1.42;
+}
+
+@media (max-width: 48rem) {
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 30rem) {
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Legacy bridge: opt-in academic v1 surfaces only. */
+html.lbfl-academic-v1 .page__hero,
+html.lbfl-academic-v1 .page__hero--overlay {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content p,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content li,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content th,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content td,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h1,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h2,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h3,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h4 {
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+@media (max-width: 48rem) {
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__inner-wrap {
+    padding-inline: 0.9rem;
+  }
+
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-grid,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-flow {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 30rem) {
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-card,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-term,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-callout,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-evidence,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-misconception {
+    border-radius: 0.7rem;
+    padding: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] *,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] *::before,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] *::after {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+
+  /*
+     Retained neural/MI controls carry priority-declared legacy motion.
+     These exact overrides are permitted only inside the reduced-motion
+     media query and are pinned by the Academic Design System validator.
+  */
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-question-card,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-btn-calculate {
+    transition: none !important;
+  }
+
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card:hover,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-question-card:hover,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-btn-calculate:hover,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-btn-calculate:active {
+    transform: none !important;
+  }
+}

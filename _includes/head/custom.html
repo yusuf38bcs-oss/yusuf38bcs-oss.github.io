@@ -11,11 +11,12 @@
 {% elsif page.url contains '/biology/animal-diversity/' %}
   {% assign lbfl_zoology_route = true %}
 {% endif %}
-{% if lbfl_zoology_route %}
+{% if lbfl_zoology_route and page.academic_system != 'v1' %}
 <link rel="stylesheet" href="{{ '/assets/css/zoology-academic.css' | relative_url }}">
 
 {% endif %}
 
+{% unless page.academic_system == 'v1' %}
 <link rel="stylesheet" href="{{ '/assets/css/respiratory-system.css' | relative_url }}">
 <script>
   (function () {
@@ -25,6 +26,7 @@
     }
   })();
 </script>
+{% endunless %}
 
 <script>
   window.LBFL_AI_ENDPOINT = "https://api.learningbiologyforlife.org";

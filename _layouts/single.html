@@ -83,7 +83,7 @@ layout: default
 {% endif %}
 
 <div id="main" role="main">
-  <article class="page{% if page.course_id == 'zoology-practical-213106' %} zoology-practical-page{% endif %}"{% if lbfl_course_owned_surface %} data-lbfl-course-owned{% endif %} itemscope itemtype="https://schema.org/CreativeWork"{% if page.locale %} lang="{{ page.locale | replace: '_', '-' }}"{% endif %}>
+  <article class="page{% if page.course_id == 'zoology-practical-213106' %} zoology-practical-page{% endif %}{% if page.academic_system == 'v1' %} lbfl-academic-surface lbfl-academic-role--{{ page.academic_role | default: 'unassigned' | escape }}{% endif %}"{% if lbfl_course_owned_surface %} data-lbfl-course-owned{% endif %}{% if page.academic_system == 'v1' %} data-lbfl-academic-surface="v1" data-lbfl-academic-role="{{ page.academic_role | default: 'unassigned' | escape }}"{% endif %} itemscope itemtype="https://schema.org/CreativeWork"{% if page.locale %} lang="{{ page.locale | replace: '_', '-' }}"{% endif %}>
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}

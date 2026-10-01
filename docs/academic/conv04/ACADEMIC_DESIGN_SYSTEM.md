@@ -1,0 +1,147 @@
+# CONV-04B — Core Academic Design System
+
+**System:** `lbfl-academic-design-system-v1`
+**Version:** `CONV-04B-1.0.0`
+**Authorized base:** `9f20bfa7398db8c2e5f1dbdd3db61c43eef3e5bf`
+**Activation:** explicit front matter only: `academic_system: v1`.
+
+## Purpose
+
+CONV-04B establishes the reusable visual and interaction layer required by the Academic Surface Contract. It does not migrate learner content. Existing legacy routes remain visually unchanged until a later phase deliberately opts them into `academic_system: v1`.
+
+## Architecture
+
+The system has five owned layers:
+
+1. `_data/academic/design_system_v1.json` — machine-readable manifest.
+2. `assets/css/academic-design-system.css` — scoped tokens and components.
+3. `_layouts/default.html` and `_layouts/homepage-v3.html` — add opt-in document activation for ordinary and platform-home surfaces.
+4. `_layouts/single.html` — exposes the academic surface and role as explicit DOM metadata.
+5. `_includes/head/custom.html` — prevents the legacy Zoology stylesheet from loading after a route explicitly opts into Academic v1.
+
+The stylesheet is conditionally loaded from `_includes/head/head.html` after the current production compatibility layers. It is not a global hotfix: no legacy route receives it without explicit academic-system opt-in. When a Zoology route opts in, the legacy `zoology-academic.css` layer is intentionally withheld so its priority link rules cannot override Academic v1 components. Respiratory routes use the same isolation rule, and the legacy wide-page production hotfix is explicitly scoped away from Academic v1 surfaces.
+
+## Activation contract
+
+A future migrated route uses:
+
+```yaml
+academic_system: v1
+academic_role: lecture
+lang: bn
+```
+
+The resulting document exposes:
+
+```html
+<html class="... lbfl-academic-v1">
+<body class="... lbfl-academic-v1-active">
+<article
+  class="page lbfl-academic-surface lbfl-academic-role--lecture"
+  data-lbfl-academic-surface="v1"
+  data-lbfl-academic-role="lecture">
+```
+
+The page role remains governed by CONV-04A. CONV-04B only supplies the presentation system. Homepage V3 uses the same opt-in HTML/body/surface metadata path so a future `platform_home` migration does not bypass the design system. Its existing V3 shell retains ownership of global homepage typography, links, focus treatment and background; Academic tokens and explicit Academic component classes remain available without globally recoloring the V3 experience.
+
+## Token policy
+
+All new design tokens are namespaced `--lbfl-academic-*`.
+
+Core token groups:
+- reading surfaces: paper, surface, soft;
+- typography: ink, muted, heading, link;
+- interaction: accent, focus;
+- geometry: border, radius, shadow, measure, space.
+
+No course-specific token such as Botany/Zoology color naming belongs in the core system.
+
+## Component vocabulary
+
+The initial reusable classes are:
+
+- `.lbfl-academic-lead`
+- `.lbfl-academic-grid`
+- `.lbfl-academic-card`
+- `.lbfl-academic-stepper`
+- `.lbfl-academic-comparison`
+- `.lbfl-academic-flow`
+- `.lbfl-academic-term`
+- `.lbfl-academic-misconception`
+- `.lbfl-academic-evidence`
+- `.lbfl-academic-table-wrap`
+- `.lbfl-academic-callout`
+- `.lbfl-academic-actions`
+- `.lbfl-academic-button`
+- `details.lbfl-academic-details`
+- `.lbfl-academic-tabs` with `.lbfl-academic-tablist`, `.lbfl-academic-tab`, and `.lbfl-academic-tab-panel`
+
+The tabs primitive is progressive enhancement: without JavaScript every panel remains visible in document order and the tab control list remains hidden. A later enhancement may add `.is-enhanced`, apply the appropriate tab semantics, expose the controls, and hide inactive panels only after successful initialization. Source markup must not pre-hide panels, so related information is never JS-dependent.
+
+Overflowing two-dimensional tables use a focusable, named wrapper. The required markup contract is:
+
+```html
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Comparison table">
+  <table>
+    <!-- semantic table content -->
+  </table>
+</div>
+```
+
+`tabindex="0"` is required so keyboard-only users can enter and horizontally scroll the overflow region. `role="region"` must be paired with an accessible name supplied by `aria-label` or `aria-labelledby`. A later migration validator may enforce the route-specific accessible name, but Academic v1 defines the wrapper contract here.
+
+These implement the information-structure mapping already locked in the Academic Surface Contract.
+
+## Accessibility and responsive rules
+
+The system is designed for:
+- reflow to 320 CSS px;
+- keyboard-visible focus;
+- semantic table wrappers for genuinely two-dimensional content;
+- minimum 40 CSS px practical control height in core buttons/details;
+- no forced ordinary-word fragmentation;
+- reduced-motion support;
+- content availability without JavaScript;
+- Academic-v1 ownership of contextual-sidebar foreground/background contrast when the body uses the paper surface.
+
+Browser certification remains required before any route becomes strict.
+
+## Legacy bridge
+
+Two authenticated global defects currently use `!important` outside this system:
+
+- viewport-height hero forcing;
+- ordinary-content word fragmentation.
+
+Therefore CONV-04B contains a deliberately small, opt-in bridge that neutralizes only:
+- the exact hero selectors `html.lbfl-academic-v1 .page__hero` and `html.lbfl-academic-v1 .page__hero--overlay`, using only `min-height: 0 !important` and `height: auto !important`;
+- the Academic v1 `.page__content` reading selector family, using only `overflow-wrap: normal !important` and `word-break: normal !important`.
+
+No other general-purpose `!important` selector, property, or value is permitted in the core stylesheet. Two additional priority bridges are fixed to exact selectors and values because authenticated legacy component CSS uses repository-wide priority declarations:
+
+- Academic-v1 semantic `button.lbfl-academic-button` and `button.lbfl-academic-tab` controls may use only the validator-pinned geometry, color, typography, selected-state, disabled-state, and motion-neutralizing declarations required to defeat the legacy global `button` rule.
+- Inside `@media (prefers-reduced-motion: reduce)`, retained `.neural-card`, `.mi-question-card`, and `.mi-btn-calculate` controls may use only the validator-pinned `transition: none !important` and `transform: none !important` declarations required to neutralize upstream priority-declared motion.
+
+The validator binds every priority declaration to exact selectors, values, and—where applicable—the reduced-motion media block rather than merely allowlisting property names. This bridge is temporary debt containment, not permanent cascade strategy. Retained dark framework links use the same light/teal two-edge focus treatment as other dark migration components. The injected educational boundary is explicitly rethemed for the Academic light surface rather than inheriting the legacy dark-shell colors.
+
+## Non-goals
+
+CONV-04B does not:
+- alter Biology, MCQ, Socratic, Practical, Admission, or homepage learner content;
+- move assessment ownership;
+- create the canonical learning guide;
+- remove legacy CSS files globally;
+- modify Worker/Cloudflare configuration;
+- authorize BOT-08;
+- make any current route strict.
+
+## Promotion gate
+
+CONV-04B can merge only after:
+- the design-system validator passes at exact head;
+- production Jekyll build passes;
+- CodeQL/site audit required checks pass;
+- zero unresolved review threads;
+- exact-head governance authority is valid.
+
+CONV-04C begins only from the merged CONV-04B main baseline.
