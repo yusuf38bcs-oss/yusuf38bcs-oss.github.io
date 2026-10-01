@@ -141,7 +141,15 @@ html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h1,
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h2,
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h3,
-html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h4 {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero h4 {
   color: #f8fafc;
 }
 
@@ -170,6 +178,27 @@ html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] v
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] :focus-visible {
   outline: 3px solid var(--lbfl-academic-focus);
   outline-offset: 3px;
+}
+
+/*
+   Retained dark migration surfaces need a focus indicator that remains
+   visible both against the dark component and against the surrounding
+   light Academic v1 page. The white inner ring plus teal outer ring
+   provides that two-edge contrast without changing component semantics.
+*/
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card:focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-info-card :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card:focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero :focus-visible {
+  outline: 3px solid #f8fafc;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #0f766e;
 }
 
 html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-lead {
