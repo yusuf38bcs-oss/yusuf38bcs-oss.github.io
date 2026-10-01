@@ -55,7 +55,8 @@
     "callout": "lbfl-academic-callout",
     "actions": "lbfl-academic-actions",
     "button": "lbfl-academic-button",
-    "details": "lbfl-academic-details"
+    "details": "lbfl-academic-details",
+    "tabs": "lbfl-academic-tabs"
   },
   "accessibility": {
     "target_min_css_px": 24,
