@@ -155,7 +155,8 @@ html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] a
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h2 a,
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h3 a,
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h2 a,
-html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h2 a {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h2 a,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-info-card a {
   color: #67e8f9;
 }
 
@@ -385,7 +386,9 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-actions {
   margin-block: 1.25rem;
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button {
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-button,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
