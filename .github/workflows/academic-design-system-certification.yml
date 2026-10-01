@@ -32,8 +32,9 @@ jobs:
     timeout-minutes: 15
     env:
       CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CERTIFICATION_MODE: ${{ github.event_name == 'pull_request' && 'pull_request' || 'manual' }}
       PR_BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
-      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '9f20bfa7398db8c2e5f1dbdd3db61c43eef3e5bf' }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || github.sha }}
 
     steps:
       - name: Check out immutable candidate
