@@ -76,7 +76,7 @@ The initial reusable classes are:
 - `details.lbfl-academic-details`
 - `.lbfl-academic-tabs` with `.lbfl-academic-tablist`, `.lbfl-academic-tab`, and `.lbfl-academic-tab-panel`
 
-The tabs primitive is progressive enhancement: without JavaScript every panel remains visible in document order. A later enhancement may add tab semantics and hide inactive panels only after successful initialization, so related information is never JS-dependent.
+The tabs primitive is progressive enhancement: without JavaScript every panel remains visible in document order and the tab control list remains hidden. A later enhancement may add `.is-enhanced`, apply the appropriate tab semantics, expose the controls, and hide inactive panels only after successful initialization. Source markup must not pre-hide panels, so related information is never JS-dependent.
 
 These implement the information-structure mapping already locked in the Academic Surface Contract.
 
