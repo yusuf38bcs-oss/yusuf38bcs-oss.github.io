@@ -88,6 +88,35 @@ html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h
   font-size: clamp(1.18rem, 1.05rem + 0.5vw, 1.5rem);
 }
 
+/*
+   Transitional dark-component bridge.
+   Historical Botany cards remain dark until their content is migrated to
+   shared Academic v1 components. Keep their headings readable while the
+   light-surface heading defaults are active.
+*/
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-figure h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h4,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h4 {
+  color: #f8fafc;
+}
+
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] a {
   color: var(--lbfl-academic-link);
   text-decoration-thickness: 0.08em;
