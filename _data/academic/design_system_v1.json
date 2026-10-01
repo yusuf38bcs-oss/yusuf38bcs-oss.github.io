@@ -67,12 +67,24 @@
     "reduced_motion": true
   },
   "legacy_bridge": {
-    "reason": "Opt-in academic v1 surfaces must neutralize existing global hero-height and word-fragmentation debt until CONV-04H/I/J consolidation.",
+    "reason": "Opt-in Academic v1 surfaces must neutralize authenticated priority cascade debt for legacy hero height, ordinary-content word fragmentation, global button controls, and retained interactive motion until later consolidation phases remove the upstream rules.",
     "allowed_important_properties": [
       "min-height",
       "height",
       "overflow-wrap",
-      "word-break"
+      "word-break",
+      "background",
+      "color",
+      "padding",
+      "border",
+      "border-radius",
+      "border-color",
+      "font-family",
+      "font-weight",
+      "transition",
+      "transform",
+      "box-shadow",
+      "cursor"
     ]
   }
 }
