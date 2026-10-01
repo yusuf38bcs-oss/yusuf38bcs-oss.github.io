@@ -1,0 +1,126 @@
+{
+  "schema": "lbfl-learning-guide-contract-v1",
+  "version": "CONV-04C-01-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04C-01",
+  "authorized_base": "5e3a3e8919d1f26740ebab94fce099a49fe7f1b1",
+  "mode": "architecture-only",
+  "canonical_guide": {
+    "title": "How to Learn with LBFL",
+    "planned_permalink": "/learn/",
+    "route_creation_authorized": false,
+    "learner_content_authoring": "frozen",
+    "purpose": "Own the platform-wide explanation of how learners move through LBFL without repeating full learning-method essays on course and lecture surfaces."
+  },
+  "canonical_cycle": [
+    "Understand",
+    "Retrieve",
+    "Explain",
+    "Apply",
+    "Reflect",
+    "Repair"
+  ],
+  "supporting_frameworks": {
+    "lolo_lala": {
+      "source": "_pages/frameworks/lolo-lala.md",
+      "role": "constructive-alignment-reference",
+      "owns": [
+        "learning objectives",
+        "learning outcomes",
+        "learning activities",
+        "learning applications"
+      ]
+    },
+    "bloom_taxonomy": {
+      "source": "_pages/frameworks/bloom-taxonomy.md",
+      "role": "cognitive-demand-reference",
+      "owns": [
+        "remember",
+        "understand",
+        "apply",
+        "analyze",
+        "evaluate",
+        "create"
+      ]
+    },
+    "cq_studio": {
+      "source": "_pages/frameworks/cq-studio.md",
+      "role": "creative-question-reference",
+      "owns": [
+        "stimulus",
+        "knowledge",
+        "understanding",
+        "application",
+        "analysis or evaluation"
+      ]
+    },
+    "assessment_rubric": {
+      "source": "_pages/frameworks/assessment-rubric.md",
+      "role": "assessment-quality-reference",
+      "owns": [
+        "accuracy",
+        "relevance",
+        "mechanism",
+        "stimulus connection",
+        "evidence-based reasoning"
+      ]
+    },
+    "practical_learning": {
+      "source": "_pages/frameworks/practical-framework.md",
+      "role": "practical-application-reference",
+      "owns": [
+        "concept",
+        "observation",
+        "mechanism",
+        "evidence",
+        "application",
+        "reflection"
+      ]
+    },
+    "synaptic_bridge": {
+      "source": "_data/homepage.yml",
+      "role": "critical-thinking-cycle-reference",
+      "owns": [
+        "Observe",
+        "Question",
+        "Connect",
+        "Explain"
+      ]
+    },
+    "assessment_repair_loop": {
+      "source": "_data/homepage.yml",
+      "role": "feedback-repair-reference",
+      "owns": [
+        "Attempt",
+        "Feedback",
+        "Repair",
+        "Reattempt"
+      ]
+    }
+  },
+  "temporary_bridges": [
+    {
+      "source": "_includes/education/framework-links.html",
+      "status": "migration-bridge",
+      "future_rule": "May point learners to the canonical guide and specialist references; must not become a second full guide."
+    },
+    {
+      "source": "_includes/zoology/learning-cycle.html",
+      "status": "migration-bridge",
+      "future_rule": "May remain until route migration, then collapse to concise role-appropriate guidance or a canonical-guide link."
+    }
+  ],
+  "surface_ownership": {
+    "gateway": "May orient learners and link to the canonical guide; must not reproduce the full guide.",
+    "lecture": "Owns topic-specific objectives/outcomes, concise retrieval/prediction/misconception/transfer prompts, and references; must not reproduce full framework essays.",
+    "assessment": "Owns full assessment banks, feedback, source-return, and reattempt loops.",
+    "practical": "Owns procedure, material/specimen, observation, safety, record/calculation, and topic-specific application.",
+    "reflection": "Owns metacognitive reflection under the existing non-clinical scientific boundary."
+  },
+  "protected_boundaries": {
+    "admission_pr_356": "untouched",
+    "bot_08": "frozen",
+    "worker_cloudflare": "out-of-scope",
+    "learner_facing_pages": "no mutation in CONV-04C-01"
+  }
+}
