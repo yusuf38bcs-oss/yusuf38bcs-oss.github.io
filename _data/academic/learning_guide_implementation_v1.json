@@ -1,0 +1,92 @@
+{
+  "schema": "lbfl-learning-guide-implementation-v1",
+  "version": "CONV-04C-02-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04C-02",
+  "authorized_base": "66ee179e5f9b72338e50cf87aeec8307e27f344c",
+  "route": {
+    "title": "How to Learn with LBFL",
+    "permalink": "/learn/",
+    "source_file": "_pages/utility/learn.md",
+    "layout": "single",
+    "academic_system": "v1",
+    "academic_role": "academic_gateway",
+    "lang": "en",
+    "learning_guide": "canonical",
+    "enforcement": "strict"
+  },
+  "canonical_cycle": [
+    "Understand",
+    "Retrieve",
+    "Explain",
+    "Apply",
+    "Reflect",
+    "Repair"
+  ],
+  "specialist_references": [
+    {
+      "id": "lolo-lala",
+      "url": "/frameworks/lolo-lala/"
+    },
+    {
+      "id": "bloom-taxonomy",
+      "url": "/frameworks/bloom-taxonomy/"
+    },
+    {
+      "id": "cq-studio",
+      "url": "/frameworks/cq-studio/"
+    },
+    {
+      "id": "assessment-rubric",
+      "url": "/frameworks/assessment-rubric/"
+    },
+    {
+      "id": "practical-framework",
+      "url": "/frameworks/practical-framework/"
+    }
+  ],
+  "supporting_loops": [
+    {
+      "id": "synaptic-bridge",
+      "sequence": [
+        "Observe",
+        "Question",
+        "Connect",
+        "Explain"
+      ]
+    },
+    {
+      "id": "assessment-repair",
+      "sequence": [
+        "Attempt",
+        "Feedback",
+        "Repair",
+        "Reattempt"
+      ]
+    }
+  ],
+  "gateway_cta_include": "_includes/education/learning-guide-cta.html",
+  "gateway_cta_activation": "created-not-injected",
+  "browser_certification": {
+    "viewports": [
+      320,
+      390,
+      768,
+      1280,
+      1440
+    ],
+    "no_javascript": true,
+    "text_spacing": true,
+    "keyboard_focus": true,
+    "serious_critical_axe_max": 0,
+    "max_horizontal_overflow_css_px": 2
+  },
+  "protected_boundaries": {
+    "existing_gateway_injection": "deferred",
+    "framework_page_rewrite": "forbidden",
+    "botany_zoology_mcq_socratic_cleanup": "deferred",
+    "bot_08": "frozen",
+    "admission_pr_356": "untouched",
+    "worker_cloudflare": "out-of-scope"
+  }
+}
