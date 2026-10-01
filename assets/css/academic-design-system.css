@@ -446,6 +446,52 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button {
   text-decoration: none;
 }
 
+/*
+   Legacy global button rules use priority declarations on every <button>.
+   Academic v1 therefore owns these two semantic control classes with an
+   exact, validator-bound priority bridge so their component state is not
+   replaced by the legacy gradient/geometry.
+*/
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button {
+  padding: 0.6rem 1rem !important;
+  border: 2px solid var(--lbfl-academic-accent) !important;
+  border-radius: 0.7rem !important;
+  background: var(--lbfl-academic-accent) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-weight: 750 !important;
+  transition: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-tab {
+  padding: 0.55rem 0.85rem !important;
+  border: 1px solid var(--lbfl-academic-border) !important;
+  border-radius: 0.65rem !important;
+  background: var(--lbfl-academic-surface) !important;
+  color: var(--lbfl-academic-link) !important;
+  font-family: inherit !important;
+  font-weight: 750 !important;
+  transition: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-tab[aria-selected="true"] {
+  border-color: var(--lbfl-academic-accent) !important;
+  background: var(--lbfl-academic-soft) !important;
+  color: var(--lbfl-academic-heading) !important;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button:disabled,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-tab:disabled {
+  border-color: var(--lbfl-academic-border) !important;
+  background: #e2e8f0 !important;
+  color: #64748b !important;
+  cursor: not-allowed !important;
+}
+
 /* Academic v1 owns the injected Zoology learning cycle when legacy Zoology CSS is withheld. */
 html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle {
   margin: 0 0 2rem;
@@ -582,15 +628,20 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h4 {
   }
 
   /*
-     Legacy neural-card motion is priority-declared upstream. These two
-     exact overrides are the only additional priority declarations permitted
-     by Academic v1, and only inside the reduced-motion media query.
+     Retained neural/MI controls carry priority-declared legacy motion.
+     These exact overrides are permitted only inside the reduced-motion
+     media query and are pinned by the Academic Design System validator.
   */
-  html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card {
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-question-card,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-btn-calculate {
     transition: none !important;
   }
 
-  html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card:hover {
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card:hover,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-question-card:hover,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-btn-calculate:hover,
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-btn-calculate:active {
     transform: none !important;
   }
 }
