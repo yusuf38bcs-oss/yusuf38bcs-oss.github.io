@@ -33,6 +33,34 @@ html.lbfl-academic-v1:not(.lbfl-home-v3-document) body {
   background: var(--lbfl-academic-paper);
 }
 
+/* Single-layout contextual navigation sits outside the owned article surface. */
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav {
+  color: var(--lbfl-academic-ink);
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: var(--lbfl-academic-surface);
+  box-shadow: var(--lbfl-academic-shadow);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-title {
+  color: var(--lbfl-academic-heading);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .header-matrix-line {
+  background: var(--lbfl-academic-border);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-link,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-child-link {
+  color: var(--lbfl-academic-link);
+}
+
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-link:focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav .sidebar-nav-child-link:focus-visible {
+  outline: 3px solid var(--lbfl-academic-focus);
+  outline-offset: 3px;
+}
+
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] {
   color: var(--lbfl-academic-ink);
   font-family: Inter, "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -283,6 +311,53 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap td 
 html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap th {
   background: #e2e8f0;
   color: var(--lbfl-academic-heading);
+}
+
+/*
+   Progressive tabs primitive.
+   Baseline/no-JavaScript behavior keeps every panel visible and readable.
+   A future enhancement script may add tab semantics and hide inactive panels
+   only after successful initialization.
+*/
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tabs {
+  margin-block: 1.25rem;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 0.85rem;
+  padding: 0;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tab {
+  min-height: 2.5rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: 0.65rem;
+  background: var(--lbfl-academic-surface);
+  color: var(--lbfl-academic-link);
+  font: inherit;
+  font-weight: 750;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tab[aria-selected="true"] {
+  border-color: var(--lbfl-academic-accent);
+  background: var(--lbfl-academic-soft);
+  color: var(--lbfl-academic-heading);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tab-panel {
+  margin-block: 0.85rem;
+  padding: var(--lbfl-academic-space);
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: var(--lbfl-academic-surface);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-tab-panel > :first-child {
+  margin-top: 0;
 }
 
 html.lbfl-academic-v1 [data-lbfl-academic-surface] details.lbfl-academic-details {
