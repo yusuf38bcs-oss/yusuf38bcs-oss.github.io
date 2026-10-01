@@ -117,10 +117,18 @@ html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .
   color: #f8fafc;
 }
 
-html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] a {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] a:not(.lbfl-academic-button) {
   color: var(--lbfl-academic-link);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.16em;
+}
+
+/* Linked headings inside retained dark Botany components stay high contrast. */
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-hero h2 a,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-clean-card h3 a,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-exam-focus h2 a,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-practice-strip h2 a {
+  color: #67e8f9;
 }
 
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] img,
@@ -298,7 +306,7 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-actions {
   margin-block: 1.25rem;
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-button {
+html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -310,6 +318,85 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-button {
   color: #ffffff;
   font-weight: 750;
   text-decoration: none;
+}
+
+/* Academic v1 owns the injected Zoology learning cycle when legacy Zoology CSS is withheld. */
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle {
+  margin: 0 0 2rem;
+  padding: var(--lbfl-academic-space);
+  border: 1px solid var(--lbfl-academic-border);
+  border-radius: var(--lbfl-academic-radius);
+  background: linear-gradient(145deg, #ffffff, var(--lbfl-academic-soft));
+  box-shadow: var(--lbfl-academic-shadow);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--lbfl-academic-accent);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__title {
+  margin: 0;
+  color: var(--lbfl-academic-heading);
+  font-size: clamp(1.12rem, 1.02rem + 0.45vw, 1.4rem);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: lbfl-zoology-cycle;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps li {
+  min-width: 0;
+  padding: 0.8rem;
+  border-top: 2px solid color-mix(in srgb, var(--lbfl-academic-accent) 28%, transparent);
+  background: var(--lbfl-academic-surface);
+  counter-increment: lbfl-zoology-cycle;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps li::before {
+  content: counter(lbfl-zoology-cycle, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.2rem;
+  color: #7a4f10;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps strong {
+  display: block;
+  color: var(--lbfl-academic-heading);
+  font-size: 0.88rem;
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps span {
+  display: block;
+  margin-top: 0.18rem;
+  color: var(--lbfl-academic-muted);
+  font-size: 0.78rem;
+  line-height: 1.42;
+}
+
+@media (max-width: 48rem) {
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 30rem) {
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-zoology-cycle__steps {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Legacy bridge: opt-in academic v1 surfaces only. */
