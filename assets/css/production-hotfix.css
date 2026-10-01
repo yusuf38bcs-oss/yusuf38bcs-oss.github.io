@@ -246,18 +246,18 @@
 }
 
 /* Botany lecture forensic mobile fix: keep the fixed lecture pattern readable on every HSC Botany lecture. */
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content {
   color: #dbeafe !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content > div:first-of-type {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content > div:first-of-type {
   overflow: visible !important;
   min-height: 0 !important;
   height: auto !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content > div:first-of-type h1,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content > div:first-of-type h2 {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content > div:first-of-type h1,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content > div:first-of-type h2 {
   color: #ffffff !important;
   font-size: clamp(1.55rem, 8.4vw, 2.35rem) !important;
   line-height: 1.18 !important;
@@ -267,27 +267,27 @@ body:not(.lbfl-academic-v1-active).layout--single.wide .page__content > div:firs
   max-width: 100% !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content > div:first-of-type p {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content > div:first-of-type p {
   color: #14f1d9 !important;
   font-size: clamp(0.98rem, 4.2vw, 1.16rem) !important;
   line-height: 1.55 !important;
   overflow-wrap: anywhere !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .guideline-quote-block,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content blockquote {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .guideline-quote-block,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content blockquote {
   color: #dbeafe !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .guideline-quote-block strong,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel strong,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner strong {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .guideline-quote-block strong,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel strong,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner strong {
   color: #ffffff !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .accordion {
   width: 100% !important;
   min-height: 4.25rem !important;
   margin: 1.05rem 0 0.6rem !important;
@@ -311,16 +311,16 @@ body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion
   cursor: pointer !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion span {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .accordion span {
   flex: 0 0 auto !important;
   color: #2dd4bf !important;
   font-size: 1.55rem !important;
   line-height: 1 !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion:hover,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion:focus-visible,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion.active {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .accordion:hover,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .accordion:focus-visible,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .accordion.active {
   color: #ffffff !important;
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(8, 47, 73, 0.86)) !important;
   border-color: rgba(45, 212, 191, 0.34) !important;
@@ -328,15 +328,15 @@ body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion
   outline: none !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel {
   background: rgba(2, 6, 23, 0.74) !important;
   border-left: 4px solid rgba(100, 116, 139, 0.9) !important;
   border-radius: 0 14px 14px 0 !important;
   overflow: hidden !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel.show,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion.active + .panel {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel.show,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .accordion.active + .panel {
   display: block !important;
   max-height: none !important;
   height: auto !important;
@@ -347,62 +347,62 @@ body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion
   border-top: none !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner {
   padding: clamp(1rem, 4.4vw, 1.55rem) !important;
   color: #dbeafe !important;
   font-size: clamp(1rem, 4.2vw, 1.14rem) !important;
   line-height: 1.78 !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner p,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner li,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner td,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner th {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner p,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner li,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner td,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner th {
   color: #dbeafe !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner h2,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner h3,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner h4 {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner h2,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner h3,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner h4 {
   color: #f8fafc !important;
   line-height: 1.25 !important;
   overflow-wrap: anywhere !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner a {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner a {
   color: #67e8f9 !important;
 }
 
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content img,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content svg,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content video,
-body:not(.lbfl-academic-v1-active).layout--single.wide .page__content canvas {
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content img,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content svg,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content video,
+:where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content canvas {
   max-width: 100% !important;
   height: auto !important;
 }
 
 @media (max-width: 640px) {
-  body:not(.lbfl-academic-v1-active).layout--single.wide .page__content > div:first-of-type {
+  :where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content > div:first-of-type {
     padding: 1.2rem !important;
     margin-bottom: 1.5rem !important;
     border-radius: 20px !important;
     text-align: left !important;
   }
 
-  body:not(.lbfl-academic-v1-active).layout--single.wide .page__content > div:first-of-type h1,
-  body:not(.lbfl-academic-v1-active).layout--single.wide .page__content > div:first-of-type h2 {
+  :where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content > div:first-of-type h1,
+  :where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content > div:first-of-type h2 {
     margin-bottom: 0.75rem !important;
     font-size: clamp(1.42rem, 9.4vw, 2rem) !important;
     line-height: 1.16 !important;
   }
 
-  body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .accordion {
+  :where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .accordion {
     min-height: 4.55rem !important;
     padding: 1rem 0.95rem !important;
     font-size: clamp(1rem, 5.2vw, 1.16rem) !important;
   }
 
-  body:not(.lbfl-academic-v1-active).layout--single.wide .page__content .panel-content-inner {
+  :where(body:not(.lbfl-academic-v1-active)).layout--single.wide .page__content .panel-content-inner {
     font-size: 1rem !important;
     line-height: 1.75 !important;
   }

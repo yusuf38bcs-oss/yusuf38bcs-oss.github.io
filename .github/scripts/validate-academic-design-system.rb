@@ -159,7 +159,7 @@ if production_hotfix_path.file?
   )
   fail_if(
     errors,
-    !production_hotfix.include?("body:not(.lbfl-academic-v1-active).layout--single.wide"),
+    !production_hotfix.include?(":where(body:not(.lbfl-academic-v1-active)).layout--single.wide"),
     "Legacy wide-page hotfix missing Academic v1 exclusion"
   )
 end
