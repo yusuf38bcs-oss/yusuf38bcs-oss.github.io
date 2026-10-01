@@ -8,6 +8,8 @@ require "pathname"
 ROOT = Pathname.new(__dir__).join("../..").expand_path
 MANIFEST_PATH = ROOT.join("_data/academic/design_system_v1.json")
 CSS_PATH = ROOT.join("assets/css/academic-design-system.css")
+PRODUCTION_HOTFIX_PATH = ROOT.join("assets/css/production-hotfix.css")
+CERT_WORKFLOW_PATH = ROOT.join(".github/workflows/academic-design-system-certification.yml")
 HEAD_PATH = ROOT.join("_includes/head/head.html")
 DEFAULT_LAYOUT = ROOT.join("_layouts/default.html")
 HOMEPAGE_LAYOUT = ROOT.join("_layouts/homepage-v3.html")
@@ -109,7 +111,19 @@ def fail_if(errors, condition, message)
   errors << message if condition
 end
 
-[MANIFEST_PATH, CSS_PATH, HEAD_PATH, CUSTOM_HEAD, DEFAULT_LAYOUT, HOMEPAGE_LAYOUT, SINGLE_LAYOUT, STATE_PATH, DOC_PATH].each do |path|
+[
+  MANIFEST_PATH,
+  CSS_PATH,
+  PRODUCTION_HOTFIX_PATH,
+  CERT_WORKFLOW_PATH,
+  HEAD_PATH,
+  CUSTOM_HEAD,
+  DEFAULT_LAYOUT,
+  HOMEPAGE_LAYOUT,
+  SINGLE_LAYOUT,
+  STATE_PATH,
+  DOC_PATH
+].each do |path|
   fail_if(errors, !path.file?, "Missing required CONV-04B file: #{path.relative_path_from(ROOT)}")
 end
 
@@ -140,6 +154,8 @@ if MANIFEST_PATH.file?
     fail_if(errors, !css.include?(".#{class_name}"), "Missing component class .#{class_name}")
   end
   fail_if(errors, !css.include?("a.lbfl-academic-button"), "Academic button anchor specificity contract missing")
+  fail_if(errors, !css.include?("button.lbfl-academic-button"), "Academic button element contract missing")
+  fail_if(errors, !css.include?(".lbfl-info-card a"), "Dark legacy info-card linked-text bridge missing")
   fail_if(errors, !css.include?(".lbfl-clean-card h3 a"), "Dark legacy Botany linked-heading bridge missing")
   fail_if(errors, !css.include?(".lbfl-zoology-cycle__steps"), "Academic v1 Zoology learning-cycle treatment missing")
   fail_if(errors, !css.include?(".lbfl-academic-tablist"), "Academic progressive-tabs tablist primitive missing")
@@ -215,9 +231,8 @@ if CUSTOM_HEAD.file?
   )
 end
 
-production_hotfix_path = ROOT.join("assets/css/production-hotfix.css")
-if production_hotfix_path.file?
-  production_hotfix = read_utf8(production_hotfix_path)
+if PRODUCTION_HOTFIX_PATH.file?
+  production_hotfix = read_utf8(PRODUCTION_HOTFIX_PATH)
   fail_if(
     errors,
     production_hotfix.match?(/^\s*\.layout--single\.wide\s/m),
