@@ -74,6 +74,9 @@ The initial reusable classes are:
 - `.lbfl-academic-actions`
 - `.lbfl-academic-button`
 - `details.lbfl-academic-details`
+- `.lbfl-academic-tabs` with `.lbfl-academic-tablist`, `.lbfl-academic-tab`, and `.lbfl-academic-tab-panel`
+
+The tabs primitive is progressive enhancement: without JavaScript every panel remains visible in document order. A later enhancement may add tab semantics and hide inactive panels only after successful initialization, so related information is never JS-dependent.
 
 These implement the information-structure mapping already locked in the Academic Surface Contract.
 
@@ -86,7 +89,8 @@ The system is designed for:
 - minimum 40 CSS px practical control height in core buttons/details;
 - no forced ordinary-word fragmentation;
 - reduced-motion support;
-- content availability without JavaScript.
+- content availability without JavaScript;
+- Academic-v1 ownership of contextual-sidebar foreground/background contrast when the body uses the paper surface.
 
 Browser certification remains required before any route becomes strict.
 
