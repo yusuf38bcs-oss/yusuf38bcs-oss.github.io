@@ -97,6 +97,8 @@ EXPECTED_ACTIVATION = {
 
 EXPECTED_IMPORTANT_PROPERTIES = %w[
   min-height height overflow-wrap word-break
+  background color padding border border-radius border-color
+  font-family font-weight transition transform box-shadow cursor
 ].freeze
 
 EXPECTED_HERO_IMPORTANT_SELECTORS = [
@@ -116,13 +118,46 @@ EXPECTED_READING_IMPORTANT_SELECTORS = [
   "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h4"
 ].sort.freeze
 
-EXPECTED_REDUCED_MOTION_CARD_SELECTOR = [
-  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card"
+EXPECTED_ACADEMIC_BUTTON_PRIORITY_SELECTORS = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button"
 ].freeze
 
-EXPECTED_REDUCED_MOTION_HOVER_SELECTOR = [
-  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card:hover"
+EXPECTED_ACADEMIC_TAB_PRIORITY_SELECTORS = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-tab"
 ].freeze
+
+EXPECTED_ACADEMIC_TAB_SELECTED_PRIORITY_SELECTORS = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-tab[aria-selected=\"true\"]"
+].freeze
+
+EXPECTED_ACADEMIC_DISABLED_CONTROL_PRIORITY_SELECTORS = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button:disabled",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-tab:disabled"
+].sort.freeze
+
+EXPECTED_REDUCED_MOTION_TRANSITION_SELECTORS = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-question-card",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-btn-calculate"
+].sort.freeze
+
+EXPECTED_REDUCED_MOTION_TRANSFORM_SELECTORS = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card:hover",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-question-card:hover",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-btn-calculate:hover",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .mi-btn-calculate:active"
+].sort.freeze
+
+EXPECTED_REDUCED_MOTION_IMPORTANT_RULES = [
+  {
+    "selectors" => EXPECTED_REDUCED_MOTION_TRANSITION_SELECTORS,
+    "declarations" => ["transition:none"]
+  },
+  {
+    "selectors" => EXPECTED_REDUCED_MOTION_TRANSFORM_SELECTORS,
+    "declarations" => ["transform:none"]
+  }
+].sort_by { |rule| rule["selectors"].join(",") }.freeze
 
 EXPECTED_IMPORTANT_RULES = [
   {
@@ -134,13 +169,53 @@ EXPECTED_IMPORTANT_RULES = [
     "declarations" => ["overflow-wrap:normal", "word-break:normal"].sort
   },
   {
-    "selectors" => EXPECTED_REDUCED_MOTION_CARD_SELECTOR,
-    "declarations" => ["transition:none"]
+    "selectors" => EXPECTED_ACADEMIC_BUTTON_PRIORITY_SELECTORS,
+    "declarations" => [
+      "background:var(--lbfl-academic-accent)",
+      "border:2px solid var(--lbfl-academic-accent)",
+      "border-radius:0.7rem",
+      "box-shadow:none",
+      "color:#ffffff",
+      "font-family:inherit",
+      "font-weight:750",
+      "padding:0.6rem 1rem",
+      "transform:none",
+      "transition:none"
+    ].sort
   },
   {
-    "selectors" => EXPECTED_REDUCED_MOTION_HOVER_SELECTOR,
-    "declarations" => ["transform:none"]
-  }
+    "selectors" => EXPECTED_ACADEMIC_TAB_PRIORITY_SELECTORS,
+    "declarations" => [
+      "background:var(--lbfl-academic-surface)",
+      "border:1px solid var(--lbfl-academic-border)",
+      "border-radius:0.65rem",
+      "box-shadow:none",
+      "color:var(--lbfl-academic-link)",
+      "font-family:inherit",
+      "font-weight:750",
+      "padding:0.55rem 0.85rem",
+      "transform:none",
+      "transition:none"
+    ].sort
+  },
+  {
+    "selectors" => EXPECTED_ACADEMIC_TAB_SELECTED_PRIORITY_SELECTORS,
+    "declarations" => [
+      "background:var(--lbfl-academic-soft)",
+      "border-color:var(--lbfl-academic-accent)",
+      "color:var(--lbfl-academic-heading)"
+    ].sort
+  },
+  {
+    "selectors" => EXPECTED_ACADEMIC_DISABLED_CONTROL_PRIORITY_SELECTORS,
+    "declarations" => [
+      "background:#e2e8f0",
+      "border-color:var(--lbfl-academic-border)",
+      "color:#64748b",
+      "cursor:not-allowed"
+    ].sort
+  },
+  *EXPECTED_REDUCED_MOTION_IMPORTANT_RULES
 ].sort_by { |rule| rule["selectors"].join(",") }.freeze
 
 ACADEMIC_SELECTOR_ROOT = /\Ahtml\.lbfl-academic-v1(?:\z|(?=[\s>+~.#:\[]))/.freeze
@@ -462,15 +537,11 @@ if MANIFEST_PATH.file?
   reduced_motion_source = extract_at_rule_block(policy_source, "@media (prefers-reduced-motion: reduce)")
   fail_if(errors, reduced_motion_source.nil?, "Reduced-motion media query missing")
   if reduced_motion_source
+    reduced_motion_important_rules = extract_important_rules(reduced_motion_source)
     fail_if(
       errors,
-      !reduced_motion_source.match?(/\.neural-card\s*\{[^{}]*transition\s*:\s*none\s*!\s*important\s*;/im),
-      "Reduced-motion neural-card transition override missing from reduced-motion media query"
-    )
-    fail_if(
-      errors,
-      !reduced_motion_source.match?(/\.neural-card:hover\s*\{[^{}]*transform\s*:\s*none\s*!\s*important\s*;/im),
-      "Reduced-motion neural-card transform override missing from reduced-motion media query"
+      reduced_motion_important_rules != EXPECTED_REDUCED_MOTION_IMPORTANT_RULES,
+      "Reduced-motion priority rules drifted from the exact retained-control contract"
     )
   end
 end
@@ -562,9 +633,15 @@ if git_dir.exist?
 
     if candidate_state.include?("phase: CONV-04B")
       unexpected = changed - ALLOWED_FILES.sort
-      missing = ALLOWED_FILES.sort - changed
       errors << "Unexpected CONV-04B changed files: #{unexpected.join(', ')}" unless unexpected.empty?
-      errors << "Expected CONV-04B files not changed: #{missing.join(', ')}" unless missing.empty?
+
+      # The exact twelve-file completeness requirement belongs only to the
+      # original CONV-04B bootstrap PR against the authorized base. Later
+      # maintenance PRs may legitimately change a subset of those artifacts.
+      if comparison_base == EXPECTED_BASE
+        missing = ALLOWED_FILES.sort - changed
+        errors << "Expected CONV-04B bootstrap files not changed: #{missing.join(', ')}" unless missing.empty?
+      end
     end
 
     protected = changed.select do |path|
