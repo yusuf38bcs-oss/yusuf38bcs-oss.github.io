@@ -117,7 +117,12 @@ Therefore CONV-04B contains a deliberately small, opt-in bridge that neutralizes
 - the exact hero selectors `html.lbfl-academic-v1 .page__hero` and `html.lbfl-academic-v1 .page__hero--overlay`, using only `min-height: 0 !important` and `height: auto !important`;
 - the Academic v1 `.page__content` reading selector family, using only `overflow-wrap: normal !important` and `word-break: normal !important`.
 
-No other general-purpose `!important` selector, property, or value is permitted in the core stylesheet. One accessibility-specific exception is fixed in validator code: inside `@media (prefers-reduced-motion: reduce)`, Academic v1 may set `transition: none !important` on the retained `.neural-card` and `transform: none !important` on its hover state, solely to neutralize the upstream priority-declared legacy motion. The validator binds all priority declarations to exact selectors, values, and the reduced-motion context rather than merely allowlisting property names. This bridge is temporary debt containment, not permanent cascade strategy. Retained dark framework links use the same light/teal two-edge focus treatment as other dark migration components. The injected educational boundary is explicitly rethemed for the Academic light surface rather than inheriting the legacy dark-shell colors.
+No other general-purpose `!important` selector, property, or value is permitted in the core stylesheet. Two additional priority bridges are fixed to exact selectors and values because authenticated legacy component CSS uses repository-wide priority declarations:
+
+- Academic-v1 semantic `button.lbfl-academic-button` and `button.lbfl-academic-tab` controls may use only the validator-pinned geometry, color, typography, selected-state, disabled-state, and motion-neutralizing declarations required to defeat the legacy global `button` rule.
+- Inside `@media (prefers-reduced-motion: reduce)`, retained `.neural-card`, `.mi-question-card`, and `.mi-btn-calculate` controls may use only the validator-pinned `transition: none !important` and `transform: none !important` declarations required to neutralize upstream priority-declared motion.
+
+The validator binds every priority declaration to exact selectors, values, and—where applicable—the reduced-motion media block rather than merely allowlisting property names. This bridge is temporary debt containment, not permanent cascade strategy. Retained dark framework links use the same light/teal two-edge focus treatment as other dark migration components. The injected educational boundary is explicitly rethemed for the Academic light surface rather than inheriting the legacy dark-shell colors.
 
 ## Non-goals
 
