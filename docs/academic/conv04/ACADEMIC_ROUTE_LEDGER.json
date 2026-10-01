@@ -274,6 +274,23 @@
       "live_debt": [
         "rendered_boundary_duplication"
       ]
+    },
+    {
+      "id": "learning-guide",
+      "canonical_route": "/learn/",
+      "source_file": "_pages/utility/learn.md",
+      "support_files": [
+        "_data/academic/learning_guide_implementation_v1.json",
+        "_includes/education/learning-guide-cta.html"
+      ],
+      "academic_role": "academic_gateway",
+      "language": "en",
+      "boundary_owner": "none",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     }
   ]
 }
