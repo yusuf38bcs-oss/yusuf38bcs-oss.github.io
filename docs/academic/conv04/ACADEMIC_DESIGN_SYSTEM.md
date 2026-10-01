@@ -78,6 +78,18 @@ The initial reusable classes are:
 
 The tabs primitive is progressive enhancement: without JavaScript every panel remains visible in document order and the tab control list remains hidden. A later enhancement may add `.is-enhanced`, apply the appropriate tab semantics, expose the controls, and hide inactive panels only after successful initialization. Source markup must not pre-hide panels, so related information is never JS-dependent.
 
+Overflowing two-dimensional tables use a focusable, named wrapper. The required markup contract is:
+
+```html
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Comparison table">
+  <table>
+    <!-- semantic table content -->
+  </table>
+</div>
+```
+
+`tabindex="0"` is required so keyboard-only users can enter and horizontally scroll the overflow region. `role="region"` must be paired with an accessible name supplied by `aria-label` or `aria-labelledby`. A later migration validator may enforce the route-specific accessible name, but Academic v1 defines the wrapper contract here.
+
 These implement the information-structure mapping already locked in the Academic Surface Contract.
 
 ## Accessibility and responsive rules
@@ -102,10 +114,10 @@ Two authenticated global defects currently use `!important` outside this system:
 - ordinary-content word fragmentation.
 
 Therefore CONV-04B contains a deliberately small, opt-in bridge that neutralizes only:
-- `min-height` / `height` on academic v1 heroes;
-- `overflow-wrap` / `word-break` on academic v1 reading content.
+- the exact hero selectors `html.lbfl-academic-v1 .page__hero` and `html.lbfl-academic-v1 .page__hero--overlay`, using only `min-height: 0 !important` and `height: auto !important`;
+- the Academic v1 `.page__content` reading selector family, using only `overflow-wrap: normal !important` and `word-break: normal !important`.
 
-No other `!important` property is permitted in the core stylesheet. This bridge is temporary debt containment, not permanent cascade strategy. The injected educational boundary is explicitly rethemed for the Academic light surface rather than inheriting the legacy dark-shell colors.
+No other `!important` selector, property, or value is permitted in the core stylesheet. The validator binds the priority declarations to these selector groups and neutralizing values, rather than merely allowlisting property names. This bridge is temporary debt containment, not permanent cascade strategy. The injected educational boundary is explicitly rethemed for the Academic light surface rather than inheriting the legacy dark-shell colors.
 
 ## Non-goals
 
