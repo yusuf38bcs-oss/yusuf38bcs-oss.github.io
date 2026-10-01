@@ -111,6 +111,63 @@ def fail_if(errors, condition, message)
   errors << message if condition
 end
 
+# Split a selector list only on top-level commas. Commas inside functional
+# pseudo-classes, attribute selectors, quoted strings, or escaped sequences
+# belong to the current selector.
+def split_selector_list(prelude)
+  selectors = []
+  current = +""
+  depth = 0
+  quote = nil
+  escaped = false
+
+  prelude.each_char do |char|
+    if escaped
+      current << char
+      escaped = false
+      next
+    end
+
+    if char == "\\"
+      current << char
+      escaped = true
+      next
+    end
+
+    if quote
+      current << char
+      quote = nil if char == quote
+      next
+    end
+
+    case char
+    when '"', "'"
+      quote = char
+      current << char
+    when "(", "["
+      depth += 1
+      current << char
+    when ")", "]"
+      depth -= 1 if depth.positive?
+      current << char
+    when ","
+      if depth.zero?
+        selector = current.strip
+        selectors << selector unless selector.empty?
+        current = +""
+      else
+        current << char
+      end
+    else
+      current << char
+    end
+  end
+
+  selector = current.strip
+  selectors << selector unless selector.empty?
+  selectors
+end
+
 [
   MANIFEST_PATH,
   CSS_PATH,
@@ -147,32 +204,34 @@ if MANIFEST_PATH.file?
   fail_if(errors, activation != EXPECTED_ACTIVATION, "Activation manifest drifted from published Academic Design System v1")
 
   css = CSS_PATH.file? ? read_utf8(CSS_PATH) : ""
-  EXPECTED_TOKENS.each do |token|
-    fail_if(errors, !css.include?("#{token}:"), "Missing CSS token #{token}")
-  end
-  EXPECTED_COMPONENTS.each_value do |class_name|
-    fail_if(errors, !css.include?(".#{class_name}"), "Missing component class .#{class_name}")
-  end
-  fail_if(errors, !css.include?("a.lbfl-academic-button"), "Academic button anchor specificity contract missing")
-  fail_if(errors, !css.include?("button.lbfl-academic-button"), "Academic button element contract missing")
-  fail_if(errors, !css.include?(".lbfl-info-card a"), "Dark legacy info-card linked-text bridge missing")
-  fail_if(errors, !css.include?(".lbfl-clean-card h3 a"), "Dark legacy Botany linked-heading bridge missing")
-  fail_if(errors, !css.include?(".lbfl-zoology-cycle__steps"), "Academic v1 Zoology learning-cycle treatment missing")
-  fail_if(errors, !css.include?(".lbfl-academic-tablist"), "Academic progressive-tabs tablist primitive missing")
-  fail_if(errors, !css.include?(".lbfl-academic-tab-panel"), "Academic progressive-tabs panel primitive missing")
-  fail_if(errors, !css.include?(".contextual-sidebar-nav"), "Academic v1 contextual-sidebar theme missing")
-
   policy_source = css.gsub(%r{/\*.*?\*/}m) { |comment| "\n" * comment.count("\n") }
 
-  fail_if(errors, policy_source.match?(/min-height:\s*85(?:d)?vh/i), "Academic design system must not introduce 85vh hero forcing")
-  fail_if(errors, policy_source.match?(/overflow-wrap:\s*anywhere/i), "Academic design system must not use overflow-wrap:anywhere")
-  fail_if(errors, policy_source.match?(/word-break:\s*break-all/i), "Academic design system must not use word-break:break-all")
+  EXPECTED_TOKENS.each do |token|
+    token_pattern = /#{Regexp.escape(token)}\s*:/
+    fail_if(errors, !policy_source.match?(token_pattern), "Missing CSS token #{token}")
+  end
+  EXPECTED_COMPONENTS.each_value do |class_name|
+    class_pattern = /\.#{Regexp.escape(class_name)}(?![A-Za-z0-9_-])/
+    fail_if(errors, !policy_source.match?(class_pattern), "Missing component class .#{class_name}")
+  end
+  fail_if(errors, !policy_source.include?("a.lbfl-academic-button"), "Academic button anchor specificity contract missing")
+  fail_if(errors, !policy_source.include?("button.lbfl-academic-button"), "Academic button element contract missing")
+  fail_if(errors, !policy_source.include?(".lbfl-info-card a"), "Dark legacy info-card linked-text bridge missing")
+  fail_if(errors, !policy_source.include?(".lbfl-clean-card h3 a"), "Dark legacy Botany linked-heading bridge missing")
+  fail_if(errors, !policy_source.include?(".lbfl-zoology-cycle__steps"), "Academic v1 Zoology learning-cycle treatment missing")
+  fail_if(errors, !policy_source.include?(".lbfl-academic-tablist"), "Academic progressive-tabs tablist primitive missing")
+  fail_if(errors, !policy_source.include?(".lbfl-academic-tab-panel"), "Academic progressive-tabs panel primitive missing")
+  fail_if(errors, !policy_source.include?(".contextual-sidebar-nav"), "Academic v1 contextual-sidebar theme missing")
+
+  fail_if(errors, policy_source.match?(/min-height\s*:\s*85(?:d)?vh/i), "Academic design system must not introduce 85vh hero forcing")
+  fail_if(errors, policy_source.match?(/overflow-wrap\s*:\s*anywhere/i), "Academic design system must not use overflow-wrap:anywhere")
+  fail_if(errors, policy_source.match?(/word-break\s*:\s*break-all/i), "Academic design system must not use word-break:break-all")
 
   selector_source = policy_source
   selector_source.scan(/([^{}]+)\{/m).flatten.each do |prelude|
     prelude = prelude.strip
     next if prelude.empty? || prelude.start_with?("@")
-    prelude.split(",").map(&:strip).reject(&:empty?).each do |selector|
+    split_selector_list(prelude).each do |selector|
       unless selector.match?(ACADEMIC_SELECTOR_ROOT)
         errors << "Unscoped academic selector: #{selector.inspect}"
       end
