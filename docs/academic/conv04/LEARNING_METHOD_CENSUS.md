@@ -1,7 +1,7 @@
 # CONV-04C-01 — Authenticated Learning-Method Census
 
-**Snapshot:** `5e3a3e8919d1f26740ebab94fce099a49fe7f1b1`  
-**Mode:** read-only census recorded before learner-facing migration.  
+**Snapshot:** `5e3a3e8919d1f26740ebab94fce099a49fe7f1b1`
+**Mode:** read-only census recorded before learner-facing migration.
 **Purpose:** distinguish platform-wide learning-method explanation from topic-specific teaching content so CONV-04C does not solve duplication by deleting useful instructional structure.
 
 ## Authenticated repository observations

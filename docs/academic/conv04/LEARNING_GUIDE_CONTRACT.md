@@ -1,8 +1,8 @@
 # CONV-04C-01 — Canonical Learning Guide Contract
 
-**Contract:** `lbfl-learning-guide-contract-v1`  
-**Version:** `CONV-04C-01-1.0.0`  
-**Authorized base:** `5e3a3e8919d1f26740ebab94fce099a49fe7f1b1`  
+**Contract:** `lbfl-learning-guide-contract-v1`
+**Version:** `CONV-04C-01-1.0.0`
+**Authorized base:** `5e3a3e8919d1f26740ebab94fce099a49fe7f1b1`
 **Status:** architecture-only; learner-facing authoring remains frozen.
 
 ## 1. Canonical ownership
