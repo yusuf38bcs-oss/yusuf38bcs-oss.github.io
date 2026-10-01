@@ -11,14 +11,15 @@ CONV-04B establishes the reusable visual and interaction layer required by the A
 
 ## Architecture
 
-The system has four owned layers:
+The system has five owned layers:
 
 1. `_data/academic/design_system_v1.json` — machine-readable manifest.
 2. `assets/css/academic-design-system.css` — scoped tokens and components.
-3. `_layouts/default.html` — adds the document activation class only when `academic_system: v1`.
+3. `_layouts/default.html` and `_layouts/homepage-v3.html` — add opt-in document activation for ordinary and platform-home surfaces.
 4. `_layouts/single.html` — exposes the academic surface and role as explicit DOM metadata.
+5. `_includes/head/custom.html` — prevents the legacy Zoology stylesheet from loading after a route explicitly opts into Academic v1.
 
-The stylesheet is conditionally loaded from `_includes/head/head.html` after the current production compatibility layers. It is not a global hotfix: no legacy route receives it without explicit academic-system opt-in.
+The stylesheet is conditionally loaded from `_includes/head/head.html` after the current production compatibility layers. It is not a global hotfix: no legacy route receives it without explicit academic-system opt-in. When a Zoology route opts in, the legacy `zoology-academic.css` layer is intentionally withheld so its priority link rules cannot override Academic v1 components.
 
 ## Activation contract
 
@@ -41,7 +42,7 @@ The resulting document exposes:
   data-lbfl-academic-role="lecture">
 ```
 
-The page role remains governed by CONV-04A. CONV-04B only supplies the presentation system.
+The page role remains governed by CONV-04A. CONV-04B only supplies the presentation system. Homepage V3 uses the same opt-in HTML/body/surface metadata path so a future `platform_home` migration does not bypass the design system.
 
 ## Token policy
 

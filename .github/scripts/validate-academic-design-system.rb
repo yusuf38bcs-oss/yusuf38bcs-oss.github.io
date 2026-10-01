@@ -10,7 +10,9 @@ MANIFEST_PATH = ROOT.join("_data/academic/design_system_v1.json")
 CSS_PATH = ROOT.join("assets/css/academic-design-system.css")
 HEAD_PATH = ROOT.join("_includes/head/head.html")
 DEFAULT_LAYOUT = ROOT.join("_layouts/default.html")
+HOMEPAGE_LAYOUT = ROOT.join("_layouts/homepage-v3.html")
 SINGLE_LAYOUT = ROOT.join("_layouts/single.html")
+CUSTOM_HEAD = ROOT.join("_includes/head/custom.html")
 STATE_PATH = ROOT.join("docs/academic/conv04/CONV04_STATE.md")
 DOC_PATH = ROOT.join("docs/academic/conv04/ACADEMIC_DESIGN_SYSTEM.md")
 
@@ -23,7 +25,9 @@ ALLOWED_FILES = %w[
   .github/workflows/academic-design-system-certification.yml
   _data/academic/design_system_v1.json
   _includes/head/head.html
+  _includes/head/custom.html
   _layouts/default.html
+  _layouts/homepage-v3.html
   _layouts/single.html
   assets/css/academic-design-system.css
   docs/academic/conv04/ACADEMIC_DESIGN_SYSTEM.md
@@ -33,6 +37,10 @@ ALLOWED_FILES = %w[
 EXPECTED_ROLES = %w[
   platform_home academic_gateway chapter_index lecture assessment_gateway
   assessment practical revision reflection_gateway reflection application
+].freeze
+
+EXPECTED_IMPORTANT_PROPERTIES = %w[
+  min-height height overflow-wrap word-break
 ].freeze
 
 errors = []
@@ -45,7 +53,7 @@ def fail_if(errors, condition, message)
   errors << message if condition
 end
 
-[MANIFEST_PATH, CSS_PATH, HEAD_PATH, DEFAULT_LAYOUT, SINGLE_LAYOUT, STATE_PATH, DOC_PATH].each do |path|
+[MANIFEST_PATH, CSS_PATH, HEAD_PATH, CUSTOM_HEAD, DEFAULT_LAYOUT, HOMEPAGE_LAYOUT, SINGLE_LAYOUT, STATE_PATH, DOC_PATH].each do |path|
   fail_if(errors, !path.file?, "Missing required CONV-04B file: #{path.relative_path_from(ROOT)}")
 end
 
@@ -78,13 +86,28 @@ if MANIFEST_PATH.file?
   fail_if(errors, css.match?(/min-height:\s*85(?:d)?vh/i), "Academic design system must not introduce 85vh hero forcing")
   fail_if(errors, css.match?(/overflow-wrap:\s*anywhere/i), "Academic design system must not use overflow-wrap:anywhere")
   fail_if(errors, css.match?(/word-break:\s*break-all/i), "Academic design system must not use word-break:break-all")
-  fail_if(errors, css.match?(/^\s*(?:html|body|\*|\.page__content|\.page__hero(?:--overlay)?)\s*[,\{]/m), "Academic design selectors must remain opt-in scoped")
 
-  allowed_important = Array(manifest.dig("legacy_bridge", "allowed_important_properties"))
+  selector_source = css.gsub(%r{/\*.*?\*/}m, "")
+  selector_source.scan(/([^{}]+)\{/m).flatten.each do |prelude|
+    prelude = prelude.strip
+    next if prelude.empty? || prelude.start_with?("@")
+    prelude.split(",").map(&:strip).reject(&:empty?).each do |selector|
+      unless selector.start_with?("html.lbfl-academic-v1")
+        errors << "Unscoped academic selector: #{selector.inspect}"
+      end
+    end
+  end
+
+  manifest_important = Array(manifest.dig("legacy_bridge", "allowed_important_properties"))
+  fail_if(
+    errors,
+    manifest_important != EXPECTED_IMPORTANT_PROPERTIES,
+    "Legacy bridge !important allowlist drifted from fixed validator policy"
+  )
   css.each_line.with_index(1) do |line, line_no|
     next unless line.include?("!important")
     property = line.split(":", 2).first.to_s.strip
-    unless allowed_important.include?(property)
+    unless EXPECTED_IMPORTANT_PROPERTIES.include?(property)
       errors << "Disallowed !important property #{property.inspect} at academic-design-system.css:#{line_no}"
     end
   end
@@ -101,6 +124,23 @@ if DEFAULT_LAYOUT.file?
   fail_if(errors, !layout.include?("lbfl_academic_v1"), "Default layout missing academic v1 activation variable")
   fail_if(errors, !layout.include?("lbfl-academic-v1"), "Default layout missing academic v1 HTML class")
   fail_if(errors, !layout.include?("lbfl-academic-v1-active"), "Default layout missing academic v1 body class")
+end
+
+if HOMEPAGE_LAYOUT.file?
+  layout = read_utf8(HOMEPAGE_LAYOUT)
+  fail_if(errors, !layout.include?("page.academic_system == 'v1'"), "Homepage V3 missing academic v1 activation")
+  fail_if(errors, !layout.include?("lbfl-academic-v1"), "Homepage V3 missing academic v1 HTML class")
+  fail_if(errors, !layout.include?("data-lbfl-academic-surface=\"v1\""), "Homepage V3 missing academic surface metadata")
+  fail_if(errors, !layout.include?("data-lbfl-academic-role="), "Homepage V3 missing academic role metadata")
+end
+
+if CUSTOM_HEAD.file?
+  custom_head = read_utf8(CUSTOM_HEAD)
+  fail_if(
+    errors,
+    !custom_head.include?("lbfl_zoology_route and page.academic_system != 'v1'"),
+    "Academic v1 must not load the legacy Zoology stylesheet"
+  )
 end
 
 if SINGLE_LAYOUT.file?
@@ -124,13 +164,18 @@ end
 
 git_dir = ROOT.join(".git")
 if git_dir.exist?
-  stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{EXPECTED_BASE}...HEAD")
+  candidate_state = STATE_PATH.file? ? read_utf8(STATE_PATH) : ""
+  comparison_base = ENV.fetch("PR_BASE_SHA", EXPECTED_BASE)
+  stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{comparison_base}...HEAD")
   if status.success?
     changed = stdout.lines.map(&:strip).reject(&:empty?).sort
-    unexpected = changed - ALLOWED_FILES.sort
-    missing = ALLOWED_FILES.sort - changed
-    errors << "Unexpected CONV-04B changed files: #{unexpected.join(', ')}" unless unexpected.empty?
-    errors << "Expected CONV-04B files not changed: #{missing.join(', ')}" unless missing.empty?
+
+    if candidate_state.include?("phase: CONV-04B")
+      unexpected = changed - ALLOWED_FILES.sort
+      missing = ALLOWED_FILES.sort - changed
+      errors << "Unexpected CONV-04B changed files: #{unexpected.join(', ')}" unless unexpected.empty?
+      errors << "Expected CONV-04B files not changed: #{missing.join(', ')}" unless missing.empty?
+    end
 
     protected = changed.select do |path|
       path.start_with?("_biology/", "_mcq-arena/", "_socratic/", "workers/", "cloudflare/") ||
@@ -138,7 +183,7 @@ if git_dir.exist?
     end
     errors << "Protected learner/Admission/Worker scope changed: #{protected.join(', ')}" unless protected.empty?
   else
-    errors << "Unable to calculate exact CONV-04B changed-file scope: #{stdout.strip}"
+    errors << "Unable to calculate candidate changed-file scope from #{comparison_base}: #{stdout.strip}"
   end
 end
 

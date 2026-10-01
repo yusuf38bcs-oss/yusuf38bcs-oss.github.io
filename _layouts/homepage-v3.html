@@ -2,8 +2,12 @@
 {% if page.url == '/' and site.data.adsense.mode == 'live' and site.data.adsense.certified_cmp_ready == true %}
   {% assign lbfl_gtm_allowed = true %}
 {% endif %}
+{% assign lbfl_academic_v1 = false %}
+{% if page.academic_system == 'v1' %}
+  {% assign lbfl_academic_v1 = true %}
+{% endif %}
 <!doctype html>
-<html lang="{{ page.lang | default: 'en' }}" xml:lang="{{ page.lang | default: 'en' }}" dir="{{ page.dir | default: 'ltr' }}" class="no-js lbfl-home-v3-document">
+<html lang="{{ page.lang | default: 'en' }}" xml:lang="{{ page.lang | default: 'en' }}" dir="{{ page.dir | default: 'ltr' }}" class="no-js lbfl-home-v3-document{% if lbfl_academic_v1 %} lbfl-academic-v1{% endif %}">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
@@ -46,13 +50,13 @@
       }
     </style>
   </head>
-  <body class="lbfl-home-v3">
+  <body class="lbfl-home-v3{% if lbfl_academic_v1 %} lbfl-academic-v1-active{% endif %}">
     {% if lbfl_gtm_allowed %}
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPZ6MPK4" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
     {% endif %}
     <a class="lbfl-v3-skip" href="#main-content">Skip to main content</a>
     {% include home-v3/header.html %}
-    <main id="main-content" class="lbfl-v3-main" tabindex="-1">
+    <main id="main-content" class="lbfl-v3-main{% if lbfl_academic_v1 %} lbfl-academic-surface lbfl-academic-role--{{ page.academic_role }}{% endif %}" tabindex="-1"{% if lbfl_academic_v1 %} data-lbfl-academic-surface="v1" data-lbfl-academic-role="{{ page.academic_role }}"{% endif %}>
       {{ content }}
     </main>
     {% include home-v3/footer.html %}

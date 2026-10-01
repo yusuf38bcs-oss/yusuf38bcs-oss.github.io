@@ -5,7 +5,7 @@ phase: CONV-04B
 mode: core academic design-system architecture
 authorized_base: `9f20bfa7398db8c2e5f1dbdd3db61c43eef3e5bf`
 branch: `conv-04b-core-academic-design-system-20261001`
-mutation_authority: design manifest + scoped academic stylesheet + opt-in layout metadata + validator + minimum CI + state documentation
+mutation_authority: design manifest + scoped academic stylesheet + opt-in default/homepage layout metadata + legacy-style isolation + validator + minimum CI + state documentation
 learner_content_authoring: frozen
 bot_08: frozen
 admission_pr_356: protected / untouched
@@ -43,7 +43,9 @@ merge: not authorized until unchanged-head governance PASS
 
 Integration points:
 - `_includes/head/head.html`
+- `_includes/head/custom.html`
 - `_layouts/default.html`
+- `_layouts/homepage-v3.html`
 - `_layouts/single.html`
 
 ## Current programme debt retained
