@@ -1,67 +1,70 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04B
-mode: core academic design-system architecture
-authorized_base: `9f20bfa7398db8c2e5f1dbdd3db61c43eef3e5bf`
-branch: `conv-04b-core-academic-design-system-20261001`
-mutation_authority: design manifest + scoped academic stylesheet + opt-in default/homepage layout metadata + legacy-style isolation + validator + minimum CI + state documentation
+phase: CONV-04C-01
+mode: authenticated learning-method census + canonical Learning Guide contract
+authorized_base: `5e3a3e8919d1f26740ebab94fce099a49fe7f1b1`
+branch: `conv-04c-global-learning-architecture-20261001`
+mutation_authority: C-01 architecture artifacts only
 learner_content_authoring: frozen
+canonical_guide_route_creation: frozen
 bot_08: frozen
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head certification
+ready_transition: not authorized until exact-head certification and review-thread audit
 merge: not authorized until unchanged-head governance PASS
 
 ## Completed foundation
 
 - CONV-04A Academic Surface Contract: merged via PR #388.
-- Authoritative CONV-04B base: `9f20bfa7398db8c2e5f1dbdd3db61c43eef3e5bf`.
-- Progressive route ledger and validator remain authoritative.
+- CONV-04B Core Academic Design System: merged via PR #389.
+- CONV-04B-R1 future-phase certification compatibility: merged via PR #391.
+- Authoritative post-B baseline: `5e3a3e8919d1f26740ebab94fce099a49fe7f1b1`.
+- Academic v1 remains opt-in; C-01 does not migrate any learner route.
 - PR #356 remains an independent Admission Draft/HOLD surface.
 
-## CONV-04B locked decisions
+## CONV-04C-01 authenticated findings
 
-1. Academic v1 is opt-in only through `academic_system: v1`.
-2. Legacy routes receive no CONV-04B visual change until later migration phases.
-3. Core design selectors are scoped to `html.lbfl-academic-v1`.
-4. Academic role is exposed as explicit article metadata, not inferred from URL.
-5. Shared design tokens use the `--lbfl-academic-*` namespace.
-6. Core components implement the information-structure vocabulary from CONV-04A.
-7. Important learner content remains DOM-visible without JavaScript.
-8. Ordinary prose must not use `overflow-wrap:anywhere` or `word-break:break-all`.
-9. The existing 85vh hero and word-fragmentation debt are neutralized only on opted-in academic v1 surfaces through a narrowly documented legacy bridge.
-10. Legacy wide-page, Zoology and respiratory presentation layers are isolated from Academic v1 instead of being overridden with new color priority declarations.
-11. Homepage V3 retains its existing shell colors/typography under platform-home opt-in; Academic primitives remain explicit rather than globally recoloring the homepage.
-12. The globally injected educational boundary receives an Academic v1 light-surface theme.
-13. No new global hotfix layer, learner-content rewrite, or course migration is authorized in CONV-04B.
+1. Five specialist framework pages independently declare themselves canonical references: LOLO/LALA, Bloom Taxonomy, CQ Studio, Assessment Rubric, and Practical Learning.
+2. LOLO and LALA terminology is distributed across 36 files each at the authenticated baseline.
+3. The shared framework-links include is directly used in 45 source files.
+4. A separate Zoology LOLO→LALA learning-cycle bridge remains injected through the single layout.
+5. Existing homepage data already defines two reusable mechanisms: Observe→Question→Connect→Explain and Attempt→Feedback→Repair→Reattempt.
+6. Topic-specific Learning Objectives and Learning Outcomes are legitimate lesson ownership and are not automatically duplication debt.
+7. No existing `/learn/`, `/learning/`, or `/how-to-learn/` permalink conflict was found before reserving the planned canonical guide route.
 
-## CONV-04B artifacts
+## Locked ownership
 
-- `_data/academic/design_system_v1.json`
-- `assets/css/academic-design-system.css`
-- `assets/css/production-hotfix.css` (Academic v1 exclusion only)
-- `docs/academic/conv04/ACADEMIC_DESIGN_SYSTEM.md`
-- `.github/scripts/validate-academic-design-system.rb`
-- `.github/workflows/academic-design-system-certification.yml`
+The future **How to Learn with LBFL** guide owns the platform-wide explanation of learning method.
 
-Integration points:
-- `_includes/head/head.html`
-- `_includes/head/custom.html`
-- `_layouts/default.html`
-- `_layouts/homepage-v3.html`
-- `_layouts/single.html`
+Canonical top-level cycle:
 
-## Current programme debt retained
+`Understand → Retrieve → Explain → Apply → Reflect → Repair`
 
-CONV-04B does not claim to remove the existing global debt recorded by CONV-04A:
-- `global_hero_85vh`;
-- `global_overflow_anywhere`;
-- `multi_layer_override_stack`;
-- `late_lesson_design_stylesheet`.
+Specialist frameworks remain references supporting that cycle. Course/lecture/assessment/practical/reflection surfaces retain their role-specific content and may link to the guide without reproducing it in full.
 
-It creates a clean opt-in target so later route migrations do not need additional page-local design systems.
+## C-01 artifacts
+
+- `_data/academic/learning_guide_contract_v1.json`
+- `docs/academic/conv04/LEARNING_METHOD_CENSUS.md`
+- `docs/academic/conv04/LEARNING_GUIDE_CONTRACT.md`
+- `.github/scripts/validate-learning-guide-contract.rb`
+- `.github/workflows/learning-guide-contract-certification.yml`
+- `docs/academic/conv04/CONV04_STATE.md`
+
+## Protected boundary
+
+C-01 does not authorize:
+- creation of `/learn/`;
+- learner-facing page edits;
+- framework-page rewrites;
+- MCQ migration;
+- Botany/Zoology/Practical/Socratic migration;
+- homepage convergence;
+- BOT-08;
+- Admission / PR #356;
+- Worker/Cloudflare changes.
 
 ## Next gate
 
-Exact-head design-system validator + production Jekyll build + required PR checks. Remain Draft until those gates and review-thread audit pass.
+Exact-head Learning Guide Contract Certification + production Jekyll build + changed-file audit + review-thread audit. Only after unchanged-head governance PASS and merge may a later CONV-04C gate authorize the learner-facing canonical guide.
