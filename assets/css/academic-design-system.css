@@ -335,9 +335,13 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap[tab
 }
 
 html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap table {
+  display: table;
   width: 100%;
   min-width: 36rem;
+  max-width: none;
   margin: 0;
+  overflow: visible;
+  overflow-x: visible;
   border-collapse: collapse;
 }
 

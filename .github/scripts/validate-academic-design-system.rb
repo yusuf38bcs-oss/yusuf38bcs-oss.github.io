@@ -318,6 +318,55 @@ def extract_important_rules(source)
   rules.sort_by { |rule| rule["selectors"].join(",") }
 end
 
+def extract_at_rule_block(source, header)
+  start = source.index(header)
+  return nil unless start
+
+  open_brace = source.index("{", start + header.length)
+  return nil unless open_brace
+
+  depth = 1
+  quote = nil
+  escaped = false
+  cursor = open_brace + 1
+
+  while cursor < source.length
+    char = source[cursor]
+
+    if escaped
+      escaped = false
+      cursor += 1
+      next
+    end
+
+    if char == "\\"
+      escaped = true
+      cursor += 1
+      next
+    end
+
+    if quote
+      quote = nil if char == quote
+      cursor += 1
+      next
+    end
+
+    case char
+    when '"', "'"
+      quote = char
+    when "{"
+      depth += 1
+    when "}"
+      depth -= 1
+      return source[(open_brace + 1)...cursor] if depth.zero?
+    end
+
+    cursor += 1
+  end
+
+  nil
+end
+
 [
   MANIFEST_PATH,
   CSS_PATH,
@@ -380,6 +429,7 @@ if MANIFEST_PATH.file?
   fail_if(errors, !policy_source.include?(".lbfl-academic-tab-panel"), "Academic progressive-tabs panel primitive missing")
   fail_if(errors, !policy_source.include?(".contextual-sidebar-nav"), "Academic v1 contextual-sidebar theme missing")
   fail_if(errors, !policy_source.include?('.lbfl-academic-table-wrap[tabindex="0"]:focus-visible'), "Focusable Academic table-wrapper treatment missing")
+  fail_if(errors, !policy_source.match?(/\.lbfl-academic-table-wrap table\s*\{[^{}]*display\s*:\s*table\s*;[^{}]*overflow(?:-x)?\s*:\s*visible\s*;/im), "Academic table wrapper must restore the native table display/overflow model")
 
   fail_if(errors, policy_source.match?(/min-height\s*:\s*85(?:d)?vh/i), "Academic design system must not introduce 85vh hero forcing")
   fail_if(errors, policy_source.match?(/overflow-wrap\s*:\s*anywhere/i), "Academic design system must not use overflow-wrap:anywhere")
@@ -409,10 +459,9 @@ if MANIFEST_PATH.file?
     "Academic priority rules drifted from the exact selector/value contract"
   )
 
-  reduced_motion_start = policy_source.index("@media (prefers-reduced-motion: reduce)")
-  fail_if(errors, reduced_motion_start.nil?, "Reduced-motion media query missing")
-  if reduced_motion_start
-    reduced_motion_source = policy_source[reduced_motion_start..]
+  reduced_motion_source = extract_at_rule_block(policy_source, "@media (prefers-reduced-motion: reduce)")
+  fail_if(errors, reduced_motion_source.nil?, "Reduced-motion media query missing")
+  if reduced_motion_source
     fail_if(
       errors,
       !reduced_motion_source.match?(/\.neural-card\s*\{[^{}]*transition\s*:\s*none\s*!\s*important\s*;/im),
