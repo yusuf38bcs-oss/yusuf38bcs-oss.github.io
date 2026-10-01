@@ -74,6 +74,15 @@ EXPECTED_COMPONENTS = {
   "details" => "lbfl-academic-details"
 }.freeze
 
+EXPECTED_ACTIVATION = {
+  "front_matter" => { "academic_system" => "v1" },
+  "html_class" => "lbfl-academic-v1",
+  "body_class" => "lbfl-academic-v1-active",
+  "article_class" => "lbfl-academic-surface",
+  "article_attribute" => "data-lbfl-academic-surface",
+  "role_attribute" => "data-lbfl-academic-role"
+}.freeze
+
 EXPECTED_IMPORTANT_PROPERTIES = %w[
   min-height height overflow-wrap word-break
 ].freeze
@@ -110,9 +119,7 @@ if MANIFEST_PATH.file?
   fail_if(errors, manifest["components"] != EXPECTED_COMPONENTS, "Component vocabulary drifted from published Academic Design System v1")
 
   activation = manifest["activation"] || {}
-  fail_if(errors, activation.dig("front_matter", "academic_system") != "v1", "academic_system activation must be v1")
-  fail_if(errors, activation["html_class"] != "lbfl-academic-v1", "HTML activation class mismatch")
-  fail_if(errors, activation["article_attribute"] != "data-lbfl-academic-surface", "Article surface attribute mismatch")
+  fail_if(errors, activation != EXPECTED_ACTIVATION, "Activation manifest drifted from published Academic Design System v1")
 
   css = CSS_PATH.file? ? read_utf8(CSS_PATH) : ""
   EXPECTED_TOKENS.each do |token|
@@ -121,6 +128,9 @@ if MANIFEST_PATH.file?
   EXPECTED_COMPONENTS.each_value do |class_name|
     fail_if(errors, !css.include?(".#{class_name}"), "Missing component class .#{class_name}")
   end
+  fail_if(errors, !css.include?("a.lbfl-academic-button"), "Academic button anchor specificity contract missing")
+  fail_if(errors, !css.include?(".lbfl-clean-card h3 a"), "Dark legacy Botany linked-heading bridge missing")
+  fail_if(errors, !css.include?(".lbfl-zoology-cycle__steps"), "Academic v1 Zoology learning-cycle treatment missing")
 
   fail_if(errors, css.match?(/min-height:\s*85(?:d)?vh/i), "Academic design system must not introduce 85vh hero forcing")
   fail_if(errors, css.match?(/overflow-wrap:\s*anywhere/i), "Academic design system must not use overflow-wrap:anywhere")
