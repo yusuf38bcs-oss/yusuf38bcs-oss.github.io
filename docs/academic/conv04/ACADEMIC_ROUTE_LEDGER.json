@@ -1,0 +1,279 @@
+{
+  "schema": "lbfl-academic-surface-contract-v1",
+  "version": "CONV-04A-1.0.0",
+  "authorized_base_sha": "b5368a947221d332c4ede1f57f6a41dcb47c6a9f",
+  "generated_from": {
+    "source_audit": "CONV-04A0/A1 exact-SHA repository census",
+    "live_audit": "CONV-04A2 10-route TinyFish canary; 10/10 fetched, 0 errors",
+    "audit_date": "2026-10-01"
+  },
+  "enforcement_model": {
+    "states": [
+      "inventory",
+      "progressive",
+      "strict"
+    ],
+    "inventory": "Source identity is registered; findings warn.",
+    "progressive": "Detected source debt must exactly match declared source_debt; no new hidden debt.",
+    "strict": "No declared or detected source/live debt; required metadata must match."
+  },
+  "allowed_roles": [
+    "platform_home",
+    "academic_gateway",
+    "chapter_index",
+    "lecture",
+    "assessment_gateway",
+    "assessment",
+    "practical",
+    "revision",
+    "reflection_gateway",
+    "reflection",
+    "application"
+  ],
+  "allowed_source_debt": [
+    "missing_academic_role",
+    "missing_academic_system",
+    "missing_lang",
+    "legacy_language_key",
+    "lang_mismatch",
+    "role_mismatch",
+    "academic_system_mismatch",
+    "inline_style",
+    "escaped_source_comment",
+    "embedded_full_mcq",
+    "local_boundary_block",
+    "category_collection_mismatch",
+    "stale_homepage_course_count"
+  ],
+  "allowed_live_debt": [
+    "rendered_boundary_duplication",
+    "rendered_language_mismatch",
+    "rendered_empty_assessment_state",
+    "rendered_word_fragmentation",
+    "rendered_blank_hero_space",
+    "rendered_low_contrast"
+  ],
+  "system": {
+    "enforcement": "progressive",
+    "source_debt": [
+      "global_hero_85vh",
+      "global_overflow_anywhere",
+      "multi_layer_override_stack",
+      "late_lesson_design_stylesheet"
+    ]
+  },
+  "routes": [
+    {
+      "id": "home",
+      "canonical_route": "/",
+      "source_file": "index.html",
+      "support_files": [
+        "_data/homepage.yml",
+        "_includes/home-v3/journey.html"
+      ],
+      "academic_role": "platform_home",
+      "language": "en",
+      "boundary_owner": "none",
+      "learning_guide_owner": "platform",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "stale_homepage_course_count"
+      ],
+      "live_debt": []
+    },
+    {
+      "id": "hsc-botany-gateway",
+      "canonical_route": "/biology/hsc-corner/botany/",
+      "source_file": "_biology/hsc-corner/botany/index.md",
+      "support_files": [],
+      "academic_role": "academic_gateway",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "missing_lang",
+        "legacy_language_key"
+      ],
+      "live_debt": [
+        "rendered_language_mismatch"
+      ]
+    },
+    {
+      "id": "hsc-botany-lecture-01",
+      "canonical_route": "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/",
+      "source_file": "_biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "inline_style",
+        "escaped_source_comment",
+        "embedded_full_mcq",
+        "local_boundary_block"
+      ],
+      "live_debt": [
+        "rendered_boundary_duplication"
+      ]
+    },
+    {
+      "id": "hsc-botany-lecture-07",
+      "canonical_route": "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/",
+      "source_file": "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "inline_style",
+        "embedded_full_mcq",
+        "local_boundary_block"
+      ],
+      "live_debt": [
+        "rendered_boundary_duplication"
+      ]
+    },
+    {
+      "id": "hsc-zoology-gateway",
+      "canonical_route": "/biology/hsc-corner/zoology/",
+      "source_file": "_biology/hsc-corner/zoology/index.md",
+      "support_files": [],
+      "academic_role": "academic_gateway",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "missing_lang",
+        "legacy_language_key"
+      ],
+      "live_debt": []
+    },
+    {
+      "id": "higher-zoology-gateway",
+      "canonical_route": "/biology/higher-zoology-tree/",
+      "source_file": "_biology/higher-zoology-tree/index.md",
+      "support_files": [],
+      "academic_role": "academic_gateway",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "missing_lang",
+        "legacy_language_key"
+      ],
+      "live_debt": []
+    },
+    {
+      "id": "blood-circulation-revision",
+      "canonical_route": "/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/",
+      "source_file": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
+      "support_files": [],
+      "academic_role": "revision",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "missing_lang",
+        "legacy_language_key"
+      ],
+      "live_debt": [
+        "rendered_blank_hero_space",
+        "rendered_word_fragmentation"
+      ]
+    },
+    {
+      "id": "mcq-academic-gateway",
+      "canonical_route": "/mcq-arena/academic/",
+      "source_file": "_mcq-arena/academic/index.md",
+      "support_files": [],
+      "academic_role": "assessment_gateway",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "missing_lang",
+        "legacy_language_key",
+        "inline_style",
+        "category_collection_mismatch"
+      ],
+      "live_debt": [
+        "rendered_boundary_duplication",
+        "rendered_empty_assessment_state"
+      ]
+    },
+    {
+      "id": "socratic-gateway",
+      "canonical_route": "/socratic/",
+      "source_file": "_pages/hubs/socratic.md",
+      "support_files": [],
+      "academic_role": "reflection_gateway",
+      "language": "en",
+      "boundary_owner": "role_component",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "socratic",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "missing_lang"
+      ],
+      "live_debt": []
+    },
+    {
+      "id": "mi-informed-reflection",
+      "canonical_route": "/socratic/multiple-intelligences/",
+      "source_file": "_pages/socratic-multiple-intelligences.md",
+      "support_files": [
+        "_includes/components/mi-analysis-dynamic.html"
+      ],
+      "academic_role": "reflection",
+      "language": "en",
+      "boundary_owner": "role_component",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "socratic",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "missing_lang",
+        "inline_style"
+      ],
+      "live_debt": [
+        "rendered_boundary_duplication"
+      ]
+    }
+  ]
+}
