@@ -40,9 +40,45 @@ EXPECTED_ROLES = %w[
   assessment practical revision reflection_gateway reflection application
 ].freeze
 
+EXPECTED_TOKENS = %w[
+  --lbfl-academic-paper
+  --lbfl-academic-surface
+  --lbfl-academic-soft
+  --lbfl-academic-ink
+  --lbfl-academic-muted
+  --lbfl-academic-heading
+  --lbfl-academic-link
+  --lbfl-academic-accent
+  --lbfl-academic-border
+  --lbfl-academic-focus
+  --lbfl-academic-radius
+  --lbfl-academic-shadow
+  --lbfl-academic-measure
+  --lbfl-academic-space
+].freeze
+
+EXPECTED_COMPONENTS = {
+  "grid" => "lbfl-academic-grid",
+  "card" => "lbfl-academic-card",
+  "lead" => "lbfl-academic-lead",
+  "stepper" => "lbfl-academic-stepper",
+  "comparison" => "lbfl-academic-comparison",
+  "flow" => "lbfl-academic-flow",
+  "term" => "lbfl-academic-term",
+  "misconception" => "lbfl-academic-misconception",
+  "evidence" => "lbfl-academic-evidence",
+  "table_wrap" => "lbfl-academic-table-wrap",
+  "callout" => "lbfl-academic-callout",
+  "actions" => "lbfl-academic-actions",
+  "button" => "lbfl-academic-button",
+  "details" => "lbfl-academic-details"
+}.freeze
+
 EXPECTED_IMPORTANT_PROPERTIES = %w[
   min-height height overflow-wrap word-break
 ].freeze
+
+ACADEMIC_SELECTOR_ROOT = /\Ahtml\.lbfl-academic-v1(?:\z|(?=[\s>+~.#:\[]))/.freeze
 
 errors = []
 
@@ -70,6 +106,8 @@ if MANIFEST_PATH.file?
   fail_if(errors, manifest["version"] != EXPECTED_VERSION, "Unexpected design-system version")
   fail_if(errors, manifest["authorized_base_sha"] != EXPECTED_BASE, "Design-system authorized base drift")
   fail_if(errors, manifest["roles"] != EXPECTED_ROLES, "Role vocabulary drifted from CONV-04A")
+  fail_if(errors, manifest["tokens"] != EXPECTED_TOKENS, "Token vocabulary drifted from published Academic Design System v1")
+  fail_if(errors, manifest["components"] != EXPECTED_COMPONENTS, "Component vocabulary drifted from published Academic Design System v1")
 
   activation = manifest["activation"] || {}
   fail_if(errors, activation.dig("front_matter", "academic_system") != "v1", "academic_system activation must be v1")
@@ -77,10 +115,10 @@ if MANIFEST_PATH.file?
   fail_if(errors, activation["article_attribute"] != "data-lbfl-academic-surface", "Article surface attribute mismatch")
 
   css = CSS_PATH.file? ? read_utf8(CSS_PATH) : ""
-  Array(manifest["tokens"]).each do |token|
+  EXPECTED_TOKENS.each do |token|
     fail_if(errors, !css.include?("#{token}:"), "Missing CSS token #{token}")
   end
-  (manifest["components"] || {}).each_value do |class_name|
+  EXPECTED_COMPONENTS.each_value do |class_name|
     fail_if(errors, !css.include?(".#{class_name}"), "Missing component class .#{class_name}")
   end
 
@@ -93,7 +131,7 @@ if MANIFEST_PATH.file?
     prelude = prelude.strip
     next if prelude.empty? || prelude.start_with?("@")
     prelude.split(",").map(&:strip).reject(&:empty?).each do |selector|
-      unless selector.start_with?("html.lbfl-academic-v1")
+      unless selector.match?(ACADEMIC_SELECTOR_ROOT)
         errors << "Unscoped academic selector: #{selector.inspect}"
       end
     end
@@ -105,9 +143,11 @@ if MANIFEST_PATH.file?
     manifest_important != EXPECTED_IMPORTANT_PROPERTIES,
     "Legacy bridge !important allowlist drifted from fixed validator policy"
   )
-  css.each_line.with_index(1) do |line, line_no|
-    next unless line.include?("!important")
-    property = line.split(":", 2).first.to_s.strip
+  important_declaration = /([a-z-]+)\s*:\s*[^;{}]*!\s*important\b/i
+  css.to_enum(:scan, important_declaration).each do
+    match = Regexp.last_match
+    property = match[1].downcase
+    line_no = css[0...match.begin(0)].count("\n") + 1
     unless EXPECTED_IMPORTANT_PROPERTIES.include?(property)
       errors << "Disallowed !important property #{property.inspect} at academic-design-system.css:#{line_no}"
     end
