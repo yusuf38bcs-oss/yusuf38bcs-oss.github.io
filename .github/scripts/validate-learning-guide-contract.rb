@@ -149,15 +149,27 @@ if WORKFLOW_PATH.file?
   fail_if(errors, !workflow.include?("CANDIDATE_SHA"), "Workflow must bind candidate SHA")
 end
 
+POST_BOOTSTRAP_MUTABLE_C01_FILES = %w[
+  .github/scripts/validate-learning-guide-contract.rb
+  .github/workflows/learning-guide-contract-certification.yml
+  docs/academic/conv04/CONV04_STATE.md
+].freeze
+
 git_dir = ROOT.join(".git")
 if git_dir.exist?
   stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{comparison_base}...HEAD")
   if status.success?
     changed = stdout.lines.map(&:strip).reject(&:empty?).sort
-    unexpected = changed - ALLOWED_FILES.sort
-    missing = ALLOWED_FILES.sort - changed if bootstrap_pr
-    errors << "Unexpected CONV-04C-01 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
-    errors << "Expected CONV-04C-01 architecture files not changed: #{missing.join(', ')}" if missing && !missing.empty?
+    if bootstrap_pr
+      unexpected = changed - ALLOWED_FILES.sort
+      missing = ALLOWED_FILES.sort - changed
+      errors << "Unexpected CONV-04C-01 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
+      errors << "Expected CONV-04C-01 architecture files not changed: #{missing.join(', ')}" unless missing.empty?
+    else
+      c01_owned_changes = changed & ALLOWED_FILES
+      forbidden_c01_changes = c01_owned_changes - POST_BOOTSTRAP_MUTABLE_C01_FILES
+      errors << "Later CONV-04 phase changed frozen C-01 artifacts: #{forbidden_c01_changes.join(', ')}" unless forbidden_c01_changes.empty?
+    end
   else
     errors << "Unable to inspect changed-file scope: #{stdout.strip}"
   end
