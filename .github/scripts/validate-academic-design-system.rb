@@ -71,7 +71,17 @@ EXPECTED_COMPONENTS = {
   "callout" => "lbfl-academic-callout",
   "actions" => "lbfl-academic-actions",
   "button" => "lbfl-academic-button",
-  "details" => "lbfl-academic-details"
+  "details" => "lbfl-academic-details",
+  "tabs" => "lbfl-academic-tabs"
+}.freeze
+
+EXPECTED_ACCESSIBILITY = {
+  "target_min_css_px" => 24,
+  "preferred_control_css_px" => 40,
+  "reflow_css_px" => 320,
+  "text_spacing" => true,
+  "keyboard_focus" => true,
+  "reduced_motion" => true
 }.freeze
 
 EXPECTED_ACTIVATION = {
@@ -117,6 +127,7 @@ if MANIFEST_PATH.file?
   fail_if(errors, manifest["roles"] != EXPECTED_ROLES, "Role vocabulary drifted from CONV-04A")
   fail_if(errors, manifest["tokens"] != EXPECTED_TOKENS, "Token vocabulary drifted from published Academic Design System v1")
   fail_if(errors, manifest["components"] != EXPECTED_COMPONENTS, "Component vocabulary drifted from published Academic Design System v1")
+  fail_if(errors, manifest["accessibility"] != EXPECTED_ACCESSIBILITY, "Accessibility manifest drifted from published Academic Design System v1")
 
   activation = manifest["activation"] || {}
   fail_if(errors, activation != EXPECTED_ACTIVATION, "Activation manifest drifted from published Academic Design System v1")
@@ -131,12 +142,17 @@ if MANIFEST_PATH.file?
   fail_if(errors, !css.include?("a.lbfl-academic-button"), "Academic button anchor specificity contract missing")
   fail_if(errors, !css.include?(".lbfl-clean-card h3 a"), "Dark legacy Botany linked-heading bridge missing")
   fail_if(errors, !css.include?(".lbfl-zoology-cycle__steps"), "Academic v1 Zoology learning-cycle treatment missing")
+  fail_if(errors, !css.include?(".lbfl-academic-tablist"), "Academic progressive-tabs tablist primitive missing")
+  fail_if(errors, !css.include?(".lbfl-academic-tab-panel"), "Academic progressive-tabs panel primitive missing")
+  fail_if(errors, !css.include?(".contextual-sidebar-nav"), "Academic v1 contextual-sidebar theme missing")
 
-  fail_if(errors, css.match?(/min-height:\s*85(?:d)?vh/i), "Academic design system must not introduce 85vh hero forcing")
-  fail_if(errors, css.match?(/overflow-wrap:\s*anywhere/i), "Academic design system must not use overflow-wrap:anywhere")
-  fail_if(errors, css.match?(/word-break:\s*break-all/i), "Academic design system must not use word-break:break-all")
+  policy_source = css.gsub(%r{/\*.*?\*/}m) { |comment| "\n" * comment.count("\n") }
 
-  selector_source = css.gsub(%r{/\*.*?\*/}m, "")
+  fail_if(errors, policy_source.match?(/min-height:\s*85(?:d)?vh/i), "Academic design system must not introduce 85vh hero forcing")
+  fail_if(errors, policy_source.match?(/overflow-wrap:\s*anywhere/i), "Academic design system must not use overflow-wrap:anywhere")
+  fail_if(errors, policy_source.match?(/word-break:\s*break-all/i), "Academic design system must not use word-break:break-all")
+
+  selector_source = policy_source
   selector_source.scan(/([^{}]+)\{/m).flatten.each do |prelude|
     prelude = prelude.strip
     next if prelude.empty? || prelude.start_with?("@")
@@ -154,10 +170,10 @@ if MANIFEST_PATH.file?
     "Legacy bridge !important allowlist drifted from fixed validator policy"
   )
   important_declaration = /([a-z-]+)\s*:\s*[^;{}]*!\s*important\b/i
-  css.to_enum(:scan, important_declaration).each do
+  policy_source.to_enum(:scan, important_declaration).each do
     match = Regexp.last_match
     property = match[1].downcase
-    line_no = css[0...match.begin(0)].count("\n") + 1
+    line_no = policy_source[0...match.begin(0)].count("\n") + 1
     unless EXPECTED_IMPORTANT_PROPERTIES.include?(property)
       errors << "Disallowed !important property #{property.inspect} at academic-design-system.css:#{line_no}"
     end
