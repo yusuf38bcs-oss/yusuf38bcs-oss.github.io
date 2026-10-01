@@ -99,6 +99,34 @@ EXPECTED_IMPORTANT_PROPERTIES = %w[
   min-height height overflow-wrap word-break
 ].freeze
 
+EXPECTED_HERO_IMPORTANT_SELECTORS = [
+  "html.lbfl-academic-v1 .page__hero",
+  "html.lbfl-academic-v1 .page__hero--overlay"
+].sort.freeze
+
+EXPECTED_READING_IMPORTANT_SELECTORS = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content p",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content li",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content th",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content td",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h1",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h2",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h3",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h4"
+].sort.freeze
+
+EXPECTED_IMPORTANT_RULES = [
+  {
+    "selectors" => EXPECTED_HERO_IMPORTANT_SELECTORS,
+    "declarations" => ["height:auto", "min-height:0"].sort
+  },
+  {
+    "selectors" => EXPECTED_READING_IMPORTANT_SELECTORS,
+    "declarations" => ["overflow-wrap:normal", "word-break:normal"].sort
+  }
+].sort_by { |rule| rule["selectors"].join(",") }.freeze
+
 ACADEMIC_SELECTOR_ROOT = /\Ahtml\.lbfl-academic-v1(?:\z|(?=[\s>+~.#:\[]))/.freeze
 
 errors = []
@@ -168,6 +196,112 @@ def split_selector_list(prelude)
   selectors
 end
 
+def blank_preserving_newlines(text)
+  text.gsub(/[^\n]/, " ")
+end
+
+# Remove semicolon-terminated statement at-rules before selector-root checks.
+# Block at-rules such as @media remain so nested selectors are still scanned.
+def strip_statement_at_rules(source)
+  output = +""
+  index = 0
+
+  while index < source.length
+    if source[index] != "@"
+      output << source[index]
+      index += 1
+      next
+    end
+
+    cursor = index + 1
+    quote = nil
+    escaped = false
+    paren_depth = 0
+    bracket_depth = 0
+    terminator = nil
+
+    while cursor < source.length
+      char = source[cursor]
+
+      if escaped
+        escaped = false
+        cursor += 1
+        next
+      end
+
+      if char == "\\"
+        escaped = true
+        cursor += 1
+        next
+      end
+
+      if quote
+        quote = nil if char == quote
+        cursor += 1
+        next
+      end
+
+      case char
+      when '"', "'"
+        quote = char
+      when "("
+        paren_depth += 1
+      when ")"
+        paren_depth -= 1 if paren_depth.positive?
+      when "["
+        bracket_depth += 1
+      when "]"
+        bracket_depth -= 1 if bracket_depth.positive?
+      when ";"
+        if paren_depth.zero? && bracket_depth.zero?
+          terminator = :statement
+          break
+        end
+      when "{"
+        if paren_depth.zero? && bracket_depth.zero?
+          terminator = :block
+          break
+        end
+      end
+
+      cursor += 1
+    end
+
+    if terminator == :statement
+      output << blank_preserving_newlines(source[index..cursor])
+      index = cursor + 1
+    else
+      output << source[index]
+      index += 1
+    end
+  end
+
+  output
+end
+
+def normalize_css_value(value)
+  value.strip.downcase.gsub(/\s+/, " ")
+end
+
+def extract_important_rules(source)
+  rules = []
+
+  source.scan(/([^{}]+)\{([^{}]*)\}/m).each do |prelude, body|
+    declarations = body.scan(/([a-z-]+)\s*:\s*([^;{}]*?)\s*!\s*important\b\s*;?/i).map do |property, value|
+      "#{property.downcase}:#{normalize_css_value(value)}"
+    end.sort
+
+    next if declarations.empty?
+
+    rules << {
+      "selectors" => split_selector_list(prelude.strip).sort,
+      "declarations" => declarations
+    }
+  end
+
+  rules.sort_by { |rule| rule["selectors"].join(",") }
+end
+
 [
   MANIFEST_PATH,
   CSS_PATH,
@@ -228,12 +362,13 @@ if MANIFEST_PATH.file?
   fail_if(errors, !policy_source.include?(".lbfl-academic-tablist"), "Academic progressive-tabs tablist primitive missing")
   fail_if(errors, !policy_source.include?(".lbfl-academic-tab-panel"), "Academic progressive-tabs panel primitive missing")
   fail_if(errors, !policy_source.include?(".contextual-sidebar-nav"), "Academic v1 contextual-sidebar theme missing")
+  fail_if(errors, !policy_source.include?('.lbfl-academic-table-wrap[tabindex="0"]:focus-visible'), "Focusable Academic table-wrapper treatment missing")
 
   fail_if(errors, policy_source.match?(/min-height\s*:\s*85(?:d)?vh/i), "Academic design system must not introduce 85vh hero forcing")
   fail_if(errors, policy_source.match?(/overflow-wrap\s*:\s*anywhere/i), "Academic design system must not use overflow-wrap:anywhere")
   fail_if(errors, policy_source.match?(/word-break\s*:\s*break-all/i), "Academic design system must not use word-break:break-all")
 
-  selector_source = policy_source
+  selector_source = strip_statement_at_rules(policy_source)
   selector_source.scan(/([^{}]+)\{/m).flatten.each do |prelude|
     prelude = prelude.strip
     next if prelude.empty? || prelude.start_with?("@")
@@ -250,15 +385,12 @@ if MANIFEST_PATH.file?
     manifest_important != EXPECTED_IMPORTANT_PROPERTIES,
     "Legacy bridge !important allowlist drifted from fixed validator policy"
   )
-  important_declaration = /([a-z-]+)\s*:\s*[^;{}]*!\s*important\b/i
-  policy_source.to_enum(:scan, important_declaration).each do
-    match = Regexp.last_match
-    property = match[1].downcase
-    line_no = policy_source[0...match.begin(0)].count("\n") + 1
-    unless EXPECTED_IMPORTANT_PROPERTIES.include?(property)
-      errors << "Disallowed !important property #{property.inspect} at academic-design-system.css:#{line_no}"
-    end
-  end
+  actual_important_rules = extract_important_rules(policy_source)
+  fail_if(
+    errors,
+    actual_important_rules != EXPECTED_IMPORTANT_RULES,
+    "Legacy bridge !important rules drifted from the exact selector/value contract"
+  )
 end
 
 if HEAD_PATH.file?
@@ -334,6 +466,8 @@ if DOC_PATH.file?
   doc = read_utf8(DOC_PATH)
   fail_if(errors, !doc.include?(EXPECTED_VERSION), "Academic Design System doc version mismatch")
   fail_if(errors, !doc.include?("academic_system: v1"), "Academic Design System doc must document explicit activation")
+  fail_if(errors, !doc.include?('class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label='), "Academic Design System doc must require a focusable, named table wrapper")
+  fail_if(errors, !doc.include?("aria-labelledby"), "Academic Design System doc must document aria-labelledby as an accessible-name option")
 end
 
 git_dir = ROOT.join(".git")
