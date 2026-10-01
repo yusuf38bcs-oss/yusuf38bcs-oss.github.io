@@ -609,10 +609,16 @@ if SINGLE_LAYOUT.file?
   fail_if(errors, !layout.include?("lbfl-academic-role--"), "Single layout missing academic role class")
 end
 
+comparison_base = ENV.fetch("PR_BASE_SHA", EXPECTED_BASE)
+
 if STATE_PATH.file?
   state = read_utf8(STATE_PATH)
-  fail_if(errors, !state.include?("phase: CONV-04B"), "CONV04_STATE must identify phase CONV-04B")
-  fail_if(errors, !state.include?(EXPECTED_BASE), "CONV04_STATE must bind the authorized base")
+  if comparison_base == EXPECTED_BASE
+    fail_if(errors, !state.include?("phase: CONV-04B"), "CONV04_STATE must identify phase CONV-04B on the bootstrap base")
+    fail_if(errors, !state.include?(EXPECTED_BASE), "CONV04_STATE must bind the authorized CONV-04B bootstrap base")
+  else
+    fail_if(errors, !state.include?("programme: CONV-04"), "Later CONV-04 phases must retain programme identity")
+  end
 end
 
 if DOC_PATH.file?
@@ -626,7 +632,6 @@ end
 git_dir = ROOT.join(".git")
 if git_dir.exist?
   candidate_state = STATE_PATH.file? ? read_utf8(STATE_PATH) : ""
-  comparison_base = ENV.fetch("PR_BASE_SHA", EXPECTED_BASE)
   stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{comparison_base}...HEAD")
   if status.success?
     changed = stdout.lines.map(&:strip).reject(&:empty?).sort
