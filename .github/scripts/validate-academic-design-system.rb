@@ -30,6 +30,7 @@ ALLOWED_FILES = %w[
   _layouts/homepage-v3.html
   _layouts/single.html
   assets/css/academic-design-system.css
+  assets/css/production-hotfix.css
   docs/academic/conv04/ACADEMIC_DESIGN_SYSTEM.md
   docs/academic/conv04/CONV04_STATE.md
 ].freeze
@@ -141,6 +142,33 @@ if CUSTOM_HEAD.file?
     !custom_head.include?("lbfl_zoology_route and page.academic_system != 'v1'"),
     "Academic v1 must not load the legacy Zoology stylesheet"
   )
+  fail_if(
+    errors,
+    !custom_head.include?("unless page.academic_system == 'v1'"),
+    "Academic v1 must not load the legacy respiratory stylesheet"
+  )
+end
+
+production_hotfix_path = ROOT.join("assets/css/production-hotfix.css")
+if production_hotfix_path.file?
+  production_hotfix = read_utf8(production_hotfix_path)
+  fail_if(
+    errors,
+    production_hotfix.match?(/^\s*\.layout--single\.wide\s/m),
+    "Legacy wide-page hotfix must exclude Academic v1 surfaces"
+  )
+  fail_if(
+    errors,
+    !production_hotfix.include?("body:not(.lbfl-academic-v1-active).layout--single.wide"),
+    "Legacy wide-page hotfix missing Academic v1 exclusion"
+  )
+end
+
+if CSS_PATH.file?
+  css = read_utf8(CSS_PATH)
+  fail_if(errors, !css.include?(".educational-boundary strong"), "Academic v1 boundary strong-text theme missing")
+  fail_if(errors, !css.include?(".educational-boundary span[lang=\"bn\"]"), "Academic v1 Bangla boundary theme missing")
+  fail_if(errors, !css.include?("html.lbfl-academic-v1:not(.lbfl-home-v3-document)"), "Homepage V3 shell isolation missing")
 end
 
 if SINGLE_LAYOUT.file?

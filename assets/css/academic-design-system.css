@@ -29,11 +29,11 @@ html.lbfl-academic-v1 {
   --lbfl-academic-space: clamp(1rem, 2.2vw, 1.5rem);
 }
 
-html.lbfl-academic-v1 body {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) body {
   background: var(--lbfl-academic-paper);
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] {
   color: var(--lbfl-academic-ink);
   font-family: Inter, "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -63,45 +63,45 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content > table {
   max-width: 100%;
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] h1,
-html.lbfl-academic-v1 [data-lbfl-academic-surface] h2,
-html.lbfl-academic-v1 [data-lbfl-academic-surface] h3,
-html.lbfl-academic-v1 [data-lbfl-academic-surface] h4 {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h1,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h2,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h3,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h4 {
   color: var(--lbfl-academic-heading);
   font-family: inherit;
   line-height: 1.2;
   text-wrap: balance;
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] h1 {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h1 {
   font-size: clamp(2rem, 1.55rem + 2vw, 3rem);
   letter-spacing: -0.035em;
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] h2 {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h2 {
   margin-top: clamp(2rem, 5vw, 3rem);
   font-size: clamp(1.45rem, 1.2rem + 1vw, 2rem);
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] h3 {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] h3 {
   margin-top: 1.6rem;
   font-size: clamp(1.18rem, 1.05rem + 0.5vw, 1.5rem);
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] a {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] a {
   color: var(--lbfl-academic-link);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.16em;
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] img,
-html.lbfl-academic-v1 [data-lbfl-academic-surface] svg,
-html.lbfl-academic-v1 [data-lbfl-academic-surface] video {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] img,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] svg,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] video {
   max-width: 100%;
   height: auto;
 }
 
-html.lbfl-academic-v1 [data-lbfl-academic-surface] :focus-visible {
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] :focus-visible {
   outline: 3px solid var(--lbfl-academic-focus);
   outline-offset: 3px;
 }
@@ -153,6 +153,22 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-misconception 
 html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-callout {
   border-left: 0.3rem solid var(--lbfl-academic-accent);
   background: var(--lbfl-academic-soft);
+}
+
+/* Role-owned educational boundary on the Academic v1 light reading surface. */
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .educational-boundary {
+  border-left-color: var(--lbfl-academic-accent);
+  background: #ecfeff;
+  color: var(--lbfl-academic-ink);
+  box-shadow: var(--lbfl-academic-shadow);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .educational-boundary strong {
+  color: var(--lbfl-academic-heading);
+}
+
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .educational-boundary span[lang="bn"] {
+  color: var(--lbfl-academic-muted);
 }
 
 html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-stepper {

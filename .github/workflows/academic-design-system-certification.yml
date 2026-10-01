@@ -6,6 +6,7 @@ on:
     paths:
       - "_data/academic/design_system_v1.json"
       - "assets/css/academic-design-system.css"
+      - "assets/css/production-hotfix.css"
       - "_includes/head/head.html"
       - "_includes/head/custom.html"
       - "_layouts/default.html"

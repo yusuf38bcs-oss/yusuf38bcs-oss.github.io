@@ -19,7 +19,7 @@ The system has five owned layers:
 4. `_layouts/single.html` — exposes the academic surface and role as explicit DOM metadata.
 5. `_includes/head/custom.html` — prevents the legacy Zoology stylesheet from loading after a route explicitly opts into Academic v1.
 
-The stylesheet is conditionally loaded from `_includes/head/head.html` after the current production compatibility layers. It is not a global hotfix: no legacy route receives it without explicit academic-system opt-in. When a Zoology route opts in, the legacy `zoology-academic.css` layer is intentionally withheld so its priority link rules cannot override Academic v1 components.
+The stylesheet is conditionally loaded from `_includes/head/head.html` after the current production compatibility layers. It is not a global hotfix: no legacy route receives it without explicit academic-system opt-in. When a Zoology route opts in, the legacy `zoology-academic.css` layer is intentionally withheld so its priority link rules cannot override Academic v1 components. Respiratory routes use the same isolation rule, and the legacy wide-page production hotfix is explicitly scoped away from Academic v1 surfaces.
 
 ## Activation contract
 
@@ -42,7 +42,7 @@ The resulting document exposes:
   data-lbfl-academic-role="lecture">
 ```
 
-The page role remains governed by CONV-04A. CONV-04B only supplies the presentation system. Homepage V3 uses the same opt-in HTML/body/surface metadata path so a future `platform_home` migration does not bypass the design system.
+The page role remains governed by CONV-04A. CONV-04B only supplies the presentation system. Homepage V3 uses the same opt-in HTML/body/surface metadata path so a future `platform_home` migration does not bypass the design system. Its existing V3 shell retains ownership of global homepage typography, links, focus treatment and background; Academic tokens and explicit Academic component classes remain available without globally recoloring the V3 experience.
 
 ## Token policy
 
@@ -101,7 +101,7 @@ Therefore CONV-04B contains a deliberately small, opt-in bridge that neutralizes
 - `min-height` / `height` on academic v1 heroes;
 - `overflow-wrap` / `word-break` on academic v1 reading content.
 
-No other `!important` property is permitted in the core stylesheet. This bridge is temporary debt containment, not permanent cascade strategy.
+No other `!important` property is permitted in the core stylesheet. This bridge is temporary debt containment, not permanent cascade strategy. The injected educational boundary is explicitly rethemed for the Academic light surface rather than inheriting the legacy dark-shell colors.
 
 ## Non-goals
 

@@ -31,12 +31,16 @@ merge: not authorized until unchanged-head governance PASS
 7. Important learner content remains DOM-visible without JavaScript.
 8. Ordinary prose must not use `overflow-wrap:anywhere` or `word-break:break-all`.
 9. The existing 85vh hero and word-fragmentation debt are neutralized only on opted-in academic v1 surfaces through a narrowly documented legacy bridge.
-10. No new global hotfix layer, learner-content rewrite, or course migration is authorized in CONV-04B.
+10. Legacy wide-page, Zoology and respiratory presentation layers are isolated from Academic v1 instead of being overridden with new color priority declarations.
+11. Homepage V3 retains its existing shell colors/typography under platform-home opt-in; Academic primitives remain explicit rather than globally recoloring the homepage.
+12. The globally injected educational boundary receives an Academic v1 light-surface theme.
+13. No new global hotfix layer, learner-content rewrite, or course migration is authorized in CONV-04B.
 
 ## CONV-04B artifacts
 
 - `_data/academic/design_system_v1.json`
 - `assets/css/academic-design-system.css`
+- `assets/css/production-hotfix.css` (Academic v1 exclusion only)
 - `docs/academic/conv04/ACADEMIC_DESIGN_SYSTEM.md`
 - `.github/scripts/validate-academic-design-system.rb`
 - `.github/workflows/academic-design-system-certification.yml`
