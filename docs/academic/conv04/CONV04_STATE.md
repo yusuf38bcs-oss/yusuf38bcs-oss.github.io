@@ -21,6 +21,7 @@ merge: not authorized until unchanged-head governance PASS
 - CONV-04B Core Academic Design System: merged via PR #389.
 - CONV-04B-R1 future-phase certification compatibility: merged via PR #391.
 - CONV-04C-01 Learning Guide census and ownership contract: merged via PR #390.
+- CONV-04C-01-R1 future-phase scope compatibility: merged via PR #393.
 - Authoritative C-02 base: 66ee179e5f9b72338e50cf87aeec8307e27f344c.
 - PR #356 remains independent Admission Draft/HOLD work.
 
