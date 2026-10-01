@@ -609,15 +609,27 @@ if SINGLE_LAYOUT.file?
   fail_if(errors, !layout.include?("lbfl-academic-role--"), "Single layout missing academic role class")
 end
 
-comparison_base = ENV.fetch("PR_BASE_SHA", EXPECTED_BASE)
+certification_mode = ENV.fetch("CERTIFICATION_MODE", "local")
+comparison_base = ENV["PR_BASE_SHA"].to_s.strip
+if comparison_base.empty?
+  parent_stdout, parent_status = Open3.capture2e("git", "-C", ROOT.to_s, "rev-parse", "HEAD^")
+  comparison_base = parent_status.success? ? parent_stdout.strip : EXPECTED_BASE
+end
 
 if STATE_PATH.file?
   state = read_utf8(STATE_PATH)
-  if comparison_base == EXPECTED_BASE
-    fail_if(errors, !state.include?("phase: CONV-04B"), "CONV04_STATE must identify phase CONV-04B on the bootstrap base")
+  bootstrap_pr = certification_mode == "pull_request" && comparison_base == EXPECTED_BASE
+  if bootstrap_pr
+    fail_if(errors, !state.include?("phase: CONV-04B"), "CONV04_STATE must identify phase CONV-04B on the bootstrap PR")
     fail_if(errors, !state.include?(EXPECTED_BASE), "CONV04_STATE must bind the authorized CONV-04B bootstrap base")
   else
-    fail_if(errors, !state.include?("programme: CONV-04"), "Later CONV-04 phases must retain programme identity")
+    fail_if(errors, !state.include?("programme: CONV-04"), "CONV-04 programme identity missing")
+    phase_line = state.lines.find { |line| line.start_with?("phase:") }.to_s.strip
+    fail_if(
+      errors,
+      !phase_line.match?(/\Aphase:\s+CONV-04[A-Z](?:-\d+)?\z/),
+      "CONV04_STATE must identify a valid CONV-04 phase"
+    )
   end
 end
 
