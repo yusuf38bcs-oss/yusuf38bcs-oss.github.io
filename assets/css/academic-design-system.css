@@ -195,6 +195,7 @@ html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-info-card :focus-visible,
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card:focus-visible,
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .neural-card :focus-visible,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .lbfl-framework-link:focus-visible,
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .omega-audit-hero :focus-visible {
   outline: 3px solid #f8fafc;
   outline-offset: 3px;
@@ -574,5 +575,18 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h4 {
     transition-duration: 0.01ms;
     animation-duration: 0.01ms;
     animation-iteration-count: 1;
+  }
+
+  /*
+     Legacy neural-card motion is priority-declared upstream. These two
+     exact overrides are the only additional priority declarations permitted
+     by Academic v1, and only inside the reduced-motion media query.
+  */
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card {
+    transition: none !important;
+  }
+
+  html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card:hover {
+    transform: none !important;
   }
 }

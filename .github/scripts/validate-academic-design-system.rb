@@ -116,6 +116,14 @@ EXPECTED_READING_IMPORTANT_SELECTORS = [
   "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h4"
 ].sort.freeze
 
+EXPECTED_REDUCED_MOTION_CARD_SELECTOR = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card"
+].freeze
+
+EXPECTED_REDUCED_MOTION_HOVER_SELECTOR = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] .neural-card:hover"
+].freeze
+
 EXPECTED_IMPORTANT_RULES = [
   {
     "selectors" => EXPECTED_HERO_IMPORTANT_SELECTORS,
@@ -124,6 +132,14 @@ EXPECTED_IMPORTANT_RULES = [
   {
     "selectors" => EXPECTED_READING_IMPORTANT_SELECTORS,
     "declarations" => ["overflow-wrap:normal", "word-break:normal"].sort
+  },
+  {
+    "selectors" => EXPECTED_REDUCED_MOTION_CARD_SELECTOR,
+    "declarations" => ["transition:none"]
+  },
+  {
+    "selectors" => EXPECTED_REDUCED_MOTION_HOVER_SELECTOR,
+    "declarations" => ["transform:none"]
   }
 ].sort_by { |rule| rule["selectors"].join(",") }.freeze
 
@@ -356,6 +372,7 @@ if MANIFEST_PATH.file?
   fail_if(errors, !policy_source.include?(".neural-card:focus-visible"), "Dark neural-card focus bridge missing")
   fail_if(errors, !policy_source.include?(".lbfl-clean-card :focus-visible"), "Dark Botany focus bridge missing")
   fail_if(errors, !policy_source.include?(".omega-audit-hero :focus-visible"), "Dark reflection-hero focus bridge missing")
+  fail_if(errors, !policy_source.include?(".lbfl-framework-link:focus-visible"), "Dark framework-link focus bridge missing")
   fail_if(errors, !policy_source.match?(/outline\s*:\s*3px\s+solid\s+#f8fafc\s*;/i), "Dark-surface light focus ring missing")
   fail_if(errors, !policy_source.match?(/box-shadow\s*:\s*0\s+0\s+0\s+6px\s+#0f766e\s*;/i), "Dark-surface outer focus ring missing")
   fail_if(errors, !policy_source.include?(".lbfl-zoology-cycle__steps"), "Academic v1 Zoology learning-cycle treatment missing")
@@ -389,8 +406,24 @@ if MANIFEST_PATH.file?
   fail_if(
     errors,
     actual_important_rules != EXPECTED_IMPORTANT_RULES,
-    "Legacy bridge !important rules drifted from the exact selector/value contract"
+    "Academic priority rules drifted from the exact selector/value contract"
   )
+
+  reduced_motion_start = policy_source.index("@media (prefers-reduced-motion: reduce)")
+  fail_if(errors, reduced_motion_start.nil?, "Reduced-motion media query missing")
+  if reduced_motion_start
+    reduced_motion_source = policy_source[reduced_motion_start..]
+    fail_if(
+      errors,
+      !reduced_motion_source.match?(/\.neural-card\s*\{[^{}]*transition\s*:\s*none\s*!\s*important\s*;/im),
+      "Reduced-motion neural-card transition override missing from reduced-motion media query"
+    )
+    fail_if(
+      errors,
+      !reduced_motion_source.match?(/\.neural-card:hover\s*\{[^{}]*transform\s*:\s*none\s*!\s*important\s*;/im),
+      "Reduced-motion neural-card transform override missing from reduced-motion media query"
+    )
+  end
 end
 
 if HEAD_PATH.file?
