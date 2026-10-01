@@ -323,6 +323,16 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap {
   background: var(--lbfl-academic-surface);
 }
 
+/*
+   Keyboard contract for genuinely two-dimensional overflow tables:
+   markup must add tabindex="0", role="region", and an accessible name
+   (aria-label or aria-labelledby) to the wrapper.
+*/
+html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap[tabindex="0"]:focus-visible {
+  outline: 3px solid var(--lbfl-academic-focus);
+  outline-offset: 3px;
+}
+
 html.lbfl-academic-v1 [data-lbfl-academic-surface] .lbfl-academic-table-wrap table {
   width: 100%;
   min-width: 36rem;
