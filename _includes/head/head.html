@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%Y%m%d' }}">
 <link rel="stylesheet" href="{{ '/assets/css/synaptic-overrides.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
 <link rel="stylesheet" href="{{ '/assets/css/production-hotfix.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
+{% if page.academic_system == 'v1' %}
+<link rel="stylesheet" href="{{ '/assets/css/academic-design-system.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
+{% endif %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
