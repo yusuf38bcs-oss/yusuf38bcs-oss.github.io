@@ -1,26 +1,28 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04E-01
-mode: implementation candidate — HSC Botany gateway + Chapter-01 Academic-v1 convergence
-authorized_base: b07beb8119c4ee001d542a357f38c0e27e5017ba
-branch: conv-04e-01-botany-gateway-authorization-20261002
-production_verified_main: b07beb8119c4ee001d542a357f38c0e27e5017ba
+phase: CONV-04E-02
+mode: authorization-only — BOT-08 Plastid and Chloroplast learner-content gate
+authorized_base: cc10f1cb60828be6d8aac145ecc6964c845ac71b
+branch: conv-04e-02-bot08-plastid-chloroplast-20261003
+production_verified_main: cc10f1cb60828be6d8aac145ecc6964c845ac71b
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
-mutation_authority: exact two Botany learner surfaces + E-01 route-ledger/certification/state artifacts
-learner_content_authoring: structural-migration-implemented / scientific-rewrite-forbidden / certification-pending
+mutation_authority: authorization/provenance/state artifacts only; BOT-08 learner mutation authorized but not yet applied
+learner_content_authoring: BOT-08 authorized / not yet applied / curriculum-bound edition-neutral
 existing_learning_method_cleanup: canonical Learning Guide ownership active on both E-01 surfaces
 gateway_cta_injection: exactly one canonical CTA on each E-01 target surface
 learner_mutation_allowlist:
+  - _biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md
+  - _biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md
   - _biology/hsc-corner/botany/index.md
   - _biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-bot_08: frozen
+bot_08: authorized-not-implemented
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head E-01 source + retained A-D/D-06 + Jekyll + route/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
-merge: not authorized until unchanged-head governance + required checks + Pages PASS
+ready_transition: not authorized until BOT-08 content contract + implementation + retained E-01/A-D/D-06 + exact-head Jekyll/browser/Axe certification
+merge: not authorized in authorization-only state
 
 ## Completed foundation
 
@@ -87,3 +89,15 @@ merge: not authorized until unchanged-head governance + required checks + Pages 
 ## Next gate
 
 Open/maintain a Draft E-01 PR on the unchanged authorized base. Require exact-head E-01 source preservation, retained A-D/D-06 contracts, production Jekyll, route-ledger rendering, five-viewport browser/Axe, keyboard/focus, 320px reflow, text-spacing, reduced-motion, no-JS, CodeQL, zero unresolved threads, required Pages and Trusted Governance before promotion.
+
+## CONV-04E-02 BOT-08 authorization
+
+- Exact post-#408 base: `cc10f1cb60828be6d8aac145ecc6964c845ac71b`.
+- Target source existed at authorization: **NO**.
+- Target: `BOT-08 — Plastid and Chloroplast`.
+- Authorized topic: `chloroplast`.
+- Authorized gap closure: `gap-02-chloroplast` only.
+- NCTB source boundary: Chapter 01, curriculum PDF pp. 31–33.
+- Private textbook exact wording/page claims: **PROHIBITED** without custody.
+- Full lesson assessment bank: **PROHIBITED**; MCQ Arena remains canonical full-bank owner.
+- Learner mutation performed at this authorization commit: **NO**.
