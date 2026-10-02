@@ -91,7 +91,15 @@ def phase_order(value)
 end
 
 def strip_authorized_additions(source)
-  cleaned = source.gsub("\n\n#{CTA}", "")
+  cleaned = source.gsub("\n#{CTA}\n\n", "\n")
+  cleaned = cleaned.gsub(
+    '<p class="lbfl-academic-lead">NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33)',
+    '<p>NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33)'
+  )
+  cleaned = cleaned.gsub(
+    '<a class="lbfl-academic-button" href="/biology/hsc-corner/botany/">← Botany Index</a>',
+    '<a class="lbfl-text-link" href="/biology/hsc-corner/botany/">← Botany Index</a>'
+  )
   cleaned.lines.reject do |line|
     line.match?(/\A(?:academic_system:\s*v1|academic_role:\s*(?:academic_gateway|chapter_index)|lang:\s*bn|learning_guide:\s*canonical)\s*\z/)
   end.join
@@ -135,6 +143,7 @@ end
   need(errors, fm_value(source, "learning_guide") == "canonical", "#{path.basename}: canonical Learning Guide ownership missing")
   need(errors, fm_value(source, "permalink") == route, "#{path.basename}: permalink drift")
   need(errors, source.scan(CTA).length == 1, "#{path.basename}: must contain exactly one canonical Learning Guide CTA")
+  need(errors, source.index(CTA).to_i < source.index('<div class="lbfl-botany-index">').to_i, "#{path.basename}: canonical CTA must remain outside the legacy Botany color wrapper")
   need(errors, !source.include?("education/framework-links.html"), "#{path.basename}: legacy framework panel must not appear")
   need(errors, !source.match?(/<style\b|\sstyle\s*=/i), "#{path.basename}: local styling debt not authorized")
 end
@@ -142,6 +151,8 @@ end
 if CHAPTER.file?
   chapter_source = read_utf8(CHAPTER)
   need(errors, fm_value(chapter_source, "source_scope") == "NCTB curriculum 2012 pp.31-33", "Chapter source_scope drift")
+  need(errors, chapter_source.include?('<p class="lbfl-academic-lead">NCTB Biology curriculum 2012-এর Chapter 01'), "Chapter remaining-gap paragraph must use Academic lead contrast semantics")
+  need(errors, chapter_source.include?('<a class="lbfl-academic-button" href="/biology/hsc-corner/botany/">← Botany Index</a>'), "Chapter return link must use Academic action contrast semantics")
 end
 
 if LEDGER.file?
