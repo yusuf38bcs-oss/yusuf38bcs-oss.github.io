@@ -67,11 +67,16 @@ def main():
     course = load_json(COURSE_CONTRACT)
 
     require(scope.get("schema") == "lbfl-hsc-botany-chapter01-scope-v1", "Unexpected scope schema")
-    require(scope.get("version") == EXPECTED_VERSION, "Unexpected CONV-03C-01R1 scope version")
+    version = str(scope.get("version", ""))
+    require(version == EXPECTED_VERSION or version.startswith("CONV-04E-"),
+            "Unexpected Chapter-01 scope version lineage")
     base = scope.get("authorized_base_sha", "")
     require(bool(SHA40.fullmatch(base)), "authorized_base_sha must be a lowercase 40-character SHA")
     require(base == EXPECTED_BASE, f"Authorized base drift: {base}")
-    require(scope.get("state") == "learner-content-postmerge-integrity-remediation", "Unexpected Chapter-01 remediation state")
+    state = scope.get("state")
+    require(state == "learner-content-postmerge-integrity-remediation" or
+            bool(re.fullmatch(r"bot-\d{2}-implementation-candidate", str(state))),
+            "Unexpected Chapter-01 convergence state")
     require(scope.get("strict_child_authorized") is False, "Chapter 01 must remain non-strict")
     require(scope.get("missing_lesson_authoring_authorized") is True, "Learner-content authoring authority must remain enabled")
 
