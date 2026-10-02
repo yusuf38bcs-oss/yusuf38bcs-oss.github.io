@@ -112,6 +112,8 @@ JSON
 errors = []
 
 PHASE_PATTERN = /\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R([1-9]\d*))?\z/.freeze
+R1_MAINTENANCE_BASE = "a104260266a292bee58f6935a5038693380e8c04"
+VALIDATOR_PATH = ".github/scripts/validate-assessment-runtime-pilot.rb"
 
 def read_utf8(path)
   File.read(path, encoding: "UTF-8")
@@ -239,13 +241,24 @@ if status.success?
     errors << "Unexpected D-04 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
     errors << "Expected D-04 files not changed: #{missing.join(', ')}" unless missing.empty?
   elsif future_phase_pr
+    r1_maintenance_pr =
+      comparison_base == R1_MAINTENANCE_BASE &&
+      changed == [VALIDATOR_PATH]
+
+    # After this one-file R1 maintenance transition, the validator itself is
+    # protected. A later candidate must not be able to weaken the checks that
+    # certify its own D-04 retention.
     future_phase_control_files = %w[
-      .github/scripts/validate-assessment-runtime-pilot.rb
       docs/academic/conv04/CONV04_STATE.md
     ]
     protected_d04_files = ALLOWED_FILES - future_phase_control_files
     touched_protected = changed & protected_d04_files
+    touched_protected -= [VALIDATOR_PATH] if r1_maintenance_pr
     errors << "Future phase changed protected D-04 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+
+    if changed.include?(VALIDATOR_PATH) && !r1_maintenance_pr
+      errors << "Future phase must not modify the retained D-04 validator"
+    end
 
     if changed.include?("docs/academic/conv04/CONV04_STATE.md")
       candidate_state = read_utf8(STATE)
