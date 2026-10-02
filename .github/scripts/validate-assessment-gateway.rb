@@ -70,7 +70,8 @@ if GATEWAY.file?
   errors << "Botany source-return hub missing" unless source.include?("/biology/hsc-corner/botany/")
   errors << "Zoology source-return hub missing" unless source.include?("/biology/hsc-corner/zoology/")
   errors << "D-02 must remove inline style blocks" if source.include?("<style")
-  errors << "D-02 must remove inline style attributes" if source.match?(/\sstyle=/)\n  errors << "Gateway cards must prefer curriculum alignment metadata" unless source.include?("item.hsc_alignment | default: item.excerpt")
+  errors << "D-02 must remove inline style attributes" if source.match?(/\sstyle=/)
+  errors << "Gateway cards must prefer curriculum alignment metadata" unless source.include?("item.hsc_alignment | default: item.excerpt")
   FORBIDDEN.each { |term| errors << "Forbidden assessment framing remains: #{term}" if source.downcase.include?(term.downcase) }
 end
 
@@ -86,12 +87,26 @@ if MANIFEST.file?
   errors << "Zoology source strategy mismatch" unless data.dig("source_return","zoology") == "/biology/hsc-corner/zoology/"
 end
 
+certification_mode = ENV.fetch("CERTIFICATION_MODE", "local")
+comparison_base = ENV["PR_BASE_SHA"].to_s.strip
+if comparison_base.empty?
+  parent_stdout, parent_status = Open3.capture2e("git", "-C", ROOT.to_s, "rev-parse", "HEAD^")
+  comparison_base = parent_status.success? ? parent_stdout.strip : BASE
+end
+bootstrap_pr = certification_mode == "pull_request" && comparison_base == BASE
+
 if STATE.file?
   state = read_utf8(STATE)
-  errors << "CONV04_STATE must identify D-02" unless state.include?("phase: CONV-04D-02")
-  errors << "CONV04_STATE must bind D-02 base" unless state.include?(BASE)
-  errors << "Exact D-02 learner authority missing" unless state.include?("learner_mutation_allowlist:\n  - _mcq-arena/academic/index.md")
-  errors << "BOT-08 must remain frozen" unless state.include?("bot_08: frozen")
+  if bootstrap_pr
+    errors << "CONV04_STATE must identify D-02" unless state.include?("phase: CONV-04D-02")
+    errors << "CONV04_STATE must bind D-02 base" unless state.include?(BASE)
+    errors << "Exact D-02 learner authority missing" unless state.include?("learner_mutation_allowlist:\n  - _mcq-arena/academic/index.md")
+    errors << "BOT-08 must remain frozen" unless state.include?("bot_08: frozen")
+  else
+    errors << "CONV-04 programme identity missing" unless state.include?("programme: CONV-04")
+    phase_line = state.lines.find { |line| line.start_with?("phase:") }.to_s.strip
+    errors << "CONV04_STATE must identify a valid CONV-04 phase" unless phase_line.match?(/\Aphase:\s+CONV-04[A-Z](?:-\d+)?(?:-[A-Z0-9]+)?\z/)
+  end
 end
 
 if LEDGER.file?
@@ -130,15 +145,15 @@ if SITE.file?
   errors << "Rendered raw Liquid detected" if html.match?(/\{\{|\{%/)
 end
 
-comparison_base = ENV["PR_BASE_SHA"].to_s.strip
-comparison_base = BASE if comparison_base.empty?
 stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{comparison_base}...HEAD")
 if status.success?
   changed = stdout.lines.map(&:strip).reject(&:empty?).sort
-  unexpected = changed - ALLOWED_FILES.sort
-  missing = ALLOWED_FILES.sort - changed if comparison_base == BASE
-  errors << "Unexpected D-02 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
-  errors << "Expected D-02 files not changed: #{missing.join(', ')}" if missing && !missing.empty?
+  if bootstrap_pr
+    unexpected = changed - ALLOWED_FILES.sort
+    missing = ALLOWED_FILES.sort - changed
+    errors << "Unexpected D-02 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
+    errors << "Expected D-02 files not changed: #{missing.join(', ')}" unless missing.empty?
+  end
 else
   errors << "Unable to inspect D-02 changed-file scope: #{stdout.strip}"
 end
