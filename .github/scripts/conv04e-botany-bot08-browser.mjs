@@ -15,7 +15,7 @@ for(const [name,width,height] of views){
  const page=await context.newPage(); const errs=[]; page.on("pageerror",e=>errs.push(String(e)));
  const res=await page.goto(base+route,{waitUntil:"domcontentloaded",timeout:20000});
  const m=await page.evaluate(()=>({lang:document.documentElement.lang,academic:document.documentElement.classList.contains("lbfl-academic-v1"),role:document.querySelector("[data-lbfl-academic-role]")?.getAttribute("data-lbfl-academic-role"),guide:document.querySelector("[data-lbfl-learning-guide]")?.getAttribute("data-lbfl-learning-guide"),cta:document.querySelectorAll(".lbfl-learning-guide-cta").length,mcq:document.querySelectorAll(".lbfl-mcq-card").length,cq:document.querySelectorAll(".lbfl-cq-card").length,overflow:Math.max(0,document.documentElement.scrollWidth-document.documentElement.clientWidth),text:document.body.innerText}));
- await page.addScriptTag({content:axe.source}); const bad=await page.evaluate(async()=>{const r=await axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa"]}});return r.violations.filter(v=>["serious","critical"].includes(v.impact)).map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length}));});
+ await page.addScriptTag({content:axe.source}); const bad=await page.evaluate(async()=>{const r=await axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa"]}});return r.violations.filter(v=>["serious","critical"].includes(v.impact)).map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length,details:v.nodes.map(n=>({target:n.target,html:n.html,failureSummary:n.failureSummary}))}));});
  let quizPass=true;
  if(name==="desktop-1280"){
    for(let i=1;i<=10;i++) await page.locator(`input[name="bot08-q${i}"]`).first().check();
