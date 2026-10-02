@@ -12,6 +12,7 @@ ZOO_VALIDATOR = ROOT.join(".github/scripts/validate-zoology-academic-design.rb")
 STATE = ROOT.join("docs/academic/conv04/CONV04_STATE.md")
 DOC = ROOT.join("docs/academic/conv04/GATEWAY_CONVERGENCE.md")
 WORKFLOW = ROOT.join(".github/workflows/gateway-convergence-certification.yml")
+ZOO_WORKFLOW = ROOT.join(".github/workflows/zoology-academic-design-certification.yml")
 BROWSER = ROOT.join(".github/scripts/zoology-browser-certification.mjs")
 SITE_ROUTE = ROOT.join("_site/biology/hsc-corner/zoology/index.html")
 
@@ -20,6 +21,7 @@ BOOTSTRAP_FILES = %w[
   .github/scripts/validate-zoology-academic-design.rb
   .github/scripts/zoology-browser-certification.mjs
   .github/workflows/gateway-convergence-certification.yml
+  .github/workflows/zoology-academic-design-certification.yml
   _biology/hsc-corner/zoology/index.md
   _layouts/single.html
   docs/academic/conv04/CONV04_STATE.md
@@ -32,7 +34,7 @@ def read_utf8(path)
   File.read(path, encoding: "UTF-8")
 end
 
-[GATEWAY, LAYOUT, ZOO_VALIDATOR, STATE, DOC, WORKFLOW, BROWSER].each do |path|
+[GATEWAY, LAYOUT, ZOO_VALIDATOR, STATE, DOC, WORKFLOW, ZOO_WORKFLOW, BROWSER].each do |path|
   errors << "Missing C-03 artifact: #{path.relative_path_from(ROOT)}" unless path.file?
 end
 
@@ -76,6 +78,12 @@ if BROWSER.file?
   errors << "Zoology browser validator does not require exactly one Learning Guide CTA" unless source.include?("learningGuideCtaCount === 1")
   errors << "Zoology browser validator does not require /learn/ linkage" unless source.include?("hasLearningGuideLink === true")
   errors << "Zoology browser validator does not include canonical-guide routes in full-page Axe" unless source.include?("isCanonicalLearningGuideCandidate")
+end
+
+if ZOO_WORKFLOW.file?
+  source = read_utf8(ZOO_WORKFLOW)
+  errors << "Zoology browser workflow does not trigger on Learning Guide CTA changes" unless
+    source.include?('"_includes/education/learning-guide-cta.html"')
 end
 
 certification_mode = ENV.fetch("CERTIFICATION_MODE", "local")
