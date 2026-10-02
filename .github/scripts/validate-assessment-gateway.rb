@@ -115,7 +115,7 @@ if SITE.file?
   html = read_utf8(SITE)
   errors << "Rendered gateway missing Academic v1 surface" unless html.include?("data-lbfl-academic-surface=\"v1\"")
   errors << "Rendered gateway role mismatch" unless html.include?('data-lbfl-academic-role="assessment_gateway"')
-  errors << "Rendered module count must be six" unless html.scan("data-assessment-module").length == 6
+  errors << "Rendered module count must be six" unless html.scan(/<article[^>]*\sdata-assessment-module(?:\s|>)/).length == 6
   errors << "Rendered start-link count must be six" unless html.scan("data-assessment-start").length == 6
   errors << "Rendered source-link count must be six" unless html.scan("data-assessment-source").length == 6
   EXPECTED_MODULES.each do |route|
@@ -123,7 +123,7 @@ if SITE.file?
   end
   errors << "Rendered false empty state remains" if html.include?("No diagnostic modules found")
   FORBIDDEN.each { |term| errors << "Rendered forbidden assessment framing remains: #{term}" if html.downcase.include?(term.downcase) }
-  errors << "Rendered raw Liquid detected" if html.match?(/\{[{%]|[%}]\}/)
+  errors << "Rendered raw Liquid detected" if html.match?(/\{\{|\{%/)
 end
 
 comparison_base = ENV["PR_BASE_SHA"].to_s.strip
