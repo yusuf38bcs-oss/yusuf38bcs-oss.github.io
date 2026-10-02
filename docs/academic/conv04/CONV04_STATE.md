@@ -2,7 +2,7 @@
 
 programme: CONV-04
 phase: CONV-04E-02
-mode: authorization-only — BOT-08 Plastid and Chloroplast learner-content gate
+mode: content-contract-locked — BOT-08 Plastid and Chloroplast
 authorized_base: cc10f1cb60828be6d8aac145ecc6964c845ac71b
 branch: conv-04e-02-bot08-plastid-chloroplast-20261003
 production_verified_main: cc10f1cb60828be6d8aac145ecc6964c845ac71b
@@ -18,7 +18,7 @@ learner_mutation_allowlist:
   - _biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-bot_08: authorized-not-implemented
+bot_08: authorized / content-contract-locked / source-not-yet-created
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
 ready_transition: not authorized until BOT-08 content contract + implementation + retained E-01/A-D/D-06 + exact-head Jekyll/browser/Axe certification
@@ -101,3 +101,14 @@ Open/maintain a Draft E-01 PR on the unchanged authorized base. Require exact-he
 - Private textbook exact wording/page claims: **PROHIBITED** without custody.
 - Full lesson assessment bank: **PROHIBITED**; MCQ Arena remains canonical full-bank owner.
 - Learner mutation performed at this authorization commit: **NO**.
+
+
+## BOT-08 content contract
+
+- Content contract: `_data/academic/conv04e_bot08_content_v1.json`.
+- Academic review: `docs/academic/conv04/BOT08_CONTENT_REVIEW.md`.
+- Retrieval MCQ allowance: **4**.
+- CQ practice allowance: **2**.
+- Full assessment bank in lesson: **NO**.
+- JavaScript assessment runtime in lesson: **NO**.
+- Only `gap-02-chloroplast` may close.
