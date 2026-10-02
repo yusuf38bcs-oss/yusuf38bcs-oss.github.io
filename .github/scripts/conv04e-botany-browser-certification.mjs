@@ -101,7 +101,12 @@ async function run(target,view,options={}){
       await page.addScriptTag({content:axe.source});
       axeBad=await page.evaluate(async()=>{
         const r=await axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa"]}});
-        return r.violations.filter(v=>["serious","critical"].includes(v.impact)).map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length}));
+        return r.violations.filter(v=>["serious","critical"].includes(v.impact)).map(v=>({
+          id:v.id,
+          impact:v.impact,
+          nodes:v.nodes.length,
+          details:v.nodes.map(n=>({target:n.target,html:n.html,failureSummary:n.failureSummary}))
+        }));
       });
     }
 
