@@ -43,5 +43,12 @@
     "retained_invariants": true,
     "monotonic_state": true,
     "self_protection": true
+  },
+  "retained_certification_stabilization": {
+    "contract": "CONV-04D-05",
+    "file": ".github/scripts/assessment-runtime-second-bank-browser-certification.mjs",
+    "change": "wait 650ms after submit before steady-state Axe inspection",
+    "assertions_weakened": false,
+    "learner_content_changed": false
   }
 }
