@@ -41,7 +41,8 @@ FORBIDDEN = [
   "diagnostic modules",
   "neural retention",
   "cognitive models",
-  "cognitive gaps"
+  "cognitive gaps",
+  "neural pathways"
 ].freeze
 
 errors = []
@@ -69,14 +70,14 @@ if GATEWAY.file?
   errors << "Botany source-return hub missing" unless source.include?("/biology/hsc-corner/botany/")
   errors << "Zoology source-return hub missing" unless source.include?("/biology/hsc-corner/zoology/")
   errors << "D-02 must remove inline style blocks" if source.include?("<style")
-  errors << "D-02 must remove inline style attributes" if source.match?(/\sstyle=/)
+  errors << "D-02 must remove inline style attributes" if source.match?(/\sstyle=/)\n  errors << "Gateway cards must prefer curriculum alignment metadata" unless source.include?("item.hsc_alignment | default: item.excerpt")
   FORBIDDEN.each { |term| errors << "Forbidden assessment framing remains: #{term}" if source.downcase.include?(term.downcase) }
 end
 
 if MANIFEST.file?
   data = JSON.parse(read_utf8(MANIFEST))
   errors << "Manifest schema mismatch" unless data["schema"] == "lbfl-assessment-gateway-v1"
-  errors << "Manifest version mismatch" unless data["version"] == "CONV-04D-02-1.0.0"
+  errors << "Manifest version mismatch" unless ["CONV-04D-02-1.0.0", "CONV-04D-02-R1-1.0.0"].include?(data["version"])
   errors << "Manifest base mismatch" unless data["authorized_base"] == BASE
   errors << "Expected module count mismatch" unless data["expected_module_count"] == 6
   errors << "Expected module routes mismatch" unless data["expected_modules"] == EXPECTED_MODULES
