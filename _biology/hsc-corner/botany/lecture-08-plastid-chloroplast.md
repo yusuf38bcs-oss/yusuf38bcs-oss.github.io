@@ -86,7 +86,7 @@ learning_guide: canonical
 
 <section class="lbfl-academic-callout">
   <h2>পাঠের সারাংশ</h2>
-  <p>এই পাঠে plastid-এর প্রধান ধরন, chloroplast-এর অবস্থান, double-membrane envelope, stroma, thylakoid, granum/grana, stroma lamella, thylakoid lumen, chlorophyll এবং photosynthesis-এর structure–function সম্পর্ক শেখানো হয়েছে। Chapter 01 এখনো সম্পূর্ণ নয়; BOT-08 কেবল <code>gap-02-chloroplast</code> বন্ধ করে।</p>
+  <p>এই পাঠে plastid-এর প্রধান ধরন, chloroplast-এর অবস্থান, double-membrane envelope, stroma, thylakoid, granum/grana, stroma lamella, thylakoid lumen, chlorophyll এবং photosynthesis-এর structure–function সম্পর্ক শেখানো হয়েছে। Chapter 01 এখনো সম্পূর্ণ নয়; BOT-08 কেবল <strong>gap-02-chloroplast</strong> বন্ধ করে।</p>
 </section>
 
 <h2>Learning Objectives</h2>
@@ -109,7 +109,7 @@ learning_guide: canonical
 <h2>1. Plastid family: একই family, ভিন্ন specialization</h2>
 <p>Plastid হলো plant cell-এর একটি organelle family। সব plastid একই ধরনের নয়। Cell type ও developmental state অনুযায়ী plastid ভিন্ন কাজের জন্য specialize করতে পারে।</p>
 
-<div class="lbfl-academic-table-wrap">
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Plastid comparison table">
 <table>
   <thead><tr><th>Plastid type</th><th>প্রধান বৈশিষ্ট্য</th><th>প্রধান ভূমিকা</th></tr></thead>
   <tbody>
@@ -171,7 +171,7 @@ learning_guide: canonical
 <p>Chloroplast-এর নিজস্ব DNA ও ribosome আছে এবং organelle division-এর মাধ্যমে এটি বৃদ্ধি/বংশবিস্তার করতে পারে। এই বৈশিষ্ট্য endosymbiosis hypothesis ও endosymbiotic origin-এর সঙ্গে সামঞ্জস্যপূর্ণ। তবে chloroplast সম্পূর্ণ স্বাধীন নয়—এর বহু protein nuclear genes দ্বারা encoded হয়ে cytosol থেকে import হয়। তাই <strong>partial genetic autonomy</strong> বলা বেশি সঠিক।</p>
 
 <h2>6. Chloroplast বনাম Mitochondrion</h2>
-<div class="lbfl-academic-comparison">
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Chloroplast and mitochondrion comparison table">
 <table>
   <thead><tr><th>Feature</th><th>Chloroplast</th><th>Mitochondrion</th></tr></thead>
   <tbody>
