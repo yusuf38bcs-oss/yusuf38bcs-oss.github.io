@@ -1,0 +1,40 @@
+{
+  "schema": "lbfl-conv04e02-bot08-v1",
+  "version": "CONV-04E-02-1.0.0",
+  "phase": "CONV-04E-02",
+  "authorized_base": "cc10f1cb60828be6d8aac145ecc6964c845ac71b",
+  "lesson_id": "bot-08",
+  "source_file": "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+  "route": "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/",
+  "topic_ids": [
+    "chloroplast"
+  ],
+  "closed_gap_ids": [
+    "gap-02-chloroplast"
+  ],
+  "content": {
+    "mcq_count": 10,
+    "cq_count": 3,
+    "language": "bn",
+    "academic_system": "v1",
+    "academic_role": "lecture",
+    "learning_guide": "canonical"
+  },
+  "provenance": {
+    "nctb": "https://nctb.gov.bd/pages/files/6922dbc6933eb65569e0c702",
+    "science": [
+      "https://www.ncbi.nlm.nih.gov/books/NBK9905/",
+      "https://www.ncbi.nlm.nih.gov/books/NBK26819/",
+      "https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells",
+      "https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+    ],
+    "private_textbook_claim": false
+  },
+  "retained": {
+    "e01": "required",
+    "d04_d05_d06": "required",
+    "chapter_completion": "not-certified",
+    "contract_state": "convergence-pending",
+    "remaining_gap_count": 8
+  }
+}
