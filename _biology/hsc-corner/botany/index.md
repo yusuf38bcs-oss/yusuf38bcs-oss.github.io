@@ -25,6 +25,10 @@ curriculum_tracks:
 hsc_alignment: 'HSC Biology 1st Paper: Botany learning gateway'
 concept_level: Gateway
 seo_description: HSC Botany-এর audited chapter ও interactive lecture index।
+academic_system: v1
+academic_role: academic_gateway
+lang: bn
+learning_guide: canonical
 ---
 <!-- lbfl-botany-index-release: 2026-10-01; active-chapter-01-lessons: 01-07 -->
 <div class="lbfl-botany-index">
@@ -33,6 +37,8 @@ seo_description: HSC Botany-এর audited chapter ও interactive lecture index
     <h2>উদ্ভিদবিজ্ঞান: অধ্যায় ও লেকচার সূচি</h2>
     <p>Audited Chapter 01 learning path—interactive assessment, accessible visuals ও canonical navigation সহ।</p>
   </section>
+
+{% include education/learning-guide-cta.html %}
 
   <h2>অধ্যায় সূচি</h2>
   <div class="lbfl-clean-grid">
