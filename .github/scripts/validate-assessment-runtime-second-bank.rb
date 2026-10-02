@@ -97,7 +97,23 @@ EXPECTED_CONTENT = JSON.parse(<<~JSON)
 JSON
 
 errors = []
+
+PHASE_PATTERN = /\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R([1-9]\d*))?\z/.freeze
+R1_MAINTENANCE_BASE = "e01794957b184114e4a7ab82f0689acd67b5f14f"
+VALIDATOR_PATH = ".github/scripts/validate-assessment-runtime-second-bank.rb"
+WORKFLOW_PATH = ".github/workflows/assessment-runtime-second-bank-certification.yml"
+
 def read_utf8(path) = File.read(path, encoding: "UTF-8")
+
+def conv04_phase_order(value)
+  match = PHASE_PATTERN.match(value.to_s.strip)
+  return nil unless match
+
+  lane = match[1].ord
+  stage = match[2] ? match[2].to_i : 0
+  revision = match[3] ? match[3].to_i : 0
+  [lane, stage, revision]
+end
 
 [BANK, RUNTIME, MANIFEST, DOC, AUTH, STATE, BROWSER, WORKFLOW].each do |path|
   errors << "Missing D-05 artifact: #{path.relative_path_from(ROOT)}" unless path.file?
@@ -162,26 +178,91 @@ if DOC.file?
   end
 end
 
+certification_mode = ENV.fetch("CERTIFICATION_MODE", "local")
+comparison_base = ENV["PR_BASE_SHA"].to_s.strip
+if comparison_base.empty?
+  parent_stdout, parent_status = Open3.capture2e("git", "-C", ROOT.to_s, "rev-parse", "HEAD^")
+  comparison_base = parent_status.success? ? parent_stdout.strip : BASE
+end
+bootstrap_pr = certification_mode == "pull_request" && comparison_base == BASE
+future_phase_pr = certification_mode == "pull_request" && comparison_base != BASE
+
 if STATE.file?
   state = read_utf8(STATE)
-  errors << "CONV04_STATE must identify D-05" unless state.include?("phase: CONV-04D-05")
-  errors << "CONV04_STATE must bind D-05 base" unless state.include?(BASE)
-  errors << "Exact D-05 learner authority missing" unless state.include?("learner_mutation_allowlist:\n  - _mcq-arena/academic/botany-cell-division-mcq-2.md")
-  errors << "Shared runtime reuse policy missing" unless state.include?("shared_authored_runtime: reuse unchanged by default")
-  errors << "BOT-08 must remain frozen" unless state.include?("bot_08: frozen")
+  if bootstrap_pr
+    errors << "CONV04_STATE must identify D-05" unless state.include?("phase: CONV-04D-05")
+    errors << "CONV04_STATE must bind D-05 base" unless state.include?(BASE)
+    errors << "Exact D-05 learner authority missing" unless state.include?("learner_mutation_allowlist:\n  - _mcq-arena/academic/botany-cell-division-mcq-2.md")
+    errors << "Shared runtime reuse policy missing" unless state.include?("shared_authored_runtime: reuse unchanged by default")
+    errors << "BOT-08 must remain frozen" unless state.include?("bot_08: frozen")
+  else
+    errors << "CONV-04 programme identity missing" unless state.include?("programme: CONV-04")
+  end
 end
 
-certification_mode = ENV.fetch("CERTIFICATION_MODE", "local")
-pr_base = ENV["PR_BASE_SHA"].to_s.strip
-errors << "D-05 pull-request base mismatch: expected #{BASE}, got #{pr_base}" if certification_mode == "pull_request" && pr_base != BASE
-
-stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{BASE}...HEAD")
+stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{comparison_base}...HEAD")
 if status.success?
   changed = stdout.lines.map(&:strip).reject(&:empty?).sort
-  unexpected = changed - ALLOWED_FILES.sort
-  missing = ALLOWED_FILES.sort - changed
-  errors << "Unexpected D-05 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
-  errors << "Expected D-05 files not changed: #{missing.join(', ')}" unless missing.empty?
+
+  if bootstrap_pr
+    unexpected = changed - ALLOWED_FILES.sort
+    missing = ALLOWED_FILES.sort - changed
+    errors << "Unexpected D-05 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
+    errors << "Expected D-05 files not changed: #{missing.join(', ')}" unless missing.empty?
+  elsif future_phase_pr
+    r1_maintenance_pr =
+      comparison_base == R1_MAINTENANCE_BASE &&
+      changed == [VALIDATOR_PATH, WORKFLOW_PATH].sort
+
+    # After this one-file R1 transition, the retained D-05 validator itself
+    # becomes protected. Later phases may advance CONV04_STATE but may not
+    # silently mutate the D-05 learner/certification artifacts.
+    future_phase_control_files = %w[
+      docs/academic/conv04/CONV04_STATE.md
+    ]
+    protected_d05_files = ALLOWED_FILES - future_phase_control_files
+    touched_protected = changed & protected_d05_files
+    touched_protected -= [VALIDATOR_PATH, WORKFLOW_PATH] if r1_maintenance_pr
+    errors << "Future phase changed protected D-05 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+
+    if changed.include?(VALIDATOR_PATH) && !r1_maintenance_pr
+      errors << "Future phase must not modify the retained D-05 validator"
+    end
+    if changed.include?(WORKFLOW_PATH) && !r1_maintenance_pr
+      errors << "Future phase must not modify the retained D-05 workflow"
+    end
+
+    if changed.include?("docs/academic/conv04/CONV04_STATE.md")
+      candidate_state = read_utf8(STATE)
+      candidate_phase_lines = candidate_state.lines.grep(/^phase:\s*/)
+      base_state, base_state_status = Open3.capture2e(
+        "git", "-C", ROOT.to_s, "show",
+        "#{comparison_base}:docs/academic/conv04/CONV04_STATE.md"
+      )
+
+      if candidate_phase_lines.length != 1
+        errors << "Future phase CONV04_STATE must contain exactly one phase declaration"
+      elsif !base_state_status.success?
+        errors << "Unable to read base CONV04_STATE at #{comparison_base}: #{base_state.strip}"
+      else
+        base_phase_lines = base_state.lines.grep(/^phase:\s*/)
+        if base_phase_lines.length != 1
+          errors << "Base CONV04_STATE must contain exactly one phase declaration"
+        else
+          candidate_phase = candidate_phase_lines.first.sub(/^phase:\s*/, "").strip
+          base_phase = base_phase_lines.first.sub(/^phase:\s*/, "").strip
+          candidate_order = conv04_phase_order(candidate_phase)
+          base_order = conv04_phase_order(base_phase)
+
+          errors << "Future phase CONV04_STATE has malformed phase: #{candidate_phase}" unless candidate_order
+          errors << "Base CONV04_STATE has malformed phase: #{base_phase}" unless base_order
+          if candidate_order && base_order && (candidate_order <=> base_order) <= 0
+            errors << "Future phase CONV04_STATE must advance beyond base phase #{base_phase}, got #{candidate_phase}"
+          end
+        end
+      end
+    end
+  end
 else
   errors << "Unable to inspect D-05 changed-file scope: #{stdout.strip}"
 end
