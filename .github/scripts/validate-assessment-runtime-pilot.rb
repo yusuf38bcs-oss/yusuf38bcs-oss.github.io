@@ -243,8 +243,14 @@ if status.success?
         errors << "Future phase CONV04_STATE must contain exactly one phase declaration"
       else
         phase = phase_lines.first.sub(/^phase:\s*/, "").strip
-        valid_future_phase = phase.match?(/\ACONV-04[A-Z0-9]+(?:-[A-Z0-9]+)*\z/) && phase != "CONV-04D-04"
-        errors << "Future phase CONV04_STATE has invalid or non-future phase: #{phase}" unless valid_future_phase
+        phase_match = /\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R(\d+))?\z/.match(phase)
+        valid_future_phase = false
+        if phase_match
+          lane = phase_match[1]
+          stage = phase_match[2]&.to_i
+          valid_future_phase = lane > "D" || (lane == "D" && !stage.nil? && stage > 4)
+        end
+        errors << "Future phase CONV04_STATE has invalid or non-successor phase: #{phase}" unless valid_future_phase
       end
     end
   end
