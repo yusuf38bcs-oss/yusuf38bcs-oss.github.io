@@ -115,7 +115,7 @@ if SITE.file?
   html = read_utf8(SITE)
   errors << "Rendered gateway missing Academic v1 surface" unless html.include?("data-lbfl-academic-surface=\"v1\"")
   errors << "Rendered gateway role mismatch" unless html.include?('data-lbfl-academic-role="assessment_gateway"')
-  errors << "Rendered module count must be six" unless html.scan(/<article[^>]*\sdata-assessment-module(?:\s|>)/).length == 6
+  errors << "Rendered module count must be six" unless html.scan(/\bdata-assessment-module(?=[\s=>])/).length == 6
   errors << "Rendered start-link count must be six" unless html.scan("data-assessment-start").length == 6
   errors << "Rendered source-link count must be six" unless html.scan("data-assessment-source").length == 6
   EXPECTED_MODULES.each do |route|
