@@ -31,14 +31,14 @@ lang: bn
 learning_guide: canonical
 ---
 <!-- lbfl-botany-index-release: 2026-10-01; active-chapter-01-lessons: 01-07 -->
+{% include education/learning-guide-cta.html %}
+
 <div class="lbfl-botany-index">
   <section class="lbfl-clean-hero">
     <span class="lbfl-clean-kicker">HSC Biology 1st Paper · Botany</span>
     <h2>উদ্ভিদবিজ্ঞান: অধ্যায় ও লেকচার সূচি</h2>
     <p>Audited Chapter 01 learning path—interactive assessment, accessible visuals ও canonical navigation সহ।</p>
   </section>
-
-{% include education/learning-guide-cta.html %}
 
   <h2>অধ্যায় সূচি</h2>
   <div class="lbfl-clean-grid">
