@@ -2,9 +2,9 @@
 
 **ACADEMIC CONTENT REVIEW: PASS**
 
-**Lesson:** BOT-08 — Plastid and Chloroplast  
-**Topic:** `chloroplast`  
-**Closed gap:** `gap-02-chloroplast` only  
+**Lesson:** BOT-08 — Plastid and Chloroplast
+**Topic:** `chloroplast`
+**Closed gap:** `gap-02-chloroplast` only
 **Authoring model:** curriculum-bound, edition-neutral
 
 ## Curriculum/provenance review
