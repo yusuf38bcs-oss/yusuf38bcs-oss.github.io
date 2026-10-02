@@ -106,7 +106,7 @@ async function run(name,width,height,opts={}){
         if(f.target){focusVisible=f.visible;break;}
       }
     }
-    metrics=await page.evaluate(()=> {
+    const baseMetrics=await page.evaluate(()=> {
       const article=document.querySelector("[data-lbfl-academic-surface='v1']");
       const body=document.body.innerText||"";
       const hrefs=[...document.querySelectorAll("a[href]")].map(a=>new URL(a.href,location.href).pathname);
@@ -127,6 +127,7 @@ async function run(name,width,height,opts={}){
         rawTemplate:/\{\{|\{%/.test(body)
       };
     });
+    metrics={...metrics,...baseMetrics};
     if(opts.javaScriptEnabled!==false && !opts.textSpacing && !opts.reducedMotion){
       await page.addScriptTag({content:axe.source});
       axeBad=await page.evaluate(async()=>{
