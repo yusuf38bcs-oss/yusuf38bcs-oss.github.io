@@ -1,9 +1,9 @@
 # CONV-04D-05 — Second Authored Assessment Migration Authorization
 
-**Status:** AUTHORIZED — implementation not yet performed  
-**Authorized base:** `a104260266a292bee58f6935a5038693380e8c04`  
-**Authorized branch:** `conv-04d-05-botany-cell-division-runtime-migration-20261002`  
-**Target bank:** `_mcq-arena/academic/botany-cell-division-mcq-2.md`  
+**Status:** AUTHORIZED — implementation not yet performed
+**Authorized base:** `a104260266a292bee58f6935a5038693380e8c04`
+**Authorized branch:** `conv-04d-05-botany-cell-division-runtime-migration-20261002`
+**Target bank:** `_mcq-arena/academic/botany-cell-division-mcq-2.md`
 **Target route:** `/mcq-arena/academic/botany-cell-division-mcq-2/`
 
 ## Authorization basis
