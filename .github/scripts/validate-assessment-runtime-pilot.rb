@@ -235,6 +235,18 @@ if status.success?
     protected_d04_files = ALLOWED_FILES - future_phase_control_files
     touched_protected = changed & protected_d04_files
     errors << "Future phase changed protected D-04 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+
+    if changed.include?("docs/academic/conv04/CONV04_STATE.md")
+      state_source = read_utf8(STATE)
+      phase_lines = state_source.lines.grep(/^phase:\s*/)
+      if phase_lines.length != 1
+        errors << "Future phase CONV04_STATE must contain exactly one phase declaration"
+      else
+        phase = phase_lines.first.sub(/^phase:\s*/, "").strip
+        valid_future_phase = phase.match?(/\ACONV-04[A-Z0-9]+(?:-[A-Z0-9]+)*\z/) && phase != "CONV-04D-04"
+        errors << "Future phase CONV04_STATE has invalid or non-future phase: #{phase}" unless valid_future_phase
+      end
+    end
   end
 else
   errors << "Unable to inspect D-04 changed-file scope: #{stdout.strip}"
