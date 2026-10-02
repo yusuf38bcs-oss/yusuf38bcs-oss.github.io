@@ -68,7 +68,7 @@ jobs:
           fi
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
         with:
           ruby-version: "3.2"
           bundler-cache: false
@@ -142,7 +142,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: conv04f-hsc-zoology-${{ env.CANDIDATE_SHA }}
-          path: |
-            "$REPORT_DIR"
+          path: ${{ env.REPORT_DIR }}
           if-no-files-found: warn
           retention-days: 30
