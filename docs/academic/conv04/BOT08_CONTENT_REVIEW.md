@@ -1,49 +1,44 @@
 # CONV-04E-02 — BOT-08 Academic Content Review
 
-**Review state:** PRE-AUTHORING CONTRACT LOCKED  
+**ACADEMIC CONTENT REVIEW: PASS**
+
 **Lesson:** BOT-08 — Plastid and Chloroplast  
-**Authorized topic:** `chloroplast`  
-**Authorized gap:** `gap-02-chloroplast`
+**Topic:** `chloroplast`  
+**Closed gap:** `gap-02-chloroplast` only  
+**Authoring model:** curriculum-bound, edition-neutral
 
-## Normative curriculum boundary
+## Curriculum/provenance review
 
-The lesson is restricted to the existing NCTB Chapter-01 custody already authenticated in the repository:
+PASS — the lesson remains bound to the authenticated NCTB Chapter-01 curriculum custody (National Curriculum 2012, Biology XI–XII, PDF pp. 31–33). It makes no named private HSC Biology textbook wording or page-number claim.
 
-- National Curriculum 2012 — Biology XI–XII
-- Chapter 01: Cell and Its Structure
-- PDF pages 31–33
-- required scope: **Chloroplast — structure, location and function**
+## Scientific review
 
-No private textbook edition is treated as normative.
+PASS — the authored lesson is consistent with the prepared corroborative sources:
 
-## Scientific cross-check set
+- NCBI Bookshelf — https://www.ncbi.nlm.nih.gov/books/NBK9905/
+- NCBI Bookshelf — https://www.ncbi.nlm.nih.gov/books/NBK26819/
+- OpenStax Biology 2e — https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells
+- OpenStax Biology 2e — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis
+- NCTB curriculum index — https://nctb.gov.bd/pages/files/6922dbc6933eb65569e0c702
 
-The lesson must be consistent with:
+Verified concepts include plastid/proplastid, chloroplast/chromoplast/leucoplast, chloroplast envelope, outer and inner membrane, stroma, thylakoid, granum/grana, stroma lamella, thylakoid lumen, chlorophyll, photosynthesis, light-dependent reactions, carbon fixation/Calvin cycle, chloroplast DNA/ribosomes, endosymbiosis and mesophyll location.
 
-- NCBI Bookshelf — Chloroplasts and Other Plastids: https://www.ncbi.nlm.nih.gov/books/NBK9905/
-- NCBI Bookshelf — Chloroplasts and Photosynthesis: https://www.ncbi.nlm.nih.gov/books/NBK26819/
-- OpenStax Biology 2e — Eukaryotic Cells: https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells
-- OpenStax Biology 2e — Overview of Photosynthesis: https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis
+## Structure–function review
 
-## Locked content expectations
+PASS — the lesson correctly separates:
 
-The final lesson must accurately explain:
+- thylakoid membrane → photosynthetic electron transport and light-dependent reactions;
+- stroma → carbon-fixation chemistry;
+- envelope → chloroplast boundary/transport role;
+- chlorophyll → light absorption in the thylakoid membrane;
+- chloroplast DNA/ribosomes → partial genetic autonomy, not complete independence.
 
-1. plastids as a plant-organelle family;
-2. chloroplast envelope and internal membrane system;
-3. stroma, thylakoid, granum/grana, stroma lamella and lumen;
-4. chlorophyll location and structure–function relation;
-5. light-dependent reactions at thylakoid membranes;
-6. carbon fixation/Calvin-cycle chemistry in the stroma;
-7. chloroplast location in photosynthetic tissues such as leaf mesophyll;
-8. chloroplast DNA/ribosomes as evidence of partial genetic autonomy and endosymbiotic origin;
-9. chloroplast versus mitochondrion without equating thylakoid membrane with chloroplast inner envelope;
-10. plastid diversity: chloroplast, chromoplast and leucoplast.
+## Assessment review
 
-## Assessment boundary
+PASS — the lesson contains exactly **4** short retrieval MCQs and **2** CQ practice prompts. It contains no `data-lbfl-quiz`, no `lbfl-mcq-card`, no embedded JavaScript quiz engine, and no full assessment bank. MCQ Arena remains the canonical full-bank owner.
 
-The lesson is allowed **four short retrieval MCQs** and **two CQ practice prompts** only. It must not embed a complete assessment bank or a separate JavaScript quiz runtime. MCQ Arena remains the full-bank owner.
+## Navigation and Chapter-01 review
 
-## Review completion rule
+PASS — BOT-07 links forward to BOT-08; BOT-08 links back to BOT-07 and Chapter 01; Botany and Chapter-01 gateways expose BOT-08. Chapter 01 remains `convergence-pending` and `not-certified`. All curriculum gaps other than `gap-02-chloroplast` remain open.
 
-After the authored source exists, this file may be advanced to **ACADEMIC CONTENT REVIEW: PASS** only if all required concepts, evidence URLs, navigation, assessment counts, and curriculum boundaries are satisfied without closing any gap other than `gap-02-chloroplast`.
+**Final review disposition:** PASS — eligible for exact-head certification.
