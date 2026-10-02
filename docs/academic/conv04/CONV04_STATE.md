@@ -2,15 +2,15 @@
 
 programme: CONV-04
 phase: CONV-04E-01
-mode: authorization-only — HSC Botany gateway + Chapter-01 Academic-v1 convergence
+mode: implementation candidate — HSC Botany gateway + Chapter-01 Academic-v1 convergence
 authorized_base: b07beb8119c4ee001d542a357f38c0e27e5017ba
 branch: conv-04e-01-botany-gateway-authorization-20261002
 production_verified_main: b07beb8119c4ee001d542a357f38c0e27e5017ba
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
-mutation_authority: authorization/state artifacts only; learner implementation authorized but not yet applied
-learner_content_authoring: structural-migration-only / scientific-rewrite-forbidden / not-yet-applied
-existing_learning_method_cleanup: preserve existing content; canonical Learning Guide ownership authorized
-gateway_cta_injection: authorized exactly once on each E-01 target surface
+mutation_authority: exact two Botany learner surfaces + E-01 route-ledger/certification/state artifacts
+learner_content_authoring: structural-migration-implemented / scientific-rewrite-forbidden / certification-pending
+existing_learning_method_cleanup: canonical Learning Guide ownership active on both E-01 surfaces
+gateway_cta_injection: exactly one canonical CTA on each E-01 target surface
 learner_mutation_allowlist:
   - _biology/hsc-corner/botany/index.md
   - _biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md
@@ -19,8 +19,8 @@ assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 bot_08: frozen
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until E-01 implementation exact-head source + retained A-D/D-06 + Jekyll + route/browser/Axe/reflow/text-spacing/no-JS + review convergence
-merge: not authorized in authorization-only state
+ready_transition: not authorized until exact-head E-01 source + retained A-D/D-06 + Jekyll + route/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
+merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
 
@@ -63,16 +63,18 @@ merge: not authorized in authorization-only state
 9. Retain-certify D-04/D-05/D-06; D-06 may be reopened only on a genuine retained-contract regression.
 10. E-01 implementation must ship bootstrap + retained future-phase compatibility from its first implementation.
 
-## Authorization status
+## Implementation status
 
 - Exact base authenticated: `b07beb8119c4ee001d542a357f38c0e27e5017ba`.
-- Learner mutation performed: **NO**.
-- Route-ledger mutation performed: **NO**.
-- Implementation validator/workflow/browser files added: **NO**.
-- Authorization manifest: `_data/academic/conv04e_botany_gateway_authorization_v1.json`.
-- Full implementation remains the next gate.
+- Learner mutation performed: **YES — exactly the two authorized structural surfaces**.
+- Route-ledger mutation performed: **YES — only E-01 gateway promotion + Chapter-01 registration**.
+- Scientific-content rewrite: **NO**.
+- BOT-01 through BOT-07 mutation: **NO**.
+- Chapter completion claim: **NO**.
+- E-01 implementation manifest/validator/browser/workflow: **ADDED**.
+- Future-phase compatibility model: **bootstrap + retained / monotonic state / self-protection**.
+- D-06 status: **retained certification required; reopen only on actual regression**.
 
 ## Next gate
 
-Implement E-01 on this unchanged authorization base. Before the first learner mutation, re-authenticate remote `main` and require it still equals `b07beb8119c4ee001d542a357f38c0e27e5017ba`. Then apply only the authorized two-surface structural migration and E-01 certification artifacts. Stop if main has advanced.
-
+Open/maintain a Draft E-01 PR on the unchanged authorized base. Require exact-head E-01 source preservation, retained A-D/D-06 contracts, production Jekyll, route-ledger rendering, five-viewport browser/Axe, keyboard/focus, 320px reflow, text-spacing, reduced-motion, no-JS, CodeQL, zero unresolved threads, required Pages and Trusted Governance before promotion.
