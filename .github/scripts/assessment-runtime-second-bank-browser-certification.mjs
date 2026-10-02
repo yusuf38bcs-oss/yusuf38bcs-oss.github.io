@@ -82,9 +82,6 @@ async function standardCheck(view){
 
     const answeredBeforeSubmit=(await page.locator("[data-assessment-progress-text]").innerText()).trim();
     await page.locator("[data-assessment-submit]").click();
-    // The result/explanation surfaces use 0.5s opacity/slide animations. Axe must
-    // inspect their steady-state colors rather than a transient opacity frame.
-    await page.waitForTimeout(650);
 
     metrics=await page.evaluate(({forbidden,sourceReturn,answeredBeforeSubmit})=>{
       const bodyText=document.body.innerText||"";
