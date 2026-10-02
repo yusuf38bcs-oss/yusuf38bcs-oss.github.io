@@ -75,6 +75,15 @@ merge: not authorized until unchanged-head governance + required checks + Pages 
 - Future-phase compatibility model: **bootstrap + retained / monotonic state / self-protection**.
 - D-06 status: **retained certification required; reopen only on actual regression**.
 
+## Exact-head remediation status
+
+- First E-01 Axe run exposed inherited legacy Botany foreground colors on the Academic-v1 light surface.
+- Remediation remains inside the two already-authorized learner files; no shared CSS mutation was made.
+- Canonical CTA placement now escapes the legacy Botany color wrapper.
+- Chapter remaining-gap prose and return action use existing Academic-v1 semantic classes.
+- Scientific wording, curriculum status, links, cards, BOT-01–BOT-07, assessment/runtime, and D-06 artifacts remain unchanged.
+- Axe contrast remediation: certification rerun required on the new exact head.
+
 ## Next gate
 
 Open/maintain a Draft E-01 PR on the unchanged authorized base. Require exact-head E-01 source preservation, retained A-D/D-06 contracts, production Jekyll, route-ledger rendering, five-viewport browser/Axe, keyboard/focus, 320px reflow, text-spacing, reduced-motion, no-JS, CodeQL, zero unresolved threads, required Pages and Trusted Governance before promotion.
