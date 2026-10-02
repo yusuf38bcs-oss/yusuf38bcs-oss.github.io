@@ -1,7 +1,7 @@
 # CONV-04E-02 — BOT-08 Authorization and Provenance Baseline
 
-**Authorized base:** `cc10f1cb60828be6d8aac145ecc6964c845ac71b`  
-**Branch:** `conv-04e-02-botany-plastid-chloroplast-20261003`  
+**Authorized base:** `cc10f1cb60828be6d8aac145ecc6964c845ac71b`
+**Branch:** `conv-04e-02-botany-plastid-chloroplast-20261003`
 **Target:** BOT-08 — Plastid and Chloroplast
 
 ## Exact target
