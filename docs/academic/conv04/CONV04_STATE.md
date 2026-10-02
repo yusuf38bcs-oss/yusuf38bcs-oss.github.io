@@ -8,7 +8,7 @@ branch: conv-04f-01-hsc-zoology-gateway-20261003
 production_verified_main: b73d04616498649b8db66afef2d80103329118f5
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact HSC Zoology gateway metadata + F-01 route-ledger/certification/state artifacts + one retained D-05 browser timing stabilization
+mutation_authority: exact HSC Zoology gateway metadata + F-01 route-ledger/certification/state artifacts
 learner_content_authoring: structural-metadata-only / scientific-rewrite-forbidden
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
