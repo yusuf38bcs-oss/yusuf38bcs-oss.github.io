@@ -48,22 +48,6 @@ This is a surface-level CONV-04 promotion. It does **not** claim that the whole 
 
 No mutation is authorized for Digestive System, Higher Zoology, Animal Diversity, Ecology, Genetics, Physiology, Practical, Socratic, Admission/#356, assessment banks/runtime, Worker, Cloudflare, or shared layout/CSS.
 
-## Retained-certification stabilization
-
-The first exact-head run exposed a deterministic race in the retained D-05 browser
-certificate: Axe ran immediately after submit while the 0.5-second explanation and
-score-board opacity/slide animations were still active. The reported targets were the
-animated explanation/result surfaces, while their steady-state foreground/background
-tokens are high-contrast.
-
-F-01 therefore authorizes exactly one non-learner retained-test correction:
-
-`.github/scripts/assessment-runtime-second-bank-browser-certification.mjs`
-
-The correction waits 650 ms after submit before Axe inspects the steady state. It does
-not change Axe rules, violation severity, questions, answers, scores, runtime behavior,
-or any learner-facing source.
-
 ## Promotion gate
 
 Draft until exact-head F-01 source preservation, retained C-03/A-E/D contracts, production Jekyll, browser/Axe, keyboard/focus, 320px reflow, text spacing, reduced motion, no-JS, CodeQL, review convergence, required Pages, exact-head solo authority, and Trusted Governance pass.
