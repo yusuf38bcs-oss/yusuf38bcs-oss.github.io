@@ -158,6 +158,22 @@
       ]
     },
     {
+      "id": "hsc-botany-lecture-08",
+      "canonical_route": "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/",
+      "source_file": "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+      "support_files": [
+        "docs/academic/conv04/BOT08_CONTENT_REVIEW.md"
+      ],
+      "academic_role": "lecture",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
       "id": "hsc-zoology-gateway",
       "canonical_route": "/biology/hsc-corner/zoology/",
       "source_file": "_biology/hsc-corner/zoology/index.md",

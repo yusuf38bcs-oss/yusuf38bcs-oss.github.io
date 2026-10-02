@@ -1,0 +1,161 @@
+{
+  "schema": "lbfl-conv04e-bot08-authorization-v1",
+  "version": "CONV-04E-02-authorization-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04E-02",
+  "status": "authorized-not-implemented",
+  "authorized_base": "cc10f1cb60828be6d8aac145ecc6964c845ac71b",
+  "branch": "conv-04e-02-bot08-plastid-chloroplast-20261003",
+  "target": {
+    "lesson_id": "bot-08",
+    "title": "Plastid and Chloroplast",
+    "source_file": "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+    "route": "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/",
+    "topic_ids": [
+      "chloroplast"
+    ],
+    "gap_ids": [
+      "gap-02-chloroplast"
+    ],
+    "source_present_at_authorization": false
+  },
+  "baseline": {
+    "scope": {
+      "path": "_data/academic/hsc_botany_chapter01_scope_v1.json",
+      "blob_sha": "f2a45806a80d6fe59b4a6d74373cbdac32bfe1f5"
+    },
+    "botany_index": {
+      "path": "_biology/hsc-corner/botany/index.md",
+      "blob_sha": "035d239e3bf5ae0bb1332e6d0abc41de55d01363"
+    },
+    "chapter_index": {
+      "path": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
+      "blob_sha": "902d53cfce12601c60cecb158d0a46bb07fb4e3b"
+    },
+    "bot07": {
+      "path": "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md",
+      "blob_sha": "d3adcdfe7d263cd0c4b7a94c9b120be3b08dca16"
+    },
+    "e01_manifest": {
+      "path": "_data/academic/conv04e_botany_gateway_v1.json",
+      "blob_sha": "10db7e76a14c569280ecef59e0fce8844e62eb54"
+    },
+    "e01_authorization": {
+      "path": "_data/academic/conv04e_botany_gateway_authorization_v1.json",
+      "blob_sha": "41413042d77c9fe07cd0a77b00c145a0412af90a"
+    },
+    "chloroplast_scope": {
+      "topic_id": "chloroplast",
+      "nctb_scope": "Chloroplast — structure, location and function",
+      "source_pages": [
+        31,
+        32,
+        33
+      ],
+      "status": "missing",
+      "existing_lessons": [],
+      "gap_id": "gap-02-chloroplast",
+      "missing_lesson_requirement": "new-lesson-required"
+    },
+    "bot08_action": {
+      "action_id": "bot-08",
+      "action": "create-new-lesson",
+      "lesson_id": "bot-08",
+      "title": "Plastid and Chloroplast",
+      "gap_ids": [
+        "gap-02-chloroplast"
+      ],
+      "topic_ids": [
+        "chloroplast"
+      ],
+      "authoring_status": "authorized"
+    },
+    "remaining_curriculum_gaps": [
+      "gap-02-chloroplast",
+      "gap-04-centriole-microtubule",
+      "gap-05-nuclear-components",
+      "gap-06-cell-chemical-components",
+      "gap-07-prokaryotic-eukaryotic-comparison",
+      "gap-08-cell-size-shape-inclusions",
+      "gap-09-cell-discovery-history",
+      "gap-10-microscopy-mounting-drawing",
+      "gap-11-chapter-practical-integration"
+    ]
+  },
+  "normative_provenance": {
+    "authority": "National Curriculum and Textbook Board (NCTB), Bangladesh",
+    "document_title": "জাতীয় শিক্ষাক্রম ২০১২ — জীববিজ্ঞান (একাদশ ও দ্বাদশ শ্রেণি)",
+    "official_index_url": "https://nctb.gov.bd/pages/files/6922dbc6933eb65569e0c702",
+    "official_pdf_url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-nctb/2024/12/ca39e59575134a74b26a35b760d193eb.pdf",
+    "chapter": "প্রথম অধ্যায়: কোষ ও এর গঠন",
+    "page_range": [
+      31,
+      32,
+      33
+    ],
+    "authorized_scope": "Chloroplast — structure, location and function"
+  },
+  "corroborative_science": [
+    {
+      "authority": "NCBI Bookshelf / The Cell: A Molecular Approach",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK9905/",
+      "supports": [
+        "plastid-family",
+        "chloroplast-envelope",
+        "thylakoid",
+        "grana",
+        "stroma",
+        "chloroplast-genome"
+      ]
+    },
+    {
+      "authority": "NCBI Bookshelf / Molecular Biology of the Cell",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK26819/",
+      "supports": [
+        "plastid-family",
+        "photosynthesis",
+        "chloroplast-origin",
+        "thylakoid-energy-conversion"
+      ]
+    },
+    {
+      "authority": "OpenStax Biology 2e — Eukaryotic Cells",
+      "url": "https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells",
+      "supports": [
+        "plant-cell-chloroplast",
+        "double-membrane",
+        "thylakoid",
+        "grana",
+        "stroma",
+        "chloroplast-DNA"
+      ]
+    },
+    {
+      "authority": "OpenStax Biology 2e — Overview of Photosynthesis",
+      "url": "https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis",
+      "supports": [
+        "mesophyll-location",
+        "chloroplast-structure",
+        "chlorophyll",
+        "light-reactions"
+      ]
+    }
+  ],
+  "authoring_boundaries": {
+    "curriculum_bound_edition_neutral": true,
+    "named_private_textbook_wording_or_page_claims": false,
+    "chapter_completion_claim": false,
+    "strict_chapter_release": false,
+    "close_only_gap": "gap-02-chloroplast",
+    "preserve_other_gaps": true,
+    "full_assessment_bank_in_lesson": false,
+    "mcq_arena_remains_full_bank_owner": true
+  },
+  "learner_mutation_allowlist": [
+    "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+    "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md",
+    "_biology/hsc-corner/botany/index.md",
+    "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md"
+  ],
+  "next_gate": "record exact BOT-08 content contract, then author only the authorized lesson and navigation/scope changes"
+}

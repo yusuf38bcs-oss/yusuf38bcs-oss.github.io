@@ -67,11 +67,25 @@ def main():
     course = load_json(COURSE_CONTRACT)
 
     require(scope.get("schema") == "lbfl-hsc-botany-chapter01-scope-v1", "Unexpected scope schema")
-    require(scope.get("version") == EXPECTED_VERSION, "Unexpected CONV-03C-01R1 scope version")
+    version = str(scope.get("version", ""))
+    require(
+        version == EXPECTED_VERSION
+        or bool(re.fullmatch(r"CONV-04E-\d{2}-\d+\.\d+\.\d+", version)),
+        "Unexpected Chapter-01 scope version lineage"
+    )
     base = scope.get("authorized_base_sha", "")
     require(bool(SHA40.fullmatch(base)), "authorized_base_sha must be a lowercase 40-character SHA")
     require(base == EXPECTED_BASE, f"Authorized base drift: {base}")
-    require(scope.get("state") == "learner-content-postmerge-integrity-remediation", "Unexpected Chapter-01 remediation state")
+    scope_state = str(scope.get("state", ""))
+    progressive_state_match = re.fullmatch(
+        r"bot(\d{2})-implemented-(candidate|certified)",
+        scope_state,
+    )
+    require(
+        scope_state == "learner-content-postmerge-integrity-remediation"
+        or bool(progressive_state_match),
+        "Unexpected Chapter-01 progressive learner-content state"
+    )
     require(scope.get("strict_child_authorized") is False, "Chapter 01 must remain non-strict")
     require(scope.get("missing_lesson_authoring_authorized") is True, "Learner-content authoring authority must remain enabled")
 
@@ -206,6 +220,29 @@ def main():
     # and only when their authoring action has advanced to an implemented state.
     implementations_by_id = {x.get("lesson_id"): x for x in implementations}
     actions_by_id = {x.get("action_id"): x for x in plan}
+
+    # A progressive state must identify the latest published lesson and agree
+    # with that lesson's authoring action and implementation record.
+    if progressive_state_match:
+        state_lesson_id = f"bot-{progressive_state_match.group(1)}"
+        state_action_status = f"implemented-{progressive_state_match.group(2)}"
+        require(bool(ids) and ids[-1] == state_lesson_id,
+                f"Progressive state must identify the latest published lesson: {state_lesson_id}")
+        state_action = actions_by_id.get(state_lesson_id)
+        require(state_action is not None,
+                f"{state_lesson_id}: progressive state requires a matching authoring action")
+        if state_action:
+            require(state_action.get("authoring_status") == state_action_status,
+                    f"{state_lesson_id}: progressive state/status does not match authoring action")
+        state_impl = implementations_by_id.get(state_lesson_id)
+        require(state_impl is not None,
+                f"{state_lesson_id}: progressive state requires a content implementation record")
+        state_lesson = next((x for x in lessons if x.get("lesson_id") == state_lesson_id), None)
+        if state_impl and state_lesson:
+            require(state_impl.get("source_file") == state_lesson.get("source_file"),
+                    f"{state_lesson_id}: implementation source_file does not match published lesson")
+            require(state_impl.get("route") == state_lesson.get("route"),
+                    f"{state_lesson_id}: implementation route does not match published lesson")
 
     # A gap may leave the live remaining-gap set only when the matching
     # pre-authorized authoring action has actually been implemented.

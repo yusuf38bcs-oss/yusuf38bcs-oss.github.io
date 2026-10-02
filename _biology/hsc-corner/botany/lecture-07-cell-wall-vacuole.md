@@ -383,7 +383,7 @@ seo_description: 'Plant cell wall, middle lamella, primary ও secondary wall, c
 <p class="source-note"><strong>Provenance note:</strong> কোনো named private HSC Biology textbook edition-এর exact wording বা page number এই lesson-এ দাবি করা হয়নি।</p>
 </section>
 
-<nav class="prevnext"><a href="{{ '/biology/hsc-corner/botany/lecture-06-mitochondria/' | relative_url }}">← Previous: Mitochondria</a><a href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">Chapter 01</a></nav>
+<nav class="prevnext"><a href="{{ '/biology/hsc-corner/botany/lecture-06-mitochondria/' | relative_url }}">← Previous: Mitochondria</a><a href="{{ '/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/' | relative_url }}">Chapter 01</a><a href="{{ '/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/' | relative_url }}">Next: Plastid and Chloroplast →</a></nav>
 
 </div>
 
