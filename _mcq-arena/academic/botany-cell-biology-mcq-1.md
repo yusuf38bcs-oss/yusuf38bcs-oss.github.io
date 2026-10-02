@@ -87,8 +87,8 @@ concept_level: "Assessment"
 .opt:hover { border-color: var(--q-primary) !important; background: #12323a !important; }
 .opt:focus-visible, .btn-submit:focus-visible, .btn-restart:focus-visible { outline: 3px solid #f8fafc; outline-offset: 3px; }
 .opt.selected { border-color: #5eead4 !important; background: #134e4a !important; color: #f8fafc !important; font-weight: 700 !important; text-decoration: none !important; }
-.authored-assessment-wrapper .q button.opt.correct, .authored-assessment-wrapper .q button.opt.correct:disabled { border: 2px solid #86efac !important; background-image: none !important; background-color: #14532d !important; color: #f0fdf4 !important; font-weight: 800 !important; text-decoration: none !important; opacity: 1 !important; }
-.authored-assessment-wrapper .q button.opt.wrong, .authored-assessment-wrapper .q button.opt.wrong:disabled { border: 2px solid #fca5a5 !important; background-image: none !important; background-color: #7f1d1d !important; color: #fff1f2 !important; font-weight: 700 !important; text-decoration: line-through !important; opacity: 1 !important; }
+.authored-assessment-wrapper .q button.opt.correct, .authored-assessment-wrapper .q button.opt.correct:disabled { border: 2px solid #86efac !important; background-image: none !important; background-color: #14532d !important; color: #f0fdf4 !important; font-weight: 800 !important; text-decoration: none !important; opacity: 1 !important; transition: none !important; }
+.authored-assessment-wrapper .q button.opt.wrong, .authored-assessment-wrapper .q button.opt.wrong:disabled { border: 2px solid #fca5a5 !important; background-image: none !important; background-color: #7f1d1d !important; color: #fff1f2 !important; font-weight: 700 !important; text-decoration: line-through !important; opacity: 1 !important; transition: none !important; }
 
 .exp { display: none; margin-top: 15px; padding: 12px; background: #111827; border-radius: 6px; font-size: 0.95rem; border-left: 3px solid #86efac; color: #f0fdf4; }
 .q.done .exp { display: block; animation: fadeIn 0.5s ease; }
