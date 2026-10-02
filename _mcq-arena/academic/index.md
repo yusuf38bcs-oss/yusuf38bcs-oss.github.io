@@ -86,7 +86,7 @@ concept_level: "Assessment Hub"
       <article class="lbfl-academic-card" data-assessment-module>
         <p><strong>{{ item.concept_level | default: "Assessment" }}</strong></p>
         <h3>{{ item.title }}</h3>
-        <p>{{ item.excerpt | strip_html }}</p>
+        <p>{{ item.hsc_alignment | default: item.excerpt | strip_html }}</p>
         <div class="lbfl-academic-actions">
           <a class="lbfl-academic-button" data-assessment-start href="{{ item.url | relative_url }}">Start assessment</a>
           <a data-assessment-source href="{{ source_url | relative_url }}">{{ source_label }}</a>

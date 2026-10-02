@@ -17,7 +17,7 @@ const expected=[
   "/mcq-arena/academic/zoology-chordata-arthropoda-mcq-pro/",
   "/mcq-arena/academic/zoology-respiratory-system-mcq-5/"
 ];
-const forbidden=["diagnostic node","diagnostic modules","neural retention","cognitive models","cognitive gaps"];
+const forbidden=["diagnostic node","diagnostic modules","neural retention","cognitive models","cognitive gaps","neural pathways"];
 const viewports=[
   {name:"mobile-320",width:320,height:820},
   {name:"mobile-390",width:390,height:844},

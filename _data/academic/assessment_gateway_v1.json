@@ -1,6 +1,6 @@
 {
   "schema": "lbfl-assessment-gateway-v1",
-  "version": "CONV-04D-02-1.0.0",
+  "version": "CONV-04D-02-R1-1.0.0",
   "programme": "CONV-04",
   "phase": "CONV-04D-02",
   "authorized_base": "ee7a10d419a1ee970a1a18b8eda98ffce7b32923",
@@ -37,7 +37,8 @@
       "diagnostic modules",
       "neural retention",
       "cognitive models",
-      "cognitive gaps"
+      "cognitive gaps",
+      "neural pathways"
     ],
     "required": [
       "Attempt → Feedback → Repair → Reattempt"
@@ -72,5 +73,6 @@
     "bot_08": "frozen",
     "admission_pr_356": "untouched",
     "worker_cloudflare": "out-of-scope"
-  }
+  },
+  "remediation": "Gateway cards use curriculum alignment metadata instead of legacy excerpts so inherited neural framing cannot re-enter the gateway."
 }

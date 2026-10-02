@@ -5,7 +5,7 @@ on:
     branches: ["main"]
     types: [opened, synchronize, reopened, ready_for_review, edited]
     paths:
-      - "_mcq-arena/academic/index.md"
+      - "_mcq-arena/academic/**"
       - "_data/academic/assessment_gateway_v1.json"
       - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
       - "docs/academic/conv04/ASSESSMENT_GATEWAY_IMPLEMENTATION.md"
@@ -29,6 +29,7 @@ jobs:
     timeout-minutes: 30
     env:
       CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CERTIFICATION_MODE: ${{ github.event_name == 'pull_request' && 'pull_request' || 'manual' }}
       PR_BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
       PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
       REPORT_DIR: assessment-gateway-browser-report
@@ -71,7 +72,11 @@ jobs:
           set -euo pipefail
           ruby -c .github/scripts/validate-assessment-gateway.rb
           ruby .github/scripts/validate-assessment-gateway.rb
-          git diff --check "$PR_BASE_SHA...HEAD"
+          if [ -n "$PR_BASE_SHA" ]; then
+            git diff --check "$PR_BASE_SHA...HEAD"
+          else
+            git diff --check HEAD^...HEAD
+          fi
 
       - name: Install Jekyll dependencies
         shell: bash
