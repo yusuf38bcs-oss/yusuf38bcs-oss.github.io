@@ -39,3 +39,8 @@ The lesson remains curriculum-bound and edition-neutral. It covers chloroplast s
 ## Curriculum disposition
 
 Only `gap-02-chloroplast` is closed. Chapter 01 remains `convergence-pending` and `not-certified`.
+
+
+## Exact-head accessibility remediation
+
+The first BOT-08 browser/Axe run found inherited legacy foreground colors on MCQ option labels and CQ headings after Academic-v1 activation. The remediation is page-local and uses the existing `lbfl-academic-lead` semantic class. No shared CSS, question wording, answer key, CQ content, route, or scientific statement was changed.
