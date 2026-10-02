@@ -2,13 +2,13 @@
 
 programme: CONV-04
 phase: CONV-04D-05
-mode: authorized second-bank authored-runtime migration — Botany Cell Division
+mode: second-bank authored-runtime implementation candidate — Botany Cell Division
 authorized_base: a104260266a292bee58f6935a5038693380e8c04
 branch: conv-04d-05-botany-cell-division-runtime-migration-20261002
 production_verified_main: a104260266a292bee58f6935a5038693380e8c04
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 mutation_authority: exact Botany Cell Division assessment bank + D-05 certification/state artifacts
-learner_content_authoring: second-bank-runtime-migration-only
+learner_content_authoring: second-bank-runtime-migration-implemented / certification-pending
 existing_learning_method_cleanup: unchanged
 gateway_cta_injection: unchanged
 learner_mutation_allowlist:
@@ -52,6 +52,13 @@ merge: not authorized until unchanged-head governance + required checks PASS
 7. Certify keyboard radio behavior, wall-clock timer integrity, submit/retry state, visible feedback, authored explanations, no-JS readability, responsive layout, and zero serious/critical Axe violations.
 8. Keep the D-04 pilot, the other four unmigrated Academic MCQ banks, the Academic gateway, generated engine, legacy component, model tests, Biology content, Socratic, Practical, BOT-08, Admission/#356, Worker, and Cloudflare configuration unchanged.
 
+## Implementation status
+
+- Botany Cell Division second bank migrated to the certified authored runtime.
+- Academic content preservation target remains exactly 8 questions / 32 options / 8 answer keys / 8 authored explanations.
+- Shared authored runtime remains unchanged from authorized base.
+- D-05-specific validator, browser certification, workflow, manifest, and implementation record are present.
+
 ## Next gate
 
-Implement CONV-04D-05 on this isolated branch with exact content preservation and no shared-runtime mutation by default. Then require local/source validator PASS, production Jekyll PASS, five-viewport browser/Axe PASS, no-JS resilience, retained B/C/D contracts, CodeQL, zero unresolved review threads, exact-head solo authority, Trusted Governance, and required Pages checks before merge.
+Run exact-head D-05 source/content-preservation validation + production Jekyll build + five-viewport browser/Axe certification + wall-clock timer check + no-JS resilience + retained B/C/D contracts. Open the Draft PR only after the candidate is internally coherent; promotion remains blocked until review convergence, exact-head solo authority, Trusted Governance, required Pages, and CodeQL pass.

@@ -11,7 +11,7 @@ title: "Botany 2nd Chapter MCQ: Chromosome & Cell Division"
 excerpt: "Challenge your understanding of mitosis, meiosis, and chromosomal architecture."
 
 date: 2026-04-26T10:38:00.000Z
-last_modified_at: 2026-06-09T04:13:27.000Z
+last_modified_at: '2026-10-02T17:20:00+06:00'
 
 permalink: /mcq-arena/academic/botany-cell-division-mcq-2/
 
@@ -51,6 +51,8 @@ hsc_alignment: "HSC Botany: mitosis, meiosis, and cell division"
 concept_level: "Assessment"
 ---
 
+# Botany 2nd Chapter MCQ: Chromosome & Cell Division
+
 <style>
 :root {
   --q-primary: #00d4b2;
@@ -63,7 +65,7 @@ concept_level: "Assessment"
   --q-text: #cbd5e1;
 }
 
-.neural-quiz-wrapper { max-width: 800px; margin: 2rem auto; font-family: 'Inter', 'Tiro Bangla', sans-serif; color: var(--q-text); }
+.authored-assessment-wrapper { max-width: 800px; margin: 2rem auto; font-family: 'Inter', 'Tiro Bangla', sans-serif; color: var(--q-text); }
 .quiz-card { background: var(--q-card); border-radius: 16px; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4); overflow: hidden; }
 
 .quiz-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 25px; text-align: center; border-bottom: 1px solid rgba(0, 212, 178, 0.2); position: relative; }
@@ -81,141 +83,142 @@ concept_level: "Assessment"
 
 .q-text { font-weight: 700; font-size: 1.15rem; color: #ffffff; margin-bottom: 15px; }
 .opts { display: flex; flex-direction: column; gap: 10px; }
-.opt { padding: 12px 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; cursor: pointer; transition: 0.2s; background: rgba(0,0,0,0.2); }
-.opt:hover { border-color: var(--q-primary); background: rgba(0, 212, 178, 0.05); }
-.opt.selected { border-color: var(--q-primary); background: rgba(0, 212, 178, 0.1); }
-.opt.correct { border-color: var(--q-success); background: rgba(16, 185, 129, 0.15); color: #10b981; font-weight: bold; }
-.opt.wrong { border-color: var(--q-danger); background: rgba(239, 68, 68, 0.15); color: #ef4444; text-decoration: line-through; }
+.opt { width: 100%; padding: 12px 15px; border: 1px solid rgba(255,255,255,0.28) !important; border-radius: 8px; cursor: pointer; transition: 0.2s; background: #111827 !important; color: #f8fafc !important; font: inherit; font-weight: 500 !important; text-align: left; text-decoration: none !important; display: block !important; }
+.opt:hover { border-color: var(--q-primary) !important; background: #12323a !important; }
+.opt:focus-visible, .btn-submit:focus-visible, .btn-restart:focus-visible { outline: 3px solid #f8fafc; outline-offset: 3px; }
+.opt.selected { border-color: #5eead4 !important; background: #134e4a !important; color: #f8fafc !important; font-weight: 700 !important; text-decoration: none !important; }
+.authored-assessment-wrapper .q button.opt.correct, .authored-assessment-wrapper .q button.opt.correct:disabled { border: 2px solid #86efac !important; background-image: none !important; background-color: #14532d !important; color: #f0fdf4 !important; font-weight: 800 !important; text-decoration: none !important; opacity: 1 !important; transition: none !important; }
+.authored-assessment-wrapper .q button.opt.wrong, .authored-assessment-wrapper .q button.opt.wrong:disabled { border: 2px solid #fca5a5 !important; background-image: none !important; background-color: #7f1d1d !important; color: #fff1f2 !important; font-weight: 700 !important; text-decoration: line-through !important; opacity: 1 !important; transition: none !important; }
 
-.exp { display: none; margin-top: 15px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.95rem; border-left: 3px solid var(--q-success); color: #34d399; }
+.exp { display: none; margin-top: 15px; padding: 12px; background: #111827; border-radius: 6px; font-size: 0.95rem; border-left: 3px solid #86efac; color: #f0fdf4; }
 .q.done .exp { display: block; animation: fadeIn 0.5s ease; }
 
 .quiz-foot { text-align: center; padding: 25px; border-top: 1px solid rgba(255,255,255,0.05); background: #0b1324; }
 .btn-submit { background: var(--q-primary); color: #090d16; border: none; padding: 12px 35px; border-radius: 30px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 212, 178, 0.3); }
 .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 212, 178, 0.5); }
-.btn-restart { background: transparent; color: var(--q-text); border: 1px solid rgba(255,255,255,0.2); padding: 12px 25px; border-radius: 30px; margin-left: 10px; cursor: pointer; transition: 0.3s; }
-.btn-restart:hover { background: rgba(255,255,255,0.05); }
+.btn-restart { background: #111827 !important; color: #f8fafc !important; border: 1px solid #94a3b8 !important; padding: 12px 25px; border-radius: 30px; margin-left: 10px; cursor: pointer; transition: 0.3s; text-decoration: none !important; }
+.btn-restart:hover { background: #1e293b !important; color: #ffffff !important; }
+.authored-assessment-wrapper [hidden] { display: none !important; }
 
-.score-board { display: none; margin-top: 25px; padding: 20px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--q-success); text-align: center; }
+.score-board { display: none; margin-top: 25px; padding: 20px; border-radius: 12px; background: #0f172a; border: 1px solid #86efac; color: #f8fafc; text-align: center; }
 .score-board.show { display: block; animation: slideUp 0.5s ease; }
-.score-text { font-size: 2rem; font-weight: 800; color: #10b981; margin: 10px 0; }
+.score-text { font-size: 2rem; font-weight: 800; color: #f0fdf4; margin: 10px 0; }
 
 @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 </style>
 
-<div class="neural-quiz-wrapper">
+<div class="authored-assessment-wrapper" data-authored-assessment data-assessment-runtime="authored-v1" data-source-return="/biology/hsc-corner/botany/" data-source-label="Review HSC Botany source" data-time-limit="600">
   <div class="quiz-card">
     <div class="quiz-header">
       <h2>🧬 ক্রোমোজোম ও কোষ বিভাজন কুইজ</h2>
-      <div class="quiz-timer" id="timer3">⏱️ 10:00</div>
+      <div class="quiz-timer" id="timer3" data-assessment-timer>⏱️ 10:00</div>
       <div class="progress-wrap">
-        <div class="progress-bar" id="progressBar3"></div>
+        <div class="progress-bar" id="progressBar3" data-assessment-progress-bar></div>
       </div>
-      <div class="progress-text" id="progressText3">0 / 8 Answered</div>
+      <div class="progress-text" id="progressText3" data-assessment-progress-text>0 / 8 Answered</div>
     </div>
 
-    <div class="quiz-body" id="quizBody3">
-      <div class="q" data-a="2">
-        <div class="q-text">১. ক্রোমাটিন তন্তুর প্রকৃত গঠন কী?</div>
-        <div class="opts">
-          <div class="opt">শুধু DNA</div>
-          <div class="opt">শুধু প্রোটিন</div>
-          <div class="opt">DNA ও হিস্টোন প্রোটিন</div>
-          <div class="opt">RNA ও প্রোটিন</div>
+    <div class="quiz-body" id="quizBody3" data-assessment-body>
+      <div class="q" data-assessment-question data-a="2">
+        <div class="q-text" id="q1-label">১. ক্রোমাটিন তন্তুর প্রকৃত গঠন কী?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q1-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">শুধু DNA</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">শুধু প্রোটিন</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">DNA ও হিস্টোন প্রোটিন</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">RNA ও প্রোটিন</button>
         </div>
-        <div class="exp">✔ সঠিক: DNA ও প্রোটিন মিলে ক্রোমাটিন গঠিত।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: DNA ও প্রোটিন মিলে ক্রোমাটিন গঠিত।</div>
       </div>
 
-      <div class="q" data-a="1">
-        <div class="q-text">২. কোষ বিভাজনের সময় ক্রোমাটিন কীসে রূপান্তরিত হয়?</div>
-        <div class="opts">
-          <div class="opt">নিউক্লিওলাস</div>
-          <div class="opt">ক্রোমোজোম</div>
-          <div class="opt">রাইবোজোম</div>
-          <div class="opt">সেন্ট্রিওল</div>
+      <div class="q" data-assessment-question data-a="1">
+        <div class="q-text" id="q2-label">২. কোষ বিভাজনের সময় ক্রোমাটিন কীসে রূপান্তরিত হয়?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q2-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">নিউক্লিওলাস</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">ক্রোমোজোম</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">রাইবোজোম</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">সেন্ট্রিওল</button>
         </div>
-        <div class="exp">✔ সঠিক: কুণ্ডলিত হয়ে ক্রোমোজোমে রূপ নেয়।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: কুণ্ডলিত হয়ে ক্রোমোজোমে রূপ নেয়।</div>
       </div>
 
-      <div class="q" data-a="1">
-        <div class="q-text">৩. ইউক্রোমাটিনের প্রধান কাজ কী?</div>
-        <div class="opts">
-          <div class="opt">নিষ্ক্রিয় DNA সংরক্ষণ</div>
-          <div class="opt">সক্রিয় থেকে mRNA সংশ্লেষণ</div>
-          <div class="opt">শক্তি উৎপাদন</div>
-          <div class="opt">বিভাজন বন্ধ করা</div>
+      <div class="q" data-assessment-question data-a="1">
+        <div class="q-text" id="q3-label">৩. ইউক্রোমাটিনের প্রধান কাজ কী?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q3-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">নিষ্ক্রিয় DNA সংরক্ষণ</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">সক্রিয় থেকে mRNA সংশ্লেষণ</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">শক্তি উৎপাদন</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">বিভাজন বন্ধ করা</button>
         </div>
-        <div class="exp">✔ সঠিক: এটি ট্রান্সক্রিপশনে সক্রিয় অংশ।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: এটি ট্রান্সক্রিপশনে সক্রিয় অংশ।</div>
       </div>
 
-      <div class="q" data-a="2">
-        <div class="q-text">৪. সিস্টার ক্রোমাটিড কোথায় যুক্ত থাকে?</div>
-        <div class="opts">
-          <div class="opt">টেলোমিয়ার</div>
-          <div class="opt">কাইনেটোকোর</div>
-          <div class="opt">সেন্ট্রোমিয়ার</div>
-          <div class="opt">স্যাটেলাইট</div>
+      <div class="q" data-assessment-question data-a="2">
+        <div class="q-text" id="q4-label">৪. সিস্টার ক্রোমাটিড কোথায় যুক্ত থাকে?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q4-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">টেলোমিয়ার</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">কাইনেটোকোর</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">সেন্ট্রোমিয়ার</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">স্যাটেলাইট</button>
         </div>
-        <div class="exp">✔ সঠিক: সেন্ট্রোমিয়ারে যুক্ত থাকে।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: সেন্ট্রোমিয়ারে যুক্ত থাকে।</div>
       </div>
 
-      <div class="q" data-a="2">
-        <div class="q-text">৫. মেটাফেজে ক্রোমোজোমের বৈশিষ্ট্য কী?</div>
-        <div class="opts">
-          <div class="opt">লম্বা ও পাতলা</div>
-          <div class="opt">অদৃশ্য</div>
-          <div class="opt">খাটো ও মোটা (সর্বোচ্চ কন্ডেন্সড)</div>
-          <div class="opt">বিভাজিত নয়</div>
+      <div class="q" data-assessment-question data-a="2">
+        <div class="q-text" id="q5-label">৫. মেটাফেজে ক্রোমোজোমের বৈশিষ্ট্য কী?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q5-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">লম্বা ও পাতলা</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">অদৃশ্য</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">খাটো ও মোটা (সর্বোচ্চ কন্ডেন্সড)</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">বিভাজিত নয়</button>
         </div>
-        <div class="exp">✔ সঠিক: সবচেয়ে কন্ডেন্সড অবস্থায় থাকে।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: সবচেয়ে কন্ডেন্সড অবস্থায় থাকে।</div>
       </div>
 
-      <div class="q" data-a="1">
-        <div class="q-text">৬. অ্যাসেন্ট্রিক (Acentric) ক্রোমোজোমের বৈশিষ্ট্য কী?</div>
-        <div class="opts">
-          <div class="opt">একাধিক সেন্ট্রোমিয়ার</div>
-          <div class="opt">কোনো সেন্ট্রোমিয়ার নেই</div>
-          <div class="opt">মাঝখানে সেন্ট্রোমিয়ার</div>
-          <div class="opt">দুই প্রান্তে সেন্ট্রোমিয়ার</div>
+      <div class="q" data-assessment-question data-a="1">
+        <div class="q-text" id="q6-label">৬. অ্যাসেন্ট্রিক (Acentric) ক্রোমোজোমের বৈশিষ্ট্য কী?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q6-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">একাধিক সেন্ট্রোমিয়ার</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">কোনো সেন্ট্রোমিয়ার নেই</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">মাঝখানে সেন্ট্রোমিয়ার</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">দুই প্রান্তে সেন্ট্রোমিয়ার</button>
         </div>
-        <div class="exp">✔ সঠিক: সেন্ট্রোমিয়ার না থাকলে বিভাজন হয় না।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: সেন্ট্রোমিয়ার না থাকলে বিভাজন হয় না।</div>
       </div>
 
-      <div class="q" data-a="2">
-        <div class="q-text">৭. ‘V’ আকৃতির ক্রোমোজোম কোনটি?</div>
-        <div class="opts">
-          <div class="opt">অ্যাক্রোসেন্ট্রিক</div>
-          <div class="opt">টেলোসেন্ট্রিক</div>
-          <div class="opt">মেটাসেন্ট্রিক</div>
-          <div class="opt">সাবমেটাসেন্ট্রিক</div>
+      <div class="q" data-assessment-question data-a="2">
+        <div class="q-text" id="q7-label">৭. ‘V’ আকৃতির ক্রোমোজোম কোনটি?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q7-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">অ্যাক্রোসেন্ট্রিক</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">টেলোসেন্ট্রিক</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">মেটাসেন্ট্রিক</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">সাবমেটাসেন্ট্রিক</button>
         </div>
-        <div class="exp">✔ সঠিক: মেটাসেন্ট্রিক।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: মেটাসেন্ট্রিক।</div>
       </div>
 
-      <div class="q" data-a="2">
-        <div class="q-text">৮. অ্যানাফেজ পর্যায়ে কী ঘটে?</div>
-        <div class="opts">
-          <div class="opt">নিউক্লিয়ার মেমব্রেন তৈরি</div>
-          <div class="opt">DNA প্রতিলিপি</div>
-          <div class="opt">ক্রোমাটিড পৃথক হয়ে মেরুর দিকে যায়</div>
-          <div class="opt">নিউক্লিওলাস সৃষ্টি</div>
+      <div class="q" data-assessment-question data-a="2">
+        <div class="q-text" id="q8-label">৮. অ্যানাফেজ পর্যায়ে কী ঘটে?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q8-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">নিউক্লিয়ার মেমব্রেন তৈরি</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">DNA প্রতিলিপি</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">ক্রোমাটিড পৃথক হয়ে মেরুর দিকে যায়</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">নিউক্লিওলাস সৃষ্টি</button>
         </div>
-        <div class="exp">✔ সঠিক: ক্রোমাটিড পৃথক হয়ে অপত্য ক্রোমোজোম হয়।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: ক্রোমাটিড পৃথক হয়ে অপত্য ক্রোমোজোম হয়।</div>
       </div>
 
     </div>
 
     <div class="quiz-foot">
-      <button class="btn-submit" onclick="submitQuiz('quizBody3', 'scoreBoard3', 'progressBar3')">Submit Assessment</button>
-      <button class="btn-restart" onclick="location.reload()">Restart</button>
-      <div class="score-board" id="scoreBoard3"></div>
+      <button type="button" class="btn-submit" data-assessment-submit>Submit Assessment</button>
+      <button type="button" class="btn-restart" data-assessment-retry hidden>Reattempt</button>
+      <div class="score-board" id="scoreBoard3" data-assessment-results role="status" aria-live="polite" tabindex="-1"></div>
     </div>
   </div>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  initQuiz('quizBody3', 'timer3', 'progressBar3', 'progressText3', 600);
-});
-</script>
+<noscript>
+  <p><strong>Interactive feedback requires JavaScript.</strong> The assessment questions and options remain available for reading.</p>
+</noscript>
+<script src="{{ '/assets/js/learning/academic-assessment-runtime.js' | relative_url }}" defer></script>

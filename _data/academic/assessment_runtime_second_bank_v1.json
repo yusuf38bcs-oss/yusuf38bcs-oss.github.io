@@ -1,0 +1,65 @@
+{
+  "schema": "lbfl-assessment-runtime-second-bank-v1",
+  "version": "CONV-04D-05-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04D-05",
+  "authorized_base": "a104260266a292bee58f6935a5038693380e8c04",
+  "route": "/mcq-arena/academic/botany-cell-division-mcq-2/",
+  "source_file": "_mcq-arena/academic/botany-cell-division-mcq-2.md",
+  "runtime": "assets/js/learning/academic-assessment-runtime.js",
+  "runtime_policy": "reuse-unchanged-by-default",
+  "source_return": "/biology/hsc-corner/botany/",
+  "canonical_loop": [
+    "Attempt",
+    "Feedback",
+    "Repair",
+    "Reattempt"
+  ],
+  "content_preservation": {
+    "questions": 8,
+    "options": 32,
+    "answer_keys": 8,
+    "authored_explanations": 8,
+    "rule": "question text, options, answer keys, and authored explanations must remain exact"
+  },
+  "required_behavior": [
+    "selection updates answered count",
+    "keyboard radio groups use roving tabindex and arrow navigation",
+    "wall-clock timer remains accurate after throttling",
+    "submission exposes correctness state and authored explanations",
+    "submit disables after submission and restores on reattempt",
+    "wrong or weak result exposes Botany source-return repair action",
+    "reattempt resets assessment state"
+  ],
+  "browser": {
+    "viewports": [
+      "mobile-320",
+      "mobile-390",
+      "tablet-768",
+      "desktop-1280",
+      "wide-1440"
+    ],
+    "wall_clock_timer_checks": 1,
+    "no_js": [
+      "mobile-320",
+      "desktop-1280"
+    ],
+    "max_horizontal_overflow_px": 2,
+    "max_serious_critical_axe_violations": 0
+  },
+  "protected_boundaries": {
+    "d04_pilot": "unchanged",
+    "other_unmigrated_assessment_banks": "unchanged",
+    "gateway": "unchanged",
+    "shared_authored_runtime": "unchanged",
+    "generated_engine": "unchanged",
+    "legacy_component": "unchanged",
+    "model_test": "unchanged",
+    "biology_content": "unchanged",
+    "socratic": "unchanged",
+    "practical": "unchanged",
+    "bot_08": "frozen",
+    "admission_pr_356": "untouched",
+    "worker_cloudflare": "out-of-scope"
+  }
+}
