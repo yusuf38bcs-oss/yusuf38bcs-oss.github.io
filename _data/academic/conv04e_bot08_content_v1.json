@@ -1,0 +1,96 @@
+{
+  "schema": "lbfl-conv04e-bot08-content-contract-v1",
+  "version": "CONV-04E-02-content-1.0.0",
+  "phase": "CONV-04E-02",
+  "authorized_base": "cc10f1cb60828be6d8aac145ecc6964c845ac71b",
+  "authorization_file": "_data/academic/conv04e_bot08_authorization_v1.json",
+  "lesson": {
+    "lesson_id": "bot-08",
+    "title": "Plastid and Chloroplast",
+    "source_file": "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+    "route": "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/",
+    "language": "bn",
+    "academic_system": "v1",
+    "academic_role": "lecture",
+    "learning_guide": "canonical",
+    "lesson_order": 8,
+    "curriculum_scope": "NCTB curriculum 2012 pp.31-33",
+    "topic_ids": [
+      "chloroplast"
+    ],
+    "gap_ids": [
+      "gap-02-chloroplast"
+    ],
+    "authoring_model": "curriculum-bound-edition-neutral"
+  },
+  "learning_objectives": [
+    "Plastid family and chloroplast relationship explain",
+    "Chloroplast envelope, stroma, thylakoid, granum and lumen identify",
+    "Structure-function relationship connect with photosynthesis",
+    "Chloroplast location in photosynthetic plant tissue explain",
+    "Chloroplast and mitochondrion compare without conflating their membrane systems",
+    "Common misconceptions identify and repair"
+  ],
+  "required_concepts": [
+    "plastid",
+    "proplastid",
+    "chloroplast",
+    "chromoplast",
+    "leucoplast",
+    "chloroplast envelope",
+    "outer membrane",
+    "inner membrane",
+    "stroma",
+    "thylakoid",
+    "granum",
+    "grana",
+    "stroma lamella",
+    "thylakoid lumen",
+    "chlorophyll",
+    "photosynthesis",
+    "light-dependent reactions",
+    "Calvin cycle",
+    "chloroplast DNA",
+    "ribosome",
+    "endosymbiosis",
+    "mesophyll"
+  ],
+  "required_structure_function_links": [
+    "thylakoid membrane -> light-dependent electron transport and ATP/NADPH generation",
+    "stroma -> carbon fixation / Calvin-cycle enzyme environment",
+    "double-membrane envelope -> compartment boundary and metabolite transport",
+    "chlorophyll in thylakoid membrane -> light absorption",
+    "own genome/ribosomes -> partial genetic autonomy, not complete cellular independence"
+  ],
+  "assessment_boundary": {
+    "full_bank_owner": "mcq-arena",
+    "embedded_full_bank": false,
+    "short_retrieval_mcq_count": 4,
+    "cq_practice_count": 2,
+    "javascript_runtime": false,
+    "feedback_mode": "details-based-authored-explanation"
+  },
+  "navigation": {
+    "previous_route": "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/",
+    "chapter_route": "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
+    "next_route": null
+  },
+  "exact_provenance": [
+    "https://nctb.gov.bd/pages/files/6922dbc6933eb65569e0c702",
+    "https://www.ncbi.nlm.nih.gov/books/NBK9905/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK26819/",
+    "https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells",
+    "https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+  ],
+  "prohibited_claims": [
+    "named private HSC Biology textbook exact wording",
+    "named private textbook page number",
+    "Chapter-01 completion",
+    "strict Chapter-01 release",
+    "chloroplast has complete genetic independence",
+    "light reactions occur in chloroplast envelope",
+    "Calvin cycle occurs in thylakoid lumen"
+  ],
+  "review_file": "docs/academic/conv04/BOT08_CONTENT_REVIEW.md",
+  "status": "content-contract-locked-before-authoring"
+}
