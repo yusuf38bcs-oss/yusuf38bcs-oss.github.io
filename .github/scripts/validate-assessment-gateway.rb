@@ -61,6 +61,7 @@ if GATEWAY.file?
   errors << "lang: en missing" unless source.match?(/^lang:\s*en\s*$/)
   errors << "legacy language key remains" if source.match?(/^language:/)
   errors << "canonical learning guide ownership missing" unless source.match?(/^learning_guide:\s*canonical\s*$/)
+  errors << "Gateway document H1 missing" unless source.include?("# Academic MCQ Practice")
   errors << "post-category discovery remains" if source.include?('site.categories["MCQ"]')
   errors << "mcq-arena collection discovery missing" unless source.include?('site.collections | where: "label", "mcq-arena" | first')
   errors << "Academic route filtering missing" unless source.include?('item.url contains "/mcq-arena/academic/"')
@@ -113,6 +114,8 @@ end
 
 if SITE.file?
   html = read_utf8(SITE)
+  errors << "Rendered gateway must contain exactly one H1" unless html.scan(/<h1(?:\s|>)/).length == 1
+  errors << "Rendered gateway H1 text missing" unless html.include?("Academic MCQ Practice")
   errors << "Rendered gateway missing Academic v1 surface" unless html.include?("data-lbfl-academic-surface=\"v1\"")
   errors << "Rendered gateway role mismatch" unless html.include?('data-lbfl-academic-role="assessment_gateway"')
   errors << "Rendered module count must be six" unless html.scan(/\bdata-assessment-module(?=[\s=>])/).length == 6
