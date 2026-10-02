@@ -1,8 +1,8 @@
 # CONV-04D-01 — Assessment Ownership Contract
 
-**Contract:** `lbfl-assessment-ownership-v1`  
-**Version:** `CONV-04D-01-1.0.0`  
-**Authorized base:** `824a8188f7d7837091cc5d969a9b5194e49408bc`  
+**Contract:** `lbfl-assessment-ownership-v1`
+**Version:** `CONV-04D-01-1.0.0`
+**Authorized base:** `824a8188f7d7837091cc5d969a9b5194e49408bc`
 **Status:** architecture-only; learner-facing assessment mutation remains frozen.
 
 ## 1. Canonical assessment loop

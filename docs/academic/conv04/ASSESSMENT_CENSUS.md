@@ -1,6 +1,6 @@
 # CONV-04D-01 — Assessment Ownership Census
 
-**Authenticated base:** `824a8188f7d7837091cc5d969a9b5194e49408bc`  
+**Authenticated base:** `824a8188f7d7837091cc5d969a9b5194e49408bc`
 **Mode:** read-only assessment census; no learner mutation.
 
 ## 1. Academic MCQ collection inventory
