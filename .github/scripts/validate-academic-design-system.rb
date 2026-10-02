@@ -706,11 +706,17 @@ if git_dir.exist?
       end
     end
 
-    protected = changed.select do |path|
-      path.start_with?("_biology/", "_mcq-arena/", "_socratic/", "workers/", "cloudflare/") ||
-        path.match?(/admission/i)
+    always_protected = changed.select do |path|
+      path.start_with?("workers/", "cloudflare/") || path.match?(/admission/i)
     end
-    errors << "Protected learner/Admission/Worker scope changed: #{protected.join(', ')}" unless protected.empty?
+    errors << "Protected Admission/Worker/Cloudflare scope changed: #{always_protected.join(', ')}" unless always_protected.empty?
+
+    if candidate_state.include?("phase: CONV-04B")
+      learner_protected = changed.select do |path|
+        path.start_with?("_biology/", "_mcq-arena/", "_socratic/")
+      end
+      errors << "CONV-04B learner scope changed before learner migration authority: #{learner_protected.join(', ')}" unless learner_protected.empty?
+    end
   else
     errors << "Unable to calculate candidate changed-file scope from #{comparison_base}: #{stdout.strip}"
   end
