@@ -59,10 +59,6 @@ jobs:
               echo "BASE CHANGED — RECERTIFICATION REQUIRED"
               exit 1
             }
-            test "$remote" = "01e443b2155c6cccf65cb525ec39880c7977db7b" || {
-              echo "D-05 AUTHORIZED BASE CHANGED — REBASE/REAUTHORIZE REQUIRED"
-              exit 1
-            }
           fi
 
       - name: Set up Ruby

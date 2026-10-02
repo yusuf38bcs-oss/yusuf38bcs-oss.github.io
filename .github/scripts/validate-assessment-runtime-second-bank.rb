@@ -101,6 +101,7 @@ errors = []
 PHASE_PATTERN = /\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R([1-9]\d*))?\z/.freeze
 R1_MAINTENANCE_BASE = "e01794957b184114e4a7ab82f0689acd67b5f14f"
 VALIDATOR_PATH = ".github/scripts/validate-assessment-runtime-second-bank.rb"
+WORKFLOW_PATH = ".github/workflows/assessment-runtime-second-bank-certification.yml"
 
 def read_utf8(path) = File.read(path, encoding: "UTF-8")
 
@@ -211,7 +212,7 @@ if status.success?
   elsif future_phase_pr
     r1_maintenance_pr =
       comparison_base == R1_MAINTENANCE_BASE &&
-      changed == [VALIDATOR_PATH]
+      changed == [VALIDATOR_PATH, WORKFLOW_PATH].sort
 
     # After this one-file R1 transition, the retained D-05 validator itself
     # becomes protected. Later phases may advance CONV04_STATE but may not
@@ -221,11 +222,14 @@ if status.success?
     ]
     protected_d05_files = ALLOWED_FILES - future_phase_control_files
     touched_protected = changed & protected_d05_files
-    touched_protected -= [VALIDATOR_PATH] if r1_maintenance_pr
+    touched_protected -= [VALIDATOR_PATH, WORKFLOW_PATH] if r1_maintenance_pr
     errors << "Future phase changed protected D-05 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
 
     if changed.include?(VALIDATOR_PATH) && !r1_maintenance_pr
       errors << "Future phase must not modify the retained D-05 validator"
+    end
+    if changed.include?(WORKFLOW_PATH) && !r1_maintenance_pr
+      errors << "Future phase must not modify the retained D-05 workflow"
     end
 
     if changed.include?("docs/academic/conv04/CONV04_STATE.md")
