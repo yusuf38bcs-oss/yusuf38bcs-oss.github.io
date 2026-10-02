@@ -30,7 +30,7 @@ academic_role: academic_gateway
 lang: bn
 learning_guide: canonical
 ---
-<!-- lbfl-botany-index-release: 2026-10-01; active-chapter-01-lessons: 01-07 -->
+<!-- lbfl-botany-index-release: 2026-10-01; active-chapter-01-lessons: 01-08 -->
 {% include education/learning-guide-cta.html %}
 
 <div class="lbfl-botany-index">
@@ -45,7 +45,7 @@ learning_guide: canonical
     <article class="lbfl-clean-card">
       <span class="lbfl-tag">অধ্যায় ০১</span>
       <h3><a href="/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/">কোষ ও এর গঠন</a></h3>
-      <p>Cell foundation থেকে Cell Wall and Vacuole পর্যন্ত সাতটি সক্রিয় পাঠ।</p>
+      <p>Cell foundation থেকে Plastid and Chloroplast পর্যন্ত আটটি সক্রিয় পাঠ।</p>
     </article>
     <article class="lbfl-clean-card">
       <span class="lbfl-tag">অধ্যায় ০২</span>
@@ -90,6 +90,11 @@ learning_guide: canonical
       <span class="lbfl-tag">লেকচার ০৭</span>
       <h3><a href="/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/">Cell Wall and Vacuole</a></h3>
       <p>Primary/secondary wall, middle lamella, tonoplast, cell sap ও turgor system।</p>
+    </article>
+    <article class="lbfl-clean-card">
+      <span class="lbfl-tag">লেকচার ০৮</span>
+      <h3><a href="/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/">Plastid and Chloroplast</a></h3>
+      <p>Plastid family, thylakoid, grana, stroma, chlorophyll ও photosynthetic structure-function system।</p>
     </article>
   </div>
 </div>
