@@ -28,6 +28,19 @@ ai_shell = read("_includes/body/synaptic-ai.html")
 fail!("HSC Zoology gateway does not expose the Digestive System course") unless
   hsc_gateway.include?("/biology/hsc-corner/zoology/digestive-system/")
 
+fail!("HSC Zoology gateway is not bound to the canonical learning guide") unless
+  hsc_gateway.include?("learning_guide: canonical")
+
+fail!("HSC Zoology gateway does not use the canonical Learning Guide CTA") unless
+  hsc_gateway.include?("{% include education/learning-guide-cta.html %}")
+
+fail!("HSC Zoology gateway still uses the legacy framework panel") if
+  hsc_gateway.include?("{% include education/framework-links.html %}")
+
+fail!("Single layout does not expose canonical learning-guide ownership") unless
+  single_layout.include?("lbfl_canonical_learning_guide") &&
+  single_layout.include?('data-lbfl-learning-guide="canonical"')
+
 # Reject composition statements that positively place maltase in saliva, while
 # allowing an explicit misconception correction such as "Maltase saliva-এর enzyme নয়".
 bad_saliva_patterns = [
@@ -105,10 +118,17 @@ html_files.each do |path|
 
   ecology_course_surface = path.include?("/biology/higher-zoology-tree/ecology/")
   course_owned_surface = html.include?("data-lbfl-course-owned")
+  canonical_learning_guide_surface = html.include?('data-lbfl-learning-guide="canonical"')
 
-  if ecology_course_surface || course_owned_surface
-    fail!("Course-owned surface unexpectedly renders LOLO/LALA learning cycle in #{path}") if html.include?("data-zoology-learning-cycle")
-    fail!("Course-owned surface unexpectedly renders framework panel in #{path}") if html.include?("lbfl-framework-links")
+  if ecology_course_surface || course_owned_surface || canonical_learning_guide_surface
+    fail!("Owned surface unexpectedly renders LOLO/LALA learning cycle in #{path}") if html.include?("data-zoology-learning-cycle")
+    if canonical_learning_guide_surface
+      fail!("Canonical-guide surface does not render Learning Guide CTA in #{path}") unless html.include?("lbfl-learning-guide-cta")
+      fail!("Canonical-guide surface does not link to /learn/ in #{path}") unless html.match?(%r{href=["'][^"']*/learn/["']})
+      fail!("Canonical-guide surface still renders framework panel in #{path}") if html.include?("lbfl-framework-links")
+    elsif course_owned_surface
+      fail!("Course-owned surface unexpectedly renders framework panel in #{path}") if html.include?("lbfl-framework-links")
+    end
   else
     fail!("Missing LOLO/LALA learning cycle in #{path}") unless html.include?("data-zoology-learning-cycle")
   end
