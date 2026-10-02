@@ -6,6 +6,7 @@ on:
     types: [opened, synchronize, reopened, ready_for_review, edited]
     paths:
       - "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md"
+      - "_biology/hsc-corner/botany/lecture-08-*.md"
       - "_biology/hsc-corner/botany/lecture-06-mitochondria.md"
       - "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md"
       - "_biology/hsc-corner/botany/index.md"
@@ -77,7 +78,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: hsc-botany-bot07-content-${{ env.PR_HEAD_SHA }}
+          name: hsc-botany-bot07-content-${{ env.CANDIDATE_SHA }}
           path: |
             bot07-learner-content-report.json
             hsc-botany-chapter01-scope-report.json
