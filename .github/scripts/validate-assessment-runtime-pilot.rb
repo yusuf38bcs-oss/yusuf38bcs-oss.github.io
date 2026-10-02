@@ -122,7 +122,7 @@ end
 if PILOT.file?
   source = read_utf8(PILOT)
 
-  questions = source.scan(/<div class="q-text">([\s\S]*?)<\/div>/).flatten.map(&:strip)
+  questions = source.scan(/<div class="q-text"[^>]*>([\s\S]*?)<\/div>/).flatten.map(&:strip)
   options = source.scan(/<button[^>]*class="opt"[^>]*data-assessment-option[^>]*>([\s\S]*?)<\/button>/).flatten.map(&:strip)
   answers = source.scan(/data-assessment-question\s+data-a="(\d+)"/).flatten.map(&:to_i)
   explanations = source.scan(/<div class="exp"[^>]*data-assessment-explanation[^>]*>([\s\S]*?)<\/div>/).flatten.map(&:strip)
@@ -143,7 +143,7 @@ if PILOT.file?
   errors << "Inline onclick remains in D-04 pilot" if source.include?("onclick=")
   errors << "Question groups must expose radiogroup semantics" unless source.scan('role="radiogroup"').length == 10
   errors << "Options must expose radio semantics" unless source.scan('role="radio"').length == 40
-  errors << "Question groups must be labelled by prompts" unless source.scan(/aria-labelledby="q\\d+-label"/).length == 10
+  errors << "Question groups must be labelled by prompts" unless source.scan(/aria-labelledby="q\d+-label"/).length == 10
 end
 
 if RUNTIME.file?
