@@ -206,6 +206,34 @@ def main():
     # and only when their authoring action has advanced to an implemented state.
     implementations_by_id = {x.get("lesson_id"): x for x in implementations}
     actions_by_id = {x.get("action_id"): x for x in plan}
+
+    # A gap may leave the live remaining-gap set only when the matching
+    # pre-authorized authoring action has actually been implemented.
+    newly_closed_gaps = EXPECTED_REMAINING_GAPS - remaining_gaps
+    for gap_id in sorted(newly_closed_gaps):
+        matching_actions = [x for x in plan if gap_id in x.get("gap_ids", [])]
+        require(len(matching_actions) == 1, f"{gap_id}: exactly one authoring action must own the closed gap")
+        if len(matching_actions) != 1:
+            continue
+        action = matching_actions[0]
+        lesson_id = action.get("lesson_id")
+        require(action.get("authoring_status") in {"implemented-candidate","implemented-certified"},
+                f"{gap_id}: closed gap requires an implemented authoring action")
+        implementation = implementations_by_id.get(lesson_id)
+        require(implementation is not None,
+                f"{gap_id}: closed gap requires a content implementation record for {lesson_id}")
+        if implementation:
+            require(gap_id in set(implementation.get("closed_gap_ids", [])),
+                    f"{gap_id}: implementation record does not claim this closed gap")
+        if action.get("action") == "create-new-lesson":
+            require(lesson_id in ids, f"{gap_id}: create-new-lesson action requires {lesson_id} in published_lessons")
+            for topic_id in action.get("topic_ids", []):
+                item = next((x for x in topic_map if x.get("topic_id") == topic_id), None)
+                require(item is not None and item.get("status") == "covered",
+                        f"{gap_id}: topic {topic_id} must be covered before the gap closes")
+                require(item is not None and lesson_id in item.get("existing_lessons", []),
+                        f"{gap_id}: topic {topic_id} must cite {lesson_id} as implementation evidence")
+
     for lesson_id in ids[len(EXPECTED_LESSON_IDS):]:
         action = actions_by_id.get(lesson_id)
         require(action is not None, f"{lesson_id}: missing pre-authorized authoring action")
