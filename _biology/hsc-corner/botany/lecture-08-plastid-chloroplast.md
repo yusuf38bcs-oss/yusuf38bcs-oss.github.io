@@ -135,7 +135,7 @@ learning_guide: canonical
   <div><strong>Thylakoid lumen</strong> → thylakoid-এর internal space</div>
 </div>
 
-<div class="lbfl-academic-table-wrap">
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Chloroplast structure and function table">
 <table>
   <thead><tr><th>Structure</th><th>Structure–function relation</th></tr></thead>
   <tbody>
