@@ -111,8 +111,20 @@ JSON
 
 errors = []
 
+PHASE_PATTERN = /\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R([1-9]\d*))?\z/.freeze
+
 def read_utf8(path)
   File.read(path, encoding: "UTF-8")
+end
+
+def conv04_phase_order(value)
+  match = PHASE_PATTERN.match(value.to_s.strip)
+  return nil unless match
+
+  lane = match[1].ord
+  stage = match[2] ? match[2].to_i : 0
+  revision = match[3] ? match[3].to_i : 0
+  [lane, stage, revision]
 end
 
 [PILOT, RUNTIME, MANIFEST, DOC, STATE, BROWSER, WORKFLOW].each do |path|
@@ -229,7 +241,6 @@ if status.success?
   elsif future_phase_pr
     future_phase_control_files = %w[
       .github/scripts/validate-assessment-runtime-pilot.rb
-      .github/workflows/assessment-runtime-pilot-certification.yml
       docs/academic/conv04/CONV04_STATE.md
     ]
     protected_d04_files = ALLOWED_FILES - future_phase_control_files
@@ -237,20 +248,33 @@ if status.success?
     errors << "Future phase changed protected D-04 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
 
     if changed.include?("docs/academic/conv04/CONV04_STATE.md")
-      state_source = read_utf8(STATE)
-      phase_lines = state_source.lines.grep(/^phase:\s*/)
-      if phase_lines.length != 1
+      candidate_state = read_utf8(STATE)
+      candidate_phase_lines = candidate_state.lines.grep(/^phase:\s*/)
+      base_state, base_state_status = Open3.capture2e(
+        "git", "-C", ROOT.to_s, "show",
+        "#{comparison_base}:docs/academic/conv04/CONV04_STATE.md"
+      )
+
+      if candidate_phase_lines.length != 1
         errors << "Future phase CONV04_STATE must contain exactly one phase declaration"
+      elsif !base_state_status.success?
+        errors << "Unable to read base CONV04_STATE at #{comparison_base}: #{base_state.strip}"
       else
-        phase = phase_lines.first.sub(/^phase:\s*/, "").strip
-        phase_match = /\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R(\d+))?\z/.match(phase)
-        valid_future_phase = false
-        if phase_match
-          lane = phase_match[1]
-          stage = phase_match[2]&.to_i
-          valid_future_phase = lane > "D" || (lane == "D" && !stage.nil? && stage > 4)
+        base_phase_lines = base_state.lines.grep(/^phase:\s*/)
+        if base_phase_lines.length != 1
+          errors << "Base CONV04_STATE must contain exactly one phase declaration"
+        else
+          candidate_phase = candidate_phase_lines.first.sub(/^phase:\s*/, "").strip
+          base_phase = base_phase_lines.first.sub(/^phase:\s*/, "").strip
+          candidate_order = conv04_phase_order(candidate_phase)
+          base_order = conv04_phase_order(base_phase)
+
+          errors << "Future phase CONV04_STATE has malformed phase: #{candidate_phase}" unless candidate_order
+          errors << "Base CONV04_STATE has malformed phase: #{base_phase}" unless base_order
+          if candidate_order && base_order && (candidate_order <=> base_order) <= 0
+            errors << "Future phase CONV04_STATE must advance beyond base phase #{base_phase}, got #{candidate_phase}"
+          end
         end
-        errors << "Future phase CONV04_STATE has invalid or non-successor phase: #{phase}" unless valid_future_phase
       end
     end
   end
