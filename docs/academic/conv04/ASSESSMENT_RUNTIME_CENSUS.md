@@ -1,6 +1,6 @@
 # CONV-04D-03 — Authored Assessment Runtime Census
 
-**Authenticated base:** `4ef010685532eb652ed0867e03c8945b49dedb70`  
+**Authenticated base:** `4ef010685532eb652ed0867e03c8945b49dedb70`
 **Mode:** read-only/runtime-ownership census; no learner mutation.
 
 ## 1. Academic assessment inventory

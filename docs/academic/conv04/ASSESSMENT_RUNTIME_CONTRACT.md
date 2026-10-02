@@ -1,8 +1,8 @@
 # CONV-04D-03 — Authored Assessment Runtime Contract
 
-**Contract:** `lbfl-assessment-runtime-v1`  
-**Version:** `CONV-04D-03-1.0.0`  
-**Authorized base:** `4ef010685532eb652ed0867e03c8945b49dedb70`  
+**Contract:** `lbfl-assessment-runtime-v1`
+**Version:** `CONV-04D-03-1.0.0`
+**Authorized base:** `4ef010685532eb652ed0867e03c8945b49dedb70`
 **Status:** architecture-only; implementation deferred to D-04.
 
 ## 1. Canonical behavior
