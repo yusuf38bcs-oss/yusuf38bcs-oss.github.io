@@ -40,6 +40,7 @@ EXPECTED_AUTHORING_ACTIONS = {
     "expand-bot-01","bot-07","bot-08","bot-09","bot-10","bot-11","bot-12","bot-pr01"
 }
 EXPECTED_LESSON_IDS = [f"bot-0{i}" for i in range(1, 8)]
+REGULAR_LESSON_SEQUENCE = [f"bot-{i:02d}" for i in range(1, 13)]
 ALLOWED_MAP_STATUS = {"covered", "partial", "missing"}
 ALLOWED_ACTION_STATUS = {"authorized", "implemented-candidate", "implemented-certified"}
 
@@ -114,8 +115,10 @@ def main():
     lessons = scope.get("published_lessons", [])
     ids = [x.get("lesson_id") for x in lessons]
     orders = [x.get("order") for x in lessons]
-    require(ids == EXPECTED_LESSON_IDS, f"Published lesson identity/order drift: {ids}")
-    require(orders == list(range(1, 8)), f"Published lesson order drift: {orders}")
+    require(len(ids) >= len(EXPECTED_LESSON_IDS), "Published lesson set cannot shrink below BOT-01 through BOT-07")
+    require(ids[:len(EXPECTED_LESSON_IDS)] == EXPECTED_LESSON_IDS, f"Historical lesson prefix drift: {ids}")
+    require(ids == REGULAR_LESSON_SEQUENCE[:len(ids)], f"Published lesson sequence must remain contiguous: {ids}")
+    require(orders == list(range(1, len(lessons) + 1)), f"Published lesson order drift: {orders}")
     mcq_count = cq_count = 0
     for lesson in lessons:
         lid = lesson.get("lesson_id")
@@ -152,7 +155,7 @@ def main():
             require(gap in ALL_AUTHORIZED_GAPS, f"{tid}: invalid gap_id")
             remaining_gaps.add(gap)
 
-    require(remaining_gaps == EXPECTED_REMAINING_GAPS, f"Remaining gap set mismatch: {sorted(remaining_gaps)}")
+    require(remaining_gaps.issubset(EXPECTED_REMAINING_GAPS), f"Historically closed gaps may not reopen: {sorted(remaining_gaps)}")
     for tid in ("cell-wall", "vacuole"):
         item = next((x for x in topic_map if x.get("topic_id") == tid), None)
         require(item is not None and item.get("status") == "covered", f"{tid}: CONV-03C-01 must close this topic")
@@ -160,7 +163,7 @@ def main():
 
     buckets = scope.get("provisional_missing_lesson_buckets", [])
     bucket_ids = {x.get("bucket_id") for x in buckets}
-    require(bucket_ids == EXPECTED_REMAINING_GAPS, "Provisional gap buckets must match only remaining incomplete gaps")
+    require(bucket_ids == remaining_gaps, "Provisional gap buckets must match the live remaining incomplete gaps")
 
     plan = scope.get("authoring_plan", [])
     action_ids = {x.get("action_id") for x in plan}
@@ -199,14 +202,55 @@ def main():
         require(historical.get("merge_commit_sha") == EXPECTED_HISTORICAL_BOT07_MERGE, "Historical BOT-07 merge identity drift")
         require(historical.get("status") == "superseded-by-postmerge-integrity-remediation", "Historical BOT-07 evidence must be marked superseded by R1")
 
+    # Later pre-authorized regular lessons may be added only as a contiguous sequence
+    # and only when their authoring action has advanced to an implemented state.
+    implementations_by_id = {x.get("lesson_id"): x for x in implementations}
+    actions_by_id = {x.get("action_id"): x for x in plan}
+
+    # A gap may leave the live remaining-gap set only when the matching
+    # pre-authorized authoring action has actually been implemented.
+    newly_closed_gaps = EXPECTED_REMAINING_GAPS - remaining_gaps
+    for gap_id in sorted(newly_closed_gaps):
+        matching_actions = [x for x in plan if gap_id in x.get("gap_ids", [])]
+        require(len(matching_actions) == 1, f"{gap_id}: exactly one authoring action must own the closed gap")
+        if len(matching_actions) != 1:
+            continue
+        action = matching_actions[0]
+        lesson_id = action.get("lesson_id")
+        require(action.get("authoring_status") in {"implemented-candidate","implemented-certified"},
+                f"{gap_id}: closed gap requires an implemented authoring action")
+        implementation = implementations_by_id.get(lesson_id)
+        require(implementation is not None,
+                f"{gap_id}: closed gap requires a content implementation record for {lesson_id}")
+        if implementation:
+            require(gap_id in set(implementation.get("closed_gap_ids", [])),
+                    f"{gap_id}: implementation record does not claim this closed gap")
+        if action.get("action") == "create-new-lesson":
+            require(lesson_id in ids, f"{gap_id}: create-new-lesson action requires {lesson_id} in published_lessons")
+            for topic_id in action.get("topic_ids", []):
+                item = next((x for x in topic_map if x.get("topic_id") == topic_id), None)
+                require(item is not None and item.get("status") == "covered",
+                        f"{gap_id}: topic {topic_id} must be covered before the gap closes")
+                require(item is not None and lesson_id in item.get("existing_lessons", []),
+                        f"{gap_id}: topic {topic_id} must cite {lesson_id} as implementation evidence")
+
+    for lesson_id in ids[len(EXPECTED_LESSON_IDS):]:
+        action = actions_by_id.get(lesson_id)
+        require(action is not None, f"{lesson_id}: missing pre-authorized authoring action")
+        if action:
+            require(action.get("authoring_status") in {"implemented-candidate","implemented-certified"},
+                    f"{lesson_id}: published lesson requires implemented authoring status")
+        require(implementations_by_id.get(lesson_id) is not None,
+                f"{lesson_id}: published lesson requires a content implementation record")
+
     assessment = scope.get("assessment_audit", {})
-    require(assessment.get("published_lessons") == 7, "Assessment lesson count must be 7")
-    require(assessment.get("lessons_with_mcq") == mcq_count == 7, "MCQ coverage must be 7/7")
-    require(assessment.get("lessons_with_cq") == cq_count == 7, "CQ coverage must be 7/7")
+    require(assessment.get("published_lessons") == len(lessons), "Assessment lesson count must match published lessons")
+    require(assessment.get("lessons_with_mcq") == mcq_count == len(lessons), f"MCQ coverage must be complete for all {len(lessons)} published lessons")
+    require(assessment.get("lessons_with_cq") == cq_count == len(lessons), f"CQ coverage must be complete for all {len(lessons)} published lessons")
     require(assessment.get("chapter_completion_assessment_authorized") is False, "Chapter-completion assessment must remain unauthorized")
 
     remaining_field = set(scope.get("remaining_curriculum_gaps", []))
-    require(remaining_field == EXPECTED_REMAINING_GAPS, "remaining_curriculum_gaps field mismatch")
+    require(remaining_field == remaining_gaps, "remaining_curriculum_gaps field mismatch")
 
     architecture = scope.get("lesson_architecture_authorization", {})
     require(architecture.get("strict_release_authorized") is False, "Strict release must remain blocked")
@@ -224,6 +268,7 @@ def main():
         "closed_by_bot07": ["gap-01-cell-wall", "gap-03-vacuole"],
         "remaining_curriculum_gaps": sorted(remaining_gaps),
         "remaining_gap_count": len(remaining_gaps),
+        "future_phase_compatible": True,
         "strict_child_authorized": scope.get("strict_child_authorized"),
         "chapter_completion": fm_scalar(gateway_text, "chapter_completion"),
         "result": "PASS" if not errors else "FAIL",

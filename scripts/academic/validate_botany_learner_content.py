@@ -6,6 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 LESSON = ROOT / "_biology" / "hsc-corner" / "botany" / "lecture-07-cell-wall-vacuole.md"
 PREV = ROOT / "_biology" / "hsc-corner" / "botany" / "lecture-06-mitochondria.md"
+NEXT = ROOT / "_biology" / "hsc-corner" / "botany" / "lecture-08-plastid-chloroplast.md"
 GATEWAY = ROOT / "_biology" / "hsc-corner" / "botany" / "chapter-01-cell-and-its-structure.md"
 BOTANY_INDEX = ROOT / "_biology" / "hsc-corner" / "botany" / "index.md"
 SCOPE = ROOT / "_data" / "academic" / "hsc_botany_chapter01_scope_v1.json"
@@ -13,6 +14,7 @@ REVIEW = ROOT / "docs" / "academic" / "CONV-03C01_BOT07_CONTENT_REVIEW.md"
 REPORT = ROOT / "bot07-learner-content-report.json"
 
 EXPECTED_ROUTE = "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/"
+NEXT_ROUTE = "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/"
 EXPECTED_TOPICS = {"cell-wall", "vacuole"}
 EXPECTED_GAPS = {"gap-01-cell-wall", "gap-03-vacuole"}
 REQUIRED_SCIENCE_URLS = {
@@ -58,6 +60,7 @@ def main():
     gateway = GATEWAY.read_text(encoding="utf-8") if GATEWAY.is_file() else ""
     botany_index = BOTANY_INDEX.read_text(encoding="utf-8") if BOTANY_INDEX.is_file() else ""
     prev = PREV.read_text(encoding="utf-8") if PREV.is_file() else ""
+    next_text = NEXT.read_text(encoding="utf-8") if NEXT.is_file() else ""
     scope = load_json(SCOPE)
 
     require(fm_scalar(lesson, "permalink") == EXPECTED_ROUTE, "BOT-07 canonical route mismatch")
@@ -105,13 +108,66 @@ def main():
 
     require(EXPECTED_ROUTE in gateway, "Chapter gateway must link BOT-07")
     require(EXPECTED_ROUTE in botany_index, "Top-level Botany gateway must expose BOT-07")
-    require("active-chapter-01-lessons: 01-07" in botany_index, "Top-level Botany lesson-count marker must be 01-07")
-    require("সাতটি সক্রিয় পাঠ" in botany_index, "Top-level Botany gateway must describe seven active Chapter-01 lessons")
+    marker = re.search(r"active-chapter-01-lessons:\s*01-(\d{2})", botany_index)
+    require(marker is not None, "Top-level Botany active-lesson marker missing")
+    active_last = int(marker.group(1)) if marker else 0
+    published_lessons = scope.get("published_lessons", [])
+    published_count = len(published_lessons)
+    require(active_last == published_count,
+            f"Top-level Botany active-lesson marker must equal published lesson count ({published_count})")
+    bengali_count_words = {
+        7: ("সাতটি",),
+        8: ("আটটি",),
+        9: ("নয়টি","নয়টি"),
+        10: ("দশটি",),
+        11: ("এগারোটি",),
+        12: ("বারোটি",),
+    }
+    words = bengali_count_words.get(published_count, ())
+    require(bool(words), f"Unsupported public lesson-count wording for {published_count} published lessons")
+    require(any(f"{word} সক্রিয় পাঠ" in botany_index for word in words),
+            f"Top-level Botany visible lesson count must match {published_count} published lessons")
     require(fm_scalar(gateway, "chapter_completion") == "not-certified", "Chapter 01 must remain not-certified")
     require(fm_scalar(gateway, "contract_state") == "convergence-pending", "Chapter 01 must remain convergence-pending")
     require(EXPECTED_ROUTE in prev, "BOT-06 must link forward to BOT-07")
     require("/biology/hsc-corner/botany/lecture-06-mitochondria/" in lesson, "BOT-07 must link back to BOT-06")
-    require("/biology/hsc-corner/botany/lecture-08-" not in lesson, "BOT-07 must not link to a non-existent BOT-08 route")
+    if NEXT.is_file():
+        require(active_last >= 8, "BOT-08 exists but active-lesson marker has not advanced to at least 08")
+        require(NEXT_ROUTE in gateway, "BOT-08 exists but Chapter gateway does not expose it")
+        require(NEXT_ROUTE in botany_index, "BOT-08 exists but top-level Botany gateway does not expose it")
+        require(NEXT_ROUTE in lesson, "BOT-08 exists but BOT-07 does not link forward to it")
+        require(fm_scalar(next_text, "permalink") == NEXT_ROUTE, "BOT-08 canonical route mismatch")
+        require(fm_scalar(next_text, "lesson_order") == "8", "BOT-08 lesson_order must be 8")
+        require(EXPECTED_ROUTE in next_text, "BOT-08 must link back to BOT-07")
+
+        bot08_published = next((x for x in published_lessons if x.get("lesson_id") == "bot-08"), None)
+        require(bot08_published is not None, "BOT-08 file exists but scope published_lessons does not register bot-08")
+        if bot08_published:
+            require(bot08_published.get("source_file") == "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+                    "BOT-08 published source_file mismatch")
+            require(bot08_published.get("route") == NEXT_ROUTE, "BOT-08 published route mismatch")
+
+        bot08_action = next((x for x in scope.get("authoring_plan", []) if x.get("action_id") == "bot-08"), None)
+        require(bot08_action is not None, "BOT-08 file exists but pre-authorized bot-08 action is missing")
+        if bot08_action:
+            require(bot08_action.get("authoring_status") in {"implemented-candidate","implemented-certified"},
+                    "BOT-08 file exists but bot-08 authoring action is not implemented")
+
+        bot08_impl = next((x for x in scope.get("content_implementations", []) if x.get("lesson_id") == "bot-08"), None)
+        require(bot08_impl is not None, "BOT-08 file exists but content implementation record is missing")
+        if bot08_impl:
+            require("gap-02-chloroplast" in set(bot08_impl.get("closed_gap_ids", [])),
+                    "BOT-08 implementation record must close gap-02-chloroplast")
+
+        chloroplast = next((x for x in scope.get("topic_lesson_map", []) if x.get("topic_id") == "chloroplast"), None)
+        require(chloroplast is not None and chloroplast.get("status") == "covered",
+                "BOT-08 file exists but chloroplast topic is not covered")
+        require(chloroplast is not None and "bot-08" in chloroplast.get("existing_lessons", []),
+                "BOT-08 file exists but chloroplast topic does not cite bot-08")
+        require("gap-02-chloroplast" not in set(scope.get("remaining_curriculum_gaps", [])),
+                "BOT-08 file exists but gap-02-chloroplast remains open")
+    else:
+        require(NEXT_ROUTE not in lesson, "BOT-07 cannot link to BOT-08 before the target file exists")
 
     implementation = next((x for x in scope.get("content_implementations", []) if x.get("lesson_id") == "bot-07"), None)
     require(implementation is not None, "Scope contract missing BOT-07 implementation record")
@@ -147,6 +203,8 @@ def main():
         "nctb_curriculum_reference_present": NCTB_URL in urls,
         "academic_review_pass": "ACADEMIC CONTENT REVIEW: PASS" in review,
         "chapter_completion": fm_scalar(gateway, "chapter_completion"),
+        "bot08_present": NEXT.is_file(),
+        "future_phase_compatible": True,
         "result": "PASS" if not errors else "FAIL",
         "errors": errors,
         "warnings": warnings,
