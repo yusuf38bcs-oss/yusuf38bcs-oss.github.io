@@ -1,0 +1,77 @@
+{
+  "schema": "lbfl-assessment-runtime-third-bank-v1",
+  "version": "CONV-04D-06-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04D-06",
+  "authorized_base": "d623e0016fdc98ee7b6ddc3b21a7c60c8383965b",
+  "authorization_manifest": "_data/academic/assessment_runtime_third_bank_authorization_v1.json",
+  "route": "/mcq-arena/academic/zoology-respiratory-system-mcq-5/",
+  "source_file": "_mcq-arena/academic/zoology-respiratory-system-mcq-5.md",
+  "runtime": "assets/js/learning/academic-assessment-runtime.js",
+  "runtime_policy": "reuse-unchanged-by-default",
+  "source_return": "/biology/hsc-corner/zoology/",
+  "time_limit_seconds": 900,
+  "canonical_loop": [
+    "Attempt",
+    "Feedback",
+    "Repair",
+    "Reattempt"
+  ],
+  "content_preservation": {
+    "questions": 8,
+    "options": 32,
+    "answer_keys": 8,
+    "authored_explanations": 8,
+    "rule": "question text, options, answer keys, authored explanations, and 900-second timer must remain exact"
+  },
+  "required_behavior": [
+    "selection updates answered count",
+    "keyboard radio groups use roving tabindex and arrow navigation",
+    "wall-clock timer remains accurate after throttling",
+    "submission exposes correctness state and authored explanations",
+    "submit disables after submission and restores on reattempt",
+    "wrong or weak result exposes Zoology source-return repair action",
+    "reattempt resets assessment state"
+  ],
+  "future_phase_compatibility": {
+    "model": "bootstrap-plus-retained",
+    "historical_authorized_base": "immutable-provenance",
+    "future_pr_base": "authenticate-current-main",
+    "state_progression": "strictly-monotonic",
+    "self_protection": "D-06 bank/manifest/doc/browser/validator/workflow protected after merge",
+    "manual_dispatch": "required expected_main_sha must equal remote main and checked-out HEAD"
+  },
+  "browser": {
+    "viewports": [
+      "mobile-320",
+      "mobile-390",
+      "tablet-768",
+      "desktop-1280",
+      "wide-1440"
+    ],
+    "wall_clock_timer_checks": 1,
+    "no_js": [
+      "mobile-320",
+      "desktop-1280"
+    ],
+    "max_horizontal_overflow_px": 2,
+    "max_serious_critical_axe_violations": 0
+  },
+  "protected_boundaries": {
+    "d04_bank": "unchanged",
+    "d05_bank": "unchanged",
+    "other_unmigrated_assessment_banks": "unchanged",
+    "gateway": "unchanged",
+    "shared_authored_runtime": "unchanged",
+    "generated_engine": "unchanged",
+    "legacy_component": "unchanged",
+    "model_test": "unchanged",
+    "biology_content": "unchanged",
+    "socratic": "unchanged",
+    "practical": "unchanged",
+    "bot_08": "frozen",
+    "admission_pr_356": "untouched",
+    "worker_cloudflare": "out-of-scope"
+  },
+  "authorization_head": "5d4c837fa7e1beee898305c2c0633ba161f1686b"
+}
