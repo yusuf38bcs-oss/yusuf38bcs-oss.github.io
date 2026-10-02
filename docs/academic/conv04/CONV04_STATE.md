@@ -72,4 +72,4 @@ merge: not authorized until unchanged-head governance + required checks PASS
 
 ## Next gate
 
-Implement CONV-04D-06 on this isolated branch with exact literal content preservation, 900-second timer preservation, and no shared-runtime mutation by default. Then require source validator PASS, production Jekyll PASS, five-viewport browser/Axe PASS, wall-clock timer PASS, no-JS resilience, retained B/C/D contracts, CodeQL, zero unresolved review threads, exact-head solo authority, Trusted Governance, and required Pages checks before merge.
+Run exact-head D-06 source/content-preservation validation, retained A-D certification, production Jekyll, five-viewport browser/Axe, 900-second wall-clock timer, and no-JS resilience on the unchanged candidate head. Then open/maintain a Draft PR and require CodeQL, zero unresolved review threads, exact-head solo authority, required Pages, and Trusted Governance before merge.

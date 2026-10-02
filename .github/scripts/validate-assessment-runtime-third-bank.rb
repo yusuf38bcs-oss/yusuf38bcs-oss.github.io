@@ -7,6 +7,7 @@ require "pathname"
 
 ROOT = Pathname.new(__dir__).join("../..").expand_path
 BASE = "d623e0016fdc98ee7b6ddc3b21a7c60c8383965b"
+AUTHORIZATION_HEAD = "5d4c837fa7e1beee898305c2c0633ba161f1686b"
 BANK = ROOT.join("_mcq-arena/academic/zoology-respiratory-system-mcq-5.md")
 RUNTIME = ROOT.join("assets/js/learning/academic-assessment-runtime.js")
 AUTH = ROOT.join("_data/academic/assessment_runtime_third_bank_authorization_v1.json")
@@ -172,11 +173,34 @@ if AUTH.file?
   errors << "D-06 future compatibility model missing" unless data.dig("future_phase_compatibility","certification_model") == "bootstrap-plus-retained"
 end
 
+
+# Historical D-06 authorization is immutable provenance after the authorization head.
+if AUTH.file?
+  current_auth = read_utf8(AUTH)
+  authorized_auth, auth_status = Open3.capture2e("git", "-C", ROOT.to_s, "show", "#{AUTHORIZATION_HEAD}:_data/academic/assessment_runtime_third_bank_authorization_v1.json")
+  if auth_status.success?
+    errors << "D-06 authorization manifest changed after authorization head" unless current_auth == authorized_auth
+  else
+    errors << "Unable to authenticate D-06 authorization manifest at #{AUTHORIZATION_HEAD}: #{authorized_auth.strip}"
+  end
+end
+
+if AUTH_DOC.file?
+  current_auth_doc = read_utf8(AUTH_DOC)
+  authorized_auth_doc, auth_doc_status = Open3.capture2e("git", "-C", ROOT.to_s, "show", "#{AUTHORIZATION_HEAD}:docs/academic/conv04/ASSESSMENT_RUNTIME_THIRD_BANK_AUTHORIZATION.md")
+  if auth_doc_status.success?
+    errors << "D-06 authorization document changed after authorization head" unless current_auth_doc == authorized_auth_doc
+  else
+    errors << "Unable to authenticate D-06 authorization document at #{AUTHORIZATION_HEAD}: #{authorized_auth_doc.strip}"
+  end
+end
+
 if MANIFEST.file?
   data = JSON.parse(read_utf8(MANIFEST))
   errors << "D-06 manifest schema mismatch" unless data["schema"] == "lbfl-assessment-runtime-third-bank-v1"
   errors << "D-06 manifest version mismatch" unless data["version"] == "CONV-04D-06-1.0.0"
   errors << "D-06 manifest base mismatch" unless data["authorized_base"] == BASE
+  errors << "D-06 authorization head mismatch" unless data["authorization_head"] == AUTHORIZATION_HEAD
   errors << "D-06 route mismatch" unless data["route"] == "/mcq-arena/academic/zoology-respiratory-system-mcq-5/"
   errors << "D-06 runtime mismatch" unless data["runtime"] == "assets/js/learning/academic-assessment-runtime.js"
   errors << "D-06 runtime policy mismatch" unless data["runtime_policy"] == "reuse-unchanged-by-default"

@@ -1,7 +1,8 @@
 # CONV-04D-06 — Zoology Respiratory System Third-Bank Runtime Migration
 
 **Route:** `/mcq-arena/academic/zoology-respiratory-system-mcq-5/`
-**Authorized base:** `d623e0016fdc98ee7b6ddc3b21a7c60c8383965b`
+**Authorized base:** `d623e0016fdc98ee7b6ddc3b21a7c60c8383965b`  
+**Authorization head:** `5d4c837fa7e1beee898305c2c0633ba161f1686b`
 
 ## Purpose
 

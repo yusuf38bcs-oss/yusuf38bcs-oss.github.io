@@ -124,8 +124,6 @@
     "historical_authorized_base_is_immutable_provenance": true,
     "future_pr_base": "authenticate-current-main",
     "self_protect_after_merge": [
-      "_data/academic/assessment_runtime_third_bank_authorization_v1.json",
-      "docs/academic/conv04/ASSESSMENT_RUNTIME_THIRD_BANK_AUTHORIZATION.md",
       "_mcq-arena/academic/zoology-respiratory-system-mcq-5.md",
       "_data/academic/assessment_runtime_third_bank_v1.json",
       "docs/academic/conv04/ASSESSMENT_RUNTIME_THIRD_BANK.md",
