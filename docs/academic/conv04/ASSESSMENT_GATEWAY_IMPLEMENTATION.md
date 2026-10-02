@@ -1,7 +1,7 @@
 # CONV-04D-02 — Academic MCQ Gateway Repair
 
-**Route:** `/mcq-arena/academic/`  
-**Authorized base:** `ee7a10d419a1ee970a1a18b8eda98ffce7b32923`  
+**Route:** `/mcq-arena/academic/`
+**Authorized base:** `ee7a10d419a1ee970a1a18b8eda98ffce7b32923`
 **Learner mutation:** exactly `_mcq-arena/academic/index.md`
 
 ## Purpose
