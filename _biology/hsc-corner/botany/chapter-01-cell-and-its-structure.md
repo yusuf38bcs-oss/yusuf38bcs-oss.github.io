@@ -33,6 +33,7 @@ synaptic_links:
 - /biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/
 - /biology/hsc-corner/botany/lecture-06-mitochondria/
 - /biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/
+- /biology/hsc-corner/botany/lecture-08-plastid-chloroplast/
 toc: true
 toc_sticky: true
 classes: wide
@@ -57,7 +58,7 @@ learning_guide: canonical
 <section class="lbfl-clean-hero">
 <span class="lbfl-clean-kicker">অধ্যায় ০১ · Convergence in Progress</span>
 <h2>কোষ ও এর গঠন</h2>
-<p>বর্তমানে সাতটি প্রকাশযোগ্য বাংলা পাঠ ধারাবাহিকভাবে সাজানো আছে। Lecture 07 — <strong>Cell Wall and Vacuole</strong> official NCTB Chapter-01 topic map-এর <code>cell-wall</code> ও <code>vacuole</code> coverage যোগ করে। Chapter 01 এখনো <strong>not-certified</strong>; বাকি curriculum gaps সম্পন্ন ও independently certified না হওয়া পর্যন্ত strict promotion হবে না।</p>
+<p>বর্তমানে আটটি প্রকাশযোগ্য বাংলা পাঠ ধারাবাহিকভাবে সাজানো আছে। Lecture 08 — <strong>Plastid and Chloroplast</strong> official NCTB Chapter-01 topic map-এর <code>chloroplast</code> coverage যোগ করে। Chapter 01 এখনো <strong>not-certified</strong>; বাকি curriculum gaps সম্পন্ন ও independently certified না হওয়া পর্যন্ত strict promotion হবে না।</p>
 </section>
 
 <h2>সক্রিয় লেকচার</h2>
@@ -69,10 +70,11 @@ learning_guide: canonical
 <article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৫</span><h3><a href="/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/">Golgi Body, Lysosome and Peroxisome</a></h3><p>Packaging, autophagy/recycling ও oxidative protection।</p></article>
 <article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৬</span><h3><a href="/biology/hsc-corner/botany/lecture-06-mitochondria/">Mitochondria</a></h3><p>Cristae, matrix, ATP ও energy conversion।</p></article>
 <article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৭</span><h3><a href="/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/">Cell Wall and Vacuole</a></h3><p>Primary/secondary wall, middle lamella, tonoplast, cell sap ও turgor system।</p></article>
+<article class="lbfl-clean-card"><span class="lbfl-tag">লেকচার ০৮</span><h3><a href="/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/">Plastid and Chloroplast</a></h3><p>Plastid family, chloroplast envelope, thylakoid, grana, stroma ও photosynthetic organization।</p></article>
 </div>
 
 <h2>Remaining official NCTB coverage gaps</h2>
-<p class="lbfl-academic-lead">NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33) অনুযায়ী Lecture 07-এর পরও chloroplast, centriole/microtubule structures, nucleus–nucleolus–chromatin/chromosome-এর পূর্ণ coverage, cell chemical components, prokaryotic–eukaryotic comparison, cell size/shape/inclusions এবং microscopy/practical coverage অসম্পূর্ণ। এগুলো পৃথক learner-content gate-এর মাধ্যমে ক্রমান্বয়ে পূরণ হবে।</p>
+<p class="lbfl-academic-lead">NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33) অনুযায়ী Lecture 08-এর পরও centriole/microtubule structures, nucleus–nucleolus–chromatin/chromosome-এর পূর্ণ coverage, cell chemical components, prokaryotic–eukaryotic comparison, cell size/shape/inclusions এবং microscopy/practical coverage অসম্পূর্ণ। এগুলো পৃথক learner-content gate-এর মাধ্যমে ক্রমান্বয়ে পূরণ হবে।</p>
 
 <p><a class="lbfl-academic-button" href="/biology/hsc-corner/botany/">← Botany Index</a></p>
 </div>
