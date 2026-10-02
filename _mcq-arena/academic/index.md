@@ -1,5 +1,4 @@
 ---
-
 layout: single
 author_profile: true
 author: "MD. Yusuf"
@@ -7,30 +6,36 @@ author: "MD. Yusuf"
 sidebar:
   nav: "synaptic_nav"
 
-title: "Socratic 4.0: Academic Assessment Matrix"
-excerpt: "Test your biological knowledge across Zoology and Botany with our smart, interactive Socratic assessment nodes."
+title: "Academic MCQ Practice"
+excerpt: "Practice Biology MCQs through retrieval, feedback, source review, repair, and reattempt."
+description: "Academic Biology MCQ practice for LBFL: attempt questions, review feedback, return to source learning, repair misconceptions, and reattempt."
 
 date: 2026-06-09T05:00:00.000Z
+last_modified_at: 2026-10-02T11:35:00+06:00
 
 permalink: /mcq-arena/academic/
 
-# AI Knowledge Graph & Neural Routing
 node_id: index-mcq-academic
 parent_node: mcq-arena
 network:
   - mcq-arena
 
-# Synaptic Connections
 related: false
 synaptic_links:
   - /biology/hsc-corner/zoology/
   - /biology/hsc-corner/botany/
-  - /biology/higher-zoology-tree/biostatistics/
+  - /learn/
 
 classes: wide
 header:
   overlay_image: /assets/images/biology/zoology-banner.webp
-language: en
+
+academic_system: v1
+academic_role: assessment_gateway
+lang: en
+learning_guide: canonical
+assessment_ref: mcq-arena-academic
+
 curriculum_tracks:
   - HSC Biology
   - NEET Biology
@@ -42,45 +47,56 @@ hsc_alignment: "HSC Biology: academic MCQ practice gateway"
 concept_level: "Assessment Hub"
 ---
 
-<style>
-  .manifold-header { background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); color: white; padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2.5rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-  .manifold-header h1 { color: #ffffff !important; margin: 0 0 10px 0 !important; font-size: 2.2rem !important; font-weight: 800; letter-spacing: -0.02em; }
-  .manifold-header p { margin: 0; font-size: 1.1rem; color: #00d4b2; font-weight: 600; }
-  
-  .neural-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-  
-  .neural-card { background: #0f172a; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; transition: all 0.3s ease; text-decoration: none !important; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border-top: 4px solid #00d4b2; }
-  .neural-card:hover { transform: translateY(-5px); border-color: rgba(0, 212, 178, 0.4); box-shadow: 0 10px 25px rgba(0, 212, 178, 0.15); border-top: 4px solid #14b8a6; }
-  
-  .neural-card .card-date { font-size: 0.85rem; color: #14b8a6; font-family: monospace; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
-  .neural-card h3 { color: #ffffff; font-size: 1.3rem; margin: 0 0 1rem 0; font-weight: 700; line-height: 1.4; }
-  .neural-card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0 0 1.5rem 0; flex-grow: 1; }
-  
-  .neural-card .card-cta { color: #14b8a6; font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 1rem; }
-  .neural-card:hover .card-cta { color: #ffffff; }
-</style>
+# Academic MCQ Practice
 
-<div class="manifold-header">
-  <h1>🧠 Socratic 4.0: Academic Matrix</h1>
-  <p>Diagnostic Node: Validate Your Cognitive Models</p>
+<div class="lbfl-academic-lead" data-assessment-gateway="academic-mcq">
+  <p><strong>Practice, check, repair, and try again.</strong> Use these MCQ sets to retrieve Biology knowledge, inspect feedback, return to the relevant learning hub when an answer is weak or wrong, then reattempt after repair.</p>
 </div>
 
-<p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.7; text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto;">
-  Execute high-fidelity assessments across Botany and Zoology. These diagnostic modules will verify your neural retention and highlight cognitive gaps.
-</p>
+<div class="lbfl-academic-callout" data-assessment-repair-loop>
+  <h2>Assessment repair loop</h2>
+  <p><strong>Attempt → Feedback → Repair → Reattempt</strong></p>
+  <p>A score is not the end of the learning cycle. Use feedback to identify the concept that needs attention, review the source learning route, and then attempt the assessment again.</p>
+  <div class="lbfl-academic-actions">
+    <a class="lbfl-academic-button" href="{{ '/learn/' | relative_url }}">Review the LBFL learning guide</a>
+  </div>
+</div>
 
-<div class="neural-grid">
-  {% assign category_posts = site.categories["MCQ"] %}
-  {% for post in category_posts %}
-  <a href="{{ post.url | relative_url }}" class="neural-card">
-    <div class="card-date">{{ post.date | date: "%B %d, %Y" }}</div>
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-    <div class="card-cta">
-      Execute Diagnostic <span>→</span>
-    </div>
-  </a>
-  {% else %}
-    <p style="color: #ef4444; text-align: center; width: 100%;">No diagnostic modules found in the Academic Matrix.</p>
+{% assign mcq_collection = site.collections | where: "label", "mcq-arena" | first %}
+{% assign mcq_items = mcq_collection.docs | default: empty %}
+{% assign academic_count = 0 %}
+{% for item in mcq_items %}
+  {% if item.url contains "/mcq-arena/academic/" and item.url != page.url %}
+    {% assign academic_count = academic_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+<h2>Available academic MCQ sets</h2>
+<p data-assessment-module-count>{{ academic_count }} practice sets are currently available.</p>
+
+<div class="lbfl-academic-grid" data-assessment-module-grid>
+  {% for item in mcq_items %}
+    {% if item.url contains "/mcq-arena/academic/" and item.url != page.url %}
+      {% assign source_url = "/biology/hsc-corner/zoology/" %}
+      {% assign source_label = "Review HSC Zoology" %}
+      {% if item.categories contains "Botany" %}
+        {% assign source_url = "/biology/hsc-corner/botany/" %}
+        {% assign source_label = "Review HSC Botany" %}
+      {% endif %}
+      <article class="lbfl-academic-card" data-assessment-module>
+        <p><strong>{{ item.concept_level | default: "Assessment" }}</strong></p>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.excerpt | strip_html }}</p>
+        <div class="lbfl-academic-actions">
+          <a class="lbfl-academic-button" data-assessment-start href="{{ item.url | relative_url }}">Start assessment</a>
+          <a data-assessment-source href="{{ source_url | relative_url }}">{{ source_label }}</a>
+        </div>
+      </article>
+    {% endif %}
   {% endfor %}
+</div>
+
+<div class="lbfl-academic-evidence">
+  <h2>How to use feedback</h2>
+  <p>If an answer is wrong or uncertain, note the concept, use the source-review link for that subject, repair the idea in the lesson material, and then reopen the MCQ set for another attempt.</p>
 </div>

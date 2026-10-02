@@ -1,0 +1,76 @@
+{
+  "schema": "lbfl-assessment-gateway-v1",
+  "version": "CONV-04D-02-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04D-02",
+  "authorized_base": "ee7a10d419a1ee970a1a18b8eda98ffce7b32923",
+  "route": "/mcq-arena/academic/",
+  "source_file": "_mcq-arena/academic/index.md",
+  "academic_system": "v1",
+  "academic_role": "assessment_gateway",
+  "lang": "en",
+  "learning_guide": "canonical",
+  "collection_label": "mcq-arena",
+  "expected_module_count": 6,
+  "expected_modules": [
+    "/mcq-arena/academic/botany-cell-biology-mcq-1/",
+    "/mcq-arena/academic/botany-cell-division-mcq-2/",
+    "/mcq-arena/academic/digestive-system-mcq-set-01/",
+    "/mcq-arena/academic/zoology-animal-diversity-mcq-1/",
+    "/mcq-arena/academic/zoology-chordata-arthropoda-mcq-pro/",
+    "/mcq-arena/academic/zoology-respiratory-system-mcq-5/"
+  ],
+  "canonical_loop": [
+    "Attempt",
+    "Feedback",
+    "Repair",
+    "Reattempt"
+  ],
+  "source_return": {
+    "strategy": "category-hub",
+    "botany": "/biology/hsc-corner/botany/",
+    "zoology": "/biology/hsc-corner/zoology/"
+  },
+  "language_constraints": {
+    "forbidden": [
+      "Diagnostic Node",
+      "diagnostic modules",
+      "neural retention",
+      "cognitive models",
+      "cognitive gaps"
+    ],
+    "required": [
+      "Attempt → Feedback → Repair → Reattempt"
+    ]
+  },
+  "browser": {
+    "viewports": [
+      "mobile-320",
+      "mobile-390",
+      "tablet-768",
+      "desktop-1280",
+      "wide-1440"
+    ],
+    "no_js": [
+      "mobile-320",
+      "desktop-1280"
+    ],
+    "text_spacing": [
+      "mobile-320",
+      "desktop-1280"
+    ],
+    "max_horizontal_overflow_px": 2,
+    "max_serious_critical_axe_violations": 0
+  },
+  "protected_boundaries": {
+    "assessment_banks": "unchanged",
+    "assessment_runtimes": "unchanged",
+    "model_test": "unchanged",
+    "biology_content": "unchanged",
+    "socratic": "unchanged",
+    "practical": "unchanged",
+    "bot_08": "frozen",
+    "admission_pr_356": "untouched",
+    "worker_cloudflare": "out-of-scope"
+  }
+}
