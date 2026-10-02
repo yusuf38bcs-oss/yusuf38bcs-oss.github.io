@@ -1,0 +1,101 @@
+{
+  "schema": "lbfl-assessment-ownership-v1",
+  "version": "CONV-04D-01-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04D-01",
+  "authorized_base": "824a8188f7d7837091cc5d969a9b5194e49408bc",
+  "mode": "architecture-only",
+  "learner_mutation_authorized": false,
+  "canonical_loop": [
+    "Attempt",
+    "Feedback",
+    "Repair",
+    "Reattempt"
+  ],
+  "ownership": {
+    "lecture": {
+      "owns": [
+        "2–3 concise retrieval checks",
+        "prediction/misconception/transfer prompt",
+        "assessment CTA"
+      ],
+      "must_not_own": [
+        "full MCQ bank",
+        "full CQ bank",
+        "canonical assessment runtime"
+      ]
+    },
+    "assessment_gateway": {
+      "owns": [
+        "assessment discovery",
+        "grouping/orientation",
+        "repair-loop orientation",
+        "assessment routing",
+        "source-learning routing"
+      ]
+    },
+    "assessment": {
+      "owns": [
+        "full question bank",
+        "attempt state",
+        "answer feedback",
+        "validity logic",
+        "source return",
+        "repair prompt",
+        "reattempt"
+      ]
+    },
+    "model_test": {
+      "owns": [
+        "timed/structured mixed assessment",
+        "post-score source return",
+        "repeat-after-repair"
+      ]
+    },
+    "socratic_reflection": {
+      "owns": [
+        "reasoning reflection"
+      ],
+      "must_not_own": [
+        "academic answer correctness",
+        "MCQ bank"
+      ]
+    }
+  },
+  "collection_truth": {
+    "collection": "mcq-arena",
+    "gateway_route": "/mcq-arena/academic/",
+    "current_source": "_mcq-arena/academic/index.md",
+    "authenticated_academic_assessment_count": 6,
+    "defect": "Gateway queries site.categories[\"MCQ\"] instead of the mcq-arena collection, producing a false empty state."
+  },
+  "implementation_debt": [
+    {
+      "id": "assessment-runtime-duplication",
+      "sources": [
+        "assets/js/learning/mcq-engine.js",
+        "_includes/components/mcq-arena.html"
+      ],
+      "disposition": "record-only-in-D-01"
+    },
+    {
+      "id": "assessment-diagnostic-framing",
+      "source": "_mcq-arena/academic/index.md",
+      "disposition": "converge-to-educational-assessment-language-in-D-02"
+    },
+    {
+      "id": "assessment-repair-loop-incomplete",
+      "disposition": "D-02 must certify source-return and reattempt on the smallest assessment surface set"
+    }
+  ],
+  "protected_boundaries": {
+    "learner_assessment_files": "frozen",
+    "biology_content": "frozen",
+    "model_test": "frozen",
+    "socratic": "frozen",
+    "practical": "frozen",
+    "bot_08": "frozen",
+    "admission_pr_356": "untouched",
+    "worker_cloudflare": "out-of-scope"
+  }
+}

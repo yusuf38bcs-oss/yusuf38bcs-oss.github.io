@@ -1,0 +1,87 @@
+name: Assessment Ownership Certification
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+    paths:
+      - "_data/academic/assessment_ownership_v1.json"
+      - "docs/academic/conv04/ASSESSMENT_CENSUS.md"
+      - "docs/academic/conv04/ASSESSMENT_OWNERSHIP_CONTRACT.md"
+      - "docs/academic/conv04/CONV04_STATE.md"
+      - ".github/scripts/validate-assessment-ownership.rb"
+      - ".github/workflows/assessment-ownership-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: assessment-ownership-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: CONV-04D-01 assessment ownership contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      PR_BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
+
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.CANDIDATE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Authenticate exact head and protected base
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "$CANDIDATE_SHA"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            remote="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
+            test "$remote" = "$PR_BASE_SHA" || {
+              echo "BASE CHANGED — RECERTIFICATION REQUIRED"
+              exit 1
+            }
+            git merge-base --is-ancestor "$remote" "$actual" || {
+              echo "STALE CANDIDATE — CURRENT BASE IS NOT AN ANCESTOR"
+              exit 1
+            }
+          fi
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Validate assessment ownership contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby -c .github/scripts/validate-assessment-ownership.rb
+          ruby .github/scripts/validate-assessment-ownership.rb
+          git diff --check "$PR_BASE_SHA...HEAD"
+
+      - name: Install Jekyll dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle install --jobs 4 --retry 3
+
+      - name: Production Jekyll build
+        shell: bash
+        env:
+          JEKYLL_ENV: production
+        run: |
+          set -euo pipefail
+          bundle exec jekyll clean
+          bundle exec jekyll build --trace
+          test -f _site/mcq-arena/academic/index.html
