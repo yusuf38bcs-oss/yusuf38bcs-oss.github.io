@@ -11,7 +11,7 @@ title: "Botany 1st Chapter MCQ: Cell Biology"
 excerpt: "Evaluate your understanding of cell organelles, fluid mosaic models, and protoplasmic properties."
 
 date: 2026-04-25T20:27:00.000Z
-last_modified_at: 2026-06-09T04:13:27.000Z
+last_modified_at: '2026-10-02T12:55:00+06:00'
 
 permalink: /mcq-arena/academic/botany-cell-biology-mcq-1/
 
@@ -63,7 +63,7 @@ concept_level: "Assessment"
   --q-text: #cbd5e1;
 }
 
-.neural-quiz-wrapper { max-width: 800px; margin: 2rem auto; font-family: 'Inter', 'Tiro Bangla', sans-serif; color: var(--q-text); }
+.authored-assessment-wrapper { max-width: 800px; margin: 2rem auto; font-family: 'Inter', 'Tiro Bangla', sans-serif; color: var(--q-text); }
 .quiz-card { background: var(--q-card); border-radius: 16px; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4); overflow: hidden; }
 
 .quiz-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 25px; text-align: center; border-bottom: 1px solid rgba(0, 212, 178, 0.2); position: relative; }
@@ -81,8 +81,9 @@ concept_level: "Assessment"
 
 .q-text { font-weight: 700; font-size: 1.15rem; color: #ffffff; margin-bottom: 15px; }
 .opts { display: flex; flex-direction: column; gap: 10px; }
-.opt { padding: 12px 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; cursor: pointer; transition: 0.2s; background: rgba(0,0,0,0.2); }
+.opt { width: 100%; padding: 12px 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; cursor: pointer; transition: 0.2s; background: rgba(0,0,0,0.2); color: var(--q-text); font: inherit; text-align: left; }
 .opt:hover { border-color: var(--q-primary); background: rgba(0, 212, 178, 0.05); }
+.opt:focus-visible, .btn-submit:focus-visible, .btn-restart:focus-visible { outline: 3px solid #f8fafc; outline-offset: 3px; }
 .opt.selected { border-color: var(--q-primary); background: rgba(0, 212, 178, 0.1); }
 .opt.correct { border-color: var(--q-success); background: rgba(16, 185, 129, 0.15); color: #10b981; font-weight: bold; }
 .opt.wrong { border-color: var(--q-danger); background: rgba(239, 68, 68, 0.15); color: #ef4444; text-decoration: line-through; }
@@ -104,140 +105,139 @@ concept_level: "Assessment"
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 </style>
 
-<div class="neural-quiz-wrapper">
+<div class="authored-assessment-wrapper" data-authored-assessment data-assessment-runtime="authored-v1" data-source-return="/biology/hsc-corner/botany/" data-source-label="Review HSC Botany source" data-time-limit="600">
   <div class="quiz-card">
     <div class="quiz-header">
       <h2>🌿 কোষ ও কোষের গঠন কুইজ</h2>
-      <div class="quiz-timer" id="timer2">⏱️ 10:00</div>
+      <div class="quiz-timer" id="timer2" data-assessment-timer>⏱️ 10:00</div>
       <div class="progress-wrap">
-        <div class="progress-bar" id="progressBar2"></div>
+        <div class="progress-bar" id="progressBar2" data-assessment-progress-bar></div>
       </div>
-      <div class="progress-text" id="progressText2">0 / 10 Answered</div>
+      <div class="progress-text" id="progressText2" data-assessment-progress-text>0 / 10 Answered</div>
     </div>
 
-    <div class="quiz-body" id="quizBody2">
-      <div class="q" data-a="2">
+    <div class="quiz-body" id="quizBody2" data-assessment-body>
+      <div class="q" data-assessment-question data-a="2">
         <div class="q-text">১. প্রোটোপ্লাজম কেন জীবনের ভৌত ভিত্তি?</div>
         <div class="opts">
-          <div class="opt">DNA থাকে</div>
-          <div class="opt">আকার দেয়</div>
-          <div class="opt">সব জৈবিক ক্রিয়া হয়</div>
-          <div class="opt">পানি বেশি থাকে</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA থাকে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">আকার দেয়</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">সব জৈবিক ক্রিয়া হয়</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">পানি বেশি থাকে</button>
         </div>
-        <div class="exp">✔ সঠিক: সব জৈবিক ক্রিয়া এখানেই হয়।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: সব জৈবিক ক্রিয়া এখানেই হয়।</div>
       </div>
 
-      <div class="q" data-a="1">
+      <div class="q" data-assessment-question data-a="1">
         <div class="q-text">২. ফ্লিপ-ফ্লপ মুভমেন্ট (Flip-flop movement) কী নির্দেশ করে?</div>
         <div class="opts">
-          <div class="opt">দৃঢ়তা</div>
-          <div class="opt">তরলতা</div>
-          <div class="opt">অভেদ্যতা</div>
-          <div class="opt">বিভাজন</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">দৃঢ়তা</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">তরলতা</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">অভেদ্যতা</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">বিভাজন</button>
         </div>
-        <div class="exp">✔ সঠিক: এটি প্লাজমা মেমব্রেনের তরলতা বা ফ্লুইডিটি প্রমাণ করে।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: এটি প্লাজমা মেমব্রেনের তরলতা বা ফ্লুইডিটি প্রমাণ করে।</div>
       </div>
 
-      <div class="q" data-a="2">
+      <div class="q" data-assessment-question data-a="2">
         <div class="q-text">৩. গ্লাইকোক্যালিক্স নষ্ট হলে কী হবে?</div>
         <div class="opts">
-          <div class="opt">শক্তি বন্ধ হবে</div>
-          <div class="opt">প্রোটিন বন্ধ হবে</div>
-          <div class="opt">কোষ শনাক্ত করতে পারবে না</div>
-          <div class="opt">ক্রোমোজোম কমবে</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">শক্তি বন্ধ হবে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">প্রোটিন বন্ধ হবে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">কোষ শনাক্ত করতে পারবে না</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">ক্রোমোজোম কমবে</button>
         </div>
-        <div class="exp">✔ সঠিক: কোষ তার সেলফ-আইডেন্টিটি হারাবে এবং ইমিউন সিস্টেম তাকে চিনতে পারবে না।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: কোষ তার সেলফ-আইডেন্টিটি হারাবে এবং ইমিউন সিস্টেম তাকে চিনতে পারবে না।</div>
       </div>
 
-      <div class="q" data-a="1">
+      <div class="q" data-assessment-question data-a="1">
         <div class="q-text">৪. গলগি বডি কেন ট্রাফিক পুলিশ?</div>
         <div class="opts">
-          <div class="opt">শত্রু আটকায়</div>
-          <div class="opt">প্যাকেজিং ও গন্তব্যে পাঠায়</div>
-          <div class="opt">বিভাজন করে</div>
-          <div class="opt">শক্তি তৈরি করে</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">শত্রু আটকায়</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">প্যাকেজিং ও গন্তব্যে পাঠায়</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">বিভাজন করে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">শক্তি তৈরি করে</button>
         </div>
-        <div class="exp">✔ সঠিক: এটি প্রোটিন প্যাকেজিং ও গন্তব্য নির্ধারণ করে।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: এটি প্রোটিন প্যাকেজিং ও গন্তব্য নির্ধারণ করে।</div>
       </div>
 
-      <div class="q" data-a="1">
+      <div class="q" data-assessment-question data-a="1">
         <div class="q-text">৫. অটোফ্যাগী কীভাবে সাহায্য করে?</div>
         <div class="opts">
-          <div class="opt">খাদ্য তৈরি করে</div>
-          <div class="opt">নিজ অঙ্গাণু ভেঙে শক্তি দেয়</div>
-          <div class="opt">বিভাজন বাড়ায়</div>
-          <div class="opt">পানি বাড়ায়</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">খাদ্য তৈরি করে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">নিজ অঙ্গাণু ভেঙে শক্তি দেয়</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">বিভাজন বাড়ায়</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">পানি বাড়ায়</button>
         </div>
-        <div class="exp">✔ সঠিক: খাদ্যাভাবে লাইসোজোম নিজ অঙ্গাণু ভেঙে কোষকে শক্তি দেয়।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: খাদ্যাভাবে লাইসোজোম নিজ অঙ্গাণু ভেঙে কোষকে শক্তি দেয়।</div>
       </div>
 
-      <div class="q" data-a="1">
+      <div class="q" data-assessment-question data-a="1">
         <div class="q-text">৬. Cyclosis বন্ধ হলে কী হবে?</div>
         <div class="opts">
-          <div class="opt">DNA নষ্ট হবে</div>
-          <div class="opt">কোষের ভেতর সাইটোপ্লাজমিক পরিবহন বন্ধ হবে</div>
-          <div class="opt">পর্দা ফেটে যাবে</div>
-          <div class="opt">আকার বাড়বে</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA নষ্ট হবে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">কোষের ভেতর সাইটোপ্লাজমিক পরিবহন বন্ধ হবে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">পর্দা ফেটে যাবে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">আকার বাড়বে</button>
         </div>
-        <div class="exp">✔ সঠিক: অভ্যন্তরীণ পরিবহন ব্যাহত হবে।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: অভ্যন্তরীণ পরিবহন ব্যাহত হবে।</div>
       </div>
 
-      <div class="q" data-a="2">
+      <div class="q" data-assessment-question data-a="2">
         <div class="q-text">৭. রাইবোজোম কেন প্রোটিন ফ্যাক্টরি?</div>
         <div class="opts">
-          <div class="opt">DNA তৈরি করে</div>
-          <div class="opt">মুক্ত থাকে</div>
-          <div class="opt">প্রোটিন তৈরি করে</div>
-          <div class="opt">বড় অঙ্গাণু</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA তৈরি করে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">মুক্ত থাকে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">প্রোটিন তৈরি করে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">বড় অঙ্গাণু</button>
         </div>
-        <div class="exp">✔ সঠিক: এটি mRNA ডিকোড করে প্রোটিন সংশ্লেষণ করে।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: এটি mRNA ডিকোড করে প্রোটিন সংশ্লেষণ করে।</div>
       </div>
 
-      <div class="q" data-a="1">
+      <div class="q" data-assessment-question data-a="1">
         <div class="q-text">৮. ER এর পার্থক্য কী?</div>
         <div class="opts">
-          <div class="opt">লিপিড/প্রোটিন উল্টো</div>
-          <div class="opt">RER প্রোটিন, SER লিপিড তৈরি করে</div>
-          <div class="opt">শক্তি উৎপাদন</div>
-          <div class="opt">DNA রক্ষা</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">লিপিড/প্রোটিন উল্টো</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">RER প্রোটিন, SER লিপিড তৈরি করে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">শক্তি উৎপাদন</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA রক্ষা</button>
         </div>
-        <div class="exp">✔ সঠিক: অমসৃণ এন্ডোপ্লাজমিক রেটিকুলাম (RER) প্রোটিন এবং মসৃণ (SER) লিপিড তৈরি করে।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: অমসৃণ এন্ডোপ্লাজমিক রেটিকুলাম (RER) প্রোটিন এবং মসৃণ (SER) লিপিড তৈরি করে।</div>
       </div>
 
-      <div class="q" data-a="1">
+      <div class="q" data-assessment-question data-a="1">
         <div class="q-text">৯. ক্রিস্টি কেন ভাঁজ করা থাকে?</div>
         <div class="opts">
-          <div class="opt">ছোট দেখায়</div>
-          <div class="opt">Surface area বা কর্মক্ষেত্র বাড়ায়</div>
-          <div class="opt">প্রোটিন জমা রাখে</div>
-          <div class="opt">DNA রক্ষা করে</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">ছোট দেখায়</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">Surface area বা কর্মক্ষেত্র বাড়ায়</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">প্রোটিন জমা রাখে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA রক্ষা করে</button>
         </div>
-        <div class="exp">✔ সঠিক: বেশি পরিমাণ ATP উৎপাদনের জন্য।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: বেশি পরিমাণ ATP উৎপাদনের জন্য।</div>
       </div>
 
-      <div class="q" data-a="2">
+      <div class="q" data-assessment-question data-a="2">
         <div class="q-text">১০. ব্যাকটেরিয়া কীভাবে শক্তি উৎপাদন করে?</div>
         <div class="opts">
-          <div class="opt">করে না</div>
-          <div class="opt">সূর্য শোষণ করে</div>
-          <div class="opt">মেসোজোম ব্যবহার করে</div>
-          <div class="opt">রাইবোজোম দিয়ে</div>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">করে না</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">সূর্য শোষণ করে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">মেসোজোম ব্যবহার করে</button>
+          <button type="button" class="opt" data-assessment-option aria-pressed="false">রাইবোজোম দিয়ে</button>
         </div>
-        <div class="exp">✔ সঠিক: মেসোজোম (Mesosome) ব্যাকটেরিয়ার শক্তিঘর হিসেবে কাজ করে।</div>
+        <div class="exp" data-assessment-explanation>✔ সঠিক: মেসোজোম (Mesosome) ব্যাকটেরিয়ার শক্তিঘর হিসেবে কাজ করে।</div>
       </div>
 
     </div>
 
     <div class="quiz-foot">
-      <button class="btn-submit" onclick="submitQuiz('quizBody2', 'scoreBoard2', 'progressBar2')">Submit Assessment</button>
-      <button class="btn-restart" onclick="location.reload()">Restart</button>
-      <div class="score-board" id="scoreBoard2"></div>
+      <button type="button" class="btn-submit" data-assessment-submit>Submit Assessment</button>
+      <button type="button" class="btn-restart" data-assessment-retry hidden>Reattempt</button>
+      <div class="score-board" id="scoreBoard2" data-assessment-results role="status" aria-live="polite" tabindex="-1"></div>
     </div>
   </div>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  initQuiz('quizBody2', 'timer2', 'progressBar2', 'progressText2', 600);
-});
-</script>
+<noscript>
+  <p><strong>Interactive feedback requires JavaScript.</strong> The assessment questions and options remain available for reading.</p>
+</noscript>
+<script src="{{ '/assets/js/learning/academic-assessment-runtime.js' | relative_url }}" defer></script>
