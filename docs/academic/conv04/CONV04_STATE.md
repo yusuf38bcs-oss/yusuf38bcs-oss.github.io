@@ -2,13 +2,13 @@
 
 programme: CONV-04
 phase: CONV-04E-02
-mode: content-contract-locked — BOT-08 Plastid and Chloroplast
+mode: implementation candidate — BOT-08 Plastid and Chloroplast
 authorized_base: cc10f1cb60828be6d8aac145ecc6964c845ac71b
 branch: conv-04e-02-bot08-plastid-chloroplast-20261003
 production_verified_main: cc10f1cb60828be6d8aac145ecc6964c845ac71b
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
-mutation_authority: authorization/provenance/state artifacts only; BOT-08 learner mutation authorized but not yet applied
-learner_content_authoring: BOT-08 authorized / not yet applied / curriculum-bound edition-neutral
+mutation_authority: exact BOT-08 lesson + BOT-07 forward navigation + Botany/Chapter-01 navigation + scope/ledger/certification artifacts
+learner_content_authoring: BOT-08 implemented-candidate / curriculum-bound edition-neutral
 existing_learning_method_cleanup: canonical Learning Guide ownership active on both E-01 surfaces
 gateway_cta_injection: exactly one canonical CTA on each E-01 target surface
 learner_mutation_allowlist:
@@ -18,11 +18,11 @@ learner_mutation_allowlist:
   - _biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-bot_08: authorized / content-contract-locked / source-not-yet-created
+bot_08: implemented-candidate / gap-02-chloroplast closed pending exact-head certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until BOT-08 content contract + implementation + retained E-01/A-D/D-06 + exact-head Jekyll/browser/Axe certification
-merge: not authorized in authorization-only state
+ready_transition: not authorized until exact-head BOT-08 source + scope + retained E-01/A-D/D-06 + Jekyll/browser/Axe/reflow/no-JS certification
+merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
 
@@ -112,3 +112,18 @@ Open/maintain a Draft E-01 PR on the unchanged authorized base. Require exact-he
 - Full assessment bank in lesson: **NO**.
 - JavaScript assessment runtime in lesson: **NO**.
 - Only `gap-02-chloroplast` may close.
+
+
+## BOT-08 implementation candidate
+
+- New lesson: `_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md`.
+- New route: `/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/`.
+- `chloroplast` topic: **covered by BOT-08**.
+- `gap-02-chloroplast`: **closed in candidate**.
+- Published lessons: **8**.
+- Retrieval MCQs: **4 short checks**.
+- CQ practice: **2 prompts**.
+- Embedded full assessment bank: **NO**.
+- Chapter-01 status: **convergence-pending / not-certified**.
+- Remaining gaps: 8.
+- Academic content review: **PASS**.
