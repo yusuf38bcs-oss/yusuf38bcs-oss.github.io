@@ -31,6 +31,7 @@
     let submitted = false;
     let timerId = null;
     let timeLeft = Number.isFinite(timeLimit) ? Math.max(0, timeLimit) : 0;
+    let deadlineAt = null;
 
     function optionsFor(question) {
       return [...question.querySelectorAll("[data-assessment-option]")];
@@ -62,28 +63,33 @@
       }
     }
 
+    function syncTimerFromClock() {
+      if (deadlineAt === null || submitted) return;
+      timeLeft = Math.max(0, Math.ceil((deadlineAt - Date.now()) / 1000));
+      updateTimer();
+      if (timeLeft <= 0) {
+        stopTimer();
+        submitAssessment();
+      }
+    }
+
     function startTimer() {
       stopTimer();
       timeLeft = Number.isFinite(timeLimit) ? Math.max(0, timeLimit) : 0;
+      deadlineAt = timeLeft > 0 ? Date.now() + (timeLeft * 1000) : null;
       updateTimer();
-      if (timeLeft <= 0) return;
-      timerId = window.setInterval(() => {
-        timeLeft -= 1;
-        updateTimer();
-        if (timeLeft <= 0) {
-          stopTimer();
-          submitAssessment();
-        }
-      }, 1000);
+      if (deadlineAt === null) return;
+      timerId = window.setInterval(syncTimerFromClock, 1000);
     }
 
     function clearOptionState(question) {
       question.classList.remove("correct", "wrong", "done");
-      optionsFor(question).forEach(option => {
+      optionsFor(question).forEach((option, index) => {
         option.classList.remove("selected", "correct", "wrong");
         option.setAttribute("aria-checked", "false");
         option.removeAttribute("aria-label");
         option.disabled = false;
+        option.tabIndex = index === 0 ? 0 : -1;
       });
     }
 
@@ -94,10 +100,38 @@
       optionsFor(question).forEach(candidate => {
         candidate.classList.remove("selected");
         candidate.setAttribute("aria-checked", "false");
+        candidate.tabIndex = -1;
       });
       option.classList.add("selected");
       option.setAttribute("aria-checked", "true");
+      option.tabIndex = 0;
       updateProgress();
+    }
+
+    function handleOptionKeydown(event, option) {
+      if (submitted) return;
+      const navigationKeys = ["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"];
+      if (!navigationKeys.includes(event.key)) return;
+
+      const question = option.closest("[data-assessment-question]");
+      if (!question) return;
+      const options = optionsFor(question);
+      const currentIndex = options.indexOf(option);
+      if (currentIndex < 0) return;
+
+      let nextIndex = currentIndex;
+      if (event.key === "Home") nextIndex = 0;
+      else if (event.key === "End") nextIndex = options.length - 1;
+      else if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+        nextIndex = (currentIndex + 1) % options.length;
+      } else {
+        nextIndex = (currentIndex - 1 + options.length) % options.length;
+      }
+
+      event.preventDefault();
+      const nextOption = options[nextIndex];
+      selectOption(nextOption);
+      nextOption.focus();
     }
 
     function addResultLine(text, className) {
@@ -142,7 +176,9 @@
     function submitAssessment() {
       if (submitted) return;
       submitted = true;
+      submitButton.disabled = true;
       stopTimer();
+      deadlineAt = null;
 
       let correctCount = 0;
       questions.forEach(question => {
@@ -172,6 +208,7 @@
 
     function resetAssessment() {
       submitted = false;
+      submitButton.disabled = false;
       questions.forEach(clearOptionState);
       resultBox.classList.remove("show");
       resultBox.replaceChildren();
@@ -184,14 +221,20 @@
     }
 
     questions.forEach(question => {
-      optionsFor(question).forEach(option => {
+      optionsFor(question).forEach((option, index) => {
         option.dataset.assessmentBaseLabel = (option.textContent || "").trim();
+        option.tabIndex = index === 0 ? 0 : -1;
         option.addEventListener("click", () => selectOption(option));
+        option.addEventListener("keydown", event => handleOptionKeydown(event, option));
       });
     });
 
+    submitButton.disabled = false;
     submitButton.addEventListener("click", submitAssessment);
     retryButton.addEventListener("click", resetAssessment);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden && !submitted && deadlineAt !== null) syncTimerFromClock();
+    });
 
     updateProgress();
     startTimer();

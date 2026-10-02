@@ -156,6 +156,11 @@ if RUNTIME.file?
     "dataset.assessmentRepair",
     "aria-checked",
     "prefers-reduced-motion",
+    "deadlineAt",
+    "Date.now()",
+    "ArrowRight",
+    "tabIndex",
+    "submitButton.disabled",
     "Assessment feedback",
     "Review the marked answers and authored explanations before your next attempt."
   ].each do |needle|

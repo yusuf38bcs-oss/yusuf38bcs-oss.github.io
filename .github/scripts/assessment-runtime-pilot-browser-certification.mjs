@@ -33,7 +33,7 @@ async function standardCheck(view){
   const page=await context.newPage();
   const errors=[];
   page.on("pageerror",e=>errors.push(String(e)));
-  let status=0,metrics={},violations=[],keyboardFocus=false,focusVisible=false,initialRetryHidden=false;
+  let status=0,metrics={},violations=[],keyboardFocus=false,focusVisible=false,initialRetryHidden=false,radioKeyboardNavigation=false;
 
   try{
     const response=await page.goto(base+route,{waitUntil:"domcontentloaded",timeout:20000});
@@ -57,6 +57,19 @@ async function standardCheck(view){
         focusVisible=focus.visible;
         break;
       }
+    }
+
+    if(keyboardFocus){
+      await page.keyboard.press("ArrowDown");
+      radioKeyboardNavigation=await page.evaluate(()=>{
+        const active=document.activeElement;
+        const group=active?.closest?.('[role="radiogroup"]');
+        if(!active?.matches?.('[data-assessment-option][role="radio"]') || !group) return false;
+        const radios=[...group.querySelectorAll('[data-assessment-option][role="radio"]')];
+        return active.getAttribute("aria-checked")==="true" &&
+          active.tabIndex===0 &&
+          radios.filter(radio=>radio.tabIndex===0).length===1;
+      });
     }
 
     const questions=page.locator("[data-assessment-question]");
@@ -90,6 +103,7 @@ async function standardCheck(view){
         repairHref:repair?new URL(repair.href,location.href).pathname:"",
         repairMatches:repair?new URL(repair.href,location.href).pathname===sourceReturn:false,
         retryVisible:!!document.querySelector("[data-assessment-retry]:not([hidden])"),
+        submitDisabled:!!document.querySelector("[data-assessment-submit]")?.disabled,
         radiogroupCount:document.querySelectorAll('[role="radiogroup"]').length,
         labelledGroupCount:[...document.querySelectorAll('[role="radiogroup"]')].filter(el=>{
           const id=el.getAttribute("aria-labelledby");
@@ -128,7 +142,11 @@ async function standardCheck(view){
       resultsVisible:!!document.querySelector("[data-assessment-results].show"),
       retryHidden:!!document.querySelector("[data-assessment-retry]")?.hidden,
       retryComputedHidden:getComputedStyle(document.querySelector("[data-assessment-retry]")).display==="none",
-      enabled:[...document.querySelectorAll("[data-assessment-option]")].every(el=>!el.disabled)
+      enabled:[...document.querySelectorAll("[data-assessment-option]")].every(el=>!el.disabled),
+      submitEnabled:!document.querySelector("[data-assessment-submit]")?.disabled,
+      rovingGroupCount:[...document.querySelectorAll('[role="radiogroup"]')].filter(group=>
+        [...group.querySelectorAll('[data-assessment-option][role="radio"]')].filter(radio=>radio.tabIndex===0).length===1
+      ).length
     }));
     metrics.reset=reset;
   }catch(error){errors.push(String(error));}
@@ -137,6 +155,7 @@ async function standardCheck(view){
     initialRetryHidden===true &&
     keyboardFocus===true &&
     focusVisible===true &&
+    radioKeyboardNavigation===true &&
     metrics.h1===1 &&
     metrics.questionCount===10 &&
     metrics.optionCount===40 &&
@@ -149,6 +168,7 @@ async function standardCheck(view){
     /^\d+ \/ 10$/.test(metrics.scoreText||"") &&
     metrics.repairMatches===true &&
     metrics.retryVisible===true &&
+    metrics.submitDisabled===true &&
     metrics.radiogroupCount===10 &&
     metrics.labelledGroupCount===10 &&
     metrics.radioCount===40 &&
@@ -166,10 +186,46 @@ async function standardCheck(view){
     metrics.reset?.retryHidden===true &&
     metrics.reset?.retryComputedHidden===true &&
     metrics.reset?.enabled===true &&
+    metrics.reset?.submitEnabled===true &&
+    metrics.reset?.rovingGroupCount===10 &&
     violations.length===0 &&
     errors.length===0;
 
-  checks.push({type:"standard",viewport:view.name,width:view.width,status,keyboardFocus,focusVisible,metrics,violations,errors,passed});
+  checks.push({type:"standard",viewport:view.name,width:view.width,status,keyboardFocus,focusVisible,radioKeyboardNavigation,metrics,violations,errors,passed});
+  await context.close();
+}
+
+async function wallClockTimerCheck(){
+  const context=await browserInstance.newContext({viewport:{width:390,height:844}});
+  await context.route("**/*",async rr=>{
+    const u=new URL(rr.request().url());
+    if(["127.0.0.1","localhost"].includes(u.hostname)) await rr.continue();
+    else await rr.fulfill({status:204,body:""});
+  });
+  const page=await context.newPage();
+  const errors=[];
+  page.on("pageerror",e=>errors.push(String(e)));
+  let status=0,metrics={};
+  try{
+    const response=await page.goto(base+route,{waitUntil:"domcontentloaded",timeout:20000});
+    status=response?.status()??0;
+    await page.evaluate(()=>{
+      const observedNow=Date.now();
+      Date.now=()=>observedNow+601000;
+    });
+    await page.waitForTimeout(1250);
+    metrics=await page.evaluate(()=>({
+      timerText:(document.querySelector("[data-assessment-timer]")?.textContent||"").trim(),
+      resultsVisible:!!document.querySelector("[data-assessment-results].show"),
+      submitDisabled:!!document.querySelector("[data-assessment-submit]")?.disabled
+    }));
+  }catch(error){errors.push(String(error));}
+  const passed=status===200 &&
+    metrics.timerText.includes("00:00") &&
+    metrics.resultsVisible===true &&
+    metrics.submitDisabled===true &&
+    errors.length===0;
+  checks.push({type:"wall-clock-timer",viewport:"mobile-390",width:390,status,metrics,errors,passed});
   await context.close();
 }
 
@@ -197,6 +253,7 @@ async function noJsCheck(view){
 }
 
 for(const view of viewports) await standardCheck(view);
+await wallClockTimerCheck();
 await noJsCheck({name:"no-js-320",width:320,height:820});
 await noJsCheck({name:"no-js-1280",width:1280,height:900});
 
@@ -206,6 +263,7 @@ const report={
   token:failures.length?"ASSESSMENT_RUNTIME_PILOT_BROWSER_FAIL":"ASSESSMENT_RUNTIME_PILOT_BROWSER_PASS",
   route,
   standard_viewports:viewports.length,
+  wall_clock_timer_checks:1,
   no_js_checks:2,
   serious_critical_axe:checks.reduce((sum,c)=>sum+(c.violations?.length||0),0),
   failures
@@ -215,6 +273,7 @@ await fs.writeFile(path.join(out,"summary.md"),
   "# CONV-04D-04 Authored Assessment Runtime Pilot Browser Certification\n\n"+
   "- Route: "+route+"\n"+
   "- Standard viewports: "+viewports.length+"\n"+
+  "- Wall-clock timer checks: 1\n"+
   "- No-JS checks: 2\n"+
   "- Serious/critical Axe violations: "+report.serious_critical_axe+"\n"+
   "- Result: "+(failures.length?"FAIL":"PASS")+"\n"
