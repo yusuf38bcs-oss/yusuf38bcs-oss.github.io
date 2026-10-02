@@ -27,6 +27,12 @@ ALLOWED_FILES = %w[
   docs/academic/conv04/CONV04_STATE.md
 ].freeze
 
+FROZEN_D01_ARTIFACTS = %w[
+  _data/academic/assessment_ownership_v1.json
+  docs/academic/conv04/ASSESSMENT_CENSUS.md
+  docs/academic/conv04/ASSESSMENT_OWNERSHIP_CONTRACT.md
+].freeze
+
 LOOP = %w[Attempt Feedback Repair Reattempt].freeze
 errors = []
 
@@ -83,11 +89,6 @@ if CONFIG.file?
   errors << "mcq-arena collection output must be true" unless config.match?(/^\s{4}output:\s*true\s*$/)
 end
 
-if MCQ_GATEWAY.file?
-  gateway = read_utf8(MCQ_GATEWAY)
-  errors << "Authenticated category/collection mismatch disappeared; refresh census" unless gateway.include?('site.categories["MCQ"]')
-  errors << "Authenticated empty-state text disappeared; refresh census" unless gateway.include?("No diagnostic modules found in the Academic Matrix.")
-end
 
 if MCQ_ENGINE.file?
   engine = read_utf8(MCQ_ENGINE)
@@ -105,24 +106,47 @@ if MODEL_TEST.file?
   errors << "Model-test reattempt evidence missing" unless model.include?("Repeat after correction")
 end
 
+certification_mode = ENV.fetch("CERTIFICATION_MODE", "local")
+comparison_base = ENV["PR_BASE_SHA"].to_s.strip
+if comparison_base.empty?
+  parent_stdout, parent_status = Open3.capture2e("git", "-C", ROOT.to_s, "rev-parse", "HEAD^")
+  comparison_base = parent_status.success? ? parent_stdout.strip : BASE
+end
+bootstrap_pr = certification_mode == "pull_request" && comparison_base == BASE
+
 if STATE.file?
   state = read_utf8(STATE)
-  errors << "CONV04_STATE must identify phase CONV-04D-01" unless state.include?("phase: CONV-04D-01")
-  errors << "CONV04_STATE must bind D-01 base" unless state.include?(BASE)
-  errors << "D-01 learner mutation must remain frozen" unless state.include?("learner_content_authoring: frozen")
-  allowlist_line = state.lines.find { |line| line.start_with?("learner_mutation_allowlist:") }.to_s.strip
-  errors << "D-01 learner allowlist key missing" unless allowlist_line == "learner_mutation_allowlist:"
+  if bootstrap_pr
+    errors << "CONV04_STATE must identify phase CONV-04D-01" unless state.include?("phase: CONV-04D-01")
+    errors << "CONV04_STATE must bind D-01 base" unless state.include?(BASE)
+    errors << "D-01 learner mutation must remain frozen" unless state.include?("learner_content_authoring: frozen")
+    allowlist_line = state.lines.find { |line| line.start_with?("learner_mutation_allowlist:") }.to_s.strip
+    errors << "D-01 learner allowlist key missing" unless allowlist_line == "learner_mutation_allowlist:"
+  else
+    errors << "CONV-04 programme identity missing" unless state.include?("programme: CONV-04")
+    phase_line = state.lines.find { |line| line.start_with?("phase:") }.to_s.strip
+    errors << "CONV04_STATE must identify a D-phase" unless phase_line.match?(/\Aphase:\s+CONV-04D(?:-\d+)?(?:-[A-Z0-9]+)?\z/)
+  end
 end
 
-comparison_base = ENV["PR_BASE_SHA"].to_s.strip
-comparison_base = BASE if comparison_base.empty?
+if MCQ_GATEWAY.file? && bootstrap_pr
+  gateway = read_utf8(MCQ_GATEWAY)
+  errors << "Authenticated category/collection mismatch disappeared; refresh census" unless gateway.include?('site.categories["MCQ"]')
+  errors << "Authenticated empty-state text disappeared; refresh census" unless gateway.include?("No diagnostic modules found in the Academic Matrix.")
+end
+
 stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{comparison_base}...HEAD")
 if status.success?
   changed = stdout.lines.map(&:strip).reject(&:empty?).sort
-  unexpected = changed - ALLOWED_FILES.sort
-  missing = ALLOWED_FILES.sort - changed if comparison_base == BASE
-  errors << "Unexpected D-01 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
-  errors << "Expected D-01 files not changed: #{missing.join(', ')}" if missing && !missing.empty?
+  if bootstrap_pr
+    unexpected = changed - ALLOWED_FILES.sort
+    missing = ALLOWED_FILES.sort - changed
+    errors << "Unexpected D-01 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
+    errors << "Expected D-01 files not changed: #{missing.join(', ')}" unless missing.empty?
+  else
+    frozen_changes = changed & FROZEN_D01_ARTIFACTS
+    errors << "Later D phase changed frozen D-01 contract artifacts: #{frozen_changes.join(', ')}" unless frozen_changes.empty?
+  end
 else
   errors << "Unable to inspect D-01 changed-file scope: #{stdout.strip}"
 end
