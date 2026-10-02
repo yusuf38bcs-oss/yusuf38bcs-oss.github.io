@@ -1,0 +1,78 @@
+{
+  "schema": "lbfl-assessment-runtime-v1",
+  "version": "CONV-04D-03-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04D-03",
+  "authorized_base": "4ef010685532eb652ed0867e03c8945b49dedb70",
+  "mode": "architecture-only",
+  "learner_mutation_authorized": false,
+  "canonical_loop": [
+    "Attempt",
+    "Feedback",
+    "Repair",
+    "Reattempt"
+  ],
+  "inventory": {
+    "academic_assessment_count": 6,
+    "interactive_inline_assessment_count": 5,
+    "static_authored_assessment_count": 1,
+    "duplicated_inline_style_pages": [
+      "_mcq-arena/academic/botany-cell-biology-mcq-1.md",
+      "_mcq-arena/academic/botany-cell-division-mcq-2.md",
+      "_mcq-arena/academic/zoology-animal-diversity-mcq-1.md",
+      "_mcq-arena/academic/zoology-chordata-arthropoda-mcq-pro.md",
+      "_mcq-arena/academic/zoology-respiratory-system-mcq-5.md"
+    ],
+    "init_call_without_local_definition": [
+      "_mcq-arena/academic/botany-cell-biology-mcq-1.md",
+      "_mcq-arena/academic/botany-cell-division-mcq-2.md",
+      "_mcq-arena/academic/zoology-respiratory-system-mcq-5.md"
+    ],
+    "inline_runtime_owner_legacy": "_mcq-arena/academic/zoology-animal-diversity-mcq-1.md",
+    "standalone_runtime_legacy": "_mcq-arena/academic/zoology-chordata-arthropoda-mcq-pro.md",
+    "static_authored_page": "_mcq-arena/academic/digestive-system-mcq-set-01.md"
+  },
+  "runtime_ownership": {
+    "canonical_authored_runtime_future_path": "assets/js/learning/academic-assessment-runtime.js",
+    "scope": "authored academic MCQ banks",
+    "generated_engine": "assets/js/learning/mcq-engine.js",
+    "generated_engine_disposition": "not canonical owner of authored banks",
+    "legacy_component": "_includes/components/mcq-arena.html",
+    "legacy_component_disposition": "not canonical owner of authored banks"
+  },
+  "pilot": {
+    "source_file": "_mcq-arena/academic/botany-cell-biology-mcq-1.md",
+    "route": "/mcq-arena/academic/botany-cell-biology-mcq-1/",
+    "source_return": "/biology/hsc-corner/botany/",
+    "implementation_phase": "CONV-04D-04",
+    "preserve": [
+      "question text",
+      "options",
+      "answer keys",
+      "authored explanations"
+    ],
+    "required_behavior": [
+      "attempt state",
+      "answered-count state",
+      "correctness feedback",
+      "authored explanation visibility",
+      "source-return repair action",
+      "reattempt"
+    ]
+  },
+  "live_audit": {
+    "route": "/mcq-arena/academic/botany-cell-biology-mcq-1/",
+    "finding": "selection is visually possible and restart works, but answered count remains 0/10 and submission does not expose score, correctness, explanations, or source-return repair guidance"
+  },
+  "protected_boundaries": {
+    "assessment_banks": "no learner mutation in D-03",
+    "gateway": "unchanged",
+    "model_test": "unchanged",
+    "biology_content": "unchanged",
+    "socratic": "unchanged",
+    "practical": "unchanged",
+    "bot_08": "frozen",
+    "admission_pr_356": "untouched",
+    "worker_cloudflare": "out-of-scope"
+  }
+}
