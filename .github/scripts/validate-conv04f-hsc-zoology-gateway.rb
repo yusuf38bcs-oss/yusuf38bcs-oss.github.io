@@ -7,6 +7,7 @@ require "pathname"
 ROOT = Pathname.new(__dir__).join("../..").expand_path
 BASE = "b73d04616498649b8db66afef2d80103329118f5"
 PHASE = "CONV-04F-01"
+R1_PHASE = "CONV-04F-01-R1"
 SOURCE_REL = "_biology/hsc-corner/zoology/index.md"
 SOURCE = ROOT.join(SOURCE_REL)
 MANIFEST = ROOT.join("_data/academic/conv04f_hsc_zoology_gateway_v1.json")
@@ -36,6 +37,13 @@ IMMUTABLE_F01 = %w[
   _data/academic/conv04f_hsc_zoology_gateway_v1.json
   docs/academic/conv04/ZOOLOGY_GATEWAY_F01_AUTHORIZATION.md
 ].freeze
+
+R1_FILES = %w[
+  .github/scripts/conv04f-hsc-zoology-browser-certification.mjs
+  .github/scripts/validate-conv04f-hsc-zoology-gateway.rb
+  .github/workflows/conv04f-hsc-zoology-gateway-certification.yml
+  docs/academic/conv04/CONV04_STATE.md
+].sort.freeze
 
 errors=[]
 def read_utf8(path) = File.read(path, encoding:"UTF-8")
@@ -109,6 +117,7 @@ if LEDGER.file?
 end
 
 state=STATE.file? ? read_utf8(STATE) : ""
+phase=state.lines.find{|l|l.start_with?("phase:")}.to_s.sub(/^phase:\s*/,"").strip
 mode=ENV.fetch("CERTIFICATION_MODE","local")
 comparison_base=ENV["PR_BASE_SHA"].to_s.strip
 if comparison_base.empty?
@@ -120,7 +129,6 @@ future=(mode=="pull_request" && comparison_base!=BASE)
 
 if STATE.file?
   need(errors,state.include?("programme: CONV-04"),"CONV-04 programme identity missing")
-  phase=state.lines.find{|l|l.start_with?("phase:")}.to_s.sub(/^phase:\s*/,"").strip
   need(errors,!phase_order(phase).nil?,"Malformed CONV-04 phase: #{phase}")
   if bootstrap
     need(errors,phase==PHASE,"F-01 bootstrap phase mismatch")
@@ -137,8 +145,12 @@ if st.success?
   if bootstrap
     need(errors,changed==BOOTSTRAP_FILES,"F-01 bootstrap changed-file scope mismatch: #{changed}")
   elsif future
-    forbidden=changed & IMMUTABLE_F01
-    need(errors,forbidden.empty?,"Future phase changed immutable F-01 artifacts: #{forbidden.join(', ')}")
+    if phase == R1_PHASE
+      need(errors,changed==R1_FILES,"F-01-R1 changed-file scope mismatch: #{changed}")
+    else
+      forbidden=changed & IMMUTABLE_F01
+      need(errors,forbidden.empty?,"Future phase changed immutable F-01 artifacts: #{forbidden.join(', ')}")
+    end
     if changed.include?("docs/academic/conv04/CONV04_STATE.md")
       base_state,_,bst=git("show","#{comparison_base}:docs/academic/conv04/CONV04_STATE.md")
       if bst.success?
