@@ -46,7 +46,13 @@ chapter_completion: not-certified
 source_scope: NCTB curriculum 2012 pp.31-33
 source_custody: curriculum-authoring-authorized-textbook-alignment-optional
 seo_description: Cell theory, plasma membrane, ribosome, ER, Golgi, lysosome, peroxisome, mitochondria, cell wall ও vacuole-এর HSC Botany learning path।
+academic_system: v1
+academic_role: chapter_index
+lang: bn
+learning_guide: canonical
 ---
+{% include education/learning-guide-cta.html %}
+
 <div class="lbfl-botany-index">
 <section class="lbfl-clean-hero">
 <span class="lbfl-clean-kicker">অধ্যায় ০১ · Convergence in Progress</span>
@@ -66,7 +72,7 @@ seo_description: Cell theory, plasma membrane, ribosome, ER, Golgi, lysosome, pe
 </div>
 
 <h2>Remaining official NCTB coverage gaps</h2>
-<p>NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33) অনুযায়ী Lecture 07-এর পরও chloroplast, centriole/microtubule structures, nucleus–nucleolus–chromatin/chromosome-এর পূর্ণ coverage, cell chemical components, prokaryotic–eukaryotic comparison, cell size/shape/inclusions এবং microscopy/practical coverage অসম্পূর্ণ। এগুলো পৃথক learner-content gate-এর মাধ্যমে ক্রমান্বয়ে পূরণ হবে।</p>
+<p class="lbfl-academic-lead">NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33) অনুযায়ী Lecture 07-এর পরও chloroplast, centriole/microtubule structures, nucleus–nucleolus–chromatin/chromosome-এর পূর্ণ coverage, cell chemical components, prokaryotic–eukaryotic comparison, cell size/shape/inclusions এবং microscopy/practical coverage অসম্পূর্ণ। এগুলো পৃথক learner-content gate-এর মাধ্যমে ক্রমান্বয়ে পূরণ হবে।</p>
 
-<p><a class="lbfl-text-link" href="/biology/hsc-corner/botany/">← Botany Index</a></p>
+<p><a class="lbfl-academic-button" href="/biology/hsc-corner/botany/">← Botany Index</a></p>
 </div>

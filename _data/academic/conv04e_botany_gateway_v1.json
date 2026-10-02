@@ -1,0 +1,129 @@
+{
+  "schema": "lbfl-conv04e-botany-gateway-v1",
+  "version": "CONV-04E-01-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04E-01",
+  "authorized_base": "b07beb8119c4ee001d542a357f38c0e27e5017ba",
+  "authorization_manifest": "_data/academic/conv04e_botany_gateway_authorization_v1.json",
+  "mode": "hsc-botany-gateway-and-chapter-index-academic-v1-convergence",
+  "learner_mutation_allowlist": [
+    "_biology/hsc-corner/botany/index.md",
+    "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md"
+  ],
+  "surfaces": [
+    {
+      "id": "hsc-botany-gateway",
+      "route": "/biology/hsc-corner/botany/",
+      "source_file": "_biology/hsc-corner/botany/index.md",
+      "academic_role": "academic_gateway",
+      "lang": "bn",
+      "learning_guide": "canonical",
+      "target_enforcement": "strict",
+      "baseline_blob_sha": "8f738991298d33bdc63977400891c66aecccb05a"
+    },
+    {
+      "id": "hsc-botany-chapter-01",
+      "route": "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
+      "source_file": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
+      "academic_role": "chapter_index",
+      "lang": "bn",
+      "learning_guide": "canonical",
+      "target_enforcement": "strict",
+      "baseline_blob_sha": "d404800ba32f0384efddd469e71c3f6fc45122d1",
+      "curriculum_boundary": {
+        "contract_state": "convergence-pending",
+        "chapter_completion": "not-certified",
+        "strict_curriculum_completion_claim": false
+      }
+    }
+  ],
+  "bootstrap_preservation": {
+    "gateway": "exact baseline source after removing authorized Academic-v1 front matter and the canonical CTA; CTA is placed outside the retained dark Botany wrapper",
+    "chapter01": "exact baseline source after removing authorized Academic-v1 front matter/CTA and normalizing two class-only contrast remediations",
+    "protected_lectures": "BOT-01 through BOT-07 must remain byte-identical on E-01 bootstrap",
+    "scope_contract": "must remain byte-identical on E-01 bootstrap",
+    "remaining_curriculum_gaps": [
+      "gap-02-chloroplast",
+      "gap-04-centriole-microtubule",
+      "gap-05-nuclear-components",
+      "gap-06-cell-chemical-components",
+      "gap-07-prokaryotic-eukaryotic-comparison",
+      "gap-08-cell-size-shape-inclusions",
+      "gap-09-cell-discovery-history",
+      "gap-10-microscopy-mounting-drawing",
+      "gap-11-chapter-practical-integration"
+    ]
+  },
+  "retained_contract": {
+    "required_on_successor_phases": [
+      "both surfaces retain academic_system v1",
+      "roles remain academic_gateway and chapter_index",
+      "lang remains bn",
+      "canonical Learning Guide ownership and exactly one CTA remain",
+      "route ledger retains the two registered Botany surfaces"
+    ],
+    "future_phase_base": "authenticate live current PR base",
+    "state_progression": "strictly-monotonic",
+    "immutable_e01_artifacts": [
+      "_data/academic/conv04e_botany_gateway_authorization_v1.json",
+      "docs/academic/conv04/BOTANY_GATEWAY_AUTHORIZATION.md",
+      "_data/academic/conv04e_botany_gateway_v1.json",
+      "docs/academic/conv04/BOTANY_GATEWAY_CONVERGENCE.md",
+      ".github/scripts/validate-conv04e-botany-gateway.rb",
+      ".github/scripts/conv04e-botany-browser-certification.mjs",
+      ".github/workflows/conv04e-botany-gateway-certification.yml"
+    ]
+  },
+  "browser": {
+    "routes": [
+      "/biology/hsc-corner/botany/",
+      "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
+    ],
+    "viewports": [
+      "mobile-320",
+      "mobile-390",
+      "tablet-768",
+      "desktop-1280",
+      "wide-1440"
+    ],
+    "text_spacing": [
+      "mobile-320",
+      "desktop-1280"
+    ],
+    "no_js": [
+      "mobile-320",
+      "desktop-1280"
+    ],
+    "reduced_motion": [
+      "mobile-320",
+      "desktop-1280"
+    ],
+    "max_horizontal_overflow_px": 2,
+    "max_serious_critical_axe_violations": 0
+  },
+  "protected_boundaries": {
+    "scientific_content_rewrite": false,
+    "chapter_completion_claim": false,
+    "bot_08": "frozen",
+    "assessment_banks": "unchanged",
+    "shared_assessment_runtime": "unchanged",
+    "zoology": "unchanged",
+    "socratic": "unchanged",
+    "practical": "unchanged",
+    "admission_pr_356": "untouched",
+    "worker_cloudflare": "out-of-scope"
+  },
+  "accessibility_remediation": {
+    "trigger": "exact-head Axe color-contrast failure after Academic-v1 activation",
+    "shared_css_mutation": false,
+    "learner_scope_expansion": false,
+    "gateway": "canonical Learning Guide CTA moved outside legacy .lbfl-botany-index color inheritance",
+    "chapter01": [
+      "canonical Learning Guide CTA moved outside legacy .lbfl-botany-index color inheritance",
+      "remaining NCTB-gap paragraph uses existing lbfl-academic-lead semantic class",
+      "Botany return link uses existing lbfl-academic-button semantic class"
+    ],
+    "wording_changed": false,
+    "link_destination_changed": false
+  }
+}

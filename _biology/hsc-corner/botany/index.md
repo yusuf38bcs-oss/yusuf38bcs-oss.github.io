@@ -25,8 +25,14 @@ curriculum_tracks:
 hsc_alignment: 'HSC Biology 1st Paper: Botany learning gateway'
 concept_level: Gateway
 seo_description: HSC Botany-এর audited chapter ও interactive lecture index।
+academic_system: v1
+academic_role: academic_gateway
+lang: bn
+learning_guide: canonical
 ---
 <!-- lbfl-botany-index-release: 2026-10-01; active-chapter-01-lessons: 01-07 -->
+{% include education/learning-guide-cta.html %}
+
 <div class="lbfl-botany-index">
   <section class="lbfl-clean-hero">
     <span class="lbfl-clean-kicker">HSC Biology 1st Paper · Botany</span>

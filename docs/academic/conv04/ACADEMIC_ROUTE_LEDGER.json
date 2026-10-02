@@ -94,16 +94,23 @@
       "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "mcq-arena",
-      "enforcement": "progressive",
-      "source_debt": [
-        "missing_academic_role",
-        "missing_academic_system",
-        "missing_lang",
-        "legacy_language_key"
-      ],
-      "live_debt": [
-        "rendered_language_mismatch"
-      ]
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "hsc-botany-chapter-01",
+      "canonical_route": "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
+      "source_file": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
+      "support_files": [],
+      "academic_role": "chapter_index",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     },
     {
       "id": "hsc-botany-lecture-01",
