@@ -1,6 +1,6 @@
 # CONV-04D-04 — Botany Cell Biology Authored Runtime Pilot
 
-**Pilot route:** `/mcq-arena/academic/botany-cell-biology-mcq-1/`  
+**Pilot route:** `/mcq-arena/academic/botany-cell-biology-mcq-1/`
 **Authorized base:** `b74f47c19508aed4ffd122d4fd7b9a8044419b20`
 
 ## Purpose

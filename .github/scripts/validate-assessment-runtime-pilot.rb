@@ -150,7 +150,7 @@ if RUNTIME.file?
     "data-assessment-option",
     "data-assessment-submit",
     "data-assessment-retry",
-    "data-assessment-repair",
+    "dataset.assessmentRepair",
     "aria-pressed",
     "Assessment feedback",
     "Review the marked answers and authored explanations before your next attempt."
