@@ -7,7 +7,7 @@ require "pathname"
 ROOT = Pathname.new(__dir__).join("../..").expand_path
 BASE = "b73d04616498649b8db66afef2d80103329118f5"
 PHASE = "CONV-04F-01"
-R1_PHASE = "CONV-04F-01-R1"
+R1_BASE = "e3ca56202b2bc5a7864a4c4d97ae8bbaaf637fad"
 SOURCE_REL = "_biology/hsc-corner/zoology/index.md"
 SOURCE = ROOT.join(SOURCE_REL)
 MANIFEST = ROOT.join("_data/academic/conv04f_hsc_zoology_gateway_v1.json")
@@ -42,7 +42,6 @@ R1_FILES = %w[
   .github/scripts/conv04f-hsc-zoology-browser-certification.mjs
   .github/scripts/validate-conv04f-hsc-zoology-gateway.rb
   .github/workflows/conv04f-hsc-zoology-gateway-certification.yml
-  docs/academic/conv04/CONV04_STATE.md
 ].sort.freeze
 
 errors=[]
@@ -145,9 +144,8 @@ if st.success?
   if bootstrap
     need(errors,changed==BOOTSTRAP_FILES,"F-01 bootstrap changed-file scope mismatch: #{changed}")
   elsif future
-    if phase == R1_PHASE
-      need(errors,changed==R1_FILES,"F-01-R1 changed-file scope mismatch: #{changed}")
-    else
+    r1_maintenance = comparison_base == R1_BASE && changed == R1_FILES
+    unless r1_maintenance
       forbidden=changed & IMMUTABLE_F01
       need(errors,forbidden.empty?,"Future phase changed immutable F-01 artifacts: #{forbidden.join(', ')}")
     end
