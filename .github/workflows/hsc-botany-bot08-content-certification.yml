@@ -85,7 +85,7 @@ jobs:
           set -euo pipefail
           python3 -m py_compile scripts/academic/validate_botany_bot08_content.py
           python3 scripts/academic/validate_botany_bot08_content.py
-          git diff --check "$PR_BASE_SHA...HEAD"
+          git diff --check "$E02_AUTHORIZED_BASE...HEAD"
 
       - name: Retain CONV-04 A-D and E-01
         shell: bash

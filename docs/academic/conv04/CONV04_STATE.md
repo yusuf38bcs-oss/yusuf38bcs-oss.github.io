@@ -88,7 +88,7 @@ merge: not authorized until unchanged-head governance + required checks + Pages 
 
 ## Next gate
 
-Open/maintain a Draft E-01 PR on the unchanged authorized base. Require exact-head E-01 source preservation, retained A-D/D-06 contracts, production Jekyll, route-ledger rendering, five-viewport browser/Axe, keyboard/focus, 320px reflow, text-spacing, reduced-motion, no-JS, CodeQL, zero unresolved threads, required Pages and Trusted Governance before promotion.
+Promote only the unchanged E-02 BOT-08 head after exact-head BOT-08 source/scope validation, retained E-01/A-D/D-06 contracts, production Jekyll, route-ledger rendering, five-viewport browser/Axe, keyboard/focus, 320px reflow, text-spacing, reduced-motion, no-JS, CodeQL, zero unresolved threads, required Pages and Trusted Governance all pass. After merge, production-verify BOT-08, record the CONV-04E convergence boundary, and freshly authenticate post-E main before F-00 binding.
 
 ## CONV-04E-02 BOT-08 authorization
 

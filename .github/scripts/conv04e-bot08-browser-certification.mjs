@@ -78,6 +78,40 @@ async function run(view,options={}){
         rawLiquid:/\{\{|\{%/.test(body)
       };
     });
+    if(options.reducedMotion){
+      metrics.reducedMotion=await page.evaluate(()=>{
+        const seconds=value=>String(value||"").split(",").map(part=>{
+          const token=part.trim();
+          if(token.endsWith("ms")) return (Number.parseFloat(token)||0)/1000;
+          if(token.endsWith("s")) return Number.parseFloat(token)||0;
+          return Number.parseFloat(token)||0;
+        });
+        const surface=document.querySelector("[data-lbfl-academic-surface='v1']");
+        const offenders=[];
+        if(surface){
+          surface.querySelectorAll("*").forEach(element=>{
+            const style=getComputedStyle(element);
+            const longest=Math.max(
+              0,
+              ...seconds(style.animationDuration),
+              ...seconds(style.transitionDuration)
+            );
+            if(longest>0.02 || style.scrollBehavior==="smooth"){
+              offenders.push({
+                tag:element.tagName,
+                className:typeof element.className==="string"?element.className:"",
+                duration:longest,
+                scrollBehavior:style.scrollBehavior
+              });
+            }
+          });
+        }
+        return {
+          mediaMatches:matchMedia("(prefers-reduced-motion: reduce)").matches,
+          offenders:offenders.slice(0,20)
+        };
+      });
+    }
     if(options.javaScriptEnabled!==false){
       await page.addScriptTag({content:axe.source});
       axeBad=await page.evaluate(async()=>{
@@ -94,6 +128,7 @@ async function run(view,options={}){
       metrics.boundaryCount===1 && metrics.mcqCount===4 && metrics.cqCount===2 &&
       metrics.previous && metrics.chapter && metrics.required.every(x=>x.passed) &&
       metrics.overflow<=2 && !metrics.rawLiquid &&
+      (!options.reducedMotion || (metrics.reducedMotion?.mediaMatches && metrics.reducedMotion.offenders.length===0)) &&
       consoleErrors.length===0 && pageErrors.length===0 && localHttpErrors.length===0 &&
       (options.javaScriptEnabled===false || (keyboardTarget && focusVisible && axeBad.length===0));
     checks.push({viewport:view.name,options,status,metrics,keyboardTarget,focusVisible,axeBad,consoleErrors,pageErrors,localHttpErrors,pass});
