@@ -36,5 +36,16 @@
     "chapter_completion": "not-certified",
     "contract_state": "convergence-pending",
     "remaining_gap_count": 8
+  },
+  "accessibility_remediation": {
+    "trigger": "Exact-head Axe detected inherited legacy quiz/CQ foreground colors on the Academic-v1 light surface.",
+    "shared_css_mutation": false,
+    "learner_scope_expansion": false,
+    "fix": [
+      "MCQ option labels use existing lbfl-academic-lead color semantics.",
+      "CQ card headings use existing lbfl-academic-lead color semantics."
+    ],
+    "wording_changed": false,
+    "assessment_content_changed": false
   }
 }
