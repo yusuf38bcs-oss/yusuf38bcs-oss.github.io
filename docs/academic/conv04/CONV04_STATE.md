@@ -1,21 +1,24 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04D-04
-mode: authored assessment runtime pilot — Botany Cell Biology
-authorized_base: b74f47c19508aed4ffd122d4fd7b9a8044419b20
-branch: conv-04d-04-botany-cell-biology-runtime-pilot-20261002
-mutation_authority: exact Botany Cell Biology assessment pilot + shared authored runtime + D-04 certification/state artifacts
-learner_content_authoring: assessment-runtime-pilot-only
+phase: CONV-04D-05
+mode: authorized second-bank authored-runtime migration — Botany Cell Division
+authorized_base: a104260266a292bee58f6935a5038693380e8c04
+branch: conv-04d-05-botany-cell-division-runtime-migration-20261002
+production_verified_main: a104260266a292bee58f6935a5038693380e8c04
+production_loop: PASS — Attempt → Feedback → Repair → Reattempt
+mutation_authority: exact Botany Cell Division assessment bank + D-05 certification/state artifacts
+learner_content_authoring: second-bank-runtime-migration-only
 existing_learning_method_cleanup: unchanged
 gateway_cta_injection: unchanged
 learner_mutation_allowlist:
-  - _mcq-arena/academic/botany-cell-biology-mcq-1.md
-assessment_ownership: authored-runtime-v1 pilot
+  - _mcq-arena/academic/botany-cell-division-mcq-2.md
+shared_authored_runtime: reuse unchanged by default; mutation not authorized in D-05 without a separately evidenced runtime blocker
+assessment_ownership: authored-runtime-v1 second-bank migration
 bot_08: frozen
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head D-04 content-preservation + browser/Axe certification + review convergence
+ready_transition: not authorized until exact-head D-05 content-preservation + browser/Axe + retained-contract certification + review convergence
 merge: not authorized until unchanged-head governance + required checks PASS
 
 ## Completed foundation
@@ -34,20 +37,21 @@ merge: not authorized until unchanged-head governance + required checks PASS
 - CONV-04D-02 Academic MCQ gateway repair: merged via PR #399.
 - CONV-04D-02-R1 gateway framing + retained certification repair: merged via PR #400.
 - CONV-04D-03 authored assessment runtime ownership contract: merged via PR #401.
-- Authoritative D-04 base: b74f47c19508aed4ffd122d4fd7b9a8044419b20.
+- CONV-04D-04 Botany Cell Biology authored runtime pilot: merged via PR #402 at main@a104260266a292bee58f6935a5038693380e8c04.
+- D-04 production verification: PASS on the public route for Attempt → Feedback → Repair → Reattempt, keyboard radio interaction, score/explanations, source-return, reattempt reset, and runtime health.
 - PR #356 remains independent Admission Draft/HOLD work.
 
-## CONV-04D-04 pilot contract
+## CONV-04D-05 authorization contract
 
-1. Authorize exactly one learner-facing assessment mutation: `_mcq-arena/academic/botany-cell-biology-mcq-1.md`.
-2. Add the dedicated shared authored-bank runtime at `assets/js/learning/academic-assessment-runtime.js`.
-3. Preserve exactly all 10 question texts, 40 option texts, 10 answer-key indices, and 10 authored explanations.
-4. Make answered-count/progress state reflect actual selections.
-5. On submission, expose correctness state, the correct answer, and each authored explanation.
-6. If repair is needed, expose source-return to `/biology/hsc-corner/botany/`.
-7. Provide in-page reattempt that resets assessment state.
-8. Preserve all other Academic MCQ banks, the gateway, generated engine, legacy component, model test, Biology content, Socratic, Practical, BOT-08, Admission/#356, Worker, and Cloudflare configuration.
+1. Authorize exactly one learner-facing assessment mutation: `_mcq-arena/academic/botany-cell-division-mcq-2.md`.
+2. Target route: `/mcq-arena/academic/botany-cell-division-mcq-2/`.
+3. Reuse the certified shared authored-bank runtime at `assets/js/learning/academic-assessment-runtime.js` unchanged by default.
+4. Preserve exactly all 8 question texts, 32 option texts, 8 answer-key indices, and 8 authored explanations unless a separately authorized academic correction is required.
+5. Replace legacy `initQuiz`, inline `submitQuiz`, and reload-only restart behavior with the canonical authored-runtime loop.
+6. Repair source-return target: `/biology/hsc-corner/botany/`.
+7. Certify keyboard radio behavior, wall-clock timer integrity, submit/retry state, visible feedback, authored explanations, no-JS readability, responsive layout, and zero serious/critical Axe violations.
+8. Keep the D-04 pilot, the other four unmigrated Academic MCQ banks, the Academic gateway, generated engine, legacy component, model tests, Biology content, Socratic, Practical, BOT-08, Admission/#356, Worker, and Cloudflare configuration unchanged.
 
 ## Next gate
 
-Exact-head D-04 source/content-preservation validation + production Jekyll build + five-viewport browser/Axe certification + no-JS resilience + retained B/C/D contracts + CodeQL + review convergence. After unchanged-head solo authority, Trusted Governance and required Pages pass, merge and verify production before authorizing any second-bank migration.
+Implement CONV-04D-05 on this isolated branch with exact content preservation and no shared-runtime mutation by default. Then require local/source validator PASS, production Jekyll PASS, five-viewport browser/Axe PASS, no-JS resilience, retained B/C/D contracts, CodeQL, zero unresolved review threads, exact-head solo authority, Trusted Governance, and required Pages checks before merge.
