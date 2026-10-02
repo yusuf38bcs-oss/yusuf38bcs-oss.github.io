@@ -1,0 +1,195 @@
+{
+  "schema": "lbfl-conv04e-botany-gateway-authorization-v1",
+  "version": "CONV-04E-01-authorization-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04E-01",
+  "status": "authorized-not-implemented",
+  "authorized_base": "b07beb8119c4ee001d542a357f38c0e27e5017ba",
+  "branch": "conv-04e-01-botany-gateway-authorization-20261002",
+  "purpose": "HSC Botany gateway + Chapter-01 index Academic-v1 structural convergence",
+  "learner_mutation_allowlist": [
+    "_biology/hsc-corner/botany/index.md",
+    "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md"
+  ],
+  "baseline": {
+    "gateway": {
+      "source_file": "_biology/hsc-corner/botany/index.md",
+      "blob_sha": "8f738991298d33bdc63977400891c66aecccb05a",
+      "permalink": "/biology/hsc-corner/botany/",
+      "title": "উদ্ভিদবিজ্ঞান: HSC Biology 1st Paper Botany",
+      "language": "bn",
+      "lang": null,
+      "academic_system": null,
+      "academic_role": null,
+      "learning_guide": null,
+      "contract_state": null,
+      "chapter_completion": null,
+      "source_scope": null,
+      "links": [
+        "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
+        "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/",
+        "/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/",
+        "/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/",
+        "/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/",
+        "/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/",
+        "/biology/hsc-corner/botany/lecture-06-mitochondria/",
+        "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/"
+      ],
+      "headings": [
+        "উদ্ভিদবিজ্ঞান: অধ্যায় ও লেকচার সূচি",
+        "অধ্যায় সূচি",
+        "কোষ ও এর গঠন",
+        "কোষ বিভাজন",
+        "সক্রিয় Chapter 01 লেকচার",
+        "কোষ, প্রোটোপ্লাজম ও কোষতত্ত্ব",
+        "Plasma Membrane and Fluid Mosaic Model",
+        "Cytoplasm and Ribosome",
+        "Endoplasmic Reticulum",
+        "Golgi Body, Lysosome and Peroxisome",
+        "Mitochondria",
+        "Cell Wall and Vacuole"
+      ],
+      "article_count": 9,
+      "cta_count": 0,
+      "framework_count": 0
+    },
+    "chapter01": {
+      "source_file": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
+      "blob_sha": "d404800ba32f0384efddd469e71c3f6fc45122d1",
+      "permalink": "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
+      "title": "অধ্যায় ১: কোষ ও এর গঠন",
+      "language": "bn",
+      "lang": null,
+      "academic_system": null,
+      "academic_role": null,
+      "learning_guide": null,
+      "contract_state": "convergence-pending",
+      "chapter_completion": "not-certified",
+      "source_scope": "NCTB curriculum 2012 pp.31-33",
+      "links": [
+        "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/",
+        "/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/",
+        "/biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory/",
+        "/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/",
+        "/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/",
+        "/biology/hsc-corner/botany/lecture-06-mitochondria/",
+        "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/",
+        "/biology/hsc-corner/botany/"
+      ],
+      "headings": [
+        "কোষ ও এর গঠন",
+        "সক্রিয় লেকচার",
+        "কোষ, প্রোটোপ্লাজম ও কোষতত্ত্ব",
+        "Plasma Membrane and Fluid Mosaic Model",
+        "Cytoplasm and Ribosome",
+        "Endoplasmic Reticulum",
+        "Golgi Body, Lysosome and Peroxisome",
+        "Mitochondria",
+        "Cell Wall and Vacuole",
+        "Remaining official NCTB coverage gaps"
+      ],
+      "article_count": 7,
+      "cta_count": 0,
+      "framework_count": 0
+    },
+    "chapter01_scope": {
+      "source_file": "_data/academic/hsc_botany_chapter01_scope_v1.json",
+      "blob_sha": "f2a45806a80d6fe59b4a6d74373cbdac32bfe1f5",
+      "strict_release_authorized": false,
+      "remaining_curriculum_gaps": [
+        "gap-02-chloroplast",
+        "gap-04-centriole-microtubule",
+        "gap-05-nuclear-components",
+        "gap-06-cell-chemical-components",
+        "gap-07-prokaryotic-eukaryotic-comparison",
+        "gap-08-cell-size-shape-inclusions",
+        "gap-09-cell-discovery-history",
+        "gap-10-microscopy-mounting-drawing",
+        "gap-11-chapter-practical-integration"
+      ]
+    },
+    "protected_lectures": {
+      "_biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory.md": "c110aabe0a28bdd5dcf155a1c2a50ee8fd185b2b",
+      "_biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model.md": "5a527af8c2445f65c7c82fb75dc4729afe5250c1",
+      "_biology/hsc-corner/botany/lecture-03-cytoplasm-ribosome-protein-factory.md": "74187f00fc403477cce289dd2720df046f94303a",
+      "_biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network.md": "2fcfc0aebf2f32f61b7fe830ba7c5905e84302c5",
+      "_biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome.md": "7e378a14699c2f47ec582ba7954f32ee914053d3",
+      "_biology/hsc-corner/botany/lecture-06-mitochondria.md": "73c8d50c9bcf0628039cce69708b98ac242d1fef",
+      "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md": "d3adcdfe7d263cd0c4b7a94c9b120be3b08dca16"
+    }
+  },
+  "authorized_structural_changes": {
+    "gateway": {
+      "add_frontmatter": {
+        "academic_system": "v1",
+        "academic_role": "academic_gateway",
+        "lang": "bn",
+        "learning_guide": "canonical"
+      },
+      "preserve_legacy_language_if_equal": true,
+      "inject_canonical_learning_guide_cta_exactly_once": true,
+      "preserve_existing_links_headings_cards": true
+    },
+    "chapter01": {
+      "add_frontmatter": {
+        "academic_system": "v1",
+        "academic_role": "chapter_index",
+        "lang": "bn",
+        "learning_guide": "canonical"
+      },
+      "preserve_legacy_language_if_equal": true,
+      "inject_canonical_learning_guide_cta_exactly_once": true,
+      "preserve_contract_state": "convergence-pending",
+      "preserve_chapter_completion": "not-certified",
+      "preserve_source_scope": "NCTB curriculum 2012 pp.31-33",
+      "preserve_existing_links_headings_cards": true
+    },
+    "academic_route_ledger": {
+      "gateway_target_enforcement": "strict",
+      "gateway_target_source_debt": [],
+      "gateway_target_live_debt": [],
+      "register_chapter01_surface": true,
+      "chapter01_role": "chapter_index",
+      "chapter01_language": "bn",
+      "chapter01_learning_guide_owner": "canonical",
+      "chapter01_assessment_owner": "mcq-arena",
+      "chapter01_target_enforcement": "strict"
+    }
+  },
+  "prohibited": {
+    "scientific_content_rewrite": true,
+    "lecture_mutation": true,
+    "new_botany_lesson_authoring": true,
+    "chapter_completion_claim": true,
+    "strict_curriculum_completion_claim": true,
+    "assessment_bank_mutation": true,
+    "shared_assessment_runtime_mutation": true,
+    "socratic_mutation": true,
+    "practical_mutation": true,
+    "admission_pr_356_mutation": true,
+    "worker_cloudflare_mutation": true
+  },
+  "retained_contracts": {
+    "d04": "must-pass",
+    "d05": "must-pass",
+    "d06": "must-pass-in-retained-mode",
+    "d06_reopen_policy": "only-on-retained-contract-regression"
+  },
+  "future_phase_compatibility": {
+    "model": "bootstrap-plus-retained",
+    "historical_authorized_base": "immutable-provenance",
+    "state_progression": "strictly-monotonic",
+    "future_pr_base": "authenticate-current-main",
+    "self_protection_after_merge": [
+      "_biology/hsc-corner/botany/index.md",
+      "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
+      "_data/academic/conv04e_botany_gateway_v1.json",
+      "docs/academic/conv04/BOTANY_GATEWAY_CONVERGENCE.md",
+      ".github/scripts/validate-conv04e-botany-gateway.rb",
+      ".github/scripts/conv04e-botany-browser-certification.mjs",
+      ".github/workflows/conv04e-botany-gateway-certification.yml"
+    ],
+    "workflow_dispatch_expected_main_sha_required": true
+  },
+  "next_gate": "implementation on unchanged authorized base, then exact-head retained-contract/Jekyll/browser/Axe certification"
+}
