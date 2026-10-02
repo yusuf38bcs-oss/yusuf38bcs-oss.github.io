@@ -37,6 +37,12 @@ ALLOWED_FILES = %w[
   docs/academic/conv04/CONV04_STATE.md
 ].freeze
 
+LEARNER_MUTATION_PREFIXES = %w[
+  _biology/
+  _mcq-arena/
+  _socratic/
+].freeze
+
 EXPECTED_ROLES = %w[
   platform_home academic_gateway chapter_index lecture assessment_gateway
   assessment practical revision reflection_gateway reflection application
@@ -263,6 +269,23 @@ end
 
 def fail_if(errors, condition, message)
   errors << message if condition
+end
+
+def learner_mutation_allowlist(state)
+  lines = state.lines
+  key_index = lines.index { |line| line.strip == "learner_mutation_allowlist:" }
+  return [] unless key_index
+
+  items = []
+  lines[(key_index + 1)..].to_a.each do |line|
+    break if line.match?(/\A\S/)
+    next if line.strip.empty?
+
+    match = line.match(/\A\s+-\s+(.+?)\s*\z/)
+    break unless match
+    items << match[1].strip
+  end
+  items
 end
 
 # Split a selector list only on top-level commas. Commas inside functional
@@ -711,12 +734,19 @@ if git_dir.exist?
     end
     errors << "Protected Admission/Worker/Cloudflare scope changed: #{always_protected.join(', ')}" unless always_protected.empty?
 
-    if candidate_state.include?("phase: CONV-04B")
-      learner_protected = changed.select do |path|
-        path.start_with?("_biology/", "_mcq-arena/", "_socratic/")
-      end
-      errors << "CONV-04B learner scope changed before learner migration authority: #{learner_protected.join(', ')}" unless learner_protected.empty?
+    learner_changed = changed.select do |path|
+      LEARNER_MUTATION_PREFIXES.any? { |prefix| path.start_with?(prefix) }
     end
+    learner_allowlist = learner_mutation_allowlist(candidate_state)
+    invalid_authority = learner_allowlist.reject do |path|
+      LEARNER_MUTATION_PREFIXES.any? { |prefix| path.start_with?(prefix) } &&
+        !path.end_with?("/") &&
+        !path.match?(/[\*\?\[\]]/)
+    end
+    errors << "Invalid learner mutation authority: #{invalid_authority.join(', ')}" unless invalid_authority.empty?
+
+    unauthorized_learner = learner_changed - learner_allowlist
+    errors << "Learner mutation lacks explicit CONV04_STATE authority: #{unauthorized_learner.join(', ')}" unless unauthorized_learner.empty?
   else
     errors << "Unable to calculate candidate changed-file scope from #{comparison_base}: #{stdout.strip}"
   end
