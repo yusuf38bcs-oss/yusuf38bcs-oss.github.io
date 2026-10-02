@@ -111,7 +111,22 @@ def main():
     marker = re.search(r"active-chapter-01-lessons:\s*01-(\d{2})", botany_index)
     require(marker is not None, "Top-level Botany active-lesson marker missing")
     active_last = int(marker.group(1)) if marker else 0
-    require(active_last >= 7, "Top-level Botany active-lesson marker cannot regress below BOT-07")
+    published_lessons = scope.get("published_lessons", [])
+    published_count = len(published_lessons)
+    require(active_last == published_count,
+            f"Top-level Botany active-lesson marker must equal published lesson count ({published_count})")
+    bengali_count_words = {
+        7: ("সাতটি",),
+        8: ("আটটি",),
+        9: ("নয়টি","নয়টি"),
+        10: ("দশটি",),
+        11: ("এগারোটি",),
+        12: ("বারোটি",),
+    }
+    words = bengali_count_words.get(published_count, ())
+    require(bool(words), f"Unsupported public lesson-count wording for {published_count} published lessons")
+    require(any(f"{word} সক্রিয় পাঠ" in botany_index for word in words),
+            f"Top-level Botany visible lesson count must match {published_count} published lessons")
     require(fm_scalar(gateway, "chapter_completion") == "not-certified", "Chapter 01 must remain not-certified")
     require(fm_scalar(gateway, "contract_state") == "convergence-pending", "Chapter 01 must remain convergence-pending")
     require(EXPECTED_ROUTE in prev, "BOT-06 must link forward to BOT-07")
@@ -124,6 +139,33 @@ def main():
         require(fm_scalar(next_text, "permalink") == NEXT_ROUTE, "BOT-08 canonical route mismatch")
         require(fm_scalar(next_text, "lesson_order") == "8", "BOT-08 lesson_order must be 8")
         require(EXPECTED_ROUTE in next_text, "BOT-08 must link back to BOT-07")
+
+        bot08_published = next((x for x in published_lessons if x.get("lesson_id") == "bot-08"), None)
+        require(bot08_published is not None, "BOT-08 file exists but scope published_lessons does not register bot-08")
+        if bot08_published:
+            require(bot08_published.get("source_file") == "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+                    "BOT-08 published source_file mismatch")
+            require(bot08_published.get("route") == NEXT_ROUTE, "BOT-08 published route mismatch")
+
+        bot08_action = next((x for x in scope.get("authoring_plan", []) if x.get("action_id") == "bot-08"), None)
+        require(bot08_action is not None, "BOT-08 file exists but pre-authorized bot-08 action is missing")
+        if bot08_action:
+            require(bot08_action.get("authoring_status") in {"implemented-candidate","implemented-certified"},
+                    "BOT-08 file exists but bot-08 authoring action is not implemented")
+
+        bot08_impl = next((x for x in scope.get("content_implementations", []) if x.get("lesson_id") == "bot-08"), None)
+        require(bot08_impl is not None, "BOT-08 file exists but content implementation record is missing")
+        if bot08_impl:
+            require("gap-02-chloroplast" in set(bot08_impl.get("closed_gap_ids", [])),
+                    "BOT-08 implementation record must close gap-02-chloroplast")
+
+        chloroplast = next((x for x in scope.get("topic_lesson_map", []) if x.get("topic_id") == "chloroplast"), None)
+        require(chloroplast is not None and chloroplast.get("status") == "covered",
+                "BOT-08 file exists but chloroplast topic is not covered")
+        require(chloroplast is not None and "bot-08" in chloroplast.get("existing_lessons", []),
+                "BOT-08 file exists but chloroplast topic does not cite bot-08")
+        require("gap-02-chloroplast" not in set(scope.get("remaining_curriculum_gaps", [])),
+                "BOT-08 file exists but gap-02-chloroplast remains open")
     else:
         require(NEXT_ROUTE not in lesson, "BOT-07 cannot link to BOT-08 before the target file exists")
 
