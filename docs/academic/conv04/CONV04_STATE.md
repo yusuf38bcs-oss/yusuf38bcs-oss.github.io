@@ -1,25 +1,24 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-01
-mode: implementation candidate — HSC Zoology gateway strict Academic-v1 convergence
-authorized_base: b73d04616498649b8db66afef2d80103329118f5
-branch: conv-04f-01-hsc-zoology-gateway-20261003
-production_verified_main: b73d04616498649b8db66afef2d80103329118f5
+phase: CONV-04F-01-R1
+mode: certification-hardening — F-01 retained browser/manual evidence repair
+authorized_base: e3ca56202b2bc5a7864a4c4d97ae8bbaaf637fad
+branch: conv-04f-01-r1-certification-hardening-20261003
+production_verified_main: e3ca56202b2bc5a7864a4c4d97ae8bbaaf637fad
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact HSC Zoology gateway metadata + F-01 route-ledger/certification/state artifacts
-learner_content_authoring: structural-metadata-only / scientific-rewrite-forbidden
+mutation_authority: F-01 certification harness only; no learner-content mutation
+learner_content_authoring: prohibited in F-01-R1
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
-  - _biology/hsc-corner/zoology/index.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
+hsc_zoology_gateway: F-01 merged / production verified; R1 hardens certification evidence only
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head F-01 source preservation + retained A-E/D/C-03 + Jekyll/browser/Axe/reflow/no-JS certification
+ready_transition: not authorized until F-01-R1 exact-head retained CI + review convergence + required Pages/governance
 merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
@@ -162,3 +161,15 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 6. Preserve assessment ownership: MCQ Arena remains canonical full-bank owner.
 7. Do not mutate Digestive System, Higher Zoology, Animal Diversity, Ecology, Genetics, Physiology, Practical, Socratic, Admission/#356, Worker, Cloudflare, or shared runtime.
 8. Ship bootstrap + retained future-phase compatibility from the first F-01 implementation.
+
+
+## CONV-04F-01-R1 certification hardening
+
+- Trigger: three post-merge review findings on PR #412 exposed gaps in the certification harness, not learner-source regressions.
+- Manual workflow diff: compare against `HEAD^` when no PR base SHA exists; empty `HEAD...HEAD` checks are forbidden.
+- Reduced-motion variant: require media-query match and zero >20 ms animation/transition/smooth-scroll offenders in the Academic-v1 surface.
+- Text-spacing variant: require zero text-bearing elements clipped by hidden/clip overflow after WCAG spacing overrides.
+- HSC Zoology learner source: **UNCHANGED**.
+- F-01 manifest/authorization/route ledger: **UNCHANGED**.
+- Production HSC Zoology route verified before R1: **PASS**.
+- Next F target remains unauthorized until this genuine validator defect repair is certified and merged.
