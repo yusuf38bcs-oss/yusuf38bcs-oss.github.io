@@ -1,7 +1,7 @@
 # CONV-04E-02 — BOT-08 Plastid and Chloroplast Authorization
 
-**Status:** AUTHORIZED — learner content not yet created  
-**Exact authorized base:** `cc10f1cb60828be6d8aac145ecc6964c845ac71b`  
+**Status:** AUTHORIZED — learner content not yet created
+**Exact authorized base:** `cc10f1cb60828be6d8aac145ecc6964c845ac71b`
 **Branch:** `conv-04e-02-bot08-plastid-chloroplast-20261003`
 
 ## Selected target
