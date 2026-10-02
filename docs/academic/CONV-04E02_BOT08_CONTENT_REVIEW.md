@@ -1,8 +1,8 @@
 # CONV-04E-02 — BOT-08 Academic Content Review
 
-**Lesson:** BOT-08 — Plastid and Chloroplast  
-**Route:** `/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/`  
-**Curriculum topic:** `chloroplast`  
+**Lesson:** BOT-08 — Plastid and Chloroplast
+**Route:** `/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/`
+**Curriculum topic:** `chloroplast`
 **Gap closed:** `gap-02-chloroplast`
 
 ## ACADEMIC CONTENT REVIEW: PASS
