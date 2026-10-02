@@ -38,8 +38,8 @@
     }
   ],
   "bootstrap_preservation": {
-    "gateway": "exact baseline source after removing only authorized Academic-v1 front matter and canonical CTA",
-    "chapter01": "exact baseline source after removing only authorized Academic-v1 front matter and canonical CTA",
+    "gateway": "exact baseline source after removing authorized Academic-v1 front matter and the canonical CTA; CTA is placed outside the retained dark Botany wrapper",
+    "chapter01": "exact baseline source after removing authorized Academic-v1 front matter/CTA and normalizing two class-only contrast remediations",
     "protected_lectures": "BOT-01 through BOT-07 must remain byte-identical on E-01 bootstrap",
     "scope_contract": "must remain byte-identical on E-01 bootstrap",
     "remaining_curriculum_gaps": [
@@ -112,5 +112,18 @@
     "practical": "unchanged",
     "admission_pr_356": "untouched",
     "worker_cloudflare": "out-of-scope"
+  },
+  "accessibility_remediation": {
+    "trigger": "exact-head Axe color-contrast failure after Academic-v1 activation",
+    "shared_css_mutation": false,
+    "learner_scope_expansion": false,
+    "gateway": "canonical Learning Guide CTA moved outside legacy .lbfl-botany-index color inheritance",
+    "chapter01": [
+      "canonical Learning Guide CTA moved outside legacy .lbfl-botany-index color inheritance",
+      "remaining NCTB-gap paragraph uses existing lbfl-academic-lead semantic class",
+      "Botany return link uses existing lbfl-academic-button semantic class"
+    ],
+    "wording_changed": false,
+    "link_destination_changed": false
   }
 }
