@@ -70,16 +70,20 @@ def main():
     version = str(scope.get("version", ""))
     require(
         version == EXPECTED_VERSION
-        or bool(re.fullmatch(r"CONV-04E-\\d{2}-\\d+\\.\\d+\\.\\d+", version)),
+        or bool(re.fullmatch(r"CONV-04E-\d{2}-\d+\.\d+\.\d+", version)),
         "Unexpected Chapter-01 scope version lineage"
     )
     base = scope.get("authorized_base_sha", "")
     require(bool(SHA40.fullmatch(base)), "authorized_base_sha must be a lowercase 40-character SHA")
     require(base == EXPECTED_BASE, f"Authorized base drift: {base}")
     scope_state = str(scope.get("state", ""))
+    progressive_state_match = re.fullmatch(
+        r"bot(\d{2})-implemented-(candidate|certified)",
+        scope_state,
+    )
     require(
         scope_state == "learner-content-postmerge-integrity-remediation"
-        or bool(re.fullmatch(r"bot\d{2}-implemented-(?:candidate|certified)", scope_state)),
+        or bool(progressive_state_match),
         "Unexpected Chapter-01 progressive learner-content state"
     )
     require(scope.get("strict_child_authorized") is False, "Chapter 01 must remain non-strict")
