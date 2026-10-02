@@ -2,13 +2,13 @@
 
 programme: CONV-04
 phase: CONV-04E-02
-mode: authorization-only — BOT-08 Plastid and Chloroplast learner-content convergence
+mode: implementation candidate — BOT-08 Plastid and Chloroplast learner-content convergence
 authorized_base: cc10f1cb60828be6d8aac145ecc6964c845ac71b
 branch: conv-04e-02-botany-plastid-chloroplast-20261003
 production_verified_main: cc10f1cb60828be6d8aac145ecc6964c845ac71b
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
-mutation_authority: authorization/state artifacts only; BOT-08 learner implementation authorized but not yet applied
-learner_content_authoring: BOT-08 authorized / exact curriculum-bound edition-neutral content required / not-yet-applied
+mutation_authority: BOT-08 lesson + exact Chapter-01 navigation/scope + E-02 certification/state artifacts
+learner_content_authoring: BOT-08 implemented candidate / curriculum-bound edition-neutral / exact-head certification pending
 existing_learning_method_cleanup: canonical Learning Guide ownership active on both E-01 surfaces
 gateway_cta_injection: exactly one canonical CTA on each E-01 target surface
 learner_mutation_allowlist:
@@ -18,11 +18,11 @@ learner_mutation_allowlist:
   - _biology/hsc-corner/botany/index.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-bot_08: authorized-not-implemented
+bot_08: implemented-candidate / gap-02-chloroplast candidate closure
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: BOT-08 implementation + retained E-01/A-D/D-06 + Chapter-01 scope + Jekyll/browser/Axe exact-head certification required
-merge: not authorized in authorization-only state
+ready_transition: exact-head BOT-08 + retained E-01/A-D/D-06 + Chapter-01 scope + Jekyll/browser/Axe + CodeQL/Pages/governance required
+merge: not authorized until unchanged-head exact certification and governance pass
 
 ## Completed foundation
 
@@ -103,3 +103,19 @@ Open/maintain a Draft E-01 PR on the unchanged authorized base. Require exact-he
 - Required assessment evidence: 10 MCQ + 3 CQ.
 - Chapter completion after this phase: **not-certified**.
 - BOT-08 learner mutation performed: **NO**.
+
+
+## CONV-04E-02 implementation candidate
+
+- BOT-08 source created: **YES**.
+- Route: `/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/`.
+- Academic-v1 role: `lecture`.
+- Canonical Learning Guide ownership: **YES**.
+- Curriculum topic: `chloroplast`.
+- Candidate gap closure: `gap-02-chloroplast`.
+- MCQ/CQ: **10 / 3**.
+- Chapter-01 published lessons: **8**.
+- Chapter completion: **not-certified**.
+- Remaining curriculum gaps after candidate closure: **8**.
+- BOT-07 scientific content mutation: **NO — navigation only**.
+- Exact-head certification: **PENDING**.
