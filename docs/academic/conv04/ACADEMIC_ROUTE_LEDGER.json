@@ -214,25 +214,20 @@
       "id": "mcq-academic-gateway",
       "canonical_route": "/mcq-arena/academic/",
       "source_file": "_mcq-arena/academic/index.md",
-      "support_files": [],
+      "support_files": [
+        "_data/academic/assessment_gateway_v1.json",
+        ".github/scripts/validate-assessment-gateway.rb",
+        ".github/scripts/assessment-gateway-browser-certification.mjs",
+        ".github/workflows/assessment-gateway-certification.yml"
+      ],
       "academic_role": "assessment_gateway",
       "language": "en",
       "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "mcq-arena",
-      "enforcement": "progressive",
-      "source_debt": [
-        "missing_academic_role",
-        "missing_academic_system",
-        "missing_lang",
-        "legacy_language_key",
-        "inline_style",
-        "category_collection_mismatch"
-      ],
-      "live_debt": [
-        "rendered_boundary_duplication",
-        "rendered_empty_assessment_state"
-      ]
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     },
     {
       "id": "socratic-gateway",

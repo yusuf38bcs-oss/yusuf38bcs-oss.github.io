@@ -1,0 +1,143 @@
+name: Assessment Gateway Certification
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+    paths:
+      - "_mcq-arena/academic/index.md"
+      - "_data/academic/assessment_gateway_v1.json"
+      - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
+      - "docs/academic/conv04/ASSESSMENT_GATEWAY_IMPLEMENTATION.md"
+      - "docs/academic/conv04/CONV04_STATE.md"
+      - ".github/scripts/validate-assessment-gateway.rb"
+      - ".github/scripts/assessment-gateway-browser-certification.mjs"
+      - ".github/workflows/assessment-gateway-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: assessment-gateway-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: CONV-04D-02 Academic MCQ gateway
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      PR_BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
+      REPORT_DIR: assessment-gateway-browser-report
+
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.CANDIDATE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Authenticate exact head and protected base
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "$CANDIDATE_SHA"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            remote="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
+            test "$remote" = "$PR_BASE_SHA" || {
+              echo "BASE CHANGED — RECERTIFICATION REQUIRED"
+              exit 1
+            }
+            git merge-base --is-ancestor "$remote" "$actual" || {
+              echo "STALE CANDIDATE — CURRENT BASE IS NOT ANCESTOR"
+              exit 1
+            }
+          fi
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Validate D-02 source contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby -c .github/scripts/validate-assessment-gateway.rb
+          ruby .github/scripts/validate-assessment-gateway.rb
+          git diff --check "$PR_BASE_SHA...HEAD"
+
+      - name: Install Jekyll dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle install --jobs 4 --retry 3
+
+      - name: Build exact-head production site
+        shell: bash
+        env:
+          JEKYLL_ENV: production
+        run: |
+          set -euo pipefail
+          bundle exec jekyll clean
+          bundle exec jekyll build --trace
+          test -f _site/mcq-arena/academic/index.html
+          ruby .github/scripts/validate-assessment-gateway.rb
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install browser runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.10.3
+          npx playwright install --with-deps chromium
+
+      - name: Start exact-head local site
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site >"$RUNNER_TEMP/assessment-gateway-http.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/assessment-gateway-http.pid"
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent http://127.0.0.1:4173/mcq-arena/academic/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/assessment-gateway-http.log"
+          exit 1
+
+      - name: Certify browser behavior
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/scripts/assessment-gateway-browser-certification.mjs \
+            --base-url http://127.0.0.1:4173 \
+            --output-dir "$REPORT_DIR"
+
+      - name: Add browser evidence to summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f "$REPORT_DIR/summary.md" ]]; then
+            cat "$REPORT_DIR/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: assessment-gateway-browser-${{ env.CANDIDATE_SHA }}
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
