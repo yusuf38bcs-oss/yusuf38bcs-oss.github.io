@@ -47,6 +47,8 @@ hsc_alignment: "HSC Biology: academic MCQ practice gateway"
 concept_level: "Assessment Hub"
 ---
 
+# Academic MCQ Practice
+
 <div class="lbfl-academic-lead" data-assessment-gateway="academic-mcq">
   <p><strong>Practice, check, repair, and try again.</strong> Use these MCQ sets to retrieve Biology knowledge, inspect feedback, return to the relevant learning hub when an answer is weak or wrong, then reattempt after repair.</p>
 </div>
