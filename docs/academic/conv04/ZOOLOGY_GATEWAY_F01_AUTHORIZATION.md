@@ -1,8 +1,8 @@
 # CONV-04F-01 — HSC Zoology Gateway Authorization
 
-**Authorized base:** `b73d04616498649b8db66afef2d80103329118f5`  
-**Target route:** `/biology/hsc-corner/zoology/`  
-**Target source:** `_biology/hsc-corner/zoology/index.md`  
+**Authorized base:** `b73d04616498649b8db66afef2d80103329118f5`
+**Target route:** `/biology/hsc-corner/zoology/`
+**Target source:** `_biology/hsc-corner/zoology/index.md`
 **Baseline blob:** `babb9f70421ce5ae5f37bfe7534a899992ab0e65`
 
 ## F-00 authenticated finding
