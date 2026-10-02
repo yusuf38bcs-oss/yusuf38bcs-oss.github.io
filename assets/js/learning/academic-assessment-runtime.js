@@ -3,6 +3,10 @@
 
   const ROOT_SELECTOR = "[data-authored-assessment]";
 
+  function preferredScrollBehavior() {
+    return window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ? "auto" : "smooth";
+  }
+
   function formatTime(totalSeconds) {
     const seconds = Math.max(0, Number(totalSeconds) || 0);
     const minutes = Math.floor(seconds / 60);
@@ -34,7 +38,7 @@
 
     function answeredCount() {
       return questions.filter(question =>
-        optionsFor(question).some(option => option.getAttribute("aria-pressed") === "true")
+        optionsFor(question).some(option => option.getAttribute("aria-checked") === "true")
       ).length;
     }
 
@@ -77,7 +81,8 @@
       question.classList.remove("correct", "wrong", "done");
       optionsFor(question).forEach(option => {
         option.classList.remove("selected", "correct", "wrong");
-        option.setAttribute("aria-pressed", "false");
+        option.setAttribute("aria-checked", "false");
+        option.removeAttribute("aria-label");
         option.disabled = false;
       });
     }
@@ -88,10 +93,10 @@
       if (!question) return;
       optionsFor(question).forEach(candidate => {
         candidate.classList.remove("selected");
-        candidate.setAttribute("aria-pressed", "false");
+        candidate.setAttribute("aria-checked", "false");
       });
       option.classList.add("selected");
-      option.setAttribute("aria-pressed", "true");
+      option.setAttribute("aria-checked", "true");
       updateProgress();
     }
 
@@ -131,7 +136,7 @@
       resultBox.classList.add("show");
       retryButton.hidden = false;
       resultBox.focus({ preventScroll: true });
-      resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      resultBox.scrollIntoView({ behavior: preferredScrollBehavior(), block: "nearest" });
     }
 
     function submitAssessment() {
@@ -142,7 +147,7 @@
       let correctCount = 0;
       questions.forEach(question => {
         const options = optionsFor(question);
-        const selectedIndex = options.findIndex(option => option.getAttribute("aria-pressed") === "true");
+        const selectedIndex = options.findIndex(option => option.getAttribute("aria-checked") === "true");
         const correctIndex = Number.parseInt(question.dataset.a || "-1", 10);
         const isCorrect = selectedIndex === correctIndex;
 
@@ -151,8 +156,14 @@
 
         options.forEach((option, index) => {
           option.disabled = true;
-          if (index === correctIndex) option.classList.add("correct");
-          if (index === selectedIndex && !isCorrect) option.classList.add("wrong");
+          const baseLabel = (option.dataset.assessmentBaseLabel || option.textContent || "").trim();
+          if (index === correctIndex) {
+            option.classList.add("correct");
+            option.setAttribute("aria-label", `${baseLabel}. Correct answer${index === selectedIndex ? ". Your answer" : ""}.`);
+          } else if (index === selectedIndex) {
+            option.classList.add("wrong");
+            option.setAttribute("aria-label", `${baseLabel}. Your answer. Incorrect.`);
+          }
         });
       });
 
@@ -169,11 +180,12 @@
       startTimer();
       const firstOption = root.querySelector("[data-assessment-option]");
       if (firstOption) firstOption.focus({ preventScroll: true });
-      root.scrollIntoView({ behavior: "smooth", block: "start" });
+      root.scrollIntoView({ behavior: preferredScrollBehavior(), block: "start" });
     }
 
     questions.forEach(question => {
       optionsFor(question).forEach(option => {
+        option.dataset.assessmentBaseLabel = (option.textContent || "").trim();
         option.addEventListener("click", () => selectOption(option));
       });
     });

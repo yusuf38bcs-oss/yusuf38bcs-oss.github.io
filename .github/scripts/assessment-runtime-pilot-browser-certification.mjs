@@ -33,11 +33,15 @@ async function standardCheck(view){
   const page=await context.newPage();
   const errors=[];
   page.on("pageerror",e=>errors.push(String(e)));
-  let status=0,metrics={},violations=[],keyboardFocus=false,focusVisible=false;
+  let status=0,metrics={},violations=[],keyboardFocus=false,focusVisible=false,initialRetryHidden=false;
 
   try{
     const response=await page.goto(base+route,{waitUntil:"domcontentloaded",timeout:20000});
     status=response?.status()??0;
+    initialRetryHidden=await page.evaluate(()=>{
+      const retry=document.querySelector("[data-assessment-retry]");
+      return !!retry?.hidden && getComputedStyle(retry).display==="none";
+    });
 
     for(let i=0;i<220;i+=1){
       await page.keyboard.press("Tab");
@@ -86,6 +90,22 @@ async function standardCheck(view){
         repairHref:repair?new URL(repair.href,location.href).pathname:"",
         repairMatches:repair?new URL(repair.href,location.href).pathname===sourceReturn:false,
         retryVisible:!!document.querySelector("[data-assessment-retry]:not([hidden])"),
+        radiogroupCount:document.querySelectorAll('[role="radiogroup"]').length,
+        labelledGroupCount:[...document.querySelectorAll('[role="radiogroup"]')].filter(el=>{
+          const id=el.getAttribute("aria-labelledby");
+          return !!id && !!document.getElementById(id);
+        }).length,
+        radioCount:document.querySelectorAll('[data-assessment-option][role="radio"]').length,
+        checkedCount:document.querySelectorAll('[data-assessment-option][aria-checked="true"]').length,
+        semanticCorrectCount:[...document.querySelectorAll("[data-assessment-option].correct")].filter(el=>(el.getAttribute("aria-label")||"").includes("Correct answer")).length,
+        semanticWrongCount:[...document.querySelectorAll("[data-assessment-option].wrong")].filter(el=>(el.getAttribute("aria-label")||"").includes("Incorrect")).length,
+        stateStylesDistinct:(()=>{
+          const correct=document.querySelector("[data-assessment-option].correct");
+          const wrong=document.querySelector("[data-assessment-option].wrong");
+          if(!correct||!wrong) return false;
+          const c=getComputedStyle(correct),w=getComputedStyle(wrong);
+          return [c.backgroundColor,c.color,c.borderColor].join("|")!==[w.backgroundColor,w.color,w.borderColor].join("|");
+        })(),
         forbiddenPresent:forbidden.filter(term=>bodyLower.includes(term)),
         overflow:Math.max(0,document.documentElement.scrollWidth-window.innerWidth),
         controlHeight:rect?rect.height:0,
@@ -107,12 +127,14 @@ async function standardCheck(view){
       done:document.querySelectorAll("[data-assessment-question].done").length,
       resultsVisible:!!document.querySelector("[data-assessment-results].show"),
       retryHidden:!!document.querySelector("[data-assessment-retry]")?.hidden,
+      retryComputedHidden:getComputedStyle(document.querySelector("[data-assessment-retry]")).display==="none",
       enabled:[...document.querySelectorAll("[data-assessment-option]")].every(el=>!el.disabled)
     }));
     metrics.reset=reset;
   }catch(error){errors.push(String(error));}
 
   const passed=status===200 &&
+    initialRetryHidden===true &&
     keyboardFocus===true &&
     focusVisible===true &&
     metrics.h1===1 &&
@@ -127,6 +149,13 @@ async function standardCheck(view){
     /^\d+ \/ 10$/.test(metrics.scoreText||"") &&
     metrics.repairMatches===true &&
     metrics.retryVisible===true &&
+    metrics.radiogroupCount===10 &&
+    metrics.labelledGroupCount===10 &&
+    metrics.radioCount===40 &&
+    metrics.checkedCount===10 &&
+    metrics.semanticCorrectCount===10 &&
+    metrics.semanticWrongCount>=1 &&
+    metrics.stateStylesDistinct===true &&
     Array.isArray(metrics.forbiddenPresent) && metrics.forbiddenPresent.length===0 &&
     metrics.overflow<=2 &&
     metrics.controlHeight>=40 &&
@@ -135,6 +164,7 @@ async function standardCheck(view){
     metrics.reset?.done===0 &&
     metrics.reset?.resultsVisible===false &&
     metrics.reset?.retryHidden===true &&
+    metrics.reset?.retryComputedHidden===true &&
     metrics.reset?.enabled===true &&
     violations.length===0 &&
     errors.length===0;

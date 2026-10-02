@@ -83,25 +83,26 @@ concept_level: "Assessment"
 
 .q-text { font-weight: 700; font-size: 1.15rem; color: #ffffff; margin-bottom: 15px; }
 .opts { display: flex; flex-direction: column; gap: 10px; }
-.opt { width: 100%; padding: 12px 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; cursor: pointer; transition: 0.2s; background: rgba(0,0,0,0.2); color: var(--q-text); font: inherit; text-align: left; }
-.opt:hover { border-color: var(--q-primary); background: rgba(0, 212, 178, 0.05); }
+.opt { width: 100%; padding: 12px 15px; border: 1px solid rgba(255,255,255,0.28) !important; border-radius: 8px; cursor: pointer; transition: 0.2s; background: #111827 !important; color: #f8fafc !important; font: inherit; font-weight: 500 !important; text-align: left; text-decoration: none !important; display: block !important; }
+.opt:hover { border-color: var(--q-primary) !important; background: #12323a !important; }
 .opt:focus-visible, .btn-submit:focus-visible, .btn-restart:focus-visible { outline: 3px solid #f8fafc; outline-offset: 3px; }
-.opt.selected { border-color: var(--q-primary); background: rgba(0, 212, 178, 0.1); }
-.opt.correct { border-color: var(--q-success); background: rgba(16, 185, 129, 0.15); color: #10b981; font-weight: bold; }
-.opt.wrong { border-color: var(--q-danger); background: rgba(239, 68, 68, 0.15); color: #ef4444; text-decoration: line-through; }
+.opt.selected { border-color: #5eead4 !important; background: #134e4a !important; color: #f8fafc !important; font-weight: 700 !important; text-decoration: none !important; }
+.opt.correct, .opt.correct:disabled { border-color: #86efac !important; background: #14532d !important; color: #f0fdf4 !important; font-weight: 800 !important; text-decoration: none !important; opacity: 1 !important; }
+.opt.wrong, .opt.wrong:disabled { border-color: #fca5a5 !important; background: #7f1d1d !important; color: #fff1f2 !important; font-weight: 700 !important; text-decoration: line-through !important; opacity: 1 !important; }
 
-.exp { display: none; margin-top: 15px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 0.95rem; border-left: 3px solid var(--q-success); color: #34d399; }
+.exp { display: none; margin-top: 15px; padding: 12px; background: #111827; border-radius: 6px; font-size: 0.95rem; border-left: 3px solid #86efac; color: #f0fdf4; }
 .q.done .exp { display: block; animation: fadeIn 0.5s ease; }
 
 .quiz-foot { text-align: center; padding: 25px; border-top: 1px solid rgba(255,255,255,0.05); background: #0b1324; }
 .btn-submit { background: var(--q-primary); color: #090d16; border: none; padding: 12px 35px; border-radius: 30px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 212, 178, 0.3); }
 .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 212, 178, 0.5); }
-.btn-restart { background: transparent; color: var(--q-text); border: 1px solid rgba(255,255,255,0.2); padding: 12px 25px; border-radius: 30px; margin-left: 10px; cursor: pointer; transition: 0.3s; }
-.btn-restart:hover { background: rgba(255,255,255,0.05); }
+.btn-restart { background: #111827 !important; color: #f8fafc !important; border: 1px solid #94a3b8 !important; padding: 12px 25px; border-radius: 30px; margin-left: 10px; cursor: pointer; transition: 0.3s; text-decoration: none !important; }
+.btn-restart:hover { background: #1e293b !important; color: #ffffff !important; }
+.authored-assessment-wrapper [hidden] { display: none !important; }
 
-.score-board { display: none; margin-top: 25px; padding: 20px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--q-success); text-align: center; }
+.score-board { display: none; margin-top: 25px; padding: 20px; border-radius: 12px; background: #0f172a; border: 1px solid #86efac; color: #f8fafc; text-align: center; }
 .score-board.show { display: block; animation: slideUp 0.5s ease; }
-.score-text { font-size: 2rem; font-weight: 800; color: #10b981; margin: 10px 0; }
+.score-text { font-size: 2rem; font-weight: 800; color: #f0fdf4; margin: 10px 0; }
 
 @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -120,111 +121,111 @@ concept_level: "Assessment"
 
     <div class="quiz-body" id="quizBody2" data-assessment-body>
       <div class="q" data-assessment-question data-a="2">
-        <div class="q-text">১. প্রোটোপ্লাজম কেন জীবনের ভৌত ভিত্তি?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA থাকে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">আকার দেয়</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">সব জৈবিক ক্রিয়া হয়</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">পানি বেশি থাকে</button>
+        <div class="q-text" id="q1-label">১. প্রোটোপ্লাজম কেন জীবনের ভৌত ভিত্তি?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q1-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">DNA থাকে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">আকার দেয়</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">সব জৈবিক ক্রিয়া হয়</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">পানি বেশি থাকে</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: সব জৈবিক ক্রিয়া এখানেই হয়।</div>
       </div>
 
       <div class="q" data-assessment-question data-a="1">
-        <div class="q-text">২. ফ্লিপ-ফ্লপ মুভমেন্ট (Flip-flop movement) কী নির্দেশ করে?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">দৃঢ়তা</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">তরলতা</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">অভেদ্যতা</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">বিভাজন</button>
+        <div class="q-text" id="q2-label">২. ফ্লিপ-ফ্লপ মুভমেন্ট (Flip-flop movement) কী নির্দেশ করে?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q2-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">দৃঢ়তা</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">তরলতা</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">অভেদ্যতা</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">বিভাজন</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: এটি প্লাজমা মেমব্রেনের তরলতা বা ফ্লুইডিটি প্রমাণ করে।</div>
       </div>
 
       <div class="q" data-assessment-question data-a="2">
-        <div class="q-text">৩. গ্লাইকোক্যালিক্স নষ্ট হলে কী হবে?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">শক্তি বন্ধ হবে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">প্রোটিন বন্ধ হবে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">কোষ শনাক্ত করতে পারবে না</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">ক্রোমোজোম কমবে</button>
+        <div class="q-text" id="q3-label">৩. গ্লাইকোক্যালিক্স নষ্ট হলে কী হবে?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q3-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">শক্তি বন্ধ হবে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">প্রোটিন বন্ধ হবে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">কোষ শনাক্ত করতে পারবে না</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">ক্রোমোজোম কমবে</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: কোষ তার সেলফ-আইডেন্টিটি হারাবে এবং ইমিউন সিস্টেম তাকে চিনতে পারবে না।</div>
       </div>
 
       <div class="q" data-assessment-question data-a="1">
-        <div class="q-text">৪. গলগি বডি কেন ট্রাফিক পুলিশ?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">শত্রু আটকায়</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">প্যাকেজিং ও গন্তব্যে পাঠায়</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">বিভাজন করে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">শক্তি তৈরি করে</button>
+        <div class="q-text" id="q4-label">৪. গলগি বডি কেন ট্রাফিক পুলিশ?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q4-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">শত্রু আটকায়</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">প্যাকেজিং ও গন্তব্যে পাঠায়</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">বিভাজন করে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">শক্তি তৈরি করে</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: এটি প্রোটিন প্যাকেজিং ও গন্তব্য নির্ধারণ করে।</div>
       </div>
 
       <div class="q" data-assessment-question data-a="1">
-        <div class="q-text">৫. অটোফ্যাগী কীভাবে সাহায্য করে?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">খাদ্য তৈরি করে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">নিজ অঙ্গাণু ভেঙে শক্তি দেয়</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">বিভাজন বাড়ায়</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">পানি বাড়ায়</button>
+        <div class="q-text" id="q5-label">৫. অটোফ্যাগী কীভাবে সাহায্য করে?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q5-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">খাদ্য তৈরি করে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">নিজ অঙ্গাণু ভেঙে শক্তি দেয়</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">বিভাজন বাড়ায়</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">পানি বাড়ায়</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: খাদ্যাভাবে লাইসোজোম নিজ অঙ্গাণু ভেঙে কোষকে শক্তি দেয়।</div>
       </div>
 
       <div class="q" data-assessment-question data-a="1">
-        <div class="q-text">৬. Cyclosis বন্ধ হলে কী হবে?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA নষ্ট হবে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">কোষের ভেতর সাইটোপ্লাজমিক পরিবহন বন্ধ হবে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">পর্দা ফেটে যাবে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">আকার বাড়বে</button>
+        <div class="q-text" id="q6-label">৬. Cyclosis বন্ধ হলে কী হবে?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q6-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">DNA নষ্ট হবে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">কোষের ভেতর সাইটোপ্লাজমিক পরিবহন বন্ধ হবে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">পর্দা ফেটে যাবে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">আকার বাড়বে</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: অভ্যন্তরীণ পরিবহন ব্যাহত হবে।</div>
       </div>
 
       <div class="q" data-assessment-question data-a="2">
-        <div class="q-text">৭. রাইবোজোম কেন প্রোটিন ফ্যাক্টরি?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA তৈরি করে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">মুক্ত থাকে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">প্রোটিন তৈরি করে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">বড় অঙ্গাণু</button>
+        <div class="q-text" id="q7-label">৭. রাইবোজোম কেন প্রোটিন ফ্যাক্টরি?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q7-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">DNA তৈরি করে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">মুক্ত থাকে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">প্রোটিন তৈরি করে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">বড় অঙ্গাণু</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: এটি mRNA ডিকোড করে প্রোটিন সংশ্লেষণ করে।</div>
       </div>
 
       <div class="q" data-assessment-question data-a="1">
-        <div class="q-text">৮. ER এর পার্থক্য কী?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">লিপিড/প্রোটিন উল্টো</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">RER প্রোটিন, SER লিপিড তৈরি করে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">শক্তি উৎপাদন</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA রক্ষা</button>
+        <div class="q-text" id="q8-label">৮. ER এর পার্থক্য কী?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q8-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">লিপিড/প্রোটিন উল্টো</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">RER প্রোটিন, SER লিপিড তৈরি করে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">শক্তি উৎপাদন</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">DNA রক্ষা</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: অমসৃণ এন্ডোপ্লাজমিক রেটিকুলাম (RER) প্রোটিন এবং মসৃণ (SER) লিপিড তৈরি করে।</div>
       </div>
 
       <div class="q" data-assessment-question data-a="1">
-        <div class="q-text">৯. ক্রিস্টি কেন ভাঁজ করা থাকে?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">ছোট দেখায়</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">Surface area বা কর্মক্ষেত্র বাড়ায়</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">প্রোটিন জমা রাখে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">DNA রক্ষা করে</button>
+        <div class="q-text" id="q9-label">৯. ক্রিস্টি কেন ভাঁজ করা থাকে?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q9-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">ছোট দেখায়</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">Surface area বা কর্মক্ষেত্র বাড়ায়</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">প্রোটিন জমা রাখে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">DNA রক্ষা করে</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: বেশি পরিমাণ ATP উৎপাদনের জন্য।</div>
       </div>
 
       <div class="q" data-assessment-question data-a="2">
-        <div class="q-text">১০. ব্যাকটেরিয়া কীভাবে শক্তি উৎপাদন করে?</div>
-        <div class="opts">
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">করে না</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">সূর্য শোষণ করে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">মেসোজোম ব্যবহার করে</button>
-          <button type="button" class="opt" data-assessment-option aria-pressed="false">রাইবোজোম দিয়ে</button>
+        <div class="q-text" id="q10-label">১০. ব্যাকটেরিয়া কীভাবে শক্তি উৎপাদন করে?</div>
+        <div class="opts" role="radiogroup" aria-labelledby="q10-label">
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">করে না</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">সূর্য শোষণ করে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">মেসোজোম ব্যবহার করে</button>
+          <button type="button" class="opt" data-assessment-option role="radio" aria-checked="false">রাইবোজোম দিয়ে</button>
         </div>
         <div class="exp" data-assessment-explanation>✔ সঠিক: মেসোজোম (Mesosome) ব্যাকটেরিয়ার শক্তিঘর হিসেবে কাজ করে।</div>
       </div>

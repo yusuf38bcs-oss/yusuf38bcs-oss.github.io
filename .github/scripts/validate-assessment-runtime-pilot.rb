@@ -141,6 +141,9 @@ if PILOT.file?
   errors << "Legacy initQuiz call remains" if source.include?("initQuiz(")
   errors << "Legacy submitQuiz call remains" if source.include?("submitQuiz(")
   errors << "Inline onclick remains in D-04 pilot" if source.include?("onclick=")
+  errors << "Question groups must expose radiogroup semantics" unless source.scan('role="radiogroup"').length == 10
+  errors << "Options must expose radio semantics" unless source.scan('role="radio"').length == 40
+  errors << "Question groups must be labelled by prompts" unless source.scan(/aria-labelledby="q\\d+-label"/).length == 10
 end
 
 if RUNTIME.file?
@@ -151,7 +154,8 @@ if RUNTIME.file?
     "data-assessment-submit",
     "data-assessment-retry",
     "dataset.assessmentRepair",
-    "aria-pressed",
+    "aria-checked",
+    "prefers-reduced-motion",
     "Assessment feedback",
     "Review the marked answers and authored explanations before your next attempt."
   ].each do |needle|
@@ -193,6 +197,9 @@ comparison_base = ENV["PR_BASE_SHA"].to_s.strip
 if comparison_base.empty?
   parent_stdout, parent_status = Open3.capture2e("git", "-C", ROOT.to_s, "rev-parse", "HEAD^")
   comparison_base = parent_status.success? ? parent_stdout.strip : BASE
+end
+if certification_mode == "pull_request" && comparison_base != BASE
+  errors << "D-04 pull-request base mismatch: expected #{BASE}, got #{comparison_base}"
 end
 bootstrap_pr = certification_mode == "pull_request" && comparison_base == BASE
 
