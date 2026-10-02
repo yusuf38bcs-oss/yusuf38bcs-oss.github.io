@@ -53,9 +53,9 @@ merge: not authorized until unchanged-head governance PASS
 
 ## CONV-04C-02-R1 authenticated contrast remediation
 
-The exact-head browser gate exposed serious Axe color-contrast failures on the canonical guide while its structural checks passed. Source-cascade analysis authenticated the ownership conflict: the legacy neural layer forces the main reading wrappers transparent with priority declarations, while Academic v1 did not yet reclaim those wrappers at the same cascade level. Anchor-based Academic actions also lacked the priority foreground/background ownership already granted to semantic button controls.
+The exact-head browser gate exposed serious Axe color-contrast failures on the canonical guide while its structural checks passed. The first R1 probe authenticated the light Academic canvas and final component colors, then recorded the decisive runtime evidence: the final lead color is rgb(82, 97, 116) on rgb(248, 250, 252), and the Academic action is white on rgb(11, 95, 86), but Axe observed pale interpolated foregrounds during the delayed Minimal Mistakes intro animation. Compiled main.css applies animation: intro 0.3s both to #main and the masthead, so the whole reading tree and navigation are partially transparent during the audit window.
 
-R1 corrects those two owners inside the canonical Academic design-system stylesheet and extends the exact design-system validator to pin the new selectors and declarations. It does not modify production-hotfix.css and does not reduce the Axe threshold.
+R1 therefore keeps the Academic light-canvas and anchor-action ownership corrections and additionally disables the inherited intro animation on the Academic-v1 shell only. The exact design-system validator pins this static-shell contract. It does not modify production-hotfix.css and does not reduce the Axe threshold.
 
 ## Next gate
 

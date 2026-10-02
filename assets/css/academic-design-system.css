@@ -48,6 +48,23 @@ html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .
   background: var(--lbfl-academic-paper) !important;
 }
 
+/*
+   Minimal Mistakes applies a delayed opacity-based "intro" animation to
+   #main and several site-shell regions. On a light Academic-v1 canvas that
+   creates transient low-contrast interpolation before the final colors are
+   reached. Academic v1 is a stable reading surface, so it owns these shell
+   regions without the legacy entrance animation.
+*/
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .masthead,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .breadcrumbs,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) #main,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .page__footer,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .page__hero,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .page__hero--overlay {
+  -webkit-animation: none;
+  animation: none;
+}
+
 /* Single-layout contextual navigation sits outside the owned article surface. */
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav {
   color: var(--lbfl-academic-ink);
