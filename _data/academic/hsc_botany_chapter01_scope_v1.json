@@ -1,16 +1,16 @@
 {
   "schema": "lbfl-hsc-botany-chapter01-scope-v1",
-  "version": "CONV-03C01-R1-1.0.0",
+  "version": "CONV-04E-02-1.0.0",
   "authorized_base_sha": "b210ad75d7c7f92e95d7fae1438736a6bab54d1a",
   "parent_course_id": "hsc-botany",
   "chapter_id": "hsc-botany-chapter-01-cell-and-its-structure",
   "title": "HSC Biology 1st Paper — Chapter 01: Cell and Its Structure",
   "canonical_route": "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/",
   "gateway_file": "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
-  "state": "learner-content-postmerge-integrity-remediation",
+  "state": "bot-08-implementation-candidate",
   "strict_child_authorized": false,
   "missing_lesson_authoring_authorized": true,
-  "reason": "CONV-03C-01R1 remediates five post-merge integrity findings without changing the academic scope of BOT-07. Lecture 07 remains implemented for cell-wall and vacuole, but its in-repository certification state is deliberately candidate-bound until the remediation exact-head gate completes externally. Chapter 01 remains convergence-pending and not-certified.",
+  "reason": "CONV-04E-02 adds curriculum-bound BOT-08 for the authorized chloroplast gap while preserving Chapter-01 non-strict convergence and all remaining gap boundaries.",
   "primary_curriculum_custody": {
     "obtained": true,
     "authority": "National Curriculum and Textbook Board (NCTB), Bangladesh",
@@ -198,6 +198,14 @@
       "route": "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/",
       "mcq": true,
       "cq": true
+    },
+    {
+      "lesson_id": "bot-08",
+      "order": 8,
+      "source_file": "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+      "route": "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/",
+      "mcq": true,
+      "cq": true
     }
   ],
   "topic_lesson_map": [
@@ -314,10 +322,12 @@
         32,
         33
       ],
-      "status": "missing",
-      "existing_lessons": [],
-      "gap_id": "gap-02-chloroplast",
-      "missing_lesson_requirement": "new-lesson-required"
+      "status": "covered",
+      "existing_lessons": [
+        "bot-08"
+      ],
+      "gap_id": null,
+      "missing_lesson_requirement": "none"
     },
     {
       "topic_id": "lysosome",
@@ -507,13 +517,6 @@
   ],
   "provisional_missing_lesson_buckets": [
     {
-      "bucket_id": "gap-02-chloroplast",
-      "topics": [
-        "chloroplast"
-      ],
-      "architecture_status": "provisional-not-authorized"
-    },
-    {
       "bucket_id": "gap-04-centriole-microtubule",
       "topics": [
         "centriole-microtubule"
@@ -571,10 +574,10 @@
     }
   ],
   "assessment_audit": {
-    "published_lessons": 7,
-    "lessons_with_mcq": 7,
-    "lessons_with_cq": 7,
-    "assessment_coverage": "7/7 current published lessons",
+    "published_lessons": 8,
+    "lessons_with_mcq": 8,
+    "lessons_with_cq": 8,
+    "assessment_coverage": "8/8 current published lessons",
     "chapter_completion_assessment_authorized": false
   },
   "route_integrity": {
@@ -765,7 +768,7 @@
       "topic_ids": [
         "chloroplast"
       ],
-      "authoring_status": "authorized"
+      "authoring_status": "implemented-candidate"
     },
     {
       "action_id": "bot-09",
@@ -868,10 +871,32 @@
         "evidence_location": "GitHub exact-head workflow and merge-authorization record",
         "self_embedded_head_sha": false
       }
+    },
+    {
+      "lesson_id": "bot-08",
+      "action_id": "bot-08",
+      "title": "Plastid and Chloroplast",
+      "topic_ids": [
+        "chloroplast"
+      ],
+      "closed_gap_ids": [
+        "gap-02-chloroplast"
+      ],
+      "source_file": "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+      "route": "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/",
+      "mcq_count": 10,
+      "cq_count": 3,
+      "academic_review_file": "docs/academic/CONV-04E02_BOT08_CONTENT_REVIEW.md",
+      "scientific_reference_minimum": 2,
+      "status": "candidate-exact-head-certification-required",
+      "current_certification": {
+        "status": "candidate-exact-head-certification-required",
+        "evidence_location": "GitHub exact-head workflow and merge-authorization record",
+        "self_embedded_head_sha": false
+      }
     }
   ],
   "remaining_curriculum_gaps": [
-    "gap-02-chloroplast",
     "gap-04-centriole-microtubule",
     "gap-05-nuclear-components",
     "gap-06-cell-chemical-components",
