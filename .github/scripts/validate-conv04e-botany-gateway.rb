@@ -91,11 +91,10 @@ def phase_order(value)
 end
 
 def strip_authorized_additions(source)
-  cleaned = source.lines.reject do |line|
-    line.match?(/\A(?:academic_system:\s*v1|academic_role:\s*(?:academic_gateway|chapter_index)|lang:\s*bn|learning_guide:\s*canonical)\s*\z/) ||
-      line.strip == CTA
+  cleaned = source.gsub("\n\n#{CTA}", "")
+  cleaned.lines.reject do |line|
+    line.match?(/\A(?:academic_system:\s*v1|academic_role:\s*(?:academic_gateway|chapter_index)|lang:\s*bn|learning_guide:\s*canonical)\s*\z/)
   end.join
-  cleaned.gsub(/<\/section>\n\n\n/, "</section>\n\n")
 end
 
 def git_show(base, relative)
@@ -142,8 +141,6 @@ end
 
 if CHAPTER.file?
   chapter_source = read_utf8(CHAPTER)
-  need(errors, fm_value(chapter_source, "contract_state") == "convergence-pending", "E-01 bootstrap chapter contract_state must remain convergence-pending")
-  need(errors, fm_value(chapter_source, "chapter_completion") == "not-certified", "E-01 bootstrap chapter_completion must remain not-certified")
   need(errors, fm_value(chapter_source, "source_scope") == "NCTB curriculum 2012 pp.31-33", "Chapter source_scope drift")
 end
 
@@ -195,6 +192,10 @@ if STATE.file?
 end
 
 if bootstrap_pr
+  chapter_source = read_utf8(CHAPTER)
+  need(errors, fm_value(chapter_source, "contract_state") == "convergence-pending", "E-01 bootstrap chapter contract_state must remain convergence-pending")
+  need(errors, fm_value(chapter_source, "chapter_completion") == "not-certified", "E-01 bootstrap chapter_completion must remain not-certified")
+
   {
     "_biology/hsc-corner/botany/index.md" => GATEWAY,
     "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md" => CHAPTER
