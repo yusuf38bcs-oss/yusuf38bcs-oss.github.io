@@ -1,0 +1,128 @@
+{
+  "schema": "lbfl-conv04e02-bot08-authorization-v1",
+  "version": "CONV-04E-02-authorization-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04E-02",
+  "status": "authorized-not-implemented",
+  "authorized_base": "cc10f1cb60828be6d8aac145ecc6964c845ac71b",
+  "branch": "conv-04e-02-botany-plastid-chloroplast-20261003",
+  "target": {
+    "lesson_id": "bot-08",
+    "title": "Plastid and Chloroplast",
+    "source_file": "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+    "route": "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/",
+    "topic_ids": [
+      "chloroplast"
+    ],
+    "gap_ids": [
+      "gap-02-chloroplast"
+    ]
+  },
+  "baseline": {
+    "target_source_exists": false,
+    "scope_blob_sha": "f2a45806a80d6fe59b4a6d74373cbdac32bfe1f5",
+    "botany_index_blob_sha": "035d239e3bf5ae0bb1332e6d0abc41de55d01363",
+    "chapter_index_blob_sha": "902d53cfce12601c60cecb158d0a46bb07fb4e3b",
+    "bot07_blob_sha": "d3adcdfe7d263cd0c4b7a94c9b120be3b08dca16",
+    "e01_manifest_blob_sha": "10db7e76a14c569280ecef59e0fce8844e62eb54",
+    "remaining_curriculum_gaps": [
+      "gap-02-chloroplast",
+      "gap-04-centriole-microtubule",
+      "gap-05-nuclear-components",
+      "gap-06-cell-chemical-components",
+      "gap-07-prokaryotic-eukaryotic-comparison",
+      "gap-08-cell-size-shape-inclusions",
+      "gap-09-cell-discovery-history",
+      "gap-10-microscopy-mounting-drawing",
+      "gap-11-chapter-practical-integration"
+    ],
+    "published_lesson_count": 7,
+    "bot08_authoring_action": {
+      "action_id": "bot-08",
+      "action": "create-new-lesson",
+      "lesson_id": "bot-08",
+      "title": "Plastid and Chloroplast",
+      "gap_ids": [
+        "gap-02-chloroplast"
+      ],
+      "topic_ids": [
+        "chloroplast"
+      ],
+      "authoring_status": "authorized"
+    },
+    "chloroplast_topic": {
+      "topic_id": "chloroplast",
+      "nctb_scope": "Chloroplast — structure, location and function",
+      "source_pages": [
+        31,
+        32,
+        33
+      ],
+      "status": "missing",
+      "existing_lessons": [],
+      "gap_id": "gap-02-chloroplast",
+      "missing_lesson_requirement": "new-lesson-required"
+    }
+  },
+  "provenance": {
+    "normative_curriculum": {
+      "authority": "National Curriculum and Textbook Board (NCTB), Bangladesh",
+      "scope": "Chapter 01, PDF pp.31-33",
+      "index_url": "https://nctb.gov.bd/pages/files/6922dbc6933eb65569e0c702"
+    },
+    "scientific_sources": [
+      "https://www.ncbi.nlm.nih.gov/books/NBK9905/",
+      "https://www.ncbi.nlm.nih.gov/books/NBK26819/",
+      "https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells",
+      "https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+    ],
+    "private_textbook_boundary": "No named private HSC Biology textbook wording or page claim is authorized."
+  },
+  "content_contract": {
+    "language": "bn",
+    "technical_terms": "English retained where pedagogically useful",
+    "academic_system": "v1",
+    "academic_role": "lecture",
+    "learning_guide": "canonical",
+    "required_concepts": [
+      "plastid family",
+      "proplastid",
+      "chloroplast envelope",
+      "outer membrane",
+      "inner membrane",
+      "stroma",
+      "thylakoid",
+      "granum/grana",
+      "stroma lamella",
+      "chlorophyll",
+      "photosynthesis",
+      "chloroplast DNA",
+      "70S-type ribosome context",
+      "chromoplast",
+      "leucoplast"
+    ],
+    "mcq_count": 10,
+    "cq_count": 3,
+    "scientific_reference_minimum": 2,
+    "chapter_completion_must_remain": "not-certified",
+    "contract_state_must_remain": "convergence-pending"
+  },
+  "learner_mutation_allowlist": [
+    "_biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md",
+    "_biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md",
+    "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md",
+    "_biology/hsc-corner/botany/index.md"
+  ],
+  "scope_mutation_allowlist": [
+    "_data/academic/hsc_botany_chapter01_scope_v1.json"
+  ],
+  "protected": {
+    "BOT-01_through_BOT-06": "unchanged",
+    "BOT-07_scientific_content": "unchanged except forward navigation",
+    "E-01_structural_contract": "retained",
+    "D-04_D-05_D-06": "retained",
+    "Admission_PR_356": "untouched",
+    "Worker_Cloudflare": "out-of-scope"
+  },
+  "next_gate": "Implement exact BOT-08 contract on unchanged authorized base and exact-head certify."
+}
