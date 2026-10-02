@@ -172,6 +172,12 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
     hasContent: Boolean(document.querySelector(".page__content")),
     hasCycle: Boolean(document.querySelector("[data-zoology-learning-cycle]")),
     hasCourseOwnedShell: Boolean(document.querySelector("[data-lbfl-course-owned]")),
+    hasCanonicalLearningGuideShell: Boolean(document.querySelector('[data-lbfl-learning-guide="canonical"]')),
+    learningGuideCtaCount: document.querySelectorAll(".lbfl-learning-guide-cta").length,
+    hasLearningGuideLink: Array.from(document.querySelectorAll(".lbfl-learning-guide-cta a")).some((link) => {
+      const href = String(link.getAttribute("href") || "");
+      return href === "/learn/" || href.endsWith("/learn/");
+    }),
     hasStylesheet: Array.from(
       document.querySelectorAll('link[rel="stylesheet"]')
     ).some((link) =>
@@ -188,13 +194,16 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
   };
 }, { headingContract, structureContract });
       const isCourseOwnedCandidate = metrics?.hasCourseOwnedShell === true;
+      const isCanonicalLearningGuideCandidate = metrics?.hasCanonicalLearningGuideShell === true;
       const fullPageAxe =
         (isAnimalDiversityRoute && viewport.name === "mobile-390") ||
-        isCourseOwnedCandidate;
+        isCourseOwnedCandidate ||
+        isCanonicalLearningGuideCandidate;
 
       const scopedCycleAxe =
         !isAnimalDiversityRoute &&
         !isCourseOwnedCandidate &&
+        !isCanonicalLearningGuideCandidate &&
         metrics.hasCycle &&
         viewport.name === "mobile-390";
 
@@ -235,7 +244,8 @@ metrics = await page.evaluate(({ headingContract: contract, structureContract })
       metrics?.hasContent === true &&
       metrics?.hasStylesheet === true &&
       (!isAnimalDiversityRoute || metrics?.hasContent === true) &&
-      (isAnimalDiversityRoute ? metrics?.hasCycle === false : ((isEcologyCourseRoute || metrics?.hasCourseOwnedShell === true) ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
+      (isAnimalDiversityRoute ? metrics?.hasCycle === false : ((isEcologyCourseRoute || metrics?.hasCourseOwnedShell === true || metrics?.hasCanonicalLearningGuideShell === true) ? metrics?.hasCycle === false : metrics?.hasCycle === true)) &&
+      (metrics?.hasCanonicalLearningGuideShell !== true || (metrics?.learningGuideCtaCount === 1 && metrics?.hasLearningGuideLink === true)) &&
       (!isAnimalDiversityRoute || metrics?.structureChecks?.h1Count === 1) &&
       metrics?.structureChecks?.requiredText?.every((check) => check.passed) !== false &&
       metrics?.structureChecks?.forbiddenText?.every((check) => check.passed) !== false &&
@@ -295,7 +305,7 @@ const markdown = [
         }),
       ]
     : [
-        "All discovered learner-content Zoology routes passed the scoped design, overflow, local-resource, application-console, AI-label and learning-cycle checks. Compatibility redirects, meta-refresh aliases and layout:null artifacts under historical Zoology paths are intentionally excluded from this academic-design matrix and remain covered by site/SEO validation. Third-party network calls were isolated with local 204 responses and recorded separately in the JSON evidence.",
+        "All discovered learner-content Zoology routes passed the scoped design, overflow, local-resource, application-console, AI-label, learning-cycle, canonical Learning Guide ownership, and Axe checks. Compatibility redirects, meta-refresh aliases and layout:null artifacts under historical Zoology paths are intentionally excluded from this academic-design matrix and remain covered by site/SEO validation. Third-party network calls were isolated with local 204 responses and recorded separately in the JSON evidence.",
       ]),
   "",
 ].join("\n");

@@ -7,7 +7,7 @@ sidebar:
 title: "Zoology: The Blueprint of the Animal Kingdom"
 excerpt: "Investigate animal diversity, human physiology, feedback control, respiratory systems, digestion, Genetics bridge learning, and assessment correction."
 date: 2026-06-09T05:00:00.000Z
-last_modified_at: 2026-08-21T00:00:00.000Z
+last_modified_at: '2026-10-02T08:10:00+06:00'
 permalink: /biology/hsc-corner/zoology/
 node_id: index-hsc-zoology
 pillar: "Life Sciences"
@@ -29,11 +29,12 @@ ib_theme: "Diversity"
 ib_subtopic: "Zoology foundation gateway"
 hsc_alignment: "HSC Zoology: chapter gateway and structured topic access"
 concept_level: "Gateway"
+learning_guide: canonical
 ---
 
 This Zoology hub connects animal diversity, human physiology, digestion, Genetics bridge learning, and applied biological reasoning. It is designed as a structured entry point for HSC Zoology, admission preparation, and reflective life-science learning.
 
-{% include education/framework-links.html %}
+{% include education/learning-guide-cta.html %}
 
 ## Core Learning Route
 

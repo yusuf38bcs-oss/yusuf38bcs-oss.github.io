@@ -27,6 +27,11 @@ layout: default
   {% assign lbfl_course_owned_surface = true %}
 {% endif %}
 
+{% assign lbfl_canonical_learning_guide = false %}
+{% if page.learning_guide == 'canonical' %}
+  {% assign lbfl_canonical_learning_guide = true %}
+{% endif %}
+
 {% assign lbfl_content_owns_h1 = false %}
 {% if content contains '<h1' %}
   {% assign lbfl_content_owns_h1 = true %}
@@ -83,7 +88,7 @@ layout: default
 {% endif %}
 
 <div id="main" role="main">
-  <article class="page{% if page.course_id == 'zoology-practical-213106' %} zoology-practical-page{% endif %}{% if page.academic_system == 'v1' %} lbfl-academic-surface lbfl-academic-role--{{ page.academic_role | default: 'unassigned' | escape }}{% endif %}"{% if lbfl_course_owned_surface %} data-lbfl-course-owned{% endif %}{% if page.academic_system == 'v1' %} data-lbfl-academic-surface="v1" data-lbfl-academic-role="{{ page.academic_role | default: 'unassigned' | escape }}"{% endif %} itemscope itemtype="https://schema.org/CreativeWork"{% if page.locale %} lang="{{ page.locale | replace: '_', '-' }}"{% endif %}>
+  <article class="page{% if page.course_id == 'zoology-practical-213106' %} zoology-practical-page{% endif %}{% if page.academic_system == 'v1' %} lbfl-academic-surface lbfl-academic-role--{{ page.academic_role | default: 'unassigned' | escape }}{% endif %}"{% if lbfl_course_owned_surface %} data-lbfl-course-owned{% endif %}{% if lbfl_canonical_learning_guide %} data-lbfl-learning-guide="canonical"{% endif %}{% if page.academic_system == 'v1' %} data-lbfl-academic-surface="v1" data-lbfl-academic-role="{{ page.academic_role | default: 'unassigned' | escape }}"{% endif %} itemscope itemtype="https://schema.org/CreativeWork"{% if page.locale %} lang="{{ page.locale | replace: '_', '-' }}"{% endif %}>
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
@@ -108,7 +113,7 @@ layout: default
           {% include components/educational-boundary.html %}
         {% endunless %}
         {% if lbfl_zoology_route %}
-          {% unless lbfl_ecology_surface or lbfl_course_owned_surface %}
+          {% unless lbfl_ecology_surface or lbfl_course_owned_surface or lbfl_canonical_learning_guide %}
             {% include zoology/learning-cycle.html %}
           {% endunless %}
         {% endif %}
