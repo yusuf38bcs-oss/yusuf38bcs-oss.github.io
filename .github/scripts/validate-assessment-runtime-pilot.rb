@@ -203,10 +203,8 @@ if comparison_base.empty?
   parent_stdout, parent_status = Open3.capture2e("git", "-C", ROOT.to_s, "rev-parse", "HEAD^")
   comparison_base = parent_status.success? ? parent_stdout.strip : BASE
 end
-if certification_mode == "pull_request" && comparison_base != BASE
-  errors << "D-04 pull-request base mismatch: expected #{BASE}, got #{comparison_base}"
-end
 bootstrap_pr = certification_mode == "pull_request" && comparison_base == BASE
+future_phase_pr = certification_mode == "pull_request" && comparison_base != BASE
 
 if STATE.file?
   state = read_utf8(STATE)
@@ -228,6 +226,15 @@ if status.success?
     missing = ALLOWED_FILES.sort - changed
     errors << "Unexpected D-04 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
     errors << "Expected D-04 files not changed: #{missing.join(', ')}" unless missing.empty?
+  elsif future_phase_pr
+    future_phase_control_files = %w[
+      .github/scripts/validate-assessment-runtime-pilot.rb
+      .github/workflows/assessment-runtime-pilot-certification.yml
+      docs/academic/conv04/CONV04_STATE.md
+    ]
+    protected_d04_files = ALLOWED_FILES - future_phase_control_files
+    touched_protected = changed & protected_d04_files
+    errors << "Future phase changed protected D-04 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
   end
 else
   errors << "Unable to inspect D-04 changed-file scope: #{stdout.strip}"
