@@ -71,7 +71,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: hsc-botany-chapter01-authoring-authority-${{ env.PR_HEAD_SHA }}
+          name: hsc-botany-chapter01-authoring-authority-${{ env.CANDIDATE_SHA }}
           path: hsc-botany-chapter01-scope-report.json
           if-no-files-found: error
           retention-days: 30
