@@ -168,7 +168,7 @@ learning_guide: canonical
 </div>
 
 <h2>5. Chloroplast কেন semi-autonomous বলা হয়?</h2>
-<p>Chloroplast-এর নিজস্ব DNA ও ribosome আছে এবং organelle division-এর মাধ্যমে এটি বৃদ্ধি/বংশবিস্তার করতে পারে। এই বৈশিষ্ট্য endosymbiotic origin-এর সঙ্গে সামঞ্জস্যপূর্ণ। তবে chloroplast সম্পূর্ণ স্বাধীন নয়—এর বহু protein nuclear genes দ্বারা encoded হয়ে cytosol থেকে import হয়। তাই <strong>partial genetic autonomy</strong> বলা বেশি সঠিক।</p>
+<p>Chloroplast-এর নিজস্ব DNA ও ribosome আছে এবং organelle division-এর মাধ্যমে এটি বৃদ্ধি/বংশবিস্তার করতে পারে। এই বৈশিষ্ট্য endosymbiosis hypothesis ও endosymbiotic origin-এর সঙ্গে সামঞ্জস্যপূর্ণ। তবে chloroplast সম্পূর্ণ স্বাধীন নয়—এর বহু protein nuclear genes দ্বারা encoded হয়ে cytosol থেকে import হয়। তাই <strong>partial genetic autonomy</strong> বলা বেশি সঠিক।</p>
 
 <h2>6. Chloroplast বনাম Mitochondrion</h2>
 <div class="lbfl-academic-comparison">
