@@ -39,7 +39,9 @@ IMMUTABLE_F01 = %w[
 
 errors=[]
 def read_utf8(path) = File.read(path, encoding:"UTF-8")
-def need(errors, ok, msg) = errors << msg unless ok
+def need(errors, ok, msg)
+  errors << msg unless ok
+end
 def git(*args) = Open3.capture3("git","-C",ROOT.to_s,*args)
 def fm(source,key)
   parts=source.split(/^---\s*$\n?/,3)
