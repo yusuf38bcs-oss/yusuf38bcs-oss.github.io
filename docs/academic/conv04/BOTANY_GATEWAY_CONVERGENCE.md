@@ -80,3 +80,14 @@ Manual certification requires `expected_main_sha` to equal both remote `main` an
 ## Promotion gate
 
 E-01 remains Draft until exact-head source preservation, retained A-D/D-06 contracts, production Jekyll, route-ledger rendering, browser/Axe, keyboard/focus, 320px reflow, text-spacing, reduced-motion, no-JS, CodeQL, review convergence, required Pages and Trusted Governance are satisfied.
+
+
+## Exact-head accessibility remediation
+
+The first exact-head Axe run exposed inherited legacy Botany colors after Academic-v1 activation. The remediation remains entirely inside the two authorized learner surfaces; **no shared CSS file is changed**.
+
+- The canonical Learning Guide CTA is rendered outside the legacy `.lbfl-botany-index` dark-color wrapper on both surfaces.
+- The Chapter-01 remaining-gap paragraph uses the existing `.lbfl-academic-lead` semantic class.
+- The existing Botany return link keeps its text and destination but uses the existing `.lbfl-academic-button` semantic class.
+
+No scientific wording, curriculum status, learner link destination, heading, card, assessment artifact, or shared runtime is changed by this remediation.
