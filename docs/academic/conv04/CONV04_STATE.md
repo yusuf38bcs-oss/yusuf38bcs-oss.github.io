@@ -2,13 +2,13 @@
 
 programme: CONV-04
 phase: CONV-04D-06
-mode: authorized third-bank authored-runtime migration — Zoology Respiratory System
+mode: third-bank authored-runtime implementation candidate — Zoology Respiratory System
 authorized_base: d623e0016fdc98ee7b6ddc3b21a7c60c8383965b
 branch: conv-04d-06-zoology-respiratory-runtime-migration-r2-20261002
 production_verified_main: e01794957b184114e4a7ab82f0689acd67b5f14f
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 mutation_authority: exact Zoology Respiratory System assessment bank + D-06 certification/state artifacts
-learner_content_authoring: third-bank-runtime-migration-only
+learner_content_authoring: third-bank-runtime-migration-implemented / certification-pending
 existing_learning_method_cleanup: unchanged
 gateway_cta_injection: unchanged
 learner_mutation_allowlist:
@@ -59,6 +59,16 @@ merge: not authorized until unchanged-head governance + required checks PASS
 10. Preserve historical authorization provenance while authenticating each future PR against its live current base.
 11. Permit CONV04_STATE to advance only monotonically in retained mode.
 12. Require workflow_dispatch exact-main authentication through a required expected_main_sha input.
+
+## Implementation status
+
+- Zoology Respiratory System third bank migrated to the certified shared authored runtime.
+- Literal content remains exactly 8 questions / 32 options / 8 answer keys / 8 authored explanations.
+- Time limit remains exactly 900 seconds (15:00).
+- Shared authored runtime remains unchanged from the authorized base.
+- D-06 validator and workflow ship with bootstrap + retained modes from the first implementation.
+- Later CONV-04 phases must preserve D-06 artifacts and may advance state only monotonically.
+- Manual D-06 workflow dispatch requires expected_main_sha exact-main authentication.
 
 ## Next gate
 
