@@ -52,6 +52,7 @@ BOOTSTRAP_FILES = sorted([
     "docs/academic/conv04/BOT08_CONTENT_REVIEW.md",
     "docs/academic/conv04/CONV04_STATE.md",
     "scripts/academic/validate_botany_bot08_content.py",
+    "scripts/academic/validate_botany_chapter01_scope.py",
 ])
 
 IMMUTABLE_E02 = {
