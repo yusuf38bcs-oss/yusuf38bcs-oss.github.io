@@ -135,7 +135,7 @@ jobs:
 
           BOTANY_INDEX="_site/biology/hsc-corner/botany/index.html"
           test -f "$BOTANY_INDEX" || (echo "Missing Botany index output" && exit 1)
-          grep -q 'lbfl-botany-index-release: 2026-10-01; active-chapter-01-lessons: 01-07' "$BOTANY_INDEX" || (echo "Botany index release/count marker missing" && exit 1)
+          grep -q 'lbfl-botany-index-release: 2026-10-01; active-chapter-01-lessons: 01-08' "$BOTANY_INDEX" || (echo "Botany index release/count marker missing" && exit 1)
           grep -q 'lecture-01-cell-protoplasm-cell-theory' "$BOTANY_INDEX" || (echo "Botany Lecture 01 missing" && exit 1)
           grep -q 'lecture-02-plasma-membrane-fluid-mosaic-model' "$BOTANY_INDEX" || (echo "Botany Lecture 02 missing" && exit 1)
           grep -q 'lecture-03-cytoplasm-ribosome-protein-factory' "$BOTANY_INDEX" || (echo "Botany Lecture 03 missing" && exit 1)
@@ -143,6 +143,7 @@ jobs:
           grep -q 'lecture-05-golgi-body-lysosome-peroxisome' "$BOTANY_INDEX" || (echo "Botany Lecture 05 missing" && exit 1)
           grep -q 'lecture-06-mitochondria' "$BOTANY_INDEX" || (echo "Botany Lecture 06 missing" && exit 1)
           grep -q 'lecture-07-cell-wall-vacuole' "$BOTANY_INDEX" || (echo "Botany Lecture 07 missing" && exit 1)
+          grep -q 'lecture-08-plastid-chloroplast' "$BOTANY_INDEX" || (echo "Botany Lecture 08 missing" && exit 1)
 
           python3 - "$BOTANY_INDEX" <<'PY'
           from html.parser import HTMLParser
@@ -159,12 +160,14 @@ jobs:
               "/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/",
               "/biology/hsc-corner/botany/lecture-06-mitochondria/",
               "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/",
+              "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/",
           }
           FORBIDDEN_UPCOMING_ROUTES = {
               "/biology/hsc-corner/botany/lecture-04-endoplasmic-reticulum-transport-network/",
               "/biology/hsc-corner/botany/lecture-05-golgi-body-lysosome-peroxisome/",
               "/biology/hsc-corner/botany/lecture-06-mitochondria/",
               "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/",
+              "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/",
           }
           FORBIDDEN_UPCOMING_LABELS = {
               "লেকচার ০৪",
@@ -175,6 +178,8 @@ jobs:
               "lecture 05",
               "lecture 06",
               "lecture 07",
+              "লেকচার ০৮",
+              "lecture 08",
           }
 
           def normalize_space(value):
@@ -267,7 +272,7 @@ jobs:
               if forbidden_labels:
                   details.append("labels=" + ", ".join(forbidden_labels))
               raise SystemExit(
-                  "Published Botany Lectures 04-07 must not appear in the "
+                  "Published Botany Lectures 04-08 must not appear in the "
                   "upcoming section: " + "; ".join(details)
               )
 
