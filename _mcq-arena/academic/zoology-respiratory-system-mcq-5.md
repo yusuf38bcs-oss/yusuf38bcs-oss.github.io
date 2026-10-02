@@ -11,7 +11,7 @@ title: "HSC Biology 2nd Paper Chapter 5: Respiratory System MCQ"
 excerpt: "Test your analytical knowledge on pulmonary ventilation, gas transport, and respiratory disorders."
 
 date: 2026-04-26T11:39:00.000Z
-last_modified_at: '2026-10-02T21:35:00+06:00'
+last_modified_at: '2026-10-02T21:52:00+06:00'
 
 permalink: /mcq-arena/academic/zoology-respiratory-system-mcq-5/
 
