@@ -30,6 +30,14 @@ ALLOWED_FILES = %w[
   docs/academic/conv04/LEARNING_GUIDE_IMPLEMENTATION.md
 ].freeze
 
+FROZEN_C02_ARTIFACTS = %w[
+  _data/academic/learning_guide_implementation_v1.json
+  _includes/education/learning-guide-cta.html
+  _pages/utility/learn.md
+  docs/academic/conv04/LEARNING_GUIDE_IMPLEMENTATION.md
+  .github/scripts/learning-guide-browser-certification.mjs
+].freeze
+
 CYCLE = %w[Understand Retrieve Explain Apply Reflect Repair].freeze
 FRAMEWORK_URLS = %w[
   /frameworks/lolo-lala/
@@ -171,12 +179,26 @@ if LEDGER_PATH.file?
   end
 end
 
+certification_mode = ENV.fetch("CERTIFICATION_MODE", "local")
+comparison_base = ENV["PR_BASE_SHA"].to_s.strip
+if comparison_base.empty?
+  parent_stdout, parent_status = Open3.capture2e("git", "-C", ROOT.to_s, "rev-parse", "HEAD^")
+  comparison_base = parent_status.success? ? parent_stdout.strip : BASE
+end
+bootstrap_pr = certification_mode == "pull_request" && comparison_base == BASE
+
 if STATE_PATH.file?
   state = read_utf8(STATE_PATH)
-  errors << "CONV04_STATE must identify phase CONV-04C-02" unless state.include?("phase: CONV-04C-02")
-  errors << "CONV04_STATE must bind exact C-02 base" unless state.include?(BASE)
-  errors << "Existing learning-method cleanup must remain frozen" unless state.include?("existing_learning_method_cleanup: frozen")
-  errors << "Gateway CTA injection must remain deferred" unless state.include?("gateway_cta_injection: deferred")
+  if bootstrap_pr
+    errors << "CONV04_STATE must identify phase CONV-04C-02" unless state.include?("phase: CONV-04C-02")
+    errors << "CONV04_STATE must bind exact C-02 base" unless state.include?(BASE)
+    errors << "Existing learning-method cleanup must remain frozen" unless state.include?("existing_learning_method_cleanup: frozen")
+    errors << "Gateway CTA injection must remain deferred" unless state.include?("gateway_cta_injection: deferred")
+  else
+    errors << "CONV-04 programme identity missing" unless state.include?("programme: CONV-04")
+    phase_line = state.lines.find { |line| line.start_with?("phase:") }.to_s.strip
+    errors << "CONV04_STATE must identify a valid CONV-04 phase" unless phase_line.match?(/\Aphase:\s+CONV-04[A-Z](?:-\d+)?(?:-[A-Z0-9]+)?\z/)
+  end
 end
 
 if DOC_PATH.file?
@@ -214,14 +236,18 @@ if design_css.file?
   errors << "Academic anchor-button priority ownership missing" unless css.include?("a.lbfl-academic-button:visited")
 end
 
-comparison_base = ENV.fetch("PR_BASE_SHA", BASE)
 stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{comparison_base}...HEAD")
 if status.success?
   changed = stdout.lines.map(&:strip).reject(&:empty?).sort
-  unexpected = changed - ALLOWED_FILES.sort
-  missing = ALLOWED_FILES.sort - changed if comparison_base == BASE
-  errors << "Unexpected C-02 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
-  errors << "Expected C-02 files not changed: #{missing.join(', ')}" if missing && !missing.empty?
+  if bootstrap_pr
+    unexpected = changed - ALLOWED_FILES.sort
+    missing = ALLOWED_FILES.sort - changed
+    errors << "Unexpected C-02 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
+    errors << "Expected C-02 files not changed: #{missing.join(', ')}" unless missing.empty?
+  else
+    frozen_changes = changed & FROZEN_C02_ARTIFACTS
+    errors << "Later CONV-04 phase changed frozen C-02 artifacts: #{frozen_changes.join(', ')}" unless frozen_changes.empty?
+  end
 else
   errors << "Unable to inspect changed-file scope: #{stdout.strip}"
 end
