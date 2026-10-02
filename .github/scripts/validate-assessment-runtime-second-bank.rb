@@ -6,7 +6,7 @@ require "open3"
 require "pathname"
 
 ROOT = Pathname.new(__dir__).join("../..").expand_path
-BASE = "a104260266a292bee58f6935a5038693380e8c04"
+BASE = "01e443b2155c6cccf65cb525ec39880c7977db7b"
 BANK = ROOT.join("_mcq-arena/academic/botany-cell-division-mcq-2.md")
 RUNTIME = ROOT.join("assets/js/learning/academic-assessment-runtime.js")
 MANIFEST = ROOT.join("_data/academic/assessment_runtime_second_bank_v1.json")

@@ -3,7 +3,7 @@
 programme: CONV-04
 phase: CONV-04D-05
 mode: second-bank authored-runtime implementation candidate — Botany Cell Division
-authorized_base: a104260266a292bee58f6935a5038693380e8c04
+authorized_base: 01e443b2155c6cccf65cb525ec39880c7977db7b
 branch: conv-04d-05-botany-cell-division-runtime-migration-20261002
 production_verified_main: a104260266a292bee58f6935a5038693380e8c04
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
@@ -38,6 +38,7 @@ merge: not authorized until unchanged-head governance + required checks PASS
 - CONV-04D-02-R1 gateway framing + retained certification repair: merged via PR #400.
 - CONV-04D-03 authored assessment runtime ownership contract: merged via PR #401.
 - CONV-04D-04 Botany Cell Biology authored runtime pilot: merged via PR #402 at main@a104260266a292bee58f6935a5038693380e8c04.
+- CONV-04D-04-R1 retained-certification compatibility: merged via PR #404 at main@01e443b2155c6cccf65cb525ec39880c7977db7b.
 - D-04 production verification: PASS on the public route for Attempt → Feedback → Repair → Reattempt, keyboard radio interaction, score/explanations, source-return, reattempt reset, and runtime health.
 - PR #356 remains independent Admission Draft/HOLD work.
 

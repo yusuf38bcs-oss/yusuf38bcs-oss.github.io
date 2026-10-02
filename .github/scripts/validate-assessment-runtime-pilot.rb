@@ -111,8 +111,22 @@ JSON
 
 errors = []
 
+PHASE_PATTERN = /\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R([1-9]\d*))?\z/.freeze
+R1_MAINTENANCE_BASE = "a104260266a292bee58f6935a5038693380e8c04"
+VALIDATOR_PATH = ".github/scripts/validate-assessment-runtime-pilot.rb"
+
 def read_utf8(path)
   File.read(path, encoding: "UTF-8")
+end
+
+def conv04_phase_order(value)
+  match = PHASE_PATTERN.match(value.to_s.strip)
+  return nil unless match
+
+  lane = match[1].ord
+  stage = match[2] ? match[2].to_i : 0
+  revision = match[3] ? match[3].to_i : 0
+  [lane, stage, revision]
 end
 
 [PILOT, RUNTIME, MANIFEST, DOC, STATE, BROWSER, WORKFLOW].each do |path|
@@ -203,10 +217,8 @@ if comparison_base.empty?
   parent_stdout, parent_status = Open3.capture2e("git", "-C", ROOT.to_s, "rev-parse", "HEAD^")
   comparison_base = parent_status.success? ? parent_stdout.strip : BASE
 end
-if certification_mode == "pull_request" && comparison_base != BASE
-  errors << "D-04 pull-request base mismatch: expected #{BASE}, got #{comparison_base}"
-end
 bootstrap_pr = certification_mode == "pull_request" && comparison_base == BASE
+future_phase_pr = certification_mode == "pull_request" && comparison_base != BASE
 
 if STATE.file?
   state = read_utf8(STATE)
@@ -228,6 +240,56 @@ if status.success?
     missing = ALLOWED_FILES.sort - changed
     errors << "Unexpected D-04 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
     errors << "Expected D-04 files not changed: #{missing.join(', ')}" unless missing.empty?
+  elsif future_phase_pr
+    r1_maintenance_pr =
+      comparison_base == R1_MAINTENANCE_BASE &&
+      changed == [VALIDATOR_PATH]
+
+    # After this one-file R1 maintenance transition, the validator itself is
+    # protected. A later candidate must not be able to weaken the checks that
+    # certify its own D-04 retention.
+    future_phase_control_files = %w[
+      docs/academic/conv04/CONV04_STATE.md
+    ]
+    protected_d04_files = ALLOWED_FILES - future_phase_control_files
+    touched_protected = changed & protected_d04_files
+    touched_protected -= [VALIDATOR_PATH] if r1_maintenance_pr
+    errors << "Future phase changed protected D-04 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+
+    if changed.include?(VALIDATOR_PATH) && !r1_maintenance_pr
+      errors << "Future phase must not modify the retained D-04 validator"
+    end
+
+    if changed.include?("docs/academic/conv04/CONV04_STATE.md")
+      candidate_state = read_utf8(STATE)
+      candidate_phase_lines = candidate_state.lines.grep(/^phase:\s*/)
+      base_state, base_state_status = Open3.capture2e(
+        "git", "-C", ROOT.to_s, "show",
+        "#{comparison_base}:docs/academic/conv04/CONV04_STATE.md"
+      )
+
+      if candidate_phase_lines.length != 1
+        errors << "Future phase CONV04_STATE must contain exactly one phase declaration"
+      elsif !base_state_status.success?
+        errors << "Unable to read base CONV04_STATE at #{comparison_base}: #{base_state.strip}"
+      else
+        base_phase_lines = base_state.lines.grep(/^phase:\s*/)
+        if base_phase_lines.length != 1
+          errors << "Base CONV04_STATE must contain exactly one phase declaration"
+        else
+          candidate_phase = candidate_phase_lines.first.sub(/^phase:\s*/, "").strip
+          base_phase = base_phase_lines.first.sub(/^phase:\s*/, "").strip
+          candidate_order = conv04_phase_order(candidate_phase)
+          base_order = conv04_phase_order(base_phase)
+
+          errors << "Future phase CONV04_STATE has malformed phase: #{candidate_phase}" unless candidate_order
+          errors << "Base CONV04_STATE has malformed phase: #{base_phase}" unless base_order
+          if candidate_order && base_order && (candidate_order <=> base_order) <= 0
+            errors << "Future phase CONV04_STATE must advance beyond base phase #{base_phase}, got #{candidate_phase}"
+          end
+        end
+      end
+    end
   end
 else
   errors << "Unable to inspect D-04 changed-file scope: #{stdout.strip}"

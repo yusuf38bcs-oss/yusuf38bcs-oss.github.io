@@ -1,12 +1,14 @@
 # CONV-04D-05 — Second Authored Assessment Migration Authorization
 
 **Status:** AUTHORIZED — implementation not yet performed
-**Authorized base:** `a104260266a292bee58f6935a5038693380e8c04`
+**Authorized base:** `01e443b2155c6cccf65cb525ec39880c7977db7b`
 **Authorized branch:** `conv-04d-05-botany-cell-division-runtime-migration-20261002`
 **Target bank:** `_mcq-arena/academic/botany-cell-division-mcq-2.md`
 **Target route:** `/mcq-arena/academic/botany-cell-division-mcq-2/`
 
 ## Authorization basis
+
+D-05 was re-authorized against `main@01e443b2155c6cccf65cb525ec39880c7977db7b` after CONV-04D-04-R1 (PR #404) merged. Historical D-04 production-verification references below remain bound to the production-certified `main@a104260266a292bee58f6935a5038693380e8c04`.
 
 CONV-04D-04 is merged in authoritative `main@a104260266a292bee58f6935a5038693380e8c04`, and the production Botany Cell Biology assessment has passed direct public verification of the complete canonical learning loop:
 

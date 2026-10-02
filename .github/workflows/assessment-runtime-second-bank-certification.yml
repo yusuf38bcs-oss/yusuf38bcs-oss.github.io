@@ -49,7 +49,7 @@ jobs:
           set -euo pipefail
           actual="$(git rev-parse HEAD)"
           test "$actual" = "$CANDIDATE_SHA"
-          git merge-base --is-ancestor "a104260266a292bee58f6935a5038693380e8c04" "$actual" || {
+          git merge-base --is-ancestor "01e443b2155c6cccf65cb525ec39880c7977db7b" "$actual" || {
             echo "AUTHORIZED BASE IS NOT ANCESTOR"
             exit 1
           }
@@ -59,7 +59,7 @@ jobs:
               echo "BASE CHANGED — RECERTIFICATION REQUIRED"
               exit 1
             }
-            test "$remote" = "a104260266a292bee58f6935a5038693380e8c04" || {
+            test "$remote" = "01e443b2155c6cccf65cb525ec39880c7977db7b" || {
               echo "D-05 AUTHORIZED BASE CHANGED — REBASE/REAUTHORIZE REQUIRED"
               exit 1
             }
@@ -77,7 +77,7 @@ jobs:
           set -euo pipefail
           ruby -c .github/scripts/validate-assessment-runtime-second-bank.rb
           ruby .github/scripts/validate-assessment-runtime-second-bank.rb
-          git diff --check "a104260266a292bee58f6935a5038693380e8c04...HEAD"
+          git diff --check "01e443b2155c6cccf65cb525ec39880c7977db7b...HEAD"
 
       - name: Install Jekyll dependencies
         shell: bash
