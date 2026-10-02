@@ -80,7 +80,29 @@ async function runCheck(view,options={}){
       const stages=[...document.querySelectorAll("[data-learning-stage]")].map(el=>el.getAttribute("data-learning-stage"));
       const hrefs=[...document.querySelectorAll("a[href]")].map(a=>new URL(a.href,location.href).pathname);
       const firstButton=document.querySelector("a.lbfl-academic-button");
+      const lead=document.querySelector(".lbfl-academic-lead");
       const rect=firstButton?.getBoundingClientRect();
+      const styleSnapshot=(el)=>{
+        if(!el) return null;
+        const cs=getComputedStyle(el);
+        let ancestor=el;
+        let resolvedBackground=cs.backgroundColor;
+        while(
+          ancestor &&
+          (resolvedBackground==="rgba(0, 0, 0, 0)" || resolvedBackground==="transparent")
+        ){
+          ancestor=ancestor.parentElement;
+          if(ancestor) resolvedBackground=getComputedStyle(ancestor).backgroundColor;
+        }
+        return {
+          color:cs.color,
+          backgroundColor:cs.backgroundColor,
+          resolvedBackground,
+          opacity:cs.opacity,
+          fontSize:cs.fontSize,
+          fontWeight:cs.fontWeight
+        };
+      };
       return {
         h1:document.querySelectorAll("h1").length,
         lang:document.documentElement.lang,
@@ -93,6 +115,10 @@ async function runCheck(view,options={}){
         frameworkLinks:frameworkPaths.map(p=>({path:p,present:hrefs.includes(p)})),
         overflow:Math.max(0,document.documentElement.scrollWidth-window.innerWidth),
         controlHeight:rect?rect.height:0,
+        leadStyle:styleSnapshot(lead),
+        buttonStyle:styleSnapshot(firstButton),
+        bodyStyle:styleSnapshot(document.body),
+        contentStyle:styleSnapshot(document.querySelector(".page__content")),
         rawTemplate:/\{[{%]|[%}]\}/.test(document.body.innerText||"")
       };
     },{cycle,frameworkPaths});
@@ -103,7 +129,13 @@ async function runCheck(view,options={}){
         const result=await window.axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa"]}});
         return result.violations
           .filter(v=>["serious","critical"].includes(v.impact))
-          .map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length,targets:v.nodes.map(n=>n.target)}));
+          .map(v=>({
+            id:v.id,
+            impact:v.impact,
+            nodes:v.nodes.length,
+            targets:v.nodes.map(n=>n.target),
+            failures:v.nodes.map(n=>({target:n.target,failureSummary:n.failureSummary}))
+          }));
       });
     }
   }catch(error){

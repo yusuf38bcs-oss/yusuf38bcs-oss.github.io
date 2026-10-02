@@ -5,7 +5,7 @@ phase: CONV-04C-02
 mode: canonical Learning Guide implementation
 authorized_base: 66ee179e5f9b72338e50cf87aeec8307e27f344c
 branch: conv-04c-02-canonical-learning-guide-20261001
-mutation_authority: /learn/ route + gateway-safe CTA include + implementation manifest + strict route ledger registration + C-02 validator/browser certification + state/documentation
+mutation_authority: /learn/ route + gateway-safe CTA include + implementation manifest + strict route ledger registration + Academic-v1 contrast ownership correction + C-02 validator/browser certification + state/documentation
 learner_content_authoring: canonical-guide-only
 existing_learning_method_cleanup: frozen
 gateway_cta_injection: deferred
@@ -48,6 +48,14 @@ merge: not authorized until unchanged-head governance PASS
 - .github/scripts/validate-learning-guide-implementation.rb
 - .github/scripts/learning-guide-browser-certification.mjs
 - .github/workflows/learning-guide-implementation-certification.yml
+- assets/css/academic-design-system.css
+- .github/scripts/validate-academic-design-system.rb
+
+## CONV-04C-02-R1 authenticated contrast remediation
+
+The exact-head browser gate exposed serious Axe color-contrast failures on the canonical guide while its structural checks passed. Source-cascade analysis authenticated the ownership conflict: the legacy neural layer forces the main reading wrappers transparent with priority declarations, while Academic v1 did not yet reclaim those wrappers at the same cascade level. Anchor-based Academic actions also lacked the priority foreground/background ownership already granted to semantic button controls.
+
+R1 corrects those two owners inside the canonical Academic design-system stylesheet and extends the exact design-system validator to pin the new selectors and declarations. It does not modify production-hotfix.css and does not reduce the Axe threshold.
 
 ## Next gate
 

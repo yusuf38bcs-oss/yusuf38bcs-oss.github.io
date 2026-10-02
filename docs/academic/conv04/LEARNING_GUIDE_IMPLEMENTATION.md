@@ -58,6 +58,12 @@ The exact-head browser certification must prove:
 - no overflow under WCAG-oriented text-spacing overrides
 - zero serious/critical Axe WCAG 2 A/AA violations
 
+## CONV-04C-02-R1 contrast remediation
+
+The first exact-head browser run proved that the route structure itself was sound but exposed a shared Academic-v1 contrast ownership defect. The legacy neural cascade forces the primary reading wrappers transparent with priority declarations; Academic v1 now explicitly reclaims its light paper canvas at the owned design-system layer. Anchor-based Academic buttons now receive the same explicit foreground/background/border ownership used for semantic button controls.
+
+The remediation is deliberately not placed in `production-hotfix.css`. The Academic design-system validator pins the exact priority selectors and values, and the browser certification retains the unchanged requirement of zero serious/critical Axe WCAG 2 A/AA violations. Failure reports now also capture computed lead/button/body/content styles and Axe failure summaries.
+
 ## Protected boundary
 
 C-02 does not modify or remove learning-method content from Botany, Zoology, Higher Zoology, MCQ Arena, Socratic / MI / Personality, Practical, or existing framework reference pages.

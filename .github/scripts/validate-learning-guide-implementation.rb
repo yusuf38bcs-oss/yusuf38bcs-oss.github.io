@@ -18,11 +18,13 @@ WORKFLOW_PATH = ROOT.join(".github/workflows/learning-guide-implementation-certi
 
 ALLOWED_FILES = %w[
   .github/scripts/learning-guide-browser-certification.mjs
+  .github/scripts/validate-academic-design-system.rb
   .github/scripts/validate-learning-guide-implementation.rb
   .github/workflows/learning-guide-implementation-certification.yml
   _data/academic/learning_guide_implementation_v1.json
   _includes/education/learning-guide-cta.html
   _pages/utility/learn.md
+  assets/css/academic-design-system.css
   docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
   docs/academic/conv04/CONV04_STATE.md
   docs/academic/conv04/LEARNING_GUIDE_IMPLEMENTATION.md
@@ -200,6 +202,16 @@ if WORKFLOW_PATH.file?
   errors << "Workflow must bind PR base SHA" unless workflow.include?("PR_BASE_SHA")
   errors << "Workflow must run implementation validator" unless workflow.include?("validate-learning-guide-implementation.rb")
   errors << "Workflow must run browser certification" unless workflow.include?("learning-guide-browser-certification.mjs")
+end
+
+design_css = ROOT.join("assets/css/academic-design-system.css")
+design_validator = ROOT.join(".github/scripts/validate-academic-design-system.rb")
+errors << "Academic design-system stylesheet missing from R1 scope" unless design_css.file?
+errors << "Academic design-system validator missing from R1 scope" unless design_validator.file?
+if design_css.file?
+  css = read_utf8(design_css)
+  errors << "Academic v1 light-canvas priority ownership missing" unless css.include?("background: var(--lbfl-academic-paper) !important")
+  errors << "Academic anchor-button priority ownership missing" unless css.include?("a.lbfl-academic-button:visited")
 end
 
 comparison_base = ENV.fetch("PR_BASE_SHA", BASE)

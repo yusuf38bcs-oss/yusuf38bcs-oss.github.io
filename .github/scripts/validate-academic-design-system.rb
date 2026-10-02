@@ -118,6 +118,20 @@ EXPECTED_READING_IMPORTANT_SELECTORS = [
   "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h4"
 ].sort.freeze
 
+EXPECTED_ACADEMIC_SURFACE_PRIORITY_SELECTORS = [
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) body",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) .initial-content",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) #main",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) .page",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .page__inner-wrap",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .page__content"
+].sort.freeze
+
+EXPECTED_ACADEMIC_ANCHOR_BUTTON_PRIORITY_SELECTORS = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button:visited"
+].sort.freeze
+
 EXPECTED_ACADEMIC_BUTTON_PRIORITY_SELECTORS = [
   "html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button"
 ].freeze
@@ -167,6 +181,18 @@ EXPECTED_IMPORTANT_RULES = [
   {
     "selectors" => EXPECTED_READING_IMPORTANT_SELECTORS,
     "declarations" => ["overflow-wrap:normal", "word-break:normal"].sort
+  },
+  {
+    "selectors" => EXPECTED_ACADEMIC_SURFACE_PRIORITY_SELECTORS,
+    "declarations" => ["background:var(--lbfl-academic-paper)"]
+  },
+  {
+    "selectors" => EXPECTED_ACADEMIC_ANCHOR_BUTTON_PRIORITY_SELECTORS,
+    "declarations" => [
+      "background:var(--lbfl-academic-accent)",
+      "border:2px solid var(--lbfl-academic-accent)",
+      "color:#ffffff"
+    ].sort
   },
   {
     "selectors" => EXPECTED_ACADEMIC_BUTTON_PRIORITY_SELECTORS,

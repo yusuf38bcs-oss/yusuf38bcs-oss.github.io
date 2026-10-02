@@ -33,6 +33,21 @@ html.lbfl-academic-v1:not(.lbfl-home-v3-document) body {
   background: var(--lbfl-academic-paper);
 }
 
+/*
+   CONV-04C-02-R1 contrast ownership bridge.
+   The legacy neural layer forces .initial-content, #main, .page,
+   .page__inner-wrap, and .page__content transparent with !important.
+   Academic v1 therefore reclaims its own light reading canvas explicitly.
+*/
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) body,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .initial-content,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) #main,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) .page,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .page__inner-wrap,
+html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .page__content {
+  background: var(--lbfl-academic-paper) !important;
+}
+
 /* Single-layout contextual navigation sits outside the owned article surface. */
 html.lbfl-academic-v1:not(.lbfl-home-v3-document) .contextual-sidebar-nav {
   color: var(--lbfl-academic-ink);
@@ -452,6 +467,19 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button {
    exact, validator-bound priority bridge so their component state is not
    replaced by the legacy gradient/geometry.
 */
+/*
+   Anchor actions also cross the legacy dark-link cascade. Give the semantic
+   Academic action anchor the same owned foreground/background/border priority
+   as the existing button bridge; geometry remains governed by the base
+   component rule above.
+*/
+html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button,
+html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button:visited {
+  border: 2px solid var(--lbfl-academic-accent) !important;
+  background: var(--lbfl-academic-accent) !important;
+  color: #ffffff !important;
+}
+
 html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button {
   padding: 0.6rem 1rem !important;
   border: 2px solid var(--lbfl-academic-accent) !important;
