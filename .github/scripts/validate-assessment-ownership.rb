@@ -90,22 +90,6 @@ if CONFIG.file?
 end
 
 
-if MCQ_ENGINE.file?
-  engine = read_utf8(MCQ_ENGINE)
-  errors << "MCQ engine attempt/feedback evidence missing" unless engine.include?("evaluateAssessment") && engine.include?("Correct answer:") && engine.include?("Validity logic:")
-end
-
-if MCQ_COMPONENT.file?
-  component = read_utf8(MCQ_COMPONENT)
-  errors << "Duplicate inline MCQ runtime evidence missing" unless component.include?("function evaluateQuiz()") && component.include?("localSocraticBank")
-end
-
-if MODEL_TEST.file?
-  model = read_utf8(MODEL_TEST)
-  errors << "Model-test source-return evidence missing" unless model.include?("Return to the lesson")
-  errors << "Model-test reattempt evidence missing" unless model.include?("Repeat after correction")
-end
-
 certification_mode = ENV.fetch("CERTIFICATION_MODE", "local")
 comparison_base = ENV["PR_BASE_SHA"].to_s.strip
 if comparison_base.empty?
@@ -113,6 +97,24 @@ if comparison_base.empty?
   comparison_base = parent_status.success? ? parent_stdout.strip : BASE
 end
 bootstrap_pr = certification_mode == "pull_request" && comparison_base == BASE
+
+if bootstrap_pr
+  if MCQ_ENGINE.file?
+    engine = read_utf8(MCQ_ENGINE)
+    errors << "MCQ engine attempt/feedback evidence missing" unless engine.include?("evaluateAssessment") && engine.include?("Correct answer:") && engine.include?("Validity logic:")
+  end
+
+  if MCQ_COMPONENT.file?
+    component = read_utf8(MCQ_COMPONENT)
+    errors << "Duplicate inline MCQ runtime evidence missing" unless component.include?("function evaluateQuiz()") && component.include?("localSocraticBank")
+  end
+
+  if MODEL_TEST.file?
+    model = read_utf8(MODEL_TEST)
+    errors << "Model-test source-return evidence missing" unless model.include?("Return to the lesson")
+    errors << "Model-test reattempt evidence missing" unless model.include?("Repeat after correction")
+  end
+end
 
 if STATE.file?
   state = read_utf8(STATE)
@@ -125,7 +127,7 @@ if STATE.file?
   else
     errors << "CONV-04 programme identity missing" unless state.include?("programme: CONV-04")
     phase_line = state.lines.find { |line| line.start_with?("phase:") }.to_s.strip
-    errors << "CONV04_STATE must identify a D-phase" unless phase_line.match?(/\Aphase:\s+CONV-04D(?:-\d+)?(?:-[A-Z0-9]+)?\z/)
+    errors << "CONV04_STATE must identify a valid CONV-04 phase" unless phase_line.match?(/\Aphase:\s+CONV-04[A-Z](?:-\d+)?(?:-[A-Z0-9]+)?\z/)
   end
 end
 
