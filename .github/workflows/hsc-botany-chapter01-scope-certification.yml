@@ -2,6 +2,8 @@ name: HSC Botany Chapter-01 Authoring Authority Certification
 
 on:
   pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
     paths:
       - "_data/academic/hsc_botany_chapter01_scope_v1.json"
       - "_biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md"
@@ -10,6 +12,11 @@ on:
       - "docs/architecture/CONV-03B2_HSC_BOTANY_TEXTBOOK_PROVENANCE_GATE.md"
       - ".github/workflows/hsc-botany-chapter01-scope-certification.yml"
   workflow_dispatch:
+    inputs:
+      expected_main_sha:
+        description: "Exact main SHA to certify"
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -21,24 +28,41 @@ concurrency:
 jobs:
   certify:
     name: CONV-03B.2 curriculum authoring authority
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
     env:
-      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.event.inputs.expected_main_sha || github.sha }}
+      EXPECTED_MAIN_SHA: ${{ github.event.inputs.expected_main_sha || '' }}
+      PR_BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
 
     steps:
       - name: Check out immutable candidate
-        uses: actions/checkout@v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ env.PR_HEAD_SHA }}
+          ref: ${{ env.CANDIDATE_SHA }}
+          fetch-depth: 0
           persist-credentials: false
 
-      - name: Enforce exact checked-out identity
+      - name: Authenticate exact head and live base
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
-          printf 'CONV-03B.2 exact head: %s\n' "$PR_HEAD_SHA"
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "$CANDIDATE_SHA"
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            remote="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
+            test "$remote" = "$PR_BASE_SHA" || { echo "BASE CHANGED — RECERTIFICATION REQUIRED"; exit 1; }
+            git merge-base --is-ancestor "$remote" "$actual" || { echo "STALE CANDIDATE"; exit 1; }
+          else
+            test -n "$EXPECTED_MAIN_SHA" || { echo "expected_main_sha is required"; exit 1; }
+            remote_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+            test "$remote_main" = "$EXPECTED_MAIN_SHA" || { echo "MAIN ADVANCED"; exit 1; }
+            test "$actual" = "$EXPECTED_MAIN_SHA" || { echo "MANUAL HEAD MISMATCH"; exit 1; }
+          fi
+
+          printf 'CONV-03B.2 exact head: %s\n' "$CANDIDATE_SHA"
 
       - name: Validate curriculum authoring authority and textbook-alignment boundary
         run: python3 scripts/academic/validate_botany_chapter01_scope.py
@@ -50,3 +74,4 @@ jobs:
           name: hsc-botany-chapter01-authoring-authority-${{ env.PR_HEAD_SHA }}
           path: hsc-botany-chapter01-scope-report.json
           if-no-files-found: error
+          retention-days: 30
