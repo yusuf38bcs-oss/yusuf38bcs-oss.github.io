@@ -18,7 +18,6 @@ WORKFLOW = ROOT.join(".github/workflows/conv04f-hsc-zoology-gateway-certificatio
 CTA = "{% include education/learning-guide-cta.html %}"
 
 BOOTSTRAP_FILES = %w[
-  .github/scripts/assessment-runtime-second-bank-browser-certification.mjs
   .github/scripts/conv04f-hsc-zoology-browser-certification.mjs
   .github/scripts/validate-conv04f-hsc-zoology-gateway.rb
   .github/workflows/conv04f-hsc-zoology-gateway-certification.yml
