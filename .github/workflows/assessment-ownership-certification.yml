@@ -27,6 +27,7 @@ jobs:
     timeout-minutes: 15
     env:
       CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CERTIFICATION_MODE: ${{ github.event_name == 'pull_request' && 'pull_request' || 'manual' }}
       PR_BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
       PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
 
