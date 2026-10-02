@@ -118,6 +118,29 @@ EXPECTED_READING_IMPORTANT_SELECTORS = [
   "html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h4"
 ].sort.freeze
 
+EXPECTED_ACADEMIC_STATIC_SHELL_SELECTORS = [
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) .masthead",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) .breadcrumbs",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) #main",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) .page__footer",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) .page__hero",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) .page__hero--overlay"
+].freeze
+
+EXPECTED_ACADEMIC_SURFACE_PRIORITY_SELECTORS = [
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) body",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) .initial-content",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) #main",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) .page",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .page__inner-wrap",
+  "html.lbfl-academic-v1:not(.lbfl-home-v3-document) [data-lbfl-academic-surface] .page__content"
+].sort.freeze
+
+EXPECTED_ACADEMIC_ANCHOR_BUTTON_PRIORITY_SELECTORS = [
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button",
+  "html.lbfl-academic-v1 [data-lbfl-academic-surface] a.lbfl-academic-button:visited"
+].sort.freeze
+
 EXPECTED_ACADEMIC_BUTTON_PRIORITY_SELECTORS = [
   "html.lbfl-academic-v1 [data-lbfl-academic-surface] button.lbfl-academic-button"
 ].freeze
@@ -167,6 +190,18 @@ EXPECTED_IMPORTANT_RULES = [
   {
     "selectors" => EXPECTED_READING_IMPORTANT_SELECTORS,
     "declarations" => ["overflow-wrap:normal", "word-break:normal"].sort
+  },
+  {
+    "selectors" => EXPECTED_ACADEMIC_SURFACE_PRIORITY_SELECTORS,
+    "declarations" => ["background:var(--lbfl-academic-paper)"]
+  },
+  {
+    "selectors" => EXPECTED_ACADEMIC_ANCHOR_BUTTON_PRIORITY_SELECTORS,
+    "declarations" => [
+      "background:var(--lbfl-academic-accent)",
+      "border:2px solid var(--lbfl-academic-accent)",
+      "color:#ffffff"
+    ].sort
   },
   {
     "selectors" => EXPECTED_ACADEMIC_BUTTON_PRIORITY_SELECTORS,
@@ -597,6 +632,16 @@ end
 
 if CSS_PATH.file?
   css = read_utf8(CSS_PATH)
+  EXPECTED_ACADEMIC_STATIC_SHELL_SELECTORS.each do |selector|
+    fail_if(errors, !css.include?(selector), "Academic v1 static-shell selector missing: #{selector}")
+  end
+  static_shell_rule = css.match(/html\.lbfl-academic-v1:not\(\.lbfl-home-v3-document\) \.masthead,[\s\S]*?\{([\s\S]*?)\}/)
+  fail_if(errors, static_shell_rule.nil?, "Academic v1 static-shell animation rule missing")
+  if static_shell_rule
+    declarations = static_shell_rule[1]
+    fail_if(errors, !declarations.include?("-webkit-animation: none;"), "Academic v1 static shell must disable webkit intro animation")
+    fail_if(errors, !declarations.include?("animation: none;"), "Academic v1 static shell must disable intro animation")
+  end
   fail_if(errors, !css.include?(".educational-boundary strong"), "Academic v1 boundary strong-text theme missing")
   fail_if(errors, !css.include?(".educational-boundary span[lang=\"bn\"]"), "Academic v1 Bangla boundary theme missing")
   fail_if(errors, !css.include?("html.lbfl-academic-v1:not(.lbfl-home-v3-document)"), "Homepage V3 shell isolation missing")
