@@ -51,14 +51,14 @@ academic_role: chapter_index
 lang: bn
 learning_guide: canonical
 ---
+{% include education/learning-guide-cta.html %}
+
 <div class="lbfl-botany-index">
 <section class="lbfl-clean-hero">
 <span class="lbfl-clean-kicker">অধ্যায় ০১ · Convergence in Progress</span>
 <h2>কোষ ও এর গঠন</h2>
 <p>বর্তমানে সাতটি প্রকাশযোগ্য বাংলা পাঠ ধারাবাহিকভাবে সাজানো আছে। Lecture 07 — <strong>Cell Wall and Vacuole</strong> official NCTB Chapter-01 topic map-এর <code>cell-wall</code> ও <code>vacuole</code> coverage যোগ করে। Chapter 01 এখনো <strong>not-certified</strong>; বাকি curriculum gaps সম্পন্ন ও independently certified না হওয়া পর্যন্ত strict promotion হবে না।</p>
 </section>
-
-{% include education/learning-guide-cta.html %}
 
 <h2>সক্রিয় লেকচার</h2>
 <div class="lbfl-clean-grid">
@@ -72,7 +72,7 @@ learning_guide: canonical
 </div>
 
 <h2>Remaining official NCTB coverage gaps</h2>
-<p>NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33) অনুযায়ী Lecture 07-এর পরও chloroplast, centriole/microtubule structures, nucleus–nucleolus–chromatin/chromosome-এর পূর্ণ coverage, cell chemical components, prokaryotic–eukaryotic comparison, cell size/shape/inclusions এবং microscopy/practical coverage অসম্পূর্ণ। এগুলো পৃথক learner-content gate-এর মাধ্যমে ক্রমান্বয়ে পূরণ হবে।</p>
+<p class="lbfl-academic-lead">NCTB Biology curriculum 2012-এর Chapter 01 (PDF pp. 31–33) অনুযায়ী Lecture 07-এর পরও chloroplast, centriole/microtubule structures, nucleus–nucleolus–chromatin/chromosome-এর পূর্ণ coverage, cell chemical components, prokaryotic–eukaryotic comparison, cell size/shape/inclusions এবং microscopy/practical coverage অসম্পূর্ণ। এগুলো পৃথক learner-content gate-এর মাধ্যমে ক্রমান্বয়ে পূরণ হবে।</p>
 
-<p><a class="lbfl-text-link" href="/biology/hsc-corner/botany/">← Botany Index</a></p>
+<p><a class="lbfl-academic-button" href="/biology/hsc-corner/botany/">← Botany Index</a></p>
 </div>
