@@ -1,7 +1,7 @@
 # CONV-04E-01 — HSC Botany Gateway + Chapter-01 Authorization
 
-**Status:** AUTHORIZED — learner-facing implementation not yet performed  
-**Authorized base:** `b07beb8119c4ee001d542a357f38c0e27e5017ba`  
+**Status:** AUTHORIZED — learner-facing implementation not yet performed
+**Authorized base:** `b07beb8119c4ee001d542a357f38c0e27e5017ba`
 **Authorization branch:** `conv-04e-01-botany-gateway-authorization-20261002`
 
 ## Purpose
