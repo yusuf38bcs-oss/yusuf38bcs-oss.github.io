@@ -20,6 +20,9 @@ network:
   - hsc-corner
   - index-hsc-botany
 language: en
+lang: en
+academic_system: v1
+academic_role: academic_gateway
 curriculum_tracks:
   - HSC Zoology
   - NEET Biology

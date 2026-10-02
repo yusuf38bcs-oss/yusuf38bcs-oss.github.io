@@ -1,27 +1,25 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04E-02
-mode: implementation candidate — BOT-08 Plastid and Chloroplast
-authorized_base: cc10f1cb60828be6d8aac145ecc6964c845ac71b
-branch: conv-04e-02-bot08-plastid-chloroplast-20261003
-production_verified_main: cc10f1cb60828be6d8aac145ecc6964c845ac71b
+phase: CONV-04F-01
+mode: implementation candidate — HSC Zoology gateway strict Academic-v1 convergence
+authorized_base: b73d04616498649b8db66afef2d80103329118f5
+branch: conv-04f-01-hsc-zoology-gateway-20261003
+production_verified_main: b73d04616498649b8db66afef2d80103329118f5
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
-mutation_authority: exact BOT-08 lesson + BOT-07 forward navigation + Botany/Chapter-01 navigation + scope/ledger/certification artifacts
-learner_content_authoring: BOT-08 implemented-candidate / curriculum-bound edition-neutral
-existing_learning_method_cleanup: canonical Learning Guide ownership active on both E-01 surfaces
-gateway_cta_injection: exactly one canonical CTA on each E-01 target surface
+conv04e_boundary: CLOSED / PASS / production-verified
+mutation_authority: exact HSC Zoology gateway metadata + F-01 route-ledger/certification/state artifacts
+learner_content_authoring: structural-metadata-only / scientific-rewrite-forbidden
+existing_learning_method_cleanup: canonical Learning Guide ownership retained
+gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
-  - _biology/hsc-corner/botany/lecture-08-plastid-chloroplast.md
-  - _biology/hsc-corner/botany/lecture-07-cell-wall-vacuole.md
-  - _biology/hsc-corner/botany/index.md
-  - _biology/hsc-corner/botany/chapter-01-cell-and-its-structure.md
+  - _biology/hsc-corner/zoology/index.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-bot_08: implemented-candidate / gap-02-chloroplast closed pending exact-head certification
+hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head BOT-08 source + scope + retained E-01/A-D/D-06 + Jekyll/browser/Axe/reflow/no-JS certification
+ready_transition: not authorized until exact-head F-01 source preservation + retained A-E/D/C-03 + Jekyll/browser/Axe/reflow/no-JS certification
 merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
@@ -88,7 +86,7 @@ merge: not authorized until unchanged-head governance + required checks + Pages 
 
 ## Next gate
 
-Promote only the unchanged E-02 BOT-08 head after exact-head BOT-08 source/scope validation, retained E-01/A-D/D-06 contracts, production Jekyll, route-ledger rendering, five-viewport browser/Axe, keyboard/focus, 320px reflow, text-spacing, reduced-motion, no-JS, CodeQL, zero unresolved threads, required Pages and Trusted Governance all pass. After merge, production-verify BOT-08, record the CONV-04E convergence boundary, and freshly authenticate post-E main before F-00 binding.
+Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b73d04616498649b8db66afef2d80103329118f5`. Require exact source-content preservation, strict Academic-v1 route-ledger convergence, retained C-03/E-01/E-02/A-D contracts, production Jekyll, five-viewport browser/Axe, keyboard/focus, 320px reflow, text spacing, reduced motion, no-JS, CodeQL, zero unresolved threads, required Pages and Trusted Governance before promotion.
 
 ## CONV-04E-02 BOT-08 authorization
 
@@ -127,3 +125,40 @@ Promote only the unchanged E-02 BOT-08 head after exact-head BOT-08 source/scope
 - Chapter-01 status: **convergence-pending / not-certified**.
 - Remaining gaps: 8.
 - Academic content review: **PASS**.
+
+
+## CONV-04E convergence boundary
+
+- E-01 HSC Botany gateway + Chapter-01 structural convergence: **MERGED / RETAINED**.
+- E-02 BOT-08 Plastid and Chloroplast: **MERGED via PR #409**.
+- E-02 Pages production-validation compatibility: **MERGED via PR #411**.
+- Exact production-verified post-E main: `b73d04616498649b8db66afef2d80103329118f5`.
+- GitHub Pages build/deploy: **PASS**.
+- Cloudflare Pages exact-main deployment: **PASS**.
+- Public BOT-08 canonical route: **PASS**.
+- BOT-08 live contract: Bangla-first lesson, canonical Learning Guide, 4 short retrieval MCQs, 2 CQ prompts, BOT-07 backward navigation, Chapter-01 return navigation.
+- Remaining Chapter-01 curriculum gaps: **deferred / convergence-pending / not-certified**.
+- Remaining Botany gap authoring is not a blocker for CONV-04F and is not implicitly authorized by this handoff.
+- **CONV-04E CLEAN-ACADEMIC CONVERGENCE BOUNDARY: CLOSED / PASS.**
+
+## CONV-04F-00 post-E authentication
+
+- Authenticated main: `b73d04616498649b8db66afef2d80103329118f5`.
+- Open CONV-04F PRs at binding: **0**.
+- HSC Zoology gateway route: `/biology/hsc-corner/zoology/`.
+- Existing canonical Learning Guide ownership: **YES**.
+- Existing C-03 topic/content structure: **PRESERVE**.
+- F-01 source debt at binding: `missing_academic_role`, `missing_academic_system`, `missing_lang`, `legacy_language_key`.
+- Live debt at binding: **none**.
+- F-01 scientific-content rewrite authority: **NONE**.
+
+## CONV-04F-01 authorization
+
+1. Mutate exactly one learner-facing source: `_biology/hsc-corner/zoology/index.md`.
+2. Add only `academic_system: v1`, `academic_role: academic_gateway`, and `lang: en`.
+3. Preserve legacy `language: en` because it agrees with canonical `lang: en`.
+4. Preserve all existing headings, prose, links, cards, curriculum/alignment metadata, Responsible Learning Boundary, and canonical Learning Guide CTA.
+5. Promote only the `hsc-zoology-gateway` ledger row from progressive to strict with zero source/live debt.
+6. Preserve assessment ownership: MCQ Arena remains canonical full-bank owner.
+7. Do not mutate Digestive System, Higher Zoology, Animal Diversity, Ecology, Genetics, Physiology, Practical, Socratic, Admission/#356, Worker, Cloudflare, or shared runtime.
+8. Ship bootstrap + retained future-phase compatibility from the first F-01 implementation.

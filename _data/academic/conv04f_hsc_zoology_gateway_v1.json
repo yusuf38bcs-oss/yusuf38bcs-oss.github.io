@@ -1,0 +1,47 @@
+{
+  "schema": "lbfl-conv04f-hsc-zoology-gateway-v1",
+  "version": "CONV-04F-01-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04F-01",
+  "authorized_base": "b73d04616498649b8db66afef2d80103329118f5",
+  "route_id": "hsc-zoology-gateway",
+  "route": "/biology/hsc-corner/zoology/",
+  "source_file": "_biology/hsc-corner/zoology/index.md",
+  "baseline_blob_sha": "babb9f70421ce5ae5f37bfe7534a899992ab0e65",
+  "mutation_model": "structural-metadata-only",
+  "scientific_content_rewrite": false,
+  "additions": {
+    "academic_system": "v1",
+    "academic_role": "academic_gateway",
+    "lang": "en"
+  },
+  "retained": {
+    "legacy_language": "en",
+    "learning_guide": "canonical",
+    "assessment_owner": "mcq-arena",
+    "c03_topic_structure": true,
+    "responsible_learning_boundary": true
+  },
+  "route_ledger_target": {
+    "enforcement": "strict",
+    "source_debt": [],
+    "live_debt": []
+  },
+  "learner_mutation_allowlist": [
+    "_biology/hsc-corner/zoology/index.md"
+  ],
+  "protected": [
+    "_biology/hsc-corner/zoology/digestive-system/",
+    "_biology/higher-zoology-tree/",
+    "_socratic/",
+    "workers/",
+    "cloudflare/",
+    "Admission/#356"
+  ],
+  "future_phase_compatibility": {
+    "bootstrap_contract": true,
+    "retained_invariants": true,
+    "monotonic_state": true,
+    "self_protection": true
+  }
+}

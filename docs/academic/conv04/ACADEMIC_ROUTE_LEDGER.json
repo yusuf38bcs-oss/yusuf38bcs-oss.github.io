@@ -183,13 +183,8 @@
       "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "mcq-arena",
-      "enforcement": "progressive",
-      "source_debt": [
-        "missing_academic_role",
-        "missing_academic_system",
-        "missing_lang",
-        "legacy_language_key"
-      ],
+      "enforcement": "strict",
+      "source_debt": [],
       "live_debt": []
     },
     {
