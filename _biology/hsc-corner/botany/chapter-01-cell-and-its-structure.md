@@ -46,6 +46,10 @@ chapter_completion: not-certified
 source_scope: NCTB curriculum 2012 pp.31-33
 source_custody: curriculum-authoring-authorized-textbook-alignment-optional
 seo_description: Cell theory, plasma membrane, ribosome, ER, Golgi, lysosome, peroxisome, mitochondria, cell wall ও vacuole-এর HSC Botany learning path।
+academic_system: v1
+academic_role: chapter_index
+lang: bn
+learning_guide: canonical
 ---
 <div class="lbfl-botany-index">
 <section class="lbfl-clean-hero">
@@ -53,6 +57,8 @@ seo_description: Cell theory, plasma membrane, ribosome, ER, Golgi, lysosome, pe
 <h2>কোষ ও এর গঠন</h2>
 <p>বর্তমানে সাতটি প্রকাশযোগ্য বাংলা পাঠ ধারাবাহিকভাবে সাজানো আছে। Lecture 07 — <strong>Cell Wall and Vacuole</strong> official NCTB Chapter-01 topic map-এর <code>cell-wall</code> ও <code>vacuole</code> coverage যোগ করে। Chapter 01 এখনো <strong>not-certified</strong>; বাকি curriculum gaps সম্পন্ন ও independently certified না হওয়া পর্যন্ত strict promotion হবে না।</p>
 </section>
+
+{% include education/learning-guide-cta.html %}
 
 <h2>সক্রিয় লেকচার</h2>
 <div class="lbfl-clean-grid">
