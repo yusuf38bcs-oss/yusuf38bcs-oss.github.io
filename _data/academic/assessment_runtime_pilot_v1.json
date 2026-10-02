@@ -1,0 +1,60 @@
+{
+  "schema": "lbfl-assessment-runtime-pilot-v1",
+  "version": "CONV-04D-04-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04D-04",
+  "authorized_base": "b74f47c19508aed4ffd122d4fd7b9a8044419b20",
+  "route": "/mcq-arena/academic/botany-cell-biology-mcq-1/",
+  "source_file": "_mcq-arena/academic/botany-cell-biology-mcq-1.md",
+  "runtime": "assets/js/learning/academic-assessment-runtime.js",
+  "source_return": "/biology/hsc-corner/botany/",
+  "canonical_loop": [
+    "Attempt",
+    "Feedback",
+    "Repair",
+    "Reattempt"
+  ],
+  "content_preservation": {
+    "questions": 10,
+    "options": 40,
+    "answer_keys": 10,
+    "authored_explanations": 10,
+    "rule": "question text, options, answer keys, and authored explanations must remain exact"
+  },
+  "required_behavior": [
+    "selection updates answered count",
+    "submission exposes correctness state",
+    "submission exposes correct answers",
+    "submission exposes authored explanations",
+    "wrong or weak result exposes source-return repair action",
+    "reattempt resets assessment state"
+  ],
+  "browser": {
+    "viewports": [
+      "mobile-320",
+      "mobile-390",
+      "tablet-768",
+      "desktop-1280",
+      "wide-1440"
+    ],
+    "no_js": [
+      "mobile-320",
+      "desktop-1280"
+    ],
+    "max_horizontal_overflow_px": 2,
+    "max_serious_critical_axe_violations": 0
+  },
+  "protected_boundaries": {
+    "other_assessment_banks": "unchanged",
+    "gateway": "unchanged",
+    "generated_engine": "unchanged",
+    "legacy_component": "unchanged",
+    "model_test": "unchanged",
+    "biology_content": "unchanged",
+    "socratic": "unchanged",
+    "practical": "unchanged",
+    "bot_08": "frozen",
+    "admission_pr_356": "untouched",
+    "worker_cloudflare": "out-of-scope"
+  }
+}

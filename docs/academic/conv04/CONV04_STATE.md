@@ -1,20 +1,21 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04D-03
-mode: authored assessment runtime ownership contract
-authorized_base: 4ef010685532eb652ed0867e03c8945b49dedb70
-branch: conv-04d-03-authored-assessment-runtime-contract-20261002
-mutation_authority: D-03 runtime architecture artifacts + CONV04 state only
-learner_content_authoring: frozen
+phase: CONV-04D-04
+mode: authored assessment runtime pilot — Botany Cell Biology
+authorized_base: b74f47c19508aed4ffd122d4fd7b9a8044419b20
+branch: conv-04d-04-botany-cell-biology-runtime-pilot-20261002
+mutation_authority: exact Botany Cell Biology assessment pilot + shared authored runtime + D-04 certification/state artifacts
+learner_content_authoring: assessment-runtime-pilot-only
 existing_learning_method_cleanup: unchanged
 gateway_cta_injection: unchanged
 learner_mutation_allowlist:
-assessment_ownership: authored-runtime-contract / no learner mutation
+  - _mcq-arena/academic/botany-cell-biology-mcq-1.md
+assessment_ownership: authored-runtime-v1 pilot
 bot_08: frozen
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head D-03 certification + Jekyll + review convergence
+ready_transition: not authorized until exact-head D-04 content-preservation + browser/Axe certification + review convergence
 merge: not authorized until unchanged-head governance + required checks PASS
 
 ## Completed foundation
@@ -32,20 +33,21 @@ merge: not authorized until unchanged-head governance + required checks PASS
 - CONV-04D-01-R1 future-phase implementation compatibility: merged via PR #398.
 - CONV-04D-02 Academic MCQ gateway repair: merged via PR #399.
 - CONV-04D-02-R1 gateway framing + retained certification repair: merged via PR #400.
-- Authoritative D-03 base: 4ef010685532eb652ed0867e03c8945b49dedb70.
+- CONV-04D-03 authored assessment runtime ownership contract: merged via PR #401.
+- Authoritative D-04 base: b74f47c19508aed4ffd122d4fd7b9a8044419b20.
 - PR #356 remains independent Admission Draft/HOLD work.
 
-## CONV-04D-03 runtime contract
+## CONV-04D-04 pilot contract
 
-1. Freeze learner-facing assessment mutation while authored-runtime ownership is made explicit.
-2. Record six Academic MCQ banks: five interactive inline implementations and one static authored set.
-3. Record the shared-style duplication and fragmented inline runtime ownership.
-4. Lock a dedicated authored-bank runtime owner: `assets/js/learning/academic-assessment-runtime.js`.
-5. Keep generated `mcq-engine.js` and legacy `components/mcq-arena.html` outside authored-bank ownership.
-6. Select `botany-cell-biology-mcq-1.md` as the D-04 pilot because its submission/feedback defect is independently reproduced in production.
-7. Preserve all pilot question text, options, answer keys, and authored explanations during runtime implementation.
-8. Keep BOT-08, Admission/#356, Worker/Cloudflare, model tests, Socratic, Practical, and Biology content protected.
+1. Authorize exactly one learner-facing assessment mutation: `_mcq-arena/academic/botany-cell-biology-mcq-1.md`.
+2. Add the dedicated shared authored-bank runtime at `assets/js/learning/academic-assessment-runtime.js`.
+3. Preserve exactly all 10 question texts, 40 option texts, 10 answer-key indices, and 10 authored explanations.
+4. Make answered-count/progress state reflect actual selections.
+5. On submission, expose correctness state, the correct answer, and each authored explanation.
+6. If repair is needed, expose source-return to `/biology/hsc-corner/botany/`.
+7. Provide in-page reattempt that resets assessment state.
+8. Preserve all other Academic MCQ banks, the gateway, generated engine, legacy component, model test, Biology content, Socratic, Practical, BOT-08, Admission/#356, Worker, and Cloudflare configuration.
 
 ## Next gate
 
-After D-03 merges, authorize CONV-04D-04 to implement the shared authored assessment runtime on exactly the Botany Cell Biology pilot, certify Attempt → Feedback → Repair → Reattempt in browser/Axe tests, and only then consider migration of additional banks.
+Exact-head D-04 source/content-preservation validation + production Jekyll build + five-viewport browser/Axe certification + no-JS resilience + retained B/C/D contracts + CodeQL + review convergence. After unchanged-head solo authority, Trusted Governance and required Pages pass, merge and verify production before authorizing any second-bank migration.
