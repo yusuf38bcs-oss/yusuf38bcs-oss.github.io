@@ -10,7 +10,7 @@ classes: wide
 language: bn
 lang: bn
 academic_system: v1
-academic_role: course_index
+academic_role: academic_gateway
 learning_guide: canonical
 status: "Active"
 ---
