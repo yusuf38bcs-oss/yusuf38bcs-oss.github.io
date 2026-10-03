@@ -1,7 +1,7 @@
 # CONV-04F-02 — Higher Zoology Gateway Authorization
 
-**Status:** AUTHORIZED — implementation not yet applied  
-**Exact base:** `571e73b7b17023487cf40660f307e6d11091b919`  
+**Status:** AUTHORIZED — implementation not yet applied
+**Exact base:** `571e73b7b17023487cf40660f307e6d11091b919`
 **Branch:** `conv-04f-02-higher-zoology-gateway-20261003`
 
 ## Scope
@@ -18,7 +18,7 @@ Public routes:
 
 ## Authenticated baseline
 
-English source blob: `0fcfcec117f11074eb239ed82689bbaf2243b487`  
+English source blob: `0fcfcec117f11074eb239ed82689bbaf2243b487`
 Bangla source blob: `8d607aa5422c2c3b4a52955732ff0563a6142b28`
 
 The English live route is currently not Academic-v1, loads the legacy Zoology cycle, and renders the legacy Educational Framework panel. It already has one layout-owned educational boundary and the correct canonical URL.
