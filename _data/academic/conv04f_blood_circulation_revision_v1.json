@@ -7,9 +7,9 @@
   "authorized_base": "9895c190f75d0d6b3167370a043181e9cc5c14ad",
   "route_id": "blood-circulation-revision",
   "canonical_route": "/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/",
-  "source_file": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
+  "source_file": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md",
   "baseline_blob_sha": "0eceb2542287fc99356b73dc400b3ede8a8db4f4",
-  "mutation_model": "structural-metadata-plus-canonical-learning-guide-only",
+  "mutation_model": "language-qualified-source-normalization-plus-structural-metadata-and-canonical-learning-guide",
   "scientific_content_rewrite": false,
   "additions": {
     "lang": "bn",
@@ -52,7 +52,7 @@
     "mechanism": "activate Academic-v1 shared rendering contract; retain source content and header metadata; certify live rendering at exact head"
   },
   "learner_mutation_allowlist": [
-    "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md"
+    "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md"
   ],
   "protected": [
     "_biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md",
@@ -63,5 +63,11 @@
     "_biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application.md",
     "_data/academic/course_contract_v1.json",
     "assets/css/academic-design-system.css"
-  ]
+  ],
+  "baseline_source_file": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
+  "source_path_normalization": {
+    "from": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
+    "to": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md",
+    "reason": "Preserve the established Bangla canonical route while declaring lang: bn under Jekyll Polyglot."
+  }
 }
