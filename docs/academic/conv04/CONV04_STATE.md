@@ -2,15 +2,15 @@
 
 programme: CONV-04
 phase: CONV-04F-05
-mode: authorization-only — Genetics gateway + 17-lecture course index
+mode: implementation candidate — Genetics gateway + 17-lecture course index
 authorized_base: cbd6de2cc95f3a573fdd784e29fc045e6448cbda
 branch: conv-04f-05-genetics-course-20261003
 production_verified_main: cbd6de2cc95f3a573fdd784e29fc045e6448cbda
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: authorization/provenance/state artifacts only; Genetics structural convergence authorized but not yet applied
-learner_content_authoring: structural-only / scientific-rewrite-forbidden / not-yet-applied
-existing_learning_method_cleanup: canonical Learning Guide ownership retained
+mutation_authority: exact two Genetics learner surfaces + F-05 route-ledger/certification/state artifacts
+learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
+existing_learning_method_cleanup: legacy framework ownership replaced by canonical Learning Guide on both Genetics surfaces
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
   - _biology/higher-zoology-tree/ecology/en/index.md
@@ -23,8 +23,8 @@ assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until F-05 implementation + retained A-F-04 + exact-head Jekyll/browser/Axe/security/governance
-merge: not authorized in authorization-only state
+ready_transition: not authorized until exact-head F-05 + retained A-F-04 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
+merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
 
@@ -292,3 +292,16 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Scientific-content rewrite authority: **NONE**.
 - Responsible Genetics Boundary: **PRESERVE**.
 - Learner mutation performed at authorization commit: **NO**.
+
+
+## CONV-04F-05 implementation candidate
+
+- Genetics Matrix gateway: **Academic-v1 / canonical Learning Guide**.
+- Genetics Course Index: **Academic-v1 / canonical Learning Guide**.
+- Course-index legacy language metadata: **corrected bn → en**.
+- Genetics 17-lecture route sequence: **preserved exactly**.
+- Genetics course contract: **byte-identical / protected**.
+- Seventeen lecture sources: **byte-identical / protected**.
+- Responsible Genetics Boundary: **preserved verbatim**.
+- Existing Academic table primitive: **applied to unchanged 17-row route table**.
+- Scientific-content rewrite: **NO**.
