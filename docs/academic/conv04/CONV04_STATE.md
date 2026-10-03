@@ -2,14 +2,14 @@
 
 programme: CONV-04
 phase: CONV-04F-03
-mode: authorization-only — Animal Diversity gateway + course-index Academic-v1 convergence
+mode: implementation candidate — Animal Diversity gateway + course-index Academic-v1 convergence
 authorized_base: 8330368a1c4bc8b7083d1528a3c50118217e258a
 branch: conv-04f-03-animal-diversity-gateway-20261003
 production_verified_main: 8330368a1c4bc8b7083d1528a3c50118217e258a
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: F-03 authorization/state artifacts only; two Animal Diversity learner surfaces + conditional layout support authorized but not yet applied
-learner_content_authoring: structural-only / scientific-rewrite-forbidden / not-yet-applied
+mutation_authority: exact two Animal Diversity learner surfaces + conditional Animal Diversity layout + F-03 ledger/certification/state artifacts
+learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
@@ -20,8 +20,8 @@ assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until F-03 implementation + retained A-F-02 + Jekyll/browser/Axe/reflow/no-JS certification
-merge: not authorized in authorization-only state
+ready_transition: not authorized until exact-head F-03 source/layout + retained A-F-02 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
+merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
 
@@ -201,3 +201,13 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Custom layout authority: **conditional Academic-v1 wrapper/boundary only**.
 - Course contract mutation: **PROHIBITED**.
 - Learner mutation performed at this authorization commit: **NO**.
+
+
+## CONV-04F-03 implementation candidate
+
+- Animal Diversity gateway: **Academic-v1 / canonical Learning Guide**.
+- Animal Diversity course index: **Academic-v1 / canonical Learning Guide**.
+- Custom layout: **conditional Academic-v1 article + boundary support**.
+- Course contract: **unchanged**.
+- Ten lecture sequence: **preserved**.
+- Scientific lecture rewrite: **NO**.
