@@ -96,7 +96,7 @@ end
 
 def strip_academic_additions(source)
   cleaned=source.gsub("\n\n#{CTA}\n","\n")
-  cleaned=cleaned.gsub(%q(<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology lecture sequence" markdown="1">\n\n), "")
+  cleaned=cleaned.gsub(%Q(<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology lecture sequence" markdown="1">\n\n), "")
   cleaned=cleaned.gsub("\n\n</div>\n\n[Back to Ecology]", "\n\n[Back to Ecology]")
   cleaned.lines.reject do |line|
     line.match?(/\A(?:academic_system:\s*v1|academic_role:\s*academic_gateway|learning_guide:\s*canonical)\s*\z/)
