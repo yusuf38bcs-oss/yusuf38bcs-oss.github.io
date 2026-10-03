@@ -30,3 +30,14 @@ The strict Ecology course contract remains byte-identical. The ten-module `eco-0
 ## Certification target
 
 Certification must prove the real rendered ownership model, all three strict Academic-v1 surfaces, the compatibility root, existing Ecology 10-lecture certification, retained A-F-03 contracts, Jekyll, Axe, keyboard/focus, 320px reflow, text spacing, reduced motion and no-JS.
+
+
+## Exact-head table contrast remediation
+
+The first F-04 rendered Axe run isolated one defect to the canonical course index: the unchanged Markdown table header inherited legacy dark-table background `#353845` while Academic-v1 supplied foreground `#172033`, producing approximately **1.39:1** contrast.
+
+The remediation does not modify shared CSS or the ten-lecture course content. The existing table is wrapped in the already certified Academic-v1 table primitive:
+
+`lbfl-academic-table-wrap`
+
+with `tabindex="0"`, `role="region"`, and `aria-label="Ecology lecture sequence"`. This gives the table the Academic-v1 header color ownership and a keyboard-focusable horizontal-scroll region on narrow screens.
