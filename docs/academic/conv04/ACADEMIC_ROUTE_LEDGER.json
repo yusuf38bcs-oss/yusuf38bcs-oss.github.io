@@ -335,7 +335,8 @@
       "assessment_owner": "mcq-arena",
       "enforcement": "strict",
       "source_debt": [],
-      "live_debt": []
+      "live_debt": [],
+      "polyglot_root_language": true
     },
     {
       "id": "mcq-academic-gateway",
