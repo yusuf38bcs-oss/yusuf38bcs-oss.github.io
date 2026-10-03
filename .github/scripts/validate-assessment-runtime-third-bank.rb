@@ -315,7 +315,7 @@ if status.success?
         errors << "D-06 contrast-remediation authorization document missing"
       else
         contrast_doc = read_utf8(CONTRAST_AUTH_DOC)
-        errors << "D-06 contrast-remediation authorization must bind exact base" unless contrast_doc.include?("Exact base: `#{comparison_base}`")
+        errors << "D-06 contrast-remediation authorization must bind exact base" unless contrast_doc.include?("**Exact base:** `#{comparison_base}`")
         errors << "D-06 contrast-remediation authorization must prohibit content rewrite" unless contrast_doc.include?("Scientific/question/answer/explanation rewrite: **PROHIBITED**")
       end
 
