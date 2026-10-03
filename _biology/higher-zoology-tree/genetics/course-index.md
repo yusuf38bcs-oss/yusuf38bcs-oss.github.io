@@ -13,19 +13,23 @@ categories:
   - Higher Zoology
   - Genetics
 classes: wide
-language: bn
+language: en
 status: "Active"
 toc: true
 toc_sticky: true
 node_id: genetics-course-index
 parent_node: genetics
+lang: en
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # Genetics Course Index
 
 This page is the production gateway for the **17-lecture Genetics route set** of Learning Biology For Life. The course moves from basic heredity to Mendelian reasoning, gene interaction, chromosome logic, molecular genetics, gene regulation and responsible interpretation.
 
-{% include education/framework-links.html %}
+{% include education/learning-guide-cta.html %}
 
 ## Course Architecture
 
@@ -44,6 +48,8 @@ Gene regulation, mutation and synthesis
 ```
 
 ## Complete Lecture Route Map
+
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Genetics 17-lecture route map" markdown="1">
 
 | No. | Lecture | Main focus | Route |
 |---:|---|---|---|
@@ -64,6 +70,8 @@ Gene regulation, mutation and synthesis
 | 15 | Central Dogma and Transcription | DNA to RNA, template strand, RNA processing | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-15/' | relative_url }}) |
 | 16 | Translation and Genetic Code | codon, anticodon, ribosome, protein synthesis | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-16/' | relative_url }}) |
 | 17 | Gene Regulation, Mutation, and Course Synthesis | regulation, mutation-to-phenotype logic, final synthesis | [Open]({{ '/biology/higher-zoology-tree/genetics/lecture-17/' | relative_url }}) |
+
+</div>
 
 ## Recommended Learning Path
 

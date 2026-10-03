@@ -1,29 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-04
-mode: implementation candidate — corrected Ecology route ownership + Academic-v1 gateways/course index
-authorized_base: 27ed06453ae6ee9398d06c52a1b44a442004774b
-branch: conv-04f-04-ecology-route-ownership-r1-20261003
-production_verified_main: 27ed06453ae6ee9398d06c52a1b44a442004774b
+phase: CONV-04F-05
+mode: implementation candidate — Genetics gateway + 17-lecture course index
+authorized_base: cbd6de2cc95f3a573fdd784e29fc045e6448cbda
+branch: conv-04f-05-genetics-course-20261003
+production_verified_main: cbd6de2cc95f3a573fdd784e29fc045e6448cbda
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: four Ecology route owners + conditional Ecology Academic-v1 boundary layout + exact static-owner Polyglot exclusion + F-04 ledger/certification/state artifacts
+mutation_authority: exact two Genetics learner surfaces + F-05 route-ledger/certification/state artifacts
 learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
-existing_learning_method_cleanup: canonical Learning Guide ownership retained
-gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
+existing_learning_method_cleanup: legacy framework ownership replaced by canonical Learning Guide on both Genetics surfaces
+gateway_cta_injection: exactly one canonical Learning Guide CTA on each F-05 Genetics target
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/ecology/en/index.md
-  - _biology/higher-zoology-tree/ecology/course-index.md
-route_owner_mutation_allowlist:
-  - biology/higher-zoology-tree/ecology/index.html
-  - _pages/ecology-v2-gateway.bn.md
+  - _biology/higher-zoology-tree/genetics/index.md
+  - _biology/higher-zoology-tree/genetics/course-index.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head real-route F-04 + retained A-F-03 + Ecology-10 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
+ready_transition: not authorized until exact-head F-05 + retained A-F-04 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
 merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
@@ -270,3 +267,51 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Bangla gateway ownership: **protected from static overwrite**.
 - Global localization behavior: **otherwise unchanged**.
 - Scientific/course content mutation: **NO**.
+
+
+## CONV-04F-04 post-merge closure
+
+- PR #416: **MERGED**.
+- Exact merged main: `cbd6de2cc95f3a573fdd784e29fc045e6448cbda`.
+- Certified PR tree vs merge tree: **0 changed files**.
+- F-04 exact-head required workflows: **PASS**.
+- Trusted Release Governance: **PASS**.
+- Unresolved review threads: **0**.
+- Production root compatibility owner, canonical Ecology course index, English gateway and Bangla gateway: **LIVE / route ownership verified**.
+
+## CONV-04F-05 authorization
+
+- Exact post-F-04 base: `cbd6de2cc95f3a573fdd784e29fc045e6448cbda`.
+- Target: Genetics Matrix gateway + Genetics Course Index.
+- Learner source count: **2**.
+- Governed course sequence: **17 lectures / protect exactly**.
+- Course contract: **PROTECTED / unchanged**.
+- Scientific-content rewrite authority: **NONE**.
+- Responsible Genetics Boundary: **PRESERVE**.
+- Learner mutation performed at authorization commit: **NO**.
+
+
+## CONV-04F-05 implementation candidate
+
+- Genetics Matrix gateway: **Academic-v1 / canonical Learning Guide**.
+- Genetics Course Index: **Academic-v1 / canonical Learning Guide**.
+- Course-index legacy language metadata: **corrected bn → en**.
+- Genetics 17-lecture route sequence: **preserved exactly**.
+- Genetics course contract: **byte-identical / protected**.
+- Seventeen lecture sources: **byte-identical / protected**.
+- Responsible Genetics Boundary: **preserved verbatim**.
+- Existing Academic table primitive: **applied to unchanged 17-row route table**.
+- Scientific-content rewrite: **NO**.
+
+
+## F-05 exact-head review remediation
+
+- Generated `/bn/` Genetics fallback URLs: **retained / HTTP 200 candidate evidence**.
+- New Bangla Genetics source or redirect owner: **NOT CREATED**.
+- Bangla Genetics translation/content authority: **NONE**.
+- F-05 workflow trigger: expanded to protected Genetics sources, shared course contract and Polyglot config.
+- Retained course-contract rule: whole-file equality in F-05 bootstrap; protected `higher-zoology-genetics` entry equality in successor phases.
+- Genetics route-order certification: source + rendered DOM order bound to exact 01 → 17 sequence.
+- Keyboard certification: canonical Learning Guide CTA must itself receive visible keyboard focus.
+- Generated fallback route continuity: browser-certified on both historical `/bn/` URLs.
+- Hreflang/fallback metadata cleanup: **deferred to CONV-04H**.
