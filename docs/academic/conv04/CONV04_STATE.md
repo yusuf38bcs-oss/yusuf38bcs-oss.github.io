@@ -1,26 +1,25 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-08
-mode: implementation candidate — Zoology Practical-I gateway strict Academic-v1 convergence
-authorized_base: 4b8f96300a81289432da7a01cfddecacbada3623
-branch: conv-04f-08-zoology-practical-gateway-20261003
-production_verified_main: 4b8f96300a81289432da7a01cfddecacbada3623
+phase: CONV-04F-09
+mode: authentication handoff — Zoology Practical-I module convergence baseline
+authorized_base: 4e36517c02c776e77832858467ce82501214412f
+branch: conv-04f-09-authentication-20261004
+production_verified_main: 4e36517c02c776e77832858467ce82501214412f
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact one Practical-I gateway learner surface + F-08 route-ledger/certification/state artifacts
-learner_content_authoring: structural Practical gateway convergence only / module and scientific rewrite forbidden
-existing_learning_method_cleanup: canonical Learning Guide replaces legacy Zoology cycle on the Practical gateway through existing layout ownership
-gateway_cta_injection: exactly one canonical Learning Guide CTA on Zoology Practical-I gateway
+mutation_authority: none — F-09 authentication only; module edits require separate exact-scope authorization
+learner_content_authoring: not authorized in authentication handoff
+existing_learning_method_cleanup: F-08 gateway convergence retained / unchanged
+gateway_cta_injection: F-08 canonical Learning Guide retained / unchanged
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/practical/index.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head F-08 + native Practical 213106 + retained A-F07-R2/D/E + course/module preservation + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
-merge: not authorized until unchanged-head governance + required checks + Pages PASS
+ready_transition: not authorized for learner implementation; authentication PR remains governance-only
+merge: governance handoff only after retained checks + Trusted Governance PASS
 
 ## Completed foundation
 
