@@ -41,6 +41,8 @@ The course index may correct `language: bn` → `language: en`.
 
 The legacy `education/framework-links.html` include may be replaced by exactly one canonical `education/learning-guide-cta.html` include on each target.
 
+The existing 17-row Markdown course table may be wrapped in the already-certified `lbfl-academic-table-wrap` primitive to prevent the same legacy table-header contrast inheritance previously exposed during F-03/F-04. This does not authorize shared CSS or table-content changes.
+
 No scientific prose, 17-lecture sequence, lecture route, genetics problem content, or responsible-genetics boundary may be rewritten.
 
 ## Assessment and safety boundary
