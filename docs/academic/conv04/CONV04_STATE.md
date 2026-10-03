@@ -1,25 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-07-R1
-mode: retained certification remediation — D-06 post-submit contrast animation
-authorized_base: 78eff4725e7fd935a9584507a522b6958fb71bec
-branch: conv-04f-07-r1-assessment-contrast-20261003
-production_verified_main: 78eff4725e7fd935a9584507a522b6958fb71bec
+phase: CONV-04F-07-R2
+mode: retained accessibility remediation — Botany authored assessment reveal contrast
+authorized_base: f499d0fbf6f128cb227e64807b070141a6a9bed8
+branch: conv-04f-07-r2-botany-assessment-contrast-20261003
+production_verified_main: f499d0fbf6f128cb227e64807b070141a6a9bed8
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact D-06 presentation animation + retained D-06 validator/state/authorization + Academic Design/Learning Guide remediation-phase parser compatibility
+mutation_authority: exact D-04 + D-05 presentation-animation remediation plus retained validator/state/authorization
 learner_content_authoring: scientific/question/answer/explanation rewrite prohibited
-existing_learning_method_cleanup: remove opacity-based reveal only; preserve interaction and motion via transform
+existing_learning_method_cleanup: remove opacity-based reveal only; preserve transform motion
 gateway_cta_injection: unchanged
 learner_mutation_allowlist:
-  - _mcq-arena/academic/zoology-respiratory-system-mcq-5.md
+  - _mcq-arena/academic/botany-cell-biology-mcq-1.md
+  - _mcq-arena/academic/botany-cell-division-mcq-2.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until D-06 exact-head source/content preservation + browser/Axe + retained A-F07 + Jekyll + CodeQL + review convergence
+ready_transition: not authorized until exact-head D-04 + D-05 content preservation/browser/Axe + retained A-F07-R1/D/E + Jekyll + review convergence
 merge: not authorized until unchanged-head governance + required checks PASS
 
 ## Completed foundation
@@ -426,3 +427,15 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
   - retain keyboard region semantics;
   - no shared CSS or scientific-content rewrite.
 - Exact-head recertification: **REQUIRED**.
+
+
+## CONV-04F-07-R2 implementation candidate
+
+- Exact base: `f499d0fbf6f128cb227e64807b070141a6a9bed8`.
+- Trigger: retained D-04/D-05 post-submit Axe `color-contrast` failures.
+- Root cause: page-local opacity reveal keyframes identical to the previously authenticated D-06 defect.
+- Learner-facing mutations: exactly two authored Botany assessment pages.
+- Question/option/answer/explanation corpus: **unchanged by exact transform contract**.
+- Shared authored runtime: **unchanged**.
+- Remediation: transform-only reveal motion; no opacity interpolation.
+- Exact-head D-04/D-05 browser recertification: **REQUIRED**.
