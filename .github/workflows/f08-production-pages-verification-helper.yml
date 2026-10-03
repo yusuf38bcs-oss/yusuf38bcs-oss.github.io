@@ -1,0 +1,64 @@
+name: F-08 Production Pages Verification Helper
+
+on:
+  push:
+    branches:
+      - "ops/f08-cloudflare-preview-70aaedb"
+    paths:
+      - ".github/workflows/f08-production-pages-verification-helper.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      TARGET_SHA: "4e36517c02c776e77832858467ce82501214412f"
+      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
+      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
+      CLOUDFLARE_PAGES_DEPLOY_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_TOKEN }}
+    steps:
+      - name: Checkout exact main
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Authenticate exact main
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+
+      - name: Resolve canonical exact-main Cloudflare Pages production
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_PAGES_DEPLOY_TOKEN"
+          python3 - <<'PY'
+          import importlib.util, json, os, sys, time
+          path = ".github/scripts/resolve-cloudflare-targets.py"
+          spec = importlib.util.spec_from_file_location("resolver", path)
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          target = os.environ["TARGET_SHA"]
+          for attempt in range(31):
+              result = mod.cloudflare_pages_deployment(
+                  os.environ["CLOUDFLARE_ACCOUNT_ID"],
+                  os.environ["CLOUDFLARE_PAGES_PROJECT"],
+                  target,
+                  os.environ["CLOUDFLARE_PAGES_DEPLOY_TOKEN"],
+                  "production",
+              )
+              print(json.dumps({"attempt": attempt + 1, "result": result}, sort_keys=True))
+              if result:
+                  if result.get("branch") != "main":
+                      raise SystemExit("Canonical production deployment is exact-head but branch is not main")
+                  raise SystemExit(0)
+              if attempt < 30:
+                  time.sleep(20)
+          raise SystemExit("Canonical Cloudflare Pages production did not reach exact main within verification window")
+          PY
