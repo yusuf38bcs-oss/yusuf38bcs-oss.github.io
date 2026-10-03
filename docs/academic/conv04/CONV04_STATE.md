@@ -470,3 +470,20 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Existing F-08 table remediation and successor-authorization hardening: **retained**.
 - F-09 module convergence: **not yet authorized**.
 - New exact-head recertification on post-R2 main: **REQUIRED**.
+
+
+## CONV-04F-08 closure and F-09 authentication handoff
+
+- F-08 PR #420: **MERGED**.
+- Exact candidate head: `70aaedbf6e8a7324f36fe99f5a7bffb953e2e480`.
+- Authoritative merged main: `4e36517c02c776e77832858467ce82501214412f`.
+- Ready-state technical wave: **29/29 PASS**.
+- Trusted Governance Ready run #1564: **PASS**.
+- GitHub Pages deploy, Sovereign Site Audit v4 and CodeQL on merged main: **PASS**.
+- Cloudflare Pages canonical production deployment: `09878a88-b9b3-420b-b969-58c60f788309` / branch `main` / exact commit `4e36517c02c776e77832858467ce82501214412f` / **success**.
+- Public Practical gateway: **production-verified** with canonical Learning Guide `/learn/`, eight module routes, preserved Practical Reasoning Rule and Safety/Academic Integrity.
+- **CONV-04F-08: CLOSED / PRODUCTION-VERIFIED.**
+- F-09 fresh authentication: **COMPLETE** on `main@4e36517c02c776e77832858467ce82501214412f`.
+- Open CONV-04F PR conflicts at F-09 authentication: **0**.
+- Eight Practical module blobs and strict course-contract blob are bound in `docs/academic/conv04/ZOOLOGY_PRACTICAL_MODULES_F09_AUTHENTICATION.md`.
+- F-09 learner/module mutation authority: **NONE — separate exact-scope authorization required before edits**.
