@@ -1,27 +1,29 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-03
-mode: implementation candidate — Animal Diversity gateway + course-index Academic-v1 convergence
-authorized_base: 8330368a1c4bc8b7083d1528a3c50118217e258a
-branch: conv-04f-03-animal-diversity-gateway-20261003
-production_verified_main: 8330368a1c4bc8b7083d1528a3c50118217e258a
+phase: CONV-04F-04
+mode: authorization-only — Ecology route-ownership correction + Academic-v1 gateway/course convergence
+authorized_base: 27ed06453ae6ee9398d06c52a1b44a442004774b
+branch: conv-04f-04-ecology-route-ownership-r1-20261003
+production_verified_main: 27ed06453ae6ee9398d06c52a1b44a442004774b
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact two Animal Diversity learner surfaces + conditional Animal Diversity layout + F-03 ledger/certification/state artifacts
-learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
+mutation_authority: authorization/state only; corrected F-04 route-owner/layout scope authorized but not yet applied
+learner_content_authoring: structural-only / scientific-rewrite-forbidden / not-yet-applied
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/animal-diversity/index.md
-  - _biology/higher-zoology-tree/animal-diversity/course-index.md
+  - biology/higher-zoology-tree/ecology/index.html
+  - _pages/ecology-v2-gateway.bn.md
+  - _biology/higher-zoology-tree/ecology/en/index.md
+  - _biology/higher-zoology-tree/ecology/course-index.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head F-03 source/layout + retained A-F-02 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
-merge: not authorized until unchanged-head governance + required checks + Pages PASS
+ready_transition: not authorized until corrected F-04 implementation + real-route retained/Jekyll/browser/Axe/security certification
+merge: not authorized in authorization-only state
 
 ## Completed foundation
 
@@ -220,3 +222,17 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Shared CSS mutation: **NO**.
 - Scientific/lecture content mutation: **NO**.
 - F-03 Axe table remediation: exact-head recertification required.
+
+
+## CONV-04F-04 corrected authorization
+
+- Original orphan authorization head: `a6dfb04d43e07c81ce78ecdfdf88f2716e857f06` — **SUPERSEDED / NOT PROMOTABLE**.
+- Exact corrected base: `27ed06453ae6ee9398d06c52a1b44a442004774b`.
+- Root owner: `biology/higher-zoology-tree/ecology/index.html`.
+- Root role: **legacy compatibility landing**.
+- Canonical governed course: `/biology/higher-zoology-tree/ecology/course-index/`.
+- English gateway: `/en/biology/higher-zoology-tree/ecology/`.
+- Bangla gateway: `/bn/biology/higher-zoology-tree/ecology/`.
+- Conditional layout authority: `_layouts/single.html` — Academic-v1 Ecology boundary only.
+- Ecology course contract: **PROTECTED / UNCHANGED**.
+- Learner/scientific mutation performed at this authorization commit: **NO**.
