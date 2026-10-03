@@ -211,3 +211,12 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Course contract: **unchanged**.
 - Ten lecture sequence: **preserved**.
 - Scientific lecture rewrite: **NO**.
+
+
+## F-03 Axe table remediation
+
+- Initial exact-head Axe failure: legacy course-index table-header contrast.
+- Remediation: existing Academic-v1 table wrapper applied inside the authorized course-index source.
+- Shared CSS mutation: **NO**.
+- Scientific/lecture content mutation: **NO**.
+- F-03 Axe table remediation: exact-head recertification required.
