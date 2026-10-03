@@ -13,7 +13,7 @@ learner_content_authoring: structural revision convergence only / scientific rew
 existing_learning_method_cleanup: Academic-v1 rendering activation retires historical hero/fragmentation debt only if browser-certified
 gateway_cta_injection: exactly one canonical Learning Guide CTA on Blood Circulation Revision Map
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md
+  - _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
@@ -392,3 +392,13 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Exact learner-facing mutation count: **1**.
 - Scientific/content rewrite authority: **NONE**.
 - Rendered debt retirement: **certification-dependent**.
+
+
+## F-07 source-path normalization
+
+- Historical Bangla source: `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md`.
+- Bound Bangla source: `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md`.
+- Reason: declaring `lang: bn` on the unqualified source caused Polyglot to remove the established root Bangla canonical output.
+- Canonical permalink: **unchanged**.
+- English counterpart: **unchanged** at `/en/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
+- Scientific content: **unchanged**.
