@@ -41,3 +41,9 @@ The remediation does not modify shared CSS or the ten-lecture course content. Th
 `lbfl-academic-table-wrap`
 
 with `tabindex="0"`, `role="region"`, and `aria-label="Ecology lecture sequence"`. This gives the table the Academic-v1 header color ownership and a keyboard-focusable horizontal-scroll region on narrow screens.
+
+## Polyglot route-owner remediation
+
+The static compatibility owner is now excluded from Polyglot localization by exact path. This prevents the English static root from overwriting the rendered Bangla gateway under `/bn/biology/higher-zoology-tree/ecology/` while leaving the unprefixed compatibility route intact.
+
+The remediation changes only `_config.yml` localization ownership for that exact static file; it does not alter lecture content, shared CSS, assessment ownership, course sequence, or other multilingual routes.
