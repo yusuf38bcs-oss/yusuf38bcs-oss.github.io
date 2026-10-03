@@ -21,8 +21,9 @@ AUTH_DOC = ROOT.join("docs/academic/conv04/GENETICS_CONVERGENCE_AUTHORIZATION.md
 DOC = ROOT.join("docs/academic/conv04/GENETICS_CONVERGENCE.md")
 BROWSER = ROOT.join(".github/scripts/conv04f-genetics-browser-certification.mjs")
 WORKFLOW = ROOT.join(".github/workflows/conv04f-genetics-certification.yml")
-BN_GATEWAY_REDIRECT = ROOT.join("_pages/redirects/genetics-gateway-bn-fallback.bn.md")
-BN_COURSE_REDIRECT = ROOT.join("_pages/redirects/genetics-course-index-bn-fallback.bn.md")
+CONFIG = ROOT.join("_config.yml")
+BN_GATEWAY_REDIRECT = ROOT.join("bn/biology/higher-zoology-tree/genetics/index.html")
+BN_COURSE_REDIRECT = ROOT.join("bn/biology/higher-zoology-tree/genetics/course-index/index.html")
 
 CTA = "{% include education/learning-guide-cta.html %}"
 LEGACY = "{% include education/framework-links.html %}"
@@ -34,8 +35,9 @@ BOOTSTRAP_FILES = %w[
   .github/workflows/conv04f-genetics-certification.yml
   _biology/higher-zoology-tree/genetics/course-index.md
   _biology/higher-zoology-tree/genetics/index.md
-  _pages/redirects/genetics-course-index-bn-fallback.bn.md
-  _pages/redirects/genetics-gateway-bn-fallback.bn.md
+  _config.yml
+  bn/biology/higher-zoology-tree/genetics/course-index/index.html
+  bn/biology/higher-zoology-tree/genetics/index.html
   _data/academic/conv04f_genetics_authorization_v1.json
   _data/academic/conv04f_genetics_v1.json
   docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
@@ -48,8 +50,8 @@ IMMUTABLE_F05 = %w[
   .github/scripts/conv04f-genetics-browser-certification.mjs
   .github/scripts/validate-conv04f-genetics.rb
   .github/workflows/conv04f-genetics-certification.yml
-  _pages/redirects/genetics-course-index-bn-fallback.bn.md
-  _pages/redirects/genetics-gateway-bn-fallback.bn.md
+  bn/biology/higher-zoology-tree/genetics/course-index/index.html
+  bn/biology/higher-zoology-tree/genetics/index.html
   _data/academic/conv04f_genetics_authorization_v1.json
   _data/academic/conv04f_genetics_v1.json
   docs/academic/conv04/GENETICS_CONVERGENCE.md
@@ -148,7 +150,7 @@ def normalize_course_index(source)
   cleaned
 end
 
-[AUTH, MANIFEST, GATEWAY, COURSE_INDEX, COURSE_CONTRACT, LEDGER, STATE, AUTH_DOC, DOC, BROWSER, WORKFLOW, BN_GATEWAY_REDIRECT, BN_COURSE_REDIRECT].each do |path|
+[AUTH, MANIFEST, GATEWAY, COURSE_INDEX, COURSE_CONTRACT, LEDGER, STATE, AUTH_DOC, DOC, BROWSER, WORKFLOW, CONFIG, BN_GATEWAY_REDIRECT, BN_COURSE_REDIRECT].each do |path|
   need(errors, path.file?, "Missing F-05 artifact: #{path.relative_path_from(ROOT)}")
 end
 
@@ -166,8 +168,8 @@ need(errors, manifest["authorized_base"] == BASE, "F-05 manifest base mismatch")
 need(
   errors,
   Array(manifest["compatibility_route_owners"]).sort == %w[
-    _pages/redirects/genetics-course-index-bn-fallback.bn.md
-    _pages/redirects/genetics-gateway-bn-fallback.bn.md
+    bn/biology/higher-zoology-tree/genetics/course-index/index.html
+    bn/biology/higher-zoology-tree/genetics/index.html
   ],
   "F-05 compatibility route-owner manifest drift"
 )
@@ -192,18 +194,21 @@ need(
 end
 
 {
-  BN_GATEWAY_REDIRECT => ["/biology/higher-zoology-tree/genetics/", "/biology/higher-zoology-tree/genetics/"],
-  BN_COURSE_REDIRECT => ["/biology/higher-zoology-tree/genetics/course-index/", "/biology/higher-zoology-tree/genetics/course-index/"]
-}.each do |path, values|
+  BN_GATEWAY_REDIRECT => "/biology/higher-zoology-tree/genetics/",
+  BN_COURSE_REDIRECT => "/biology/higher-zoology-tree/genetics/course-index/"
+}.each do |path, canonical|
   source = read_utf8(path)
-  permalink, canonical = values
-  need(errors, fm(source, "layout") == "null", "#{path.basename}: compatibility redirect layout must be null")
-  need(errors, fm(source, "lang") == "bn", "#{path.basename}: compatibility redirect lang must be bn")
-  need(errors, fm(source, "language") == "bn", "#{path.basename}: compatibility redirect language must be bn")
-  need(errors, fm(source, "permalink") == permalink, "#{path.basename}: compatibility permalink drift")
   need(errors, source.include?("data-f05-genetics-bn-fallback"), "#{path.basename}: compatibility marker missing")
   need(errors, source.include?("href=\"#{canonical}\""), "#{path.basename}: canonical English destination missing")
   need(errors, source.include?("content=\"0; url=#{canonical}\""), "#{path.basename}: compatibility redirect target missing")
+end
+
+config = read_utf8(CONFIG)
+[
+  "bn/biology/higher-zoology-tree/genetics/index.html",
+  "bn/biology/higher-zoology-tree/genetics/course-index/index.html"
+].each do |relative|
+  need(errors, config.lines.any? { |line| line.strip == "- #{relative}" }, "Polyglot localization exclusion missing: #{relative}")
 end
 
 need(errors, gateway.include?(RESPONSIBLE), "Responsible Genetics Boundary wording changed")

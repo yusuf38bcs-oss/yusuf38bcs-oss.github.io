@@ -8,9 +8,10 @@ on:
       - "_biology/higher-zoology-tree/genetics/index.md"
       - "_biology/higher-zoology-tree/genetics/course-index.md"
       - "_biology/higher-zoology-tree/genetics/**"
-      - "_pages/redirects/genetics-gateway-bn-fallback.bn.md"
-      - "_pages/redirects/genetics-course-index-bn-fallback.bn.md"
+      - "bn/biology/higher-zoology-tree/genetics/index.html"
+      - "bn/biology/higher-zoology-tree/genetics/course-index/index.html"
       - "_data/academic/course_contract_v1.json"
+      - "_config.yml"
       - "_data/academic/conv04f_genetics_authorization_v1.json"
       - "_data/academic/conv04f_genetics_v1.json"
       - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
@@ -126,9 +127,10 @@ jobs:
           bundle exec jekyll build --trace
           test -f _site/biology/higher-zoology-tree/genetics/index.html
           test -f _site/biology/higher-zoology-tree/genetics/course-index/index.html
-          # Compatibility-route ownership is certified in the browser stage below.
-          # Keeping the production build gate focused on canonical English outputs
-          # ensures a missing/overwritten /bn/ owner produces an explicit browser report.
+          test -f _site/bn/biology/higher-zoology-tree/genetics/index.html
+          test -f _site/bn/biology/higher-zoology-tree/genetics/course-index/index.html
+          grep -q 'data-f05-genetics-bn-fallback' _site/bn/biology/higher-zoology-tree/genetics/index.html
+          grep -q 'data-f05-genetics-bn-fallback' _site/bn/biology/higher-zoology-tree/genetics/course-index/index.html
           grep -q 'data-lbfl-academic-surface="v1"' _site/biology/higher-zoology-tree/genetics/index.html
           grep -q 'data-lbfl-academic-surface="v1"' _site/biology/higher-zoology-tree/genetics/course-index/index.html
           ruby .github/scripts/validate-conv04f-genetics.rb

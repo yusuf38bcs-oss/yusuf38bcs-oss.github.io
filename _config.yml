@@ -68,6 +68,8 @@ exclude_from_localization:
   - .github
   - scripts
   - biology/higher-zoology-tree/ecology/index.html
+  - bn/biology/higher-zoology-tree/genetics/index.html
+  - bn/biology/higher-zoology-tree/genetics/course-index/index.html
 parallel_localization: false
 fallback_canonical_to_default_lang: true
 

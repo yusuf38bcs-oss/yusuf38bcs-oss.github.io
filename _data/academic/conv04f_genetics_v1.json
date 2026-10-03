@@ -72,7 +72,7 @@
     "current_base": "authenticate live PR base"
   },
   "compatibility_route_owners": [
-    "_pages/redirects/genetics-gateway-bn-fallback.bn.md",
-    "_pages/redirects/genetics-course-index-bn-fallback.bn.md"
+    "bn/biology/higher-zoology-tree/genetics/index.html",
+    "bn/biology/higher-zoology-tree/genetics/course-index/index.html"
   ]
 }

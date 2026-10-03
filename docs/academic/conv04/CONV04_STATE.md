@@ -16,8 +16,8 @@ learner_mutation_allowlist:
   - _biology/higher-zoology-tree/genetics/index.md
   - _biology/higher-zoology-tree/genetics/course-index.md
 compatibility_route_allowlist:
-  - _pages/redirects/genetics-gateway-bn-fallback.bn.md
-  - _pages/redirects/genetics-course-index-bn-fallback.bn.md
+  - bn/biology/higher-zoology-tree/genetics/index.html
+  - bn/biology/higher-zoology-tree/genetics/course-index/index.html
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
@@ -310,7 +310,7 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 ## F-05 exact-head review remediation
 
 - Existing generated Bangla fallback URLs: **PRESERVE**.
-- Compatibility owners: **two noindex redirect pages only**.
+- Compatibility owners: **two static noindex redirect pages excluded from Polyglot localization**.
 - Bangla Genetics translation/content authority: **NONE**.
 - F-05 workflow trigger: expanded to protected Genetics sources + shared course contract.
 - Retained course-contract rule: whole-file equality in F-05 bootstrap; protected `higher-zoology-genetics` entry equality in successor phases.
