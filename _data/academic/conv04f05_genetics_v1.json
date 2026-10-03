@@ -1,0 +1,38 @@
+{
+  "schema": "lbfl-conv04f05-genetics-convergence-v1",
+  "version": "CONV-04F-05-1.0.0",
+  "phase": "CONV-04F-05",
+  "authorized_base": "cbd6de2cc95f3a573fdd784e29fc045e6448cbda",
+  "authorization_file": "_data/academic/conv04f05_genetics_authorization_v1.json",
+  "surfaces": [
+    {
+      "id": "genetics-gateway",
+      "route": "/biology/higher-zoology-tree/genetics/",
+      "source": "_biology/higher-zoology-tree/genetics/index.md",
+      "language": "en"
+    },
+    {
+      "id": "genetics-course-index",
+      "route": "/biology/higher-zoology-tree/genetics/course-index/",
+      "source": "_biology/higher-zoology-tree/genetics/course-index.md",
+      "language": "en"
+    }
+  ],
+  "course_contract": {
+    "course_id": "higher-zoology-genetics",
+    "module_count": 17,
+    "mutation": "forbidden"
+  },
+  "preservation": {
+    "scientific_rewrite": false,
+    "lecture_mutation": false,
+    "route_sequence_mutation": false
+  },
+  "accessibility": {
+    "course_index_table_wrapper": "lbfl-academic-table-wrap",
+    "tabindex": "0",
+    "role": "region",
+    "aria_label": "Genetics lecture sequence"
+  },
+  "future_phase_compatibility": "bootstrap + retained / immutable F-05 certification artifacts / monotonic state"
+}
