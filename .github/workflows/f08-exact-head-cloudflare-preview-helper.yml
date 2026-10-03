@@ -1,0 +1,79 @@
+name: F-08 Exact-Head Cloudflare Preview Helper
+
+on:
+  push:
+    branches:
+      - "ops/f08-cloudflare-preview-70aaedb"
+    paths:
+      - ".github/workflows/f08-exact-head-cloudflare-preview-helper.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: f08-exact-head-cloudflare-preview-70aaedb
+  cancel-in-progress: false
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TARGET_SHA: "70aaedbf6e8a7324f36fe99f5a7bffb953e2e480"
+      TARGET_BRANCH: "conv-04f-08-zoology-practical-gateway-20261003"
+      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
+      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
+    steps:
+      - name: Checkout exact F-08 head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Authenticate exact target
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Build exact-head Jekyll site
+        shell: bash
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          bundle config set --local frozen 'false'
+          bundle install
+          bundle exec jekyll clean
+          bundle exec jekyll build --trace
+          test -f _site/index.html
+          test -f _site/biology/higher-zoology-tree/practical/index.html
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Deploy exact-head Cloudflare Pages preview
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          npx --yes wrangler@latest pages deploy _site \
+            --project-name "$CLOUDFLARE_PAGES_PROJECT" \
+            --branch "$TARGET_BRANCH" \
+            --commit-hash "$TARGET_SHA" \
+            --commit-message "LBFL F-08 exact-head certification preview $TARGET_SHA" \
+            --commit-dirty=false
