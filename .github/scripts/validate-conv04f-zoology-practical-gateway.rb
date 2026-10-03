@@ -152,9 +152,13 @@ end
 
 state = STATE.file? ? read_utf8(STATE) : ""
 mode = ENV.fetch("CERTIFICATION_MODE", "local")
+phase = state[/^phase:\s*(\S+)/, 1]
 comparison_base = ENV["PR_BASE_SHA"].to_s.strip
-bootstrap = mode == "pull_request" && comparison_base == BASE
-future = mode == "pull_request" && !comparison_base.empty? && comparison_base != BASE
+if mode == "manual" && comparison_base.empty?
+  comparison_base = state[/^authorized_base:\s*(\S+)/, 1].to_s.strip
+end
+bootstrap = !comparison_base.empty? && comparison_base == BASE && phase == PHASE
+future = !comparison_base.empty? && comparison_base != BASE
 changed = []
 
 unless comparison_base.empty?
@@ -166,7 +170,6 @@ unless comparison_base.empty?
   end
 end
 
-phase = state[/^phase:\s*(\S+)/, 1]
 successor_phase_authorized = false
 successor_allowlist = []
 
