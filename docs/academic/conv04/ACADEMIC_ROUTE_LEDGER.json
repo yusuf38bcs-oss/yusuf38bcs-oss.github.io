@@ -333,17 +333,9 @@
       "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "mcq-arena",
-      "enforcement": "progressive",
-      "source_debt": [
-        "missing_academic_role",
-        "missing_academic_system",
-        "missing_lang",
-        "legacy_language_key"
-      ],
-      "live_debt": [
-        "rendered_blank_hero_space",
-        "rendered_word_fragmentation"
-      ]
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     },
     {
       "id": "mcq-academic-gateway",
