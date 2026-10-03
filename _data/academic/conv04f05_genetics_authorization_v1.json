@@ -1,0 +1,79 @@
+{
+  "schema": "lbfl-conv04f05-genetics-authorization-v1",
+  "version": "CONV-04F-05-authorization-1.0.0",
+  "phase": "CONV-04F-05",
+  "status": "authorized-not-implemented",
+  "authorized_base": "cbd6de2cc95f3a573fdd784e29fc045e6448cbda",
+  "target": {
+    "gateway": {
+      "source": "_biology/higher-zoology-tree/genetics/index.md",
+      "route": "/biology/higher-zoology-tree/genetics/",
+      "blob_sha": "53c43580ba949fe075f3f49aa1bf5a02a43cbb1a"
+    },
+    "course_index": {
+      "source": "_biology/higher-zoology-tree/genetics/course-index.md",
+      "route": "/biology/higher-zoology-tree/genetics/course-index/",
+      "blob_sha": "c95c01a78f8dcae4d8223c84b497b16584877847"
+    }
+  },
+  "findings": [
+    "both public Genetics surfaces are English content but lack Academic-v1 ownership",
+    "Genetics gateway uses legacy education/framework-links.html ownership",
+    "course index front matter says language: bn while rendered/default route and visible content are English",
+    "course contract already governs a strict 17-module sequence and must remain byte-identical",
+    "single layout already identifies Genetics as a course-owned surface; no layout mutation is required"
+  ],
+  "learner_mutation_allowlist": [
+    "_biology/higher-zoology-tree/genetics/index.md",
+    "_biology/higher-zoology-tree/genetics/course-index.md"
+  ],
+  "authorized_changes": [
+    "add academic_system: v1",
+    "add academic_role: academic_gateway",
+    "set lang: en",
+    "normalize course-index language from bn to en because the source and canonical route are English",
+    "add learning_guide: canonical",
+    "replace legacy framework panel with exactly one canonical Learning Guide CTA",
+    "wrap existing 17-lecture table in the established Academic-v1 table region primitive",
+    "register both Genetics routes as strict zero-debt ledger rows"
+  ],
+  "prohibited": [
+    "scientific-content rewrite",
+    "17-lecture route or sequence change",
+    "Genetics course-contract mutation",
+    "Genetics lecture mutation",
+    "shared layout mutation",
+    "shared CSS mutation",
+    "assessment ownership change",
+    "Admission/#356",
+    "Worker/Cloudflare configuration"
+  ],
+  "course_contract": {
+    "path": "_data/academic/course_contract_v1.json",
+    "blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+    "course_id": "higher-zoology-genetics",
+    "canonical_route": "/biology/higher-zoology-tree/genetics/course-index/",
+    "module_count": 17,
+    "module_ids": [
+      "gen-01",
+      "gen-02",
+      "gen-03",
+      "gen-04",
+      "gen-05",
+      "gen-06",
+      "gen-07",
+      "gen-08",
+      "gen-09",
+      "gen-10",
+      "gen-11",
+      "gen-12",
+      "gen-13",
+      "gen-14",
+      "gen-15",
+      "gen-16",
+      "gen-17"
+    ],
+    "mutation_authorized": false
+  },
+  "next_gate": "implement only the two authorized Genetics surfaces and exact-head retained certification"
+}
