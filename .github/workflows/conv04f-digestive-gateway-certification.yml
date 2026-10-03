@@ -126,7 +126,7 @@ jobs:
           bundle exec jekyll build --trace
           test -f _site/biology/hsc-corner/zoology/digestive-system/index.html
           grep -q 'data-lbfl-academic-surface="v1"' _site/biology/hsc-corner/zoology/digestive-system/index.html
-          grep -q 'data-lbfl-academic-role="course_index"' _site/biology/hsc-corner/zoology/digestive-system/index.html
+          grep -q 'data-lbfl-academic-role="academic_gateway"' _site/biology/hsc-corner/zoology/digestive-system/index.html
           ruby .github/scripts/validate-conv04f-digestive-gateway.rb
           ruby .github/scripts/validate-academic-surface-contract.rb
           ruby .github/scripts/validate-academic-design-system.rb
