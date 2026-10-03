@@ -1,7 +1,7 @@
 # CONV-04F-04 — Ecology Route Ownership Correction
 
-**Status:** AUTHORIZED / NOT YET IMPLEMENTED  
-**Exact base:** `27ed06453ae6ee9398d06c52a1b44a442004774b`  
+**Status:** AUTHORIZED / NOT YET IMPLEMENTED
+**Exact base:** `27ed06453ae6ee9398d06c52a1b44a442004774b`
 **Branch:** `conv-04f-04-ecology-route-ownership-r1-20261003`
 
 ## Root cause
