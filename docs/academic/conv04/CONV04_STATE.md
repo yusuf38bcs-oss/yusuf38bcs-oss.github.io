@@ -250,3 +250,14 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Ecology course contract: **byte-identical / protected**.
 - Ecology 20 bilingual lecture sources: **unchanged**.
 - Shared CSS: **unchanged**.
+
+
+## F-04 Axe table remediation
+
+- Initial exact-head browser failure: course-index table-header contrast **1.39:1**.
+- Exact targets: all three `<th>` cells on the canonical Ecology course index.
+- Root cause: legacy dark table background crossing into the Academic-v1 foreground cascade.
+- Fix: existing `lbfl-academic-table-wrap` primitive around the unchanged table.
+- Shared CSS mutation: **NO**.
+- Scientific/course sequence mutation: **NO**.
+- Recertification: **required on new exact head**.
