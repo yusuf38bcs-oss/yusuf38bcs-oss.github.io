@@ -4,11 +4,13 @@ layout: default
 
 {% assign lbfl_content_owns_h1 = false %}
 {% if content contains '<h1' %}{% assign lbfl_content_owns_h1 = true %}{% endif %}
+{% assign lbfl_canonical_learning_guide = false %}
+{% if page.learning_guide == 'canonical' %}{% assign lbfl_canonical_learning_guide = true %}{% endif %}
 <div id="main" role="main">
-  <article class="page lbfl-animal-diversity-document" itemscope itemtype="https://schema.org/CreativeWork">
+  <article class="page lbfl-animal-diversity-document{% if page.academic_system == 'v1' %} lbfl-academic-surface lbfl-academic-role--{{ page.academic_role | default: 'unassigned' | escape }}{% endif %}"{% if lbfl_canonical_learning_guide %} data-lbfl-learning-guide="canonical"{% endif %}{% if page.academic_system == 'v1' %} data-lbfl-academic-surface="v1" data-lbfl-academic-role="{{ page.academic_role | default: 'unassigned' | escape }}"{% endif %} itemscope itemtype="https://schema.org/CreativeWork">
     <div class="page__inner-wrap">
       {% unless lbfl_content_owns_h1 %}{% if page.title %}<header><h1 id="page-title" class="page__title" itemprop="headline">{{ page.title }}</h1></header>{% endif %}{% endunless %}
-      <section class="page__content" itemprop="text">{{ content }}</section>
+      <section class="page__content" itemprop="text">{% if page.academic_system == 'v1' %}{% include components/educational-boundary.html %}{% endif %}{{ content }}</section>
       {% if page.course_role == 'lecture' %}
       <nav class="lbfl-course-pagination" aria-label="{% if page.lang == 'bn' %}লেকচার নেভিগেশন{% else %}Lecture navigation{% endif %}">
         {% if page.previous_url %}<a class="btn btn--inverse" href="{{ page.previous_url | relative_url }}">{% if page.lang == 'bn' %}← আগের লেকচার{% else %}← Previous lecture{% endif %}</a>{% endif %}
