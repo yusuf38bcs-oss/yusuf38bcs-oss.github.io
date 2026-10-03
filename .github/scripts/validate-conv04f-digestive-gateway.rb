@@ -121,6 +121,7 @@ def authorized_transform(source)
   out = out.sub('<div class="digestive-lecture-grid">', '<div class="lbfl-academic-grid">')
   out = out.gsub('class="digestive-lecture-card"', 'class="lbfl-academic-card"')
   out = out.sub(/\n<style>[\s\S]*?<\/style>\s*\z/, "\n")
+  out = out.sub(/\n+\z/, "\n")
   out
 end
 
