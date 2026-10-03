@@ -30,6 +30,9 @@ curriculum_tracks:
   - IB Biology
 hsc_alignment: "উচ্চতর প্রাণিবিজ্ঞান: প্রাণিবৈচিত্র্য, শারীরবিদ্যা, বাস্ততত্ত্ব, জিনতত্ত্ব ও জীবপরিসংখ্যানের কেন্দ্রীয় gateway"
 concept_level: "Gateway"
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # উচ্চতর প্রাণিবিজ্ঞান
@@ -40,7 +43,7 @@ concept_level: "Gateway"
 
 প্রাণিবিজ্ঞান শক্তিশালী হয় যখন শিক্ষার্থী তার internal connection দেখতে শেখে। Animal Diversity গঠনগত বৈচিত্র্য ব্যাখ্যা করে। Human Physiology regulation ও homeostasis ব্যাখ্যা করে। Ecology জীব ও পরিবেশের সম্পর্ক ব্যাখ্যা করে। Genetics বংশগতি, variation, molecular information এবং responsible interpretation ব্যাখ্যা করে। Biostatistics evidence, pattern এবং biological data বোঝার পথ তৈরি করে। এই শাখাগুলো একসঙ্গে একটি learning tree তৈরি করে, যা academic growth এবং practical life understanding—দুই ক্ষেত্রেই সহায়ক।
 
-{% include education/framework-links.html %}
+{% include education/learning-guide-cta.html %}
 
 ## বিষয়ভিত্তিক শেখার লক্ষ্য
 
