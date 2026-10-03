@@ -24,6 +24,7 @@ AUTH_DOC = ROOT.join("docs/academic/conv04/ECOLOGY_ROUTE_OWNERSHIP.md")
 DOC = ROOT.join("docs/academic/conv04/ECOLOGY_F04_CONVERGENCE.md")
 BROWSER = ROOT.join(".github/scripts/conv04f-ecology-browser-certification.mjs")
 WORKFLOW = ROOT.join(".github/workflows/conv04f-ecology-route-certification.yml")
+CONFIG = ROOT.join("_config.yml")
 
 CTA = "{% include education/learning-guide-cta.html %}"
 
@@ -31,6 +32,7 @@ BOOTSTRAP_FILES = %w[
   .github/scripts/conv04f-ecology-browser-certification.mjs
   .github/scripts/validate-conv04f-ecology-route-ownership.rb
   .github/workflows/conv04f-ecology-route-certification.yml
+  _config.yml
   _biology/higher-zoology-tree/ecology/course-index.md
   _biology/higher-zoology-tree/ecology/en/index.md
   _data/academic/conv04f04_ecology_route_ownership_v1.json
@@ -103,7 +105,7 @@ def strip_academic_additions(source)
   end.join
 end
 
-[ROOT_STATIC,BN,EN,INDEX,LAYOUT,COURSE,LEDGER,STATE,AUTH,MANIFEST,AUTH_DOC,DOC,BROWSER,WORKFLOW].each do |p|
+[ROOT_STATIC,BN,EN,INDEX,LAYOUT,COURSE,LEDGER,STATE,AUTH,MANIFEST,AUTH_DOC,DOC,BROWSER,WORKFLOW,CONFIG].each do |p|
   errors << "Missing F-04 artifact: #{p.relative_path_from(ROOT)}" unless p.file?
 end
 
@@ -144,6 +146,10 @@ need(root.scan(/<h1\b/i).length==1,"Compatibility root must contain exactly one 
     need(source.include?('<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology lecture sequence" markdown="1">'), "Ecology course index table must use the Academic-v1 accessible table wrapper")
   end
 end
+
+config=CONFIG.file? ? read_utf8(CONFIG) : ""
+need(config.include?("exclude_from_localization:\n") && config.include?("  - biology/higher-zoology-tree/ecology/index.html\n"), "Polyglot must exclude the exact Ecology static compatibility owner from localization")
+need(config.scan(/^\s*- biology\/higher-zoology-tree\/ecology\/index\.html\s*$/).length==1, "Ecology static localization exclusion must appear exactly once")
 
 layout=LAYOUT.file? ? read_utf8(LAYOUT) : ""
 expected_layout=%q({% if lbfl_ecology_surface %}
@@ -200,6 +206,14 @@ if bootstrap
     base_source,status=git_show(relative)
     need(status.success?,"Unable to authenticate #{relative} baseline")
     need(strip_academic_additions(read_utf8(path))==base_source,"#{relative}: changed outside authorized Academic-v1 metadata/CTA additions") if status.success?
+  end
+
+  base_config,status=git_show("_config.yml")
+  if status.success?
+    expected_config=base_config.sub("  - scripts\nparallel_localization: false","  - scripts\n  - biology/higher-zoology-tree/ecology/index.html\nparallel_localization: false")
+    need(config==expected_config,"_config.yml changed outside exact Ecology static localization exclusion")
+  else
+    errors << "Unable to authenticate _config.yml baseline"
   end
 
   base_layout,status=git_show("_layouts/single.html")
