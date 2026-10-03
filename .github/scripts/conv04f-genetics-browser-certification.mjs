@@ -12,6 +12,10 @@ const targets=[
   {id:"gateway",route:"/biology/higher-zoology-tree/genetics/",lang:"en",required:["Genetics Matrix","Responsible Genetics Boundary","Completed Course Gateway"]},
   {id:"course",route:"/biology/higher-zoology-tree/genetics/course-index/",lang:"en",required:["Genetics Course Index","Complete Lecture Route Map","Recommended Learning Path"]}
 ];
+const fallbackTargets=[
+  {id:"bn-gateway-compat",route:"/bn/biology/higher-zoology-tree/genetics/",canonical:"/biology/higher-zoology-tree/genetics/"},
+  {id:"bn-course-compat",route:"/bn/biology/higher-zoology-tree/genetics/course-index/",canonical:"/biology/higher-zoology-tree/genetics/course-index/"}
+];
 const expectedRoutes=[
   "/biology/higher-zoology-tree/genetics/foundations-of-genetics/",
   "/biology/higher-zoology-tree/genetics/genetic-terminology/",
@@ -76,7 +80,7 @@ async function run(target,view,opts={}){
         await page.keyboard.press("Tab");
         const f=await page.evaluate(()=>{
           const el=document.activeElement;
-          return {target:!!el?.closest?.(".lbfl-learning-guide-cta,.lbfl-language-switcher"),visible:!!el?.matches?.(":focus-visible")};
+          return {target:!!el?.closest?.(".lbfl-learning-guide-cta"),visible:!!el?.matches?.(":focus-visible")};
         });
         if(f.target){keyboardTarget=true;focusVisible=f.visible;break}
       }
@@ -99,6 +103,7 @@ async function run(target,view,opts={}){
         required:required.map(t=>({text:t,passed:body.includes(t)})),
         responsible:id==="gateway" ? body.includes("do not provide medical diagnosis, family-risk prediction, genetic counselling, treatment guidance, or institutional certification") : true,
         courseRoutes:id==="course" ? expectedRoutes.map(route=>({route,passed:hrefs.includes(route)})) : [],
+        orderedCourseRoutes:id==="course" ? [...document.querySelectorAll(".lbfl-academic-table-wrap a[href]")].map(a=>new URL(a.href,location.href).pathname) : [],
         tableWrap:id==="course" ? document.querySelectorAll(".lbfl-academic-table-wrap").length : 0,
         overflow:Math.max(0,document.documentElement.scrollWidth-document.documentElement.clientWidth),
         rawTemplate:/\{\{|\{%/.test(body)
@@ -144,7 +149,7 @@ async function run(target,view,opts={}){
       metrics.boundaryCount===1 &&
       metrics.required.every(x=>x.passed) &&
       metrics.responsible &&
-      (target.id!=="course" || (metrics.courseRoutes.length===17 && metrics.courseRoutes.every(x=>x.passed) && metrics.tableWrap===1)) &&
+      (target.id!=="course" || (metrics.courseRoutes.length===17 && metrics.courseRoutes.every(x=>x.passed) && JSON.stringify(metrics.orderedCourseRoutes)===JSON.stringify(expectedRoutes) && metrics.tableWrap===1)) &&
       metrics.overflow<=2 &&
       !metrics.rawTemplate &&
       consoleErrors.length===0 &&
@@ -167,6 +172,21 @@ for(const target of targets){
     await run(target,view,{javaScriptEnabled:false});
     await run(target,view,{reducedMotion:true});
   }
+}
+for(const fallback of fallbackTargets){
+  const context=await browser.newContext();
+  try{
+    const response=await context.request.get(base+fallback.route);
+    const html=await response.text();
+    const pass=response.status()===200 &&
+      html.includes("data-f05-genetics-bn-fallback") &&
+      html.includes(`href="${fallback.canonical}"`) &&
+      html.includes(`content="0; url=${fallback.canonical}"`);
+    checks.push({id:fallback.id,route:fallback.route,status:response.status(),canonical:fallback.canonical,pass});
+  }catch(error){
+    checks.push({id:fallback.id,route:fallback.route,error:String(error),pass:false});
+  }
+  await context.close();
 }
 await browser.close();
 const failed=checks.filter(c=>!c.pass);

@@ -58,16 +58,21 @@
   "preservation": {
     "scientific_rewrite": false,
     "responsible_genetics_boundary": "preserve verbatim",
-    "course_table": "content/routes unchanged; existing Academic table wrapper only"
+    "course_table": "content/routes unchanged; existing Academic table wrapper only",
+    "generated_bn_public_routes": "preserved as noindex compatibility redirects to canonical English Genetics surfaces"
   },
   "localization_boundary": {
     "f05_translation_authority": false,
-    "current_generated_bn_routes": "observed Polyglot fallbacks, not reviewed Bangla genetics sources",
-    "disposition": "Do not author or certify Bangla Genetics content in F-05. Any redirect/hreflang/fallback cleanup belongs to CONV-04H."
+    "current_generated_bn_routes": "preserved public URLs via explicit noindex compatibility route owners",
+    "disposition": "Do not author or certify Bangla Genetics content in F-05. Preserve URL continuity only; hreflang/fallback metadata cleanup remains CONV-04H."
   },
   "retained_contract": {
     "model": "bootstrap-plus-retained",
     "state_progression": "strictly-monotonic",
     "current_base": "authenticate live PR base"
-  }
+  },
+  "compatibility_route_owners": [
+    "_pages/redirects/genetics-gateway-bn-fallback.bn.md",
+    "_pages/redirects/genetics-course-index-bn-fallback.bn.md"
+  ]
 }

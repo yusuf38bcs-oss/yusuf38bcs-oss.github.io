@@ -8,13 +8,16 @@ branch: conv-04f-05-genetics-course-20261003
 production_verified_main: cbd6de2cc95f3a573fdd784e29fc045e6448cbda
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact two Genetics learner surfaces + F-05 route-ledger/certification/state artifacts
+mutation_authority: exact two Genetics learner surfaces + two noindex /bn/ compatibility route owners + F-05 route-ledger/certification/state artifacts
 learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
 existing_learning_method_cleanup: legacy framework ownership replaced by canonical Learning Guide on both Genetics surfaces
 gateway_cta_injection: exactly one canonical Learning Guide CTA on each F-05 Genetics target
 learner_mutation_allowlist:
   - _biology/higher-zoology-tree/genetics/index.md
   - _biology/higher-zoology-tree/genetics/course-index.md
+compatibility_route_allowlist:
+  - _pages/redirects/genetics-gateway-bn-fallback.bn.md
+  - _pages/redirects/genetics-course-index-bn-fallback.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
@@ -302,3 +305,15 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Responsible Genetics Boundary: **preserved verbatim**.
 - Existing Academic table primitive: **applied to unchanged 17-row route table**.
 - Scientific-content rewrite: **NO**.
+
+
+## F-05 exact-head review remediation
+
+- Existing generated Bangla fallback URLs: **PRESERVE**.
+- Compatibility owners: **two noindex redirect pages only**.
+- Bangla Genetics translation/content authority: **NONE**.
+- F-05 workflow trigger: expanded to protected Genetics sources + shared course contract.
+- Retained course-contract rule: whole-file equality in F-05 bootstrap; protected `higher-zoology-genetics` entry equality in successor phases.
+- Genetics route-order certification: source + rendered DOM order bound to exact 01 → 17 sequence.
+- Keyboard certification: canonical Learning Guide CTA must itself receive visible keyboard focus.
+- Hreflang/fallback metadata cleanup: **deferred to CONV-04H**.

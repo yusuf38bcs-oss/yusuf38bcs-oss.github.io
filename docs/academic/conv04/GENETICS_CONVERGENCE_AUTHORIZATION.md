@@ -53,7 +53,9 @@ The existing **Responsible Genetics Boundary** must remain intact: educational i
 
 ## Localization boundary
 
-Polyglot currently exposes generated `/bn/...` Genetics fallbacks without a distinct reviewed Bangla Genetics source. F-05 does not authorize a translation or a new Bangla Genetics course. Metadata/redirect/hreflang cleanup of those generated fallbacks belongs to CONV-04H.
+Polyglot currently exposes generated `/bn/...` Genetics fallbacks without a distinct reviewed Bangla Genetics source. F-05 does not authorize a translation or a new Bangla Genetics course.
+
+Exact-head review established that adding `lang: en` would remove the two existing public fallback URLs before CONV-04H. A narrow route-preservation correction is therefore authorized inside F-05: two `lang: bn`, `noindex` compatibility route owners may preserve the existing gateway and course-index `/bn/` URLs while pointing to the canonical English surfaces. This does not authorize Bangla Genetics teaching content. Hreflang and fallback-metadata cleanup remain CONV-04H.
 
 ## Promotion gate
 

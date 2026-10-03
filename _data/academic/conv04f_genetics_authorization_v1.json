@@ -15,6 +15,10 @@
     "routes": [
       "/biology/higher-zoology-tree/genetics/",
       "/biology/higher-zoology-tree/genetics/course-index/"
+    ],
+    "compatibility_routes": [
+      "/bn/biology/higher-zoology-tree/genetics/",
+      "/bn/biology/higher-zoology-tree/genetics/course-index/"
     ]
   },
   "baseline": {
@@ -94,6 +98,12 @@
       "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "mcq-arena"
+    },
+    "route_preservation": {
+      "review_trigger": "Adding explicit lang: en removes previously generated Polyglot Bangla fallback routes.",
+      "action": "Preserve both existing /bn/ URLs with noindex compatibility redirect owners to the canonical English surfaces.",
+      "translation_authority": false,
+      "hreflang_cleanup_deferred_to": "CONV-04H"
     }
   },
   "preserved_invariants": {
@@ -108,8 +118,8 @@
   },
   "localization_boundary": {
     "f05_translation_authority": false,
-    "current_generated_bn_routes": "observed Polyglot fallbacks, not reviewed Bangla genetics sources",
-    "disposition": "Do not author or certify Bangla Genetics content in F-05. Any redirect/hreflang/fallback cleanup belongs to CONV-04H."
+    "current_generated_bn_routes": "preserve public URL continuity with explicit noindex compatibility redirects; not reviewed Bangla Genetics sources",
+    "disposition": "F-05 preserves the two existing /bn/ URLs only. No Bangla Genetics course translation is authored or certified; hreflang/fallback metadata cleanup remains CONV-04H."
   },
   "retained_contracts": [
     "A",

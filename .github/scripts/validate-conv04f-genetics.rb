@@ -21,6 +21,8 @@ AUTH_DOC = ROOT.join("docs/academic/conv04/GENETICS_CONVERGENCE_AUTHORIZATION.md
 DOC = ROOT.join("docs/academic/conv04/GENETICS_CONVERGENCE.md")
 BROWSER = ROOT.join(".github/scripts/conv04f-genetics-browser-certification.mjs")
 WORKFLOW = ROOT.join(".github/workflows/conv04f-genetics-certification.yml")
+BN_GATEWAY_REDIRECT = ROOT.join("_pages/redirects/genetics-gateway-bn-fallback.bn.md")
+BN_COURSE_REDIRECT = ROOT.join("_pages/redirects/genetics-course-index-bn-fallback.bn.md")
 
 CTA = "{% include education/learning-guide-cta.html %}"
 LEGACY = "{% include education/framework-links.html %}"
@@ -32,6 +34,8 @@ BOOTSTRAP_FILES = %w[
   .github/workflows/conv04f-genetics-certification.yml
   _biology/higher-zoology-tree/genetics/course-index.md
   _biology/higher-zoology-tree/genetics/index.md
+  _pages/redirects/genetics-course-index-bn-fallback.bn.md
+  _pages/redirects/genetics-gateway-bn-fallback.bn.md
   _data/academic/conv04f_genetics_authorization_v1.json
   _data/academic/conv04f_genetics_v1.json
   docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
@@ -44,6 +48,8 @@ IMMUTABLE_F05 = %w[
   .github/scripts/conv04f-genetics-browser-certification.mjs
   .github/scripts/validate-conv04f-genetics.rb
   .github/workflows/conv04f-genetics-certification.yml
+  _pages/redirects/genetics-course-index-bn-fallback.bn.md
+  _pages/redirects/genetics-gateway-bn-fallback.bn.md
   _data/academic/conv04f_genetics_authorization_v1.json
   _data/academic/conv04f_genetics_v1.json
   docs/academic/conv04/GENETICS_CONVERGENCE.md
@@ -142,7 +148,7 @@ def normalize_course_index(source)
   cleaned
 end
 
-[AUTH, MANIFEST, GATEWAY, COURSE_INDEX, COURSE_CONTRACT, LEDGER, STATE, AUTH_DOC, DOC, BROWSER, WORKFLOW].each do |path|
+[AUTH, MANIFEST, GATEWAY, COURSE_INDEX, COURSE_CONTRACT, LEDGER, STATE, AUTH_DOC, DOC, BROWSER, WORKFLOW, BN_GATEWAY_REDIRECT, BN_COURSE_REDIRECT].each do |path|
   need(errors, path.file?, "Missing F-05 artifact: #{path.relative_path_from(ROOT)}")
 end
 
@@ -157,6 +163,14 @@ need(errors, auth["status"] == "authorized-not-implemented", "Historical F-05 au
 need(errors, manifest["schema"] == "lbfl-conv04f-genetics-v1", "F-05 manifest schema mismatch")
 need(errors, manifest["phase"] == PHASE, "F-05 manifest phase mismatch")
 need(errors, manifest["authorized_base"] == BASE, "F-05 manifest base mismatch")
+need(
+  errors,
+  Array(manifest["compatibility_route_owners"]).sort == %w[
+    _pages/redirects/genetics-course-index-bn-fallback.bn.md
+    _pages/redirects/genetics-gateway-bn-fallback.bn.md
+  ],
+  "F-05 compatibility route-owner manifest drift"
+)
 
 {
   GATEWAY => ["/biology/higher-zoology-tree/genetics/", "Genetics Matrix"],
@@ -177,13 +191,30 @@ need(errors, manifest["authorized_base"] == BASE, "F-05 manifest base mismatch")
   need(errors, source.include?("# #{title}"), "#{path.basename}: H1 content drift")
 end
 
+{
+  BN_GATEWAY_REDIRECT => ["/biology/higher-zoology-tree/genetics/", "/biology/higher-zoology-tree/genetics/"],
+  BN_COURSE_REDIRECT => ["/biology/higher-zoology-tree/genetics/course-index/", "/biology/higher-zoology-tree/genetics/course-index/"]
+}.each do |path, values|
+  source = read_utf8(path)
+  permalink, canonical = values
+  need(errors, fm(source, "layout") == "null", "#{path.basename}: compatibility redirect layout must be null")
+  need(errors, fm(source, "lang") == "bn", "#{path.basename}: compatibility redirect lang must be bn")
+  need(errors, fm(source, "language") == "bn", "#{path.basename}: compatibility redirect language must be bn")
+  need(errors, fm(source, "permalink") == permalink, "#{path.basename}: compatibility permalink drift")
+  need(errors, source.include?("data-f05-genetics-bn-fallback"), "#{path.basename}: compatibility marker missing")
+  need(errors, source.include?("href=\"#{canonical}\""), "#{path.basename}: canonical English destination missing")
+  need(errors, source.include?("content=\"0; url=#{canonical}\""), "#{path.basename}: compatibility redirect target missing")
+end
+
 need(errors, gateway.include?(RESPONSIBLE), "Responsible Genetics Boundary wording changed")
 need(errors, course_index.include?(TABLE_OPEN), "Genetics course map missing Academic table wrapper")
 EXPECTED_ROUTES.each { |route| need(errors, course_index.include?(route), "Course index lost route #{route}") }
+course_table = course_index[/## Complete Lecture Route Map\s*(.*?)\s*## Recommended Learning Path/m, 1].to_s
+ordered_course_routes = course_table.scan(/\{\{\s*'([^']+)'\s*\|\s*relative_url\s*\}\}/).flatten
+need(errors, ordered_course_routes == EXPECTED_ROUTES, "Genetics course-index learner route order drift")
 
 base_contract, contract_status = git("show", "#{BASE}:_data/academic/course_contract_v1.json")
 need(errors, contract_status.success?, "Unable to authenticate base course contract")
-need(errors, read_utf8(COURSE_CONTRACT) == base_contract, "Genetics course contract changed in F-05") if contract_status.success?
 
 MODULE_BLOBS.each do |relative, expected_blob|
   current, status = git("rev-parse", "HEAD:#{relative}")
@@ -201,6 +232,11 @@ if COURSE_CONTRACT.file?
     need(errors, modules.map { |m| m["order"] } == (1..17).to_a, "Genetics module order drift")
     need(errors, modules.map { |m| m["route"] } == EXPECTED_ROUTES, "Genetics module route sequence drift")
     need(errors, genetics["canonical_route"] == "/biology/higher-zoology-tree/genetics/course-index/", "Genetics canonical course route drift")
+    if contract_status.success?
+      base_contract_json = JSON.parse(base_contract)
+      base_genetics = Array(base_contract_json["pathways"]).find { |x| x["course_id"] == "higher-zoology-genetics" }
+      need(errors, genetics == base_genetics, "Protected higher-zoology-genetics course-contract entry changed")
+    end
   end
 end
 
@@ -237,6 +273,7 @@ bootstrap = mode == "pull_request" && comparison_base == BASE
 future = mode == "pull_request" && comparison_base != BASE
 
 if bootstrap
+  need(errors, read_utf8(COURSE_CONTRACT) == base_contract, "Course contract changed in F-05 bootstrap") if contract_status.success?
   base_gateway, sg = git("show", "#{BASE}:_biology/higher-zoology-tree/genetics/index.md")
   base_index, si = git("show", "#{BASE}:_biology/higher-zoology-tree/genetics/course-index.md")
   need(errors, sg.success? && normalize_gateway(gateway) == base_gateway, "Genetics gateway changed outside authorized structural additions")

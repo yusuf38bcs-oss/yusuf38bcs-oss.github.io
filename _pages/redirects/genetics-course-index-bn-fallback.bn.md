@@ -1,0 +1,27 @@
+---
+layout: null
+permalink: /biology/higher-zoology-tree/genetics/course-index/
+lang: bn
+language: bn
+sitemap: false
+robots: noindex
+title: "Genetics Course Index — বাংলা রুট সামঞ্জস্য"
+---
+<!doctype html>
+<html lang="bn" data-f05-genetics-bn-fallback>
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Compatibility route preserving the previous Bangla-prefixed Genetics course-index URL while the reviewed canonical Genetics course remains English.">
+  <link rel="canonical" href="/biology/higher-zoology-tree/genetics/course-index/">
+  <meta http-equiv="refresh" content="0; url=/biology/higher-zoology-tree/genetics/course-index/">
+  <title>Genetics Course Index — Route Compatibility | Learning Biology For Life</title>
+</head>
+<body>
+  <main>
+    <h1>Genetics Course Index — রুট সামঞ্জস্য</h1>
+    <p>এই URL-টি পূর্ববর্তী বাংলা-prefixed fallback রুট সংরক্ষণ করছে। স্বতন্ত্র পর্যালোচিত বাংলা Genetics কোর্স এখনো প্রকাশিত হয়নি।</p>
+    <p><a href="/biology/higher-zoology-tree/genetics/course-index/">ক্যানোনিক্যাল English Genetics Course Index-এ যান</a>.</p>
+  </main>
+</body>
+</html>
