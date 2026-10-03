@@ -1,6 +1,6 @@
 {
   "schema": "lbfl-conv04f-higher-zoology-gateway-authorization-v1",
-  "version": "CONV-04F-02-authorization-1.0.0",
+  "version": "CONV-04F-02-authorization-1.0.1",
   "programme": "CONV-04",
   "phase": "CONV-04F-02",
   "status": "authorized-not-implemented",
@@ -26,12 +26,16 @@
       "framework_links": 1,
       "learning_guide_cta": 0,
       "links": [
-        "{{ ",
-        "{{ ",
-        "{{ ",
-        "{{ ",
-        "{{ ",
-        "{{ "
+        "/biology/animal-diversity/",
+        "/biology/higher-zoology-tree/human-physiology/",
+        "/biology/higher-zoology-tree/ecology/",
+        "/biology/higher-zoology-tree/genetics/",
+        "/biology/higher-zoology-tree/biostatistics/",
+        "/biology/higher-zoology-tree/practical/",
+        "/biology/",
+        "/biology/higher-zoology-tree/genetics/",
+        "/mcq-arena/",
+        "/synaptic-bridge/"
       ],
       "headings": [
         "Higher Zoology Tree",
@@ -42,7 +46,8 @@
         "Synaptic Bridge",
         "Critical Thinking Questions",
         "Related Learning Paths"
-      ]
+      ],
+      "link_count": 10
     },
     "bangla": {
       "blob_sha": "8d607aa5422c2c3b4a52955732ff0563a6142b28",
@@ -56,12 +61,16 @@
       "framework_links": 1,
       "learning_guide_cta": 0,
       "links": [
-        "{{ ",
-        "{{ ",
-        "{{ ",
-        "{{ ",
-        "{{ ",
-        "{{ "
+        "/biology/animal-diversity/",
+        "/biology/higher-zoology-tree/human-physiology/",
+        "/biology/higher-zoology-tree/ecology/",
+        "/biology/higher-zoology-tree/genetics/",
+        "/biology/higher-zoology-tree/biostatistics/",
+        "/biology/higher-zoology-tree/practical/",
+        "/biology/",
+        "/biology/higher-zoology-tree/genetics/",
+        "/mcq-arena/",
+        "/synaptic-bridge/"
       ],
       "headings": [
         "উচ্চতর প্রাণিবিজ্ঞান",
@@ -72,7 +81,8 @@
         "Synaptic Bridge",
         "সমালোচনামূলক চিন্তার প্রশ্ন",
         "সম্পর্কিত শেখার পথ"
-      ]
+      ],
+      "link_count": 10
     },
     "route_ledger": {
       "id": "higher-zoology-gateway",
@@ -154,5 +164,10 @@
     "CONV-04F-01",
     "CONV-04F-01-R1"
   ],
-  "next_gate": "implement exact two-source metadata/CTA convergence plus ledger/certification artifacts on unchanged base"
+  "next_gate": "implement exact two-source metadata/CTA convergence plus ledger/certification artifacts on unchanged base",
+  "authorization_correction": {
+    "type": "baseline-census-accuracy-only",
+    "authority_widened": false,
+    "reason": "Replace truncated Liquid href fragments with complete normalized baseline destinations after review; learner mutation authority is unchanged."
+  }
 }
