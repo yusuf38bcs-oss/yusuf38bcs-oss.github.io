@@ -9,14 +9,14 @@
   "canonical_route": "/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/",
   "source_file": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
   "baseline_blob_sha": "0eceb2542287fc99356b73dc400b3ede8a8db4f4",
-  "mutation_model": "structural-metadata-plus-canonical-learning-guide-and-exact-polyglot-route-exclusion",
+  "mutation_model": "structural-metadata-plus-canonical-learning-guide-and-route-scoped-root-language-compatibility",
   "scientific_content_rewrite": false,
   "additions": {
-    "lang": "bn",
     "academic_system": "v1",
     "academic_role": "revision",
     "learning_guide": "canonical",
-    "canonical_learning_guide_cta_count": 1
+    "canonical_learning_guide_cta_count": 1,
+    "polyglot_root_language": true
   },
   "retained": {
     "legacy_language": "bn",
@@ -64,9 +64,17 @@
     "_data/academic/course_contract_v1.json",
     "assets/css/academic-design-system.css"
   ],
-  "route_preservation": {
-    "config_file": "_config.yml",
-    "exclude_from_localization": "biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html",
-    "reason": "Preserve the established root Bangla canonical route while declaring lang: bn under Jekyll Polyglot, following the existing F-04 Ecology route-ownership pattern."
+  "language_contract": {
+    "content_language": "bn",
+    "historical_root_route": true,
+    "polyglot_lang_frontmatter": false,
+    "effective_document_language_source": "language",
+    "rendered_html_lang": "bn",
+    "rationale": "Avoid non-default-language URL prefixing on the established root Bangla route while preserving truthful document language through an explicit route-scoped compatibility flag."
+  },
+  "shared_contract_mutation": {
+    "academic_surface_validator": "route-scoped effective-language fallback only when both ledger and source opt in with polyglot_root_language=true",
+    "default_layout": "route-scoped html language fallback to page.language only when page.polyglot_root_language=true",
+    "global_language_behavior_changed": false
   }
 }
