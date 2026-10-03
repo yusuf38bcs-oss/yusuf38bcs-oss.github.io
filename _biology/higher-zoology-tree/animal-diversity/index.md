@@ -13,9 +13,14 @@ status: Active
 author_profile: false
 toc: false
 classes: wide
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # Animal Diversity
+
+{% include education/learning-guide-cta.html %}
 
 Animal Diversity is a ten-lecture Higher Zoology course focused on chordate body plans, classification, structure–function relationships, adaptation, and representative systems from lower chordates to humans.
 
