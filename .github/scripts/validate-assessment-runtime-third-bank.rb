@@ -22,6 +22,7 @@ CONTRAST_REMEDIATION_PHASE = "CONV-04F-07-R1"
 CONTRAST_REMEDIATION_FILES = %w[
   .github/scripts/validate-academic-design-system.rb
   .github/scripts/validate-assessment-runtime-third-bank.rb
+  .github/scripts/validate-learning-guide-contract.rb
   _mcq-arena/academic/zoology-respiratory-system-mcq-5.md
   docs/academic/conv04/ASSESSMENT_RUNTIME_THIRD_BANK_CONTRAST_R1_AUTHORIZATION.md
   docs/academic/conv04/CONV04_STATE.md
