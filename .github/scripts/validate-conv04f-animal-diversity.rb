@@ -25,6 +25,32 @@ WORKFLOW=ROOT.join(".github/workflows/conv04f-animal-diversity-certification.yml
 CTA="{% include education/learning-guide-cta.html %}"
 PHASE_PATTERN=/\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R([1-9]\d*))?\z/.freeze
 
+EXPECTED_MODULE_ROUTES=[
+  "/biology/animal-diversity/lecture-01-chordate-plan-classification/",
+  "/biology/animal-diversity/lecture-02-ascidia/",
+  "/biology/animal-diversity/lecture-03-branchiostoma/",
+  "/biology/animal-diversity/lecture-04-myxine-petromyzon/",
+  "/biology/animal-diversity/lecture-05-scoliodon/",
+  "/biology/animal-diversity/lecture-06-labeo-rohita/",
+  "/biology/animal-diversity/lecture-07-bufo/",
+  "/biology/animal-diversity/lecture-08-hemidactylus/",
+  "/biology/animal-diversity/lecture-09-columba-livia/",
+  "/biology/animal-diversity/lecture-10-homo-sapiens-eye-ear/"
+].freeze
+
+EXPECTED_MODULE_TITLES=[
+  "Chordate Plan and Classification",
+  "Ascidia",
+  "Branchiostoma",
+  "Myxine and Petromyzon",
+  "Scoliodon",
+  "Labeo rohita",
+  "Bufo",
+  "Hemidactylus",
+  "Columba livia",
+  "Homo sapiens: Eye and Ear"
+].freeze
+
 BOOTSTRAP=%w[
   .github/scripts/conv04f-animal-diversity-browser-certification.mjs
   .github/scripts/validate-conv04f-animal-diversity.rb
@@ -99,6 +125,19 @@ need(errors,auth["authorized_base"]==BASE,"F-03 authorization base drift")
 need(errors,auth["status"]=="authorized-not-implemented","Historical F-03 authorization must remain immutable")
 need(errors,man["phase"]==PHASE,"F-03 manifest phase mismatch")
 need(errors,man["authorized_base"]==BASE,"F-03 manifest base mismatch")
+if COURSE_CONTRACT.file?
+  contract=JSON.parse(read_utf8(COURSE_CONTRACT))
+  pathway=Array(contract["pathways"]).find{|p|p["course_id"]=="higher-zoology-animal-diversity"}
+  need(errors,!pathway.nil?,"Animal Diversity course contract missing")
+  if pathway
+    modules=Array(pathway["modules"])
+    need(errors,modules.length==10,"Animal Diversity course contract must retain ten modules")
+    need(errors,modules.map{|m|m["route"]}==EXPECTED_MODULE_ROUTES,
+      "Animal Diversity course-contract route order drift")
+    need(errors,modules.map{|m|m["title"]}==EXPECTED_MODULE_TITLES,
+      "Animal Diversity course-contract title order drift")
+  end
+end
 
 {GATEWAY=>["/biology/animal-diversity/","Animal Diversity"],COURSE=>["/biology/animal-diversity/course/","Animal Diversity Course — Lectures 01–10"]}.each do |path,(route,title)|
   next unless path.file?
@@ -114,6 +153,19 @@ need(errors,man["authorized_base"]==BASE,"F-03 manifest base mismatch")
   if path == COURSE
     need(errors,s.include?('class="lbfl-academic-table-wrap"'),"Course index must use Academic-v1 table wrapper")
     need(errors,s.include?('tabindex="0" role="region" aria-label="Animal Diversity lecture sequence"'),"Course table wrapper accessibility contract missing")
+
+    route_positions=EXPECTED_MODULE_ROUTES.map{|route| s.index(route)}
+    title_positions=EXPECTED_MODULE_TITLES.map{|title| s.index(title)}
+    need(errors,route_positions.all?,"Course index must retain all ten canonical lecture links")
+    need(errors,title_positions.all?,"Course index must retain all ten lecture titles")
+    if route_positions.all?
+      need(errors,route_positions==route_positions.sort && route_positions.uniq.length==10,
+        "Course index lecture links must remain unique and ordered 01–10")
+    end
+    if title_positions.all?
+      need(errors,title_positions==title_positions.sort,
+        "Course index lecture titles must remain ordered 01–10")
+    end
   end
   need(errors,!s.match?(/<style\b|\sstyle\s*=/i),"#{path.basename}: local style debt not authorized")
 end
