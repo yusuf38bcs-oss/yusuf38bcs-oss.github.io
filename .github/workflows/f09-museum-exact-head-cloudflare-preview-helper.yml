@@ -15,17 +15,17 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
-      TARGET_SHA: "f8b86811d7b59200f22e48548d747eb900c79b8d"
+      TARGET_SHA: "1e7522dbd44b4e098604c1b541fc7b94b6dbc890"
       TARGET_BRANCH: "conv-04f-09-museum-specimens-20261004"
       CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
       CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
-      CLOUDFLARE_PAGES_DEPLOY_TOKEN: \${{ secrets.CLOUDFLARE_PAGES_DEPLOY_TOKEN }}
+      CLOUDFLARE_PAGES_DEPLOY_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_TOKEN }}
 
     steps:
       - name: Check out exact F-09 candidate
         uses: actions/checkout@v5
         with:
-          ref: \${{ env.TARGET_SHA }}
+          ref: ${{ env.TARGET_SHA }}
           fetch-depth: 1
           persist-credentials: false
 
