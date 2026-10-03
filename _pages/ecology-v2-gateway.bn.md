@@ -22,9 +22,14 @@ lang: bn
 page_id: ecology-gateway
 related: true
 last_modified_at: 2026-09-20T22:04:00+06:00
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # Ecology — লেকচার ০১–১০
+
+{% include education/learning-guide-cta.html %}
 
 এই Ecology course-এ পরিবেশগত ভিত্তি থেকে population growth পর্যন্ত দশটি বিস্তারিত lecture রয়েছে। ভাষা পরিবর্তনের জন্য site header-এর **English | বাংলা** control ব্যবহার করুন।
 

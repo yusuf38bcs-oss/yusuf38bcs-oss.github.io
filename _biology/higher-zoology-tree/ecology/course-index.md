@@ -21,11 +21,18 @@ lang: en
 lang-exclusive: [en]
 related: true
 last_modified_at: 2026-09-20T22:04:00+06:00
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # Ecology Course Index — Lectures 01–10
 
+{% include education/learning-guide-cta.html %}
+
 This is one Ecology course. Use the **English | বাংলা** language control in the site header to move between reviewed language versions; the course map itself does not duplicate every lecture as separate language choices.
+
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology lecture sequence" markdown="1">
 
 | Lecture | Topic | Open |
 |---:|---|---|
@@ -39,5 +46,7 @@ This is one Ecology course. Use the **English | বাংলা** language contr
 | 08 | Population Ecology I: Population Characteristics, Density and Dispersion | [Open lecture]({{ '/en/biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion/' | relative_url }}) |
 | 09 | Population Ecology II: Natality, Mortality, Migration, Age Structure and Life Tables | [Open lecture]({{ '/en/biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables/' | relative_url }}) |
 | 10 | Survivorship Curves and Population Growth Models | [Open lecture]({{ '/en/biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models/' | relative_url }}) |
+
+</div>
 
 [Back to Ecology]({{ '/biology/higher-zoology-tree/ecology/' | relative_url }})
