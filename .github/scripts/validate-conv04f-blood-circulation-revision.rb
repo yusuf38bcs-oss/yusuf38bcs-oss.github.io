@@ -24,7 +24,6 @@ BOOTSTRAP_FILES = %w[
   .github/scripts/validate-conv04f-blood-circulation-revision.rb
   .github/workflows/conv04f-blood-circulation-revision-certification.yml
   _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md
-  _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md
   _data/academic/conv04f_blood_circulation_revision_v1.json
   docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
   docs/academic/conv04/BLOOD_CIRCULATION_REVISION_F07_AUTHORIZATION.md
