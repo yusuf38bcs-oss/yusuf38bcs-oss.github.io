@@ -62,7 +62,7 @@ jobs:
           test -z "$(git status --porcelain)"
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
         with:
           ruby-version: "3.2"
           bundler-cache: false
@@ -138,7 +138,7 @@ jobs:
           fi
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
         with:
           ruby-version: "3.2"
           bundler-cache: false
