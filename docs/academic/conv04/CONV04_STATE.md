@@ -11,13 +11,10 @@ conv04e_boundary: CLOSED / PASS / production-verified
 mutation_authority: exact two Genetics learner surfaces + F-05 route-ledger/certification/state artifacts
 learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
 existing_learning_method_cleanup: legacy framework ownership replaced by canonical Learning Guide on both Genetics surfaces
-gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
+gateway_cta_injection: exactly one canonical Learning Guide CTA on each F-05 Genetics target
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/ecology/en/index.md
-  - _biology/higher-zoology-tree/ecology/course-index.md
-route_owner_mutation_allowlist:
-  - biology/higher-zoology-tree/ecology/index.html
-  - _pages/ecology-v2-gateway.bn.md
+  - _biology/higher-zoology-tree/genetics/index.md
+  - _biology/higher-zoology-tree/genetics/course-index.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
