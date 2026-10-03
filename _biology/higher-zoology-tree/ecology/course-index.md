@@ -21,9 +21,14 @@ lang: en
 lang-exclusive: [en]
 related: true
 last_modified_at: 2026-09-20T22:04:00+06:00
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # Ecology Course Index — Lectures 01–10
+
+{% include education/learning-guide-cta.html %}
 
 This is one Ecology course. Use the **English | বাংলা** language control in the site header to move between reviewed language versions; the course map itself does not duplicate every lecture as separate language choices.
 
