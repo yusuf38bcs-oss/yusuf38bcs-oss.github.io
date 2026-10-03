@@ -1,0 +1,73 @@
+name: F-09 Museum Exact-Head Cloudflare Preview Helper
+
+on:
+  push:
+    branches:
+      - "ops/f09-museum-preview-f8b8681"
+    paths:
+      - ".github/workflows/f09-museum-exact-head-cloudflare-preview-helper.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      TARGET_SHA: "f8b86811d7b59200f22e48548d747eb900c79b8d"
+      TARGET_BRANCH: "conv-04f-09-museum-specimens-20261004"
+      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
+      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
+      CLOUDFLARE_PAGES_DEPLOY_TOKEN: \${{ secrets.CLOUDFLARE_PAGES_DEPLOY_TOKEN }}
+
+    steps:
+      - name: Check out exact F-09 candidate
+        uses: actions/checkout@v5
+        with:
+          ref: \${{ env.TARGET_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Authenticate exact target
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          test -z "$(git status --porcelain)"
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Build exact-head production Jekyll
+        env:
+          JEKYLL_ENV: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          gem install bundler -v 2.6.9 --no-document
+          bundle _2.6.9_ install --jobs 4 --retry 3
+          bundle _2.6.9_ exec jekyll clean
+          bundle _2.6.9_ exec jekyll build --trace
+          test -f _site/biology/higher-zoology-tree/practical/museum-specimens/index.html
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Deploy exact-head Cloudflare Pages preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_PAGES_DEPLOY_TOKEN"
+          export CLOUDFLARE_API_TOKEN="$CLOUDFLARE_PAGES_DEPLOY_TOKEN"
+          npx --yes wrangler@latest pages deploy _site \
+            --project-name "$CLOUDFLARE_PAGES_PROJECT" \
+            --branch "$TARGET_BRANCH" \
+            --commit-hash "$TARGET_SHA" \
+            --commit-message "CONV-04F-09 exact-head Museum preview" \
+            --commit-dirty=false
