@@ -2,16 +2,16 @@
 
 programme: CONV-04
 phase: CONV-04F-06
-mode: authorization-only — HSC Digestive System gateway convergence
+mode: implementation candidate — HSC Digestive System gateway strict Academic-v1 convergence
 authorized_base: 55fd04f004f3f352cf90d4e026702d6714096072
 branch: conv-04f-06-digestive-gateway-authorization-20261003
 production_verified_main: 55fd04f004f3f352cf90d4e026702d6714096072
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: authorization/state artifacts only; one Digestive gateway learner mutation authorized but not yet applied
-learner_content_authoring: structural gateway convergence only / scientific rewrite forbidden / not yet applied
-existing_learning_method_cleanup: legacy framework ownership replaced by canonical Learning Guide on both Genetics surfaces
-gateway_cta_injection: exactly one canonical Learning Guide CTA on each F-05 Genetics target
+mutation_authority: exact one Digestive gateway learner surface + F-06 route-ledger/certification/state artifacts
+learner_content_authoring: structural gateway convergence only / scientific rewrite forbidden / implemented-candidate
+existing_learning_method_cleanup: page-local Digestive presentation removed in favor of existing Academic-v1 primitives
+gateway_cta_injection: exactly one canonical Learning Guide CTA on Digestive course index
 learner_mutation_allowlist:
   - _biology/hsc-corner/zoology/digestive-system/index.md
 shared_authored_runtime: protected / unchanged
@@ -19,8 +19,8 @@ assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until F-06 implementation + retained A-F-05 + course-contract preservation + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
-merge: not authorized in authorization-only state
+ready_transition: not authorized until exact-head F-06 + retained A-F-05/D + course-contract/14-lecture preservation + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
+merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
 
@@ -329,3 +329,33 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Gateway local-style migration: **AUTHORIZED only to existing Academic-v1 primitives**.
 - Scientific-content rewrite authority: **NONE**.
 - Learner mutation performed in authorization state: **NO**.
+
+
+## CONV-04F-05 post-merge closure
+
+- F-05 Genetics gateway + 17-lecture course index: **MERGED via PR #417**.
+- F-05 merge / production main: `55fd04f004f3f352cf90d4e026702d6714096072`.
+- Cloudflare Pages exact-main deployment: **PASS**.
+- GitHub Pages build + deploy: **PASS**.
+- 20 localized learner-pages production probe: **PASS**.
+- Public Genetics gateway and course index: **LIVE / canonical routes verified**.
+- Genetics 17-lecture route map: **preserved in canonical order**.
+- Responsible Genetics Boundary: **present**.
+- Worker build on this main reported a separate failure; Worker/Cloudflare Worker mutation is outside F-05/F-06 scope and is not used as F-05 academic-route closure evidence.
+
+**CONV-04F-05 = CLOSED / PASS / production-verified for the academic surface.**
+
+## CONV-04F-06 implementation candidate
+
+- Exact authorized base: `55fd04f004f3f352cf90d4e026702d6714096072`.
+- Target: HSC Digestive System 14-lecture gateway.
+- Exact learner-facing mutation count: **1**.
+- Academic-v1 role: `course_index`.
+- Language: `bn`.
+- Learning Guide: `canonical`.
+- Page-local `<style>` block: **removed**.
+- Presentation migrated to existing `lbfl-academic-callout`, `lbfl-academic-grid`, and `lbfl-academic-card` primitives.
+- Digestive course contract: **byte-identical / protected**.
+- Fourteen lecture sources: **byte-identical / protected**.
+- Route ledger: strict `hsc-digestive-system-course-index` with zero source/live debt.
+- Shared CSS/layout/runtime: **unchanged**.
