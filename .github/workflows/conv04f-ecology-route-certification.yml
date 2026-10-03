@@ -10,6 +10,7 @@ on:
       - "_biology/higher-zoology-tree/ecology/en/index.md"
       - "_biology/higher-zoology-tree/ecology/course-index.md"
       - "_layouts/single.html"
+      - "_config.yml"
       - "_data/academic/conv04f04_ecology_route_ownership_v1.json"
       - "_data/academic/conv04f04_ecology_v1.json"
       - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
@@ -124,6 +125,9 @@ jobs:
           test -f _site/biology/higher-zoology-tree/ecology/course-index/index.html
           test -f _site/en/biology/higher-zoology-tree/ecology/index.html
           test -f _site/bn/biology/higher-zoology-tree/ecology/index.html
+          grep -q 'lang="bn"' _site/bn/biology/higher-zoology-tree/ecology/index.html
+          grep -q 'data-lbfl-academic-surface="v1"' _site/bn/biology/higher-zoology-tree/ecology/index.html
+          ! grep -q 'This address is retained for compatibility' _site/bn/biology/higher-zoology-tree/ecology/index.html
           ruby .github/scripts/validate-conv04f-ecology-route-ownership.rb
           ruby .github/scripts/validate-ecology-course.rb
           ruby .github/scripts/validate-academic-surface-contract.rb
