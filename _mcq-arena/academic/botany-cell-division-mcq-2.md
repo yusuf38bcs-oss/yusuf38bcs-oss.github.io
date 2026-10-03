@@ -104,8 +104,8 @@ concept_level: "Assessment"
 .score-board.show { display: block; animation: slideUp 0.5s ease; }
 .score-text { font-size: 2rem; font-weight: 800; color: #f0fdf4; margin: 10px 0; }
 
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); } to { transform: translateY(0); } }
+@keyframes fadeIn { from { transform: translateY(4px); } to { transform: translateY(0); } }
 </style>
 
 <div class="authored-assessment-wrapper" data-authored-assessment data-assessment-runtime="authored-v1" data-source-return="/biology/hsc-corner/botany/" data-source-label="Review HSC Botany source" data-time-limit="600">
