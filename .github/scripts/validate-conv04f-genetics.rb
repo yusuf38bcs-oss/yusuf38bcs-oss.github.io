@@ -21,9 +21,6 @@ AUTH_DOC = ROOT.join("docs/academic/conv04/GENETICS_CONVERGENCE_AUTHORIZATION.md
 DOC = ROOT.join("docs/academic/conv04/GENETICS_CONVERGENCE.md")
 BROWSER = ROOT.join(".github/scripts/conv04f-genetics-browser-certification.mjs")
 WORKFLOW = ROOT.join(".github/workflows/conv04f-genetics-certification.yml")
-CONFIG = ROOT.join("_config.yml")
-BN_GATEWAY_REDIRECT = ROOT.join("bn/biology/higher-zoology-tree/genetics/index.html")
-BN_COURSE_REDIRECT = ROOT.join("bn/biology/higher-zoology-tree/genetics/course-index/index.html")
 
 CTA = "{% include education/learning-guide-cta.html %}"
 LEGACY = "{% include education/framework-links.html %}"
@@ -35,9 +32,6 @@ BOOTSTRAP_FILES = %w[
   .github/workflows/conv04f-genetics-certification.yml
   _biology/higher-zoology-tree/genetics/course-index.md
   _biology/higher-zoology-tree/genetics/index.md
-  _config.yml
-  bn/biology/higher-zoology-tree/genetics/course-index/index.html
-  bn/biology/higher-zoology-tree/genetics/index.html
   _data/academic/conv04f_genetics_authorization_v1.json
   _data/academic/conv04f_genetics_v1.json
   docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
@@ -50,8 +44,6 @@ IMMUTABLE_F05 = %w[
   .github/scripts/conv04f-genetics-browser-certification.mjs
   .github/scripts/validate-conv04f-genetics.rb
   .github/workflows/conv04f-genetics-certification.yml
-  bn/biology/higher-zoology-tree/genetics/course-index/index.html
-  bn/biology/higher-zoology-tree/genetics/index.html
   _data/academic/conv04f_genetics_authorization_v1.json
   _data/academic/conv04f_genetics_v1.json
   docs/academic/conv04/GENETICS_CONVERGENCE.md
@@ -150,7 +142,7 @@ def normalize_course_index(source)
   cleaned
 end
 
-[AUTH, MANIFEST, GATEWAY, COURSE_INDEX, COURSE_CONTRACT, LEDGER, STATE, AUTH_DOC, DOC, BROWSER, WORKFLOW, CONFIG, BN_GATEWAY_REDIRECT, BN_COURSE_REDIRECT].each do |path|
+[AUTH, MANIFEST, GATEWAY, COURSE_INDEX, COURSE_CONTRACT, LEDGER, STATE, AUTH_DOC, DOC, BROWSER, WORKFLOW].each do |path|
   need(errors, path.file?, "Missing F-05 artifact: #{path.relative_path_from(ROOT)}")
 end
 
@@ -165,14 +157,6 @@ need(errors, auth["status"] == "authorized-not-implemented", "Historical F-05 au
 need(errors, manifest["schema"] == "lbfl-conv04f-genetics-v1", "F-05 manifest schema mismatch")
 need(errors, manifest["phase"] == PHASE, "F-05 manifest phase mismatch")
 need(errors, manifest["authorized_base"] == BASE, "F-05 manifest base mismatch")
-need(
-  errors,
-  Array(manifest["compatibility_route_owners"]).sort == %w[
-    bn/biology/higher-zoology-tree/genetics/course-index/index.html
-    bn/biology/higher-zoology-tree/genetics/index.html
-  ],
-  "F-05 compatibility route-owner manifest drift"
-)
 
 {
   GATEWAY => ["/biology/higher-zoology-tree/genetics/", "Genetics Matrix"],
@@ -191,24 +175,6 @@ need(
   need(errors, !source.match?(/<style\b|\sstyle\s*=/i), "#{path.basename}: local style debt not authorized")
   need(errors, !source.match?(/<script\b/i), "#{path.basename}: local script debt not authorized")
   need(errors, source.include?("# #{title}"), "#{path.basename}: H1 content drift")
-end
-
-{
-  BN_GATEWAY_REDIRECT => "/biology/higher-zoology-tree/genetics/",
-  BN_COURSE_REDIRECT => "/biology/higher-zoology-tree/genetics/course-index/"
-}.each do |path, canonical|
-  source = read_utf8(path)
-  need(errors, source.include?("data-f05-genetics-bn-fallback"), "#{path.basename}: compatibility marker missing")
-  need(errors, source.include?("href=\"#{canonical}\""), "#{path.basename}: canonical English destination missing")
-  need(errors, source.include?("content=\"0; url=#{canonical}\""), "#{path.basename}: compatibility redirect target missing")
-end
-
-config = read_utf8(CONFIG)
-[
-  "bn/biology/higher-zoology-tree/genetics/index.html",
-  "bn/biology/higher-zoology-tree/genetics/course-index/index.html"
-].each do |relative|
-  need(errors, config.lines.any? { |line| line.strip == "- #{relative}" }, "Polyglot localization exclusion missing: #{relative}")
 end
 
 need(errors, gateway.include?(RESPONSIBLE), "Responsible Genetics Boundary wording changed")

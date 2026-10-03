@@ -100,8 +100,9 @@
       "assessment_owner": "mcq-arena"
     },
     "route_preservation": {
-      "review_trigger": "Adding explicit lang: en removes previously generated Polyglot Bangla fallback routes.",
-      "action": "Preserve both existing /bn/ URLs with noindex compatibility redirect owners to the canonical English surfaces.",
+      "review_trigger": "Verify whether explicit lang: en removes the previously generated Polyglot Bangla-prefixed fallback URLs.",
+      "observed_rendered_result": "Both historical /bn/ Genetics URLs remain HTTP 200 English Academic-v1 fallbacks after the metadata correction.",
+      "action": "Retain and browser-certify the existing generated fallback URLs; do not add a translation or replacement route owner.",
       "translation_authority": false,
       "hreflang_cleanup_deferred_to": "CONV-04H"
     }
@@ -118,8 +119,8 @@
   },
   "localization_boundary": {
     "f05_translation_authority": false,
-    "current_generated_bn_routes": "preserve public URL continuity with explicit noindex compatibility redirects; not reviewed Bangla Genetics sources",
-    "disposition": "F-05 preserves the two existing /bn/ URLs only. No Bangla Genetics course translation is authored or certified; hreflang/fallback metadata cleanup remains CONV-04H."
+    "current_generated_bn_routes": "retain and exact-head browser-certify as English Polyglot fallbacks; not reviewed Bangla Genetics sources",
+    "disposition": "F-05 preserves the two existing /bn/ fallback URLs by certification, without authoring Bangla Genetics content. Hreflang/fallback metadata cleanup remains CONV-04H."
   },
   "retained_contracts": [
     "A",

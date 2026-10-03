@@ -8,8 +8,6 @@ on:
       - "_biology/higher-zoology-tree/genetics/index.md"
       - "_biology/higher-zoology-tree/genetics/course-index.md"
       - "_biology/higher-zoology-tree/genetics/**"
-      - "bn/biology/higher-zoology-tree/genetics/index.html"
-      - "bn/biology/higher-zoology-tree/genetics/course-index/index.html"
       - "_data/academic/course_contract_v1.json"
       - "_config.yml"
       - "_data/academic/conv04f_genetics_authorization_v1.json"
@@ -125,26 +123,8 @@ jobs:
           set -euo pipefail
           bundle exec jekyll clean
           bundle exec jekyll build --trace
-          for file in \
-            _site/biology/higher-zoology-tree/genetics/index.html \
-            _site/biology/higher-zoology-tree/genetics/course-index/index.html \
-            _site/bn/biology/higher-zoology-tree/genetics/index.html \
-            _site/bn/biology/higher-zoology-tree/genetics/course-index/index.html; do
-            if [ ! -f "$file" ]; then
-              echo "F05_OUTPUT_MISSING: $file"
-              find _site -path '*genetics*' -type f -print | sort
-              exit 1
-            fi
-          done
-          for file in \
-            _site/bn/biology/higher-zoology-tree/genetics/index.html \
-            _site/bn/biology/higher-zoology-tree/genetics/course-index/index.html; do
-            if ! grep -q 'data-f05-genetics-bn-fallback' "$file"; then
-              echo "F05_COMPAT_OWNER_MISMATCH: $file"
-              sed -n '1,40p' "$file"
-              exit 1
-            fi
-          done
+          test -f _site/biology/higher-zoology-tree/genetics/index.html
+          test -f _site/biology/higher-zoology-tree/genetics/course-index/index.html
           grep -q 'data-lbfl-academic-surface="v1"' _site/biology/higher-zoology-tree/genetics/index.html
           grep -q 'data-lbfl-academic-surface="v1"' _site/biology/higher-zoology-tree/genetics/course-index/index.html
           ruby .github/scripts/validate-conv04f-genetics.rb

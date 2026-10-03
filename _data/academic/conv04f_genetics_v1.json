@@ -59,20 +59,20 @@
     "scientific_rewrite": false,
     "responsible_genetics_boundary": "preserve verbatim",
     "course_table": "content/routes unchanged; existing Academic table wrapper only",
-    "generated_bn_public_routes": "preserved as noindex compatibility redirects to canonical English Genetics surfaces"
+    "generated_bn_public_routes": "must remain HTTP 200 English Academic-v1 Polyglot fallbacks in F-05; no reviewed Bangla Genetics source is created"
   },
   "localization_boundary": {
     "f05_translation_authority": false,
-    "current_generated_bn_routes": "preserved public URLs via explicit noindex compatibility route owners",
-    "disposition": "Do not author or certify Bangla Genetics content in F-05. Preserve URL continuity only; hreflang/fallback metadata cleanup remains CONV-04H."
+    "current_generated_bn_routes": "retained generated English fallbacks, exact-head browser certified",
+    "disposition": "Do not author or certify Bangla Genetics content in F-05. Preserve generated /bn/ route continuity; hreflang/fallback metadata cleanup remains CONV-04H."
   },
   "retained_contract": {
     "model": "bootstrap-plus-retained",
     "state_progression": "strictly-monotonic",
     "current_base": "authenticate live PR base"
   },
-  "compatibility_route_owners": [
-    "bn/biology/higher-zoology-tree/genetics/index.html",
-    "bn/biology/higher-zoology-tree/genetics/course-index/index.html"
+  "retained_generated_fallback_routes": [
+    "/bn/biology/higher-zoology-tree/genetics/",
+    "/bn/biology/higher-zoology-tree/genetics/course-index/"
   ]
 }

@@ -13,8 +13,8 @@ const targets=[
   {id:"course",route:"/biology/higher-zoology-tree/genetics/course-index/",lang:"en",required:["Genetics Course Index","Complete Lecture Route Map","Recommended Learning Path"]}
 ];
 const fallbackTargets=[
-  {id:"bn-gateway-compat",route:"/bn/biology/higher-zoology-tree/genetics/",canonical:"/biology/higher-zoology-tree/genetics/"},
-  {id:"bn-course-compat",route:"/bn/biology/higher-zoology-tree/genetics/course-index/",canonical:"/biology/higher-zoology-tree/genetics/course-index/"}
+  {id:"bn-gateway-fallback",route:"/bn/biology/higher-zoology-tree/genetics/",requiredText:"Genetics Matrix"},
+  {id:"bn-course-fallback",route:"/bn/biology/higher-zoology-tree/genetics/course-index/",requiredText:"Genetics Course Index"}
 ];
 const expectedRoutes=[
   "/biology/higher-zoology-tree/genetics/foundations-of-genetics/",
@@ -179,10 +179,18 @@ for(const fallback of fallbackTargets){
     const response=await context.request.get(base+fallback.route);
     const html=await response.text();
     const pass=response.status()===200 &&
-      html.includes("data-f05-genetics-bn-fallback") &&
-      html.includes(`href="${fallback.canonical}"`) &&
-      html.includes(`content="0; url=${fallback.canonical}"`);
-    checks.push({id:fallback.id,route:fallback.route,status:response.status(),canonical:fallback.canonical,pass});
+      /<html[^>]+lang=["']en["']/i.test(html) &&
+      html.includes("lbfl-academic-v1") &&
+      html.includes(fallback.requiredText);
+    checks.push({
+      id:fallback.id,
+      route:fallback.route,
+      status:response.status(),
+      renderedLang:/<html[^>]+lang=["']([^"']+)["']/i.exec(html)?.[1]||"",
+      academicV1:html.includes("lbfl-academic-v1"),
+      requiredText:fallback.requiredText,
+      pass
+    });
   }catch(error){
     checks.push({id:fallback.id,route:fallback.route,error:String(error),pass:false});
   }

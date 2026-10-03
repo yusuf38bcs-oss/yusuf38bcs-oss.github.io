@@ -18,12 +18,14 @@ The `higher-zoology-genetics` course contract and all 17 module sources remain b
 
 ## Localization boundary
 
-F-05 does not create or certify a Bangla Genetics translation. Exact-head review identified that adding explicit `lang: en` would otherwise remove the two previously public Polyglot-generated `/bn/` fallback URLs. F-05 therefore preserves URL continuity with two minimal `noindex` compatibility route owners:
+F-05 does not create or certify a Bangla Genetics translation. Exact-head review tested the concern that adding explicit `lang: en` might remove the historical `/bn/` fallback URLs. The production Jekyll candidate continued to render both URLs as HTTP 200 English Academic-v1 Polyglot fallbacks. F-05 therefore certifies that route continuity directly rather than adding a duplicate route owner.
 
-- `/bn/biology/higher-zoology-tree/genetics/` → canonical English Genetics Matrix;
-- `/bn/biology/higher-zoology-tree/genetics/course-index/` → canonical English Genetics Course Index.
+The two retained compatibility URLs are:
 
-This is route preservation only, not Bangla curriculum authoring. Hreflang/fallback metadata cleanup remains deferred to CONV-04H.
+- `/bn/biology/higher-zoology-tree/genetics/`;
+- `/bn/biology/higher-zoology-tree/genetics/course-index/`.
+
+They are not reviewed Bangla Genetics content. Hreflang/fallback metadata cleanup remains deferred to CONV-04H.
 
 ## Promotion
 
