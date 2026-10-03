@@ -17,6 +17,16 @@ AUTH_DOC = ROOT.join("docs/academic/conv04/ASSESSMENT_RUNTIME_THIRD_BANK_AUTHORI
 STATE = ROOT.join("docs/academic/conv04/CONV04_STATE.md")
 BROWSER = ROOT.join(".github/scripts/assessment-runtime-third-bank-browser-certification.mjs")
 WORKFLOW = ROOT.join(".github/workflows/assessment-runtime-third-bank-certification.yml")
+CONTRAST_AUTH_DOC = ROOT.join("docs/academic/conv04/ASSESSMENT_RUNTIME_THIRD_BANK_CONTRAST_R1_AUTHORIZATION.md")
+CONTRAST_REMEDIATION_PHASE = "CONV-04F-07-R1"
+CONTRAST_REMEDIATION_FILES = %w[
+  .github/scripts/validate-academic-design-system.rb
+  .github/scripts/validate-assessment-runtime-third-bank.rb
+  .github/scripts/validate-learning-guide-contract.rb
+  _mcq-arena/academic/zoology-respiratory-system-mcq-5.md
+  docs/academic/conv04/ASSESSMENT_RUNTIME_THIRD_BANK_CONTRAST_R1_AUTHORIZATION.md
+  docs/academic/conv04/CONV04_STATE.md
+].sort.freeze
 
 ALLOWED_FILES = %w[
   .github/scripts/assessment-runtime-third-bank-browser-certification.mjs
@@ -110,6 +120,18 @@ def conv04_phase_order(value)
   match = PHASE_PATTERN.match(value.to_s.strip)
   return nil unless match
   [match[1].ord, match[2] ? match[2].to_i : 0, match[3] ? match[3].to_i : 0]
+end
+
+def authorized_contrast_transform(source)
+  source
+    .sub(
+      "@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }",
+      "@keyframes slideUp { from { transform: translateY(20px); } to { transform: translateY(0); } }"
+    )
+    .sub(
+      "@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }",
+      "@keyframes fadeIn { from { transform: translateY(4px); } to { transform: translateY(0); } }"
+    )
 end
 
 [BANK, RUNTIME, AUTH, MANIFEST, DOC, AUTH_DOC, STATE, BROWSER, WORKFLOW].each do |path|
@@ -264,12 +286,50 @@ if status.success?
     errors << "Unexpected D-06 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
     errors << "Expected D-06 files not changed: #{missing.join(', ')}" unless missing.empty?
   elsif future_phase_pr
-    touched_protected = changed & PROTECTED_AFTER_MERGE
-    errors << "Future phase changed protected D-06 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+    candidate_state = STATE.file? ? read_utf8(STATE) : ""
+    candidate_phase_lines = candidate_state.lines.grep(/^phase:\s*/)
+    candidate_phase = candidate_phase_lines.length == 1 ? candidate_phase_lines.first.sub(/^phase:\s*/, "").strip : nil
+    contrast_remediation =
+      candidate_phase == CONTRAST_REMEDIATION_PHASE &&
+      candidate_state.include?("authorized_base: #{comparison_base}") &&
+      candidate_state.include?("learner_mutation_allowlist:\n  - _mcq-arena/academic/zoology-respiratory-system-mcq-5.md")
+
+    if contrast_remediation
+      unexpected = changed - CONTRAST_REMEDIATION_FILES
+      missing = CONTRAST_REMEDIATION_FILES - changed
+      errors << "Unexpected D-06 contrast-remediation files: #{unexpected.join(', ')}" unless unexpected.empty?
+      errors << "Missing D-06 contrast-remediation files: #{missing.join(', ')}" unless missing.empty?
+
+      base_bank, base_bank_status = Open3.capture2e(
+        "git", "-C", ROOT.to_s, "show",
+        "#{comparison_base}:_mcq-arena/academic/zoology-respiratory-system-mcq-5.md"
+      )
+      if base_bank_status.success?
+        errors << "D-06 contrast remediation exceeded the exact animation-only transform" unless
+          read_utf8(BANK) == authorized_contrast_transform(base_bank)
+      else
+        errors << "Unable to authenticate D-06 contrast-remediation bank baseline: #{base_bank.strip}"
+      end
+
+      unless CONTRAST_AUTH_DOC.file?
+        errors << "D-06 contrast-remediation authorization document missing"
+      else
+        contrast_doc = read_utf8(CONTRAST_AUTH_DOC)
+        errors << "D-06 contrast-remediation authorization must bind exact base" unless contrast_doc.include?("**Exact base:** `#{comparison_base}`")
+        errors << "D-06 contrast-remediation authorization must prohibit content rewrite" unless contrast_doc.include?("Scientific/question/answer/explanation rewrite: **PROHIBITED**")
+      end
+
+      touched_protected = (changed & PROTECTED_AFTER_MERGE) - [
+        ".github/scripts/validate-assessment-runtime-third-bank.rb",
+        "_mcq-arena/academic/zoology-respiratory-system-mcq-5.md"
+      ]
+      errors << "D-06 contrast remediation changed other protected artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+    else
+      touched_protected = changed & PROTECTED_AFTER_MERGE
+      errors << "Future phase changed protected D-06 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+    end
 
     if changed.include?("docs/academic/conv04/CONV04_STATE.md")
-      candidate_state = read_utf8(STATE)
-      candidate_phase_lines = candidate_state.lines.grep(/^phase:\s*/)
       base_state, base_state_status = Open3.capture2e(
         "git", "-C", ROOT.to_s, "show",
         "#{comparison_base}:docs/academic/conv04/CONV04_STATE.md"
@@ -284,7 +344,6 @@ if status.success?
         if base_phase_lines.length != 1
           errors << "Base CONV04_STATE must contain exactly one phase declaration"
         else
-          candidate_phase = candidate_phase_lines.first.sub(/^phase:\s*/, "").strip
           base_phase = base_phase_lines.first.sub(/^phase:\s*/, "").strip
           candidate_order = conv04_phase_order(candidate_phase)
           base_order = conv04_phase_order(base_phase)

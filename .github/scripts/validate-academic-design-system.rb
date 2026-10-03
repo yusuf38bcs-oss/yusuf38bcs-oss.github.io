@@ -695,7 +695,7 @@ if STATE_PATH.file?
     phase_line = state.lines.find { |line| line.start_with?("phase:") }.to_s.strip
     fail_if(
       errors,
-      !phase_line.match?(/\Aphase:\s+CONV-04[A-Z](?:-\d+)?\z/),
+      !phase_line.match?(/\Aphase:\s+CONV-04[A-Z](?:-\d+)?(?:-R[1-9]\d*)?\z/),
       "CONV04_STATE must identify a valid CONV-04 phase"
     )
   end

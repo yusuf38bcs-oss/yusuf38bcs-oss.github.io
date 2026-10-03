@@ -1,26 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-07
-mode: implementation candidate — Blood Circulation Revision Map strict Academic-v1 convergence
-authorized_base: 9895c190f75d0d6b3167370a043181e9cc5c14ad
-branch: conv-04f-07-blood-circulation-revision-20261003
-production_verified_main: 9895c190f75d0d6b3167370a043181e9cc5c14ad
+phase: CONV-04F-07-R1
+mode: retained certification remediation — D-06 post-submit contrast animation
+authorized_base: 78eff4725e7fd935a9584507a522b6958fb71bec
+branch: conv-04f-07-r1-assessment-contrast-20261003
+production_verified_main: 78eff4725e7fd935a9584507a522b6958fb71bec
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact one Blood Circulation revision learner surface + F-07 route-ledger/certification/state artifacts
-learner_content_authoring: structural revision convergence only / scientific rewrite forbidden
-existing_learning_method_cleanup: Academic-v1 rendering activation retires historical hero/fragmentation debt only if browser-certified
-gateway_cta_injection: exactly one canonical Learning Guide CTA on Blood Circulation Revision Map
+mutation_authority: exact D-06 presentation animation + retained D-06 validator/state/authorization + Academic Design/Learning Guide remediation-phase parser compatibility
+learner_content_authoring: scientific/question/answer/explanation rewrite prohibited
+existing_learning_method_cleanup: remove opacity-based reveal only; preserve interaction and motion via transform
+gateway_cta_injection: unchanged
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md
+  - _mcq-arena/academic/zoology-respiratory-system-mcq-5.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
+hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head F-07 + retained A-F06/D/E + content preservation + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
-merge: not authorized until unchanged-head governance + required checks + Pages PASS
+ready_transition: not authorized until D-06 exact-head source/content preservation + browser/Axe + retained A-F07 + Jekyll + CodeQL + review convergence
+merge: not authorized until unchanged-head governance + required checks PASS
 
 ## Completed foundation
 
