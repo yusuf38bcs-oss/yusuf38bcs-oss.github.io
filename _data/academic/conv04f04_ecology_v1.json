@@ -45,7 +45,8 @@
     "static_root_blob": "57f721e4c08c899c4b39331f189c142734709473",
     "allowed_markdown_changes": [
       "Academic-v1 front matter",
-      "one canonical Learning Guide CTA"
+      "one canonical Learning Guide CTA",
+      "course-index table wrapper using existing Academic-v1 accessible table primitive"
     ],
     "scientific_rewrite": false,
     "ecology_lectures_mutated": false
@@ -75,5 +76,24 @@
       "no-JS"
     ]
   },
-  "future_phase_compatibility": "bootstrap + retained / immutable F-04 certification artifacts / monotonic CONV04_STATE"
+  "future_phase_compatibility": "bootstrap + retained / immutable F-04 certification artifacts / monotonic CONV04_STATE",
+  "accessibility_remediation": {
+    "trigger": "exact-head Axe color-contrast failure on legacy Markdown course-index table headers after Academic-v1 activation",
+    "route": "/biology/higher-zoology-tree/ecology/course-index/",
+    "targets": [
+      "th:nth-child(1)",
+      "th:nth-child(2)",
+      "th:nth-child(3)"
+    ],
+    "observed_contrast": "1.39:1 (#172033 on #353845)",
+    "remediation": "wrap the existing unchanged lecture table in the established lbfl-academic-table-wrap accessible region primitive",
+    "shared_css_mutation": false,
+    "scientific_content_mutation": false,
+    "table_content_mutation": false,
+    "accessibility_attributes": {
+      "tabindex": "0",
+      "role": "region",
+      "aria_label": "Ecology lecture sequence"
+    }
+  }
 }
