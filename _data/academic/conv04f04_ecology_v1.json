@@ -1,0 +1,79 @@
+{
+  "schema": "lbfl-conv04f04-ecology-convergence-v1",
+  "version": "CONV-04F-04-1.0.0",
+  "phase": "CONV-04F-04",
+  "authorized_base": "27ed06453ae6ee9398d06c52a1b44a442004774b",
+  "authorization_file": "_data/academic/conv04f04_ecology_route_ownership_v1.json",
+  "route_model": {
+    "compatibility_root": {
+      "route": "/biology/higher-zoology-tree/ecology/",
+      "owner": "biology/higher-zoology-tree/ecology/index.html",
+      "academic_v1": false,
+      "canonical_target": "/biology/higher-zoology-tree/ecology/course-index/"
+    },
+    "academic_surfaces": [
+      {
+        "id": "ecology-course-index",
+        "route": "/biology/higher-zoology-tree/ecology/course-index/",
+        "source": "_biology/higher-zoology-tree/ecology/course-index.md",
+        "language": "en"
+      },
+      {
+        "id": "ecology-gateway-en",
+        "route": "/en/biology/higher-zoology-tree/ecology/",
+        "source": "_biology/higher-zoology-tree/ecology/en/index.md",
+        "language": "en"
+      },
+      {
+        "id": "ecology-gateway-bn",
+        "route": "/bn/biology/higher-zoology-tree/ecology/",
+        "source": "_pages/ecology-v2-gateway.bn.md",
+        "language": "bn"
+      }
+    ]
+  },
+  "layout_rule": "Ecology surfaces receive the shared educational boundary iff academic_system == v1; legacy Ecology lectures remain unchanged.",
+  "course_contract": {
+    "path": "_data/academic/course_contract_v1.json",
+    "blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+    "mutation": "forbidden"
+  },
+  "content_preservation": {
+    "bangla_gateway_blob": "950302ca3b88039c539b0d04b3f20ff98c58ddac",
+    "english_gateway_blob": "4cf4fb26b0bb15bf8d4d35e855390ffdb46d3c51",
+    "course_index_blob": "fc59228df4a835697e44fea290b36a5e35a39b49",
+    "static_root_blob": "57f721e4c08c899c4b39331f189c142734709473",
+    "allowed_markdown_changes": [
+      "Academic-v1 front matter",
+      "one canonical Learning Guide CTA"
+    ],
+    "scientific_rewrite": false,
+    "ecology_lectures_mutated": false
+  },
+  "browser_contract": {
+    "compatibility_root": [
+      "200",
+      "html lang en",
+      "canonical course-index",
+      "explicit en/bn gateway links",
+      "no raw template",
+      "no horizontal overflow"
+    ],
+    "academic_surfaces": [
+      "200",
+      "correct html lang",
+      "Academic-v1 html/body/article",
+      "academic_gateway role",
+      "canonical Learning Guide",
+      "one CTA",
+      "one educational boundary",
+      "Axe serious/critical zero",
+      "keyboard focus",
+      "320px reflow",
+      "text spacing",
+      "reduced motion",
+      "no-JS"
+    ]
+  },
+  "future_phase_compatibility": "bootstrap + retained / immutable F-04 certification artifacts / monotonic CONV04_STATE"
+}
