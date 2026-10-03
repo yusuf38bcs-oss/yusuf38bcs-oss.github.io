@@ -1,25 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-01
-mode: implementation candidate — HSC Zoology gateway strict Academic-v1 convergence
-authorized_base: b73d04616498649b8db66afef2d80103329118f5
-branch: conv-04f-01-hsc-zoology-gateway-20261003
-production_verified_main: b73d04616498649b8db66afef2d80103329118f5
+phase: CONV-04F-02
+mode: implementation candidate — bilingual Higher Zoology gateway strict Academic-v1 convergence
+authorized_base: 571e73b7b17023487cf40660f307e6d11091b919
+branch: conv-04f-02-higher-zoology-gateway-20261003
+production_verified_main: 571e73b7b17023487cf40660f307e6d11091b919
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact HSC Zoology gateway metadata + F-01 route-ledger/certification/state artifacts
-learner_content_authoring: structural-metadata-only / scientific-rewrite-forbidden
+mutation_authority: exact bilingual Higher Zoology gateway metadata/learning-guide + F-02 ledger/certification/state artifacts
+learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
-  - _biology/hsc-corner/zoology/index.md
+  - _biology/higher-zoology-tree/index.md
+  - _biology/higher-zoology-tree/index.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head F-01 source preservation + retained A-E/D/C-03 + Jekyll/browser/Axe/reflow/no-JS certification
+ready_transition: not authorized until exact-head F-02 source + retained A-E/F-01 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
 merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
@@ -162,3 +163,29 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 6. Preserve assessment ownership: MCQ Arena remains canonical full-bank owner.
 7. Do not mutate Digestive System, Higher Zoology, Animal Diversity, Ecology, Genetics, Physiology, Practical, Socratic, Admission/#356, Worker, Cloudflare, or shared runtime.
 8. Ship bootstrap + retained future-phase compatibility from the first F-01 implementation.
+
+
+## CONV-04F-01 closure
+
+- F-01 HSC Zoology strict gateway convergence: **MERGED via PR #412**.
+- F-01-R1 certification hardening: **MERGED via PR #413**.
+- Post-R1 authoritative main: `571e73b7b17023487cf40660f307e6d11091b919`.
+- F-01 retained browser/manual certification harness: **HARDENED / PASS**.
+
+## CONV-04F-02 authorization
+
+- Target: bilingual Higher Zoology gateway.
+- English source blob: `0fcfcec117f11074eb239ed82689bbaf2243b487`.
+- Bangla source blob: `8d607aa5422c2c3b4a52955732ff0563a6142b28`.
+- Scientific/content rewrite authority: **NONE**.
+- Learner mutation performed in authorization state: **NO**.
+
+
+## CONV-04F-02 implementation candidate
+
+- English Higher Zoology gateway: Academic-v1 + canonical Learning Guide.
+- Bangla Higher Zoology gateway: Academic-v1 + canonical Learning Guide.
+- Legacy framework panel: replaced by canonical Learning Guide CTA on both sources.
+- Scientific prose/branch cards/routes: **preserved**.
+- English route ledger: **strict / zero debt**.
+- Bangla route ledger: **registered strict / zero debt**.

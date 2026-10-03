@@ -1,0 +1,78 @@
+{
+  "schema": "lbfl-conv04f-higher-zoology-gateway-v1",
+  "version": "CONV-04F-02-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04F-02",
+  "authorized_base": "571e73b7b17023487cf40660f307e6d11091b919",
+  "authorization_manifest": "_data/academic/conv04f_higher_zoology_gateway_authorization_v1.json",
+  "mode": "bilingual-higher-zoology-gateway-academic-v1-convergence",
+  "surfaces": [
+    {
+      "id": "higher-zoology-gateway",
+      "route": "/biology/higher-zoology-tree/",
+      "source_file": "_biology/higher-zoology-tree/index.md",
+      "language": "en",
+      "academic_role": "academic_gateway",
+      "baseline_blob_sha": "0fcfcec117f11074eb239ed82689bbaf2243b487"
+    },
+    {
+      "id": "higher-zoology-gateway-bn",
+      "route": "/bn/biology/higher-zoology-tree/",
+      "source_file": "_biology/higher-zoology-tree/index.bn.md",
+      "language": "bn",
+      "academic_role": "academic_gateway",
+      "baseline_blob_sha": "8d607aa5422c2c3b4a52955732ff0563a6142b28"
+    }
+  ],
+  "exact_transform": {
+    "front_matter_only": [
+      "academic_system",
+      "academic_role",
+      "lang where absent",
+      "learning_guide"
+    ],
+    "include_substitution": "education/framework-links.html -> education/learning-guide-cta.html",
+    "content_rewrite": false
+  },
+  "browser": {
+    "routes": [
+      "/biology/higher-zoology-tree/",
+      "/bn/biology/higher-zoology-tree/"
+    ],
+    "viewports": [
+      "mobile-320",
+      "mobile-390",
+      "tablet-768",
+      "desktop-1280",
+      "wide-1440"
+    ],
+    "variants": [
+      "text-spacing",
+      "reduced-motion",
+      "no-js"
+    ],
+    "max_horizontal_overflow_px": 2,
+    "serious_critical_axe": 0
+  },
+  "retained_contract": {
+    "previous": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F-01",
+      "F-01-R1"
+    ],
+    "state_progression": "strictly-monotonic",
+    "immutable_artifacts": [
+      "_data/academic/conv04f_higher_zoology_gateway_authorization_v1.json",
+      "_data/academic/conv04f_higher_zoology_gateway_v1.json",
+      "docs/academic/conv04/HIGHER_ZOOLOGY_F02_AUTHORIZATION.md",
+      "docs/academic/conv04/HIGHER_ZOOLOGY_F02_CONVERGENCE.md",
+      ".github/scripts/validate-conv04f-higher-zoology-gateway.rb",
+      ".github/scripts/conv04f-higher-zoology-browser-certification.mjs",
+      ".github/workflows/conv04f-higher-zoology-gateway-certification.yml"
+    ]
+  }
+}

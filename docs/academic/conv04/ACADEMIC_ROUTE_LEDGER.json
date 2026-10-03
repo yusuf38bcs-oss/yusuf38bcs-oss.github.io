@@ -197,13 +197,22 @@
       "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "mcq-arena",
-      "enforcement": "progressive",
-      "source_debt": [
-        "missing_academic_role",
-        "missing_academic_system",
-        "missing_lang",
-        "legacy_language_key"
-      ],
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "higher-zoology-gateway-bn",
+      "canonical_route": "/bn/biology/higher-zoology-tree/",
+      "source_file": "_biology/higher-zoology-tree/index.bn.md",
+      "support_files": [],
+      "academic_role": "academic_gateway",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
       "live_debt": []
     },
     {

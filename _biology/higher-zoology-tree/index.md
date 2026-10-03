@@ -29,6 +29,10 @@ ib_theme: "Not Applicable"
 ib_subtopic: "Higher zoology learning gateway"
 hsc_alignment: "Higher Zoology Tree: central gateway for animal diversity, physiology, ecology, genetics, and biostatistics"
 concept_level: "Gateway"
+lang: en
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # Higher Zoology Tree
@@ -39,7 +43,7 @@ Higher Zoology Tree is the advanced academic gateway of Learning Biology For Lif
 
 Zoology becomes powerful when learners see its internal connection. Animal Diversity explains structural variation. Human Physiology explains regulation and homeostasis. Ecology explains interaction. Genetics explains inheritance, variation, molecular information, and responsible interpretation. Biostatistics explains evidence and pattern. Together, these branches form a learning tree that can support academic growth and practical life understanding.
 
-{% include education/framework-links.html %}
+{% include education/learning-guide-cta.html %}
 
 ## Topic-Specific Learning Focus
 
