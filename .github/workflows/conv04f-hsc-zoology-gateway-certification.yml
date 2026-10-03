@@ -94,7 +94,12 @@ jobs:
           ruby .github/scripts/validate-conv04e-botany-gateway.rb
           python3 scripts/academic/validate_botany_chapter01_scope.py
           python3 scripts/academic/validate_botany_bot08_content.py
-          git diff --check "$PR_BASE_SHA...HEAD"
+          if [ -n "$PR_BASE_SHA" ]; then
+            diff_base="$PR_BASE_SHA"
+          else
+            diff_base="$(git rev-parse HEAD^)"
+          fi
+          git diff --check "$diff_base...HEAD"
 
       - name: Build production Jekyll
         env:
