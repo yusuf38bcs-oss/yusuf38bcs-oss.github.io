@@ -3,9 +3,9 @@
 **Status:** IMPLEMENTATION CANDIDATE — certification pending
 **Exact base:** `9895c190f75d0d6b3167370a043181e9cc5c14ad`
 **Target route:** `/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`
-**Target source:** `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md`
+**Target source:** `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md`
 **Baseline source:** `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md`
-**Candidate source:** `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md`
+**Candidate source:** `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md`
 **Baseline blob:** `0eceb2542287fc99356b73dc400b3ede8a8db4f4`
 
 ## F-07 authenticated finding
@@ -27,7 +27,7 @@ The first four are source metadata debt. The final two are rendered debt and mus
 
 Exactly one learner-facing source may change:
 
-`_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md`
+`_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md`
 
 Authorized additions only:
 
@@ -63,8 +63,13 @@ No F-07 mutation is authorized for the Blood Circulation master hub, the five li
 Draft until unchanged-head F-07 source preservation, retained A–F06/D/E, production Jekyll, exact-head browser/Axe/keyboard/reflow/text-spacing/reduced-motion/no-JS, CodeQL, review convergence, required Pages and Trusted Governance pass.
 
 
-## Source-path normalization
 
-Exact-head Jekyll diagnostics showed that declaring `lang: bn` on the historical unqualified filename moved the rendered page to `/bn/...` and `/en/...`, removing the established root Bangla canonical route. F-07 therefore normalizes the Bangla source filename to `human-blood-circulation-overview.bn.md`, matching the repository's existing bilingual filename convention. The permalink itself is unchanged.
+## Polyglot route preservation
 
-This is a route-preservation correction, not a content rewrite.
+Exact-head Jekyll diagnostics proved that adding `lang: bn` to this historical bilingual route caused Polyglot to emit only localized `/bn/...` and `/en/...` copies, removing the established root Bangla canonical output. F-07 therefore follows the existing F-04 Ecology route-ownership pattern and adds exactly one destination path to `exclude_from_localization` in `_config.yml`:
+
+`biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html`
+
+This keeps the canonical Bangla permalink at the established root route while the existing explicit English counterpart remains at `/en/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
+
+No shared layout, CSS, scientific content, or route slug is changed.
