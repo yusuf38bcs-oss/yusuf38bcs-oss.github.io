@@ -37,7 +37,7 @@ classes: wide
 header:
   overlay_image: /assets/images/biology/physiology-banner.webp
 language: bn
-lang: bn
+polyglot_root_language: true
 academic_system: v1
 academic_role: revision
 learning_guide: canonical
