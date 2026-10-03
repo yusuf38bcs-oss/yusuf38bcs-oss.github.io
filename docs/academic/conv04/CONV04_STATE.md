@@ -395,12 +395,15 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 
 
 
-## F-07 Polyglot route preservation
+
+## F-07 route-scoped language compatibility
 
 - Canonical Bangla source remains `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md`.
-- `lang: bn` remains required for Academic-v1 document-language truth.
-- Exact `_config.yml` exclusion: `biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html`.
-- Purpose: preserve the established root Bangla canonical route under Jekyll Polyglot.
-- English counterpart remains unchanged at `/en/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
-- Shared layout/CSS: **unchanged**.
-- Scientific content: **unchanged**.
+- Historical canonical route remains `/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
+- Polyglot `lang: bn`: **NOT USED** on this historical root route because exact-head builds move it to `/bn/...`.
+- Existing content-language key: `language: bn` — **preserved**.
+- Explicit route/source compatibility flag: `polyglot_root_language: true`.
+- Academic Surface effective-language fallback: **route-scoped only**.
+- Default-layout HTML language fallback: **route-scoped only**.
+- English counterpart: **unchanged** at `/en/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
+- Global `default_lang`, shared localization behavior and scientific content: **unchanged**.
