@@ -2,14 +2,14 @@
 
 programme: CONV-04
 phase: CONV-04F-02
-mode: authorization-only — bilingual Higher Zoology gateway Academic-v1 convergence
+mode: implementation candidate — bilingual Higher Zoology gateway strict Academic-v1 convergence
 authorized_base: 571e73b7b17023487cf40660f307e6d11091b919
 branch: conv-04f-02-higher-zoology-gateway-20261003
 production_verified_main: 571e73b7b17023487cf40660f307e6d11091b919
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: authorization/state artifacts only; Higher Zoology bilingual gateway migration authorized but not yet applied
-learner_content_authoring: structural-metadata-and-learning-guide-only / scientific-rewrite-forbidden / not-yet-applied
+mutation_authority: exact bilingual Higher Zoology gateway metadata/learning-guide + F-02 ledger/certification/state artifacts
+learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
@@ -20,8 +20,8 @@ assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until F-02 implementation + retained A-E/F-01 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS certification
-merge: not authorized in authorization-only state
+ready_transition: not authorized until exact-head F-02 source + retained A-E/F-01 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
+merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
 
@@ -179,3 +179,13 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Bangla source blob: `8d607aa5422c2c3b4a52955732ff0563a6142b28`.
 - Scientific/content rewrite authority: **NONE**.
 - Learner mutation performed in authorization state: **NO**.
+
+
+## CONV-04F-02 implementation candidate
+
+- English Higher Zoology gateway: Academic-v1 + canonical Learning Guide.
+- Bangla Higher Zoology gateway: Academic-v1 + canonical Learning Guide.
+- Legacy framework panel: replaced by canonical Learning Guide CTA on both sources.
+- Scientific prose/branch cards/routes: **preserved**.
+- English route ledger: **strict / zero debt**.
+- Bangla route ledger: **registered strict / zero debt**.
