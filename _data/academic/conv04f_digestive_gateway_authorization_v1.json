@@ -44,7 +44,7 @@
   "authorized_gateway_changes": {
     "frontmatter": {
       "academic_system": "v1",
-      "academic_role": "course_index",
+      "academic_role": "academic_gateway",
       "lang": "bn",
       "learning_guide": "canonical"
     },
@@ -84,7 +84,7 @@
     "learner_source": "_biology/hsc-corner/zoology/digestive-system/index.md",
     "frontmatter": {
       "academic_system": "v1",
-      "academic_role": "course_index",
+      "academic_role": "academic_gateway",
       "lang": "bn",
       "learning_guide": "canonical"
     },
@@ -99,6 +99,11 @@
     },
     "route_ledger_id": "hsc-digestive-system-course-index",
     "course_contract_changed": false,
-    "lecture_sources_changed": false
+    "lecture_sources_changed": false,
+    "role_reconciliation": {
+      "originally_prepared_role": "course_index",
+      "contract_allowed_role": "academic_gateway",
+      "reason": "Academic Surface Contract allowed_roles does not define course_index; semantic course-index ownership remains in the governed course contract and route ID."
+    }
   }
 }
