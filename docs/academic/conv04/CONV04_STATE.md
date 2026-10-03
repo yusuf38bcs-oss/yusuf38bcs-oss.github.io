@@ -2,14 +2,14 @@
 
 programme: CONV-04
 phase: CONV-04F-04
-mode: authorization-only — Ecology route-ownership correction + Academic-v1 gateway/course convergence
+mode: implementation candidate — corrected Ecology route ownership + Academic-v1 gateways/course index
 authorized_base: 27ed06453ae6ee9398d06c52a1b44a442004774b
 branch: conv-04f-04-ecology-route-ownership-r1-20261003
 production_verified_main: 27ed06453ae6ee9398d06c52a1b44a442004774b
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: authorization/state only; corrected F-04 route-owner/layout scope authorized but not yet applied
-learner_content_authoring: structural-only / scientific-rewrite-forbidden / not-yet-applied
+mutation_authority: four Ecology route owners + conditional Ecology Academic-v1 boundary layout + F-04 ledger/certification/state artifacts
+learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
@@ -22,8 +22,8 @@ assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until corrected F-04 implementation + real-route retained/Jekyll/browser/Axe/security certification
-merge: not authorized in authorization-only state
+ready_transition: not authorized until exact-head real-route F-04 + retained A-F-03 + Ecology-10 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
+merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
 
@@ -236,3 +236,16 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Conditional layout authority: `_layouts/single.html` — Academic-v1 Ecology boundary only.
 - Ecology course contract: **PROTECTED / UNCHANGED**.
 - Learner/scientific mutation performed at this authorization commit: **NO**.
+
+
+## CONV-04F-04 corrected implementation candidate
+
+- Compatibility root owner: **static / preserved route / canonical → course index**.
+- Canonical governed course index: **Academic-v1 / strict**.
+- English gateway: **Academic-v1 / strict**.
+- Bangla gateway: **Academic-v1 / strict**.
+- Academic-v1 Ecology boundary: **layout-owned / exactly one**.
+- Legacy Ecology lecture boundary behavior: **unchanged**.
+- Ecology course contract: **byte-identical / protected**.
+- Ecology 20 bilingual lecture sources: **unchanged**.
+- Shared CSS: **unchanged**.
