@@ -85,6 +85,7 @@ end
 
 def authorized_transform(source)
   out = source.dup
+  out = out.sub("header:\n  overlay_image: /assets/images/biology/physiology-banner.webp\n", "")
   out = out.sub(
     "language: bn\ncurriculum_tracks:",
     "language: bn\npolyglot_root_language: true\nacademic_system: v1\nacademic_role: revision\nlearning_guide: canonical\ncurriculum_tracks:"
@@ -92,6 +93,22 @@ def authorized_transform(source)
   out = out.sub(
     "# Blood Circulation Revision Map: রক্ত, হৃদপিণ্ড, সঞ্চালন ও রোগ এক পাতায়\n\n",
     "# Blood Circulation Revision Map: রক্ত, হৃদপিণ্ড, সঞ্চালন ও রোগ এক পাতায়\n\n{% include education/learning-guide-cta.html %}\n\n"
+  )
+  out = out.sub(
+    "## Study Route\n\n| Step | Page | What to revise |",
+    "## Study Route\n\n<div class=\"lbfl-academic-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Blood circulation study route\" markdown=\"1\">\n\n| Step | Page | What to revise |"
+  )
+  out = out.sub(
+    "| 6 | [Lecture 5: Healthy Living]({{ '/biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application/' | relative_url }}) | prevention, habits, life application |\n\n## Master Mind Map",
+    "| 6 | [Lecture 5: Healthy Living]({{ '/biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application/' | relative_url }}) | prevention, habits, life application |\n\n</div>\n\n## Master Mind Map"
+  )
+  out = out.sub(
+    "## High-yield Comparison Table\n\n| Concept | Must Remember | Common MCQ Trap |",
+    "## High-yield Comparison Table\n\n<div class=\"lbfl-academic-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Blood circulation high-yield comparison\" markdown=\"1\">\n\n| Concept | Must Remember | Common MCQ Trap |"
+  )
+  out = out.sub(
+    "| Stent | keeps artery open | medicine ভাবা |\n\n## Quick Short-answer Bank",
+    "| Stent | keeps artery open | medicine ভাবা |\n\n</div>\n\n## Quick Short-answer Bank"
   )
   out
 end
@@ -114,7 +131,9 @@ if SOURCE.file?
     need(errors, fm_value(candidate, "polyglot_root_language") == "true", "F-07 root-language compatibility marker missing")
     need(errors, fm_value(candidate, "learning_guide") == "canonical", "F-07 canonical Learning Guide ownership missing")
     need(errors, candidate.scan(CTA).length == 1, "F-07 must contain exactly one canonical Learning Guide CTA")
-    need(errors, candidate.include?("overlay_image: /assets/images/biology/physiology-banner.webp"), "F-07 must preserve header overlay metadata")
+    need(errors, !candidate.include?("overlay_image:"), "F-07 blank legacy hero metadata remains")
+    need(errors, candidate.scan('class="lbfl-academic-table-wrap"').length == 2, "F-07 must use exactly two Academic-v1 table wrappers")
+    need(errors, candidate.scan('tabindex="0" role="region"').length == 2, "F-07 table wrappers must remain keyboard-scrollable regions")
     %w[
       Purpose\ of\ This\ Revision\ Map
       Study\ Route
