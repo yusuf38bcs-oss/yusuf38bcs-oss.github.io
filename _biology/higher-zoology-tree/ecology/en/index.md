@@ -21,9 +21,14 @@ lang-exclusive: [en]
 page_id: ecology-gateway
 related: true
 last_modified_at: 2026-09-20T22:04:00+06:00
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # Ecology — Lectures 01–10
+
+{% include education/learning-guide-cta.html %}
 
 This ten-lecture Ecology course moves from ecological foundations and environmental limitation to species interactions, adaptation, a Bangladesh case study, population ecology, demography, survivorship and growth models.
 
