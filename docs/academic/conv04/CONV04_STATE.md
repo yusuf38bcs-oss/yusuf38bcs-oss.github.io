@@ -1,27 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-05
-mode: implementation candidate — Genetics gateway + 17-lecture course index
-authorized_base: cbd6de2cc95f3a573fdd784e29fc045e6448cbda
-branch: conv-04f-05-genetics-course-20261003
-production_verified_main: cbd6de2cc95f3a573fdd784e29fc045e6448cbda
+phase: CONV-04F-06
+mode: authorization-only — HSC Digestive System gateway convergence
+authorized_base: 55fd04f004f3f352cf90d4e026702d6714096072
+branch: conv-04f-06-digestive-gateway-authorization-20261003
+production_verified_main: 55fd04f004f3f352cf90d4e026702d6714096072
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact two Genetics learner surfaces + F-05 route-ledger/certification/state artifacts
-learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
+mutation_authority: authorization/state artifacts only; one Digestive gateway learner mutation authorized but not yet applied
+learner_content_authoring: structural gateway convergence only / scientific rewrite forbidden / not yet applied
 existing_learning_method_cleanup: legacy framework ownership replaced by canonical Learning Guide on both Genetics surfaces
 gateway_cta_injection: exactly one canonical Learning Guide CTA on each F-05 Genetics target
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/genetics/index.md
-  - _biology/higher-zoology-tree/genetics/course-index.md
+  - _biology/hsc-corner/zoology/digestive-system/index.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head F-05 + retained A-F-04 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
-merge: not authorized until unchanged-head governance + required checks + Pages PASS
+ready_transition: not authorized until F-06 implementation + retained A-F-05 + course-contract preservation + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
+merge: not authorized in authorization-only state
 
 ## Completed foundation
 
@@ -315,3 +314,18 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Keyboard certification: canonical Learning Guide CTA must itself receive visible keyboard focus.
 - Generated fallback route continuity: browser-certified on both historical `/bn/` URLs.
 - Hreflang/fallback metadata cleanup: **deferred to CONV-04H**.
+
+
+## CONV-04F-06 authorization
+
+- Exact post-F-05 base: `55fd04f004f3f352cf90d4e026702d6714096072`.
+- Target: HSC Digestive System 14-lecture gateway.
+- Canonical route owner: `_biology/hsc-corner/zoology/digestive-system/index.md`.
+- Competing static route owner: **NONE FOUND**.
+- Governed module sequence: **14 / protect exactly**.
+- Course contract: **PROTECTED / unchanged**.
+- Fourteen lecture source blobs: **PROTECTED / unchanged**.
+- Shared layout/CSS mutation authority: **NONE**.
+- Gateway local-style migration: **AUTHORIZED only to existing Academic-v1 primitives**.
+- Scientific-content rewrite authority: **NONE**.
+- Learner mutation performed in authorization state: **NO**.
