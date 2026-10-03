@@ -1,7 +1,7 @@
 # CONV-04F-06 — HSC Digestive System Gateway Authorization
 
-**Status:** IMPLEMENTED CANDIDATE — certification pending  
-**Exact base:** `55fd04f004f3f352cf90d4e026702d6714096072`  
+**Status:** IMPLEMENTED CANDIDATE — certification pending
+**Exact base:** `55fd04f004f3f352cf90d4e026702d6714096072`
 **Branch:** `conv-04f-06-digestive-gateway-authorization-20261003`
 
 ## Authenticated route owner
