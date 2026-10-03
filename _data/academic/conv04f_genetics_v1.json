@@ -1,0 +1,73 @@
+{
+  "schema": "lbfl-conv04f-genetics-v1",
+  "version": "CONV-04F-05-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04F-05",
+  "authorized_base": "cbd6de2cc95f3a573fdd784e29fc045e6448cbda",
+  "authorization_file": "_data/academic/conv04f_genetics_authorization_v1.json",
+  "learner_mutation_allowlist": [
+    "_biology/higher-zoology-tree/genetics/index.md",
+    "_biology/higher-zoology-tree/genetics/course-index.md"
+  ],
+  "surfaces": [
+    {
+      "id": "genetics-gateway",
+      "route": "/biology/higher-zoology-tree/genetics/",
+      "source_file": "_biology/higher-zoology-tree/genetics/index.md",
+      "academic_role": "academic_gateway",
+      "lang": "en",
+      "learning_guide": "canonical",
+      "target_enforcement": "strict",
+      "baseline_blob_sha": "53c43580ba949fe075f3f49aa1bf5a02a43cbb1a"
+    },
+    {
+      "id": "genetics-course-index",
+      "route": "/biology/higher-zoology-tree/genetics/course-index/",
+      "source_file": "_biology/higher-zoology-tree/genetics/course-index.md",
+      "academic_role": "academic_gateway",
+      "lang": "en",
+      "learning_guide": "canonical",
+      "target_enforcement": "strict",
+      "baseline_blob_sha": "c95c01a78f8dcae4d8223c84b497b16584877847"
+    }
+  ],
+  "protected_course": {
+    "course_contract_blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+    "module_count": 17,
+    "module_blobs": {
+      "_biology/higher-zoology-tree/genetics/lecture-01-foundations-of-genetics.md": "575a2188d96101d5caca491d80027a495eb73ec1",
+      "_biology/higher-zoology-tree/genetics/lecture-02-genetic-terminology.md": "b8caef89d6f08a5002a6ad77dd6cda1250642097",
+      "_biology/higher-zoology-tree/genetics/lecture-03-mendel-and-pea-plant.md": "0992d1c73c36f86a50269e985d8216bce850a21a",
+      "_biology/higher-zoology-tree/genetics/lecture-04-one-character.md": "963b1dc2cfbc8d9d0641a585f3e5d8fb3078a618",
+      "_biology/higher-zoology-tree/genetics/lecture-05-two-character.md": "6515548e4d85e20e78c133f82655a425c0cc0a10",
+      "_biology/higher-zoology-tree/genetics/lecture-06.md": "1986ed229c93783db005c68107144959690e13a3",
+      "_biology/higher-zoology-tree/genetics/lecture-07.md": "5393cad5910141bb622ea9e10d523c6687106d51",
+      "_biology/higher-zoology-tree/genetics/lecture-08.md": "d74f2bfb03a6a37e7854f1cd75145c03e30bfe0c",
+      "_biology/higher-zoology-tree/genetics/lecture-09.md": "2d16fc78828cc00e3968acddcee38d55f3379ec4",
+      "_biology/higher-zoology-tree/genetics/lecture-10-basic.md": "4c6f04b0998023ea3801d65ac48d5b6b0f18372a",
+      "_biology/higher-zoology-tree/genetics/lecture-011.md": "c1cd7d7b5dde9cffbc5c50dcd7341ef8d57b0ff0",
+      "_biology/higher-zoology-tree/genetics/lecture-012-safe.md": "1214573ed6e7b1f628b49fcb046360ca7d044e8b",
+      "_biology/higher-zoology-tree/genetics/lecture-013-safe.md": "f349551856101020d0ec78338df3ba81c9f27979",
+      "_biology/higher-zoology-tree/genetics/lecture-014-safe.md": "df7cc1edca1ab2216ff0252badb5f2d699635ea9",
+      "_biology/higher-zoology-tree/genetics/lecture-015-safe.md": "69141a8d77a059a840f8e211ff2b017ec4a91628",
+      "_biology/higher-zoology-tree/genetics/l16-safe.md": "b24b5f17f26f37734fc5a1512c87a0a6a66998fe",
+      "_biology/higher-zoology-tree/genetics/l17-safe.md": "62e49f7e6d3af44fd7ed5708e9b38655d292139b"
+    },
+    "routes": "preserve exactly"
+  },
+  "preservation": {
+    "scientific_rewrite": false,
+    "responsible_genetics_boundary": "preserve verbatim",
+    "course_table": "content/routes unchanged; existing Academic table wrapper only"
+  },
+  "localization_boundary": {
+    "f05_translation_authority": false,
+    "current_generated_bn_routes": "observed Polyglot fallbacks, not reviewed Bangla genetics sources",
+    "disposition": "Do not author or certify Bangla Genetics content in F-05. Any redirect/hreflang/fallback cleanup belongs to CONV-04H."
+  },
+  "retained_contract": {
+    "model": "bootstrap-plus-retained",
+    "state_progression": "strictly-monotonic",
+    "current_base": "authenticate live PR base"
+  }
+}
