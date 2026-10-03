@@ -102,6 +102,16 @@ PHASE_PATTERN = /\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R([1-9]\d*))?\z/.freeze
 R1_MAINTENANCE_BASE = "e01794957b184114e4a7ab82f0689acd67b5f14f"
 VALIDATOR_PATH = ".github/scripts/validate-assessment-runtime-second-bank.rb"
 WORKFLOW_PATH = ".github/workflows/assessment-runtime-second-bank-certification.yml"
+CONTRAST_REMEDIATION_PHASE = "CONV-04F-07-R2"
+CONTRAST_AUTH_DOC = ROOT.join("docs/academic/conv04/ASSESSMENT_RUNTIME_BOTANY_CONTRAST_R2_AUTHORIZATION.md")
+CONTRAST_REMEDIATION_FILES = %w[
+  .github/scripts/validate-assessment-runtime-pilot.rb
+  .github/scripts/validate-assessment-runtime-second-bank.rb
+  _mcq-arena/academic/botany-cell-biology-mcq-1.md
+  _mcq-arena/academic/botany-cell-division-mcq-2.md
+  docs/academic/conv04/ASSESSMENT_RUNTIME_BOTANY_CONTRAST_R2_AUTHORIZATION.md
+  docs/academic/conv04/CONV04_STATE.md
+].sort.freeze
 
 def read_utf8(path) = File.read(path, encoding: "UTF-8")
 
@@ -114,6 +124,19 @@ def conv04_phase_order(value)
   revision = match[3] ? match[3].to_i : 0
   [lane, stage, revision]
 end
+
+def authorized_contrast_transform(source)
+  source
+    .sub(
+      "@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }",
+      "@keyframes slideUp { from { transform: translateY(20px); } to { transform: translateY(0); } }"
+    )
+    .sub(
+      "@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }",
+      "@keyframes fadeIn { from { transform: translateY(4px); } to { transform: translateY(0); } }"
+    )
+end
+
 
 [BANK, RUNTIME, MANIFEST, DOC, AUTH, STATE, BROWSER, WORKFLOW].each do |path|
   errors << "Missing D-05 artifact: #{path.relative_path_from(ROOT)}" unless path.file?
@@ -210,31 +233,63 @@ if status.success?
     errors << "Unexpected D-05 changed files: #{unexpected.join(', ')}" unless unexpected.empty?
     errors << "Expected D-05 files not changed: #{missing.join(', ')}" unless missing.empty?
   elsif future_phase_pr
-    r1_maintenance_pr =
-      comparison_base == R1_MAINTENANCE_BASE &&
-      changed == [VALIDATOR_PATH, WORKFLOW_PATH].sort
+    candidate_state = STATE.file? ? read_utf8(STATE) : ""
+    candidate_phase_lines = candidate_state.lines.grep(/^phase:\s*/)
+    candidate_phase = candidate_phase_lines.length == 1 ? candidate_phase_lines.first.sub(/^phase:\s*/, "").strip : nil
+    contrast_remediation =
+      candidate_phase == CONTRAST_REMEDIATION_PHASE &&
+      candidate_state.include?("authorized_base: #{comparison_base}") &&
+      candidate_state.include?("learner_mutation_allowlist:\n  - _mcq-arena/academic/botany-cell-biology-mcq-1.md\n  - _mcq-arena/academic/botany-cell-division-mcq-2.md")
 
-    # After this one-file R1 transition, the retained D-05 validator itself
-    # becomes protected. Later phases may advance CONV04_STATE but may not
-    # silently mutate the D-05 learner/certification artifacts.
-    future_phase_control_files = %w[
-      docs/academic/conv04/CONV04_STATE.md
-    ]
-    protected_d05_files = ALLOWED_FILES - future_phase_control_files
-    touched_protected = changed & protected_d05_files
-    touched_protected -= [VALIDATOR_PATH, WORKFLOW_PATH] if r1_maintenance_pr
-    errors << "Future phase changed protected D-05 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+    if contrast_remediation
+      unexpected = changed - CONTRAST_REMEDIATION_FILES
+      missing = CONTRAST_REMEDIATION_FILES - changed
+      errors << "Unexpected D-04/D-05 contrast-remediation files: #{unexpected.join(', ')}" unless unexpected.empty?
+      errors << "Missing D-04/D-05 contrast-remediation files: #{missing.join(', ')}" unless missing.empty?
 
-    if changed.include?(VALIDATOR_PATH) && !r1_maintenance_pr
-      errors << "Future phase must not modify the retained D-05 validator"
-    end
-    if changed.include?(WORKFLOW_PATH) && !r1_maintenance_pr
-      errors << "Future phase must not modify the retained D-05 workflow"
+      base_bank, base_bank_status = Open3.capture2e("git", "-C", ROOT.to_s, "show", "#{comparison_base}:_mcq-arena/academic/botany-cell-division-mcq-2.md")
+      if base_bank_status.success?
+        errors << "D-05 contrast remediation exceeded the exact animation-only transform" unless
+          read_utf8(BANK) == authorized_contrast_transform(base_bank)
+      else
+        errors << "Unable to authenticate D-05 contrast-remediation bank baseline: #{base_bank.strip}"
+      end
+
+      if CONTRAST_AUTH_DOC.file?
+        contrast_doc = read_utf8(CONTRAST_AUTH_DOC)
+        errors << "D-04/D-05 contrast-remediation authorization must bind exact base" unless
+          contrast_doc.include?("**Exact base:** `#{comparison_base}`")
+        errors << "D-04/D-05 contrast-remediation authorization must prohibit content rewrite" unless
+          contrast_doc.include?("Scientific/question/answer/explanation rewrite: **PROHIBITED**")
+      else
+        errors << "D-04/D-05 contrast-remediation authorization document missing"
+      end
+
+      future_phase_control_files = %w[docs/academic/conv04/CONV04_STATE.md]
+      protected_d05_files = ALLOWED_FILES - future_phase_control_files
+      touched_protected = changed & protected_d05_files
+      touched_protected -= [VALIDATOR_PATH, "_mcq-arena/academic/botany-cell-division-mcq-2.md"]
+      errors << "D-05 contrast remediation changed other protected D-05 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+    else
+      r1_maintenance_pr =
+        comparison_base == R1_MAINTENANCE_BASE &&
+        changed == [VALIDATOR_PATH, WORKFLOW_PATH].sort
+
+      future_phase_control_files = %w[docs/academic/conv04/CONV04_STATE.md]
+      protected_d05_files = ALLOWED_FILES - future_phase_control_files
+      touched_protected = changed & protected_d05_files
+      touched_protected -= [VALIDATOR_PATH, WORKFLOW_PATH] if r1_maintenance_pr
+      errors << "Future phase changed protected D-05 artifacts: #{touched_protected.join(', ')}" unless touched_protected.empty?
+
+      if changed.include?(VALIDATOR_PATH) && !r1_maintenance_pr
+        errors << "Future phase must not modify the retained D-05 validator"
+      end
+      if changed.include?(WORKFLOW_PATH) && !r1_maintenance_pr
+        errors << "Future phase must not modify the retained D-05 workflow"
+      end
     end
 
     if changed.include?("docs/academic/conv04/CONV04_STATE.md")
-      candidate_state = read_utf8(STATE)
-      candidate_phase_lines = candidate_state.lines.grep(/^phase:\s*/)
       base_state, base_state_status = Open3.capture2e(
         "git", "-C", ROOT.to_s, "show",
         "#{comparison_base}:docs/academic/conv04/CONV04_STATE.md"
@@ -249,7 +304,6 @@ if status.success?
         if base_phase_lines.length != 1
           errors << "Base CONV04_STATE must contain exactly one phase declaration"
         else
-          candidate_phase = candidate_phase_lines.first.sub(/^phase:\s*/, "").strip
           base_phase = base_phase_lines.first.sub(/^phase:\s*/, "").strip
           candidate_order = conv04_phase_order(candidate_phase)
           base_order = conv04_phase_order(base_phase)
