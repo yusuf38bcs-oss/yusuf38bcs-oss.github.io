@@ -8,7 +8,7 @@ branch: conv-04f-07-r1-assessment-contrast-20261003
 production_verified_main: 78eff4725e7fd935a9584507a522b6958fb71bec
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact D-06 presentation animation + retained D-06 validator/state/authorization + Academic Design remediation-phase parser compatibility
+mutation_authority: exact D-06 presentation animation + retained D-06 validator/state/authorization + Academic Design/Learning Guide remediation-phase parser compatibility
 learner_content_authoring: scientific/question/answer/explanation rewrite prohibited
 existing_learning_method_cleanup: remove opacity-based reveal only; preserve interaction and motion via transform
 gateway_cta_injection: unchanged
