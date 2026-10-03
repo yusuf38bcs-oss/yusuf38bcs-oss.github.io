@@ -428,6 +428,20 @@
       "enforcement": "strict",
       "source_debt": [],
       "live_debt": []
+    },
+    {
+      "id": "higher-zoology-practical-gateway",
+      "canonical_route": "/biology/higher-zoology-tree/practical/",
+      "source_file": "_biology/higher-zoology-tree/practical/index.bn.md",
+      "support_files": [],
+      "academic_role": "practical",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     }
   ]
 }

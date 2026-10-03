@@ -21,6 +21,9 @@ page_id: higher-zoology-practical
 language: bn
 lang: bn
 locale: bn-BD
+academic_system: v1
+academic_role: practical
+learning_guide: canonical
 toc: true
 toc_sticky: true
 classes: wide zoology-practical-page
@@ -41,9 +44,13 @@ time_min: 60
 
 # Zoology Practical-I — Higher Zoology Tree
 
+{% include education/learning-guide-cta.html %}
+
 এই gateway-টি National University Honours 1st Year **Zoology Practical-I (Course Code 213106)**-কে আটটি linked practical module-এ সাজায়।
 
 ## Course Identity
+
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Zoology Practical-I course identity" markdown="1">
 
 | Item | Value |
 |---|---|
@@ -53,9 +60,13 @@ time_min: 60
 | Credits | **4** |
 | Class Hours | **60** |
 
+</div>
+
 > **Language rule:** মূল explanation বাংলা; scientific names, anatomical structures, taxonomic ranks, laboratory techniques এবং formula English-এ থাকবে।
 
 ## Module Sequence
+
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Zoology Practical-I module sequence" markdown="1">
 
 | No. | Module | Coverage |
 |---:|---|---|
@@ -67,6 +78,8 @@ time_min: 60
 | 06 | [Appendages]({{ '/biology/higher-zoology-tree/practical/appendages/' | relative_url }}) | cockroach + prawn |
 | 07 | [Zooplankton]({{ '/biology/higher-zoology-tree/practical/zooplankton/' | relative_url }}) | 3 water bodies, hemocytometer/counting, Simpson + Shannon |
 | 08 | [Field Report]({{ '/biology/higher-zoology-tree/practical/field-report/' | relative_url }}) | ≥10 samples, quadrat density, Shannon–Wiener, scientific report |
+
+</div>
 
 ## Practical Reasoning Rule
 
