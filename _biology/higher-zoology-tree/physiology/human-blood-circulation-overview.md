@@ -37,6 +37,10 @@ classes: wide
 header:
   overlay_image: /assets/images/biology/physiology-banner.webp
 language: bn
+lang: bn
+academic_system: v1
+academic_role: revision
+learning_guide: canonical
 curriculum_tracks:
   - HSC Zoology
   - Medical Admission Biology
@@ -52,6 +56,8 @@ status: "Active"
 ---
 
 # Blood Circulation Revision Map: রক্ত, হৃদপিণ্ড, সঞ্চালন ও রোগ এক পাতায়
+
+{% include education/learning-guide-cta.html %}
 
 ## Purpose of This Revision Map
 
