@@ -26,3 +26,10 @@ Both gateway/course-index routes are registered strict with zero source/live deb
 ## Promotion rule
 
 Require exact-head source/layout preservation, retained A–F-02 certification, production Jekyll, browser/Axe/keyboard/320px reflow/text-spacing/reduced-motion/no-JS, CodeQL, zero unresolved threads, exact-head Pages and Trusted Governance.
+
+
+## Exact-head table remediation
+
+The first exact-head browser/Axe pass exposed inherited legacy Animal Diversity table-header colors on the Academic-v1 course index. The remediation stays inside the already-authorized course-index learner source and uses the existing `.lbfl-academic-table-wrap` primitive with keyboard-focusable region semantics.
+
+No table wording, lecture title, lecture order, lecture route, scientific content, shared stylesheet, or lecture source is changed.
