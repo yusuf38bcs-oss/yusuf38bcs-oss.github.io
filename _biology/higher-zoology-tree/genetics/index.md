@@ -20,6 +20,10 @@ parent_node: index-higher-zoology-tree
 network:
   - index-higher-zoology-tree
 language: en
+lang: en
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 concept_level: "Gateway"
 toc: true
 toc_sticky: true
@@ -29,7 +33,7 @@ toc_sticky: true
 
 Genetics explains how biological information is stored, transmitted, expressed, regulated, varied, and interpreted across generations. In Learning Biology For Life, Genetics is not only a chapter of inheritance ratios; it is a bridge from heredity to molecular information, from chromosomes to evidence, and from biological variation to responsible life interpretation.
 
-{% include education/framework-links.html %}
+{% include education/learning-guide-cta.html %}
 
 ## Completed Course Gateway
 
