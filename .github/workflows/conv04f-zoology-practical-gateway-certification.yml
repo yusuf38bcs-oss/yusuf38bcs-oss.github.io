@@ -15,6 +15,7 @@ on:
       - "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md"
       - "_biology/higher-zoology-tree/practical/08-field-report.bn.md"
       - "_data/academic/course_contract_v1.json"
+      - "assets/css/academic-design-system.css"
       - "_data/academic/conv04f_zoology_practical_gateway_v1.json"
       - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
       - "docs/academic/conv04/CONV04_STATE.md"
@@ -74,6 +75,11 @@ jobs:
             remote="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
             test "$remote" = "$EXPECTED_MAIN_SHA"
             test "$actual" = "$EXPECTED_MAIN_SHA"
+            comparison_base="$(awk '/^authorized_base:/ {print $2; exit}' docs/academic/conv04/CONV04_STATE.md)"
+            test -n "$comparison_base"
+            git cat-file -e "$comparison_base^{commit}"
+            git merge-base --is-ancestor "$comparison_base" "$actual"
+            echo "PR_BASE_SHA=$comparison_base" >> "$GITHUB_ENV"
           fi
 
       - name: Set up Ruby
