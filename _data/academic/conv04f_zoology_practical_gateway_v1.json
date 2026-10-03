@@ -1,0 +1,142 @@
+{
+  "schema": "lbfl-conv04f-zoology-practical-gateway-v1",
+  "version": "CONV-04F-08-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04F-08",
+  "status": "implementation-candidate",
+  "authorized_base": "4b8f96300a81289432da7a01cfddecacbada3623",
+  "route_id": "higher-zoology-practical-gateway",
+  "canonical_route": "/biology/higher-zoology-tree/practical/",
+  "source_file": "_biology/higher-zoology-tree/practical/index.bn.md",
+  "baseline_blob_sha": "da3660be82ec695bfee239494312fede78cd4a24",
+  "course_contract": {
+    "course_id": "nu-zoology-practical-213106",
+    "baseline_blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+    "enforcement": "strict",
+    "module_count": 8,
+    "changed": false
+  },
+  "module_baselines": [
+    {
+      "id": "prac-01",
+      "file": "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md",
+      "blob_sha": "26e1711cf9c6bace8ddd8419797c38511987420c"
+    },
+    {
+      "id": "prac-02",
+      "file": "_biology/higher-zoology-tree/practical/02-permanent-slides.bn.md",
+      "blob_sha": "50825b1a7178d062c437cf10b2a1d8ef8c1780f8"
+    },
+    {
+      "id": "prac-03",
+      "file": "_biology/higher-zoology-tree/practical/03-whole-mounts.bn.md",
+      "blob_sha": "904933f7b29a301f72b7d370582d605364b906e6"
+    },
+    {
+      "id": "prac-04",
+      "file": "_biology/higher-zoology-tree/practical/04-dissection.bn.md",
+      "blob_sha": "0bca70d74c04305fd2399f54fbb5c650f0b158c3"
+    },
+    {
+      "id": "prac-05",
+      "file": "_biology/higher-zoology-tree/practical/05-temporary-mounts.bn.md",
+      "blob_sha": "b01e88d0bfe9441e984ac2a10f3a0ee761379850"
+    },
+    {
+      "id": "prac-06",
+      "file": "_biology/higher-zoology-tree/practical/06-appendages.bn.md",
+      "blob_sha": "36e36c4dd8cfffb99f1669033b4a21bc0e45d939"
+    },
+    {
+      "id": "prac-07",
+      "file": "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md",
+      "blob_sha": "c120863ca31d85a33f1476b3f5bab59d571950cf"
+    },
+    {
+      "id": "prac-08",
+      "file": "_biology/higher-zoology-tree/practical/08-field-report.bn.md",
+      "blob_sha": "6398c601c3a1b3cd891e8ea945d704d5d94b9711"
+    }
+  ],
+  "mutation_model": "gateway-structural-metadata-canonical-learning-guide-plus-existing-table-primitive",
+  "scientific_content_rewrite": false,
+  "additions": {
+    "academic_system": "v1",
+    "academic_role": "practical",
+    "learning_guide": "canonical",
+    "canonical_learning_guide_cta_count": 1,
+    "academic_table_wrappers": 2
+  },
+  "retained": {
+    "language": "bn",
+    "lang": "bn",
+    "locale": "bn-BD",
+    "course_id": "zoology-practical-213106",
+    "course_role": "gateway",
+    "module_sequence": [
+      "prac-01",
+      "prac-02",
+      "prac-03",
+      "prac-04",
+      "prac-05",
+      "prac-06",
+      "prac-07",
+      "prac-08"
+    ],
+    "practical_reasoning_rule": true,
+    "safety_and_academic_integrity": true,
+    "dedicated_practical_css": true,
+    "dedicated_practical_js": true,
+    "assessment_owner": "mcq-arena",
+    "boundary_owner": "layout"
+  },
+  "route_ledger_target": {
+    "academic_role": "practical",
+    "language": "bn",
+    "boundary_owner": "layout",
+    "learning_guide_owner": "canonical",
+    "assessment_owner": "mcq-arena",
+    "enforcement": "strict",
+    "source_debt": [],
+    "live_debt": []
+  },
+  "learner_mutation_allowlist": [
+    "_biology/higher-zoology-tree/practical/index.bn.md"
+  ],
+  "protected_in_f08": [
+    "_data/academic/course_contract_v1.json",
+    "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md",
+    "_biology/higher-zoology-tree/practical/02-permanent-slides.bn.md",
+    "_biology/higher-zoology-tree/practical/03-whole-mounts.bn.md",
+    "_biology/higher-zoology-tree/practical/04-dissection.bn.md",
+    "_biology/higher-zoology-tree/practical/05-temporary-mounts.bn.md",
+    "_biology/higher-zoology-tree/practical/06-appendages.bn.md",
+    "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md",
+    "_biology/higher-zoology-tree/practical/08-field-report.bn.md",
+    "assets/css/zoology-practical.css",
+    "assets/js/zoology-practical.js"
+  ],
+  "successor_model": {
+    "f09_may_authorize_module_convergence": true,
+    "f08_gateway_artifacts_immutable": true,
+    "practical_course_contract_must_remain_semantically_identical": true
+  },
+  "exact_head_remediation": {
+    "trigger": "F-08 exact-head Axe serious color-contrast failure on five table-header nodes across the two unchanged gateway Markdown tables",
+    "observed_contrast": "1.39:1 (#172033 on #353845)",
+    "action": "wrap both unchanged tables in the existing lbfl-academic-table-wrap accessible region primitive",
+    "wrappers": [
+      {
+        "aria_label": "Zoology Practical-I course identity",
+        "table": "Course Identity"
+      },
+      {
+        "aria_label": "Zoology Practical-I module sequence",
+        "table": "Module Sequence"
+      }
+    ],
+    "shared_css_mutation": false,
+    "table_content_mutation": false,
+    "scientific_content_mutation": false
+  }
+}
