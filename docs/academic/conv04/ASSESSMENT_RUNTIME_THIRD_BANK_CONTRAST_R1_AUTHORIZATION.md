@@ -24,12 +24,13 @@ Scientific/question/answer/explanation rewrite: **PROHIBITED**
 
 - `_mcq-arena/academic/zoology-respiratory-system-mcq-5.md`
 - `.github/scripts/validate-assessment-runtime-third-bank.rb`
+- `.github/scripts/validate-learning-guide-contract.rb` — phase-parser compatibility only (`-R#` suffix)
 - `docs/academic/conv04/CONV04_STATE.md`
 - `docs/academic/conv04/ASSESSMENT_RUNTIME_THIRD_BANK_CONTRAST_R1_AUTHORIZATION.md`
 
 ## Retained-contract compatibility
 
-The Academic Design System phase parser is widened only from `CONV-04X-NN` to also accept the repository's already-used remediation form `CONV-04X-NN-R#`. No design-system CSS, tokens, components, learner rendering or enforcement strength changes.
+The Academic Design System and Learning Guide retained phase parsers are widened only from `CONV-04X-NN` to also accept the repository's already-used remediation form `CONV-04X-NN-R#`. No design-system CSS, Learning Guide behavior, tokens, components, learner rendering, or enforcement strength changes.
 
 ## Promotion gate
 
