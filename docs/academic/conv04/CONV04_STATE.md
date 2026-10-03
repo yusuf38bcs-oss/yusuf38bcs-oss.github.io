@@ -8,7 +8,7 @@ branch: conv-04f-04-ecology-route-ownership-r1-20261003
 production_verified_main: 27ed06453ae6ee9398d06c52a1b44a442004774b
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: four Ecology route owners + conditional Ecology Academic-v1 boundary layout + F-04 ledger/certification/state artifacts
+mutation_authority: four Ecology route owners + conditional Ecology Academic-v1 boundary layout + exact static-owner Polyglot exclusion + F-04 ledger/certification/state artifacts
 learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
@@ -261,3 +261,12 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Shared CSS mutation: **NO**.
 - Scientific/course sequence mutation: **NO**.
 - Recertification: **required on new exact head**.
+
+## F-04 Polyglot route-owner remediation
+
+- Review finding: static compatibility owner could overwrite the rendered Bangla Ecology gateway in non-default Polyglot builds.
+- Exact correction: add `biology/higher-zoology-tree/ecology/index.html` to `exclude_from_localization`.
+- Default compatibility root: **preserved**.
+- Bangla gateway ownership: **protected from static overwrite**.
+- Global localization behavior: **otherwise unchanged**.
+- Scientific/course content mutation: **NO**.
