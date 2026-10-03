@@ -1,0 +1,77 @@
+/* CONV-04F-09 — Museum Specimens verified-image sprite coordinates.
+   Module-scoped only. Shared Practical CSS remains unchanged. */
+
+.zoology-practical-page .museum-verified-figure[data-specimen="sycon"] .museum-verified-image {
+  --museum-x: 0%;
+  --museum-y: 0%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="adamsia"] .museum-verified-image {
+  --museum-x: 50%;
+  --museum-y: 0%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="tubifex"] .museum-verified-image {
+  --museum-x: 100%;
+  --museum-y: 0%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="lumbricus"] .museum-verified-image {
+  --museum-x: 0%;
+  --museum-y: 25%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="ancylostoma"] .museum-verified-image {
+  --museum-x: 50%;
+  --museum-y: 25%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="enterobius"] .museum-verified-image {
+  --museum-x: 100%;
+  --museum-y: 25%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="wuchereria"] .museum-verified-image {
+  --museum-x: 0%;
+  --museum-y: 50%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="hirudo"] .museum-verified-image {
+  --museum-x: 50%;
+  --museum-y: 50%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="fasciola"] .museum-verified-image {
+  --museum-x: 100%;
+  --museum-y: 50%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="schistosoma"] .museum-verified-image {
+  --museum-x: 0%;
+  --museum-y: 75%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="pila"] .museum-verified-image {
+  --museum-x: 50%;
+  --museum-y: 75%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="octopus"] .museum-verified-image {
+  --museum-x: 100%;
+  --museum-y: 75%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="centipedes"] .museum-verified-image {
+  --museum-x: 0%;
+  --museum-y: 100%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="echinus"] .museum-verified-image {
+  --museum-x: 50%;
+  --museum-y: 100%;
+}
+
+.zoology-practical-page .museum-verified-figure[data-specimen="holothuria"] .museum-verified-image {
+  --museum-x: 100%;
+  --museum-y: 100%;
+}
