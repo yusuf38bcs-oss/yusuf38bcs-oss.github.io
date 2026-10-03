@@ -38,7 +38,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: conv04f-museum-\${{ github.event.pull_request.number || github.ref }}
+  group: conv04f-museum-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -48,18 +48,18 @@ jobs:
     timeout-minutes: 55
     env:
       F09_AUTHORIZED_BASE: "f04ac472ee261fa19dc17de6052bde02b75e99c4"
-      CANDIDATE_SHA: \${{ github.event.pull_request.head.sha || github.event.inputs.expected_main_sha || github.sha }}
-      EXPECTED_MAIN_SHA: \${{ github.event.inputs.expected_main_sha || '' }}
-      CERTIFICATION_MODE: \${{ github.event_name == 'pull_request' && 'pull_request' || 'manual' }}
-      PR_BASE_REF: \${{ github.event.pull_request.base.ref || 'main' }}
-      PR_BASE_SHA: \${{ github.event.pull_request.base.sha || '' }}
+      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.event.inputs.expected_main_sha || github.sha }}
+      EXPECTED_MAIN_SHA: ${{ github.event.inputs.expected_main_sha || '' }}
+      CERTIFICATION_MODE: ${{ github.event_name == 'pull_request' && 'pull_request' || 'manual' }}
+      PR_BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
       REPORT_DIR: conv04f-zoology-practical-museum-browser-report
 
     steps:
       - name: Check out immutable candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: \${{ env.CANDIDATE_SHA }}
+          ref: ${{ env.CANDIDATE_SHA }}
           fetch-depth: 0
           persist-credentials: false
 
@@ -71,7 +71,7 @@ jobs:
           test "$actual" = "$CANDIDATE_SHA"
           git merge-base --is-ancestor "$F09_AUTHORIZED_BASE" "$actual"
 
-          if [ "\${{ github.event_name }}" = "pull_request" ]; then
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
             remote="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
             test "$remote" = "$PR_BASE_SHA" || { echo "BASE CHANGED — RECERTIFICATION REQUIRED"; exit 1; }
             test "$PR_BASE_SHA" = "$F09_AUTHORIZED_BASE" || { echo "F-09 AUTHORIZED BASE DRIFT"; exit 1; }
@@ -190,7 +190,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: conv04f-zoology-practical-museum-\${{ env.CANDIDATE_SHA }}
-          path: \${{ env.REPORT_DIR }}
+          name: conv04f-zoology-practical-museum-${{ env.CANDIDATE_SHA }}
+          path: ${{ env.REPORT_DIR }}
           if-no-files-found: warn
           retention-days: 30
