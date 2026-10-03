@@ -1,8 +1,8 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09
-mode: authentication handoff — Zoology Practical-I module convergence baseline
+phase: CONV-04F-08-R1
+mode: F-08 closure / F-09 authentication handoff — governance only
 authorized_base: 4e36517c02c776e77832858467ce82501214412f
 branch: conv-04f-09-authentication-20261004
 production_verified_main: 4e36517c02c776e77832858467ce82501214412f
