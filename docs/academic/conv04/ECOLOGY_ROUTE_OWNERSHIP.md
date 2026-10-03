@@ -48,3 +48,9 @@ F-04 must certify the real rendered routes, not just front matter:
 - Jekyll, Axe, keyboard/focus, 320px reflow, text spacing, reduced motion and no-JS;
 - retained A-E and F-01/F-02/F-03 contracts;
 - exact-head security, Pages and governance.
+
+## Polyglot static-owner collision
+
+Review of the exact candidate exposed one further route-ownership defect: Polyglot localizes static files unless excluded. Because `biology/higher-zoology-tree/ecology/index.html` is a static compatibility owner, the non-default `bn` build could copy that English file into `/bn/biology/higher-zoology-tree/ecology/index.html` after the Bangla Jekyll page had rendered, overwriting the intended Bangla Academic-v1 gateway.
+
+The narrowly authorized correction is to add exactly this static owner to `exclude_from_localization` in `_config.yml`. This preserves the default compatibility root while preventing a localized static copy from taking ownership of the Bangla route. No other localization path or global language behavior is authorized to change.
