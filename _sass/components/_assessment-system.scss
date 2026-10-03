@@ -237,3 +237,38 @@
     overflow-wrap: anywhere;
   }
 }
+
+/* Authored assessment runtime feedback surfaces.
+   These legacy MCQ pages intentionally use dark assessment cards independent
+   of the surrounding site theme. Keep post-submit explanations, score feedback,
+   and the repair action on explicit WCAG-AA foreground/background pairs. */
+.authored-assessment-wrapper .q .exp,
+.authored-assessment-wrapper .q .exp[data-assessment-explanation] {
+  background: #111827 !important;
+  color: #f0fdf4 !important;
+}
+
+.authored-assessment-wrapper .q .exp p,
+.authored-assessment-wrapper .q .exp strong,
+.authored-assessment-wrapper .q .exp span {
+  color: #f0fdf4 !important;
+}
+
+.authored-assessment-wrapper .score-board {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+.authored-assessment-wrapper .score-board h3,
+.authored-assessment-wrapper .score-board p,
+.authored-assessment-wrapper .score-board .score-text {
+  color: #f8fafc !important;
+}
+
+.authored-assessment-wrapper .score-board a.btn-restart[data-assessment-repair],
+.authored-assessment-wrapper .score-board a.btn-restart[data-assessment-repair]:visited {
+  border-color: #94a3b8 !important;
+  background: #111827 !important;
+  color: #f8fafc !important;
+}
+
