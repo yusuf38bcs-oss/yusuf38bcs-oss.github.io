@@ -8,7 +8,8 @@ require "pathname"
 ROOT = Pathname.new(__dir__).join("../..").expand_path
 BASE = "9895c190f75d0d6b3167370a043181e9cc5c14ad"
 PHASE = "CONV-04F-07"
-SOURCE_REL = "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md"
+BASE_SOURCE_REL = "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md"
+SOURCE_REL = "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md"
 SOURCE = ROOT.join(SOURCE_REL)
 MANIFEST = ROOT.join("_data/academic/conv04f_blood_circulation_revision_v1.json")
 LEDGER = ROOT.join("docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json")
@@ -22,6 +23,8 @@ BOOTSTRAP_FILES = %w[
   .github/scripts/conv04f-blood-circulation-revision-browser-certification.mjs
   .github/scripts/validate-conv04f-blood-circulation-revision.rb
   .github/workflows/conv04f-blood-circulation-revision-certification.yml
+  _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md
+  _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md
   _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md
   _data/academic/conv04f_blood_circulation_revision_v1.json
   docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
@@ -98,7 +101,7 @@ end
 end
 
 if SOURCE.file?
-  baseline, _, status = git("show", "#{BASE}:#{SOURCE_REL}")
+  baseline, _, status = git("show", "#{BASE}:#{BASE_SOURCE_REL}")
   if status.success?
     candidate = read_utf8(SOURCE)
     need(errors, candidate == authorized_transform(baseline),
