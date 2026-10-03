@@ -107,7 +107,11 @@ async function run(name,width,height,opts={}){
         learnLink:[...content?.querySelectorAll("a[href]")||[]].some(a=>new URL(a.href).pathname==="/learn/"),
         boundaryCount:content?.querySelectorAll(".educational-boundary").length||0,
         legacyCycleCount:content?.querySelectorAll("[data-zoology-learning-cycle]").length||0,
-        h1Texts:[...content?.querySelectorAll("h1")||[]].map(h=>h.textContent.trim()),
+        h1Texts:[...content?.querySelectorAll("h1")||[]].map(h=>{
+          const clone=h.cloneNode(true);
+          clone.querySelectorAll("a").forEach(a=>a.remove());
+          return clone.textContent.trim();
+        }),
         specimenHeadingCount:specimenHeadings.length,
         specimenNumbers:specimenHeadings.map(t=>Number(t.match(/^(\d+)\./)?.[1]||0)),
         tableCount:tables.length,
