@@ -67,6 +67,7 @@ jobs:
       - name: Deploy exact-head Cloudflare Pages preview
         shell: bash
         env:
+          CLOUDFLARE_PAGES_DEPLOY_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_WORKER_DEPLOY_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
@@ -74,6 +75,7 @@ jobs:
         run: |
           set -euo pipefail
           candidates=(
+            "CLOUDFLARE_PAGES_DEPLOY_TOKEN"
             "CLOUDFLARE_WORKER_DEPLOY_TOKEN"
             "CF_API_TOKEN"
             "CLOUDFLARE_TOKEN"
