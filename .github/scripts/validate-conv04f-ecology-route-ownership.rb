@@ -96,6 +96,8 @@ end
 
 def strip_academic_additions(source)
   cleaned=source.gsub("\n\n#{CTA}\n","\n")
+  cleaned=cleaned.gsub(%q(<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology lecture sequence" markdown="1">\n\n), "")
+  cleaned=cleaned.gsub("\n\n</div>\n\n[Back to Ecology]", "\n\n[Back to Ecology]")
   cleaned.lines.reject do |line|
     line.match?(/\A(?:academic_system:\s*v1|academic_role:\s*academic_gateway|learning_guide:\s*canonical)\s*\z/)
   end.join
@@ -138,6 +140,9 @@ need(root.scan(/<h1\b/i).length==1,"Compatibility root must contain exactly one 
   need(fm_value(source,"permalink")==permalink,"#{path.basename}: source permalink drift")
   need(source.scan(CTA).length==1,"#{path.basename}: exactly one canonical Learning Guide CTA required")
   need(!source.match?(/<style\b|\sstyle\s*=/i),"#{path.basename}: local style debt not authorized")
+  if path == INDEX
+    need(source.include?('<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology lecture sequence" markdown="1">'), "Ecology course index table must use the Academic-v1 accessible table wrapper")
+  end
 end
 
 layout=LAYOUT.file? ? read_utf8(LAYOUT) : ""
