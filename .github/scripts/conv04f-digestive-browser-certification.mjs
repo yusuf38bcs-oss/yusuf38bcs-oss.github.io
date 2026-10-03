@@ -144,7 +144,7 @@ async function run(view,opts={}){
       metrics.htmlAcademic &&
       metrics.bodyAcademic &&
       metrics.articleAcademic &&
-      metrics.role==="course_index" &&
+      metrics.role==="academic_gateway" &&
       metrics.guide==="canonical" &&
       metrics.ctaCount===1 &&
       metrics.guideLink &&
