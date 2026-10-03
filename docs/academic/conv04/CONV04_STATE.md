@@ -1,27 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-07-R2
-mode: retained accessibility remediation — Botany authored assessment reveal contrast
-authorized_base: f499d0fbf6f128cb227e64807b070141a6a9bed8
-branch: conv-04f-07-r2-botany-assessment-contrast-20261003
-production_verified_main: f499d0fbf6f128cb227e64807b070141a6a9bed8
+phase: CONV-04F-08
+mode: implementation candidate — Zoology Practical-I gateway strict Academic-v1 convergence
+authorized_base: 4b8f96300a81289432da7a01cfddecacbada3623
+branch: conv-04f-08-zoology-practical-gateway-20261003
+production_verified_main: 4b8f96300a81289432da7a01cfddecacbada3623
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact D-04 + D-05 presentation-animation remediation plus retained validator/state/authorization
-learner_content_authoring: scientific/question/answer/explanation rewrite prohibited
-existing_learning_method_cleanup: remove opacity-based reveal only; preserve transform motion
-gateway_cta_injection: unchanged
+mutation_authority: exact one Practical-I gateway learner surface + F-08 route-ledger/certification/state artifacts
+learner_content_authoring: structural Practical gateway convergence only / module and scientific rewrite forbidden
+existing_learning_method_cleanup: canonical Learning Guide replaces legacy Zoology cycle on the Practical gateway through existing layout ownership
+gateway_cta_injection: exactly one canonical Learning Guide CTA on Zoology Practical-I gateway
 learner_mutation_allowlist:
-  - _mcq-arena/academic/botany-cell-biology-mcq-1.md
-  - _mcq-arena/academic/botany-cell-division-mcq-2.md
+  - _biology/higher-zoology-tree/practical/index.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head D-04 + D-05 content preservation/browser/Axe + retained A-F07-R1/D/E + Jekyll + review convergence
-merge: not authorized until unchanged-head governance + required checks PASS
+ready_transition: not authorized until exact-head F-08 + native Practical 213106 + retained A-F07-R2/D/E + course/module preservation + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
+merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
 
@@ -439,3 +438,35 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Shared authored runtime: **unchanged**.
 - Remediation: transform-only reveal motion; no opacity interpolation.
 - Exact-head D-04/D-05 browser recertification: **REQUIRED**.
+
+
+## CONV-04F-07-R2 post-merge closure
+
+- PR #422: **MERGED**.
+- Final PR head: `100f090351086b166a14a2bf89c2994b71328cb2`.
+- Merge / authoritative main: `4b8f96300a81289432da7a01cfddecacbada3623`.
+- D-04 Botany Cell Biology browser/Axe: **PASS**.
+- D-05 Botany Cell Division browser/Axe: **PASS**.
+- Shared authored runtime: **unchanged**.
+- Authored question/option/answer/explanation corpora: **preserved by exact transform validators**.
+- Remediation: opacity reveal removed; transform-only motion retained.
+
+**CONV-04F-07-R2 = CLOSED / PASS.**
+
+## CONV-04F-08 rebound implementation candidate
+
+- Fresh authenticated base: `4b8f96300a81289432da7a01cfddecacbada3623`.
+- Canonical route: `/biology/higher-zoology-tree/practical/`.
+- Gateway source: `_biology/higher-zoology-tree/practical/index.bn.md`.
+- Gateway baseline blob: `da3660be82ec695bfee239494312fede78cd4a24`.
+- Governed Practical course: `nu-zoology-practical-213106` / strict / eight modules.
+- Academic-v1 role: `practical`.
+- Language: `bn`.
+- Learning Guide: `canonical`.
+- Exact learner-facing mutation count: **1**.
+- Eight Practical module sources: **protected / unchanged in F-08**.
+- Practical course contract: **protected / unchanged in F-08**.
+- Scientific/curriculum rewrite authority: **NONE**.
+- Existing F-08 table remediation and successor-authorization hardening: **retained**.
+- F-09 module convergence: **not yet authorized**.
+- New exact-head recertification on post-R2 main: **REQUIRED**.
