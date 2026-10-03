@@ -1,0 +1,180 @@
+name: CONV-04F-08 Zoology Practical-I Gateway Certification
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+    paths:
+      - "_biology/higher-zoology-tree/practical/index.bn.md"
+      - "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md"
+      - "_biology/higher-zoology-tree/practical/02-permanent-slides.bn.md"
+      - "_biology/higher-zoology-tree/practical/03-whole-mounts.bn.md"
+      - "_biology/higher-zoology-tree/practical/04-dissection.bn.md"
+      - "_biology/higher-zoology-tree/practical/05-temporary-mounts.bn.md"
+      - "_biology/higher-zoology-tree/practical/06-appendages.bn.md"
+      - "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md"
+      - "_biology/higher-zoology-tree/practical/08-field-report.bn.md"
+      - "_data/academic/course_contract_v1.json"
+      - "_data/academic/conv04f_zoology_practical_gateway_v1.json"
+      - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
+      - "docs/academic/conv04/CONV04_STATE.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_GATEWAY_F08_AUTHORIZATION.md"
+      - ".github/scripts/validate-conv04f-zoology-practical-gateway.rb"
+      - ".github/scripts/conv04f-zoology-practical-gateway-browser-certification.mjs"
+      - ".github/workflows/conv04f-zoology-practical-gateway-certification.yml"
+  workflow_dispatch:
+    inputs:
+      expected_main_sha:
+        description: "Exact main SHA to certify"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: conv04f-practical-gateway-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: CONV-04F-08 Zoology Practical-I gateway exact-head certification
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      F08_AUTHORIZED_BASE: "4b8f96300a81289432da7a01cfddecacbada3623"
+      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.event.inputs.expected_main_sha || github.sha }}
+      EXPECTED_MAIN_SHA: ${{ github.event.inputs.expected_main_sha || '' }}
+      CERTIFICATION_MODE: ${{ github.event_name == 'pull_request' && 'pull_request' || 'manual' }}
+      PR_BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
+      REPORT_DIR: conv04f-zoology-practical-gateway-browser-report
+
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.CANDIDATE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Authenticate exact head and live base
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "$CANDIDATE_SHA"
+          git merge-base --is-ancestor "$F08_AUTHORIZED_BASE" "$actual"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            remote="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
+            test "$remote" = "$PR_BASE_SHA" || { echo "BASE CHANGED — RECERTIFICATION REQUIRED"; exit 1; }
+            git merge-base --is-ancestor "$remote" "$actual" || { echo "STALE CANDIDATE"; exit 1; }
+          else
+            test -n "$EXPECTED_MAIN_SHA"
+            remote="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+            test "$remote" = "$EXPECTED_MAIN_SHA"
+            test "$actual" = "$EXPECTED_MAIN_SHA"
+          fi
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Certify F-08 source + governed Practical course
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby -c .github/scripts/validate-conv04f-zoology-practical-gateway.rb
+          ruby .github/scripts/validate-conv04f-zoology-practical-gateway.rb
+          ruby scripts/zoology/validate_practical_213106.rb
+          git diff --check "$PR_BASE_SHA...HEAD"
+
+      - name: Retain CONV-04 A-F07 contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby .github/scripts/validate-academic-surface-contract.rb
+          ruby .github/scripts/validate-academic-design-system.rb
+          ruby .github/scripts/validate-learning-guide-contract.rb
+          ruby .github/scripts/validate-learning-guide-implementation.rb
+          ruby .github/scripts/validate-gateway-convergence.rb
+          ruby .github/scripts/validate-assessment-ownership.rb
+          ruby .github/scripts/validate-assessment-gateway.rb
+          ruby .github/scripts/validate-assessment-runtime-contract.rb
+          ruby .github/scripts/validate-assessment-runtime-pilot.rb
+          ruby .github/scripts/validate-assessment-runtime-second-bank.rb
+          ruby .github/scripts/validate-assessment-runtime-third-bank.rb
+          ruby .github/scripts/validate-conv04e-botany-gateway.rb
+          python3 scripts/academic/validate_botany_chapter01_scope.py
+          python3 scripts/academic/validate_botany_learner_content.py
+          python3 scripts/academic/validate_botany_bot08_content.py
+          ruby .github/scripts/validate-conv04f-hsc-zoology-gateway.rb
+          ruby .github/scripts/validate-conv04f-higher-zoology-gateway.rb
+          ruby .github/scripts/validate-conv04f-animal-diversity.rb
+          ruby .github/scripts/validate-conv04f-ecology-route-ownership.rb
+          ruby .github/scripts/validate-ecology-course.rb
+          ruby .github/scripts/validate-conv04f-genetics.rb
+          ruby .github/scripts/validate-conv04f-digestive-gateway.rb
+          ruby .github/scripts/validate-conv04f-blood-circulation-revision.rb
+          ruby .github/scripts/validate-zoology-academic-design.rb
+
+      - name: Build exact-head production Jekyll
+        shell: bash
+        env:
+          JEKYLL_ENV: production
+        run: |
+          set -euo pipefail
+          bundle install --jobs 4 --retry 3
+          bundle exec jekyll clean
+          bundle exec jekyll build --trace
+          rendered="_site/biology/higher-zoology-tree/practical/index.html"
+          test -f "$rendered"
+          grep -q 'data-lbfl-academic-surface="v1"' "$rendered"
+          grep -q 'data-lbfl-academic-role="practical"' "$rendered"
+          grep -q 'data-lbfl-learning-guide="canonical"' "$rendered"
+          ruby .github/scripts/validate-conv04f-zoology-practical-gateway.rb
+          ruby scripts/zoology/validate_practical_213106.rb
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install browser runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check .github/scripts/conv04f-zoology-practical-gateway-browser-certification.mjs
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+
+      - name: Serve exact-head site
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site >"$RUNNER_TEMP/f08-http.log" 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4173/biology/higher-zoology-tree/practical/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/f08-http.log"
+          exit 1
+
+      - name: Browser / Axe / keyboard / reflow / spacing / reduced-motion / no-JS
+        run: |
+          node .github/scripts/conv04f-zoology-practical-gateway-browser-certification.mjs \
+            --base-url http://127.0.0.1:4173 \
+            --output-dir "$REPORT_DIR"
+
+      - name: Preserve F-08 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conv04f-zoology-practical-gateway-${{ env.CANDIDATE_SHA }}
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
