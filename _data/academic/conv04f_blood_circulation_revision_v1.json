@@ -20,7 +20,7 @@
   },
   "retained": {
     "legacy_language": "bn",
-    "header_overlay": true,
+    "header_overlay": false,
     "study_route": true,
     "master_mind_map": true,
     "blood_flow_diagram": true,
@@ -49,7 +49,8 @@
       "rendered_blank_hero_space",
       "rendered_word_fragmentation"
     ],
-    "mechanism": "activate Academic-v1 shared rendering contract; retain source content and header metadata; certify live rendering at exact head"
+    "mechanism": "activate Academic-v1 shared rendering contract; retain source content and header metadata; certify live rendering at exact head",
+    "rendered_mechanism": "remove empty legacy hero metadata; use existing Academic-v1 table primitive; certify exact rendered output"
   },
   "learner_mutation_allowlist": [
     "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md"
@@ -76,5 +77,18 @@
     "academic_surface_validator": "route-scoped effective-language fallback only when both ledger and source opt in with polyglot_root_language=true",
     "default_layout": "route-scoped html language fallback to page.language only when page.polyglot_root_language=true",
     "global_language_behavior_changed": false
+  },
+  "presentation_remediation": {
+    "blank_hero": {
+      "baseline_cause": "legacy header.overlay_image generated an empty page__hero--overlay on this Academic-v1 revision route",
+      "action": "remove page-level header overlay metadata",
+      "scientific_content_changed": false
+    },
+    "table_contrast": {
+      "baseline_evidence": "Axe reported 6 serious color-contrast nodes, matching two 3-column Markdown table headers",
+      "action": "wrap both unchanged tables in existing lbfl-academic-table-wrap accessible primitive",
+      "wrappers": 2,
+      "shared_css_changed": false
+    }
   }
 }
