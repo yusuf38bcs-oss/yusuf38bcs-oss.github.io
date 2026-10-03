@@ -63,7 +63,7 @@ def fm(src,key)
   v
 end
 def strip_source(src)
-  s=src.gsub("\n#{CTA}\n","\n")
+  s=src.gsub("\n\n#{CTA}\n\n","\n\n")
   s.lines.reject{|l|%w[academic_system academic_role learning_guide].any?{|k|l.match?(/\A#{k}:\s*/)}}.join
 end
 def phase_order(value)
