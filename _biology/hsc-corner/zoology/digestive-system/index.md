@@ -53,4 +53,3 @@ HSC Biology 2nd Paper Chapter 3-এর Digestive System series এখানে �
 - Constructive sequence: structure first, mechanism next, then absorption and regulation.
 - Learning purpose only for health-related content.
 - Mobile-friendly card layout; no raw table dependency for the hub.
-
