@@ -1,0 +1,137 @@
+{
+  "schema": "lbfl-conv04f04-ecology-route-ownership-authorization-v1",
+  "version": "CONV-04F-04-authorization-2.0.0",
+  "phase": "CONV-04F-04",
+  "status": "authorized-route-ownership-correction-not-implemented",
+  "authorized_base": "27ed06453ae6ee9398d06c52a1b44a442004774b",
+  "supersedes_orphan_authorization_head": "a6dfb04d43e07c81ce78ecdfdf88f2716e857f06",
+  "blocker": {
+    "kind": "route-owner-and-layout-boundary-mismatch",
+    "findings": [
+      "public compatibility root is physically owned by biology/higher-zoology-tree/ecology/index.html",
+      "Bangla Jekyll source permalink does not own the default root in production; Polyglot renders it under /bn/",
+      "single layout suppresses educational-boundary for every ecology surface, including future Academic-v1 pages",
+      "three-source-only authorization could certify sources without changing the real root route or producing the required layout boundary"
+    ]
+  },
+  "route_ownership": {
+    "compatibility_root": {
+      "route": "/biology/higher-zoology-tree/ecology/",
+      "source_file": "biology/higher-zoology-tree/ecology/index.html",
+      "role": "legacy-compatibility-landing",
+      "academic_v1": false,
+      "canonical_target": "/biology/higher-zoology-tree/ecology/course-index/",
+      "english_gateway": "/en/biology/higher-zoology-tree/ecology/",
+      "bangla_gateway": "/bn/biology/higher-zoology-tree/ecology/"
+    },
+    "canonical_course": {
+      "route": "/biology/higher-zoology-tree/ecology/course-index/",
+      "source_file": "_biology/higher-zoology-tree/ecology/course-index.md",
+      "academic_role": "academic_gateway",
+      "language": "en"
+    },
+    "english_gateway": {
+      "route": "/en/biology/higher-zoology-tree/ecology/",
+      "source_file": "_biology/higher-zoology-tree/ecology/en/index.md",
+      "academic_role": "academic_gateway",
+      "language": "en"
+    },
+    "bangla_gateway": {
+      "rendered_route": "/bn/biology/higher-zoology-tree/ecology/",
+      "source_permalink": "/biology/higher-zoology-tree/ecology/",
+      "source_file": "_pages/ecology-v2-gateway.bn.md",
+      "academic_role": "academic_gateway",
+      "language": "bn",
+      "note": "Polyglot language rendering owns the /bn/ public route; it does not own the default compatibility root."
+    }
+  },
+  "baseline_blobs": {
+    "biology/higher-zoology-tree/ecology/index.html": "57f721e4c08c899c4b39331f189c142734709473",
+    "_pages/ecology-v2-gateway.bn.md": "950302ca3b88039c539b0d04b3f20ff98c58ddac",
+    "_biology/higher-zoology-tree/ecology/en/index.md": "4cf4fb26b0bb15bf8d4d35e855390ffdb46d3c51",
+    "_biology/higher-zoology-tree/ecology/course-index.md": "fc59228df4a835697e44fea290b36a5e35a39b49",
+    "_layouts/single.html": "463afaaea1a38b0cff26d6267992a0ba033f74bb",
+    "_data/academic/course_contract_v1.json": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+    "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json": "47b6c7c308043de80a094dcdca430c458c8f66b1",
+    "docs/academic/conv04/CONV04_STATE.md": "8537a2bc4ff887169a4d2224b4e41ad95224dc36",
+    ".github/scripts/validate-ecology-course.rb": "2776cdadb83475d01fb512b87a376733064b3ebe",
+    ".github/scripts/ecology-presentation-browser-certification.mjs": "b05da7461c7b0e084be6ccfa18ec112dac3e8ee8",
+    ".github/workflows/ecology-course-certification.yml": "be3d9514713d8f2fbfe8a94a34653240d5bf38f8"
+  },
+  "course_contract": {
+    "source_file": "_data/academic/course_contract_v1.json",
+    "course_id": "higher-zoology-ecology",
+    "canonical_route": "/biology/higher-zoology-tree/ecology/course-index/",
+    "legacy_routes": [
+      "/biology/higher-zoology-tree/ecology/"
+    ],
+    "module_count": 10,
+    "module_ids": [
+      "eco-01",
+      "eco-02",
+      "eco-03",
+      "eco-04",
+      "eco-05",
+      "eco-06",
+      "eco-07",
+      "eco-08",
+      "eco-09",
+      "eco-10"
+    ],
+    "mutation_authorized": false
+  },
+  "learner_mutation_allowlist": [
+    "biology/higher-zoology-tree/ecology/index.html",
+    "_pages/ecology-v2-gateway.bn.md",
+    "_biology/higher-zoology-tree/ecology/en/index.md",
+    "_biology/higher-zoology-tree/ecology/course-index.md"
+  ],
+  "conditional_layout_allowlist": [
+    "_layouts/single.html"
+  ],
+  "contract_artifact_allowlist": [
+    "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json",
+    "docs/academic/conv04/CONV04_STATE.md",
+    "_data/academic/conv04f04_ecology_route_ownership_v1.json",
+    "docs/academic/conv04/ECOLOGY_ROUTE_OWNERSHIP.md",
+    ".github/scripts/validate-conv04f-ecology-route-ownership.rb",
+    ".github/scripts/conv04f-ecology-browser-certification.mjs",
+    ".github/workflows/conv04f-ecology-route-certification.yml"
+  ],
+  "authorized_changes": {
+    "compatibility_root": [
+      "retain public route",
+      "declare canonical course-index target",
+      "expose explicit English and Bangla gateway links",
+      "remove local inline style layer"
+    ],
+    "academic_surfaces": [
+      "add academic_system v1",
+      "add academic_role academic_gateway",
+      "retain lang/language agreement",
+      "add learning_guide canonical",
+      "render exactly one canonical Learning Guide CTA"
+    ],
+    "layout": [
+      "for Ecology surfaces only, preserve legacy boundary suppression unless page.academic_system == v1",
+      "for Academic-v1 Ecology surfaces, render exactly one layout-owned educational boundary"
+    ],
+    "route_ledger": [
+      "register strict English gateway",
+      "register strict Bangla gateway",
+      "register strict canonical course index"
+    ]
+  },
+  "prohibited": [
+    "Ecology lecture scientific rewrite",
+    "Ecology course-contract mutation",
+    "lecture route changes",
+    "module sequence changes",
+    "shared CSS mutation",
+    "assessment ownership changes",
+    "D/E/F-01/F-02/F-03 retained artifact rewrites",
+    "Admission/#356",
+    "Worker/Cloudflare configuration"
+  ],
+  "next_gate": "implement corrected route ownership and exact rendered-route certification on unchanged base"
+}
