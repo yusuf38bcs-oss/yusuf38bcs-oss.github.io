@@ -95,7 +95,7 @@ def phase_order(value)
 end
 
 def strip_academic_additions(source)
-  cleaned=source.gsub("\n#{CTA}\n","\n")
+  cleaned=source.gsub("\n\n#{CTA}\n","\n")
   cleaned.lines.reject do |line|
     line.match?(/\A(?:academic_system:\s*v1|academic_role:\s*academic_gateway|learning_guide:\s*canonical)\s*\z/)
   end.join
