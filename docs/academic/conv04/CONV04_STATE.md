@@ -1,25 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-08-R1
-mode: F-08 closure / F-09 authentication handoff — governance only
-authorized_base: 4e36517c02c776e77832858467ce82501214412f
-branch: conv-04f-09-authentication-20261004
-production_verified_main: 4e36517c02c776e77832858467ce82501214412f
+phase: CONV-04F-09
+mode: implementation candidate — prac-01 Museum Specimens Academic-v1 convergence
+authorized_base: f04ac472ee261fa19dc17de6052bde02b75e99c4
+branch: conv-04f-09-museum-specimens-20261004
+production_verified_main: f04ac472ee261fa19dc17de6052bde02b75e99c4
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: none — F-09 authentication only; module edits require separate exact-scope authorization
-learner_content_authoring: not authorized in authentication handoff
-existing_learning_method_cleanup: F-08 gateway convergence retained / unchanged
-gateway_cta_injection: F-08 canonical Learning Guide retained / unchanged
+mutation_authority: exact one learner module prac-01 + F-09 governance/certification artifacts + new module-specific Museum stylesheet
+learner_content_authoring: structural Academic-v1 convergence only / scientific and curriculum rewrite forbidden
+existing_learning_method_cleanup: canonical Learning Guide ownership added to prac-01; Practical gateway and sibling modules retained
+gateway_cta_injection: unchanged on gateway / exactly one canonical Learning Guide CTA authorized on prac-01
 learner_mutation_allowlist:
+  - _biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized for learner implementation; authentication PR remains governance-only
-merge: governance handoff only after retained checks + Trusted Governance PASS
+ready_transition: not authorized until exact-head F-09 source + Practical 213106 + retained CONV-04 + Jekyll/browser/Axe + Cloudflare preview + review convergence PASS
+merge: not authorized until exact-head solo authority + Ready-state certification + Trusted Governance + unchanged-head/base/thread gate
 
 ## Completed foundation
 
@@ -486,3 +487,13 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Open CONV-04F PR conflicts at F-09 authentication: **0**.
 - Eight Practical module blobs and strict course-contract blob are bound in `docs/academic/conv04/ZOOLOGY_PRACTICAL_MODULES_F09_AUTHENTICATION.md`.
 - F-09 learner/module mutation authority: **NONE — separate exact-scope authorization required before edits**.
+
+## CONV-04F-09 prac-01 authorization
+
+- Selected module: **prac-01 Museum Specimens**.
+- Authorized base: `f04ac472ee261fa19dc17de6052bde02b75e99c4`.
+- Learner baseline blob: `26e1711cf9c6bace8ddd8419797c38511987420c`.
+- Learner mutation allowlist: exactly one source file.
+- 48/48 labels, 15 verified/33 pending images, seven nomenclature flags, course contract, module order, gateway, sibling modules and shared Practical CSS/JS are protected.
+- Scientific/curriculum rewrite authority: **NONE**.
+- Authorization evidence: `docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_AUTHORIZATION.md`.
