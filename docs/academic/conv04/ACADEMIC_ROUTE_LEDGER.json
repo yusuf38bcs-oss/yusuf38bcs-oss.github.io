@@ -421,6 +421,20 @@
       "enforcement": "strict",
       "source_debt": [],
       "live_debt": []
+    },
+    {
+      "id": "hsc-digestive-system-course-index",
+      "canonical_route": "/biology/hsc-corner/zoology/digestive-system/",
+      "source_file": "_biology/hsc-corner/zoology/digestive-system/index.md",
+      "support_files": [],
+      "academic_role": "academic_gateway",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     }
   ]
 }
