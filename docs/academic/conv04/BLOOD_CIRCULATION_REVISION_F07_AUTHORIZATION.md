@@ -32,7 +32,7 @@ Exactly one learner-facing source may change:
 Authorized additions only:
 
 ```yaml
-lang: bn
+polyglot_root_language: true
 academic_system: v1
 academic_role: revision
 learning_guide: canonical
@@ -64,12 +64,17 @@ Draft until unchanged-head F-07 source preservation, retained A–F06/D/E, produ
 
 
 
-## Polyglot route preservation
 
-Exact-head Jekyll diagnostics proved that adding `lang: bn` to this historical bilingual route caused Polyglot to emit only localized `/bn/...` and `/en/...` copies, removing the established root Bangla canonical output. F-07 therefore follows the existing F-04 Ecology route-ownership pattern and adds exactly one destination path to `exclude_from_localization` in `_config.yml`:
+## Route-scoped language compatibility
 
-`biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html`
+Exact-head Jekyll diagnostics proved that adding Polyglot front matter `lang: bn` to this historical root Bangla route moves the rendered page to the non-default `/bn/...` site and removes the established root output. Polyglot documents this prefixing behavior for non-default languages. The prior `exclude_from_localization` experiment was also rejected because that option is intended for root-level static paths/folders rather than collection-document language ownership.
 
-This keeps the canonical Bangla permalink at the established root route while the existing explicit English counterpart remains at `/en/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
+F-07 therefore does **not** set `lang: bn` on this page. Instead:
 
-No shared layout, CSS, scientific content, or route slug is changed.
+- existing `language: bn` remains the content-language source;
+- source and ledger explicitly opt in with `polyglot_root_language: true`;
+- the Academic Surface validator accepts `language` as effective language only for that dual-opt-in route;
+- the default layout renders `<html lang="bn">` from `page.language` only for the same explicit opt-in;
+- all other routes keep the existing `page.lang` / Polyglot behavior unchanged.
+
+This preserves the established Bangla root URL and the separate explicit English `/en/...` counterpart without changing scientific content, route slug, site-wide default language, or other routes.
