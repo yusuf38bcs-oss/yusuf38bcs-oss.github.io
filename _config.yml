@@ -68,6 +68,7 @@ exclude_from_localization:
   - .github
   - scripts
   - biology/higher-zoology-tree/ecology/index.html
+  - biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html
 parallel_localization: false
 fallback_canonical_to_default_lang: true
 
