@@ -690,32 +690,3 @@ html.lbfl-academic-v1 [data-lbfl-academic-surface] .page__content h4 {
     transform: none !important;
   }
 }
-
-/* CONV-04F-02 retained authored-assessment contrast bridge.
-   Academic-v1 owns the light page canvas, while authored assessment cards keep
-   their certified dark component surfaces. These selectors preserve explicit
-   WCAG-AA foreground/background pairs after submission without changing bank
-   content, scoring, runtime behavior, or the Axe gate. */
-html.lbfl-academic-v1 [data-lbfl-academic-surface] .authored-assessment-wrapper .exp,
-html.lbfl-academic-v1 [data-lbfl-academic-surface] .authored-assessment-wrapper .exp p {
-  background-color: #111827;
-  color: #f0fdf4;
-}
-
-html.lbfl-academic-v1 [data-lbfl-academic-surface] .authored-assessment-wrapper .score-board {
-  background-color: #0f172a;
-  color: #f8fafc;
-}
-
-html.lbfl-academic-v1 [data-lbfl-academic-surface] .authored-assessment-wrapper .score-board h3,
-html.lbfl-academic-v1 [data-lbfl-academic-surface] .authored-assessment-wrapper .score-board p,
-html.lbfl-academic-v1 [data-lbfl-academic-surface] .authored-assessment-wrapper .score-board .score-text {
-  color: #f8fafc;
-}
-
-html.lbfl-academic-v1 [data-lbfl-academic-surface] .authored-assessment-wrapper .score-board a.btn-restart,
-html.lbfl-academic-v1 [data-lbfl-academic-surface] .authored-assessment-wrapper .score-board a.btn-restart:visited {
-  border-color: #94a3b8;
-  background-color: #111827;
-  color: #f8fafc;
-}
