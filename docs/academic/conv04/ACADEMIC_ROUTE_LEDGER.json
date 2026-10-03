@@ -393,6 +393,34 @@
       "enforcement": "strict",
       "source_debt": [],
       "live_debt": []
+    },
+    {
+      "id": "genetics-gateway",
+      "canonical_route": "/biology/higher-zoology-tree/genetics/",
+      "source_file": "_biology/higher-zoology-tree/genetics/index.md",
+      "support_files": [],
+      "academic_role": "academic_gateway",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "genetics-course-index",
+      "canonical_route": "/biology/higher-zoology-tree/genetics/course-index/",
+      "source_file": "_biology/higher-zoology-tree/genetics/course-index.md",
+      "support_files": [],
+      "academic_role": "academic_gateway",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     }
   ]
 }
