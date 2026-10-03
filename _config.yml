@@ -67,6 +67,7 @@ exclude_from_localization:
   - vendor
   - .github
   - scripts
+  - biology/higher-zoology-tree/ecology/index.html
 parallel_localization: false
 fallback_canonical_to_default_lang: true
 
