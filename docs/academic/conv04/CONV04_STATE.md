@@ -1,15 +1,15 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-04
-mode: implementation candidate — corrected Ecology route ownership + Academic-v1 gateways/course index
-authorized_base: 27ed06453ae6ee9398d06c52a1b44a442004774b
-branch: conv-04f-04-ecology-route-ownership-r1-20261003
-production_verified_main: 27ed06453ae6ee9398d06c52a1b44a442004774b
+phase: CONV-04F-05
+mode: authorization-only — Genetics gateway + 17-lecture course index
+authorized_base: cbd6de2cc95f3a573fdd784e29fc045e6448cbda
+branch: conv-04f-05-genetics-course-20261003
+production_verified_main: cbd6de2cc95f3a573fdd784e29fc045e6448cbda
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: four Ecology route owners + conditional Ecology Academic-v1 boundary layout + exact static-owner Polyglot exclusion + F-04 ledger/certification/state artifacts
-learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
+mutation_authority: authorization/provenance/state artifacts only; Genetics structural convergence authorized but not yet applied
+learner_content_authoring: structural-only / scientific-rewrite-forbidden / not-yet-applied
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
@@ -23,8 +23,8 @@ assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head real-route F-04 + retained A-F-03 + Ecology-10 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
-merge: not authorized until unchanged-head governance + required checks + Pages PASS
+ready_transition: not authorized until F-05 implementation + retained A-F-04 + exact-head Jekyll/browser/Axe/security/governance
+merge: not authorized in authorization-only state
 
 ## Completed foundation
 
@@ -270,3 +270,25 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Bangla gateway ownership: **protected from static overwrite**.
 - Global localization behavior: **otherwise unchanged**.
 - Scientific/course content mutation: **NO**.
+
+
+## CONV-04F-04 post-merge closure
+
+- PR #416: **MERGED**.
+- Exact merged main: `cbd6de2cc95f3a573fdd784e29fc045e6448cbda`.
+- Certified PR tree vs merge tree: **0 changed files**.
+- F-04 exact-head required workflows: **PASS**.
+- Trusted Release Governance: **PASS**.
+- Unresolved review threads: **0**.
+- Production root compatibility owner, canonical Ecology course index, English gateway and Bangla gateway: **LIVE / route ownership verified**.
+
+## CONV-04F-05 authorization
+
+- Exact post-F-04 base: `cbd6de2cc95f3a573fdd784e29fc045e6448cbda`.
+- Target: Genetics Matrix gateway + Genetics Course Index.
+- Learner source count: **2**.
+- Governed course sequence: **17 lectures / protect exactly**.
+- Course contract: **PROTECTED / unchanged**.
+- Scientific-content rewrite authority: **NONE**.
+- Responsible Genetics Boundary: **PRESERVE**.
+- Learner mutation performed at authorization commit: **NO**.
