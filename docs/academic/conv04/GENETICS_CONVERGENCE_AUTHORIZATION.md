@@ -1,7 +1,7 @@
 # CONV-04F-05 — Genetics Course Authorization
 
-**Status:** AUTHORIZED — learner mutation not yet performed  
-**Exact base:** `cbd6de2cc95f3a573fdd784e29fc045e6448cbda`  
+**Status:** AUTHORIZED — learner mutation not yet performed
+**Exact base:** `cbd6de2cc95f3a573fdd784e29fc045e6448cbda`
 **Branch:** `conv-04f-05-genetics-course-20261003`
 
 ## Target
