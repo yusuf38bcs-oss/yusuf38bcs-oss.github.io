@@ -1,27 +1,27 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-02
-mode: implementation candidate — bilingual Higher Zoology gateway strict Academic-v1 convergence
-authorized_base: 571e73b7b17023487cf40660f307e6d11091b919
-branch: conv-04f-02-higher-zoology-gateway-20261003
-production_verified_main: 571e73b7b17023487cf40660f307e6d11091b919
+phase: CONV-04F-03
+mode: authorization-only — Animal Diversity gateway + course-index Academic-v1 convergence
+authorized_base: 8330368a1c4bc8b7083d1528a3c50118217e258a
+branch: conv-04f-03-animal-diversity-gateway-20261003
+production_verified_main: 8330368a1c4bc8b7083d1528a3c50118217e258a
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact bilingual Higher Zoology gateway metadata/learning-guide + F-02 ledger/certification/state artifacts
-learner_content_authoring: structural-only / scientific-rewrite-forbidden / implemented-candidate
+mutation_authority: F-03 authorization/state artifacts only; two Animal Diversity learner surfaces + conditional layout support authorized but not yet applied
+learner_content_authoring: structural-only / scientific-rewrite-forbidden / not-yet-applied
 existing_learning_method_cleanup: canonical Learning Guide ownership retained
 gateway_cta_injection: exactly one canonical CTA on HSC Zoology gateway
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/index.md
-  - _biology/higher-zoology-tree/index.bn.md
+  - _biology/higher-zoology-tree/animal-diversity/index.md
+  - _biology/higher-zoology-tree/animal-diversity/course-index.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head F-02 source + retained A-E/F-01 + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + review convergence
-merge: not authorized until unchanged-head governance + required checks + Pages PASS
+ready_transition: not authorized until F-03 implementation + retained A-F-02 + Jekyll/browser/Axe/reflow/no-JS certification
+merge: not authorized in authorization-only state
 
 ## Completed foundation
 
@@ -189,3 +189,15 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Scientific prose/branch cards/routes: **preserved**.
 - English route ledger: **strict / zero debt**.
 - Bangla route ledger: **registered strict / zero debt**.
+
+
+## CONV-04F-03 authorization
+
+- Exact post-F-02 base: `8330368a1c4bc8b7083d1528a3c50118217e258a`.
+- Target: Animal Diversity gateway + course index.
+- Learner sources at authorization: **2 existing / unchanged**.
+- Course sequence: **10 lectures / preserve exactly**.
+- Scientific-content rewrite authority: **NONE**.
+- Custom layout authority: **conditional Academic-v1 wrapper/boundary only**.
+- Course contract mutation: **PROHIBITED**.
+- Learner mutation performed at this authorization commit: **NO**.
