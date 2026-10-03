@@ -46,5 +46,14 @@
     "model": "bootstrap-plus-retained",
     "state_progression": "strictly-monotonic",
     "manual_exact_main": true
+  },
+  "accessibility_remediation": {
+    "trigger": "exact-head Axe color-contrast failure on legacy markdown table header",
+    "shared_css_mutation": false,
+    "learner_scope_expansion": false,
+    "course_index": "existing 10-row markdown table wrapped with the existing Academic-v1 lbfl-academic-table-wrap semantic primitive",
+    "keyboard_contract": "tabindex=0, role=region, accessible name",
+    "scientific_wording_changed": false,
+    "lecture_routes_changed": false
   }
 }
