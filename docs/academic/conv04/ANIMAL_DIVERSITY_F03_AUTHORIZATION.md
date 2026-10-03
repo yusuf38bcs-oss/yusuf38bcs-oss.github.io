@@ -1,7 +1,7 @@
 # CONV-04F-03 — Animal Diversity Authorization
 
-**Status:** AUTHORIZED — implementation not yet applied  
-**Exact base:** `8330368a1c4bc8b7083d1528a3c50118217e258a`  
+**Status:** AUTHORIZED — implementation not yet applied
+**Exact base:** `8330368a1c4bc8b7083d1528a3c50118217e258a`
 **Branch:** `conv-04f-03-animal-diversity-gateway-20261003`
 
 ## Scope
