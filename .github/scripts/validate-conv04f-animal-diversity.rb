@@ -64,6 +64,8 @@ def fm(src,key)
 end
 def strip_source(src)
   s=src.gsub("\n\n#{CTA}\n\n","\n\n")
+  s=s.gsub(%Q{<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Animal Diversity lecture sequence" markdown="1">\n\n},"")
+  s=s.gsub("\n\n</div>\n\n[Back to Animal Diversity]","\n\n[Back to Animal Diversity]")
   s.lines.reject{|l|%w[academic_system academic_role learning_guide].any?{|k|l.match?(/\A#{k}:\s*/)}}.join
 end
 def phase_order(value)
@@ -109,6 +111,10 @@ need(errors,man["authorized_base"]==BASE,"F-03 manifest base mismatch")
   need(errors,fm(s,"permalink")==route,"#{path.basename}: permalink drift")
   need(errors,s.scan(CTA).length==1,"#{path.basename}: exactly one CTA")
   need(errors,s.include?(title),"#{path.basename}: title text missing")
+  if path == COURSE
+    need(errors,s.include?('class="lbfl-academic-table-wrap"'),"Course index must use Academic-v1 table wrapper")
+    need(errors,s.include?('tabindex="0" role="region" aria-label="Animal Diversity lecture sequence"'),"Course table wrapper accessibility contract missing")
+  end
   need(errors,!s.match?(/<style\b|\sstyle\s*=/i),"#{path.basename}: local style debt not authorized")
 end
 
