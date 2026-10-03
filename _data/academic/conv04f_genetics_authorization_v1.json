@@ -1,6 +1,6 @@
 {
   "schema": "lbfl-conv04f-genetics-authorization-v1",
-  "version": "CONV-04F-05-authorization-1.0.0",
+  "version": "CONV-04F-05-authorization-1.1.0",
   "programme": "CONV-04",
   "phase": "CONV-04F-05",
   "status": "authorized-not-implemented",
@@ -82,7 +82,9 @@
         "learning_guide": "canonical"
       },
       "correct_legacy_language": "en",
-      "replace_legacy_framework_with_canonical_learning_guide": true
+      "replace_legacy_framework_with_canonical_learning_guide": true,
+      "use_existing_academic_table_wrapper": true,
+      "table_wrapper_reason": "Prevent known legacy table-header contrast inheritance when the English course index enters Academic-v1; no shared CSS or table content change."
     },
     "route_ledger": {
       "register_gateway": true,
