@@ -1,0 +1,125 @@
+{
+  "schema": "lbfl-conv04f-genetics-authorization-v1",
+  "version": "CONV-04F-05-authorization-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04F-05",
+  "status": "authorized-not-implemented",
+  "authorized_base": "cbd6de2cc95f3a573fdd784e29fc045e6448cbda",
+  "branch": "conv-04f-05-genetics-course-20261003",
+  "target": {
+    "name": "Higher Zoology Genetics gateway + 17-lecture course index",
+    "learner_sources": [
+      "_biology/higher-zoology-tree/genetics/index.md",
+      "_biology/higher-zoology-tree/genetics/course-index.md"
+    ],
+    "routes": [
+      "/biology/higher-zoology-tree/genetics/",
+      "/biology/higher-zoology-tree/genetics/course-index/"
+    ]
+  },
+  "baseline": {
+    "gateway_blob": "53c43580ba949fe075f3f49aa1bf5a02a43cbb1a",
+    "course_index_blob": "c95c01a78f8dcae4d8223c84b497b16584877847",
+    "course_contract_blob": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+    "module_blobs": {
+      "_biology/higher-zoology-tree/genetics/lecture-01-foundations-of-genetics.md": "575a2188d96101d5caca491d80027a495eb73ec1",
+      "_biology/higher-zoology-tree/genetics/lecture-02-genetic-terminology.md": "b8caef89d6f08a5002a6ad77dd6cda1250642097",
+      "_biology/higher-zoology-tree/genetics/lecture-03-mendel-and-pea-plant.md": "0992d1c73c36f86a50269e985d8216bce850a21a",
+      "_biology/higher-zoology-tree/genetics/lecture-04-one-character.md": "963b1dc2cfbc8d9d0641a585f3e5d8fb3078a618",
+      "_biology/higher-zoology-tree/genetics/lecture-05-two-character.md": "6515548e4d85e20e78c133f82655a425c0cc0a10",
+      "_biology/higher-zoology-tree/genetics/lecture-06.md": "1986ed229c93783db005c68107144959690e13a3",
+      "_biology/higher-zoology-tree/genetics/lecture-07.md": "5393cad5910141bb622ea9e10d523c6687106d51",
+      "_biology/higher-zoology-tree/genetics/lecture-08.md": "d74f2bfb03a6a37e7854f1cd75145c03e30bfe0c",
+      "_biology/higher-zoology-tree/genetics/lecture-09.md": "2d16fc78828cc00e3968acddcee38d55f3379ec4",
+      "_biology/higher-zoology-tree/genetics/lecture-10-basic.md": "4c6f04b0998023ea3801d65ac48d5b6b0f18372a",
+      "_biology/higher-zoology-tree/genetics/lecture-011.md": "c1cd7d7b5dde9cffbc5c50dcd7341ef8d57b0ff0",
+      "_biology/higher-zoology-tree/genetics/lecture-012-safe.md": "1214573ed6e7b1f628b49fcb046360ca7d044e8b",
+      "_biology/higher-zoology-tree/genetics/lecture-013-safe.md": "f349551856101020d0ec78338df3ba81c9f27979",
+      "_biology/higher-zoology-tree/genetics/lecture-014-safe.md": "df7cc1edca1ab2216ff0252badb5f2d699635ea9",
+      "_biology/higher-zoology-tree/genetics/lecture-015-safe.md": "69141a8d77a059a840f8e211ff2b017ec4a91628",
+      "_biology/higher-zoology-tree/genetics/l16-safe.md": "b24b5f17f26f37734fc5a1512c87a0a6a66998fe",
+      "_biology/higher-zoology-tree/genetics/l17-safe.md": "62e49f7e6d3af44fd7ed5708e9b38655d292139b"
+    },
+    "public_routes": {
+      "gateway": {
+        "html_lang": "en",
+        "academic_v1": false,
+        "learning_guide_cta": 0,
+        "boundary_count": 1
+      },
+      "course_index": {
+        "html_lang": "en",
+        "academic_v1": false,
+        "learning_guide_cta": 0,
+        "boundary_count": 1
+      },
+      "generated_bn_gateway": {
+        "present": true,
+        "reviewed_bangla_source": false
+      },
+      "generated_bn_course_index": {
+        "present": true,
+        "reviewed_bangla_source": false
+      }
+    }
+  },
+  "authorized_changes": {
+    "gateway": {
+      "add_frontmatter": {
+        "academic_system": "v1",
+        "academic_role": "academic_gateway",
+        "lang": "en",
+        "learning_guide": "canonical"
+      },
+      "preserve_legacy_language_if_equal": true,
+      "replace_legacy_framework_with_canonical_learning_guide": true
+    },
+    "course_index": {
+      "add_frontmatter": {
+        "academic_system": "v1",
+        "academic_role": "academic_gateway",
+        "lang": "en",
+        "learning_guide": "canonical"
+      },
+      "correct_legacy_language": "en",
+      "replace_legacy_framework_with_canonical_learning_guide": true
+    },
+    "route_ledger": {
+      "register_gateway": true,
+      "register_course_index": true,
+      "enforcement": "strict",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena"
+    }
+  },
+  "preserved_invariants": {
+    "course_contract": "byte-identical",
+    "seventeen_module_sources": "byte-identical",
+    "seventeen_module_routes": "preserve exactly",
+    "gateway_headings_prose_links_cards": "preserve except authorized Learning Guide replacement",
+    "course_index_headings_table_routes": "preserve except authorized Learning Guide replacement and language metadata correction",
+    "responsible_genetics_boundary": "preserve verbatim",
+    "scientific_content_rewrite": false,
+    "assessment_ownership": "MCQ Arena remains canonical full-bank owner"
+  },
+  "localization_boundary": {
+    "f05_translation_authority": false,
+    "current_generated_bn_routes": "observed Polyglot fallbacks, not reviewed Bangla genetics sources",
+    "disposition": "Do not author or certify Bangla Genetics content in F-05. Any redirect/hreflang/fallback cleanup belongs to CONV-04H."
+  },
+  "retained_contracts": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F-01",
+    "F-02",
+    "F-03",
+    "F-04"
+  ],
+  "future_phase_compatibility": "bootstrap-plus-retained / immutable provenance / monotonic state / live-base authentication",
+  "next_gate": "implement exactly the two authorized Genetics surfaces plus route-ledger/certification artifacts"
+}
