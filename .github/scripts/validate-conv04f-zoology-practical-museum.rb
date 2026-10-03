@@ -119,6 +119,64 @@ def course_entry(text)
   Array(data["pathways"]).find { |e| e["course_id"] == "nu-zoology-practical-213106" }
 end
 
+comparison_base = ENV["PR_BASE_SHA"].to_s.strip
+comparison_base = BASE if comparison_base.empty?
+state_text = STATE.file? ? read_utf8(STATE) : ""
+phase = state_text[/^phase:\\s*(\\S+)/, 1]
+
+def phase_order(value)
+  m = /\\ACONV-04([A-Z])(?:-(\\d{2}))?(?:-R([1-9]\\d*))?\\z/.match(value.to_s.strip)
+  m ? [m[1].ord, (m[2] || "0").to_i, (m[3] || "0").to_i] : nil
+end
+
+def top_level_list(source, key)
+  top = source.split(/^##\\s/, 2).first.to_s
+  lines = top.lines
+  index = lines.index { |line| line.match?(/\\A#{Regexp.escape(key)}:\\s*\\z/) }
+  return [] unless index
+  items = []
+  lines[(index + 1)..].to_a.each do |line|
+    if (match = line.match(/^\\s+-\\s+(.+?)\\s*$/))
+      items << match[1].strip
+    elsif line.strip.empty?
+      next
+    elsif line.match?(/^\\S/)
+      break
+    end
+  end
+  items
+end
+
+bootstrap = comparison_base == BASE && phase == PHASE
+future = comparison_base != BASE
+successor_authorized = false
+successor_allowlist = []
+changed = []
+
+unless comparison_base.empty?
+  stdout, stderr, status = git("diff", "--name-only", "#{comparison_base}...HEAD")
+  if status.success?
+    changed = stdout.lines.map(&:strip).reject(&:empty?).sort
+  else
+    errors << "Unable to inspect F-09 changed-file scope: #{stderr.strip}"
+  end
+end
+
+if future && STATE.file? && changed.include?("docs/academic/conv04/CONV04_STATE.md")
+  base_state, _, bs = git("show", "#{comparison_base}:docs/academic/conv04/CONV04_STATE.md")
+  if bs.success?
+    base_phase = base_state[/^phase:\\s*(\\S+)/, 1]
+    bo = phase_order(base_phase)
+    co = phase_order(phase)
+    fo = phase_order(PHASE)
+    successor_authorized = bo && co && fo && (co <=> bo) > 0 && (co <=> fo) > 0 &&
+      state_text.include?("authorized_base: #{comparison_base}")
+    successor_allowlist = top_level_list(state_text, "learner_mutation_allowlist")
+  else
+    errors << "Unable to authenticate F-09 successor base state"
+  end
+end
+
 [SOURCE, ROUTE_CSS, MANIFEST, LEDGER, STATE, AUTH, COURSE, COVERAGE, FIGURES, SHARED_CSS, SHARED_JS, BROWSER, WORKFLOW].each do |path|
   errors << "Missing F-09 artifact: #{path.relative_path_from(ROOT)}" unless path.file?
 end
@@ -126,10 +184,10 @@ end
 BASE_BLOBS.each do |relative, expected|
   blob, _, status = git("rev-parse", "#{BASE}:#{relative}")
   need(errors, status.success? && blob.strip == expected, "F-09 authenticated base blob mismatch: #{relative}")
-  next if relative == SOURCE_REL
+  next if relative == SOURCE_REL || !bootstrap
   baseline, _, show_status = git("show", "#{BASE}:#{relative}")
   if show_status.success?
-    need(errors, read_utf8(ROOT.join(relative)) == baseline, "F-09 changed protected baseline: #{relative}")
+    need(errors, read_utf8(ROOT.join(relative)) == baseline, "F-09 changed protected bootstrap baseline: #{relative}")
   else
     errors << "Unable to read protected baseline: #{relative}"
   end
@@ -139,8 +197,13 @@ if SOURCE.file?
   baseline, _, status = git("show", "#{BASE}:#{SOURCE_REL}")
   if status.success?
     source = read_utf8(SOURCE)
-    need(errors, source == authorized_transform(baseline),
-         "Museum source differs from exact F-09 authorized transformation")
+    if bootstrap
+      need(errors, source == authorized_transform(baseline),
+           "Museum source differs from exact F-09 authorized transformation")
+    elsif future && changed.include?(SOURCE_REL)
+      need(errors, successor_authorized, "Successor changed prac-01 without an advanced CONV-04 phase bound to current base")
+      need(errors, successor_allowlist.include?(SOURCE_REL), "Successor changed prac-01 without exact learner_mutation_allowlist authority")
+    end
     need(errors, fm_value(source, "permalink") == "/biology/higher-zoology-tree/practical/museum-specimens/", "F-09 permalink drift")
     need(errors, fm_value(source, "course_id") == "zoology-practical-213106", "F-09 course_id drift")
     need(errors, fm_value(source, "course_role") == "practical-lecture", "F-09 course_role drift")
@@ -290,15 +353,37 @@ if STATE.file?
   need(errors, s.include?("scientific and curriculum rewrite forbidden"), "F-09 scientific preservation authority missing")
 end
 
-comparison_base = ENV["PR_BASE_SHA"].to_s.strip
-comparison_base = BASE if comparison_base.empty?
-need(errors, comparison_base == BASE, "F-09 PR/manual comparison base must equal authorized base")
-stdout, stderr, status = git("diff", "--name-only", "#{comparison_base}...HEAD")
-if status.success?
-  changed = stdout.lines.map(&:strip).reject(&:empty?).sort
-  need(errors, changed == CHANGED_FILES, "F-09 changed-file scope mismatch: #{changed}")
-else
-  errors << "Unable to inspect F-09 changed-file scope: #{stderr.strip}"
+if bootstrap
+  need(errors, changed == CHANGED_FILES, "F-09 bootstrap changed-file scope mismatch: #{changed}")
+elsif future
+  immutable = [
+    ROUTE_CSS_REL,
+    "_data/academic/conv04f_zoology_practical_museum_v1.json",
+    "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_AUTHORIZATION.md",
+    ".github/scripts/validate-conv04f-zoology-practical-museum.rb",
+    ".github/scripts/conv04f-zoology-practical-museum-browser-certification.mjs",
+    ".github/workflows/conv04f-zoology-practical-museum-certification.yml"
+  ]
+  touched = changed & immutable
+  need(errors, touched.empty?, "Successor changed protected F-09 artifacts: #{touched.join(', ')}")
+
+  if changed.include?("_data/academic/course_contract_v1.json")
+    before_text, _, bs = git("show", "#{comparison_base}:_data/academic/course_contract_v1.json")
+    if bs.success?
+      begin
+        need(errors, course_entry(before_text) == course_entry(read_utf8(COURSE)),
+             "Successor changed governed Practical course identity/sequence")
+      rescue JSON::ParserError => e
+        errors << "Unable to compare successor course contract: #{e.message}"
+      end
+    else
+      errors << "Unable to authenticate successor base course contract"
+    end
+  end
+
+  if changed.include?("docs/academic/conv04/CONV04_STATE.md")
+    need(errors, successor_authorized, "Successor state must advance beyond F-09 and bind current base")
+  end
 end
 
 if errors.empty?
