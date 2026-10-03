@@ -71,10 +71,17 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: false
       - name: Certify F-03 source/layout preservation
+        shell: bash
         run: |
+          set -euo pipefail
           ruby -c .github/scripts/validate-conv04f-animal-diversity.rb
           ruby .github/scripts/validate-conv04f-animal-diversity.rb
-          git diff --check "$PR_BASE_SHA...HEAD"
+          if [ -n "$PR_BASE_SHA" ]; then
+            git diff --check "$PR_BASE_SHA...HEAD"
+          else
+            parent="$(git rev-parse HEAD^)"
+            git diff --check "$parent...HEAD"
+          fi
       - name: Retain A-F-02 contracts
         shell: bash
         run: |
