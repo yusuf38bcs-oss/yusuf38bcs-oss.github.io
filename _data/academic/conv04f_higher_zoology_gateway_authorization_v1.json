@@ -1,0 +1,158 @@
+{
+  "schema": "lbfl-conv04f-higher-zoology-gateway-authorization-v1",
+  "version": "CONV-04F-02-authorization-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04F-02",
+  "status": "authorized-not-implemented",
+  "authorized_base": "571e73b7b17023487cf40660f307e6d11091b919",
+  "branch": "conv-04f-02-higher-zoology-gateway-20261003",
+  "target": {
+    "canonical_route": "/biology/higher-zoology-tree/",
+    "english_source": "_biology/higher-zoology-tree/index.md",
+    "bangla_source": "_biology/higher-zoology-tree/index.bn.md",
+    "bangla_public_route": "/bn/biology/higher-zoology-tree/",
+    "academic_role": "academic_gateway"
+  },
+  "baseline": {
+    "english": {
+      "blob_sha": "0fcfcec117f11074eb239ed82689bbaf2243b487",
+      "permalink": "/biology/higher-zoology-tree/",
+      "lang": null,
+      "language": "en",
+      "locale": null,
+      "academic_system": null,
+      "academic_role": null,
+      "learning_guide": null,
+      "framework_links": 1,
+      "learning_guide_cta": 0,
+      "links": [
+        "{{ ",
+        "{{ ",
+        "{{ ",
+        "{{ ",
+        "{{ ",
+        "{{ "
+      ],
+      "headings": [
+        "Higher Zoology Tree",
+        "Core Philosophy",
+        "Topic-Specific Learning Focus",
+        "Main Branches",
+        "Recommended Learning Sequence",
+        "Synaptic Bridge",
+        "Critical Thinking Questions",
+        "Related Learning Paths"
+      ]
+    },
+    "bangla": {
+      "blob_sha": "8d607aa5422c2c3b4a52955732ff0563a6142b28",
+      "permalink": "/biology/higher-zoology-tree/",
+      "lang": "bn",
+      "language": "bn",
+      "locale": "bn_BD",
+      "academic_system": null,
+      "academic_role": null,
+      "learning_guide": null,
+      "framework_links": 1,
+      "learning_guide_cta": 0,
+      "links": [
+        "{{ ",
+        "{{ ",
+        "{{ ",
+        "{{ ",
+        "{{ ",
+        "{{ "
+      ],
+      "headings": [
+        "উচ্চতর প্রাণিবিজ্ঞান",
+        "কেন্দ্রীয় দর্শন",
+        "বিষয়ভিত্তিক শেখার লক্ষ্য",
+        "প্রধান শাখাসমূহ",
+        "প্রস্তাবিত শেখার ক্রম",
+        "Synaptic Bridge",
+        "সমালোচনামূলক চিন্তার প্রশ্ন",
+        "সম্পর্কিত শেখার পথ"
+      ]
+    },
+    "route_ledger": {
+      "id": "higher-zoology-gateway",
+      "canonical_route": "/biology/higher-zoology-tree/",
+      "source_file": "_biology/higher-zoology-tree/index.md",
+      "support_files": [],
+      "academic_role": "academic_gateway",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "missing_academic_role",
+        "missing_academic_system",
+        "missing_lang",
+        "legacy_language_key"
+      ],
+      "live_debt": []
+    }
+  },
+  "live_census": {
+    "english_route_http": true,
+    "html_lang": "en",
+    "academic_v1": false,
+    "legacy_zoology_cycle": true,
+    "legacy_framework_links": true,
+    "educational_boundary_count": 1,
+    "canonical_url": "/biology/higher-zoology-tree/",
+    "observed_on_main": "571e73b7b17023487cf40660f307e6d11091b919"
+  },
+  "authorized_mutations": {
+    "english": [
+      "add academic_system: v1",
+      "add academic_role: academic_gateway",
+      "add lang: en",
+      "add learning_guide: canonical",
+      "replace one legacy framework-links include with one canonical learning-guide-cta include"
+    ],
+    "bangla": [
+      "add academic_system: v1",
+      "add academic_role: academic_gateway",
+      "add learning_guide: canonical",
+      "preserve existing lang: bn and language: bn",
+      "replace one legacy framework-links include with one canonical learning-guide-cta include"
+    ],
+    "ledger": [
+      "promote higher-zoology-gateway to strict with zero source/live debt",
+      "register /bn/biology/higher-zoology-tree/ as strict higher-zoology-gateway-bn surface"
+    ]
+  },
+  "preservation": {
+    "scientific_prose": "byte-preserve except include substitution and front-matter additions",
+    "headings": true,
+    "links": true,
+    "branch_cards": true,
+    "sequence": true,
+    "assessment_owner": "mcq-arena",
+    "branch_routes": true
+  },
+  "prohibited": [
+    "scientific content rewrite",
+    "branch/course lesson mutation",
+    "Animal Diversity mutation",
+    "Ecology mutation",
+    "Genetics mutation",
+    "Practical mutation",
+    "Socratic mutation",
+    "Admission/#356 mutation",
+    "Worker/Cloudflare mutation",
+    "shared assessment runtime mutation"
+  ],
+  "retained_contracts": [
+    "CONV-04A",
+    "CONV-04B",
+    "CONV-04C",
+    "CONV-04D",
+    "CONV-04E",
+    "CONV-04F-01",
+    "CONV-04F-01-R1"
+  ],
+  "next_gate": "implement exact two-source metadata/CTA convergence plus ledger/certification artifacts on unchanged base"
+}
