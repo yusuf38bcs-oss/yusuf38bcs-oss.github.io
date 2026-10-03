@@ -1,6 +1,6 @@
 {
   "schema": "lbfl-conv04f04-ecology-route-ownership-authorization-v1",
-  "version": "CONV-04F-04-authorization-2.0.0",
+  "version": "CONV-04F-04-authorization-2.1.0",
   "phase": "CONV-04F-04",
   "status": "authorized-route-ownership-correction-not-implemented",
   "authorized_base": "27ed06453ae6ee9398d06c52a1b44a442004774b",
@@ -11,7 +11,8 @@
       "public compatibility root is physically owned by biology/higher-zoology-tree/ecology/index.html",
       "Bangla Jekyll source permalink does not own the default root in production; Polyglot renders it under /bn/",
       "single layout suppresses educational-boundary for every ecology surface, including future Academic-v1 pages",
-      "three-source-only authorization could certify sources without changing the real root route or producing the required layout boundary"
+      "three-source-only authorization could certify sources without changing the real root route or producing the required layout boundary",
+      "Polyglot static-file localization would copy the English compatibility root into /bn/... after page rendering and overwrite the Bangla Academic-v1 gateway unless that exact static owner is excluded from localization."
     ]
   },
   "route_ownership": {
@@ -56,7 +57,8 @@
     "docs/academic/conv04/CONV04_STATE.md": "8537a2bc4ff887169a4d2224b4e41ad95224dc36",
     ".github/scripts/validate-ecology-course.rb": "2776cdadb83475d01fb512b87a376733064b3ebe",
     ".github/scripts/ecology-presentation-browser-certification.mjs": "b05da7461c7b0e084be6ccfa18ec112dac3e8ee8",
-    ".github/workflows/ecology-course-certification.yml": "be3d9514713d8f2fbfe8a94a34653240d5bf38f8"
+    ".github/workflows/ecology-course-certification.yml": "be3d9514713d8f2fbfe8a94a34653240d5bf38f8",
+    "_config.yml": "f2396aa1a61156eac43f86b2df924096bcfe78c0"
   },
   "course_contract": {
     "source_file": "_data/academic/course_contract_v1.json",
@@ -120,6 +122,11 @@
       "register strict English gateway",
       "register strict Bangla gateway",
       "register strict canonical course index"
+    ],
+    "polyglot": [
+      "exclude exactly biology/higher-zoology-tree/ecology/index.html from localization",
+      "preserve default compatibility root",
+      "prevent static compatibility owner from overwriting /bn/ rendered gateway"
     ]
   },
   "prohibited": [
@@ -133,5 +140,8 @@
     "Admission/#356",
     "Worker/Cloudflare configuration"
   ],
-  "next_gate": "implement corrected route ownership and exact rendered-route certification on unchanged base"
+  "next_gate": "certify real default/en/bn/course routes after exact static-owner localization exclusion",
+  "conditional_config_allowlist": [
+    "_config.yml"
+  ]
 }
