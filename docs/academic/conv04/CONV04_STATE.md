@@ -407,3 +407,22 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Default-layout HTML language fallback: **route-scoped only**.
 - English counterpart: **unchanged** at `/en/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
 - Global `default_lang`, shared localization behavior and scientific content: **unchanged**.
+
+
+## F-07 rendered-debt remediation
+
+- Root-route build after language reconciliation: **PASS**.
+- Rendered `html lang="bn"`: **PASS**.
+- Remaining browser debt:
+  - empty visible `.page__hero--overlay`: **1**
+  - fragmentation count: **0**
+  - horizontal overflow: **0**
+  - Axe serious `color-contrast`: **6 nodes**
+- Hero cause: historical page-level overlay metadata.
+- Contrast pattern: two 3-column Markdown table headers.
+- Remediation:
+  - remove legacy page-level hero metadata;
+  - wrap both unchanged tables with existing `lbfl-academic-table-wrap`;
+  - retain keyboard region semantics;
+  - no shared CSS or scientific-content rewrite.
+- Exact-head recertification: **REQUIRED**.
