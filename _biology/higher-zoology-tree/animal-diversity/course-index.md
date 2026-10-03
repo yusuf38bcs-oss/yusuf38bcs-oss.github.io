@@ -11,11 +11,18 @@ status: Active
 author_profile: false
 toc: false
 classes: wide
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # Animal Diversity Course — Lectures 01–10
 
+{% include education/learning-guide-cta.html %}
+
 This is one Animal Diversity course. Use the site **English | বাংলা** control to move between reviewed language versions.
+
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Animal Diversity lecture sequence" markdown="1">
 
 | Lecture | Topic | Open |
 |---:|---|---|
@@ -29,5 +36,7 @@ This is one Animal Diversity course. Use the site **English | বাংলা** 
 | 08 | Hemidactylus | [Open lecture]({{ '/biology/animal-diversity/lecture-08-hemidactylus/' | relative_url }}) |
 | 09 | Columba livia | [Open lecture]({{ '/biology/animal-diversity/lecture-09-columba-livia/' | relative_url }}) |
 | 10 | Homo sapiens: Eye and Ear | [Open lecture]({{ '/biology/animal-diversity/lecture-10-homo-sapiens-eye-ear/' | relative_url }}) |
+
+</div>
 
 [Back to Animal Diversity]({{ '/biology/animal-diversity/' | relative_url }})

@@ -1,0 +1,59 @@
+{
+  "schema": "lbfl-conv04f-animal-diversity-v1",
+  "version": "CONV-04F-03-1.0.0",
+  "phase": "CONV-04F-03",
+  "authorized_base": "8330368a1c4bc8b7083d1528a3c50118217e258a",
+  "authorization_manifest": "_data/academic/conv04f_animal_diversity_authorization_v1.json",
+  "surfaces": [
+    {
+      "id": "animal-diversity-gateway",
+      "route": "/biology/animal-diversity/",
+      "source": "_biology/higher-zoology-tree/animal-diversity/index.md",
+      "baseline_blob": "78c0fdad5c63d7e07d1327def4eb5069179c798d",
+      "academic_role": "academic_gateway",
+      "lang": "en"
+    },
+    {
+      "id": "animal-diversity-course-index",
+      "route": "/biology/animal-diversity/course/",
+      "source": "_biology/higher-zoology-tree/animal-diversity/course-index.md",
+      "baseline_blob": "b0f9b2fdef57f695fdf8689cba4254d5b8dd3453",
+      "academic_role": "academic_gateway",
+      "lang": "en"
+    }
+  ],
+  "layout_support": {
+    "source": "_layouts/animal-diversity-course.html",
+    "baseline_blob": "1dbffe314da21ffb206c9252119d71d513448986",
+    "activation": "conditional on academic_system v1"
+  },
+  "preservation": {
+    "course_contract_blob": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+    "lecture_mutation": false,
+    "scientific_rewrite": false,
+    "ten_lecture_sequence": true
+  },
+  "retained": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F-01",
+    "F-02"
+  ],
+  "future_phase_compatibility": {
+    "model": "bootstrap-plus-retained",
+    "state_progression": "strictly-monotonic",
+    "manual_exact_main": true
+  },
+  "accessibility_remediation": {
+    "trigger": "exact-head Axe color-contrast failure on legacy markdown table header",
+    "shared_css_mutation": false,
+    "learner_scope_expansion": false,
+    "course_index": "existing 10-row markdown table wrapped with the existing Academic-v1 lbfl-academic-table-wrap semantic primitive",
+    "keyboard_contract": "tabindex=0, role=region, accessible name",
+    "scientific_wording_changed": false,
+    "lecture_routes_changed": false
+  }
+}

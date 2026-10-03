@@ -216,6 +216,38 @@
       "live_debt": []
     },
     {
+      "id": "animal-diversity-gateway",
+      "canonical_route": "/biology/animal-diversity/",
+      "source_file": "_biology/higher-zoology-tree/animal-diversity/index.md",
+      "support_files": [
+        "_layouts/animal-diversity-course.html"
+      ],
+      "academic_role": "academic_gateway",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "animal-diversity-course-index",
+      "canonical_route": "/biology/animal-diversity/course/",
+      "source_file": "_biology/higher-zoology-tree/animal-diversity/course-index.md",
+      "support_files": [
+        "_layouts/animal-diversity-course.html"
+      ],
+      "academic_role": "academic_gateway",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
       "id": "blood-circulation-revision",
       "canonical_route": "/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/",
       "source_file": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
