@@ -15,8 +15,6 @@ MANIFEST = ROOT.join("_data/academic/conv04f_blood_circulation_revision_v1.json"
 LEDGER = ROOT.join("docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json")
 STATE = ROOT.join("docs/academic/conv04/CONV04_STATE.md")
 AUTH_DOC = ROOT.join("docs/academic/conv04/BLOOD_CIRCULATION_REVISION_F07_AUTHORIZATION.md")
-CONFIG = ROOT.join("_config.yml")
-POLYGLOT_EXCLUSION = "biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html"
 BROWSER = ROOT.join(".github/scripts/conv04f-blood-circulation-revision-browser-certification.mjs")
 WORKFLOW = ROOT.join(".github/workflows/conv04f-blood-circulation-revision-certification.yml")
 CTA = "{% include education/learning-guide-cta.html %}"
@@ -24,9 +22,10 @@ CTA = "{% include education/learning-guide-cta.html %}"
 BOOTSTRAP_FILES = %w[
   .github/scripts/conv04f-blood-circulation-revision-browser-certification.mjs
   .github/scripts/validate-conv04f-blood-circulation-revision.rb
+  .github/scripts/validate-academic-surface-contract.rb
   .github/workflows/conv04f-blood-circulation-revision-certification.yml
   _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md
-  _config.yml
+  _layouts/default.html
   _data/academic/conv04f_blood_circulation_revision_v1.json
   docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
   docs/academic/conv04/BLOOD_CIRCULATION_REVISION_F07_AUTHORIZATION.md
@@ -88,7 +87,7 @@ def authorized_transform(source)
   out = source.dup
   out = out.sub(
     "language: bn\ncurriculum_tracks:",
-    "language: bn\nlang: bn\nacademic_system: v1\nacademic_role: revision\nlearning_guide: canonical\ncurriculum_tracks:"
+    "language: bn\npolyglot_root_language: true\nacademic_system: v1\nacademic_role: revision\nlearning_guide: canonical\ncurriculum_tracks:"
   )
   out = out.sub(
     "# Blood Circulation Revision Map: রক্ত, হৃদপিণ্ড, সঞ্চালন ও রোগ এক পাতায়\n\n",
@@ -97,7 +96,7 @@ def authorized_transform(source)
   out
 end
 
-[SOURCE, MANIFEST, LEDGER, STATE, AUTH_DOC, CONFIG, BROWSER, WORKFLOW].each do |path|
+[SOURCE, MANIFEST, LEDGER, STATE, AUTH_DOC, BROWSER, WORKFLOW].each do |path|
   errors << "Missing F-07 artifact: #{path.relative_path_from(ROOT)}" unless path.file?
 end
 
@@ -110,8 +109,9 @@ if SOURCE.file?
     need(errors, fm_value(candidate, "permalink") == "/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/", "F-07 permalink drift")
     need(errors, fm_value(candidate, "academic_system") == "v1", "F-07 academic_system must be v1")
     need(errors, fm_value(candidate, "academic_role") == "revision", "F-07 role must be revision")
-    need(errors, fm_value(candidate, "lang") == "bn", "F-07 lang must be bn")
+    need(errors, fm_value(candidate, "lang").nil?, "F-07 must not set Polyglot lang on the historical root Bangla route")
     need(errors, fm_value(candidate, "language") == "bn", "F-07 legacy language must remain bn")
+    need(errors, fm_value(candidate, "polyglot_root_language") == "true", "F-07 root-language compatibility marker missing")
     need(errors, fm_value(candidate, "learning_guide") == "canonical", "F-07 canonical Learning Guide ownership missing")
     need(errors, candidate.scan(CTA).length == 1, "F-07 must contain exactly one canonical Learning Guide CTA")
     need(errors, candidate.include?("overlay_image: /assets/images/biology/physiology-banner.webp"), "F-07 must preserve header overlay metadata")
@@ -138,11 +138,6 @@ if SOURCE.file?
   end
 end
 
-if CONFIG.file?
-  need(errors, read_utf8(CONFIG).lines.any? { |line| line.strip == "- #{POLYGLOT_EXCLUSION}" },
-       "F-07 Polyglot route-preservation exclusion missing")
-end
-
 if MANIFEST.file?
   begin
     m = JSON.parse(read_utf8(MANIFEST))
@@ -152,6 +147,8 @@ if MANIFEST.file?
     need(errors, m["baseline_blob_sha"] == "0eceb2542287fc99356b73dc400b3ede8a8db4f4", "F-07 baseline blob drift")
     need(errors, m["scientific_content_rewrite"] == false, "F-07 must forbid scientific rewrite")
     need(errors, m.dig("additions", "academic_role") == "revision", "F-07 manifest role drift")
+    need(errors, m.dig("additions", "polyglot_root_language") == true, "F-07 root-language manifest marker drift")
+    need(errors, m.dig("additions", "lang").nil?, "F-07 manifest must not authorize Polyglot lang on root Bangla route")
   rescue JSON::ParserError => e
     errors << "F-07 manifest JSON invalid: #{e.message}"
   end
@@ -167,6 +164,7 @@ if LEDGER.file?
       need(errors, route["source_file"] == SOURCE_REL, "F-07 ledger source drift")
       need(errors, route["academic_role"] == "revision", "F-07 ledger role drift")
       need(errors, route["language"] == "bn", "F-07 ledger language drift")
+      need(errors, route["polyglot_root_language"] == true, "F-07 ledger root-language compatibility flag missing")
       need(errors, route["boundary_owner"] == "layout", "F-07 boundary owner drift")
       need(errors, route["learning_guide_owner"] == "canonical", "F-07 Learning Guide owner drift")
       need(errors, route["assessment_owner"] == "mcq-arena", "F-07 assessment owner drift")
