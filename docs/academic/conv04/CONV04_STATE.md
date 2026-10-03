@@ -1,25 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-08-R1
-mode: F-08 closure / F-09 authentication handoff — governance only
-authorized_base: 4e36517c02c776e77832858467ce82501214412f
-branch: conv-04f-09-authentication-20261004
-production_verified_main: 4e36517c02c776e77832858467ce82501214412f
+phase: CONV-04F-09
+mode: implementation candidate — Practical Museum Specimens strict Academic-v1 convergence
+authorized_base: f04ac472ee261fa19dc17de6052bde02b75e99c4
+branch: conv-04f-09-practical-museum-20261004
+production_verified_main: f04ac472ee261fa19dc17de6052bde02b75e99c4
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: none — F-09 authentication only; module edits require separate exact-scope authorization
-learner_content_authoring: not authorized in authentication handoff
-existing_learning_method_cleanup: F-08 gateway convergence retained / unchanged
-gateway_cta_injection: F-08 canonical Learning Guide retained / unchanged
+mutation_authority: exact prac-01 Museum learner surface + route-owned Museum CSS + F-09 ledger/manifest/authorization/certification/state artifacts
+learner_content_authoring: structural convergence only / scientific and curriculum rewrite forbidden
+existing_learning_method_cleanup: canonical Learning Guide replaces inherited Practical learning-cycle ownership on prac-01
+gateway_cta_injection: exactly one canonical Learning Guide CTA on prac-01
 learner_mutation_allowlist:
+  - _biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized for learner implementation; authentication PR remains governance-only
-merge: governance handoff only after retained checks + Trusted Governance PASS
+ready_transition: not authorized until exact-head F-09 + native Practical 213106 + retained F-08/A-F + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + exact preview + review convergence
+merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
 
@@ -486,3 +487,19 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Open CONV-04F PR conflicts at F-09 authentication: **0**.
 - Eight Practical module blobs and strict course-contract blob are bound in `docs/academic/conv04/ZOOLOGY_PRACTICAL_MODULES_F09_AUTHENTICATION.md`.
 - F-09 learner/module mutation authority: **NONE — separate exact-scope authorization required before edits**.
+
+
+## CONV-04F-09 Museum Specimens implementation candidate
+
+- Exact authorized base: `f04ac472ee261fa19dc17de6052bde02b75e99c4`.
+- Selected module: `prac-01 — Museum Specimens`.
+- Learner mutation allowlist: exactly `_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md`.
+- Baseline Museum blob: `26e1711cf9c6bace8ddd8419797c38511987420c`.
+- Curriculum census: **49 printed / 48 unique / 48 covered / 48/48**.
+- Figure evidence: **15 verified / 33 pending**; evidence manifest unchanged.
+- Scientific/taxonomic/curriculum rewrite: **NONE**.
+- Academic-v1 metadata + canonical Learning Guide: **AUTHORIZED**.
+- Fifteen inline sprite-coordinate declarations: **authorized to move, unchanged, into route-owned Museum CSS**.
+- Practical gateway, prac-02–prac-08, coverage ledger, figure manifest, course contract, shared Practical CSS/JS, shared Academic-v1 CSS: **PROTECTED / UNCHANGED**.
+- Strict Academic Surface route id: `higher-zoology-practical-museum-specimens`.
+- F-09 exact-head certification and production promotion: **PENDING**.
