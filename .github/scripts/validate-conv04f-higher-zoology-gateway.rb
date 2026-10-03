@@ -27,7 +27,7 @@ BOOTSTRAP=%w[
   .github/scripts/conv04f-higher-zoology-browser-certification.mjs
   .github/scripts/validate-conv04f-higher-zoology-gateway.rb
   .github/workflows/conv04f-higher-zoology-gateway-certification.yml
-  assets/css/academic-design-system.css
+  _sass/components/_assessment-system.scss
   _biology/higher-zoology-tree/index.bn.md
   _biology/higher-zoology-tree/index.md
   _data/academic/conv04f_higher_zoology_gateway_authorization_v1.json
@@ -95,15 +95,15 @@ need(errors,auth.dig("baseline","english","links")==expected_links,"F-02 English
 need(errors,auth.dig("baseline","bangla","links")==expected_links,"F-02 Bangla baseline-link census drift")
 need(errors,man["phase"]==PHASE,"F-02 manifest phase mismatch")
 need(errors,man["authorized_base"]==BASE,"F-02 manifest base mismatch")
-css_path=ROOT.join("assets/css/academic-design-system.css")
-css=css_path.file? ? read_utf8(css_path) : ""
+sass_path=ROOT.join("_sass/components/_assessment-system.scss")
+assessment_sass=sass_path.file? ? read_utf8(sass_path) : ""
 [
-  ".authored-assessment-wrapper .exp p",
+  ".authored-assessment-wrapper .q .exp",
   ".authored-assessment-wrapper .score-board h3",
   ".authored-assessment-wrapper .score-board p",
-  ".authored-assessment-wrapper .score-board a.btn-restart"
+  ".authored-assessment-wrapper .score-board a.btn-restart[data-assessment-repair]"
 ].each do |selector_fragment|
-  need(errors,css.include?(selector_fragment),"F-02 retained assessment contrast bridge missing: #{selector_fragment}")
+  need(errors,assessment_sass.include?(selector_fragment),"F-02 retained assessment contrast bridge missing: #{selector_fragment}")
 end
 
 {EN=>["en","/biology/higher-zoology-tree/"],BN=>["bn","/biology/higher-zoology-tree/"]}.each do |path,(lang,permalink)|
