@@ -1,9 +1,9 @@
 # CONV-04F-07 — Blood Circulation Revision Map Convergence
 
-**Status:** IMPLEMENTATION CANDIDATE — certification pending  
-**Exact base:** `9895c190f75d0d6b3167370a043181e9cc5c14ad`  
-**Target route:** `/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`  
-**Target source:** `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md`  
+**Status:** IMPLEMENTATION CANDIDATE — certification pending
+**Exact base:** `9895c190f75d0d6b3167370a043181e9cc5c14ad`
+**Target route:** `/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`
+**Target source:** `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md`
 **Baseline blob:** `0eceb2542287fc99356b73dc400b3ede8a8db4f4`
 
 ## F-07 authenticated finding
