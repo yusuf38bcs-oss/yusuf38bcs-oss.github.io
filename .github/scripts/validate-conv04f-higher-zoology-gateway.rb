@@ -78,6 +78,20 @@ auth=AUTH.file? ? JSON.parse(read_utf8(AUTH)) : {}
 man=MANIFEST.file? ? JSON.parse(read_utf8(MANIFEST)) : {}
 need(errors,auth["authorized_base"]==BASE,"F-02 authorization base drift")
 need(errors,auth["status"]=="authorized-not-implemented","Historical F-02 authorization must remain immutable")
+expected_links=[
+  "/biology/animal-diversity/",
+  "/biology/higher-zoology-tree/human-physiology/",
+  "/biology/higher-zoology-tree/ecology/",
+  "/biology/higher-zoology-tree/genetics/",
+  "/biology/higher-zoology-tree/biostatistics/",
+  "/biology/higher-zoology-tree/practical/",
+  "/biology/",
+  "/biology/higher-zoology-tree/genetics/",
+  "/mcq-arena/",
+  "/synaptic-bridge/"
+]
+need(errors,auth.dig("baseline","english","links")==expected_links,"F-02 English baseline-link census drift")
+need(errors,auth.dig("baseline","bangla","links")==expected_links,"F-02 Bangla baseline-link census drift")
 need(errors,man["phase"]==PHASE,"F-02 manifest phase mismatch")
 need(errors,man["authorized_base"]==BASE,"F-02 manifest base mismatch")
 
@@ -122,8 +136,9 @@ comparison=ENV["PR_BASE_SHA"].to_s.strip
 if comparison.empty?
   out,_,st=git("rev-parse","HEAD^"); comparison=st.success? ? out.strip : BASE
 end
-bootstrap=mode=="pull_request" && comparison==BASE
-future=mode=="pull_request" && comparison!=BASE
+candidate_mode=%w[pull_request manual].include?(mode)
+bootstrap=candidate_mode && comparison==BASE
+future=candidate_mode && comparison!=BASE
 
 if bootstrap
   [[EN_REL,EN,true],[BN_REL,BN,false]].each do |rel,path,lang_added|
