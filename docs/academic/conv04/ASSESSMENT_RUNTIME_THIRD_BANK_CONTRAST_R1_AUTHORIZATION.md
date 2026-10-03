@@ -27,6 +27,10 @@ Scientific/question/answer/explanation rewrite: **PROHIBITED**
 - `docs/academic/conv04/CONV04_STATE.md`
 - `docs/academic/conv04/ASSESSMENT_RUNTIME_THIRD_BANK_CONTRAST_R1_AUTHORIZATION.md`
 
+## Retained-contract compatibility
+
+The Academic Design System phase parser is widened only from `CONV-04X-NN` to also accept the repository's already-used remediation form `CONV-04X-NN-R#`. No design-system CSS, tokens, components, learner rendering or enforcement strength changes.
+
 ## Promotion gate
 
 Require unchanged-head D-06 content-preservation PASS, five-viewport browser/Axe PASS, retained CONV-04 contracts, Jekyll, CodeQL, zero unresolved review threads and Trusted Governance before merge.
