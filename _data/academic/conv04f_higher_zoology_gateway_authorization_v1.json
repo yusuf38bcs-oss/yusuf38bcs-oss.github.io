@@ -1,6 +1,6 @@
 {
   "schema": "lbfl-conv04f-higher-zoology-gateway-authorization-v1",
-  "version": "CONV-04F-02-authorization-1.0.1",
+  "version": "CONV-04F-02-authorization-1.1.0",
   "programme": "CONV-04",
   "phase": "CONV-04F-02",
   "status": "authorized-not-implemented",
@@ -153,7 +153,7 @@
     "Socratic mutation",
     "Admission/#356 mutation",
     "Worker/Cloudflare mutation",
-    "shared assessment runtime mutation"
+    "shared assessment runtime mutation except no runtime mutation is authorized by the retained contrast remediation"
   ],
   "retained_contracts": [
     "CONV-04A",
@@ -169,5 +169,20 @@
     "type": "baseline-census-accuracy-only",
     "authority_widened": false,
     "reason": "Replace truncated Liquid href fragments with complete normalized baseline destinations after review; learner mutation authority is unchanged."
+  },
+  "retained_accessibility_remediation": {
+    "status": "authorized",
+    "trigger": "Repeated exact-head retained D-04/D-05/D-06 Axe color-contrast failures on authored assessment explanations, score feedback, and repair action while assessment sources/runtime were unchanged.",
+    "root_boundary": "Academic-v1 cascade compatibility with dark authored-assessment components",
+    "support_file": "assets/css/academic-design-system.css",
+    "learner_authority_widened": false,
+    "assessment_bank_mutation": false,
+    "assessment_runtime_mutation": false,
+    "axe_gate_weakened": false,
+    "required_fix": [
+      "preserve dark explanation surface with light text inside authored assessments",
+      "preserve dark score-board surface with light heading/body/score text",
+      "preserve repair link high-contrast foreground/background"
+    ]
   }
 }
