@@ -1,0 +1,82 @@
+{
+  "schema": "lbfl-conv04f-digestive-gateway-authorization-v1",
+  "version": "CONV-04F-06-authorization-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04F-06",
+  "status": "authorized-not-implemented",
+  "authorized_base": "55fd04f004f3f352cf90d4e026702d6714096072",
+  "branch": "conv-04f-06-digestive-gateway-authorization-20261003",
+  "target": {
+    "course_id": "hsc-zoology-digestive-system",
+    "title": "Digestive System: 14-Lecture Ecosystem",
+    "route": "/biology/hsc-corner/zoology/digestive-system/",
+    "source_file": "_biology/hsc-corner/zoology/digestive-system/index.md",
+    "academic_level": "HSC Biology 2nd Paper",
+    "module_count": 14
+  },
+  "authenticated_baseline": {
+    "gateway_blob_sha": "5adb6967bbe53351dac265bd1a443a120927da8e",
+    "course_contract_blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+    "route_ledger_blob_sha": "46271e473365f781e1c9868973da623bf21b7802",
+    "protected_lesson_blobs": {
+      "_biology/hsc-corner/zoology/digestive-system/lecture-01-human-digestive-system-overview.md": "8cd43c5885fcae09eb6b02e892e7b523a02df762",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-02-oral-cavity-saliva-teeth.md": "20fe90147a77b3e9402f71a12c013d241e1bb204",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-03-stomach.md": "776b14f791cd8ab7928c4e0350c76f14fd83be5c",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-04-liver-bile.md": "43e344769f241c2ae1185db971ab3d5fd700d8fd",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-05-pancreas.md": "5e9ecc56ae0d61bfdc2cd913fd2994a9e3ea4bba",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-06-intestine.md": "8314c4aa1e49f5e2d0d28ac93d04d0de1bd58d20",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-07-carbohydrate-digestion.md": "90f91a9b1db5f853b947edf34bcd25f87863e3a0",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-08-amino-acid.md": "ae24acecca31f8b14fadd6aace088faf87f4e05e",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-09-lipid-digestion.md": "39e9b1f84cde0ec3adfeaf31c960cf5f1a62f039",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-10-absorption.md": "240c559a3c405ea6810f2c5eba6a843773afba54",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-11-summary.md": "7cd9ede83cad70d2fdee16c7fe1016042980e5fc",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-12-large-intestine.md": "c57913eb4163b2ca7e2fca6d6609ed991ddede02",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-13-health-issues.md": "43a9f284322823a71bc11280afb33448a9627db7",
+      "_biology/hsc-corner/zoology/digestive-system/lecture-14-revision.md": "dbedec77a60ef7942060a3c36552b8faa4a609e0"
+    }
+  },
+  "route_ownership": {
+    "collection_owner": "_biology/hsc-corner/zoology/digestive-system/index.md",
+    "competing_static_owner_found": false,
+    "layout": "single",
+    "layout_change_authorized": false
+  },
+  "authorized_gateway_changes": {
+    "frontmatter": {
+      "academic_system": "v1",
+      "academic_role": "course_index",
+      "lang": "bn",
+      "learning_guide": "canonical"
+    },
+    "preserve_legacy_language_if_equal": true,
+    "canonical_learning_guide_cta_exactly_once": true,
+    "migrate_local_gateway_presentation_to_existing_academic_v1_primitives": true,
+    "remove_page_local_style_block": true,
+    "preserve_exact_fourteen_module_routes_and_order": true,
+    "preserve_scientific_and_exam_alignment_wording": true,
+    "register_route_ledger_as_strict": true
+  },
+  "prohibited": {
+    "lecture_content_rewrite": true,
+    "lecture_file_mutation": true,
+    "course_contract_mutation": true,
+    "shared_css_mutation": true,
+    "shared_layout_mutation": true,
+    "assessment_bank_mutation": true,
+    "assessment_runtime_mutation": true,
+    "higher_zoology_mutation": true,
+    "botany_mutation": true,
+    "socratic_mutation": true,
+    "practical_mutation": true,
+    "admission_pr_356_mutation": true,
+    "worker_cloudflare_mutation": true
+  },
+  "retained_contracts": {
+    "conv04e": "must-pass",
+    "f01_f05": "must-pass",
+    "d04_d06": "must-pass",
+    "course_contract": "byte-identical",
+    "fourteen_lecture_sources": "byte-identical"
+  },
+  "next_gate": "implement one gateway only, register strict route, ship bootstrap-plus-retained F-06 certification, then exact-head certification"
+}
