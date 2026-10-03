@@ -1,10 +1,10 @@
 # CONV-04F-09 — Practical Museum Specimens Module Convergence
 
-**Status:** AUTHORIZED IMPLEMENTATION CANDIDATE  
-**Exact authorized base:** `f04ac472ee261fa19dc17de6052bde02b75e99c4`  
-**Selected module:** `prac-01 — Museum Specimens`  
-**Target source:** `_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md`  
-**Target route:** `/biology/higher-zoology-tree/practical/museum-specimens/`  
+**Status:** AUTHORIZED IMPLEMENTATION CANDIDATE
+**Exact authorized base:** `f04ac472ee261fa19dc17de6052bde02b75e99c4`
+**Selected module:** `prac-01 — Museum Specimens`
+**Target source:** `_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md`
+**Target route:** `/biology/higher-zoology-tree/practical/museum-specimens/`
 **Baseline blob:** `26e1711cf9c6bace8ddd8419797c38511987420c`
 
 ## Authenticated content-preservation baseline
