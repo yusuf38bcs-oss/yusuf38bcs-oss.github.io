@@ -68,12 +68,50 @@ jobs:
         shell: bash
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_WORKER_DEPLOY_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
         run: |
           set -euo pipefail
-          test -n "$CLOUDFLARE_API_TOKEN"
-          npx --yes wrangler@latest pages deploy _site \
-            --project-name "$CLOUDFLARE_PAGES_PROJECT" \
-            --branch "$TARGET_BRANCH" \
-            --commit-hash "$TARGET_SHA" \
-            --commit-message "LBFL F-08 exact-head certification preview $TARGET_SHA" \
-            --commit-dirty=false
+          candidates=(
+            "CLOUDFLARE_WORKER_DEPLOY_TOKEN"
+            "CF_API_TOKEN"
+            "CLOUDFLARE_TOKEN"
+            "CLOUDFLARE_API_TOKEN"
+          )
+          selected=""
+          for name in "${candidates[@]}"; do
+            candidate="${!name:-}"
+            [[ -n "$candidate" ]] || continue
+            echo "::add-mask::$candidate"
+            attempt_log="$RUNNER_TEMP/pages-deploy-${name}.log"
+
+            set +e
+            CLOUDFLARE_API_TOKEN="$candidate" npx --yes wrangler@latest pages deploy _site \
+              --project-name "$CLOUDFLARE_PAGES_PROJECT" \
+              --branch "$TARGET_BRANCH" \
+              --commit-hash "$TARGET_SHA" \
+              --commit-message "LBFL F-08 exact-head certification preview $TARGET_SHA" \
+              --commit-dirty=false > >(tee "$attempt_log") 2>&1
+            status=$?
+            set -e
+
+            if [[ $status -eq 0 ]]; then
+              selected="$name"
+              break
+            fi
+
+            if grep -Eq "Authentication error|No access to the specified resource|HTTP 403|code[=: ]+10000" "$attempt_log"; then
+              echo "$name lacks Pages upload authority; trying next configured credential." >&2
+              continue
+            fi
+
+            echo "$name failed for a non-permission reason; refusing credential fallback." >&2
+            exit "$status"
+          done
+
+          [[ -n "$selected" ]] || {
+            echo "No configured Cloudflare credential has Pages upload authority." >&2
+            exit 1
+          }
+          echo "Cloudflare Pages preview deployed with configured credential: $selected"
