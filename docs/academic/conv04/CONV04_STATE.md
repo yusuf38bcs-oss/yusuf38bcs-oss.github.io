@@ -350,7 +350,7 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Exact authorized base: `55fd04f004f3f352cf90d4e026702d6714096072`.
 - Target: HSC Digestive System 14-lecture gateway.
 - Exact learner-facing mutation count: **1**.
-- Academic-v1 role: `course_index`.
+- Academic-v1 role: `academic_gateway`.
 - Language: `bn`.
 - Learning Guide: `canonical`.
 - Page-local `<style>` block: **removed**.
@@ -359,3 +359,9 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Fourteen lecture sources: **byte-identical / protected**.
 - Route ledger: strict `hsc-digestive-system-course-index` with zero source/live debt.
 - Shared CSS/layout/runtime: **unchanged**.
+
+## F-06 role reconciliation
+
+- Prepared role `course_index`: **REJECTED by live Academic Surface Contract vocabulary**.
+- Bound role `academic_gateway`: **VALID / contract-aligned**.
+- Semantic course-index identity remains governed by `hsc-zoology-digestive-system`, the canonical route, and the exact 14-module course contract.
