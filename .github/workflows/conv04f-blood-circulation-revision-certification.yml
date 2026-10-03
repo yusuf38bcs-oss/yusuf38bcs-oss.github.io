@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize, reopened, ready_for_review, edited]
     paths:
       - "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md"
-      - "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md"
+      - "_config.yml"
       - "_data/academic/conv04f_blood_circulation_revision_v1.json"
       - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
       - "docs/academic/conv04/CONV04_STATE.md"
