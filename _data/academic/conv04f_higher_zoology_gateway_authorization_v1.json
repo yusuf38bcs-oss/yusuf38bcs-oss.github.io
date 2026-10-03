@@ -1,6 +1,6 @@
 {
   "schema": "lbfl-conv04f-higher-zoology-gateway-authorization-v1",
-  "version": "CONV-04F-02-authorization-1.1.0",
+  "version": "CONV-04F-02-authorization-1.2.0",
   "programme": "CONV-04",
   "phase": "CONV-04F-02",
   "status": "authorized-not-implemented",
@@ -173,14 +173,16 @@
   "retained_accessibility_remediation": {
     "status": "authorized",
     "trigger": "Repeated exact-head retained D-04/D-05/D-06 Axe color-contrast failures on authored assessment explanations, score feedback, and repair action while assessment sources/runtime were unchanged.",
-    "root_boundary": "Academic-v1 cascade compatibility with dark authored-assessment components",
-    "support_file": "assets/css/academic-design-system.css",
+    "root_boundary": "Shared authored-assessment component cascade on legacy assessment pages",
+    "support_file": "_sass/components/_assessment-system.scss",
+    "compiled_output": "assets/css/main.css",
     "learner_authority_widened": false,
     "assessment_bank_mutation": false,
     "assessment_runtime_mutation": false,
     "axe_gate_weakened": false,
+    "rationale": "The authored assessment pages are not Academic-v1 pages, so the earlier conditional academic-design-system.css bridge was ineffective. The fix belongs in the globally compiled assessment component stylesheet.",
     "required_fix": [
-      "preserve dark explanation surface with light text inside authored assessments",
+      "preserve dark explanation surface with light text",
       "preserve dark score-board surface with light heading/body/score text",
       "preserve repair link high-contrast foreground/background"
     ]
