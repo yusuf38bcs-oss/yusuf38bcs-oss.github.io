@@ -1,10 +1,10 @@
 # CONV-04F-06 — HSC Digestive System Gateway Authorization
 
-**Status:** AUTHORIZED — learner implementation not yet performed  
+**Status:** IMPLEMENTED CANDIDATE — certification pending  
 **Exact base:** `55fd04f004f3f352cf90d4e026702d6714096072`  
 **Branch:** `conv-04f-06-digestive-gateway-authorization-20261003`
 
-## Actual route owner
+## Authenticated route owner
 
 Canonical route:
 
@@ -14,19 +14,27 @@ is owned by:
 
 `_biology/hsc-corner/zoology/digestive-system/index.md`
 
-No competing static route owner was found. The page already uses `layout: single`; the existing Academic-v1 layout path can supply its educational boundary, so no shared-layout mutation is authorized.
+No competing static route owner was found. The page uses `layout: single`; Academic-v1 therefore retains the layout-owned educational boundary. No shared-layout mutation is authorized or applied.
 
 ## Protected governed course
 
-The course contract is already **governed / strict** with an exact 14-module sequence (`dig-01` → `dig-14`). The course-contract blob and all fourteen lecture-source blobs are captured in the authorization manifest and must remain byte-identical.
+The course contract is already **governed / strict** with exact module order `dig-01 → dig-14`.
 
-## Authorized learner scope
+The authorization manifest binds:
 
-Exactly one learner-facing file may change:
+- gateway baseline blob `5adb6967bbe53351dac265bd1a443a120927da8e`;
+- course-contract blob `a02365ea6743c44a1eddaf84ad05f66d670ade6b`;
+- all fourteen lecture-source blobs.
+
+The course contract and all fourteen lecture files remain byte-identical in F-06.
+
+## Implemented learner mutation
+
+Exactly one learner-facing source is changed:
 
 `_biology/hsc-corner/zoology/digestive-system/index.md`
 
-Authorized metadata:
+Added metadata:
 
 ```yaml
 academic_system: v1
@@ -35,20 +43,42 @@ lang: bn
 learning_guide: canonical
 ```
 
-The agreeing legacy `language: bn` key may remain. Add exactly one canonical Learning Guide CTA.
+The agreeing legacy `language: bn` is preserved.
 
-The current gateway contains a page-local `<style>` block. F-06 may remove it only by migrating the existing hero/cards to **existing Academic-v1 primitives**. Shared CSS and shared layout are out of scope.
+Exactly one canonical Learning Guide CTA is added.
 
-All 14 lecture links/order, learner-facing scientific descriptions, and Editorial and Exam Alignment wording must remain semantically unchanged.
+The page-local styling layer is removed and existing presentation structure is mapped onto already-owned Academic-v1 primitives:
 
-## Route ledger
+```text
+digestive-course-hero   → lbfl-academic-callout
+digestive-lecture-grid  → lbfl-academic-grid
+digestive-lecture-card  → lbfl-academic-card
+```
 
-Register the Digestive System gateway as a strict Academic-v1 course index with `bn`, layout-owned boundary, canonical Learning Guide ownership, MCQ Arena assessment ownership, and zero source/live debt after certification.
+No shared CSS or shared layout is changed.
+
+All fourteen lecture links, their order, learner-facing scientific descriptions, and the Editorial and Exam Alignment text are preserved from the authenticated base.
+
+## Route ledger target
+
+The route is registered as:
+
+```text
+id: hsc-digestive-system-course-index
+academic_role: course_index
+language: bn
+boundary_owner: layout
+learning_guide_owner: canonical
+assessment_owner: mcq-arena
+enforcement: strict
+source_debt: []
+live_debt: []
+```
 
 ## Explicit exclusions
 
-No lecture rewrite, course-contract mutation, assessment-bank/runtime mutation, Higher Zoology, Botany, Socratic, Practical, Admission/#356, Worker, Cloudflare, shared CSS, or shared layout mutation is authorized.
+No lecture rewrite, course-contract mutation, assessment-bank/runtime mutation, Higher Zoology, Botany, Socratic, Practical, Admission/#356, Worker, Cloudflare, shared CSS, or shared layout mutation is part of F-06.
 
-## Next gate
+## Promotion gate
 
-Implement only the gateway plus F-06 ledger/manifest/validator/browser/workflow/state artifacts. Retain A–E, F-01 through F-05, D-04/D-05/D-06, the course contract, and all fourteen lecture sources.
+Draft until the unchanged head passes F-06 source preservation, retained A–E/F-01…F-05/D-04…D-06, production Jekyll, browser/Axe, keyboard/focus, 320px reflow, text spacing, reduced motion, no-JS, CodeQL, review convergence, required Pages and Trusted Governance.
