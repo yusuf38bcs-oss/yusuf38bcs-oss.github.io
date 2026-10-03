@@ -1,6 +1,6 @@
 {
   "schema": "lbfl-conv04f04-ecology-convergence-v1",
-  "version": "CONV-04F-04-1.0.0",
+  "version": "CONV-04F-04-1.1.0",
   "phase": "CONV-04F-04",
   "authorized_base": "27ed06453ae6ee9398d06c52a1b44a442004774b",
   "authorization_file": "_data/academic/conv04f04_ecology_route_ownership_v1.json",
@@ -9,7 +9,8 @@
       "route": "/biology/higher-zoology-tree/ecology/",
       "owner": "biology/higher-zoology-tree/ecology/index.html",
       "academic_v1": false,
-      "canonical_target": "/biology/higher-zoology-tree/ecology/course-index/"
+      "canonical_target": "/biology/higher-zoology-tree/ecology/course-index/",
+      "localization": "excluded-from-polyglot-localized-static-copy"
     },
     "academic_surfaces": [
       {
@@ -95,5 +96,14 @@
       "role": "region",
       "aria_label": "Ecology lecture sequence"
     }
+  },
+  "polyglot_route_ownership_remediation": {
+    "trigger": "review finding: static compatibility root overwrites localized Bangla route during Polyglot write order",
+    "config_path": "_config.yml",
+    "exclude_from_localization_entry": "biology/higher-zoology-tree/ecology/index.html",
+    "default_root_preserved": true,
+    "localized_static_copy_blocked": true,
+    "shared_css_mutation": false,
+    "scientific_content_mutation": false
   }
 }
