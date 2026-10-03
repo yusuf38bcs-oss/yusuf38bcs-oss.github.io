@@ -139,7 +139,7 @@ if base_source_status.success? && SOURCE.file?
        "Digestive gateway differs from the exact authorized transformation")
   need(errors, fm_value(candidate, "permalink") == "/biology/hsc-corner/zoology/digestive-system/", "Digestive permalink drift")
   need(errors, fm_value(candidate, "academic_system") == "v1", "Digestive academic_system must be v1")
-  need(errors, fm_value(candidate, "academic_role") == "course_index", "Digestive academic_role must be course_index")
+  need(errors, fm_value(candidate, "academic_role") == "academic_gateway", "Digestive academic_role must be academic_gateway")
   need(errors, fm_value(candidate, "lang") == "bn", "Digestive lang must be bn")
   need(errors, fm_value(candidate, "language") == "bn", "Legacy language must remain bn")
   need(errors, fm_value(candidate, "learning_guide") == "canonical", "Canonical Learning Guide ownership missing")
@@ -197,7 +197,7 @@ if LEDGER.file?
     if route
       need(errors, route["canonical_route"] == "/biology/hsc-corner/zoology/digestive-system/", "Digestive ledger route drift")
       need(errors, route["source_file"] == SOURCE_REL, "Digestive ledger source drift")
-      need(errors, route["academic_role"] == "course_index", "Digestive ledger role drift")
+      need(errors, route["academic_role"] == "academic_gateway", "Digestive ledger role drift")
       need(errors, route["language"] == "bn", "Digestive ledger language drift")
       need(errors, route["boundary_owner"] == "layout", "Digestive boundary owner drift")
       need(errors, route["learning_guide_owner"] == "canonical", "Digestive Learning Guide owner drift")
