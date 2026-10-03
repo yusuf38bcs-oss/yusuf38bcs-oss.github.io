@@ -113,3 +113,13 @@ Two exact-head review findings were addressed without broadening learner scope:
 2. The two Academic-v1 table wrappers also carry the existing `zoology-practical-table-scroll` class. This causes the retained Practical table enhancer to recognize the wrappers and skip creating nested focusable regions. Exact-head browser certification requires exactly two dual-purpose wrappers and zero nested Practical table wrappers.
 
 No shared Practical JavaScript or CSS is changed.
+
+
+## Final review hardening
+
+Two late exact-head review findings are closed in the retained F-08 contract:
+
+1. **Manual exact-main successor context.** `workflow_dispatch` now derives the comparison base from the current `CONV04_STATE authorized_base`, exports it as `PR_BASE_SHA`, and the validator classifies bootstrap/successor mode from that authenticated comparison base plus phase. Manual certification therefore remains valid after an authorized F-09 successor instead of falling back to F-08 byte-identity rules.
+2. **Academic-v1 stylesheet trigger.** `assets/css/academic-design-system.css` is now in the F-08 workflow path filter, so any change to the presentation layer adopted by the Practical gateway reruns the five-viewport browser/Axe/reflow/focus/text-spacing/reduced-motion certification.
+
+Neither hardening change broadens learner-content authority or weakens any browser/Axe assertion.
