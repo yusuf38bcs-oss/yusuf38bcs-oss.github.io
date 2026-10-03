@@ -9,8 +9,8 @@ const arg=(n,d)=>{const i=process.argv.indexOf(n);return i>=0&&process.argv[i+1]
 const base=arg("--base-url","http://127.0.0.1:4173").replace(/\/$/,"");
 const out=path.resolve(arg("--output-dir","conv04f-higher-zoology-browser-report"));
 const routes=[
- {route:"/biology/higher-zoology-tree/",lang:"en",required:["Higher Zoology Tree","Main Branches","Recommended Learning Sequence"]},
- {route:"/bn/biology/higher-zoology-tree/",lang:"bn",required:["উচ্চতর প্রাণিবিজ্ঞান","প্রধান শাখাসমূহ","প্রস্তাবিত শেখার ক্রম"]}
+ {route:"/biology/higher-zoology-tree/",lang:"en",guidePaths:["/learn/"],required:["Higher Zoology Tree","Main Branches","Recommended Learning Sequence"]},
+ {route:"/bn/biology/higher-zoology-tree/",lang:"bn",guidePaths:["/bn/learn/","/learn/"],required:["উচ্চতর প্রাণিবিজ্ঞান","প্রধান শাখাসমূহ","প্রস্তাবিত শেখার ক্রম"]}
 ];
 const viewports=[
  {name:"mobile-320",width:320,height:900},
@@ -63,7 +63,7 @@ async function run(target,view,opts={}){
      }
    }
 
-   const baseMetrics=await page.evaluate(({lang,required})=>{
+   const baseMetrics=await page.evaluate(({lang,required,guidePaths})=>{
      const article=document.querySelector("[data-lbfl-academic-surface='v1']");
      const body=document.body.innerText||"";
      const ctas=[...document.querySelectorAll(".lbfl-learning-guide-cta")];
@@ -75,7 +75,7 @@ async function run(target,view,opts={}){
        role:article?.getAttribute("data-lbfl-academic-role")||"",
        canonicalGuide:article?.getAttribute("data-lbfl-learning-guide")==="canonical",
        ctaCount:ctas.length,
-       ctaToLearn:ctas.some(x=>[...x.querySelectorAll("a[href]")].some(a=>new URL(a.href,location.href).pathname==="/learn/")),
+       ctaToLearn:ctas.some(x=>[...x.querySelectorAll("a[href]")].some(a=>guidePaths.includes(new URL(a.href,location.href).pathname))),
        boundaryCount:document.querySelectorAll(".educational-boundary").length,
        oldCycleCount:document.querySelectorAll("[data-zoology-learning-cycle]").length,
        legacyFrameworkCount:document.querySelectorAll(".lbfl-framework-links").length,
