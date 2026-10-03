@@ -11,9 +11,14 @@ status: Active
 author_profile: false
 toc: false
 classes: wide
+academic_system: v1
+academic_role: academic_gateway
+learning_guide: canonical
 ---
 
 # Animal Diversity Course — Lectures 01–10
+
+{% include education/learning-guide-cta.html %}
 
 This is one Animal Diversity course. Use the site **English | বাংলা** control to move between reviewed language versions.
 
