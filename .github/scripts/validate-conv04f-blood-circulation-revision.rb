@@ -9,12 +9,14 @@ ROOT = Pathname.new(__dir__).join("../..").expand_path
 BASE = "9895c190f75d0d6b3167370a043181e9cc5c14ad"
 PHASE = "CONV-04F-07"
 BASE_SOURCE_REL = "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md"
-SOURCE_REL = "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md"
+SOURCE_REL = "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md"
 SOURCE = ROOT.join(SOURCE_REL)
 MANIFEST = ROOT.join("_data/academic/conv04f_blood_circulation_revision_v1.json")
 LEDGER = ROOT.join("docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json")
 STATE = ROOT.join("docs/academic/conv04/CONV04_STATE.md")
 AUTH_DOC = ROOT.join("docs/academic/conv04/BLOOD_CIRCULATION_REVISION_F07_AUTHORIZATION.md")
+CONFIG = ROOT.join("_config.yml")
+POLYGLOT_EXCLUSION = "biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html"
 BROWSER = ROOT.join(".github/scripts/conv04f-blood-circulation-revision-browser-certification.mjs")
 WORKFLOW = ROOT.join(".github/workflows/conv04f-blood-circulation-revision-certification.yml")
 CTA = "{% include education/learning-guide-cta.html %}"
@@ -23,7 +25,8 @@ BOOTSTRAP_FILES = %w[
   .github/scripts/conv04f-blood-circulation-revision-browser-certification.mjs
   .github/scripts/validate-conv04f-blood-circulation-revision.rb
   .github/workflows/conv04f-blood-circulation-revision-certification.yml
-  _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md
+  _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md
+  _config.yml
   _data/academic/conv04f_blood_circulation_revision_v1.json
   docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
   docs/academic/conv04/BLOOD_CIRCULATION_REVISION_F07_AUTHORIZATION.md
@@ -34,7 +37,6 @@ IMMUTABLE_F07 = %w[
   .github/scripts/conv04f-blood-circulation-revision-browser-certification.mjs
   .github/scripts/validate-conv04f-blood-circulation-revision.rb
   .github/workflows/conv04f-blood-circulation-revision-certification.yml
-  _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.bn.md
   _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md
   _data/academic/conv04f_blood_circulation_revision_v1.json
   docs/academic/conv04/BLOOD_CIRCULATION_REVISION_F07_AUTHORIZATION.md
@@ -95,7 +97,7 @@ def authorized_transform(source)
   out
 end
 
-[SOURCE, MANIFEST, LEDGER, STATE, AUTH_DOC, BROWSER, WORKFLOW].each do |path|
+[SOURCE, MANIFEST, LEDGER, STATE, AUTH_DOC, CONFIG, BROWSER, WORKFLOW].each do |path|
   errors << "Missing F-07 artifact: #{path.relative_path_from(ROOT)}" unless path.file?
 end
 
@@ -134,6 +136,11 @@ if SOURCE.file?
   else
     errors << "Unable to authenticate F-07 baseline source"
   end
+end
+
+if CONFIG.file?
+  need(errors, read_utf8(CONFIG).lines.any? { |line| line.strip == "- #{POLYGLOT_EXCLUSION}" },
+       "F-07 Polyglot route-preservation exclusion missing")
 end
 
 if MANIFEST.file?
