@@ -111,7 +111,7 @@ def authorized_transform(source)
   out = source.dup
   out = out.sub(
     "language: bn\nstatus: \"Active\"",
-    "language: bn\nlang: bn\nacademic_system: v1\nacademic_role: course_index\nlearning_guide: canonical\nstatus: \"Active\""
+    "language: bn\nlang: bn\nacademic_system: v1\nacademic_role: academic_gateway\nlearning_guide: canonical\nstatus: \"Active\""
   )
   out = out.sub(
     "# Digestive System: 14-Lecture Ecosystem\n\n",
