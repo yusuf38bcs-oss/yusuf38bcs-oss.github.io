@@ -38,7 +38,7 @@ Added metadata:
 
 ```yaml
 academic_system: v1
-academic_role: course_index
+academic_role: academic_gateway
 lang: bn
 learning_guide: canonical
 ```
@@ -65,7 +65,7 @@ The route is registered as:
 
 ```text
 id: hsc-digestive-system-course-index
-academic_role: course_index
+academic_role: academic_gateway
 language: bn
 boundary_owner: layout
 learning_guide_owner: canonical
@@ -82,3 +82,7 @@ No lecture rewrite, course-contract mutation, assessment-bank/runtime mutation, 
 ## Promotion gate
 
 Draft until the unchanged head passes F-06 source preservation, retained A–E/F-01…F-05/D-04…D-06, production Jekyll, browser/Axe, keyboard/focus, 320px reflow, text spacing, reduced motion, no-JS, CodeQL, review convergence, required Pages and Trusted Governance.
+
+## Role reconciliation
+
+The advance-preparation draft used `academic_role: course_index`. Exact contract recheck showed that `course_index` is not part of the Academic Surface Contract role vocabulary. F-06 therefore uses the valid structural role `academic_gateway`; the fact that this route is the governed 14-lecture course index remains represented by the course contract, route ID, canonical route, and learner content. No scientific/content scope is changed by this correction.
