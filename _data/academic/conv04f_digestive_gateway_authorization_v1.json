@@ -3,7 +3,7 @@
   "version": "CONV-04F-06-authorization-1.0.0",
   "programme": "CONV-04",
   "phase": "CONV-04F-06",
-  "status": "authorized-not-implemented",
+  "status": "implemented-candidate",
   "authorized_base": "55fd04f004f3f352cf90d4e026702d6714096072",
   "branch": "conv-04f-06-digestive-gateway-authorization-20261003",
   "target": {
@@ -78,5 +78,27 @@
     "course_contract": "byte-identical",
     "fourteen_lecture_sources": "byte-identical"
   },
-  "next_gate": "implement one gateway only, register strict route, ship bootstrap-plus-retained F-06 certification, then exact-head certification"
+  "next_gate": "exact-head F-06 source preservation + retained A-F05 + production Jekyll + browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence",
+  "authorization_snapshot_status": "authorized-not-implemented",
+  "implementation": {
+    "learner_source": "_biology/hsc-corner/zoology/digestive-system/index.md",
+    "frontmatter": {
+      "academic_system": "v1",
+      "academic_role": "course_index",
+      "lang": "bn",
+      "learning_guide": "canonical"
+    },
+    "canonical_learning_guide_cta_count": 1,
+    "presentation_migration": {
+      "removed_page_local_style_block": true,
+      "hero_class": "lbfl-academic-callout",
+      "grid_class": "lbfl-academic-grid",
+      "card_class": "lbfl-academic-card",
+      "shared_css_changed": false,
+      "shared_layout_changed": false
+    },
+    "route_ledger_id": "hsc-digestive-system-course-index",
+    "course_contract_changed": false,
+    "lecture_sources_changed": false
+  }
 }
