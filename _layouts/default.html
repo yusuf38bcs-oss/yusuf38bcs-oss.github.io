@@ -7,7 +7,11 @@
   {% assign lbfl_gtm_allowed = true %}
 {% endif %}
 <!doctype html>
-{% assign html_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
+{% if page.polyglot_root_language == true %}
+  {% assign html_lang = page.language | default: page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
+{% else %}
+  {% assign html_lang = page.lang | default: site.active_lang | default: site.lang | default: 'en' %}
+{% endif %}
 {% assign html_lang_base = html_lang | split: '-' | first | default: 'en' %}
 {% assign html_dir = page.dir | default: site.dir | default: 'ltr' %}
 {% assign lbfl_zoology_document = false %}
