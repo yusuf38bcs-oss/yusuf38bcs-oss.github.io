@@ -107,7 +107,7 @@ async function run(name,width,height,opts={}){
         learnLink:[...content?.querySelectorAll("a[href]")||[]].some(a=>new URL(a.href).pathname==="/learn/"),
         boundaryCount:content?.querySelectorAll(".educational-boundary").length||0,
         legacyCycleCount:content?.querySelectorAll("[data-zoology-learning-cycle]").length||0,
-        h1Count:content?.querySelectorAll("h1").length||0,
+        h1Texts:[...content?.querySelectorAll("h1")||[]].map(h=>h.textContent.trim()),
         specimenHeadingCount:specimenHeadings.length,
         specimenNumbers:specimenHeadings.map(t=>Number(t.match(/^(\d+)\./)?.[1]||0)),
         tableCount:tables.length,
@@ -171,7 +171,14 @@ async function run(name,width,height,opts={}){
       metrics.role==="practical" && metrics.guide==="canonical" &&
       metrics.ctaCount===1 && metrics.learnLink &&
       metrics.boundaryCount===1 && metrics.legacyCycleCount===0 &&
-      metrics.h1Count===1 && metrics.specimenHeadingCount===48 && metrics.numberSequencePass &&
+      metrics.h1Texts.length===4 &&
+      metrics.h1Texts.join("|")===[
+        "Study of Museum Specimens — Complete NU Coverage",
+        "High-yield Comparison Table",
+        "Syllabus Nomenclature Notes",
+        "Spotting Template"
+      ].join("|") &&
+      metrics.specimenHeadingCount===48 && metrics.numberSequencePass &&
       metrics.tableCount===49 &&
       metrics.verifiedFigureCount===15 && metrics.verifiedImageCount===15 &&
       metrics.slugSetPass && metrics.spritePass && metrics.inlineSpriteStyleCount===0 &&
