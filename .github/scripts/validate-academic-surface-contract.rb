@@ -82,16 +82,21 @@ def route_findings(route, source, combined_source)
   academic_system = fm_value(source, "academic_system")
   lang = fm_value(source, "lang")
   legacy_language = fm_value(source, "language")
+  root_language_compat = route["polyglot_root_language"] == true &&
+    fm_value(source, "polyglot_root_language") == "true"
+  effective_lang = root_language_compat && (lang.nil? || lang.empty?) ? legacy_language : lang
 
   findings << "missing_academic_role" if academic_role.nil? || academic_role.empty?
   findings << "missing_academic_system" if academic_system.nil? || academic_system.empty?
-  findings << "missing_lang" if lang.nil? || lang.empty?
+  findings << "missing_lang" if effective_lang.nil? || effective_lang.empty?
 
-  if legacy_language && (lang.nil? || lang.empty? || legacy_language != lang)
-    findings << "legacy_language_key"
+  unless root_language_compat
+    if legacy_language && (lang.nil? || lang.empty? || legacy_language != lang)
+      findings << "legacy_language_key"
+    end
   end
 
-  if lang && !lang.empty? && lang != route.fetch("language")
+  if effective_lang && !effective_lang.empty? && effective_lang != route.fetch("language")
     findings << "lang_mismatch"
   end
 
@@ -273,7 +278,12 @@ routes.each_with_index do |route, idx|
 
     add_error(errors, "#{id}: strict academic_role mismatch") unless fm_value(source, "academic_role") == role
     add_error(errors, "#{id}: strict academic_system must be v1") unless fm_value(source, "academic_system") == "v1"
-    add_error(errors, "#{id}: strict lang mismatch") unless fm_value(source, "lang") == route["language"]
+    strict_lang = fm_value(source, "lang")
+    if route["polyglot_root_language"] == true && fm_value(source, "polyglot_root_language") == "true" &&
+       (strict_lang.nil? || strict_lang.empty?)
+      strict_lang = fm_value(source, "language")
+    end
+    add_error(errors, "#{id}: strict lang mismatch") unless strict_lang == route["language"]
   end
 
   route_reports << {

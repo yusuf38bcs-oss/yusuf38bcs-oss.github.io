@@ -1,25 +1,25 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-06
-mode: implementation candidate — HSC Digestive System gateway strict Academic-v1 convergence
-authorized_base: 55fd04f004f3f352cf90d4e026702d6714096072
-branch: conv-04f-06-digestive-gateway-authorization-20261003
-production_verified_main: 55fd04f004f3f352cf90d4e026702d6714096072
+phase: CONV-04F-07
+mode: implementation candidate — Blood Circulation Revision Map strict Academic-v1 convergence
+authorized_base: 9895c190f75d0d6b3167370a043181e9cc5c14ad
+branch: conv-04f-07-blood-circulation-revision-20261003
+production_verified_main: 9895c190f75d0d6b3167370a043181e9cc5c14ad
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact one Digestive gateway learner surface + F-06 route-ledger/certification/state artifacts
-learner_content_authoring: structural gateway convergence only / scientific rewrite forbidden / implemented-candidate
-existing_learning_method_cleanup: page-local Digestive presentation removed in favor of existing Academic-v1 primitives
-gateway_cta_injection: exactly one canonical Learning Guide CTA on Digestive course index
+mutation_authority: exact one Blood Circulation revision learner surface + F-07 route-ledger/certification/state artifacts
+learner_content_authoring: structural revision convergence only / scientific rewrite forbidden
+existing_learning_method_cleanup: Academic-v1 rendering activation retires historical hero/fragmentation debt only if browser-certified
+gateway_cta_injection: exactly one canonical Learning Guide CTA on Blood Circulation Revision Map
 learner_mutation_allowlist:
-  - _biology/hsc-corner/zoology/digestive-system/index.md
+  - _biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 implementation candidate / strict promotion pending certification
 admission_pr_356: protected / untouched
 worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head F-06 + retained A-F-05/D + course-contract/14-lecture preservation + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
+ready_transition: not authorized until exact-head F-07 + retained A-F06/D/E + content preservation + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + CodeQL + review convergence
 merge: not authorized until unchanged-head governance + required checks + Pages PASS
 
 ## Completed foundation
@@ -365,3 +365,64 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Prepared role `course_index`: **REJECTED by live Academic Surface Contract vocabulary**.
 - Bound role `academic_gateway`: **VALID / contract-aligned**.
 - Semantic course-index identity remains governed by `hsc-zoology-digestive-system`, the canonical route, and the exact 14-module course contract.
+
+
+## CONV-04F-06 post-merge closure
+
+- PR #418: **MERGED**.
+- Merge / production main: `9895c190f75d0d6b3167370a043181e9cc5c14ad`.
+- GitHub Pages build + deploy: **PASS**.
+- Cloudflare Pages exact-main deployment: **PASS**.
+- Worker build: **PASS**.
+- 20 localized learner-pages canonical production probe: **PASS**.
+- Live Digestive gateway: **PASS / `lang=bn` / Academic-v1 `academic_gateway` / canonical Learning Guide / 14 routes in order**.
+
+**CONV-04F-06 = CLOSED / PASS / production-verified.**
+
+## CONV-04F-07 implementation candidate
+
+- Fresh authenticated base: `9895c190f75d0d6b3167370a043181e9cc5c14ad`.
+- Open CONV-04F PRs before binding: **0**.
+- Target route: `/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
+- Target ledger row: `blood-circulation-revision`.
+- Existing role: `revision`.
+- Existing language: `bn`.
+- Existing Learning Guide owner: `canonical`.
+- Existing assessment owner: `mcq-arena`.
+- Exact learner-facing mutation count: **1**.
+- Scientific/content rewrite authority: **NONE**.
+- Rendered debt retirement: **certification-dependent**.
+
+
+
+
+## F-07 route-scoped language compatibility
+
+- Canonical Bangla source remains `_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md`.
+- Historical canonical route remains `/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
+- Polyglot `lang: bn`: **NOT USED** on this historical root route because exact-head builds move it to `/bn/...`.
+- Existing content-language key: `language: bn` — **preserved**.
+- Explicit route/source compatibility flag: `polyglot_root_language: true`.
+- Academic Surface effective-language fallback: **route-scoped only**.
+- Default-layout HTML language fallback: **route-scoped only**.
+- English counterpart: **unchanged** at `/en/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/`.
+- Global `default_lang`, shared localization behavior and scientific content: **unchanged**.
+
+
+## F-07 rendered-debt remediation
+
+- Root-route build after language reconciliation: **PASS**.
+- Rendered `html lang="bn"`: **PASS**.
+- Remaining browser debt:
+  - empty visible `.page__hero--overlay`: **1**
+  - fragmentation count: **0**
+  - horizontal overflow: **0**
+  - Axe serious `color-contrast`: **6 nodes**
+- Hero cause: historical page-level overlay metadata.
+- Contrast pattern: two 3-column Markdown table headers.
+- Remediation:
+  - remove legacy page-level hero metadata;
+  - wrap both unchanged tables with existing `lbfl-academic-table-wrap`;
+  - retain keyboard region semantics;
+  - no shared CSS or scientific-content rewrite.
+- Exact-head recertification: **REQUIRED**.

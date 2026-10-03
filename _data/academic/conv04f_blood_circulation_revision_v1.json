@@ -1,0 +1,94 @@
+{
+  "schema": "lbfl-conv04f-blood-circulation-revision-v1",
+  "version": "CONV-04F-07-1.0.0",
+  "programme": "CONV-04",
+  "phase": "CONV-04F-07",
+  "status": "implementation-candidate",
+  "authorized_base": "9895c190f75d0d6b3167370a043181e9cc5c14ad",
+  "route_id": "blood-circulation-revision",
+  "canonical_route": "/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/",
+  "source_file": "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md",
+  "baseline_blob_sha": "0eceb2542287fc99356b73dc400b3ede8a8db4f4",
+  "mutation_model": "structural-metadata-plus-canonical-learning-guide-and-route-scoped-root-language-compatibility",
+  "scientific_content_rewrite": false,
+  "additions": {
+    "academic_system": "v1",
+    "academic_role": "revision",
+    "learning_guide": "canonical",
+    "canonical_learning_guide_cta_count": 1,
+    "polyglot_root_language": true
+  },
+  "retained": {
+    "legacy_language": "bn",
+    "header_overlay": false,
+    "study_route": true,
+    "master_mind_map": true,
+    "blood_flow_diagram": true,
+    "impulse_flow_diagram": true,
+    "comparison_table": true,
+    "short_answer_bank": true,
+    "mcq_validity_logic": true,
+    "synaptic_bridge": true,
+    "references": true,
+    "assessment_owner": "mcq-arena",
+    "boundary_owner": "layout"
+  },
+  "route_ledger_target": {
+    "enforcement": "strict",
+    "source_debt": [],
+    "live_debt": []
+  },
+  "debt_retirement": {
+    "source": [
+      "missing_academic_role",
+      "missing_academic_system",
+      "missing_lang",
+      "legacy_language_key"
+    ],
+    "rendered": [
+      "rendered_blank_hero_space",
+      "rendered_word_fragmentation"
+    ],
+    "mechanism": "activate Academic-v1 shared rendering contract; retain source content and header metadata; certify live rendering at exact head",
+    "rendered_mechanism": "remove empty legacy hero metadata; use existing Academic-v1 table primitive; certify exact rendered output"
+  },
+  "learner_mutation_allowlist": [
+    "_biology/higher-zoology-tree/physiology/human-blood-circulation-overview.md"
+  ],
+  "protected": [
+    "_biology/higher-zoology-tree/physiology/blood-circulation-the-intelligent-transport-system-of-life.md",
+    "_biology/higher-zoology-tree/physiology/blood-corpuscles-transport-immunity.md",
+    "_biology/higher-zoology-tree/physiology/heart-structure-cardiac-cycle-circulation.md",
+    "_biology/higher-zoology-tree/physiology/circulatory-diseases-causes-symptoms-treatment-awareness.md",
+    "_biology/higher-zoology-tree/physiology/cardiac-surgery-bypass-angioplasty-open-heart-treatment.md",
+    "_biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application.md",
+    "_data/academic/course_contract_v1.json",
+    "assets/css/academic-design-system.css"
+  ],
+  "language_contract": {
+    "content_language": "bn",
+    "historical_root_route": true,
+    "polyglot_lang_frontmatter": false,
+    "effective_document_language_source": "language",
+    "rendered_html_lang": "bn",
+    "rationale": "Avoid non-default-language URL prefixing on the established root Bangla route while preserving truthful document language through an explicit route-scoped compatibility flag."
+  },
+  "shared_contract_mutation": {
+    "academic_surface_validator": "route-scoped effective-language fallback only when both ledger and source opt in with polyglot_root_language=true",
+    "default_layout": "route-scoped html language fallback to page.language only when page.polyglot_root_language=true",
+    "global_language_behavior_changed": false
+  },
+  "presentation_remediation": {
+    "blank_hero": {
+      "baseline_cause": "legacy header.overlay_image generated an empty page__hero--overlay on this Academic-v1 revision route",
+      "action": "remove page-level header overlay metadata",
+      "scientific_content_changed": false
+    },
+    "table_contrast": {
+      "baseline_evidence": "Axe reported 6 serious color-contrast nodes, matching two 3-column Markdown table headers",
+      "action": "wrap both unchanged tables in existing lbfl-academic-table-wrap accessible primitive",
+      "wrappers": 2,
+      "shared_css_changed": false
+    }
+  }
+}

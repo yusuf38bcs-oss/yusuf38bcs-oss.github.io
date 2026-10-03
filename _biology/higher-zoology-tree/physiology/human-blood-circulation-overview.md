@@ -34,9 +34,11 @@ synaptic_links:
 toc: true
 toc_sticky: true
 classes: wide
-header:
-  overlay_image: /assets/images/biology/physiology-banner.webp
 language: bn
+polyglot_root_language: true
+academic_system: v1
+academic_role: revision
+learning_guide: canonical
 curriculum_tracks:
   - HSC Zoology
   - Medical Admission Biology
@@ -53,11 +55,15 @@ status: "Active"
 
 # Blood Circulation Revision Map: রক্ত, হৃদপিণ্ড, সঞ্চালন ও রোগ এক পাতায়
 
+{% include education/learning-guide-cta.html %}
+
 ## Purpose of This Revision Map
 
 এই page পুরনো video/image-heavy overview-এর পরিবর্তে একটি পরিষ্কার **revision map**। এটি Blood Circulation Master Series-এর দ্রুত পুনরাবৃত্তি: blood composition, RBC/WBC/platelets, lymph, heart structure, cardiac conduction, systemic-pulmonary circulation, angina, heart attack, treatment procedures and lifestyle application.
 
 ## Study Route
+
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Blood circulation study route" markdown="1">
 
 | Step | Page | What to revise |
 |---|---|---|
@@ -67,6 +73,8 @@ status: "Active"
 | 4 | [Lecture 3: Diseases]({{ '/biology/higher-zoology-tree/physiology/circulatory-diseases-causes-symptoms-treatment-awareness/' | relative_url }}) | angina, heart attack, hypertension, blood disorders |
 | 5 | [Lecture 4: Treatment Procedures]({{ '/biology/higher-zoology-tree/physiology/cardiac-surgery-bypass-angioplasty-open-heart-treatment/' | relative_url }}) | CABG, PCI, stent, open-heart surgery |
 | 6 | [Lecture 5: Healthy Living]({{ '/biology/higher-zoology-tree/physiology/cardiovascular-health-lifestyle-learning-application/' | relative_url }}) | prevention, habits, life application |
+
+</div>
 
 ## Master Mind Map
 
@@ -162,6 +170,8 @@ Ventricular contraction
 
 ## High-yield Comparison Table
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Blood circulation high-yield comparison" markdown="1">
+
 | Concept | Must Remember | Common MCQ Trap |
 |---|---|---|
 | Plasma | liquid matrix of blood | শুধু water ভাবা |
@@ -179,6 +189,8 @@ Ventricular contraction
 | Angina | temporary myocardial ischemia | always heart attack ভাবা |
 | CABG | bypasses blockage | artery cleaned ভাবা |
 | Stent | keeps artery open | medicine ভাবা |
+
+</div>
 
 ## Quick Short-answer Bank
 
