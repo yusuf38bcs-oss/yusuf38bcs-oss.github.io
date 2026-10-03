@@ -40,7 +40,7 @@ learning_guide: canonical
 
 plus exactly one canonical Learning Guide CTA immediately after the page H1.
 
-All existing scientific prose, headings, Study Route, six linked series pages, mind map, diagrams, comparison table, short-answer bank, MCQ validity logic, Synaptic Bridge and references are preserved.
+All existing scientific prose, headings, Study Route, six linked series pages, mind map, diagrams, comparison-table content, short-answer bank, MCQ validity logic, Synaptic Bridge and references are preserved.
 
 ## Route-ledger target
 
@@ -78,3 +78,20 @@ F-07 therefore does **not** set `lang: bn` on this page. Instead:
 - all other routes keep the existing `page.lang` / Polyglot behavior unchanged.
 
 This preserves the established Bangla root URL and the separate explicit English `/en/...` counterpart without changing scientific content, route slug, site-wide default language, or other routes.
+
+
+## Evidence-driven rendered-debt remediation
+
+The first successful root-route build reached the browser gate and authenticated two real rendered defects:
+
+1. `.page__hero--overlay` remained visible and empty because the historical `header.overlay_image` metadata rendered an empty hero shell on this Academic-v1 route.
+2. Axe reported exactly **6 serious color-contrast nodes**. The page has two Markdown tables with three header cells each, matching the retained legacy table-header contrast pattern already remediated elsewhere in CONV-04.
+
+F-07 therefore authorizes presentation-only remediation:
+
+- remove the page-level `header.overlay_image` metadata;
+- preserve every scientific heading/cell/value;
+- wrap the unchanged Study Route table and High-yield Comparison table in the existing keyboard-scrollable `lbfl-academic-table-wrap` primitive;
+- make **no shared CSS change**.
+
+These actions retire the authenticated presentation debt without rewriting biology content.
