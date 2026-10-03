@@ -118,9 +118,14 @@ jobs:
           bundle install --jobs 4 --retry 3
           bundle exec jekyll clean
           bundle exec jekyll build --trace
-          test -f _site/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html
-          grep -q 'data-lbfl-academic-surface="v1"' _site/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html
-          grep -q 'data-lbfl-academic-role="revision"' _site/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html
+          rendered="_site/biology/higher-zoology-tree/physiology/human-blood-circulation-overview/index.html"
+          if [ ! -f "$rendered" ]; then
+            echo "Expected rendered F-07 route missing: $rendered"
+            find _site -type f | grep -E 'blood|circulation|overview' | head -80 || true
+            exit 1
+          fi
+          grep -q 'data-lbfl-academic-surface="v1"' "$rendered" || { echo "Academic-v1 marker missing from $rendered"; grep -n 'data-lbfl-academic' "$rendered" | head -20 || true; exit 1; }
+          grep -q 'data-lbfl-academic-role="revision"' "$rendered" || { echo "revision role marker missing from $rendered"; grep -n 'data-lbfl-academic-role' "$rendered" | head -20 || true; exit 1; }
           ruby .github/scripts/validate-conv04f-blood-circulation-revision.rb
           ruby .github/scripts/validate-academic-surface-contract.rb
 
