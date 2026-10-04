@@ -176,7 +176,7 @@ async function run(name,width,height,opts={}){
       metrics.ctaCount===1 && metrics.learnLink &&
       metrics.boundaryCount===1 &&
       metrics.h1.length===6 && expectedH1.every(h=>metrics.h1.includes(h)) &&
-      metrics.h2.length===22 && metrics.h3.length===29 &&
+      metrics.h2.length===23 && metrics.h2.includes("How to Learn with LBFL") && metrics.h3.length===29 &&
       metrics.tableCount===0 && metrics.practicalTableWrapperCount===0 &&
       metrics.generalRules===7 && metrics.drawingRules===7 && metrics.vivaQuestions===6 &&
       metrics.syllabusMajor && metrics.syllabusMinor &&
