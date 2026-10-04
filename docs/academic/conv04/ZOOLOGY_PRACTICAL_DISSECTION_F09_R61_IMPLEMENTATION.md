@@ -93,3 +93,10 @@ exact-main Cloudflare immutable + canonical Dissection production parity
         ↓
 authorize prac-05 only after PASS
 ```
+
+
+## Exact-head certification remediation
+
+Initial R61 head `786347219621f5403c8d03b43a6074bc3a9b9d3e` passed source preservation, retained academic contracts, Jekyll, preview deployment, Axe, keyboard focus, content census, and overflow checks. The dedicated browser harness failed because it compared the rendered H2 count directly with the **22 source H2** baseline. The canonical Learning Guide CTA renders one additional `How to Learn with LBFL` H2, so the correct rendered count is **23**, while the learner source remains exactly **22 H2** and byte-identical to the authorized transform.
+
+Remediation changes only the browser certification assertion to require 23 rendered H2 headings **and** the canonical Learning Guide heading. No learner source, scientific/anatomical content, heading hierarchy, route ownership, CSS/JS, or runtime behavior is changed.
