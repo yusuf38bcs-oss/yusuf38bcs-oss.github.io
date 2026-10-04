@@ -28,6 +28,9 @@ const views=[
 await fs.mkdir(out,{recursive:true});
 const browser=await chromium.launch({headless:true});
 const checks=[];
+const isExpectedCloudflareInsightsSriError=message=>
+  message.includes("Failed to find a valid digest in the 'integrity' attribute") &&
+  message.includes("https://static.cloudflareinsights.com/beacon.min.js/");
 
 async function run(name,width,height,opts={}){
   const context=await browser.newContext({
@@ -41,8 +44,13 @@ async function run(name,width,height,opts={}){
     else await r.fulfill({status:204,body:""});
   });
   const page=await context.newPage();
-  const consoleErrors=[],pageErrors=[],localHttpErrors=[];
-  page.on("console",m=>{if(m.type()==="error")consoleErrors.push(m.text())});
+  const consoleErrors=[],externalConsoleWarnings=[],pageErrors=[],localHttpErrors=[];
+  page.on("console",m=>{
+    if(m.type()!=="error") return;
+    const message=m.text();
+    if(isExpectedCloudflareInsightsSriError(message)) externalConsoleWarnings.push(message);
+    else consoleErrors.push(message);
+  });
   page.on("pageerror",e=>pageErrors.push(String(e)));
   page.on("response",r=>{
     const u=new URL(r.url());
@@ -196,7 +204,7 @@ async function run(name,width,height,opts={}){
       (!opts.textSpacing || metrics.textClip===0) &&
       (!opts.reducedMotion || (metrics.reduceMatches===true&&metrics.motionViolations===0));
 
-    checks.push({name,width,height,opts,status,metrics,ctaKeyboard,tableKeyboard,axeBad,consoleErrors,pageErrors,localHttpErrors,pass});
+    checks.push({name,width,height,opts,status,metrics,ctaKeyboard,tableKeyboard,axeBad,consoleErrors,externalConsoleWarnings,pageErrors,localHttpErrors,pass});
   }catch(error){
     checks.push({name,width,height,opts,status,error:String(error),pass:false});
   }finally{

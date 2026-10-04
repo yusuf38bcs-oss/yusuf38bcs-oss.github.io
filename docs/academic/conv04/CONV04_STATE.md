@@ -1,14 +1,14 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R2
-mode: certification-only repair — production parity workflow YAML
-authorized_base: ec7fc9f12e4f42ebba257b6e9d12f1be7d1b155b
-branch: conv-04f-09-r2-production-parity-yaml-20261004
+phase: CONV-04F-09-R3
+mode: certification-only hardening — canonical Cloudflare beacon false-positive
+authorized_base: 9a09a8975018b035935685820958bd6d968f4b4d
+branch: conv-04f-09-r3-canonical-beacon-certification-20261004
 production_verified_main: f04ac472ee261fa19dc17de6052bde02b75e99c4
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: certification-only — production parity workflow + retained F-09 workflow/validator trigger hardening + R2 governance artifacts
+mutation_authority: certification-only — Museum browser harness + F-09 validator + production-parity trigger + R3 governance artifacts
 learner_content_authoring: PROHIBITED — all Practical learner content and CSS unchanged
 existing_learning_method_cleanup: F-09 merged contract retained / unchanged
 gateway_cta_injection: F-09 merged canonical Learning Guide retained / unchanged
@@ -17,9 +17,9 @@ shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: Worker out of scope; Cloudflare Pages production parity remains the post-merge gate
-ready_transition: not authorized until exact-head R2 + retained F-09/Practical + Jekyll/CodeQL/audit + review convergence + required checks PASS
-merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; prac-02 remains blocked until post-merge production parity PASS
+worker_cloudflare: Worker out of scope; exact-main Cloudflare Pages upload/resolution and immutable deployment browser certification PASS on run 37171383126 attempt 3; canonical browser gate requires R3
+ready_transition: not authorized until exact-head R3 + retained F-09/Practical + Jekyll/CodeQL/audit + review convergence + required checks PASS
+merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; prac-02 remains blocked until post-merge canonical production parity PASS
 
 ## Completed foundation
 
@@ -523,3 +523,19 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - authenticated production workflow failure: run `37170258135`, invalid YAML at line 153 before any job executed.
 - repair scope: production parity workflow YAML + retained F-09 workflow/validator trigger hardening + state + R2 authority only.
 - prac-02 remains blocked until R2 merges and the exact-main production-parity workflow passes against both immutable Cloudflare deployment and canonical LBFL.
+
+
+## CONV-04F-09-R3 — canonical Cloudflare beacon certification hardening
+
+- authorized base: `9a09a8975018b035935685820958bd6d968f4b4d`
+- learner mutation: **NONE**
+- authenticated production run: `37171383126`, attempt 3.
+- exact-main build: **PASS**.
+- Wrangler Cloudflare Pages upload: **PASS**; immutable deployment URL `https://0e2a2fca.yusuf38bcs-oss-github-io.pages.dev`.
+- production resolver contract: **PASS** for exact target SHA, `exact_head=true`, canonical production, branch `main`, environment `production`, status `success`.
+- immutable Cloudflare Museum browser certification: **PASS / 11 checks**.
+- canonical Museum DOM/content checks: **PASS** for Academic-v1, canonical Learning Guide, 48/48 specimen sequence, 15 verified figures/images, zero legacy learning cycle, sprite coordinates, reflow, keyboard, reduced-motion and Axe serious/critical violations.
+- canonical-only failure root cause: the harness blocks third-party requests with an empty 204 response; Cloudflare injects `static.cloudflareinsights.com/beacon.min.js` on the canonical hostname with SRI, so the intentional empty response produces a deterministic browser integrity console error.
+- R3 remediation: preserve that exact Cloudflare Insights SRI diagnostic separately as `externalConsoleWarnings`; every other console error, page error, local HTTP error, Axe serious/critical violation, DOM/content/reflow/keyboard/reduced-motion failure remains fail-closed.
+- learner source, route CSS, shared Practical CSS/JS, course contract, figure manifest and curriculum evidence: **PROTECTED / UNCHANGED**.
+- prac-02 remains blocked until R3 merges and exact-main production parity passes on both immutable deployment and canonical LBFL.
