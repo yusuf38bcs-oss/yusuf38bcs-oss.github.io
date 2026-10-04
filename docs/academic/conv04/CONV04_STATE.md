@@ -1,26 +1,25 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R41
-mode: maintenance repair — prac-02 Cloudflare production parity output binding
-authorized_base: c545062d5b0cb8f2d49030108ab2915acfae2016
-branch: conv-04f-09-r41-pages-output-repair-20261004
-production_verified_main: 5af320549210f44cd3eacec919766ef86665214b
+phase: CONV-04F-09-R50
+mode: authorization-only — prac-03 Whole Mounts
+authorized_base: 1efc9e8176e8408a509ccca8fc82f9fbbc981c22
+branch: conv-04f-09-r50-prac03-authorization-20261004
+production_verified_main: 1efc9e8176e8408a509ccca8fc82f9fbbc981c22
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R41 — workflow-only maintenance: bind immutable Pages URL output; no learner/source/runtime mutation
-learner_content_authoring: NO — R40 learner source retained unchanged; R41 is workflow-only maintenance
-existing_learning_method_cleanup: no legacy local learning-method block present; F-09 prac-01 production parity retained / unchanged
-gateway_cta_injection: YES — exactly one canonical Learning Guide CTA on prac-02
+mutation_authority: R50 — authorization-only: freeze prac-03 baseline and authorize later isolated R51 structural convergence; no learner mutation
+learner_content_authoring: NO — R50 authorization only; prac-03 learner source remains byte-identical
+existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 and prac-02 production parity closed / retained
+gateway_cta_injection: NO — prac-03 CTA injection deferred to isolated R51 implementation
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/practical/02-permanent-slides.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: Worker out of scope; prac-01 production parity retained; R40 uses Cloudflare Pages exact-head preview and post-merge exact-main production parity
-ready_transition: R41 not authorized until exact-head retained validator + CI/review/governance convergence PASS
-merge: R41 not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-02 browser parity still required before prac-03
+worker_cloudflare: Worker out of scope; prac-01 and prac-02 Cloudflare Pages production parity PASS / retained
+ready_transition: R50 authorization-only; no learner implementation may start until this exact-head authorization passes CI/review/governance and merges
+merge: R50 merge authorizes only an isolated R51 prac-03 implementation from the resulting exact main; no prac-04 work
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
@@ -601,3 +600,14 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Authorized mutation: state binding plus one-line workflow output-key correction only.
 - Learner/content mutation: **NONE**.
 - prac-03 remains blocked until repaired exact-main Cloudflare immutable + canonical production parity passes.
+
+
+## CONV-04F-09-R50 prac-03 authorization
+
+- Authorized base: `1efc9e8176e8408a509ccca8fc82f9fbbc981c22`.
+- prac-02 production closure: **PASS** — exact-main Cloudflare deployment, immutable Permanent Slides browser certification, canonical production certification, and final main re-authentication all passed in workflow run `37221975731`.
+- Selected next module: **prac-03 — Whole Mounts**.
+- Baseline source blob: `904933f7b29a301f72b7d370582d605364b906e6`.
+- Coverage custody: **complete-core-protocol — general preparation + 10 suggested whole mounts**.
+- R50 is authorization-only: learner source mutation is **NONE**.
+- R51 may perform only the exact structural convergence authorized in `ZOOLOGY_PRACTICAL_WHOLE_MOUNTS_F09_R50_AUTHORIZATION.md` after R50 merges.
