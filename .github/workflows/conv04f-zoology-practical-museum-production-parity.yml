@@ -11,6 +11,7 @@ on:
       - "docs/academic/conv04/CONV04_STATE.md"
       - "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R1_PRODUCTION_PARITY.md"
       - "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R2_YAML_REPAIR.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R3_RESOLVER_ONLY.md"
   push:
     branches: ["main"]
     paths:
@@ -134,7 +135,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Deploy exact SHA to Cloudflare Pages production
+      - name: Resolve exact successful Git-connected production deployment
+        id: pages
         shell: bash
         run: |
           set -euo pipefail
@@ -142,12 +144,6 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
           mkdir -p "$EVIDENCE_DIR"
-          npx --yes wrangler@latest pages deploy _site             --project-name "$CLOUDFLARE_PAGES_PROJECT"             --branch main             --commit-hash "$TARGET_SHA"             --commit-message "LBFL F-09 production parity $TARGET_SHA"             --commit-dirty=false | tee "$EVIDENCE_DIR/wrangler-pages-deploy.log"
-      - name: Resolve exact successful production deployment
-        id: pages
-        shell: bash
-        run: |
-          set -euo pipefail
           for attempt in $(seq 1 40); do
             python3 .github/scripts/resolve-cloudflare-targets.py               --repository "$GITHUB_REPOSITORY"               --sha "$TARGET_SHA"               --pages-environment production               --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID"               --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT"               --wait-seconds 0               --site-config _data/ai.yml               --output "$EVIDENCE_DIR/cloudflare-production.json"               --github-output "$RUNNER_TEMP/pages.out"
             if python3 - "$EVIDENCE_DIR/cloudflare-production.json" "$TARGET_SHA" <<'PY'
