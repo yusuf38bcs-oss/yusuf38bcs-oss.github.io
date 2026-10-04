@@ -143,3 +143,10 @@ Two additional P2 findings discovered during the Ready-state review were accepte
 - the R40 validator file itself is included in `protected_artifacts`, preventing later non-maintenance phases from silently weakening the retained validator.
 
 The phase scalar is likewise read from the top-level state block. These changes are certification/governance-only and do not alter the learner source or curriculum corpus.
+
+
+## Retained authorization custody — final review finding
+
+The original R4 authorization artifact is now included in the R40 retained protected-artifact set. Outside the reserved R41–R49 maintenance window, a successor cannot rewrite the authenticated prac-02 authorization/baseline artifact and still pass retained certification.
+
+This change is validator/governance-only; learner content remains unchanged.

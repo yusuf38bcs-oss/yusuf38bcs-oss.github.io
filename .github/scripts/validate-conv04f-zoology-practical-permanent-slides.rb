@@ -355,6 +355,7 @@ elsif future
   protected_artifacts = [
     ".github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb",
     MANIFEST_REL,
+    AUTH_REL,
     IMPL_REL,
     BROWSER_REL,
     WORKFLOW_REL,
