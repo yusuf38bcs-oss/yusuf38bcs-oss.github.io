@@ -150,16 +150,16 @@ jobs:
           for attempt in $(seq 1 40); do
             python3 .github/scripts/resolve-cloudflare-targets.py               --repository "$GITHUB_REPOSITORY"               --sha "$TARGET_SHA"               --pages-environment production               --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID"               --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT"               --wait-seconds 0               --site-config _data/ai.yml               --output "$EVIDENCE_DIR/cloudflare-production.json"               --github-output "$RUNNER_TEMP/pages.out"
             if python3 - "$EVIDENCE_DIR/cloudflare-production.json" "$TARGET_SHA" <<'PY'
-import json,sys
-e=json.load(open(sys.argv[1],encoding="utf-8"))
-p=e.get("pages",{})
-ok=(e.get("target_sha")==sys.argv[2] and p.get("exact_head") is True and
-    p.get("deployed_sha")==sys.argv[2] and p.get("canonical") is True and
-    p.get("branch")=="main" and p.get("environment")=="production" and
-    p.get("status")=="success" and bool(p.get("deployment_id")) and
-    str(p.get("url","")).startswith("https://"))
-raise SystemExit(0 if ok else 1)
-PY
+          import json,sys
+          e=json.load(open(sys.argv[1],encoding="utf-8"))
+          p=e.get("pages",{})
+          ok=(e.get("target_sha")==sys.argv[2] and p.get("exact_head") is True and
+              p.get("deployed_sha")==sys.argv[2] and p.get("canonical") is True and
+              p.get("branch")=="main" and p.get("environment")=="production" and
+              p.get("status")=="success" and bool(p.get("deployment_id")) and
+              str(p.get("url","")).startswith("https://"))
+          raise SystemExit(0 if ok else 1)
+          PY
             then
               cat "$RUNNER_TEMP/pages.out" >> "$GITHUB_OUTPUT"
               exit 0
