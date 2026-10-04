@@ -21,6 +21,7 @@ admission_pr_356: protected / untouched
 worker_cloudflare: Worker out of scope; F-09 prac-01 exact-main Cloudflare production parity PASS on run 37191548645
 ready_transition: not authorized until exact-head R4 authorization + retained F-09/Practical + Jekyll/CodeQL/audit + review convergence + required checks PASS
 merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; prac-02 learner implementation starts only from the merged authorization head
+practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
 

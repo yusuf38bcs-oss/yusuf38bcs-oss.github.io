@@ -72,6 +72,29 @@ Shared Practical baselines remain:
 - `assets/css/zoology-practical.css` → `0962ae71cd1e424e27949b409f5284493f722dd3`
 - `assets/js/zoology-practical.js` → `207684413ad7925686334cafc3748861a439f206`
 
+## Deterministic within-F09 Practical sequencing
+
+To preserve `CONV-04F-10` for the already-reserved refined Ecology programme while remaining compatible with the existing `CONV-04F-09-Rn` phase parser, the Practical continuation namespace is fixed as follows:
+
+| Phase slot | Ownership |
+|---|---|
+| `R4` | prac-02 authorization marker only |
+| `R40–R49` | prac-02 implementation and any certification-only remediation |
+| `R50–R59` | prac-03 |
+| `R60–R69` | prac-04 |
+| `R70–R79` | prac-05 |
+| `R80–R89` | prac-06 |
+| `R90–R99` | prac-07 |
+| `R100–R109` | prac-08 |
+
+Rules:
+
+1. A later Practical module must not consume an earlier module's reserved range.
+2. The first implementation slot for prac-02 is `CONV-04F-09-R40`.
+3. Remediation, if genuinely required, advances monotonically inside the same module range.
+4. `CONV-04F-10` is not available to Practical; it remains reserved for the refined Ecology programme.
+5. The Practical sequence closes only after prac-08 production verification and an explicit F-09 closure gate.
+
 ## Authorization
 
 After this authorization merges, the isolated prac-02 implementation may mutate exactly:
