@@ -121,3 +121,15 @@ Remediation is structural only:
 - normalize generated heading text in the certification harness by removing heading-anchor links before comparison.
 
 Shared CSS/JS remain byte-identical. No scientific, taxonomic or curriculum text is changed.
+
+
+## Security/governance remediation — post-review
+
+Four exact-head review findings on candidate `587aeca87ef16d563d67b4c5adf294f59cc2cfef` were accepted and remediated without learner-content changes:
+
+1. **PR preview credential boundary:** the pull-request workflow no longer receives a Cloudflare Pages deployment token. It authenticates the exact candidate/base, validates R40 scope, builds `_site`, and uploads the validated site artifact. PR preview deployment is owned by the trusted Cloudflare Pages Git integration rather than candidate workflow code.
+2. **Retained validator base:** production parity binds `PR_BASE_SHA` to `TARGET_SHA^` before the R40 validator executes, so later retained certification cannot silently fall back to the original R40 base.
+3. **Stale-main race:** the production deployment step re-reads `origin/main` immediately before Wrangler and aborts before mutation if main moved.
+4. **Shared dependency triggers:** production parity now triggers for shared Practical CSS/JS, Academic CSS, and the canonical Learning Guide CTA include.
+
+Cloudflare production credentials are removed from job-level environment scope and are exposed only to the trusted production steps that require them. The learner source, 43-preparation corpus, scientific/taxonomic/curriculum wording, Practical shared assets, course contract, coverage ledger, and module order are unchanged by this remediation.

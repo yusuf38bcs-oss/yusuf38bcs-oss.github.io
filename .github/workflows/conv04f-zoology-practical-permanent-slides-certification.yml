@@ -35,66 +35,70 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  preview:
-    name: Deploy exact-head Cloudflare Pages preview
+  preview_build:
+    name: Build validated exact-head preview artifact
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
-      TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
-      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
-      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_TOKEN }}
+      PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      SITE_ARTIFACT: conv04f09-r40-site
     steps:
       - name: Check out immutable candidate
         uses: actions/checkout@v5
         with:
           ref: ${{ env.CANDIDATE_SHA }}
-          fetch-depth: 1
+          fetch-depth: 0
           persist-credentials: false
-      - name: Authenticate exact head
+
+      - name: Authenticate exact head, live base, and R40 scope
         shell: bash
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+          remote="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
+          test "$remote" = "$PR_BASE_SHA" || { echo "BASE CHANGED — RECERTIFICATION REQUIRED"; exit 1; }
+          git merge-base --is-ancestor "$PR_BASE_SHA" "$CANDIDATE_SHA" || { echo "STALE CANDIDATE"; exit 1; }
           test -z "$(git status --porcelain)"
+          ruby -c .github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb
+          ruby .github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb
+          git diff --check "$PR_BASE_SHA...HEAD"
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
         with:
           ruby-version: "3.2"
           bundler-cache: false
-      - name: Build exact-head Jekyll preview
+
+      - name: Build exact-head Jekyll preview artifact
         shell: bash
         env:
           JEKYLL_ENV: production
-          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           bundle install --jobs 4 --retry 3
           bundle exec jekyll clean
-          bundle exec jekyll build --trace
+          JEKYLL_GITHUB_TOKEN="${{ github.token }}" bundle exec jekyll build --trace
           test -f _site/biology/higher-zoology-tree/practical/permanent-slides/index.html
-      - name: Set up Node
-        uses: actions/setup-node@v4
+
+      - name: Upload validated site artifact
+        uses: actions/upload-artifact@v4
         with:
-          node-version: "24"
-      - name: Deploy immutable preview
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -n "$CLOUDFLARE_API_TOKEN"
-          npx --yes wrangler@latest pages deploy _site \
-            --project-name "$CLOUDFLARE_PAGES_PROJECT" \
-            --branch "$TARGET_BRANCH" \
-            --commit-hash "$CANDIDATE_SHA" \
-            --commit-message "LBFL F-09 R40 Permanent Slides exact-head certification $CANDIDATE_SHA" \
-            --commit-dirty=false
+          name: ${{ env.SITE_ARTIFACT }}-${{ env.CANDIDATE_SHA }}
+          path: _site
+          if-no-files-found: error
+          retention-days: 7
+
+      # No Cloudflare deployment credential is exposed to candidate workflow code.
+      # The repository's trusted Cloudflare Pages Git integration owns PR preview deployment.
+
 
   certify:
     name: CONV-04F-09-R40 Permanent Slides exact-head certification
-    needs: [preview]
-    if: ${{ always() && (needs.preview.result == 'success' || needs.preview.result == 'skipped') }}
+    needs: [preview_build]
+    if: ${{ always() && (needs.preview_build.result == 'success' || needs.preview_build.result == 'skipped') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     env:
