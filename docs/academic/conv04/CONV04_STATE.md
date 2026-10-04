@@ -1,25 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R60
-mode: authorization-only — prac-04 Dissection
-authorized_base: 6122cbc6b2924c8963232c0ae258ff6c98d7415f
-branch: conv-04f-09-r60-prac04-authorization-20261004
-production_verified_main: 6122cbc6b2924c8963232c0ae258ff6c98d7415f
+phase: CONV-04F-09-R61
+mode: implementation candidate — prac-04 Dissection
+authorized_base: cae5dd2252081007fab2ccd581006bc03fee37d0
+branch: conv-04f-09-r61-prac04-dissection-20261005
+production_verified_main: cae5dd2252081007fab2ccd581006bc03fee37d0
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R60 — authorization-only: freeze prac-04 baseline and authorize later isolated R61 structural convergence; no learner mutation
-learner_content_authoring: NO — R60 authorization only; prac-04 learner source remains byte-identical
+mutation_authority: R61 — exactly one prac-04 learner source + one strict route row + dedicated certification/governance artifacts
+learner_content_authoring: YES — exact prac-04 structural convergence only; frozen anatomy/curriculum/safety corpus preserved
 existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 through prac-03 production parity closed / retained
-gateway_cta_injection: NO — prac-04 CTA injection deferred to isolated R61 implementation
+gateway_cta_injection: YES — exactly one canonical Learning Guide CTA after the first H1 on prac-04
 learner_mutation_allowlist:
+  - _biology/higher-zoology-tree/practical/04-dissection.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: Worker out of scope; prac-01 through prac-03 Cloudflare Pages production parity PASS / retained
-ready_transition: R60 authorization-only; no learner implementation may start until this exact-head authorization passes CI/review/governance and merges
-merge: R60 merge authorizes only an isolated R61 prac-04 implementation from the resulting exact main; no prac-05 work
+ready_transition: R61 not authorized until exact-head source-preservation + retained contracts + Jekyll/browser/Axe/preview + review/governance PASS
+merge: R61 not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-04 parity required before prac-05
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
@@ -635,3 +636,16 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - R60 is authorization-only: learner source mutation is **NONE**.
 - Existing heading hierarchy (6 H1 / 22 H2 / 29 H3) is baseline evidence and is not silently normalized in R60.
 - R61 may perform only the exact structural convergence authorized in `ZOOLOGY_PRACTICAL_DISSECTION_F09_R60_AUTHORIZATION.md` after R60 merges.
+
+
+## CONV-04F-09-R61 prac-04 implementation
+
+- Authorized base: `cae5dd2252081007fab2ccd581006bc03fee37d0` (R60 authorization merge).
+- Selected module: **prac-04 — Dissection**.
+- Learner source baseline: `0bca70d74c04305fd2399f54fbb5c650f0b158c3`.
+- Authorized learner transform: Academic-v1 metadata + role practical + canonical Learning Guide + one CTA after the first existing H1 only.
+- Academic Route Ledger: exactly one strict Dissection row.
+- Existing heading hierarchy remains frozen at **6 H1 / 22 H2 / 29 H3**; no heading normalization in R61.
+- Protected corpus: 7 general rules, 5 external morphology taxa, 11 major dissections, 6 minor dissections, 7 drawing rules, 6 viva questions.
+- Scientific/anatomical/curriculum/dissection-protocol/safety rewrite: **NONE**.
+- prac-05 remains blocked until R61 exact-main production parity closes.
