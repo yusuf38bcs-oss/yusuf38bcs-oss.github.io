@@ -7,6 +7,7 @@ import { chromium } from "playwright";
 
 const arg=(name,fallback)=>{const i=process.argv.indexOf(name);return i>=0&&process.argv[i+1]?process.argv[i+1]:fallback};
 const base=arg("--base-url","http://127.0.0.1:4173").replace(/\/$/,"");
+const allowedHosts=new Set(["127.0.0.1","localhost",new URL(base).hostname]);
 const out=path.resolve(arg("--output-dir","conv04f-zoology-practical-museum-browser-report"));
 const route="/biology/higher-zoology-tree/practical/museum-specimens/";
 const verified={
@@ -36,7 +37,7 @@ async function run(name,width,height,opts={}){
   });
   await context.route("**/*",async r=>{
     const u=new URL(r.request().url());
-    if(["127.0.0.1","localhost"].includes(u.hostname)) await r.continue();
+    if(allowedHosts.has(u.hostname)) await r.continue();
     else await r.fulfill({status:204,body:""});
   });
   const page=await context.newPage();

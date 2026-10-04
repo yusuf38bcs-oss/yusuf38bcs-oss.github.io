@@ -1,26 +1,25 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09
-mode: implementation candidate — Practical Museum Specimens strict Academic-v1 convergence
-authorized_base: f04ac472ee261fa19dc17de6052bde02b75e99c4
-branch: conv-04f-09-practical-museum-20261004
+phase: CONV-04F-09-R1
+mode: production parity remediation — exact-main Cloudflare Pages + canonical Museum DOM certification
+authorized_base: 787a680b543e8b80823125342a51683342f49b6f
+branch: conv-04f-09-r1-production-parity-20261004
 production_verified_main: f04ac472ee261fa19dc17de6052bde02b75e99c4
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: exact prac-01 Museum learner surface + route-owned Museum CSS + F-09 ledger/manifest/authorization/certification/state artifacts
-learner_content_authoring: structural convergence only / scientific and curriculum rewrite forbidden
-existing_learning_method_cleanup: canonical Learning Guide replaces inherited Practical learning-cycle ownership on prac-01
-gateway_cta_injection: exactly one canonical Learning Guide CTA on prac-01
+mutation_authority: certification-only — F-09 browser harness + production parity workflow + R1 governance artifacts
+learner_content_authoring: PROHIBITED — prac-01 content and route CSS unchanged
+existing_learning_method_cleanup: F-09 merged contract retained / unchanged
+gateway_cta_injection: F-09 merged canonical Learning Guide retained / unchanged
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: out of scope
-ready_transition: not authorized until exact-head F-09 + native Practical 213106 + retained F-08/A-F + Jekyll/browser/Axe/reflow/text-spacing/reduced-motion/no-JS + exact preview + review convergence
-merge: not authorized until unchanged-head governance + required checks + Pages PASS
+worker_cloudflare: Worker out of scope; Cloudflare Pages exact-main production parity in scope
+ready_transition: not authorized until exact-head R1 + retained F-09/Practical + Jekyll/browser + review convergence + required checks PASS
+merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge production parity must PASS before prac-02
 
 ## Completed foundation
 
@@ -503,3 +502,14 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Practical gateway, prac-02–prac-08, coverage ledger, figure manifest, course contract, shared Practical CSS/JS, shared Academic-v1 CSS: **PROTECTED / UNCHANGED**.
 - Strict Academic Surface route id: `higher-zoology-practical-museum-specimens`.
 - F-09 exact-head certification and production promotion: **PENDING**.
+
+
+## CONV-04F-09-R1 — production parity remediation
+
+- authorized base: `787a680b543e8b80823125342a51683342f49b6f`
+- learner mutation: **NONE**
+- exact GitHub Pages artifact: run `37167619097`, artifact `11290461288`, digest `sha256:930bf073b57458e1e6eeec199afe8f06f502d14163f2650941a5108fc8f05cb3`
+- generated Museum DOM in that artifact: Academic-v1 attributes PASS; 15 verified figures/images; 48 numbered specimens; one educational boundary; zero legacy learning cycle; F-09 route stylesheet present.
+- external browser-agent extraction was internally inconsistent even against the immutable preview; it is not learner-source rewrite authority.
+- R1 fixes certification/deployment mechanics only.
+- prac-02 remains blocked until R1 merges and the exact-main production-parity workflow passes.
