@@ -8,6 +8,8 @@ require "pathname"
 ROOT = Pathname.new(__dir__).join("../..").expand_path
 BASE = "f04ac472ee261fa19dc17de6052bde02b75e99c4"
 PHASE = "CONV-04F-09"
+R1_PHASE = "CONV-04F-09-R1"
+R1_BASE = "787a680b543e8b80823125342a51683342f49b6f"
 SOURCE_REL = "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md"
 SOURCE = ROOT.join(SOURCE_REL)
 ROUTE_CSS_REL = "assets/css/zoology-practical-museum-f09.css"
@@ -23,6 +25,10 @@ SHARED_CSS = ROOT.join("assets/css/zoology-practical.css")
 SHARED_JS = ROOT.join("assets/js/zoology-practical.js")
 BROWSER = ROOT.join(".github/scripts/conv04f-zoology-practical-museum-browser-certification.mjs")
 WORKFLOW = ROOT.join(".github/workflows/conv04f-zoology-practical-museum-certification.yml")
+PRODUCTION_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-museum-production-parity.yml"
+PRODUCTION_WORKFLOW = ROOT.join(PRODUCTION_WORKFLOW_REL)
+R1_AUTH_REL = "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R1_PRODUCTION_PARITY.md"
+R1_AUTH = ROOT.join(R1_AUTH_REL)
 CTA = "{% include education/learning-guide-cta.html %}"
 
 BASE_BLOBS = {
@@ -149,6 +155,7 @@ end
 
 bootstrap = comparison_base == BASE && phase == PHASE
 future = comparison_base != BASE
+maintenance_r1 = comparison_base == R1_BASE && phase == R1_PHASE
 successor_authorized = false
 successor_allowlist = []
 changed = []
@@ -177,7 +184,7 @@ if future && STATE.file? && changed.include?("docs/academic/conv04/CONV04_STATE.
   end
 end
 
-[SOURCE, ROUTE_CSS, MANIFEST, LEDGER, STATE, AUTH, COURSE, COVERAGE, FIGURES, SHARED_CSS, SHARED_JS, BROWSER, WORKFLOW].each do |path|
+[SOURCE, ROUTE_CSS, MANIFEST, LEDGER, STATE, AUTH, COURSE, COVERAGE, FIGURES, SHARED_CSS, SHARED_JS, BROWSER, WORKFLOW, PRODUCTION_WORKFLOW, R1_AUTH].each do |path|
   errors << "Missing F-09 artifact: #{path.relative_path_from(ROOT)}" unless path.file?
 end
 
@@ -376,10 +383,24 @@ elsif future
     "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_AUTHORIZATION.md",
     ".github/scripts/validate-conv04f-zoology-practical-museum.rb",
     ".github/scripts/conv04f-zoology-practical-museum-browser-certification.mjs",
-    ".github/workflows/conv04f-zoology-practical-museum-certification.yml"
+    ".github/workflows/conv04f-zoology-practical-museum-certification.yml",
+    PRODUCTION_WORKFLOW_REL,
+    R1_AUTH_REL
   ]
-  touched = changed & immutable
-  need(errors, touched.empty?, "Successor changed protected F-09 artifacts: #{touched.join(', ')}")
+  if maintenance_r1
+    r1_scope = [
+      ".github/scripts/validate-conv04f-zoology-practical-museum.rb",
+      ".github/scripts/conv04f-zoology-practical-museum-browser-certification.mjs",
+      PRODUCTION_WORKFLOW_REL,
+      "docs/academic/conv04/CONV04_STATE.md",
+      R1_AUTH_REL
+    ].sort
+    need(errors, changed == r1_scope, "F-09-R1 production-parity scope mismatch: #{changed}")
+    need(errors, successor_authorized, "F-09-R1 state must advance from exact merged F-09 main")
+  else
+    touched = changed & immutable
+    need(errors, touched.empty?, "Successor changed protected F-09 artifacts: #{touched.join(', ')}")
+  end
 
   if changed.include?("_data/academic/course_contract_v1.json")
     before_text, _, bs = git("show", "#{comparison_base}:_data/academic/course_contract_v1.json")
