@@ -122,25 +122,25 @@ end
 comparison_base = ENV["PR_BASE_SHA"].to_s.strip
 comparison_base = BASE if comparison_base.empty?
 state_text = STATE.file? ? read_utf8(STATE) : ""
-phase = state_text[/^phase:\\s*(\\S+)/, 1]
+phase = state_text[/^phase:\s*(\S+)/, 1]
 
 def phase_order(value)
-  m = /\\ACONV-04([A-Z])(?:-(\\d{2}))?(?:-R([1-9]\\d*))?\\z/.match(value.to_s.strip)
+  m = /\ACONV-04([A-Z])(?:-(\d{2}))?(?:-R([1-9]\d*))?\z/.match(value.to_s.strip)
   m ? [m[1].ord, (m[2] || "0").to_i, (m[3] || "0").to_i] : nil
 end
 
 def top_level_list(source, key)
-  top = source.split(/^##\\s/, 2).first.to_s
+  top = source.split(/^##\s/, 2).first.to_s
   lines = top.lines
-  index = lines.index { |line| line.match?(/\\A#{Regexp.escape(key)}:\\s*\\z/) }
+  index = lines.index { |line| line.match?(/\A#{Regexp.escape(key)}:\s*\z/) }
   return [] unless index
   items = []
   lines[(index + 1)..].to_a.each do |line|
-    if (match = line.match(/^\\s+-\\s+(.+?)\\s*$/))
+    if (match = line.match(/^\s+-\s+(.+?)\s*$/))
       items << match[1].strip
     elsif line.strip.empty?
       next
-    elsif line.match?(/^\\S/)
+    elsif line.match?(/^\S/)
       break
     end
   end
@@ -165,7 +165,7 @@ end
 if future && STATE.file? && changed.include?("docs/academic/conv04/CONV04_STATE.md")
   base_state, _, bs = git("show", "#{comparison_base}:docs/academic/conv04/CONV04_STATE.md")
   if bs.success?
-    base_phase = base_state[/^phase:\\s*(\\S+)/, 1]
+    base_phase = base_state[/^phase:\s*(\S+)/, 1]
     bo = phase_order(base_phase)
     co = phase_order(phase)
     fo = phase_order(PHASE)
@@ -346,11 +346,25 @@ end
 
 if STATE.file?
   s = read_utf8(STATE)
-  need(errors, s.match?(/^phase:\s*#{Regexp.escape(PHASE)}$/), "F-09 state phase mismatch")
-  need(errors, s.include?("authorized_base: #{BASE}"), "F-09 state base mismatch")
-  need(errors, s.include?("production_verified_main: #{BASE}"), "F-09 production baseline mismatch")
-  need(errors, s.include?("learner_mutation_allowlist:\n  - #{SOURCE_REL}\n"), "F-09 exact learner allowlist missing")
-  need(errors, s.include?("scientific and curriculum rewrite forbidden"), "F-09 scientific preservation authority missing")
+  if bootstrap
+    need(errors, s.match?(/^phase:\s*#{Regexp.escape(PHASE)}$/), "F-09 state phase mismatch")
+    need(errors, s.include?("authorized_base: #{BASE}"), "F-09 state base mismatch")
+    need(errors, s.include?("production_verified_main: #{BASE}"), "F-09 production baseline mismatch")
+    need(errors, s.include?("learner_mutation_allowlist:\n  - #{SOURCE_REL}\n"), "F-09 exact learner allowlist missing")
+    need(errors, s.include?("scientific and curriculum rewrite forbidden"), "F-09 scientific preservation authority missing")
+  elsif future
+    current_order = phase_order(phase)
+    f09_order = phase_order(PHASE)
+    need(errors, !current_order.nil?, "F-09 successor state phase malformed")
+    if current_order && f09_order
+      need(errors, (current_order <=> f09_order) >= 0, "F-09 successor state regressed behind F-09")
+    end
+    if changed.include?("docs/academic/conv04/CONV04_STATE.md")
+      need(errors, successor_authorized, "Successor state must advance beyond F-09 and bind current base")
+    end
+  else
+    errors << "F-09 validator could not classify bootstrap or future certification"
+  end
 end
 
 if bootstrap
