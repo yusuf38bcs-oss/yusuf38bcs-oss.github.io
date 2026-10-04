@@ -1,14 +1,14 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R2
-mode: certification-only repair — production parity workflow YAML
-authorized_base: ec7fc9f12e4f42ebba257b6e9d12f1be7d1b155b
-branch: conv-04f-09-r2-production-parity-yaml-20261004
+phase: CONV-04F-09-R3
+mode: certification-only repair — resolver-only exact-main Cloudflare Pages production parity
+authorized_base: 9a09a8975018b035935685820958bd6d968f4b4d
+branch: conv-04f-09-r3-production-parity-resolver-20261004
 production_verified_main: f04ac472ee261fa19dc17de6052bde02b75e99c4
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: certification-only — production parity workflow + retained F-09 workflow/validator trigger hardening + R2 governance artifacts
+mutation_authority: certification-only — resolver-only production parity workflow + retained F-09 workflow/validator trigger hardening + R3 governance artifacts
 learner_content_authoring: PROHIBITED — all Practical learner content and CSS unchanged
 existing_learning_method_cleanup: F-09 merged contract retained / unchanged
 gateway_cta_injection: F-09 merged canonical Learning Guide retained / unchanged
@@ -17,9 +17,9 @@ shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: Worker out of scope; Cloudflare Pages production parity remains the post-merge gate
-ready_transition: not authorized until exact-head R2 + retained F-09/Practical + Jekyll/CodeQL/audit + review convergence + required checks PASS
-merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; prac-02 remains blocked until post-merge production parity PASS
+worker_cloudflare: Worker out of scope; Cloudflare Pages read-only exact-main production resolution in scope
+ready_transition: not authorized until exact-head R3 + retained F-09/Practical + Jekyll/CodeQL/audit + production-parity contract + review convergence PASS
+merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; prac-02 remains blocked until post-merge resolver-only production parity PASS
 
 ## Completed foundation
 
@@ -523,3 +523,14 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - authenticated production workflow failure: run `37170258135`, invalid YAML at line 153 before any job executed.
 - repair scope: production parity workflow YAML + retained F-09 workflow/validator trigger hardening + state + R2 authority only.
 - prac-02 remains blocked until R2 merges and the exact-main production-parity workflow passes against both immutable Cloudflare deployment and canonical LBFL.
+
+
+## CONV-04F-09-R3 — resolver-only production parity repair
+
+- authorized base: `9a09a8975018b035935685820958bd6d968f4b4d`
+- learner mutation: **NONE**
+- authenticated R2 merge: PR #427 → `main@9a09a8975018b035935685820958bd6d968f4b4d`
+- authenticated post-merge failure: run `37171383126`, job `111345092477`.
+- contract/build stages passed; failure occurred only at direct Wrangler production upload-token authentication (Cloudflare code 10000).
+- repair: remove direct production write, wait for the Git-connected canonical `main` deployment, resolve exact SHA, then run native F-09 browser parity against immutable deployment and canonical LBFL.
+- prac-02 remains blocked until the post-merge R3 production-parity run passes.
