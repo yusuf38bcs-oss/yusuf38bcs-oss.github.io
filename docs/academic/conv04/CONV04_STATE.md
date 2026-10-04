@@ -8,7 +8,7 @@ branch: conv-04f-09-r2-production-parity-yaml-20261004
 production_verified_main: f04ac472ee261fa19dc17de6052bde02b75e99c4
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: certification-only — production parity workflow + retained F-09 validator + R2 governance artifacts
+mutation_authority: certification-only — production parity workflow + retained F-09 workflow/validator trigger hardening + R2 governance artifacts
 learner_content_authoring: PROHIBITED — all Practical learner content and CSS unchanged
 existing_learning_method_cleanup: F-09 merged contract retained / unchanged
 gateway_cta_injection: F-09 merged canonical Learning Guide retained / unchanged
@@ -521,5 +521,5 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - learner mutation: **NONE**
 - authenticated R1 merge: PR #426 → `main@ec7fc9f12e4f42ebba257b6e9d12f1be7d1b155b`
 - authenticated production workflow failure: run `37170258135`, invalid YAML at line 153 before any job executed.
-- repair scope: production parity workflow YAML + retained F-09 validator + state + R2 authority only.
+- repair scope: production parity workflow YAML + retained F-09 workflow/validator trigger hardening + state + R2 authority only.
 - prac-02 remains blocked until R2 merges and the exact-main production-parity workflow passes against both immutable Cloudflare deployment and canonical LBFL.
