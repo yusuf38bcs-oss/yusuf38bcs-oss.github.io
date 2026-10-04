@@ -133,3 +133,13 @@ Four exact-head review findings on candidate `587aeca87ef16d563d67b4c5adf294f59c
 4. **Shared dependency triggers:** production parity now triggers for shared Practical CSS/JS, Academic CSS, and the canonical Learning Guide CTA include.
 
 Cloudflare production credentials are removed from job-level environment scope and are exposed only to the trusted production steps that require them. The learner source, 43-preparation corpus, scientific/taxonomic/curriculum wording, Practical shared assets, course contract, coverage ledger, and module order are unchanged by this remediation.
+
+
+## Retained-validator hardening after Ready review
+
+Two additional P2 findings discovered during the Ready-state review were accepted and fixed before promotion:
+
+- successor authority now parses the **top-level** `authorized_base` scalar from `CONV04_STATE.md`; historical occurrences elsewhere in the state document cannot satisfy exact-base authority;
+- the R40 validator file itself is included in `protected_artifacts`, preventing later non-maintenance phases from silently weakening the retained validator.
+
+The phase scalar is likewise read from the top-level state block. These changes are certification/governance-only and do not alter the learner source or curriculum corpus.

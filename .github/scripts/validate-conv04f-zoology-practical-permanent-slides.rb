@@ -122,6 +122,12 @@ def phase_order(value)
   m ? [m[1].ord, (m[2] || "0").to_i, (m[3] || "0").to_i] : nil
 end
 
+def top_level_scalar(source, key)
+  top = source.split(/^##\s/, 2).first.to_s
+  match = top.match(/^#{Regexp.escape(key)}:\s*(\S.*?)\s*$/)
+  match ? match[1].strip : nil
+end
+
 def top_level_list(source, key)
   top = source.split(/^##\s/, 2).first.to_s
   lines = top.lines
@@ -153,7 +159,7 @@ end
 comparison_base = ENV["PR_BASE_SHA"].to_s.strip
 comparison_base = BASE if comparison_base.empty?
 state_text = STATE.file? ? read_utf8(STATE) : ""
-phase = state_text[/^phase:\s*(\S+)/, 1]
+phase = top_level_scalar(state_text, "phase")
 bootstrap = comparison_base == BASE && phase == PHASE
 future = comparison_base != BASE
 current_order = phase_order(phase)
@@ -175,11 +181,11 @@ successor_allowlist = []
 if future && STATE.file? && changed.include?(STATE_REL)
   base_state, _, bs = git("show", "#{comparison_base}:#{STATE_REL}")
   if bs.success?
-    base_phase = base_state[/^phase:\s*(\S+)/, 1]
+    base_phase = top_level_scalar(base_state, "phase")
     bo = phase_order(base_phase)
     co = phase_order(phase)
     successor_authorized = bo && co && r40_order && (co <=> bo) > 0 && (co <=> r40_order) > 0 &&
-      state_text.include?("authorized_base: #{comparison_base}")
+      top_level_scalar(state_text, "authorized_base") == comparison_base
     successor_allowlist = top_level_list(state_text, "learner_mutation_allowlist")
   else
     errors << "Unable to authenticate R40 successor base state"
@@ -346,7 +352,14 @@ end
 if bootstrap
   need(errors, changed == CHANGED_FILES, "R40 changed-file scope mismatch: #{changed}")
 elsif future
-  protected_artifacts = [MANIFEST_REL, IMPL_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL]
+  protected_artifacts = [
+    ".github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb",
+    MANIFEST_REL,
+    IMPL_REL,
+    BROWSER_REL,
+    WORKFLOW_REL,
+    PROD_WORKFLOW_REL
+  ]
   touched = changed & protected_artifacts
   if maintenance
     need(errors, successor_authorized, "R40 maintenance requires advanced exact-base authority")
