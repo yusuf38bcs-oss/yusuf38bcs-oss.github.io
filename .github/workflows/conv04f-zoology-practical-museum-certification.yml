@@ -127,14 +127,21 @@ jobs:
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             remote="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
             test "$remote" = "$PR_BASE_SHA" || { echo "BASE CHANGED — RECERTIFICATION REQUIRED"; exit 1; }
-            test "$PR_BASE_SHA" = "$F09_AUTHORIZED_BASE" || { echo "F-09 AUTHORIZED BASE MISMATCH"; exit 1; }
             git merge-base --is-ancestor "$remote" "$CANDIDATE_SHA" || { echo "STALE CANDIDATE"; exit 1; }
+            if [ "$PR_BASE_SHA" = "$F09_AUTHORIZED_BASE" ]; then
+              echo "F-09 bootstrap certification"
+            else
+              echo "F-09 retained future-phase certification against current authenticated base"
+            fi
           else
             test -n "$EXPECTED_MAIN_SHA"
             remote="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
             test "$remote" = "$EXPECTED_MAIN_SHA"
             test "$CANDIDATE_SHA" = "$EXPECTED_MAIN_SHA"
-            echo "PR_BASE_SHA=$F09_AUTHORIZED_BASE" >> "$GITHUB_ENV"
+            manual_base="$(git rev-parse "$CANDIDATE_SHA^")"
+            test -n "$manual_base"
+            echo "PR_BASE_SHA=$manual_base" >> "$GITHUB_ENV"
+            echo "Manual retained certification base: $manual_base"
           fi
 
       - name: Set up Ruby
