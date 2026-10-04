@@ -1,0 +1,58 @@
+{
+  "schema": "lbfl-conv04f-zoology-practical-dissection-v1",
+  "version": "CONV-04F-09-R61-1.0.0",
+  "authorized_base": "cae5dd2252081007fab2ccd581006bc03fee37d0",
+  "authorization_gate": "CONV-04F-09-R60 / PR #435",
+  "module_id": "prac-04",
+  "module_title": "Dissection",
+  "source_file": "_biology/higher-zoology-tree/practical/04-dissection.bn.md",
+  "baseline_blob_sha": "0bca70d74c04305fd2399f54fbb5c650f0b158c3",
+  "route": "/biology/higher-zoology-tree/practical/dissection/",
+  "course_id": "nu-zoology-practical-213106",
+  "course_contract_blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+  "coverage_ledger_blob_sha": "ab66ddafc1346b65337bc52236d1029a77cf5792",
+  "shared_practical_css_blob_sha": "0962ae71cd1e424e27949b409f5284493f722dd3",
+  "shared_practical_js_blob_sha": "207684413ad7925686334cafc3748861a439f206",
+  "content_census": {
+    "h1": 6,
+    "h2": 22,
+    "h3": 29,
+    "general_dissection_rules": 7,
+    "external_morphology_taxa": 5,
+    "major_dissections": 11,
+    "minor_dissections": 6,
+    "drawing_rules": 7,
+    "viva_questions": 6
+  },
+  "syllabus_map": {
+    "major": {
+      "circulatory": 2,
+      "nervous": 5,
+      "reproductive": 4,
+      "total": 11
+    },
+    "minor": {
+      "digestive": 3,
+      "nervous": 3,
+      "total": 6
+    }
+  },
+  "preservation": {
+    "scientific_content_rewrite": false,
+    "anatomical_content_rewrite": false,
+    "curriculum_content_rewrite": false,
+    "dissection_protocol_rewrite": false,
+    "safety_rewrite": false,
+    "heading_normalization": false
+  },
+  "mutation": {
+    "learner_source_count": 1,
+    "academic_system": "v1",
+    "academic_role": "practical",
+    "learning_guide": "canonical",
+    "canonical_learning_guide_cta_count": 1,
+    "strict_route_rows_added": 1,
+    "table_wrapper_count": 0,
+    "shared_css_js_changed": false
+  }
+}

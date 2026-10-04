@@ -492,6 +492,22 @@
       "enforcement": "strict",
       "source_debt": [],
       "live_debt": []
+    },
+    {
+      "id": "higher-zoology-practical-dissection",
+      "canonical_route": "/biology/higher-zoology-tree/practical/dissection/",
+      "source_file": "_biology/higher-zoology-tree/practical/04-dissection.bn.md",
+      "support_files": [
+        "_data/zoology-practical-213106-coverage.json"
+      ],
+      "academic_role": "practical",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     }
   ]
 }
