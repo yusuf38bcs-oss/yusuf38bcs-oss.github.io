@@ -25,11 +25,13 @@ No Cloudflare production deployment or Museum browser certification from that wo
 R2 may change only:
 
 1. `.github/workflows/conv04f-zoology-practical-museum-production-parity.yml`
-   - repair YAML block indentation only;
-2. `.github/scripts/validate-conv04f-zoology-practical-museum.rb`
+   - repair YAML block indentation and trigger on R2 authority changes;
+2. `.github/workflows/conv04f-zoology-practical-museum-certification.yml`
+   - trigger retained Museum certification when R1/R2 authority artifacts change;
+3. `.github/scripts/validate-conv04f-zoology-practical-museum.rb`
    - authorize this one exact R2 maintenance transition and protect the R2 artifact in successor phases;
-3. `docs/academic/conv04/CONV04_STATE.md`;
-4. this R2 authorization document.
+4. `docs/academic/conv04/CONV04_STATE.md`;
+5. this R2 authorization document.
 
 ## Protected
 
