@@ -21,6 +21,9 @@ page_id: zoology-practical-permanent-slides
 language: bn
 lang: bn
 locale: bn-BD
+academic_system: v1
+academic_role: practical
+learning_guide: canonical
 toc: true
 toc_sticky: true
 classes: wide zoology-practical-page
@@ -40,6 +43,8 @@ time_min: 150
 <script src="{{ '/assets/js/zoology-practical.js' | relative_url }}" defer></script>
 
 # Study of Permanent Slides
+
+{% include education/learning-guide-cta.html %}
 
 NU syllabus অনুযায়ী **at least 20 slides** study করতে হবে। নিচে **43-preparation reference bank** দেওয়া হলো; departmental availability ও course requirement অনুযায়ী এখান থেকে ≥20 preparation নির্বাচন করা যাবে।
 

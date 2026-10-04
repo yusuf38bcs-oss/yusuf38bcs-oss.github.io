@@ -1,26 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R4
-mode: authorization-only — prac-02 Permanent Slides
-authorized_base: 230f04374e82e5590b4f5bf9ade1535b0a1f3669
-branch: conv-04f-09-r4-prac02-authorization-20261004
-production_verified_main: 230f04374e82e5590b4f5bf9ade1535b0a1f3669
+phase: CONV-04F-09-R40
+mode: implementation candidate — prac-02 Permanent Slides
+authorized_base: 5af320549210f44cd3eacec919766ef86665214b
+branch: conv-04f-09-r40-prac02-permanent-slides-20261004
+production_verified_main: 5af320549210f44cd3eacec919766ef86665214b
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: authorization-only — state + prac-02 authority/evidence; no learner mutation in this commit
-learner_content_authoring: AUTHORIZED ONLY AFTER R4 AUTHORIZATION MERGES — exact prac-02 source, structural convergence only
-existing_learning_method_cleanup: F-09 prac-01 production parity CLOSED / PASS; Practical gateway retained / unchanged
-gateway_cta_injection: AUTHORIZED for prac-02 implementation only via canonical Learning Guide CTA
+mutation_authority: R40 — exactly one learner source + strict route registration + prac-02 certification/governance artifacts
+learner_content_authoring: YES — exact prac-02 structural transform only; 43-preparation scientific/curriculum corpus preserved byte-for-byte outside authorized metadata/CTA insertion
+existing_learning_method_cleanup: no legacy local learning-method block present; F-09 prac-01 production parity retained / unchanged
+gateway_cta_injection: YES — exactly one canonical Learning Guide CTA on prac-02
 learner_mutation_allowlist:
   - _biology/higher-zoology-tree/practical/02-permanent-slides.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: Worker out of scope; F-09 prac-01 exact-main Cloudflare production parity PASS on run 37191548645
-ready_transition: not authorized until exact-head R4 authorization + retained F-09/Practical + Jekyll/CodeQL/audit + review convergence + required checks PASS
-merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; prac-02 learner implementation starts only from the merged authorization head
+worker_cloudflare: Worker out of scope; prac-01 production parity retained; R40 uses Cloudflare Pages exact-head preview and post-merge exact-main production parity
+ready_transition: not authorized until exact-head R40 validator + retained contracts + Jekyll/browser/Axe/Cloudflare preview + audit/security/review convergence PASS
+merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-02 browser parity required before prac-03
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
@@ -574,3 +574,20 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Authorized learner transformation after this authorization merges: add Academic-v1 metadata, canonical Learning Guide ownership/CTA, and only accessibility/presentation wrappers required by existing Academic-v1/Practical primitives.
 - Course contract, Practical gateway, prac-01 and prac-03–prac-08, shared Practical CSS/JS, navigation, assessment runtime and all unrelated learner surfaces: **PROTECTED / UNCHANGED**.
 - This R4 authorization commit performs **NO learner-facing mutation**.
+
+
+## CONV-04F-09-R40 — prac-02 Permanent Slides implementation candidate
+
+- exact authorized base: `5af320549210f44cd3eacec919766ef86665214b`.
+- selected module: `prac-02 — Permanent Slides`.
+- learner source baseline: `50825b1a7178d062c437cf10b2a1d8ef8c1780f8`.
+- learner-facing mutation count: **1**.
+- structural transform: Academic-v1 `practical` metadata + canonical Learning Guide ownership + exactly one canonical CTA.
+- content census preserved: **8 + 6 + 11 + 10 + 8 = 43 preparations**.
+- syllabus rule preserved: **at least 20 / ≥20; no fixed canonical 30**.
+- terminology note, mouthpart answer rule, Spotting Template and six-step Microscope Workflow: **preserved**.
+- strict route ledger row: `higher-zoology-practical-permanent-slides`.
+- course contract, coverage ledger, Practical gateway, prac-01, prac-03–prac-08, shared Practical CSS/JS: **protected / unchanged**.
+- scientific/taxonomic/curriculum rewrite: **NONE**.
+- route-specific CSS: **NONE**; existing Practical table runtime remains owner.
+- exact-head certification and production promotion: **PENDING**.
