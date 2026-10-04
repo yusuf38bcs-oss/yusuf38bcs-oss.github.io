@@ -24,7 +24,12 @@ const isExpectedCloudflareInsightsSriError=message=>
 
 async function listCountAfterHeading(page,label){
   return page.evaluate(label=>{
-    const h=[...document.querySelectorAll(".page__content h2")].find(x=>x.textContent.trim()===label);
+    const cleanHeading=x=>{
+      const clone=x.cloneNode(true);
+      clone.querySelectorAll("a").forEach(a=>a.remove());
+      return clone.textContent.trim();
+    };
+    const h=[...document.querySelectorAll(".page__content h2")].find(x=>cleanHeading(x)===label);
     if(!h) return -1;
     let n=h.nextElementSibling;
     while(n && n.tagName!=="H2"){
@@ -91,7 +96,12 @@ async function run(name,width,height,opts={}){
       const text=content?.innerText||"";
       const tables=[...content?.querySelectorAll("table")||[]];
       const rowCounts=tables.map(t=>Math.max(0,t.querySelectorAll("tr").length-1));
-      const h2Texts=[...content?.querySelectorAll("h2")||[]].map(h=>h.textContent.trim());
+      const cleanHeading=h=>{
+        const clone=h.cloneNode(true);
+        clone.querySelectorAll("a").forEach(a=>a.remove());
+        return clone.textContent.trim();
+      };
+      const h2Texts=[...content?.querySelectorAll("h2")||[]].map(cleanHeading);
       const pre=[...content?.querySelectorAll("pre")||[]].map(x=>x.textContent||"").join("\n");
       return {
         htmlLang:document.documentElement.lang||"",
@@ -104,11 +114,12 @@ async function run(name,width,height,opts={}){
         learnLink:[...content?.querySelectorAll("a[href]")||[]].some(a=>new URL(a.href).pathname==="/learn/"),
         boundaryCount:content?.querySelectorAll(".educational-boundary").length||0,
         legacyCycleCount:content?.querySelectorAll("[data-zoology-learning-cycle]").length||0,
-        h1Texts:[...content?.querySelectorAll("h1")||[]].map(h=>h.textContent.trim()),
+        h1Texts:[...content?.querySelectorAll("h1")||[]].map(cleanHeading),
         h2Texts,rowCounts,
         tableCount:tables.length,
         wrapperCount:content?.querySelectorAll(".zoology-practical-table-scroll").length||0,
         focusableWrapperCount:content?.querySelectorAll('.zoology-practical-table-scroll[tabindex="0"][role="region"]').length||0,
+        academicWrapperCount:content?.querySelectorAll(".lbfl-academic-table-wrap.zoology-practical-table-scroll").length||0,
         syllabusRule:text.includes("at least 20 slides")&&text.includes("43-preparation reference bank")&&text.includes("≥20"),
         terminology:text.includes("Modern terminology note:")&&text.includes("traditional teaching term"),
         mouthpartRule:text.includes("Slide-answer rule")&&text.includes("which parts are modified and what function they perform"),
@@ -174,6 +185,7 @@ async function run(name,width,height,opts={}){
       consoleErrors.length===0 && pageErrors.length===0 && localHttpErrors.length===0 &&
       (!jsOn || metrics.wrapperCount===4) &&
       (!jsOn || metrics.focusableWrapperCount===4) &&
+      metrics.academicWrapperCount===4 &&
       (!standard || (ctaKeyboard&&tableKeyboard&&axeBad.length===0)) &&
       (!opts.textSpacing || metrics.textClip===0) &&
       (!opts.reducedMotion || (metrics.reduceMatches===true&&metrics.motionViolations===0));

@@ -36,6 +36,13 @@ PROD_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-permanent-slide
 PROD_WORKFLOW = ROOT.join(PROD_WORKFLOW_REL)
 CTA = "{% include education/learning-guide-cta.html %}"
 
+TABLE_WRAPPER_LABELS = [
+  "Permanent Slides whole animals reference table",
+  "Permanent Slides arthropod mouthparts table",
+  "Permanent Slides parasite reference table",
+  "Permanent Slides larval forms table"
+].freeze
+
 BASE_BLOBS = {
   "_biology/higher-zoology-tree/practical/index.bn.md" => "d45ae49889c5e6d02445776ca5120f5fcedda65e",
   "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md" => "bf14db772daaa5bbf1d7386d7f146b7d9a730799",
@@ -100,6 +107,13 @@ def authorized_transform(source)
     "# Study of Permanent Slides\n\n",
     "# Study of Permanent Slides\n\n#{CTA}\n\n"
   )
+  table_index = 0
+  out = out.gsub(/(^\|[^\n]+\|\n^\|[-:| ]+\|\n(?:^\|[^\n]+\|\n?)+)/m) do |table|
+    label = TABLE_WRAPPER_LABELS.fetch(table_index)
+    table_index += 1
+    "<div class=\"lbfl-academic-table-wrap zoology-practical-table-scroll\" tabindex=\"0\" role=\"region\" aria-label=\"#{label}\" markdown=\"1\">\n\n#{table.rstrip}\n\n</div>\n"
+  end
+  raise "R40 expected four baseline Markdown tables" unless table_index == TABLE_WRAPPER_LABELS.length
   out
 end
 
@@ -205,6 +219,10 @@ if SOURCE.file?
     need(errors, fm_value(src, "academic_role") == "practical", "R40 academic_role mismatch")
     need(errors, fm_value(src, "learning_guide") == "canonical", "R40 canonical Learning Guide missing")
     need(errors, src.scan(CTA).length == 1, "R40 requires exactly one canonical Learning Guide CTA")
+    need(errors, src.scan(/class="lbfl-academic-table-wrap zoology-practical-table-scroll"/).length == 4,
+      "R40 requires exactly four governed Academic table wrappers")
+    need(errors, src.scan(/tabindex="0" role="region" aria-label="Permanent Slides /).length == 4,
+      "R40 table wrappers must remain keyboard-focusable named regions")
     need(errors, src.include?("43-preparation reference bank"), "R40 43-preparation teaching-bank statement missing")
     need(errors, src.include?("at least 20 slides") && src.include?("≥20"), "R40 ≥20 syllabus rule missing")
     need(errors, src.include?("Modern terminology note:"), "R40 terminology note missing")

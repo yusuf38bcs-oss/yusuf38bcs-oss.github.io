@@ -47,9 +47,10 @@ Only the following learner-facing changes are authorized:
 1. add `academic_system: v1`;
 2. add `academic_role: practical`;
 3. add `learning_guide: canonical`;
-4. inject exactly one `{% include education/learning-guide-cta.html %}` immediately after the existing H1.
+4. inject exactly one `{% include education/learning-guide-cta.html %}` immediately after the existing H1;
+5. wrap the four unchanged Markdown reference tables with the existing `lbfl-academic-table-wrap zoology-practical-table-scroll` primitive, with keyboard-focusable named regions.
 
-Everything else in the learner source must remain identical to the authenticated baseline.
+The table cells, headings, scientific/taxonomic wording, preparation counts, lists and workflow prose remain identical to the authenticated baseline.
 
 ## Strict route registration
 
@@ -106,3 +107,17 @@ exact-main Cloudflare production + canonical parity
         ↓
 authorize prac-03 only after PASS
 ```
+
+
+## Exact-head remediation after first R40 run
+
+Initial candidate `32caec1a7f727b2ed7afc1e5b22ca7da8e0480af` authenticated the source/curriculum contract and exact-head Cloudflare preview, but exposed two presentation/certification issues:
+
+- the shared Practical browser suite reported one Axe violation on prac-02 at all tested viewports; the route's raw Markdown tables had not yet adopted the existing Academic-v1 table wrapper used by converged surfaces;
+- the R40-specific harness read generated heading permalink anchors as part of heading text and, after JS table enhancement, failed to locate the histology/microscope list headings by exact text.
+
+Remediation is structural only:
+- apply the existing Academic-v1 + Practical table wrapper to the four unchanged tables;
+- normalize generated heading text in the certification harness by removing heading-anchor links before comparison.
+
+Shared CSS/JS remain byte-identical. No scientific, taxonomic or curriculum text is changed.
