@@ -406,6 +406,7 @@ elsif future
   elsif maintenance_r2
     r2_scope = [
       ".github/scripts/validate-conv04f-zoology-practical-museum.rb",
+      ".github/workflows/conv04f-zoology-practical-museum-certification.yml",
       PRODUCTION_WORKFLOW_REL,
       "docs/academic/conv04/CONV04_STATE.md",
       R2_AUTH_REL
