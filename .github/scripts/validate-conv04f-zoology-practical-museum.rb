@@ -12,6 +12,8 @@ R1_PHASE = "CONV-04F-09-R1"
 R1_BASE = "787a680b543e8b80823125342a51683342f49b6f"
 R2_PHASE = "CONV-04F-09-R2"
 R2_BASE = "ec7fc9f12e4f42ebba257b6e9d12f1be7d1b155b"
+R3_PHASE = "CONV-04F-09-R3"
+R3_BASE = "9a09a8975018b035935685820958bd6d968f4b4d"
 SOURCE_REL = "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md"
 SOURCE = ROOT.join(SOURCE_REL)
 ROUTE_CSS_REL = "assets/css/zoology-practical-museum-f09.css"
@@ -33,6 +35,8 @@ R1_AUTH_REL = "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R1_PRODUCTION_P
 R1_AUTH = ROOT.join(R1_AUTH_REL)
 R2_AUTH_REL = "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R2_YAML_REPAIR.md"
 R2_AUTH = ROOT.join(R2_AUTH_REL)
+R3_AUTH_REL = "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R3_RESOLVER_ONLY.md"
+R3_AUTH = ROOT.join(R3_AUTH_REL)
 CTA = "{% include education/learning-guide-cta.html %}"
 
 BASE_BLOBS = {
@@ -161,6 +165,7 @@ bootstrap = comparison_base == BASE && phase == PHASE
 future = comparison_base != BASE
 maintenance_r1 = comparison_base == R1_BASE && phase == R1_PHASE
 maintenance_r2 = comparison_base == R2_BASE && phase == R2_PHASE
+maintenance_r3 = comparison_base == R3_BASE && phase == R3_PHASE
 successor_authorized = false
 successor_allowlist = []
 changed = []
@@ -189,7 +194,7 @@ if future && STATE.file? && changed.include?("docs/academic/conv04/CONV04_STATE.
   end
 end
 
-[SOURCE, ROUTE_CSS, MANIFEST, LEDGER, STATE, AUTH, COURSE, COVERAGE, FIGURES, SHARED_CSS, SHARED_JS, BROWSER, WORKFLOW, PRODUCTION_WORKFLOW, R1_AUTH, R2_AUTH].each do |path|
+[SOURCE, ROUTE_CSS, MANIFEST, LEDGER, STATE, AUTH, COURSE, COVERAGE, FIGURES, SHARED_CSS, SHARED_JS, BROWSER, WORKFLOW, PRODUCTION_WORKFLOW, R1_AUTH, R2_AUTH, R3_AUTH].each do |path|
   errors << "Missing F-09 artifact: #{path.relative_path_from(ROOT)}" unless path.file?
 end
 
@@ -391,7 +396,8 @@ elsif future
     ".github/workflows/conv04f-zoology-practical-museum-certification.yml",
     PRODUCTION_WORKFLOW_REL,
     R1_AUTH_REL,
-    R2_AUTH_REL
+    R2_AUTH_REL,
+    R3_AUTH_REL
   ]
   if maintenance_r1
     r1_scope = [
@@ -413,6 +419,16 @@ elsif future
     ].sort
     need(errors, changed == r2_scope, "F-09-R2 production-parity YAML repair scope mismatch: #{changed}")
     need(errors, successor_authorized, "F-09-R2 state must advance from exact merged F-09-R1 main")
+  elsif maintenance_r3
+    r3_scope = [
+      ".github/scripts/validate-conv04f-zoology-practical-museum.rb",
+      ".github/workflows/conv04f-zoology-practical-museum-certification.yml",
+      PRODUCTION_WORKFLOW_REL,
+      "docs/academic/conv04/CONV04_STATE.md",
+      R3_AUTH_REL
+    ].sort
+    need(errors, changed == r3_scope, "F-09-R3 resolver-only production-parity scope mismatch: #{changed}")
+    need(errors, successor_authorized, "F-09-R3 state must advance from exact merged F-09-R2 main")
   else
     touched = changed & immutable
     need(errors, touched.empty?, "Successor changed protected F-09 artifacts: #{touched.join(', ')}")
