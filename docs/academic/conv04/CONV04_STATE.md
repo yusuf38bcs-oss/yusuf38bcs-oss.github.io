@@ -1,25 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R50
-mode: authorization-only — prac-03 Whole Mounts
-authorized_base: 1efc9e8176e8408a509ccca8fc82f9fbbc981c22
-branch: conv-04f-09-r50-prac03-authorization-20261004
+phase: CONV-04F-09-R51
+mode: implementation candidate — prac-03 Whole Mounts
+authorized_base: ee9608a739e33ef01b0f5776c3e8827c7ea8dd12
+branch: conv-04f-09-r51-prac03-whole-mounts-20261004
 production_verified_main: 1efc9e8176e8408a509ccca8fc82f9fbbc981c22
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R50 — authorization-only: freeze prac-03 baseline and authorize later isolated R51 structural convergence; no learner mutation
-learner_content_authoring: NO — R50 authorization only; prac-03 learner source remains byte-identical
+mutation_authority: R51 — exactly one prac-03 learner source + one strict route row + dedicated certification/governance artifacts
+learner_content_authoring: YES — exact prac-03 structural convergence only; frozen scientific/curriculum/safety corpus preserved
 existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 and prac-02 production parity closed / retained
-gateway_cta_injection: NO — prac-03 CTA injection deferred to isolated R51 implementation
+gateway_cta_injection: YES — exactly one canonical Learning Guide CTA on prac-03
 learner_mutation_allowlist:
+  - _biology/higher-zoology-tree/practical/03-whole-mounts.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: Worker out of scope; prac-01 and prac-02 Cloudflare Pages production parity PASS / retained
-ready_transition: R50 authorization-only; no learner implementation may start until this exact-head authorization passes CI/review/governance and merges
-merge: R50 merge authorizes only an isolated R51 prac-03 implementation from the resulting exact main; no prac-04 work
+ready_transition: R51 not authorized until exact-head source-preservation + retained contracts + Jekyll/browser/Axe/preview + review/governance PASS
+merge: R51 not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-03 parity required before prac-04
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
@@ -611,3 +612,15 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Coverage custody: **complete-core-protocol — general preparation + 10 suggested whole mounts**.
 - R50 is authorization-only: learner source mutation is **NONE**.
 - R51 may perform only the exact structural convergence authorized in `ZOOLOGY_PRACTICAL_WHOLE_MOUNTS_F09_R50_AUTHORIZATION.md` after R50 merges.
+
+
+## CONV-04F-09-R51 prac-03 implementation
+
+- Authorized base: `ee9608a739e33ef01b0f5776c3e8827c7ea8dd12` (R50 authorization merge).
+- Selected module: **prac-03 — Whole Mounts**.
+- Learner source baseline: `904933f7b29a301f72b7d370582d605364b906e6`.
+- Authorized learner transform: Academic-v1 metadata + role practical + canonical Learning Guide + one CTA + existing keyboard-focusable table wrapper only.
+- Academic Route Ledger: exactly one strict Whole Mounts row.
+- Protected corpus: 10 suggested preparations, 9-stage Core Workflow, 6-step permanent logic, Safety note, 8 QC checks, 5 Drawing Rules, Temporary Whole Mount guidance.
+- Scientific/taxonomic/curriculum/chemical-protocol/safety rewrite: **NONE**.
+- prac-04 remains blocked until R51 exact-main production parity closes.
