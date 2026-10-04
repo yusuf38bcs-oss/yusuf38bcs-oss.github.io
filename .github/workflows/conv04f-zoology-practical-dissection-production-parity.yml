@@ -17,13 +17,6 @@ on:
       - ".github/scripts/conv04f-zoology-practical-dissection-browser-certification.mjs"
       - ".github/workflows/conv04f-zoology-practical-dissection-certification.yml"
       - ".github/workflows/conv04f-zoology-practical-dissection-production-parity.yml"
-  workflow_dispatch:
-    inputs:
-      expected_main_sha:
-        description: "Exact main SHA to deploy and certify"
-        required: true
-        type: string
-
 permissions:
   contents: read
 
@@ -37,7 +30,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
-      TARGET_SHA: ${{ github.event.inputs.expected_main_sha || github.sha }}
+      TARGET_SHA: ${{ github.sha }}
       PRODUCTION_URL: "https://learningbiologyforlife.org"
       EVIDENCE_DIR: conv04f09-r61-production-parity
       CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
