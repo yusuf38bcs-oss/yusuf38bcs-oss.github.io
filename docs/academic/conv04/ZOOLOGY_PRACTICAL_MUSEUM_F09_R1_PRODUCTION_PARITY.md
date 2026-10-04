@@ -1,7 +1,7 @@
 # CONV-04F-09-R1 — Museum Production Parity Remediation
 
-**Mode:** certification-only remediation  
-**Authorized base:** `787a680b543e8b80823125342a51683342f49b6f`  
+**Mode:** certification-only remediation
+**Authorized base:** `787a680b543e8b80823125342a51683342f49b6f`
 **Learner mutation authority:** **NONE**
 
 ## Authenticated facts
