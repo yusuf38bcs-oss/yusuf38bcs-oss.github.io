@@ -1,15 +1,15 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R40
-mode: implementation candidate — prac-02 Permanent Slides
-authorized_base: 5af320549210f44cd3eacec919766ef86665214b
-branch: conv-04f-09-r40-prac02-permanent-slides-20261004
+phase: CONV-04F-09-R41
+mode: maintenance repair — prac-02 Cloudflare production parity output binding
+authorized_base: c545062d5b0cb8f2d49030108ab2915acfae2016
+branch: conv-04f-09-r41-pages-output-repair-20261004
 production_verified_main: 5af320549210f44cd3eacec919766ef86665214b
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R40 — exactly one learner source + strict route registration + prac-02 certification/governance artifacts
-learner_content_authoring: YES — exact prac-02 structural transform only; 43-preparation scientific/curriculum corpus preserved byte-for-byte outside authorized metadata/CTA insertion
+mutation_authority: R41 — workflow-only maintenance: bind immutable Pages URL output; no learner/source/runtime mutation
+learner_content_authoring: NO — R40 learner source retained unchanged; R41 is workflow-only maintenance
 existing_learning_method_cleanup: no legacy local learning-method block present; F-09 prac-01 production parity retained / unchanged
 gateway_cta_injection: YES — exactly one canonical Learning Guide CTA on prac-02
 learner_mutation_allowlist:
@@ -19,8 +19,8 @@ assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: Worker out of scope; prac-01 production parity retained; R40 uses Cloudflare Pages exact-head preview and post-merge exact-main production parity
-ready_transition: not authorized until exact-head R40 validator + retained contracts + Jekyll/browser/Axe/Cloudflare preview + audit/security/review convergence PASS
-merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-02 browser parity required before prac-03
+ready_transition: R41 not authorized until exact-head retained validator + CI/review/governance convergence PASS
+merge: R41 not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-02 browser parity still required before prac-03
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
@@ -591,3 +591,13 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - scientific/taxonomic/curriculum rewrite: **NONE**.
 - route-specific CSS: **NONE**; existing Practical table runtime remains owner.
 - exact-head certification and production promotion: **PENDING**.
+
+
+## CONV-04F-09-R41 production-parity maintenance
+
+- Authorized base: `c545062d5b0cb8f2d49030108ab2915acfae2016`.
+- Trigger: R40 post-merge Cloudflare deployment succeeded, but immutable browser certification received an empty `EXACT_URL`.
+- Root cause: `resolve-cloudflare-targets.py` emits `pages_url`, while the R40 production workflow referenced nonexistent `steps.resolve.outputs.pages_exact_url`.
+- Authorized mutation: state binding plus one-line workflow output-key correction only.
+- Learner/content mutation: **NONE**.
+- prac-03 remains blocked until repaired exact-main Cloudflare immutable + canonical production parity passes.
