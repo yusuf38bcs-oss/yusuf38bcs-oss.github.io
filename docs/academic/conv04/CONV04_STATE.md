@@ -1,25 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R3
-mode: certification-only hardening — canonical Cloudflare beacon false-positive
-authorized_base: 9a09a8975018b035935685820958bd6d968f4b4d
-branch: conv-04f-09-r3-canonical-beacon-certification-20261004
-production_verified_main: f04ac472ee261fa19dc17de6052bde02b75e99c4
+phase: CONV-04F-09-R4
+mode: authorization-only — prac-02 Permanent Slides
+authorized_base: 230f04374e82e5590b4f5bf9ade1535b0a1f3669
+branch: conv-04f-09-r4-prac02-authorization-20261004
+production_verified_main: 230f04374e82e5590b4f5bf9ade1535b0a1f3669
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: certification-only — Museum browser harness + F-09 validator + production-parity trigger + R3 governance artifacts
-learner_content_authoring: PROHIBITED — all Practical learner content and CSS unchanged
-existing_learning_method_cleanup: F-09 merged contract retained / unchanged
-gateway_cta_injection: F-09 merged canonical Learning Guide retained / unchanged
+mutation_authority: authorization-only — state + prac-02 authority/evidence; no learner mutation in this commit
+learner_content_authoring: AUTHORIZED ONLY AFTER R4 AUTHORIZATION MERGES — exact prac-02 source, structural convergence only
+existing_learning_method_cleanup: F-09 prac-01 production parity CLOSED / PASS; Practical gateway retained / unchanged
+gateway_cta_injection: AUTHORIZED for prac-02 implementation only via canonical Learning Guide CTA
 learner_mutation_allowlist:
+  - _biology/higher-zoology-tree/practical/02-permanent-slides.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: Worker out of scope; exact-main Cloudflare Pages upload/resolution and immutable deployment browser certification PASS on run 37171383126 attempt 3; canonical browser gate requires R3
-ready_transition: not authorized until exact-head R3 + retained F-09/Practical + Jekyll/CodeQL/audit + review convergence + required checks PASS
-merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; prac-02 remains blocked until post-merge canonical production parity PASS
+worker_cloudflare: Worker out of scope; F-09 prac-01 exact-main Cloudflare production parity PASS on run 37191548645
+ready_transition: not authorized until exact-head R4 authorization + retained F-09/Practical + Jekyll/CodeQL/audit + review convergence + required checks PASS
+merge: not authorized until unchanged-head SOLO authority + Trusted Governance PASS; prac-02 learner implementation starts only from the merged authorization head
 
 ## Completed foundation
 
@@ -539,3 +540,36 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - R3 remediation: preserve that exact Cloudflare Insights SRI diagnostic separately as `externalConsoleWarnings`; every other console error, page error, local HTTP error, Axe serious/critical violation, DOM/content/reflow/keyboard/reduced-motion failure remains fail-closed.
 - learner source, route CSS, shared Practical CSS/JS, course contract, figure manifest and curriculum evidence: **PROTECTED / UNCHANGED**.
 - prac-02 remains blocked until R3 merges and exact-main production parity passes on both immutable deployment and canonical LBFL.
+
+
+## CONV-04F-09 prac-01 production closure
+
+- PR #429: **MERGED**.
+- Exact merged / production-verified main: `230f04374e82e5590b4f5bf9ade1535b0a1f3669`.
+- Production parity workflow: run `37191548645` / **SUCCESS**.
+- Wrangler Cloudflare Pages exact-main upload: **PASS**.
+- Immutable Cloudflare deployment: `https://bd8b30a7.yusuf38bcs-oss-github-io.pages.dev`.
+- Exact deployment resolver: **PASS** for exact head, canonical production, branch `main`, environment `production`, status `success`.
+- Immutable Museum browser certification: **PASS / 11 checks**.
+- Canonical `learningbiologyforlife.org` Museum browser certification: **PASS / 11 checks**.
+- Museum governed contract: **48/48 numbered specimens; 15 verified figures/images; Academic-v1; canonical Learning Guide; F-09 route stylesheet; zero legacy learning cycle; Axe/reflow/keyboard/reduced-motion PASS**.
+- GitHub Pages, Sovereign Site Audit v4 and CodeQL on merged main: **PASS**.
+- **prac-01 = CLOSED / PRODUCTION-VERIFIED.**
+
+## CONV-04F-09-R4 — prac-02 Permanent Slides authorization
+
+- Exact authorized base: `230f04374e82e5590b4f5bf9ade1535b0a1f3669`.
+- Selected module: **prac-02 — Permanent Slides**.
+- Exact learner source: `_biology/higher-zoology-tree/practical/02-permanent-slides.bn.md`.
+- Baseline blob: `50825b1a7178d062c437cf10b2a1d8ef8c1780f8`.
+- Canonical route: `/biology/higher-zoology-tree/practical/permanent-slides/`.
+- Course identity: `nu-zoology-practical-213106` / order **2** / previous `prac-01` / next `prac-03`.
+- Authenticated teaching bank: **43 preparations** = 8 whole animals + 6 arthropod mouthparts + 11 parasites + 10 larval forms + 8 histology preparations.
+- Syllabus requirement: **at least 20 slides / ≥20** — preserve exactly.
+- Permanent-slide spotting template: **preserve**.
+- Microscope workflow: **6 steps / preserve**.
+- Modern terminology note: **preserve**.
+- Scientific/taxonomic/curriculum rewrite authority: **NONE**.
+- Authorized learner transformation after this authorization merges: add Academic-v1 metadata, canonical Learning Guide ownership/CTA, and only accessibility/presentation wrappers required by existing Academic-v1/Practical primitives.
+- Course contract, Practical gateway, prac-01 and prac-03–prac-08, shared Practical CSS/JS, navigation, assessment runtime and all unrelated learner surfaces: **PROTECTED / UNCHANGED**.
+- This R4 authorization commit performs **NO learner-facing mutation**.
