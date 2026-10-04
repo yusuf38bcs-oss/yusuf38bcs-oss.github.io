@@ -148,7 +148,7 @@ jobs:
       - name: Certify immutable Cloudflare deployment
         shell: bash
         env:
-          EXACT_URL: ${{ steps.resolve.outputs.pages_exact_url }}
+          EXACT_URL: ${{ steps.resolve.outputs.pages_url }}
         run: |
           set -euo pipefail
           test -n "$EXACT_URL"
