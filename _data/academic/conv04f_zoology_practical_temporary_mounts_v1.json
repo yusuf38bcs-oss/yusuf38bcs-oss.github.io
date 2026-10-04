@@ -1,0 +1,58 @@
+{
+  "schema": "lbfl-conv04f-zoology-practical-temporary-mounts-v1",
+  "version": "CONV-04F-09-R71-1.0.0",
+  "authorized_base": "8edd547bb96c453f86031d6e1a5f3819adf5f1af",
+  "authorization_gate": "CONV-04F-09-R70 / PR #437",
+  "module_id": "prac-05",
+  "module_title": "Temporary Mounts",
+  "source_file": "_biology/higher-zoology-tree/practical/05-temporary-mounts.bn.md",
+  "baseline_blob_sha": "b01e88d0bfe9441e984ac2a10f3a0ee761379850",
+  "route": "/biology/higher-zoology-tree/practical/temporary-mounts/",
+  "course_id": "nu-zoology-practical-213106",
+  "course_contract_blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+  "coverage_ledger_blob_sha": "ab66ddafc1346b65337bc52236d1029a77cf5792",
+  "shared_practical_css_blob_sha": "0962ae71cd1e424e27949b409f5284493f722dd3",
+  "shared_practical_js_blob_sha": "207684413ad7925686334cafc3748861a439f206",
+  "content_census": {
+    "h1": 5,
+    "h2": 14,
+    "h3": 0,
+    "numbered_procedure_steps": 19,
+    "bullet_items": 16,
+    "markdown_tables": 0,
+    "required_mounts": 3,
+    "quality_checks": 7
+  },
+  "required_mounts": [
+    {
+      "id": "earthworm-brain",
+      "procedure_steps": 7
+    },
+    {
+      "id": "cockroach-salivary-gland",
+      "procedure_steps": 6
+    },
+    {
+      "id": "prawn-statocyst",
+      "procedure_steps": 6
+    }
+  ],
+  "preservation": {
+    "scientific_content_rewrite": false,
+    "anatomical_content_rewrite": false,
+    "curriculum_content_rewrite": false,
+    "mounting_protocol_rewrite": false,
+    "safety_rewrite": false,
+    "heading_normalization": false
+  },
+  "mutation": {
+    "learner_source_count": 1,
+    "academic_system": "v1",
+    "academic_role": "practical",
+    "learning_guide": "canonical",
+    "canonical_learning_guide_cta_count": 1,
+    "strict_route_rows_added": 1,
+    "table_wrapper_count": 0,
+    "shared_css_js_changed": false
+  }
+}
