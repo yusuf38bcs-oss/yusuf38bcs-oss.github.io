@@ -1,25 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R70
-mode: authorization-only — prac-05 Temporary Mounts
-authorized_base: 67371df22ad752da70f6c344898a49b863572fb1
-branch: conv-04f-09-r70-prac05-authorization-20261005
-production_verified_main: 67371df22ad752da70f6c344898a49b863572fb1
+phase: CONV-04F-09-R71
+mode: implementation candidate — prac-05 Temporary Mounts
+authorized_base: 8edd547bb96c453f86031d6e1a5f3819adf5f1af
+branch: conv-04f-09-r71-prac05-temporary-mounts-20261005
+production_verified_main: 8edd547bb96c453f86031d6e1a5f3819adf5f1af
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R70 — authorization-only: freeze prac-05 baseline and authorize later isolated R71 structural convergence; no learner mutation
-learner_content_authoring: NO — R70 authorization only; prac-05 learner source remains byte-identical
+mutation_authority: R71 — exactly one prac-05 learner source + one strict route row + dedicated certification/governance artifacts
+learner_content_authoring: YES — exact prac-05 structural convergence only; frozen anatomy/curriculum/mounting/safety corpus preserved
 existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 through prac-04 production parity closed / retained
-gateway_cta_injection: NO — prac-05 CTA injection deferred to isolated R71 implementation
+gateway_cta_injection: YES — exactly one canonical Learning Guide CTA after the first H1 on prac-05
 learner_mutation_allowlist:
+  - _biology/higher-zoology-tree/practical/05-temporary-mounts.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: Worker out of scope; prac-01 through prac-04 Cloudflare Pages production parity PASS / retained
-ready_transition: R70 authorization-only; no learner implementation may start until this exact-head authorization passes CI/review/governance and merges
-merge: R70 merge authorizes only an isolated R71 prac-05 implementation from the resulting exact main; no prac-06 work
+ready_transition: R71 not authorized until exact-head source-preservation + retained contracts + Jekyll/browser/Axe/preview + review/governance PASS
+merge: R71 not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-05 parity required before prac-06
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
@@ -661,3 +662,16 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - R70 is authorization-only: learner source mutation is **NONE**.
 - Existing heading hierarchy (5 H1 / 14 H2 / 0 H3), 19 numbered procedure steps, 16 bullet items, and zero Markdown tables are frozen baseline evidence.
 - R71 may perform only the exact structural convergence authorized in `ZOOLOGY_PRACTICAL_TEMPORARY_MOUNTS_F09_R70_AUTHORIZATION.md` after R70 merges.
+
+
+## CONV-04F-09-R71 prac-05 implementation
+
+- Authorized base: `8edd547bb96c453f86031d6e1a5f3819adf5f1af` (R70 authorization merge).
+- Selected module: **prac-05 — Temporary Mounts**.
+- Learner source baseline: `b01e88d0bfe9441e984ac2a10f3a0ee761379850`.
+- Authorized learner transform: Academic-v1 metadata + role practical + canonical Learning Guide + one CTA after the first existing H1 only.
+- Academic Route Ledger: exactly one strict Temporary Mounts row.
+- Existing source heading hierarchy remains frozen at **5 H1 / 14 H2 / 0 H3**; no heading normalization in R71.
+- Protected corpus: 19 numbered procedure steps, 16 bullet items, 3/3 required temporary mounts, and the exact 7-mark quality checklist.
+- Scientific/anatomical/curriculum/mounting-protocol/safety rewrite: **NONE**.
+- prac-06 remains blocked until R71 exact-main production parity closes.
