@@ -1,0 +1,45 @@
+{
+  "schema": "lbfl-conv04f-zoology-practical-whole-mounts-v1",
+  "version": "CONV-04F-09-R51-1.0.0",
+  "authorized_base": "ee9608a739e33ef01b0f5776c3e8827c7ea8dd12",
+  "authorization_gate": "CONV-04F-09-R50 / PR #433",
+  "module_id": "prac-03",
+  "module_title": "Whole Mounts",
+  "source_file": "_biology/higher-zoology-tree/practical/03-whole-mounts.bn.md",
+  "baseline_blob_sha": "904933f7b29a301f72b7d370582d605364b906e6",
+  "route": "/biology/higher-zoology-tree/practical/whole-mounts/",
+  "course_id": "nu-zoology-practical-213106",
+  "course_contract_blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+  "coverage_ledger_blob_sha": "ab66ddafc1346b65337bc52236d1029a77cf5792",
+  "shared_practical_css_blob_sha": "0962ae71cd1e424e27949b409f5284493f722dd3",
+  "shared_practical_js_blob_sha": "207684413ad7925686334cafc3748861a439f206",
+  "content_census": {
+    "h1": 1,
+    "h2": 6,
+    "h3": 1,
+    "suggested_preparations": 10,
+    "core_workflow_stages": 9,
+    "permanent_logic_steps": 6,
+    "quality_control_checks": 8,
+    "drawing_rules": 5
+  },
+  "preservation": {
+    "scientific_content_rewrite": false,
+    "taxonomic_content_rewrite": false,
+    "curriculum_content_rewrite": false,
+    "chemical_protocol_rewrite": false,
+    "safety_rewrite": false,
+    "departmental_sop_boundary": true,
+    "temporary_mount_guidance": true
+  },
+  "mutation": {
+    "learner_source_count": 1,
+    "academic_system": "v1",
+    "academic_role": "practical",
+    "learning_guide": "canonical",
+    "canonical_learning_guide_cta_count": 1,
+    "table_wrapper_count": 1,
+    "strict_route_rows_added": 1,
+    "shared_css_js_changed": false
+  }
+}

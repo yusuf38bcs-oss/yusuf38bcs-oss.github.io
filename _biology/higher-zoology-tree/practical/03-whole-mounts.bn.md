@@ -21,6 +21,9 @@ page_id: zoology-practical-whole-mounts
 language: bn
 lang: bn
 locale: bn-BD
+academic_system: v1
+academic_role: practical
+learning_guide: canonical
 toc: true
 toc_sticky: true
 classes: wide zoology-practical-page
@@ -40,6 +43,8 @@ time_min: 120
 <script src="{{ '/assets/js/zoology-practical.js' | relative_url }}" defer></script>
 
 # Preparation and Study of Whole Mounts
+
+{% include education/learning-guide-cta.html %}
 
 Whole mount-এর উদ্দেশ্য হলো ছোট specimen/organ-কে section না কেটে সম্পূর্ণ অবস্থায় এমনভাবে mount করা যাতে overall organization দেখা যায়।
 
@@ -67,6 +72,8 @@ Label + observe + draw
 
 ## Suggested Whole-mount Set
 
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Whole Mounts suggested preparations table" markdown="1">
+
 | Preparation | Main labels |
 |---|---|
 | Hydra whole mount | tentacles, hypostome, basal disc, bud |
@@ -79,6 +86,8 @@ Label + observe + draw
 | Cockroach mouthparts | individual parts in correct orientation |
 | Prawn appendage | basal protopod + rami/segments as applicable |
 | Nematode small specimen | anterior/posterior and sex-specific structures |
+
+</div>
 
 ## Temporary Whole Mount
 

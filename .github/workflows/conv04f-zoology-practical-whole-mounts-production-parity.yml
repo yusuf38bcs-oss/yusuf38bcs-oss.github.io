@@ -1,0 +1,179 @@
+name: CONV-04F-09 Whole Mounts Production Parity
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "_biology/higher-zoology-tree/practical/03-whole-mounts.bn.md"
+      - "_data/academic/conv04f_zoology_practical_whole_mounts_v1.json"
+      - "assets/css/zoology-practical.css"
+      - "assets/js/zoology-practical.js"
+      - "assets/css/academic-design-system.css"
+      - "_includes/education/learning-guide-cta.html"
+      - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
+      - "docs/academic/conv04/CONV04_STATE.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_WHOLE_MOUNTS_F09_R51_IMPLEMENTATION.md"
+      - ".github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb"
+      - ".github/scripts/conv04f-zoology-practical-whole-mounts-browser-certification.mjs"
+      - ".github/workflows/conv04f-zoology-practical-whole-mounts-certification.yml"
+      - ".github/workflows/conv04f-zoology-practical-whole-mounts-production-parity.yml"
+  workflow_dispatch:
+    inputs:
+      expected_main_sha:
+        description: "Exact main SHA to deploy and certify"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: conv04f-practical-whole-mounts-production
+  cancel-in-progress: false
+
+jobs:
+  production:
+    name: Exact-main Cloudflare production + Whole Mounts DOM
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      TARGET_SHA: ${{ github.event.inputs.expected_main_sha || github.sha }}
+      PRODUCTION_URL: "https://learningbiologyforlife.org"
+      EVIDENCE_DIR: conv04f09-r51-production-parity
+      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
+      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
+    steps:
+      - name: Check out exact main
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Authenticate exact current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          remote="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$remote" = "$TARGET_SHA" || { echo "MAIN MOVED — ABORT"; exit 1; }
+          test -z "$(git status --porcelain)"
+          retained_base="$(git rev-parse "$TARGET_SHA^")"
+          test -n "$retained_base"
+          echo "PR_BASE_SHA=$retained_base" >> "$GITHUB_ENV"
+          echo "Retained R51 comparison base: $retained_base"
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+      - name: Build exact-main production site
+        shell: bash
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$EVIDENCE_DIR"
+          ruby -c .github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb
+          ruby .github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb
+          ruby scripts/zoology/validate_practical_213106.rb
+          bundle install --jobs 4 --retry 3
+          bundle exec jekyll clean
+          bundle exec jekyll build --trace
+          test -f _site/biology/higher-zoology-tree/practical/whole-mounts/index.html
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Deploy exact SHA to Cloudflare Pages production
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          remote="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$remote" = "$TARGET_SHA" || { echo "MAIN MOVED BEFORE DEPLOY — ABORT"; exit 1; }
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          test -n "$CLOUDFLARE_API_TOKEN"
+          npx --yes wrangler@latest pages deploy _site \
+            --project-name "$CLOUDFLARE_PAGES_PROJECT" \
+            --branch main \
+            --commit-hash "$TARGET_SHA" \
+            --commit-message "LBFL F-09 R51 production parity $TARGET_SHA" \
+            --commit-dirty=false | tee "$EVIDENCE_DIR/wrangler-pages-deploy.log"
+      - name: Resolve exact successful production deployment
+        id: resolve
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 40); do
+            python3 .github/scripts/resolve-cloudflare-targets.py \
+              --repository "$GITHUB_REPOSITORY" \
+              --sha "$TARGET_SHA" \
+              --pages-environment production \
+              --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" \
+              --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" \
+              --wait-seconds 0 \
+              --site-config _data/ai.yml \
+              --output "$EVIDENCE_DIR/cloudflare-production.json" \
+              --github-output "$RUNNER_TEMP/pages.out"
+            if python3 - "$EVIDENCE_DIR/cloudflare-production.json" "$TARGET_SHA" <<'PY'
+          import json,sys
+          e=json.load(open(sys.argv[1],encoding="utf-8"))
+          p=e.get("pages",{})
+          ok=(e.get("target_sha")==sys.argv[2] and p.get("exact_head") is True and
+              p.get("deployed_sha")==sys.argv[2] and p.get("canonical") is True and
+              p.get("branch")=="main" and p.get("environment")=="production" and
+              p.get("status")=="success" and bool(p.get("deployment_id")) and
+              str(p.get("url","")).startswith("https://"))
+          raise SystemExit(0 if ok else 1)
+          PY
+            then
+              cat "$RUNNER_TEMP/pages.out" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 15
+          done
+          cat "$EVIDENCE_DIR/cloudflare-production.json"
+          exit 1
+      - name: Install browser dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check .github/scripts/conv04f-zoology-practical-whole-mounts-browser-certification.mjs
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+      - name: Certify immutable Cloudflare deployment
+        shell: bash
+        env:
+          EXACT_URL: ${{ steps.resolve.outputs.pages_url }}
+        run: |
+          set -euo pipefail
+          test -n "$EXACT_URL"
+          node .github/scripts/conv04f-zoology-practical-whole-mounts-browser-certification.mjs \
+            --base-url "$EXACT_URL" \
+            --output-dir "$EVIDENCE_DIR/immutable"
+      - name: Certify canonical LBFL production
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/scripts/conv04f-zoology-practical-whole-mounts-browser-certification.mjs \
+            --base-url "$PRODUCTION_URL" \
+            --output-dir "$EVIDENCE_DIR/canonical-production"
+      - name: Re-authenticate main
+        shell: bash
+        run: |
+          set -euo pipefail
+          remote="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$remote" = "$TARGET_SHA" || { echo "MAIN MOVED DURING CERTIFICATION"; exit 1; }
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+      - name: Preserve production parity evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conv04f09-r51-production-parity-${{ env.TARGET_SHA }}
+          path: ${{ env.EVIDENCE_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
