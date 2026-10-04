@@ -10,6 +10,7 @@ on:
       - ".github/workflows/conv04f-zoology-practical-museum-production-parity.yml"
       - "docs/academic/conv04/CONV04_STATE.md"
       - "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R1_PRODUCTION_PARITY.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R2_YAML_REPAIR.md"
   push:
     branches: ["main"]
     paths:
