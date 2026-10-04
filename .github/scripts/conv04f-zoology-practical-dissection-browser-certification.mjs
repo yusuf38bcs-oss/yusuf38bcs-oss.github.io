@@ -44,7 +44,7 @@ async function run(name,width,height,opts={}){
   page.on("pageerror",e=>pageErrors.push(String(e)));
   page.on("response",r=>{
     const u=new URL(r.url());
-    if(["127.0.0.1","localhost"].includes(u.hostname)&&r.status()>=400){
+    if(allowedHosts.has(u.hostname)&&r.status()>=400){
       localHttpErrors.push({status:r.status(),url:r.url()});
     }
   });
