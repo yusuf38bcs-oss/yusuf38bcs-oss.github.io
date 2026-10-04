@@ -1,0 +1,60 @@
+/* CONV-04F-09 — Museum Specimens route-owned Academic-v1 presentation.
+   Scope: /biology/higher-zoology-tree/practical/museum-specimens/ only.
+   Shared Practical and Academic-v1 stylesheets remain unchanged. */
+
+html.lbfl-academic-v1 article.zoology-practical-page[data-lbfl-academic-role="practical"] .page__content table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+html.lbfl-academic-v1 article.zoology-practical-page[data-lbfl-academic-role="practical"] .page__content table th {
+  background: #e2e8f0;
+  color: #172033;
+}
+
+html.lbfl-academic-v1 article.zoology-practical-page[data-lbfl-academic-role="practical"] .page__content table td {
+  color: #17353a;
+  background: #ffffff;
+}
+
+html.lbfl-academic-v1 article.zoology-practical-page[data-lbfl-academic-role="practical"] .page__content .zoology-practical-table-scroll > table {
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+}
+
+.museum-verified-figure[data-specimen="sycon"] .museum-verified-image { --museum-x: 0%; --museum-y: 0%; }
+.museum-verified-figure[data-specimen="adamsia"] .museum-verified-image { --museum-x: 50%; --museum-y: 0%; }
+.museum-verified-figure[data-specimen="tubifex"] .museum-verified-image { --museum-x: 100%; --museum-y: 0%; }
+.museum-verified-figure[data-specimen="lumbricus"] .museum-verified-image { --museum-x: 0%; --museum-y: 25%; }
+.museum-verified-figure[data-specimen="ancylostoma"] .museum-verified-image { --museum-x: 50%; --museum-y: 25%; }
+.museum-verified-figure[data-specimen="enterobius"] .museum-verified-image { --museum-x: 100%; --museum-y: 25%; }
+.museum-verified-figure[data-specimen="wuchereria"] .museum-verified-image { --museum-x: 0%; --museum-y: 50%; }
+.museum-verified-figure[data-specimen="hirudo"] .museum-verified-image { --museum-x: 50%; --museum-y: 50%; }
+.museum-verified-figure[data-specimen="fasciola"] .museum-verified-image { --museum-x: 100%; --museum-y: 50%; }
+.museum-verified-figure[data-specimen="schistosoma"] .museum-verified-image { --museum-x: 0%; --museum-y: 75%; }
+.museum-verified-figure[data-specimen="pila"] .museum-verified-image { --museum-x: 50%; --museum-y: 75%; }
+.museum-verified-figure[data-specimen="octopus"] .museum-verified-image { --museum-x: 100%; --museum-y: 75%; }
+.museum-verified-figure[data-specimen="centipedes"] .museum-verified-image { --museum-x: 0%; --museum-y: 100%; }
+.museum-verified-figure[data-specimen="echinus"] .museum-verified-image { --museum-x: 50%; --museum-y: 100%; }
+.museum-verified-figure[data-specimen="holothuria"] .museum-verified-image { --museum-x: 100%; --museum-y: 100%; }
+
+@media (max-width: 30rem) {
+  html.lbfl-academic-v1 article.zoology-practical-page[data-lbfl-academic-role="practical"] .page__content table {
+    font-size: 0.94rem;
+  }
+
+  html.lbfl-academic-v1 article.zoology-practical-page[data-lbfl-academic-role="practical"] .page__content table th,
+  html.lbfl-academic-v1 article.zoology-practical-page[data-lbfl-academic-role="practical"] .page__content table td {
+    padding: 0.6rem;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.lbfl-academic-v1 article.zoology-practical-page[data-lbfl-academic-role="practical"] .museum-verified-image {
+    animation: none;
+    transition: none;
+  }
+}

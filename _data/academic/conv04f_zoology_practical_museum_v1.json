@@ -1,0 +1,81 @@
+{
+  "schema": "lbfl-conv04f-zoology-practical-museum-v1",
+  "version": "CONV-04F-09-1.0.0",
+  "phase": "CONV-04F-09",
+  "authorized_base": "f04ac472ee261fa19dc17de6052bde02b75e99c4",
+  "module_id": "prac-01",
+  "canonical_route": "/biology/higher-zoology-tree/practical/museum-specimens/",
+  "source_file": "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md",
+  "baseline_blob_sha": "26e1711cf9c6bace8ddd8419797c38511987420c",
+  "preservation": {
+    "scientific_content_rewrite": false,
+    "curriculum_content_rewrite": false,
+    "printed_entries": 49,
+    "unique_labels": 48,
+    "covered_unique_labels": 48,
+    "coverage": "48/48",
+    "duplicate_printed_label": "Echinus",
+    "verified_images": 15,
+    "pending_images": 33,
+    "coverage_blob_sha": "ab66ddafc1346b65337bc52236d1029a77cf5792",
+    "figure_manifest_blob_sha": "9529da79d51bfff15c56128bfcf56a88a6735869",
+    "course_contract_blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+    "shared_practical_css_blob_sha": "0962ae71cd1e424e27949b409f5284493f722dd3",
+    "shared_practical_js_blob_sha": "207684413ad7925686334cafc3748861a439f206"
+  },
+  "additions": {
+    "academic_system": "v1",
+    "academic_role": "practical",
+    "learning_guide": "canonical",
+    "canonical_learning_guide_cta": 1,
+    "route_owned_stylesheet": "/assets/css/zoology-practical-museum-f09.css",
+    "inline_sprite_style_attributes_removed": 15,
+    "sprite_coordinates_moved_to_route_css": true
+  },
+  "protected_modules": [
+    [
+      "prac-02",
+      "_biology/higher-zoology-tree/practical/02-permanent-slides.bn.md",
+      "50825b1a7178d062c437cf10b2a1d8ef8c1780f8"
+    ],
+    [
+      "prac-03",
+      "_biology/higher-zoology-tree/practical/03-whole-mounts.bn.md",
+      "904933f7b29a301f72b7d370582d605364b906e6"
+    ],
+    [
+      "prac-04",
+      "_biology/higher-zoology-tree/practical/04-dissection.bn.md",
+      "0bca70d74c04305fd2399f54fbb5c650f0b158c3"
+    ],
+    [
+      "prac-05",
+      "_biology/higher-zoology-tree/practical/05-temporary-mounts.bn.md",
+      "b01e88d0bfe9441e984ac2a10f3a0ee761379850"
+    ],
+    [
+      "prac-06",
+      "_biology/higher-zoology-tree/practical/06-appendages.bn.md",
+      "36e36c4dd8cfffb99f1669033b4a21bc0e45d939"
+    ],
+    [
+      "prac-07",
+      "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md",
+      "c120863ca31d85a33f1476b3f5bab59d571950cf"
+    ],
+    [
+      "prac-08",
+      "_biology/higher-zoology-tree/practical/08-field-report.bn.md",
+      "6398c601c3a1b3cd891e8ea945d704d5d94b9711"
+    ]
+  ],
+  "nomenclature_flags": [
+    "Metaphere spelling/identity requires departmental specimen-label verification",
+    "Pheretima retained separately because syllabus lists it separately",
+    "Traditional Diphyllobothrium latum mapped to modern Dibothriocephalus latus",
+    "Hymenolepis nana retains syllabus/CDC usage; NCBI current name Rodentolepis nana",
+    "Convoluta modern placement Xenacoelomorpha/Acoela differs from traditional Platyhelminthes",
+    "Sipunculus traditional phylum framing differs from modern annelid phylogeny",
+    "Eupagurus is a traditional genus label with many species moved to Pagurus/other genera"
+  ]
+}
