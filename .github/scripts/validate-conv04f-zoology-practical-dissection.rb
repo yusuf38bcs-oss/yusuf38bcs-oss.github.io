@@ -139,8 +139,9 @@ comparison_base = ENV["PR_BASE_SHA"].to_s.strip
 comparison_base = BASE if comparison_base.empty?
 state_text = PATHS[:state].file? ? read_utf8(PATHS[:state]) : ""
 phase = top_level_scalar(state_text, "phase")
-bootstrap = comparison_base == BASE && phase == PHASE
+bootstrap = comparison_base == BASE
 future = comparison_base != BASE
+need(errors, phase == PHASE, "R61 bootstrap phase must be exactly #{PHASE}") if bootstrap
 current_order = phase_order(phase)
 r61_order = phase_order(PHASE)
 maintenance = future && current_order && r61_order &&
@@ -255,24 +256,41 @@ end
 
 if PATHS[:ledger].file?
   ledger = JSON.parse(read_utf8(PATHS[:ledger]))
-  rows = Array(ledger["routes"]).select { |r| r["id"] == "higher-zoology-practical-dissection" }
+  expected_row = {
+    "id" => "higher-zoology-practical-dissection",
+    "canonical_route" => "/biology/higher-zoology-tree/practical/dissection/",
+    "source_file" => SOURCE_REL,
+    "support_files" => [COVERAGE_REL],
+    "academic_role" => "practical",
+    "language" => "bn",
+    "boundary_owner" => "layout",
+    "learning_guide_owner" => "canonical",
+    "assessment_owner" => "mcq-arena",
+    "enforcement" => "strict",
+    "source_debt" => [],
+    "live_debt" => []
+  }
+  rows = Array(ledger["routes"]).select { |r| r["id"] == expected_row["id"] }
   need(errors, rows.length == 1, "R61 Dissection route ledger row count must be 1")
-  if rows.length == 1
-    row = rows.first
-    expected = {
-      "canonical_route" => "/biology/higher-zoology-tree/practical/dissection/",
-      "source_file" => SOURCE_REL,
-      "support_files" => [COVERAGE_REL],
-      "academic_role" => "practical",
-      "language" => "bn",
-      "boundary_owner" => "layout",
-      "learning_guide_owner" => "canonical",
-      "assessment_owner" => "mcq-arena",
-      "enforcement" => "strict",
-      "source_debt" => [],
-      "live_debt" => []
-    }
-    expected.each { |k,v| need(errors, row[k] == v, "R61 ledger mismatch for #{k}") }
+  expected_row.each { |k,v| need(errors, rows.first && rows.first[k] == v, "R61 ledger mismatch for #{k}") }
+
+  if bootstrap
+    base_ledger_text, _, ledger_status = git("show", "#{BASE}:#{LEDGER_REL}")
+    if ledger_status.success?
+      base_ledger = JSON.parse(base_ledger_text)
+      expected_ledger = JSON.parse(JSON.generate(base_ledger))
+      routes = Array(expected_ledger["routes"])
+      anchor = routes.index { |r| r["id"] == "higher-zoology-practical-whole-mounts" }
+      if anchor
+        routes.insert(anchor + 1, expected_row)
+        need(errors, ledger == expected_ledger,
+             "R61 ledger must equal the authenticated base plus exactly one Dissection row")
+      else
+        errors << "R61 base ledger missing Whole Mounts insertion anchor"
+      end
+    else
+      errors << "Unable to authenticate R61 base route ledger"
+    end
   end
 end
 
