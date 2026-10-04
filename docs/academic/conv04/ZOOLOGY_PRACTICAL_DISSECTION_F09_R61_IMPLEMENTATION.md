@@ -100,3 +100,16 @@ authorize prac-05 only after PASS
 Initial R61 head `786347219621f5403c8d03b43a6074bc3a9b9d3e` passed source preservation, retained academic contracts, Jekyll, preview deployment, Axe, keyboard focus, content census, and overflow checks. The dedicated browser harness failed because it compared the rendered H2 count directly with the **22 source H2** baseline. The canonical Learning Guide CTA renders one additional `How to Learn with LBFL` H2, so the correct rendered count is **23**, while the learner source remains exactly **22 H2** and byte-identical to the authorized transform.
 
 Remediation changes only the browser certification assertion to require 23 rendered H2 headings **and** the canonical Learning Guide heading. No learner source, scientific/anatomical content, heading hierarchy, route ownership, CSS/JS, or runtime behavior is changed.
+
+
+## Codex review remediation
+
+Five review findings on the original R61 review commit were authenticated. The current candidate incorporates the following certification/governance-only remediations:
+
+1. **Bootstrap phase fail-closed:** every comparison directly against the authenticated R60 base is treated as R61 bootstrap validation, and any top-level phase other than exactly `CONV-04F-09-R61` is rejected.
+2. **Rendered H2 census:** source custody remains exactly 22 H2 headings; browser certification requires 23 rendered H2 headings because the canonical Learning Guide CTA contributes exactly one `How to Learn with LBFL` H2.
+3. **Complete route-ledger proof:** on the R61 bootstrap base, the full Academic Route Ledger must equal the authenticated base ledger plus exactly one Dissection row inserted after Whole Mounts; unrelated route mutations cannot pass.
+4. **Production-host HTTP integrity:** browser certification records >=400 responses from the configured base hostname as well as localhost, so broken same-origin production assets fail parity.
+5. **Cloudflare credential boundary:** the secret-bearing Dissection production-parity workflow is no longer manually dispatchable. It is triggered only by a push to `main`; retries use GitHub's workflow rerun mechanism rather than executing a branch-selected workflow definition.
+
+These remediations do not alter the Dissection learner source, its 6/22/29 source heading hierarchy, anatomy/curriculum/dissection corpus, route identity, shared CSS/JS, or assessment/runtime ownership.
