@@ -53,6 +53,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
       - name: Authenticate exact head, live base, and R40 scope
         shell: bash
         run: |
@@ -65,12 +71,6 @@ jobs:
           ruby -c .github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb
           ruby .github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb
           git diff --check "$PR_BASE_SHA...HEAD"
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
-        with:
-          ruby-version: "3.2"
-          bundler-cache: false
 
       - name: Build exact-head Jekyll preview artifact
         shell: bash
