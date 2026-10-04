@@ -1,0 +1,44 @@
+{
+  "schema": "lbfl-conv04f-zoology-practical-permanent-slides-v1",
+  "version": "CONV-04F-09-R40-1.0.0",
+  "authorized_base": "5af320549210f44cd3eacec919766ef86665214b",
+  "module_id": "prac-02",
+  "module_title": "Permanent Slides",
+  "source_file": "_biology/higher-zoology-tree/practical/02-permanent-slides.bn.md",
+  "baseline_blob_sha": "50825b1a7178d062c437cf10b2a1d8ef8c1780f8",
+  "route": "/biology/higher-zoology-tree/practical/permanent-slides/",
+  "course_id": "nu-zoology-practical-213106",
+  "course_contract_blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+  "coverage_ledger_blob_sha": "ab66ddafc1346b65337bc52236d1029a77cf5792",
+  "shared_practical_css_blob_sha": "0962ae71cd1e424e27949b409f5284493f722dd3",
+  "shared_practical_js_blob_sha": "207684413ad7925686334cafc3748861a439f206",
+  "content_census": {
+    "whole_animals": 8,
+    "arthropod_mouthparts": 6,
+    "parasites": 11,
+    "larval_forms": 10,
+    "histological_preparations": 8,
+    "teaching_bank_total": 43,
+    "syllabus_minimum": 20,
+    "microscope_workflow_steps": 6
+  },
+  "preservation": {
+    "scientific_content_rewrite": false,
+    "taxonomic_content_rewrite": false,
+    "curriculum_content_rewrite": false,
+    "syllabus_rule": "at least 20 slides / >=20; no fixed canonical 30",
+    "terminology_note": true,
+    "mouthpart_answer_rule": true,
+    "spotting_template": true,
+    "microscope_workflow": true
+  },
+  "mutation": {
+    "learner_source_count": 1,
+    "academic_system": "v1",
+    "academic_role": "practical",
+    "learning_guide": "canonical",
+    "canonical_learning_guide_cta_count": 1,
+    "route_specific_css": false,
+    "shared_css_js_changed": false
+  }
+}

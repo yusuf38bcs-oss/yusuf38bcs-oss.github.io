@@ -460,6 +460,22 @@
       "enforcement": "strict",
       "source_debt": [],
       "live_debt": []
+    },
+    {
+      "id": "higher-zoology-practical-permanent-slides",
+      "canonical_route": "/biology/higher-zoology-tree/practical/permanent-slides/",
+      "source_file": "_biology/higher-zoology-tree/practical/02-permanent-slides.bn.md",
+      "support_files": [
+        "_data/zoology-practical-213106-coverage.json"
+      ],
+      "academic_role": "practical",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     }
   ]
 }

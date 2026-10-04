@@ -21,6 +21,9 @@ page_id: zoology-practical-permanent-slides
 language: bn
 lang: bn
 locale: bn-BD
+academic_system: v1
+academic_role: practical
+learning_guide: canonical
 toc: true
 toc_sticky: true
 classes: wide zoology-practical-page
@@ -41,9 +44,13 @@ time_min: 150
 
 # Study of Permanent Slides
 
+{% include education/learning-guide-cta.html %}
+
 NU syllabus অনুযায়ী **at least 20 slides** study করতে হবে। নিচে **43-preparation reference bank** দেওয়া হলো; departmental availability ও course requirement অনুযায়ী এখান থেকে ≥20 preparation নির্বাচন করা যাবে।
 
 ## A. Whole Animals — Protozoans, Rotifers & Arthropods
+
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Permanent Slides whole animals reference table" markdown="1">
 
 | Slide | What to identify | Diagnostic cues |
 |---|---|---|
@@ -56,9 +63,13 @@ NU syllabus অনুযায়ী **at least 20 slides** study করতে হ�
 | *Cyclops* | whole mount | unpaired median eye, long antennules, narrow abdomen, paired egg sacs in female |
 | *Moina* | whole mount | cladoceran body, large antennae, brood chamber |
 
+</div>
+
 > **Modern terminology note:** syllabus-এর “protozoans” traditional teaching term; modern taxonomy-তে Amoeba, Paramecium ও Euglena Animalia-এর অংশ নয়।
 
 ## B. Mouth Parts of Arthropods
+
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Permanent Slides arthropod mouthparts table" markdown="1">
 
 | Slide | Type | Key structures |
 |---|---|---|
@@ -69,10 +80,14 @@ NU syllabus অনুযায়ী **at least 20 slides** study করতে হ�
 | Butterfly/moth | siphoning | coiled proboscis formed chiefly by maxillary galeae |
 | Honeybee | chewing-lapping | mandibles + elongated labium/maxillae |
 
+</div>
+
 ### Slide-answer rule
 Mouthpart slide-এ “type” বলাই যথেষ্ট নয়; **which parts are modified and what function they perform**—এটিও লিখবে।
 
 ## C. Parasites — Nematodes & Platyhelminths
+
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Permanent Slides parasite reference table" markdown="1">
 
 | Slide | Stage / cue | Identification clue |
 |---|---|---|
@@ -88,7 +103,11 @@ Mouthpart slide-এ “type” বলাই যথেষ্ট নয়; **which p
 | *Hymenolepis nana* | scolex/egg | 4 suckers, hooked rostellum; polar filaments |
 | broad fish tapeworm | proglottid/scolex | bothria; broad proglottids; rosette uterus |
 
+</div>
+
 ## D. Larval Forms of Invertebrates
+
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Permanent Slides larval forms table" markdown="1">
 
 | Larva | Adult group | Diagnostic cues |
 |---|---|---|
@@ -102,6 +121,8 @@ Mouthpart slide-এ “type” বলাই যথেষ্ট নয়; **which p
 | Bipinnaria | Asteroidea | bilateral larva with ciliated arms |
 | Ophiopluteus | Ophiuroidea | long skeletal arms |
 | Echinopluteus | Echinoidea | bilateral pluteus with skeletal rods |
+
+</div>
 
 ## E. Histological Slides of Invertebrates
 
