@@ -21,6 +21,9 @@ page_id: zoology-practical-dissection
 language: bn
 lang: bn
 locale: bn-BD
+academic_system: v1
+academic_role: practical
+learning_guide: canonical
 toc: true
 toc_sticky: true
 classes: wide zoology-practical-page
@@ -40,6 +43,8 @@ time_min: 300
 <script src="{{ '/assets/js/zoology-practical.js' | relative_url }}" defer></script>
 
 # External Morphology and Dissection
+
+{% include education/learning-guide-cta.html %}
 
 ## Syllabus Map
 
