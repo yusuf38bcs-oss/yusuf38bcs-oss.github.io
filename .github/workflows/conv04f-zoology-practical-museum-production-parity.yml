@@ -60,7 +60,7 @@ jobs:
             fi
             echo "PR_BASE_SHA=$(git rev-parse HEAD^1)" >> "$GITHUB_ENV"
           fi
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
         with:
           ruby-version: "3.2"
           bundler-cache: false
@@ -115,7 +115,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "$TARGET_SHA"
           git fetch --no-tags --depth=1 origin main
           test "$(git rev-parse origin/main)" = "$TARGET_SHA"
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
         with:
           ruby-version: "3.2"
           bundler-cache: false
