@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require "json"
+require "digest"
 require "open3"
 require "pathname"
 
@@ -26,10 +27,12 @@ PROD_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-zooplankton-pro
 GUARD_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-zooplankton-successor-guard.yml"
 VALIDATOR_REL = ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
 RESOLVER_REL = ".github/scripts/resolve-cloudflare-targets.py"
+WRANGLER_LOCK_REL = ".github/locks/wrangler-4.147.0-package-lock.json"
+WRANGLER_LOCK_SHA256 = "21a1dca894fa29b2d9f1631744207a8e96cf7b6015b067647481e2ed41eb33d6"
 CTA = "{% include education/learning-guide-cta.html %}"
 
 CHANGED_FILES = [
-  BROWSER_REL, VALIDATOR_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, GUARD_WORKFLOW_REL,
+  BROWSER_REL, VALIDATOR_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, GUARD_WORKFLOW_REL, WRANGLER_LOCK_REL,
   SOURCE_REL, MANIFEST_REL, LEDGER_REL, STATE_REL, IMPL_REL
 ].sort.freeze
 
@@ -172,10 +175,13 @@ BASE_BLOBS.each do |rel, expected|
 end
 
 [ SOURCE_REL, MANIFEST_REL, LEDGER_REL, STATE_REL, AUTH_REL, IMPL_REL,
-  COURSE_REL, COVERAGE_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, GUARD_WORKFLOW_REL, VALIDATOR_REL, RESOLVER_REL
+  COURSE_REL, COVERAGE_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, GUARD_WORKFLOW_REL, VALIDATOR_REL, RESOLVER_REL, WRANGLER_LOCK_REL
 ].each do |rel|
   need(errors, File.file?(ROOT.join(rel)), "Missing R91 artifact: #{rel}")
 end
+
+need(errors, Digest::SHA256.file(ROOT.join(WRANGLER_LOCK_REL)).hexdigest == WRANGLER_LOCK_SHA256,
+     "R91 reviewed Wrangler dependency lock hash mismatch")
 
 baseline = git_text("show", "#{BASE}:#{SOURCE_REL}")
 candidate = read_utf8(SOURCE_REL)
@@ -294,7 +300,7 @@ if bootstrap
        top_scalar(state_text, "next_module_gate") == "prac-08 BLOCKED — requires R91 exact-main immutable + canonical production parity PASS",
        "R91 top-level next-module gate must keep prac-08 blocked until exact-main production parity")
 elsif future
-  protected_artifacts = [VALIDATOR_REL, MANIFEST_REL, AUTH_REL, IMPL_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, GUARD_WORKFLOW_REL, RESOLVER_REL]
+  protected_artifacts = [VALIDATOR_REL, MANIFEST_REL, AUTH_REL, IMPL_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, GUARD_WORKFLOW_REL, RESOLVER_REL, WRANGLER_LOCK_REL]
   touched = changed & protected_artifacts
   need(errors, touched.empty?, "Successor changed protected R91 enforcement artifacts: #{touched.join(', ')}")
 end
@@ -308,6 +314,7 @@ need(errors, guard.include?("pull_request_target:"), "R91 trusted successor guar
 guard_target = guard[/pull_request_target:\n(.*?)(?=\npermissions:)/m, 1].to_s
 need(errors, !guard_target.include?("paths:"), "R91 trusted successor guard must be unfiltered by paths")
 need(errors, guard.include?('".github/scripts/resolve-cloudflare-targets.py"'), "R91 trusted guard must protect resolver")
+need(errors, guard.include?('".github/locks/wrangler-4.147.0-package-lock.json"'), "R91 trusted guard must protect Wrangler dependency lock")
 need(errors, guard.include?('".github/workflows/conv04f-zoology-practical-zooplankton-successor-guard.yml"'), "R91 trusted guard must protect itself")
 need(errors, !guard.include?("actions/checkout"), "R91 trusted guard must not check out candidate code")
 need(errors, !guard.include?("download-artifact"), "R91 trusted guard must not consume candidate artifacts")
@@ -322,7 +329,10 @@ need(errors, prod.include?('PUSH_BEFORE: ${{ github.event.before }}'), "R91 prod
 need(errors, prod.include?('PR_BASE_SHA=$PUSH_BEFORE'), "R91 validator comparison base must use push.before")
 need(errors, prod.include?("build_site:"), "R91 unprivileged build job missing")
 need(errors, prod.include?("needs: build_site"), "R91 credentialed production job must depend on isolated build artifact")
-need(errors, prod.include?("wrangler@4.147.0"), "R91 production parity must pin Wrangler 4.147.0")
+need(errors, prod.include?('"wrangler":"4.147.0"'), "R91 production parity must pin Wrangler 4.147.0")
+need(errors, prod.include?("npm ci --ignore-scripts --registry=https://registry.npmjs.org/"), "R91 Wrangler install must use frozen npm ci")
+need(errors, prod.include?(WRANGLER_LOCK_SHA256), "R91 production parity must authenticate reviewed Wrangler lock hash")
+need(errors, prod.include?(WRANGLER_LOCK_REL), "R91 production parity must consume reviewed Wrangler lock")
 need(errors, prod.include?("--registry=https://registry.npmjs.org/"), "R91 npm registry must be explicit")
 need(errors, prod.include?("NPM_CONFIG_USERCONFIG=$user_npmrc"), "R91 isolated npm user config missing")
 need(errors, prod.include?("NPM_CONFIG_GLOBALCONFIG=$global_npmrc"), "R91 isolated npm global config missing")
