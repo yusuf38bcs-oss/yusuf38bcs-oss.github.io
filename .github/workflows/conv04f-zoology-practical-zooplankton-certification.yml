@@ -12,6 +12,7 @@ on:
       - "assets/css/zoology-practical.css"
       - "assets/js/zoology-practical.js"
       - "assets/css/academic-design-system.css"
+      - "_includes/education/learning-guide-cta.html"
       - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
       - "docs/academic/conv04/CONV04_STATE.md"
       - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md"
