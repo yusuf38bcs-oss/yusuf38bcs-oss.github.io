@@ -1,26 +1,25 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R81
-mode: implementation candidate — prac-06 Appendages
-authorized_base: bbe90f4454ac25982f60b531f47e887ebe51c096
-branch: conv-04f-09-r81-prac06-appendages-20261005
-production_verified_main: bbe90f4454ac25982f60b531f47e887ebe51c096
+phase: CONV-04F-09-R90
+mode: authorization-only — prac-07 Zooplankton
+authorized_base: e6b5a203c36b6d59b06d943430217d866dee623e
+branch: conv-04f-09-r90-prac07-authorization-20261005
+production_verified_main: e6b5a203c36b6d59b06d943430217d866dee623e
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R81 — exactly one prac-06 learner source + one strict route row + dedicated certification/governance artifacts
-learner_content_authoring: YES — exact prac-06 structural convergence only; frozen anatomy/taxonomy/curriculum/function corpus preserved
-existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 through prac-05 production parity closed / retained
-gateway_cta_injection: YES — exactly one canonical Learning Guide CTA after the existing H1 on prac-06
+mutation_authority: R90 — authorization-only: freeze prac-07 baseline and authorize later isolated R91 structural convergence; no learner mutation
+learner_content_authoring: NO — R90 authorization only; prac-07 learner source remains byte-identical
+existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 through prac-06 production parity closed / retained
+gateway_cta_injection: NO — prac-07 CTA injection deferred to isolated R91 implementation
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/practical/06-appendages.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: Worker out of scope; prac-01 through prac-05 Cloudflare Pages production parity PASS / retained
-ready_transition: R81 not authorized until exact-head source-preservation + retained contracts + Jekyll/browser/Axe/preview + review/governance PASS
-merge: R81 not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-06 parity required before prac-07
+worker_cloudflare: Worker out of scope; prac-01 through prac-06 Cloudflare Pages production parity PASS / retained
+ready_transition: R90 authorization-only; no learner implementation may start until this exact-head authorization passes CI/review/governance and merges
+merge: R90 merge authorizes only an isolated R91 prac-07 implementation from the resulting exact main; no prac-08 work
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
@@ -700,3 +699,17 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Protected corpus: 2 Markdown tables / 19 table lines, 5 cockroach mouth-part rows, 10 prawn appendage rows, 5 syllabus functional groups, 6 placement rules, and 5 self-check bullets.
 - Scientific/anatomical/taxonomic/curriculum/function rewrite: **NONE**.
 - prac-07 remains blocked until R81 exact-main production parity closes.
+
+
+## CONV-04F-09-R90 prac-07 authorization
+
+- Authorized base: `e6b5a203c36b6d59b06d943430217d866dee623e`.
+- prac-06 Appendages production closure: **PASS** — exact-main Cloudflare deployment, pinned Wrangler 4.147.0, exact production resolution, immutable browser certification, canonical production certification, and final main re-authentication all passed in workflow run `37255912963`.
+- Same-main GitHub Pages, Sovereign Site Audit v4, CodeQL, Museum/Permanent Slides/Whole Mounts/Dissection/Temporary Mounts production parity: **PASS**.
+- Selected next module: **prac-07 — Zooplankton**.
+- Baseline source blob: `c120863ca31d85a33f1476b3f5bab59d571950cf`.
+- Coverage custody: **complete — 3 water bodies + counting + Simpson + Shannon + 20-mark report**.
+- R90 is authorization-only: learner source mutation is **NONE**.
+- Existing source hierarchy **1 H1 / 13 H2 / 3 H3**, 3 Markdown tables / 33 table lines, 6 sampling steps, 7 minimum-design bullets, 6 results-presentation bullets, 5 discussion questions, formulas and 20-mark report structure are frozen baseline evidence.
+- R91 may perform only the exact structural convergence authorized in `ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md` after R90 merges.
+- prac-08 remains blocked.
