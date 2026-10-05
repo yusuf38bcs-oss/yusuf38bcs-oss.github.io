@@ -3,22 +3,6 @@ name: CONV-04F-09 Zooplankton Production Parity
 on:
   push:
     branches: ["main"]
-    paths:
-      - "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md"
-      - "_data/academic/conv04f_zoology_practical_zooplankton_v1.json"
-      - "assets/css/zoology-practical.css"
-      - "assets/js/zoology-practical.js"
-      - "assets/css/academic-design-system.css"
-      - "_includes/education/learning-guide-cta.html"
-      - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
-      - "docs/academic/conv04/CONV04_STATE.md"
-      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md"
-      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md"
-      - ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
-      - ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
-      - ".github/scripts/resolve-cloudflare-targets.py"
-      - ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
-      - ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
 permissions:
   contents: read
 
