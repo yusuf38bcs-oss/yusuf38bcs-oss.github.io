@@ -1,0 +1,50 @@
+{
+  "schema": "lbfl-conv04f-zoology-practical-zooplankton-v1",
+  "version": "CONV-04F-09-R91-1.0.0",
+  "authorized_base": "61348e5b9387bdcc565106a9813135cbcc9bcdcc",
+  "authorization_gate": "CONV-04F-09-R90 / PR #441",
+  "module_id": "prac-07",
+  "module_title": "Zooplankton",
+  "source_file": "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md",
+  "baseline_blob_sha": "c120863ca31d85a33f1476b3f5bab59d571950cf",
+  "route": "/biology/higher-zoology-tree/practical/zooplankton/",
+  "course_id": "nu-zoology-practical-213106",
+  "course_contract_blob_sha": "a02365ea6743c44a1eddaf84ad05f66d670ade6b",
+  "coverage_ledger_blob_sha": "ab66ddafc1346b65337bc52236d1029a77cf5792",
+  "shared_practical_css_blob_sha": "0962ae71cd1e424e27949b409f5284493f722dd3",
+  "shared_practical_js_blob_sha": "207684413ad7925686334cafc3748861a439f206",
+  "content_census": {
+    "h1": 1,
+    "h2": 13,
+    "h3": 3,
+    "markdown_tables": 3,
+    "markdown_table_lines": 33,
+    "numbered_items": 11,
+    "bullet_items": 13,
+    "suggested_metadata_rows": 11,
+    "example_data_rows": 6,
+    "report_rows_including_total": 10,
+    "sampling_steps": 6,
+    "discussion_questions": 5
+  },
+  "preservation": {
+    "scientific_content_rewrite": false,
+    "statistical_content_rewrite": false,
+    "ecological_content_rewrite": false,
+    "sampling_method_rewrite": false,
+    "equipment_protocol_rewrite": false,
+    "curriculum_content_rewrite": false,
+    "heading_normalization": false,
+    "new_stylesheet_or_script_import": false
+  },
+  "mutation": {
+    "learner_source_count": 1,
+    "academic_system": "v1",
+    "academic_role": "practical",
+    "learning_guide": "canonical",
+    "canonical_learning_guide_cta_count": 1,
+    "strict_route_rows_added": 1,
+    "table_wrapper_count": 3,
+    "shared_css_js_changed": false
+  }
+}
