@@ -78,6 +78,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24"
+      - name: Install reviewed Wrangler
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --ignore-scripts wrangler@4.147.0
+          npx --no-install wrangler --version | grep -F "4.147.0"
       - name: Deploy exact SHA to Cloudflare Pages production
         shell: bash
         env:
@@ -88,7 +94,7 @@ jobs:
           test "$remote" = "$TARGET_SHA" || { echo "MAIN MOVED BEFORE DEPLOY — ABORT"; exit 1; }
           test "$(git rev-parse HEAD)" = "$TARGET_SHA"
           test -n "$CLOUDFLARE_API_TOKEN"
-          npx --yes wrangler@latest pages deploy _site \
+          npx --no-install wrangler pages deploy _site \
             --project-name "$CLOUDFLARE_PAGES_PROJECT" \
             --branch main \
             --commit-hash "$TARGET_SHA" \
