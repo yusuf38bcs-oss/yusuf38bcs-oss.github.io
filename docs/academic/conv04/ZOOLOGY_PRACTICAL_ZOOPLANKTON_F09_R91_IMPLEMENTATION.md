@@ -41,7 +41,7 @@ Exact-source reconstruction + complete-ledger proof → retained contracts → J
 
 ## Latest Codex production-security remediation
 
-The five P1 findings on exact head `09cd1dede1bff86a77ec327cd6a6bf95b0e94a48` were authenticated and remediated without learner/content or changed-file-scope expansion:
+The five P1 findings on exact head `09cd1dede1bff86a77ec327cd6a6bf95b0e94a48` were authenticated and remediated without learner/content expansion:
 
 1. **Trusted guard trigger completeness** — `pull_request_target` is now unfiltered by `paths`, so the predecessor-loaded guard cannot be skipped by GitHub's >3,000-file diff path-filter cutoff.
 2. **Resolver immutability** — `.github/scripts/resolve-cloudflare-targets.py` is now in both the trusted successor protected-path set and the retained R91 validator's immutable base set.
@@ -59,4 +59,15 @@ A subsequent CodeQL artifact-poisoning alert was authenticated. The trusted succ
 - `conv04f-zoology-practical-zooplankton-certification.yml` owns the unfiltered `pull_request_target` predecessor guard only; candidate build/certification jobs are explicitly excluded from `pull_request_target`.
 - `conv04f-zoology-practical-zooplankton-production-parity.yml` is push-only and contains the unprivileged build artifact plus fresh credentialed deploy/certify job.
 - No `pull_request_target` workflow downloads or consumes candidate-controlled artifacts.
-- The exact changed-file scope remains nine R91 files.
+- The original nine-file implementation scope is retained, plus exactly one security-only workflow: `.github/workflows/conv04f-zoology-practical-zooplankton-successor-guard.yml`. Current exact scope is **10 files**.
+
+
+## Final trusted-workflow architecture
+
+To eliminate CodeQL cross-context checkout/cache/artifact findings, R91 now uses three disjoint trust surfaces:
+
+1. **Successor guard workflow** — standalone, unfiltered `pull_request_target`; API metadata only; no checkout, package execution, artifact download, or secret.
+2. **Candidate certification workflow** — `pull_request` only; checks out and executes the exact PR head in a non-privileged context; no manual/default-branch dispatch.
+3. **Production parity workflow** — `push` to `main` only; unprivileged Jekyll build is separated from a fresh credentialed deploy/certify job.
+
+This required one security-only file beyond the original nine-file scope. The exact R91 learner/content mutation remains unchanged: one Zooplankton learner source plus one strict route-ledger row; no scientific/statistical/ecological rewrite.
