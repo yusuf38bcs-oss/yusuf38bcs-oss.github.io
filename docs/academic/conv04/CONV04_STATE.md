@@ -1,27 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R91
-mode: implementation candidate — prac-07 Zooplankton
-authorized_base: 61348e5b9387bdcc565106a9813135cbcc9bcdcc
-branch: conv-04f-09-r91-prac07-zooplankton-20261005
-production_verified_main: 61348e5b9387bdcc565106a9813135cbcc9bcdcc
+phase: CONV-04F-09-R100
+mode: authorization-only — prac-08 Field Report
+authorized_base: 9bdc80ca7ceff9dd33773514c3c6e41447ee95fe
+branch: conv-04f-09-r100-prac08-field-report-20261005
+production_verified_main: 9bdc80ca7ceff9dd33773514c3c6e41447ee95fe
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R91 — exactly one prac-07 learner source + one strict route row + dedicated certification/governance artifacts
-learner_content_authoring: YES — exact prac-07 structural convergence only; frozen scientific/statistical/ecological/sampling corpus preserved
-existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 through prac-06 production parity closed / retained
-gateway_cta_injection: YES — exactly one canonical Learning Guide CTA after the existing H1 on prac-07
+mutation_authority: R100 — authorization-only: freeze prac-08 baseline and authorize later isolated R101 structural convergence; no learner mutation
+learner_content_authoring: NO — R100 authorization only; prac-08 learner source remains byte-identical
+existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 through prac-07 production parity closed / retained
+gateway_cta_injection: NO — prac-08 CTA injection deferred to isolated R101 implementation
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/practical/07-zooplankton.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: Worker out of scope; prac-01 through prac-06 Cloudflare Pages production parity PASS / retained
-ready_transition: R91 not authorized for promotion until exact-head source-preservation + retained contracts + Jekyll/browser/Axe/preview + review/governance PASS
-merge: R91 not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-07 parity required before prac-08
-next_module_gate: prac-08 BLOCKED — requires R91 exact-main immutable + canonical production parity PASS
+worker_cloudflare: Worker out of scope; prac-01 through prac-07 Cloudflare Pages production parity PASS / retained
+ready_transition: R100 authorization-only; no learner implementation may start until this exact-head authorization passes CI/review/governance and merges
+merge: R100 merge authorizes only an isolated R101 prac-08 implementation from the resulting exact main; no F-09 closure or F-10 Ecology work
+next_module_gate: prac-08 R101 BLOCKED — requires R100 exact-head CI/review/governance PASS and merge
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
