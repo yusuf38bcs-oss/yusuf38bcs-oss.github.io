@@ -24,6 +24,7 @@ BROWSER_REL = ".github/scripts/conv04f-zoology-practical-zooplankton-browser-cer
 WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
 PROD_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
 VALIDATOR_REL = ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
+RESOLVER_REL = ".github/scripts/resolve-cloudflare-targets.py"
 CTA = "{% include education/learning-guide-cta.html %}"
 
 CHANGED_FILES = [
@@ -47,6 +48,7 @@ BASE_BLOBS = {
   SHARED_JS_REL => "207684413ad7925686334cafc3748861a439f206",
   ACADEMIC_CSS_REL => "e461a46d9defd592bb098adfa12472543dacd41b",
   CTA_INCLUDE_REL => "701c02c2e9faa5e63db71cc8a16cb4ba8c87e233",
+  RESOLVER_REL => "7a31ba767463340bfbb53b841c1cc62fb33487e5",
   AUTH_REL => "6a91f9ddb944ba172d157ee035fe49bdb3fe02ce"
 }.freeze
 
@@ -169,7 +171,7 @@ BASE_BLOBS.each do |rel, expected|
 end
 
 [ SOURCE_REL, MANIFEST_REL, LEDGER_REL, STATE_REL, AUTH_REL, IMPL_REL,
-  COURSE_REL, COVERAGE_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, VALIDATOR_REL
+  COURSE_REL, COVERAGE_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, VALIDATOR_REL, RESOLVER_REL
 ].each do |rel|
   need(errors, File.file?(ROOT.join(rel)), "Missing R91 artifact: #{rel}")
 end
@@ -291,7 +293,7 @@ if bootstrap
        top_scalar(state_text, "next_module_gate") == "prac-08 BLOCKED — requires R91 exact-main immutable + canonical production parity PASS",
        "R91 top-level next-module gate must keep prac-08 blocked until exact-main production parity")
 elsif future
-  protected_artifacts = [VALIDATOR_REL, MANIFEST_REL, AUTH_REL, IMPL_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL]
+  protected_artifacts = [VALIDATOR_REL, MANIFEST_REL, AUTH_REL, IMPL_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, RESOLVER_REL]
   touched = changed & protected_artifacts
   need(errors, touched.empty?, "Successor changed protected R91 enforcement artifacts: #{touched.join(', ')}")
 end
@@ -299,11 +301,24 @@ end
 # Workflow security/certification boundaries.
 prod = read_utf8(PROD_WORKFLOW_REL)
 need(errors, !prod.match?(/^\s*workflow_dispatch\s*:/), "R91 production parity must be push-to-main only")
+need(errors, prod.include?("pull_request_target:"), "R91 trusted successor guard trigger missing")
+pull_target = prod[/pull_request_target:\n(.*?)(?=\npermissions:)/m, 1].to_s
+need(errors, !pull_target.include?("paths:"), "R91 trusted successor guard must be unfiltered by paths")
+need(errors, prod.include?('".github/scripts/resolve-cloudflare-targets.py"'), "R91 trusted guard must protect resolver")
+need(errors, prod.include?('PUSH_BEFORE: ${{ github.event.before }}'), "R91 production parity must authenticate the complete push range")
+need(errors, prod.include?('PR_BASE_SHA=$PUSH_BEFORE'), "R91 validator comparison base must use push.before")
+need(errors, prod.include?("build_site:"), "R91 unprivileged build job missing")
+need(errors, prod.include?("needs: build_site"), "R91 credentialed production job must depend on isolated build artifact")
 need(errors, prod.include?("wrangler@4.147.0"), "R91 production parity must pin Wrangler 4.147.0")
-need(errors, prod.include?("npx --no-install wrangler pages deploy"), "R91 production parity must use npx --no-install")
-install_pos = prod.index("Install reviewed Wrangler")
-token_pos = prod.index("CLOUDFLARE_API_TOKEN:")
-need(errors, install_pos && token_pos && install_pos < token_pos, "R91 Wrangler must be installed before token-bearing deploy")
+need(errors, prod.include?("--registry=https://registry.npmjs.org/"), "R91 npm registry must be explicit")
+need(errors, prod.include?("NPM_CONFIG_USERCONFIG:"), "R91 isolated npm user config missing")
+need(errors, prod.include?("NPM_CONFIG_GLOBALCONFIG:"), "R91 isolated npm global config missing")
+need(errors, prod.include?('$RUNNER_TEMP/wrangler-tool/node_modules/.bin/wrangler'), "R91 Wrangler must execute from isolated temp workspace")
+need(errors, prod.include?("trusted-repo/.github/scripts/resolve-cloudflare-targets.py"), "R91 resolver must execute from clean credentialed checkout")
+need(errors, prod.include?('$RUNNER_TEMP/browser-tool/certifier.mjs'), "R91 browser certifier must execute from isolated temp workspace")
+production_section = prod.split(/^  production:\s*$/m, 2)[1].to_s
+need(errors, !production_section.include?("bundle exec jekyll"), "R91 credentialed production job must not execute candidate Jekyll")
+need(errors, !production_section.include?("bundle install"), "R91 credentialed production job must not execute candidate Bundler")
 
 if errors.empty?
   puts "CONV-04F-09-R91 Zooplankton preservation/scope: PASS"
