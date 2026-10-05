@@ -37,3 +37,16 @@ No learner prose, formula, table cell, report mark, sampling rule, statistical c
 
 ## Promotion gate
 Exact-source reconstruction + complete-ledger proof → retained contracts → Jekyll → browser/Axe/keyboard/reflow/text-spacing/reduced-motion/no-JS → Cloudflare exact-head preview → fresh Codex → zero unresolved threads → exact SOLO authority → Trusted Governance → merge → exact-main immutable + canonical production parity. Only then may prac-08 be authorized.
+
+
+## Latest Codex production-security remediation
+
+The five P1 findings on exact head `09cd1dede1bff86a77ec327cd6a6bf95b0e94a48` were authenticated and remediated without learner/content or changed-file-scope expansion:
+
+1. **Trusted guard trigger completeness** — `pull_request_target` is now unfiltered by `paths`, so the predecessor-loaded guard cannot be skipped by GitHub's >3,000-file diff path-filter cutoff.
+2. **Resolver immutability** — `.github/scripts/resolve-cloudflare-targets.py` is now in both the trusted successor protected-path set and the retained R91 validator's immutable base set.
+3. **Isolated npm trust boundary** — Wrangler and browser dependencies install only in `$RUNNER_TEMP` with explicit `https://registry.npmjs.org/`, empty trusted user/global npmrc files, and direct execution from the isolated temp workspace; repository `.npmrc` cannot redirect deployment tooling.
+4. **Build/deploy runner separation** — candidate Bundler/Jekyll executes only in an unprivileged build job that has no Cloudflare credential. A fresh credentialed production job downloads only the static site artifact, checks out exact-main enforcement files, and never runs candidate Bundler/Jekyll.
+5. **Complete push-range authentication** — post-merge validation uses `github.event.before` through `github.sha`, authenticates ancestry, and exports `PR_BASE_SHA=$PUSH_BEFORE`; it no longer reduces the protected comparison to only `TARGET_SHA^`.
+
+The Cloudflare production job remains push-to-main only. No manual deployment dispatch exists. No Zooplankton learner, statistical, ecological, route-ledger, or browser-contract expansion was introduced by these remediations.
