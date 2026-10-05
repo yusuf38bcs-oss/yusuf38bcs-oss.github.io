@@ -122,6 +122,21 @@ def top_level_list(source, key)
   items
 end
 
+def markdown_table_blocks(source)
+  tables = []
+  current = []
+  source.lines.each do |line|
+    if line.start_with?("|")
+      current << line
+    elsif !current.empty?
+      tables << current.join
+      current = []
+    end
+  end
+  tables << current.join unless current.empty?
+  tables
+end
+
 def stripped_authorized_transform(source)
   out = source.dup
   out.sub!(/^academic_system:\s*v1\n/, "")
@@ -195,6 +210,26 @@ if PATHS[:source].file?
   baseline, _, st = git("show", "#{BASE}:#{SOURCE_REL}")
   if st.success?
     src = read_utf8(PATHS[:source])
+
+    cta_anchor = "# Study of Appendages — Cockroach and Prawn\n\n#{CTA}\n\nAssessment emphasis:"
+    need(errors, src.include?(cta_anchor),
+         "R81 canonical Learning Guide CTA must immediately follow the existing H1")
+
+    baseline_tables = markdown_table_blocks(baseline)
+    need(errors, baseline_tables.length == 2, "R81 authenticated baseline must contain exactly two Markdown tables")
+    if baseline_tables.length == 2
+      wrapper_specs = [
+        ["Cockroach mouth parts table", baseline_tables[0]],
+        ["Prawn appendages table", baseline_tables[1]]
+      ]
+      wrapper_specs.each do |label, table|
+        open = %(<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="#{label}" markdown="1">)
+        exact = "#{open}\n\n#{table}\n</div>"
+        need(errors, src.include?(exact),
+             "R81 #{label} wrapper must directly enclose its authenticated Markdown table")
+      end
+    end
+
     if bootstrap
       need(errors, stripped_authorized_transform(src) == baseline,
            "Appendages source differs from exact R80 baseline plus only authorized metadata/CTA/table wrappers")
