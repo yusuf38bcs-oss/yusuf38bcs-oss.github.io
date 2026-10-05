@@ -53,6 +53,28 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: false
 
+      - name: Set up Node for Wrangler lock capture
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Capture Wrangler dependency lock candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          lockdir="$RUNNER_TEMP/wrangler-lock-candidate"
+          mkdir -p "$lockdir"
+          cat > "$lockdir/package.json" <<'JSON'
+          {"name":"lbfl-wrangler-lock","private":true,"dependencies":{"wrangler":"4.147.0"}}
+          JSON
+          cd "$lockdir"
+          npm install --package-lock-only --ignore-scripts --registry=https://registry.npmjs.org/
+          echo "WRANGLER_LOCK_SHA256=$(sha256sum package-lock.json | awk '{print $1}')"
+          echo "WRANGLER_LOCK_BASE64_BEGIN"
+          base64 -w0 package-lock.json
+          echo
+          echo "WRANGLER_LOCK_BASE64_END"
+
       - name: Authenticate exact head, live base, and R91 scope
         shell: bash
         run: |
