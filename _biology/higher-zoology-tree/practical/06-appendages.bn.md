@@ -21,6 +21,9 @@ page_id: zoology-practical-appendages
 language: bn
 lang: bn
 locale: bn-BD
+academic_system: v1
+academic_role: practical
+learning_guide: canonical
 toc: true
 toc_sticky: true
 classes: wide zoology-practical-page
@@ -41,11 +44,15 @@ time_min: 120
 
 # Study of Appendages — Cockroach and Prawn
 
+{% include education/learning-guide-cta.html %}
+
 Assessment emphasis: **detachment + correct placement + course-sheet drawing + labelling + displaying**.
 
 ## A. Cockroach
 
 ### 1. Mouth Parts — Food Capture / Processing
+
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Cockroach mouth parts table" markdown="1">
 
 | Part | Main role | Recognition |
 |---|---|---|
@@ -54,6 +61,8 @@ Assessment emphasis: **detachment + correct placement + course-sheet drawing + l
 | Maxillae | manipulate food | segmented palp + lacinia/galea |
 | Labium | lower lip; manipulation | fused median structure + palps |
 | Hypopharynx | tongue-like; salivary opening relation | median soft process |
+
+</div>
 
 **Type:** biting and chewing.
 
@@ -81,6 +90,8 @@ Male terminal genital structures/phallomeres copulation-এ ব্যবহৃ�
 Typical crustacean appendage মূলত:
 **protopod (coxa + basis) + endopod + exopod**, তবে appendageভেদে reduction/modification ঘটে।
 
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Prawn appendages table" markdown="1">
+
 | Appendage | Main function | Key clue |
 |---|---|---|
 | Antennule | equilibrium + sensory | basal statocyst; biramous flagella |
@@ -93,6 +104,8 @@ Typical crustacean appendage মূলত:
 | Pleopods | swimming | paired abdominal appendages |
 | Male modified pleopod | copulatory/reproductive role | sex-specific appendage |
 | Uropods | rapid swimming / steering | paired tail-fan elements with telson |
+
+</div>
 
 ## Functional Grouping Required by Syllabus
 
