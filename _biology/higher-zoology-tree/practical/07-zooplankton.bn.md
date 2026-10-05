@@ -21,6 +21,9 @@ page_id: zoology-practical-zooplankton
 language: bn
 lang: bn
 locale: bn-BD
+academic_system: v1
+academic_role: practical
+learning_guide: canonical
 toc: true
 toc_sticky: true
 math: true
@@ -39,6 +42,8 @@ time_min: 180
 
 # Quantify Zooplankton in Three Water Bodies
 
+{% include education/learning-guide-cta.html %}
+
 ## Research Question
 
 তিনটি water body-তে zooplankton abundance ও diversity কি একই, নাকি habitat conditions অনুযায়ী ভিন্ন?
@@ -55,6 +60,8 @@ time_min: 180
 
 ## Suggested Metadata
 
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Zooplankton suggested metadata table" markdown="1">
+
 | Field | Record |
 |---|---|
 | Site ID | A / B / C |
@@ -68,6 +75,8 @@ time_min: 180
 | Net mesh size | if plankton net used |
 | Concentrated final volume | |
 | Replicate number | |
+
+</div>
 
 ## Sampling Logic
 
@@ -123,6 +132,8 @@ Report mean density and, if taught, SD/SE.
 
 ## Example Data Table
 
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Zooplankton example data table" markdown="1">
+
 | Taxon | Site A | Site B | Site C |
 |---|---:|---:|---:|
 | Rotifera | | | |
@@ -131,6 +142,8 @@ Report mean density and, if taught, SD/SE.
 | Other cladocerans | | | |
 | Nauplii | | | |
 | Total \(N\) | | | |
+
+</div>
 
 ## Relative Abundance
 
@@ -202,6 +215,8 @@ Recommended:
 
 ## 20-mark Report Structure from Syllabus
 
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Zooplankton 20-mark report structure table" markdown="1">
+
 | Component | Marks |
 |---|---:|
 | Experiment | 6 |
@@ -214,6 +229,8 @@ Recommended:
 | Acknowledgement | 1 |
 | List of Books / References | 1 |
 | **Total** | **20** |
+
+</div>
 
 ## Discussion Questions
 
