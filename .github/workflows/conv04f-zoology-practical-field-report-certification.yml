@@ -1,0 +1,33 @@
+name: CONV-04F-09-R101 Field Report Certification
+
+on:
+  pull_request:
+    paths:
+      - '_biology/higher-zoology-tree/practical/08-field-report.bn.md'
+      - '_data/academic/conv04f_zoology_practical_field_report_v1.json'
+      - 'docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json'
+      - 'docs/academic/conv04/ZOOLOGY_PRACTICAL_FIELD_REPORT_F09_R101_IMPLEMENTATION.md'
+      - '.github/scripts/validate-conv04f-zoology-practical-field-report.rb'
+      - '.github/workflows/conv04f-zoology-practical-field-report-certification.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      - name: R101 exact preservation validator
+        run: ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+      - name: Jekyll build
+        run: |
+          bundle config set path vendor/bundle
+          bundle install
+          bundle exec jekyll build
