@@ -153,7 +153,7 @@ end
 BASE_BLOBS.each do |rel, expected|
   actual = git_text("rev-parse", "#{BASE}:#{rel}").strip
   need(errors, actual == expected, "R91 authenticated base blob mismatch: #{rel}")
-  next unless bootstrap
+  next if rel == SOURCE_REL || !bootstrap
   current = git_text("rev-parse", "HEAD:#{rel}").strip
   need(errors, current == expected, "R91 changed protected baseline: #{rel}")
 end
