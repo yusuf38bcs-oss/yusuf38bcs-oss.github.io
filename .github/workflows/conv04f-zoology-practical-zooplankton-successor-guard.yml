@@ -30,6 +30,7 @@ jobs:
               ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb",
               ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs",
               ".github/scripts/resolve-cloudflare-targets.py",
+              ".github/locks/wrangler-4.147.0-package-lock.json",
               ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml",
               ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml",
               ".github/workflows/conv04f-zoology-practical-zooplankton-successor-guard.yml"
