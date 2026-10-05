@@ -12,6 +12,7 @@ on:
       - "_includes/education/learning-guide-cta.html"
       - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
       - "docs/academic/conv04/CONV04_STATE.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md"
       - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md"
       - ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
       - ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
