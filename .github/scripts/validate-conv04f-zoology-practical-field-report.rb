@@ -24,6 +24,7 @@ BROWSER_REL = ".github/scripts/conv04f-zoology-practical-field-report-browser-ce
 CERT_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-field-report-certification.yml"
 PROD_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-field-report-production-parity.yml"
 SUCCESSOR_GUARD_REL = ".github/workflows/conv04f-zoology-practical-field-report-successor-guard.yml"
+TRUSTED_BOOTSTRAP_WORKFLOW_REL = ".github/workflows/zoology-practical-213106-certification.yml"
 VALIDATOR_REL = ".github/scripts/validate-conv04f-zoology-practical-field-report.rb"
 CTA = "{% include education/learning-guide-cta.html %}"
 
@@ -72,6 +73,7 @@ CHANGED_FILES = ([
   CERT_WORKFLOW_REL,
   PROD_WORKFLOW_REL,
   SUCCESSOR_GUARD_REL,
+  TRUSTED_BOOTSTRAP_WORKFLOW_REL,
   SOURCE_REL,
   MANIFEST_REL,
   LEDGER_REL,
@@ -212,7 +214,7 @@ end
 [
   SOURCE_REL, MANIFEST_REL, LEDGER_REL, STATE_REL, AUTH_REL, IMPL_REL,
   COURSE_REL, COVERAGE_REL, BROWSER_REL,
-  CERT_WORKFLOW_REL, PROD_WORKFLOW_REL, SUCCESSOR_GUARD_REL, VALIDATOR_REL,
+  CERT_WORKFLOW_REL, PROD_WORKFLOW_REL, SUCCESSOR_GUARD_REL, TRUSTED_BOOTSTRAP_WORKFLOW_REL, VALIDATOR_REL,
   SHARED_CSS_REL, SHARED_JS_REL, ACADEMIC_CSS_REL, CTA_INCLUDE_REL,
   *EVIDENCE_RELS
 ].each do |relative|
@@ -392,7 +394,7 @@ if bootstrap
 elsif future
   protected_artifacts = [
     VALIDATOR_REL, MANIFEST_REL, AUTH_REL, IMPL_REL, BROWSER_REL,
-    CERT_WORKFLOW_REL, PROD_WORKFLOW_REL, SUCCESSOR_GUARD_REL
+    CERT_WORKFLOW_REL, PROD_WORKFLOW_REL, SUCCESSOR_GUARD_REL, TRUSTED_BOOTSTRAP_WORKFLOW_REL
   ]
   touched = changed & protected_artifacts
   if maintenance
@@ -400,6 +402,16 @@ elsif future
   else
     need(errors, touched.empty?, "Successor changed protected R101 artifacts: #{touched.join(', ')}")
   end
+end
+
+if ROOT.join(TRUSTED_BOOTSTRAP_WORKFLOW_REL).file?
+  trusted = read_utf8(ROOT.join(TRUSTED_BOOTSTRAP_WORKFLOW_REL))
+  need(errors, trusted.include?("Bootstrap R101 Field Report exact-head preservation gate"),
+       "R101 trusted bootstrap workflow must invoke exact-head preservation gate")
+  need(errors, trusted.include?("playwright@1.62.1 axe-core@4.13.0"),
+       "R101 trusted bootstrap workflow must pin browser dependencies")
+  need(errors, trusted.include?("--base-url http://127.0.0.1:4173"),
+       "R101 trusted bootstrap workflow must run local exact-head browser gate")
 end
 
 if ROOT.join(CERT_WORKFLOW_REL).file?
