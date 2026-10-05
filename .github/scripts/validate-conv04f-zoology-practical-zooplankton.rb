@@ -153,6 +153,15 @@ end
 BASE_BLOBS.each do |rel, expected|
   actual = git_text("rev-parse", "#{BASE}:#{rel}").strip
   need(errors, actual == expected, "R91 authenticated base blob mismatch: #{rel}")
+
+  # The merged R90 authorization is permanent authority evidence. It is immutable
+  # on bootstrap and on every successor; a later PR cannot rewrite its own authority.
+  if rel == AUTH_REL
+    current = git_text("rev-parse", "HEAD:#{rel}").strip
+    need(errors, current == expected, "R91/R90 authorization record drift: #{rel}")
+    next
+  end
+
   next if rel == SOURCE_REL || !bootstrap
   current = git_text("rev-parse", "HEAD:#{rel}").strip
   need(errors, current == expected, "R91 changed protected baseline: #{rel}")
@@ -168,19 +177,27 @@ baseline = git_text("show", "#{BASE}:#{SOURCE_REL}")
 candidate = read_utf8(SOURCE_REL)
 expected = expected_source(baseline)
 
-successor_authorized = false
+predecessor_authorized = false
 if !bootstrap && candidate != expected
+  # Successor learner authority must already exist in the authenticated PR base.
+  # The candidate is forbidden from granting itself authority by editing STATE_REL
+  # and the learner source in the same PR.
   base_state = git_text("show", "#{comparison_base}:#{STATE_REL}")
   bo = phase_order(top_scalar(base_state, "phase"))
   co = phase_order(phase)
   ro = phase_order(PHASE)
-  successor_authorized = changed.include?(STATE_REL) &&
-    bo && co && ro && (co <=> bo) > 0 && (co <=> ro) > 0 &&
-    top_scalar(state_text, "authorized_base") == comparison_base &&
-    top_list(state_text, "learner_mutation_allowlist").include?(SOURCE_REL)
+  base_mode = top_scalar(base_state, "mode").to_s
+
+  predecessor_authorized =
+    bo && co && ro &&
+    (bo <=> ro) > 0 &&
+    (co <=> bo) > 0 &&
+    base_mode.include?("authorization-only") &&
+    top_list(base_state, "learner_mutation_allowlist").include?(SOURCE_REL) &&
+    top_scalar(state_text, "authorized_base") == comparison_base
 end
-need(errors, candidate == expected || successor_authorized,
-     "R91 learner source is not exact R90 baseline + authorized structural transform")
+need(errors, candidate == expected || predecessor_authorized,
+     "R91 successor learner mutation lacks authority already present in the authenticated predecessor/base state")
 
 if bootstrap
   need(errors, candidate == expected, "R91 learner source exact reconstruction failed")
