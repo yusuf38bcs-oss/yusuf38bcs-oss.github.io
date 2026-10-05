@@ -1,0 +1,28 @@
+name: CONV-04F-09-R101 Field Report Browser Certification
+
+on:
+  workflow_dispatch:
+    inputs:
+      preview_url:
+        description: Exact candidate preview origin
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Desktop/mobile/keyboard smoke
+        env:
+          LBFL_PREVIEW_URL: ${{ inputs.preview_url }}
+        run: node .github/scripts/conv04f-zoology-practical-field-report-browser-certification.mjs
