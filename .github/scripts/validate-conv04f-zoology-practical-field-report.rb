@@ -258,7 +258,7 @@ if PATHS[:source].file?
     need(errors, tables[0].lines.length == 4, "R101 results table must retain header + separator + 2 data rows")
     need(errors, tables[1].lines.length == 10, "R101 marks table must retain header + separator + 8 data rows")
 
-    wrappers = source.scan(/<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="([^"]+)" markdown="1">/)
+    wrappers = source.scan(/<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="([^"]+)" markdown="1">/).flatten
     need(errors, wrappers == ["Field Report results table", "Field Report 17-mark distribution table"],
          "R101 accessible wrapper labels/order drift")
     need(errors, source.scan(%r{</div>}).length >= 2, "R101 accessible wrapper closure missing")
