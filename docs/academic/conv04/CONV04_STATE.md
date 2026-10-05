@@ -1,25 +1,27 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R90
-mode: authorization-only — prac-07 Zooplankton
-authorized_base: e6b5a203c36b6d59b06d943430217d866dee623e
-branch: conv-04f-09-r90-prac07-authorization-20261005
-production_verified_main: e6b5a203c36b6d59b06d943430217d866dee623e
+phase: CONV-04F-09-R91
+mode: implementation candidate — prac-07 Zooplankton
+authorized_base: 61348e5b9387bdcc565106a9813135cbcc9bcdcc
+branch: conv-04f-09-r91-prac07-zooplankton-20261005
+production_verified_main: 61348e5b9387bdcc565106a9813135cbcc9bcdcc
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R90 — authorization-only: freeze prac-07 baseline and authorize later isolated R91 structural convergence; no learner mutation
-learner_content_authoring: NO — R90 authorization only; prac-07 learner source remains byte-identical
+mutation_authority: R91 — exactly one prac-07 learner source + one strict route row + dedicated certification/governance artifacts
+learner_content_authoring: YES — exact prac-07 structural convergence only; frozen scientific/statistical/ecological/sampling corpus preserved
 existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 through prac-06 production parity closed / retained
-gateway_cta_injection: NO — prac-07 CTA injection deferred to isolated R91 implementation
+gateway_cta_injection: YES — exactly one canonical Learning Guide CTA after the existing H1 on prac-07
 learner_mutation_allowlist:
+  - _biology/higher-zoology-tree/practical/07-zooplankton.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: Worker out of scope; prac-01 through prac-06 Cloudflare Pages production parity PASS / retained
-ready_transition: R90 authorization-only; no learner implementation may start until this exact-head authorization passes CI/review/governance and merges
-merge: R90 merge authorizes only an isolated R91 prac-07 implementation from the resulting exact main; no prac-08 work
+ready_transition: R91 not authorized for promotion until exact-head source-preservation + retained contracts + Jekyll/browser/Axe/preview + review/governance PASS
+merge: R91 not authorized until unchanged-head SOLO authority + Trusted Governance PASS; post-merge exact-main Cloudflare + canonical prac-07 parity required before prac-08
+next_module_gate: prac-08 BLOCKED — requires R91 exact-main immutable + canonical production parity PASS
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
@@ -713,3 +715,17 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Existing source hierarchy **1 H1 / 13 H2 / 3 H3**, 3 Markdown tables / 33 table lines, 6 sampling steps, 7 minimum-design bullets, 6 results-presentation bullets, 5 discussion questions, formulas and 20-mark report structure are frozen baseline evidence.
 - R91 may perform only the exact structural convergence authorized in `ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md` after R90 merges.
 - prac-08 remains blocked.
+
+
+## CONV-04F-09-R91 prac-07 implementation candidate
+
+- Authorized base: `61348e5b9387bdcc565106a9813135cbcc9bcdcc` (R90 authorization merge).
+- Selected module: **prac-07 — Zooplankton**.
+- Learner source baseline: `c120863ca31d85a33f1476b3f5bab59d571950cf`.
+- Authorized learner transform: Academic-v1 metadata + role practical + canonical Learning Guide + one CTA immediately after the existing H1 + accessibility wrappers directly enclosing the three existing Markdown tables.
+- Academic Route Ledger: exactly one strict Zooplankton row.
+- Existing source hierarchy remains frozen at **1 H1 / 13 H2 / 3 H3**; no heading normalization in R91.
+- Protected corpus: 3 Markdown tables / 33 table lines; 7 Minimum Design bullets; 11 Suggested Metadata rows; 6 Sampling Logic steps; all authorized formula/statistical/report custody; 5 Discussion Questions.
+- Scientific/statistical/ecological/sampling/equipment/curriculum rewrite: **NONE**.
+- No new stylesheet/script imports are authorized.
+- prac-08 remains blocked until R91 exact-main production parity closes.
