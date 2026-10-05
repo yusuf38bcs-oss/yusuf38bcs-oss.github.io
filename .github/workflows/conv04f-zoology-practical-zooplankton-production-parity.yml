@@ -16,26 +16,13 @@ on:
       - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md"
       - ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
       - ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
+      - ".github/scripts/resolve-cloudflare-targets.py"
       - ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
       - ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
   pull_request_target:
     branches: ["main"]
     types: [opened, synchronize, reopened, ready_for_review, edited]
-    paths:
-      - "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md"
-      - "_data/academic/conv04f_zoology_practical_zooplankton_v1.json"
-      - "assets/css/zoology-practical.css"
-      - "assets/js/zoology-practical.js"
-      - "assets/css/academic-design-system.css"
-      - "_includes/education/learning-guide-cta.html"
-      - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
-      - "docs/academic/conv04/CONV04_STATE.md"
-      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md"
-      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md"
-      - ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
-      - ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
-      - ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
-      - ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
+
 permissions:
   contents: read
   pull-requests: read
@@ -61,6 +48,7 @@ jobs:
               "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md",
               ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb",
               ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs",
+              ".github/scripts/resolve-cloudflare-targets.py",
               ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml",
               ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
             ]);
@@ -94,17 +82,15 @@ jobs:
               core.info(`Trusted predecessor R91 successor immutability: PASS; complete ${files.length}/${expectedChangedFiles} file metadata checked including rename sources`);
             }
 
-  production:
-    name: Exact-main Cloudflare production + Zooplankton DOM
+  build_site:
+    name: Build exact-main production artifact (unprivileged)
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 35
     env:
       TARGET_SHA: ${{ github.sha }}
-      PRODUCTION_URL: "https://learningbiologyforlife.org"
-      EVIDENCE_DIR: conv04f09-r81-production-parity
-      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
-      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
+      PUSH_BEFORE: ${{ github.event.before }}
+      EVIDENCE_DIR: conv04f09-r91-build-evidence
     steps:
       - name: Check out exact main
         uses: actions/checkout@v5
@@ -112,7 +98,8 @@ jobs:
           ref: ${{ env.TARGET_SHA }}
           fetch-depth: 0
           persist-credentials: false
-      - name: Authenticate exact current main
+
+      - name: Authenticate exact current main and complete push range
         shell: bash
         run: |
           set -euo pipefail
@@ -120,16 +107,20 @@ jobs:
           remote="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
           test "$remote" = "$TARGET_SHA" || { echo "MAIN MOVED — ABORT"; exit 1; }
           test -z "$(git status --porcelain)"
-          retained_base="$(git rev-parse "$TARGET_SHA^")"
-          test -n "$retained_base"
-          echo "PR_BASE_SHA=$retained_base" >> "$GITHUB_ENV"
-          echo "Retained R91 comparison base: $retained_base"
+          test "$PUSH_BEFORE" != "0000000000000000000000000000000000000000" || { echo "UNAUTHENTICATED PUSH BASE"; exit 1; }
+          test "$PUSH_BEFORE" != "$TARGET_SHA" || { echo "EMPTY PUSH RANGE"; exit 1; }
+          git cat-file -e "$PUSH_BEFORE^{commit}"
+          git merge-base --is-ancestor "$PUSH_BEFORE" "$TARGET_SHA"
+          echo "PR_BASE_SHA=$PUSH_BEFORE" >> "$GITHUB_ENV"
+          echo "Authenticated complete push range: $PUSH_BEFORE..$TARGET_SHA"
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
         with:
           ruby-version: "3.2"
           bundler-cache: false
-      - name: Build exact-main production site
+
+      - name: Build exact-main production site without Cloudflare credential
         shell: bash
         env:
           JEKYLL_ENV: production
@@ -144,32 +135,95 @@ jobs:
           bundle exec jekyll clean
           bundle exec jekyll build --trace
           test -f _site/biology/higher-zoology-tree/practical/zooplankton/index.html
+
+      - name: Upload immutable static-site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: conv04f09-r91-site-${{ env.TARGET_SHA }}
+          path: _site
+          if-no-files-found: error
+          retention-days: 2
+
+      - name: Preserve unprivileged build evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conv04f09-r91-build-evidence-${{ env.TARGET_SHA }}
+          path: ${{ env.EVIDENCE_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
+
+  production:
+    name: Exact-main Cloudflare production + Zooplankton DOM
+    if: ${{ github.event_name == 'push' }}
+    needs: build_site
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      TARGET_SHA: ${{ github.sha }}
+      PUSH_BEFORE: ${{ github.event.before }}
+      PRODUCTION_URL: "https://learningbiologyforlife.org"
+      EVIDENCE_DIR: conv04f09-r91-production-parity
+      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
+      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
+      NPM_CONFIG_REGISTRY: "https://registry.npmjs.org/"
+      NPM_CONFIG_USERCONFIG: ${{ runner.temp }}/lbfl-npm-safe/user.npmrc
+      NPM_CONFIG_GLOBALCONFIG: ${{ runner.temp }}/lbfl-npm-safe/global.npmrc
+    steps:
+      - name: Check out exact main enforcement only
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+          path: trusted-repo
+
+      - name: Download unprivileged static-site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: conv04f09-r91-site-${{ env.TARGET_SHA }}
+          path: _site
+
+      - name: Authenticate exact main and push range before credential use
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C trusted-repo rev-parse HEAD)" = "$TARGET_SHA"
+          remote="$(git -C trusted-repo ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$remote" = "$TARGET_SHA" || { echo "MAIN MOVED — ABORT"; exit 1; }
+          test "$PUSH_BEFORE" != "0000000000000000000000000000000000000000" || { echo "UNAUTHENTICATED PUSH BASE"; exit 1; }
+          git -C trusted-repo cat-file -e "$PUSH_BEFORE^{commit}"
+          git -C trusted-repo merge-base --is-ancestor "$PUSH_BEFORE" "$TARGET_SHA"
+          test -f _site/biology/higher-zoology-tree/practical/zooplankton/index.html
+          mkdir -p "$EVIDENCE_DIR" "$RUNNER_TEMP/lbfl-npm-safe"
+          : > "$NPM_CONFIG_USERCONFIG"
+          : > "$NPM_CONFIG_GLOBALCONFIG"
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Install reviewed Wrangler
+
+      - name: Install reviewed Wrangler in isolated trusted npm workspace
         shell: bash
         run: |
           set -euo pipefail
-          npm install --no-save --ignore-scripts wrangler@4.147.0
-          npx --no-install wrangler --version | grep -F "4.147.0"
+          mkdir -p "$RUNNER_TEMP/wrangler-tool"
+          cd "$RUNNER_TEMP"
+          npm install             --prefix "$RUNNER_TEMP/wrangler-tool"             --no-save             --ignore-scripts             --registry=https://registry.npmjs.org/             wrangler@4.147.0
+          "$RUNNER_TEMP/wrangler-tool/node_modules/.bin/wrangler" --version | grep -F "4.147.0"
+
       - name: Deploy exact SHA to Cloudflare Pages production
         shell: bash
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           set -euo pipefail
-          remote="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          remote="$(git -C trusted-repo ls-remote origin refs/heads/main | awk '{print $1}')"
           test "$remote" = "$TARGET_SHA" || { echo "MAIN MOVED BEFORE DEPLOY — ABORT"; exit 1; }
-          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
           test -n "$CLOUDFLARE_API_TOKEN"
-          npx --no-install wrangler pages deploy _site \
-            --project-name "$CLOUDFLARE_PAGES_PROJECT" \
-            --branch main \
-            --commit-hash "$TARGET_SHA" \
-            --commit-message "LBFL F-09 R91 production parity $TARGET_SHA" \
-            --commit-dirty=false | tee "$EVIDENCE_DIR/wrangler-pages-deploy.log"
+          "$RUNNER_TEMP/wrangler-tool/node_modules/.bin/wrangler" pages deploy _site             --project-name "$CLOUDFLARE_PAGES_PROJECT"             --branch main             --commit-hash "$TARGET_SHA"             --commit-message "LBFL F-09 R91 production parity $TARGET_SHA"             --commit-dirty=false | tee "$EVIDENCE_DIR/wrangler-pages-deploy.log"
+
       - name: Resolve exact successful production deployment
         id: resolve
         shell: bash
@@ -177,17 +231,9 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           set -euo pipefail
+          python3 -m py_compile trusted-repo/.github/scripts/resolve-cloudflare-targets.py
           for attempt in $(seq 1 40); do
-            python3 .github/scripts/resolve-cloudflare-targets.py \
-              --repository "$GITHUB_REPOSITORY" \
-              --sha "$TARGET_SHA" \
-              --pages-environment production \
-              --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID" \
-              --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT" \
-              --wait-seconds 0 \
-              --site-config _data/ai.yml \
-              --output "$EVIDENCE_DIR/cloudflare-production.json" \
-              --github-output "$RUNNER_TEMP/pages.out"
+            python3 trusted-repo/.github/scripts/resolve-cloudflare-targets.py               --repository "$GITHUB_REPOSITORY"               --sha "$TARGET_SHA"               --pages-environment production               --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID"               --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT"               --wait-seconds 0               --site-config trusted-repo/_data/ai.yml               --output "$EVIDENCE_DIR/cloudflare-production.json"               --github-output "$RUNNER_TEMP/pages.out"
             if python3 - "$EVIDENCE_DIR/cloudflare-production.json" "$TARGET_SHA" <<'PY'
           import json,sys
           e=json.load(open(sys.argv[1],encoding="utf-8"))
@@ -207,13 +253,18 @@ jobs:
           done
           cat "$EVIDENCE_DIR/cloudflare-production.json"
           exit 1
-      - name: Install browser dependencies
+
+      - name: Install browser dependencies in isolated trusted npm workspace
         shell: bash
         run: |
           set -euo pipefail
-          node --check .github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs
-          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
-          npx playwright install --with-deps chromium
+          mkdir -p "$RUNNER_TEMP/browser-tool"
+          cp trusted-repo/.github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs             "$RUNNER_TEMP/browser-tool/certifier.mjs"
+          node --check "$RUNNER_TEMP/browser-tool/certifier.mjs"
+          cd "$RUNNER_TEMP"
+          npm install             --prefix "$RUNNER_TEMP/browser-tool"             --no-save             --ignore-scripts             --registry=https://registry.npmjs.org/             playwright@1.62.1 axe-core@4.13.0
+          "$RUNNER_TEMP/browser-tool/node_modules/.bin/playwright" install --with-deps chromium
+
       - name: Certify immutable Cloudflare deployment
         shell: bash
         env:
@@ -221,28 +272,27 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$EXACT_URL"
-          node .github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs \
-            --base-url "$EXACT_URL" \
-            --output-dir "$EVIDENCE_DIR/immutable"
+          node "$RUNNER_TEMP/browser-tool/certifier.mjs"             --base-url "$EXACT_URL"             --output-dir "$EVIDENCE_DIR/immutable"
+
       - name: Certify canonical LBFL production
         shell: bash
         run: |
           set -euo pipefail
-          node .github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs \
-            --base-url "$PRODUCTION_URL" \
-            --output-dir "$EVIDENCE_DIR/canonical-production"
+          node "$RUNNER_TEMP/browser-tool/certifier.mjs"             --base-url "$PRODUCTION_URL"             --output-dir "$EVIDENCE_DIR/canonical-production"
+
       - name: Re-authenticate main
         shell: bash
         run: |
           set -euo pipefail
-          remote="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          remote="$(git -C trusted-repo ls-remote origin refs/heads/main | awk '{print $1}')"
           test "$remote" = "$TARGET_SHA" || { echo "MAIN MOVED DURING CERTIFICATION"; exit 1; }
-          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          test "$(git -C trusted-repo rev-parse HEAD)" = "$TARGET_SHA"
+
       - name: Preserve production parity evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: conv04f09-r81-production-parity-${{ env.TARGET_SHA }}
+          name: conv04f09-r91-production-parity-${{ env.TARGET_SHA }}
           path: ${{ env.EVIDENCE_DIR }}
           if-no-files-found: warn
           retention-days: 30
