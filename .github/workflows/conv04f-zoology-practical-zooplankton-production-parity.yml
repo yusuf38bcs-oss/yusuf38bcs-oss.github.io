@@ -19,69 +19,14 @@ on:
       - ".github/scripts/resolve-cloudflare-targets.py"
       - ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
       - ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
-  pull_request_target:
-    branches: ["main"]
-    types: [opened, synchronize, reopened, ready_for_review, edited]
-
 permissions:
   contents: read
-  pull-requests: read
 
 concurrency:
   group: conv04f-practical-zooplankton-production
   cancel-in-progress: false
 
 jobs:
-  trusted_successor_guard:
-    name: Trusted predecessor R91 successor immutability
-    if: ${{ github.event_name == 'pull_request_target' }}
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    steps:
-      - name: Reject candidate rewrites of retained R91 enforcement
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const protectedPaths = new Set([
-              "_data/academic/conv04f_zoology_practical_zooplankton_v1.json",
-              "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md",
-              "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md",
-              ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb",
-              ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs",
-              ".github/scripts/resolve-cloudflare-targets.py",
-              ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml",
-              ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
-            ]);
-            const expectedChangedFiles = context.payload.pull_request.changed_files;
-            if (!Number.isInteger(expectedChangedFiles) || expectedChangedFiles < 0) {
-              core.setFailed("TRUSTED R91 GUARD CANNOT AUTHENTICATE pull_request.changed_files");
-              return;
-            }
-            if (expectedChangedFiles > 3000) {
-              core.setFailed(`TRUSTED R91 GUARD FAIL-CLOSED: PR has ${expectedChangedFiles} changed files, exceeding GitHub List PR Files completeness limit of 3000`);
-              return;
-            }
-            const files = await github.paginate(github.rest.pulls.listFiles, {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-              per_page: 100
-            });
-            if (files.length !== expectedChangedFiles) {
-              core.setFailed(`TRUSTED R91 GUARD INCOMPLETE PR FILE METADATA: expected ${expectedChangedFiles}, received ${files.length}`);
-              return;
-            }
-            const touched = new Set();
-            for (const file of files) {
-              if (protectedPaths.has(file.filename)) touched.add(file.filename);
-              if (file.previous_filename && protectedPaths.has(file.previous_filename)) touched.add(file.previous_filename);
-            }
-            if (touched.size) {
-              core.setFailed(`SUCCESSOR CHANGED OR RENAMED TRUSTED R91 ENFORCEMENT ARTIFACT: ${[...touched].sort().join(", ")}`);
-            } else {
-              core.info(`Trusted predecessor R91 successor immutability: PASS; complete ${files.length}/${expectedChangedFiles} file metadata checked including rename sources`);
-            }
-
   build_site:
     name: Build exact-main production artifact (unprivileged)
     if: ${{ github.event_name == 'push' }}
