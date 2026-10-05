@@ -171,11 +171,23 @@ R80 is authorization-only. The first prac-06 implementation slot is **R81**.
 
 ## Authorization for later R81 implementation
 
-After R80 merges, an isolated R81 implementation may mutate exactly:
+After R80 merges, an isolated R81 implementation may mutate only the following categories:
 
-`_biology/higher-zoology-tree/practical/06-appendages.bn.md`
+1. learner source:
+   - `_biology/higher-zoology-tree/practical/06-appendages.bn.md`
+2. route ownership:
+   - `docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json` — exactly one Appendages row only
+3. phase evidence:
+   - `docs/academic/conv04/CONV04_STATE.md`
+   - one new R81 implementation record under `docs/academic/conv04/`
+   - one new R81 implementation manifest under `_data/academic/`
+4. dedicated R81 certification only:
+   - one new Appendages preservation validator under `.github/scripts/`
+   - one new Appendages browser certification under `.github/scripts/`
+   - one new Appendages exact-head certification workflow under `.github/workflows/`
+   - one new Appendages push-to-main production-parity workflow under `.github/workflows/`
 
-and the minimum strict route/certification artifacts required for that single route.
+R81 is **not** authorized to modify any pre-existing shared or retained certification workflow/validator, shared CSS/JS/runtime, Academic CSS, Learning Guide include, navigation, assessment runtime, course contract, coverage ledger, Practical gateway, sibling Practical module, Admission, Socratic, or Worker/Cloudflare configuration.
 
 Authorized learner-facing purpose:
 1. add `academic_system: v1`;
@@ -185,7 +197,7 @@ Authorized learner-facing purpose:
 5. wrap each of the **two existing Markdown tables** using the existing Academic-v1 / Practical keyboard-focusable named scroll-region accessibility primitive if required by the shared contract;
 6. register exactly one strict Academic Route Ledger row for the canonical Appendages route.
 
-The existing 1-H1 / 5-H2 / 6-H3 hierarchy is protected. No heading normalization is authorized unless separately authenticated exact-head evidence demonstrates a concrete accessibility/design need.
+The existing 1-H1 / 5-H2 / 6-H3 hierarchy is protected. **R81 may not normalize or otherwise change this heading hierarchy.** If exact-head evidence later demonstrates a concrete accessibility/design need, heading changes require a **new, separately merged exact-scope authorization phase** before any learner-source heading mutation.
 
 Scientific, anatomical, taxonomic, curriculum and appendage-function rewriting is **not authorized**.
 
