@@ -71,3 +71,20 @@ To eliminate CodeQL cross-context checkout/cache/artifact findings, R91 now uses
 3. **Production parity workflow** — `push` to `main` only; unprivileged Jekyll build is separated from a fresh credentialed deploy/certify job.
 
 This required one security-only file beyond the original nine-file scope. The exact R91 learner/content mutation remains unchanged: one Zooplankton learner source plus one strict route-ledger row; no scientific/statistical/ecological rewrite.
+
+
+## Frozen Wrangler dependency lock remediation
+
+The final production-tooling finding is closed by committing the exact Node 24 lock generated in unprivileged CI:
+
+- lock: `.github/locks/wrangler-4.147.0-package-lock.json`
+- SHA-256: `21a1dca894fa29b2d9f1631744207a8e96cf7b6015b067647481e2ed41eb33d6`
+- root dependency: `wrangler: 4.147.0`
+- package-lock includes resolved package URLs and integrity hashes for the complete dependency graph;
+- production copies this reviewed lock into an isolated temp workspace and runs `npm ci --ignore-scripts --registry=https://registry.npmjs.org/`;
+- the standalone trusted successor guard protects the lockfile against rewrite/rename;
+- the R91 validator authenticates the lockfile SHA-256.
+
+The production-parity workflow is unfiltered on every push to `main`; scope/authentication decisions occur inside the workflow, so GitHub's path-filter diff cap cannot suppress the gate.
+
+Current exact R91 scope is **11 files**: the structural learner/ledger/evidence files plus the standalone trusted successor guard and the reviewed Wrangler dependency lock. No additional learner/scientific/statistical/ecological mutation is introduced.
