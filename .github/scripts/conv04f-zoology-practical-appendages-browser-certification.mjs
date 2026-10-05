@@ -123,7 +123,7 @@ async function run(name,width,height,opts={}){
     });
 
     if(opts.textSpacing){
-      metrics.textClip=await page.evaluate(()=>[...document.querySelectorAll(".page__content p,.page__content li,.page__content h1,.page__content h2,.page__content h3,.page__content a")].filter(el=>{
+      metrics.textClip=await page.evaluate(()=>[...document.querySelectorAll(".page__content p,.page__content li,.page__content h1,.page__content h2,.page__content h3,.page__content a,.page__content th,.page__content td")].filter(el=>{
         const cs=getComputedStyle(el);
         return (["hidden","clip"].includes(cs.overflowY)&&el.scrollHeight>el.clientHeight+2)||
                (["hidden","clip"].includes(cs.overflowX)&&el.scrollWidth>el.clientWidth+2);
