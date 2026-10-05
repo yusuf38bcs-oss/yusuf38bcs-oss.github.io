@@ -132,7 +132,7 @@ def stripped_authorized_transform(source)
     /^<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="(?:Cockroach mouth parts table|Prawn appendages table)" markdown="1">\n\n/,
     ""
   )
-  out.gsub!(/\n<\/div>\n\n/, "\n\n")
+  out.gsub!(/\n\n<\/div>\n\n/, "\n\n")
   out
 end
 
