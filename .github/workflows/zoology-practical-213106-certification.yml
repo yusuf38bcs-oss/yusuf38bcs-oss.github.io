@@ -33,6 +33,9 @@ jobs:
     timeout-minutes: 20
     env:
       PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
+      R101_AUTHORIZED_BASE: "d86325ec281e21de1a208f1a1f31ecb531821eb4"
+      R101_REPORT_DIR: conv04f-zoology-practical-field-report-browser-report
 
     steps:
       - name: Check out immutable candidate head
@@ -61,11 +64,65 @@ jobs:
       - name: Validate Practical-I source contract
         run: ruby scripts/zoology/validate_practical_213106.rb
 
+      - name: Bootstrap R101 Field Report exact-head preservation gate
+        if: ${{ hashFiles('.github/scripts/validate-conv04f-zoology-practical-field-report.rb') != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$PR_BASE_SHA" = "$R101_AUTHORIZED_BASE"
+          ruby -c .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+          PR_BASE_SHA="$PR_BASE_SHA" ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+          git diff --check "$PR_BASE_SHA...HEAD"
+
       - name: Build exact Jekyll candidate
         env:
           JEKYLL_ENV: production
           JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bundle exec jekyll build --trace
+
+      - name: Set up Node for R101 browser gate
+        if: ${{ hashFiles('.github/scripts/conv04f-zoology-practical-field-report-browser-certification.mjs') != '' }}
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "24"
+
+      - name: Install pinned R101 browser runtime
+        if: ${{ hashFiles('.github/scripts/conv04f-zoology-practical-field-report-browser-certification.mjs') != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check .github/scripts/conv04f-zoology-practical-field-report-browser-certification.mjs
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+
+      - name: Serve and certify R101 Field Report browser contract
+        if: ${{ hashFiles('.github/scripts/conv04f-zoology-practical-field-report-browser-certification.mjs') != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site >"$RUNNER_TEMP/r101-http.log" 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4173/biology/higher-zoology-tree/practical/field-report/ >/dev/null; then
+              break
+            fi
+            if [[ "$attempt" = "30" ]]; then
+              cat "$RUNNER_TEMP/r101-http.log"
+              exit 1
+            fi
+            sleep 1
+          done
+          node .github/scripts/conv04f-zoology-practical-field-report-browser-certification.mjs \
+            --base-url http://127.0.0.1:4173 \
+            --output-dir "$R101_REPORT_DIR"
+
+      - name: Preserve R101 bootstrap browser evidence
+        if: ${{ always() && hashFiles('.github/scripts/conv04f-zoology-practical-field-report-browser-certification.mjs') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: conv04f-r101-bootstrap-${{ env.PR_HEAD_SHA }}
+          path: ${{ env.R101_REPORT_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
 
       - name: Assert all practical routes render
         shell: bash
