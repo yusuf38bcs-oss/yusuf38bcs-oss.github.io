@@ -38,6 +38,7 @@ on:
       - ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
 permissions:
   contents: read
+  pull-requests: read
 
 concurrency:
   group: conv04f-practical-zooplankton-production
@@ -49,38 +50,32 @@ jobs:
     if: ${{ github.event_name == 'pull_request_target' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
-    env:
-      PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
     steps:
-      - name: Check out trusted predecessor/base
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ env.PR_BASE_SHA }}
-          fetch-depth: 0
-          persist-credentials: false
       - name: Reject candidate rewrites of retained R91 enforcement
-        shell: bash
-        run: |
-          set -euo pipefail
-          test "$(git rev-parse HEAD)" = "$PR_BASE_SHA"
-          git fetch --no-tags origin "$CANDIDATE_SHA"
-          git merge-base --is-ancestor "$PR_BASE_SHA" "$CANDIDATE_SHA"
-          protected=(
-            "_data/academic/conv04f_zoology_practical_zooplankton_v1.json"
-            "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md"
-            "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md"
-            ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
-            ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
-            ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
-            ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
-          )
-          mapfile -t touched < <(git diff --name-only "$PR_BASE_SHA...$CANDIDATE_SHA" -- "${protected[@]}")
-          if (( ${#touched[@]} > 0 )); then
-            printf 'SUCCESSOR CHANGED TRUSTED R91 ENFORCEMENT ARTIFACT: %s\n' "${touched[@]}" >&2
-            exit 1
-          fi
-          echo "Trusted predecessor R91 successor immutability: PASS"
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const protectedPaths = new Set([
+              "_data/academic/conv04f_zoology_practical_zooplankton_v1.json",
+              "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md",
+              "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md",
+              ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb",
+              ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs",
+              ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml",
+              ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
+            ]);
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100
+            });
+            const touched = files.map(file => file.filename).filter(file => protectedPaths.has(file));
+            if (touched.length) {
+              core.setFailed(`SUCCESSOR CHANGED TRUSTED R91 ENFORCEMENT ARTIFACT: ${touched.join(", ")}`);
+            } else {
+              core.info("Trusted predecessor R91 successor immutability: PASS");
+            }
 
   production:
     name: Exact-main Cloudflare production + Zooplankton DOM
