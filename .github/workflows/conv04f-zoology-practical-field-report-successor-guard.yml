@@ -31,6 +31,7 @@ jobs:
               ".github/scripts/conv04f-zoology-practical-field-report-browser-certification.mjs",
               ".github/scripts/resolve-cloudflare-targets.py",
               ".github/locks/wrangler-4.147.0-package-lock.json",
+              ".github/workflows/zoology-practical-213106-certification.yml",
               ".github/workflows/conv04f-zoology-practical-field-report-certification.yml",
               ".github/workflows/conv04f-zoology-practical-field-report-production-parity.yml",
               ".github/workflows/conv04f-zoology-practical-field-report-successor-guard.yml"
