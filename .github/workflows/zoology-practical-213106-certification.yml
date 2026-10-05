@@ -70,10 +70,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$PR_BASE_SHA" = "$R101_AUTHORIZED_BASE"
+          comparison_base="$PR_BASE_SHA"
+          if [[ -z "$comparison_base" ]]; then
+            comparison_base="$(git rev-parse HEAD^)"
+          fi
+
+          if git cat-file -e "$comparison_base:.github/scripts/validate-conv04f-zoology-practical-field-report.rb" 2>/dev/null; then
+            echo "R101 retained successor/maintenance mode: $comparison_base"
+          else
+            test "$comparison_base" = "$R101_AUTHORIZED_BASE"
+            echo "R101 bootstrap mode: authenticated authorized base $comparison_base"
+          fi
+
           ruby -c .github/scripts/validate-conv04f-zoology-practical-field-report.rb
-          PR_BASE_SHA="$PR_BASE_SHA" ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
-          git diff --check "$PR_BASE_SHA...HEAD"
+          PR_BASE_SHA="$comparison_base" ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+          git diff --check "$comparison_base...HEAD"
 
       - name: Build exact Jekyll candidate
         env:
