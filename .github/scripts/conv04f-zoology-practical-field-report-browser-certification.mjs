@@ -11,8 +11,8 @@ const allowedHosts=new Set(["127.0.0.1","localhost",new URL(base).hostname]);
 const out=path.resolve(arg("--output-dir","conv04f-zoology-practical-field-report-browser-report"));
 const route="/biology/higher-zoology-tree/practical/field-report/";
 const views=[
-  ["mobile-320",320,900],["mobile-390",390,900],["tablet-768",768,1024],
-  ["desktop-1280",1280,900],["wide-1440",1440,960]
+  ["mobile-320",320,900],["mobile-390",390,844],["tablet-768",768,1024],
+  ["desktop-1280",1280,900],["wide-1440",1440,900]
 ];
 const expectedH2=[
   "Syllabus Requirement","Ethical Collection Rule","Sample Label — Minimum Fields","Field Notebook",
