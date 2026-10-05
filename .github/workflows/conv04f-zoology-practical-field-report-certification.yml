@@ -46,6 +46,7 @@ jobs:
       CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
       PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
       PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      R101_AUTHORIZED_BASE: "d86325ec281e21de1a208f1a1f31ecb531821eb4"
       SITE_ARTIFACT: conv04f09-r101-site
     steps:
       - name: Check out immutable candidate
@@ -66,13 +67,20 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
-          test "$PR_BASE_SHA" = "d86325ec281e21de1a208f1a1f31ecb531821eb4"
           remote="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
           test "$remote" = "$PR_BASE_SHA" || { echo "BASE CHANGED — RECERTIFICATION REQUIRED"; exit 1; }
           git merge-base --is-ancestor "$PR_BASE_SHA" "$CANDIDATE_SHA" || { echo "STALE CANDIDATE"; exit 1; }
+
+          if git cat-file -e "$PR_BASE_SHA:.github/scripts/validate-conv04f-zoology-practical-field-report.rb" 2>/dev/null; then
+            echo "R101 retained successor/maintenance mode: $PR_BASE_SHA"
+          else
+            test "$PR_BASE_SHA" = "$R101_AUTHORIZED_BASE"
+            echo "R101 bootstrap mode: authenticated authorized base $PR_BASE_SHA"
+          fi
+
           test -z "$(git status --porcelain)"
           ruby -c .github/scripts/validate-conv04f-zoology-practical-field-report.rb
-          ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+          PR_BASE_SHA="$PR_BASE_SHA" ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
           git diff --check "$PR_BASE_SHA...HEAD"
 
       - name: Build exact-head Jekyll preview artifact
@@ -119,11 +127,17 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
-          test "$PR_BASE_SHA" = "$R101_AUTHORIZED_BASE"
-          git merge-base --is-ancestor "$R101_AUTHORIZED_BASE" "$CANDIDATE_SHA"
           remote="$(git ls-remote origin "refs/heads/$PR_BASE_REF" | awk '{print $1}')"
           test "$remote" = "$PR_BASE_SHA" || { echo "BASE CHANGED — RECERTIFICATION REQUIRED"; exit 1; }
           git merge-base --is-ancestor "$remote" "$CANDIDATE_SHA" || { echo "STALE CANDIDATE"; exit 1; }
+          git merge-base --is-ancestor "$R101_AUTHORIZED_BASE" "$CANDIDATE_SHA"
+
+          if git cat-file -e "$PR_BASE_SHA:.github/scripts/validate-conv04f-zoology-practical-field-report.rb" 2>/dev/null; then
+            echo "R101 retained successor/maintenance mode: $PR_BASE_SHA"
+          else
+            test "$PR_BASE_SHA" = "$R101_AUTHORIZED_BASE"
+            echo "R101 bootstrap mode: authenticated authorized base $PR_BASE_SHA"
+          fi
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
@@ -136,7 +150,7 @@ jobs:
         run: |
           set -euo pipefail
           ruby -c .github/scripts/validate-conv04f-zoology-practical-field-report.rb
-          ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+          PR_BASE_SHA="$PR_BASE_SHA" ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
           ruby scripts/zoology/validate_practical_213106.rb
           ruby .github/scripts/validate-conv04f-zoology-practical-gateway.rb
           ruby .github/scripts/validate-conv04f-zoology-practical-museum.rb
@@ -185,7 +199,7 @@ jobs:
           grep -q 'data-lbfl-academic-surface="v1"' "$rendered"
           grep -q 'data-lbfl-academic-role="practical"' "$rendered"
           grep -q 'data-lbfl-learning-guide="canonical"' "$rendered"
-          ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+          PR_BASE_SHA="$PR_BASE_SHA" ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
           ruby scripts/zoology/validate_practical_213106.rb
 
       - name: Set up Node
