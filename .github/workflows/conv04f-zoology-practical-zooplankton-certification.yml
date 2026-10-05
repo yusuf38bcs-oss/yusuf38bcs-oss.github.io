@@ -5,7 +5,7 @@ on:
     branches: ["main"]
     types: [opened, synchronize, reopened, ready_for_review, edited]
     paths:
-      - "_biology/higher-zoology-tree/practical/06-zooplankton.bn.md"
+      - "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md"
       - "_data/zoology-practical-213106-coverage.json"
       - "_data/academic/course_contract_v1.json"
       - "_data/academic/conv04f_zoology_practical_zooplankton_v1.json"
@@ -14,8 +14,8 @@ on:
       - "assets/css/academic-design-system.css"
       - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
       - "docs/academic/conv04/CONV04_STATE.md"
-      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_APPENDAGES_F09_R90_AUTHORIZATION.md"
-      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_APPENDAGES_F09_R91_IMPLEMENTATION.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md"
       - ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
       - ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
       - ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
