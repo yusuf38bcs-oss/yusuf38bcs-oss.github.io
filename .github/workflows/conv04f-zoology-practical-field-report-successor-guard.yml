@@ -1,0 +1,24 @@
+name: CONV-04F-09-R101 Field Report Successor Guard
+
+on:
+  pull_request:
+    paths:
+      - '_biology/higher-zoology-tree/practical/08-field-report.bn.md'
+      - 'docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json'
+      - '_data/academic/conv04f_zoology_practical_field_report_v1.json'
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      - name: Retain R101 preservation contract
+        run: ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
