@@ -112,8 +112,6 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
       CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
       NPM_CONFIG_REGISTRY: "https://registry.npmjs.org/"
-      NPM_CONFIG_USERCONFIG: ${{ runner.temp }}/lbfl-npm-safe/user.npmrc
-      NPM_CONFIG_GLOBALCONFIG: ${{ runner.temp }}/lbfl-npm-safe/global.npmrc
     steps:
       - name: Check out exact main enforcement only
         uses: actions/checkout@v5
@@ -141,8 +139,12 @@ jobs:
           git -C trusted-repo merge-base --is-ancestor "$PUSH_BEFORE" "$TARGET_SHA"
           test -f _site/biology/higher-zoology-tree/practical/zooplankton/index.html
           mkdir -p "$EVIDENCE_DIR" "$RUNNER_TEMP/lbfl-npm-safe"
-          : > "$NPM_CONFIG_USERCONFIG"
-          : > "$NPM_CONFIG_GLOBALCONFIG"
+          user_npmrc="$RUNNER_TEMP/lbfl-npm-safe/user.npmrc"
+          global_npmrc="$RUNNER_TEMP/lbfl-npm-safe/global.npmrc"
+          : > "$user_npmrc"
+          : > "$global_npmrc"
+          echo "NPM_CONFIG_USERCONFIG=$user_npmrc" >> "$GITHUB_ENV"
+          echo "NPM_CONFIG_GLOBALCONFIG=$global_npmrc" >> "$GITHUB_ENV"
 
       - name: Set up Node
         uses: actions/setup-node@v4
