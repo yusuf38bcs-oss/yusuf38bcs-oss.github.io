@@ -1,24 +1,66 @@
 name: CONV-04F-09-R101 Field Report Successor Guard
 
 on:
-  pull_request:
-    paths:
-      - '_biology/higher-zoology-tree/practical/08-field-report.bn.md'
-      - 'docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json'
-      - '_data/academic/conv04f_zoology_practical_field_report_v1.json'
+  pull_request_target:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
 
 permissions:
   contents: read
+  pull-requests: read
+
+concurrency:
+  group: conv04f-practical-field-report-successor-guard-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
-  guard:
-    runs-on: ubuntu-latest
+  trusted_successor_guard:
+    name: Trusted predecessor R101 successor immutability
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - name: Reject candidate rewrites of retained R101 enforcement
+        uses: actions/github-script@v8
         with:
-          fetch-depth: 0
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2'
-      - name: Retain R101 preservation contract
-        run: ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+          script: |
+            const protectedPaths = new Set([
+              "_data/academic/conv04f_zoology_practical_field_report_v1.json",
+              "docs/academic/conv04/ZOOLOGY_PRACTICAL_FIELD_REPORT_F09_R100_AUTHORIZATION.md",
+              "docs/academic/conv04/ZOOLOGY_PRACTICAL_FIELD_REPORT_F09_R101_IMPLEMENTATION.md",
+              ".github/scripts/validate-conv04f-zoology-practical-field-report.rb",
+              ".github/scripts/conv04f-zoology-practical-field-report-browser-certification.mjs",
+              ".github/scripts/resolve-cloudflare-targets.py",
+              ".github/locks/wrangler-4.147.0-package-lock.json",
+              ".github/workflows/conv04f-zoology-practical-field-report-certification.yml",
+              ".github/workflows/conv04f-zoology-practical-field-report-production-parity.yml",
+              ".github/workflows/conv04f-zoology-practical-field-report-successor-guard.yml"
+            ]);
+            const expectedChangedFiles = context.payload.pull_request.changed_files;
+            if (!Number.isInteger(expectedChangedFiles) || expectedChangedFiles < 0) {
+              core.setFailed("TRUSTED R101 GUARD CANNOT AUTHENTICATE pull_request.changed_files");
+              return;
+            }
+            if (expectedChangedFiles > 3000) {
+              core.setFailed(`TRUSTED R101 GUARD FAIL-CLOSED: PR has ${expectedChangedFiles} changed files, exceeding GitHub List PR Files completeness limit of 3000`);
+              return;
+            }
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100
+            });
+            if (files.length !== expectedChangedFiles) {
+              core.setFailed(`TRUSTED R101 GUARD INCOMPLETE PR FILE METADATA: expected ${expectedChangedFiles}, received ${files.length}`);
+              return;
+            }
+            const touched = new Set();
+            for (const file of files) {
+              if (protectedPaths.has(file.filename)) touched.add(file.filename);
+              if (file.previous_filename && protectedPaths.has(file.previous_filename)) touched.add(file.previous_filename);
+            }
+            if (touched.size) {
+              core.setFailed(`SUCCESSOR CHANGED OR RENAMED TRUSTED R101 ENFORCEMENT ARTIFACT: ${[...touched].sort().join(", ")}`);
+            } else {
+              core.info(`Trusted predecessor R101 successor immutability: PASS; complete ${files.length}/${expectedChangedFiles} file metadata checked including rename sources`);
+            }
