@@ -21,6 +21,26 @@ on:
       - ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
       - ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
       - ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
+  pull_request_target:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+    paths:
+      - "_biology/higher-zoology-tree/practical/07-zooplankton.bn.md"
+      - "_data/zoology-practical-213106-coverage.json"
+      - "_data/academic/course_contract_v1.json"
+      - "_data/academic/conv04f_zoology_practical_zooplankton_v1.json"
+      - "assets/css/zoology-practical.css"
+      - "assets/js/zoology-practical.js"
+      - "assets/css/academic-design-system.css"
+      - "_includes/education/learning-guide-cta.html"
+      - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
+      - "docs/academic/conv04/CONV04_STATE.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md"
+      - ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
+      - ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
+      - ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
+      - ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
   workflow_dispatch:
     inputs:
       expected_main_sha:
@@ -96,10 +116,48 @@ jobs:
       # The repository's trusted Cloudflare Pages Git integration owns PR preview deployment.
 
 
+  trusted_successor_guard:
+    name: Trusted predecessor R91 successor immutability
+    if: ${{ github.event_name == 'pull_request_target' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - name: Check out trusted predecessor/base
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.PR_BASE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reject candidate rewrites of retained R91 enforcement
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_BASE_SHA"
+          git fetch --no-tags origin "$CANDIDATE_SHA"
+          git merge-base --is-ancestor "$PR_BASE_SHA" "$CANDIDATE_SHA"
+          protected=(
+            "_data/academic/conv04f_zoology_practical_zooplankton_v1.json"
+            "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R90_AUTHORIZATION.md"
+            "docs/academic/conv04/ZOOLOGY_PRACTICAL_ZOOPLANKTON_F09_R91_IMPLEMENTATION.md"
+            ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
+            ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
+            ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
+            ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
+          )
+          mapfile -t touched < <(git diff --name-only "$PR_BASE_SHA...$CANDIDATE_SHA" -- "${protected[@]}")
+          if (( ${#touched[@]} > 0 )); then
+            printf 'SUCCESSOR CHANGED TRUSTED R91 ENFORCEMENT ARTIFACT: %s\n' "${touched[@]}" >&2
+            exit 1
+          fi
+          echo "Trusted predecessor R91 successor immutability: PASS"
+
   certify:
     name: CONV-04F-09-R91 Zooplankton exact-head certification
     needs: [preview_build]
-    if: ${{ always() && (needs.preview_build.result == 'success' || needs.preview_build.result == 'skipped') }}
+    if: ${{ github.event_name != 'pull_request_target' && always() && (needs.preview_build.result == 'success' || needs.preview_build.result == 'skipped') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     env:
