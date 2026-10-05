@@ -135,14 +135,20 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Install reviewed Wrangler in isolated trusted npm workspace
+      - name: Install reviewed Wrangler from frozen dependency lock
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/wrangler-tool"
-          cd "$RUNNER_TEMP"
-          npm install             --prefix "$RUNNER_TEMP/wrangler-tool"             --no-save             --ignore-scripts             --registry=https://registry.npmjs.org/             wrangler@4.147.0
-          "$RUNNER_TEMP/wrangler-tool/node_modules/.bin/wrangler" --version | grep -F "4.147.0"
+          tool="$RUNNER_TEMP/wrangler-tool"
+          mkdir -p "$tool"
+          cat > "$tool/package.json" <<'JSON'
+          {"name":"lbfl-wrangler-lock","private":true,"dependencies":{"wrangler":"4.147.0"}}
+          JSON
+          cp trusted-repo/.github/locks/wrangler-4.147.0-package-lock.json "$tool/package-lock.json"
+          test "$(sha256sum "$tool/package-lock.json" | awk '{print $1}')" = "21a1dca894fa29b2d9f1631744207a8e96cf7b6015b067647481e2ed41eb33d6"
+          cd "$tool"
+          npm ci --ignore-scripts --registry=https://registry.npmjs.org/
+          "$tool/node_modules/.bin/wrangler" --version | grep -F "4.147.0"
 
       - name: Deploy exact SHA to Cloudflare Pages production
         shell: bash
