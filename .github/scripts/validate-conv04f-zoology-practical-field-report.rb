@@ -24,7 +24,6 @@ BROWSER_REL = ".github/scripts/conv04f-zoology-practical-field-report-browser-ce
 CERT_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-field-report-certification.yml"
 PROD_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-field-report-production-parity.yml"
 SUCCESSOR_GUARD_REL = ".github/workflows/conv04f-zoology-practical-field-report-successor-guard.yml"
-BROWSER_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-field-report-browser-certification.yml"
 VALIDATOR_REL = ".github/scripts/validate-conv04f-zoology-practical-field-report.rb"
 CTA = "{% include education/learning-guide-cta.html %}"
 
@@ -70,7 +69,6 @@ BASE_BLOBS = {
 CHANGED_FILES = ([
   BROWSER_REL,
   VALIDATOR_REL,
-  BROWSER_WORKFLOW_REL,
   CERT_WORKFLOW_REL,
   PROD_WORKFLOW_REL,
   SUCCESSOR_GUARD_REL,
@@ -213,7 +211,7 @@ end
 
 [
   SOURCE_REL, MANIFEST_REL, LEDGER_REL, STATE_REL, AUTH_REL, IMPL_REL,
-  COURSE_REL, COVERAGE_REL, BROWSER_REL, BROWSER_WORKFLOW_REL,
+  COURSE_REL, COVERAGE_REL, BROWSER_REL,
   CERT_WORKFLOW_REL, PROD_WORKFLOW_REL, SUCCESSOR_GUARD_REL, VALIDATOR_REL,
   SHARED_CSS_REL, SHARED_JS_REL, ACADEMIC_CSS_REL, CTA_INCLUDE_REL,
   *EVIDENCE_RELS
