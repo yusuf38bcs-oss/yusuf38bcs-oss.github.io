@@ -299,12 +299,17 @@ elsif future
 end
 
 # Workflow security/certification boundaries.
+cert = read_utf8(WORKFLOW_REL)
 prod = read_utf8(PROD_WORKFLOW_REL)
-need(errors, !prod.match?(/^\s*workflow_dispatch\s*:/), "R91 production parity must be push-to-main only")
-need(errors, prod.include?("pull_request_target:"), "R91 trusted successor guard trigger missing")
-pull_target = prod[/pull_request_target:\n(.*?)(?=\npermissions:)/m, 1].to_s
+
+need(errors, cert.include?("pull_request_target:"), "R91 trusted successor guard trigger missing from certification workflow")
+pull_target = cert[/pull_request_target:\n(.*?)(?=\n  workflow_dispatch:)/m, 1].to_s
 need(errors, !pull_target.include?("paths:"), "R91 trusted successor guard must be unfiltered by paths")
-need(errors, prod.include?('".github/scripts/resolve-cloudflare-targets.py"'), "R91 trusted guard must protect resolver")
+need(errors, cert.include?('".github/scripts/resolve-cloudflare-targets.py"'), "R91 trusted guard must protect resolver")
+need(errors, cert.include?("github.event_name != 'pull_request_target'"), "R91 candidate certification must not run on pull_request_target")
+
+need(errors, !prod.match?(/^\s*workflow_dispatch\s*:/), "R91 production parity must be push-to-main only")
+need(errors, !prod.include?("pull_request_target:"), "R91 production parity must not carry pull_request_target")
 need(errors, prod.include?('PUSH_BEFORE: ${{ github.event.before }}'), "R91 production parity must authenticate the complete push range")
 need(errors, prod.include?('PR_BASE_SHA=$PUSH_BEFORE'), "R91 validator comparison base must use push.before")
 need(errors, prod.include?("build_site:"), "R91 unprivileged build job missing")
