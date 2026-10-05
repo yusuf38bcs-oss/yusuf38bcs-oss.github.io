@@ -56,7 +56,7 @@ The Cloudflare production job remains push-to-main only. No manual deployment di
 
 A subsequent CodeQL artifact-poisoning alert was authenticated. The trusted successor guard and artifact-consuming production path are now in separate workflow files:
 
-- `conv04f-zoology-practical-zooplankton-certification.yml` owns the unfiltered `pull_request_target` predecessor guard only; candidate build/certification jobs are explicitly excluded from `pull_request_target`.
+- `conv04f-zoology-practical-zooplankton-successor-guard.yml` owns the unfiltered `pull_request_target` predecessor guard; it is standalone, metadata-only, and executes no candidate code.
 - `conv04f-zoology-practical-zooplankton-production-parity.yml` is push-only and contains the unprivileged build artifact plus fresh credentialed deploy/certify job.
 - No `pull_request_target` workflow downloads or consumes candidate-controlled artifacts.
 - The original nine-file implementation scope is retained, plus exactly one security-only workflow: `.github/workflows/conv04f-zoology-practical-zooplankton-successor-guard.yml`. Current exact scope is **10 files**.
