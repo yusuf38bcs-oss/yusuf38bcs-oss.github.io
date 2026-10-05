@@ -140,6 +140,7 @@ end
 comparison_base = ENV["PR_BASE_SHA"].to_s.strip
 comparison_base = BASE if comparison_base.empty?
 bootstrap = comparison_base == BASE
+future = !bootstrap
 state_text = File.exist?(ROOT.join(STATE_REL)) ? read_utf8(STATE_REL) : ""
 phase = top_scalar(state_text, "phase")
 
@@ -286,7 +287,13 @@ need(errors, manifest.dig("preservation","new_stylesheet_or_script_import") == f
 if bootstrap
   need(errors, top_scalar(state_text, "authorized_base") == BASE, "R91 state base mismatch")
   need(errors, top_list(state_text, "learner_mutation_allowlist") == [SOURCE_REL], "R91 state learner allowlist mismatch")
-  need(errors, state_text.include?("prac-08 remains blocked"), "R91 state must keep prac-08 blocked")
+  need(errors,
+       top_scalar(state_text, "next_module_gate") == "prac-08 BLOCKED — requires R91 exact-main immutable + canonical production parity PASS",
+       "R91 top-level next-module gate must keep prac-08 blocked until exact-main production parity")
+elsif future
+  protected_artifacts = [VALIDATOR_REL, MANIFEST_REL, AUTH_REL, IMPL_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL]
+  touched = changed & protected_artifacts
+  need(errors, touched.empty?, "Successor changed protected R91 enforcement artifacts: #{touched.join(', ')}")
 end
 
 # Workflow security/certification boundaries.
