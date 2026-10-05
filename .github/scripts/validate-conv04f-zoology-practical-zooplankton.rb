@@ -23,12 +23,13 @@ CTA_INCLUDE_REL = "_includes/education/learning-guide-cta.html"
 BROWSER_REL = ".github/scripts/conv04f-zoology-practical-zooplankton-browser-certification.mjs"
 WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-zooplankton-certification.yml"
 PROD_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
+GUARD_WORKFLOW_REL = ".github/workflows/conv04f-zoology-practical-zooplankton-successor-guard.yml"
 VALIDATOR_REL = ".github/scripts/validate-conv04f-zoology-practical-zooplankton.rb"
 RESOLVER_REL = ".github/scripts/resolve-cloudflare-targets.py"
 CTA = "{% include education/learning-guide-cta.html %}"
 
 CHANGED_FILES = [
-  BROWSER_REL, VALIDATOR_REL, WORKFLOW_REL, PROD_WORKFLOW_REL,
+  BROWSER_REL, VALIDATOR_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, GUARD_WORKFLOW_REL,
   SOURCE_REL, MANIFEST_REL, LEDGER_REL, STATE_REL, IMPL_REL
 ].sort.freeze
 
@@ -171,7 +172,7 @@ BASE_BLOBS.each do |rel, expected|
 end
 
 [ SOURCE_REL, MANIFEST_REL, LEDGER_REL, STATE_REL, AUTH_REL, IMPL_REL,
-  COURSE_REL, COVERAGE_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, VALIDATOR_REL, RESOLVER_REL
+  COURSE_REL, COVERAGE_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, GUARD_WORKFLOW_REL, VALIDATOR_REL, RESOLVER_REL
 ].each do |rel|
   need(errors, File.file?(ROOT.join(rel)), "Missing R91 artifact: #{rel}")
 end
@@ -293,20 +294,27 @@ if bootstrap
        top_scalar(state_text, "next_module_gate") == "prac-08 BLOCKED — requires R91 exact-main immutable + canonical production parity PASS",
        "R91 top-level next-module gate must keep prac-08 blocked until exact-main production parity")
 elsif future
-  protected_artifacts = [VALIDATOR_REL, MANIFEST_REL, AUTH_REL, IMPL_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, RESOLVER_REL]
+  protected_artifacts = [VALIDATOR_REL, MANIFEST_REL, AUTH_REL, IMPL_REL, BROWSER_REL, WORKFLOW_REL, PROD_WORKFLOW_REL, GUARD_WORKFLOW_REL, RESOLVER_REL]
   touched = changed & protected_artifacts
   need(errors, touched.empty?, "Successor changed protected R91 enforcement artifacts: #{touched.join(', ')}")
 end
 
 # Workflow security/certification boundaries.
+guard = read_utf8(GUARD_WORKFLOW_REL)
 cert = read_utf8(WORKFLOW_REL)
 prod = read_utf8(PROD_WORKFLOW_REL)
 
-need(errors, cert.include?("pull_request_target:"), "R91 trusted successor guard trigger missing from certification workflow")
-pull_target = cert[/pull_request_target:\n(.*?)(?=\n  workflow_dispatch:)/m, 1].to_s
-need(errors, !pull_target.include?("paths:"), "R91 trusted successor guard must be unfiltered by paths")
-need(errors, cert.include?('".github/scripts/resolve-cloudflare-targets.py"'), "R91 trusted guard must protect resolver")
-need(errors, cert.include?("github.event_name != 'pull_request_target'"), "R91 candidate certification must not run on pull_request_target")
+need(errors, guard.include?("pull_request_target:"), "R91 trusted successor guard trigger missing")
+guard_target = guard[/pull_request_target:\n(.*?)(?=\npermissions:)/m, 1].to_s
+need(errors, !guard_target.include?("paths:"), "R91 trusted successor guard must be unfiltered by paths")
+need(errors, guard.include?('".github/scripts/resolve-cloudflare-targets.py"'), "R91 trusted guard must protect resolver")
+need(errors, guard.include?('".github/workflows/conv04f-zoology-practical-zooplankton-successor-guard.yml"'), "R91 trusted guard must protect itself")
+need(errors, !guard.include?("actions/checkout"), "R91 trusted guard must not check out candidate code")
+need(errors, !guard.include?("download-artifact"), "R91 trusted guard must not consume candidate artifacts")
+
+need(errors, !cert.include?("pull_request_target:"), "R91 candidate certification must not carry pull_request_target")
+need(errors, !cert.match?(/^\s*workflow_dispatch\s*:/), "R91 candidate certification must be pull-request only")
+need(errors, cert.include?("github.event.pull_request.head.sha"), "R91 candidate certification must bind exact PR head")
 
 need(errors, !prod.match?(/^\s*workflow_dispatch\s*:/), "R91 production parity must be push-to-main only")
 need(errors, !prod.include?("pull_request_target:"), "R91 production parity must not carry pull_request_target")
