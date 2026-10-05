@@ -1,0 +1,36 @@
+name: CONV-04F-09-R101 Field Report Production Parity
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_main_sha:
+        description: Exact merged main SHA to certify
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Authenticate exact main
+        env:
+          EXPECTED: ${{ inputs.expected_main_sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      - name: Preservation validator
+        run: ruby .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+      - name: Canonical production smoke
+        run: |
+          curl --fail --location --retry 3 --silent --show-error \
+            https://learningbiologyforlife.org/biology/higher-zoology-tree/practical/field-report/ \
+            -o /tmp/field-report.html
+          grep -q 'Field Visit, Collection' /tmp/field-report.html
+          grep -q '17-mark Field-report Distribution' /tmp/field-report.html
