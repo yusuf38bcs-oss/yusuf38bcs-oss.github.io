@@ -50,3 +50,13 @@ The five P1 findings on exact head `09cd1dede1bff86a77ec327cd6a6bf95b0e94a48` we
 5. **Complete push-range authentication** — post-merge validation uses `github.event.before` through `github.sha`, authenticates ancestry, and exports `PR_BASE_SHA=$PUSH_BEFORE`; it no longer reduces the protected comparison to only `TARGET_SHA^`.
 
 The Cloudflare production job remains push-to-main only. No manual deployment dispatch exists. No Zooplankton learner, statistical, ecological, route-ledger, or browser-contract expansion was introduced by these remediations.
+
+
+## CodeQL trust-workflow separation
+
+A subsequent CodeQL artifact-poisoning alert was authenticated. The trusted successor guard and artifact-consuming production path are now in separate workflow files:
+
+- `conv04f-zoology-practical-zooplankton-certification.yml` owns the unfiltered `pull_request_target` predecessor guard only; candidate build/certification jobs are explicitly excluded from `pull_request_target`.
+- `conv04f-zoology-practical-zooplankton-production-parity.yml` is push-only and contains the unprivileged build artifact plus fresh credentialed deploy/certify job.
+- No `pull_request_target` workflow downloads or consumes candidate-controlled artifacts.
+- The exact changed-file scope remains nine R91 files.
