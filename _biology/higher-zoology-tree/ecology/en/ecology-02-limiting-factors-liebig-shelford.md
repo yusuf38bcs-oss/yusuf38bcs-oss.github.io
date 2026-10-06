@@ -396,38 +396,48 @@ For a broad question on **Environmental Factors and the Principle of Limiting Fa
 ## MCQ Self-Check
 
 **1. Which statement best expresses Liebig's law of the minimum?**
-A. Growth is controlled only by temperature
-B. Growth may be limited by the essential resource in shortest supply relative to need
-C. All factors have equal effects
-D. Excess can never be limiting
+
+- A. Growth is controlled only by temperature
+- B. Growth may be limited by the essential resource in shortest supply relative to need
+- C. All factors have equal effects
+- D. Excess can never be limiting
+
 **Answer: B**
 
 **2. Shelford's law adds which major idea?**
-A. Only nutrients matter
-B. Organisms have both lower and upper tolerance limits
-C. Predators determine all distributions
-D. Population size never changes
+
+- A. Only nutrients matter
+- B. Organisms have both lower and upper tolerance limits
+- C. Predators determine all distributions
+- D. Population size never changes
+
 **Answer: B**
 
 **3. The central part of a tolerance curve is usually called the:**
-A. intolerance zone
-B. mortality zone
-C. optimum zone
-D. emigration zone
+
+- A. intolerance zone
+- B. mortality zone
+- C. optimum zone
+- D. emigration zone
+
 **Answer: C**
 
 **4. If nitrogen addition has no effect but N+P together increases growth, the best interpretation is:**
-A. no limitation
-B. co-limitation
-C. only temperature limitation
-D. random error must be the cause
+
+- A. no limitation
+- B. co-limitation
+- C. only temperature limitation
+- D. random error must be the cause
+
 **Answer: B**
 
 **5. A factor can be limiting when it is:**
-A. only deficient
-B. only excessive
-C. deficient or excessive relative to biological tolerance
-D. numerically the smallest variable
+
+- A. only deficient
+- B. only excessive
+- C. deficient or excessive relative to biological tolerance
+- D. numerically the smallest variable
+
 **Answer: C**
 
 
