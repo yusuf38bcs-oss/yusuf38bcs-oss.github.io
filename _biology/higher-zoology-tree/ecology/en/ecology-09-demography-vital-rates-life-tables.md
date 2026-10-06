@@ -56,14 +56,33 @@ syllabus_topics:
 clo_alignment:
   - CLO2
 math: true
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # Ecology Lecture 09: Population Ecology II: Natality, Mortality, Migration, Age Structure and Life Tables
 
 This Version 2 lecture is written as a **self-contained teaching note**, not a short revision page. It develops definitions, mechanisms, examples, diagrams, quantitative reasoning, evidence design, Bangladesh applications, misconceptions, exam preparation, and a bridge to the next lecture.
 
 
+
+## How to Learn This Lecture — LBFL Guided Learning
+
+The canonical owner of the learning method is **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**. This lecture applies that method to Ecology content rather than creating a competing local learning cycle.
+
+1. **Understand — identify the idea:** separate the central ecological claim, system boundary, variables, and mechanism.
+2. **Retrieve — recall without looking:** recall the key definition, relationship, equation/term, and main diagram labels from memory.
+3. **Explain — build the causal chain:** explain “what → why → how → consequence” in your own words, using an arrow chain or flow diagram when useful.
+4. **Apply — transfer to a new context:** use the idea with a Bangladesh ecosystem, field observation, graph, table, or unfamiliar ecological case.
+5. **Reflect — test uncertainty:** write one question about weak evidence, a strong assumption, or an alternative explanation.
+6. **Repair — correct and reattempt:** identify a misconception, graph-reading error, or incomplete explanation, revisit the relevant section, then solve the same problem again.
+
+> **Visual reasoning target:** Natality–mortality–migration flows, age structure, survivorship accounting, and life-table logic.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 09 table 1" markdown="1">
 | Field | Alignment |
 |---|---|
 | Lecture | 09 / 26 |
@@ -71,6 +90,8 @@ This Version 2 lecture is written as a **self-contained teaching note**, not a s
 | CLO | CLO2 |
 | Version | Current detailed course |
 | Suggested class use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -176,6 +197,7 @@ A life table organizes survival and mortality through age or stage.
 
 Common columns:
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 09 table 2" markdown="1">
 | Symbol | Meaning |
 |---|---|
 | \\(x\\) | age or stage |
@@ -183,6 +205,8 @@ Common columns:
 | \\(l_x\\) | proportion of original cohort surviving to \\(x\\) |
 | \\(d_x\\) | number dying during interval |
 | \\(q_x\\) | probability of dying during interval |
+
+</div>
 
 These columns reveal when mortality is concentrated.
 
@@ -328,6 +352,7 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 
 ## Comparison Table: Demographic Quantities
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 09 table 3" markdown="1">
 | Quantity | Meaning |
 |---|---|
 | Birth / natality | addition through reproduction |
@@ -336,6 +361,8 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 | Emigration | departure to outside |
 | Survivorship \\(l_x\\) | fraction surviving to age x |
 | Mortality probability \\(q_x\\) | probability of dying in an interval |
+
+</div>
 
 ## Mini Life-Table Exercise
 
