@@ -10,7 +10,13 @@ difficulty: "Intermediate"
 status: "Active"
 language: en
 health_boundary: true
+academic_system: v1
+academic_role: reflection
+lang: en
+sitemap: true
 ---
+
+{% include socratic/reflection-boundary.html %}
 
 # Personality Pattern Reflection
 
@@ -23,6 +29,8 @@ Architect, Catalyst, Observer, Explorer, and Steward are **LBFL-created reflecti
 ## How to read an archetype
 
 Read each archetype as a question: What does this pattern help me do well? Where can this pattern mislead me? Which learning habit should I strengthen next? This converts personality language into active growth work.
+
+{% include components/personality-analysis.html %}
 
 ## Continue the pathway
 
