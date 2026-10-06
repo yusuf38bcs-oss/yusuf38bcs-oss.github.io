@@ -111,7 +111,7 @@ lang: en
   <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.95rem;">🧪 জৈববৈজ্ঞানিক উদাহরণ:</p>
   <p style="color: #cbd5e1; margin-bottom: 1.5rem; line-height: 1.6;">"নতুন আবিষ্কৃত ফাইটোকেমিক্যাল ওষুধটি ব্যবহারের ফলে রোগীরা আগের চেয়ে অনেক দ্রুত এবং বেশি হারে সুস্থ হচ্ছেন (অর্থাৎ সুস্থতার গড় হার প্রাচীন ওষুধের চেয়ে বেশি)।"</p>
 
-  <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; border-top: 4px solid #3b82f6;">
+  <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; border-top: 4px solid #3b82f6; color: #cbd5e1;">
     <p style="margin: 0 0 0.75rem 0; font-weight: 700; color: #ffffff;">গাণিতিক দিকবিন্যাস মডেল:</p>
     <p style="color: #cbd5e1; margin: 0 0 0.5rem 0;">• দ্বিমুখী (Two-tailed directional parameter):</p>
     $$H_a: \mu_1 \neq \mu_2$$
