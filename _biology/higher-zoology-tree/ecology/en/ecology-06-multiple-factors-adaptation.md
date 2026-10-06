@@ -58,14 +58,33 @@ syllabus_topics:
 clo_alignment:
   - CLO1
   - CLO2
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # Ecology Lecture 06: Multiple Environmental Factors and Ecological Adaptation
 
 This Version 2 lecture is written as a **self-contained teaching note**, not a short revision page. It develops definitions, mechanisms, examples, diagrams, quantitative reasoning, evidence design, Bangladesh applications, misconceptions, exam preparation, and a bridge to the next lecture.
 
 
+
+## How to Learn This Lecture — LBFL Guided Learning
+
+The canonical owner of the learning method is **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**. This lecture applies that method to Ecology content rather than creating a competing local learning cycle.
+
+1. **Understand — identify the idea:** separate the central ecological claim, system boundary, variables, and mechanism.
+2. **Retrieve — recall without looking:** recall the key definition, relationship, equation/term, and main diagram labels from memory.
+3. **Explain — build the causal chain:** explain “what → why → how → consequence” in your own words, using an arrow chain or flow diagram when useful.
+4. **Apply — transfer to a new context:** use the idea with a Bangladesh ecosystem, field observation, graph, table, or unfamiliar ecological case.
+5. **Reflect — test uncertainty:** write one question about weak evidence, a strong assumption, or an alternative explanation.
+6. **Repair — correct and reattempt:** identify a misconception, graph-reading error, or incomplete explanation, revisit the relevant section, then solve the same problem again.
+
+> **Visual reasoning target:** Multiple-factor interaction, primary/secondary limitation, synergy/trade-off, and adaptation across factor combinations.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 06 table 1" markdown="1">
 | Field | Alignment |
 |---|---|
 | Lecture | 06 / 26 |
@@ -73,6 +92,8 @@ This Version 2 lecture is written as a **self-contained teaching note**, not a s
 | CLO | CLO1, CLO2 |
 | Version | Current detailed course |
 | Suggested class use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -310,11 +331,14 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 
 ## Comparison Table: Three Types of Biological Response
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 06 table 2" markdown="1">
 | Term | Time scale | Heritable? | Example |
 |---|---|---:|---|
 | Acclimation | within one lifetime | not necessarily | altered physiology after warming |
 | Phenotypic plasticity | within a genotype's response range | genotype-dependent | different leaf form in shade |
 | Adaptation | across generations | yes | evolved salt-tolerance traits |
+
+</div>
 
 ## Mini 2×2 Experiment
 
@@ -395,38 +419,48 @@ For a broad question on **Multiple Environmental Factors and Ecological Adaptati
 ## MCQ Self-Check
 
 **1. When two stresses together have a stronger effect than expected from their individual effects, the interaction is:**
-A. additive
-B. synergistic
-C. neutral
-D. random
+
+- A. additive
+- B. synergistic
+- C. neutral
+- D. random
+
 **Answer: B**
 
 **2. A reversible lifetime adjustment to environmental change is:**
-A. adaptation
-B. acclimation
-C. speciation
-D. extinction
+
+- A. adaptation
+- B. acclimation
+- C. speciation
+- D. extinction
+
 **Answer: B**
 
 **3. A heritable trait shaped by natural selection is an:**
-A. acclimation
-B. adaptation
-C. census
-D. niche count
+
+- A. acclimation
+- B. adaptation
+- C. census
+- D. niche count
+
 **Answer: B**
 
 **4. Phenotypic plasticity means:**
-A. all genotypes are identical
-B. one genotype can produce different phenotypes in different environments
-C. mutations never occur
-D. environment has no effect
+
+- A. all genotypes are identical
+- B. one genotype can produce different phenotypes in different environments
+- C. mutations never occur
+- D. environment has no effect
+
 **Answer: B**
 
 **5. A thick waxy cuticle is primarily a:**
-A. behavioural adaptation
-B. morphological adaptation
-C. demographic rate
-D. trophic level
+
+- A. behavioural adaptation
+- B. morphological adaptation
+- C. demographic rate
+- D. trophic level
+
 **Answer: B**
 
 

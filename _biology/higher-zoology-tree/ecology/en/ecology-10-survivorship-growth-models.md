@@ -56,14 +56,33 @@ syllabus_topics:
 clo_alignment:
   - CLO2
 math: true
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # Ecology Lecture 10: Survivorship Curves and Population Growth Models
 
 This Version 2 lecture is written as a **self-contained teaching note**, not a short revision page. It develops definitions, mechanisms, examples, diagrams, quantitative reasoning, evidence design, Bangladesh applications, misconceptions, exam preparation, and a bridge to the next lecture.
 
 
+
+## How to Learn This Lecture — LBFL Guided Learning
+
+The canonical owner of the learning method is **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**. This lecture applies that method to Ecology content rather than creating a competing local learning cycle.
+
+1. **Understand — identify the idea:** separate the central ecological claim, system boundary, variables, and mechanism.
+2. **Retrieve — recall without looking:** recall the key definition, relationship, equation/term, and main diagram labels from memory.
+3. **Explain — build the causal chain:** explain “what → why → how → consequence” in your own words, using an arrow chain or flow diagram when useful.
+4. **Apply — transfer to a new context:** use the idea with a Bangladesh ecosystem, field observation, graph, table, or unfamiliar ecological case.
+5. **Reflect — test uncertainty:** write one question about weak evidence, a strong assumption, or an alternative explanation.
+6. **Repair — correct and reattempt:** identify a misconception, graph-reading error, or incomplete explanation, revisit the relevant section, then solve the same problem again.
+
+> **Visual reasoning target:** Type I–III survivorship, exponential versus logistic growth, carrying capacity, overshoot, and model assumptions.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 10 table 1" markdown="1">
 | Field | Alignment |
 |---|---|
 | Lecture | 10 / 26 |
@@ -71,6 +90,8 @@ This Version 2 lecture is written as a **self-contained teaching note**, not a s
 | CLO | CLO2 |
 | Version | Current detailed course |
 | Suggested class use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -247,7 +268,7 @@ Population size
 |                         exponential
 |                       /
 |                     /
-|           _________/ 
+|           _________/
 |         _/  logistic
 |       _/
 |     _/
@@ -361,6 +382,7 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 
 ## Comparison Table: Exponential and Logistic Growth
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 10 table 2" markdown="1">
 | Feature | Exponential | Logistic |
 |---|---|---|
 | Equation | \\(dN/dt=rN\\) | \\(dN/dt=rN(1-N/K)\\) |
@@ -368,6 +390,8 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 | Curve | J-shaped | S-shaped |
 | Per-capita growth | constant | declines with N |
 | Carrying capacity | absent | included as K |
+
+</div>
 
 ## Mini Calculation Set
 
@@ -443,38 +467,48 @@ For a broad question on **Survivorship Curves and Population Growth Models**, a 
 ## MCQ Self-Check
 
 **1. Type III survivorship is characterized by:**
-A. low early mortality
-B. high early mortality
-C. constant population size
-D. zero reproduction
+
+- A. low early mortality
+- B. high early mortality
+- C. constant population size
+- D. zero reproduction
+
 **Answer: B**
 
 **2. Exponential growth is represented by:**
-A. dN/dt = rN
-B. N = K always
-C. qx = dx/nx only
-D. H' = 0
+
+- A. dN/dt = rN
+- B. N = K always
+- C. qx = dx/nx only
+- D. H' = 0
+
 **Answer: A**
 
 **3. In the logistic model, K represents:**
-A. mutation rate
-B. carrying capacity
-C. migration distance
-D. species richness
+
+- A. mutation rate
+- B. carrying capacity
+- C. migration distance
+- D. species richness
+
 **Answer: B**
 
 **4. In the simple logistic model, absolute growth is maximal near:**
-A. N = 0
-B. N = K/2
-C. N = 2K
-D. N = −K
+
+- A. N = 0
+- B. N = K/2
+- C. N = 2K
+- D. N = −K
+
 **Answer: B**
 
 **5. Carrying capacity is best viewed as:**
-A. a permanent species constant
-B. environment-dependent and potentially variable
-C. unrelated to resources
-D. identical to population size at all times
+
+- A. a permanent species constant
+- B. environment-dependent and potentially variable
+- C. unrelated to resources
+- D. identical to population size at all times
+
 **Answer: B**
 
 

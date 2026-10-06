@@ -56,14 +56,33 @@ syllabus_topics:
 clo_alignment:
   - CLO2
 math: true
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # Ecology Lecture 08: Population Ecology I: Population Characteristics, Density and Dispersion
 
 This Version 2 lecture is written as a **self-contained teaching note**, not a short revision page. It develops definitions, mechanisms, examples, diagrams, quantitative reasoning, evidence design, Bangladesh applications, misconceptions, exam preparation, and a bridge to the next lecture.
 
 
+
+## How to Learn This Lecture — LBFL Guided Learning
+
+The canonical owner of the learning method is **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**. This lecture applies that method to Ecology content rather than creating a competing local learning cycle.
+
+1. **Understand — identify the idea:** separate the central ecological claim, system boundary, variables, and mechanism.
+2. **Retrieve — recall without looking:** recall the key definition, relationship, equation/term, and main diagram labels from memory.
+3. **Explain — build the causal chain:** explain “what → why → how → consequence” in your own words, using an arrow chain or flow diagram when useful.
+4. **Apply — transfer to a new context:** use the idea with a Bangladesh ecosystem, field observation, graph, table, or unfamiliar ecological case.
+5. **Reflect — test uncertainty:** write one question about weak evidence, a strong assumption, or an alternative explanation.
+6. **Repair — correct and reattempt:** identify a misconception, graph-reading error, or incomplete explanation, revisit the relevant section, then solve the same problem again.
+
+> **Visual reasoning target:** Population size/density, clumped–uniform–random dispersion, sampling logic, and scale dependence.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 08 table 1" markdown="1">
 | Field | Alignment |
 |---|---|
 | Lecture | 08 / 26 |
@@ -71,6 +90,8 @@ This Version 2 lecture is written as a **self-contained teaching note**, not a s
 | CLO | CLO2 |
 | Version | Current detailed course |
 | Suggested class use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -314,6 +335,7 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 
 ## Comparison Table: Population Descriptors
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 08 table 2" markdown="1">
 | Measure | What it tells us | What it does not tell us |
 |---|---|---|
 | Size (N) | total individuals | crowding per area |
@@ -321,6 +343,8 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 | Dispersion | spatial arrangement | total abundance |
 | Occupancy | proportion of sites used | individuals per occupied site |
 | Age structure | demographic composition | exact future growth by itself |
+
+</div>
 
 ## Mini Sampling Exercise
 
@@ -393,38 +417,48 @@ For a broad question on **Population Ecology I: Population Characteristics, Dens
 ## MCQ Self-Check
 
 **1. Population density is:**
-A. total births
-B. individuals per unit area or volume
-C. number of species
-D. age at death
+
+- A. total births
+- B. individuals per unit area or volume
+- C. number of species
+- D. age at death
+
 **Answer: B**
 
 **2. Clumped dispersion commonly results from:**
-A. patchy resources
-B. perfectly even territorial spacing
-C. absence of habitat variation
-D. constant mortality only
+
+- A. patchy resources
+- B. perfectly even territorial spacing
+- C. absence of habitat variation
+- D. constant mortality only
+
 **Answer: A**
 
 **3. Occupancy is:**
-A. exactly the same as abundance
-B. the proportion of sampled sites where a species is detected
-C. birth rate
-D. total habitat area
+
+- A. exactly the same as abundance
+- B. the proportion of sampled sites where a species is detected
+- C. birth rate
+- D. total habitat area
+
 **Answer: B**
 
 **4. A count per trap-night is usually a measure of:**
-A. absolute population size with certainty
-B. relative abundance index
-C. species richness
-D. carrying capacity
+
+- A. absolute population size with certainty
+- B. relative abundance index
+- C. species richness
+- D. carrying capacity
+
 **Answer: B**
 
 **5. Observed counts can change without true abundance changing because of:**
-A. detectability
-B. taxonomy only
-C. gravity
-D. no ecological reason
+
+- A. detectability
+- B. taxonomy only
+- C. gravity
+- D. no ecological reason
+
 **Answer: A**
 
 

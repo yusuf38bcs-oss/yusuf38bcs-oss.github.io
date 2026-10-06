@@ -58,14 +58,33 @@ clo_alignment:
   - CLO1
   - CLO2
 math: true
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # Ecology Lecture 03: Abiotic Ecology I: Light, Temperature and Organism Distribution
 
 This Version 2 lecture is written as a **self-contained teaching note**, not a short revision page. It develops definitions, mechanisms, examples, diagrams, quantitative reasoning, evidence design, Bangladesh applications, misconceptions, exam preparation, and a bridge to the next lecture.
 
 
+
+## How to Learn This Lecture — LBFL Guided Learning
+
+The canonical owner of the learning method is **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**. This lecture applies that method to Ecology content rather than creating a competing local learning cycle.
+
+1. **Understand — identify the idea:** separate the central ecological claim, system boundary, variables, and mechanism.
+2. **Retrieve — recall without looking:** recall the key definition, relationship, equation/term, and main diagram labels from memory.
+3. **Explain — build the causal chain:** explain “what → why → how → consequence” in your own words, using an arrow chain or flow diagram when useful.
+4. **Apply — transfer to a new context:** use the idea with a Bangladesh ecosystem, field observation, graph, table, or unfamiliar ecological case.
+5. **Reflect — test uncertainty:** write one question about weak evidence, a strong assumption, or an alternative explanation.
+6. **Repair — correct and reattempt:** identify a misconception, graph-reading error, or incomplete explanation, revisit the relevant section, then solve the same problem again.
+
+> **Visual reasoning target:** Light attenuation, thermal performance curves, Q10, microclimate, and organism distribution.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 03 table 1" markdown="1">
 | Field | Alignment |
 |---|---|
 | Lecture | 03 / 26 |
@@ -73,6 +92,8 @@ This Version 2 lecture is written as a **self-contained teaching note**, not a s
 | CLO | CLO1, CLO2 |
 | Version | Current detailed course |
 | Suggested class use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -287,6 +308,7 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 
 ## Comparison Table: Light and Temperature
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 03 table 2" markdown="1">
 | Dimension | Light | Temperature |
 |---|---|---|
 | Can act as energy? | yes, for photosynthesis | no |
@@ -294,6 +316,8 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 | Main physiological effect | photosynthesis, vision, timing | enzyme rate, metabolism, membranes |
 | Spatial variation | canopy, depth, shading | latitude, altitude, microclimate |
 | Behavioural response | phototaxis, timing | basking, shade seeking, burrowing |
+
+</div>
 
 ## Mini Field Practical
 
@@ -366,38 +390,48 @@ For a broad question on **Abiotic Ecology I: Light, Temperature and Organism Dis
 ## MCQ Self-Check
 
 **1. Photoperiod is best defined as:**
-A. light intensity
-B. duration of daylight in a 24-hour cycle
-C. leaf temperature
-D. heat production
+
+- A. light intensity
+- B. duration of daylight in a 24-hour cycle
+- C. leaf temperature
+- D. heat production
+
 **Answer: B**
 
 **2. The light compensation point occurs when:**
-A. respiration stops
-B. photosynthesis equals respiration
-C. light is maximal
-D. temperature is zero
+
+- A. respiration stops
+- B. photosynthesis equals respiration
+- C. light is maximal
+- D. temperature is zero
+
 **Answer: B**
 
 **3. Q10 is used to describe:**
-A. salinity tolerance
-B. temperature sensitivity of a biological rate
-C. population density
-D. soil texture
+
+- A. salinity tolerance
+- B. temperature sensitivity of a biological rate
+- C. population density
+- D. soil texture
+
 **Answer: B**
 
 **4. An ectotherm primarily obtains body heat from:**
-A. internal metabolic heat only
-B. external environmental sources
-C. photosynthesis
-D. fermentation
+
+- A. internal metabolic heat only
+- B. external environmental sources
+- C. photosynthesis
+- D. fermentation
+
 **Answer: B**
 
 **5. Which is behavioural thermoregulation?**
-A. evolving antifreeze genes
-B. basking and moving into shade
-C. producing thicker fur over generations
-D. changing species identity
+
+- A. evolving antifreeze genes
+- B. basking and moving into shade
+- C. producing thicker fur over generations
+- D. changing species identity
+
 **Answer: B**
 
 

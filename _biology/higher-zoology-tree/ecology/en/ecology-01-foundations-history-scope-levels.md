@@ -56,14 +56,33 @@ syllabus_topics:
 clo_alignment:
   - CLO1
 math: true
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # Ecology Lecture 01: Foundations of Ecology — History, Scope and Levels of Organization
 
 This is the fully detailed English mirror of Lecture 01. It is designed as a self-contained foundation for the current ten-lecture Ecology course, with enough explanation, examples, diagrams, conceptual links, and review material that a student can build the core ideas without depending on a separate introductory guide.
 
 
+
+## How to Learn This Lecture — LBFL Guided Learning
+
+The canonical owner of the learning method is **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**. This lecture applies that method to Ecology content rather than creating a competing local learning cycle.
+
+1. **Understand — identify the idea:** separate the central ecological claim, system boundary, variables, and mechanism.
+2. **Retrieve — recall without looking:** recall the key definition, relationship, equation/term, and main diagram labels from memory.
+3. **Explain — build the causal chain:** explain “what → why → how → consequence” in your own words, using an arrow chain or flow diagram when useful.
+4. **Apply — transfer to a new context:** use the idea with a Bangladesh ecosystem, field observation, graph, table, or unfamiliar ecological case.
+5. **Reflect — test uncertainty:** write one question about weak evidence, a strong assumption, or an alternative explanation.
+6. **Repair — correct and reattempt:** identify a misconception, graph-reading error, or incomplete explanation, revisit the relevant section, then solve the same problem again.
+
+> **Visual reasoning target:** Ecological hierarchy, systems connections, pattern-to-process reasoning, and Bangladesh multi-scale examples.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 01 table 1" markdown="1">
 | Field | Alignment |
 |---|---|
 | Course block | Foundations of Ecology |
@@ -72,6 +91,8 @@ This is the fully detailed English mirror of Lecture 01. It is designed as a sel
 | Concept level | Foundation |
 | Suggested class time | 2 hours + guided reading |
 | Prerequisite | Basic Biology |
+
+</div>
 
 ## Lecture Question
 
@@ -549,6 +570,7 @@ A single tree does not possess “forest species diversity.” Diversity is a co
 
 ## 14. Major Branches of Ecology
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 01 table 2" markdown="1">
 | Branch | Main focus | Example question |
 |---|---|---|
 | Autecology | one species and its environment | How does salinity affect one species? |
@@ -564,6 +586,8 @@ A single tree does not possess “forest species diversity.” Diversity is a co
 | Urban ecology | cities as ecosystems | How does urban heat affect biodiversity? |
 | Agroecology | agricultural ecosystems | Can natural enemies reduce pests? |
 | Disease ecology | host–pathogen–environment | Does climate alter disease transmission? |
+
+</div>
 
 ---
 
@@ -967,6 +991,7 @@ This is an eco-evolutionary feedback.
 
 Ecological processes operate across very different time scales.
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 01 table 3" markdown="1">
 | Time scale | Example |
 |---|---|
 | Seconds–minutes | predator escape |
@@ -977,12 +1002,15 @@ Ecological processes operate across very different time scales.
 | Decades | ecological succession |
 | Centuries | long-term forest or climate-driven change |
 
+</div>
+
 A short snapshot can therefore be misleading.
 
 ---
 
 ## 28. Spatial Scale in Ecology
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 01 table 4" markdown="1">
 | Spatial scale | Example |
 |---|---|
 | Millimetres | microbial biofilm |
@@ -992,6 +1020,8 @@ A short snapshot can therefore be misleading.
 | Landscape | habitat network |
 | Region | coastal mangrove zone |
 | Global | biosphere |
+
+</div>
 
 ---
 
@@ -1158,39 +1188,49 @@ The ecology of groups of species or communities.
 
 ## 35. MCQ Self-Check
 
-**1. Which level contains interacting populations of different species?**  
-A. Organism  
-B. Population  
-C. Community  
-D. Cell  
+**1. Which level contains interacting populations of different species?**
+
+- A. Organism
+- B. Population
+- C. Community
+- D. Cell
+
 **Answer: C**
 
-**2. An ecosystem includes:**  
-A. only animals  
-B. only living organisms  
-C. a community plus the abiotic environment  
-D. only plants and microbes  
+**2. An ecosystem includes:**
+
+- A. only animals
+- B. only living organisms
+- C. a community plus the abiotic environment
+- D. only plants and microbes
+
 **Answer: C**
 
-**3. The term ecosystem is most closely associated with:**  
-A. Haeckel  
-B. Tansley  
-C. Darwin  
-D. Malthus  
+**3. The term ecosystem is most closely associated with:**
+
+- A. Haeckel
+- B. Tansley
+- C. Darwin
+- D. Malthus
+
 **Answer: B**
 
-**4. The study of one species in relation to its environment is traditionally called:**  
-A. Autecology  
-B. Synecology  
-C. Biogeochemistry  
-D. Limnology  
+**4. The study of one species in relation to its environment is traditionally called:**
+
+- A. Autecology
+- B. Synecology
+- C. Biogeochemistry
+- D. Limnology
+
 **Answer: A**
 
-**5. Which is an emergent community property?**  
-A. Cell size  
-B. Blood pressure  
-C. Species diversity  
-D. DNA base sequence  
+**5. Which is an emergent community property?**
+
+- A. Cell size
+- B. Blood pressure
+- C. Species diversity
+- D. DNA base sequence
+
 **Answer: C**
 
 ---

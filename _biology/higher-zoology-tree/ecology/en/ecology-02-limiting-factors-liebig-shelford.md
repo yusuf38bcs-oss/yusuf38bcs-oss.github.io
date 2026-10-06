@@ -57,14 +57,33 @@ syllabus_topics:
 clo_alignment:
   - CLO1
   - CLO2
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # Ecology Lecture 02: Environmental Factors and the Principle of Limiting Factors
 
 This Version 2 lecture is written as a **self-contained teaching note**, not a short revision page. It develops definitions, mechanisms, examples, diagrams, quantitative reasoning, evidence design, Bangladesh applications, misconceptions, exam preparation, and a bridge to the next lecture.
 
 
+
+## How to Learn This Lecture — LBFL Guided Learning
+
+The canonical owner of the learning method is **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**. This lecture applies that method to Ecology content rather than creating a competing local learning cycle.
+
+1. **Understand — identify the idea:** separate the central ecological claim, system boundary, variables, and mechanism.
+2. **Retrieve — recall without looking:** recall the key definition, relationship, equation/term, and main diagram labels from memory.
+3. **Explain — build the causal chain:** explain “what → why → how → consequence” in your own words, using an arrow chain or flow diagram when useful.
+4. **Apply — transfer to a new context:** use the idea with a Bangladesh ecosystem, field observation, graph, table, or unfamiliar ecological case.
+5. **Reflect — test uncertainty:** write one question about weak evidence, a strong assumption, or an alternative explanation.
+6. **Repair — correct and reattempt:** identify a misconception, graph-reading error, or incomplete explanation, revisit the relevant section, then solve the same problem again.
+
+> **Visual reasoning target:** Liebig minimum logic, Shelford tolerance curves, optimum–stress–intolerance zones, and shifting/co-limitation.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 02 table 1" markdown="1">
 | Field | Alignment |
 |---|---|
 | Lecture | 02 / 26 |
@@ -72,6 +91,8 @@ This Version 2 lecture is written as a **self-contained teaching note**, not a s
 | CLO | CLO1, CLO2 |
 | Version | Current detailed course |
 | Suggested class use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -286,12 +307,15 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 
 ## Comparison Table: Liebig and Shelford
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 02 table 2" markdown="1">
 | Feature | Liebig | Shelford |
 |---|---|---|
 | Main emphasis | shortage of an essential resource | both deficiency and excess |
 | Typical teaching image | shortest stave in a barrel | tolerance curve |
 | Best use | finding a resource bottleneck | interpreting environmental range |
 | Important limitation | assumes a simple bottleneck | still simplified when factors interact |
+
+</div>
 
 ## Mini Experimental Design
 
@@ -372,38 +396,48 @@ For a broad question on **Environmental Factors and the Principle of Limiting Fa
 ## MCQ Self-Check
 
 **1. Which statement best expresses Liebig's law of the minimum?**
-A. Growth is controlled only by temperature
-B. Growth may be limited by the essential resource in shortest supply relative to need
-C. All factors have equal effects
-D. Excess can never be limiting
+
+- A. Growth is controlled only by temperature
+- B. Growth may be limited by the essential resource in shortest supply relative to need
+- C. All factors have equal effects
+- D. Excess can never be limiting
+
 **Answer: B**
 
 **2. Shelford's law adds which major idea?**
-A. Only nutrients matter
-B. Organisms have both lower and upper tolerance limits
-C. Predators determine all distributions
-D. Population size never changes
+
+- A. Only nutrients matter
+- B. Organisms have both lower and upper tolerance limits
+- C. Predators determine all distributions
+- D. Population size never changes
+
 **Answer: B**
 
 **3. The central part of a tolerance curve is usually called the:**
-A. intolerance zone
-B. mortality zone
-C. optimum zone
-D. emigration zone
+
+- A. intolerance zone
+- B. mortality zone
+- C. optimum zone
+- D. emigration zone
+
 **Answer: C**
 
 **4. If nitrogen addition has no effect but N+P together increases growth, the best interpretation is:**
-A. no limitation
-B. co-limitation
-C. only temperature limitation
-D. random error must be the cause
+
+- A. no limitation
+- B. co-limitation
+- C. only temperature limitation
+- D. random error must be the cause
+
 **Answer: B**
 
 **5. A factor can be limiting when it is:**
-A. only deficient
-B. only excessive
-C. deficient or excessive relative to biological tolerance
-D. numerically the smallest variable
+
+- A. only deficient
+- B. only excessive
+- C. deficient or excessive relative to biological tolerance
+- D. numerically the smallest variable
+
 **Answer: C**
 
 

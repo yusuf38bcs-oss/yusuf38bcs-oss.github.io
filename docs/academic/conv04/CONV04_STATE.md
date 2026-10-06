@@ -1,40 +1,42 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-10-R1
-mode: isolated learner implementation — Ecology BN Lectures 01–10
-authorized_base: 79cc028eb581411fce6a29b92de2e25552118e86
-branch: conv-04f-10-r1-ecology-bn-implementation-20261006
-production_verified_main: 79cc028eb581411fce6a29b92de2e25552118e86
+phase: CONV-04F-10-R2
+mode: isolated learner synchronization — Ecology English Lectures 01–10
+authorized_base: e92f1a8dfcfb55ac673110a8a38e65d77cfaa840
+branch: conv-04f-10-r2-ecology-en-sync-20261006
+production_verified_main: e92f1a8dfcfb55ac673110a8a38e65d77cfaa840
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
 f09_status: FORMALLY CLOSED / exact-main closure + 8-of-8 Practical production PASS
 f09_closure_evidence: docs/academic/conv04/ZOOLOGY_PRACTICAL_F09_FORMAL_CLOSURE.md
-f10a_status: AUTHORIZATION CLOSED / PR #447 merged; F-10-R1 implementation active
+f10a_status: CLOSED / Bangla Ecology 01–10 merged via PR #448 and exact-main production-certified
 f10a_authorization: docs/academic/conv04/ECOLOGY_F10A_BN_AUTHORIZATION.md
 f10a_manifest: _data/academic/conv04f10a_ecology_bn_authorization_v1.json
-learner_content_authoring: YES — limited strictly to the ten frozen Bangla Ecology lecture sources below
+f10b_status: ACTIVE / English synchronization bound to exact post-R1 production main
+f10b_manifest: _data/academic/conv04f10b_ecology_en_sync_v1.json
+learner_content_authoring: YES — limited strictly to the ten frozen English Ecology lecture sources below
 learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels.md
-  - _biology/higher-zoology-tree/ecology/ecology-02-limiting-factors-liebig-shelford.md
-  - _biology/higher-zoology-tree/ecology/ecology-03-abiotic-light-temperature.md
-  - _biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity.md
-  - _biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions.md
-  - _biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation.md
-  - _biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity.md
-  - _biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion.md
-  - _biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables.md
-  - _biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-01-foundations-history-scope-levels.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-02-limiting-factors-liebig-shelford.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-03-abiotic-light-temperature.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-04-abiotic-water-soil-salinity.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-05-biotic-limiting-factors-interactions.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-06-multiple-factors-adaptation.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-07-case-study-sundarbans-salinity.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-08-population-characteristics-density-dispersion.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-09-demography-vital-rates-life-tables.md
+  - _biology/higher-zoology-tree/ecology/en/ecology-10-survivorship-growth-models.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-english_ecology: protected / F-10B only
+bangla_ecology: protected / production-certified
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: protected / untouched
-ready_transition: F-10-R1 implementation must preserve frozen baselines, pass exact-head source/Jekyll/browser/accessibility/scientific review, fresh review, zero unresolved threads and Trusted Governance
-merge: F-10-R1 implementation only after unchanged-head certification; F-10B/F-11/G remain unauthorized
-next_module_gate: F-10B English synchronization BLOCKED until F-10-R1 BN implementation is merged and exact-main production-certified
-practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; F-09 closure R102; CONV-04F-10 = F-10A Ecology BN authorization; F-10B successor identity reserved after F-10A closure; F-11 Whole-F certification
+worker_cloudflare: protected / untouched / non-governing external build noise must not substitute for required CONV-04 checks
+ready_transition: F-10B must preserve frozen English baselines, pass exact-head Ecology/Jekyll/browser/accessibility/retained certification, fresh review, zero unresolved threads and Trusted Governance
+merge: F-10B synchronization only after unchanged-head certification; F-11/G remain unauthorized
+next_module_gate: F-11 Whole-F certification BLOCKED until F-10B is merged and exact-main production-certified
+practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; F-09 closure R102; F-10-R1 = BN implementation; F-10-R2 = F-10B English synchronization; F-11 = Whole-F certification
 
 ## Completed foundation
 
