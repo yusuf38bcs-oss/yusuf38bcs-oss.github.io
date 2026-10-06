@@ -62,6 +62,7 @@
 
 .lbfl-platform-brand {
   display: inline-flex;
+  flex: 1 1 auto;
   min-width: 0;
   align-items: center;
   gap: clamp(0.55rem, 1.4vw, 0.8rem);
