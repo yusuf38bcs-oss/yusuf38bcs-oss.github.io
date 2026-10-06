@@ -36,8 +36,6 @@ synaptic_links:
 toc: true
 toc_sticky: true
 classes: wide
-header:
-  overlay_image: /assets/images/biology/biostatistics-banner.webp
 language: bn
 curriculum_tracks:
   - HSC Zoology
@@ -52,6 +50,9 @@ difficulty: "Foundation"
 xp: 700
 time_min: 55
 status: "Active"
+academic_system: v1
+academic_role: lecture
+lang: bn
 ---
 
 # Measures of Central Tendency: কেন্দ্রীয় প্রবণতার পরিমাপ
