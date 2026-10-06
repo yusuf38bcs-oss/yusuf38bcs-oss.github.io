@@ -85,7 +85,7 @@
                 `).join('')}
               </div>
             </fieldset>
-          `).join(')}
+          `).join('')}
         </div>
         
         <div class="mi-action-control-panel" style="text-align:center; margin-top:2.5rem; width:100%;">
