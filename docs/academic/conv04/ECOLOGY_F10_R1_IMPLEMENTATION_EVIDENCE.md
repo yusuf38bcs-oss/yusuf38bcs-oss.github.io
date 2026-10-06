@@ -1,8 +1,8 @@
 # CONV-04F-10-R1 — Ecology BN 01–10 Implementation Evidence
 
-**Authorized base:** `79cc028eb581411fce6a29b92de2e25552118e86`  
-**Branch:** `conv-04f-10-r1-ecology-bn-implementation-20261006`  
-**Scope:** isolated Bangla Ecology learner convergence, Lectures 01–10  
+**Authorized base:** `79cc028eb581411fce6a29b92de2e25552118e86`
+**Branch:** `conv-04f-10-r1-ecology-bn-implementation-20261006`
+**Scope:** isolated Bangla Ecology learner convergence, Lectures 01–10
 **Protected:** English Ecology, shared Academic-v1 runtime/CSS/JS, MCQ Arena ownership, Practical-I, HSC Botany/Zoology, Socratic, Admission, Homepage, Worker/Cloudflare/DNS.
 
 ## 1. Gate activation
