@@ -72,3 +72,9 @@ Merge is prohibited until the unchanged exact head has:
 - Trusted Governance PASS.
 
 F-11 Whole-F certification remains blocked until F-10B is merged and exact-main production-certified.
+
+## Review remediation
+
+Fresh review detected that normalization had removed intentional Markdown hard-break spaces in the English MCQ self-check blocks. Rather than restoring fragile trailing spaces, the five A–D choice sets in each of the ten English lectures were converted to semantic Markdown bullet lists with explicit paragraph separation before each answer.
+
+Result: 200 choices converted across 50 retained questions. Question wording, choices and answer keys are unchanged.
