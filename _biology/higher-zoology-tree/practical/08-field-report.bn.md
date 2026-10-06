@@ -21,6 +21,9 @@ page_id: zoology-practical-field-report
 language: bn
 lang: bn
 locale: bn-BD
+academic_system: v1
+academic_role: practical
+learning_guide: canonical
 toc: true
 toc_sticky: true
 math: true
@@ -38,6 +41,8 @@ time_min: 180
 ---
 
 # Field Visit, Collection & Scientific Report
+
+{% include education/learning-guide-cta.html %}
 
 ## Syllabus Requirement
 
@@ -140,10 +145,14 @@ Always state:
 
 ## Results Table
 
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Field Report results table" markdown="1">
+
 | Taxon | Q1 | Q2 | Q3 | Q4 | Total \(n_i\) | Density | Frequency % | \(p_i\) |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | Taxon 1 | | | | | | | | |
 | Taxon 2 | | | | | | | | |
+
+</div>
 
 ## Scientific Report Structure
 
@@ -195,6 +204,8 @@ Books, taxonomic databases and any scientific papers actually used।
 
 ## 17-mark Field-report Distribution from Syllabus
 
+<div class="lbfl-academic-table-wrap zoology-practical-table-scroll" tabindex="0" role="region" aria-label="Field Report 17-mark distribution table" markdown="1">
+
 | Component | Marks |
 |---|---:|
 | ≥10 preserved sample submission | 7 |
@@ -205,6 +216,8 @@ Books, taxonomic databases and any scientific papers actually used।
 | Discussion | 2 |
 | Acknowledgement + References | 1 |
 | **Total** | **17** |
+
+</div>
 
 ## Sample Submission Checklist
 

@@ -1,26 +1,27 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R100
-mode: authorization-only — prac-08 Field Report
-authorized_base: 9bdc80ca7ceff9dd33773514c3c6e41447ee95fe
-branch: conv-04f-09-r100-prac08-field-report-20261005
-production_verified_main: 9bdc80ca7ceff9dd33773514c3c6e41447ee95fe
+phase: CONV-04F-09-R101
+mode: implementation candidate — prac-08 Field Report
+authorized_base: d86325ec281e21de1a208f1a1f31ecb531821eb4
+branch: conv-04f-09-r101-prac08-field-report-20261006
+production_verified_main: d86325ec281e21de1a208f1a1f31ecb531821eb4
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R100 — authorization-only: freeze prac-08 baseline and authorize later isolated R101 structural convergence; no learner mutation
-learner_content_authoring: NO — R100 authorization only; prac-08 learner source remains byte-identical
+mutation_authority: R101 — exactly one prac-08 learner source + one strict route row + dedicated certification/evidence/governance artifacts
+learner_content_authoring: YES — exact prac-08 structural convergence only; frozen scientific/ecological/statistical/ethical/reporting corpus preserved
 existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 through prac-07 production parity closed / retained
-gateway_cta_injection: NO — prac-08 CTA injection deferred to isolated R101 implementation
+gateway_cta_injection: YES — exactly one canonical Learning Guide CTA after the existing H1 on prac-08
 learner_mutation_allowlist:
+  - _biology/higher-zoology-tree/practical/08-field-report.bn.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: Worker out of scope; prac-01 through prac-07 Cloudflare Pages production parity PASS / retained
-ready_transition: R100 authorization-only; no learner implementation may start until this exact-head authorization passes CI/review/governance and merges
-merge: R100 merge authorizes only an isolated R101 prac-08 implementation from the resulting exact main; no F-09 closure or F-10 Ecology work
-next_module_gate: prac-08 R101 BLOCKED — requires R100 exact-head CI/review/governance PASS and merge
+ready_transition: R101 remains Draft/HOLD until exact-head source/scope/ledger + retained contracts + Jekyll/browser/Axe/preview + fresh review/governance PASS
+merge: R101 not authorized until Ready + unchanged-head SOLO authority + Trusted Governance PASS + final unchanged-head review; exact-main production parity required before F-09 closure
+next_module_gate: F-09 closure BLOCKED — requires R101 merge + exact-main immutable/canonical production parity PASS
 practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
 
 ## Completed foundation
@@ -728,3 +729,16 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Scientific/statistical/ecological/sampling/equipment/curriculum rewrite: **NONE**.
 - No new stylesheet/script imports are authorized.
 - prac-08 remains blocked until R91 exact-main production parity closes.
+
+
+## CONV-04F-09-R101 prac-08 implementation candidate
+
+- Authorized base: `d86325ec281e21de1a208f1a1f31ecb531821eb4` (R100 authorization merge / PR #443).
+- Selected module: **prac-08 — Field Report**.
+- Learner source baseline: `6398c601c3a1b3cd891e8ea945d704d5d94b9711`.
+- Authorized transform: Academic-v1 metadata + role practical + canonical Learning Guide + one CTA immediately after the existing H1 + two accessible wrappers directly enclosing the two existing Markdown tables.
+- Academic Route Ledger: exactly one strict Field Report row.
+- Source hierarchy remains frozen at **1 H1 / 11 H2 / 11 H3**; rendered H2 must account for exactly one canonical Learning Guide heading.
+- Protected corpus includes the ≥10-sample requirement, collection ethics, Sample Label fields, Field Notebook fields, quadrat density/area/mean/frequency formulae, Shannon–Wiener formula/reporting conditions, report structure, exact 17-mark distribution, sample checklist, and five Socratic questions.
+- Scientific/ecological/statistical/ethical/reporting/formula/marks rewrite: **NONE**.
+- F-09 closure and F-10 Ecology remain blocked until R101 exact-main production parity closes.

@@ -1,0 +1,34 @@
+{
+  "schema": "lbfl-zoology-practical-field-report-v1",
+  "phase": "CONV-04F-09-R101",
+  "authorized_base_sha": "d86325ec281e21de1a208f1a1f31ecb531821eb4",
+  "authorization_pr": 443,
+  "source_file": "_biology/higher-zoology-tree/practical/08-field-report.bn.md",
+  "baseline_blob": "6398c601c3a1b3cd891e8ea945d704d5d94b9711",
+  "canonical_route": "/biology/higher-zoology-tree/practical/field-report/",
+  "course_id": "zoology-practical-213106",
+  "module_id": "prac-08",
+  "order": 8,
+  "previous": "prac-07",
+  "next": null,
+  "academic_system": "v1",
+  "academic_role": "practical",
+  "learning_guide": "canonical",
+  "preservation": {
+    "h1": 1,
+    "h2": 11,
+    "h3": 11,
+    "markdown_tables": 2,
+    "minimum_samples": 10,
+    "field_report_marks": 17,
+    "socratic_questions": 5,
+    "protect_scientific_curriculum_corpus": true
+  },
+  "authorized_mutations": [
+    "academic-v1 practical metadata",
+    "one canonical Learning Guide CTA immediately after existing H1",
+    "two accessible table wrappers",
+    "one strict Field Report route-ledger row",
+    "dedicated preservation/browser/certification/production evidence"
+  ]
+}
