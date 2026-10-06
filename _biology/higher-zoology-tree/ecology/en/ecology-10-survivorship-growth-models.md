@@ -467,38 +467,48 @@ For a broad question on **Survivorship Curves and Population Growth Models**, a 
 ## MCQ Self-Check
 
 **1. Type III survivorship is characterized by:**
-A. low early mortality
-B. high early mortality
-C. constant population size
-D. zero reproduction
+
+- A. low early mortality
+- B. high early mortality
+- C. constant population size
+- D. zero reproduction
+
 **Answer: B**
 
 **2. Exponential growth is represented by:**
-A. dN/dt = rN
-B. N = K always
-C. qx = dx/nx only
-D. H' = 0
+
+- A. dN/dt = rN
+- B. N = K always
+- C. qx = dx/nx only
+- D. H' = 0
+
 **Answer: A**
 
 **3. In the logistic model, K represents:**
-A. mutation rate
-B. carrying capacity
-C. migration distance
-D. species richness
+
+- A. mutation rate
+- B. carrying capacity
+- C. migration distance
+- D. species richness
+
 **Answer: B**
 
 **4. In the simple logistic model, absolute growth is maximal near:**
-A. N = 0
-B. N = K/2
-C. N = 2K
-D. N = −K
+
+- A. N = 0
+- B. N = K/2
+- C. N = 2K
+- D. N = −K
+
 **Answer: B**
 
 **5. Carrying capacity is best viewed as:**
-A. a permanent species constant
-B. environment-dependent and potentially variable
-C. unrelated to resources
-D. identical to population size at all times
+
+- A. a permanent species constant
+- B. environment-dependent and potentially variable
+- C. unrelated to resources
+- D. identical to population size at all times
+
 **Answer: B**
 
 
