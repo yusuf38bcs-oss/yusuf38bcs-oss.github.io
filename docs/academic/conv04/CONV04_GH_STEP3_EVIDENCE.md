@@ -1,6 +1,6 @@
 # CONV-04 Step 3 — G + H Socratic / Metadata Convergence
 
-**Authorized base:** `778be327b028eae71e72d7d0629b7ac9700123a9`  
+**Authorized base:** `778be327b028eae71e72d7d0629b7ac9700123a9`
 **Branch:** `conv-04gh-socratic-metadata-convergence-20261006`
 
 ## G — Socratic convergence
