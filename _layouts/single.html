@@ -115,13 +115,13 @@ layout: default
 
       <section class="page__content" itemprop="text">
         {% unless lbfl_reflection_boundary_owned %}
-          {% if lbfl_ecology_surface %}
-            {% if page.academic_system == 'v1' %}
-              {% include components/educational-boundary.html %}
-            {% endif %}
-          {% else %}
+        {% if lbfl_ecology_surface %}
+          {% if page.academic_system == 'v1' %}
             {% include components/educational-boundary.html %}
           {% endif %}
+        {% else %}
+          {% include components/educational-boundary.html %}
+        {% endif %}
         {% endunless %}
         {% if lbfl_zoology_route %}
           {% unless lbfl_ecology_surface or lbfl_course_owned_surface or lbfl_canonical_learning_guide %}
