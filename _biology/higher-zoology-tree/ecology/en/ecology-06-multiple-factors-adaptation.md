@@ -419,38 +419,48 @@ For a broad question on **Multiple Environmental Factors and Ecological Adaptati
 ## MCQ Self-Check
 
 **1. When two stresses together have a stronger effect than expected from their individual effects, the interaction is:**
-A. additive
-B. synergistic
-C. neutral
-D. random
+
+- A. additive
+- B. synergistic
+- C. neutral
+- D. random
+
 **Answer: B**
 
 **2. A reversible lifetime adjustment to environmental change is:**
-A. adaptation
-B. acclimation
-C. speciation
-D. extinction
+
+- A. adaptation
+- B. acclimation
+- C. speciation
+- D. extinction
+
 **Answer: B**
 
 **3. A heritable trait shaped by natural selection is an:**
-A. acclimation
-B. adaptation
-C. census
-D. niche count
+
+- A. acclimation
+- B. adaptation
+- C. census
+- D. niche count
+
 **Answer: B**
 
 **4. Phenotypic plasticity means:**
-A. all genotypes are identical
-B. one genotype can produce different phenotypes in different environments
-C. mutations never occur
-D. environment has no effect
+
+- A. all genotypes are identical
+- B. one genotype can produce different phenotypes in different environments
+- C. mutations never occur
+- D. environment has no effect
+
 **Answer: B**
 
 **5. A thick waxy cuticle is primarily a:**
-A. behavioural adaptation
-B. morphological adaptation
-C. demographic rate
-D. trophic level
+
+- A. behavioural adaptation
+- B. morphological adaptation
+- C. demographic rate
+- D. trophic level
+
 **Answer: B**
 
 
