@@ -43,8 +43,6 @@ toc: true
 toc_sticky: true
 classes: wide
 
-header:
-  overlay_image: /assets/images/biology/biostatistics-banner.webp
 language: en
 curriculum_tracks:
   - HSC Zoology
@@ -55,6 +53,9 @@ ib_theme: "Not Applicable"
 ib_subtopic: "Frequency distribution, histogram, and frequency polygon"
 hsc_alignment: "Higher Zoology: frequency distribution, histogram, and polygon"
 concept_level: "Core"
+academic_system: v1
+academic_role: lecture
+lang: en
 ---
 
 <style>

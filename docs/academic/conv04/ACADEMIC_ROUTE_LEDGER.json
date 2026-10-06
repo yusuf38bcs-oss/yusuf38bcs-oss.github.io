@@ -361,18 +361,16 @@
       "id": "socratic-gateway",
       "canonical_route": "/socratic/",
       "source_file": "_pages/hubs/socratic.md",
-      "support_files": [],
+      "support_files": [
+        "_includes/socratic/reflection-boundary.html"
+      ],
       "academic_role": "reflection_gateway",
       "language": "en",
       "boundary_owner": "role_component",
       "learning_guide_owner": "canonical",
       "assessment_owner": "socratic",
-      "enforcement": "progressive",
-      "source_debt": [
-        "missing_academic_role",
-        "missing_academic_system",
-        "missing_lang"
-      ],
+      "enforcement": "strict",
+      "source_debt": [],
       "live_debt": []
     },
     {
@@ -380,23 +378,17 @@
       "canonical_route": "/socratic/multiple-intelligences/",
       "source_file": "_pages/socratic-multiple-intelligences.md",
       "support_files": [
-        "_includes/components/mi-analysis-dynamic.html"
+        "_includes/components/mi-analysis-dynamic.html",
+        "_includes/socratic/reflection-boundary.html"
       ],
       "academic_role": "reflection",
       "language": "en",
       "boundary_owner": "role_component",
       "learning_guide_owner": "canonical",
       "assessment_owner": "socratic",
-      "enforcement": "progressive",
-      "source_debt": [
-        "missing_academic_role",
-        "missing_academic_system",
-        "missing_lang",
-        "inline_style"
-      ],
-      "live_debt": [
-        "rendered_boundary_duplication"
-      ]
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
     },
     {
       "id": "learning-guide",
@@ -571,6 +563,186 @@
       "assessment_owner": "mcq-arena",
       "enforcement": "strict",
       "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "personality-pattern-reflection",
+      "canonical_route": "/socratic/personality-archetypes/",
+      "source_file": "_socratic/personality-archetypes.md",
+      "support_files": [
+        "_includes/components/personality-analysis.html",
+        "_includes/socratic/reflection-boundary.html"
+      ],
+      "academic_role": "reflection",
+      "language": "en",
+      "boundary_owner": "role_component",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "socratic",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "cognitive-audit-reflection",
+      "canonical_route": "/life-practices/cognitive-audit/",
+      "source_file": "_pages/tools/mi-analysis.md",
+      "support_files": [
+        "_includes/components/mi-analysis-dynamic.html",
+        "_includes/socratic/reflection-boundary.html"
+      ],
+      "academic_role": "reflection",
+      "language": "en",
+      "boundary_owner": "role_component",
+      "learning_guide_owner": "canonical",
+      "assessment_owner": "socratic",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-gateway",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/index.md",
+      "support_files": [],
+      "academic_role": "chapter_index",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-basic",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-frequency",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "inline_style"
+      ],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-central-tendency",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/measures-of-central-tendency/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/measures-of-central-tendency.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-dispersion",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/measures-of-dispersion/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/measures-of-dispersion.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-hypothesis",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/hypothesis_testing/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/hypothesis_testing.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "inline_style"
+      ],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-z-test",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/z_test_problem_solving/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/z_test_problem_solving.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-t-test",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-chi-square",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/chi_square_test/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/chi_square_test.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "bn",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "strict",
+      "source_debt": [],
+      "live_debt": []
+    },
+    {
+      "id": "biostatistics-correlation-regression",
+      "canonical_route": "/biology/higher-zoology-tree/biostatistics/correlation_and_regression/",
+      "source_file": "_biology/higher-zoology-tree/biostatistics/correlation_and_regression.md",
+      "support_files": [],
+      "academic_role": "lecture",
+      "language": "en",
+      "boundary_owner": "layout",
+      "learning_guide_owner": "course",
+      "assessment_owner": "mcq-arena",
+      "enforcement": "progressive",
+      "source_debt": [
+        "inline_style"
+      ],
       "live_debt": []
     }
   ]

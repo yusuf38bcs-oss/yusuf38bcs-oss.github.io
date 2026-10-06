@@ -7,6 +7,9 @@ visibility: system
 index_in_matrix: false
 searchable: false
 learning_node: false
+academic_system: v1
+academic_role: lecture
+lang: en
 ---
 <!doctype html>
 <html lang="en">

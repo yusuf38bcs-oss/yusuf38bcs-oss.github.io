@@ -31,6 +31,9 @@ concept_level: "Course Gateway"
 course_id: higher-zoology-biostatistics
 course_role: course-index
 contract_state: governed
+academic_system: v1
+academic_role: chapter_index
+lang: en
 ---
 
 # Biostatistics Course — Biological Data to Inference
@@ -39,6 +42,7 @@ Biostatistics converts biological observations into measurable evidence. This go
 
 ## Governed learning sequence
 
+<div class="lbfl-platform-table-wrap" tabindex="0" role="region" aria-label="Biostatistics governed learning sequence" markdown="1">
 | Module | Focus | Open |
 |---:|---|---|
 | 01 | Basic concepts: population, sample, variable, observation and measurement | [Start Module 01]({{ '/biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics/' | relative_url }}) |
@@ -50,6 +54,8 @@ Biostatistics converts biological observations into measurable evidence. This go
 | 07 | Student's t-test and difference between means | [Open Module 07]({{ '/biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means/' | relative_url }}) |
 | 08 | Chi-square analysis of categorical frequency data | [Open Module 08]({{ '/biology/higher-zoology-tree/biostatistics/chi_square_test/' | relative_url }}) |
 | 09 | Correlation and regression | [Open Module 09]({{ '/biology/higher-zoology-tree/biostatistics/correlation_and_regression/' | relative_url }}) |
+
+</div>
 
 ## How to use the course
 

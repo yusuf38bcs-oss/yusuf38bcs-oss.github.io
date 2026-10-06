@@ -34,8 +34,6 @@ synaptic_links:
 toc: true
 toc_sticky: true
 classes: wide
-header:
-  overlay_image: /assets/images/biology/biostatistics-banner.webp
 language: bn
 curriculum_tracks:
   - HSC Zoology
@@ -50,6 +48,9 @@ difficulty: "Intermediate"
 xp: 750
 time_min: 55
 status: "Active"
+academic_system: v1
+academic_role: lecture
+lang: bn
 ---
 
 # Z-Test: Problem Solving

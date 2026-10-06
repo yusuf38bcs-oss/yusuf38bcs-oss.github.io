@@ -36,6 +36,9 @@ network:
 toc: true
 toc_sticky: true
 classes: wide
+sitemap: false
+route_status: legacy_compatibility
+lang: en
 ---
 
 <style>
