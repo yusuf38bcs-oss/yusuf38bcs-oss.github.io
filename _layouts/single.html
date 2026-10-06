@@ -37,11 +37,6 @@ layout: default
   {% assign lbfl_content_owns_h1 = true %}
 {% endif %}
 
-{% assign lbfl_content_owns_reflection_boundary = false %}
-{% if content contains 'lbfl-reflection-boundary' %}
-  {% assign lbfl_content_owns_reflection_boundary = true %}
-{% endif %}
-
 {% assign lbfl_overlay_image = page.header.overlay_image %}
 {% if lbfl_zoology_route and lbfl_overlay_image contains '/assets/images/biology/' %}
   {% assign lbfl_overlay_image = '' %}
@@ -114,15 +109,13 @@ layout: default
       {% endunless %}
 
       <section class="page__content" itemprop="text">
-        {% unless lbfl_content_owns_reflection_boundary %}
-          {% if lbfl_ecology_surface %}
-            {% if page.academic_system == 'v1' %}
-              {% include components/educational-boundary.html %}
-            {% endif %}
-          {% else %}
+        {% if lbfl_ecology_surface %}
+          {% if page.academic_system == 'v1' %}
             {% include components/educational-boundary.html %}
           {% endif %}
-        {% endunless %}
+        {% else %}
+          {% include components/educational-boundary.html %}
+        {% endif %}
         {% if lbfl_zoology_route %}
           {% unless lbfl_ecology_surface or lbfl_course_owned_surface or lbfl_canonical_learning_guide %}
             {% include zoology/learning-cycle.html %}
