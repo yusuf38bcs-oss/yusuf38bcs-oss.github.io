@@ -1,8 +1,8 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-10
-mode: F-09 formally closed; F-10A Ecology authorization gate pending
+phase: CONV-04F-09-R102
+mode: F-09 formal closure record; F-10A Ecology authorization gate pending
 authorized_base: 9b739e7371ede99c60bb509ed750670eeb0853c9
 branch: conv-04f-09-formal-closure-20261006
 production_verified_main: 9b739e7371ede99c60bb509ed750670eeb0853c9
