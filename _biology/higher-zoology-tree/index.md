@@ -51,13 +51,13 @@ By using this gateway, learners should be able to select the correct Zoology bra
 
 ## Main Branches
 
-<div class="lbfl-info-grid">
-  <section class="lbfl-info-card"><h3>Animal Diversity</h3><p>Classification, body plans, representative animals, structure-function logic, and evolutionary diversity.</p><p><a href="{{ '/biology/animal-diversity/' | relative_url }}">Open Animal Diversity</a></p></section>
-  <section class="lbfl-info-card"><h3>Human Physiology Matrix</h3><p>Homeostasis, organ systems, regulation, health awareness, and practical life interpretation.</p><p><a href="{{ '/biology/higher-zoology-tree/human-physiology/' | relative_url }}">Open Human Physiology</a></p></section>
-  <section class="lbfl-info-card"><h3>Ecology Matrix</h3><p>Organism-environment relationship, population, community, ecosystem dynamics, and stewardship thinking.</p><p><a href="{{ '/biology/higher-zoology-tree/ecology/' | relative_url }}">Open Ecology</a></p></section>
-  <section class="lbfl-info-card"><h3>Genetics Matrix</h3><p>Completed 17-lecture course from heredity and Mendelian inheritance to molecular genetics, gene regulation, mutation, and responsible interpretation.</p><p><a href="{{ '/biology/higher-zoology-tree/genetics/' | relative_url }}">Open Genetics</a></p></section>
-  <section class="lbfl-info-card"><h3>Biostatistics Terminal</h3><p>Data, distribution, central tendency, dispersion, hypothesis testing, chi-square, and evidence-based reasoning.</p><p><a href="{{ '/biology/higher-zoology-tree/biostatistics/' | relative_url }}">Open Biostatistics</a></p></section>
-  <section class="lbfl-info-card"><h3>Zoology Practical-I</h3><p>NU Honours 1st Year practical pathway covering museum specimens, permanent slides, whole mounts, dissection, temporary mounts, appendages, zooplankton, and field reporting.</p><p><a href="{{ '/biology/higher-zoology-tree/practical/' | relative_url }}">Open Zoology Practical-I</a></p></section>
+<div class="lbfl-platform-matrix">
+  <section class="lbfl-platform-card"><h3>Animal Diversity</h3><p>Classification, body plans, representative animals, structure-function logic, and evolutionary diversity.</p><p><a href="{{ '/biology/animal-diversity/' | relative_url }}">Open Animal Diversity</a></p></section>
+  <section class="lbfl-platform-card"><h3>Human Physiology Matrix</h3><p>Homeostasis, organ systems, regulation, health awareness, and practical life interpretation.</p><p><a href="{{ '/biology/higher-zoology-tree/human-physiology/' | relative_url }}">Open Human Physiology</a></p></section>
+  <section class="lbfl-platform-card"><h3>Ecology Matrix</h3><p>Organism-environment relationship, population, community, ecosystem dynamics, and stewardship thinking.</p><p><a href="{{ '/biology/higher-zoology-tree/ecology/' | relative_url }}">Open Ecology</a></p></section>
+  <section class="lbfl-platform-card"><h3>Genetics Matrix</h3><p>Completed 17-lecture course from heredity and Mendelian inheritance to molecular genetics, gene regulation, mutation, and responsible interpretation.</p><p><a href="{{ '/biology/higher-zoology-tree/genetics/' | relative_url }}">Open Genetics</a></p></section>
+  <section class="lbfl-platform-card"><h3>Biostatistics Terminal</h3><p>Data, distribution, central tendency, dispersion, hypothesis testing, chi-square, and evidence-based reasoning.</p><p><a href="{{ '/biology/higher-zoology-tree/biostatistics/' | relative_url }}">Open Biostatistics</a></p></section>
+  <section class="lbfl-platform-card"><h3>Zoology Practical-I</h3><p>NU Honours 1st Year practical pathway covering museum specimens, permanent slides, whole mounts, dissection, temporary mounts, appendages, zooplankton, and field reporting.</p><p><a href="{{ '/biology/higher-zoology-tree/practical/' | relative_url }}">Open Zoology Practical-I</a></p></section>
 </div>
 
 ## Recommended Learning Sequence
