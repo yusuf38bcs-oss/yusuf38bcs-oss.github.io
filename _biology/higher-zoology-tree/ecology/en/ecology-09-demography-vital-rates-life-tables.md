@@ -435,38 +435,48 @@ For a broad question on **Population Ecology II: Natality, Mortality, Migration,
 ## MCQ Self-Check
 
 **1. Which term adds individuals to a population from outside?**
-A. mortality
-B. emigration
-C. immigration
-D. predation
+
+- A. mortality
+- B. emigration
+- C. immigration
+- D. predation
+
 **Answer: C**
 
 **2. In a life table, lx is usually:**
-A. the proportion of the original cohort surviving to age x
-B. total habitat area
-C. birth rate only
-D. carrying capacity
+
+- A. the proportion of the original cohort surviving to age x
+- B. total habitat area
+- C. birth rate only
+- D. carrying capacity
+
 **Answer: A**
 
 **3. A cohort life table:**
-A. follows one cohort through time
-B. samples only soil
-C. ignores survival
-D. measures only migration
+
+- A. follows one cohort through time
+- B. samples only soil
+- C. ignores survival
+- D. measures only migration
+
 **Answer: A**
 
 **4. If 70 individuals are alive and 21 die during the interval, qx is:**
-A. 0.03
-B. 0.30
-C. 3.0
-D. 49
+
+- A. 0.03
+- B. 0.30
+- C. 3.0
+- D. 49
+
 **Answer: B**
 
 **5. A population can increase despite poor local reproduction if:**
-A. immigration is high
-B. all movement stops
-C. mortality is infinite
-D. density is undefined
+
+- A. immigration is high
+- B. all movement stops
+- C. mortality is infinite
+- D. density is undefined
+
 **Answer: A**
 
 
