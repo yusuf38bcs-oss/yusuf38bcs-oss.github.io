@@ -13,8 +13,6 @@ academic_role: reflection_gateway
 lang: en
 ---
 
-{% include socratic/reflection-boundary.html %}
-
 <section class="lbfl-platform-card" aria-labelledby="socratic-purpose">
   <h2 id="socratic-purpose">Reflective Assessment for Critical Thinking</h2>
   <p><strong>Socratic 4.0</strong> is the reflective assessment pillar of Learning Biology For Life. It uses structured questioning to help learners observe their thinking, behaviour, learning preferences, strengths, and correction needs.</p>
