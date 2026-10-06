@@ -70,7 +70,7 @@ lang: en
   <p style="margin: 0; opacity: 0.9; font-size: 1.1rem; color: #00d4b2; font-weight: 600; letter-spacing: 0.03em;">বৈজ্ঞানিক সিদ্ধান্ত গ্রহণের গাণিতিক ও যৌক্তিক ভিত্তি</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.02); border-left: 4px solid #64748b; padding: 1.5rem; margin: 2.5rem 0; border-radius: 0 8px 8px 0; color: #cbd5e1; line-height: 1.75;">
+<div style="background: #0f172a; border-left: 4px solid #64748b; padding: 1.5rem; margin: 2.5rem 0; border-radius: 0 8px 8px 0; color: #cbd5e1; line-height: 1.75;">
   <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">হে চিন্তাশীল গবেষক (Active Thinkers):</strong>
   আমি গভীরভাবে বিশ্বাস করি, জীববিজ্ঞান হলো সমস্ত একাডেমিক ক্ষেত্রের মূল স্তম্ভ, আর আমাদের চারপাশে দৃশ্যমান জীবন হলো সেই সত্যগুলোর প্রায়োগিক পরম রণাঙ্গন। ল্যাবরেটরিতে বা প্রকৃতির কোলে আমরা যখন কোনো নতুন আবিষ্কার বা পরীক্ষা করি, তখন পাওয়া ফলাফলটি কি কেবলই একটা কাকতালীয় ঘটনা (By Chance), নাকি এর পেছনে সত্যিই কোনো অকাট্য প্রাকৃতিক নিয়ম লুকিয়ে আছে?
   <br><br>
