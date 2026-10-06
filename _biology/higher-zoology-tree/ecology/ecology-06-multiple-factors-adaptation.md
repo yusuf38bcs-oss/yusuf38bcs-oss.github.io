@@ -85,6 +85,7 @@ learning_guide: canonical
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 06 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 06 / 26 |
@@ -92,6 +93,8 @@ learning_guide: canonical
 | CLO | CLO1, CLO2 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -318,11 +321,14 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Comparison Table: Biological Response-এর তিন ধরন
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 06 table 2" markdown="1">
 | Term | Time scale | Heritable? | Example |
 |---|---|---:|---|
 | Acclimation | one lifetime | necessarily নয় | warming-এর পরে physiology change |
 | Phenotypic plasticity | genotype response range | genotype-dependent | shade-এ leaf form change |
 | Adaptation | generations | yes | evolved salt-tolerance trait |
+
+</div>
 
 ## Mini 2×2 Experiment
 
