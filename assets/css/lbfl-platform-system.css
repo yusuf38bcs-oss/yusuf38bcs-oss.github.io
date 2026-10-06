@@ -1,0 +1,271 @@
+/* ==========================================================================
+   LBFL PLATFORM VISUAL SYSTEM — CONV-04G-R1
+   Foundation layer beneath Academic-v1 and later Homepage/Socratic convergence.
+
+   Scope rule:
+   - :root owns tokens only.
+   - visual rules require an explicit lbfl-platform-* class.
+   - no bare body/heading/paragraph/table/image selectors.
+   - no !important declarations.
+   ========================================================================== */
+
+:root {
+  --lbfl-platform-paper: #f8fafc;
+  --lbfl-platform-surface: #ffffff;
+  --lbfl-platform-soft: #eef8f5;
+  --lbfl-platform-ink: #172033;
+  --lbfl-platform-muted: #526174;
+  --lbfl-platform-heading: #102a43;
+  --lbfl-platform-link: #075985;
+  --lbfl-platform-accent: #0b5f56;
+  --lbfl-platform-border: #cbd5e1;
+  --lbfl-platform-focus: #1d4ed8;
+  --lbfl-platform-dark: #062b2e;
+  --lbfl-platform-dark-surface: #0b3639;
+  --lbfl-platform-dark-ink: #f8fafc;
+  --lbfl-platform-dark-muted: #cbd5e1;
+  --lbfl-platform-gold: #e4bf63;
+  --lbfl-platform-radius: 0.95rem;
+  --lbfl-platform-shadow: 0 0.65rem 1.8rem rgba(15, 23, 42, 0.08);
+  --lbfl-platform-measure: 72ch;
+  --lbfl-platform-shell: 88rem;
+  --lbfl-platform-gutter: clamp(0.9rem, 2.6vw, 2rem);
+  --lbfl-platform-space: clamp(1rem, 2.2vw, 1.5rem);
+  --lbfl-platform-font-sans: Inter, "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --lbfl-platform-body-size: clamp(1rem, 0.985rem + 0.08vw, 1.07rem);
+  --lbfl-platform-small-size: clamp(0.84rem, 0.82rem + 0.08vw, 0.92rem);
+  --lbfl-platform-card-title-size: clamp(1.12rem, 1.04rem + 0.34vw, 1.36rem);
+  --lbfl-platform-section-title-size: clamp(1.45rem, 1.25rem + 0.8vw, 2.05rem);
+  --lbfl-platform-page-title-size: clamp(1.95rem, 1.58rem + 1.55vw, 3.15rem);
+  --lbfl-platform-display-size: clamp(2.35rem, 1.85rem + 2.2vw, 4.6rem);
+}
+
+.lbfl-platform-shell {
+  width: min(100%, var(--lbfl-platform-shell));
+  margin-inline: auto;
+  padding-inline: var(--lbfl-platform-gutter);
+}
+
+.lbfl-platform-header {
+  color: var(--lbfl-platform-dark-ink);
+  background: var(--lbfl-platform-dark);
+  border-bottom: 1px solid rgba(203, 213, 225, 0.16);
+  font-family: var(--lbfl-platform-font-sans);
+}
+
+.lbfl-platform-header .lbfl-masthead__inner {
+  width: min(100%, var(--lbfl-platform-shell));
+  min-height: 4rem;
+  margin-inline: auto;
+  padding-inline: var(--lbfl-platform-gutter);
+}
+
+.lbfl-platform-brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: clamp(0.55rem, 1.4vw, 0.8rem);
+  color: var(--lbfl-platform-dark-ink);
+  text-decoration: none;
+}
+
+.lbfl-platform-brand:visited {
+  color: var(--lbfl-platform-dark-ink);
+}
+
+.lbfl-platform-brand:hover {
+  color: var(--lbfl-platform-dark-ink);
+}
+
+.lbfl-platform-brand:focus-visible {
+  outline: 3px solid var(--lbfl-platform-gold);
+  outline-offset: 4px;
+  border-radius: 0.55rem;
+}
+
+.lbfl-platform-brand__logo {
+  width: clamp(2.15rem, 1.95rem + 0.7vw, 2.75rem);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.lbfl-platform-brand__title {
+  display: block;
+  min-width: 0;
+  color: var(--lbfl-platform-dark-ink);
+  font-size: clamp(0.9rem, 0.84rem + 0.22vw, 1.05rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.lbfl-platform-brand__full {
+  display: block;
+  overflow: hidden;
+  max-width: 18rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lbfl-platform-brand__short {
+  display: none;
+}
+
+.lbfl-platform-footer {
+  color: var(--lbfl-platform-dark-muted);
+  background: var(--lbfl-platform-dark);
+  font-family: var(--lbfl-platform-font-sans);
+}
+
+.lbfl-platform-footer a:focus-visible {
+  outline: 3px solid var(--lbfl-platform-gold);
+  outline-offset: 3px;
+}
+
+.lbfl-platform-footer__primary,
+.lbfl-platform-footer__legal {
+  color: var(--lbfl-platform-dark-muted);
+}
+
+.lbfl-platform-footer__grid {
+  width: min(100%, var(--lbfl-platform-shell));
+  margin-inline: auto;
+}
+
+.lbfl-platform-footer__card {
+  min-width: 0;
+}
+
+.lbfl-platform-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--lbfl-platform-space);
+  align-items: stretch;
+  width: 100%;
+}
+
+.lbfl-platform-matrix--compact {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+.lbfl-platform-card {
+  min-width: 0;
+  padding: var(--lbfl-platform-space);
+  border: 1px solid var(--lbfl-platform-border);
+  border-radius: var(--lbfl-platform-radius);
+  background: var(--lbfl-platform-surface);
+  color: var(--lbfl-platform-ink);
+  box-shadow: var(--lbfl-platform-shadow);
+}
+
+.lbfl-platform-card__title {
+  margin: 0;
+  color: var(--lbfl-platform-heading);
+  font-size: var(--lbfl-platform-card-title-size);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.lbfl-platform-card__body {
+  color: var(--lbfl-platform-muted);
+  font-size: var(--lbfl-platform-body-size);
+  line-height: 1.65;
+}
+
+.lbfl-platform-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  border: 1px solid var(--lbfl-platform-border);
+  border-radius: var(--lbfl-platform-radius);
+  background: var(--lbfl-platform-surface);
+}
+
+.lbfl-platform-table-wrap:focus-visible {
+  outline: 3px solid var(--lbfl-platform-focus);
+  outline-offset: 3px;
+}
+
+.lbfl-platform-figure {
+  width: 100%;
+  margin-block: var(--lbfl-platform-space);
+  padding: clamp(0.65rem, 1.6vw, 1rem);
+  border: 1px solid var(--lbfl-platform-border);
+  border-radius: var(--lbfl-platform-radius);
+  background: var(--lbfl-platform-surface);
+}
+
+.lbfl-platform-figure__media {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: calc(var(--lbfl-platform-radius) * 0.75);
+}
+
+.lbfl-platform-figure__caption {
+  margin-top: 0.7rem;
+  color: var(--lbfl-platform-muted);
+  font-size: var(--lbfl-platform-small-size);
+  line-height: 1.55;
+}
+
+.lbfl-platform-page-title {
+  color: var(--lbfl-platform-heading);
+  font-family: var(--lbfl-platform-font-sans);
+  font-size: var(--lbfl-platform-page-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.lbfl-platform-section-title {
+  color: var(--lbfl-platform-heading);
+  font-family: var(--lbfl-platform-font-sans);
+  font-size: var(--lbfl-platform-section-title-size);
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.lbfl-platform-prose {
+  max-width: var(--lbfl-platform-measure);
+  color: var(--lbfl-platform-ink);
+  font-family: var(--lbfl-platform-font-sans);
+  font-size: var(--lbfl-platform-body-size);
+  line-height: 1.72;
+}
+
+@media (max-width: 48rem) {
+  .lbfl-platform-header .lbfl-masthead__inner {
+    min-height: 3.75rem;
+  }
+
+  .lbfl-platform-matrix {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+}
+
+@media (max-width: 27.5rem) {
+  .lbfl-platform-brand__full {
+    display: none;
+  }
+
+  .lbfl-platform-brand__short {
+    display: block;
+  }
+
+  .lbfl-platform-matrix,
+  .lbfl-platform-matrix--compact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lbfl-platform-brand,
+  .lbfl-platform-card,
+  .lbfl-platform-figure {
+    scroll-behavior: auto;
+  }
+}
