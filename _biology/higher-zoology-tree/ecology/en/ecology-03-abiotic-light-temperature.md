@@ -390,38 +390,48 @@ For a broad question on **Abiotic Ecology I: Light, Temperature and Organism Dis
 ## MCQ Self-Check
 
 **1. Photoperiod is best defined as:**
-A. light intensity
-B. duration of daylight in a 24-hour cycle
-C. leaf temperature
-D. heat production
+
+- A. light intensity
+- B. duration of daylight in a 24-hour cycle
+- C. leaf temperature
+- D. heat production
+
 **Answer: B**
 
 **2. The light compensation point occurs when:**
-A. respiration stops
-B. photosynthesis equals respiration
-C. light is maximal
-D. temperature is zero
+
+- A. respiration stops
+- B. photosynthesis equals respiration
+- C. light is maximal
+- D. temperature is zero
+
 **Answer: B**
 
 **3. Q10 is used to describe:**
-A. salinity tolerance
-B. temperature sensitivity of a biological rate
-C. population density
-D. soil texture
+
+- A. salinity tolerance
+- B. temperature sensitivity of a biological rate
+- C. population density
+- D. soil texture
+
 **Answer: B**
 
 **4. An ectotherm primarily obtains body heat from:**
-A. internal metabolic heat only
-B. external environmental sources
-C. photosynthesis
-D. fermentation
+
+- A. internal metabolic heat only
+- B. external environmental sources
+- C. photosynthesis
+- D. fermentation
+
 **Answer: B**
 
 **5. Which is behavioural thermoregulation?**
-A. evolving antifreeze genes
-B. basking and moving into shade
-C. producing thicker fur over generations
-D. changing species identity
+
+- A. evolving antifreeze genes
+- B. basking and moving into shade
+- C. producing thicker fur over generations
+- D. changing species identity
+
 **Answer: B**
 
 
