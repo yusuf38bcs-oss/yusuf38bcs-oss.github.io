@@ -1,0 +1,86 @@
+{
+  "phase": "CONV-04F-10-R2",
+  "label": "F-10B English Ecology synchronization",
+  "authorized_base": "e92f1a8dfcfb55ac673110a8a38e65d77cfaa840",
+  "branch": "conv-04f-10-r2-ecology-en-sync-20261006",
+  "learner_mutation_allowlist": [
+    "_biology/higher-zoology-tree/ecology/en/ecology-01-foundations-history-scope-levels.md",
+    "_biology/higher-zoology-tree/ecology/en/ecology-02-limiting-factors-liebig-shelford.md",
+    "_biology/higher-zoology-tree/ecology/en/ecology-03-abiotic-light-temperature.md",
+    "_biology/higher-zoology-tree/ecology/en/ecology-04-abiotic-water-soil-salinity.md",
+    "_biology/higher-zoology-tree/ecology/en/ecology-05-biotic-limiting-factors-interactions.md",
+    "_biology/higher-zoology-tree/ecology/en/ecology-06-multiple-factors-adaptation.md",
+    "_biology/higher-zoology-tree/ecology/en/ecology-07-case-study-sundarbans-salinity.md",
+    "_biology/higher-zoology-tree/ecology/en/ecology-08-population-characteristics-density-dispersion.md",
+    "_biology/higher-zoology-tree/ecology/en/ecology-09-demography-vital-rates-life-tables.md",
+    "_biology/higher-zoology-tree/ecology/en/ecology-10-survivorship-growth-models.md"
+  ],
+  "protected": [
+    "_biology/higher-zoology-tree/ecology/course-index.md",
+    "_biology/higher-zoology-tree/ecology/en/index.md",
+    "_pages/ecology-v2-gateway.bn.md",
+    "assets/css/academic-design-system.css",
+    "assets/css/zoology-academic.css",
+    "_layouts/default.html",
+    "_layouts/single.html",
+    "_layouts/homepage-v3.html",
+    "_mcq-arena/",
+    "_biology/higher-zoology-tree/practical/",
+    "_socratic/",
+    "index.html"
+  ],
+  "target_files": [
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-01-foundations-history-scope-levels.md",
+      "baseline_blob": "ee6b9bce4cbb7bb58d8c98b9e4bc2c43df3aa9ba"
+    },
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-02-limiting-factors-liebig-shelford.md",
+      "baseline_blob": "e0bab5406f6f9f6a214ed31ded7e95c35c4632a2"
+    },
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-03-abiotic-light-temperature.md",
+      "baseline_blob": "e9c8e6802c8e3fd00405f0fbc669ea226e768387"
+    },
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-04-abiotic-water-soil-salinity.md",
+      "baseline_blob": "47ddf67c67f2ff593b9c4ca1067f20e05d507485"
+    },
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-05-biotic-limiting-factors-interactions.md",
+      "baseline_blob": "858cefea0157a4be1b2fdfca638f22d509a80c9d"
+    },
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-06-multiple-factors-adaptation.md",
+      "baseline_blob": "210102420ef8d78bca8b9271b133cf3a1760139c"
+    },
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-07-case-study-sundarbans-salinity.md",
+      "baseline_blob": "c2b117678838f0183592da37ed01f610b8919abe"
+    },
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-08-population-characteristics-density-dispersion.md",
+      "baseline_blob": "04192beb0760e149c0534e4599a8a1174db6ea9f"
+    },
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-09-demography-vital-rates-life-tables.md",
+      "baseline_blob": "1c0e8b75647676c376361ca7aed49101258bc359"
+    },
+    {
+      "path": "_biology/higher-zoology-tree/ecology/en/ecology-10-survivorship-growth-models.md",
+      "baseline_blob": "c772d94a1b241a9642537e1d5dd157440127002e"
+    }
+  ],
+  "implementation_contract": {
+    "preserve_scientific_corpus": true,
+    "preserve_routes": true,
+    "preserve_language_pairing": true,
+    "add_academic_system": "v1",
+    "add_academic_role": "lecture",
+    "bind_learning_guide": "canonical",
+    "add_guided_learning_block": true,
+    "wrap_existing_markdown_tables_accessibly": true,
+    "mutate_shared_css_js": false,
+    "mutate_bangla_files": false
+  }
+}
