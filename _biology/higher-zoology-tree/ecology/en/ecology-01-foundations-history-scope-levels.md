@@ -1189,38 +1189,48 @@ The ecology of groups of species or communities.
 ## 35. MCQ Self-Check
 
 **1. Which level contains interacting populations of different species?**
-A. Organism
-B. Population
-C. Community
-D. Cell
+
+- A. Organism
+- B. Population
+- C. Community
+- D. Cell
+
 **Answer: C**
 
 **2. An ecosystem includes:**
-A. only animals
-B. only living organisms
-C. a community plus the abiotic environment
-D. only plants and microbes
+
+- A. only animals
+- B. only living organisms
+- C. a community plus the abiotic environment
+- D. only plants and microbes
+
 **Answer: C**
 
 **3. The term ecosystem is most closely associated with:**
-A. Haeckel
-B. Tansley
-C. Darwin
-D. Malthus
+
+- A. Haeckel
+- B. Tansley
+- C. Darwin
+- D. Malthus
+
 **Answer: B**
 
 **4. The study of one species in relation to its environment is traditionally called:**
-A. Autecology
-B. Synecology
-C. Biogeochemistry
-D. Limnology
+
+- A. Autecology
+- B. Synecology
+- C. Biogeochemistry
+- D. Limnology
+
 **Answer: A**
 
 **5. Which is an emergent community property?**
-A. Cell size
-B. Blood pressure
-C. Species diversity
-D. DNA base sequence
+
+- A. Cell size
+- B. Blood pressure
+- C. Species diversity
+- D. DNA base sequence
+
 **Answer: C**
 
 ---
