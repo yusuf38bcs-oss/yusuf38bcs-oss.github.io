@@ -1,7 +1,7 @@
 # CONV-04I-00 — Post-G/H Residual Reconciliation
 
-**Authorized base:** `69283ada5df7a294a2ce8986cef089ef9fdcf161`  
-**Scope:** isolated residual repair before Homepage integration  
+**Authorized base:** `69283ada5df7a294a2ce8986cef089ef9fdcf161`
+**Scope:** isolated residual repair before Homepage integration
 **Homepage mutation:** forbidden in I-00
 
 ## Adjudication
