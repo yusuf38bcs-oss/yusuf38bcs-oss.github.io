@@ -83,6 +83,7 @@ learning_guide: canonical
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 10 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 10 / 26 |
@@ -90,6 +91,8 @@ learning_guide: canonical
 | CLO | CLO2 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -346,6 +349,7 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Comparison Table: Exponential বনাম Logistic Growth
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 10 table 2" markdown="1">
 | Feature | Exponential | Logistic |
 |---|---|---|
 | Equation | \\(dN/dt=rN\\) | \\(dN/dt=rN(1-N/K)\\) |
@@ -353,6 +357,8 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 | Curve | J-shaped | S-shaped |
 | Per-capita growth | constant | N বাড়লে decline |
 | Carrying capacity | নেই | K আছে |
+
+</div>
 
 ## Mini Calculation Set
 
