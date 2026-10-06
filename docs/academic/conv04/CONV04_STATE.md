@@ -14,7 +14,6 @@ g_status: CLOSED / PR #452 merged + production verified; I-00 addresses only aut
 h_status: CLOSED / PR #452 merged + production verified; retained under I-00
 learner_content_authoring: YES — residual repair only; Homepage V3 and scientific-content authoring remain protected
 learner_mutation_allowlist:
-  - _includes/components/educational-boundary.html
   - _pages/hubs/socratic.md
   - _pages/socratic-multiple-intelligences.md
   - _socratic/personality-archetypes.md
@@ -36,13 +35,13 @@ learner_mutation_allowlist:
   - _biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving.md
   - _biology/higher-zoology-tree/biostatistics/measures_of_dispersion.md
   - _biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test.md
-shared_reflection_boundary: _includes/socratic/reflection-boundary.html
+shared_reflection_boundary: retained historical/shared component; canonical I-00 reflection routes use layout boundary ownership
 route_ledger: docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
 step3_evidence: docs/academic/conv04/CONV04_GH_STEP3_EVIDENCE.md
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 i00_residual_findings:
   - A personality runtime: VERIFIED REAL DEFECT / candidate loads existing personality-engine.js
-  - B reflection boundary duplication: VERIFIED REAL DEFECT / shared educational boundary defers to Academic-v1 reflection/reflection_gateway role ownership
+  - B reflection boundary duplication: VERIFIED REAL DEFECT / canonical reflection routes now retain the layout educational boundary as sole rendered owner
   - C Biostatistics contrast: INFERRED RISK / exact-preview Axe and browser evidence required before closure
   - D legacy Socratic inbound links: VERIFIED REAL DEFECT / candidate repoints first-party links to /socratic/multiple-intelligences/
   - E Polyglot historical root removal: NOT REPRODUCED on current production / retained route checks required
