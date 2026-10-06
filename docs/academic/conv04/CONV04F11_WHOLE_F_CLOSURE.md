@@ -1,8 +1,8 @@
 # CONV-04F-11 — Whole-F Certification and Formal Closure
 
-**Authorized base / production-verified main:** `c1c7df05e34139097cecec6ea3eebe1d50648787`  
-**Branch:** `conv-04f-11-whole-f-closure-20261006`  
-**Mutation type:** governance/certification only  
+**Authorized base / production-verified main:** `c1c7df05e34139097cecec6ea3eebe1d50648787`
+**Branch:** `conv-04f-11-whole-f-closure-20261006`
+**Mutation type:** governance/certification only
 **Learner-content mutation:** none
 
 ## 1. Closure basis
