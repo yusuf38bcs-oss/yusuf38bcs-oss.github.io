@@ -70,7 +70,7 @@ lang: en
   <p style="margin: 0; opacity: 0.9; font-size: 1.1rem; color: #00d4b2; font-weight: 600; letter-spacing: 0.03em;">Biostatistics & Research Methodology Module</p>
 </div>
 
-<div style="background: rgba(255,255,255,0.02); border-left: 4px solid #64748b; padding: 1.5rem; margin: 2.5rem 0; border-radius: 0 8px 8px 0; color: #cbd5e1; line-height: 1.75;">
+<div style="background: #0f172a; border-left: 4px solid #64748b; padding: 1.5rem; margin: 2.5rem 0; border-radius: 0 8px 8px 0; color: #cbd5e1; line-height: 1.75;">
   <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">হে প্রখর চিন্তাশীল গবেষক (Active Thinkers):</strong>
   জীববিজ্ঞান কেবল ল্যাবরেটরির টেস্টটিউবেই সীমাবদ্ধ নয়; এটি হলো মহাবিশ্বের সুনিপুণ প্রকৌশলের জীবন্ত দলিল। আর এই মহাজাগতিক রণাঙ্গনে ডেটার অভ্যন্তরীণ শৃঙ্খলা ও সত্যতা উন্মোচনের হাতিয়ার হলো জীবপরিসংখ্যান (Biostatistics)। পবিত্র কুরআনে মহান আল্লাহ প্রকৃতির এই সুনির্দিষ্ট পরিমাপ ও আন্তঃসংযোগ সম্পর্কে পরম গাইডলাইন দিয়েছেন:
   <br><br>
