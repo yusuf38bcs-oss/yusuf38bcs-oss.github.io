@@ -16,8 +16,6 @@ lang: en
 sitemap: true
 ---
 
-{% include socratic/reflection-boundary.html %}
-
 # Personality Pattern Reflection
 
 This route connects the Socratic assessment entry point to the production concept pathway. It is designed as an educational bridge between reflective questioning, behavioural pattern recognition, and practical learning improvement.
