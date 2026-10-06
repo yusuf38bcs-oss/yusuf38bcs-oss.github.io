@@ -85,6 +85,7 @@ Bangla explanation-এর মধ্যে textbook, examination, research paper 
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 01 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Course block | Foundations of Ecology |
@@ -93,6 +94,8 @@ Bangla explanation-এর মধ্যে textbook, examination, research paper 
 | Concept level | Foundation |
 | Suggested class time | 2 hours + guided reading |
 | Prerequisite | Basic Biology |
+
+</div>
 
 ## Lecture Question
 
@@ -569,6 +572,7 @@ Examples:
 
 ## 14. Ecology-এর Major Branches
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 01 table 2" markdown="1">
 | Branch | Main focus | Example question |
 |---|---|---|
 | Autecology | one species/environment | salinity একটি species-কে কীভাবে affect করে? |
@@ -584,6 +588,8 @@ Examples:
 | Urban Ecology | city ecosystem | heat island biodiversity বদলায় কীভাবে? |
 | Agroecology | agricultural systems | natural enemy pest control করে কীভাবে? |
 | Disease Ecology | host–pathogen–environment | disease transmission climate-এ বদলায় কি? |
+
+</div>
 
 ---
 
@@ -980,6 +986,7 @@ Changed ecological interaction
 
 Ecological process milliseconds থেকে centuries পর্যন্ত হতে পারে।
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 01 table 3" markdown="1">
 | Time scale | Example |
 |---|---|
 | Seconds–minutes | predator escape |
@@ -990,12 +997,15 @@ Ecological process milliseconds থেকে centuries পর্যন্ত হ
 | Decades | succession |
 | Centuries | forest development / climate-driven range change |
 
+</div>
+
 Time scale না বুঝলে snapshot data mislead করতে পারে।
 
 ---
 
 ## 28. Ecology-তে Space Scale
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 01 table 4" markdown="1">
 | Spatial scale | Example |
 |---|---|
 | Millimetre | microbial biofilm |
@@ -1005,6 +1015,8 @@ Time scale না বুঝলে snapshot data mislead করতে পার�
 | Landscape | patch network |
 | Region | mangrove coast |
 | Globe | biosphere |
+
+</div>
 
 ---
 
