@@ -84,6 +84,7 @@ learning_guide: canonical
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 02 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 02 / 26 |
@@ -91,6 +92,8 @@ learning_guide: canonical
 | CLO | CLO1, CLO2 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -302,12 +305,15 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Comparison Table: Liebig ও Shelford
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 02 table 2" markdown="1">
 | Feature | Liebig | Shelford |
 |---|---|---|
 | Main emphasis | essential resource-এর shortage | deficiency ও excess দুটোই |
 | Teaching image | barrel-এর shortest stave | tolerance curve |
 | Best use | resource bottleneck খোঁজা | environmental tolerance range বোঝা |
 | Limitation | simple bottleneck assumption | factor interaction থাকলে curve alone incomplete |
+
+</div>
 
 ## Mini Experimental Design
 
