@@ -1,26 +1,40 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R102
-mode: F-09 formal closure record; F-10A Ecology authorization gate pending
-authorized_base: 9b739e7371ede99c60bb509ed750670eeb0853c9
-branch: conv-04f-09-formal-closure-20261006
-production_verified_main: 9b739e7371ede99c60bb509ed750670eeb0853c9
+phase: CONV-04F-10
+mode: authorization candidate — Ecology BN Lectures 01–10
+authorized_base: ad36df28ccf8b845ae97e52e6482c0b76b0d42ed
+branch: conv-04f-10a-ecology-bn-authorization-20261006
+production_verified_main: ad36df28ccf8b845ae97e52e6482c0b76b0d42ed
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-f09_status: FORMALLY CLOSED / 8-of-8 Practical modules strict + exact-main production PASS
+f09_status: FORMALLY CLOSED / exact-main closure + 8-of-8 Practical production PASS
 f09_closure_evidence: docs/academic/conv04/ZOOLOGY_PRACTICAL_F09_FORMAL_CLOSURE.md
-learner_content_authoring: NO — closure evidence/governance only
-learner_mutation_allowlist: []
+f10a_status: AUTHORIZATION CANDIDATE / no Ecology learner mutation in this PR
+f10a_authorization: docs/academic/conv04/ECOLOGY_F10A_BN_AUTHORIZATION.md
+f10a_manifest: _data/academic/conv04f10a_ecology_bn_authorization_v1.json
+learner_content_authoring: NO — authorization/governance only; successor implementation may mutate exact allowlist after authorization merge
+learner_mutation_allowlist:
+  - _biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels.md
+  - _biology/higher-zoology-tree/ecology/ecology-02-limiting-factors-liebig-shelford.md
+  - _biology/higher-zoology-tree/ecology/ecology-03-abiotic-light-temperature.md
+  - _biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity.md
+  - _biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions.md
+  - _biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation.md
+  - _biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity.md
+  - _biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion.md
+  - _biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables.md
+  - _biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models.md
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
+english_ecology: protected / F-10B only
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
 worker_cloudflare: protected / untouched
-ready_transition: F-09 closure PR requires unchanged-head review/governance and merge; after merge re-authenticate exact main
-merge: closure PR only; no Ecology learner-content mutation in this phase
-next_module_gate: CONV-04F-10A Ecology BN 01–10 authorization — BLOCKED until this formal F-09 closure is merged and exact-main rebound
-practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10A reserved for Ecology BN 01–10; F-10B reserved for English synchronization; F-11 reserved for Whole-F certification
+ready_transition: F-10A authorization PR must pass unchanged-head retained certification + fresh review + Trusted Governance before merge
+merge: authorization-only PR; no Ecology learner-content mutation permitted here
+next_module_gate: F-10A implementation BLOCKED until this authorization is merged and the resulting exact main is re-authenticated
+practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; F-09 closure R102; CONV-04F-10 = F-10A Ecology BN authorization; F-10B successor identity reserved after F-10A closure; F-11 Whole-F certification
 
 ## Completed foundation
 
@@ -752,3 +766,13 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - F-09 learner content is frozen; this closure authorizes no new Practical mutation.
 - Successor order is fixed as F-10A Ecology BN 01–10 → F-10B English synchronization → F-11 Whole-F certification.
 - F-10A remains blocked until this closure is merged and the new exact main is authenticated.
+
+## CONV-04F-10A Ecology BN authorization — 2026-10-06
+
+- Exact authorization base: `ad36df28ccf8b845ae97e52e6482c0b76b0d42ed`.
+- F-09 is formally closed and exact-main production-verified on that base.
+- Ten Bangla Ecology learner sources are frozen by exact blob identity in `_data/academic/conv04f10a_ecology_bn_authorization_v1.json`.
+- English Ecology sources are protected for F-10B and are not authorized in F-10A.
+- Authorization contract: `docs/academic/conv04/ECOLOGY_F10A_BN_AUTHORIZATION.md`.
+- This authorization candidate changes governance/evidence only; no Ecology learner source is changed.
+- Successor implementation must rebind to the post-authorization merge SHA and advance with a parser-safe F-10 successor identity.
