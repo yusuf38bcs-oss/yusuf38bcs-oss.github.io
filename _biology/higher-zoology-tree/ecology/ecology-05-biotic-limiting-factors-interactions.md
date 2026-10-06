@@ -84,6 +84,7 @@ learning_guide: canonical
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 05 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 05 / 26 |
@@ -91,6 +92,8 @@ learning_guide: canonical
 | CLO | CLO1, CLO2 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -120,6 +123,7 @@ Biotic factor হলো living organism-এর অন্য organism-এর উ�
 
 Pairwise effect shorthand:
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 05 table 2" markdown="1">
 | Interaction | Species A | Species B |
 |---|---:|---:|
 | Competition | − | − |
@@ -128,6 +132,8 @@ Pairwise effect shorthand:
 | Mutualism | + | + |
 | Commensalism | + | 0 |
 | Amensalism | − | 0 |
+
+</div>
 
 Sign শুধু direction বোঝায়; interaction strength density, life stage, resource ও environment অনুযায়ী change করে।
 
@@ -305,6 +311,7 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Comparison Table: Major Biotic Interactions
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 05 table 3" markdown="1">
 | Interaction | Effect | Key mechanism |
 |---|---|---|
 | Competition | −/− | shared limiting resource |
@@ -313,6 +320,8 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 | Parasitism | +/− | parasite host exploit করে |
 | Mutualism | +/+ | reciprocal benefit |
 | Facilitation | +/0 বা +/+ | condition improve |
+
+</div>
 
 ## Mini Interaction-Network Exercise
 
