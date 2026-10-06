@@ -15,6 +15,7 @@ on:
       - "_biology/higher-zoology-tree/human-behaviour/index.md"
       - "_data/navigation.yml"
       - "docs/academic/conv04/CONV04_I00_RESIDUAL_REPAIR.md"
+      - "docs/academic/conv04/CONV04_STATE.md"
       - ".github/scripts/validate-conv04i00-residual-repair.rb"
       - ".github/workflows/conv04i00-residual-repair-certification.yml"
   workflow_dispatch:
