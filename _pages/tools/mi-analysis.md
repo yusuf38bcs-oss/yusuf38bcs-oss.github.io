@@ -16,6 +16,7 @@ status: "Active"
 classes: wide
 academic_system: v1
 academic_role: reflection
+reflection_boundary_owner: component
 lang: en
 sitemap: true
 ---
