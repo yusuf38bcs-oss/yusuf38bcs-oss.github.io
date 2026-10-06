@@ -57,14 +57,33 @@ syllabus_topics:
 clo_alignment:
   - CLO1
   - CLO2
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # Ecology Lecture 05: Biotic Limiting Factors and Species Interactions
 
 This Version 2 lecture is written as a **self-contained teaching note**, not a short revision page. It develops definitions, mechanisms, examples, diagrams, quantitative reasoning, evidence design, Bangladesh applications, misconceptions, exam preparation, and a bridge to the next lecture.
 
 
+
+## How to Learn This Lecture — LBFL Guided Learning
+
+The canonical owner of the learning method is **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**. This lecture applies that method to Ecology content rather than creating a competing local learning cycle.
+
+1. **Understand — identify the idea:** separate the central ecological claim, system boundary, variables, and mechanism.
+2. **Retrieve — recall without looking:** recall the key definition, relationship, equation/term, and main diagram labels from memory.
+3. **Explain — build the causal chain:** explain “what → why → how → consequence” in your own words, using an arrow chain or flow diagram when useful.
+4. **Apply — transfer to a new context:** use the idea with a Bangladesh ecosystem, field observation, graph, table, or unfamiliar ecological case.
+5. **Reflect — test uncertainty:** write one question about weak evidence, a strong assumption, or an alternative explanation.
+6. **Repair — correct and reattempt:** identify a misconception, graph-reading error, or incomplete explanation, revisit the relevant section, then solve the same problem again.
+
+> **Visual reasoning target:** Competition, predation, herbivory, parasitism, mutualism/facilitation, and interaction outcomes.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 05 table 1" markdown="1">
 | Field | Alignment |
 |---|---|
 | Lecture | 05 / 26 |
@@ -72,6 +91,8 @@ This Version 2 lecture is written as a **self-contained teaching note**, not a s
 | CLO | CLO1, CLO2 |
 | Version | Current detailed course |
 | Suggested class use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -101,6 +122,7 @@ A species may tolerate the physical environment yet still be absent because of p
 
 Ecologists often summarize pairwise effects using signs:
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 05 table 2" markdown="1">
 | Interaction | Species A | Species B |
 |---|---:|---:|
 | Competition | − | − |
@@ -109,6 +131,8 @@ Ecologists often summarize pairwise effects using signs:
 | Mutualism | + | + |
 | Commensalism | + | 0 |
 | Amensalism | − | 0 |
+
+</div>
 
 The table is a shorthand. The real magnitude of an interaction depends on density, life stage, environment, and resource availability.
 
@@ -289,6 +313,7 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 
 ## Comparison Table: Major Biotic Interactions
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology English Lecture 05 table 3" markdown="1">
 | Interaction | Effect | Key mechanism |
 |---|---|---|
 | Competition | −/− | shared limiting resource |
@@ -297,6 +322,8 @@ Important patterns to recognize include monotonic increase or decrease, an optim
 | Parasitism | +/− | parasite exploits host |
 | Mutualism | +/+ | reciprocal benefit |
 | Facilitation | usually +/0 or +/+ | one organism improves conditions |
+
+</div>
 
 ## Mini Interaction-Network Exercise
 
