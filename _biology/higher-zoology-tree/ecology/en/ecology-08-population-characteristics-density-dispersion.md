@@ -417,38 +417,48 @@ For a broad question on **Population Ecology I: Population Characteristics, Dens
 ## MCQ Self-Check
 
 **1. Population density is:**
-A. total births
-B. individuals per unit area or volume
-C. number of species
-D. age at death
+
+- A. total births
+- B. individuals per unit area or volume
+- C. number of species
+- D. age at death
+
 **Answer: B**
 
 **2. Clumped dispersion commonly results from:**
-A. patchy resources
-B. perfectly even territorial spacing
-C. absence of habitat variation
-D. constant mortality only
+
+- A. patchy resources
+- B. perfectly even territorial spacing
+- C. absence of habitat variation
+- D. constant mortality only
+
 **Answer: A**
 
 **3. Occupancy is:**
-A. exactly the same as abundance
-B. the proportion of sampled sites where a species is detected
-C. birth rate
-D. total habitat area
+
+- A. exactly the same as abundance
+- B. the proportion of sampled sites where a species is detected
+- C. birth rate
+- D. total habitat area
+
 **Answer: B**
 
 **4. A count per trap-night is usually a measure of:**
-A. absolute population size with certainty
-B. relative abundance index
-C. species richness
-D. carrying capacity
+
+- A. absolute population size with certainty
+- B. relative abundance index
+- C. species richness
+- D. carrying capacity
+
 **Answer: B**
 
 **5. Observed counts can change without true abundance changing because of:**
-A. detectability
-B. taxonomy only
-C. gravity
-D. no ecological reason
+
+- A. detectability
+- B. taxonomy only
+- C. gravity
+- D. no ecological reason
+
 **Answer: A**
 
 
