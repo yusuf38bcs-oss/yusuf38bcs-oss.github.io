@@ -20,8 +20,6 @@ lang: en
 sitemap: true
 ---
 
-{% include socratic/reflection-boundary.html %}
-
 <section class="lbfl-platform-card">
   <p class="lbfl-platform-card__body"><strong>Socratic 4.0 Terminal</strong></p>
   <h1 class="lbfl-platform-page-title">Cognitive Audit</h1>
