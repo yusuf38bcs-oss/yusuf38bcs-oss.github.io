@@ -65,6 +65,7 @@ if system("git rev-parse --is-inside-work-tree >/dev/null 2>&1")
     _data/navigation.yml
     _biology/higher-zoology-tree/human-behaviour/index.md
     docs/academic/conv04/CONV04_I00_RESIDUAL_REPAIR.md
+    docs/academic/conv04/CONV04_STATE.md
     .github/scripts/validate-conv04i00-residual-repair.rb
     .github/workflows/conv04i00-residual-repair-certification.yml
   ]
