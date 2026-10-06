@@ -1,0 +1,87 @@
+{
+  "schema": "lbfl-platform-visual-system-v1",
+  "version": "CONV-04G-R1-1.0.0",
+  "authorized_base_sha": "3c9d57e8b3b40a599de960d145165e2f4f4304cd",
+  "activation": {
+    "css": "assets/css/lbfl-platform-system.css",
+    "canonical_logo": "/assets/images/logo.png",
+    "canonical_title": "Learning Biology For Life",
+    "homepage_integration": "deferred-to-CONV-04I"
+  },
+  "protected_boundaries": [
+    "learner content",
+    "Homepage V3 content and narrative",
+    "Socratic learner content",
+    "MCQ Arena ownership",
+    "Admission",
+    "Worker/Cloudflare/DNS"
+  ],
+  "allowed_files": [
+    "_data/academic/platform_visual_system_v1.json",
+    "assets/css/lbfl-platform-system.css",
+    "assets/css/academic-design-system.css",
+    "_includes/brand/lbfl-identity.html",
+    "_includes/navigation/masthead.html",
+    "_includes/head/head.html",
+    "_layouts/default.html",
+    "_includes/footer/mycorrhizal-footer.html",
+    "_includes/footer/legal-links.html",
+    "docs/academic/conv04/PLATFORM_VISUAL_SYSTEM_G_R1.md",
+    "docs/academic/conv04/CONV04_STATE.md",
+    ".github/scripts/validate-platform-visual-system.rb",
+    ".github/workflows/platform-visual-system-certification.yml"
+  ],
+  "tokens": [
+    "--lbfl-platform-paper",
+    "--lbfl-platform-surface",
+    "--lbfl-platform-soft",
+    "--lbfl-platform-ink",
+    "--lbfl-platform-muted",
+    "--lbfl-platform-heading",
+    "--lbfl-platform-link",
+    "--lbfl-platform-accent",
+    "--lbfl-platform-border",
+    "--lbfl-platform-focus",
+    "--lbfl-platform-dark",
+    "--lbfl-platform-dark-surface",
+    "--lbfl-platform-dark-ink",
+    "--lbfl-platform-dark-muted",
+    "--lbfl-platform-gold",
+    "--lbfl-platform-radius",
+    "--lbfl-platform-shadow",
+    "--lbfl-platform-measure",
+    "--lbfl-platform-shell",
+    "--lbfl-platform-gutter",
+    "--lbfl-platform-space",
+    "--lbfl-platform-font-sans",
+    "--lbfl-platform-body-size",
+    "--lbfl-platform-small-size",
+    "--lbfl-platform-card-title-size",
+    "--lbfl-platform-section-title-size",
+    "--lbfl-platform-page-title-size",
+    "--lbfl-platform-display-size"
+  ],
+  "components": {
+    "shell": "lbfl-platform-shell",
+    "header": "lbfl-platform-header",
+    "brand": "lbfl-platform-brand",
+    "footer": "lbfl-platform-footer",
+    "matrix": "lbfl-platform-matrix",
+    "card": "lbfl-platform-card",
+    "table_wrap": "lbfl-platform-table-wrap",
+    "figure": "lbfl-platform-figure"
+  },
+  "accessibility": {
+    "text_contrast_target": "WCAG AA 4.5:1 ordinary text",
+    "reflow_css_px": 320,
+    "keyboard_focus": true,
+    "reduced_motion": true,
+    "no_global_word_break": true,
+    "no_bare_global_content_selectors": true
+  },
+  "workflow_boundary": {
+    "worker_paths_allowed": false,
+    "cloudflare_worker_deploy_allowed": false,
+    "shared_css_requires_retained_route_recertification": true
+  }
+}

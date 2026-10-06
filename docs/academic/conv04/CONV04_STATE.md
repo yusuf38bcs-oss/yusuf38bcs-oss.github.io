@@ -1,35 +1,32 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-11
-mode: whole-F certification and formal closure
-authorized_base: c1c7df05e34139097cecec6ea3eebe1d50648787
-branch: conv-04f-11-whole-f-closure-20261006
-production_verified_main: c1c7df05e34139097cecec6ea3eebe1d50648787
+phase: CONV-04G-R1
+mode: shared platform visual system repair / pre-G
+authorized_base: 3c9d57e8b3b40a599de960d145165e2f4f4304cd
+branch: conv-04g-r1-shared-visual-system-20261006
+production_verified_main: 3c9d57e8b3b40a599de960d145165e2f4f4304cd
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
+conv04f_status: FORMALLY CLOSED / F-11 merged via PR #450 and exact-main production rebound PASS
 f09_status: FORMALLY CLOSED / exact-main closure + 8-of-8 Practical production PASS
-f09_closure_evidence: docs/academic/conv04/ZOOLOGY_PRACTICAL_F09_FORMAL_CLOSURE.md
-f10a_status: CLOSED / Bangla Ecology 01–10 merged via PR #448 and exact-main production-certified
-f10a_authorization: docs/academic/conv04/ECOLOGY_F10A_BN_AUTHORIZATION.md
-f10a_manifest: _data/academic/conv04f10a_ecology_bn_authorization_v1.json
-f10b_status: CLOSED / English Ecology 01–10 merged via PR #449 and exact-main production-certified
-f10b_manifest: _data/academic/conv04f10b_ecology_en_sync_v1.json
-f11_status: CLOSURE CANDIDATE / governance-certification only
+f10a_status: CLOSED / Bangla Ecology 01–10 production-certified
+f10b_status: CLOSED / English Ecology 01–10 production-certified
+f11_status: FORMALLY CLOSED / whole-F certification merged and exact-main rebound PASS
 f11_closure_evidence: docs/academic/conv04/CONV04F11_WHOLE_F_CLOSURE.md
-learner_content_authoring: NO — whole-F closure only
+platform_visual_system_status: ACTIVE / G-R1 isolated shared-shell and primitive convergence
+learner_content_authoring: NO — shared visual infrastructure only
 learner_mutation_allowlist: []
-shared_authored_runtime: protected / unchanged
+homepage_v3_content: protected / integration deferred to CONV-04I
+socratic_content: protected / convergence deferred to G-01…G-05
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-zoology_higher_zoology: frozen pending F-11 closure certification
-homepage: protected / untouched
-socratic: protected / untouched
+worker_cloudflare: protected / untouched / non-governing infrastructure lane
 admission_pr_356: protected / untouched
-worker_cloudflare: protected / untouched / non-governing external build noise must not substitute for required CONV-04 checks
-ready_transition: F-11 closure PR must pass unchanged-head retained certification + fresh review + zero unresolved threads + Trusted Governance before merge
-merge: closure/governance only; no learner-content mutation permitted
-next_module_gate: CONV-04G-R1 Shared Platform Visual System Repair / pre-G BLOCKED until F-11 is merged and exact-main rebound
-master_sequence: 1 close F → 2 G-R1 shared visual system → 3 G+H → 4 I Homepage integration → 5 J release/closure
+shared_visual_goal: canonical LBFL identity + typography + spacing + contrast + responsive geometry + matrix/card/table/figure primitives + shared header/footer rules
+ready_transition: G-R1 must pass platform validator + Academic-v1 retained contracts + Jekyll + browser/accessibility retained matrix + fresh review + zero unresolved threads + Trusted Governance
+merge: shared visual infrastructure only; no learner-content or Homepage V3 content mutation
+next_module_gate: G-01 Socratic gateway/reflection boundary BLOCKED until G-R1 merges and exact-main production is authenticated
+master_sequence: 1 F CLOSED → 2 G-R1 shared visual system → 3 G+H → 4 I Homepage integration → 5 J release/closure
 
 ## Completed foundation
 
@@ -779,3 +776,19 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - GitHub Pages, Sovereign audit, Ecology Live Production, and all retained Practical production-parity workflows are PASS on the exact base.
 - Learner mutation authority is closed for F-11.
 - The next machine phase is `CONV-04G-R1`, not a backward `CONV-04B-R3`, to preserve monotonic validator ordering while carrying the same shared-design-system repair intent.
+
+## CONV-04F closure authenticated — 2026-10-06
+
+- PR #450 merged as `3c9d57e8b3b40a599de960d145165e2f4f4304cd`.
+- Exact-main GitHub Pages PASS.
+- Sovereign Site Audit v4 PASS.
+- Ecology 10-Lecture Live Production Certification PASS.
+- All eight retained Practical production-parity checks PASS.
+- CONV-04F is formally closed before G-R1 mutation begins.
+
+## CONV-04G-R1 shared visual system gate — 2026-10-06
+
+- Learner mutation authority remains empty.
+- Homepage V3 content remains protected until CONV-04I.
+- Socratic learner surfaces remain protected until G-01…G-05.
+- Worker, Cloudflare and DNS paths are outside this mutation boundary.

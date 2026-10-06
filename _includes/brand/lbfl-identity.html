@@ -1,0 +1,9 @@
+<a class="lbfl-platform-brand{% if include.class %} {{ include.class }}{% endif %}" href="{{ include.href | default: '/' | relative_url }}" aria-label="{{ site.title | escape }} home">
+  {% if site.logo %}
+    <img class="lbfl-platform-brand__logo{% if include.logo_class %} {{ include.logo_class }}{% endif %}" src="{{ site.logo | relative_url }}" alt="" width="44" height="44">
+  {% endif %}
+  <span class="lbfl-platform-brand__title{% if include.title_class %} {{ include.title_class }}{% endif %}" data-short="LBFL">
+    <span class="lbfl-platform-brand__full{% if include.full_class %} {{ include.full_class }}{% endif %}">{{ site.title }}</span>
+    <span class="lbfl-platform-brand__short{% if include.short_class %} {{ include.short_class }}{% endif %}">LBFL</span>
+  </span>
+</a>
