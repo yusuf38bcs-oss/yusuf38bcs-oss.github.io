@@ -57,6 +57,9 @@ syllabus_topics:
 clo_alignment:
   - CLO1
 math: true
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # লেকচার ০১: ইকোলজির ভিত্তি — ইতিহাস, পরিসর ও সংগঠনের স্তর
 
@@ -65,8 +68,24 @@ math: true
 Bangla explanation-এর মধ্যে textbook, examination, research paper ও higher study-তে ব্যবহৃত গুরুত্বপূর্ণ technical English terms ইচ্ছাকৃতভাবে রাখা হয়েছে।
 
 
+
+## কীভাবে এই Lecture শিখবে — LBFL Guided Learning
+
+এই lecture-এর learning method-এর canonical owner হলো **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**। এখানে সেই method-কে Ecology content-এর সঙ্গে প্রয়োগ করা হবে; আলাদা কোনো competing learning cycle তৈরি করা হবে না।
+
+1. **Understand — ধারণা ধরো:** lecture-এর central ecological claim, system boundary, variables এবং mechanism আলাদা করো।
+2. **Retrieve — না দেখে মনে করো:** key definition, relationship, equation/term এবং diagram-এর main labels বই/নোট না দেখে recall করো।
+3. **Explain — causal chain বলো:** “কী → কেন → কীভাবে → ফল কী” ধারায় নিজের ভাষায় mechanism explain করো; প্রয়োজন হলে arrow/flowchart ব্যবহার করো।
+4. **Apply — নতুন context-এ ব্যবহার করো:** Bangladesh-এর ecosystem, field observation, graph, table বা একটি unfamiliar ecological case-এ ধারণাটি প্রয়োগ করো।
+5. **Reflect — uncertainty খুঁজে বের করো:** evidence কোথায় দুর্বল, কোন assumption strongest, alternative explanation কী হতে পারে—একটি প্রশ্ন লিখো।
+6. **Repair — ভুল ঠিক করে reattempt করো:** misconception, ভুল graph-reading বা অসম্পূর্ণ explanation চিহ্নিত করে সংশ্লিষ্ট অংশ revisit করো, তারপর একই problem আবার solve করো।
+
+> **Visual reasoning target:** Ecological hierarchy, systems connection, pattern→process reasoning এবং Bangladesh multi-scale examples.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 01 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Course block | Foundations of Ecology |
@@ -75,6 +94,8 @@ Bangla explanation-এর মধ্যে textbook, examination, research paper 
 | Concept level | Foundation |
 | Suggested class time | 2 hours + guided reading |
 | Prerequisite | Basic Biology |
+
+</div>
 
 ## Lecture Question
 
@@ -551,6 +572,7 @@ Examples:
 
 ## 14. Ecology-এর Major Branches
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 01 table 2" markdown="1">
 | Branch | Main focus | Example question |
 |---|---|---|
 | Autecology | one species/environment | salinity একটি species-কে কীভাবে affect করে? |
@@ -566,6 +588,8 @@ Examples:
 | Urban Ecology | city ecosystem | heat island biodiversity বদলায় কীভাবে? |
 | Agroecology | agricultural systems | natural enemy pest control করে কীভাবে? |
 | Disease Ecology | host–pathogen–environment | disease transmission climate-এ বদলায় কি? |
+
+</div>
 
 ---
 
@@ -962,6 +986,7 @@ Changed ecological interaction
 
 Ecological process milliseconds থেকে centuries পর্যন্ত হতে পারে।
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 01 table 3" markdown="1">
 | Time scale | Example |
 |---|---|
 | Seconds–minutes | predator escape |
@@ -972,12 +997,15 @@ Ecological process milliseconds থেকে centuries পর্যন্ত হ
 | Decades | succession |
 | Centuries | forest development / climate-driven range change |
 
+</div>
+
 Time scale না বুঝলে snapshot data mislead করতে পারে।
 
 ---
 
 ## 28. Ecology-তে Space Scale
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 01 table 4" markdown="1">
 | Spatial scale | Example |
 |---|---|
 | Millimetre | microbial biofilm |
@@ -987,6 +1015,8 @@ Time scale না বুঝলে snapshot data mislead করতে পার�
 | Landscape | patch network |
 | Region | mangrove coast |
 | Globe | biosphere |
+
+</div>
 
 ---
 

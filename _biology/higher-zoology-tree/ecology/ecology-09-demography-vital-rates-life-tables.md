@@ -57,14 +57,33 @@ syllabus_topics:
 clo_alignment:
   - CLO2
 math: true
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # লেকচার 09: Population Ecology II — Natality, Mortality, Migration, Age Structure ও Life Tables
 
 এই Version 2 lecture একটি **self-contained teaching note** হিসেবে লেখা। শুধু short definition নয়; concept, mechanism, example, diagram, graph interpretation, quantitative reasoning, evidence design, Bangladesh application, misconception, exam preparation এবং next-lecture bridge একসঙ্গে রাখা হয়েছে। Technical English terms textbook ও higher study-এর সুবিধার জন্য retained।
 
 
+
+## কীভাবে এই Lecture শিখবে — LBFL Guided Learning
+
+এই lecture-এর learning method-এর canonical owner হলো **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**। এখানে সেই method-কে Ecology content-এর সঙ্গে প্রয়োগ করা হবে; আলাদা কোনো competing learning cycle তৈরি করা হবে না।
+
+1. **Understand — ধারণা ধরো:** lecture-এর central ecological claim, system boundary, variables এবং mechanism আলাদা করো।
+2. **Retrieve — না দেখে মনে করো:** key definition, relationship, equation/term এবং diagram-এর main labels বই/নোট না দেখে recall করো।
+3. **Explain — causal chain বলো:** “কী → কেন → কীভাবে → ফল কী” ধারায় নিজের ভাষায় mechanism explain করো; প্রয়োজন হলে arrow/flowchart ব্যবহার করো।
+4. **Apply — নতুন context-এ ব্যবহার করো:** Bangladesh-এর ecosystem, field observation, graph, table বা একটি unfamiliar ecological case-এ ধারণাটি প্রয়োগ করো।
+5. **Reflect — uncertainty খুঁজে বের করো:** evidence কোথায় দুর্বল, কোন assumption strongest, alternative explanation কী হতে পারে—একটি প্রশ্ন লিখো।
+6. **Repair — ভুল ঠিক করে reattempt করো:** misconception, ভুল graph-reading বা অসম্পূর্ণ explanation চিহ্নিত করে সংশ্লিষ্ট অংশ revisit করো, তারপর একই problem আবার solve করো।
+
+> **Visual reasoning target:** Natality–mortality–migration flows, age structure, survivorship accounting এবং life-table logic.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 09 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 09 / 26 |
@@ -72,6 +91,8 @@ math: true
 | CLO | CLO2 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -167,6 +188,7 @@ Age-specific data total abundance-এর চেয়ে informative।
 
 Life table age/stage অনুযায়ী survival ও mortality organize করে।
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 09 table 2" markdown="1">
 | Symbol | Meaning |
 |---|---|
 | \\(x\\) | age/stage |
@@ -174,6 +196,8 @@ Life table age/stage অনুযায়ী survival ও mortality organize ক�
 | \\(l_x\\) | original cohort-এর surviving proportion |
 | \\(d_x\\) | interval death number |
 | \\(q_x\\) | interval mortality probability |
+
+</div>
 
 এগুলো mortality timing দেখায়।
 
@@ -304,6 +328,7 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Comparison Table: Demographic Quantity
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 09 table 3" markdown="1">
 | Quantity | Meaning |
 |---|---|
 | Natality | reproduction-এর মাধ্যমে addition |
@@ -312,6 +337,8 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 | Emigration | outside-এ departure |
 | Survivorship \\(l_x\\) | age x পর্যন্ত surviving fraction |
 | Mortality probability \\(q_x\\) | interval-এ dying probability |
+
+</div>
 
 ## Mini Life-Table Exercise
 

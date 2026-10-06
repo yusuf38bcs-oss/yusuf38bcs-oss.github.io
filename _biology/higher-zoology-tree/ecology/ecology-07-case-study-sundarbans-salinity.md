@@ -63,14 +63,33 @@ clo_alignment:
   - CLO1
   - CLO2
   - CLO4
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # লেকচার 07: Bangladesh Case Study I — Sundarbans Salinization ও Limiting Factors-এর Hierarchy
 
 এই Version 2 lecture একটি **self-contained teaching note** হিসেবে লেখা। শুধু short definition নয়; concept, mechanism, example, diagram, graph interpretation, quantitative reasoning, evidence design, Bangladesh application, misconception, exam preparation এবং next-lecture bridge একসঙ্গে রাখা হয়েছে। Technical English terms textbook ও higher study-এর সুবিধার জন্য retained।
 
 
+
+## কীভাবে এই Lecture শিখবে — LBFL Guided Learning
+
+এই lecture-এর learning method-এর canonical owner হলো **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**। এখানে সেই method-কে Ecology content-এর সঙ্গে প্রয়োগ করা হবে; আলাদা কোনো competing learning cycle তৈরি করা হবে না।
+
+1. **Understand — ধারণা ধরো:** lecture-এর central ecological claim, system boundary, variables এবং mechanism আলাদা করো।
+2. **Retrieve — না দেখে মনে করো:** key definition, relationship, equation/term এবং diagram-এর main labels বই/নোট না দেখে recall করো।
+3. **Explain — causal chain বলো:** “কী → কেন → কীভাবে → ফল কী” ধারায় নিজের ভাষায় mechanism explain করো; প্রয়োজন হলে arrow/flowchart ব্যবহার করো।
+4. **Apply — নতুন context-এ ব্যবহার করো:** Bangladesh-এর ecosystem, field observation, graph, table বা একটি unfamiliar ecological case-এ ধারণাটি প্রয়োগ করো।
+5. **Reflect — uncertainty খুঁজে বের করো:** evidence কোথায় দুর্বল, কোন assumption strongest, alternative explanation কী হতে পারে—একটি প্রশ্ন লিখো।
+6. **Repair — ভুল ঠিক করে reattempt করো:** misconception, ভুল graph-reading বা অসম্পূর্ণ explanation চিহ্নিত করে সংশ্লিষ্ট অংশ revisit করো, তারপর একই problem আবার solve করো।
+
+> **Visual reasoning target:** Sundarbans salinity gradient, interacting limiting factors, hierarchy of effects এবং evidence-to-explanation chain.
+
+
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 07 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 07 / 26 |
@@ -78,6 +97,8 @@ clo_alignment:
 | CLO | CLO1, CLO2, CLO4 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -305,12 +326,15 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Evidence Table: Sundarbans Salinity Case
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 07 table 2" markdown="1">
 | Observation | Possible interpretation | Caution |
 |---|---|---|
 | higher salinity-তে lower tree height | chronic stress growth কমায় | other site factors covary করতে পারে |
 | salt-sensitive recruit কম | recruitment niche shrink করছে | seed supply-ও differ করতে পারে |
 | tolerant species dominance বেশি | community shift | salinity-only causation নয় |
 | LAI কম/gap বেশি | canopy function change | cyclone/harvest historyও matter করে |
+
+</div>
 
 ## Mini Monitoring Design
 
