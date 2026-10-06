@@ -94,13 +94,13 @@ lang: en
 
   <ul style="padding-left: 1.25rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
     <li><strong style="color: #00d4b2;">ধনাত্মক সহসম্বন্ধ (Positive Correlation):</strong> একটি চলক বাড়লে অন্যটিও সমানুপাতিক হারে বাড়ে।
-      <br><span style="font-size: 0.9rem; color: #64748b;">[জৈবিক উদাহরণ]: উদ্ভিদের বয়স বৃদ্ধির সাথে সাথে তার পাতার সংখ্যা বা উচ্চতা বৃদ্ধি পাওয়া; অথবা মানবদেহে ক্যালসিয়াম গ্রহণের মাত্রার সাথে হাড়ের ঘনত্ব বৃদ্ধি।</span>
+      <br><span style="font-size: 0.9rem; color: #94a3b8;">[জৈবিক উদাহরণ]: উদ্ভিদের বয়স বৃদ্ধির সাথে সাথে তার পাতার সংখ্যা বা উচ্চতা বৃদ্ধি পাওয়া; অথবা মানবদেহে ক্যালসিয়াম গ্রহণের মাত্রার সাথে হাড়ের ঘনত্ব বৃদ্ধি।</span>
     </li>
     <li><strong style="color: #00d4b2;">ঋণাত্মক সহসম্বন্ধ (Negative Correlation):</strong> একটি চলক বাড়লে অন্যটি বিপরীত হারে কমে যায়।
-      <br><span style="font-size: 0.9rem; color: #64748b;">[জৈবিক উদাহরণ]: একটি জলাশয়ে শিকারী মাছের সংখ্যা বাড়লে ছোট পোনা মাছের সংখ্যা কমে যাওয়া; অথবা কোনো অরণ্যে দূষণের মাত্রা বাড়লে জীববৈচিত্র্যের সূচক হ্রাস পাওয়া।</span>
+      <br><span style="font-size: 0.9rem; color: #94a3b8;">[জৈবিক উদাহরণ]: একটি জলাশয়ে শিকারী মাছের সংখ্যা বাড়লে ছোট পোনা মাছের সংখ্যা কমে যাওয়া; অথবা কোনো অরণ্যে দূষণের মাত্রা বাড়লে জীববৈচিত্র্যের সূচক হ্রাস পাওয়া।</span>
     </li>
     <li><strong style="color: #00d4b2;">শূন্য সহসম্বন্ধ (Zero Correlation):</strong> চলক দুটির মধ্যে কোনো দৃশ্যমান বা গাণিতিক যোগসূত্র নেই।
-      <br><span style="font-size: 0.9rem; color: #64748b;">[জৈবিক উদাহরণ]: একজন মানুষের বুদ্ধিমত্তার স্কোরের সাথে তার রক্তে লোহিত রক্তকণিকার (RBC) সংখ্যার কোনো সম্পর্ক না থাকা।</span>
+      <br><span style="font-size: 0.9rem; color: #94a3b8;">[জৈবিক উদাহরণ]: একজন মানুষের বুদ্ধিমত্তার স্কোরের সাথে তার রক্তে লোহিত রক্তকণিকার (RBC) সংখ্যার কোনো সম্পর্ক না থাকা।</span>
     </li>
   </ul>
 
@@ -154,7 +154,7 @@ lang: en
     <strong>বাস্তব সমস্যা:</strong> একটি ল্যাব ক্লাসে ৫ জন শিক্ষার্থীর উচ্চতা ($X$, সেমি) এবং ওজন ($Y$, কেজি) পরিমাপ করা হলো। এদের মধ্যকার কার্ল পিয়ারসন সহসম্বন্ধ গুণাঙ্ক ($r$) নির্ণয় করে সম্পর্কটি গাণিতিক স্তরে বিশ্লেষণ করো।
   </p>
 
-  <div style="overflow-x: auto; width: 100%; margin: 1.5rem 0;">
+  <div style="overflow-x: auto; width: 100%; margin: 1.5rem 0; background: #090d16;">
     <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
       <thead>
         <tr style="background-color: #131c2e;">
@@ -243,7 +243,7 @@ lang: en
 
 {% include components/quiz-render.html quiz_id="biostatistics" %}
 
-<p class="footer-line" style="text-align: center; font-weight: 700; opacity: 0.5; margin-top: 4rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.05em;">
+<p class="footer-line" style="text-align: center; font-weight: 700; margin-top: 4rem; font-size: 0.85rem; color: #526174; letter-spacing: 0.05em;">
   📊 Biostatistics & Research Methodology Series 2026 | Learning Biology For Life | learningbiologyforlife.org
 </p>
 
