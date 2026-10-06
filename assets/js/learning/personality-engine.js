@@ -165,7 +165,7 @@
           </div>
 
           <div style="background:rgba(255,255,255,0.01); border:1px dashed rgba(255,255,255,0.05); padding:1rem; border-radius:6px; text-align:center;">
-            <p style="color:#64748b; font-size:0.88rem; margin:0;">
+            <p style="color:#94a3b8; font-size:0.88rem; margin:0;">
               ${tied ? `Tied current response lenses: <strong style="color:#ffffff;">${leaders.join(" / ")}</strong>` : `Another current response lens: <strong style="color:#ffffff;">${secondary[0]}</strong>`}
             </p>
           </div>
