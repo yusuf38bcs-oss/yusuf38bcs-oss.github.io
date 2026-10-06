@@ -33,8 +33,6 @@ synaptic_links:
 toc: true
 toc_sticky: true
 classes: wide
-header:
-  overlay_image: /assets/images/biology/biostatistics-banner.webp
 language: bn
 curriculum_tracks:
   - HSC Zoology
@@ -49,6 +47,9 @@ difficulty: "Foundation"
 xp: 650
 time_min: 50
 status: "Active"
+academic_system: v1
+academic_role: lecture
+lang: bn
 ---
 
 # Basic Concepts of Biostatistics: জীবপরিসংখ্যানের মৌলিক ধারণা
