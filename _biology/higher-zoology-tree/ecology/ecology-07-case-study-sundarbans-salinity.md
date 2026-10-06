@@ -89,6 +89,7 @@ learning_guide: canonical
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 07 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 07 / 26 |
@@ -96,6 +97,8 @@ learning_guide: canonical
 | CLO | CLO1, CLO2, CLO4 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -323,12 +326,15 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Evidence Table: Sundarbans Salinity Case
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 07 table 2" markdown="1">
 | Observation | Possible interpretation | Caution |
 |---|---|---|
 | higher salinity-তে lower tree height | chronic stress growth কমায় | other site factors covary করতে পারে |
 | salt-sensitive recruit কম | recruitment niche shrink করছে | seed supply-ও differ করতে পারে |
 | tolerant species dominance বেশি | community shift | salinity-only causation নয় |
 | LAI কম/gap বেশি | canopy function change | cyclone/harvest historyও matter করে |
+
+</div>
 
 ## Mini Monitoring Design
 
