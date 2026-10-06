@@ -57,8 +57,8 @@ synaptic_nav:
         url: "/synaptic-bridge/"
       - title: "Life Practices"
         url: "/life-practices/"
-      - title: "Socratic Cognitive Assessment"
-        url: "/socratic-4/socratic-assessment/"
+      - title: "MI-Informed Learning Reflection"
+        url: "/socratic/multiple-intelligences/"
 
 zoology_practical_213106:
   - title: "Zoology Practical-I"
