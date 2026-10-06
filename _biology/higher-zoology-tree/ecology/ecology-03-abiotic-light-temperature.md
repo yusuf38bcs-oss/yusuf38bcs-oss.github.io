@@ -59,10 +59,28 @@ clo_alignment:
   - CLO1
   - CLO2
 math: true
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # লেকচার 03: Abiotic Ecology I — Light, Temperature ও Organism Distribution
 
 এই Version 2 lecture একটি **self-contained teaching note** হিসেবে লেখা। শুধু short definition নয়; concept, mechanism, example, diagram, graph interpretation, quantitative reasoning, evidence design, Bangladesh application, misconception, exam preparation এবং next-lecture bridge একসঙ্গে রাখা হয়েছে। Technical English terms textbook ও higher study-এর সুবিধার জন্য retained।
+
+
+
+## কীভাবে এই Lecture শিখবে — LBFL Guided Learning
+
+এই lecture-এর learning method-এর canonical owner হলো **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**। এখানে সেই method-কে Ecology content-এর সঙ্গে প্রয়োগ করা হবে; আলাদা কোনো competing learning cycle তৈরি করা হবে না।
+
+1. **Understand — ধারণা ধরো:** lecture-এর central ecological claim, system boundary, variables এবং mechanism আলাদা করো।
+2. **Retrieve — না দেখে মনে করো:** key definition, relationship, equation/term এবং diagram-এর main labels বই/নোট না দেখে recall করো।
+3. **Explain — causal chain বলো:** “কী → কেন → কীভাবে → ফল কী” ধারায় নিজের ভাষায় mechanism explain করো; প্রয়োজন হলে arrow/flowchart ব্যবহার করো।
+4. **Apply — নতুন context-এ ব্যবহার করো:** Bangladesh-এর ecosystem, field observation, graph, table বা একটি unfamiliar ecological case-এ ধারণাটি প্রয়োগ করো।
+5. **Reflect — uncertainty খুঁজে বের করো:** evidence কোথায় দুর্বল, কোন assumption strongest, alternative explanation কী হতে পারে—একটি প্রশ্ন লিখো।
+6. **Repair — ভুল ঠিক করে reattempt করো:** misconception, ভুল graph-reading বা অসম্পূর্ণ explanation চিহ্নিত করে সংশ্লিষ্ট অংশ revisit করো, তারপর একই problem আবার solve করো।
+
+> **Visual reasoning target:** Light attenuation, thermal performance curve, Q10, microclimate এবং organism distribution.
 
 
 ## Syllabus Alignment
