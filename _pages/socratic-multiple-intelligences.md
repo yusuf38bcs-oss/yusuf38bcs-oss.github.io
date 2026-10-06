@@ -15,6 +15,7 @@ status: "Active"
 sitemap: true
 academic_system: v1
 academic_role: reflection
+reflection_boundary_owner: component
 lang: en
 ---
 
