@@ -36,4 +36,3 @@ lang: en
 <div id="mi-analysis-terminal">
   {% include components/mi-analysis-dynamic.html %}
 </div>
-
