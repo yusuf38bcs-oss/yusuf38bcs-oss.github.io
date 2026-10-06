@@ -48,7 +48,7 @@ Human Behaviour Node connects biology with daily decision-making. It treats beha
 
 ## Connected Learning Logs
 
-- [Socratic Cognitive Assessment]({{ '/socratic-4/socratic-assessment/' | relative_url }})
+- [MI-Informed Learning Reflection]({{ '/socratic/multiple-intelligences/' | relative_url }})
 - [Behavioural Axis]({{ '/matrix/behavioral-axis/' | relative_url }})
 - [Personality Archetypes]({{ '/matrix/personality-archetypes/' | relative_url }})
 - [Neuroplasticity and Learning]({{ '/matrix/neuroplasticity-and-learning/' | relative_url }})
