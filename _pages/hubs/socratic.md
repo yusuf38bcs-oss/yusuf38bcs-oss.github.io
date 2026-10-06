@@ -10,6 +10,7 @@ excerpt: "Reflective assessment loops, Multiple Intelligences awareness, persona
 description: "Educational and reflective Socratic 4.0 hub for critical thinking, Multiple Intelligences reflection, and non-clinical self-assessment."
 academic_system: v1
 academic_role: reflection_gateway
+reflection_boundary_owner: component
 lang: en
 ---
 
