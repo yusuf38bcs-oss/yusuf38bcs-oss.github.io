@@ -407,38 +407,48 @@ For a broad question on **Abiotic Ecology II: Water, Soil, Salinity and Environm
 ## MCQ Self-Check
 
 **1. Which soil fraction has the smallest particles?**
-A. sand
-B. silt
-C. clay
-D. gravel
+
+- A. sand
+- B. silt
+- C. clay
+- D. gravel
+
 **Answer: C**
 
 **2. High salinity can make water uptake difficult because it:**
-A. raises external water potential
-B. makes solute potential more negative
-C. removes all soil particles
-D. eliminates osmosis
+
+- A. raises external water potential
+- B. makes solute potential more negative
+- C. removes all soil particles
+- D. eliminates osmosis
+
 **Answer: B**
 
 **3. A euryhaline organism tolerates:**
-A. only freshwater
-B. a broad salinity range
-C. only high temperature
-D. no osmotic change
+
+- A. only freshwater
+- B. a broad salinity range
+- C. only high temperature
+- D. no osmotic change
+
 **Answer: B**
 
 **4. Waterlogged soil commonly limits roots through:**
-A. excessive oxygen diffusion
-B. oxygen shortage
-C. high light
-D. low gravity
+
+- A. excessive oxygen diffusion
+- B. oxygen shortage
+- C. high light
+- D. low gravity
+
 **Answer: B**
 
 **5. Zonation along an estuary is often produced by:**
-A. one factor only
-B. interacting gradients such as salinity, inundation, and sediment
-C. random naming
-D. absence of environmental variation
+
+- A. one factor only
+- B. interacting gradients such as salinity, inundation, and sediment
+- C. random naming
+- D. absence of environmental variation
+
 **Answer: B**
 
 
