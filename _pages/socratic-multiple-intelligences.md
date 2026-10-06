@@ -18,8 +18,6 @@ academic_role: reflection
 lang: en
 ---
 
-{% include socratic/reflection-boundary.html %}
-
 <section class="lbfl-platform-card" aria-labelledby="mi-analysis-title">
   <p class="lbfl-platform-card__body"><strong>Socratic 4.0 Reflection</strong></p>
   <h1 id="mi-analysis-title" class="lbfl-platform-page-title">MI-Informed Learning Reflection</h1>
