@@ -1,9 +1,9 @@
 # CONV-04F-09 — Zoology Practical-I Formal Closure
 
-**Closure base:** `9b739e7371ede99c60bb509ed750670eeb0853c9`  
-**Closure date:** 2026-10-06  
-**Scope:** whole-programme forensic closure for F-09 only  
-**Learner-content mutation:** none  
+**Closure base:** `9b739e7371ede99c60bb509ed750670eeb0853c9`
+**Closure date:** 2026-10-06
+**Scope:** whole-programme forensic closure for F-09 only
+**Learner-content mutation:** none
 **Next phase:** CONV-04F-10A Ecology BN 01–10 authorization, only after this closure is merged and exact-main re-authenticated.
 
 ## 1. Closure decision
