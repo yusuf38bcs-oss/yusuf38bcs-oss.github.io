@@ -46,8 +46,6 @@ toc: true
 toc_sticky: true
 classes: wide
 
-header:
-  overlay_image: /assets/images/biology/biostatistics-banner.webp
 language: en
 curriculum_tracks:
   - HSC Zoology
@@ -58,6 +56,9 @@ ib_theme: "Not Applicable"
 ib_subtopic: "Hypothesis testing"
 hsc_alignment: "Higher Zoology: null hypothesis, alternative hypothesis, and significance testing"
 concept_level: "Advanced"
+academic_system: v1
+academic_role: lecture
+lang: en
 ---
 
 <div style="width: 100%; max-width: 900px; margin: 0 auto 2.5rem auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 212, 178, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
