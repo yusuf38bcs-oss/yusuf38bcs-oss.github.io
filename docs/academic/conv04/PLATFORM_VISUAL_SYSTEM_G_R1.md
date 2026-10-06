@@ -1,8 +1,8 @@
 # CONV-04G-R1 — Shared Platform Visual System Repair
 
-**Authorized base:** `3c9d57e8b3b40a599de960d145165e2f4f4304cd`  
-**Programme step:** 2 of 5  
-**Machine phase:** `CONV-04G-R1`  
+**Authorized base:** `3c9d57e8b3b40a599de960d145165e2f4f4304cd`
+**Programme step:** 2 of 5
+**Machine phase:** `CONV-04G-R1`
 **Mutation type:** shared visual infrastructure only
 
 ## 1. Preconditions
