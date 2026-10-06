@@ -14,17 +14,7 @@ f10a_status: AUTHORIZATION CANDIDATE / no Ecology learner mutation in this PR
 f10a_authorization: docs/academic/conv04/ECOLOGY_F10A_BN_AUTHORIZATION.md
 f10a_manifest: _data/academic/conv04f10a_ecology_bn_authorization_v1.json
 learner_content_authoring: NO — authorization/governance only; successor implementation may mutate exact allowlist after authorization merge
-learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels.md
-  - _biology/higher-zoology-tree/ecology/ecology-02-limiting-factors-liebig-shelford.md
-  - _biology/higher-zoology-tree/ecology/ecology-03-abiotic-light-temperature.md
-  - _biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity.md
-  - _biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions.md
-  - _biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation.md
-  - _biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity.md
-  - _biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion.md
-  - _biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables.md
-  - _biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models.md
+learner_mutation_allowlist: []
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 english_ecology: protected / F-10B only
