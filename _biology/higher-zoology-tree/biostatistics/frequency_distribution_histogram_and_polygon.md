@@ -59,7 +59,7 @@ lang: en
 ---
 
 <style>
-  .biostats-module { font-family: 'Inter', 'Tiro Bangla', sans-serif; color: #cbd5e1; line-height: 1.75; }
+  .biostats-module { font-family: 'Inter', 'Tiro Bangla', sans-serif; color: #cbd5e1; background: #0f172a; line-height: 1.75; }
   .lecture-header { background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); color: white; padding: 2.5rem; border-radius: 14px; text-align: center; margin-bottom: 2rem; border: 1px solid rgba(0, 212, 178, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
   .lecture-header h1 { margin: 0 0 10px 0; font-size: 2.2rem; font-weight: 800; color: #ffffff !important; }
   .concept-block { background: #0f172a; padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 5px solid #00d4b2; border: 1px solid rgba(255,255,255,0.02); }
