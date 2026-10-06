@@ -1,15 +1,7 @@
-<header class="masthead lbfl-masthead" role="banner">
-  <div class="masthead__inner-wrap lbfl-masthead__inner">
+<header class="masthead lbfl-masthead lbfl-platform-header" role="banner">
+  <div class="masthead__inner-wrap lbfl-masthead__inner lbfl-platform-shell">
     <nav class="lbfl-nav" aria-label="Primary navigation">
-      <a class="lbfl-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title | escape }} home">
-        {% if site.logo %}
-          <img class="lbfl-brand__logo" src="{{ site.logo | relative_url }}" alt="" width="44" height="44">
-        {% endif %}
-        <span class="lbfl-brand__title" data-short="LBFL">
-          <span class="lbfl-brand__full">{{ site.title }}</span>
-          <span class="lbfl-brand__short">LBFL</span>
-        </span>
-      </a>
+      {% include brand/lbfl-identity.html class="lbfl-brand" logo_class="lbfl-brand__logo" title_class="lbfl-brand__title" full_class="lbfl-brand__full" short_class="lbfl-brand__short" %}
 
       <ul class="lbfl-desktop-links" aria-label="Main menu">
         {%- for link in site.data.navigation.main -%}
