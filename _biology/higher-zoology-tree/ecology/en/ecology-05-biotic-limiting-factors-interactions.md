@@ -396,38 +396,48 @@ For a broad question on **Biotic Limiting Factors and Species Interactions**, a 
 ## MCQ Self-Check
 
 **1. Competition between members of the same species is:**
-A. interspecific
-B. intraspecific
-C. mutualistic
-D. commensal
+
+- A. interspecific
+- B. intraspecific
+- C. mutualistic
+- D. commensal
+
 **Answer: B**
 
 **2. A +/+ interaction is:**
-A. competition
-B. mutualism
-C. parasitism
-D. amensalism
+
+- A. competition
+- B. mutualism
+- C. parasitism
+- D. amensalism
+
 **Answer: B**
 
 **3. Exploitation competition occurs when organisms:**
-A. directly attack every competitor
-B. reduce a shared resource through use
-C. always cooperate
-D. never overlap in resource use
+
+- A. directly attack every competitor
+- B. reduce a shared resource through use
+- C. always cooperate
+- D. never overlap in resource use
+
 **Answer: B**
 
 **4. A trophic cascade is an example of:**
-A. only direct effect
-B. indirect ecological effect
-C. abiotic weathering
-D. soil texture
+
+- A. only direct effect
+- B. indirect ecological effect
+- C. abiotic weathering
+- D. soil texture
+
 **Answer: B**
 
 **5. A nurse plant helping seedlings under stressful conditions is an example of:**
-A. facilitation
-B. predation
-C. parasitism
-D. emigration
+
+- A. facilitation
+- B. predation
+- C. parasitism
+- D. emigration
+
 **Answer: A**
 
 
