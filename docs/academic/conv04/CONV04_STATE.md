@@ -1,28 +1,26 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04F-09-R101
-mode: implementation candidate — prac-08 Field Report
-authorized_base: d86325ec281e21de1a208f1a1f31ecb531821eb4
-branch: conv-04f-09-r101-prac08-field-report-20261006
-production_verified_main: d86325ec281e21de1a208f1a1f31ecb531821eb4
+phase: CONV-04F-09-R102
+mode: F-09 formal closure record; F-10A Ecology authorization gate pending
+authorized_base: 9b739e7371ede99c60bb509ed750670eeb0853c9
+branch: conv-04f-09-formal-closure-20261006
+production_verified_main: 9b739e7371ede99c60bb509ed750670eeb0853c9
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-mutation_authority: R101 — exactly one prac-08 learner source + one strict route row + dedicated certification/evidence/governance artifacts
-learner_content_authoring: YES — exact prac-08 structural convergence only; frozen scientific/ecological/statistical/ethical/reporting corpus preserved
-existing_learning_method_cleanup: no legacy local learning-method block authorized; prac-01 through prac-07 production parity closed / retained
-gateway_cta_injection: YES — exactly one canonical Learning Guide CTA after the existing H1 on prac-08
-learner_mutation_allowlist:
-  - _biology/higher-zoology-tree/practical/08-field-report.bn.md
+f09_status: FORMALLY CLOSED / 8-of-8 Practical modules strict + exact-main production PASS
+f09_closure_evidence: docs/academic/conv04/ZOOLOGY_PRACTICAL_F09_FORMAL_CLOSURE.md
+learner_content_authoring: NO — closure evidence/governance only
+learner_mutation_allowlist: []
 shared_authored_runtime: protected / unchanged
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 hsc_zoology_gateway: F-01 merged / retained
 admission_pr_356: protected / untouched
-worker_cloudflare: Worker out of scope; prac-01 through prac-07 Cloudflare Pages production parity PASS / retained
-ready_transition: R101 remains Draft/HOLD until exact-head source/scope/ledger + retained contracts + Jekyll/browser/Axe/preview + fresh review/governance PASS
-merge: R101 not authorized until Ready + unchanged-head SOLO authority + Trusted Governance PASS + final unchanged-head review; exact-main production parity required before F-09 closure
-next_module_gate: F-09 closure BLOCKED — requires R101 merge + exact-main immutable/canonical production parity PASS
-practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10 remains reserved for Ecology
+worker_cloudflare: protected / untouched
+ready_transition: F-09 closure PR requires unchanged-head review/governance and merge; after merge re-authenticate exact main
+merge: closure PR only; no Ecology learner-content mutation in this phase
+next_module_gate: CONV-04F-10A Ecology BN 01–10 authorization — BLOCKED until this formal F-09 closure is merged and exact-main rebound
+practical_sequence_namespace: R4 authorization marker; R40-R49 prac-02; R50-R59 prac-03; R60-R69 prac-04; R70-R79 prac-05; R80-R89 prac-06; R90-R99 prac-07; R100-R109 prac-08; CONV-04F-10A reserved for Ecology BN 01–10; F-10B reserved for English synchronization; F-11 reserved for Whole-F certification
 
 ## Completed foundation
 
@@ -742,3 +740,15 @@ Maintain CONV-04F-01 as a Draft implementation candidate on exact post-E main `b
 - Protected corpus includes the ≥10-sample requirement, collection ethics, Sample Label fields, Field Notebook fields, quadrat density/area/mean/frequency formulae, Shannon–Wiener formula/reporting conditions, report structure, exact 17-mark distribution, sample checklist, and five Socratic questions.
 - Scientific/ecological/statistical/ethical/reporting/formula/marks rewrite: **NONE**.
 - F-09 closure and F-10 Ecology remain blocked until R101 exact-main production parity closes.
+
+## CONV-04F-09 formal closure — 2026-10-06
+
+- Exact closure base: `9b739e7371ede99c60bb509ed750670eeb0853c9`.
+- R101 / PR #444 merged to that exact main.
+- GitHub Pages, Sovereign Site Audit v4 and CodeQL passed on that exact main.
+- All eight Practical production-parity workflows passed on that exact main.
+- Academic Route Ledger records the Practical gateway and all eight modules as strict with zero source/live debt.
+- Formal evidence: `docs/academic/conv04/ZOOLOGY_PRACTICAL_F09_FORMAL_CLOSURE.md`.
+- F-09 learner content is frozen; this closure authorizes no new Practical mutation.
+- Successor order is fixed as F-10A Ecology BN 01–10 → F-10B English synchronization → F-11 Whole-F certification.
+- F-10A remains blocked until this closure is merged and the new exact main is authenticated.
