@@ -14,6 +14,7 @@ g_status: CLOSED / PR #452 merged + production verified; I-00 addresses only aut
 h_status: CLOSED / PR #452 merged + production verified; retained under I-00
 learner_content_authoring: YES — residual repair only; Homepage V3 and scientific-content authoring remain protected
 learner_mutation_allowlist:
+  - _includes/components/educational-boundary.html
   - _pages/hubs/socratic.md
   - _pages/socratic-multiple-intelligences.md
   - _socratic/personality-archetypes.md
@@ -41,7 +42,7 @@ step3_evidence: docs/academic/conv04/CONV04_GH_STEP3_EVIDENCE.md
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 i00_residual_findings:
   - A personality runtime: VERIFIED REAL DEFECT / candidate loads existing personality-engine.js
-  - B reflection boundary duplication: VERIFIED REAL DEFECT / candidate makes role component authoritative when rendered
+  - B reflection boundary duplication: VERIFIED REAL DEFECT / shared educational boundary defers to Academic-v1 reflection/reflection_gateway role ownership
   - C Biostatistics contrast: INFERRED RISK / exact-preview Axe and browser evidence required before closure
   - D legacy Socratic inbound links: VERIFIED REAL DEFECT / candidate repoints first-party links to /socratic/multiple-intelligences/
   - E Polyglot historical root removal: NOT REPRODUCED on current production / retained route checks required
