@@ -96,7 +96,7 @@ lang: en
   <div style="background: #131c2e; border: 1px solid rgba(0, 212, 178, 0.15); border-left: 5px solid #00d4b2; padding: 1.25rem; border-radius: 8px; color: #cbd5e1;">
     <p style="margin: 0 0 0.5rem 0; font-weight: 700; color: #ffffff;">গাণিতিক প্রকাশ বিন্যাস:</p>
     $$H_0: \mu_1 = \mu_2$$
-    <p style="font-size: 0.85rem; color: #64748b; margin: 0.5rem 0 0 0; text-align: center;">[এখানে $\mu_1$ ও $\mu_2$ হলো দুটি ভিন্ন দলের গাণিতিক গড় বা পপুলেশন মিন]</p>
+    <p style="font-size: 0.85rem; color: #94a3b8; margin: 0.5rem 0 0 0; text-align: center;">[এখানে $\mu_1$ ও $\mu_2$ হলো দুটি ভিন্ন দলের গাণিতিক গড় বা পপুলেশন মিন]</p>
   </div>
 </div>
 
@@ -134,7 +134,7 @@ lang: en
 <div style="background: #090d16; border: 1px solid rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
   <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-top: 0; margin-bottom: 1rem;"><span style="color: #00d4b2;">৪️⃣</span> একমুখী বনাম দ্বিমুখী পরীক্ষা (One-tailed vs Two-tailed Test)</h3>
 
-  <div style="overflow-x: auto; width: 100%; margin: 1.5rem 0;">
+  <div style="overflow-x: auto; width: 100%; margin: 1.5rem 0; background: #090d16;">
     <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem; text-align: left; border: 1px solid rgba(255,255,255,0.05);">
       <thead>
         <tr style="background-color: #131c2e;">
