@@ -43,6 +43,13 @@ LEARNER_MUTATION_PREFIXES = %w[
   _socratic/
 ].freeze
 
+REFLECTION_PAGE_MUTATIONS = %w[
+  _pages/hubs/socratic.md
+  _pages/socratic-multiple-intelligences.md
+  _pages/tools/mi-analysis.md
+  _pages/socratic-4/socratic-assessment.md
+].freeze
+
 EXPECTED_ROLES = %w[
   platform_home academic_gateway chapter_index lecture assessment_gateway
   assessment practical revision reflection_gateway reflection application
@@ -735,13 +742,14 @@ if git_dir.exist?
     errors << "Protected Admission/Worker/Cloudflare scope changed: #{always_protected.join(', ')}" unless always_protected.empty?
 
     learner_changed = changed.select do |path|
-      LEARNER_MUTATION_PREFIXES.any? { |prefix| path.start_with?(prefix) }
+      LEARNER_MUTATION_PREFIXES.any? { |prefix| path.start_with?(prefix) } ||
+        REFLECTION_PAGE_MUTATIONS.include?(path)
     end
     learner_allowlist = learner_mutation_allowlist(candidate_state)
     invalid_authority = learner_allowlist.reject do |path|
-      LEARNER_MUTATION_PREFIXES.any? { |prefix| path.start_with?(prefix) } &&
-        !path.end_with?("/") &&
-        !path.match?(/[\*\?\[\]]/)
+      recognized = LEARNER_MUTATION_PREFIXES.any? { |prefix| path.start_with?(prefix) } ||
+        REFLECTION_PAGE_MUTATIONS.include?(path)
+      recognized && !path.end_with?("/") && !path.match?(/[\*\?\[\]]/)
     end
     errors << "Invalid learner mutation authority: #{invalid_authority.join(', ')}" unless invalid_authority.empty?
 
