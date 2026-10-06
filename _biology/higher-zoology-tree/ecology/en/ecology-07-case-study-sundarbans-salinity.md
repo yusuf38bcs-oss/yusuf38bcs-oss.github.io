@@ -427,38 +427,48 @@ For a broad question on **Bangladesh Case Study I: Sundarbans Salinization and t
 ## MCQ Self-Check
 
 **1. The Sundarbans case study is used mainly to illustrate:**
-A. a single-factor world
-B. hierarchical and interacting limiting factors
-C. only taxonomy
-D. only animal behaviour
+
+- A. a single-factor world
+- B. hierarchical and interacting limiting factors
+- C. only taxonomy
+- D. only animal behaviour
+
 **Answer: B**
 
 **2. Higher salinity in the cited Sundarbans studies was generally associated with:**
-A. increased tree height in all species
-B. reduced several structural and functional forest variables
-C. zero change in nutrients
-D. no species differences
+
+- A. increased tree height in all species
+- B. reduced several structural and functional forest variables
+- C. zero change in nutrients
+- D. no species differences
+
 **Answer: B**
 
 **3. Heritiera fomes in the cited field evidence is described as relatively:**
-A. salt tolerant compared with all species
-B. less salt tolerant
-C. aquatic plankton
-D. a predator
+
+- A. salt tolerant compared with all species
+- B. less salt tolerant
+- C. aquatic plankton
+- D. a predator
+
 **Answer: B**
 
 **4. A permanent-plot design is valuable because it can:**
-A. eliminate all uncertainty
-B. support repeated measurements through time
-C. remove the need for salinity data
-D. prove every causal mechanism automatically
+
+- A. eliminate all uncertainty
+- B. support repeated measurements through time
+- C. remove the need for salinity data
+- D. prove every causal mechanism automatically
+
 **Answer: B**
 
 **5. Which is a direct physiological effect of salinity?**
-A. osmotic stress
-B. altered national policy
-C. map projection
-D. sampling effort
+
+- A. osmotic stress
+- B. altered national policy
+- C. map projection
+- D. sampling effort
+
 **Answer: A**
 
 
