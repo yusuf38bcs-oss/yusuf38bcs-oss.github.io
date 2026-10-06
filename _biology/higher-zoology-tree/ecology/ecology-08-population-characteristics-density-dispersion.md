@@ -83,6 +83,7 @@ learning_guide: canonical
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 08 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 08 / 26 |
@@ -90,6 +91,8 @@ learning_guide: canonical
 | CLO | CLO2 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -297,6 +300,7 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Comparison Table: Population Descriptor
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 08 table 2" markdown="1">
 | Measure | কী বলে | কী বলে না |
 |---|---|---|
 | Size (N) | total individual | crowding per area |
@@ -304,6 +308,8 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 | Dispersion | arrangement | total abundance |
 | Occupancy | কত site used | occupied site-এ কত individual |
 | Age structure | demographic composition | exact future growth একা predict করে না |
+
+</div>
 
 ## Mini Sampling Exercise
 
