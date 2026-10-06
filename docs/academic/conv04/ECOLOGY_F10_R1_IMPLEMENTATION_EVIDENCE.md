@@ -55,6 +55,25 @@ Each lecture receives a content-specific visual reasoning target while preservin
 | 09 | 1 | 1 | 1 | 1 | retained |
 | 10 | 1 | 1 | 1 | 1 | retained |
 
+## 4A. Accessibility remediation
+
+The first exact-head browser certification exposed a serious table-header contrast failure after the Ecology lectures entered Academic-v1. The shared runtime itself remains protected. The remediation therefore stays inside the authorized learner files: every existing Markdown table in Lectures 01–10 is wrapped in the existing `lbfl-academic-table-wrap` keyboard-focusable named-region primitive already used by certified CONV-04 surfaces.
+
+Resulting wrapper census:
+
+- Lecture 01: 4 tables
+- Lecture 02: 2 tables
+- Lecture 03: 2 tables
+- Lecture 04: 2 tables
+- Lecture 05: 3 tables
+- Lecture 06: 2 tables
+- Lecture 07: 2 tables
+- Lecture 08: 2 tables
+- Lecture 09: 3 tables
+- Lecture 10: 2 tables
+
+No table cell content, scientific claim, equation or shared CSS/JS was changed by this remediation.
+
 ## 4. Scientific/content-preservation status
 
 This R1 pass is deliberately **convergent, not destructive**.
