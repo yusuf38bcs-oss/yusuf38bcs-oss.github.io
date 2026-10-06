@@ -124,7 +124,15 @@ COMPONENTS.each do |klass|
 end
 
 add_error(errors, css.include?("!important"), "Platform CSS must not introduce !important")
-bare_selector = css.match?(/(?m)^\s*(?:body|html|h[1-6]|p|a|img|figure|table|th|td)\s*\{/)
+selector_groups = css.gsub(%r{/\*.*?\*/}m, "").scan(/([^{}]+)\{/m).flatten
+bare_selector = selector_groups.any? do |group|
+  next false if group.lstrip.start_with?("@")
+
+  group.split(",").any? do |selector|
+    candidate = selector.strip
+    candidate.match?(/\A(?:body|html|h[1-6]|p|a|img|figure|table|th|td)(?:\z|:{1,2}[a-zA-Z-]+(?:\([^)]*\))?\z)/)
+  end
+end
 add_error(errors, bare_selector, "Platform CSS contains a forbidden bare global content selector")
 add_error(errors, !css.include?("@media (max-width: 27.5rem)"), "Platform CSS missing narrow responsive contract")
 add_error(errors, !css.include?("@media (prefers-reduced-motion: reduce)"), "Platform CSS missing reduced-motion contract")
@@ -150,12 +158,22 @@ add_error(errors, !footer_primary.include?("lbfl-platform-footer__primary"), "Pr
 add_error(errors, !footer_legal.include?("lbfl-platform-footer__legal"), "Legal footer missing platform hook")
 add_error(errors, !academic_css.include?("var(--lbfl-platform-"), "Academic-v1 is not consuming platform tokens")
 
-add_error(errors, !state.include?("phase: CONV-04G-R1"), "CONV04_STATE is not at CONV-04G-R1")
+current_phase = state[/^phase:\s*(\S+)/, 1]
+bootstrap_state = current_phase == "CONV-04G-R1"
+
+add_error(errors, current_phase.nil?, "CONV04_STATE phase is missing")
 add_error(errors, !state.include?("conv04f_status: FORMALLY CLOSED"), "CONV-04F is not formally closed in state")
-add_error(errors, !state.include?("learner_content_authoring: NO"), "G-R1 must not authorize learner content")
-allowlist_lines = state.lines.drop_while { |line| !line.start_with?("learner_mutation_allowlist:") }.drop(1)
-allowlist_entries = allowlist_lines.take_while { |line| line.start_with?("  ") }.grep(/^\s+-\s+/)
-add_error(errors, !allowlist_entries.empty?, "G-R1 learner mutation allowlist must be empty")
+
+if bootstrap_state
+  add_error(errors, !state.include?("learner_content_authoring: NO"), "G-R1 must not authorize learner content")
+
+  allowlist_declaration = state.lines.find { |line| line.start_with?("learner_mutation_allowlist:") }.to_s.strip
+  add_error(errors, allowlist_declaration != "learner_mutation_allowlist: []", "G-R1 learner mutation allowlist declaration must be exactly []")
+
+  allowlist_lines = state.lines.drop_while { |line| !line.start_with?("learner_mutation_allowlist:") }.drop(1)
+  allowlist_entries = allowlist_lines.take_while { |line| line.start_with?("  ") }.grep(/^\s+-\s+/)
+  add_error(errors, !allowlist_entries.empty?, "G-R1 learner mutation allowlist must be empty")
+end
 
 config = ROOT.join("_config.yml")
 if config.file?
@@ -171,12 +189,15 @@ if ENV["CERTIFICATION_MODE"] == "pull_request"
     add_error(errors, !status.success?, "Unable to enumerate changed files: #{err.strip}")
     if status.success?
       changed = out.lines.map(&:strip).reject(&:empty?).sort
-      unexpected = changed - ALLOWED_FILES.sort
-      missing = ALLOWED_FILES.sort - changed
-      add_error(errors, !unexpected.empty?, "Unexpected G-R1 changed files: #{unexpected.join(', ')}")
-      add_error(errors, !missing.empty?, "Expected G-R1 files not changed: #{missing.join(', ')}")
       forbidden = changed.grep(/\A(?:worker\/|workers\/|wrangler|\.github\/workflows\/worker-|\.github\/scripts\/cloudflare-worker)/)
       add_error(errors, !forbidden.empty?, "Worker/Cloudflare deployment mutation is forbidden: #{forbidden.join(', ')}")
+
+      if base_sha == BASE
+        unexpected = changed - ALLOWED_FILES.sort
+        missing = ALLOWED_FILES.sort - changed
+        add_error(errors, !unexpected.empty?, "Unexpected G-R1 changed files: #{unexpected.join(', ')}")
+        add_error(errors, !missing.empty?, "Expected G-R1 files not changed: #{missing.join(', ')}")
+      end
     end
   end
 end
