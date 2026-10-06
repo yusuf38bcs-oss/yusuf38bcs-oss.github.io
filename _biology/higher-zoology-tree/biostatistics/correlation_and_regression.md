@@ -212,7 +212,7 @@ lang: en
     </table>
   </div>
 
-  <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+  <div style="background: #131c2e; border: 1px solid rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; color: #cbd5e1;">
     <p style="margin: 0 0 0.75rem 0; font-weight: 700; color: #ffffff;">কার্ল পিয়ারসনের সহসম্বন্ধ সূত্র:</p>
     $$r = \frac{n(\sum XY) - (\sum X)(\sum Y)}{\sqrt{[n\sum X^2 - (\sum X)^2][n\sum Y^2 - (\sum Y)^2]}}$$
   </div>
