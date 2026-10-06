@@ -85,6 +85,7 @@ learning_guide: canonical
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 04 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 04 / 26 |
@@ -92,6 +93,8 @@ learning_guide: canonical
 | CLO | CLO1, CLO2 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -321,6 +324,7 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Comparison Table: Major Abiotic Media
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 04 table 2" markdown="1">
 | Factor | Main ecological role | Common stress |
 |---|---|---|
 | Water availability | hydration, transport, cooling | drought/flooding |
@@ -328,6 +332,8 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 | Soil pH | nutrient chemistry | deficiency/toxicity |
 | Salinity | osmotic ও ionic environment | water stress/ion toxicity |
 | Dissolved oxygen | aerobic metabolism | hypoxia |
+
+</div>
 
 ## Mini Practical: Soil ও Salinity Gradient
 
