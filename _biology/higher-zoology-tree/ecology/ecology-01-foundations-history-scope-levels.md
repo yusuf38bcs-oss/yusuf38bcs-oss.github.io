@@ -57,12 +57,30 @@ syllabus_topics:
 clo_alignment:
   - CLO1
 math: true
+academic_system: v1
+academic_role: lecture
+learning_guide: canonical
 ---
 # লেকচার ০১: ইকোলজির ভিত্তি — ইতিহাস, পরিসর ও সংগঠনের স্তর
 
 এই lectureটি বর্তমান ১০-lecture Ecology course-এর foundation। এখানে শুধু Ecology-এর definition দেওয়া হয়নি; বরং Ecology কীভাবে প্রশ্ন করে, কোন কোন scale-এ কাজ করে, কীভাবে evidence সংগ্রহ করে, কোন disciplines-এর সঙ্গে যুক্ত, এবং organism থেকে biosphere পর্যন্ত biological organization কীভাবে connected system তৈরি করে—এসব step-by-step ব্যাখ্যা করা হয়েছে।
 
 Bangla explanation-এর মধ্যে textbook, examination, research paper ও higher study-তে ব্যবহৃত গুরুত্বপূর্ণ technical English terms ইচ্ছাকৃতভাবে রাখা হয়েছে।
+
+
+
+## কীভাবে এই Lecture শিখবে — LBFL Guided Learning
+
+এই lecture-এর learning method-এর canonical owner হলো **[How to Learn with LBFL]({{ '/learn/' | relative_url }})**। এখানে সেই method-কে Ecology content-এর সঙ্গে প্রয়োগ করা হবে; আলাদা কোনো competing learning cycle তৈরি করা হবে না।
+
+1. **Understand — ধারণা ধরো:** lecture-এর central ecological claim, system boundary, variables এবং mechanism আলাদা করো।
+2. **Retrieve — না দেখে মনে করো:** key definition, relationship, equation/term এবং diagram-এর main labels বই/নোট না দেখে recall করো।
+3. **Explain — causal chain বলো:** “কী → কেন → কীভাবে → ফল কী” ধারায় নিজের ভাষায় mechanism explain করো; প্রয়োজন হলে arrow/flowchart ব্যবহার করো।
+4. **Apply — নতুন context-এ ব্যবহার করো:** Bangladesh-এর ecosystem, field observation, graph, table বা একটি unfamiliar ecological case-এ ধারণাটি প্রয়োগ করো।
+5. **Reflect — uncertainty খুঁজে বের করো:** evidence কোথায় দুর্বল, কোন assumption strongest, alternative explanation কী হতে পারে—একটি প্রশ্ন লিখো।
+6. **Repair — ভুল ঠিক করে reattempt করো:** misconception, ভুল graph-reading বা অসম্পূর্ণ explanation চিহ্নিত করে সংশ্লিষ্ট অংশ revisit করো, তারপর একই problem আবার solve করো।
+
+> **Visual reasoning target:** Ecological hierarchy, systems connection, pattern→process reasoning এবং Bangladesh multi-scale examples.
 
 
 ## Syllabus Alignment
