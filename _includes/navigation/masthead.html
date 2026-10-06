@@ -1,7 +1,7 @@
-<header class="masthead lbfl-masthead lbfl-platform-header" role="banner">
-  <div class="masthead__inner-wrap lbfl-masthead__inner lbfl-platform-shell">
+<header class="masthead lbfl-platform-header" role="banner">
+  <div class="masthead__inner-wrap lbfl-platform-shell">
     <nav class="lbfl-nav" aria-label="Primary navigation">
-      {% include brand/lbfl-identity.html class="lbfl-brand" logo_class="lbfl-brand__logo" title_class="lbfl-brand__title" full_class="lbfl-brand__full" short_class="lbfl-brand__short" %}
+      {% include brand/lbfl-identity.html %}
 
       <ul class="lbfl-desktop-links" aria-label="Main menu">
         {%- for link in site.data.navigation.main -%}
