@@ -567,7 +567,10 @@
       "canonical_route": "/socratic/personality-archetypes/",
       "source_file": "_socratic/personality-archetypes.md",
       "support_files": [
-        "_includes/components/personality-analysis.html"
+        "_includes/components/personality-analysis.html",
+        "assets/js/learning/personality-engine.js",
+        "assets/css/mi-analysis.css",
+        "_includes/socratic/reflection-boundary.html"
       ],
       "academic_role": "reflection",
       "language": "en",
