@@ -1,0 +1,79 @@
+{
+  "schema": "lbfl-conv04f10a-ecology-bn-authorization-v1",
+  "phase": "CONV-04F-10",
+  "authorization_kind": "learner-content implementation gate",
+  "authorized_base_sha": "ad36df28ccf8b845ae97e52e6482c0b76b0d42ed",
+  "language": "bn",
+  "course_id": "ecology-10",
+  "target_count": 10,
+  "target_files": [
+    {
+      "order": 1,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-01-foundations-history-scope-levels.md",
+      "baseline_blob": "01e88188382d09285d8ec8f31650028e4c2bdacc"
+    },
+    {
+      "order": 2,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-02-limiting-factors-liebig-shelford.md",
+      "baseline_blob": "8188519da3fbdd446676d0f256e9cf7d9bce697b"
+    },
+    {
+      "order": 3,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-03-abiotic-light-temperature.md",
+      "baseline_blob": "6614044b6839f315094a6506f4af8cc984cc0b66"
+    },
+    {
+      "order": 4,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-04-abiotic-water-soil-salinity.md",
+      "baseline_blob": "1e66e4a06cda9629e6e91645f2de156c96cc3af0"
+    },
+    {
+      "order": 5,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-05-biotic-limiting-factors-interactions.md",
+      "baseline_blob": "f1928a77cd99f5a75d2178f5960f742f979ddc98"
+    },
+    {
+      "order": 6,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-06-multiple-factors-adaptation.md",
+      "baseline_blob": "e2a8b10fc14c1ebaf8b307c4a56f425c8017766f"
+    },
+    {
+      "order": 7,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-07-case-study-sundarbans-salinity.md",
+      "baseline_blob": "eb80ab426a2b95f436cb24d7ad35dd2fe4b273e5"
+    },
+    {
+      "order": 8,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-08-population-characteristics-density-dispersion.md",
+      "baseline_blob": "d6ce7754275be836f8b5223a9f3d31c190b7cc7f"
+    },
+    {
+      "order": 9,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-09-demography-vital-rates-life-tables.md",
+      "baseline_blob": "4a708addfc74a81db74d50b7973e2a065bc69450"
+    },
+    {
+      "order": 10,
+      "path": "_biology/higher-zoology-tree/ecology/ecology-10-survivorship-growth-models.md",
+      "baseline_blob": "a82f635eb6f42908456e6956e3c34a667adaaf76"
+    }
+  ],
+  "protected": [
+    "_biology/higher-zoology-tree/ecology/en/",
+    "_biology/higher-zoology-tree/ecology/course-index.md",
+    "_biology/higher-zoology-tree/ecology/en/index.md",
+    "_pages/ecology-v2-gateway.bn.md",
+    "biology/higher-zoology-tree/ecology/index.html",
+    "_data/academic/course_contract_v1.json",
+    "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json",
+    "shared Academic-v1 CSS/JS/layout runtime",
+    "assessment ownership",
+    "Practical programme",
+    "Admission",
+    "Socratic",
+    "Worker/Cloudflare configuration"
+  ],
+  "successor": "CONV-04F-10-R1 implementation candidate after authorization merge and exact-main rebound",
+  "english_successor": "CONV-04F-10B / parser-safe successor identity to be assigned after F-10A closes",
+  "whole_f_successor": "CONV-04F-11"
+}
