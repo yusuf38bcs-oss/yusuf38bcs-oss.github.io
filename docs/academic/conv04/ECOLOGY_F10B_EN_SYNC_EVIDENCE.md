@@ -1,8 +1,8 @@
 # CONV-04F-10-R2 — Ecology English 01–10 Synchronization Evidence
 
-**Programme label:** F-10B  
-**Machine phase:** `CONV-04F-10-R2`  
-**Authorized base:** `e92f1a8dfcfb55ac673110a8a38e65d77cfaa840`  
+**Programme label:** F-10B
+**Machine phase:** `CONV-04F-10-R2`
+**Authorized base:** `e92f1a8dfcfb55ac673110a8a38e65d77cfaa840`
 **Branch:** `conv-04f-10-r2-ecology-en-sync-20261006`
 
 ## Gate basis
