@@ -53,7 +53,7 @@
   font-family: var(--lbfl-platform-font-sans);
 }
 
-.lbfl-platform-header .lbfl-masthead__inner {
+.lbfl-platform-header .lbfl-platform-shell {
   width: min(100%, var(--lbfl-platform-shell));
   min-height: 4rem;
   margin-inline: auto;
@@ -134,8 +134,20 @@
   margin-inline: auto;
 }
 
-.lbfl-platform-footer__card {
+.lbfl-platform-footer .lbfl-platform-footer__card {
   min-width: 0;
+  border-color: rgba(203, 213, 225, 0.14);
+  background: var(--lbfl-platform-dark-surface);
+  color: var(--lbfl-platform-dark-muted);
+}
+
+.lbfl-platform-footer .lbfl-platform-footer__card a {
+  color: var(--lbfl-platform-dark-ink);
+}
+
+.lbfl-platform-footer .lbfl-platform-footer__card a:hover,
+.lbfl-platform-footer .lbfl-platform-footer__card a:focus-visible {
+  color: var(--lbfl-platform-gold);
 }
 
 .lbfl-platform-matrix {
@@ -238,7 +250,7 @@
 }
 
 @media (max-width: 48rem) {
-  .lbfl-platform-header .lbfl-masthead__inner {
+  .lbfl-platform-header .lbfl-platform-shell {
     min-height: 3.75rem;
   }
 
