@@ -619,7 +619,7 @@
       "source_file": "_biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics.md",
       "support_files": [],
       "academic_role": "lecture",
-      "language": "en",
+      "language": "bn",
       "boundary_owner": "layout",
       "learning_guide_owner": "course",
       "assessment_owner": "mcq-arena",
@@ -637,8 +637,10 @@
       "boundary_owner": "layout",
       "learning_guide_owner": "course",
       "assessment_owner": "mcq-arena",
-      "enforcement": "strict",
-      "source_debt": [],
+      "enforcement": "progressive",
+      "source_debt": [
+        "inline_style"
+      ],
       "live_debt": []
     },
     {
@@ -647,7 +649,7 @@
       "source_file": "_biology/higher-zoology-tree/biostatistics/measures-of-central-tendency.md",
       "support_files": [],
       "academic_role": "lecture",
-      "language": "en",
+      "language": "bn",
       "boundary_owner": "layout",
       "learning_guide_owner": "course",
       "assessment_owner": "mcq-arena",
@@ -661,7 +663,7 @@
       "source_file": "_biology/higher-zoology-tree/biostatistics/measures-of-dispersion.md",
       "support_files": [],
       "academic_role": "lecture",
-      "language": "en",
+      "language": "bn",
       "boundary_owner": "layout",
       "learning_guide_owner": "course",
       "assessment_owner": "mcq-arena",
@@ -679,8 +681,10 @@
       "boundary_owner": "layout",
       "learning_guide_owner": "course",
       "assessment_owner": "mcq-arena",
-      "enforcement": "strict",
-      "source_debt": [],
+      "enforcement": "progressive",
+      "source_debt": [
+        "inline_style"
+      ],
       "live_debt": []
     },
     {
@@ -689,7 +693,7 @@
       "source_file": "_biology/higher-zoology-tree/biostatistics/z_test_problem_solving.md",
       "support_files": [],
       "academic_role": "lecture",
-      "language": "en",
+      "language": "bn",
       "boundary_owner": "layout",
       "learning_guide_owner": "course",
       "assessment_owner": "mcq-arena",
@@ -703,7 +707,7 @@
       "source_file": "_biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means.md",
       "support_files": [],
       "academic_role": "lecture",
-      "language": "en",
+      "language": "bn",
       "boundary_owner": "layout",
       "learning_guide_owner": "course",
       "assessment_owner": "mcq-arena",
@@ -717,7 +721,7 @@
       "source_file": "_biology/higher-zoology-tree/biostatistics/chi_square_test.md",
       "support_files": [],
       "academic_role": "lecture",
-      "language": "en",
+      "language": "bn",
       "boundary_owner": "layout",
       "learning_guide_owner": "course",
       "assessment_owner": "mcq-arena",
@@ -735,8 +739,10 @@
       "boundary_owner": "layout",
       "learning_guide_owner": "course",
       "assessment_owner": "mcq-arena",
-      "enforcement": "strict",
-      "source_debt": [],
+      "enforcement": "progressive",
+      "source_debt": [
+        "inline_style"
+      ],
       "live_debt": []
     }
   ]
