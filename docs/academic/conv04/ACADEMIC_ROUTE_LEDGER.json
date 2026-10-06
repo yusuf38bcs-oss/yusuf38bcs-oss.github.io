@@ -361,12 +361,10 @@
       "id": "socratic-gateway",
       "canonical_route": "/socratic/",
       "source_file": "_pages/hubs/socratic.md",
-      "support_files": [
-        "_includes/socratic/reflection-boundary.html"
-      ],
+      "support_files": [],
       "academic_role": "reflection_gateway",
       "language": "en",
-      "boundary_owner": "role_component",
+      "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "socratic",
       "enforcement": "strict",
@@ -378,12 +376,11 @@
       "canonical_route": "/socratic/multiple-intelligences/",
       "source_file": "_pages/socratic-multiple-intelligences.md",
       "support_files": [
-        "_includes/components/mi-analysis-dynamic.html",
-        "_includes/socratic/reflection-boundary.html"
+        "_includes/components/mi-analysis-dynamic.html"
       ],
       "academic_role": "reflection",
       "language": "en",
-      "boundary_owner": "role_component",
+      "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "socratic",
       "enforcement": "strict",
@@ -571,11 +568,13 @@
       "source_file": "_socratic/personality-archetypes.md",
       "support_files": [
         "_includes/components/personality-analysis.html",
+        "assets/js/learning/personality-engine.js",
+        "assets/css/mi-analysis.css",
         "_includes/socratic/reflection-boundary.html"
       ],
       "academic_role": "reflection",
       "language": "en",
-      "boundary_owner": "role_component",
+      "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "socratic",
       "enforcement": "strict",
@@ -587,12 +586,11 @@
       "canonical_route": "/life-practices/cognitive-audit/",
       "source_file": "_pages/tools/mi-analysis.md",
       "support_files": [
-        "_includes/components/mi-analysis-dynamic.html",
-        "_includes/socratic/reflection-boundary.html"
+        "_includes/components/mi-analysis-dynamic.html"
       ],
       "academic_role": "reflection",
       "language": "en",
-      "boundary_owner": "role_component",
+      "boundary_owner": "layout",
       "learning_guide_owner": "canonical",
       "assessment_owner": "socratic",
       "enforcement": "strict",

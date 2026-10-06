@@ -1,18 +1,18 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04H-03
-mode: Step 3 combined G + H convergence candidate
-authorized_base: 778be327b028eae71e72d7d0629b7ac9700123a9
-branch: conv-04gh-socratic-metadata-convergence-20261006
-production_verified_main: 778be327b028eae71e72d7d0629b7ac9700123a9
+phase: CONV-04I-00
+mode: Post-G/H residual reconciliation candidate before Homepage integration
+authorized_base: 69283ada5df7a294a2ce8986cef089ef9fdcf161
+branch: conv-04i00-post-gh-residual-reconciliation-20261006
+production_verified_main: 69283ada5df7a294a2ce8986cef089ef9fdcf161
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
 conv04f_status: FORMALLY CLOSED / F-11 merged and exact-main production PASS
 platform_visual_system_status: CLOSED / G-R1 merged via PR #451 and exact-main production PASS
-g_status: IMPLEMENTED CANDIDATE / Socratic gateway + reflection boundary + MI/PPR/Cognitive Audit convergence
-h_status: IMPLEMENTED CANDIDATE / metadata + route truth + Biostatistics shared-system migration
-learner_content_authoring: YES — limited to the explicit Step 3 allowlist below
+g_status: CLOSED / PR #452 merged + production verified; I-00 addresses only authenticated post-merge residuals
+h_status: CLOSED / PR #452 merged + production verified; retained under I-00
+learner_content_authoring: YES — residual repair only; Homepage V3 and scientific-content authoring remain protected
 learner_mutation_allowlist:
   - _pages/hubs/socratic.md
   - _pages/socratic-multiple-intelligences.md
@@ -20,6 +20,7 @@ learner_mutation_allowlist:
   - _pages/tools/mi-analysis.md
   - _socratic/multiple-intelligences.md
   - _pages/socratic-4/socratic-assessment.md
+  - _biology/higher-zoology-tree/human-behaviour/index.md
   - _biology/higher-zoology-tree/index.md
   - _biology/higher-zoology-tree/biostatistics/index.md
   - _biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics.md
@@ -34,17 +35,23 @@ learner_mutation_allowlist:
   - _biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving.md
   - _biology/higher-zoology-tree/biostatistics/measures_of_dispersion.md
   - _biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test.md
-shared_reflection_boundary: _includes/socratic/reflection-boundary.html
+shared_reflection_boundary: retained historical/shared component; canonical I-00 reflection routes use layout boundary ownership
 route_ledger: docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
 step3_evidence: docs/academic/conv04/CONV04_GH_STEP3_EVIDENCE.md
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-homepage_v3_content: protected / Step 4 I remains blocked
+i00_residual_findings:
+  - A personality runtime: VERIFIED REAL DEFECT / candidate loads existing personality-engine.js
+  - B reflection boundary duplication: VERIFIED REAL DEFECT / canonical reflection routes now retain the layout educational boundary as sole rendered owner
+  - C Biostatistics contrast: INFERRED RISK / exact-preview Axe and browser evidence required before closure
+  - D legacy Socratic inbound links: VERIFIED REAL DEFECT / candidate repoints first-party links to /socratic/multiple-intelligences/
+  - E Polyglot historical root removal: NOT REPRODUCED on current production / retained route checks required
+homepage_v3_content: protected / I-01 and Homepage mutation remain blocked until I-00 closes
 worker_cloudflare: protected / untouched / non-governing infrastructure lane
 admission_pr_356: protected / untouched
-ready_transition: Step 3 candidate requires retained platform/Academic-v1/Jekyll/browser/route/CodeQL/Sovereign checks + fresh review + zero unresolved threads + Trusted Governance
-merge: G+H only; Homepage I and platform closure J remain unauthorized
-next_module_gate: CONV-04I BLOCKED until this Step 3 candidate merges and exact-main production is authenticated
-master_sequence: 1 F CLOSED → 2 G-R1 CLOSED → 3 G+H ACTIVE → 4 I Homepage integration → 5 J release/closure
+ready_transition: I-00 requires exact-head retained platform/Academic-v1/Jekyll/browser/route checks + fresh review + zero unresolved threads + Trusted Governance
+merge: I-00 residual repair only; Homepage implementation and platform closure J remain unauthorized
+next_module_gate: CONV-04I-01 BLOCKED until I-00 merges and exact-main affected-route production parity is authenticated
+master_sequence: 1 F CLOSED → 2 G-R1 CLOSED → 3 G+H CLOSED → 4 I-00 RESIDUAL RECONCILIATION ACTIVE → 5 I Homepage integration BLOCKED → 6 J release/closure BLOCKED
 
 ## Completed foundation
 

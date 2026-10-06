@@ -73,7 +73,7 @@
       form.innerHTML = `
         <div class="archetype-survey-container" style="display:flex; flex-direction:column; gap:2rem; width:100%;">
           ${QUESTIONS.map((q, i) => `
-            <div class="mi-question-card" style="background:#020617; border:1px solid rgba(255,255,255,0.03); padding:1.75rem; border-radius:8px; text-align:left;">
+            <fieldset class="mi-question-card" style="background:#020617; border:1px solid rgba(255,255,255,0.03); padding:1.75rem; border-radius:8px; text-align:left;">
               <legend class="mi-question-text" style="color:#ffffff; font-size:1.05rem; font-weight:600; margin:0 0 1.25rem 0; line-height:1.4; text-align:left; border:none; padding:0; width:100%; display:block;">${i + 1}. ${q.text}</legend>
               
               <div class="mi-options-vertical-stack" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap:10px; margin-bottom:0.5rem;">
@@ -84,7 +84,7 @@
                   </label>
                 `).join('')}
               </div>
-            </div>
+            </fieldset>
           `).join('')}
         </div>
         
@@ -128,17 +128,19 @@
     },
 
     renderResults(box, primary, secondary, all, leaders, form) {
-      const data = ARCHETYPES[primary[0]];
+      const tied = leaders.length > 1;
+      const data = tied ? null : ARCHETYPES[primary[0]];
+      const motionBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
       
       form.style.display = "none";
       box.style.display = "block";
       box.className = "mi-result-viewport";
       
       box.innerHTML = `
-        <h3 class="mi-result-title" style="color:#ffffff; font-size:1.4rem; font-weight:800; margin:0 0 1.5rem 0; text-align:center;">Your Current Pattern Reflection</h3>
+        <h3 class="mi-result-title" tabindex="-1" style="color:#ffffff; font-size:1.4rem; font-weight:800; margin:0 0 1.5rem 0; text-align:center;">Your Current Pattern Reflection</h3>
         
         <div class="mi-dominant-badge" style="background:#020617; border:1px solid rgba(0,212,178,0.25); padding:1.5rem; border-radius:8px; text-align:center; margin-bottom:1.5rem; box-shadow:0 0 15px rgba(0,212,178,0.05);">
-          <span style="color:#64748b; font-size:0.85rem; text-transform:uppercase; font-weight:700; letter-spacing:0.05em; display:block; margin-bottom:0.25rem;">Stronger Current Response Lens</span>
+          <span style="color:#94a3b8; font-size:0.85rem; text-transform:uppercase; font-weight:700; letter-spacing:0.05em; display:block; margin-bottom:0.25rem;">Stronger Current Response Lens</span>
           <span style="font-size:1.8rem; font-weight:800; color:#00d4b2; text-shadow:0 0 12px rgba(0,212,178,0.2);">${leaders.length > 1 ? leaders.join(" / ") : primary[0]}</span>
         </div>
         
@@ -146,25 +148,25 @@
           
           <div style="background:#020617; border:1px solid rgba(255,255,255,0.03); padding:1.25rem; border-radius:6px; text-align:left;">
             <p style="color:#e2e8f0; font-size:0.98rem; line-height:1.6; margin:0; text-align:left; word-spacing:normal;">
-              <strong style="color:#ffffff;">What this may suggest:</strong> ${data.desc}
+              <strong style="color:#ffffff;">What this may suggest:</strong> ${tied ? "Your responses produced a tie across multiple current lenses. No single lens is privileged; treat the tied lenses as equally plausible prompts for reflection." : data.desc}
             </p>
           </div>
 
           <div style="background:#020617; border:1px solid rgba(255,255,255,0.03); padding:1.25rem; border-radius:6px; text-align:left;">
             <p style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin:0; text-align:left; word-spacing:normal;">
-              <strong style="color:#00d4b2;"> Reflective question:</strong> ${data.edge}
+              <strong style="color:#00d4b2;"> Reflective question:</strong> ${tied ? "Which of the tied lenses changes most across contexts, tasks, or time?" : data.edge}
             </p>
           </div>
 
           <div style="background:#020617; border:1px solid rgba(0,212,178,0.08); padding:1.25rem; border-radius:6px; text-align:left;">
             <p style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin:0; text-align:left; word-spacing:normal;">
-              <strong style="color:#3b82f6;"> Biology learning experiment:</strong> ${data.path}
+              <strong style="color:#3b82f6;"> Biology learning experiment:</strong> ${tied ? "Choose one tied lens, run its learning experiment, then compare the result with another tied lens." : data.path}
             </p>
           </div>
 
           <div style="background:rgba(255,255,255,0.01); border:1px dashed rgba(255,255,255,0.05); padding:1rem; border-radius:6px; text-align:center;">
-            <p style="color:#64748b; font-size:0.88rem; margin:0;">
-              Another current response lens: <strong style="color:#ffffff;">${secondary[0]}</strong>
+            <p style="color:#94a3b8; font-size:0.88rem; margin:0;">
+              ${tied ? `Tied current response lenses: <strong style="color:#ffffff;">${leaders.join(" / ")}</strong>` : `Another current response lens: <strong style="color:#ffffff;">${secondary[0]}</strong>`}
             </p>
           </div>
 
@@ -178,20 +180,24 @@
         </p>
 
         <div style="text-align:center; margin-top:2.5rem;">
-          <button type="button" class="mi-btn-calculate" id="reset-personality-trigger" style="background:transparent !important; color:#64748b !important; border:1px solid rgba(255,255,255,0.06) !important; max-width:220px; box-shadow:none;">
+          <button type="button" class="mi-btn-calculate" data-personality-reset style="background:transparent !important; color:#94a3b8 !important; border:1px solid rgba(255,255,255,0.06) !important; max-width:220px; box-shadow:none;">
             Reflect Again
           </button>
         </div>
       `;
 
-      document.getElementById("reset-personality-trigger").addEventListener("click", () => {
+      box.querySelector("[data-personality-reset]").addEventListener("click", () => {
         box.style.display = "none";
         form.style.display = "flex";
         this.renderSurvey(form);
-        form.scrollIntoView({ behavior: 'smooth' });
+        form.scrollIntoView({ behavior: motionBehavior });
+        const firstInput = form.querySelector('input[type="radio"]');
+        if (firstInput) firstInput.focus();
       });
 
-      box.scrollIntoView({ behavior: 'smooth' });
+      const resultTitle = box.querySelector('.mi-result-title');
+      if (resultTitle) resultTitle.focus();
+      box.scrollIntoView({ behavior: motionBehavior });
     }
   };
 

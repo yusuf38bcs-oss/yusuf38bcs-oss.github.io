@@ -109,12 +109,18 @@ layout: default
       {% endunless %}
 
       <section class="page__content" itemprop="text">
-        {% if lbfl_ecology_surface %}
+        {% if page.academic_system == 'v1' and page.academic_role == 'reflection' %}
+          {% include socratic/reflection-boundary.html %}
+        {% elsif page.academic_system == 'v1' and page.academic_role == 'reflection_gateway' %}
+          {% include socratic/reflection-boundary.html %}
+        {% else %}
+          {% if lbfl_ecology_surface %}
           {% if page.academic_system == 'v1' %}
             {% include components/educational-boundary.html %}
           {% endif %}
         {% else %}
           {% include components/educational-boundary.html %}
+        {% endif %}
         {% endif %}
         {% if lbfl_zoology_route %}
           {% unless lbfl_ecology_surface or lbfl_course_owned_surface or lbfl_canonical_learning_guide %}

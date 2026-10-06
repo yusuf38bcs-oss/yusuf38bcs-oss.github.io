@@ -16,8 +16,6 @@ lang: en
 sitemap: true
 ---
 
-{% include socratic/reflection-boundary.html %}
-
 # Personality Pattern Reflection
 
 This route connects the Socratic assessment entry point to the production concept pathway. It is designed as an educational bridge between reflective questioning, behavioural pattern recognition, and practical learning improvement.
@@ -31,6 +29,7 @@ Architect, Catalyst, Observer, Explorer, and Steward are **LBFL-created reflecti
 Read each archetype as a question: What does this pattern help me do well? Where can this pattern mislead me? Which learning habit should I strengthen next? This converts personality language into active growth work.
 
 {% include components/personality-analysis.html %}
+<script src="{{ '/assets/js/learning/personality-engine.js' | relative_url }}" defer></script>
 
 ## Continue the pathway
 
