@@ -17,6 +17,7 @@ on:
       - "docs/academic/conv04/CONV04_I00_RESIDUAL_REPAIR.md"
       - "docs/academic/conv04/CONV04_STATE.md"
       - ".github/scripts/validate-conv04i00-residual-repair.rb"
+      - ".github/scripts/conv04i00-browser-certification.mjs"
       - ".github/workflows/conv04i00-residual-repair-certification.yml"
   workflow_dispatch:
 
@@ -50,6 +51,33 @@ jobs:
         env:
           JEKYLL_ENV: production
         run: bundle exec jekyll build --trace
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install browser-test dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+      - name: Start exact-head local Jekyll server
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle exec jekyll serve --host 127.0.0.1 --port 4000 --no-watch > "$RUNNER_TEMP/i00-jekyll.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/i00-jekyll.pid"
+          for attempt in $(seq 1 40); do
+            if curl --fail --silent http://127.0.0.1:4000/socratic/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/i00-jekyll.log"
+          exit 1
+      - name: Run affected-route browser and Axe certification
+        shell: bash
+        run: node .github/scripts/conv04i00-browser-certification.mjs --url http://127.0.0.1:4000
       - name: Verify rendered residual contracts
         shell: bash
         run: |
