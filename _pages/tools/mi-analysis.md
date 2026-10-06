@@ -29,10 +29,10 @@ sitemap: true
     Map your dominant learning channel, reflective processing style, and behavioural orientation through a guided Socratic reflection interface.
   </p>
   <div class="lbfl-platform-matrix lbfl-platform-matrix--compact">
-    <a href="#mi-analysis-terminal">Start MI Analysis</a>
-    <a href="{{ '/socratic/multiple-intelligences/' | relative_url }}">Open MI Route</a>
-    <a href="{{ '/matrix/multiple-intelligences/' | relative_url }}">Open Concept Node</a>
-    <a href="{{ '/matrix/behavioral-axis/' | relative_url }}">Behavioral Axis</a>
+    <a class="lbfl-platform-card" href="#mi-analysis-terminal">Start MI Analysis</a>
+    <a class="lbfl-platform-card" href="{{ '/socratic/multiple-intelligences/' | relative_url }}">Open MI Route</a>
+    <a class="lbfl-platform-card" href="{{ '/matrix/multiple-intelligences/' | relative_url }}">Open Concept Node</a>
+    <a class="lbfl-platform-card" href="{{ '/matrix/behavioral-axis/' | relative_url }}">Behavioral Axis</a>
   </div>
 </section>
 
