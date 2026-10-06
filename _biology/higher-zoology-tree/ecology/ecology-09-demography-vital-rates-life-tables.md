@@ -83,6 +83,7 @@ learning_guide: canonical
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 09 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 09 / 26 |
@@ -90,6 +91,8 @@ learning_guide: canonical
 | CLO | CLO2 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -185,6 +188,7 @@ Age-specific data total abundance-এর চেয়ে informative।
 
 Life table age/stage অনুযায়ী survival ও mortality organize করে।
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 09 table 2" markdown="1">
 | Symbol | Meaning |
 |---|---|
 | \\(x\\) | age/stage |
@@ -192,6 +196,8 @@ Life table age/stage অনুযায়ী survival ও mortality organize ক�
 | \\(l_x\\) | original cohort-এর surviving proportion |
 | \\(d_x\\) | interval death number |
 | \\(q_x\\) | interval mortality probability |
+
+</div>
 
 এগুলো mortality timing দেখায়।
 
@@ -322,6 +328,7 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Comparison Table: Demographic Quantity
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 09 table 3" markdown="1">
 | Quantity | Meaning |
 |---|---|
 | Natality | reproduction-এর মাধ্যমে addition |
@@ -330,6 +337,8 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 | Emigration | outside-এ departure |
 | Survivorship \\(l_x\\) | age x পর্যন্ত surviving fraction |
 | Mortality probability \\(q_x\\) | interval-এ dying probability |
+
+</div>
 
 ## Mini Life-Table Exercise
 
