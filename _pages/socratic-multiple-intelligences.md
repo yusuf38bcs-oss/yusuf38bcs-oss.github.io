@@ -27,9 +27,9 @@ lang: en
     Explore how different learning activities currently feel useful to you. This is an MI-informed educational reflection, not an intelligence test, psychometric profile, or learning-style prescription.
   </p>
   <div class="lbfl-platform-matrix lbfl-platform-matrix--compact">
-    <a href="#mi-analysis-terminal">Start Reflection</a>
-    <a href="{{ '/life-practices/cognitive-audit/' | relative_url }}">Open Full Cognitive Audit</a>
-    <a href="{{ '/matrix/multiple-intelligences/' | relative_url }}">Open Concept Node</a>
+    <a class="lbfl-platform-card" href="#mi-analysis-terminal">Start Reflection</a>
+    <a class="lbfl-platform-card" href="{{ '/life-practices/cognitive-audit/' | relative_url }}">Open Full Cognitive Audit</a>
+    <a class="lbfl-platform-card" href="{{ '/matrix/multiple-intelligences/' | relative_url }}">Open Concept Node</a>
   </div>
 </section>
 
