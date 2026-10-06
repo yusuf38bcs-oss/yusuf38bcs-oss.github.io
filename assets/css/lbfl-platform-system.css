@@ -6,7 +6,7 @@
    - :root owns tokens only.
    - visual rules require an explicit lbfl-platform-* class.
    - no bare body/heading/paragraph/table/image selectors.
-   - no !important declarations.
+   - no priority cascade declarations.
    ========================================================================== */
 
 :root {
