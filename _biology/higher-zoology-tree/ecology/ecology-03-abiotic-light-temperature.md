@@ -85,6 +85,7 @@ learning_guide: canonical
 
 ## Syllabus Alignment
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 03 table 1" markdown="1">
 | বিষয় | Alignment |
 |---|---|
 | Lecture | 03 / 26 |
@@ -92,6 +93,8 @@ learning_guide: canonical
 | CLO | CLO1, CLO2 |
 | Version | Current detailed course |
 | Suggested use | 2-hour lecture + guided reading/problem work |
+
+</div>
 
 ## Lecture Question
 
@@ -302,6 +305,7 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 
 ## Comparison Table: Light ও Temperature
 
+<div class="lbfl-academic-table-wrap" tabindex="0" role="region" aria-label="Ecology Lecture 03 table 2" markdown="1">
 | Dimension | Light | Temperature |
 |---|---|---|
 | Energy source? | photosynthesis-এর জন্য yes | no |
@@ -309,6 +313,8 @@ Increase, decrease, optimum, threshold, time lag, treatment difference, density 
 | Main effect | photosynthesis, vision, timing | enzyme rate, metabolism, membrane |
 | Spatial variation | canopy, depth, shade | latitude, altitude, microclimate |
 | Behavioural response | timing/phototaxis | basking, shade, burrowing |
+
+</div>
 
 ## Mini Field Practical
 
