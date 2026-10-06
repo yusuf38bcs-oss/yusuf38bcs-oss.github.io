@@ -67,6 +67,7 @@ if system("git rev-parse --is-inside-work-tree >/dev/null 2>&1")
     docs/academic/conv04/CONV04_I00_RESIDUAL_REPAIR.md
     docs/academic/conv04/CONV04_STATE.md
     .github/scripts/validate-conv04i00-residual-repair.rb
+    .github/scripts/conv04i00-browser-certification.mjs
     .github/workflows/conv04i00-residual-repair-certification.yml
   ]
   unexpected = changed - allowed
