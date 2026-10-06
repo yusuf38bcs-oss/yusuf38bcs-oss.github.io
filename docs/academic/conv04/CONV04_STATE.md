@@ -1,32 +1,50 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04G-R1
-mode: shared platform visual system repair / pre-G
-authorized_base: 3c9d57e8b3b40a599de960d145165e2f4f4304cd
-branch: conv-04g-r1-shared-visual-system-20261006
-production_verified_main: 3c9d57e8b3b40a599de960d145165e2f4f4304cd
+phase: CONV-04H-03
+mode: Step 3 combined G + H convergence candidate
+authorized_base: 778be327b028eae71e72d7d0629b7ac9700123a9
+branch: conv-04gh-socratic-metadata-convergence-20261006
+production_verified_main: 778be327b028eae71e72d7d0629b7ac9700123a9
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-conv04f_status: FORMALLY CLOSED / F-11 merged via PR #450 and exact-main production rebound PASS
-f09_status: FORMALLY CLOSED / exact-main closure + 8-of-8 Practical production PASS
-f10a_status: CLOSED / Bangla Ecology 01–10 production-certified
-f10b_status: CLOSED / English Ecology 01–10 production-certified
-f11_status: FORMALLY CLOSED / whole-F certification merged and exact-main rebound PASS
-f11_closure_evidence: docs/academic/conv04/CONV04F11_WHOLE_F_CLOSURE.md
-platform_visual_system_status: ACTIVE / G-R1 isolated shared-shell and primitive convergence
-learner_content_authoring: NO — shared visual infrastructure only
-learner_mutation_allowlist: []
-homepage_v3_content: protected / integration deferred to CONV-04I
-socratic_content: protected / convergence deferred to G-01…G-05
+conv04f_status: FORMALLY CLOSED / F-11 merged and exact-main production PASS
+platform_visual_system_status: CLOSED / G-R1 merged via PR #451 and exact-main production PASS
+g_status: IMPLEMENTED CANDIDATE / Socratic gateway + reflection boundary + MI/PPR/Cognitive Audit convergence
+h_status: IMPLEMENTED CANDIDATE / metadata + route truth + Biostatistics shared-system migration
+learner_content_authoring: YES — limited to the explicit Step 3 allowlist below
+learner_mutation_allowlist:
+  - _pages/hubs/socratic.md
+  - _pages/socratic-multiple-intelligences.md
+  - _socratic/personality-archetypes.md
+  - _pages/tools/mi-analysis.md
+  - _socratic/multiple-intelligences.md
+  - _pages/socratic-4/socratic-assessment.md
+  - _biology/higher-zoology-tree/index.md
+  - _biology/higher-zoology-tree/biostatistics/index.md
+  - _biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics.md
+  - _biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon.md
+  - _biology/higher-zoology-tree/biostatistics/measures-of-central-tendency.md
+  - _biology/higher-zoology-tree/biostatistics/measures-of-dispersion.md
+  - _biology/higher-zoology-tree/biostatistics/hypothesis_testing.md
+  - _biology/higher-zoology-tree/biostatistics/z_test_problem_solving.md
+  - _biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means.md
+  - _biology/higher-zoology-tree/biostatistics/chi_square_test.md
+  - _biology/higher-zoology-tree/biostatistics/correlation_and_regression.md
+  - _biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving.md
+  - _biology/higher-zoology-tree/biostatistics/measures_of_dispersion.md
+  - _biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test.md
+shared_reflection_boundary: _includes/socratic/reflection-boundary.html
+route_ledger: docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
+step3_evidence: docs/academic/conv04/CONV04_GH_STEP3_EVIDENCE.md
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
+homepage_v3_content: protected / Step 4 I remains blocked
 worker_cloudflare: protected / untouched / non-governing infrastructure lane
 admission_pr_356: protected / untouched
-shared_visual_goal: canonical LBFL identity + typography + spacing + contrast + responsive geometry + matrix/card/table/figure primitives + shared header/footer rules
-ready_transition: G-R1 must pass platform validator + Academic-v1 retained contracts + Jekyll + browser/accessibility retained matrix + fresh review + zero unresolved threads + Trusted Governance
-merge: shared visual infrastructure only; no learner-content or Homepage V3 content mutation
-next_module_gate: G-01 Socratic gateway/reflection boundary BLOCKED until G-R1 merges and exact-main production is authenticated
-master_sequence: 1 F CLOSED → 2 G-R1 shared visual system → 3 G+H → 4 I Homepage integration → 5 J release/closure
+ready_transition: Step 3 candidate requires retained platform/Academic-v1/Jekyll/browser/route/CodeQL/Sovereign checks + fresh review + zero unresolved threads + Trusted Governance
+merge: G+H only; Homepage I and platform closure J remain unauthorized
+next_module_gate: CONV-04I BLOCKED until this Step 3 candidate merges and exact-main production is authenticated
+master_sequence: 1 F CLOSED → 2 G-R1 CLOSED → 3 G+H ACTIVE → 4 I Homepage integration → 5 J release/closure
 
 ## Completed foundation
 
