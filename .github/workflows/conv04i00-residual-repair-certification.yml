@@ -1,0 +1,66 @@
+name: CONV-04I-00 Residual Repair Certification
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "_includes/components/personality-analysis.html"
+      - "_layouts/single.html"
+      - "_pages/hubs/socratic.md"
+      - "_pages/socratic-multiple-intelligences.md"
+      - "_pages/tools/mi-analysis.md"
+      - "_socratic/personality-archetypes.md"
+      - "_biology/higher-zoology-tree/biostatistics/**"
+      - "_biology/higher-zoology-tree/human-behaviour/index.md"
+      - "_data/navigation.yml"
+      - "docs/academic/conv04/CONV04_I00_RESIDUAL_REPAIR.md"
+      - ".github/scripts/validate-conv04i00-residual-repair.rb"
+      - ".github/workflows/conv04i00-residual-repair-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  certify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Authenticate exact candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          test "$(git rev-parse HEAD)" = "$expected"
+          git diff --check
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+      - name: Validate isolated residual repair
+        run: ruby .github/scripts/validate-conv04i00-residual-repair.rb
+      - name: Build production Jekyll output
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+      - name: Verify rendered residual contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          personality="_site/socratic/personality-archetypes/index.html"
+          socratic="_site/socratic/index.html"
+          test -f "$personality"
+          test -f "$socratic"
+          test "$(grep -o 'assets/js/learning/personality-engine.js' "$personality" | wc -l | tr -d ' ')" = "1"
+          test "$(grep -o 'lbfl-reflection-boundary' "$personality" | wc -l | tr -d ' ')" = "1"
+          test "$(grep -o 'educational-boundary--detailed' "$personality" | wc -l | tr -d ' ')" = "0"
+          test "$(grep -o 'lbfl-reflection-boundary' "$socratic" | wc -l | tr -d ' ')" = "1"
+          test "$(grep -o 'educational-boundary--detailed' "$socratic" | wc -l | tr -d ' ')" = "0"
+          test -f "_site/biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics/index.html"
+          test -f "_site/bn/biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics/index.html"
+          ! grep -q '/socratic-4/socratic-assessment/' "_site/socratic/index.html"
