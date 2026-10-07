@@ -184,6 +184,12 @@
 .lbfl-v3-footer p { margin-top: 4px; font-size: 0.88rem; }
 .lbfl-v3-footer nav { display: flex; flex-wrap: wrap; gap: 4px; }
 .lbfl-v3-footer nav a { display: inline-flex; align-items: center; padding: 8px 10px; text-decoration: none; }
+.lbfl-home-v3 .footer-legal-links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+}
 
 .lbfl-v3-dialog { width: min(92vw, 430px); max-height: min(86vh, 700px); padding: 0; border: 0; border-radius: 20px; background: var(--v3-white); color: var(--v3-ink-900); box-shadow: 0 30px 90px rgba(0,0,0,0.34); }
 .lbfl-v3-dialog::backdrop { background: rgba(3,29,35,0.72); backdrop-filter: blur(4px); }
@@ -251,6 +257,13 @@
   .lbfl-v3-cycle strong { font-size: 0.65rem; }
 }
 
+.lbfl-home-v3 .brevo-modal-close {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lbfl-home-v3 *, .lbfl-home-v3 *::before, .lbfl-home-v3 *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
 }
@@ -263,6 +276,22 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   .lbfl-v3-header, .lbfl-v3-dialog, .lbfl-v3-hero__visual { display: none !important; }
   .lbfl-home-v3 { background: white; color: black; }
   .lbfl-v3-section { break-inside: avoid; }
+
+  .lbfl-home-v3 .brevo-integrated-section {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .lbfl-home-v3 .brevo-integrated-section * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .lbfl-home-v3 .brevo-open-modal-btn {
+    border: 1px solid #000 !important;
+  }
 }
 
 /* V3 dialog progressive-enhancement fallback */
