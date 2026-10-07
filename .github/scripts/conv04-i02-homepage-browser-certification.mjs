@@ -114,6 +114,7 @@ try {
       escapeFocusStable: false,
       printSafe: false,
       printDisplay: null,
+      printModalDisplay: null,
     };
     const newsletterButton = page.locator("[data-brevo-open]");
     if (await newsletterButton.isVisible()) {
@@ -126,6 +127,15 @@ try {
       });
       await page.waitForTimeout(120);
       newsletter.focusedEmail = await page.locator("#EMAIL").evaluate((el) => document.activeElement === el).catch(() => false);
+
+      await page.emulateMedia({ media: "print" });
+      newsletter.printDisplay = await page.locator("#newsletter").evaluate((el) => getComputedStyle(el).display);
+      newsletter.printModalDisplay = await modal.evaluate((el) => getComputedStyle(el).display);
+      newsletter.printSafe =
+        newsletter.printDisplay === "none" &&
+        newsletter.printModalDisplay === "none";
+      await page.emulateMedia({ media: "screen" });
+
       await page.keyboard.press("Escape");
       newsletter.closed = !(await modal.isVisible());
 
@@ -133,11 +143,6 @@ try {
       await page.keyboard.press("Escape");
       await page.waitForTimeout(30);
       newsletter.escapeFocusStable = await searchToggle.evaluate((el) => document.activeElement === el).catch(() => false);
-
-      await page.emulateMedia({ media: "print" });
-      newsletter.printDisplay = await page.locator("#newsletter").evaluate((el) => getComputedStyle(el).display);
-      newsletter.printSafe = newsletter.printDisplay === "none";
-      await page.emulateMedia({ media: "screen" });
     }
 
     const checks = {
@@ -150,6 +155,7 @@ try {
       newsletterEscapeFocusStable: newsletter.escapeFocusStable,
       newsletterPrintSafe: newsletter.printSafe,
       newsletterPrintDisplay: newsletter.printDisplay,
+      newsletterPrintModalDisplay: newsletter.printModalDisplay,
       consoleErrors,
       pageErrors,
     };
