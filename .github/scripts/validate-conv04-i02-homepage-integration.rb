@@ -85,6 +85,8 @@ errors << "Homepage retains minute-precision asset revision" if layout.include?(
 require_text(errors, layout, "include body/brevo-marketing.html", "Homepage does not consume canonical Brevo surface")
 require_text(errors, layout, "include scripts.html", "Homepage does not load shared site runtime")
 require_text(errors, layout, "closed shared Brevo modal must not steal later Escape focus", "Homepage closed-Brevo Escape guard missing")
+require_text(errors, layout, ".lbfl-home-v3 .brevo-modal-close:focus-visible", "Homepage Brevo close focus-visible bridge missing")
+require_text(errors, layout, "outline: 3px solid var(--lbfl-platform-focus, #73d9f2) !important;", "Homepage Brevo close focus ring is not enforced")
 errors << "Homepage retains stale fixed V3 asset revision" if layout.include?("v3.5.1-main-4bc3a7e-20260921")
 errors << "Homepage layout duplicates legacy theme-color override" if layout.include?('<meta name="theme-color" content="#06272d">')
 
@@ -121,6 +123,26 @@ homepage_dependencies.each do |dependency|
     "I-02 workflow does not watch Homepage dependency #{dependency}"
   )
 end
+
+require_text(
+  errors,
+  workflow,
+  'git diff --check "$PR_BASE_SHA...$PR_HEAD_SHA"',
+  "Homepage dependency regression does not validate the current PR range"
+)
+if workflow.include?('git merge-base --is-ancestor "$PR_BASE_SHA" "$PR_HEAD_SHA"')
+  errors << "Homepage dependency regression incorrectly requires current base tip to be an ancestor of PR head"
+end
+require_text(
+  errors,
+  workflow,
+  'git merge-base --is-ancestor "$AUTHORIZED_BASE" "$PR_HEAD_SHA"',
+  "Frozen I-02 candidate lost strict authorized-base ancestry check"
+)
+
+browser_certification = text(".github/scripts/conv04-i02-homepage-browser-certification.mjs")
+require_text(errors, browser_certification, "newsletterCloseFocusVisible", "Browser certification does not prove Brevo close focus visibility")
+require_text(errors, browser_certification, 'page.keyboard.press("Shift+Tab")', "Browser certification does not exercise keyboard focus on Brevo close control")
 
 footer = text("_includes/home-v3/footer.html")
 require_text(errors, footer, "lbfl-platform-footer", "Homepage footer lacks platform hook")
