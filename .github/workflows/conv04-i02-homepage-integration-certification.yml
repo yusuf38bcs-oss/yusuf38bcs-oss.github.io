@@ -73,17 +73,17 @@ jobs:
 
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             test -n "$PR_BASE_SHA"
-            git merge-base --is-ancestor "$PR_BASE_SHA" "$PR_HEAD_SHA"
+
+            if [[ "$I02_SCOPE_CANDIDATE" == "true" ]]; then
+              test "$PR_BASE_SHA" = "$AUTHORIZED_BASE"
+              git merge-base --is-ancestor "$AUTHORIZED_BASE" "$PR_HEAD_SHA"
+            else
+              echo "Ongoing Homepage dependency regression uses the current event range: $PR_BASE_SHA...$PR_HEAD_SHA"
+            fi
+
             git diff --check "$PR_BASE_SHA...$PR_HEAD_SHA"
           else
             git diff --check HEAD^...HEAD
-          fi
-
-          if [[ "$I02_SCOPE_CANDIDATE" == "true" ]]; then
-            test "$PR_BASE_SHA" = "$AUTHORIZED_BASE"
-            git merge-base --is-ancestor "$AUTHORIZED_BASE" "$PR_HEAD_SHA"
-          else
-            echo "Ongoing Homepage dependency regression uses the current event base: ${PR_BASE_SHA:-manual-dispatch}"
           fi
 
       - name: Set up Ruby
