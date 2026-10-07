@@ -192,6 +192,8 @@ try {
       focusedEmail: false,
       closed: false,
       closeSize: { width: 0, height: 0 },
+      closeFocusVisible: false,
+      closeFocusStyle: { style: "", width: 0, offset: 0, color: "" },
       escapeFocusStable: false,
       printSafe: false,
       printDisplay: null,
@@ -224,6 +226,22 @@ try {
       });
       await page.waitForTimeout(120);
       newsletter.focusedEmail = await page.locator("#EMAIL").evaluate((el) => document.activeElement === el).catch(() => false);
+
+      await page.keyboard.press("Shift+Tab");
+      newsletter.closeFocusStyle = await page.locator(".brevo-modal-close").evaluate((el) => {
+        const style = getComputedStyle(el);
+        return {
+          style: style.outlineStyle,
+          width: Number.parseFloat(style.outlineWidth) || 0,
+          offset: Number.parseFloat(style.outlineOffset) || 0,
+          color: style.outlineColor,
+        };
+      }).catch(() => ({ style: "", width: 0, offset: 0, color: "" }));
+      newsletter.closeFocusVisible =
+        newsletter.closeFocusStyle.style !== "none" &&
+        newsletter.closeFocusStyle.width >= 3 &&
+        newsletter.closeFocusStyle.offset >= 3;
+      await page.locator("#EMAIL").focus();
 
       await page.emulateMedia({ media: "print" });
       newsletter.printDisplay = await page.locator("#newsletter").evaluate((el) => getComputedStyle(el).display);
@@ -263,6 +281,8 @@ try {
       newsletterFocusedEmail: newsletter.focusedEmail,
       newsletterClosed: newsletter.closed,
       newsletterCloseSize: newsletter.closeSize,
+      newsletterCloseFocusVisible: newsletter.closeFocusVisible,
+      newsletterCloseFocusStyle: newsletter.closeFocusStyle,
       newsletterEscapeFocusStable: newsletter.escapeFocusStable,
       newsletterPrintSafe: newsletter.printSafe,
       newsletterPrintDisplay: newsletter.printDisplay,
@@ -297,6 +317,7 @@ try {
       checks.newsletterClosed &&
       checks.newsletterCloseSize.width >= 44 &&
       checks.newsletterCloseSize.height >= 44 &&
+      checks.newsletterCloseFocusVisible &&
       checks.newsletterEscapeFocusStable &&
       checks.newsletterBodyEscapeStable &&
       checks.newsletterScrollLocked &&
