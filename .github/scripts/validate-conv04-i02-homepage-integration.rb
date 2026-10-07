@@ -111,6 +111,8 @@ require_text(errors, css, "var(--lbfl-platform-font-sans", "Homepage CSS does no
 require_text(errors, css, "var(--lbfl-platform-focus", "Homepage CSS does not consume platform focus token")
 require_text(errors, css, ".lbfl-v3-brand__logo", "Homepage canonical logo styling missing")
 require_text(errors, css, ".lbfl-v3-search-button", "Homepage shared-search control styling missing")
+require_text(errors, css, ".lbfl-home-v3 .lbfl-v3-search-button.lbfl-search-toggle", "Homepage 44px search-target override missing")
+require_text(errors, css, "min-height: 44px !important;", "Homepage search-target minimum height missing")
 errors << "Deferred oversized 12.3vw mobile hero rule remains" if css.include?("12.3vw")
 errors << "Deferred oversized 12vw mobile hero rule remains" if css.include?("12vw")
 errors << "Deferred oversized 11.4vw mobile hero rule remains" if css.include?("11.4vw")
