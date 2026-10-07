@@ -54,7 +54,8 @@ jobs:
     env:
       AUTHORIZED_BASE: 2ef87d24d73d733d541fcc624474836d72486b30
       PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '2ef87d24d73d733d541fcc624474836d72486b30' }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
+      I02_SCOPE_CANDIDATE: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 456 && 'true' || 'false' }}
 
     steps:
       - name: Check out immutable candidate
@@ -64,14 +65,26 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Authenticate exact base and head
+      - name: Authenticate exact event range and I-02 authority
         shell: bash
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
-          test "$PR_BASE_SHA" = "$AUTHORIZED_BASE"
-          git merge-base --is-ancestor "$AUTHORIZED_BASE" "$PR_HEAD_SHA"
-          git diff --check "$AUTHORIZED_BASE...$PR_HEAD_SHA"
+
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            test -n "$PR_BASE_SHA"
+            git merge-base --is-ancestor "$PR_BASE_SHA" "$PR_HEAD_SHA"
+            git diff --check "$PR_BASE_SHA...$PR_HEAD_SHA"
+          else
+            git diff --check HEAD^...HEAD
+          fi
+
+          if [[ "$I02_SCOPE_CANDIDATE" == "true" ]]; then
+            test "$PR_BASE_SHA" = "$AUTHORIZED_BASE"
+            git merge-base --is-ancestor "$AUTHORIZED_BASE" "$PR_HEAD_SHA"
+          else
+            echo "Ongoing Homepage dependency regression uses the current event base: ${PR_BASE_SHA:-manual-dispatch}"
+          fi
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
@@ -84,12 +97,15 @@ jobs:
           bundle config set --local frozen 'false'
           bundle install
 
-      - name: Run I-02 and retained contracts
+      - name: Run one-time I-02 scope contract
+        if: env.I02_SCOPE_CANDIDATE == 'true'
         env:
           CERTIFICATION_MODE: pull_request
           PR_BASE_SHA: ${{ env.PR_BASE_SHA }}
+        run: ruby .github/scripts/validate-conv04-i02-homepage-integration.rb
+
+      - name: Run retained Homepage contracts
         run: |
-          ruby .github/scripts/validate-conv04-i02-homepage-integration.rb
           ruby .github/scripts/validate-academic-surface-contract.rb
           ruby .github/scripts/validate-academic-design-system.rb
           ruby .github/scripts/validate-platform-visual-system.rb
