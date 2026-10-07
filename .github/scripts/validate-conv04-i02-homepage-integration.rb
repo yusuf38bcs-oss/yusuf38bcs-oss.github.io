@@ -124,6 +124,8 @@ require_text(errors, css, ".lbfl-home-v3 .brevo-open-modal-btn", "Homepage Brevo
 require_text(errors, css, ".lbfl-home-v3 .footer-legal-links a", "Homepage legal-link 44px bridge missing")
 require_text(errors, css, ".lbfl-home-v3 .brevo-modal-close", "Homepage Brevo close 44px bridge missing")
 require_text(errors, css, ".lbfl-home-v3 .brevo-integrated-section *", "Homepage Brevo print normalization missing")
+require_text(errors, css, "body.lbfl-home-v3 #newsletter #newsletter-title", "Homepage newsletter print-title specificity guard missing")
+require_text(errors, css, "body.lbfl-home-v3 #newsletter .brevo-info-desc", "Homepage newsletter print-copy specificity guard missing")
 require_text(errors, css, ".lbfl-home-v3 .custom-submit-btn", "Homepage Brevo submit reduced-motion bridge missing")
 
 ledger = JSON.parse(text("docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"))
