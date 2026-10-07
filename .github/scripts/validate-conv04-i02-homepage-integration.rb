@@ -117,6 +117,8 @@ errors << "Deferred oversized 11.4vw mobile hero rule remains" if css.include?("
 require_text(errors, css, "clamp(2.25rem, 9.8vw, 3.5rem)", "Normalized compact-mobile hero typography missing")
 require_text(errors, css, "clamp(2.05rem, 9.4vw, 2.85rem)", "Normalized narrow-mobile hero typography missing")
 require_text(errors, css, "@media (max-width: 340px)", "Narrow-header overflow guard missing")
+require_text(errors, css, ".lbfl-home-v3 .brevo-open-modal-btn", "Homepage Brevo reduced-motion bridge missing")
+require_text(errors, css, ".lbfl-home-v3 .custom-submit-btn", "Homepage Brevo submit reduced-motion bridge missing")
 
 ledger = JSON.parse(text("docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"))
 home = ledger.fetch("routes").find { |route| route["id"] == "home" }
