@@ -81,6 +81,10 @@ try {
         newsletterVisible: Boolean(document.querySelector("#newsletter")),
         newsletterButtonVisible: Boolean(document.querySelector("[data-brevo-open]")),
         legal,
+        legalTargets44: Array.from(document.querySelectorAll(".footer-legal-links a")).every((a) => {
+          const rect = a.getBoundingClientRect();
+          return rect.height >= 44 && rect.width >= 44;
+        }),
         journeyCount: journey.length,
         has07: journey.some((x) => /Cell Wall and Vacuole/i.test(x.textContent || "")),
         has08: journey.some((x) => /Plastid and Chloroplast/i.test(x.textContent || "")),
@@ -102,16 +106,47 @@ try {
       await page.keyboard.press("Escape").catch(() => {});
     }
 
-    const newsletter = { opened: false, focusedEmail: false, closed: false };
+    const newsletter = {
+      opened: false,
+      focusedEmail: false,
+      closed: false,
+      closeSize: { width: 0, height: 0 },
+      escapeFocusStable: false,
+      printReadable: false,
+    };
     const newsletterButton = page.locator("[data-brevo-open]");
     if (await newsletterButton.isVisible()) {
       await newsletterButton.click();
       const modal = page.locator("#brevo-newsletter-modal");
       newsletter.opened = await modal.isVisible();
+      newsletter.closeSize = await page.locator(".brevo-modal-close").evaluate((el) => {
+        const rect = el.getBoundingClientRect();
+        return { width: rect.width, height: rect.height };
+      });
       await page.waitForTimeout(120);
       newsletter.focusedEmail = await page.locator("#EMAIL").evaluate((el) => document.activeElement === el).catch(() => false);
       await page.keyboard.press("Escape");
       newsletter.closed = !(await modal.isVisible());
+
+      await searchToggle.focus();
+      await page.keyboard.press("Escape");
+      await page.waitForTimeout(30);
+      newsletter.escapeFocusStable = await searchToggle.evaluate((el) => document.activeElement === el).catch(() => false);
+
+      await page.emulateMedia({ media: "print" });
+      newsletter.printReadable = await page.evaluate(() => {
+        const section = document.querySelector(".brevo-integrated-section");
+        const title = document.querySelector(".brevo-info-title");
+        const desc = document.querySelector(".brevo-info-desc");
+        if (!section || !title || !desc) return false;
+        const sectionStyle = getComputedStyle(section);
+        const titleStyle = getComputedStyle(title);
+        const descStyle = getComputedStyle(desc);
+        return sectionStyle.backgroundColor === "rgb(255, 255, 255)" &&
+          titleStyle.color === "rgb(0, 0, 0)" &&
+          descStyle.color === "rgb(0, 0, 0)";
+      });
+      await page.emulateMedia({ media: "screen" });
     }
 
     const checks = {
@@ -120,6 +155,9 @@ try {
       newsletterOpened: newsletter.opened,
       newsletterFocusedEmail: newsletter.focusedEmail,
       newsletterClosed: newsletter.closed,
+      newsletterCloseSize: newsletter.closeSize,
+      newsletterEscapeFocusStable: newsletter.escapeFocusStable,
+      newsletterPrintReadable: newsletter.printReadable,
       consoleErrors,
       pageErrors,
     };
@@ -141,7 +179,12 @@ try {
       checks.newsletterOpened &&
       checks.newsletterFocusedEmail &&
       checks.newsletterClosed &&
+      checks.newsletterCloseSize.width >= 44 &&
+      checks.newsletterCloseSize.height >= 44 &&
+      checks.newsletterEscapeFocusStable &&
+      checks.newsletterPrintReadable &&
       checks.legal &&
+      checks.legalTargets44 &&
       checks.journeyCount === 8 &&
       checks.has07 &&
       checks.has08 &&
