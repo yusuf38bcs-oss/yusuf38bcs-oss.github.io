@@ -14,6 +14,7 @@ ALLOWED = %w[
   _includes/home-v3/header.html
   _includes/home-v3/footer.html
   _includes/home-v3/journey.html
+  _includes/body/brevo-marketing.html
   _data/homepage.yml
   _data/homepage-v3.yml
   assets/css/homepage-v3.css
