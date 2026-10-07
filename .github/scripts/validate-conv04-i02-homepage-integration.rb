@@ -75,6 +75,13 @@ errors << "Homepage V3 narrative order changed" unless positions.compact == posi
 layout = text("_layouts/homepage-v3.html")
 require_text(errors, layout, "include_cached search/search_form.html", "Homepage does not consume shared search form")
 require_text(errors, layout, ".no-js .lbfl-v3-search-button { display: none !important; }", "Homepage no-JS search-toggle fallback missing")
+require_text(errors, layout, ".no-js .brevo-open-modal-btn { display: none !important; }", "Homepage no-JS newsletter-trigger fallback missing")
+no_js_rule = layout.index(".no-js .lbfl-v3-search-button")
+compact_media = layout.index("@media (max-width: 1024px)")
+errors << "Homepage no-JS search fallback is compact-only" unless no_js_rule && compact_media && no_js_rule < compact_media
+require_text(errors, layout, "function canRestoreFocus(element)", "Homepage non-focusable Escape guard missing")
+require_text(errors, layout, "event.stopImmediatePropagation();", "Homepage hidden-modal Escape isolation missing")
+errors << "Homepage retains minute-precision asset revision" if layout.include?("site.time | date: '%Y%m%d%H%M'")
 require_text(errors, layout, "include body/brevo-marketing.html", "Homepage does not consume canonical Brevo surface")
 require_text(errors, layout, "include scripts.html", "Homepage does not load shared site runtime")
 require_text(errors, layout, "closed shared Brevo modal must not steal later Escape focus", "Homepage closed-Brevo Escape guard missing")
@@ -106,6 +113,15 @@ require_text(errors, v3, BASE, "Homepage V3 authority is not bound to I-02 base"
 require_text(errors, v3, 'platform_system: "lbfl-platform-visual-system-v1"', "Homepage V3 platform system binding missing")
 require_text(errors, v3, 'academic_role: "platform_home"', "Homepage V3 role binding missing")
 require_text(errors, v3, 'shared_newsletter: "body/brevo-marketing.html"', "Homepage V3 newsletter ownership missing")
+css_blob, css_blob_status = Open3.capture2("git", "-C", ROOT.to_s, "hash-object", "assets/css/homepage-v3.css")
+js_blob, js_blob_status = Open3.capture2("git", "-C", ROOT.to_s, "hash-object", "assets/js/home/homepage-v3.js")
+if css_blob_status.success? && js_blob_status.success?
+  expected_asset_revision = "css-#{css_blob.strip[0, 12]}-js-#{js_blob.strip[0, 12]}"
+  require_text(errors, v3, "asset_revision: \"#{expected_asset_revision}\"", "Homepage V3 asset revision is not content-addressed")
+  require_text(errors, layout, "?v=#{expected_asset_revision}", "Homepage asset URLs do not use the content-addressed revision")
+else
+  errors << "Unable to compute Homepage CSS/JS blob identities"
+end
 
 css = text("assets/css/homepage-v3.css")
 require_text(errors, css, "var(--lbfl-platform-shell", "Homepage CSS does not consume platform shell token")
@@ -124,6 +140,11 @@ require_text(errors, css, "@media (max-width: 340px)", "Narrow-header overflow g
 require_text(errors, css, ".lbfl-home-v3 .brevo-open-modal-btn", "Homepage Brevo reduced-motion bridge missing")
 require_text(errors, css, ".lbfl-home-v3 .footer-legal-links a", "Homepage legal-link 44px bridge missing")
 require_text(errors, css, ".lbfl-home-v3 .brevo-modal-close", "Homepage Brevo close 44px bridge missing")
+require_text(errors, css, "html.brevo-modal-open", "Homepage Brevo scroll-lock owner missing")
+require_text(errors, css, "body.lbfl-home-v3.brevo-modal-open", "Homepage Brevo body scroll lock missing")
+require_text(errors, css, "overflow: hidden !important;", "Homepage Brevo scroll lock declaration missing")
+require_text(errors, css, "html.brevo-modal-open #gdpr-banner", "Homepage consent/modal coordination missing")
+require_text(errors, css, "visibility: hidden !important;", "Homepage consent suppression while newsletter is open missing")
 require_text(errors, css, "body.lbfl-home-v3 #newsletter", "Homepage print newsletter owner missing")
 require_text(errors, css, "body.lbfl-home-v3 #brevo-newsletter-modal", "Homepage print modal omission missing")
 require_text(errors, css, "display: none !important;", "Homepage newsletter print omission missing")
