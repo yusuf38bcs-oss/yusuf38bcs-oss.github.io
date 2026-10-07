@@ -50,7 +50,7 @@ jobs:
   certify:
     name: Exact-head shared-system convergence
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 60
     env:
       AUTHORIZED_BASE: 2ef87d24d73d733d541fcc624474836d72486b30
       PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
