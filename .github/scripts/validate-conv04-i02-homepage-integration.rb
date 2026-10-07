@@ -124,6 +124,7 @@ require_text(errors, css, ".lbfl-home-v3 .brevo-open-modal-btn", "Homepage Brevo
 require_text(errors, css, ".lbfl-home-v3 .footer-legal-links a", "Homepage legal-link 44px bridge missing")
 require_text(errors, css, ".lbfl-home-v3 .brevo-modal-close", "Homepage Brevo close 44px bridge missing")
 require_text(errors, css, "body.lbfl-home-v3 #newsletter", "Homepage print newsletter owner missing")
+require_text(errors, css, "body.lbfl-home-v3 #brevo-newsletter-modal", "Homepage print modal omission missing")
 require_text(errors, css, "display: none !important;", "Homepage newsletter print omission missing")
 require_text(errors, css, ".lbfl-home-v3 .custom-submit-btn", "Homepage Brevo submit reduced-motion bridge missing")
 
