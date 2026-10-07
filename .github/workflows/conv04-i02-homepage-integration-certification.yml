@@ -26,7 +26,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: conv04-i02-homepage-\${{ github.event.pull_request.number || github.ref }}
+  group: conv04-i02-homepage-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -36,14 +36,14 @@ jobs:
     timeout-minutes: 30
     env:
       AUTHORIZED_BASE: 2ef87d24d73d733d541fcc624474836d72486b30
-      PR_HEAD_SHA: \${{ github.event.pull_request.head.sha || github.sha }}
-      PR_BASE_SHA: \${{ github.event.pull_request.base.sha || '2ef87d24d73d733d541fcc624474836d72486b30' }}
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '2ef87d24d73d733d541fcc624474836d72486b30' }}
 
     steps:
       - name: Check out immutable candidate
         uses: actions/checkout@v5
         with:
-          ref: \${{ env.PR_HEAD_SHA }}
+          ref: ${{ env.PR_HEAD_SHA }}
           fetch-depth: 0
           persist-credentials: false
 
@@ -70,7 +70,7 @@ jobs:
       - name: Run I-02 and retained contracts
         env:
           CERTIFICATION_MODE: pull_request
-          PR_BASE_SHA: \${{ env.PR_BASE_SHA }}
+          PR_BASE_SHA: ${{ env.PR_BASE_SHA }}
         run: |
           ruby .github/scripts/validate-conv04-i02-homepage-integration.rb
           ruby .github/scripts/validate-academic-surface-contract.rb
@@ -80,7 +80,7 @@ jobs:
       - name: Build production Jekyll site
         env:
           JEKYLL_ENV: production
-          JEKYLL_GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bundle exec jekyll build --trace
 
       - name: Set up Node
@@ -123,7 +123,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: conv04-i02-homepage-\${{ env.PR_HEAD_SHA }}
+          name: conv04-i02-homepage-${{ env.PR_HEAD_SHA }}
           path: |
             conv04-i02-browser-report/
             homepage-responsive-layout-report/
