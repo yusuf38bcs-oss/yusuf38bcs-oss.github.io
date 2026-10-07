@@ -72,6 +72,12 @@ try {
         logoVisible: Boolean(document.querySelector(".lbfl-v3-brand .lbfl-platform-brand__logo")),
         logoSrc: document.querySelector(".lbfl-v3-brand .lbfl-platform-brand__logo")?.getAttribute("src") || "",
         searchToggleVisible: Boolean(document.querySelector(".lbfl-v3-search-button.search__toggle")),
+        searchToggleSize: (() => {
+          const el = document.querySelector(".lbfl-v3-search-button.search__toggle");
+          if (!el) return { width: 0, height: 0 };
+          const rect = el.getBoundingClientRect();
+          return { width: rect.width, height: rect.height };
+        })(),
         newsletterVisible: Boolean(document.querySelector("#newsletter")),
         newsletterButtonVisible: Boolean(document.querySelector("[data-brevo-open]")),
         legal,
@@ -127,6 +133,8 @@ try {
       checks.logoVisible &&
       checks.logoSrc.includes("/assets/images/logo.png") &&
       checks.searchToggleVisible &&
+      checks.searchToggleSize.width >= 44 &&
+      checks.searchToggleSize.height >= 44 &&
       checks.searchOpened &&
       checks.newsletterVisible &&
       checks.newsletterButtonVisible &&
