@@ -65,27 +65,6 @@
     {% endif %}
     {% unless page.show_newsletter == false %}
       {% include body/brevo-marketing.html %}
-      <style media="print">
-        .lbfl-home-v3 .brevo-integrated-section {
-          background: #fff !important;
-          background-image: none !important;
-          color: #000 !important;
-        }
-        .lbfl-home-v3 .brevo-integrated-section *,
-        .lbfl-home-v3 .brevo-integrated-section .brevo-info-title,
-        .lbfl-home-v3 .brevo-integrated-section .brevo-info-desc,
-        .lbfl-home-v3 .brevo-integrated-section .brevo-privacy-note,
-        .lbfl-home-v3 .brevo-integrated-section .meta-badge-node {
-          color: #000 !important;
-          background: transparent !important;
-          background-image: none !important;
-          box-shadow: none !important;
-          text-shadow: none !important;
-        }
-        .lbfl-home-v3 .brevo-integrated-section .brevo-open-modal-btn {
-          border: 1px solid #000 !important;
-        }
-      </style>
     {% endunless %}
     {% include home-v3/footer.html %}
     {% include body/gdpr-banner.html %}
@@ -131,59 +110,6 @@
         } else {
           bindBrevoEscapeBridge();
         }
-      }());
-    </script>
-    <script>
-      /* Homepage print bridge: shared Brevo styles use late !important foregrounds. */
-      (function () {
-        var printSnapshot = [];
-
-        function remember(element, property) {
-          printSnapshot.push({
-            element: element,
-            property: property,
-            value: element.style.getPropertyValue(property),
-            priority: element.style.getPropertyPriority(property)
-          });
-        }
-
-        function force(element, property, value) {
-          if (!element) return;
-          remember(element, property);
-          element.style.setProperty(property, value, 'important');
-        }
-
-        function applyNewsletterPrintContrast() {
-          if (printSnapshot.length) return;
-          var section = document.getElementById('newsletter');
-          if (!section) return;
-
-          force(section, 'background', '#fff');
-          force(section, 'background-image', 'none');
-          force(section, 'color', '#000');
-
-          section.querySelectorAll(
-            '#newsletter-title, .brevo-info-title, .brevo-info-title *, ' +
-            '.brevo-info-desc, .brevo-privacy-note, .meta-badge-node'
-          ).forEach(function (element) {
-            force(element, 'color', '#000');
-          });
-        }
-
-        function restoreNewsletterPrintContrast() {
-          while (printSnapshot.length) {
-            var entry = printSnapshot.pop();
-            if (!entry.element || !entry.element.isConnected) continue;
-            if (entry.value) {
-              entry.element.style.setProperty(entry.property, entry.value, entry.priority || '');
-            } else {
-              entry.element.style.removeProperty(entry.property);
-            }
-          }
-        }
-
-        window.addEventListener('beforeprint', applyNewsletterPrintContrast);
-        window.addEventListener('afterprint', restoreNewsletterPrintContrast);
       }());
     </script>
     <script src="{{ '/assets/js/home/homepage-v3.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}" defer></script>
