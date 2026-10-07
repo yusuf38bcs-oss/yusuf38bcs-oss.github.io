@@ -1,57 +1,50 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04I-00
-mode: Post-G/H residual reconciliation candidate before Homepage integration
-authorized_base: 69283ada5df7a294a2ce8986cef089ef9fdcf161
-branch: conv-04i00-post-gh-residual-reconciliation-20261006
-production_verified_main: 69283ada5df7a294a2ce8986cef089ef9fdcf161
+phase: CONV-04I-01
+mode: Homepage / whole-platform forensic census authorization — READ-ONLY
+authorized_base: 01ec8f8b679344ac8531038b03e90ca7e5c9a28b
+branch: conv-04i01-homepage-forensic-authorization-20261007
+production_verified_main: 01ec8f8b679344ac8531038b03e90ca7e5c9a28b
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
 conv04f_status: FORMALLY CLOSED / F-11 merged and exact-main production PASS
 platform_visual_system_status: CLOSED / G-R1 merged via PR #451 and exact-main production PASS
-g_status: CLOSED / PR #452 merged + production verified; I-00 addresses only authenticated post-merge residuals
-h_status: CLOSED / PR #452 merged + production verified; retained under I-00
-learner_content_authoring: YES — residual repair only; Homepage V3 and scientific-content authoring remain protected
+g_status: CLOSED / PR #452 merged + production verified
+h_status: CLOSED / PR #452 merged + production verified
+i00_status: FORMALLY CLOSED / PR #454 merged / exact-main live verification PASS
+i00_closure_evidence: docs/academic/conv04/CONV04_I00_CLOSURE_I01_AUTHORIZATION.md
+learner_content_authoring: NO — I-01 is read-only forensic census
 learner_mutation_allowlist:
-  - _pages/hubs/socratic.md
-  - _pages/socratic-multiple-intelligences.md
-  - _socratic/personality-archetypes.md
-  - _pages/tools/mi-analysis.md
-  - _socratic/multiple-intelligences.md
-  - _pages/socratic-4/socratic-assessment.md
-  - _biology/higher-zoology-tree/human-behaviour/index.md
-  - _biology/higher-zoology-tree/index.md
-  - _biology/higher-zoology-tree/biostatistics/index.md
-  - _biology/higher-zoology-tree/biostatistics/basic_concepts_of_biostatistics.md
-  - _biology/higher-zoology-tree/biostatistics/frequency_distribution_histogram_and_polygon.md
-  - _biology/higher-zoology-tree/biostatistics/measures-of-central-tendency.md
-  - _biology/higher-zoology-tree/biostatistics/measures-of-dispersion.md
-  - _biology/higher-zoology-tree/biostatistics/hypothesis_testing.md
-  - _biology/higher-zoology-tree/biostatistics/z_test_problem_solving.md
-  - _biology/higher-zoology-tree/biostatistics/t-test-significant-difference-between-means.md
-  - _biology/higher-zoology-tree/biostatistics/chi_square_test.md
-  - _biology/higher-zoology-tree/biostatistics/correlation_and_regression.md
-  - _biology/higher-zoology-tree/biostatistics/measurements_of_central_tendency_problem_solving.md
-  - _biology/higher-zoology-tree/biostatistics/measures_of_dispersion.md
-  - _biology/higher-zoology-tree/biostatistics/z-test-z-test-and-its-significance-chi-square-test.md
-shared_reflection_boundary: retained historical/shared component; canonical I-00 reflection routes use layout boundary ownership
+shared_reflection_boundary: retained historical/shared component; canonical reflection routes use layout boundary ownership
 route_ledger: docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
 step3_evidence: docs/academic/conv04/CONV04_GH_STEP3_EVIDENCE.md
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 i00_residual_findings:
-  - A personality runtime: VERIFIED REAL DEFECT / candidate loads existing personality-engine.js
-  - B reflection boundary duplication: VERIFIED REAL DEFECT / canonical reflection routes now retain the layout educational boundary as sole rendered owner
-  - C Biostatistics contrast: INFERRED RISK / exact-preview Axe and browser evidence required before closure
-  - D legacy Socratic inbound links: VERIFIED REAL DEFECT / candidate repoints first-party links to /socratic/multiple-intelligences/
-  - E Polyglot historical root removal: NOT REPRODUCED on current production / retained route checks required
-homepage_v3_content: protected / I-01 and Homepage mutation remain blocked until I-00 closes
+  - A personality runtime: PASS / live production interaction verified
+  - B reflection boundary duplication: PASS / exactly one educational-reflection boundary on canonical routes
+  - C Biostatistics contrast: PASS / no visible light-on-light failure reproduced in live browser audit
+  - D legacy Socratic inbound links: PASS / canonical /socratic/multiple-intelligences/ navigation verified
+  - E Polyglot historical root removal: PASS / tested unprefixed and /bn/ routes remain live
+homepage_v3_content: protected / I-01 census authorized read-only; mutation requires explicit I-01 GO successor
 worker_cloudflare: protected / untouched / non-governing infrastructure lane
-admission_pr_356: protected / untouched
-ready_transition: I-00 requires exact-head retained platform/Academic-v1/Jekyll/browser/route checks + fresh review + zero unresolved threads + Trusted Governance
-merge: I-00 residual repair only; Homepage implementation and platform closure J remain unauthorized
-next_module_gate: CONV-04I-01 BLOCKED until I-00 merges and exact-main affected-route production parity is authenticated
-master_sequence: 1 F CLOSED → 2 G-R1 CLOSED → 3 G+H CLOSED → 4 I-00 RESIDUAL RECONCILIATION ACTIVE → 5 I Homepage integration BLOCKED → 6 J release/closure BLOCKED
+admission_pr_356: protected / untouched; Admission included in I-01 truth census only
+ready_transition: I-01 must complete Homepage + whole-platform forensic census and return evidence-backed mutation allowlist, certification matrix, and explicit GO/HOLD
+merge: governance/evidence authorization only; no Homepage, learner, route, Worker, Cloudflare, DNS or Admission mutation
+next_module_gate: CONV-04I implementation BLOCKED until I-01 forensic census returns explicit GO
+master_sequence: 1 F CLOSED → 2 G-R1 CLOSED → 3 G+H CLOSED → 4 I-00 CLOSED → 5 I-01 FORENSIC CENSUS AUTHORIZED / READ-ONLY → 6 I implementation BLOCKED → 7 J release/closure BLOCKED
+
+## CONV-04I-00 formal closure / I-01 authorization — 2026-10-07
+
+- PR #454 merged from certified head `a0ce8d8b5630d8ff891749d3e118548a61771e3b`.
+- Exact merged and production-verified main: `01ec8f8b679344ac8531038b03e90ca7e5c9a28b`.
+- I-00 findings A–E: **PASS / reconciled on live production evidence**.
+- GitHub Pages, Sovereign Site Audit v4, CodeQL, Ecology live production certification and retained Practical parity: **PASS on the merged main**.
+- I-00 learner/runtime repair authority is closed.
+- CONV-04I-01 is authorized **READ-ONLY** for Homepage + whole-platform forensic census.
+- Homepage source/CSS/JS mutation is **NOT YET AUTHORIZED**.
+- CONV-04J remains **BLOCKED**.
+- Closure/authorization record: `docs/academic/conv04/CONV04_I00_CLOSURE_I01_AUTHORIZATION.md`.
 
 ## Completed foundation
 
