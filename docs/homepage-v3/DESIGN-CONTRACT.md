@@ -1,7 +1,7 @@
 # Homepage V3 — CONV-04I-02 Shared-System Convergence Contract
 
-**Authorized base:** `2ef87d24d73d733d541fcc624474836d72486b30`  
-**Candidate branch:** `conv04-i02-homepage-shared-system`  
+**Authorized base:** `2ef87d24d73d733d541fcc624474836d72486b30`
+**Candidate branch:** `conv04-i02-homepage-shared-system`
 **State:** isolated implementation / exact-head certification required
 
 ## Purpose
