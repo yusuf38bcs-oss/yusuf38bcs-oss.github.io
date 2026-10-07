@@ -116,6 +116,19 @@
           });
         }
 
+        function bindBrevoFocusRingBridge() {
+          document.addEventListener('focusin', function (event) {
+            var close = event.target && event.target.closest
+              ? event.target.closest('#brevo-newsletter-modal .brevo-modal-close')
+              : null;
+            if (!close) return;
+            close.style.setProperty('outline-style', 'solid', 'important');
+            close.style.setProperty('outline-width', '3px', 'important');
+            close.style.setProperty('outline-color', 'var(--lbfl-platform-focus, #73d9f2)', 'important');
+            close.style.setProperty('outline-offset', '3px', 'important');
+          });
+        }
+
         function bindBrevoEscapeBridge() {
           document.addEventListener('keydown', function (event) {
             if (event.key !== 'Escape') return;
@@ -154,6 +167,7 @@
 
         function bindHomepageBrevoBridges() {
           bindBrevoAutofocusBridge();
+          bindBrevoFocusRingBridge();
           bindBrevoEscapeBridge();
         }
 

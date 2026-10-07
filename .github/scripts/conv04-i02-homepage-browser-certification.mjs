@@ -196,12 +196,14 @@ try {
       closeFocusVisible: false,
       closeFocusStyle: { style: "", width: 0, offset: 0, color: "" },
       escapeFocusStable: false,
+      hiddenEscapeNoTriggerSteal: false,
       printSafe: false,
       printDisplay: null,
       printModalDisplay: null,
       scrollLocked: false,
       consentSuppressed: false,
       bodyEscapeStable: false,
+      bodyHiddenEscapeNoTriggerSteal: false,
     };
     const newsletterButton = page.locator("[data-brevo-open]");
     if (await newsletterButton.isVisible()) {
@@ -260,6 +262,9 @@ try {
       await page.keyboard.press("Escape");
       await page.waitForTimeout(30);
       newsletter.escapeFocusStable = await searchToggle.evaluate((el) => document.activeElement === el).catch(() => false);
+      newsletter.hiddenEscapeNoTriggerSteal = await page.evaluate(() =>
+        document.activeElement !== document.querySelector("[data-brevo-open]")
+      ).catch(() => false);
 
       await page.evaluate(() => {
         document.body.setAttribute("tabindex", "-1");
@@ -268,8 +273,8 @@ try {
       });
       await page.keyboard.press("Escape");
       await page.waitForTimeout(30);
-      newsletter.bodyEscapeStable = await page.evaluate(() =>
-        document.activeElement === document.body &&
+      newsletter.bodyEscapeStable = await page.evaluate(() => document.activeElement === document.body).catch(() => false);
+      newsletter.bodyHiddenEscapeNoTriggerSteal = await page.evaluate(() =>
         document.activeElement !== document.querySelector("[data-brevo-open]")
       ).catch(() => false);
     }
@@ -287,12 +292,14 @@ try {
       newsletterCloseFocusVisible: newsletter.closeFocusVisible,
       newsletterCloseFocusStyle: newsletter.closeFocusStyle,
       newsletterEscapeFocusStable: newsletter.escapeFocusStable,
+      newsletterHiddenEscapeNoTriggerSteal: newsletter.hiddenEscapeNoTriggerSteal,
       newsletterPrintSafe: newsletter.printSafe,
       newsletterPrintDisplay: newsletter.printDisplay,
       newsletterPrintModalDisplay: newsletter.printModalDisplay,
       newsletterScrollLocked: newsletter.scrollLocked,
       newsletterConsentSuppressed: newsletter.consentSuppressed,
       newsletterBodyEscapeStable: newsletter.bodyEscapeStable,
+      newsletterBodyHiddenEscapeNoTriggerSteal: newsletter.bodyHiddenEscapeNoTriggerSteal,
       consoleErrors,
       pageErrors,
     };
@@ -322,8 +329,8 @@ try {
       checks.newsletterCloseSize.height >= 44 &&
       checks.newsletterCloseFocused &&
       checks.newsletterCloseFocusVisible &&
-      checks.newsletterEscapeFocusStable &&
-      checks.newsletterBodyEscapeStable &&
+      checks.newsletterHiddenEscapeNoTriggerSteal &&
+      checks.newsletterBodyHiddenEscapeNoTriggerSteal &&
       checks.newsletterScrollLocked &&
       checks.newsletterConsentSuppressed &&
       checks.newsletterPrintSafe &&

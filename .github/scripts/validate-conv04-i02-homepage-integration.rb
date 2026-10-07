@@ -90,6 +90,8 @@ require_text(errors, layout, "body.lbfl-home-v3 #brevo-newsletter-modal .brevo-m
 require_text(errors, layout, "outline-offset: 3px !important;", "Homepage Brevo close focus offset is not enforced")
 require_text(errors, layout, "function bindBrevoAutofocusBridge()", "Homepage Brevo autofocus bridge missing")
 require_text(errors, layout, "email.focus({ preventScroll: true });", "Homepage Brevo deterministic autofocus missing")
+require_text(errors, layout, "function bindBrevoFocusRingBridge()", "Homepage Brevo runtime focus-ring bridge missing")
+require_text(errors, layout, "close.style.setProperty('outline-offset', '3px', 'important');", "Homepage Brevo runtime focus offset is not enforced")
 errors << "Homepage retains stale fixed V3 asset revision" if layout.include?("v3.5.1-main-4bc3a7e-20260921")
 errors << "Homepage layout duplicates legacy theme-color override" if layout.include?('<meta name="theme-color" content="#06272d">')
 
@@ -146,6 +148,8 @@ require_text(
 browser_certification = text(".github/scripts/conv04-i02-homepage-browser-certification.mjs")
 require_text(errors, browser_certification, "newsletterCloseFocused", "Browser certification does not prove keyboard focus reaches Brevo close control")
 require_text(errors, browser_certification, "newsletterCloseFocusVisible", "Browser certification does not prove Brevo close focus visibility")
+require_text(errors, browser_certification, "newsletterHiddenEscapeNoTriggerSteal", "Browser certification does not prove hidden Brevo Escape avoids newsletter-trigger focus theft")
+require_text(errors, browser_certification, "newsletterBodyHiddenEscapeNoTriggerSteal", "Browser certification does not prove body-origin hidden Escape avoids newsletter-trigger focus theft")
 require_text(errors, browser_certification, 'page.keyboard.press("Shift+Tab")', "Browser certification does not exercise keyboard focus on Brevo close control")
 
 footer = text("_includes/home-v3/footer.html")
