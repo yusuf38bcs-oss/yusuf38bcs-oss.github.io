@@ -67,6 +67,13 @@
 .lbfl-v3-nav a:hover, .lbfl-v3-header__actions summary:hover, .lbfl-v3-search-button:hover { background: rgba(255,255,255,0.09); }
 .lbfl-v3-header__actions { display: flex; align-items: center; gap: 6px; }
 .lbfl-v3-search-button { border: 0; background: transparent; color: inherit; cursor: pointer; }
+.lbfl-home-v3 .lbfl-v3-search-button.lbfl-search-toggle {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+}
 .lbfl-v3-search-icon { font-size: 1.15rem; line-height: 1; }
 .lbfl-v3-language-switcher { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
 .lbfl-v3-language-switcher > span { color: rgba(255,255,255,0.42); }
