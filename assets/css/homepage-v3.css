@@ -273,6 +273,10 @@ html[data-save-data="true"] .lbfl-v3-hero__visual { display: none; }
 html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(0, 760px); justify-content: start; }
 
 @media print {
+  body.lbfl-home-v3 #newsletter {
+    display: none !important;
+  }
+
   .lbfl-v3-header, .lbfl-v3-dialog, .lbfl-v3-hero__visual { display: none !important; }
   .lbfl-home-v3 { background: white; color: black; }
   .lbfl-v3-section { break-inside: avoid; }
