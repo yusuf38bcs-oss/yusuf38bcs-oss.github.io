@@ -264,6 +264,21 @@
   min-height: 44px !important;
 }
 
+html.brevo-modal-open,
+body.lbfl-home-v3.brevo-modal-open {
+  overflow: hidden !important;
+}
+
+html.brevo-modal-open {
+  scrollbar-gutter: stable;
+}
+
+html.brevo-modal-open #gdpr-banner,
+body.lbfl-home-v3.brevo-modal-open #gdpr-banner {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lbfl-home-v3 *, .lbfl-home-v3 *::before, .lbfl-home-v3 *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
 }
