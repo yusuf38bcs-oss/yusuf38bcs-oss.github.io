@@ -112,8 +112,8 @@ try {
       closed: false,
       closeSize: { width: 0, height: 0 },
       escapeFocusStable: false,
-      printReadable: false,
-      printStyles: null,
+      printSafe: false,
+      printDisplay: null,
     };
     const newsletterButton = page.locator("[data-brevo-open]");
     if (await newsletterButton.isVisible()) {
@@ -135,24 +135,8 @@ try {
       newsletter.escapeFocusStable = await searchToggle.evaluate((el) => document.activeElement === el).catch(() => false);
 
       await page.emulateMedia({ media: "print" });
-      await page.evaluate(() => window.dispatchEvent(new Event("beforeprint")));
-      newsletter.printStyles = await page.evaluate(() => {
-        const section = document.querySelector(".brevo-integrated-section");
-        const title = document.querySelector(".brevo-info-title");
-        const desc = document.querySelector(".brevo-info-desc");
-        if (!section || !title || !desc) return null;
-        return {
-          sectionBackground: getComputedStyle(section).backgroundColor,
-          titleColor: getComputedStyle(title).color,
-          descColor: getComputedStyle(desc).color,
-        };
-      });
-      newsletter.printReadable = Boolean(
-        newsletter.printStyles &&
-        newsletter.printStyles.titleColor === "rgb(0, 0, 0)" &&
-        newsletter.printStyles.descColor === "rgb(0, 0, 0)"
-      );
-      await page.evaluate(() => window.dispatchEvent(new Event("afterprint")));
+      newsletter.printDisplay = await page.locator("#newsletter").evaluate((el) => getComputedStyle(el).display);
+      newsletter.printSafe = newsletter.printDisplay === "none";
       await page.emulateMedia({ media: "screen" });
     }
 
@@ -164,8 +148,8 @@ try {
       newsletterClosed: newsletter.closed,
       newsletterCloseSize: newsletter.closeSize,
       newsletterEscapeFocusStable: newsletter.escapeFocusStable,
-      newsletterPrintReadable: newsletter.printReadable,
-      newsletterPrintStyles: newsletter.printStyles,
+      newsletterPrintSafe: newsletter.printSafe,
+      newsletterPrintDisplay: newsletter.printDisplay,
       consoleErrors,
       pageErrors,
     };
@@ -190,7 +174,7 @@ try {
       checks.newsletterCloseSize.width >= 44 &&
       checks.newsletterCloseSize.height >= 44 &&
       checks.newsletterEscapeFocusStable &&
-      checks.newsletterPrintReadable &&
+      checks.newsletterPrintSafe &&
       checks.legal &&
       checks.legalTargets44 &&
       checks.journeyCount === 8 &&
