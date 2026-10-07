@@ -65,6 +65,27 @@
     {% endif %}
     {% unless page.show_newsletter == false %}
       {% include body/brevo-marketing.html %}
+      <style media="print">
+        .lbfl-home-v3 .brevo-integrated-section {
+          background: #fff !important;
+          background-image: none !important;
+          color: #000 !important;
+        }
+        .lbfl-home-v3 .brevo-integrated-section *,
+        .lbfl-home-v3 .brevo-integrated-section .brevo-info-title,
+        .lbfl-home-v3 .brevo-integrated-section .brevo-info-desc,
+        .lbfl-home-v3 .brevo-integrated-section .brevo-privacy-note,
+        .lbfl-home-v3 .brevo-integrated-section .meta-badge-node {
+          color: #000 !important;
+          background: transparent !important;
+          background-image: none !important;
+          box-shadow: none !important;
+          text-shadow: none !important;
+        }
+        .lbfl-home-v3 .brevo-integrated-section .brevo-open-modal-btn {
+          border: 1px solid #000 !important;
+        }
+      </style>
     {% endunless %}
     {% include home-v3/footer.html %}
     {% include body/gdpr-banner.html %}
