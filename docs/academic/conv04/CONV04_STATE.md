@@ -1,11 +1,11 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04I-01
-mode: Homepage / whole-platform forensic census authorization — READ-ONLY
-authorized_base: 01ec8f8b679344ac8531038b03e90ca7e5c9a28b
-branch: conv-04i01-homepage-forensic-authorization-20261007
-production_verified_main: 01ec8f8b679344ac8531038b03e90ca7e5c9a28b
+phase: CONV-04I-02
+mode: Homepage Shared-System Convergence — isolated implementation candidate
+authorized_base: 2ef87d24d73d733d541fcc624474836d72486b30
+branch: conv04-i02-homepage-shared-system
+production_verified_main: 2ef87d24d73d733d541fcc624474836d72486b30
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
 conv04f_status: FORMALLY CLOSED / F-11 merged and exact-main production PASS
@@ -13,26 +13,53 @@ platform_visual_system_status: CLOSED / G-R1 merged via PR #451 and exact-main p
 g_status: CLOSED / PR #452 merged + production verified
 h_status: CLOSED / PR #452 merged + production verified
 i00_status: FORMALLY CLOSED / PR #454 merged / exact-main live verification PASS
+i01_status: COMPLETE / read-only forensic census returned explicit GO for isolated I-02
+i01_evidence: docs/academic/conv04/CONV04_I01_FORENSIC_CENSUS.md
 i00_closure_evidence: docs/academic/conv04/CONV04_I00_CLOSURE_I01_AUTHORIZATION.md
-learner_content_authoring: NO — I-01 is read-only forensic census
+learner_content_authoring: NO — Homepage shell/service convergence and existing-route curation only
 learner_mutation_allowlist:
+homepage_mutation_allowlist:
+  - index.html
+  - _layouts/homepage-v3.html
+  - _includes/home-v3/header.html
+  - _includes/home-v3/footer.html
+  - _includes/home-v3/journey.html
+  - _data/homepage.yml
+  - _data/homepage-v3.yml
+  - assets/css/homepage-v3.css
+  - docs/homepage-v3/DESIGN-CONTRACT.md
+  - docs/homepage-v3/ROUTE-MANIFEST.md
+  - docs/homepage-v3/VISUAL-REGRESSION-MANIFEST.md
+  - docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
+  - docs/academic/conv04/CONV04_STATE.md
+  - docs/academic/conv04/CONV04_I01_FORENSIC_CENSUS.md
+  - .github/scripts/validate-conv04-i02-homepage-integration.rb
+  - .github/scripts/conv04-i02-homepage-browser-certification.mjs
+  - .github/workflows/conv04-i02-homepage-integration-certification.yml
 shared_reflection_boundary: retained historical/shared component; canonical reflection routes use layout boundary ownership
 route_ledger: docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
 step3_evidence: docs/academic/conv04/CONV04_GH_STEP3_EVIDENCE.md
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-i00_residual_findings:
-  - A personality runtime: PASS / live production interaction verified
-  - B reflection boundary duplication: PASS / exactly one educational-reflection boundary on canonical routes
-  - C Biostatistics contrast: PASS / no visible light-on-light failure reproduced in live browser audit
-  - D legacy Socratic inbound links: PASS / canonical /socratic/multiple-intelligences/ navigation verified
-  - E Polyglot historical root removal: PASS / tested unprefixed and /bn/ routes remain live
-homepage_v3_content: protected / I-01 census authorized read-only; mutation requires explicit I-01 GO successor
+homepage_v3_content: narrative and section order preserved; shared identity/search/newsletter/legal/platform convergence authorized only inside homepage_mutation_allowlist
 worker_cloudflare: protected / untouched / non-governing infrastructure lane
-admission_pr_356: protected / untouched; Admission included in I-01 truth census only
-ready_transition: I-01 must complete Homepage + whole-platform forensic census and return evidence-backed mutation allowlist, certification matrix, and explicit GO/HOLD
-merge: governance/evidence authorization only; no Homepage, learner, route, Worker, Cloudflare, DNS or Admission mutation
-next_module_gate: CONV-04I implementation BLOCKED until I-01 forensic census returns explicit GO
-master_sequence: 1 F CLOSED → 2 G-R1 CLOSED → 3 G+H CLOSED → 4 I-00 CLOSED → 5 I-01 FORENSIC CENSUS AUTHORIZED / READ-ONLY → 6 I implementation BLOCKED → 7 J release/closure BLOCKED
+admission_pr_356: protected / untouched
+ready_transition: HOLD until the unchanged exact I-02 head passes the dedicated I-02 workflow, retained Homepage/AdSense checks, fresh review, zero unresolved threads and Trusted Governance
+merge: HOLD until exact-head certification matrix passes and the PR head is re-authenticated unchanged
+next_module_gate: CONV-04J remains BLOCKED until I-02 merge + exact-main production parity + formal I closure
+master_sequence: 1 F CLOSED → 2 G-R1 CLOSED → 3 G+H CLOSED → 4 I-00 CLOSED → 5 I-01 COMPLETE → 6 I-02 IMPLEMENTATION/CERTIFICATION → 7 J BLOCKED
+
+## CONV-04I-01 forensic census / I-02 authorization — 2026-10-07
+
+- Census base authenticated as `main@2ef87d24d73d733d541fcc624474836d72486b30`.
+- Homepage redesign: **NOT REQUIRED / NOT AUTHORIZED**.
+- Existing Homepage V3 narrative and section order: **PRESERVE**.
+- Confirmed convergence debt: platform-home metadata, canonical identity/platform hooks, shared search, shared Brevo newsletter, shared legal footer, stale six-lesson Cell journey, English-root hreflang pairing, stale Homepage V3 governance/evidence, and certification coverage.
+- Canonical Chapter-01 source of truth exposes eight current lessons; I-02 may synchronize Homepage curation to those eight existing routes only.
+- No Biology lesson source, scientific content, Admission, Socratic runtime, assessment runtime, Worker, Cloudflare, DNS or redirect mutation is authorized.
+- Exact I-02 mutation allowlist is frozen above.
+- I-02 implementation: **GO**.
+- I-02 merge: **HOLD pending unchanged-head certification**.
+- CONV-04J: **BLOCKED**.
 
 ## CONV-04I-00 formal closure / I-01 authorization — 2026-10-07
 
