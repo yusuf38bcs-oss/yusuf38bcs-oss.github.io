@@ -135,6 +135,7 @@ try {
       newsletter.escapeFocusStable = await searchToggle.evaluate((el) => document.activeElement === el).catch(() => false);
 
       await page.emulateMedia({ media: "print" });
+      await page.evaluate(() => window.dispatchEvent(new Event("beforeprint")));
       newsletter.printStyles = await page.evaluate(() => {
         const section = document.querySelector(".brevo-integrated-section");
         const title = document.querySelector(".brevo-info-title");
@@ -151,6 +152,7 @@ try {
         newsletter.printStyles.titleColor === "rgb(0, 0, 0)" &&
         newsletter.printStyles.descColor === "rgb(0, 0, 0)"
       );
+      await page.evaluate(() => window.dispatchEvent(new Event("afterprint")));
       await page.emulateMedia({ media: "screen" });
     }
 
