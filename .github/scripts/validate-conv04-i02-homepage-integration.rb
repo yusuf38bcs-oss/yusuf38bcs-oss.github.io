@@ -93,9 +93,43 @@ require_text(errors, header, "include brand/lbfl-identity.html", "Homepage heade
 require_text(errors, header, "search__toggle", "Homepage header does not expose shared search")
 errors << "Homepage retains page-local LBFL mark" if header.include?("lbfl-v3-brand__mark")
 
+workflow = text(".github/workflows/conv04-i02-homepage-integration-certification.yml")
+homepage_dependencies = [
+  "assets/js/home/homepage-v3.js",
+  "assets/css/lbfl-platform-system.css",
+  "assets/css/academic-design-system.css",
+  "assets/css/main.scss",
+  "assets/css/synaptic-overrides.css",
+  "assets/css/production-hotfix.css",
+  "_sass/**",
+  "_includes/brand/lbfl-identity.html",
+  "_includes/body/brevo-marketing.html",
+  "_includes/body/gdpr-banner.html",
+  "_includes/footer/legal-links.html",
+  "_includes/head.html",
+  "_includes/head/**",
+  "_config.yml",
+  "assets/images/logo.png",
+  "Gemfile",
+  "Gemfile.lock"
+]
+homepage_dependencies.each do |dependency|
+  require_text(
+    errors,
+    workflow,
+    "- \"#{dependency}\"",
+    "I-02 workflow does not watch Homepage dependency #{dependency}"
+  )
+end
+
 footer = text("_includes/home-v3/footer.html")
 require_text(errors, footer, "lbfl-platform-footer", "Homepage footer lacks platform hook")
 require_text(errors, footer, "include footer/legal-links.html", "Homepage footer does not consume canonical legal footer")
+require_text(errors, footer, "@media print", "Homepage legal-footer print bridge missing")
+require_text(errors, footer, ".lbfl-home-v3 .footer-legal-area", "Homepage print legal-area owner missing")
+require_text(errors, footer, "background: #fff !important;", "Homepage print legal-area background normalization missing")
+require_text(errors, footer, ".lbfl-home-v3 .footer-legal-links a", "Homepage print legal-link owner missing")
+require_text(errors, footer, "transition: none !important;", "Homepage print legal transition reset missing")
 
 journey = text("_includes/home-v3/journey.html")
 require_text(errors, journey, "featured_route.lesson_count", "Journey aria-label is not data-bound")

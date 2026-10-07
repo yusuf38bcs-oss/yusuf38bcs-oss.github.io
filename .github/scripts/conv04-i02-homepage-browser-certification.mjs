@@ -104,6 +104,64 @@ try {
       };
     });
 
+    await page.emulateMedia({ media: "print" });
+    await page.waitForTimeout(250);
+    const legalPrint = await page.evaluate(() => {
+      const area = document.querySelector(".lbfl-v3-footer .footer-legal-area");
+      const links = Array.from(document.querySelectorAll(".lbfl-v3-footer .footer-legal-links a"));
+
+      function parseRgb(value) {
+        const match = String(value || "").match(/rgba?\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+        return match ? match.slice(1, 4).map(Number) : null;
+      }
+
+      function channel(value) {
+        const normalized = value / 255;
+        return normalized <= 0.03928
+          ? normalized / 12.92
+          : Math.pow((normalized + 0.055) / 1.055, 2.4);
+      }
+
+      function luminance(rgb) {
+        return 0.2126 * channel(rgb[0]) + 0.7152 * channel(rgb[1]) + 0.0722 * channel(rgb[2]);
+      }
+
+      function contrast(foreground, background) {
+        const fg = parseRgb(foreground);
+        const bg = parseRgb(background);
+        if (!fg || !bg) return 0;
+        const light = Math.max(luminance(fg), luminance(bg));
+        const dark = Math.min(luminance(fg), luminance(bg));
+        return (light + 0.05) / (dark + 0.05);
+      }
+
+      if (!area) {
+        return { safe: false, visible: false, background: "", color: "", minLinkContrast: 0 };
+      }
+
+      const style = getComputedStyle(area);
+      const background = style.backgroundColor;
+      const color = style.color;
+      const linkContrasts = links.map((link) => contrast(getComputedStyle(link).color, background));
+      const minLinkContrast = linkContrasts.length ? Math.min(...linkContrasts) : 0;
+      const areaContrast = contrast(color, background);
+      const visible = style.display !== "none" && style.visibility !== "hidden";
+
+      return {
+        safe:
+          visible &&
+          background === "rgb(255, 255, 255)" &&
+          areaContrast >= 4.5 &&
+          minLinkContrast >= 4.5,
+        visible,
+        background,
+        color,
+        areaContrast,
+        minLinkContrast,
+      };
+    });
+    await page.emulateMedia({ media: "screen" });
+
     const noJsFallback = await page.evaluate(() => {
       const root = document.documentElement;
       const hadNoJs = root.classList.contains("no-js");
@@ -198,6 +256,7 @@ try {
 
     const checks = {
       ...staticState,
+      legalPrint,
       noJsFallback,
       searchOpened: search.opened,
       newsletterOpened: newsletter.opened,
@@ -224,6 +283,7 @@ try {
       checks.logoVisible &&
       checks.logoSrc.includes("/assets/images/logo.png") &&
       checks.assetRevisionImmutable &&
+      checks.legalPrint.safe &&
       checks.noJsFallback.searchHidden &&
       checks.noJsFallback.newsletterHidden &&
       checks.searchToggleVisible &&

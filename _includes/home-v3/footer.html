@@ -6,4 +6,35 @@
     </div>
   </div>
   {% include footer/legal-links.html %}
+  <style>
+    @media print {
+      .lbfl-home-v3 .footer-legal-area {
+        background: #fff !important;
+        color: #000 !important;
+      }
+
+      .lbfl-home-v3 .footer-legal-area,
+      .lbfl-home-v3 .footer-legal-area * {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .lbfl-home-v3 .footer-legal-links,
+      .lbfl-home-v3 .footer-copyright-row {
+        border-color: #666 !important;
+      }
+
+      .lbfl-home-v3 .footer-legal-links a,
+      .lbfl-home-v3 .footer-legal-links a:visited,
+      .lbfl-home-v3 .footer-copyright-text,
+      .lbfl-home-v3 .footer-status-indicator {
+        color: #000 !important;
+      }
+
+      .lbfl-home-v3 .footer-status-dot {
+        background: #000 !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
 </footer>
