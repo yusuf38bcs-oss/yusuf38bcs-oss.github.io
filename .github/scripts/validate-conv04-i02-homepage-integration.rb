@@ -112,6 +112,11 @@ require_text(errors, css, "var(--lbfl-platform-focus", "Homepage CSS does not co
 require_text(errors, css, ".lbfl-v3-brand__logo", "Homepage canonical logo styling missing")
 require_text(errors, css, ".lbfl-v3-search-button", "Homepage shared-search control styling missing")
 errors << "Deferred oversized 12.3vw mobile hero rule remains" if css.include?("12.3vw")
+errors << "Deferred oversized 12vw mobile hero rule remains" if css.include?("12vw")
+errors << "Deferred oversized 11.4vw mobile hero rule remains" if css.include?("11.4vw")
+require_text(errors, css, "clamp(2.25rem, 9.8vw, 3.5rem)", "Normalized compact-mobile hero typography missing")
+require_text(errors, css, "clamp(2.05rem, 9.4vw, 2.85rem)", "Normalized narrow-mobile hero typography missing")
+require_text(errors, css, "@media (max-width: 340px)", "Narrow-header overflow guard missing")
 
 ledger = JSON.parse(text("docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"))
 home = ledger.fetch("routes").find { |route| route["id"] == "home" }
