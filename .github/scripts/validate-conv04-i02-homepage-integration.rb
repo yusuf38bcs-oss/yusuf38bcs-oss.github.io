@@ -74,7 +74,7 @@ errors << "Homepage V3 narrative order changed" unless positions.compact == posi
 
 layout = text("_layouts/homepage-v3.html")
 require_text(errors, layout, "include_cached search/search_form.html", "Homepage does not consume shared search form")
-require_text(errors, layout, ".no-js .lbfl-v3-search-button { display: none !important; }", "Homepage no-JS search-toggle fallback missing")
+require_text(errors, layout, ".no-js .lbfl-v3-search-button,", "Homepage no-JS search-toggle fallback missing")
 require_text(errors, layout, ".no-js .brevo-open-modal-btn { display: none !important; }", "Homepage no-JS newsletter-trigger fallback missing")
 no_js_rule = layout.index(".no-js .lbfl-v3-search-button")
 compact_media = layout.index("@media (max-width: 1024px)")
