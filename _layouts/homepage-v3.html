@@ -69,6 +69,49 @@
     {% include home-v3/footer.html %}
     {% include body/gdpr-banner.html %}
     {% include scripts.html %}
+    <script>
+      /* Homepage bridge: a closed shared Brevo modal must not steal later Escape focus. */
+      (function () {
+        var escapeOrigin = null;
+
+        function visible(element) {
+          if (!element || !element.isConnected) return false;
+          var style = window.getComputedStyle(element);
+          return style.display !== 'none' && style.visibility !== 'hidden' && element.getClientRects().length > 0;
+        }
+
+        function bindBrevoEscapeBridge() {
+          document.addEventListener('keydown', function (event) {
+            if (event.key !== 'Escape') return;
+            var modal = document.getElementById('brevo-newsletter-modal');
+            escapeOrigin = modal && modal.hidden ? document.activeElement : null;
+          }, true);
+
+          document.addEventListener('keydown', function (event) {
+            if (event.key !== 'Escape' || !escapeOrigin) return;
+            var origin = escapeOrigin;
+            escapeOrigin = null;
+            window.setTimeout(function () {
+              var modal = document.getElementById('brevo-newsletter-modal');
+              var trigger = document.querySelector('[data-brevo-open]');
+              if (!modal || !modal.hidden || !trigger || document.activeElement !== trigger) return;
+
+              var target = origin;
+              if (origin.closest && origin.closest('.search-content') && !visible(origin)) {
+                target = document.querySelector('.lbfl-v3-search-button.search__toggle');
+              }
+              if (visible(target) && typeof target.focus === 'function') target.focus();
+            }, 0);
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', bindBrevoEscapeBridge);
+        } else {
+          bindBrevoEscapeBridge();
+        }
+      }());
+    </script>
     <script src="{{ '/assets/js/home/homepage-v3.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}" defer></script>
   </body>
 </html>
