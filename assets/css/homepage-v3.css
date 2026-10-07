@@ -273,7 +273,8 @@ html[data-save-data="true"] .lbfl-v3-hero__visual { display: none; }
 html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(0, 760px); justify-content: start; }
 
 @media print {
-  body.lbfl-home-v3 #newsletter {
+  body.lbfl-home-v3 #newsletter,
+  body.lbfl-home-v3 #brevo-newsletter-modal {
     display: none !important;
   }
 
