@@ -77,6 +77,9 @@ require_text(errors, layout, "include_cached search/search_form.html", "Homepage
 require_text(errors, layout, "include body/brevo-marketing.html", "Homepage does not consume canonical Brevo surface")
 require_text(errors, layout, "include scripts.html", "Homepage does not load shared site runtime")
 require_text(errors, layout, "closed shared Brevo modal must not steal later Escape focus", "Homepage closed-Brevo Escape guard missing")
+require_text(errors, layout, "beforeprint", "Homepage Brevo beforeprint contrast bridge missing")
+require_text(errors, layout, "afterprint", "Homepage Brevo afterprint restore bridge missing")
+require_text(errors, layout, "applyNewsletterPrintContrast", "Homepage Brevo print lifecycle implementation missing")
 errors << "Homepage retains stale fixed V3 asset revision" if layout.include?("v3.5.1-main-4bc3a7e-20260921")
 errors << "Homepage layout duplicates legacy theme-color override" if layout.include?('<meta name="theme-color" content="#06272d">')
 
