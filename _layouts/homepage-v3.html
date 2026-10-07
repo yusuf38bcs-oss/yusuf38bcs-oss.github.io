@@ -13,7 +13,6 @@
     {% include head/custom.html %}
     <meta name="robots" content="{{ page.robots | default: 'noindex,nofollow' }}">
     <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#06272d">
     <script>
       /* LBFL V3 dialog support prepaint */
       (function () {
@@ -31,7 +30,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ '/assets/css/homepage-v3.css' | relative_url }}?v=v3.5.1-main-4bc3a7e-20260921">
+    <link rel="stylesheet" href="{{ '/assets/css/homepage-v3.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
     <style>
       @media (max-width: 1024px) {
         .no-js .lbfl-v3-header__inner { flex-wrap: wrap; padding-block: 8px; }
@@ -59,8 +58,17 @@
     <main id="main-content" class="lbfl-v3-main{% if lbfl_academic_v1 %} lbfl-academic-surface lbfl-academic-role--{{ page.academic_role }}{% endif %}" tabindex="-1"{% if lbfl_academic_v1 %} data-lbfl-academic-surface="v1" data-lbfl-academic-role="{{ page.academic_role }}"{% endif %}>
       {{ content }}
     </main>
+    {% if site.search == true %}
+      <div class="search-content lbfl-v3-search-content" role="search" aria-label="Site search">
+        {% include_cached search/search_form.html %}
+      </div>
+    {% endif %}
+    {% unless page.show_newsletter == false %}
+      {% include body/brevo-marketing.html %}
+    {% endunless %}
     {% include home-v3/footer.html %}
     {% include body/gdpr-banner.html %}
-    <script src="{{ '/assets/js/home/homepage-v3.js' | relative_url }}?v=v3.5.1-main-4bc3a7e-20260921" defer></script>
+    {% include scripts.html %}
+    <script src="{{ '/assets/js/home/homepage-v3.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}" defer></script>
   </body>
 </html>
