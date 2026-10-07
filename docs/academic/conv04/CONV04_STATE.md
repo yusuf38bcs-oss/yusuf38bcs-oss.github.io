@@ -48,6 +48,15 @@ merge: HOLD until exact-head certification matrix passes and the PR head is re-a
 next_module_gate: CONV-04J remains BLOCKED until I-02 merge + exact-main production parity + formal I closure
 master_sequence: 1 F CLOSED → 2 G-R1 CLOSED → 3 G+H CLOSED → 4 I-00 CLOSED → 5 I-01 COMPLETE → 6 I-02 IMPLEMENTATION/CERTIFICATION → 7 J BLOCKED
 
+## CONV-04I-02 exact-head certification repair — 2026-10-08
+
+- Frozen I-02 mutation boundary remains **17 files**; canonical shared Brevo source remains protected and unchanged.
+- Exact-head run #47 authenticated scope, retained contracts, production Jekyll build, Node setup and browser runtime installation as **PASS**.
+- Run #47 browser failure narrowed to Homepage-scoped Brevo keyboard focus evidence: close-control focus styling was overridden after canonical Brevo inclusion, and desktop autofocus was not deterministic.
+- Repair authority is limited to the existing Homepage layout/browser/validator evidence surface; no shared Brevo, assessment runtime, learner content, Worker, Cloudflare, DNS or redirect mutation is authorized.
+- Assessment Runtime Pilot run #556 was cancelled by an out-of-order concurrency race: the final-head synchronize event was superseded by a delayed synchronize run for the immediately previous head. This is **not** authenticated as an assessment-runtime defect; exact-head retained recertification is required.
+- Merge remains **HOLD** until the repaired exact head reaches the complete required workflow matrix, zero unresolved review threads, fresh review and Trusted Governance.
+
 ## CONV-04I-01 forensic census / I-02 authorization — 2026-10-07
 
 - Census base authenticated as `main@2ef87d24d73d733d541fcc624474836d72486b30`.

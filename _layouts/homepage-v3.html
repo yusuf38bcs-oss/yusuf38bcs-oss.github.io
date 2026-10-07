@@ -73,6 +73,15 @@
     {% endif %}
     {% unless page.show_newsletter == false %}
       {% include body/brevo-marketing.html %}
+      <style id="lbfl-home-v3-brevo-focus-bridge">
+        body.lbfl-home-v3 #brevo-newsletter-modal .brevo-modal-close:focus,
+        body.lbfl-home-v3 #brevo-newsletter-modal .brevo-modal-close:focus-visible {
+          outline-style: solid !important;
+          outline-width: 3px !important;
+          outline-color: var(--lbfl-platform-focus, #73d9f2) !important;
+          outline-offset: 3px !important;
+        }
+      </style>
     {% endunless %}
     {% include home-v3/footer.html %}
     {% include body/gdpr-banner.html %}
@@ -92,6 +101,19 @@
           if (!element || element === document.body || element === document.documentElement) return false;
           if (!element.matches) return false;
           return element.matches('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+        }
+
+        function bindBrevoAutofocusBridge() {
+          document.querySelectorAll('[data-brevo-open]').forEach(function (button) {
+            button.addEventListener('click', function () {
+              window.setTimeout(function () {
+                var modal = document.getElementById('brevo-newsletter-modal');
+                var email = document.getElementById('EMAIL');
+                if (!modal || modal.hidden || !email || typeof email.focus !== 'function') return;
+                email.focus({ preventScroll: true });
+              }, 0);
+            });
+          });
         }
 
         function bindBrevoEscapeBridge() {
@@ -130,10 +152,15 @@
           });
         }
 
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', bindBrevoEscapeBridge);
-        } else {
+        function bindHomepageBrevoBridges() {
+          bindBrevoAutofocusBridge();
           bindBrevoEscapeBridge();
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', bindHomepageBrevoBridges);
+        } else {
+          bindHomepageBrevoBridges();
         }
       }());
     </script>

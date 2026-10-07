@@ -192,6 +192,7 @@ try {
       focusedEmail: false,
       closed: false,
       closeSize: { width: 0, height: 0 },
+      closeFocused: false,
       closeFocusVisible: false,
       closeFocusStyle: { style: "", width: 0, offset: 0, color: "" },
       escapeFocusStable: false,
@@ -228,6 +229,7 @@ try {
       newsletter.focusedEmail = await page.locator("#EMAIL").evaluate((el) => document.activeElement === el).catch(() => false);
 
       await page.keyboard.press("Shift+Tab");
+      newsletter.closeFocused = await page.locator(".brevo-modal-close").evaluate((el) => document.activeElement === el).catch(() => false);
       newsletter.closeFocusStyle = await page.locator(".brevo-modal-close").evaluate((el) => {
         const style = getComputedStyle(el);
         return {
@@ -281,6 +283,7 @@ try {
       newsletterFocusedEmail: newsletter.focusedEmail,
       newsletterClosed: newsletter.closed,
       newsletterCloseSize: newsletter.closeSize,
+      newsletterCloseFocused: newsletter.closeFocused,
       newsletterCloseFocusVisible: newsletter.closeFocusVisible,
       newsletterCloseFocusStyle: newsletter.closeFocusStyle,
       newsletterEscapeFocusStable: newsletter.escapeFocusStable,
@@ -317,6 +320,7 @@ try {
       checks.newsletterClosed &&
       checks.newsletterCloseSize.width >= 44 &&
       checks.newsletterCloseSize.height >= 44 &&
+      checks.newsletterCloseFocused &&
       checks.newsletterCloseFocusVisible &&
       checks.newsletterEscapeFocusStable &&
       checks.newsletterBodyEscapeStable &&
