@@ -32,10 +32,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/homepage-v3.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M' }}">
     <style>
+      .no-js .lbfl-v3-search-button,
+      .no-js .brevo-open-modal-btn { display: none !important; }
+
       @media (max-width: 1024px) {
         .no-js .lbfl-v3-header__inner { flex-wrap: wrap; padding-block: 8px; }
         .no-js .lbfl-v3-nav { display: flex; order: 3; flex: 1 0 100%; margin-left: 0; overflow-x: auto; }
-        .no-js .lbfl-v3-search-button { display: none !important; }
         .no-js .lbfl-v3-menu-button { display: none; }
       }
       @media print {
@@ -81,11 +83,28 @@
           return style.display !== 'none' && style.visibility !== 'hidden' && element.getClientRects().length > 0;
         }
 
+        function canRestoreFocus(element) {
+          if (!element || element === document.body || element === document.documentElement) return false;
+          if (!element.matches) return false;
+          return element.matches('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+        }
+
         function bindBrevoEscapeBridge() {
           document.addEventListener('keydown', function (event) {
             if (event.key !== 'Escape') return;
             var modal = document.getElementById('brevo-newsletter-modal');
-            escapeOrigin = modal && modal.hidden ? document.activeElement : null;
+            if (!modal || !modal.hidden) {
+              escapeOrigin = null;
+              return;
+            }
+
+            var active = document.activeElement;
+            if (!canRestoreFocus(active)) {
+              escapeOrigin = null;
+              event.stopImmediatePropagation();
+              return;
+            }
+            escapeOrigin = active;
           }, true);
 
           document.addEventListener('keydown', function (event) {
