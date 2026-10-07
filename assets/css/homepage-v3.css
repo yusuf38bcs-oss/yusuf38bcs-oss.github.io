@@ -289,6 +289,23 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
     text-shadow: none !important;
   }
 
+  body.lbfl-home-v3 #newsletter,
+  body.lbfl-home-v3 #newsletter .brevo-section-container,
+  body.lbfl-home-v3 #newsletter .brevo-info-block {
+    background: #fff !important;
+    background-image: none !important;
+    color: #000 !important;
+  }
+
+  body.lbfl-home-v3 #newsletter #newsletter-title,
+  body.lbfl-home-v3 #newsletter .brevo-info-title,
+  body.lbfl-home-v3 #newsletter .brevo-info-title *,
+  body.lbfl-home-v3 #newsletter .brevo-info-desc,
+  body.lbfl-home-v3 #newsletter .brevo-privacy-note,
+  body.lbfl-home-v3 #newsletter .meta-badge-node {
+    color: #000 !important;
+  }
+
   .lbfl-home-v3 .brevo-open-modal-btn {
     border: 1px solid #000 !important;
   }
