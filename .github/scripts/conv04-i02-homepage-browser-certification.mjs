@@ -113,6 +113,7 @@ try {
       closeSize: { width: 0, height: 0 },
       escapeFocusStable: false,
       printReadable: false,
+      printStyles: null,
     };
     const newsletterButton = page.locator("[data-brevo-open]");
     if (await newsletterButton.isVisible()) {
@@ -134,18 +135,22 @@ try {
       newsletter.escapeFocusStable = await searchToggle.evaluate((el) => document.activeElement === el).catch(() => false);
 
       await page.emulateMedia({ media: "print" });
-      newsletter.printReadable = await page.evaluate(() => {
+      newsletter.printStyles = await page.evaluate(() => {
         const section = document.querySelector(".brevo-integrated-section");
         const title = document.querySelector(".brevo-info-title");
         const desc = document.querySelector(".brevo-info-desc");
-        if (!section || !title || !desc) return false;
-        const sectionStyle = getComputedStyle(section);
-        const titleStyle = getComputedStyle(title);
-        const descStyle = getComputedStyle(desc);
-        return sectionStyle.backgroundColor === "rgb(255, 255, 255)" &&
-          titleStyle.color === "rgb(0, 0, 0)" &&
-          descStyle.color === "rgb(0, 0, 0)";
+        if (!section || !title || !desc) return null;
+        return {
+          sectionBackground: getComputedStyle(section).backgroundColor,
+          titleColor: getComputedStyle(title).color,
+          descColor: getComputedStyle(desc).color,
+        };
       });
+      newsletter.printReadable = Boolean(
+        newsletter.printStyles &&
+        newsletter.printStyles.titleColor === "rgb(0, 0, 0)" &&
+        newsletter.printStyles.descColor === "rgb(0, 0, 0)"
+      );
       await page.emulateMedia({ media: "screen" });
     }
 
@@ -158,6 +163,7 @@ try {
       newsletterCloseSize: newsletter.closeSize,
       newsletterEscapeFocusStable: newsletter.escapeFocusStable,
       newsletterPrintReadable: newsletter.printReadable,
+      newsletterPrintStyles: newsletter.printStyles,
       consoleErrors,
       pageErrors,
     };
