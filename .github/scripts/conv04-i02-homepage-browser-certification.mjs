@@ -102,6 +102,7 @@ try {
       await newsletterButton.click();
       const modal = page.locator("#brevo-newsletter-modal");
       newsletter.opened = await modal.isVisible();
+      await page.waitForTimeout(120);
       newsletter.focusedEmail = await page.locator("#EMAIL").evaluate((el) => document.activeElement === el).catch(() => false);
       await page.keyboard.press("Escape");
       newsletter.closed = !(await modal.isVisible());
