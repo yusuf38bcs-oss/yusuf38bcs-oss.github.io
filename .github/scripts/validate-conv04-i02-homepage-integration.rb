@@ -51,11 +51,11 @@ else
 end
 
 index = text("index.html")
-%w[
-  "page_id: home"
-  "academic_system: v1"
-  "academic_role: platform_home"
-  "lang: en"
+[
+  "page_id: home",
+  "academic_system: v1",
+  "academic_role: platform_home",
+  "lang: en",
   "robots: index,follow"
 ].each { |needle| require_text(errors, index, needle, "index missing #{needle}") }
 
