@@ -63,6 +63,9 @@ try {
       const main = document.querySelector("#main-content");
       const journey = Array.from(document.querySelectorAll(".lbfl-v3-journey__steps li"));
       const stylesheets = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map((x) => x.getAttribute("href") || "");
+      const scripts = Array.from(document.querySelectorAll("script[src]")).map((x) => x.getAttribute("src") || "");
+      const homepageCss = stylesheets.find((x) => x.includes("/assets/css/homepage-v3.css")) || "";
+      const homepageJs = scripts.find((x) => x.includes("/assets/js/home/homepage-v3.js")) || "";
       return {
         v3: document.documentElement.classList.contains("lbfl-home-v3-document"),
         academicHtml: document.documentElement.classList.contains("lbfl-academic-v1"),
@@ -92,10 +95,30 @@ try {
         hreflangBn: hrefs.some((x) => x.lang === "bn" && /learningbiologyforlife\.org\/bn\/$/.test(x.href || "")),
         hreflangDefault: hrefs.some((x) => x.lang === "x-default" && /learningbiologyforlife\.org\/$/.test(x.href || "")),
         respiratoryCssAbsent: !stylesheets.some((x) => x.includes("respiratory-system.css")),
+        assetRevisionImmutable:
+          /[?&]v=css-[0-9a-f]{12}-js-[0-9a-f]{12}/.test(homepageCss) &&
+          /[?&]v=css-[0-9a-f]{12}-js-[0-9a-f]{12}/.test(homepageJs),
         horizontalOverflow:
           document.documentElement.scrollWidth > window.innerWidth + 2 ||
           document.body.scrollWidth > window.innerWidth + 2,
       };
+    });
+
+    const noJsFallback = await page.evaluate(() => {
+      const root = document.documentElement;
+      const hadNoJs = root.classList.contains("no-js");
+      const hadJs = root.classList.contains("js");
+      root.classList.add("no-js");
+      root.classList.remove("js");
+      const search = document.querySelector(".lbfl-v3-search-button.search__toggle");
+      const newsletter = document.querySelector("[data-brevo-open]");
+      const state = {
+        searchHidden: Boolean(search) && getComputedStyle(search).display === "none",
+        newsletterHidden: Boolean(newsletter) && getComputedStyle(newsletter).display === "none",
+      };
+      if (!hadNoJs) root.classList.remove("no-js");
+      if (hadJs) root.classList.add("js");
+      return state;
     });
 
     const search = { opened: false };
@@ -115,12 +138,28 @@ try {
       printSafe: false,
       printDisplay: null,
       printModalDisplay: null,
+      scrollLocked: false,
+      consentSuppressed: false,
+      bodyEscapeStable: false,
     };
     const newsletterButton = page.locator("[data-brevo-open]");
     if (await newsletterButton.isVisible()) {
       await newsletterButton.click();
       const modal = page.locator("#brevo-newsletter-modal");
       newsletter.opened = await modal.isVisible();
+      newsletter.scrollLocked = await page.evaluate(() => {
+        const htmlOverflow = getComputedStyle(document.documentElement).overflow;
+        const bodyOverflow = getComputedStyle(document.body).overflow;
+        return htmlOverflow === "hidden" && bodyOverflow === "hidden";
+      });
+      newsletter.consentSuppressed = await page.locator("#gdpr-banner").evaluate((el) => {
+        const wasHidden = el.hidden;
+        el.hidden = false;
+        const style = getComputedStyle(el);
+        const suppressed = style.visibility === "hidden" && style.pointerEvents === "none";
+        el.hidden = wasHidden;
+        return suppressed;
+      });
       newsletter.closeSize = await page.locator(".brevo-modal-close").evaluate((el) => {
         const rect = el.getBoundingClientRect();
         return { width: rect.width, height: rect.height };
@@ -143,10 +182,23 @@ try {
       await page.keyboard.press("Escape");
       await page.waitForTimeout(30);
       newsletter.escapeFocusStable = await searchToggle.evaluate((el) => document.activeElement === el).catch(() => false);
+
+      await page.evaluate(() => {
+        document.body.setAttribute("tabindex", "-1");
+        document.body.focus();
+        document.body.removeAttribute("tabindex");
+      });
+      await page.keyboard.press("Escape");
+      await page.waitForTimeout(30);
+      newsletter.bodyEscapeStable = await page.evaluate(() =>
+        document.activeElement === document.body &&
+        document.activeElement !== document.querySelector("[data-brevo-open]")
+      ).catch(() => false);
     }
 
     const checks = {
       ...staticState,
+      noJsFallback,
       searchOpened: search.opened,
       newsletterOpened: newsletter.opened,
       newsletterFocusedEmail: newsletter.focusedEmail,
@@ -156,6 +208,9 @@ try {
       newsletterPrintSafe: newsletter.printSafe,
       newsletterPrintDisplay: newsletter.printDisplay,
       newsletterPrintModalDisplay: newsletter.printModalDisplay,
+      newsletterScrollLocked: newsletter.scrollLocked,
+      newsletterConsentSuppressed: newsletter.consentSuppressed,
+      newsletterBodyEscapeStable: newsletter.bodyEscapeStable,
       consoleErrors,
       pageErrors,
     };
@@ -168,6 +223,9 @@ try {
       checks.academicRole === "platform_home" &&
       checks.logoVisible &&
       checks.logoSrc.includes("/assets/images/logo.png") &&
+      checks.assetRevisionImmutable &&
+      checks.noJsFallback.searchHidden &&
+      checks.noJsFallback.newsletterHidden &&
       checks.searchToggleVisible &&
       checks.searchToggleSize.width >= 44 &&
       checks.searchToggleSize.height >= 44 &&
@@ -180,6 +238,9 @@ try {
       checks.newsletterCloseSize.width >= 44 &&
       checks.newsletterCloseSize.height >= 44 &&
       checks.newsletterEscapeFocusStable &&
+      checks.newsletterBodyEscapeStable &&
+      checks.newsletterScrollLocked &&
+      checks.newsletterConsentSuppressed &&
       checks.newsletterPrintSafe &&
       checks.legal &&
       checks.legalTargets44 &&
