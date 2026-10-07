@@ -264,6 +264,12 @@
   min-height: 44px !important;
 }
 
+.lbfl-home-v3 .brevo-modal-close:focus,
+.lbfl-home-v3 .brevo-modal-close:focus-visible {
+  outline: 3px solid var(--lbfl-platform-focus, var(--v3-aqua-400)) !important;
+  outline-offset: 3px !important;
+}
+
 html.brevo-modal-open,
 body.lbfl-home-v3.brevo-modal-open {
   overflow: hidden !important;
