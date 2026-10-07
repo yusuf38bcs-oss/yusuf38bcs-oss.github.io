@@ -16,7 +16,7 @@
   --v3-white: #ffffff;
   --v3-border: #d5deda;
   --v3-shadow: 0 18px 48px rgba(3, 29, 35, 0.12);
-  --v3-shell: 1200px;
+  --v3-shell: var(--lbfl-platform-shell, 1200px);
   --v3-header: 68px;
   --v3-radius-xl: 24px;
   --v3-radius-lg: 20px;
@@ -24,7 +24,7 @@
   margin: 0;
   background: var(--v3-cream-50);
   color: var(--v3-ink-900);
-  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-family: var(--lbfl-platform-font-sans, Inter, "Segoe UI", Arial, sans-serif);
   font-size: 16px;
   line-height: 1.62;
   text-rendering: optimizeLegibility;
@@ -37,11 +37,12 @@
 .lbfl-home-v3 h1, .lbfl-home-v3 h2, .lbfl-home-v3 h3 { margin: 0; font-family: Manrope, Inter, "Segoe UI", Arial, sans-serif; line-height: 1.08; letter-spacing: -0.025em; }
 .lbfl-home-v3 p { margin: 0; }
 .lbfl-home-v3 :lang(bn) { font-family: "Noto Sans Bengali", "Nirmala UI", "Vrinda", sans-serif; letter-spacing: 0; }
-.lbfl-home-v3 :focus-visible { outline: 3px solid var(--v3-teal-700); outline-offset: 3px; border-radius: 8px; }
+.lbfl-home-v3 :focus-visible { outline: 3px solid var(--lbfl-platform-focus, var(--v3-teal-700)); outline-offset: 3px; border-radius: 8px; }
 .lbfl-v3-brand:focus-visible,
 .lbfl-v3-nav a:focus-visible,
 .lbfl-v3-header__actions > .lbfl-v3-language > summary:focus-visible,
 .lbfl-v3-language-switcher a:focus-visible,
+.lbfl-v3-search-button:focus-visible,
 .lbfl-v3-menu-button:focus-visible,
 .lbfl-v3-hero :focus-visible,
 .lbfl-v3-journey :focus-visible,
@@ -57,13 +58,16 @@
 
 .lbfl-v3-header { position: sticky; top: 0; z-index: 100; min-height: var(--v3-header); background: rgba(3, 29, 35, 0.96); color: var(--v3-white); border-bottom: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(16px); }
 .lbfl-v3-header__inner { min-height: var(--v3-header); display: flex; align-items: center; gap: 24px; }
-.lbfl-v3-brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; }
-.lbfl-v3-brand__mark { display: grid; place-items: center; min-width: 44px; min-height: 44px; border: 1px solid rgba(255,255,255,0.24); border-radius: 50%; color: var(--v3-gold-300); font-size: 0.72rem; letter-spacing: 0.08em; }
-.lbfl-v3-brand__text { font-family: Manrope, Inter, sans-serif; font-size: 0.98rem; }
+.lbfl-v3-brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; color: inherit; }
+.lbfl-v3-brand__logo { width: 44px; height: 44px; flex: 0 0 44px; border: 1px solid rgba(255,255,255,0.24); border-radius: 50%; object-fit: contain; background: rgba(255,255,255,0.03); }
+.lbfl-v3-brand__text { display: inline-flex; align-items: center; font-family: Manrope, Inter, sans-serif; font-size: 0.98rem; }
+.lbfl-v3-brand__short { display: none; }
 .lbfl-v3-nav { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-.lbfl-v3-nav a, .lbfl-v3-header__actions summary, .lbfl-v3-menu-button { display: inline-flex; align-items: center; justify-content: center; padding: 0 12px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
-.lbfl-v3-nav a:hover, .lbfl-v3-header__actions summary:hover { background: rgba(255,255,255,0.09); }
+.lbfl-v3-nav a, .lbfl-v3-header__actions summary, .lbfl-v3-search-button, .lbfl-v3-menu-button { display: inline-flex; align-items: center; justify-content: center; padding: 0 12px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+.lbfl-v3-nav a:hover, .lbfl-v3-header__actions summary:hover, .lbfl-v3-search-button:hover { background: rgba(255,255,255,0.09); }
 .lbfl-v3-header__actions { display: flex; align-items: center; gap: 6px; }
+.lbfl-v3-search-button { border: 0; background: transparent; color: inherit; cursor: pointer; }
+.lbfl-v3-search-icon { font-size: 1.15rem; line-height: 1; }
 .lbfl-v3-language-switcher { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
 .lbfl-v3-language-switcher > span { color: rgba(255,255,255,0.42); }
 .lbfl-v3-language-switcher a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 6px; border-radius: 10px; color: rgba(255,255,255,0.86); text-decoration: none; font-weight: 700; font-size: 0.88rem; }
@@ -167,8 +171,8 @@
 .lbfl-v3-continue__links { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
 .lbfl-v3-continue__links a { display: flex; align-items: center; justify-content: space-between; min-height: 64px; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; text-decoration: none; font-weight: 800; }
 
-.lbfl-v3-footer { padding: 34px 0; background: #02171c; color: #c9d8d6; border-top: 1px solid rgba(255,255,255,0.1); }
-.lbfl-v3-footer__grid { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.lbfl-v3-footer { padding: 34px 0 0; background: #02171c; color: #c9d8d6; border-top: 1px solid rgba(255,255,255,0.1); }
+.lbfl-v3-footer__grid { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-bottom: 34px; }
 .lbfl-v3-footer strong { color: var(--v3-white); font-family: Manrope, Inter, sans-serif; }
 .lbfl-v3-footer p { margin-top: 4px; font-size: 0.88rem; }
 .lbfl-v3-footer nav { display: flex; flex-wrap: wrap; gap: 4px; }
@@ -212,7 +216,7 @@
   .lbfl-v3-language-switcher a { min-width: 44px; padding-inline: 4px; font-size: 0.84rem; }
   .lbfl-v3-hero { padding: 40px 0 56px; }
   .lbfl-v3-hero__grid { grid-template-columns: 1fr; }
-  .lbfl-v3-hero h1 { font-size: clamp(2.45rem, 12.3vw, 3.9rem); }
+  .lbfl-v3-hero h1 { font-size: clamp(2.25rem, 9.8vw, 3.5rem); }
   .lbfl-v3-hero__promise { margin-top: 16px; }
   .lbfl-v3-actions { margin-top: 20px; }
   .lbfl-v3-cycle { margin-top: 20px; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 5px; }
@@ -232,7 +236,7 @@
 @media (max-width: 420px) {
   .lbfl-v3-shell { width: min(calc(100% - 24px), var(--v3-shell)); }
   .lbfl-v3-hero { padding-top: 32px; }
-  .lbfl-v3-hero h1 { font-size: clamp(2.2rem, 11.7vw, 3.1rem); }
+  .lbfl-v3-hero h1 { font-size: clamp(2.05rem, 9.4vw, 2.85rem); }
   .lbfl-v3-hero__brand-line { font-size: 1.12rem; }
   .lbfl-v3-hero__promise { font-size: 0.95rem; line-height: 1.52; }
   .lbfl-v3-actions { display: grid; grid-template-columns: 1fr; gap: 8px; }
@@ -844,6 +848,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 @media (prefers-reduced-motion: reduce) {
   .lbfl-v3-nav a,
   .lbfl-v3-header__actions summary,
+  .lbfl-v3-search-button,
   .lbfl-v3-menu-button,
   .lbfl-v3-button,
   .lbfl-v3-pathway-card,
