@@ -787,7 +787,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   }
 
   .lbfl-v3-hero h1 {
-    font-size: clamp(2.5rem, 12vw, 3.85rem);
+    font-size: clamp(2.25rem, 9.8vw, 3.5rem);
     line-height: 1.03;
   }
 
@@ -831,9 +831,19 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   }
 }
 
+@media (max-width: 340px) {
+  .lbfl-v3-header__inner {
+    gap: 6px;
+  }
+
+  .lbfl-v3-header__actions {
+    gap: 2px;
+  }
+}
+
 @media (max-width: 420px) {
   .lbfl-v3-hero h1 {
-    font-size: clamp(2.25rem, 11.4vw, 3.05rem);
+    font-size: clamp(2.05rem, 9.4vw, 2.85rem);
   }
 
   .lbfl-v3-cycle strong {
