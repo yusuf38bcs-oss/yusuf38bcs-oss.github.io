@@ -856,6 +856,13 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .lbfl-home-v3 .brevo-open-modal-btn,
+  .lbfl-home-v3 .custom-submit-btn {
+    transition-duration: 0.001ms !important;
+    transition-property: none !important;
+    transform: none !important;
+  }
+
   .lbfl-v3-nav a,
   .lbfl-v3-header__actions summary,
   .lbfl-v3-search-button,
