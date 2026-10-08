@@ -241,6 +241,7 @@ try {
       closeFocusCleared: false,
       closeFocusStyle: { style: "", width: 0, offset: 0, color: "" },
       escapeFocusStable: false,
+      escapeScrollStable: false,
       hiddenEscapeNoTriggerSteal: false,
       printSafe: false,
       printDisplay: null,
@@ -317,10 +318,17 @@ try {
       await page.keyboard.press("Escape");
       newsletter.closed = !(await modal.isVisible());
 
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(50);
       await searchToggle.focus();
+      const hiddenEscapeScrollBefore = await page.evaluate(() => ({ x: window.scrollX, y: window.scrollY }));
       await page.keyboard.press("Escape");
-      await page.waitForTimeout(30);
+      await page.waitForTimeout(50);
+      const hiddenEscapeScrollAfter = await page.evaluate(() => ({ x: window.scrollX, y: window.scrollY }));
       newsletter.escapeFocusStable = await searchToggle.evaluate((el) => document.activeElement === el).catch(() => false);
+      newsletter.escapeScrollStable =
+        Math.abs(hiddenEscapeScrollAfter.x - hiddenEscapeScrollBefore.x) <= 1 &&
+        Math.abs(hiddenEscapeScrollAfter.y - hiddenEscapeScrollBefore.y) <= 1;
       newsletter.hiddenEscapeNoTriggerSteal = await page.evaluate(() =>
         document.activeElement !== document.querySelector("[data-brevo-open]")
       ).catch(() => false);
@@ -356,6 +364,7 @@ try {
       newsletterCloseFocusCleared: newsletter.closeFocusCleared,
       newsletterCloseFocusStyle: newsletter.closeFocusStyle,
       newsletterEscapeFocusStable: newsletter.escapeFocusStable,
+      newsletterEscapeScrollStable: newsletter.escapeScrollStable,
       newsletterHiddenEscapeNoTriggerSteal: newsletter.hiddenEscapeNoTriggerSteal,
       newsletterPrintSafe: newsletter.printSafe,
       newsletterPrintDisplay: newsletter.printDisplay,
@@ -397,6 +406,8 @@ try {
       checks.newsletterCloseFocused &&
       checks.newsletterCloseFocusVisible &&
       checks.newsletterCloseFocusCleared &&
+      checks.newsletterEscapeFocusStable &&
+      checks.newsletterEscapeScrollStable &&
       checks.newsletterHiddenEscapeNoTriggerSteal &&
       checks.newsletterBodyHiddenEscapeNoTriggerSteal &&
       checks.newsletterScrollLocked &&

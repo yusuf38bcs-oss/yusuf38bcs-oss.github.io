@@ -90,6 +90,7 @@
       /* Homepage bridge: a closed shared Brevo modal must not steal later Escape focus. */
       (function () {
         var escapeOrigin = null;
+        var escapeScroll = null;
 
         function visible(element) {
           if (!element || !element.isConnected) return false;
@@ -144,22 +145,27 @@
             var modal = document.getElementById('brevo-newsletter-modal');
             if (!modal || !modal.hidden) {
               escapeOrigin = null;
+              escapeScroll = null;
               return;
             }
 
             var active = document.activeElement;
             if (!canRestoreFocus(active)) {
               escapeOrigin = null;
+              escapeScroll = null;
               event.stopImmediatePropagation();
               return;
             }
             escapeOrigin = active;
+            escapeScroll = { x: window.scrollX, y: window.scrollY };
           }, true);
 
           document.addEventListener('keydown', function (event) {
             if (event.key !== 'Escape' || !escapeOrigin) return;
             var origin = escapeOrigin;
+            var scroll = escapeScroll;
             escapeOrigin = null;
+            escapeScroll = null;
             window.setTimeout(function () {
               var modal = document.getElementById('brevo-newsletter-modal');
               var trigger = document.querySelector('[data-brevo-open]');
@@ -169,7 +175,10 @@
               if (origin.closest && origin.closest('.search-content') && !visible(origin)) {
                 target = document.querySelector('.lbfl-v3-search-button.search__toggle');
               }
-              if (visible(target) && typeof target.focus === 'function') target.focus();
+              if (visible(target) && typeof target.focus === 'function') {
+                target.focus({ preventScroll: true });
+              }
+              if (scroll) window.scrollTo(scroll.x, scroll.y);
             }, 0);
           });
         }
