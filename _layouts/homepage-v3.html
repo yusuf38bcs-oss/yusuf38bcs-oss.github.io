@@ -13,7 +13,6 @@
     {% include head/custom.html %}
     <meta name="robots" content="{{ page.robots | default: 'noindex,nofollow' }}">
     <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#06272d">
     <script>
       /* LBFL V3 dialog support prepaint */
       (function () {
@@ -31,8 +30,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ '/assets/css/homepage-v3.css' | relative_url }}?v=v3.5.1-main-4bc3a7e-20260921">
+    <link rel="stylesheet" href="{{ '/assets/css/homepage-v3.css' | relative_url }}?v=css-e77cc47f9963-js-844729453546">
     <style>
+      .no-js .lbfl-v3-search-button,
+      .no-js .brevo-open-modal-btn { display: none !important; }
+
+      .lbfl-home-v3 .brevo-modal-close:focus-visible {
+        outline: 3px solid var(--lbfl-platform-focus, #73d9f2) !important;
+        outline-offset: 3px !important;
+      }
+
       @media (max-width: 1024px) {
         .no-js .lbfl-v3-header__inner { flex-wrap: wrap; padding-block: 8px; }
         .no-js .lbfl-v3-nav { display: flex; order: 3; flex: 1 0 100%; margin-left: 0; overflow-x: auto; }
@@ -59,8 +66,136 @@
     <main id="main-content" class="lbfl-v3-main{% if lbfl_academic_v1 %} lbfl-academic-surface lbfl-academic-role--{{ page.academic_role }}{% endif %}" tabindex="-1"{% if lbfl_academic_v1 %} data-lbfl-academic-surface="v1" data-lbfl-academic-role="{{ page.academic_role }}"{% endif %}>
       {{ content }}
     </main>
+    {% if site.search == true %}
+      <div class="search-content lbfl-v3-search-content" role="search" aria-label="Site search">
+        {% include_cached search/search_form.html %}
+      </div>
+    {% endif %}
+    {% unless page.show_newsletter == false %}
+      {% include body/brevo-marketing.html %}
+      <style id="lbfl-home-v3-brevo-focus-bridge">
+        body.lbfl-home-v3 #brevo-newsletter-modal .brevo-modal-close:focus,
+        body.lbfl-home-v3 #brevo-newsletter-modal .brevo-modal-close:focus-visible {
+          outline-style: solid !important;
+          outline-width: 3px !important;
+          outline-color: var(--lbfl-platform-focus, #73d9f2) !important;
+          outline-offset: 3px !important;
+        }
+      </style>
+    {% endunless %}
     {% include home-v3/footer.html %}
     {% include body/gdpr-banner.html %}
-    <script src="{{ '/assets/js/home/homepage-v3.js' | relative_url }}?v=v3.5.1-main-4bc3a7e-20260921" defer></script>
+    {% include scripts.html %}
+    <script>
+      /* Homepage bridge: a closed shared Brevo modal must not steal later Escape focus. */
+      (function () {
+        var escapeOrigin = null;
+        var escapeScroll = null;
+
+        function visible(element) {
+          if (!element || !element.isConnected) return false;
+          var style = window.getComputedStyle(element);
+          return style.display !== 'none' && style.visibility !== 'hidden' && element.getClientRects().length > 0;
+        }
+
+        function canRestoreFocus(element) {
+          if (!element || element === document.body || element === document.documentElement) return false;
+          if (!element.matches) return false;
+          return element.matches('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+        }
+
+        function bindBrevoAutofocusBridge() {
+          document.querySelectorAll('[data-brevo-open]').forEach(function (button) {
+            button.addEventListener('click', function () {
+              window.setTimeout(function () {
+                var modal = document.getElementById('brevo-newsletter-modal');
+                var email = document.getElementById('EMAIL');
+                if (!modal || modal.hidden || !email || typeof email.focus !== 'function') return;
+                email.focus({ preventScroll: true });
+              }, 0);
+            });
+          });
+        }
+
+        function bindBrevoFocusRingBridge() {
+          var close = document.querySelector('#brevo-newsletter-modal .brevo-modal-close');
+          if (!close) return;
+
+          /* Offset is harmless while outline-style is none, so pin it before focus.
+             This avoids delegated-focus timing/cascade races with the protected Brevo rule. */
+          close.style.setProperty('outline-offset', '3px', 'important');
+
+          close.addEventListener('focus', function () {
+            close.style.setProperty('outline-style', 'solid', 'important');
+            close.style.setProperty('outline-width', '3px', 'important');
+            close.style.setProperty('outline-color', 'var(--lbfl-platform-focus, #73d9f2)', 'important');
+            close.style.setProperty('outline-offset', '3px', 'important');
+          }, true);
+          close.addEventListener('blur', function () {
+            close.style.removeProperty('outline-style');
+            close.style.removeProperty('outline-width');
+            close.style.removeProperty('outline-color');
+            close.style.removeProperty('outline-offset');
+          }, true);
+        }
+
+        function bindBrevoEscapeBridge() {
+          document.addEventListener('keydown', function (event) {
+            if (event.key !== 'Escape') return;
+            var modal = document.getElementById('brevo-newsletter-modal');
+            if (!modal || !modal.hidden) {
+              escapeOrigin = null;
+              escapeScroll = null;
+              return;
+            }
+
+            var active = document.activeElement;
+            if (!canRestoreFocus(active)) {
+              escapeOrigin = null;
+              escapeScroll = null;
+              event.stopImmediatePropagation();
+              return;
+            }
+            escapeOrigin = active;
+            escapeScroll = { x: window.scrollX, y: window.scrollY };
+          }, true);
+
+          document.addEventListener('keydown', function (event) {
+            if (event.key !== 'Escape' || !escapeOrigin) return;
+            var origin = escapeOrigin;
+            var scroll = escapeScroll;
+            escapeOrigin = null;
+            escapeScroll = null;
+            window.setTimeout(function () {
+              var modal = document.getElementById('brevo-newsletter-modal');
+              var trigger = document.querySelector('[data-brevo-open]');
+              if (!modal || !modal.hidden || !trigger || document.activeElement !== trigger) return;
+
+              var target = origin;
+              if (origin.closest && origin.closest('.search-content') && !visible(origin)) {
+                target = document.querySelector('.lbfl-v3-search-button.search__toggle');
+              }
+              if (visible(target) && typeof target.focus === 'function') {
+                target.focus({ preventScroll: true });
+              }
+              if (scroll) window.scrollTo(scroll.x, scroll.y);
+            }, 0);
+          });
+        }
+
+        function bindHomepageBrevoBridges() {
+          bindBrevoAutofocusBridge();
+          bindBrevoFocusRingBridge();
+          bindBrevoEscapeBridge();
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', bindHomepageBrevoBridges);
+        } else {
+          bindHomepageBrevoBridges();
+        }
+      }());
+    </script>
+    <script src="{{ '/assets/js/home/homepage-v3.js' | relative_url }}?v=css-e77cc47f9963-js-844729453546" defer></script>
   </body>
 </html>

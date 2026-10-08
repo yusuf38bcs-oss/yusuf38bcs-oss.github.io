@@ -1,15 +1,77 @@
-<footer class="lbfl-v3-footer" role="contentinfo">
-  <div class="lbfl-v3-shell lbfl-v3-footer__grid">
+<footer class="lbfl-v3-footer lbfl-platform-footer" role="contentinfo">
+  <div class="lbfl-v3-shell lbfl-v3-footer__grid lbfl-platform-footer__primary">
     <div>
       <strong>Learning Biology For Life</strong>
       <p>Scientific learning, critical thinking, and evidence-based explanation.</p>
     </div>
-    <nav aria-label="Footer">
-      <a class="lbfl-v3-target" href="{{ '/about/' | relative_url }}">About</a>
-      <a class="lbfl-v3-target" href="{{ '/editorial-policy/' | relative_url }}">Editorial</a>
-      <a class="lbfl-v3-target" href="{{ '/contact/' | relative_url }}">Contact</a>
-      <a class="lbfl-v3-target" href="{{ '/privacy-policy/' | relative_url }}">Privacy</a>
-      <a class="lbfl-v3-target" href="{{ '/terms-and-conditions/' | relative_url }}">Terms</a>
-    </nav>
   </div>
+  {% include footer/legal-links.html %}
+  <style>
+    .lbfl-home-v3 .footer-legal-links a:focus-visible {
+      transition: none !important;
+      outline-style: solid !important;
+      outline-width: 3px !important;
+      outline-color: var(--lbfl-platform-focus, #73d9f2) !important;
+      outline-offset: 3px !important;
+      border-radius: 6px;
+    }
+
+    @media print {
+      .lbfl-home-v3 .footer-legal-area {
+        background: #fff !important;
+        color: #000 !important;
+      }
+
+      .lbfl-home-v3 .footer-legal-area,
+      .lbfl-home-v3 .footer-legal-area * {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .lbfl-home-v3 .footer-legal-links,
+      .lbfl-home-v3 .footer-copyright-row {
+        border-color: #666 !important;
+      }
+
+      .lbfl-home-v3 .footer-legal-links a,
+      .lbfl-home-v3 .footer-legal-links a:visited,
+      .lbfl-home-v3 .footer-copyright-text,
+      .lbfl-home-v3 .footer-status-indicator {
+        color: #000 !important;
+      }
+
+      .lbfl-home-v3 .footer-status-dot {
+        background: #000 !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+  <script>
+    (function () {
+      function bindHomepageLegalFocusRing() {
+        document.querySelectorAll('.lbfl-home-v3 .footer-legal-links a').forEach(function (link) {
+          link.addEventListener('focus', function () {
+            link.style.setProperty('transition', 'none', 'important');
+            link.style.setProperty('outline-style', 'solid', 'important');
+            link.style.setProperty('outline-width', '3px', 'important');
+            link.style.setProperty('outline-color', 'var(--lbfl-platform-focus, #73d9f2)', 'important');
+            link.style.setProperty('outline-offset', '3px', 'important');
+          }, true);
+          link.addEventListener('blur', function () {
+            link.style.removeProperty('transition');
+            link.style.removeProperty('outline-style');
+            link.style.removeProperty('outline-width');
+            link.style.removeProperty('outline-color');
+            link.style.removeProperty('outline-offset');
+          }, true);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindHomepageLegalFocusRing);
+      } else {
+        bindHomepageLegalFocusRing();
+      }
+    }());
+  </script>
 </footer>

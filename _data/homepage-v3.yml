@@ -1,7 +1,7 @@
-version: "3.5.3-navigation-language-production-candidate"
-status: "current-main-admission-evidence-release-candidate"
+version: "CONV-04I-02-shared-system-candidate"
+status: "isolated-homepage-shared-system-convergence"
 authority:
-  production_base_sha: "aab010145138dbc835fd8625c666ac03aab9f71d"
+  production_base_sha: "2ef87d24d73d733d541fcc624474836d72486b30"
   certified_staging_merge_sha: "e7e54235c15d6671a47bae253011fdec6ba5989a"
   semantic_source_pr: 311
   semantic_source_head_sha: "34ebf5859b64b0c10734bdc111bdd2d0d83a2032"
@@ -18,13 +18,21 @@ architecture:
   visual_direction: "Scientific editorial premium"
   css_owner: "assets/css/homepage-v3.css"
   js_owner: "assets/js/home/homepage-v3.js"
-  asset_revision: "v3.5.3-main-aab01014-20260921"
+  asset_revision: "css-e77cc47f9963-js-844729453546"
   v2_inheritance: false
+  platform_system: "lbfl-platform-visual-system-v1"
+  academic_system: "v1"
+  academic_role: "platform_home"
+  shared_identity: "brand/lbfl-identity.html"
+  shared_search: true
+  shared_newsletter: "body/brevo-marketing.html"
+  shared_legal_footer: "footer/legal-links.html"
 constraints:
   root_activation: true
   worker_mutation: false
   adsense_cmp_mutation: false
   shared_layout_mutation: false
+  homepage_v3_layout_mutation: true
   course_content_mutation: false
 accessibility:
   project_target_minimum_px: 44

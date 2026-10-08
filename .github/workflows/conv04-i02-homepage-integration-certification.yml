@@ -1,0 +1,170 @@
+name: CONV-04I-02 Homepage Integration Certification
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "index.html"
+      - "_layouts/homepage-v3.html"
+      - "_includes/home-v3/header.html"
+      - "_includes/home-v3/footer.html"
+      - "_includes/home-v3/journey.html"
+      - "_data/homepage.yml"
+      - "_data/homepage-v3.yml"
+      - "assets/css/homepage-v3.css"
+      - "assets/js/home/homepage-v3.js"
+      - "assets/css/lbfl-platform-system.css"
+      - "assets/css/academic-design-system.css"
+      - "assets/css/main.scss"
+      - "assets/css/synaptic-overrides.css"
+      - "assets/css/production-hotfix.css"
+      - "_sass/**"
+      - "_includes/brand/lbfl-identity.html"
+      - "_includes/body/brevo-marketing.html"
+      - "_includes/body/gdpr-banner.html"
+      - "_includes/footer/legal-links.html"
+      - "_includes/head.html"
+      - "_includes/head/**"
+      - "_config.yml"
+      - "assets/images/logo.png"
+      - "Gemfile"
+      - "Gemfile.lock"
+      - "docs/homepage-v3/**"
+      - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
+      - "docs/academic/conv04/CONV04_STATE.md"
+      - "docs/academic/conv04/CONV04_I01_FORENSIC_CENSUS.md"
+      - ".github/scripts/validate-conv04-i02-homepage-integration.rb"
+      - ".github/scripts/conv04-i02-homepage-browser-certification.mjs"
+      - ".github/workflows/conv04-i02-homepage-integration-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: conv04-i02-homepage-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: Exact-head shared-system convergence
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      AUTHORIZED_BASE: 2ef87d24d73d733d541fcc624474836d72486b30
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
+      I02_SCOPE_CANDIDATE: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 456 && 'true' || 'false' }}
+
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Authenticate exact event range and I-02 authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            test -n "$PR_BASE_SHA"
+
+            if [[ "$I02_SCOPE_CANDIDATE" == "true" ]]; then
+              test "$PR_BASE_SHA" = "$AUTHORIZED_BASE"
+              git merge-base --is-ancestor "$AUTHORIZED_BASE" "$PR_HEAD_SHA"
+            else
+              echo "Ongoing Homepage dependency regression uses the current event range: $PR_BASE_SHA...$PR_HEAD_SHA"
+            fi
+
+            git diff --check "$PR_BASE_SHA...$PR_HEAD_SHA"
+          else
+            git diff --check HEAD^...HEAD
+          fi
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Install Ruby dependencies
+        run: |
+          bundle config set --local frozen 'false'
+          bundle install
+
+      - name: Validate Homepage asset revision
+        env:
+          CERTIFICATION_MODE: asset_digest
+        run: ruby .github/scripts/validate-conv04-i02-homepage-integration.rb
+
+      - name: Run one-time I-02 scope contract
+        if: env.I02_SCOPE_CANDIDATE == 'true'
+        env:
+          CERTIFICATION_MODE: pull_request
+          PR_BASE_SHA: ${{ env.PR_BASE_SHA }}
+        run: ruby .github/scripts/validate-conv04-i02-homepage-integration.rb
+
+      - name: Run retained Homepage contracts
+        run: |
+          ruby .github/scripts/validate-academic-surface-contract.rb
+          ruby .github/scripts/validate-academic-design-system.rb
+          ruby .github/scripts/validate-platform-visual-system.rb
+
+      - name: Build production Jekyll site
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bundle exec jekyll build --trace
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install browser runtime
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Serve exact build
+        shell: bash
+        run: |
+          python3 -m http.server 4000 --directory _site > /tmp/lbfl-i02-server.log 2>&1 &
+          echo $! > /tmp/lbfl-i02-server.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error http://127.0.0.1:4000/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/lbfl-i02-server.log
+          exit 1
+
+      - name: Certify shared-system integration
+        env:
+          LBFL_I02_URL: http://127.0.0.1:4000/
+          LBFL_I02_REPORT_DIR: conv04-i02-browser-report
+        run: node .github/scripts/conv04-i02-homepage-browser-certification.mjs
+
+      - name: Retain full Homepage responsive certification
+        env:
+          LBFL_HOMEPAGE_URL: http://127.0.0.1:4000/
+          LBFL_REPORT_DIR: homepage-responsive-layout-report
+        run: node .github/scripts/homepage-responsive-layout-certification.cjs
+
+      - name: Preserve certification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conv04-i02-homepage-${{ env.PR_HEAD_SHA }}
+          path: |
+            conv04-i02-browser-report/
+            homepage-responsive-layout-report/
+            academic-surface-contract-report.json
+          if-no-files-found: warn
+          retention-days: 30

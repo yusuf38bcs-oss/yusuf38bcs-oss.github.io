@@ -1,9 +1,6 @@
 <header class="lbfl-v3-header" data-v3-header>
   <div class="lbfl-v3-shell lbfl-v3-header__inner">
-    <a class="lbfl-v3-brand lbfl-v3-target" href="{{ '/' | relative_url }}" aria-label="Learning Biology For Life home">
-      <span class="lbfl-v3-brand__mark" aria-hidden="true">LBFL</span>
-      <span class="lbfl-v3-brand__text">Learning Biology For Life</span>
-    </a>
+    {% include brand/lbfl-identity.html class="lbfl-v3-brand lbfl-v3-target" logo_class="lbfl-v3-brand__logo" title_class="lbfl-v3-brand__text" full_class="lbfl-v3-brand__full" short_class="lbfl-v3-brand__short" %}
 
     <nav class="lbfl-v3-nav" aria-label="Primary">
       <a class="lbfl-v3-target" href="{{ '/biology/' | relative_url }}">Biology</a>
@@ -15,6 +12,12 @@
     </nav>
 
     <div class="lbfl-v3-header__actions">
+      {% if site.search == true %}
+        <button class="lbfl-v3-search-button lbfl-v3-target search__toggle lbfl-search-toggle" type="button" aria-label="Toggle search">
+          <span class="lbfl-v3-search-icon" aria-hidden="true">⌕</span>
+          <span class="lbfl-v3-visually-hidden">Search</span>
+        </button>
+      {% endif %}
       <nav class="lbfl-v3-language-switcher" aria-label="Language">
         <a class="lbfl-v3-target is-current" href="{{ '/' | relative_url }}" hreflang="en" lang="en" aria-current="page">EN</a>
         <span aria-hidden="true">|</span>

@@ -5,7 +5,9 @@
   "generated_from": {
     "source_audit": "CONV-04A0/A1 exact-SHA repository census",
     "live_audit": "CONV-04A2 10-route TinyFish canary; 10/10 fetched, 0 errors",
-    "audit_date": "2026-10-01"
+    "audit_date": "2026-10-01",
+    "homepage_i02": "CONV-04I-02 exact-base convergence from 2ef87d24d73d733d541fcc624474836d72486b30",
+    "homepage_i02_audit_date": "2026-10-07"
   },
   "enforcement_model": {
     "states": [
@@ -76,12 +78,8 @@
       "boundary_owner": "none",
       "learning_guide_owner": "platform",
       "assessment_owner": "mcq-arena",
-      "enforcement": "progressive",
-      "source_debt": [
-        "missing_academic_role",
-        "missing_academic_system",
-        "stale_homepage_course_count"
-      ],
+      "enforcement": "strict",
+      "source_debt": [],
       "live_debt": []
     },
     {

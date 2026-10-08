@@ -1,20 +1,20 @@
-version: 6
-status: critical-thinking-narrative-draft
+version: 7
+status: conv04-i02-shared-system-candidate
 render_enabled: true
-baseline_date: "2026-08-04"
-baseline_commit: "c1b9c184711f826b0b422a78fbceeb642c44b9e4"
-base_branch: homepage/premium-product-experience-v1b
+baseline_date: "2026-10-07"
+baseline_commit: "2ef87d24d73d733d541fcc624474836d72486b30"
+base_branch: conv04-i02-homepage-shared-system
 
 implementation:
-  phase: "Critical-Thinking Narrative v2"
+  phase: "CONV-04I-02 Homepage Shared-System Convergence"
   foundation_ready: true
   activated: true
-  render_strategy: "stacked-draft-preview-first"
-  base_commit: "c1b9c184711f826b0b422a78fbceeb642c44b9e4"
-  branch: "homepage/critical-thinking-narrative-v2"
-  css_source: "_includes/head/homepage-v2-narrative.html"
-  javascript_source: "assets/js/home/homepage-v2.js"
-  javascript_loading: "deferred-optional"
+  render_strategy: "production-root-homepage-v3"
+  base_commit: "2ef87d24d73d733d541fcc624474836d72486b30"
+  branch: "conv04-i02-homepage-shared-system"
+  css_source: "assets/css/homepage-v3.css"
+  javascript_source: "assets/js/home/homepage-v3.js"
+  javascript_loading: "deferred"
 
 identity:
   name: "Learning Biology For Life"
@@ -72,9 +72,9 @@ featured_route:
   enabled: true
   eyebrow: "Featured connected journey"
   title: "Inside the Cell"
-  title_accent: "Six Functions. One Living System."
-  summary: "Follow the cell from organisation and selective exchange to protein production, internal transport, molecular processing and usable energy."
-  lesson_count: 6
+  title_accent: "Eight Functions. One Living System."
+  summary: "Follow the cell from organisation and selective exchange through protein production, internal transport, molecular processing, usable energy, structural support and photosynthetic energy capture."
+  lesson_count: 8
   chapter_url: "/biology/hsc-corner/botany/chapter-01-cell-and-its-structure/"
   start_url: "/biology/hsc-corner/botany/lecture-01-cell-protoplasm-cell-theory/"
   flow:
@@ -84,10 +84,12 @@ featured_route:
     - "Transport"
     - "Processing"
     - "Energy"
+    - "Support and storage"
+    - "Light capture"
 
 latest_learning:
   mode: explicit-curation
-  maximum_items: 6
+  maximum_items: 8
   selection_policy: "Render only the explicitly listed learner-facing items below. Do not mutate lesson or collection front matter for homepage eligibility."
   items:
     - id: cell-protoplasm-cell-theory
@@ -132,6 +134,20 @@ latest_learning:
       question: "How do mitochondria release usable energy?"
       pathway: "HSC Botany"
       url: "/biology/hsc-corner/botany/lecture-06-mitochondria/"
+    - id: cell-wall-vacuole
+      title: "Cell Wall and Vacuole"
+      label: "Lecture 07"
+      function: "Support, storage and turgor"
+      question: "How do the cell wall and vacuole work together to support a plant cell?"
+      pathway: "HSC Botany"
+      url: "/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/"
+    - id: plastid-chloroplast
+      title: "Plastid and Chloroplast"
+      label: "Lecture 08"
+      function: "Light capture and carbon fixation"
+      question: "How does chloroplast structure organize photosynthetic energy conversion?"
+      pathway: "HSC Botany"
+      url: "/biology/hsc-corner/botany/lecture-08-plastid-chloroplast/"
   forbidden_collections:
     - redirects
   exclude_internal_paths:
@@ -210,36 +226,45 @@ reflection_lab:
 
 release_contract:
   worker: "lbfl-ai-deploy-orchestrator"
-  worker_mode: "homepage-dry-run-certified"
+  worker_mode: "homepage-shared-system-certified"
   direct_main_write: false
-  target_base_branch: staging
+  target_base_branch: main
   merge_by_worker: false
   expected_head_guard: true
   manual_ads_in_homepage: false
   legal_routes_immutable: true
   required_gates:
-    - "Validate Jekyll PR"
+    - "CONV-04I-02 Homepage Integration Certification"
+    - "Homepage Responsive Layout Certification"
+    - "AdSense Exact-Head Browser Certification"
     - "Sovereign Site Audit v4"
-    - "Cloudflare preview"
-    - "Six-viewport visual QA"
-    - "Accessibility and keyboard QA"
-    - "Route and canonical smoke test"
+    - "Academic Surface Contract"
+    - "Platform Visual System"
+    - "exact-head Cloudflare Pages preview"
+    - "zero unresolved review threads"
+    - "Trusted Governance"
 
 allowed_homepage_paths:
   - "index.html"
-  - "_includes/home/"
-  - "_includes/head/homepage-v2-narrative.html"
-  - "_includes/footer.html"
+  - "_layouts/homepage-v3.html"
+  - "_includes/home-v3/header.html"
+  - "_includes/home-v3/footer.html"
+  - "_includes/home-v3/journey.html"
   - "_data/homepage.yml"
-  - "_layouts/default.html"
-  - "_sass/pages/_homepage-v2.scss"
-  - "assets/js/home/homepage-v2.js"
-  - "assets/images/home/"
-  - ".github/ops/HOMEPAGE_"
+  - "_data/homepage-v3.yml"
+  - "assets/css/homepage-v3.css"
+  - "docs/homepage-v3/DESIGN-CONTRACT.md"
+  - "docs/homepage-v3/ROUTE-MANIFEST.md"
+  - "docs/homepage-v3/VISUAL-REGRESSION-MANIFEST.md"
+  - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
+  - "docs/academic/conv04/CONV04_STATE.md"
+  - "docs/academic/conv04/CONV04_I01_FORENSIC_CENSUS.md"
+  - ".github/scripts/validate-conv04-i02-homepage-integration.rb"
+  - ".github/scripts/conv04-i02-homepage-browser-certification.mjs"
+  - ".github/workflows/conv04-i02-homepage-integration-certification.yml"
 
 forbidden_paths:
   - "_config.yml"
-  - ".github/workflows/"
   - "Gemfile"
   - "Gemfile.lock"
   - "package.json"
