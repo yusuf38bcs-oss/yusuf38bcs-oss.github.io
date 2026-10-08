@@ -162,6 +162,33 @@ try {
     });
     await page.emulateMedia({ media: "screen" });
 
+    const legalFocus = {
+      focused: false,
+      visible: false,
+      style: { style: "", width: 0, offset: 0, color: "" },
+    };
+    const firstLegalLink = page.locator(".footer-legal-links a").first();
+    if (await firstLegalLink.isVisible()) {
+      await firstLegalLink.focus();
+      await page.keyboard.press("Shift+Tab");
+      await page.keyboard.press("Tab");
+      legalFocus.focused = await firstLegalLink.evaluate((el) => document.activeElement === el).catch(() => false);
+      legalFocus.style = await firstLegalLink.evaluate((el) => {
+        const style = getComputedStyle(el);
+        return {
+          style: style.outlineStyle,
+          width: Number.parseFloat(style.outlineWidth) || 0,
+          offset: Number.parseFloat(style.outlineOffset) || 0,
+          color: style.outlineColor,
+        };
+      }).catch(() => ({ style: "", width: 0, offset: 0, color: "" }));
+      legalFocus.visible =
+        legalFocus.focused &&
+        legalFocus.style.style !== "none" &&
+        legalFocus.style.width >= 3 &&
+        legalFocus.style.offset >= 3;
+    }
+
     const noJsFallback = await page.evaluate(() => {
       const root = document.documentElement;
       const hadNoJs = root.classList.contains("no-js");
@@ -282,6 +309,9 @@ try {
     const checks = {
       ...staticState,
       legalPrint,
+      legalFocusFocused: legalFocus.focused,
+      legalFocusVisible: legalFocus.visible,
+      legalFocusStyle: legalFocus.style,
       noJsFallback,
       searchOpened: search.opened,
       newsletterOpened: newsletter.opened,
@@ -314,6 +344,8 @@ try {
       checks.logoSrc.includes("/assets/images/logo.png") &&
       checks.assetRevisionImmutable &&
       checks.legalPrint.safe &&
+      checks.legalFocusFocused &&
+      checks.legalFocusVisible &&
       checks.noJsFallback.searchHidden &&
       checks.noJsFallback.newsletterHidden &&
       checks.searchToggleVisible &&

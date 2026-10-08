@@ -146,6 +146,9 @@ require_text(
 )
 
 browser_certification = text(".github/scripts/conv04-i02-homepage-browser-certification.mjs")
+require_text(errors, browser_certification, "legalFocusFocused", "Browser certification does not prove keyboard focus reaches an imported legal link")
+require_text(errors, browser_certification, "legalFocusVisible", "Browser certification does not prove imported legal-link focus visibility")
+require_text(errors, browser_certification, "legalFocusStyle", "Browser certification does not capture imported legal-link computed focus style")
 require_text(errors, browser_certification, "newsletterCloseFocused", "Browser certification does not prove keyboard focus reaches Brevo close control")
 require_text(errors, browser_certification, "newsletterCloseFocusVisible", "Browser certification does not prove Brevo close focus visibility")
 require_text(errors, browser_certification, "newsletterHiddenEscapeNoTriggerSteal", "Browser certification does not prove hidden Brevo Escape avoids newsletter-trigger focus theft")
@@ -159,6 +162,9 @@ require_text(errors, footer, "@media print", "Homepage legal-footer print bridge
 require_text(errors, footer, ".lbfl-home-v3 .footer-legal-area", "Homepage print legal-area owner missing")
 require_text(errors, footer, "background: #fff !important;", "Homepage print legal-area background normalization missing")
 require_text(errors, footer, ".lbfl-home-v3 .footer-legal-links a", "Homepage print legal-link owner missing")
+require_text(errors, footer, ".lbfl-home-v3 .footer-legal-links a:focus-visible", "Homepage legal-link focus-visible bridge missing")
+require_text(errors, footer, "outline: 3px solid var(--lbfl-platform-focus, #73d9f2) !important;", "Homepage legal-link focus ring is not enforced")
+require_text(errors, footer, "outline-offset: 3px !important;", "Homepage legal-link focus offset is not enforced")
 require_text(errors, footer, "transition: none !important;", "Homepage print legal transition reset missing")
 
 journey = text("_includes/home-v3/journey.html")

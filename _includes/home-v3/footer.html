@@ -7,6 +7,12 @@
   </div>
   {% include footer/legal-links.html %}
   <style>
+    .lbfl-home-v3 .footer-legal-links a:focus-visible {
+      outline: 3px solid var(--lbfl-platform-focus, #73d9f2) !important;
+      outline-offset: 3px !important;
+      border-radius: 6px;
+    }
+
     @media print {
       .lbfl-home-v3 .footer-legal-area {
         background: #fff !important;
