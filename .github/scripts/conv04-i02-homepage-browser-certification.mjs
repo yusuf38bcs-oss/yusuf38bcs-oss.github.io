@@ -223,12 +223,21 @@ try {
       return state;
     });
 
-    const search = { opened: false };
+    const search = { opened: false, autofocusSettled: false, closed: false };
     const searchToggle = page.locator(".lbfl-v3-search-button.search__toggle");
     if (await searchToggle.isVisible()) {
       await searchToggle.click();
       search.opened = await page.locator(".search-content").isVisible().catch(() => false);
-      await page.keyboard.press("Escape").catch(() => {});
+      // The shared theme schedules search autofocus 400ms after opening.
+      // Finish that interaction before testing hidden-newsletter Escape;
+      // otherwise its pending callback can move focus/scroll during that test.
+      await page.waitForFunction(() =>
+        document.activeElement?.matches(".search-content input")
+      );
+      search.autofocusSettled = true;
+      await searchToggle.click();
+      await page.locator(".search-content").waitFor({ state: "hidden" });
+      search.closed = true;
     }
 
     const newsletter = {
@@ -242,6 +251,10 @@ try {
       closeFocusStyle: { style: "", width: 0, offset: 0, color: "" },
       escapeFocusStable: false,
       escapeScrollStable: false,
+      escapeStartedAwayFromFooter: false,
+      escapeScrollBefore: null,
+      escapeScrollAfter: null,
+      escapeFocusAfter: null,
       hiddenEscapeNoTriggerSteal: false,
       printSafe: false,
       printDisplay: null,
@@ -322,9 +335,20 @@ try {
       await page.waitForTimeout(50);
       await searchToggle.focus();
       const hiddenEscapeScrollBefore = await page.evaluate(() => ({ x: window.scrollX, y: window.scrollY }));
+      newsletter.escapeStartedAwayFromFooter = await page.evaluate(() =>
+        window.scrollY <= 1 &&
+        document.querySelector("[data-brevo-open]").getBoundingClientRect().top > window.innerHeight
+      );
       await page.keyboard.press("Escape");
       await page.waitForTimeout(50);
       const hiddenEscapeScrollAfter = await page.evaluate(() => ({ x: window.scrollX, y: window.scrollY }));
+      newsletter.escapeScrollBefore = hiddenEscapeScrollBefore;
+      newsletter.escapeScrollAfter = hiddenEscapeScrollAfter;
+      newsletter.escapeFocusAfter = await page.evaluate(() => ({
+        tag: document.activeElement?.tagName,
+        id: document.activeElement?.id,
+        className: document.activeElement?.className,
+      }));
       newsletter.escapeFocusStable = await searchToggle.evaluate((el) => document.activeElement === el).catch(() => false);
       newsletter.escapeScrollStable =
         Math.abs(hiddenEscapeScrollAfter.x - hiddenEscapeScrollBefore.x) <= 1 &&
@@ -355,6 +379,8 @@ try {
       legalFocusStyle: legalFocus.style,
       noJsFallback,
       searchOpened: search.opened,
+      searchAutofocusSettled: search.autofocusSettled,
+      searchClosedBeforeNewsletter: search.closed,
       newsletterOpened: newsletter.opened,
       newsletterFocusedEmail: newsletter.focusedEmail,
       newsletterClosed: newsletter.closed,
@@ -365,6 +391,10 @@ try {
       newsletterCloseFocusStyle: newsletter.closeFocusStyle,
       newsletterEscapeFocusStable: newsletter.escapeFocusStable,
       newsletterEscapeScrollStable: newsletter.escapeScrollStable,
+      newsletterEscapeStartedAwayFromFooter: newsletter.escapeStartedAwayFromFooter,
+      newsletterEscapeScrollBefore: newsletter.escapeScrollBefore,
+      newsletterEscapeScrollAfter: newsletter.escapeScrollAfter,
+      newsletterEscapeFocusAfter: newsletter.escapeFocusAfter,
       newsletterHiddenEscapeNoTriggerSteal: newsletter.hiddenEscapeNoTriggerSteal,
       newsletterPrintSafe: newsletter.printSafe,
       newsletterPrintDisplay: newsletter.printDisplay,
@@ -396,6 +426,8 @@ try {
       checks.searchToggleSize.width >= 44 &&
       checks.searchToggleSize.height >= 44 &&
       checks.searchOpened &&
+      checks.searchAutofocusSettled &&
+      checks.searchClosedBeforeNewsletter &&
       checks.newsletterVisible &&
       checks.newsletterButtonVisible &&
       checks.newsletterOpened &&
@@ -408,6 +440,7 @@ try {
       checks.newsletterCloseFocusCleared &&
       checks.newsletterEscapeFocusStable &&
       checks.newsletterEscapeScrollStable &&
+      checks.newsletterEscapeStartedAwayFromFooter &&
       checks.newsletterHiddenEscapeNoTriggerSteal &&
       checks.newsletterBodyHiddenEscapeNoTriggerSteal &&
       checks.newsletterScrollLocked &&
