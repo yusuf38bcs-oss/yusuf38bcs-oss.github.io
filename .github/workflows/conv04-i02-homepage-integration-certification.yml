@@ -97,6 +97,11 @@ jobs:
           bundle config set --local frozen 'false'
           bundle install
 
+      - name: Validate Homepage asset revision
+        env:
+          CERTIFICATION_MODE: asset_digest
+        run: ruby .github/scripts/validate-conv04-i02-homepage-integration.rb
+
       - name: Run one-time I-02 scope contract
         if: env.I02_SCOPE_CANDIDATE == 'true'
         env:

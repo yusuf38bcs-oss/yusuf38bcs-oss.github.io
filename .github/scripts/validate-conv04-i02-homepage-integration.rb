@@ -38,6 +38,32 @@ def require_text(errors, source, needle, message)
   errors << message unless source.include?(needle)
 end
 
+def validate_asset_revision(errors)
+  v3 = text("_data/homepage-v3.yml")
+  layout = text("_layouts/homepage-v3.html")
+  css_blob, css_blob_status = Open3.capture2("git", "-C", ROOT.to_s, "hash-object", "assets/css/homepage-v3.css")
+  js_blob, js_blob_status = Open3.capture2("git", "-C", ROOT.to_s, "hash-object", "assets/js/home/homepage-v3.js")
+
+  if css_blob_status.success? && js_blob_status.success?
+    expected_asset_revision = "css-#{css_blob.strip[0, 12]}-js-#{js_blob.strip[0, 12]}"
+    require_text(errors, v3, "asset_revision: \"#{expected_asset_revision}\"", "Homepage V3 asset revision is not content-addressed")
+    require_text(errors, layout, "?v=#{expected_asset_revision}", "Homepage asset URLs do not use the content-addressed revision")
+  else
+    errors << "Unable to compute Homepage CSS/JS blob identities"
+  end
+end
+
+if ENV["CERTIFICATION_MODE"] == "asset_digest"
+  asset_errors = []
+  validate_asset_revision(asset_errors)
+  puts JSON.pretty_generate(
+    "schema" => "lbfl-homepage-asset-revision-v1",
+    "errors" => asset_errors,
+    "result" => asset_errors.empty? ? "PASS" : "FAIL"
+  )
+  exit(asset_errors.empty? ? 0 : 1)
+end
+
 stdout, status = Open3.capture2e("git", "-C", ROOT.to_s, "diff", "--name-only", "#{BASE}...HEAD")
 if status.success?
   changed = stdout.lines.map(&:strip).reject(&:empty?).sort
@@ -92,6 +118,8 @@ require_text(errors, layout, "function bindBrevoAutofocusBridge()", "Homepage Br
 require_text(errors, layout, "email.focus({ preventScroll: true });", "Homepage Brevo deterministic autofocus missing")
 require_text(errors, layout, "function bindBrevoFocusRingBridge()", "Homepage Brevo runtime focus-ring bridge missing")
 require_text(errors, layout, "close.style.setProperty('outline-offset', '3px', 'important');", "Homepage Brevo runtime focus offset is not enforced")
+require_text(errors, layout, "close.addEventListener('blur'", "Homepage Brevo focus cleanup handler missing")
+require_text(errors, layout, "close.style.removeProperty('outline-offset');", "Homepage Brevo focus cleanup does not remove runtime offset")
 errors << "Homepage retains stale fixed V3 asset revision" if layout.include?("v3.5.1-main-4bc3a7e-20260921")
 errors << "Homepage layout duplicates legacy theme-color override" if layout.include?('<meta name="theme-color" content="#06272d">')
 
@@ -144,13 +172,17 @@ require_text(
   'git merge-base --is-ancestor "$AUTHORIZED_BASE" "$PR_HEAD_SHA"',
   "Frozen I-02 candidate lost strict authorized-base ancestry check"
 )
+require_text(errors, workflow, "name: Validate Homepage asset revision", "Homepage workflow lacks ongoing asset digest validation step")
+require_text(errors, workflow, "CERTIFICATION_MODE: asset_digest", "Homepage workflow does not invoke asset digest validation mode")
 
 browser_certification = text(".github/scripts/conv04-i02-homepage-browser-certification.mjs")
 require_text(errors, browser_certification, "legalFocusFocused", "Browser certification does not prove keyboard focus reaches an imported legal link")
 require_text(errors, browser_certification, "legalFocusVisible", "Browser certification does not prove imported legal-link focus visibility")
+require_text(errors, browser_certification, "legalFocusCleared", "Browser certification does not prove imported legal-link focus cleanup")
 require_text(errors, browser_certification, "legalFocusStyle", "Browser certification does not capture imported legal-link computed focus style")
 require_text(errors, browser_certification, "newsletterCloseFocused", "Browser certification does not prove keyboard focus reaches Brevo close control")
 require_text(errors, browser_certification, "newsletterCloseFocusVisible", "Browser certification does not prove Brevo close focus visibility")
+require_text(errors, browser_certification, "newsletterCloseFocusCleared", "Browser certification does not prove Brevo close focus cleanup")
 require_text(errors, browser_certification, "newsletterHiddenEscapeNoTriggerSteal", "Browser certification does not prove hidden Brevo Escape avoids newsletter-trigger focus theft")
 require_text(errors, browser_certification, "newsletterBodyHiddenEscapeNoTriggerSteal", "Browser certification does not prove body-origin hidden Escape avoids newsletter-trigger focus theft")
 require_text(errors, browser_certification, 'page.keyboard.press("Shift+Tab")', "Browser certification does not exercise keyboard focus on Brevo close control")
@@ -170,6 +202,8 @@ require_text(errors, footer, "outline-offset: 3px !important;", "Homepage legal-
 require_text(errors, footer, "transition: none !important;", "Homepage legal-link transition suppression missing")
 require_text(errors, footer, "function bindHomepageLegalFocusRing()", "Homepage legal-link runtime focus bridge missing")
 require_text(errors, footer, "link.style.setProperty('outline-offset', '3px', 'important');", "Homepage legal-link runtime focus offset is not enforced")
+require_text(errors, footer, "link.addEventListener('blur'", "Homepage legal-link focus cleanup handler missing")
+require_text(errors, footer, "link.style.removeProperty('outline-offset');", "Homepage legal-link focus cleanup does not remove runtime offset")
 
 journey = text("_includes/home-v3/journey.html")
 require_text(errors, journey, "featured_route.lesson_count", "Journey aria-label is not data-bound")
@@ -187,15 +221,7 @@ require_text(errors, v3, BASE, "Homepage V3 authority is not bound to I-02 base"
 require_text(errors, v3, 'platform_system: "lbfl-platform-visual-system-v1"', "Homepage V3 platform system binding missing")
 require_text(errors, v3, 'academic_role: "platform_home"', "Homepage V3 role binding missing")
 require_text(errors, v3, 'shared_newsletter: "body/brevo-marketing.html"', "Homepage V3 newsletter ownership missing")
-css_blob, css_blob_status = Open3.capture2("git", "-C", ROOT.to_s, "hash-object", "assets/css/homepage-v3.css")
-js_blob, js_blob_status = Open3.capture2("git", "-C", ROOT.to_s, "hash-object", "assets/js/home/homepage-v3.js")
-if css_blob_status.success? && js_blob_status.success?
-  expected_asset_revision = "css-#{css_blob.strip[0, 12]}-js-#{js_blob.strip[0, 12]}"
-  require_text(errors, v3, "asset_revision: \"#{expected_asset_revision}\"", "Homepage V3 asset revision is not content-addressed")
-  require_text(errors, layout, "?v=#{expected_asset_revision}", "Homepage asset URLs do not use the content-addressed revision")
-else
-  errors << "Unable to compute Homepage CSS/JS blob identities"
-end
+validate_asset_revision(errors)
 
 css = text("assets/css/homepage-v3.css")
 require_text(errors, css, "var(--lbfl-platform-shell", "Homepage CSS does not consume platform shell token")

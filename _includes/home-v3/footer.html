@@ -57,6 +57,13 @@
             link.style.setProperty('outline-color', 'var(--lbfl-platform-focus, #73d9f2)', 'important');
             link.style.setProperty('outline-offset', '3px', 'important');
           }, true);
+          link.addEventListener('blur', function () {
+            link.style.removeProperty('transition');
+            link.style.removeProperty('outline-style');
+            link.style.removeProperty('outline-width');
+            link.style.removeProperty('outline-color');
+            link.style.removeProperty('outline-offset');
+          }, true);
         });
       }
 

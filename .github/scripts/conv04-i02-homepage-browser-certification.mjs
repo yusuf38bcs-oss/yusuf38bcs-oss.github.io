@@ -165,6 +165,7 @@ try {
     const legalFocus = {
       focused: false,
       visible: false,
+      cleared: false,
       style: { style: "", width: 0, offset: 0, color: "" },
     };
     const firstLegalLink = page.locator(".footer-legal-links a").first();
@@ -187,6 +188,22 @@ try {
         legalFocus.style.style !== "none" &&
         legalFocus.style.width >= 3 &&
         legalFocus.style.offset >= 3;
+      await page.keyboard.press("Tab");
+      legalFocus.cleared = await firstLegalLink.evaluate((el) => {
+        const computed = getComputedStyle(el);
+        const inlineFocusProperties = [
+          "transition",
+          "outline-style",
+          "outline-width",
+          "outline-color",
+          "outline-offset",
+        ];
+        return (
+          document.activeElement !== el &&
+          inlineFocusProperties.every((property) => el.style.getPropertyValue(property) === "") &&
+          (computed.outlineStyle === "none" || (Number.parseFloat(computed.outlineWidth) || 0) === 0)
+        );
+      }).catch(() => false);
     }
 
     const noJsFallback = await page.evaluate(() => {
@@ -221,6 +238,7 @@ try {
       closeSize: { width: 0, height: 0 },
       closeFocused: false,
       closeFocusVisible: false,
+      closeFocusCleared: false,
       closeFocusStyle: { style: "", width: 0, offset: 0, color: "" },
       escapeFocusStable: false,
       hiddenEscapeNoTriggerSteal: false,
@@ -273,6 +291,20 @@ try {
         newsletter.closeFocusStyle.width >= 3 &&
         newsletter.closeFocusStyle.offset >= 3;
       await page.locator("#EMAIL").focus();
+      newsletter.closeFocusCleared = await page.locator(".brevo-modal-close").evaluate((el) => {
+        const computed = getComputedStyle(el);
+        const inlineFocusProperties = [
+          "outline-style",
+          "outline-width",
+          "outline-color",
+          "outline-offset",
+        ];
+        return (
+          document.activeElement !== el &&
+          inlineFocusProperties.every((property) => el.style.getPropertyValue(property) === "") &&
+          (computed.outlineStyle === "none" || (Number.parseFloat(computed.outlineWidth) || 0) === 0)
+        );
+      }).catch(() => false);
 
       await page.emulateMedia({ media: "print" });
       newsletter.printDisplay = await page.locator("#newsletter").evaluate((el) => getComputedStyle(el).display);
@@ -311,6 +343,7 @@ try {
       legalPrint,
       legalFocusFocused: legalFocus.focused,
       legalFocusVisible: legalFocus.visible,
+      legalFocusCleared: legalFocus.cleared,
       legalFocusStyle: legalFocus.style,
       noJsFallback,
       searchOpened: search.opened,
@@ -320,6 +353,7 @@ try {
       newsletterCloseSize: newsletter.closeSize,
       newsletterCloseFocused: newsletter.closeFocused,
       newsletterCloseFocusVisible: newsletter.closeFocusVisible,
+      newsletterCloseFocusCleared: newsletter.closeFocusCleared,
       newsletterCloseFocusStyle: newsletter.closeFocusStyle,
       newsletterEscapeFocusStable: newsletter.escapeFocusStable,
       newsletterHiddenEscapeNoTriggerSteal: newsletter.hiddenEscapeNoTriggerSteal,
@@ -346,6 +380,7 @@ try {
       checks.legalPrint.safe &&
       checks.legalFocusFocused &&
       checks.legalFocusVisible &&
+      checks.legalFocusCleared &&
       checks.noJsFallback.searchHidden &&
       checks.noJsFallback.newsletterHidden &&
       checks.searchToggleVisible &&
@@ -361,6 +396,7 @@ try {
       checks.newsletterCloseSize.height >= 44 &&
       checks.newsletterCloseFocused &&
       checks.newsletterCloseFocusVisible &&
+      checks.newsletterCloseFocusCleared &&
       checks.newsletterHiddenEscapeNoTriggerSteal &&
       checks.newsletterBodyHiddenEscapeNoTriggerSteal &&
       checks.newsletterScrollLocked &&

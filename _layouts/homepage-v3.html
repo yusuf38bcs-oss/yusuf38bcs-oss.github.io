@@ -130,6 +130,12 @@
             close.style.setProperty('outline-color', 'var(--lbfl-platform-focus, #73d9f2)', 'important');
             close.style.setProperty('outline-offset', '3px', 'important');
           }, true);
+          close.addEventListener('blur', function () {
+            close.style.removeProperty('outline-style');
+            close.style.removeProperty('outline-width');
+            close.style.removeProperty('outline-color');
+            close.style.removeProperty('outline-offset');
+          }, true);
         }
 
         function bindBrevoEscapeBridge() {
