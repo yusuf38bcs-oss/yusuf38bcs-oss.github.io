@@ -47,7 +47,18 @@ def validate_asset_revision(errors)
   if css_blob_status.success? && js_blob_status.success?
     expected_asset_revision = "css-#{css_blob.strip[0, 12]}-js-#{js_blob.strip[0, 12]}"
     require_text(errors, v3, "asset_revision: \"#{expected_asset_revision}\"", "Homepage V3 asset revision is not content-addressed")
-    require_text(errors, layout, "?v=#{expected_asset_revision}", "Homepage asset URLs do not use the content-addressed revision")
+    require_text(
+      errors,
+      layout,
+      "{{ '/assets/css/homepage-v3.css' | relative_url }}?v=#{expected_asset_revision}",
+      "Homepage stylesheet URL does not use the exact content-addressed revision"
+    )
+    require_text(
+      errors,
+      layout,
+      "{{ '/assets/js/home/homepage-v3.js' | relative_url }}?v=#{expected_asset_revision}",
+      "Homepage script URL does not use the exact content-addressed revision"
+    )
   else
     errors << "Unable to compute Homepage CSS/JS blob identities"
   end
