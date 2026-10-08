@@ -59,7 +59,23 @@ jobs:
 
           if grep -q 'lbfl-home-v3-document' _site/index.html; then
             echo "Validating Homepage v3 production output."
-            grep -q 'class="lbfl-home-v3"' _site/index.html || (echo "Homepage v3 body root missing" && exit 1)
+            python3 - <<'PY'
+          from html.parser import HTMLParser
+
+          class HomepageBody(HTMLParser):
+              valid = False
+
+              def handle_starttag(self, tag, attrs):
+                  if tag == "body":
+                      classes = (dict(attrs).get("class") or "").split()
+                      self.valid = "lbfl-home-v3" in classes
+
+          parser = HomepageBody()
+          with open("_site/index.html", encoding="utf-8") as source:
+              parser.feed(source.read())
+          if not parser.valid:
+              raise SystemExit("Homepage v3 body root missing")
+          PY
             grep -q 'assets/css/homepage-v3.css' _site/index.html || (echo "Homepage v3 stylesheet missing" && exit 1)
             grep -q 'assets/js/home/homepage-v3.js' _site/index.html || (echo "Homepage v3 runtime missing" && exit 1)
             grep -q 'hreflang="bn"' _site/index.html || (echo "Homepage v3 Bangla language target missing" && exit 1)

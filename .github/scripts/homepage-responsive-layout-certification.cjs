@@ -14,11 +14,13 @@ const viewports = [
   { name: "412", width: 412, height: 915 },
   { name: "480", width: 480, height: 900 },
   { name: "768", width: 768, height: 1024 },
+  { name: "980-desktop-mode", width: 980, height: 900 },
   { name: "1024", width: 1024, height: 900 },
   { name: "compact-desktop-1025", width: 1025, height: 800 },
   { name: "compact-desktop-1120", width: 1120, height: 800 },
   { name: "compact-desktop-1200", width: 1200, height: 800 },
   { name: "1280", width: 1280, height: 900 },
+  { name: "1366", width: 1366, height: 768 },
   { name: "1440", width: 1440, height: 900 },
   { name: "1920", width: 1920, height: 1080 },
 ];
@@ -333,7 +335,20 @@ async function inspect(page, viewportWidth) {
         titleFontWeight: titleStyle ? titleStyle.fontWeight : "",
         actionsTopGap: phoneLayout ? null : gap(selectors.heroPromise, selectors.heroActions),
         cycleColumns: columns(selectors.cycle),
-        specimenVisible: visible(element(selectors.specimenLabel)) && visible(element(selectors.specimenNote)),
+        specimenVisible: visible(element(selectors.specimenLabel)),
+        specimenNoteAbsent: element(selectors.specimenNote) === null,
+        desktopVisualTopAligned: (() => {
+          if (phoneLayout) return true;
+          const copy = rect(selectors.heroCopy);
+          const artwork = rect(selectors.heroVisual);
+          return Boolean(copy && artwork && Math.abs(copy.top - artwork.top) <= tolerance);
+        })(),
+        desktopTitleWithinLineBudget: (() => {
+          if (phoneLayout) return true;
+          const box = rect(selectors.heroTitle);
+          const maximumLines = width >= 1024 ? 3 : 4;
+          return Boolean(box && titleLineHeight > 0 && box.height <= maximumLines * titleLineHeight + tolerance);
+        })(),
       },
       grids: {
         pathwayColumns: columns(selectors.pathwayGrid),
@@ -524,6 +539,9 @@ function passes(result) {
     ["700", "800"].includes(l.hero.titleFontWeight) &&
     l.hero.cycleColumns === 4 &&
     l.hero.specimenVisible &&
+    l.hero.specimenNoteAbsent &&
+    l.hero.desktopVisualTopAligned &&
+    l.hero.desktopTitleWithinLineBudget &&
     l.grids.pathwayColumns === l.grids.expectedPathwayColumns &&
     l.grids.journeyColumns === l.grids.expectedJourneyColumns &&
     l.grids.methodColumns === l.grids.expectedMethodColumns &&
@@ -560,6 +578,9 @@ function summarizeFailure(result) {
   if (!l.hero.visible) reasons.push("hero-visibility");
   if (l.hero.gridColumns !== l.hero.expectedGridColumns) reasons.push(`hero-columns=${l.hero.gridColumns}/${l.hero.expectedGridColumns}`);
   if (!l.hero.visualVisible || !l.hero.visualContained || !l.hero.visualAfterCopy || !l.hero.visualBeforeControls) reasons.push("specimen-layout");
+  if (!l.hero.specimenVisible || !l.hero.specimenNoteAbsent) reasons.push("specimen-caption-contract");
+  if (!l.hero.desktopVisualTopAligned) reasons.push("desktop-visual-top-alignment");
+  if (!l.hero.desktopTitleWithinLineBudget) reasons.push("desktop-title-line-budget");
   if (!l.hero.controlsContained) reasons.push("hero-controls-containment");
   if (!l.hero.mobileActionsFullWidth) reasons.push("mobile-actions-width");
   if (!l.hero.cycleAfterActions) reasons.push("mobile-cycle-order");

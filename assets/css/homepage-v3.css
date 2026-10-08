@@ -464,11 +464,11 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
 .lbfl-v3-hero__grid {
   position: relative;
-  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.85fr);
   grid-template-areas:
     "copy visual"
-    "controls visual";
-  column-gap: clamp(38px, 6vw, 88px);
+    "controls .";
+  column-gap: clamp(24px, 3vw, 48px);
   row-gap: 0;
   align-items: start;
 }
@@ -500,7 +500,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
 .lbfl-v3-hero h1 {
   max-width: 760px;
-  font-size: clamp(3rem, 6vw, 5.45rem);
+  font-size: clamp(2.6rem, min(4.8vw, 72px), 4.5rem);
   line-height: 1.03;
   letter-spacing: -0.035em;
 }
@@ -579,7 +579,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
 .lbfl-v3-hero__visual {
   grid-area: visual;
-  align-self: center;
+  align-self: start;
   margin: 0;
   padding: clamp(14px, 1.7vw, 22px);
   border: 1px solid rgba(169, 229, 219, 0.18);
@@ -627,12 +627,6 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   font-weight: 800;
   letter-spacing: 0.10em;
   text-transform: uppercase;
-}
-
-.lbfl-v3-specimen-note {
-  color: #c9d9d6;
-  font-size: 0.76rem;
-  line-height: 1.45;
 }
 
 .lbfl-v3-section {
@@ -814,12 +808,13 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
 @media (max-width: 1024px) {
   .lbfl-v3-hero__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
-    gap: 34px;
+    grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+    column-gap: 24px;
+    row-gap: 0;
   }
 
   .lbfl-v3-hero h1 {
-    font-size: clamp(2.8rem, 7vw, 4.6rem);
+    font-size: clamp(2.4rem, 4.8vw, 3.1rem);
   }
 }
 

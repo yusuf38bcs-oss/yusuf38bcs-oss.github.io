@@ -8,11 +8,13 @@ The exact candidate head must be reviewed at the same responsive matrix used by 
 - 412×915
 - 480×900
 - 768×1024
+- 980×900 (phone browser desktop-mode representative width)
 - 1024×900
 - 1025×800
 - 1120×800
 - 1200×800
 - 1280×900
+- 1366×768
 - 1440×900
 - 1920×1080
 
@@ -25,6 +27,9 @@ Every viewport must preserve:
 - EN/বাংলা switcher visibility;
 - Admission, IELTS, Editorial and learner-pathway discoverability;
 - hero hierarchy, specimen integrity and CTA visibility;
+ - specimen caption remains visible, with no redundant specimen-note node;
+ - above 700px, specimen card top aligns with the hero copy block within 2px;
+ - above 700px, H1 occupies at most four lines below 1024px and three lines from 1024px;
 - no excessive mobile H1 growth, clipping or horizontal scroll;
 - pathway, Journey, Method, Repair, Evidence and Continue section order;
 - eight-item “Inside the Cell” journey without overflow;
