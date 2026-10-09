@@ -203,13 +203,37 @@ async function certifyViewport(browser, viewport) {
     await page.waitForFunction(() => document.activeElement === document.querySelector(".sib-loader"));
     await page.locator(".brevo-modal-close").click();
     assert.equal(await modal.isVisible(), false);
+    // Hold only the 80 ms email autofocus so the pending response completes
+    // inside the otherwise vulnerable close->reopen interval. Capture *any*
+    // spurious submit-button focus, even if a later autofocus would hide it.
+    await page.evaluate(() => {
+      window.__lbflFocusSteals = 0;
+      window.__lbflDeferredAutofocus = [];
+      window.__lbflOriginalTimeout = window.setTimeout;
+      document.getElementById("brevo-newsletter-modal").addEventListener("focusin", (event) => {
+        if (event.target.matches('#sib-form button[type="submit"]')) window.__lbflFocusSteals++;
+      }, true);
+      window.setTimeout = function (callback, ms, ...rest) {
+        if (ms === 80 && typeof callback === "function") {
+          window.__lbflDeferredAutofocus.push(() => callback(...rest));
+          return 0;
+        }
+        return window.__lbflOriginalTimeout.call(window, callback, ms, ...rest);
+      };
+    });
     await open.click();
-    await page.waitForFunction(() => document.activeElement === document.querySelector("#EMAIL"));
     intercepted[4].release();
     await page.waitForFunction(() => window.__lbflVendor.completed === 5);
-    await page.waitForTimeout(120);
+    await page.waitForTimeout(60);
+    assert.equal(await page.evaluate(() => window.__lbflFocusSteals), 0,
+      "reopened modal must never steal focus to the submit button");
+    await page.evaluate(() => {
+      window.setTimeout = window.__lbflOriginalTimeout;
+      window.__lbflDeferredAutofocus.forEach((callback) => callback());
+    });
+    await page.waitForFunction(() => document.activeElement === document.querySelector("#EMAIL"));
     assert.equal(await email.evaluate((el) => document.activeElement === el), true,
-      "reopened modal must retain email focus on in-flight completion");
+      "reopened modal keeps email focus after deliberately delayed autofocus");
     assert.equal(await button.isVisible(), true, "pending request restores the button");
 
     // Keyboard escape closes the dialog; no focus leak remains.
