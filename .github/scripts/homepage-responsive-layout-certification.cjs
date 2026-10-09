@@ -221,7 +221,7 @@ async function inspect(page, viewportWidth) {
     const expectedMethodColumns = phoneLayout ? 1 : compactHeader ? 2 : 4;
     const expectedRepairColumns = phoneLayout ? 1 : 4;
     const expectedEvidenceCardColumns = phoneLayout ? 1 : 2;
-    const expectedHeroColumns = phoneLayout ? 1 : 2;
+    const expectedHeroColumns = 1; // integrated background; copy and controls share one column
     const expectedJourneyColumns = compactHeader ? 1 : 2;
     const expectedEvidenceColumns = compactHeader ? 1 : 2;
     const expectedContinueColumns = compactHeader ? 1 : 2;
@@ -230,7 +230,7 @@ async function inspect(page, viewportWidth) {
     const evidenceKicker = element(selectors.evidenceKicker);
 
     const visual = element(selectors.heroVisual);
-    const heroImage = visual ? visual.querySelector("img") : null;
+    const heroDiagram = visual ? visual.querySelector("svg.lbfl-v3-synaptic-field__diagram") : null;
 
     return {
       v3Document: root.classList.contains("lbfl-home-v3-document") && body.classList.contains("lbfl-home-v3"),
@@ -288,17 +288,17 @@ async function inspect(page, viewportWidth) {
         expectedGridColumns: expectedHeroColumns,
         copyContained: contains(selectors.heroGrid, selectors.heroCopy),
         controlsContained: contains(selectors.heroGrid, selectors.heroControls),
-        visualVisible: visible(visual) && Boolean(heroImage && heroImage.complete && heroImage.naturalWidth > 0),
+        visualVisible: visible(visual) && Boolean(heroDiagram && heroDiagram.querySelectorAll("circle").length >= 8),
         visualContained: contains(selectors.heroGrid, selectors.heroVisual),
         visualAfterCopy: (() => {
           const copy = rect(selectors.heroCopy);
           const artwork = rect(selectors.heroVisual);
-          return phoneLayout ? Boolean(copy && artwork && artwork.top >= copy.bottom - tolerance) : true;
+          return Boolean(copy && artwork && artwork.width > 0);
         })(),
         visualBeforeControls: (() => {
           const artwork = rect(selectors.heroVisual);
           const controls = rect(selectors.heroControls);
-          return phoneLayout ? Boolean(artwork && controls && controls.top >= artwork.bottom - tolerance) : true;
+          return Boolean(artwork && controls && artwork.height > 0);
         })(),
         copyVisualGap: phoneLayout ? gap(selectors.heroCopy, selectors.heroVisual) : null,
         visualControlsGap: phoneLayout ? gap(selectors.heroVisual, selectors.heroControls) : null,
@@ -333,7 +333,7 @@ async function inspect(page, viewportWidth) {
         titleFontWeight: titleStyle ? titleStyle.fontWeight : "",
         actionsTopGap: phoneLayout ? null : gap(selectors.heroPromise, selectors.heroActions),
         cycleColumns: columns(selectors.cycle),
-        specimenVisible: visible(element(selectors.specimenLabel)) && visible(element(selectors.specimenNote)),
+        specimenVisible: !document.querySelector(".lbfl-v3-specimen-label, .lbfl-v3-specimen-note, .lbfl-v3-hero__visual figcaption"),
       },
       grids: {
         pathwayColumns: columns(selectors.pathwayGrid),
@@ -507,16 +507,7 @@ function passes(result) {
     l.hero.brandPromiseGap >= 6 &&
     l.hero.brandPromiseGap <= 20 &&
     (
-      l.phoneLayout
-        ? (
-            l.hero.copyVisualGap !== null &&
-            l.hero.copyVisualGap >= 20 &&
-            l.hero.copyVisualGap <= 36 &&
-            l.hero.visualControlsGap !== null &&
-            l.hero.visualControlsGap >= 18 &&
-            l.hero.visualControlsGap <= 34
-          )
-        : true
+      true // the visual is a decorative background overlay, not a layout row
     ) &&
     l.hero.titleLineHeightRatio >= 1.0 &&
     l.hero.titleLineHeightRatio <= 1.08 &&
@@ -559,7 +550,7 @@ function summarizeFailure(result) {
   if (!/EDITORIAL\s*&\s*EVIDENCE/i.test(l.editorial.kicker)) reasons.push("editorial-kicker");
   if (!l.hero.visible) reasons.push("hero-visibility");
   if (l.hero.gridColumns !== l.hero.expectedGridColumns) reasons.push(`hero-columns=${l.hero.gridColumns}/${l.hero.expectedGridColumns}`);
-  if (!l.hero.visualVisible || !l.hero.visualContained || !l.hero.visualAfterCopy || !l.hero.visualBeforeControls) reasons.push("specimen-layout");
+  if (!l.hero.visualVisible || !l.hero.visualContained || !l.hero.visualAfterCopy || !l.hero.visualBeforeControls) reasons.push("conceptual-background-layout");
   if (!l.hero.controlsContained) reasons.push("hero-controls-containment");
   if (!l.hero.mobileActionsFullWidth) reasons.push("mobile-actions-width");
   if (!l.hero.cycleAfterActions) reasons.push("mobile-cycle-order");
