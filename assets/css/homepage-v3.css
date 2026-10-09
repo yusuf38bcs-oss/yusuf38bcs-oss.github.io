@@ -989,3 +989,247 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
     transform: none !important;
   }
 }
+
+
+/* CONV-04I HERO: Synaptic Knowledge Field 2.0, approved static foundation + subtle motion. */
+.lbfl-home-v3 .lbfl-v3-hero {
+  background: radial-gradient(ellipse at 82% 40%,rgba(40,142,136,.32),transparent 46%),
+    radial-gradient(ellipse at 18% 86%,rgba(235,190,105,.052),transparent 40%),
+    linear-gradient(125deg,#03191f 0%,#06262c 55%,#0b383d 100%);
+}
+.lbfl-home-v3 .lbfl-v3-hero__grid {
+  position:relative; isolation:isolate; grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"copy" "controls"; align-items:start; gap:0; min-height:min(580px,67svh);
+}
+.lbfl-home-v3 .lbfl-v3-hero__copy,
+.lbfl-home-v3 .lbfl-v3-hero__controls {
+  position:relative; z-index:2; width:min(100%,720px); max-width:720px;
+}
+.lbfl-home-v3 .lbfl-v3-hero__copy { grid-area:copy; }
+.lbfl-home-v3 .lbfl-v3-hero__controls { grid-area:controls; margin-top:26px; }
+.lbfl-home-v3 .lbfl-v3-hero h1 { max-width:710px; font-size:clamp(2.7rem,5.15vw,5.1rem); }
+.lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
+  position:absolute; z-index:0; inset:-12% -14% -16% 24%;
+  display:flex; align-items:center; justify-content:flex-end;
+  width:auto; max-width:none; height:auto; margin:0; padding:0;
+  border:0; border-radius:0; background:transparent; box-shadow:none;
+  backdrop-filter:none; pointer-events:none; overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.32) 22%,#000 52%);
+  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.32) 22%,#000 52%);
+}
+.lbfl-home-v3 .lbfl-v3-synaptic-field::before { content:none; }
+.lbfl-home-v3 .lbfl-v3-synaptic-field__diagram {
+  display:block; width:min(100%,960px); height:100%; opacity:.96;
+  transform:translateX(-24%); animation:none; transition:none; filter:none;
+}
+@media (max-width:1024px) {
+  .lbfl-home-v3 .lbfl-v3-hero__grid { grid-template-columns:minmax(0,1fr); }
+  .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field { inset:-9% -43% -7% 13%; }
+  .lbfl-home-v3 .lbfl-v3-hero__copy,
+  .lbfl-home-v3 .lbfl-v3-hero__controls { width:min(100%,680px); max-width:680px; }
+}
+@media (max-width:900px) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram { transform:translateX(-10%); }
+}
+@media (max-width:700px) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram { transform:none; }
+  .lbfl-home-v3 .lbfl-v3-hero__grid {
+    grid-template-areas:"copy" "controls"; min-height:0;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero__copy { margin-bottom:0; }
+  .lbfl-home-v3 .lbfl-v3-hero__controls { margin-top:24px; }
+  .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
+    inset:-8% -28% -4% -4%; opacity:.58;
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.14) 30%,#000 70%);
+    mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.14) 30%,#000 70%);
+  }
+}
+@media (max-width:420px) {
+  .lbfl-home-v3 .lbfl-v3-hero h1 { font-size:clamp(2.05rem,9.15vw,2.85rem); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram { animation:none!important; }
+}
+@media print {
+  .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field { display:none!important; }
+}
+
+/* CONV-04I Hero v2.1: measured two-line desktop editorial composition only. */
+@media (min-width: 1201px) {
+  .lbfl-home-v3 .lbfl-v3-hero__copy,
+  .lbfl-home-v3 .lbfl-v3-hero__controls {
+    width: min(100%, 970px);
+    max-width: 970px;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero h1 {
+    max-width: 970px;
+    font-size: clamp(3.25rem, 4.35vw, 3.9rem);
+    line-height: 1.055;
+    letter-spacing: -0.032em;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero__title-lead,
+  .lbfl-home-v3 .lbfl-v3-hero__title-tail {
+    display: block;
+    white-space: nowrap;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero__grid::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: -18% 26% -18% -4%;
+    background: linear-gradient(90deg,
+      rgba(3, 25, 31, .96) 0%,
+      rgba(3, 25, 31, .85) 35%,
+      rgba(3, 25, 31, .58) 66%,
+      rgba(3, 25, 31, 0) 100%);
+    pointer-events: none;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
+    top: -3%;
+    bottom: -3%;
+    left: auto;
+    right: -6%;
+    width: min(74vw, 930px);
+    max-width: 930px;
+    opacity: .98;
+    -webkit-mask-image: linear-gradient(90deg,
+      transparent 0%, rgba(0,0,0,.63) 17%, #000 36%);
+    mask-image: linear-gradient(90deg,
+      transparent 0%, rgba(0,0,0,.63) 17%, #000 36%);
+  }
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Save-Data suppresses decorative artwork despite later high-specificity hero CSS. */
+html[data-save-data="true"] body.lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field,
+.lbfl-home-v3-document[data-save-data="true"] .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
+  display: none !important;
+}
+
+/* Ultrawide-only text fit: do not alter approved 1440px/mobile composition. */
+@media (min-width: 1600px) {
+  .lbfl-home-v3 .lbfl-v3-hero__copy {
+    width: min(100%, 1140px);
+    max-width: 1140px;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero h1 {
+    max-width: 1140px;
+  }
+}
+/* CONV-04I: paint-only dynamic visual, no geometry/transform/layout animation. */
+.lbfl-home-v3 .lbfl-v3-synaptic-signal { opacity: .66; stroke-dashoffset: 0; }
+@keyframes lbfl-synaptic-orbit-pulse {
+  0%, 100% { opacity: .40; }
+  50% { opacity: .96; }
+}
+@keyframes lbfl-synaptic-node-pulse {
+  0%, 100% { opacity: .45; }
+  50% { opacity: 1; }
+}
+@keyframes lbfl-synaptic-path-drift {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -100; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-orbit--breathing {
+    animation: lbfl-synaptic-orbit-pulse 23s ease-in-out infinite;
+  }
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-orbit--offset {
+    animation-duration: 27s;
+    animation-delay: -13s;
+  }
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-node--pulse {
+    animation: lbfl-synaptic-node-pulse 12s ease-in-out infinite;
+  }
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-node--offset { animation-delay: -5s; }
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-node--late { animation-delay: -11s; }
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-signal {
+    animation: lbfl-synaptic-path-drift 27s linear infinite;
+  }
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-signal--second {
+    animation-duration: 33s;
+    animation-delay: -18s;
+  }
+}
+@media (max-width: 700px) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__signals { opacity: .65; }
+  .lbfl-home-v3 .lbfl-v3-synaptic-signal {
+    animation: none !important;
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-orbit--breathing,
+  .lbfl-home-v3 .lbfl-v3-synaptic-node--pulse,
+  .lbfl-home-v3 .lbfl-v3-synaptic-signal {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-orbit--breathing,
+html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-node--pulse,
+html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-signal {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Restrained focal halos share the existing opacity-only node pulse. */
+.lbfl-home-v3 .lbfl-v3-synaptic-node--halo { opacity: .48; }
+/* Small visible-node accents preserve the static geometry and text-safe mask. */
+.lbfl-home-v3 .lbfl-v3-synaptic-node--upper { animation-delay: -3s; }
+.lbfl-home-v3 .lbfl-v3-synaptic-node--halo { stroke: #B6F4E8; stroke-width: 2.2; }
+
+
+/* Hero Part B focal convergence: static geometry first; paint-only movement. */
+.lbfl-home-v3 .lbfl-v3-synaptic-core {
+  opacity: .98;
+  filter: drop-shadow(0 0 26px rgba(93, 220, 200, .30));
+}
+.lbfl-home-v3 .lbfl-v3-synaptic-core__heart {
+  transform-origin: 635px 331px;
+}
+@keyframes lbfl-hero-core-luminance {
+  0%,100% { opacity: .65; }
+  50% { opacity: .92; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-core__heart {
+    animation: lbfl-hero-core-luminance 14s ease-in-out infinite;
+  }
+}
+@media (min-width: 701px) and (max-width: 1200px) {
+  .lbfl-home-v3 .lbfl-v3-hero__grid { min-height: 470px; }
+  .lbfl-home-v3 .lbfl-v3-hero__copy,
+  .lbfl-home-v3 .lbfl-v3-hero__controls {
+    width: min(100%, 58%);
+    max-width: 650px;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero h1 {
+    font-size: clamp(2.65rem, 4.8vw, 4rem);
+    line-height: 1.055;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
+    inset: -5% -8% -7% 37%;
+    opacity: 1;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.65) 16%, #000 38%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.65) 16%, #000 38%);
+  }
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram { transform: none; }
+}
+@media (min-width: 1201px) {
+  .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field { right: -2%; width: min(74vw, 990px); }
+}
+@media (max-width: 700px) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-core { opacity: .75; filter: none; }
+  .lbfl-home-v3 .lbfl-v3-synaptic-satellites { opacity: .58; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-core__heart { animation: none !important; }
+}
+html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-core__heart {
+  animation: none !important;
+}

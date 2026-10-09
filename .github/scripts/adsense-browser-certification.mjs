@@ -155,9 +155,9 @@ async function runViewport(browser, viewport) {
       const banner = document.querySelector("#gdpr-banner[data-cookie-banner]");
       const bannerRect = banner?.getBoundingClientRect();
       const homepageV3 = document.body.classList.contains("lbfl-home-v3");
-      const heroImage = document.querySelector(
-        homepageV3 ? ".lbfl-v3-hero__visual img" : ".lbfl-premium-cell__image"
-      );
+      const heroImage = homepageV3 ? null : document.querySelector(".lbfl-premium-cell__image");
+      const heroField = homepageV3 ? document.querySelector(".lbfl-v3-synaptic-field") : null;
+      const heroDiagram = homepageV3 ? document.querySelector(".lbfl-v3-synaptic-field__diagram") : null;
       return {
         homepageVersion: homepageV3 ? "v3" : "v2-premium",
         bannerFits: Boolean(
@@ -171,7 +171,24 @@ async function runViewport(browser, viewport) {
         headingVisible: homepageV3
           ? visible(".lbfl-v3-hero h1")
           : visible(".lbfl-premium-hero h1"),
-        heroImageLoaded: Boolean(heroImage?.complete && heroImage.naturalWidth > 0),
+        heroImageLoaded: homepageV3
+          ? Boolean(heroField && heroDiagram && heroDiagram.querySelectorAll("circle").length >= 20 &&
+            getComputedStyle(heroField).display !== "none" &&
+            heroDiagram.getBoundingClientRect().width > 0 && heroDiagram.getBoundingClientRect().height > 0)
+          : Boolean(heroImage?.complete && heroImage.naturalWidth > 0),
+        heroMotionValid: !homepageV3 || (() => {
+          const isAnimated = (selector) => {
+            const element = heroDiagram?.querySelector(selector);
+            if (!element) return false;
+            const style = getComputedStyle(element);
+            return style.animationName !== "none" &&
+              style.animationDuration.split(",").some((token) => Number.parseFloat(token) >= 10);
+          };
+          const ring = isAnimated(".lbfl-v3-synaptic-orbit--breathing");
+          const node = isAnimated(".lbfl-v3-synaptic-node--pulse");
+          const signal = isAnimated(".lbfl-v3-synaptic-signal");
+          return ring && node && (window.innerWidth <= 700 ? !signal : signal);
+        })(),
         horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
         logoVisible: homepageV3
           ? visible('.lbfl-v3-brand[aria-label="Learning Biology For Life home"]')
@@ -234,7 +251,7 @@ async function runViewport(browser, viewport) {
     const layoutPassed = response?.status() === 200 &&
       layout.viewport.width === viewport.width && layout.viewport.height === viewport.height &&
       layout.bannerFits && layout.bannerVisible && layout.ctaVisible && layout.headingVisible &&
-      layout.heroImageLoaded && !layout.horizontalOverflow && layout.logoVisible &&
+      layout.heroImageLoaded && layout.heroMotionValid && !layout.horizontalOverflow && layout.logoVisible &&
       layout.menuOrNavVisible && layout.searchVisible &&
       layout.meta.length === 1 && layout.meta[0] === EXPECTED_ACCOUNT;
     const passed = layoutPassed && axeResult.length === 0 && focusPassed &&
