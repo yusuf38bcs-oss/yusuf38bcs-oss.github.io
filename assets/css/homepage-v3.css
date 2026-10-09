@@ -1039,7 +1039,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   .lbfl-home-v3 .lbfl-v3-hero__copy { margin-bottom:0; }
   .lbfl-home-v3 .lbfl-v3-hero__controls { margin-top:24px; }
   .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
-    inset:-8% -90% -4% -4%; opacity:.58;
+    inset:-8% -28% -4% -4%; opacity:.58;
     -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.14) 30%,#000 70%);
     mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.14) 30%,#000 70%);
   }
