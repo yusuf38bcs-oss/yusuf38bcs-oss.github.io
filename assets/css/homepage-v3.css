@@ -1063,7 +1063,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   }
   .lbfl-home-v3 .lbfl-v3-hero h1 {
     max-width: 970px;
-    font-size: clamp(3.25rem, 4.35vw, 4.5rem);
+    font-size: clamp(3.25rem, 4.35vw, 3.9rem);
     line-height: 1.055;
     letter-spacing: -0.032em;
   }
