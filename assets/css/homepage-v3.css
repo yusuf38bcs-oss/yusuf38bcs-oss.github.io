@@ -1053,3 +1053,59 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 @media print {
   .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field { display:none!important; }
 }
+
+/* CONV-04I Hero v2.1: measured two-line desktop editorial composition only. */
+@media (min-width: 1201px) {
+  .lbfl-home-v3 .lbfl-v3-hero__copy,
+  .lbfl-home-v3 .lbfl-v3-hero__controls {
+    width: min(100%, 970px);
+    max-width: 970px;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero h1 {
+    max-width: 970px;
+    font-size: clamp(3.25rem, 4.35vw, 4.5rem);
+    line-height: 1.055;
+    letter-spacing: -0.032em;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero__title-lead,
+  .lbfl-home-v3 .lbfl-v3-hero__title-tail {
+    display: block;
+    white-space: nowrap;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero__grid::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: -18% 26% -18% -4%;
+    background: linear-gradient(90deg,
+      rgba(3, 25, 31, .96) 0%,
+      rgba(3, 25, 31, .85) 35%,
+      rgba(3, 25, 31, .58) 66%,
+      rgba(3, 25, 31, 0) 100%);
+    pointer-events: none;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
+    top: -3%;
+    bottom: -3%;
+    left: auto;
+    right: -6%;
+    width: min(74vw, 930px);
+    max-width: 930px;
+    opacity: .98;
+    -webkit-mask-image: linear-gradient(90deg,
+      transparent 0%, rgba(0,0,0,.63) 17%, #000 36%);
+    mask-image: linear-gradient(90deg,
+      transparent 0%, rgba(0,0,0,.63) 17%, #000 36%);
+  }
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Save-Data suppresses decorative artwork despite later high-specificity hero CSS. */
+html[data-save-data="true"] body.lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field,
+.lbfl-home-v3-document[data-save-data="true"] .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
+  display: none !important;
+}

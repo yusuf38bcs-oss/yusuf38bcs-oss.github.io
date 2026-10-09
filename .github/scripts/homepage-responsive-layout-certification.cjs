@@ -329,6 +329,23 @@ async function inspect(page, viewportWidth) {
         titleBrandGap: gap(selectors.heroTitle, selectors.heroBrandLine),
         brandPromiseGap: gap(selectors.heroBrandLine, selectors.heroPromise),
         titleLineHeightRatio,
+        desktopHeadlineTwoLines: (() => {
+          if (width < 1280) return true;
+          const lead = document.querySelector(".lbfl-v3-hero__title-lead");
+          const tail = document.querySelector(".lbfl-v3-hero__title-tail");
+          if (!title || !titleStyle || !lead || !tail) return false;
+          const lineHeight = Number.parseFloat(titleStyle.lineHeight);
+          const headingHeight = title.getBoundingClientRect().height;
+          const leadBox = lead.getBoundingClientRect();
+          const tailBox = tail.getBoundingClientRect();
+          return Number.isFinite(lineHeight) && lineHeight > 0 &&
+            Math.abs(headingHeight / lineHeight - 2) < 0.17 &&
+            lead.scrollWidth <= lead.clientWidth + 2 &&
+            tail.scrollWidth <= tail.clientWidth + 2 &&
+            tailBox.top >= leadBox.bottom - 2 &&
+            leadBox.right <= window.innerWidth + 2 &&
+            tailBox.right <= window.innerWidth + 2;
+        })(),
         titleFontFamily: titleStyle ? titleStyle.fontFamily : "",
         titleFontWeight: titleStyle ? titleStyle.fontWeight : "",
         actionsTopGap: phoneLayout ? null : gap(selectors.heroPromise, selectors.heroActions),
@@ -509,6 +526,7 @@ function passes(result) {
     (
       true // the visual is a decorative background overlay, not a layout row
     ) &&
+    l.hero.desktopHeadlineTwoLines &&
     l.hero.titleLineHeightRatio >= 1.0 &&
     l.hero.titleLineHeightRatio <= 1.08 &&
     /Manrope/i.test(l.hero.titleFontFamily) &&
@@ -559,6 +577,7 @@ function summarizeFailure(result) {
   if (!(l.hero.titleBrandGap >= 18 && l.hero.titleBrandGap <= 42)) reasons.push(`title-brand-gap=${l.hero.titleBrandGap}`);
   if (!(l.hero.brandPromiseGap >= 6 && l.hero.brandPromiseGap <= 20)) reasons.push(`brand-promise-gap=${l.hero.brandPromiseGap}`);
   // Decorative background does not have specimen-row gaps.
+  if (!l.hero.desktopHeadlineTwoLines) reasons.push("desktop-headline-not-two-lines");
   if (!(l.hero.titleLineHeightRatio >= 1.0 && l.hero.titleLineHeightRatio <= 1.08)) reasons.push(`h1-line-height=${l.hero.titleLineHeightRatio}`);
   if (l.hero.cycleColumns !== 4) reasons.push(`cycle-columns=${l.hero.cycleColumns}`);
   for (const key of ["pathway", "journey", "method", "repair", "evidence", "evidenceCard", "continue"]) {
