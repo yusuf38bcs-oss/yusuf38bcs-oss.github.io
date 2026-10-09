@@ -299,11 +299,17 @@ async function inspect(page, viewportWidth) {
           const center = matrix && svg.createSVGPoint();
           if (center) { center.x = 635; center.y = 331; }
           const nucleus = center?.matrixTransform(matrix);
-          return Boolean(copy && artwork && hero && nucleus &&
+          const coreRadius = matrix ? 83 * Math.max(Math.hypot(matrix.a, matrix.b), Math.hypot(matrix.c, matrix.d)) : 0;
+          const viewLeft = Math.max(hero?.left ?? 0, 0);
+          const viewRight = Math.min(hero?.right ?? 0, window.innerWidth);
+          const viewTop = Math.max(hero?.top ?? 0, 0);
+          const viewBottom = Math.min(hero?.bottom ?? 0, window.innerHeight);
+          return Boolean(copy && artwork && hero && nucleus && coreRadius > 0 &&
             visual.getAttribute("aria-hidden") === "true" &&
-            nucleus.y >= hero.top - 80 && nucleus.y <= hero.bottom + 80 &&
-            nucleus.x >= hero.left + hero.width * 0.42 &&
-            nucleus.x <= hero.right + hero.width * 0.5 &&
+            nucleus.x + coreRadius > viewLeft &&
+            nucleus.x - coreRadius < viewRight &&
+            nucleus.y + coreRadius > viewTop &&
+            nucleus.y - coreRadius < viewBottom &&
             (phoneLayout || nucleus.x >= copy.left + copy.width * 0.55));
         })(),
         visualBeforeControls: (() => {
