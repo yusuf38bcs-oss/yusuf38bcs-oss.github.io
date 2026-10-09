@@ -237,13 +237,16 @@
           return;
         }
         brevoSubmitPending = true;
-        // Run after the vendor\'s synchronous submit handler. If its stricter validation
-        // rejects before the loader appears, restore eligibility for a corrected retry.
-        Promise.resolve().then(function () {
-          if (brevoSubmitPending && submitButton && submitButton.style.display !== "none" && (!loader || loader.style.display !== "block")) {
+        // Wait until the whole submit event dispatch finishes. A Promise microtask
+        // here can run before the vendor's bubble-phase handler sets loading state.
+        // A deferred task clears pending only when Brevo rejected before AJAX.
+        window.setTimeout(function () {
+          if (brevoSubmitPending && submitButton &&
+              submitButton.style.display !== "none" &&
+              (!loader || loader.style.display !== "block")) {
             brevoSubmitPending = false;
           }
-        });
+        }, 0);
       }, true);
     }
 
