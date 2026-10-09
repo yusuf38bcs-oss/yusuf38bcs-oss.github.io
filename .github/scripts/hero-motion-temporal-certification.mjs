@@ -7,8 +7,8 @@ const arg = (name, fallback = "") => { const i=process.argv.indexOf(name); retur
 const url=arg("--url"), sha=arg("--expected-sha"), dir=path.resolve(arg("--output-dir","browser-certification"));
 if(!url||!sha)throw new Error("Expected --url and --expected-sha");
 await fs.mkdir(dir,{recursive:true});
-const selectors={rings:".lbfl-v3-synaptic-orbit--breathing",nodes:".lbfl-v3-synaptic-node--pulse",signals:".lbfl-v3-synaptic-signal"};
-const expected={rings:2,nodes:8,signals:2};
+const selectors={rings:".lbfl-v3-synaptic-orbit--breathing",nodes:".lbfl-v3-synaptic-node--pulse",signals:".lbfl-v3-synaptic-signal",heart:".lbfl-v3-synaptic-core__heart"};
+const expected={rings:2,nodes:8,signals:2,heart:1};
 const allowed=new Set(["offset","computedOffset","easing","composite","opacity","strokeDashoffset","stroke-dashoffset"]);
 const browser=await chromium.launch({headless:true});
 const results=[];
@@ -49,7 +49,7 @@ async function temporal(label,width,height) {
     const diffs={ring:delta(a,b,"rings","opacity"),node:delta(a,b,"nodes","opacity"),signal:delta(a,b,"signals","dash")};
     const mobile=width<=700;
     const passed=counts(a)&&counts(b)&&a.saveData==="false"&&!a.reduce&&a.fieldVisible&&!a.overflow&&
-      running(a.groups.rings)&&running(a.groups.nodes)&&
+      running(a.groups.rings)&&running(a.groups.nodes)&&running(a.groups.heart)&&
       (mobile?frozen(a.groups.signals):running(a.groups.signals))&&violations.length===0&&
       diffs.ring>.01&&diffs.node>.01&&(mobile?diffs.signal<.01:diffs.signal>1.5);
     return {case:label,passed,diffs,violations,initial:a,later:b};
