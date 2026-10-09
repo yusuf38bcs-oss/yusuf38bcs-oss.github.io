@@ -1019,8 +1019,8 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 }
 .lbfl-home-v3 .lbfl-v3-synaptic-field::before { content:none; }
 .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram {
-  display:block; width:min(100%,960px); height:100%; opacity:.90;
-  animation:none; transition:none; filter:none;
+  display:block; width:min(100%,960px); height:100%; opacity:.96;
+  transform:translateX(-24%); animation:none; transition:none; filter:none;
 }
 @media (max-width:1024px) {
   .lbfl-home-v3 .lbfl-v3-hero__grid { grid-template-columns:minmax(0,1fr); }
@@ -1028,7 +1028,11 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   .lbfl-home-v3 .lbfl-v3-hero__copy,
   .lbfl-home-v3 .lbfl-v3-hero__controls { width:min(100%,680px); max-width:680px; }
 }
+@media (max-width:900px) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram { transform:translateX(-10%); }
+}
 @media (max-width:700px) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram { transform:none; }
   .lbfl-home-v3 .lbfl-v3-hero__grid {
     grid-template-areas:"copy" "controls"; min-height:0;
   }
