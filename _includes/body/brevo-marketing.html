@@ -127,7 +127,10 @@
 
     function loadBrevoAssets() {
       if (brevoReady) return Promise.resolve();
-      if (brevoInitializationFault) return Promise.reject(new Error("Brevo initialization requires page refresh"));
+      if (brevoInitializationFault) {
+        showBrevoError("Subscription initialization failed. Please refresh this page before trying again.");
+        return Promise.reject(new Error("Brevo initialization requires page refresh"));
+      }
       if (brevoLoadPromise) return brevoLoadPromise;
       var form = document.getElementById("sib-form");
       if (!form) return Promise.reject(new Error("Newsletter form missing"));
@@ -143,7 +146,7 @@
         var script = document.createElement("script");
         var runtimeError = null;
         function captureBrevoError(event) {
-          if (event.filename && event.filename.indexOf("/forms/end-form/build/main.js") !== -1) {
+          if (event.target === window && (!event.filename || event.filename.indexOf("/forms/end-form/build/main.js") !== -1)) {
             runtimeError = event.error || new Error(event.message || "Brevo runtime initialization failed");
           }
         }
@@ -168,6 +171,7 @@
         document.head.appendChild(script);
       }).then(function () {
         if (!brevoSubmitHandlerInstalled) {
+          brevoInitializationFault = true;
           throw new Error("Brevo did not register a submission handler");
         }
         brevoReady = true;
@@ -193,7 +197,7 @@
         if (!brevoReady) {
           event.preventDefault();
           event.stopImmediatePropagation();
-          showBrevoError("Connecting to the subscription service. Please try again shortly.");
+          showBrevoError(brevoInitializationFault ? "Subscription initialization failed. Please refresh this page before trying again." : "Connecting to the subscription service. Please try again shortly.");
           loadBrevoAssets().catch(function () {});
           return;
         }
