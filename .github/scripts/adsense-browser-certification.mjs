@@ -155,9 +155,9 @@ async function runViewport(browser, viewport) {
       const banner = document.querySelector("#gdpr-banner[data-cookie-banner]");
       const bannerRect = banner?.getBoundingClientRect();
       const homepageV3 = document.body.classList.contains("lbfl-home-v3");
-      const heroImage = document.querySelector(
-        homepageV3 ? ".lbfl-v3-hero__visual img" : ".lbfl-premium-cell__image"
-      );
+      const heroImage = homepageV3 ? null : document.querySelector(".lbfl-premium-cell__image");
+      const heroField = homepageV3 ? document.querySelector(".lbfl-v3-synaptic-field") : null;
+      const heroDiagram = homepageV3 ? document.querySelector(".lbfl-v3-synaptic-field__diagram") : null;
       return {
         homepageVersion: homepageV3 ? "v3" : "v2-premium",
         bannerFits: Boolean(
@@ -171,7 +171,11 @@ async function runViewport(browser, viewport) {
         headingVisible: homepageV3
           ? visible(".lbfl-v3-hero h1")
           : visible(".lbfl-premium-hero h1"),
-        heroImageLoaded: Boolean(heroImage?.complete && heroImage.naturalWidth > 0),
+        heroImageLoaded: homepageV3
+          ? Boolean(heroField && heroDiagram && heroDiagram.querySelectorAll("circle").length >= 20 &&
+            getComputedStyle(heroField).display !== "none" &&
+            heroDiagram.getBoundingClientRect().width > 0 && heroDiagram.getBoundingClientRect().height > 0)
+          : Boolean(heroImage?.complete && heroImage.naturalWidth > 0),
         horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
         logoVisible: homepageV3
           ? visible('.lbfl-v3-brand[aria-label="Learning Biology For Life home"]')

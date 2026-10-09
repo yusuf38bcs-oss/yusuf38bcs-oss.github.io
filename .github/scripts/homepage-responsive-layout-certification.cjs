@@ -288,17 +288,17 @@ async function inspect(page, viewportWidth) {
         expectedGridColumns: expectedHeroColumns,
         copyContained: contains(selectors.heroGrid, selectors.heroCopy),
         controlsContained: contains(selectors.heroGrid, selectors.heroControls),
-        visualVisible: visible(visual) && Boolean(heroDiagram && heroDiagram.querySelectorAll("circle").length >= 8),
+        visualVisible: Boolean(visible(visual) && visible(heroDiagram) && heroDiagram.querySelectorAll("circle").length >= 20),
         visualContained: contains(selectors.heroGrid, selectors.heroVisual),
         visualAfterCopy: (() => {
           const copy = rect(selectors.heroCopy);
           const artwork = rect(selectors.heroVisual);
-          return Boolean(copy && artwork && artwork.width > 0);
+          return Boolean(copy && artwork && visual.getAttribute("aria-hidden") === "true");
         })(),
         visualBeforeControls: (() => {
           const artwork = rect(selectors.heroVisual);
           const controls = rect(selectors.heroControls);
-          return Boolean(artwork && controls && artwork.height > 0);
+          return Boolean(artwork && controls && getComputedStyle(visual).position === "absolute" && getComputedStyle(visual).pointerEvents === "none");
         })(),
         copyVisualGap: phoneLayout ? gap(selectors.heroCopy, selectors.heroVisual) : null,
         visualControlsGap: phoneLayout ? gap(selectors.heroVisual, selectors.heroControls) : null,
@@ -333,7 +333,7 @@ async function inspect(page, viewportWidth) {
         titleFontWeight: titleStyle ? titleStyle.fontWeight : "",
         actionsTopGap: phoneLayout ? null : gap(selectors.heroPromise, selectors.heroActions),
         cycleColumns: columns(selectors.cycle),
-        specimenVisible: !document.querySelector(".lbfl-v3-specimen-label, .lbfl-v3-specimen-note, .lbfl-v3-hero__visual figcaption"),
+        legacySpecimenAbsent: !document.querySelector(".lbfl-v3-specimen-label, .lbfl-v3-specimen-note, .lbfl-v3-hero__visual figcaption"),
       },
       grids: {
         pathwayColumns: columns(selectors.pathwayGrid),
@@ -514,7 +514,7 @@ function passes(result) {
     /Manrope/i.test(l.hero.titleFontFamily) &&
     ["700", "800"].includes(l.hero.titleFontWeight) &&
     l.hero.cycleColumns === 4 &&
-    l.hero.specimenVisible &&
+    l.hero.legacySpecimenAbsent &&
     l.grids.pathwayColumns === l.grids.expectedPathwayColumns &&
     l.grids.journeyColumns === l.grids.expectedJourneyColumns &&
     l.grids.methodColumns === l.grids.expectedMethodColumns &&
@@ -550,7 +550,7 @@ function summarizeFailure(result) {
   if (!/EDITORIAL\s*&\s*EVIDENCE/i.test(l.editorial.kicker)) reasons.push("editorial-kicker");
   if (!l.hero.visible) reasons.push("hero-visibility");
   if (l.hero.gridColumns !== l.hero.expectedGridColumns) reasons.push(`hero-columns=${l.hero.gridColumns}/${l.hero.expectedGridColumns}`);
-  if (!l.hero.visualVisible || !l.hero.visualContained || !l.hero.visualAfterCopy || !l.hero.visualBeforeControls) reasons.push("conceptual-background-layout");
+  if (!l.hero.visualVisible || !l.hero.visualContained || !l.hero.visualAfterCopy || !l.hero.visualBeforeControls) reasons.push("static-synaptic-background-layout");
   if (!l.hero.controlsContained) reasons.push("hero-controls-containment");
   if (!l.hero.mobileActionsFullWidth) reasons.push("mobile-actions-width");
   if (!l.hero.cycleAfterActions) reasons.push("mobile-cycle-order");
@@ -558,10 +558,7 @@ function summarizeFailure(result) {
   if (!l.hero.desktopControlsLeftAligned) reasons.push("desktop-controls-alignment");
   if (!(l.hero.titleBrandGap >= 18 && l.hero.titleBrandGap <= 42)) reasons.push(`title-brand-gap=${l.hero.titleBrandGap}`);
   if (!(l.hero.brandPromiseGap >= 6 && l.hero.brandPromiseGap <= 20)) reasons.push(`brand-promise-gap=${l.hero.brandPromiseGap}`);
-  if (l.phoneLayout) {
-    if (!(l.hero.copyVisualGap >= 20 && l.hero.copyVisualGap <= 36)) reasons.push(`copy-visual-gap=${l.hero.copyVisualGap}`);
-    if (!(l.hero.visualControlsGap >= 18 && l.hero.visualControlsGap <= 34)) reasons.push(`visual-controls-gap=${l.hero.visualControlsGap}`);
-  }
+  // Decorative background does not have specimen-row gaps.
   if (!(l.hero.titleLineHeightRatio >= 1.0 && l.hero.titleLineHeightRatio <= 1.08)) reasons.push(`h1-line-height=${l.hero.titleLineHeightRatio}`);
   if (l.hero.cycleColumns !== 4) reasons.push(`cycle-columns=${l.hero.cycleColumns}`);
   for (const key of ["pathway", "journey", "method", "repair", "evidence", "evidenceCard", "continue"]) {
