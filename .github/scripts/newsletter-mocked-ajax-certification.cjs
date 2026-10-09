@@ -194,6 +194,24 @@ async function certifyViewport(browser, viewport) {
       ["success", "failure", "failure", "success"]);
     assert.equal(await page.evaluate(() => window.__lbflVendor.requests), 4);
 
+    // Regression: close and reopen while AJAX is still pending. Stale loader
+    // focus intent must not steal focus from the reopened modal's email field.
+    await email.fill("close-reopen@example.com");
+    await button.focus();
+    await button.press("Enter");
+    await waitForIntercepted(page, intercepted, 5);
+    await page.waitForFunction(() => document.activeElement === document.querySelector(".sib-loader"));
+    await page.locator("[data-brevo-close]").first().click();
+    assert.equal(await modal.isVisible(), false);
+    await open.click();
+    await page.waitForFunction(() => document.activeElement === document.querySelector("#EMAIL"));
+    intercepted[4].release();
+    await page.waitForFunction(() => window.__lbflVendor.completed === 5);
+    await page.waitForTimeout(120);
+    assert.equal(await email.evaluate((el) => document.activeElement === el), true,
+      "reopened modal must retain email focus on in-flight completion");
+    assert.equal(await button.isVisible(), true, "pending request restores the button");
+
     // Keyboard escape closes the dialog; no focus leak remains.
     await page.keyboard.press("Escape");
     assert.equal(await modal.isVisible(), false, "Escape closes newsletter modal");
@@ -201,7 +219,7 @@ async function certifyViewport(browser, viewport) {
       "close returns focus to opening control");
     assert.deepEqual(errors, [], "no uncaught browser JS errors");
     console.log("PASS: " + viewport.width + "x" + viewport.height +
-      " invalid-email, consent, vendor rejection, single AJAX, delayed completion, 422, 503, retry, loader, focus, Escape");
+      " invalid-email, consent, vendor rejection, single AJAX, delayed completion, 422, 503, retry, loader, close/reopen focus, Escape");
   } finally {
     await page.close();
   }
