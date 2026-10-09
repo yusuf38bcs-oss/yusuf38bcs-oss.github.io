@@ -1121,13 +1121,13 @@ html[data-save-data="true"] body.lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-syna
   }
 }
 /* CONV-04I: paint-only dynamic visual, no geometry/transform/layout animation. */
-.lbfl-home-v3 .lbfl-v3-synaptic-signal { opacity: .22; stroke-dashoffset: 0; }
+.lbfl-home-v3 .lbfl-v3-synaptic-signal { opacity: .46; stroke-dashoffset: 0; }
 @keyframes lbfl-synaptic-orbit-pulse {
-  0%, 100% { opacity: .50; }
-  50% { opacity: .91; }
+  0%, 100% { opacity: .40; }
+  50% { opacity: .96; }
 }
 @keyframes lbfl-synaptic-node-pulse {
-  0%, 100% { opacity: .58; }
+  0%, 100% { opacity: .45; }
   50% { opacity: 1; }
 }
 @keyframes lbfl-synaptic-path-drift {
@@ -1135,23 +1135,23 @@ html[data-save-data="true"] body.lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-syna
   to { stroke-dashoffset: -100; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-orbit--breathing {
-    animation: lbfl-synaptic-orbit-pulse 27s ease-in-out infinite;
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-orbit--breathing {
+    animation: lbfl-synaptic-orbit-pulse 23s ease-in-out infinite;
   }
-  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-orbit--offset {
-    animation-duration: 31s;
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-orbit--offset {
+    animation-duration: 27s;
     animation-delay: -13s;
   }
-  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-node--pulse {
-    animation: lbfl-synaptic-node-pulse 16s ease-in-out infinite;
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-node--pulse {
+    animation: lbfl-synaptic-node-pulse 12s ease-in-out infinite;
   }
-  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-node--offset { animation-delay: -5s; }
-  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-node--late { animation-delay: -11s; }
-  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-signal {
-    animation: lbfl-synaptic-path-drift 36s linear infinite;
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-node--offset { animation-delay: -5s; }
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-node--late { animation-delay: -11s; }
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-signal {
+    animation: lbfl-synaptic-path-drift 27s linear infinite;
   }
-  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-signal--second {
-    animation-duration: 42s;
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-signal--second {
+    animation-duration: 33s;
     animation-delay: -18s;
   }
 }
@@ -1176,3 +1176,6 @@ html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-signal {
   animation: none !important;
   transition: none !important;
 }
+
+/* Restrained focal halos share the existing opacity-only node pulse. */
+.lbfl-home-v3 .lbfl-v3-synaptic-node--halo { opacity: .48; }
