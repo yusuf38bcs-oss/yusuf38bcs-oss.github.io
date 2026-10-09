@@ -293,7 +293,18 @@ async function inspect(page, viewportWidth) {
         visualAfterCopy: (() => {
           const copy = rect(selectors.heroCopy);
           const artwork = rect(selectors.heroVisual);
-          return Boolean(copy && artwork && visual.getAttribute("aria-hidden") === "true");
+          const hero = rect(selectors.hero);
+          const svg = visual?.querySelector("svg");
+          const matrix = svg?.getScreenCTM();
+          const center = matrix && svg.createSVGPoint();
+          if (center) { center.x = 635; center.y = 331; }
+          const nucleus = center?.matrixTransform(matrix);
+          return Boolean(copy && artwork && hero && nucleus &&
+            visual.getAttribute("aria-hidden") === "true" &&
+            nucleus.y >= hero.top - 80 && nucleus.y <= hero.bottom + 80 &&
+            nucleus.x >= hero.left + hero.width * 0.42 &&
+            nucleus.x <= hero.right + hero.width * 0.5 &&
+            (phoneLayout || nucleus.x >= copy.left + copy.width * 0.55));
         })(),
         visualBeforeControls: (() => {
           const artwork = rect(selectors.heroVisual);
