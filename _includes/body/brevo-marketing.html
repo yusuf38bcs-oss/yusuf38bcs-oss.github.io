@@ -207,7 +207,7 @@
         }).observe(submitButton, { attributes: true, attributeFilter: ["style"] });
       }
       form.addEventListener("submit", function (event) {
-        if (brevoSubmitPending) {
+        if (brevoSubmitPending || (submitButton && submitButton.style.display === "none") || (loader && loader.style.display === "block")) {
           event.preventDefault();
           event.stopImmediatePropagation();
           return;
@@ -229,7 +229,7 @@
         // Run after the vendor\'s synchronous submit handler. If its stricter validation
         // rejects before the loader appears, restore eligibility for a corrected retry.
         Promise.resolve().then(function () {
-          if (brevoSubmitPending && submitButton && submitButton.style.display !== "none") {
+          if (brevoSubmitPending && submitButton && submitButton.style.display !== "none" && (!loader || loader.style.display !== "block")) {
             brevoSubmitPending = false;
           }
         });
