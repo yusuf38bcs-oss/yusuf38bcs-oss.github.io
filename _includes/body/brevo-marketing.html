@@ -182,6 +182,7 @@
     }
 
     var brevoSubmitPending = false;
+    var brevoLoaderHadFocus = false;
     // Only an entered vendor loading state represents an in-flight AJAX request.
     // Brevo can synchronously reject a browser-valid value before hiding its button.
     function bindSubmissionGuard() {
@@ -190,12 +191,11 @@
       var submitButton = form.querySelector('button[type="submit"]');
       var loader = form.querySelector(".sib-loader");
       var modal = document.getElementById("brevo-newsletter-modal");
-      var loaderHadFocus = false;
       if (loader) loader.setAttribute("tabindex", "-1");
       // Hiding a focused loader may move focus to body before the style observer runs.
       // Track the last intentional focus within this modal until request completion.
       if (modal && loader) modal.addEventListener("focusin", function (event) {
-        loaderHadFocus = event.target === loader;
+        brevoLoaderHadFocus = event.target === loader;
       });
       if (submitButton) {
         new MutationObserver(function () {
@@ -211,9 +211,9 @@
               // Restore focus even if the browser blurred the loader when it vanished.
               // Never steal focus back into a dialog the user has already closed.
               if (loader && modal && !modal.hidden &&
-                  (document.activeElement === loader || loaderHadFocus)) submitButton.focus();
+                  (document.activeElement === loader || brevoLoaderHadFocus)) submitButton.focus();
             }
-            loaderHadFocus = false;
+            brevoLoaderHadFocus = false;
           }
         }).observe(submitButton, { attributes: true, attributeFilter: ["style"] });
       }
@@ -257,6 +257,7 @@
     function openModal() {
       var modal = getModal();
       if (!modal) return;
+      brevoLoaderHadFocus = false;
       lastFocusedElement = document.activeElement;
       loadBrevoAssets().catch(function () {});
       modal.hidden = false;
@@ -271,6 +272,8 @@
     function closeModal() {
       var modal = getModal();
       if (!modal) return;
+      // Do not carry pending-loader focus intent into the next modal session.
+      brevoLoaderHadFocus = false;
       modal.hidden = true;
       document.documentElement.classList.remove("brevo-modal-open");
       document.body.classList.remove("brevo-modal-open");
