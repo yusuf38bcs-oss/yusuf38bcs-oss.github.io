@@ -103,6 +103,7 @@
     var originalBrevoError = "Your subscription could not be saved. Please try again.";
     var brevoScriptUrl = "https://sibforms.com/forms/end-form/build/main.js";
     var brevoSubmitHandlerInstalled = false;
+    var brevoInitializationFault = false;
 
     function showBrevoError(message) {
       var panel = document.getElementById("error-message");
@@ -126,6 +127,7 @@
 
     function loadBrevoAssets() {
       if (brevoReady) return Promise.resolve();
+      if (brevoInitializationFault) return Promise.reject(new Error("Brevo initialization requires page refresh"));
       if (brevoLoadPromise) return brevoLoadPromise;
       var form = document.getElementById("sib-form");
       if (!form) return Promise.reject(new Error("Newsletter form missing"));
@@ -139,13 +141,27 @@
         var prior = document.querySelector('script[src="' + brevoScriptUrl + '"]');
         if (prior && prior.dataset.loaded !== "true") prior.remove();
         var script = document.createElement("script");
+        var runtimeError = null;
+        function captureBrevoError(event) {
+          if (event.filename && event.filename.indexOf("/forms/end-form/build/main.js") !== -1) {
+            runtimeError = event.error || new Error(event.message || "Brevo runtime initialization failed");
+          }
+        }
+        window.addEventListener("error", captureBrevoError, true);
         script.src = brevoScriptUrl;
         script.async = true;
         script.onload = function () {
+          window.removeEventListener("error", captureBrevoError, true);
+          if (runtimeError) {
+            brevoInitializationFault = true;
+            reject(runtimeError);
+            return;
+          }
           script.dataset.loaded = "true";
           resolve();
         };
         script.onerror = function () {
+          window.removeEventListener("error", captureBrevoError, true);
           script.remove();
           reject(new Error("Brevo script download failed"));
         };
@@ -161,7 +177,7 @@
         document.querySelectorAll('script[src="' + brevoScriptUrl + '"]').forEach(function (script) {
           if (script.dataset.loaded !== "true") script.remove();
         });
-        showBrevoError("The subscription service is temporarily unavailable. Please try again.");
+        showBrevoError(brevoInitializationFault ? "Subscription initialization failed. Please refresh this page before trying again." : "The subscription service is temporarily unavailable. Please try again.");
         throw error;
       }).finally(function () {
         form.addEventListener = originalAddEventListener;
