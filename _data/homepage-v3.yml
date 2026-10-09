@@ -18,7 +18,7 @@ architecture:
   visual_direction: "Scientific editorial premium"
   css_owner: "assets/css/homepage-v3.css"
   js_owner: "assets/js/home/homepage-v3.js"
-  asset_revision: "css-64ff89a700ba-js-844729453546"
+  asset_revision: "css-dfc526469613-js-844729453546"
   v2_inheritance: false
   platform_system: "lbfl-platform-visual-system-v1"
   academic_system: "v1"

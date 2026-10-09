@@ -1109,3 +1109,14 @@ html[data-save-data="true"] body.lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-syna
 .lbfl-home-v3-document[data-save-data="true"] .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
   display: none !important;
 }
+
+/* Ultrawide-only text fit: do not alter approved 1440px/mobile composition. */
+@media (min-width: 1600px) {
+  .lbfl-home-v3 .lbfl-v3-hero__copy {
+    width: min(100%, 1140px);
+    max-width: 1140px;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero h1 {
+    max-width: 1140px;
+  }
+}
