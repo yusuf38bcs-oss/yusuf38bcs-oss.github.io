@@ -1,52 +1,56 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04I-02
-mode: Homepage Shared-System Convergence — isolated implementation candidate
-authorized_base: 2ef87d24d73d733d541fcc624474836d72486b30
-branch: conv04-i02-homepage-shared-system
-production_verified_main: 2ef87d24d73d733d541fcc624474836d72486b30
+phase: CONV-04I-CLOSURE / CONV-04J-AUTHORIZATION
+mode: governance-only closure/authorization candidate
+authorized_base: 27c1a218cb20b4c6dfd44678762e6afda2f9eda7
+j_implementation_base: PENDING — bind to exact post-#457 main after merge
+branch: conv04-i-closure-j-authorization-20261008
+production_verified_main: 27c1a218cb20b4c6dfd44678762e6afda2f9eda7
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
-conv04f_status: FORMALLY CLOSED / F-11 merged and exact-main production PASS
-platform_visual_system_status: CLOSED / G-R1 merged via PR #451 and exact-main production PASS
-g_status: CLOSED / PR #452 merged + production verified
-h_status: CLOSED / PR #452 merged + production verified
-i00_status: FORMALLY CLOSED / PR #454 merged / exact-main live verification PASS
-i01_status: COMPLETE / read-only forensic census returned explicit GO for isolated I-02
+conv04f_status: FORMALLY CLOSED / production-verified
+platform_visual_system_status: CLOSED / production-verified
+g_status: CLOSED
+h_status: CLOSED
+i00_status: FORMALLY CLOSED
+i01_status: COMPLETE
 i01_evidence: docs/academic/conv04/CONV04_I01_FORENSIC_CENSUS.md
+i02_status: FORMALLY CLOSED / PR #456 production parity PASS
+i03_status: PRODUCTION VERIFIED / PR #459 merged as 27c1a218cb20b4c6dfd44678762e6afda2f9eda7
+i_status: PRODUCTION VERIFIED / formal closure candidate in PR #457
+i_closure_evidence: docs/academic/conv04/CONV04_I_CLOSURE_J_AUTHORIZATION.md
 i00_closure_evidence: docs/academic/conv04/CONV04_I00_CLOSURE_I01_AUTHORIZATION.md
-learner_content_authoring: NO — Homepage shell/service convergence and existing-route curation only
+learner_content_authoring: NO
 learner_mutation_allowlist:
-homepage_mutation_allowlist:
-  - index.html
-  - _layouts/homepage-v3.html
-  - _includes/home-v3/header.html
-  - _includes/home-v3/footer.html
-  - _includes/home-v3/journey.html
-  - _data/homepage.yml
-  - _data/homepage-v3.yml
-  - assets/css/homepage-v3.css
-  - docs/homepage-v3/DESIGN-CONTRACT.md
-  - docs/homepage-v3/ROUTE-MANIFEST.md
-  - docs/homepage-v3/VISUAL-REGRESSION-MANIFEST.md
-  - docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
+homepage_mutation_authority: CLOSED
+homepage_mutation_allowlist_status: HISTORICAL / CLOSED
+j_mutation_allowlist:
   - docs/academic/conv04/CONV04_STATE.md
-  - docs/academic/conv04/CONV04_I01_FORENSIC_CENSUS.md
-  - .github/scripts/validate-conv04-i02-homepage-integration.rb
-  - .github/scripts/conv04-i02-homepage-browser-certification.mjs
-  - .github/workflows/conv04-i02-homepage-integration-certification.yml
-shared_reflection_boundary: retained historical/shared component; canonical reflection routes use layout boundary ownership
+  - docs/academic/conv04/CONV04_J_RELEASE_CLOSURE.md
+shared_reflection_boundary: retained historical/shared component
 route_ledger: docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json
-step3_evidence: docs/academic/conv04/CONV04_GH_STEP3_EVIDENCE.md
 assessment_ownership: unchanged / MCQ Arena remains full-bank owner
-homepage_v3_content: narrative and section order preserved; shared identity/search/newsletter/legal/platform convergence authorized only inside homepage_mutation_allowlist
-worker_cloudflare: protected / untouched / non-governing infrastructure lane
+homepage_v3_content: FROZEN after #456 + #459 production verification
+worker_cloudflare: protected / untouched
 admission_pr_356: protected / untouched
-ready_transition: HOLD until the unchanged exact I-02 head passes the dedicated I-02 workflow, retained Homepage/AdSense checks, fresh review, zero unresolved threads and Trusted Governance
-merge: HOLD until exact-head certification matrix passes and the PR head is re-authenticated unchanged
-next_module_gate: CONV-04J remains BLOCKED until I-02 merge + exact-main production parity + formal I closure
-master_sequence: 1 F CLOSED → 2 G-R1 CLOSED → 3 G+H CLOSED → 4 I-00 CLOSED → 5 I-01 COMPLETE → 6 I-02 IMPLEMENTATION/CERTIFICATION → 7 J BLOCKED
+ready_transition: #457 exact-head certification + fresh review + zero unresolved threads + Trusted Governance
+merge: HOLD until unchanged exact-head gate passes
+next_module_gate: J BLOCKED until #457 merges and post-#457 main is bound as j_implementation_base
+master_sequence: F CLOSED → G-R1 CLOSED → G+H CLOSED → I PRODUCTION VERIFIED → #457 CLOSURE/AUTHORIZATION → J RELEASE-CLOSURE
+
+## CONV-04I closure reconciliation / CONV-04J authorization candidate — 2026-10-09
+
+- PR #456 merged and production-verified as `main@75fb1ea12959b6dcc795cfe5fda5362e22fa074c`.
+- PR #459 certified head `8ce4ff16e736bddde4f9fec176858df8b3a13ce3` merged as production-verified `main@27c1a218cb20b4c6dfd44678762e6afda2f9eda7`.
+- Live production confirms the eight-item Cell journey and the responsive Hero alignment repair.
+- Live Homepage asset revision: `css-c86b7aff954d-js-844729453546`.
+- Homepage mutation authority is CLOSED.
+- J authorization becomes effective only after PR #457 merges.
+- J must bind to the newly authenticated post-#457 main; `27c1a218cb20b4c6dfd44678762e6afda2f9eda7` is closure evidence, not the J implementation base.
+- J mutation authority is exactly the two files listed above.
+- Post-J-merge production parity is a final-closure condition, not a J pre-merge condition.
+- Any material J defect fails closed and requires separate repair authorization.
 
 ## CONV-04I-02 exact-head certification repair — 2026-10-08
 
