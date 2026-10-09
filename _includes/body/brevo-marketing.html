@@ -182,6 +182,8 @@
     }
 
     var brevoSubmitPending = false;
+    // Only an entered vendor loading state represents an in-flight AJAX request.
+    // Brevo can synchronously reject a browser-valid value before hiding its button.
     function bindSubmissionGuard() {
       var form = document.getElementById("sib-form");
       if (!form) return;
@@ -224,6 +226,13 @@
           return;
         }
         brevoSubmitPending = true;
+        // Run after the vendor\'s synchronous submit handler. If its stricter validation
+        // rejects before the loader appears, restore eligibility for a corrected retry.
+        Promise.resolve().then(function () {
+          if (brevoSubmitPending && submitButton && submitButton.style.display !== "none") {
+            brevoSubmitPending = false;
+          }
+        });
       }, true);
     }
 
