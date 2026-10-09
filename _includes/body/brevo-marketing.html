@@ -152,7 +152,6 @@
         }
         window.addEventListener("error", captureBrevoError, true);
         script.src = brevoScriptUrl;
-        script.crossOrigin = "anonymous";
         script.async = true;
         script.onload = function () {
           window.removeEventListener("error", captureBrevoError, true);
