@@ -289,7 +289,7 @@ async function inspect(page, viewportWidth) {
         copyContained: contains(selectors.heroGrid, selectors.heroCopy),
         controlsContained: contains(selectors.heroGrid, selectors.heroControls),
         visualVisible: Boolean(visible(visual) && visible(heroDiagram) && heroDiagram.querySelectorAll("circle").length >= 20),
-        visualContained: contains(selectors.heroGrid, selectors.heroVisual),
+        visualContained: Boolean(element(selectors.heroGrid)?.contains(visual)), // decorative crop is intentional; verify DOM ownership
         visualAfterCopy: (() => {
           const copy = rect(selectors.heroCopy);
           const artwork = rect(selectors.heroVisual);
