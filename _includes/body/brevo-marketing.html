@@ -191,8 +191,17 @@
       if (submitButton) {
         new MutationObserver(function () {
           var hidden = submitButton.style.display === "none";
-          if (hidden && loader && document.activeElement === submitButton) loader.focus();
-          if (!hidden && brevoSubmitPending) brevoSubmitPending = false;
+          if (hidden && loader) {
+            loader.setAttribute("tabindex", "0");
+            if (document.activeElement === submitButton || !form.contains(document.activeElement)) loader.focus();
+          }
+          if (!hidden) {
+            if (loader) loader.setAttribute("tabindex", "-1");
+            if (brevoSubmitPending) {
+              brevoSubmitPending = false;
+              if (loader && document.activeElement === loader) submitButton.focus();
+            }
+          }
         }).observe(submitButton, { attributes: true, attributeFilter: ["style"] });
       }
       form.addEventListener("submit", function (event) {
@@ -248,10 +257,18 @@
     function trapFocus(event) {
       var modal = getModal();
       if (!modal || modal.hidden || event.key !== "Tab") return;
-      var focusables = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])');
+      var candidates = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])');
+      var focusables = Array.prototype.filter.call(candidates, function (node) {
+        return node.getClientRects().length > 0 && getComputedStyle(node).visibility !== 'hidden';
+      });
       if (!focusables.length) return;
       var first = focusables[0];
       var last = focusables[focusables.length - 1];
+      if (!modal.contains(document.activeElement) || focusables.indexOf(document.activeElement) === -1) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+        return;
+      }
       if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();
