@@ -127,6 +127,7 @@ async function certifyViewport(browser, viewport) {
     assert.equal(await loader.evaluate((el) => el.getAttribute("tabindex")), "0",
       "loader enters keyboard flow");
     await email.press("Enter");
+    await page.waitForTimeout(50);
     assert.equal(intercepted.length, 1, "double Enter makes only one AJAX request");
     await loader.focus();
     for (let i = 0; i < 7; i++) {
@@ -140,7 +141,18 @@ async function certifyViewport(browser, viewport) {
     intercepted[0].release();
     await page.waitForFunction(() => window.__lbflVendor.completed === 1);
     await page.waitForFunction(() => document.activeElement ===
-      document.querySelector('#sib-form button[type="submit"]'));
+      document.querySelector('#sib-form button[type="submit"]'), null, { timeout: 3000 })
+      .catch(async () => {
+        const state = await page.evaluate(() => ({
+          active: document.activeElement?.outerHTML?.slice(0, 180),
+          buttonDisplay: document.querySelector('#sib-form button[type="submit"]')?.style.display,
+          loaderDisplay: document.querySelector(".sib-loader")?.style.display,
+          loaderTabIndex: document.querySelector(".sib-loader")?.tabIndex,
+          vendorCompleted: window.__lbflVendor?.completed,
+          modalHidden: document.querySelector("#brevo-newsletter-modal")?.hidden
+        }));
+        throw new Error("Loader-to-button focus restoration failed: " + JSON.stringify(state));
+      });
     assert.equal(await button.isVisible(), true, "button returns after success");
     assert.equal(await loader.isVisible(), false, "loader disappears after success");
     assert.equal(await page.locator("#success-message").isVisible(), true,
