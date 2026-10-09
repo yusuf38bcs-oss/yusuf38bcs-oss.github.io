@@ -1182,3 +1182,54 @@ html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-signal {
 /* Small visible-node accents preserve the static geometry and text-safe mask. */
 .lbfl-home-v3 .lbfl-v3-synaptic-node--upper { animation-delay: -3s; }
 .lbfl-home-v3 .lbfl-v3-synaptic-node--halo { stroke: #B6F4E8; stroke-width: 2.2; }
+
+
+/* Hero Part B focal convergence: static geometry first; paint-only movement. */
+.lbfl-home-v3 .lbfl-v3-synaptic-core {
+  opacity: .98;
+  filter: drop-shadow(0 0 26px rgba(93, 220, 200, .30));
+}
+.lbfl-home-v3 .lbfl-v3-synaptic-core__heart {
+  transform-origin: 635px 331px;
+}
+@keyframes lbfl-hero-core-luminance {
+  0%,100% { opacity: .65; }
+  50% { opacity: .92; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html[data-save-data="false"] .lbfl-home-v3 .lbfl-v3-synaptic-core__heart {
+    animation: lbfl-hero-core-luminance 14s ease-in-out infinite;
+  }
+}
+@media (min-width: 701px) and (max-width: 1200px) {
+  .lbfl-home-v3 .lbfl-v3-hero__grid { min-height: 470px; }
+  .lbfl-home-v3 .lbfl-v3-hero__copy,
+  .lbfl-home-v3 .lbfl-v3-hero__controls {
+    width: min(100%, 58%);
+    max-width: 650px;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero h1 {
+    font-size: clamp(2.65rem, 4.8vw, 4rem);
+    line-height: 1.055;
+  }
+  .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
+    inset: -5% -8% -7% 37%;
+    opacity: 1;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.65) 16%, #000 38%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.65) 16%, #000 38%);
+  }
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__diagram { transform: none; }
+}
+@media (min-width: 1201px) {
+  .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field { right: -2%; width: min(74vw, 990px); }
+}
+@media (max-width: 700px) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-core { opacity: .75; filter: none; }
+  .lbfl-home-v3 .lbfl-v3-synaptic-satellites { opacity: .58; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-core__heart { animation: none !important; }
+}
+html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-core__heart {
+  animation: none !important;
+}
