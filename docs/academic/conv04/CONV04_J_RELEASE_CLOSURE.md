@@ -2,14 +2,14 @@
 
 status: IMPLEMENTATION CANDIDATE / HOLD
 programme: CONV-04
-phase: CONV-04J
+phase: CONV-04J-R1
 j_implementation_base: b3cffae196a34eb6ce97692168c2cc03cfbb5594
 authorization_source: PR #457
 date: 2026-10-09
 
 ## Purpose
 
-CONV-04J is the final whole-platform release/closure gate. It does not authorize learner or runtime feature work. Its purpose is to freeze the post-#457 platform state, retain-certify the completed CONV-04 contracts, merge only an unchanged certified governance head, then prove post-merge exact-main production parity before declaring CONV-04 closed.
+CONV-04J-R1 is the final whole-platform release/closure execution candidate under CONV-04J. It does not authorize learner or runtime feature work. Its purpose is to freeze the post-#457 platform state, retain-certify the completed CONV-04 contracts, merge only an unchanged certified governance head, then prove post-merge exact-main production parity before declaring CONV-04 closed.
 
 ## Exact mutation allowlist
 
