@@ -146,12 +146,13 @@
         var script = document.createElement("script");
         var runtimeError = null;
         function captureBrevoError(event) {
-          if (event.target === window && (!event.filename || event.filename.indexOf("/forms/end-form/build/main.js") !== -1)) {
+          if (event.target === window && event.filename && event.filename.indexOf("/forms/end-form/build/main.js") !== -1) {
             runtimeError = event.error || new Error(event.message || "Brevo runtime initialization failed");
           }
         }
         window.addEventListener("error", captureBrevoError, true);
         script.src = brevoScriptUrl;
+        script.crossOrigin = "anonymous";
         script.async = true;
         script.onload = function () {
           window.removeEventListener("error", captureBrevoError, true);
