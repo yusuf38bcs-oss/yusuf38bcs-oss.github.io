@@ -2,10 +2,10 @@
 
 programme: CONV-04
 phase: CONV-04J
-mode: Whole-platform release / closure candidate
-authorized_base: b3cffae196a34eb6ce97692168c2cc03cfbb5594
-j_implementation_base: b3cffae196a34eb6ce97692168c2cc03cfbb5594
-branch: conv04-j-release-closure-20261009
+mode: governance-only closure/authorization candidate
+authorized_base: 27c1a218cb20b4c6dfd44678762e6afda2f9eda7
+j_implementation_base: PENDING — bind to exact post-#457 main after merge
+branch: conv04-i-closure-j-authorization-20261008
 production_verified_main: 27c1a218cb20b4c6dfd44678762e6afda2f9eda7
 production_loop: PASS — Attempt → Feedback → Repair → Reattempt
 conv04e_boundary: CLOSED / PASS / production-verified
@@ -18,7 +18,7 @@ i01_status: COMPLETE
 i01_evidence: docs/academic/conv04/CONV04_I01_FORENSIC_CENSUS.md
 i02_status: FORMALLY CLOSED / PR #456 production parity PASS
 i03_status: PRODUCTION VERIFIED / PR #459 merged as 27c1a218cb20b4c6dfd44678762e6afda2f9eda7
-i_status: FORMALLY CLOSED / PR #457 merged
+i_status: PRODUCTION VERIFIED / formal closure candidate in PR #457
 i_closure_evidence: docs/academic/conv04/CONV04_I_CLOSURE_J_AUTHORIZATION.md
 i00_closure_evidence: docs/academic/conv04/CONV04_I00_CLOSURE_I01_AUTHORIZATION.md
 learner_content_authoring: NO
@@ -34,20 +34,10 @@ assessment_ownership: unchanged / MCQ Arena remains full-bank owner
 homepage_v3_content: FROZEN after #456 + #459 production verification
 worker_cloudflare: protected / untouched
 admission_pr_356: protected / untouched
-ready_transition: CONV-04J exact-base release/closure certification
-merge: CONV-04J candidate HOLD until unchanged exact-head whole-platform certification, fresh review, zero unresolved threads and Trusted Governance PASS
-next_module_gate: CONV-04 final closure BLOCKED until J merge + post-merge exact-main production parity
+ready_transition: #457 exact-head certification + fresh review + zero unresolved threads + Trusted Governance
+merge: HOLD until unchanged exact-head gate passes
+next_module_gate: J BLOCKED until #457 merges and post-#457 main is bound as j_implementation_base
 master_sequence: F CLOSED → G-R1 CLOSED → G+H CLOSED → I PRODUCTION VERIFIED → #457 CLOSURE/AUTHORIZATION → J RELEASE-CLOSURE
-
-## CONV-04J implementation-base binding / release-closure candidate — 2026-10-09
-
-- PR #457 merged as exact `main@b3cffae196a34eb6ce97692168c2cc03cfbb5594`.
-- This SHA is authenticated as the CONV-04J implementation base.
-- J mutation authority remains exactly two files: `docs/academic/conv04/CONV04_STATE.md` and `docs/academic/conv04/CONV04_J_RELEASE_CLOSURE.md`.
-- Learner content, Homepage, Socratic, assessment runtime, Practical, Ecology, Admission, Worker, Cloudflare, DNS and redirects remain protected.
-- J pre-merge gate requires unchanged exact-head retained whole-platform certification, fresh review, zero unresolved threads and Trusted Governance PASS.
-- Post-J-merge exact-main production parity is required only for final CONV-04 closure.
-- Any material defect fails closed and requires separate isolated repair authorization.
 
 ## CONV-04I closure reconciliation / CONV-04J authorization candidate — 2026-10-09
 
