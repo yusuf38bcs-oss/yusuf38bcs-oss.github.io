@@ -176,6 +176,19 @@ async function runViewport(browser, viewport) {
             getComputedStyle(heroField).display !== "none" &&
             heroDiagram.getBoundingClientRect().width > 0 && heroDiagram.getBoundingClientRect().height > 0)
           : Boolean(heroImage?.complete && heroImage.naturalWidth > 0),
+        heroMotionValid: !homepageV3 || (() => {
+          const isAnimated = (selector) => {
+            const element = heroDiagram?.querySelector(selector);
+            if (!element) return false;
+            const style = getComputedStyle(element);
+            return style.animationName !== "none" &&
+              style.animationDuration.split(",").some((token) => Number.parseFloat(token) >= 10);
+          };
+          const ring = isAnimated(".lbfl-v3-synaptic-orbit--breathing");
+          const node = isAnimated(".lbfl-v3-synaptic-node--pulse");
+          const signal = isAnimated(".lbfl-v3-synaptic-signal");
+          return ring && node && (window.innerWidth <= 700 ? !signal : signal);
+        })(),
         horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
         logoVisible: homepageV3
           ? visible('.lbfl-v3-brand[aria-label="Learning Biology For Life home"]')
@@ -238,7 +251,7 @@ async function runViewport(browser, viewport) {
     const layoutPassed = response?.status() === 200 &&
       layout.viewport.width === viewport.width && layout.viewport.height === viewport.height &&
       layout.bannerFits && layout.bannerVisible && layout.ctaVisible && layout.headingVisible &&
-      layout.heroImageLoaded && !layout.horizontalOverflow && layout.logoVisible &&
+      layout.heroImageLoaded && layout.heroMotionValid && !layout.horizontalOverflow && layout.logoVisible &&
       layout.menuOrNavVisible && layout.searchVisible &&
       layout.meta.length === 1 && layout.meta[0] === EXPECTED_ACCOUNT;
     const passed = layoutPassed && axeResult.length === 0 && focusPassed &&

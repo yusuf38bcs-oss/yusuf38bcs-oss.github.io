@@ -991,7 +991,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 }
 
 
-/* CONV-04I HERO: Synaptic Knowledge Field 2.0, STATIC until visual signoff. */
+/* CONV-04I HERO: Synaptic Knowledge Field 2.0, approved static foundation + subtle motion. */
 .lbfl-home-v3 .lbfl-v3-hero {
   background: radial-gradient(ellipse at 82% 40%,rgba(40,142,136,.32),transparent 46%),
     radial-gradient(ellipse at 18% 86%,rgba(235,190,105,.052),transparent 40%),
@@ -1119,4 +1119,60 @@ html[data-save-data="true"] body.lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-syna
   .lbfl-home-v3 .lbfl-v3-hero h1 {
     max-width: 1140px;
   }
+}
+/* CONV-04I: paint-only dynamic visual, no geometry/transform/layout animation. */
+.lbfl-home-v3 .lbfl-v3-synaptic-signal { opacity: .22; stroke-dashoffset: 0; }
+@keyframes lbfl-synaptic-orbit-pulse {
+  0%, 100% { opacity: .50; }
+  50% { opacity: .91; }
+}
+@keyframes lbfl-synaptic-node-pulse {
+  0%, 100% { opacity: .58; }
+  50% { opacity: 1; }
+}
+@keyframes lbfl-synaptic-path-drift {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -100; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-orbit--breathing {
+    animation: lbfl-synaptic-orbit-pulse 27s ease-in-out infinite;
+  }
+  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-orbit--offset {
+    animation-duration: 31s;
+    animation-delay: -13s;
+  }
+  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-node--pulse {
+    animation: lbfl-synaptic-node-pulse 16s ease-in-out infinite;
+  }
+  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-node--offset { animation-delay: -5s; }
+  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-node--late { animation-delay: -11s; }
+  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-signal {
+    animation: lbfl-synaptic-path-drift 36s linear infinite;
+  }
+  html:not([data-save-data="true"]) .lbfl-home-v3 .lbfl-v3-synaptic-signal--second {
+    animation-duration: 42s;
+    animation-delay: -18s;
+  }
+}
+@media (max-width: 700px) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-field__signals { opacity: .65; }
+  .lbfl-home-v3 .lbfl-v3-synaptic-signal {
+    animation: none !important;
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lbfl-home-v3 .lbfl-v3-synaptic-orbit--breathing,
+  .lbfl-home-v3 .lbfl-v3-synaptic-node--pulse,
+  .lbfl-home-v3 .lbfl-v3-synaptic-signal {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-orbit--breathing,
+html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-node--pulse,
+html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-signal {
+  animation: none !important;
+  transition: none !important;
 }

@@ -12,8 +12,8 @@
       <svg class="lbfl-v3-synaptic-field__diagram" viewBox="0 0 960 680" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
         <g class="lbfl-v3-synaptic-field__rings" stroke="#8CDAD5">
           <circle cx="635" cy="331" r="236" stroke-opacity=".14"/>
-          <circle cx="635" cy="331" r="177" stroke-opacity=".25"/>
-          <circle cx="635" cy="331" r="107" stroke-opacity=".32"/>
+          <circle class="lbfl-v3-synaptic-orbit--breathing" cx="635" cy="331" r="177" stroke-opacity=".25"/>
+          <circle class="lbfl-v3-synaptic-orbit--breathing lbfl-v3-synaptic-orbit--offset" cx="635" cy="331" r="107" stroke-opacity=".32"/>
           <circle cx="635" cy="331" r="42" stroke-opacity=".46"/>
         </g>
         <g stroke="#8EDDD7" stroke-opacity=".35" stroke-width="1.5">
@@ -25,7 +25,7 @@
         <g fill="#A8E9DF">
           <circle cx="166" cy="440" r="5"/><circle cx="316" cy="302" r="7"/>
           <circle cx="458" cy="387" r="5"/><circle cx="541" cy="198" r="6"/>
-          <circle cx="635" cy="331" r="12"/><circle cx="777" cy="225" r="6"/>
+          <circle class="lbfl-v3-synaptic-node--pulse" cx="635" cy="331" r="12"/><circle class="lbfl-v3-synaptic-node--pulse lbfl-v3-synaptic-node--offset" cx="777" cy="225" r="6"/>
           <circle cx="723" cy="477" r="7"/><circle cx="863" cy="553" r="4"/>
           <circle cx="382" cy="132" r="4"/><circle cx="635" cy="88" r="4"/>
           <circle cx="895" cy="302" r="4"/><circle cx="396" cy="572" r="4"/>
@@ -46,13 +46,18 @@
         </g>
         <g fill="#A5E6DB">
           <circle cx="221" cy="455" r="3"/><circle cx="278" cy="503" r="4"/>
-          <circle cx="470" cy="483" r="6"/><circle cx="541" cy="432" r="4"/>
+          <circle class="lbfl-v3-synaptic-node--pulse lbfl-v3-synaptic-node--late" cx="470" cy="483" r="6"/><circle cx="541" cy="432" r="4"/>
           <circle cx="716" cy="364" r="5"/><circle cx="780" cy="444" r="4"/>
           <circle cx="869" cy="185" r="4"/><circle cx="493" cy="91" r="3"/>
           <circle cx="708" cy="154" r="4"/><circle cx="612" cy="241" r="3"/>
           <circle cx="554" cy="302" r="3"/><circle cx="693" cy="411" r="3"/>
         </g>
         <g fill="#EAC46E"><circle cx="470" cy="483" r="2.5"/><circle cx="716" cy="364" r="2.5"/><circle cx="635" cy="331" r="5.5"/></g>
+        <!-- Restrained activity on two pre-existing connections; no external assets. -->
+        <g class="lbfl-v3-synaptic-field__signals" fill="none" stroke="#C0F1E5" stroke-width="2" stroke-linecap="round">
+          <path class="lbfl-v3-synaptic-signal lbfl-v3-synaptic-signal--first" pathLength="100" stroke-dasharray="4 96" d="M470 483 541 432 635 331 716 364 780 444 863 553"/>
+          <path class="lbfl-v3-synaptic-signal lbfl-v3-synaptic-signal--second" pathLength="100" stroke-dasharray="4 96" d="M382 132 493 91 635 88 708 154 777 225 869 185"/>
+        </g>
       </svg>
     </div>
 
