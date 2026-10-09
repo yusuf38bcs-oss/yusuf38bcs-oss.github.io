@@ -37,6 +37,7 @@ form.addEventListener("submit",function(e){
   assert.equal(await page.evaluate(()=>window.__lbflVendor.requests),0,"vendor validation short circuits");
   await email.fill("certification@example.com");await email.press("Enter");
   await page.waitForFunction(()=>window.__lbflVendor.requests===1);
+  console.log("HIDE_DIAGNOSTIC", JSON.stringify(await button.evaluate(el=>({inline:el.style.display,computed:getComputedStyle(el).display,outer:el.outerHTML.slice(0,250)}))));
   assert.equal(await button.isVisible(),false,"vendor hides button");
   assert.equal(await loader.isVisible(),true,"loader shown");
   await email.press("Enter");await page.waitForTimeout(50);
