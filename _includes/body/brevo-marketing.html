@@ -93,20 +93,27 @@
     window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
     window.AUTOHIDE = true;
 
-    var loaded = false;
+    var brevoLoadPromise = null;
+    var brevoReady = false;
     var lastFocusedElement = null;
 
+    function showBrevoError(message) {
+      var panel = document.getElementById("error-message");
+      if (!panel) return;
+      var text = panel.querySelector(".sib-form-message-panel__inner-text");
+      if (text) text.textContent = message;
+      panel.style.display = "block";
+      panel.setAttribute("role", "alert");
+    }
+
+    function clearBrevoError() {
+      var panel = document.getElementById("error-message");
+      if (panel) panel.style.display = "none";
+    }
+
     function loadBrevoAssets() {
-      if (loaded) return;
-      loaded = true;
-
-      var css = document.createElement("link");
-      css.rel = "stylesheet";
-      css.href = "https://sibforms.com/forms/end-form/build/sib-styles.css";
-      css.media = "print";
-      css.onload = function () { css.media = "all"; };
-      document.head.appendChild(css);
-
+      if (brevoReady && window.sib && typeof window.sib.submitForm === "function") return Promise.resolve();
+      if (brevoLoadPromise) return brevoLoadPromise;
       var loader = window.lbflLoadScript || function (src) {
         return new Promise(function (resolve, reject) {
           var s = document.createElement("script");
@@ -117,7 +124,35 @@
           document.head.appendChild(s);
         });
       };
-      loader("https://sibforms.com/forms/end-form/build/main.js").catch(function () {});
+      brevoLoadPromise = Promise.resolve().then(function () {
+        return loader("https://sibforms.com/forms/end-form/build/main.js");
+      }).then(function () {
+        if (!window.sib || typeof window.sib.submitForm !== "function") {
+          throw new Error("Brevo submit handler unavailable after script load");
+        }
+        brevoReady = true;
+        clearBrevoError();
+      }).catch(function (error) {
+        brevoReady = false;
+        brevoLoadPromise = null;
+        showBrevoError("The subscription service is temporarily unavailable. Please try again.");
+        throw error;
+      });
+      return brevoLoadPromise;
+    }
+
+    function bindSubmissionGuard() {
+      var form = document.getElementById("sib-form");
+      if (!form) return;
+      form.addEventListener("submit", function (event) {
+        if (!form.checkValidity()) return;
+        if (!brevoReady || !window.sib || typeof window.sib.submitForm !== "function") {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          showBrevoError("Connecting to the subscription service. Please try again shortly.");
+          loadBrevoAssets().catch(function () {});
+        }
+      }, true);
     }
 
     function getModal() {
@@ -128,7 +163,7 @@
       var modal = getModal();
       if (!modal) return;
       lastFocusedElement = document.activeElement;
-      loadBrevoAssets();
+      loadBrevoAssets().catch(function () {});
       modal.hidden = false;
       document.documentElement.classList.add("brevo-modal-open");
       document.body.classList.add("brevo-modal-open");
@@ -178,7 +213,7 @@
       });
     }
 
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindModal);
-    else bindModal();
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { bindModal(); bindSubmissionGuard(); });
+    else { bindModal(); bindSubmissionGuard(); }
   })();
 </script>
