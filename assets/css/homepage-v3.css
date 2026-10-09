@@ -1039,7 +1039,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   .lbfl-home-v3 .lbfl-v3-hero__copy { margin-bottom:0; }
   .lbfl-home-v3 .lbfl-v3-hero__controls { margin-top:24px; }
   .lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-synaptic-field {
-    inset:-8% -90% -4% -4%; opacity:.5;
+    inset:-8% -90% -4% -4%; opacity:.58;
     -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.14) 30%,#000 70%);
     mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.14) 30%,#000 70%);
   }
@@ -1121,7 +1121,7 @@ html[data-save-data="true"] body.lbfl-home-v3 .lbfl-v3-hero__visual.lbfl-v3-syna
   }
 }
 /* CONV-04I: paint-only dynamic visual, no geometry/transform/layout animation. */
-.lbfl-home-v3 .lbfl-v3-synaptic-signal { opacity: .46; stroke-dashoffset: 0; }
+.lbfl-home-v3 .lbfl-v3-synaptic-signal { opacity: .66; stroke-dashoffset: 0; }
 @keyframes lbfl-synaptic-orbit-pulse {
   0%, 100% { opacity: .40; }
   50% { opacity: .96; }
@@ -1179,3 +1179,6 @@ html[data-save-data="true"] .lbfl-home-v3 .lbfl-v3-synaptic-signal {
 
 /* Restrained focal halos share the existing opacity-only node pulse. */
 .lbfl-home-v3 .lbfl-v3-synaptic-node--halo { opacity: .48; }
+/* Small visible-node accents preserve the static geometry and text-safe mask. */
+.lbfl-home-v3 .lbfl-v3-synaptic-node--upper { animation-delay: -3s; }
+.lbfl-home-v3 .lbfl-v3-synaptic-node--halo { stroke: #B6F4E8; stroke-width: 2.2; }

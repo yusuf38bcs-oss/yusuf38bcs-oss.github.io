@@ -8,7 +8,7 @@ const url=arg("--url"), sha=arg("--expected-sha"), dir=path.resolve(arg("--outpu
 if(!url||!sha)throw new Error("Expected --url and --expected-sha");
 await fs.mkdir(dir,{recursive:true});
 const selectors={rings:".lbfl-v3-synaptic-orbit--breathing",nodes:".lbfl-v3-synaptic-node--pulse",signals:".lbfl-v3-synaptic-signal"};
-const expected={rings:2,nodes:5,signals:2};
+const expected={rings:2,nodes:8,signals:2};
 const allowed=new Set(["offset","computedOffset","easing","composite","opacity","strokeDashoffset","stroke-dashoffset"]);
 const browser=await chromium.launch({headless:true});
 const results=[];
