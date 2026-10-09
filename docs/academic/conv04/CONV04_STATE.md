@@ -1,7 +1,7 @@
 # CONV-04 — Clean Academic Experience Convergence
 
 programme: CONV-04
-phase: CONV-04I-CLOSURE / CONV-04J-AUTHORIZATION
+phase: CONV-04J
 mode: governance-only closure/authorization candidate
 authorized_base: 27c1a218cb20b4c6dfd44678762e6afda2f9eda7
 j_implementation_base: PENDING — bind to exact post-#457 main after merge
