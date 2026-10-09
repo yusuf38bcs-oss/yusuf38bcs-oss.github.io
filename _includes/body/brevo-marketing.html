@@ -144,35 +144,26 @@
         var prior = document.querySelector('script[src="' + brevoScriptUrl + '"]');
         if (prior && prior.dataset.loaded !== "true") prior.remove();
         var script = document.createElement("script");
-        var runtimeError = null;
-        function captureBrevoError(event) {
-          if (event.target === window && event.filename && event.filename.indexOf("/forms/end-form/build/main.js") !== -1) {
-            runtimeError = event.error || new Error(event.message || "Brevo runtime initialization failed");
-          }
-        }
-        window.addEventListener("error", captureBrevoError, true);
         script.src = brevoScriptUrl;
         script.async = true;
         script.onload = function () {
-          window.removeEventListener("error", captureBrevoError, true);
-          if (runtimeError) {
-            brevoInitializationFault = true;
-            reject(runtimeError);
-            return;
-          }
           script.dataset.loaded = "true";
           resolve();
         };
         script.onerror = function () {
-          window.removeEventListener("error", captureBrevoError, true);
           script.remove();
           reject(new Error("Brevo script download failed"));
         };
         document.head.appendChild(script);
       }).then(function () {
-        if (!brevoSubmitHandlerInstalled) {
+        // These vendor-installed hooks occur near the end of Brevo main.js.
+        // Unlike a cross-origin error event, they survive an opaque script fetch.
+        var vendorInitialized = brevoSubmitHandlerInstalled &&
+          typeof window.invisibleCaptchaCallback === "function" &&
+          typeof SVGElement.prototype.removeClass === "function";
+        if (!vendorInitialized) {
           brevoInitializationFault = true;
-          throw new Error("Brevo did not register a submission handler");
+          throw new Error("Brevo main.js did not finish initialization");
         }
         brevoReady = true;
         clearBrevoError();
