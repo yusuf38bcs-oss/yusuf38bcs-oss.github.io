@@ -189,7 +189,14 @@
       if (!form) return;
       var submitButton = form.querySelector('button[type="submit"]');
       var loader = form.querySelector(".sib-loader");
+      var modal = document.getElementById("brevo-newsletter-modal");
+      var loaderHadFocus = false;
       if (loader) loader.setAttribute("tabindex", "-1");
+      // Hiding a focused loader may move focus to body before the style observer runs.
+      // Track the last intentional focus within this modal until request completion.
+      if (modal && loader) modal.addEventListener("focusin", function (event) {
+        loaderHadFocus = event.target === loader;
+      });
       if (submitButton) {
         new MutationObserver(function () {
           var hidden = submitButton.style.display === "none";
@@ -201,8 +208,12 @@
             if (loader) loader.setAttribute("tabindex", "-1");
             if (brevoSubmitPending) {
               brevoSubmitPending = false;
-              if (loader && document.activeElement === loader) submitButton.focus();
+              // Restore focus even if the browser blurred the loader when it vanished.
+              // Never steal focus back into a dialog the user has already closed.
+              if (loader && modal && !modal.hidden &&
+                  (document.activeElement === loader || loaderHadFocus)) submitButton.focus();
             }
+            loaderHadFocus = false;
           }
         }).observe(submitButton, { attributes: true, attributeFilter: ["style"] });
       }
