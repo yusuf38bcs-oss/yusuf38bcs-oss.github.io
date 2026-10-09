@@ -471,6 +471,7 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   column-gap: clamp(38px, 6vw, 88px);
   row-gap: 0;
   align-items: start;
+  justify-items: stretch;
 }
 
 .lbfl-v3-hero__copy {
@@ -580,6 +581,8 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 .lbfl-v3-hero__visual {
   grid-area: visual;
   align-self: center;
+  justify-self: end;
+  width: min(100%, 560px);
   margin: 0;
   padding: clamp(14px, 1.7vw, 22px);
   border: 1px solid rgba(169, 229, 219, 0.18);
@@ -814,8 +817,21 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
 @media (max-width: 1024px) {
   .lbfl-v3-hero__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
-    gap: 34px;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.78fr);
+    column-gap: clamp(24px, 4vw, 34px);
+    row-gap: 0;
+    align-items: center;
+  }
+
+  .lbfl-v3-hero__copy,
+  .lbfl-v3-hero__controls {
+    max-width: 620px;
+  }
+
+  .lbfl-v3-hero__visual {
+    width: min(100%, 480px);
+    max-width: 480px;
+    justify-self: end;
   }
 
   .lbfl-v3-hero h1 {
@@ -844,12 +860,16 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   }
 
   .lbfl-v3-hero__copy {
+    width: 100%;
+    max-width: 560px;
+    justify-self: center;
     margin-bottom: 26px;
   }
 
   .lbfl-v3-hero__controls {
     width: 100%;
-    max-width: none;
+    max-width: 560px;
+    justify-self: center;
     margin-top: 0;
   }
 
@@ -885,8 +905,9 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
   }
 
   .lbfl-v3-hero__visual {
-    width: 100%;
-    max-width: 460px;
+    width: min(100%, 520px);
+    max-width: 520px;
+    justify-self: center;
     margin: 0 auto 24px;
     padding: 10px;
     border-radius: 22px;
@@ -907,6 +928,19 @@ html[data-save-data="true"] .lbfl-v3-hero__grid { grid-template-columns: minmax(
 
   .lbfl-v3-pathway-card::before {
     margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .lbfl-v3-hero__copy,
+  .lbfl-v3-hero__controls,
+  .lbfl-v3-hero__visual {
+    width: 100%;
+    max-width: none;
+  }
+
+  .lbfl-v3-hero__visual {
+    justify-self: stretch;
   }
 }
 
