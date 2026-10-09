@@ -201,7 +201,7 @@ async function certifyViewport(browser, viewport) {
     await button.press("Enter");
     await waitForIntercepted(page, intercepted, 5);
     await page.waitForFunction(() => document.activeElement === document.querySelector(".sib-loader"));
-    await page.locator("[data-brevo-close]").first().click();
+    await page.locator(".brevo-modal-close").click();
     assert.equal(await modal.isVisible(), false);
     await open.click();
     await page.waitForFunction(() => document.activeElement === document.querySelector("#EMAIL"));
