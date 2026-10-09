@@ -59,7 +59,7 @@ jobs:
 
           if grep -q 'lbfl-home-v3-document' _site/index.html; then
             echo "Validating Homepage v3 production output."
-            grep -q 'class="lbfl-home-v3"' _site/index.html || (echo "Homepage v3 body root missing" && exit 1)
+            grep -Eq 'class="lbfl-home-v3([[:space:]]|\")' _site/index.html || (echo "Homepage v3 body root missing" && exit 1)
             grep -q 'assets/css/homepage-v3.css' _site/index.html || (echo "Homepage v3 stylesheet missing" && exit 1)
             grep -q 'assets/js/home/homepage-v3.js' _site/index.html || (echo "Homepage v3 runtime missing" && exit 1)
             grep -q 'hreflang="bn"' _site/index.html || (echo "Homepage v3 Bangla language target missing" && exit 1)
