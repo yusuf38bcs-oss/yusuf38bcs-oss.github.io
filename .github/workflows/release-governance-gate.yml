@@ -8,8 +8,9 @@ on:
   pull_request_target:
     branches: ["main", "staging"]
     types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited, closed]
-  pull_request_review:
-    types: [submitted, edited, dismissed]
+  # PR review submissions are not an executable trusted-base event.
+  # Recheck via the protected pull_request_target path (PR edited/reopened)
+  # and repository-required review/conversation protection instead.
 
 permissions:
   contents: read
@@ -31,8 +32,6 @@ env:
     const SOLO_EXCEPTION_LINE =
       'SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER';
     const SOLO_APPROVAL_LABEL = 'SOLO-MAINTAINER-APPROVAL:';
-    const decisiveStates = new Set(['APPROVED', 'CHANGES_REQUESTED', 'DISMISSED']);
-    const allowedPermissionLevels = new Set(['admin', 'maintain', 'write', 'push']);
     const target_url =
       `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
 
@@ -80,71 +79,13 @@ env:
       const repoOwner = String(owner || '').toLowerCase();
       const body = String(pull.body || '');
 
-      const reviews = await github.paginate(github.rest.pulls.listReviews, {
-        owner,
-        repo,
-        pull_number,
-        per_page: 100,
-      });
-
-      const latestDecisiveByReviewer = new Map();
-      for (const review of reviews) {
-        const login = String(review.user?.login || '').toLowerCase();
-        const state = String(review.state || '').toUpperCase();
-        if (
-          !login ||
-          login === author ||
-          login.endsWith('[bot]') ||
-          !decisiveStates.has(state)
-        ) {
-          continue;
-        }
-        const submitted = review.submitted_at ? Date.parse(review.submitted_at) : 0;
-        const previous = latestDecisiveByReviewer.get(login);
-        if (!previous || submitted >= previous.submitted) {
-          latestDecisiveByReviewer.set(login, {
-            state,
-            commitId: String(review.commit_id || '').toLowerCase(),
-            submitted,
-          });
-        }
-      }
-
-      const approvalCandidates = [...latestDecisiveByReviewer.entries()].filter(
-        ([, review]) => review.state === 'APPROVED' && review.commitId === headSha
-      );
-
-      const authorizedApprovals = [];
-      for (const [login] of approvalCandidates) {
-        try {
-          const response = await github.rest.repos.getCollaboratorPermissionLevel({
-            owner,
-            repo,
-            username: login,
-          });
-          const permissions = response.data.user?.permissions || {};
-          const level = String(response.data.permission || '').toLowerCase();
-          if (
-            permissions.push ||
-            permissions.maintain ||
-            permissions.admin ||
-            allowedPermissionLevels.has(level)
-          ) {
-            authorizedApprovals.push(login);
-          } else {
-            core.info(`Ignoring approval from ${login}: insufficient repository authority.`);
-          }
-        } catch (error) {
-          core.info(
-            `Ignoring approval from ${login}: permission lookup failed ` +
-            `(${error.status || 'unknown'}).`
-          );
-        }
-      }
-
-      if (authorizedApprovals.length >= 1) {
-        return `independent-review:${authorizedApprovals.length}`;
-      }
+      // Permanent SOLO authority is the only current promotion mechanism.
+      // Independent GitHub review approval is NOT an authority source while
+      // rulesets require 0 approving reviews: dismissals would leave a stale
+      // green commit status without a trusted, synchronous required-review rule.
+      // Review comments remain mandatory to resolve via the protected ruleset.
+      // Any future independent-review policy requires a server-side rule first.
+      core.info('GOVERNANCE_SOLO_ONLY: independent-review status authorization disabled.');
 
       const lines = body.split(/\r?\n/).map((line) => line.trim());
       const exceptionLines = lines.filter((line) =>
@@ -167,12 +108,115 @@ env:
 
       if (!identityEligible || !markerEligible) {
         throw new Error(
-          'No authorized independent exact-head approval and no valid solo-maintainer ' +
+          'No valid permanent solo-maintainer ' +
           `authority. The owner-authored PR body must contain exactly "${SOLO_EXCEPTION_LINE}" ` +
           `and "${expectedApprovalLine}". A new commit invalidates the marker.`
         );
       }
       return 'solo-maintainer-exact-head';
+    }
+
+
+    // CONV04F_TRUSTED_MIGRATION_POLICY_V1: One-time seven-file protection.
+    // Executes ONLY from protected main's pull_request_target governance.
+    // A separate SHA-scoped authorization status is deliberately forbidden:
+    // the existing required LBFL Trusted Release Governance check owns this decision.
+    async function verifyOneTimePracticalValidatorMigration(pull, headSha, baseSha) {
+      if (Number(pull.number) !== 468) return;
+      if (String(pull.base?.ref || '') !== 'main') {
+        throw new Error('PR #468 migration authority requires protected main.');
+      }
+      if (String(pull.head?.ref || '') !==
+          'repair/conv04f-retained-validator-j-compat-20261010') {
+        throw new Error('PR #468 migration branch identity mismatch.');
+      }
+      const permitted = {
+            ".github/scripts/validate-conv04f-zoology-practical-museum.rb": [
+                  "43aa1d96c71e524f0af4eca954766e51e9c423f5",
+                  "57fa42431ced38f17dd48dbb76be2acf0f324487"
+            ],
+            ".github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb": [
+                  "fc9b9f07164676798b4f98fe7802053dddd0f929",
+                  "51ea08d567ae46cfa8732c6538457f970bc2f832"
+            ],
+            ".github/scripts/validate-conv04f-zoology-practical-field-report.rb": [
+                  "cef2b7aca4f5a388421d89e39213947016341e43",
+                  "ab1c600a75611c41a349a4e9fbc15084e09eca21"
+            ],
+            ".github/scripts/validate-conv04f-zoology-practical-temporary-mounts.rb": [
+                  "4e588a411174b23225a8bb5d796e77f48af573ac",
+                  "6f9ff0be5ad7c9a244b5c1e468bc89306cbae335"
+            ],
+            ".github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb": [
+                  "7efc49f9a063385e18dda50221f30bfb865f2cdb",
+                  "cac8c14cbc6e3ef22ac871a8e63a450016fbda81"
+            ],
+            ".github/scripts/validate-conv04f-zoology-practical-appendages.rb": [
+                  "e0b25189300804447108bcc201e97653330e0e87",
+                  "669f6acd66e87922e5cd3a6007aa3ff50c20e4ee"
+            ],
+            ".github/scripts/validate-conv04f-zoology-practical-dissection.rb": [
+                  "7318e8c3215838093b68978760746e9c4240fb72",
+                  "f3ba18ec34ccf13f13203ed7eac8c14d0dcb7e3c"
+            ]
+      };
+      const expectedPaths = Object.keys(permitted).sort();
+      const actualFiles = await github.paginate(github.rest.pulls.listFiles, {
+        owner, repo, pull_number: 468, per_page: 100,
+      });
+      if (
+        actualFiles.length !== expectedPaths.length ||
+        actualFiles.some((f) => f.status !== 'modified') ||
+        actualFiles.map((f) => String(f.filename)).sort().join('\n') !==
+          expectedPaths.join('\n')
+      ) {
+        throw new Error('PR #468 migration touched files beyond the exact protected seven.');
+      }
+
+      async function protectedTree(revision) {
+        const commit = await github.rest.git.getCommit({
+          owner, repo, commit_sha: revision,
+        });
+        const treeSha = String(commit.data.tree?.sha || '');
+        if (!/^[0-9a-f]{40}$/.test(treeSha)) {
+          throw new Error('Missing authenticated tree SHA for migration revision.');
+        }
+        const response = await github.rest.git.getTree({
+          owner, repo, tree_sha: treeSha, recursive: 'true',
+        });
+        if (response.data.truncated) {
+          throw new Error('Migration protected tree inspection was truncated.');
+        }
+        const found = new Map();
+        for (const entry of response.data.tree || []) {
+          if (Object.prototype.hasOwnProperty.call(permitted, entry.path)) {
+            if (found.has(entry.path)) {
+              throw new Error('Duplicate protected path in Git tree.');
+            }
+            found.set(entry.path, entry);
+          }
+        }
+        if (found.size !== expectedPaths.length) {
+          throw new Error('Missing protected validator in authenticated Git tree.');
+        }
+        return found;
+      }
+      const [baseTree, headTree] = await Promise.all([
+        protectedTree(baseSha), protectedTree(headSha),
+      ]);
+      for (const path of expectedPaths) {
+        const [approvedBefore, approvedAfter] = permitted[path];
+        const before = baseTree.get(path);
+        const after = headTree.get(path);
+        if (
+          before.sha !== approvedBefore || after.sha !== approvedAfter ||
+          before.mode !== '100644' || after.mode !== '100644' ||
+          before.type !== 'blob' || after.type !== 'blob'
+        ) {
+          throw new Error('Protected validator SHA/mode/type mismatch: ' + path);
+        }
+      }
+      core.info('CONV04F_TRUSTED_MIGRATION_PASS: PR #468 exact seven-file SHA/mode/type verified.');
     }
 
     async function evaluatePull(initialPull) {
@@ -279,6 +323,8 @@ env:
             `Candidate ${headSha} does not contain current ${baseRef}@${currentBaseSha}.`
           );
         }
+
+        await verifyOneTimePracticalValidatorMigration(pull, headSha, currentBaseSha);
 
         let authority = await determineAuthority(pull, headSha);
         let unresolved = await countUnresolved(pull_number);
