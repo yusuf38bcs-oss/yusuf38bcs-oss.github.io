@@ -231,22 +231,32 @@ class Regression(unittest.TestCase):
         self.assert_rejected(current_modes=d)
 
 class WorkflowWiringRegression(unittest.TestCase):
-    """Structural checks for the two latest reviewed governance defects."""
+    """Non-authorizing preflight regression; the protected main gate owns authority."""
     def setUp(self):
         from pathlib import Path
-        path = Path(__file__).resolve().parents[2] / ".github/workflows/conv04f-trusted-migration-authorization.yml"
-        self.workflow = path.read_text(encoding="utf-8")
+        root = Path(__file__).resolve().parents[2]
+        self.bridge = (root / ".github/workflows/conv04f-trusted-migration-authorization.yml").read_text(encoding="utf-8")
+        self.governance = (root / ".github/workflows/release-governance-gate.yml").read_text(encoding="utf-8")
 
-    def test_N23_pending_revocations_are_not_dropped(self):
-        self.assertIn("queue: max", self.workflow)
-        self.assertIn("cancel-in-progress: false", self.workflow)
-        self.assertIn("group: lbfl-trusted-conv04f-migration-", self.workflow)
+    def test_N23_no_reusable_sha_status_in_migration_bridge(self):
+        self.assertNotIn("statuses: write", self.bridge)
+        self.assertNotIn("pull_request_target:", self.bridge)
+        self.assertNotIn("createCommitStatus", self.bridge)
 
-    def test_N24_staging_is_revocation_only(self):
-        self.assertIn("if (eventPR.base.ref !== 'main')", self.workflow)
-        self.assertIn("core.setOutput('run', 'false');", self.workflow)
-        self.assertIn("if: steps.prepare.outputs.run == 'true'", self.workflow)
-        self.assertIn("ref: ${{ github.event.pull_request.base.sha }}", self.workflow)
+    def test_N24_canonical_trusted_gate_owns_migration(self):
+        self.assertIn("CONV04F_TRUSTED_MIGRATION_POLICY_V1", self.governance)
+        self.assertIn("verifyOneTimePracticalValidatorMigration(pull, headSha, currentBaseSha)", self.governance)
+        self.assertIn("Number(pull.number) !== 468", self.governance)
+        self.assertIn("pull_request_target:", self.governance)
+
+    def test_N25_protected_blob_type_and_mode_are_checked(self):
+        self.assertIn("before.mode !== '100644'", self.governance)
+        self.assertIn("after.type !== 'blob'", self.governance)
+        self.assertIn("response.data.truncated", self.governance)
+
+    def test_N26_migration_diff_is_exactly_seven_modified_files(self):
+        self.assertIn("actualFiles.length !== expectedPaths.length", self.governance)
+        self.assertIn("f.status !== 'modified'", self.governance)
 
 if __name__ == "__main__":
     ap=argparse.ArgumentParser()
