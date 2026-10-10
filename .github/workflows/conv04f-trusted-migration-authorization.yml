@@ -1,6 +1,5 @@
 name: CONV-04F Trusted One-Time Migration Authorization
-# This authorization executes ONLY repository policy from the trusted PR base.
-# Never checkout or execute code from PR #468's candidate head.
+# Policy and token run exclusively from authenticated main; NEVER execute candidate code.
 on:
   pull_request_target:
     branches: ["main"]
@@ -16,20 +15,70 @@ on:
 permissions:
   contents: read
   pull-requests: read
+  statuses: write
 jobs:
   trusted-migration-authorization:
     if: github.event.pull_request.number == 468
     runs-on: ubuntu-latest
     steps:
+      - name: Set pending exact-head authorization status
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            await github.rest.repos.createCommitStatus({
+              ...context.repo, sha: pr.head.sha, state: 'pending',
+              context: 'LBFL Trusted Practical Migration Authorization',
+              description: 'Trusted exact-head migration validation in progress',
+              target_url: context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId
+            });
       - name: Checkout immutable trusted main base, NOT candidate
+        id: checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           fetch-depth: 0
           persist-credentials: false
-      - name: Trusted policy regression (positive and fail-closed negative cases)
+      - name: Trusted positive and negative regression
+        id: regression
         run: python3 scripts/ci/conv04f_narrow_migration_gate.py --self-test
-      - name: Authorize live head from trusted base policy and owner decision
+      - name: Authenticate owner-authorized current head and exact seven blobs
+        id: authorize
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/ci/conv04f_narrow_migration_gate.py --authorize
+      - name: Publish final trusted status to live PR HEAD (not base SHA)
+        if: always()
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        env:
+          CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
+          REGRESSION_OUTCOME: ${{ steps.regression.outcome }}
+          AUTH_OUTCOME: ${{ steps.authorize.outcome }}
+        with:
+          script: |
+            const pull_number = context.payload.pull_request.number;
+            const eventHead = context.payload.pull_request.head.sha;
+            const eventBase = context.payload.pull_request.base.sha;
+            const fresh = (await github.rest.pulls.get({...context.repo, pull_number})).data;
+            const main = (await github.rest.repos.getBranch({...context.repo, branch: 'main'})).data;
+            if (fresh.head.sha !== eventHead) {
+              core.setFailed('Stale PR event; never publish success for a changed head');
+              return;
+            }
+            const currentBase = main.commit.sha;
+            const gatePassed =
+              process.env.CHECKOUT_OUTCOME === 'success' &&
+              process.env.REGRESSION_OUTCOME === 'success' &&
+              process.env.AUTH_OUTCOME === 'success' &&
+              currentBase === eventBase &&
+              fresh.base.sha === currentBase &&
+              fresh.base.ref === 'main';
+            await github.rest.repos.createCommitStatus({
+              ...context.repo, sha: eventHead,
+              state: gatePassed ? 'success' : 'failure',
+              context: 'LBFL Trusted Practical Migration Authorization',
+              description: gatePassed ? 'Trusted 7-blob exact-head migration: PASS' :
+                'Trusted migration HOLD: test, authority, or current-base mismatch',
+              target_url: context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId
+            });
+            if (!gatePassed) core.setFailed('Fail-closed migration authorization');
