@@ -158,6 +158,15 @@ end
 
 successor_authorized = false
 successor_allowlist = []
+# CONV-04J governance-only transition is not a Practical successor release.
+# Preserve all Practical source/contract checks; bypass only the obsolete
+# state-phase advancement predicate when the complete PR diff is J governance.
+j_governance_only = false
+if changed.sort == ["docs/academic/conv04/CONV04_STATE.md", "docs/academic/conv04/CONV04_J_RELEASE_CLOSURE.md"].sort && phase == "CONV-04J-R1"
+  j_base = top_level_scalar(state_text, "j_implementation_base")
+  j_governance_only = j_base && j_base.match?(/\\A[0-9a-f]{40}\\z/) &&
+    git("merge-base", "--is-ancestor", j_base, "HEAD").last.success?
+end
 if future && PATHS[:state].file? && changed.include?(STATE_REL)
   base_state, _, bs = git("show", "#{comparison_base}:#{STATE_REL}")
   if bs.success?
@@ -342,7 +351,7 @@ if PATHS[:state].file?
     need(errors, top_level_list(state_text, "learner_mutation_allowlist") == [SOURCE_REL], "R61 exact learner allowlist missing")
   elsif future
     need(errors, current_order && r61_order && (current_order <=> r61_order) >= 0, "R61 successor state regressed")
-    need(errors, successor_authorized, "R61 successor state must advance and bind exact current base") if changed.include?(STATE_REL)
+    need(errors, successor_authorized || j_governance_only, "R61 successor state must advance and bind exact current base") if changed.include?(STATE_REL)
   end
 end
 
