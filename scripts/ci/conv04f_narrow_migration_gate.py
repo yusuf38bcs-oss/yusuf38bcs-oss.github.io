@@ -50,7 +50,19 @@ def changed_files(base, head):
 def blobs(revision):
     return {p: git("rev-parse", revision + ":" + p) for p in PATHS}
 
-def original_identity(base, candidate, changed, before_blobs, after_blobs, lineage):
+def tree_modes(revision):
+    """Compare tree mode/type; blob hashes alone do not identify symlinks."""
+    result = {}
+    for path in PATHS:
+        row = git("ls-tree", revision, "--", path).split("\t", 1)[0].split()
+        result[path] = tuple(row[:2]) if len(row) == 3 else ("", "")
+    return result
+
+def regular_files(modes):
+    return len(modes) == len(PATHS) and all(
+        modes.get(path) == ("100644", "blob") for path in PATHS)
+
+def original_identity(base, candidate, changed, before_blobs, after_blobs, lineage, before_modes, after_modes):
     if base != ORIGIN_BASE or candidate != ORIGIN_CANDIDATE or not lineage:
         return False, "origin identity or ancestry mismatch"
     if len(changed) != len(PATHS) or set(changed) != set(PATHS):
@@ -58,13 +70,15 @@ def original_identity(base, candidate, changed, before_blobs, after_blobs, linea
     for path, (before, after) in PATHS.items():
         if before_blobs.get(path) != before or after_blobs.get(path) != after:
             return False, "origin blob mismatch: " + path
+    if not regular_files(before_modes) or not regular_files(after_modes):
+        return False, "origin tree mode/type drift"
     return True, "original seven-file identity matches"
 
 def live_authority(*, trusted, event_head, live_head, event_base,
                    live_base, checkout_sha, branch, owner, repository,
                    draft, open_state, changed, current_blobs,
                    current_base_blobs, base_ancestor, candidate_ancestor,
-                   approval_lines):
+                   approval_lines, current_modes, current_base_modes):
     # Fail closed on any stale event, source, branch, mutation or authority.
     if not trusted:
         return False, "trusted policy source not authenticated"
@@ -86,6 +100,8 @@ def live_authority(*, trusted, event_head, live_head, event_base,
     for path, (before, after) in PATHS.items():
         if current_base_blobs.get(path) != before or current_blobs.get(path) != after:
             return False, "current-base/candidate protected blob mismatch: " + path
+    if not regular_files(current_modes) or not regular_files(current_base_modes):
+        return False, "protected tree mode/type mismatch (symlink or gitlink)"
     if approval_lines.count(SOLO_LINE) != 1 or approval_lines.count(SOLO_APPROVAL + live_head) != 1:
         return False, "no owner-authorized exact-head SOLO migration decision"
     if sum(x.startswith("SOLO-MAINTAINER-EXCEPTION:") for x in approval_lines) != 1:
@@ -97,7 +113,8 @@ def live_authority(*, trusted, event_head, live_head, event_base,
 def preflight():
     matched, detail = original_identity(ORIGIN_BASE, ORIGIN_CANDIDATE,
         changed_files(ORIGIN_BASE, ORIGIN_CANDIDATE), blobs(ORIGIN_BASE),
-        blobs(ORIGIN_CANDIDATE), is_ancestor(ORIGIN_BASE, ORIGIN_CANDIDATE))
+        blobs(ORIGIN_CANDIDATE), is_ancestor(ORIGIN_BASE, ORIGIN_CANDIDATE),
+        tree_modes(ORIGIN_BASE), tree_modes(ORIGIN_CANDIDATE))
     print(("IDENTITY PREFLIGHT PASS: " if matched else "IDENTITY PREFLIGHT FAIL: ") + detail)
     print("NOT AN AUTHORIZATION: only the trusted pull_request_target gate may authorize PR #468")
     return 0 if matched else 1
@@ -150,7 +167,8 @@ def authorize():
         current_blobs=blobs(live_head), current_base_blobs=blobs(live_base),
         base_ancestor=is_ancestor(live_base, live_head),
         candidate_ancestor=is_ancestor(ORIGIN_CANDIDATE, live_head),
-        approval_lines=[x.strip() for x in (live.get("body") or "").splitlines()])
+        approval_lines=[x.strip() for x in (live.get("body") or "").splitlines()],
+        current_modes=tree_modes(live_head), current_base_modes=tree_modes(live_base))
     print(("AUTH PASS: " if approved else "AUTH FAIL: ") + detail)
     return 0 if approved else 1
 
@@ -163,7 +181,9 @@ class Regression(unittest.TestCase):
             changed=list(PATHS), current_blobs={p:v[1] for p,v in PATHS.items()},
             current_base_blobs={p:v[0] for p,v in PATHS.items()},
             base_ancestor=True, candidate_ancestor=True,
-            approval_lines=[SOLO_LINE, SOLO_APPROVAL + "a"*40])
+            approval_lines=[SOLO_LINE, SOLO_APPROVAL + "a"*40],
+            current_modes={p:("100644","blob") for p in PATHS},
+            current_base_modes={p:("100644","blob") for p in PATHS})
 
     def assert_rejected(self, **changes):
         x = dict(self.good)
@@ -197,6 +217,18 @@ class Regression(unittest.TestCase):
     def test_N16_duplicate_authority(self): self.assert_rejected(approval_lines=[SOLO_LINE,SOLO_LINE,SOLO_APPROVAL+"a"*40])
     def test_N17_malformed_head(self): self.assert_rejected(live_head="invalid")
     def test_N18_main_changes_before_gate(self): self.assert_rejected(live_base="d"*40)
+    def test_N19_candidate_symlink_same_blob_sha(self):
+        d=dict(self.good["current_modes"]); d[next(iter(PATHS))]=("120000", "blob")
+        self.assert_rejected(current_modes=d)
+    def test_N20_candidate_gitlink(self):
+        d=dict(self.good["current_modes"]); d[next(iter(PATHS))]=("160000", "commit")
+        self.assert_rejected(current_modes=d)
+    def test_N21_base_symlink_same_blob_sha(self):
+        d=dict(self.good["current_base_modes"]); d[next(iter(PATHS))]=("120000", "blob")
+        self.assert_rejected(current_base_modes=d)
+    def test_N22_missing_tree_entry(self):
+        d=dict(self.good["current_modes"]); d.pop(next(iter(PATHS)))
+        self.assert_rejected(current_modes=d)
 
 if __name__ == "__main__":
     ap=argparse.ArgumentParser()
