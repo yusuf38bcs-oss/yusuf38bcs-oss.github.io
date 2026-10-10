@@ -258,6 +258,11 @@ class WorkflowWiringRegression(unittest.TestCase):
         self.assertIn("actualFiles.length !== expectedPaths.length", self.governance)
         self.assertIn("f.status !== 'modified'", self.governance)
 
+    def test_N27_status_writer_must_not_use_candidate_review_event(self):
+        self.assertIn("pull_request_target:", self.governance)
+        self.assertNotIn("  pull_request_review:\n", self.governance)
+        self.assertIn("types: [opened, synchronize, reopened", self.governance)
+
 if __name__ == "__main__":
     ap=argparse.ArgumentParser()
     group=ap.add_mutually_exclusive_group(required=True)
