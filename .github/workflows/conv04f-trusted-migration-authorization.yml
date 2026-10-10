@@ -1,0 +1,35 @@
+name: CONV-04F Trusted One-Time Migration Authorization
+# This authorization executes ONLY repository policy from the trusted PR base.
+# Never checkout or execute code from PR #468's candidate head.
+on:
+  pull_request_target:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+    paths:
+      - ".github/scripts/validate-conv04f-zoology-practical-museum.rb"
+      - ".github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb"
+      - ".github/scripts/validate-conv04f-zoology-practical-field-report.rb"
+      - ".github/scripts/validate-conv04f-zoology-practical-temporary-mounts.rb"
+      - ".github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb"
+      - ".github/scripts/validate-conv04f-zoology-practical-appendages.rb"
+      - ".github/scripts/validate-conv04f-zoology-practical-dissection.rb"
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  trusted-migration-authorization:
+    if: github.event.pull_request.number == 468
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout immutable trusted main base, NOT candidate
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Trusted policy regression (positive and fail-closed negative cases)
+        run: python3 scripts/ci/conv04f_narrow_migration_gate.py --self-test
+      - name: Authorize live head from trusted base policy and owner decision
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ci/conv04f_narrow_migration_gate.py --authorize
