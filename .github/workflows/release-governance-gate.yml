@@ -233,8 +233,15 @@ env:
       }
 
       async function protectedTree(revision) {
+        const commit = await github.rest.git.getCommit({
+          owner, repo, commit_sha: revision,
+        });
+        const treeSha = String(commit.data.tree?.sha || '');
+        if (!/^[0-9a-f]{40}$/.test(treeSha)) {
+          throw new Error('Missing authenticated tree SHA for migration revision.');
+        }
         const response = await github.rest.git.getTree({
-          owner, repo, tree_sha: revision, recursive: 'true',
+          owner, repo, tree_sha: treeSha, recursive: 'true',
         });
         if (response.data.truncated) {
           throw new Error('Migration protected tree inspection was truncated.');
