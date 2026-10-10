@@ -5,6 +5,9 @@ on:
   pull_request:
     paths:
       - scripts/ci/conv04f_narrow_migration_gate.py
+      - scripts/ci/test_conv04f_trusted_migration.mjs
+      - .github/workflows/release-governance-gate.yml
+      - .github/workflows/conv04f-trusted-migration-authorization.yml
       - scripts/ci/conv04f_practical_guard_inventory.py
       - .github/workflows/conv04f-narrow-migration-gate.yml
       - .github/scripts/validate-conv04f-zoology-practical-museum.rb
@@ -29,6 +32,8 @@ jobs:
           python-version: '3.12'
       - name: Positive and negative regression cases
         run: python scripts/ci/conv04f_narrow_migration_gate.py --self-test
+      - name: Actual trusted migration policy — positive/negative Git tree fixtures
+        run: node --test scripts/ci/test_conv04f_trusted_migration.mjs
       - name: Verify original Practical self-protection remains present
         run: python scripts/ci/conv04f_practical_guard_inventory.py
       - name: Compare seven historical candidate blobs (identity only; no promotion authority)
