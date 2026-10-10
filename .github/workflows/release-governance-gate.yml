@@ -8,8 +8,9 @@ on:
   pull_request_target:
     branches: ["main", "staging"]
     types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited, closed]
-  pull_request_review:
-    types: [submitted, edited, dismissed]
+  # PR review submissions are not an executable trusted-base event.
+  # Recheck via the protected pull_request_target path (PR edited/reopened)
+  # and repository-required review/conversation protection instead.
 
 permissions:
   contents: read
