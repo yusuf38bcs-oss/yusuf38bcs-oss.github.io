@@ -1,4 +1,4 @@
-name: CONV-04F Narrow Migration Gate — Preflight
+name: CONV-04F Migration Identity — Non-authorizing Preflight
 on:
   push:
     branches: [ci/conv04f-narrow-migration-gate-20261010]
@@ -31,6 +31,6 @@ jobs:
         run: python scripts/ci/conv04f_narrow_migration_gate.py --self-test
       - name: Verify original Practical self-protection remains present
         run: python scripts/ci/conv04f_practical_guard_inventory.py
-      - name: Verify independently authorized PR 468 exact candidate and blobs
-        run: python scripts/ci/conv04f_narrow_migration_gate.py --verify
+      - name: Compare seven historical candidate blobs (identity only; no promotion authority)
+        run: python scripts/ci/conv04f_narrow_migration_gate.py --preflight
 
