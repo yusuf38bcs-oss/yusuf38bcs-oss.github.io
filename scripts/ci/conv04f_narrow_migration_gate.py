@@ -230,6 +230,24 @@ class Regression(unittest.TestCase):
         d=dict(self.good["current_modes"]); d.pop(next(iter(PATHS)))
         self.assert_rejected(current_modes=d)
 
+class WorkflowWiringRegression(unittest.TestCase):
+    """Structural checks for the two latest reviewed governance defects."""
+    def setUp(self):
+        from pathlib import Path
+        path = Path(__file__).resolve().parents[2] / ".github/workflows/conv04f-trusted-migration-authorization.yml"
+        self.workflow = path.read_text(encoding="utf-8")
+
+    def test_N23_pending_revocations_are_not_dropped(self):
+        self.assertIn("queue: max", self.workflow)
+        self.assertIn("cancel-in-progress: false", self.workflow)
+        self.assertIn("group: lbfl-trusted-conv04f-migration-", self.workflow)
+
+    def test_N24_staging_is_revocation_only(self):
+        self.assertIn("if (eventPR.base.ref !== 'main')", self.workflow)
+        self.assertIn("core.setOutput('run', 'false');", self.workflow)
+        self.assertIn("if: steps.prepare.outputs.run == 'true'", self.workflow)
+        self.assertIn("ref: ${{ github.event.pull_request.base.sha }}", self.workflow)
+
 if __name__ == "__main__":
     ap=argparse.ArgumentParser()
     group=ap.add_mutually_exclusive_group(required=True)
