@@ -32,8 +32,6 @@ env:
     const SOLO_EXCEPTION_LINE =
       'SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER';
     const SOLO_APPROVAL_LABEL = 'SOLO-MAINTAINER-APPROVAL:';
-    const decisiveStates = new Set(['APPROVED', 'CHANGES_REQUESTED', 'DISMISSED']);
-    const allowedPermissionLevels = new Set(['admin', 'maintain', 'write', 'push']);
     const target_url =
       `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
 
@@ -81,71 +79,13 @@ env:
       const repoOwner = String(owner || '').toLowerCase();
       const body = String(pull.body || '');
 
-      const reviews = await github.paginate(github.rest.pulls.listReviews, {
-        owner,
-        repo,
-        pull_number,
-        per_page: 100,
-      });
-
-      const latestDecisiveByReviewer = new Map();
-      for (const review of reviews) {
-        const login = String(review.user?.login || '').toLowerCase();
-        const state = String(review.state || '').toUpperCase();
-        if (
-          !login ||
-          login === author ||
-          login.endsWith('[bot]') ||
-          !decisiveStates.has(state)
-        ) {
-          continue;
-        }
-        const submitted = review.submitted_at ? Date.parse(review.submitted_at) : 0;
-        const previous = latestDecisiveByReviewer.get(login);
-        if (!previous || submitted >= previous.submitted) {
-          latestDecisiveByReviewer.set(login, {
-            state,
-            commitId: String(review.commit_id || '').toLowerCase(),
-            submitted,
-          });
-        }
-      }
-
-      const approvalCandidates = [...latestDecisiveByReviewer.entries()].filter(
-        ([, review]) => review.state === 'APPROVED' && review.commitId === headSha
-      );
-
-      const authorizedApprovals = [];
-      for (const [login] of approvalCandidates) {
-        try {
-          const response = await github.rest.repos.getCollaboratorPermissionLevel({
-            owner,
-            repo,
-            username: login,
-          });
-          const permissions = response.data.user?.permissions || {};
-          const level = String(response.data.permission || '').toLowerCase();
-          if (
-            permissions.push ||
-            permissions.maintain ||
-            permissions.admin ||
-            allowedPermissionLevels.has(level)
-          ) {
-            authorizedApprovals.push(login);
-          } else {
-            core.info(`Ignoring approval from ${login}: insufficient repository authority.`);
-          }
-        } catch (error) {
-          core.info(
-            `Ignoring approval from ${login}: permission lookup failed ` +
-            `(${error.status || 'unknown'}).`
-          );
-        }
-      }
-
-      if (authorizedApprovals.length >= 1) {
-        return `independent-review:${authorizedApprovals.length}`;
-      }
+      // Permanent SOLO authority is the only current promotion mechanism.
+      // Independent GitHub review approval is NOT an authority source while
+      // rulesets require 0 approving reviews: dismissals would leave a stale
+      // green commit status without a trusted, synchronous required-review rule.
+      // Review comments remain mandatory to resolve via the protected ruleset.
+      // Any future independent-review policy requires a server-side rule first.
+      core.info('GOVERNANCE_SOLO_ONLY: independent-review status authorization disabled.');
 
       const lines = body.split(/\r?\n/).map((line) => line.trim());
       const exceptionLines = lines.filter((line) =>
@@ -168,7 +108,7 @@ env:
 
       if (!identityEligible || !markerEligible) {
         throw new Error(
-          'No authorized independent exact-head approval and no valid solo-maintainer ' +
+          'No valid permanent solo-maintainer ' +
           `authority. The owner-authored PR body must contain exactly "${SOLO_EXCEPTION_LINE}" ` +
           `and "${expectedApprovalLine}". A new commit invalidates the marker.`
         );
