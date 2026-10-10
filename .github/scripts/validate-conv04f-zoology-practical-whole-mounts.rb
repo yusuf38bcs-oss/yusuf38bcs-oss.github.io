@@ -166,6 +166,7 @@ j_governance_only = false
 if changed.sort == ["docs/academic/conv04/CONV04_STATE.md", "docs/academic/conv04/CONV04_J_RELEASE_CLOSURE.md"].sort && phase == "CONV-04J-R1"
   j_base = top_level_scalar(state_text, "j_implementation_base")
   j_governance_only = j_base && j_base.match?(/\A[0-9a-f]{40}\z/) &&
+    j_base == comparison_base &&
     git("merge-base", "--is-ancestor", j_base, "HEAD").last.success?
 end
 if future && STATE.file? && changed.include?(STATE_REL)
