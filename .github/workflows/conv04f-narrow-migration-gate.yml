@@ -1,0 +1,25 @@
+name: CONV-04F Narrow Migration Gate — Preflight
+on:
+  push:
+    branches: [ci/conv04f-narrow-migration-gate-20261010]
+  pull_request:
+    paths:
+      - scripts/ci/conv04f_narrow_migration_gate.py
+      - .github/workflows/conv04f-narrow-migration-gate.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  migration-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Positive and negative regression cases
+        run: python scripts/ci/conv04f_narrow_migration_gate.py --self-test
+      - name: Check seven historical candidate blobs while refusing unattended authorization
+        run: python scripts/ci/conv04f_narrow_migration_gate.py --verify
