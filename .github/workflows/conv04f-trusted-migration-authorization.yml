@@ -66,7 +66,18 @@ jobs:
               return;
             }
             const currentBase = main.commit.sha;
+            const bodyLines = (fresh.body || '').split(/\r?\n/).map(line => line.trim());
+            const soloLine = 'SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER';
+            const approvalLine = 'SOLO-MAINTAINER-APPROVAL: ' + eventHead;
+            const liveOwnerAuthority =
+              fresh.state === 'open' && !fresh.draft &&
+              fresh.user?.login === 'yusuf38bcs-oss' &&
+              fresh.head.repo?.full_name === 'yusuf38bcs-oss/yusuf38bcs-oss.github.io' &&
+              bodyLines.filter(line => line.startsWith('SOLO-MAINTAINER-EXCEPTION:')).length === 1 &&
+              bodyLines.filter(line => line.startsWith('SOLO-MAINTAINER-APPROVAL:')).length === 1 &&
+              bodyLines.includes(soloLine) && bodyLines.includes(approvalLine);
             const gatePassed =
+              liveOwnerAuthority &&
               process.env.CHECKOUT_OUTCOME === 'success' &&
               process.env.REGRESSION_OUTCOME === 'success' &&
               process.env.AUTH_OUTCOME === 'success' &&
