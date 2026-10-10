@@ -1,0 +1,22 @@
+name: LBFL Attestor Shadow Authentication Tests
+on:
+  pull_request:
+    paths:
+      - 'tools/lbfl-release-attestor-shadow/**'
+      - '.github/workflows/lbfl-attestor-shadow-auth-tests.yml'
+permissions:
+  contents: read
+jobs:
+  offline-security-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run mocked non-authorizing tests (no secret access)
+        working-directory: tools/lbfl-release-attestor-shadow
+        run: npm test
