@@ -15,20 +15,20 @@ import unittest
 import urllib.request
 
 ORIGIN_BASE = "e9e5c68b1c63286099368cfe9954a3d76b28d8ea"
-ORIGIN_CANDIDATE = "e00e3faecce53d83a3371ff6b4b886427153418c"
+ORIGIN_CANDIDATE = "7fcab53b9cf41c3bb10565e92691e8b36986d837"
 REPOSITORY = "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
 AUTHORIZED_PR = 468
 AUTHORIZED_BRANCH = "repair/conv04f-retained-validator-j-compat-20261010"
 SOLO_LINE = "SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER"
 SOLO_APPROVAL = "SOLO-MAINTAINER-APPROVAL: "
 EXPECTED = {
-    "museum": ("43aa1d96c71e524f0af4eca954766e51e9c423f5", "1784c583a5f91a1a5c09296799bc96ace7db354b"),
-    "whole-mounts": ("fc9b9f07164676798b4f98fe7802053dddd0f929", "d34eefb9a526590dd8daf8610430042359f7a0cf"),
-    "field-report": ("cef2b7aca4f5a388421d89e39213947016341e43", "5e526cac4a4eafe9ab82a7040fb25de26b53aab5"),
-    "temporary-mounts": ("4e588a411174b23225a8bb5d796e77f48af573ac", "c71bb387d1e5ec45dc099343989f5630998a4468"),
-    "permanent-slides": ("7efc49f9a063385e18dda50221f30bfb865f2cdb", "a89c649039dec6ad79a757412eadab524ef3d472"),
-    "appendages": ("e0b25189300804447108bcc201e97653330e0e87", "a1c5a1a6c28aa47d858678ac8f7cd3c270fce0e0"),
-    "dissection": ("7318e8c3215838093b68978760746e9c4240fb72", "42c56e7a35e0aa2d679d5472530820dad8d06896"),
+    "museum": ("43aa1d96c71e524f0af4eca954766e51e9c423f5", "57fa42431ced38f17dd48dbb76be2acf0f324487"),
+    "whole-mounts": ("fc9b9f07164676798b4f98fe7802053dddd0f929", "51ea08d567ae46cfa8732c6538457f970bc2f832"),
+    "field-report": ("cef2b7aca4f5a388421d89e39213947016341e43", "ab1c600a75611c41a349a4e9fbc15084e09eca21"),
+    "temporary-mounts": ("4e588a411174b23225a8bb5d796e77f48af573ac", "6f9ff0be5ad7c9a244b5c1e468bc89306cbae335"),
+    "permanent-slides": ("7efc49f9a063385e18dda50221f30bfb865f2cdb", "cac8c14cbc6e3ef22ac871a8e63a450016fbda81"),
+    "appendages": ("e0b25189300804447108bcc201e97653330e0e87", "669f6acd66e87922e5cd3a6007aa3ff50c20e4ee"),
+    "dissection": ("7318e8c3215838093b68978760746e9c4240fb72", "f3ba18ec34ccf13f13203ed7eac8c14d0dcb7e3c"),
 }
 PATHS = {".github/scripts/validate-conv04f-zoology-practical-" + name + ".rb": pair
          for name, pair in EXPECTED.items()}
