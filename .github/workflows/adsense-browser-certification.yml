@@ -22,6 +22,7 @@ on:
       - "_data/adsense.yml"
       - "_includes/head/**"
       - ".github/scripts/adsense-browser-certification.mjs"
+      - ".github/scripts/hero-motion-temporal-certification.mjs"
       - ".github/scripts/certification-bypass.mjs"
       - ".github/workflows/adsense-browser-certification.yml"
 
@@ -124,12 +125,26 @@ jobs:
             --expected-sha "$PR_HEAD_SHA" \
             --output-dir "$EVIDENCE_DIR"
 
+      - name: Prove real temporal hero motion and fail-closed fallbacks
+        env:
+          PAGES_URL: ${{ steps.preview.outputs.pages_url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/scripts/hero-motion-temporal-certification.mjs \
+            --url "$PAGES_URL" \
+            --expected-sha "$PR_HEAD_SHA" \
+            --output-dir "$EVIDENCE_DIR"
+
       - name: Add certification to the workflow summary
         if: ${{ always() }}
         shell: bash
         run: |
           if [[ -f "$EVIDENCE_DIR/browser-certification.md" ]]; then
             cat "$EVIDENCE_DIR/browser-certification.md" >> "$GITHUB_STEP_SUMMARY"
+            if [[ -f "$EVIDENCE_DIR/hero-motion-certification.md" ]]; then
+              cat "$EVIDENCE_DIR/hero-motion-certification.md" >> "$GITHUB_STEP_SUMMARY"
+            fi
           else
             printf '%s\n' 'Browser certification did not produce a report.' >> "$GITHUB_STEP_SUMMARY"
           fi

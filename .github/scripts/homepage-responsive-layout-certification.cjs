@@ -221,7 +221,7 @@ async function inspect(page, viewportWidth) {
     const expectedMethodColumns = phoneLayout ? 1 : compactHeader ? 2 : 4;
     const expectedRepairColumns = phoneLayout ? 1 : 4;
     const expectedEvidenceCardColumns = phoneLayout ? 1 : 2;
-    const expectedHeroColumns = phoneLayout ? 1 : 2;
+    const expectedHeroColumns = 1; // integrated background; copy and controls share one column
     const expectedJourneyColumns = compactHeader ? 1 : 2;
     const expectedEvidenceColumns = compactHeader ? 1 : 2;
     const expectedContinueColumns = compactHeader ? 1 : 2;
@@ -230,7 +230,7 @@ async function inspect(page, viewportWidth) {
     const evidenceKicker = element(selectors.evidenceKicker);
 
     const visual = element(selectors.heroVisual);
-    const heroImage = visual ? visual.querySelector("img") : null;
+    const heroDiagram = visual ? visual.querySelector("svg.lbfl-v3-synaptic-field__diagram") : null;
 
     return {
       v3Document: root.classList.contains("lbfl-home-v3-document") && body.classList.contains("lbfl-home-v3"),
@@ -288,17 +288,34 @@ async function inspect(page, viewportWidth) {
         expectedGridColumns: expectedHeroColumns,
         copyContained: contains(selectors.heroGrid, selectors.heroCopy),
         controlsContained: contains(selectors.heroGrid, selectors.heroControls),
-        visualVisible: visible(visual) && Boolean(heroImage && heroImage.complete && heroImage.naturalWidth > 0),
-        visualContained: contains(selectors.heroGrid, selectors.heroVisual),
+        visualVisible: Boolean(visible(visual) && visible(heroDiagram) && heroDiagram.querySelectorAll("circle").length >= 20),
+        visualContained: Boolean(element(selectors.heroGrid)?.contains(visual)), // decorative crop is intentional; verify DOM ownership
         visualAfterCopy: (() => {
           const copy = rect(selectors.heroCopy);
           const artwork = rect(selectors.heroVisual);
-          return phoneLayout ? Boolean(copy && artwork && artwork.top >= copy.bottom - tolerance) : true;
+          const hero = rect(selectors.hero);
+          const svg = visual?.querySelector("svg");
+          const matrix = svg?.getScreenCTM();
+          const center = matrix && svg.createSVGPoint();
+          if (center) { center.x = 635; center.y = 331; }
+          const nucleus = center?.matrixTransform(matrix);
+          const coreRadius = matrix ? 83 * Math.max(Math.hypot(matrix.a, matrix.b), Math.hypot(matrix.c, matrix.d)) : 0;
+          const viewLeft = Math.max(hero?.left ?? 0, 0);
+          const viewRight = Math.min(hero?.right ?? 0, window.innerWidth);
+          const viewTop = Math.max(hero?.top ?? 0, 0);
+          const viewBottom = Math.min(hero?.bottom ?? 0, window.innerHeight);
+          return Boolean(copy && artwork && hero && nucleus && coreRadius > 0 &&
+            visual.getAttribute("aria-hidden") === "true" &&
+            nucleus.x + coreRadius > viewLeft &&
+            nucleus.x - coreRadius < viewRight &&
+            nucleus.y + coreRadius > viewTop &&
+            nucleus.y - coreRadius < viewBottom &&
+            (phoneLayout || nucleus.x >= copy.left + copy.width * 0.55));
         })(),
         visualBeforeControls: (() => {
           const artwork = rect(selectors.heroVisual);
           const controls = rect(selectors.heroControls);
-          return phoneLayout ? Boolean(artwork && controls && controls.top >= artwork.bottom - tolerance) : true;
+          return Boolean(artwork && controls && getComputedStyle(visual).position === "absolute" && getComputedStyle(visual).pointerEvents === "none");
         })(),
         copyVisualGap: phoneLayout ? gap(selectors.heroCopy, selectors.heroVisual) : null,
         visualControlsGap: phoneLayout ? gap(selectors.heroVisual, selectors.heroControls) : null,
@@ -329,11 +346,28 @@ async function inspect(page, viewportWidth) {
         titleBrandGap: gap(selectors.heroTitle, selectors.heroBrandLine),
         brandPromiseGap: gap(selectors.heroBrandLine, selectors.heroPromise),
         titleLineHeightRatio,
+        desktopHeadlineTwoLines: (() => {
+          if (width < 1280) return true;
+          const lead = document.querySelector(".lbfl-v3-hero__title-lead");
+          const tail = document.querySelector(".lbfl-v3-hero__title-tail");
+          if (!title || !titleStyle || !lead || !tail) return false;
+          const lineHeight = Number.parseFloat(titleStyle.lineHeight);
+          const headingHeight = title.getBoundingClientRect().height;
+          const leadBox = lead.getBoundingClientRect();
+          const tailBox = tail.getBoundingClientRect();
+          return Number.isFinite(lineHeight) && lineHeight > 0 &&
+            Math.abs(headingHeight / lineHeight - 2) < 0.17 &&
+            lead.scrollWidth <= lead.clientWidth + 2 &&
+            tail.scrollWidth <= tail.clientWidth + 2 &&
+            tailBox.top >= leadBox.bottom - 2 &&
+            leadBox.right <= window.innerWidth + 2 &&
+            tailBox.right <= window.innerWidth + 2;
+        })(),
         titleFontFamily: titleStyle ? titleStyle.fontFamily : "",
         titleFontWeight: titleStyle ? titleStyle.fontWeight : "",
         actionsTopGap: phoneLayout ? null : gap(selectors.heroPromise, selectors.heroActions),
         cycleColumns: columns(selectors.cycle),
-        specimenVisible: visible(element(selectors.specimenLabel)) && visible(element(selectors.specimenNote)),
+        legacySpecimenAbsent: !document.querySelector(".lbfl-v3-specimen-label, .lbfl-v3-specimen-note, .lbfl-v3-hero__visual figcaption"),
       },
       grids: {
         pathwayColumns: columns(selectors.pathwayGrid),
@@ -507,23 +541,15 @@ function passes(result) {
     l.hero.brandPromiseGap >= 6 &&
     l.hero.brandPromiseGap <= 20 &&
     (
-      l.phoneLayout
-        ? (
-            l.hero.copyVisualGap !== null &&
-            l.hero.copyVisualGap >= 20 &&
-            l.hero.copyVisualGap <= 36 &&
-            l.hero.visualControlsGap !== null &&
-            l.hero.visualControlsGap >= 18 &&
-            l.hero.visualControlsGap <= 34
-          )
-        : true
+      true // the visual is a decorative background overlay, not a layout row
     ) &&
+    l.hero.desktopHeadlineTwoLines &&
     l.hero.titleLineHeightRatio >= 1.0 &&
     l.hero.titleLineHeightRatio <= 1.08 &&
     /Manrope/i.test(l.hero.titleFontFamily) &&
     ["700", "800"].includes(l.hero.titleFontWeight) &&
     l.hero.cycleColumns === 4 &&
-    l.hero.specimenVisible &&
+    l.hero.legacySpecimenAbsent &&
     l.grids.pathwayColumns === l.grids.expectedPathwayColumns &&
     l.grids.journeyColumns === l.grids.expectedJourneyColumns &&
     l.grids.methodColumns === l.grids.expectedMethodColumns &&
@@ -559,7 +585,7 @@ function summarizeFailure(result) {
   if (!/EDITORIAL\s*&\s*EVIDENCE/i.test(l.editorial.kicker)) reasons.push("editorial-kicker");
   if (!l.hero.visible) reasons.push("hero-visibility");
   if (l.hero.gridColumns !== l.hero.expectedGridColumns) reasons.push(`hero-columns=${l.hero.gridColumns}/${l.hero.expectedGridColumns}`);
-  if (!l.hero.visualVisible || !l.hero.visualContained || !l.hero.visualAfterCopy || !l.hero.visualBeforeControls) reasons.push("specimen-layout");
+  if (!l.hero.visualVisible || !l.hero.visualContained || !l.hero.visualAfterCopy || !l.hero.visualBeforeControls) reasons.push("static-synaptic-background-layout");
   if (!l.hero.controlsContained) reasons.push("hero-controls-containment");
   if (!l.hero.mobileActionsFullWidth) reasons.push("mobile-actions-width");
   if (!l.hero.cycleAfterActions) reasons.push("mobile-cycle-order");
@@ -567,10 +593,8 @@ function summarizeFailure(result) {
   if (!l.hero.desktopControlsLeftAligned) reasons.push("desktop-controls-alignment");
   if (!(l.hero.titleBrandGap >= 18 && l.hero.titleBrandGap <= 42)) reasons.push(`title-brand-gap=${l.hero.titleBrandGap}`);
   if (!(l.hero.brandPromiseGap >= 6 && l.hero.brandPromiseGap <= 20)) reasons.push(`brand-promise-gap=${l.hero.brandPromiseGap}`);
-  if (l.phoneLayout) {
-    if (!(l.hero.copyVisualGap >= 20 && l.hero.copyVisualGap <= 36)) reasons.push(`copy-visual-gap=${l.hero.copyVisualGap}`);
-    if (!(l.hero.visualControlsGap >= 18 && l.hero.visualControlsGap <= 34)) reasons.push(`visual-controls-gap=${l.hero.visualControlsGap}`);
-  }
+  // Decorative background does not have specimen-row gaps.
+  if (!l.hero.desktopHeadlineTwoLines) reasons.push("desktop-headline-not-two-lines");
   if (!(l.hero.titleLineHeightRatio >= 1.0 && l.hero.titleLineHeightRatio <= 1.08)) reasons.push(`h1-line-height=${l.hero.titleLineHeightRatio}`);
   if (l.hero.cycleColumns !== 4) reasons.push(`cycle-columns=${l.hero.cycleColumns}`);
   for (const key of ["pathway", "journey", "method", "repair", "evidence", "evidenceCard", "continue"]) {

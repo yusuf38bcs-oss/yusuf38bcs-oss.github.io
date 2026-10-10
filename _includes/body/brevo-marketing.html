@@ -43,18 +43,20 @@
               <p class="form-subtitle-node">Subscribe to Connect Your Dots Of Life.</p>
             </div>
 
-            <div class="form-group-field">
+            <div class="form-group-field form__entry">
               <label for="EMAIL" class="console-input-label">Email address</label>
               <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" placeholder="you@example.com" data-required="true" required class="console-email-input" />
               <span class="field-specification">Provide a valid email address to subscribe.</span>
+              <span class="entry__error entry__error--primary" aria-live="polite"></span>
             </div>
 
-            <div class="form-group-checkbox">
+            <div class="form-group-checkbox form__entry">
               <label class="checkbox-label-container" for="NEWSLETTER_AGREEMENT">
                 <input type="checkbox" value="1" id="NEWSLETTER_AGREEMENT" name="NEWSLETTER_AGREEMENT" required class="console-checkbox-input" />
                 <span class="checkbox-custom-text">I agree to receive newsletters and accept the data privacy protocols.</span>
               </label>
               <span class="field-specification">You may safely unsubscribe using the action link embedded in our emails.</span>
+              <span class="entry__error entry__error--primary" aria-live="polite"></span>
             </div>
 
             <div class="brevo-declaration-strip">
@@ -63,6 +65,7 @@
 
             <div class="form-submit-action">
               <button class="custom-submit-btn" form="sib-form" type="submit">Subscribe</button>
+              <span class="sib-loader" role="status" aria-live="polite" style="display:none">Submitting your subscription…</span>
             </div>
 
             <input type="text" name="email_address_check" value="" style="display:none !important;" class="input--hidden" tabindex="-1" autocomplete="off">
@@ -75,7 +78,8 @@
 </div>
 
 <style>
-  .brevo-integrated-section{background-color:#020617!important;padding:clamp(3rem,7vw,5rem) clamp(1rem,3vw,2rem)!important;border-top:1px solid rgba(0,212,178,.1)!important;width:100%;box-sizing:border-box;overflow:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}.brevo-section-container{max-width:960px;margin:0 auto;display:block;box-sizing:border-box}.brevo-info-block{display:flex;flex-direction:column;align-items:center;gap:1.05rem;text-align:center}.meta-badge-node{background:rgba(0,212,178,.08)!important;border:1px solid rgba(0,212,178,.28)!important;color:#99f6e4!important;font-size:.8rem!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.1em!important;padding:6px 14px!important;border-radius:50px!important}.brevo-info-title{font-size:clamp(2rem,5vw,3rem)!important;font-weight:850!important;line-height:1.2!important;color:#fff!important;margin:0!important;letter-spacing:-.02em!important}.brevo-info-title .accent-neon{color:#67e8f9}.brevo-info-desc{font-size:1.05rem!important;line-height:1.65!important;color:#cbd5e1!important;margin:0!important;text-align:center!important;max-width:760px}.neural-accent-bar-line{width:70px;height:2px;background:linear-gradient(90deg,transparent 0%,#00d4b2 50%,transparent 100%);margin:.35rem auto .45rem}.brevo-cta-row{display:flex;flex-direction:column;align-items:center;gap:.75rem;margin-top:.35rem}.brevo-open-modal-btn{background:linear-gradient(135deg,#00d4b2 0%,#3b82f6 100%)!important;color:#020617!important;font-size:.92rem!important;font-weight:850!important;letter-spacing:.04em!important;padding:14px 28px!important;border:0!important;border-radius:999px!important;cursor:pointer!important;display:inline-flex!important;align-items:center;justify-content:center;box-shadow:0 18px 35px rgba(0,212,178,.18)!important;text-transform:uppercase;transition:transform .18s ease,box-shadow .18s ease!important}.brevo-open-modal-btn:hover,.brevo-open-modal-btn:focus{transform:translateY(-2px);box-shadow:0 22px 42px rgba(59,130,246,.24)!important;outline:2px solid rgba(103,232,249,.4);outline-offset:3px}.brevo-privacy-note{margin:0!important;color:#94a3b8!important;font-size:.9rem!important;line-height:1.45!important}.brevo-modal-shell[hidden]{display:none!important}.brevo-modal-shell{position:fixed!important;inset:0!important;z-index:99990!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:clamp(.75rem,3vw,1.5rem)!important;box-sizing:border-box!important}.brevo-modal-backdrop{position:absolute!important;inset:0!important;background:rgba(2,6,23,.78)!important;backdrop-filter:blur(8px)!important}.brevo-modal-panel{position:relative!important;width:min(560px,100%)!important;max-height:min(86vh,760px)!important;overflow:auto!important;border-radius:22px!important;background:#0d1527!important;border:1px solid rgba(103,232,249,.22)!important;box-shadow:0 32px 80px rgba(0,0,0,.55)!important;padding:clamp(1rem,3vw,1.35rem)!important;box-sizing:border-box!important}.brevo-modal-close{position:absolute!important;top:12px!important;right:14px!important;z-index:2!important;width:38px!important;height:38px!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:999px!important;background:rgba(2,6,23,.86)!important;color:#e2e8f0!important;font-size:1.5rem!important;line-height:1!important;cursor:pointer!important}.brevo-modal-close:hover,.brevo-modal-close:focus{color:#67e8f9!important;border-color:rgba(103,232,249,.55)!important;outline:none!important}.custom-sib-card{background-color:transparent!important;border:0!important;border-radius:0!important;padding:clamp(1.2rem,4vw,2rem)!important;box-sizing:border-box!important;width:100%!important;margin:0 auto!important;box-shadow:none!important}.form-title-node{font-size:1.55rem!important;font-weight:850!important;color:#fff!important;margin:0 2.5rem .45rem 0!important;text-align:left;letter-spacing:-.01em}.form-subtitle-node{font-size:.96rem!important;color:#cbd5e1!important;margin:0 0 1.5rem!important;text-align:left}.form-group-field,.form-group-checkbox{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.35rem;text-align:left}.console-input-label{font-size:.92rem!important;font-weight:750!important;color:#e2e8f0!important}.console-email-input{background-color:#020617!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:10px!important;padding:.95rem 1rem!important;color:#fff!important;font-size:1rem!important;width:100%!important;box-sizing:border-box!important;outline:none!important}.console-email-input:focus{border-color:rgba(0,212,178,.65)!important;box-shadow:0 0 0 3px rgba(0,212,178,.12)!important}.checkbox-label-container{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer}.console-checkbox-input{margin-top:.25rem!important}.checkbox-custom-text{font-size:.92rem!important;line-height:1.5!important;color:#e2e8f0!important}.field-specification{font-size:.82rem!important;color:#cbd5e1!important;line-height:1.45!important}.brevo-declaration-strip{border-top:1px solid rgba(255,255,255,.08)!important;margin-top:1.35rem!important;padding-top:1rem!important;margin-bottom:1.35rem!important;text-align:left}.brevo-declaration-strip p{font-size:.78rem!important;line-height:1.5!important;color:#cbd5e1!important;margin:0!important}.brevo-declaration-strip a{color:#67e8f9!important;text-decoration:underline!important}.custom-submit-btn{background:linear-gradient(135deg,#00d4b2 0%,#3b82f6 100%)!important;color:#020617!important;font-size:.92rem!important;font-weight:850!important;letter-spacing:.05em!important;width:100%!important;padding:14px 24px!important;border:0!important;border-radius:10px!important;cursor:pointer!important;display:inline-flex!important;align-items:center;justify-content:center;transition:transform .2s ease!important;text-transform:uppercase}.custom-submit-btn:hover{transform:translateY(-2px)}.sib-form-message-panel{display:none;font-family:'Inter',-apple-system,sans-serif;font-size:14px;text-align:left;border-radius:10px;max-width:100%;margin-bottom:15px}.sib-form-message-panel__text{display:flex;align-items:center;padding:12px 16px}@media(max-width:720px){.brevo-integrated-section{padding:3.25rem 1rem!important}.brevo-info-title{font-size:2.15rem!important}.brevo-info-desc{font-size:1rem!important}.brevo-open-modal-btn{width:100%!important;max-width:320px!important}.brevo-modal-shell{align-items:flex-end!important;padding:0!important}.brevo-modal-panel{width:100%!important;max-height:88vh!important;border-radius:22px 22px 0 0!important;border-left:0!important;border-right:0!important;border-bottom:0!important;padding:1rem .9rem max(1rem,env(safe-area-inset-bottom))!important}.custom-sib-card{padding:1.25rem .75rem!important}.form-title-node{font-size:1.35rem!important}}
+  .sib-loader{color:#e2e8f0;font-size:.95rem;font-weight:650;text-align:center;width:100%;padding:12px 0}.entry__error{color:#fecaca;font-size:.85rem;line-height:1.4}.entry__error:empty{display:none}.entry__error:not(:empty){display:block!important}
+  .brevo-integrated-section{background-color:#020617!important;padding:clamp(3rem,7vw,5rem) clamp(1rem,3vw,2rem)!important;border-top:1px solid rgba(0,212,178,.1)!important;width:100%;box-sizing:border-box;overflow:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}.brevo-section-container{max-width:960px;margin:0 auto;display:block;box-sizing:border-box}.brevo-info-block{display:flex;flex-direction:column;align-items:center;gap:1.05rem;text-align:center}.meta-badge-node{background:rgba(0,212,178,.08)!important;border:1px solid rgba(0,212,178,.28)!important;color:#99f6e4!important;font-size:.8rem!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.1em!important;padding:6px 14px!important;border-radius:50px!important}.brevo-info-title{font-size:clamp(2rem,5vw,3rem)!important;font-weight:850!important;line-height:1.2!important;color:#fff!important;margin:0!important;letter-spacing:-.02em!important}.brevo-info-title .accent-neon{color:#67e8f9}.brevo-info-desc{font-size:1.05rem!important;line-height:1.65!important;color:#cbd5e1!important;margin:0!important;text-align:center!important;max-width:760px}.neural-accent-bar-line{width:70px;height:2px;background:linear-gradient(90deg,transparent 0%,#00d4b2 50%,transparent 100%);margin:.35rem auto .45rem}.brevo-cta-row{display:flex;flex-direction:column;align-items:center;gap:.75rem;margin-top:.35rem}.brevo-open-modal-btn{background:linear-gradient(135deg,#00d4b2 0%,#3b82f6 100%)!important;color:#020617!important;font-size:.92rem!important;font-weight:850!important;letter-spacing:.04em!important;padding:14px 28px!important;border:0!important;border-radius:999px!important;cursor:pointer!important;display:inline-flex!important;align-items:center;justify-content:center;box-shadow:0 18px 35px rgba(0,212,178,.18)!important;text-transform:uppercase;transition:transform .18s ease,box-shadow .18s ease!important}.brevo-open-modal-btn:hover,.brevo-open-modal-btn:focus{transform:translateY(-2px);box-shadow:0 22px 42px rgba(59,130,246,.24)!important;outline:2px solid rgba(103,232,249,.4);outline-offset:3px}.brevo-privacy-note{margin:0!important;color:#94a3b8!important;font-size:.9rem!important;line-height:1.45!important}.brevo-modal-shell[hidden]{display:none!important}.brevo-modal-shell{position:fixed!important;inset:0!important;z-index:99990!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:clamp(.75rem,3vw,1.5rem)!important;box-sizing:border-box!important}.brevo-modal-backdrop{position:absolute!important;inset:0!important;background:rgba(2,6,23,.78)!important;backdrop-filter:blur(8px)!important}.brevo-modal-panel{position:relative!important;width:min(560px,100%)!important;max-height:min(86vh,760px)!important;overflow:auto!important;border-radius:22px!important;background:#0d1527!important;border:1px solid rgba(103,232,249,.22)!important;box-shadow:0 32px 80px rgba(0,0,0,.55)!important;padding:clamp(1rem,3vw,1.35rem)!important;box-sizing:border-box!important}.brevo-modal-close{position:absolute!important;top:12px!important;right:14px!important;z-index:2!important;width:38px!important;height:38px!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:999px!important;background:rgba(2,6,23,.86)!important;color:#e2e8f0!important;font-size:1.5rem!important;line-height:1!important;cursor:pointer!important}.brevo-modal-close:hover,.brevo-modal-close:focus{color:#67e8f9!important;border-color:rgba(103,232,249,.55)!important;outline:none!important}.custom-sib-card{background-color:transparent!important;border:0!important;border-radius:0!important;padding:clamp(1.2rem,4vw,2rem)!important;box-sizing:border-box!important;width:100%!important;margin:0 auto!important;box-shadow:none!important}.form-title-node{font-size:1.55rem!important;font-weight:850!important;color:#fff!important;margin:0 2.5rem .45rem 0!important;text-align:left;letter-spacing:-.01em}.form-subtitle-node{font-size:.96rem!important;color:#cbd5e1!important;margin:0 0 1.5rem!important;text-align:left}.form-group-field,.form-group-checkbox{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.35rem;text-align:left}.console-input-label{font-size:.92rem!important;font-weight:750!important;color:#e2e8f0!important}.console-email-input{background-color:#020617!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:10px!important;padding:.95rem 1rem!important;color:#fff!important;font-size:1rem!important;width:100%!important;box-sizing:border-box!important;outline:none!important}.console-email-input:focus{border-color:rgba(0,212,178,.65)!important;box-shadow:0 0 0 3px rgba(0,212,178,.12)!important}.checkbox-label-container{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer}.console-checkbox-input{margin-top:.25rem!important}.checkbox-custom-text{font-size:.92rem!important;line-height:1.5!important;color:#e2e8f0!important}.field-specification{font-size:.82rem!important;color:#cbd5e1!important;line-height:1.45!important}.brevo-declaration-strip{border-top:1px solid rgba(255,255,255,.08)!important;margin-top:1.35rem!important;padding-top:1rem!important;margin-bottom:1.35rem!important;text-align:left}.brevo-declaration-strip p{font-size:.78rem!important;line-height:1.5!important;color:#cbd5e1!important;margin:0!important}.brevo-declaration-strip a{color:#67e8f9!important;text-decoration:underline!important}.custom-submit-btn{background:linear-gradient(135deg,#00d4b2 0%,#3b82f6 100%)!important;color:#020617!important;font-size:.92rem!important;font-weight:850!important;letter-spacing:.05em!important;width:100%!important;padding:14px 24px!important;border:0!important;border-radius:10px!important;cursor:pointer!important;display:inline-flex;align-items:center;justify-content:center;transition:transform .2s ease!important;text-transform:uppercase}.custom-submit-btn:hover{transform:translateY(-2px)}.brevo-modal-shell .custom-submit-btn[style*="display: none"],.brevo-modal-shell .custom-submit-btn[style*="display:none"]{display:none!important}.sib-form-message-panel--active{display:block!important}.sib-form-message-panel{display:none;font-family:'Inter',-apple-system,sans-serif;font-size:14px;text-align:left;border-radius:10px;max-width:100%;margin-bottom:15px}.sib-form-message-panel__text{display:flex;align-items:center;padding:12px 16px}@media(max-width:720px){.brevo-integrated-section{padding:3.25rem 1rem!important}.brevo-info-title{font-size:2.15rem!important}.brevo-info-desc{font-size:1rem!important}.brevo-open-modal-btn{width:100%!important;max-width:320px!important}.brevo-modal-shell{align-items:flex-end!important;padding:0!important}.brevo-modal-panel{width:100%!important;max-height:88vh!important;border-radius:22px 22px 0 0!important;border-left:0!important;border-right:0!important;border-bottom:0!important;padding:1rem .9rem max(1rem,env(safe-area-inset-bottom))!important}.custom-sib-card{padding:1.25rem .75rem!important}.form-title-node{font-size:1.35rem!important}}
 </style>
 
 <noscript><link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"></noscript>
@@ -93,31 +97,157 @@
     window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
     window.AUTOHIDE = true;
 
-    var loaded = false;
+    var brevoLoadPromise = null;
+    var brevoReady = false;
     var lastFocusedElement = null;
+    var originalBrevoError = "Your subscription could not be saved. Please try again.";
+    var brevoScriptUrl = "https://sibforms.com/forms/end-form/build/main.js";
+    var brevoSubmitHandlerInstalled = false;
+    var brevoInitializationFault = false;
+
+    function showBrevoError(message) {
+      var panel = document.getElementById("error-message");
+      if (!panel) return;
+      var text = panel.querySelector(".sib-form-message-panel__inner-text");
+      if (text) text.textContent = message;
+      panel.style.display = "block";
+      panel.setAttribute("role", "alert");
+      var scroller = document.querySelector(".brevo-modal-panel");
+      if (scroller) scroller.scrollTop = 0;
+    }
+
+    function clearBrevoError() {
+      var panel = document.getElementById("error-message");
+      if (!panel) return;
+      var text = panel.querySelector(".sib-form-message-panel__inner-text");
+      if (text) text.textContent = originalBrevoError;
+      panel.style.display = "none";
+      panel.setAttribute("role", "status");
+    }
 
     function loadBrevoAssets() {
-      if (loaded) return;
-      loaded = true;
-
-      var css = document.createElement("link");
-      css.rel = "stylesheet";
-      css.href = "https://sibforms.com/forms/end-form/build/sib-styles.css";
-      css.media = "print";
-      css.onload = function () { css.media = "all"; };
-      document.head.appendChild(css);
-
-      var loader = window.lbflLoadScript || function (src) {
-        return new Promise(function (resolve, reject) {
-          var s = document.createElement("script");
-          s.src = src;
-          s.async = true;
-          s.onload = resolve;
-          s.onerror = reject;
-          document.head.appendChild(s);
-        });
+      if (brevoReady) return Promise.resolve();
+      if (brevoInitializationFault) {
+        showBrevoError("Subscription initialization failed. Please refresh this page before trying again.");
+        return Promise.reject(new Error("Brevo initialization requires page refresh"));
+      }
+      if (brevoLoadPromise) return brevoLoadPromise;
+      var form = document.getElementById("sib-form");
+      if (!form) return Promise.reject(new Error("Newsletter form missing"));
+      var originalAddEventListener = form.addEventListener;
+      brevoSubmitHandlerInstalled = false;
+      form.addEventListener = function (type, listener, options) {
+        if (type === "submit") brevoSubmitHandlerInstalled = true;
+        return originalAddEventListener.call(this, type, listener, options);
       };
-      loader("https://sibforms.com/forms/end-form/build/main.js").catch(function () {});
+      brevoLoadPromise = new Promise(function (resolve, reject) {
+        var prior = document.querySelector('script[src="' + brevoScriptUrl + '"]');
+        if (prior && prior.dataset.loaded !== "true") prior.remove();
+        var script = document.createElement("script");
+        script.src = brevoScriptUrl;
+        script.async = true;
+        script.onload = function () {
+          script.dataset.loaded = "true";
+          resolve();
+        };
+        script.onerror = function () {
+          script.remove();
+          reject(new Error("Brevo script download failed"));
+        };
+        document.head.appendChild(script);
+      }).then(function () {
+        // These vendor-installed hooks occur near the end of Brevo main.js.
+        // Unlike a cross-origin error event, they survive an opaque script fetch.
+        var vendorInitialized = brevoSubmitHandlerInstalled &&
+          typeof window.invisibleCaptchaCallback === "function" &&
+          typeof SVGElement.prototype.removeClass === "function";
+        if (!vendorInitialized) {
+          brevoInitializationFault = true;
+          throw new Error("Brevo main.js did not finish initialization");
+        }
+        brevoReady = true;
+        clearBrevoError();
+      }).catch(function (error) {
+        brevoReady = false;
+        document.querySelectorAll('script[src="' + brevoScriptUrl + '"]').forEach(function (script) {
+          if (script.dataset.loaded !== "true") script.remove();
+        });
+        showBrevoError(brevoInitializationFault ? "Subscription initialization failed. Please refresh this page before trying again." : "The subscription service is temporarily unavailable. Please try again.");
+        throw error;
+      }).finally(function () {
+        form.addEventListener = originalAddEventListener;
+        brevoLoadPromise = null;
+      });
+      return brevoLoadPromise;
+    }
+
+    var brevoSubmitPending = false;
+    var brevoLoaderHadFocus = false;
+    // Only an entered vendor loading state represents an in-flight AJAX request.
+    // Brevo can synchronously reject a browser-valid value before hiding its button.
+    function bindSubmissionGuard() {
+      var form = document.getElementById("sib-form");
+      if (!form) return;
+      var submitButton = form.querySelector('button[type="submit"]');
+      var loader = form.querySelector(".sib-loader");
+      var modal = document.getElementById("brevo-newsletter-modal");
+      if (loader) loader.setAttribute("tabindex", "-1");
+      // Hiding a focused loader may move focus to body before the style observer runs.
+      // Track the last intentional focus within this modal until request completion.
+      if (modal && loader) modal.addEventListener("focusin", function (event) {
+        brevoLoaderHadFocus = event.target === loader;
+      });
+      if (submitButton) {
+        new MutationObserver(function () {
+          var hidden = submitButton.style.display === "none";
+          if (hidden && loader) {
+            loader.setAttribute("tabindex", "0");
+            if (document.activeElement === submitButton || !form.contains(document.activeElement)) loader.focus();
+          }
+          if (!hidden) {
+            if (loader) loader.setAttribute("tabindex", "-1");
+            if (brevoSubmitPending) {
+              brevoSubmitPending = false;
+              // Restore focus even if the browser blurred the loader when it vanished.
+              // Never steal focus back into a dialog the user has already closed.
+              if (loader && modal && !modal.hidden &&
+                  (document.activeElement === loader || brevoLoaderHadFocus)) submitButton.focus();
+            }
+            brevoLoaderHadFocus = false;
+          }
+        }).observe(submitButton, { attributes: true, attributeFilter: ["style"] });
+      }
+      form.addEventListener("submit", function (event) {
+        if (brevoSubmitPending || (submitButton && submitButton.style.display === "none") || (loader && loader.style.display === "block")) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return;
+        }
+        if (!brevoReady) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          showBrevoError(brevoInitializationFault ? "Subscription initialization failed. Please refresh this page before trying again." : "Connecting to the subscription service. Please try again shortly.");
+          loadBrevoAssets().catch(function () {});
+          return;
+        }
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          form.reportValidity();
+          return;
+        }
+        brevoSubmitPending = true;
+        // Wait until the whole submit event dispatch finishes. A Promise microtask
+        // here can run before the vendor's bubble-phase handler sets loading state.
+        // A deferred task clears pending only when Brevo rejected before AJAX.
+        window.setTimeout(function () {
+          if (brevoSubmitPending && submitButton &&
+              submitButton.style.display !== "none" &&
+              (!loader || loader.style.display !== "block")) {
+            brevoSubmitPending = false;
+          }
+        }, 0);
+      }, true);
     }
 
     function getModal() {
@@ -127,8 +257,9 @@
     function openModal() {
       var modal = getModal();
       if (!modal) return;
+      brevoLoaderHadFocus = false;
       lastFocusedElement = document.activeElement;
-      loadBrevoAssets();
+      loadBrevoAssets().catch(function () {});
       modal.hidden = false;
       document.documentElement.classList.add("brevo-modal-open");
       document.body.classList.add("brevo-modal-open");
@@ -141,6 +272,8 @@
     function closeModal() {
       var modal = getModal();
       if (!modal) return;
+      // Do not carry pending-loader focus intent into the next modal session.
+      brevoLoaderHadFocus = false;
       modal.hidden = true;
       document.documentElement.classList.remove("brevo-modal-open");
       document.body.classList.remove("brevo-modal-open");
@@ -150,10 +283,18 @@
     function trapFocus(event) {
       var modal = getModal();
       if (!modal || modal.hidden || event.key !== "Tab") return;
-      var focusables = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])');
+      var candidates = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])');
+      var focusables = Array.prototype.filter.call(candidates, function (node) {
+        return node.getClientRects().length > 0 && getComputedStyle(node).visibility !== 'hidden';
+      });
       if (!focusables.length) return;
       var first = focusables[0];
       var last = focusables[focusables.length - 1];
+      if (!modal.contains(document.activeElement) || focusables.indexOf(document.activeElement) === -1) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+        return;
+      }
       if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();
@@ -178,7 +319,7 @@
       });
     }
 
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindModal);
-    else bindModal();
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { bindModal(); bindSubmissionGuard(); });
+    else { bindModal(); bindSubmissionGuard(); }
   })();
 </script>

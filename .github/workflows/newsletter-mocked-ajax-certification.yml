@@ -1,0 +1,51 @@
+name: Newsletter Mocked AJAX Certification
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "_includes/body/brevo-marketing.html"
+      - ".github/scripts/newsletter-mocked-ajax-certification.cjs"
+      - ".github/workflows/newsletter-mocked-ajax-certification.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  certify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Authenticate exact PR HEAD
+        if: github.event_name == 'pull_request'
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+      - run: |
+          bundle config set --local frozen 'false'
+          bundle install
+          JEKYLL_ENV=production bundle exec jekyll build --trace
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Serve immutable build
+        run: |
+          python3 -m http.server 4000 --directory _site > /tmp/lbfl-newsletter.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4000/contact/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/lbfl-newsletter.log
+          exit 1
+      - name: Certify mocked Brevo lifecycle
+        run: node .github/scripts/newsletter-mocked-ajax-certification.cjs
