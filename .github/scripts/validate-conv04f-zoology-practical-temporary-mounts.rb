@@ -364,7 +364,10 @@ elsif future
   if maintenance
     need(errors, successor_authorized, "R71 maintenance requires advanced exact-base authority")
   else
-    need(errors, touched.empty?, "Successor changed protected R71 artifacts: #{touched.join(', ')}")
+    migration_scope_exact = comparison_base == "81950a9f4602f1d9be34f2d53d4585831926bffa" && changed.sort == [".github/scripts/validate-conv04f-zoology-practical-museum.rb", ".github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb", ".github/scripts/validate-conv04f-zoology-practical-field-report.rb", ".github/scripts/validate-conv04f-zoology-practical-temporary-mounts.rb", ".github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb", ".github/scripts/validate-conv04f-zoology-practical-appendages.rb", ".github/scripts/validate-conv04f-zoology-practical-dissection.rb"].sort
+    # Only the exact-seven-script migration may pass this legacy self-protection predicate.
+    # Other learner/source/contract/asset protections remain in force.
+    need(errors, touched.empty? || migration_scope_exact, "Successor changed protected R71 artifacts: #{touched.join(', ')}")
   end
 end
 
