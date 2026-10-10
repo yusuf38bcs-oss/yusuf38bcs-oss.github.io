@@ -1,54 +1,85 @@
 name: CONV-04F Trusted One-Time Migration Authorization
-# Policy and token run exclusively from authenticated main; NEVER execute candidate code.
+# Trusted base policy only. PR code is fetched as Git objects, NEVER executed.
 on:
+  push:
+    branches: ["main"]
   pull_request_target:
     branches: ["main"]
-    types: [opened, synchronize, reopened, ready_for_review, edited]
-    paths:
-      - ".github/scripts/validate-conv04f-zoology-practical-museum.rb"
-      - ".github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb"
-      - ".github/scripts/validate-conv04f-zoology-practical-field-report.rb"
-      - ".github/scripts/validate-conv04f-zoology-practical-temporary-mounts.rb"
-      - ".github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb"
-      - ".github/scripts/validate-conv04f-zoology-practical-appendages.rb"
-      - ".github/scripts/validate-conv04f-zoology-practical-dissection.rb"
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited, closed]
 permissions:
   contents: read
   pull-requests: read
   statuses: write
+# Serialize every authorization/revocation attempt. Do not cancel a running evaluator.
+concurrency:
+  group: lbfl-trusted-conv04f-migration-${{ github.repository }}
+  cancel-in-progress: false
 jobs:
   trusted-migration-authorization:
-    if: github.event.pull_request.number == 468
     runs-on: ubuntu-latest
     steps:
-      - name: Set pending exact-head authorization status
+      - name: Revoke stale statuses and set pending for eligible candidate
+        id: prepare
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
-            const pr = context.payload.pull_request;
-            await github.rest.repos.createCommitStatus({
-              ...context.repo, sha: pr.head.sha, state: 'pending',
-              context: 'LBFL Trusted Practical Migration Authorization',
-              description: 'Trusted exact-head migration validation in progress',
-              target_url: context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId
-            });
+            const ctx = 'LBFL Trusted Practical Migration Authorization';
+            const url = context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId;
+            const shaOkay = x => /^[0-9a-f]{40}$/.test(String(x || ''));
+            const publish = (sha,state,description) =>
+              github.rest.repos.createCommitStatus({...context.repo,sha,state,context:ctx,description,target_url:url});
+            const current = (await github.rest.pulls.get({...context.repo,pull_number:468})).data;
+            const main = (await github.rest.repos.getBranch({...context.repo,branch:'main'})).data;
+            const currentHead = current.head.sha;
+            if (context.eventName === 'push') {
+              // Every base advance invalidates authorization, even without PR synchronization.
+              if (current.state === 'open' && shaOkay(currentHead))
+                await publish(currentHead,'failure','Main advanced: fresh exact-head migration authorization required');
+              core.setOutput('run', 'false');
+              return;
+            }
+            const eventPR = context.payload.pull_request;
+            const eventHead = eventPR.head.sha;
+            if (eventPR.number !== 468) {
+              // Commit statuses are SHA-scoped. Another protected PR claiming an
+              // already-approved head must invalidate (not inherit) authorization.
+              const all = await github.paginate(github.rest.repos.listCommitStatusesForRef,{
+                ...context.repo,ref:eventHead,per_page:100});
+              const inherited = all.some(s => s.context === ctx &&
+                (s.state === 'success' || s.state === 'pending'));
+              if (inherited || (current.state === 'open' && eventHead === currentHead))
+                await publish(eventHead,'failure','Commit head used by an unrelated PR; no migration authority');
+              core.setOutput('run', 'false');
+              return;
+            }
+            if (shaOkay(context.payload.before) && context.payload.before !== eventHead) {
+              await publish(context.payload.before,'failure','Superseded PR #468 head: authorization revoked');
+            }
+            if (!shaOkay(eventHead)) throw new Error('Invalid PR event head');
+            await publish(eventHead,'pending','Checking exact-head authorization against trusted main policy');
+            core.setOutput('run', 'true');
+
       - name: Checkout immutable trusted main base, NOT candidate
         id: checkout
+        if: steps.prepare.outputs.run == 'true'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           fetch-depth: 0
           persist-credentials: false
-      - name: Trusted positive and negative regression
+      - name: Trusted positive/negative regression
         id: regression
+        if: steps.prepare.outputs.run == 'true'
         run: python3 scripts/ci/conv04f_narrow_migration_gate.py --self-test
-      - name: Authenticate owner-authorized current head and exact seven blobs
+      - name: Authenticate current head and seven source files
         id: authorize
+        if: steps.prepare.outputs.run == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/ci/conv04f_narrow_migration_gate.py --authorize
-      - name: Publish final trusted status to live PR HEAD (not base SHA)
-        if: always()
+
+      - name: Publish independently authorized head status
+        if: always() && steps.prepare.outputs.run == 'true'
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
           CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
@@ -56,40 +87,37 @@ jobs:
           AUTH_OUTCOME: ${{ steps.authorize.outcome }}
         with:
           script: |
-            const pull_number = context.payload.pull_request.number;
+            const pull_number = 468;
             const eventHead = context.payload.pull_request.head.sha;
             const eventBase = context.payload.pull_request.base.sha;
-            const fresh = (await github.rest.pulls.get({...context.repo, pull_number})).data;
-            const main = (await github.rest.repos.getBranch({...context.repo, branch: 'main'})).data;
-            if (fresh.head.sha !== eventHead) {
-              core.setFailed('Stale PR event; never publish success for a changed head');
-              return;
-            }
+            const live = (await github.rest.pulls.get({...context.repo,pull_number})).data;
+            const main = (await github.rest.repos.getBranch({...context.repo,branch:'main'})).data;
             const currentBase = main.commit.sha;
-            const bodyLines = (fresh.body || '').split(/\r?\n/).map(line => line.trim());
-            const soloLine = 'SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER';
-            const approvalLine = 'SOLO-MAINTAINER-APPROVAL: ' + eventHead;
-            const liveOwnerAuthority =
-              fresh.state === 'open' && !fresh.draft &&
-              fresh.user?.login === 'yusuf38bcs-oss' &&
-              fresh.head.repo?.full_name === 'yusuf38bcs-oss/yusuf38bcs-oss.github.io' &&
-              bodyLines.filter(line => line.startsWith('SOLO-MAINTAINER-EXCEPTION:')).length === 1 &&
-              bodyLines.filter(line => line.startsWith('SOLO-MAINTAINER-APPROVAL:')).length === 1 &&
-              bodyLines.includes(soloLine) && bodyLines.includes(approvalLine);
-            const gatePassed =
-              liveOwnerAuthority &&
+            const otherPRs = await github.paginate(github.rest.pulls.list,{
+              ...context.repo,state:'open',per_page:100});
+            const duplicates = otherPRs.filter(p => p.number !== pull_number &&
+              ['main','staging'].includes(p.base.ref) && p.head.sha === eventHead);
+            const lines = (live.body || '').split(/\r?\n/).map(line => line.trim());
+            const exception = 'SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER';
+            const approval = 'SOLO-MAINTAINER-APPROVAL: ' + eventHead;
+            const solo = live.user?.login === 'yusuf38bcs-oss' &&
+              live.head.repo?.full_name === 'yusuf38bcs-oss/yusuf38bcs-oss.github.io' &&
+              lines.filter(s => s.startsWith('SOLO-MAINTAINER-EXCEPTION:')).length === 1 &&
+              lines.filter(s => s.startsWith('SOLO-MAINTAINER-APPROVAL:')).length === 1 &&
+              lines.includes(exception) && lines.includes(approval);
+            const unchanged = live.state === 'open' && !live.draft &&
+              live.head.sha === eventHead && live.base.ref === 'main' &&
+              live.base.sha === eventBase && currentBase === eventBase;
+            const approved = unchanged && solo && duplicates.length === 0 &&
               process.env.CHECKOUT_OUTCOME === 'success' &&
               process.env.REGRESSION_OUTCOME === 'success' &&
-              process.env.AUTH_OUTCOME === 'success' &&
-              currentBase === eventBase &&
-              fresh.base.sha === currentBase &&
-              fresh.base.ref === 'main';
+              process.env.AUTH_OUTCOME === 'success';
             await github.rest.repos.createCommitStatus({
-              ...context.repo, sha: eventHead,
-              state: gatePassed ? 'success' : 'failure',
-              context: 'LBFL Trusted Practical Migration Authorization',
-              description: gatePassed ? 'Trusted 7-blob exact-head migration: PASS' :
-                'Trusted migration HOLD: test, authority, or current-base mismatch',
-              target_url: context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId
+              ...context.repo,sha:eventHead,
+              state:approved?'success':'failure',
+              context:'LBFL Trusted Practical Migration Authorization',
+              description:approved?'Trusted exact-head seven-blob migration: PASS':
+                'HOLD: base/head, SOLO authority, duplicate head, or gate mismatch',
+              target_url:context.serverUrl+'/'+context.repo.owner+'/'+context.repo.repo+'/actions/runs/'+context.runId
             });
-            if (!gatePassed) core.setFailed('Fail-closed migration authorization');
+            if (!approved) core.setFailed('Fail-closed migration authorization');
