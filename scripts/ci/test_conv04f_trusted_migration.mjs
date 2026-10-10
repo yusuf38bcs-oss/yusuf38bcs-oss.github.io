@@ -48,7 +48,10 @@ function fixture(overrides={}) {
     paginate:async()=>current.files,
     rest:{
       pulls:{listFiles:()=>{}},
-      git:{getTree:async({tree_sha})=>({data:tree(tree_sha)})}
+      git:{
+        getCommit:async({commit_sha})=>({data:{tree:{sha:commit_sha==='a'.repeat(40)?'1'.repeat(40):'2'.repeat(40)}}}),
+        getTree:async({tree_sha})=>({data:tree(tree_sha==='2'.repeat(40)?'b'.repeat(40):'a'.repeat(40))})
+      }
     }
   };
   const sandbox={owner:'yusuf38bcs-oss',repo:'yusuf38bcs-oss.github.io',
