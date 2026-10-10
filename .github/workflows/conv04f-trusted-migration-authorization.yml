@@ -13,6 +13,7 @@ permissions:
 # Serialize every authorization/revocation attempt. Do not cancel a running evaluator.
 concurrency:
   group: lbfl-trusted-conv04f-migration-${{ github.repository }}
+  queue: max
   cancel-in-progress: false
 jobs:
   trusted-migration-authorization:
@@ -56,6 +57,13 @@ jobs:
               await publish(context.payload.before,'failure','Superseded PR #468 head: authorization revoked');
             }
             if (!shaOkay(eventHead)) throw new Error('Invalid PR event head');
+            // A staging-target PR is REVOCATION ONLY: never check out or execute
+            // the untrusted staging branch with a status-writing token.
+            if (eventPR.base.ref !== 'main') {
+              await publish(eventHead,'failure','Unauthorized target base: only main may authorize migration');
+              core.setOutput('run', 'false');
+              return;
+            }
             await publish(eventHead,'pending','Checking exact-head authorization against trusted main policy');
             core.setOutput('run', 'true');
 
