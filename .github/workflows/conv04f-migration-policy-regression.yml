@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - repair/conv04f-validator-migration-evidence-20261010
+  pull_request:
+    branches:
+      - repair/conv04f-retained-validator-j-compat-20261010
   workflow_dispatch:
 permissions:
   contents: read
