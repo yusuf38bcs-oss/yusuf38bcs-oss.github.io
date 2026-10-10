@@ -202,7 +202,7 @@ successor_allowlist = []
 j_governance_only = false
 if changed.sort == ["docs/academic/conv04/CONV04_STATE.md", "docs/academic/conv04/CONV04_J_RELEASE_CLOSURE.md"].sort && phase == "CONV-04J-R1"
   j_base = top_level_scalar(state_text, "j_implementation_base")
-  j_governance_only = j_base && j_base.match?(/\\A[0-9a-f]{40}\\z/) &&
+  j_governance_only = j_base && j_base.match?(/\A[0-9a-f]{40}\z/) &&
     git("merge-base", "--is-ancestor", j_base, "HEAD").last.success?
 end
 if future && PATHS[:state].file? && changed.include?(STATE_REL)
@@ -283,11 +283,11 @@ if PATHS[:source].file?
       "sampling effort;",
       "photo number if photographed;",
       "\\text{Total area}=q\\times a",
-      "\\bar{x}=\\frac{\\sum x_i}{q}",
+      "\\bar{x}=\\frac{\sum x_i}{q}",
       "\\text{Frequency (\\%)}=",
       "Density এবং frequency একই ecological metric নয়।",
       "p_i=\\frac{n_i}{N}",
-      "H'=-\\sum p_i\\ln p_i",
+      "H'=-\sum p_i\\ln p_i",
       "natural log recommended",
       "Only observed/calculated data:",
       "Do not convert correlation into causation without experiment/evidence",
