@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - scripts/ci/conv04f_narrow_migration_gate.py
+      - scripts/ci/conv04f_practical_guard_inventory.py
       - .github/workflows/conv04f-narrow-migration-gate.yml
   workflow_dispatch:
 permissions:
