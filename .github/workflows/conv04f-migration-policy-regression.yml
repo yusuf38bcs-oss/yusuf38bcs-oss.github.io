@@ -1,0 +1,24 @@
+name: CONV-04F Migration Policy Regression (Evidence Only)
+on:
+  push:
+    branches:
+      - repair/conv04f-validator-migration-evidence-20261010
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  policy-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Positive and negative policy tests
+        run: python scripts/ci/conv04f_migration_policy.py --self-test
+      - name: Historical candidate identity and explicit authorization HOLD
+        run: python scripts/ci/conv04f_migration_policy.py --verify
+      - name: Existing SHA/diff verifier
+        run: python scripts/ci/audit_conv04f_validator_migration_candidate.py
