@@ -1,0 +1,10 @@
+{
+  "name": "lbfl-release-attestor-shadow-auth",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Fail-closed read-only GitHub App auth pilot; cannot approve PRs or merge",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}
