@@ -1,13 +1,26 @@
 #!/usr/bin/env python3
-"""Provisional fail-closed migration policy. Not a waiver of existing Practical gates."""
+"""CONV-04F one-time migration: identity preflight and trusted authorization.
+
+--preflight and --self-test are NON-AUTHORIZING, including on PR branches.
+--authorize must execute from the trusted PR target base, never candidate code.
+"""
 from __future__ import annotations
 import argparse
+import json
+import os
+import re
 import subprocess
 import sys
 import unittest
+import urllib.request
 
-BASE = "e9e5c68b1c63286099368cfe9954a3d76b28d8ea"
-CANDIDATE = "e00e3faecce53d83a3371ff6b4b886427153418c"
+ORIGIN_BASE = "e9e5c68b1c63286099368cfe9954a3d76b28d8ea"
+ORIGIN_CANDIDATE = "e00e3faecce53d83a3371ff6b4b886427153418c"
+REPOSITORY = "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
+AUTHORIZED_PR = 468
+AUTHORIZED_BRANCH = "repair/conv04f-retained-validator-j-compat-20261010"
+SOLO_LINE = "SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER"
+SOLO_APPROVAL = "SOLO-MAINTAINER-APPROVAL: "
 EXPECTED = {
     "museum": ("43aa1d96c71e524f0af4eca954766e51e9c423f5", "1784c583a5f91a1a5c09296799bc96ace7db354b"),
     "whole-mounts": ("fc9b9f07164676798b4f98fe7802053dddd0f929", "d34eefb9a526590dd8daf8610430042359f7a0cf"),
@@ -17,90 +30,187 @@ EXPECTED = {
     "appendages": ("e0b25189300804447108bcc201e97653330e0e87", "a1c5a1a6c28aa47d858678ac8f7cd3c270fce0e0"),
     "dissection": ("7318e8c3215838093b68978760746e9c4240fb72", "42c56e7a35e0aa2d679d5472530820dad8d06896"),
 }
-PATHS = {f".github/scripts/validate-conv04f-zoology-practical-{key}.rb": pair for key, pair in EXPECTED.items()}
-
-def policy(base, candidate, changed, originals, proposed, ancestor, authorized=False):
-    # In no circumstances may candidate-supplied data grant its own authorization.
-    if not authorized:
-        return False, "independent authorization absent"
-    if base != BASE or candidate != CANDIDATE or not ancestor:
-        return False, "exact commit binding / ancestry mismatch"
-    if len(changed) != len(PATHS) or set(changed) != set(PATHS):
-        return False, "changed-file allowlist mismatch"
-    for path, (before, after) in PATHS.items():
-        if originals.get(path) != before or proposed.get(path) != after:
-            return False, f"protected blob mismatch: {path}"
-    return True, "exact proposal matches independently authorized identities"
+PATHS = {".github/scripts/validate-conv04f-zoology-practical-" + name + ".rb": pair
+         for name, pair in EXPECTED.items()}
+HEX40 = re.compile(r"^[0-9a-f]{40}$")
 
 def git(*args):
     p = subprocess.run(["git", *args], capture_output=True, text=True)
     if p.returncode:
-        raise RuntimeError(p.stderr.strip() or f"git {' '.join(args)} failed")
+        raise RuntimeError(p.stderr.strip() or "git command failed")
     return p.stdout.strip()
 
-def verify():
-    # This repository-contained tool deliberately has no approval token or approval flag:
-    # until an external trusted gate supplies authorization, it must always reject.
-    changed = git("diff", "--name-only", BASE, CANDIDATE).splitlines()
-    originals = {p: git("rev-parse", f"{BASE}:{p}") for p in PATHS}
-    proposed = {p: git("rev-parse", f"{CANDIDATE}:{p}") for p in PATHS}
-    ancestor = git("merge-base", BASE, CANDIDATE) == BASE
-    # Identity evidence is useful even though authorization is not granted:
-    match, reason = policy(BASE, CANDIDATE, changed, originals, proposed, ancestor, authorized=True)
-    print(("IDENTITY PASS: " if match else "IDENTITY FAIL: ") + reason)
-    approval, reason = policy(BASE, CANDIDATE, changed, originals, proposed, ancestor, authorized=False)
-    print(("AUTH PASS: " if approval else "AUTH HOLD: ") + reason)
-    return 0 if match and not approval else 1
+def is_ancestor(before, after):
+    return subprocess.run(["git", "merge-base", "--is-ancestor", before, after],
+                          capture_output=True).returncode == 0
+
+def changed_files(base, head):
+    return git("diff", "--name-only", base + "..."+ head).splitlines()
+
+def blobs(revision):
+    return {p: git("rev-parse", revision + ":" + p) for p in PATHS}
+
+def original_identity(base, candidate, changed, before_blobs, after_blobs, lineage):
+    if base != ORIGIN_BASE or candidate != ORIGIN_CANDIDATE or not lineage:
+        return False, "origin identity or ancestry mismatch"
+    if len(changed) != len(PATHS) or set(changed) != set(PATHS):
+        return False, "origin changed-file allowlist mismatch"
+    for path, (before, after) in PATHS.items():
+        if before_blobs.get(path) != before or after_blobs.get(path) != after:
+            return False, "origin blob mismatch: " + path
+    return True, "original seven-file identity matches"
+
+def live_authority(*, trusted, event_head, live_head, event_base,
+                   live_base, checkout_sha, branch, owner, repository,
+                   draft, open_state, changed, current_blobs,
+                   current_base_blobs, base_ancestor, candidate_ancestor,
+                   approval_lines):
+    # Fail closed on any stale event, source, branch, mutation or authority.
+    if not trusted:
+        return False, "trusted policy source not authenticated"
+    if not all(HEX40.fullmatch(x or "") for x in
+               [event_head, live_head, event_base, live_base, checkout_sha]):
+        return False, "malformed revision"
+    if event_head != live_head:
+        return False, "stale triggering PR head"
+    if event_base != live_base or checkout_sha != live_base:
+        return False, "stale or untrusted comparison base"
+    if branch != AUTHORIZED_BRANCH or owner != "yusuf38bcs-oss" or repository != REPOSITORY:
+        return False, "unauthorized PR identity"
+    if draft or not open_state:
+        return False, "draft or closed PR is not authorized"
+    if not base_ancestor or not candidate_ancestor:
+        return False, "current main/original candidate ancestry mismatch"
+    if len(changed) != len(PATHS) or set(changed) != set(PATHS):
+        return False, "current-base changed-file scope mismatch"
+    for path, (before, after) in PATHS.items():
+        if current_base_blobs.get(path) != before or current_blobs.get(path) != after:
+            return False, "current-base/candidate protected blob mismatch: " + path
+    if approval_lines.count(SOLO_LINE) != 1 or approval_lines.count(SOLO_APPROVAL + live_head) != 1:
+        return False, "no owner-authorized exact-head SOLO migration decision"
+    if sum(x.startswith("SOLO-MAINTAINER-EXCEPTION:") for x in approval_lines) != 1:
+        return False, "ambiguous SOLO exception"
+    if sum(x.startswith(SOLO_APPROVAL) for x in approval_lines) != 1:
+        return False, "ambiguous SOLO approval"
+    return True, "TRUSTED AUTHORIZATION PASS for live exact head and seven blobs"
+
+def preflight():
+    matched, detail = original_identity(ORIGIN_BASE, ORIGIN_CANDIDATE,
+        changed_files(ORIGIN_BASE, ORIGIN_CANDIDATE), blobs(ORIGIN_BASE),
+        blobs(ORIGIN_CANDIDATE), is_ancestor(ORIGIN_BASE, ORIGIN_CANDIDATE))
+    print(("IDENTITY PREFLIGHT PASS: " if matched else "IDENTITY PREFLIGHT FAIL: ") + detail)
+    print("NOT AN AUTHORIZATION: only the trusted pull_request_target gate may authorize PR #468")
+    return 0 if matched else 1
+
+def api(path, token):
+    req = urllib.request.Request(
+        "https://api.github.com/repos/" + REPOSITORY + path,
+        headers={"Authorization": "Bearer " + token,
+                 "Accept": "application/vnd.github+json",
+                 "X-GitHub-Api-Version": "2022-11-28"})
+    with urllib.request.urlopen(req, timeout=20) as response:
+        return json.load(response)
+
+def authorize():
+    if os.environ.get("GITHUB_EVENT_NAME") != "pull_request_target":
+        raise RuntimeError("authorization requires trusted pull_request_target event")
+    if os.environ.get("GITHUB_REPOSITORY") != REPOSITORY:
+        raise RuntimeError("repository mismatch")
+    token = os.environ.get("GH_TOKEN")
+    if not token:
+        raise RuntimeError("trusted read-only GitHub token missing")
+    with open(os.environ["GITHUB_EVENT_PATH"], encoding="utf-8") as handle:
+        event = json.load(handle)
+    if event.get("number") != AUTHORIZED_PR:
+        raise RuntimeError("event PR number mismatch")
+    event_pr = event["pull_request"]
+    event_head = event_pr["head"]["sha"]
+    event_base = event_pr["base"]["sha"]
+    live = api("/pulls/" + str(AUTHORIZED_PR), token)
+    current_branch = api("/branches/main", token)
+    live_head = live["head"]["sha"]
+    live_base = current_branch["commit"]["sha"]
+    if live["base"]["ref"] != "main" or live["base"]["sha"] != live_base:
+        raise RuntimeError("current main does not match live PR base")
+    if event_pr["head"]["ref"] != live["head"]["ref"]:
+        raise RuntimeError("head ref switched after event")
+    checkout_sha = git("rev-parse", "HEAD")
+    # Data only: no candidate file, workflow or script is executed.
+    git("fetch", "--no-tags", "origin", live_head)
+    if git("rev-parse", "FETCH_HEAD") != live_head:
+        raise RuntimeError("fetched PR head mismatch")
+    approved, detail = live_authority(
+        trusted=(checkout_sha == os.environ.get("GITHUB_SHA") == event_base),
+        event_head=event_head, live_head=live_head,
+        event_base=event_base, live_base=live_base, checkout_sha=checkout_sha,
+        branch=live["head"]["ref"], owner=live["user"]["login"],
+        repository=live["head"]["repo"]["full_name"],
+        draft=live["draft"], open_state=live["state"] == "open",
+        changed=changed_files(live_base, live_head),
+        current_blobs=blobs(live_head), current_base_blobs=blobs(live_base),
+        base_ancestor=is_ancestor(live_base, live_head),
+        candidate_ancestor=is_ancestor(ORIGIN_CANDIDATE, live_head),
+        approval_lines=[x.strip() for x in (live.get("body") or "").splitlines()])
+    print(("AUTH PASS: " if approved else "AUTH FAIL: ") + detail)
+    return 0 if approved else 1
 
 class Regression(unittest.TestCase):
     def setUp(self):
-        self.args = [BASE, CANDIDATE, list(PATHS), {p: a for p,(a,b) in PATHS.items()},
-                     {p: b for p,(a,b) in PATHS.items()}, True]
-    def check(self, expected, *args, **kw):
-        actual, reason = policy(*args, **kw)
-        self.assertEqual(actual, expected, reason)
-    def test_P01_exact_candidate_with_independent_authorization(self):
-        self.check(True, *self.args, authorized=True)
-    def test_N01_absent_independent_approval(self):
-        self.check(False, *self.args)
-    def test_N02_extra_file(self):
-        a = self.args.copy(); a[2] += ["_biology/unauthorized.md"]
-        self.check(False, *a, authorized=True)
-    def test_N03_changed_candidate_blob(self):
-        a = self.args.copy(); a[4] = dict(a[4]); a[4][next(iter(PATHS))] = "0"*40
-        self.check(False, *a, authorized=True)
-    def test_N04_changed_original_blob(self):
-        a = self.args.copy(); a[3] = dict(a[3]); a[3][next(iter(PATHS))] = "0"*40
-        self.check(False, *a, authorized=True)
-    def test_N05_invalid_base(self):
-        a = self.args.copy(); a[0] = "0"*40
-        self.check(False, *a, authorized=True)
-    def test_N06_nonancestor(self):
-        a = self.args.copy(); a[5] = False
-        self.check(False, *a, authorized=True)
-    def test_N07_other_candidate(self):
-        a = self.args.copy(); a[1] = "0"*40
-        self.check(False, *a, authorized=True)
-    def test_N08_missing_file(self):
-        a = self.args.copy(); a[2] = a[2][1:]
-        self.check(False, *a, authorized=True)
-    def test_N09_duplicate_changed_path(self):
-        a = self.args.copy(); a[2] += [a[2][0]]
-        self.check(False, *a, authorized=True)
+        self.good = dict(trusted=True, event_head="a"*40, live_head="a"*40,
+            event_base="b"*40, live_base="b"*40, checkout_sha="b"*40,
+            branch=AUTHORIZED_BRANCH, owner="yusuf38bcs-oss",
+            repository=REPOSITORY, draft=False, open_state=True,
+            changed=list(PATHS), current_blobs={p:v[1] for p,v in PATHS.items()},
+            current_base_blobs={p:v[0] for p,v in PATHS.items()},
+            base_ancestor=True, candidate_ancestor=True,
+            approval_lines=[SOLO_LINE, SOLO_APPROVAL + "a"*40])
+
+    def assert_rejected(self, **changes):
+        x = dict(self.good)
+        x.update(changes)
+        accepted, detail = live_authority(**x)
+        self.assertFalse(accepted, detail)
+
+    def test_P01_authorized_exact_live_candidate(self):
+        allowed, msg = live_authority(**self.good)
+        self.assertTrue(allowed, msg)
+
+    def test_N01_missing_authorization(self): self.assert_rejected(approval_lines=[])
+    def test_N02_stale_head(self): self.assert_rejected(event_head="c"*40)
+    def test_N03_stale_base(self): self.assert_rejected(event_base="c"*40)
+    def test_N04_untrusted_source(self): self.assert_rejected(trusted=False)
+    def test_N05_mutated_gate_or_extra_file(self): self.assert_rejected(changed=list(PATHS)+["scripts/ci/conv04f_narrow_migration_gate.py"])
+    def test_N06_bad_candidate_blob(self):
+        d=dict(self.good["current_blobs"]);d[next(iter(PATHS))]="0"*40
+        self.assert_rejected(current_blobs=d)
+    def test_N07_bad_base_blob(self):
+        d=dict(self.good["current_base_blobs"]);d[next(iter(PATHS))]="0"*40
+        self.assert_rejected(current_base_blobs=d)
+    def test_N08_missing_validator(self): self.assert_rejected(changed=list(PATHS)[1:])
+    def test_N09_duplicate_validator(self): self.assert_rejected(changed=list(PATHS)+[next(iter(PATHS))])
+    def test_N10_foreign_branch(self): self.assert_rejected(branch="unauthorized")
+    def test_N11_forged_author(self): self.assert_rejected(owner="attacker")
+    def test_N12_new_head_without_exact_approval(self): self.assert_rejected(live_head="c"*40)
+    def test_N13_changed_ancestry(self): self.assert_rejected(candidate_ancestor=False)
+    def test_N14_base_not_ancestor(self): self.assert_rejected(base_ancestor=False)
+    def test_N15_draft_pr(self): self.assert_rejected(draft=True)
+    def test_N16_duplicate_authority(self): self.assert_rejected(approval_lines=[SOLO_LINE,SOLO_LINE,SOLO_APPROVAL+"a"*40])
+    def test_N17_malformed_head(self): self.assert_rejected(live_head="invalid")
+    def test_N18_main_changes_before_gate(self): self.assert_rejected(live_base="d"*40)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--self-test", action="store_true")
-    parser.add_argument("--verify", action="store_true")
-    options = parser.parse_args()
-    if options.self_test:
-        sys.argv = [sys.argv[0]]
-        unittest.main()
-    elif options.verify:
-        try:
-            raise SystemExit(verify())
-        except RuntimeError as exc:
-            print(f"FAIL: {exc}", file=sys.stderr)
-            raise SystemExit(1)
-    else:
-        parser.error("choose --self-test or --verify")
+    ap=argparse.ArgumentParser()
+    group=ap.add_mutually_exclusive_group(required=True)
+    group.add_argument("--self-test",action="store_true")
+    group.add_argument("--preflight",action="store_true")
+    group.add_argument("--authorize",action="store_true")
+    o=ap.parse_args()
+    try:
+        if o.self_test:
+            sys.argv=[sys.argv[0]]
+            unittest.main()
+        else:
+            raise SystemExit(preflight() if o.preflight else authorize())
+    except (RuntimeError, KeyError, OSError, urllib.error.URLError) as exc:
+        print("FAIL CLOSED: " + str(exc), file=sys.stderr)
+        raise SystemExit(1)
