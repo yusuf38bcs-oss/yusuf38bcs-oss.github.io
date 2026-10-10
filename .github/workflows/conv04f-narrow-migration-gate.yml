@@ -21,5 +21,8 @@ jobs:
           python-version: '3.12'
       - name: Positive and negative regression cases
         run: python scripts/ci/conv04f_narrow_migration_gate.py --self-test
+      - name: Verify original Practical self-protection remains present
+        run: python scripts/ci/conv04f_practical_guard_inventory.py
       - name: Check seven historical candidate blobs while refusing unattended authorization
         run: python scripts/ci/conv04f_narrow_migration_gate.py --verify
+
