@@ -179,6 +179,15 @@ unless comparison_base.empty?
   end
 end
 
+# CONV-04J governance-only transition is not a Practical successor release.
+# Preserve all Practical source/contract checks; bypass only the obsolete
+# state-phase advancement predicate when the complete PR diff is J governance.
+j_governance_only = false
+if changed.sort == ["docs/academic/conv04/CONV04_STATE.md", "docs/academic/conv04/CONV04_J_RELEASE_CLOSURE.md"].sort && phase == "CONV-04J-R1"
+  j_base = state_text[/^j_implementation_base:\\s*(\\S+)/, 1]
+  j_governance_only = j_base && j_base.match?(/\\A[0-9a-f]{40}\\z/) &&
+    git("merge-base", "--is-ancestor", j_base, "HEAD").last.success?
+end
 if future && STATE.file? && changed.include?("docs/academic/conv04/CONV04_STATE.md")
   base_state, _, bs = git("show", "#{comparison_base}:docs/academic/conv04/CONV04_STATE.md")
   if bs.success?
@@ -377,7 +386,7 @@ if STATE.file?
       need(errors, (current_order <=> f09_order) >= 0, "F-09 successor state regressed behind F-09")
     end
     if changed.include?("docs/academic/conv04/CONV04_STATE.md")
-      need(errors, successor_authorized, "Successor state must advance beyond F-09 and bind current base")
+      need(errors, successor_authorized || j_governance_only, "Successor state must advance beyond F-09 and bind current base")
     end
   else
     errors << "F-09 validator could not classify bootstrap or future certification"
@@ -449,7 +458,7 @@ elsif future
   end
 
   if changed.include?("docs/academic/conv04/CONV04_STATE.md")
-    need(errors, successor_authorized, "Successor state must advance beyond F-09 and bind current base")
+    need(errors, successor_authorized || j_governance_only, "Successor state must advance beyond F-09 and bind current base")
   end
 end
 
