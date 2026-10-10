@@ -7,6 +7,13 @@ on:
       - scripts/ci/conv04f_narrow_migration_gate.py
       - scripts/ci/conv04f_practical_guard_inventory.py
       - .github/workflows/conv04f-narrow-migration-gate.yml
+      - .github/scripts/validate-conv04f-zoology-practical-museum.rb
+      - .github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb
+      - .github/scripts/validate-conv04f-zoology-practical-field-report.rb
+      - .github/scripts/validate-conv04f-zoology-practical-temporary-mounts.rb
+      - .github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb
+      - .github/scripts/validate-conv04f-zoology-practical-appendages.rb
+      - .github/scripts/validate-conv04f-zoology-practical-dissection.rb
   workflow_dispatch:
 permissions:
   contents: read
@@ -24,6 +31,6 @@ jobs:
         run: python scripts/ci/conv04f_narrow_migration_gate.py --self-test
       - name: Verify original Practical self-protection remains present
         run: python scripts/ci/conv04f_practical_guard_inventory.py
-      - name: Check seven historical candidate blobs while refusing unattended authorization
+      - name: Verify independently authorized PR 468 exact candidate and blobs
         run: python scripts/ci/conv04f_narrow_migration_gate.py --verify
 
