@@ -7,15 +7,15 @@ import sys
 import unittest
 
 BASE = "81950a9f4602f1d9be34f2d53d4585831926bffa"
-CANDIDATE = "25ef8edbf08e32dca9964456a602cd3c49865dbf"
+CANDIDATE = "42f6779d55ae45e3fc1f1f5567a786acdb33dbd6"
 EXPECTED = {
-    "museum": ("43aa1d96c71e524f0af4eca954766e51e9c423f5", "431bef9bed725350b9f40608551cc2d74bf38820"),
-    "whole-mounts": ("fc9b9f07164676798b4f98fe7802053dddd0f929", "2531802368b29395c99aab789796baa3ef079f1d"),
-    "field-report": ("cef2b7aca4f5a388421d89e39213947016341e43", "e0e0f8c977536413c45e7223f8f84a88e455a809"),
-    "temporary-mounts": ("4e588a411174b23225a8bb5d796e77f48af573ac", "56176cb05a1c726e0edae624d7f4e5d6e57008a2"),
-    "permanent-slides": ("7efc49f9a063385e18dda50221f30bfb865f2cdb", "a9f60816663ca059c2b01af2bf8c3a9d5c4fb274"),
-    "appendages": ("e0b25189300804447108bcc201e97653330e0e87", "0a0a481e7d3020fa37c4f586cb55c73db10d9eb4"),
-    "dissection": ("7318e8c3215838093b68978760746e9c4240fb72", "ecef2631129666f9a6d64dc085027cb397b5c96d"),
+    "museum": ("43aa1d96c71e524f0af4eca954766e51e9c423f5", "4da694c03824cdbdfa4e35cf435e4073dc23a93e"),
+    "whole-mounts": ("fc9b9f07164676798b4f98fe7802053dddd0f929", "fd82d7cb553514a85bd7276c766d3ec556e8efeb"),
+    "field-report": ("cef2b7aca4f5a388421d89e39213947016341e43", "9b28765756f6290fa232904df52a56ea4bc8156e"),
+    "temporary-mounts": ("4e588a411174b23225a8bb5d796e77f48af573ac", "a48f6daa94a64ebc211c1656432a943565ac77b1"),
+    "permanent-slides": ("7efc49f9a063385e18dda50221f30bfb865f2cdb", "1efc681fd4a40958ea8bca6ff08216d888c675a6"),
+    "appendages": ("e0b25189300804447108bcc201e97653330e0e87", "4c48e93ccaadb5d3651fdee12ac79e7420cfaf86"),
+    "dissection": ("7318e8c3215838093b68978760746e9c4240fb72", "7464a066d36dd419f167e966e3312620e32b45ec"),
 }
 PATHS = {f".github/scripts/validate-conv04f-zoology-practical-{key}.rb": pair for key, pair in EXPECTED.items()}
 
