@@ -57,3 +57,12 @@ The candidate adds a narrow `j_governance_only` predicate meant to permit the tw
 ## Current disposition
 
 This document stages file-level evidence and acceptance criteria in an isolated branch. It does **not** introduce an executable migration exemption, certify a repair, modify learner sources, or permit merge/deployment. Existing release gate remains fail-closed.
+
+## Existing canonical solo-maintainer authorization route (audit update)
+
+The canonical `docs/production/RELEASE_GOVERNANCE.md` supports either a qualified non-author reviewer or the permanent solo-maintainer exact-head path. Therefore an external second reviewer is **not** unconditionally required. Under the solo path, the PR must be non-Draft, based on the current protected target, carry passing applicable CI at its exact head, have zero unresolved review threads, and include precisely these two lines in the PR body after testing:
+
+- `SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER`
+- `SOLO-MAINTAINER-APPROVAL: <exact-current-40-character-PR-head-SHA>`
+
+The trusted workflow loaded from `main` governs PRs targeting `main` or `staging`, not this evidence PR targeting the repair branch. No marker is added to this proposal/draft as a substitute for owner authorization. Solo authority does not override failed Practical CI or supply the separate explicit merge decision. Independent one-time migration enforcement is still required to prevent validator self-authorization.
