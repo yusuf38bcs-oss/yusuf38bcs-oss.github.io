@@ -263,6 +263,12 @@ class WorkflowWiringRegression(unittest.TestCase):
         self.assertNotIn("  pull_request_review:\n", self.governance)
         self.assertIn("types: [opened, synchronize, reopened", self.governance)
 
+    def test_N28_unprotected_review_dismissal_cannot_authorize(self):
+        self.assertNotIn("independent-review:", self.governance)
+        self.assertNotIn("github.rest.pulls.listReviews", self.governance)
+        self.assertIn("GOVERNANCE_SOLO_ONLY", self.governance)
+        self.assertIn("SOLO-MAINTAINER-APPROVAL:", self.governance)
+
 if __name__ == "__main__":
     ap=argparse.ArgumentParser()
     group=ap.add_mutually_exclusive_group(required=True)
