@@ -18,11 +18,11 @@ Existing checks on actual returned permissions, expiry, identity and the token-v
 ## Manual protected CI workflow — deliberately dormant live stage
 `.github/workflows/lbfl-shadow-app-auth-manual-gate.yml` has:
 - `workflow_dispatch` ONLY; no PR or cron trigger and no automatic live authentication.
-- A credential-free preflight checking dispatch from `main`, PR #476 Draft/owner/base/exact unchanged HEAD, detached checkout and mocked tests. Its artifact explicitly reports `live_authentication: NOT_RUN`.
+- A credential-free, checkout-free preflight checking dispatch from `main`, PR #476 Draft/owner/base/exact unchanged HEAD, and four existing successful PR-triggered GitHub Actions runs for that exact SHA via read-only GitHub API calls. It does NOT check out or execute PR-controlled source, install dependencies, or run tests. Its artifact explicitly reports `live_authentication: NOT_RUN`.
 - A `live-authentication` job with the literal `if: ${{ false }}` and an unconditional `exit 1`. It cannot authenticate with GitHub or access Cloudflare in this version.
 - A designated future environment name, `lbfl-shadow-app-auth-protected`, which is NOT provisioned or verified; declaring the name is not protection.
 
-GitHub can automatically create referenced environments without required reviewers. NEVER unlock the live job merely because the workflow names an environment. Before enabling any live run, independently verify existing environment protections and access controls.
+The GitHub Actions token receives only `contents:read`, `pull-requests:read` and `actions:read` permissions for this dormant CI verification, not Cloudflare credentials. The checked CI runs are evidence, not authorization.\n\nGitHub can automatically create referenced environments without required reviewers. NEVER unlock the live job merely because the workflow names an environment. Before enabling any live run, independently verify existing environment protections and access controls.
 
 ## Required separate authorization before live execution
 1. Obtain independent review and passing checks for the NEW exact isolated-branch HEAD.
