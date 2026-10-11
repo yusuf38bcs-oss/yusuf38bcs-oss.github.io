@@ -70,11 +70,24 @@ export async function runAuthenticationProbe({ env, fetchImpl = fetch, nowMs = D
   if (typeof grant.token !== 'string' || grant.token.length < 10) {
     throw new Error('Read-only installation token issuance failed.');
   }
+  // Authenticate the returned grant, not just the requested least-privilege payload.
+  const allowed = new Set(['contents', 'pull_requests', 'metadata']);
+  if (!grant.permissions || typeof grant.permissions !== 'object' ||
+      grant.permissions.contents !== 'read' || grant.permissions.pull_requests !== 'read' ||
+      Object.entries(grant.permissions).some(([key, level]) =>
+        !allowed.has(key) || level !== 'read') ||
+      !Number.isFinite(Date.parse(grant.expires_at)) ||
+      Date.parse(grant.expires_at) <= nowMs ||
+      Date.parse(grant.expires_at) > nowMs + 65 * 60 * 1000) {
+    throw new Error('Returned installation token permissions or expiry violate read-only policy.');
+  }
   // Check the installation's actual repository list, not merely requested token selection.
   const repositories = await apiCall(fetchImpl, '/installation/repositories?per_page=100', grant.token);
   if (repositories.total_count !== 1 ||
       !Array.isArray(repositories.repositories) || repositories.repositories.length !== 1 ||
-      repositories.repositories[0]?.full_name !== EXPECTED.fullName) {
+      repositories.repositories[0]?.full_name !== EXPECTED.fullName ||
+      repositories.repositories[0]?.owner?.login?.toLowerCase() !== EXPECTED.owner ||
+      repositories.repositories[0]?.name !== EXPECTED.repo) {
     throw new Error('Installation has the wrong repository scope.');
   }
   return Object.freeze({
