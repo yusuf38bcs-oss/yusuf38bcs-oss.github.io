@@ -34,7 +34,10 @@ test('read-only exact-single-repository grant passes', async () => {
   assert.equal(s.requests.length, 4);
   const grant = s.requests.find(r => r.path.endsWith('/access_tokens'));
   assert.equal(grant.method, 'POST');
-  assert.deepEqual(JSON.parse(grant.body).permissions, { contents: 'read', pull_requests: 'read' });
+  assert.deepEqual(JSON.parse(grant.body), {
+    repositories: [EXPECTED.repo],
+    permissions: { contents: 'read', pull_requests: 'read' },
+  });
 });
 test('write permission fails closed', async () =>
   assert.rejects(scenario({ permissions: { contents: 'write', pull_requests: 'read' } }).run(), /permissions/));
