@@ -21,6 +21,18 @@ test('prepared live stage is unconditionally hard-disabled', () => {
   assert.match(live, /lbfl-shadow-app-auth-protected/);
 });
 
+test('manual preflight never checks out or executes PR-controlled code', () => {
+  assert.doesNotMatch(workflow, /uses:\\s*actions\\/checkout@/);
+  assert.doesNotMatch(workflow, /uses:\\s*actions\\/setup-node@/);
+  assert.doesNotMatch(workflow, /\\b(?:npm|npx|yarn|pnpm)\\s+(?:install|ci|test|run|exec)\\b/);
+  assert.doesNotMatch(workflow, /git\\s+(?:checkout|clone|fetch|switch|rev-parse)/);
+  assert.match(workflow, /repos\\/\\$REPOSITORY\\/actions\\/runs\\?event=pull_request&head_sha=\\$REVIEWED_HEAD/);
+  assert.match(workflow, /repos\\/\\$REPOSITORY\\/pulls\\/476/);
+  assert.match(workflow, /\\.head_sha == \\$sha/);
+  assert.match(workflow, /\\.conclusion == "success"/);
+  assert.match(workflow, /actions:\\s*read/);
+});
+
 test('staged workflow has no Cloudflare credential reference or live invocation', () => {
   assert.doesNotMatch(workflow, /secrets\.|CLOUDFLARE_API_TOKEN|CLOUDFLARE_API_KEY/);
   assert.doesNotMatch(workflow, /wrangler\s+(?:dev|deploy)|\/__scheduled/);
