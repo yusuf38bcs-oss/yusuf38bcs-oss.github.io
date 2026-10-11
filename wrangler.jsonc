@@ -19,5 +19,16 @@
   },
   "version_metadata": {
     "binding": "CF_VERSION_METADATA"
+  },
+  "previews": {
+    "vars": {
+      "OPENAI_MODEL": "preview-disabled",
+      "ALLOWED_ORIGIN": "http://localhost:3000",
+      "EXTRA_ALLOWED_ORIGINS": "",
+      "ENVIRONMENT": "preview"
+    },
+    "version_metadata": {
+      "binding": "CF_VERSION_METADATA"
+    }
   }
 }
