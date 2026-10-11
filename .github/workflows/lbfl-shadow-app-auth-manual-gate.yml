@@ -1,0 +1,107 @@
+# STAGED SOURCE ONLY. Live authentication is hard-disabled.
+# Do not authorize Cloudflare credentials, enable the live job, or merge
+# without a separate owner decision and independently verified protection.
+name: LBFL Shadow App Auth - Manual Gate (LIVE DISABLED)
+
+on:
+  workflow_dispatch:
+    inputs:
+      reviewed_head_sha:
+        description: "Exact 40-character reviewed PR #476 HEAD SHA"
+        required: true
+        type: string
+      authorization_reference:
+        description: "Owner-approved reference ID, never a secret"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: lbfl-shadow-app-auth-manual
+  cancel-in-progress: false
+
+jobs:
+  source-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Verify trusted dispatch and exact unchanged Draft PR HEAD
+        shell: bash
+        env:
+          REVIEWED_HEAD: ${{ inputs.reviewed_head_sha }}
+          AUTH_REFERENCE: ${{ inputs.authorization_reference }}
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]
+          [[ "$GITHUB_REF" == "refs/heads/main" ]]
+          [[ "$REPOSITORY" == "yusuf38bcs-oss/yusuf38bcs-oss.github.io" ]]
+          [[ "$REVIEWED_HEAD" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$AUTH_REFERENCE" =~ ^[A-Za-z0-9._-]{8,80}$ ]]
+          pr="$(gh api "repos/$REPOSITORY/pulls/476")"
+          jq -e --arg sha "$REVIEWED_HEAD" \
+            '.head.sha == $sha and .draft == true and .merged == false and .base.ref == "main" and .head.repo.full_name == "yusuf38bcs-oss/yusuf38bcs-oss.github.io"' \
+            <<< "$pr" >/dev/null
+          echo 'PASS: manual default-branch dispatch, PR identity and exact SHA.'
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.reviewed_head_sha }}
+          persist-credentials: false
+      - name: Confirm exact checkout
+        shell: bash
+        env:
+          REVIEWED_HEAD: ${{ inputs.reviewed_head_sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$REVIEWED_HEAD"
+          test "$(git status --porcelain)" = ""
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Mock-only security suite (no Cloudflare credentials)
+        working-directory: tools/lbfl-release-attestor-shadow
+        run: npm test
+      - name: Retain non-secret preflight evidence
+        if: always()
+        shell: bash
+        env:
+          REVIEWED_HEAD: ${{ inputs.reviewed_head_sha }}
+          AUTH_REFERENCE: ${{ inputs.authorization_reference }}
+          PREFLIGHT_RESULT: ${{ job.status }}
+        run: |
+          mkdir -p shadow-preflight-evidence
+          jq -n --arg sha "$REVIEWED_HEAD" --arg auth_ref "$AUTH_REFERENCE" \
+            --arg status "$PREFLIGHT_RESULT" --arg utc "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            '{kind:"source-preflight-only",reviewed_sha:$sha,authorization_reference:$auth_ref,job_status:$status,utc:$utc,live_authentication:"NOT_RUN",credential_access:false,workflow_mode:"LIVE_DISABLED"}' \
+            > shadow-preflight-evidence/receipt.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lbfl-shadow-preflight-only
+          path: shadow-preflight-evidence/receipt.json
+          retention-days: 30
+          if-no-files-found: error
+
+  # Deliberately inert. Environment is not created or verified by this branch.
+  # If a referenced environment does not exist, GitHub can create one WITHOUT
+  # required reviewers. Never remove this guard until a separate authorization.
+  # A real live-execution harness also requires separate independent review.
+  live-authentication:
+    if: ${{ false }}
+    needs: source-preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: lbfl-shadow-app-auth-protected
+    permissions:
+      contents: read
+    steps:
+      - name: Block access and execution pending independent live authorization
+        shell: bash
+        run: |
+          echo 'HOLD: live authentication intentionally disabled by source.'
+          exit 1
