@@ -62,10 +62,14 @@ export async function runAuthenticationProbe({ env, fetchImpl = fetch, nowMs = D
       installation.repository_selection !== 'selected') {
     throw new Error('Installation identity or repository selection mismatch.');
   }
-  // The installation token is narrowed to read-only even though the App has review permissions.
+  // Restrict repositories AND permissions at token issuance, then verify actual grant scope.
+  // The App installation itself may have wider privileges; this token must not.
   const grant = await apiCall(
     fetchImpl, '/app/installations/' + installation.id + '/access_tokens', jwt,
-    { method: 'POST', body: { permissions: { contents: 'read', pull_requests: 'read' } } },
+    { method: 'POST', body: {
+      repositories: [EXPECTED.repo],
+      permissions: { contents: 'read', pull_requests: 'read' },
+    } },
   );
   if (typeof grant.token !== 'string' || grant.token.length < 10) {
     throw new Error('Read-only installation token issuance failed.');
