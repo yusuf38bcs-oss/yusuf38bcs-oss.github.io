@@ -18,6 +18,7 @@ on:
 permissions:
   contents: read
   pull-requests: read
+  actions: read
 
 concurrency:
   group: lbfl-shadow-app-auth-manual
@@ -47,24 +48,45 @@ jobs:
             '.head.sha == $sha and .draft == true and .merged == false and .base.ref == "main" and .head.repo.full_name == "yusuf38bcs-oss/yusuf38bcs-oss.github.io"' \
             <<< "$pr" >/dev/null
           echo 'PASS: manual default-branch dispatch, PR identity and exact SHA.'
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.reviewed_head_sha }}
-          persist-credentials: false
-      - name: Confirm exact checkout
+      - name: Verify four exact-head PR CI runs without checking out or executing PR code
         shell: bash
         env:
           REVIEWED_HEAD: ${{ inputs.reviewed_head_sha }}
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = "$REVIEWED_HEAD"
-          test "$(git status --porcelain)" = ""
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Mock-only security suite (no Cloudflare credentials)
-        working-directory: tools/lbfl-release-attestor-shadow
-        run: npm test
+          # Use only GitHub's read-only Actions API. No checkout, install, test,
+          # cache, arbitrary code execution, or untrusted artifacts in this job.
+          pr="$(gh api "repos/$REPOSITORY/pulls/476")"
+          head_ref="$(jq -er '.head.ref' <<< "$pr")"
+          jq -e --arg sha "$REVIEWED_HEAD" \
+            '.head.sha == $sha and .draft == true and .merged == false and .base.ref == "main"' \
+            <<< "$pr" > /dev/null
+          runs="$(gh api "repos/$REPOSITORY/actions/runs?event=pull_request&head_sha=$REVIEWED_HEAD&per_page=100")"
+          jq -e --arg sha "$REVIEWED_HEAD" --arg repo "$REPOSITORY" \
+            --arg head_ref "$head_ref" '
+              . as $root |
+              ($root.total_count | type == "number" and . <= 100) and
+              ($root.workflow_runs | type == "array") and
+              ([
+                "LBFL Attestor Shadow Authentication Tests",
+                "CodeQL Exact-Head Security Scan",
+                "Validate Jekyll PR",
+                "Sovereign Site Audit v4"
+              ] | all(.[]; . as $required |
+                ([ $root.workflow_runs[] | select(
+                    .name == $required and
+                    .head_sha == $sha and
+                    .event == "pull_request" and
+                    .head_branch == $head_ref and
+                    .head_repository.full_name == $repo and
+                    .status == "completed" and
+                    .conclusion == "success"
+                  ) ] | length == 1)
+              ))
+            ' <<< "$runs" > /dev/null
+          echo 'PASS: four unique successful GitHub Actions workflow runs at the frozen PR HEAD; no PR code executed.'
       - name: Retain non-secret preflight evidence
         if: always()
         shell: bash
