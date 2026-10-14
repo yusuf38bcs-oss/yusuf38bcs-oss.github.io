@@ -67,3 +67,56 @@ test('trusted GitHub Script status publishers parse as executable async JavaScri
   assert.equal(blocks.length, 2, 'must verify pending and final head-status publishers');
   for (const code of blocks) assert.doesNotThrow(() => new Script('(async () => {\n' + code + '\n})()'));
 });
+
+
+test('failed trusted control-plane invariants must force a failure status', async () => {
+  const marker = '      - name: Publish fail-closed exact-head trusted status\n';
+  const offset = workflow.indexOf(marker);
+  assert.ok(offset >= 0, 'missing authoritative status publisher');
+  const tail = workflow.slice(offset);
+  const scriptMarker = '          script: |\n';
+  const scriptStart = tail.indexOf(scriptMarker);
+  assert.ok(scriptStart >= 0, 'missing GitHub Script source');
+  const scriptLines = [];
+  for (const line of tail.slice(scriptStart + scriptMarker.length).split('\n')) {
+    if (line.startsWith('            ')) scriptLines.push(line.slice(12));
+    else if (!line.trim()) scriptLines.push('');
+    else break;
+  }
+  const statuses = [];
+  let rejected = false;
+  const exactHead = 'a'.repeat(40);
+  const exactBase = 'b'.repeat(40);
+  const env = {
+    CHECKOUT_TRUSTED: 'success', CHECKOUT_CANDIDATE: 'success',
+    IDENTITY_OUTCOME: 'success', SETUP_OUTCOME: 'success',
+    TESTS_OUTCOME: 'success', POLICY_INVARIANTS_OUTCOME: 'failure',
+    AUDIT_OUTCOME: 'success',
+  };
+  const sandbox = {
+    process: { env },
+    context: {
+      payload: { pull_request: { head: { sha: exactHead }, base: { sha: exactBase } } },
+      issue: { number: 486 }, repo: { owner: 'fixture', repo: 'repo' },
+      serverUrl: 'https://github.example.test', runId: 42,
+    },
+    github: { rest: {
+      pulls: { get: async () => ({ data: {
+        state: 'open', draft: false, head: { sha: exactHead },
+        base: { ref: 'main', sha: exactBase },
+      } }) },
+      repos: {
+        getBranch: async () => ({ data: { commit: { sha: exactBase } } }),
+        createCommitStatus: async request => { statuses.push(request); },
+      },
+    } },
+    core: { warning: () => {}, setFailed: () => { rejected = true; } },
+  };
+  const script = new Script('(async () => {\n' + scriptLines.join('\n') + '\n})()');
+  await script.runInNewContext(sandbox);
+  assert.equal(statuses.length, 1);
+  assert.equal(statuses[0].sha, exactHead);
+  assert.equal(statuses[0].context, 'YESAF M1 Trusted Static Authority');
+  assert.equal(statuses[0].state, 'failure');
+  assert.equal(rejected, true);
+});
