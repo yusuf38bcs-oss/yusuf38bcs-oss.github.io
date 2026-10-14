@@ -30,31 +30,69 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - name: Checkout exact candidate without credentials
+      - name: Checkout only protected current main for shadow inspection
         uses: actions/checkout@v5
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: main
           persist-credentials: false
-      - name: Authenticate immutable shadow candidate
+      - name: Authenticate exact trusted main for shadow inspection
         shell: bash
         env:
-          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          EXPECTED_BASE: ${{ github.event.pull_request.base.sha || github.sha }}
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_BASE" || {
+            echo 'Shadow base moved: HOLD' >&2
+            exit 1
+          }
       - name: Set up Node 24
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Run adversarial test suite in isolated shadow lane
+      - name: Fetch exact candidate Worker YAML through read-only API
+        uses: actions/github-script@v7
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        with:
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const crypto = require('node:crypto');
+            const sha = String(process.env.CANDIDATE_SHA || '').toLowerCase();
+            if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error('Candidate SHA missing');
+            const rel = '.github/workflows/worker-production-deployment.yml';
+            const response = await github.rest.repos.getContent({
+              ...context.repo, path: rel, ref: sha
+            });
+            const d = response.data;
+            if (!d || Array.isArray(d) || d.type !== 'file' || d.path !== rel ||
+                d.encoding !== 'base64' || typeof d.content !== 'string') {
+              throw new Error('Expected immutable regular Worker workflow');
+            }
+            const raw = Buffer.from(d.content.replace(/\s/g, ''), 'base64');
+            const hash = crypto.createHash('sha1')
+              .update('blob ' + raw.length + String.fromCharCode(0)).update(raw).digest('hex');
+            if (raw.length !== d.size || raw.length > 200000 || hash !== d.sha) {
+              throw new Error('Candidate Worker workflow blob mismatch');
+            }
+            fs.writeFileSync(path.join(process.env.RUNNER_TEMP,
+              'yesaf-shadow-worker.yml'), raw, {flag: 'wx', mode: 0o600});
+      - name: Run published protected-main Worker policy fixtures
         run: node --test .github/scripts/test-yesaf-production-authority-audit.mjs
-      - name: Test policy control-plane invariants in shadow lane
-        run: node --test .github/scripts/test-yesaf-trusted-boundary.mjs
-      - name: Evaluate candidate in shadow lane
-        run: node .github/scripts/yesaf-production-authority-audit.mjs .github/workflows/worker-production-deployment.yml
+      - name: Run published trusted-boundary fixtures if already installed
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -f .github/scripts/test-yesaf-trusted-boundary.mjs; then
+            node --test .github/scripts/test-yesaf-trusted-boundary.mjs
+          else
+            echo 'Trusted-boundary fixtures not yet on main; shadow only, no release authority.'
+          fi
+      - name: Audit candidate workflow as inert YAML with published policy
+        run: node .github/scripts/yesaf-production-authority-audit.mjs "$RUNNER_TEMP/yesaf-shadow-worker.yml"
 
   # Authoritative lane: main-controlled workflow, main-controlled scripts,
-  # read-only candidate checkout. Never execute candidate scripts or binaries.
+  # read-only candidate source fetched as inert bytes. Never execute candidate scripts.
   trusted-policy:
     if: ${{ github.event_name == 'pull_request_target' || github.event_name == 'push' }}
     name: YESAF M1 trusted authority evaluator
@@ -85,7 +123,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: ${{ github.repository }}
-          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          ref: main
           path: trusted
           persist-credentials: false
       - name: Download immutable candidate workflow as inert data
