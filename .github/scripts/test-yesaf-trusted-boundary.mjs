@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
+import { Script } from 'node:vm';
 const workflow = readFileSync(new URL('../workflows/yesaf-production-authority-audit.yml', import.meta.url), 'utf8');
 
 const trusted = workflow.split('\n  trusted-policy:\n')[1] || '';
@@ -50,4 +51,19 @@ test('status writer is fail closed on any skipped or failed authority step', () 
   assert.match(trusted, /if:\s*\$\{\{ always\(\) && github\.event_name == 'pull_request_target' \}\}/);
   assert.match(trusted, /outcomes\.every\(o => o === 'success'\)/);
   assert.match(trusted, /core\.setFailed/);
+});
+
+test('trusted GitHub Script status publishers parse as executable async JavaScript', () => {
+  const lines = workflow.split('\n');
+  const blocks = [];
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i] !== '          script: |') continue;
+    const parts = [];
+    for (let j = i + 1; j < lines.length && (lines[j].startsWith('            ') || !lines[j].trim()); j++) {
+      parts.push(lines[j].startsWith('            ') ? lines[j].slice(12) : '');
+    }
+    blocks.push(parts.join('\n'));
+  }
+  assert.equal(blocks.length, 2, 'must verify pending and final head-status publishers');
+  for (const code of blocks) assert.doesNotThrow(() => new Script('(async () => {\n' + code + '\n})()'));
 });
