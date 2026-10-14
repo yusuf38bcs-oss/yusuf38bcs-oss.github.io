@@ -120,9 +120,18 @@ jobs:
 
     steps:
       - name: Check out the requested immutable main SHA
+        if: ${{ !inputs.review_only }}
         uses: actions/checkout@v5
         with:
-          ref: ${{ env.CERTIFICATION_CODE_SHA }}
+          ref: ${{ env.TARGET_MAIN_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Check out the manually selected review candidate
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.review_only && github.ref == 'refs/heads/fix/production-certification-repair-20261014' }}
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
           fetch-depth: 1
           persist-credentials: false
 
