@@ -6,21 +6,45 @@ import { fileURLToPath } from 'node:url';
 export function auditWorkflow(source) {
   const violations = [];
   const record = (id, explanation) => violations.push({ id, explanation });
-  const deploymentJob = source.match(/^  deploy:\s*$([\s\S]*)/m)?.[1] ?? '';
-  const preflight = source.split(/^  deploy:\s*$/m)[0] ?? '';
-  if (!deploymentJob) record('MISSING_DEPLOY_JOB', 'Expected Worker deploy job not found; source needs human review');
+  const deployHeaders = [...source.matchAll(/^  deploy:[ \t]*$/gm)];
+  if (deployHeaders.length !== 1) {
+    record('MISSING_DEPLOY_JOB', 'Expected exactly one Worker deploy job; missing or duplicate');
+  }
+  const deploymentJob = deployHeaders.length === 1
+    ? source.slice(deployHeaders[0].index + deployHeaders[0][0].length).split(/^  [a-z][a-z0-9_-]*:[ \t]*$/m)[0]
+    : '';
+  const preflight = deployHeaders.length === 1 ? source.slice(0, deployHeaders[0].index) : '';
+  const conditions = [...deploymentJob.matchAll(/^    if:[ \t]*(.+?)[ \t]*$/gm)].map(m => m[1].trim());
+  if (conditions.length !== 1) {
+    record('AMBIGUOUS_DEPLOY_GUARD', 'Deploy job must have exactly one explicit job-level if condition');
+  }
   if (!/^    environment:\s*production\s*$/m.test(deploymentJob)) {
     record('ENVIRONMENT_UNPROTECTED', 'Deploy job lacks explicit production environment');
   }
-  const disabled = /^    if:\s*\$\{\{\s*false\s*\}\}\s*$/m.test(deploymentJob);
-  const liveProof = /--mode\s+preflight\b/.test(preflight) && /verify-worker-contract\.mjs/.test(preflight);
-  const designated = /CLOUDFLARE_API_TOKEN:\s*\$\{\{\s*secrets\.CLOUDFLARE_WORKER_DEPLOY_TOKEN\s*\}\}/.test(deploymentJob);
+  const disabled = conditions.length === 1 && conditions[0] === '${{ false }}';
+  // This source check cannot authorize production: live authentication remains a separate gate.
+  const activePreflight = preflight.split('\n').filter(line => !line.trimStart().startsWith('#')).join('\n');
+  const liveProof = /--mode\s+preflight\b/.test(activePreflight) && /verify-worker-contract\.mjs/.test(activePreflight);
+  const designatedBindings = [...deploymentJob.matchAll(/^      CLOUDFLARE_API_TOKEN:[ \t]*(.+?)[ \t]*$/gm)]
+    .map(m => m[1].trim());
+  const designated = designatedBindings.length === 1
+    && designatedBindings[0] === '${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}';
   const otherSecrets = /secrets\.(?:CF_API_TOKEN|CLOUDFLARE_TOKEN|CLOUDFLARE_API_TOKEN)\b/.test(deploymentJob);
-  const fallback = /candidates=\(|trying the next configured credential|for name in "\$\{candidates\[@\]\}"/.test(deploymentJob);
-  if (!designated || otherSecrets || fallback) record('CREDENTIAL_FALLBACK', 'Worker deploy must use only CLOUDFLARE_WORKER_DEPLOY_TOKEN');
-  const concurrency = source.match(/^concurrency:\s*\n([\s\S]*?)(?=^jobs:\s*$)/m)?.[1] ?? '';
-  const lock = /group:\s*worker-production-.*(?:'production'|"production")/.test(concurrency) && /cancel-in-progress:\s*false/.test(concurrency);
-  if (!lock) record('NON_SERIAL_PRODUCTION', 'Production deployments must share one non-cancelling lock independent of commit SHA');
+  const fallback = /candidates=\(|trying the next configured credential|for name in "\${candidates\[@\]\}"/.test(deploymentJob);
+  if (!designated || otherSecrets || fallback) {
+    record('CREDENTIAL_FALLBACK', 'Worker deploy must have exactly one designated CLOUDFLARE_WORKER_DEPLOY_TOKEN and no fallback');
+  }
+  const concurrencyHeaders = [...source.matchAll(/^concurrency:[ \t]*$/gm)];
+  const concurrency = concurrencyHeaders.length === 1
+    ? source.slice(concurrencyHeaders[0].index).split(/^jobs:[ \t]*$/m)[0]
+    : '';
+  const groups = [...concurrency.matchAll(/^  group:[ \t]*(.+?)[ \t]*$/gm)].map(m => m[1].trim());
+  const cancellations = [...concurrency.matchAll(/^  cancel-in-progress:[ \t]*(.+?)[ \t]*$/gm)]
+    .map(m => m[1].trim());
+  const lock = groups.length === 1
+    && groups[0] === "worker-production-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'production' }}"
+    && cancellations.length === 1 && cancellations[0] === 'false';
+  if (!lock) record('NON_SERIAL_PRODUCTION', 'Production deployments must share one fixed non-cancelling lock, not a per-SHA lock');
   if (!disabled && !liveProof) record('ACTIVE_WITHOUT_LIVE_PREFLIGHT', 'Active deployment cannot follow static-only preflight');
   if (!disabled && !/^    needs:\s*preflight\s*$/m.test(deploymentJob)) {
     record('NO_PREFLIGHT_DEPENDENCY', 'Active deploy job must depend on preflight');
