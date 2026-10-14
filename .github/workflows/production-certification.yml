@@ -63,6 +63,7 @@ jobs:
             .github/scripts/test-resolve-cloudflare-targets.py \
             .github/scripts/verify-cloudflare-jsd-equivalence.py \
             .github/scripts/test-verify-cloudflare-jsd-equivalence.py
+          python3 .github/scripts/test-production-reader-adapter.py
           python3 .github/scripts/test-resolve-cloudflare-targets.py
           python3 .github/scripts/test-verify-cloudflare-jsd-equivalence.py
           node --check .github/scripts/certification-bypass.mjs
