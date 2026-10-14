@@ -244,14 +244,14 @@ jobs:
           DEPLOYMENT_ID: ${{ steps.deployment.outputs.deployment_id }}
         run: |
           {
-            echo "# Worker Production Deployment"
-            echo "- exact main: `$TARGET_SHA`"
-            echo "- Worker: `lbfl-socratic-ai`"
-            echo "- Worker version UUID: `$WORKER_VERSION_ID`"
-            echo "- deployment UUID: `$DEPLOYMENT_ID`"
-            echo "- canonical ingress: `https://api.learningbiologyforlife.org`"
-            echo "- direct ingress: `https://lbfl-socratic-ai.yusuf-38bcs.workers.dev`"
-            echo "- provider/model: `openai / gpt-5.6-terra`"
+            printf '%s\n' '# Worker Production Deployment'
+            printf -- '- exact main: `%s`\n' "$TARGET_SHA"
+            printf -- '- Worker: `%s`\n' 'lbfl-socratic-ai'
+            printf -- '- Worker version UUID: `%s`\n' "$WORKER_VERSION_ID"
+            printf -- '- deployment UUID: `%s`\n' "$DEPLOYMENT_ID"
+            printf -- '- canonical ingress: `%s`\n' 'https://api.learningbiologyforlife.org'
+            printf -- '- direct ingress: `%s`\n' 'https://lbfl-socratic-ai.yusuf-38bcs.workers.dev'
+            printf -- '- provider/model: `%s`\n' 'openai / gpt-5.6-terra'
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Preserve deployment evidence
