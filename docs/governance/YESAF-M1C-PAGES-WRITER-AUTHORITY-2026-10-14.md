@@ -25,7 +25,7 @@ The identical pattern occurred for prior `a4e926e...` and earlier merges. Cloudf
 
 ## 3. Authenticated repository source census
 
-All eight below retain a `wrangler pages deploy _site --branch main` (or equivalent) step carrying `secrets.CLOUDFLARE_API_TOKEN`. The first two have unfiltered `push: main` triggers. Remaining workflows have path-scoped `push: main` triggers and some also allow manual dispatch. Unfiltered or path-scoped, each remains a possible producer of a production write.
+All eight production-capable paths below retain a `wrangler pages deploy _site --branch main` (or equivalent) step carrying `secrets.CLOUDFLARE_API_TOKEN`. The first two have unfiltered `push: main` triggers. Remaining workflows have path-scoped `push: main` triggers and some also allow manual dispatch. Unfiltered or path-scoped, each remains a possible producer of a production write.
 
 | Direct Pages publisher | Main push | Additional workflow dispatch | Recent ad-hoc execution attribution |
 | --- | --- | --- | --- |
@@ -38,6 +38,8 @@ All eight below retain a `wrangler pages deploy _site --branch main` (or equival
 | `conv04f-zoology-practical-temporary-mounts-production-parity.yml` | selected paths | no | Capability confirmed; no recent event conclusively attributed here |
 | `conv04f-zoology-practical-appendages-production-parity.yml` | selected paths | no | Capability confirmed; no recent event conclusively attributed here |
 
+**Additional preview writer:** `.github/workflows/conv04f-zoology-practical-museum-certification.yml` carries `CLOUDFLARE_PAGES_DEPLOY_TOKEN` and executes `wrangler pages deploy _site --branch "$TARGET_BRANCH"` only in a `pull_request`-guarded preview job. This is the **ninth Pages publishing path**, but not proven to write production in recent runs. It must remain in the preview-branch isolation and credential-scope audit; a dynamically supplied PR branch name must not be accepted as sufficient proof that the target is never `main`.
+
 The baseline `docs/governance/YESAF-M1-P00-AUTHORITY-BASELINE-2026-10-14.md` independently reports Cloudflare audit-log v2 write events using token name `LBFL GitHub Pages Production`, `wrangler/4.147.0`. That claim is preserved as provenance, not a fresh re-read of the underlying logs in this investigation.
 
 ## 4. Root cause and production risk
@@ -46,8 +48,8 @@ Production has **GitHub-connected Cloudflare Pages publishing PLUS eight reposit
 
 ## 5. Non-authorizing shadow guard
 
-- `.github/scripts/yesaf-pages-writer-inventory.mjs` statically inventories obvious direct Pages publishers and prints `production_cutover: HOLD` regardless of the candidate count.
-- `.github/scripts/test-yesaf-pages-writer-inventory.mjs` exercises positive and false-positive cases.
+- `.github/scripts/yesaf-pages-writer-inventory.mjs` statically inventories obvious direct Pages publishers, separates eight production-capable workflow paths from the PR-only Museum preview path, and prints `production_cutover: HOLD` regardless of the candidate count.
+- `.github/scripts/test-yesaf-pages-writer-inventory.mjs` exercises eight positive, negative, and production-vs-preview classification cases.
 - `.github/workflows/yesaf-pages-writer-shadow.yml` runs on PR and manual dispatch using `contents: read` only. No Cloudflare credentials, remote writes or privileges.
 - Limitations: dynamic shell commands, indirect scripts, other repositories, Cloudflare dashboard/manual publishing, token scope/revocation and hosted Pages actual runtime are **not** certified by a source inventory.
 
