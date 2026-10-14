@@ -47,3 +47,34 @@ test('missing deploy job is not presumed safe', () => {
   const x = auditWorkflow(base.split('  deploy:')[0]);
   assert.ok(has(x, 'MISSING_DEPLOY_JOB'));
 });
+
+
+test('duplicate job-level if conditions fail even if one says false', () => {
+  const altered = base.replace('    if: ${{ false }}',
+    '    if: ${{ false }}\n    if: ${{ github.ref == "refs/heads/main" }}');
+  const x = auditWorkflow(altered);
+  assert.ok(has(x, 'AMBIGUOUS_DEPLOY_GUARD'));
+  assert.equal(x.static_safety, 'FAIL');
+});
+test('SHA-derived lock with a production fallback is not serial', () => {
+  const altered = base.replace(
+    "worker-production-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'production' }}",
+    "worker-production-${{ github.sha || 'production' }}"
+  );
+  const x = auditWorkflow(altered);
+  assert.ok(has(x, 'NON_SERIAL_PRODUCTION'));
+});
+test('duplicate designated credential assignments fail closed', () => {
+  const altered = base.replace(
+    '      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}',
+    '      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}\n' +
+    '      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}'
+  );
+  const x = auditWorkflow(altered);
+  assert.ok(has(x, 'CREDENTIAL_FALLBACK'));
+});
+test('missing explicit deploy job guard fails closed', () => {
+  const altered = base.replace('    if: ${{ false }}\n', '');
+  const x = auditWorkflow(altered);
+  assert.ok(has(x, 'AMBIGUOUS_DEPLOY_GUARD'));
+});
