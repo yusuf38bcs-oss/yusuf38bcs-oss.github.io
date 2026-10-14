@@ -1,0 +1,40 @@
+name: YESAF M1.C Pages Writer Shadow Inventory
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yesaf-m1c-shadow-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pages-writer-inventory:
+    name: YESAF M1.C read-only Pages writer inventory
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout immutable head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Assert exact checkout identity
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run writer-inventory adversarial fixtures
+        run: node --test .github/scripts/test-yesaf-pages-writer-inventory.mjs
+      - name: Report source-side Pages publishers (shadow, not release authority)
+        run: |
+          node .github/scripts/yesaf-pages-writer-inventory.mjs | tee "$RUNNER_TEMP/m1c-pages-writers.json"
+          node -e 'const d=require(process.env.RUNNER_TEMP+"/m1c-pages-writers.json"); if(d.production_cutover!=="HOLD")process.exit(1)'
