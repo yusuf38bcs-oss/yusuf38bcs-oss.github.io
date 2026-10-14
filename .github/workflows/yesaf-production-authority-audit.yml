@@ -143,6 +143,7 @@ jobs:
         id: policy_tests
         run: node --test trusted/.github/scripts/test-yesaf-production-authority-audit.mjs
       - name: Test trusted policy control-plane invariants
+        id: policy_invariants
         run: node --test trusted/.github/scripts/test-yesaf-trusted-boundary.mjs
       - name: Inspect candidate workflow as data only
         id: authority_audit
@@ -158,6 +159,7 @@ jobs:
           IDENTITY_OUTCOME: ${{ steps.assert_identity.outcome }}
           SETUP_OUTCOME: ${{ steps.setup_node.outcome }}
           TESTS_OUTCOME: ${{ steps.policy_tests.outcome }}
+          POLICY_INVARIANTS_OUTCOME: ${{ steps.policy_invariants.outcome }}
           AUDIT_OUTCOME: ${{ steps.authority_audit.outcome }}
         with:
           script: |
@@ -167,7 +169,8 @@ jobs:
             const outcomes = [
               process.env.CHECKOUT_TRUSTED, process.env.CHECKOUT_CANDIDATE,
               process.env.IDENTITY_OUTCOME, process.env.SETUP_OUTCOME,
-              process.env.TESTS_OUTCOME, process.env.AUDIT_OUTCOME
+              process.env.TESTS_OUTCOME, process.env.POLICY_INVARIANTS_OUTCOME,
+              process.env.AUDIT_OUTCOME
             ];
             let current = false;
             try {
