@@ -63,3 +63,27 @@ test('inventory results are sorted for stable forensic diffs', () => {
   const x = findPagesWriters([file('z.yml', writer), file('a.yml', writer)]);
   assert.deepEqual(x.map(z => z.path), ['a.yml', 'z.yml']);
 });
+
+
+test('distinguishes PR-only preview publisher from main production writer', () => {
+  const preview = [
+    'name: Museum Preview',
+    'on:',
+    '  pull_request:',
+    '    branches: ["main"]',
+    '  workflow_dispatch:',
+    'jobs:',
+    '  preview:',
+    "    if: ${{ github.event_name == 'pull_request' }}",
+    '    env:',
+    '      TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}',
+    '    run: npx wrangler pages deploy _site --branch "$TARGET_BRANCH"',
+  ].join('\n');
+  const result = report([file('preview.yml', preview), file('production.yml', writer)]);
+  assert.equal(result.pages_write_paths, 2);
+  assert.equal(result.potential_production_writers, 1);
+  assert.equal(result.preview_publish_paths, 1);
+  assert.equal(result.candidates[0].writer_class, 'PR_PREVIEW_WRITE_CAPABILITY');
+  assert.equal(result.candidates[1].writer_class, 'PRODUCTION_CAPABLE_WRITE');
+  assert.equal(result.production_cutover, 'HOLD');
+});
