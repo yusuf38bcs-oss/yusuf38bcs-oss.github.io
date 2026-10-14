@@ -21,7 +21,9 @@ test('shadow lane has read-only token; required writer isolated to trusted lane'
 });
 test('authoritative policy never executes scripts from candidate tree', () => {
   assert.match(trusted, /node --test trusted\/\.github\/scripts\/test-yesaf-production-authority-audit\.mjs/);
-  assert.match(trusted, /node trusted\/\.github\/scripts\/yesaf-production-authority-audit\.mjs candidate\/\.github\/workflows\/worker-production-deployment\.yml/);
+  assert.match(trusted, /node trusted\/\.github\/scripts\/yesaf-production-authority-audit\.mjs "\$RUNNER_TEMP\/yesaf-candidate-worker\.yml"/);
+  assert.match(trusted, /github\.rest\.repos\.getContent/);
+  assert.doesNotMatch(trusted, /path: candidate/);
   assert.doesNotMatch(trusted, /(?:node|bash|sh)\s+candidate\//);
   assert.doesNotMatch(trusted, /working-directory:\s*candidate/);
 });
@@ -32,11 +34,14 @@ test('untrusted modifications to authority control-plane are rejected', () => {
     '.github/scripts/test-yesaf-production-authority-audit.mjs',
     '.github/scripts/test-yesaf-trusted-boundary.mjs',
   ]) assert.ok(trusted.includes(path), 'missing immutable control plane: ' + path);
-  assert.match(trusted, /cmp -s "trusted\/\$rel" "candidate\/\$rel"/);
+  assert.match(trusted, /trustedBytes\.equals\(raw\)/);
+  assert.match(trusted, /data\.type !== 'file'/);
+  assert.match(trusted, /crypto\.createHash\('sha1'\)/);
 });
 test('exact identity is checked before publishing authority', () => {
   assert.match(trusted, /git -C trusted rev-parse HEAD/);
-  assert.match(trusted, /git -C candidate rev-parse HEAD/);
+  assert.match(trusted, /CANDIDATE_SHA/);
+  assert.match(trusted, /path: rel, ref: sha/);
   assert.match(trusted, /git -C trusted ls-remote origin refs\/heads\/main/);
   assert.match(trusted, /pr\.data\.head\.sha === exactHead/);
   assert.match(trusted, /main\.data\.commit\.sha === exactBase/);
@@ -64,7 +69,7 @@ test('trusted GitHub Script status publishers parse as executable async JavaScri
     }
     blocks.push(parts.join('\n'));
   }
-  assert.equal(blocks.length, 2, 'must verify pending and final head-status publishers');
+  assert.equal(blocks.length, 4, 'verify shadow reader, pending status, trusted reader and final head-status publisher');
   for (const code of blocks) assert.doesNotThrow(() => new Script('(async () => {\n' + code + '\n})()'));
 });
 
@@ -88,7 +93,7 @@ test('failed trusted control-plane invariants must force a failure status', asyn
   const exactHead = 'a'.repeat(40);
   const exactBase = 'b'.repeat(40);
   const env = {
-    CHECKOUT_TRUSTED: 'success', CHECKOUT_CANDIDATE: 'success',
+    CHECKOUT_TRUSTED: 'success', CANDIDATE_SOURCE_OUTCOME: 'success',
     IDENTITY_OUTCOME: 'success', SETUP_OUTCOME: 'success',
     TESTS_OUTCOME: 'success', POLICY_INVARIANTS_OUTCOME: 'failure',
     AUDIT_OUTCOME: 'success',
@@ -119,4 +124,45 @@ test('failed trusted control-plane invariants must force a failure status', asyn
   assert.equal(statuses[0].context, 'YESAF M1 Trusted Static Authority');
   assert.equal(statuses[0].state, 'failure');
   assert.equal(rejected, true);
+});
+
+
+test('shadow lane cannot checkout PR head or execute candidate scripts', () => {
+  assert.match(shadow, /ref: main/);
+  assert.match(shadow, /github\.rest\.repos\.getContent/);
+  assert.doesNotMatch(shadow, /ref:\s*\$\{\{ github\.event\.pull_request\.head\.sha/);
+  assert.doesNotMatch(shadow, /(?:node|bash|sh)\s+candidate\//);
+  assert.match(shadow, /node --test \.github\/scripts\/test-yesaf-production-authority-audit\.mjs/);
+});
+
+test('API data-only download rejects tampered blob SHA before any policy comparison', async () => {
+  const marker = '      - name: Download immutable candidate workflow as inert data\n';
+  const offset = workflow.indexOf(marker);
+  assert.ok(offset >= 0);
+  const tail = workflow.slice(offset);
+  const scriptStart = tail.indexOf('          script: |\n');
+  assert.ok(scriptStart >= 0);
+  const lines = [];
+  for (const line of tail.slice(scriptStart + '          script: |\n'.length).split('\n')) {
+    if (line.startsWith('            ')) lines.push(line.slice(12));
+    else if (!line.trim()) lines.push('');
+    else break;
+  }
+  const { createRequire } = await import('node:module');
+  const box = {
+    require: createRequire(import.meta.url),
+    process: { env: { CANDIDATE_SHA: 'a'.repeat(40), GITHUB_WORKSPACE: '/tmp', RUNNER_TEMP: '/tmp' } },
+    Buffer,
+    context: { repo: { owner: 'fixture', repo: 'repo' } },
+    github: { rest: { repos: {
+      getContent: async ({ path }) => ({ data: {
+        type: 'file', path, encoding: 'base64',
+        content: Buffer.from('tampered').toString('base64'),
+        size: 8, sha: '0'.repeat(40),
+      } }),
+    } } },
+    core: { info: () => {} },
+  };
+  const script = new Script('(async () => {\n' + lines.join('\n') + '\n})()');
+  await assert.rejects(script.runInNewContext(box), /Git blob identity mismatch/);
 });
