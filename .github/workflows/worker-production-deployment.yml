@@ -25,7 +25,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: worker-production-${{ github.event.pull_request.head.sha || inputs.expected_main_sha || github.sha }}
+  group: worker-production-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'production' }}
   cancel-in-progress: false
 
 jobs:
@@ -117,16 +117,16 @@ jobs:
     name: Deploy exact current main to lbfl-socratic-ai
     environment: production
     needs: preflight
-    if: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' }}
+    # YESAF M1.B: static-only preflight cannot authorize any production write.
+    # Restore deployment only after authenticated live preflight, scoped credential,
+    # release authority and rollback have independent exact-head certification.
+    if: ${{ false }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       TARGET_SHA: ${{ inputs.expected_main_sha || github.sha }}
       CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_WORKER_DEPLOY_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
-      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-      CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
       EVIDENCE_DIR: worker-production-evidence
 
     steps:
@@ -157,62 +157,23 @@ jobs:
         shell: bash
         run: npm ci --ignore-scripts
 
-      - name: Deploy exact main with least-privilege Cloudflare credential fallback
+      - name: Deploy exact main with single designated Cloudflare credential
         id: wrangler
         shell: bash
         run: |
           set -euo pipefail
+          if [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
+            echo 'CLOUDFLARE_WORKER_DEPLOY_TOKEN is required; no fallback credentials permitted.' >&2
+            exit 1
+          fi
           mkdir -p "$EVIDENCE_DIR"
           short_sha="${TARGET_SHA:0:12}"
-
-          candidates=(
-            "CLOUDFLARE_WORKER_DEPLOY_TOKEN"
-            "CF_API_TOKEN"
-            "CLOUDFLARE_TOKEN"
-            "CLOUDFLARE_API_TOKEN"
-          )
-
-          selected_name=""
-          for name in "${candidates[@]}"; do
-            candidate="${!name:-}"
-            [[ -n "$candidate" ]] || continue
-
-            echo "::add-mask::$candidate"
-            attempt_log="$RUNNER_TEMP/wrangler-deploy-${name}.log"
-
-            set +e
-            CLOUDFLARE_API_TOKEN="$candidate"               ./worker/node_modules/.bin/wrangler deploy                 --config wrangler.jsonc                 --message "LBFL exact-main $TARGET_SHA"                 --tag "main-$short_sha"                 > >(tee "$attempt_log") 2>&1
-            status=$?
-            set -e
-
-            cat "$attempt_log" >> "$EVIDENCE_DIR/wrangler-deploy.log"
-
-            if [[ $status -eq 0 ]]; then
-              selected_name="$name"
-              {
-                echo "CLOUDFLARE_API_TOKEN<<__LBFL_CF_TOKEN__"
-                echo "$candidate"
-                echo "__LBFL_CF_TOKEN__"
-              } >> "$GITHUB_ENV"
-              echo "credential_name=$name" >> "$GITHUB_OUTPUT"
-              break
-            fi
-
-            if grep -Eq "No access to the specified resource|HTTP 403|code[=: ]+10000" "$attempt_log"; then
-              echo "$name lacks Worker deployment authority; trying the next configured credential." >&2
-              continue
-            fi
-
-            echo "$name failed for a non-permission reason; refusing credential fallback." >&2
-            exit "$status"
-          done
-
-          [[ -n "$selected_name" ]] || {
-            echo "No configured Cloudflare credential could deploy lbfl-socratic-ai." >&2
-            exit 1
-          }
-
-          echo "Authorized deployment credential selected from configured GitHub secrets: $selected_name"
+          ./worker/node_modules/.bin/wrangler deploy \
+            --config wrangler.jsonc \
+            --message "LBFL exact-main $TARGET_SHA" \
+            --tag "main-$short_sha" \
+            2>&1 | tee "$EVIDENCE_DIR/wrangler-deploy.log"
+          echo 'credential_name=CLOUDFLARE_WORKER_DEPLOY_TOKEN' >> "$GITHUB_OUTPUT"
 
       - name: Resolve exact-main Worker UUID and verify both live ingress paths
         id: deployment
