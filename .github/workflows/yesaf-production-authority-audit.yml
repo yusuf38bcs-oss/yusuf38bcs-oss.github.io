@@ -1,0 +1,38 @@
+name: YESAF M1 Production Authority Audit
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yesaf-m1-audit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-audit:
+    name: YESAF M1 read-only authority gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact PR candidate or selected dispatch head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Assert immutable checkout identity
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run adversarial gate fixtures
+        run: node --test .github/scripts/test-yesaf-production-authority-audit.mjs
+      - name: Audit Worker production workflow without credentials
+        run: node .github/scripts/yesaf-production-authority-audit.mjs .github/workflows/worker-production-deployment.yml
