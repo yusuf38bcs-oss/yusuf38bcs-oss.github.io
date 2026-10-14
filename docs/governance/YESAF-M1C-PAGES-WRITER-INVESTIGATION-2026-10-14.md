@@ -55,3 +55,20 @@ Static scan PASS means the *inventory ran*, not that single-writer enforcement p
 
 **Non-authority boundary:** This report does not approve reducing existing checks, changing Pages settings, deleting tokens, merging remediation, or claiming that the site is already single-writer.
 
+
+
+## Independent repeat: PR #483 merge (09:55–09:58 UTC)
+
+The same triple-write pattern recurred on the very next main merge, \`45ce766eddb88582714aade5bd41b939c5e7db23\`, independently confirming this is an ongoing publication architecture problem, not a one-off incident.
+
+| Deployment UUID | Trigger | UTC | Additional evidence |
+|---|---|---|---|
+| \`b0431eca-9c3b-44e8-b707-fbad295c9f6b\` | \`github:push\` | 09:55:52 | Cloudflare project Git integration; canonical deployment at read time |
+| \`70271311-f706-46f8-b4b0-5787e467a214\` | \`ad_hoc\` | 09:57:28 | Cloudflare audit v2 POST at 09:57:28.392Z |
+| \`15f2d54f-f4cf-46f4-bd85-ed318041bfb5\` | \`ad_hoc\` | 09:57:32 | Cloudflare audit v2 POST at 09:57:31.711Z |
+
+Both \`ad_hoc\` POST events used \`LBFL GitHub Pages Production\` and \`wrangler/4.147.0\`; [R101 production job run #38545946475](https://github.com/yusuf38bcs-oss/yusuf38bcs-oss.github.io/actions/runs/38545946475) and [R91 run #38545946529](https://github.com/yusuf38bcs-oss/yusuf38bcs-oss.github.io/actions/runs/38545946529) completed SUCCESS for that SHA.
+
+The project's **canonical** deployment at this later read was the GitHub-push UUID, despite two later \`ad_hoc\` deployment records. Do **not** assume last-created always equals canonical; independently resolve canonical UUID and public traffic each time.
+
+No Cloudflare resource was modified for this investigation. M1.C publisher retirement and conversion of all eight parity workflows remain separately gated.
