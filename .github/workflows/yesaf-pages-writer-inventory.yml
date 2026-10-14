@@ -1,0 +1,43 @@
+# Diagnostic-only Pages writer census. Does not certify single writer or deploy.
+name: YESAF M1.C Pages Publisher Inventory
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    name: YESAF M1.C publisher census (HOLD)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact candidate without saved token
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Authenticate immutable candidate
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Run six adversarial inventory tests
+        run: node --test .github/scripts/test-yesaf-pages-writer-inventory.mjs
+      - name: Generate read-only production-writer capability inventory
+        run: node .github/scripts/yesaf-pages-writer-inventory.mjs > yesaf-m1c-pages-writers.json
+      - name: Preserve evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yesaf-m1c-pages-writers-${{ github.event.pull_request.head.sha || github.sha }}
+          path: yesaf-m1c-pages-writers.json
+          if-no-files-found: warn
+          retention-days: 30
