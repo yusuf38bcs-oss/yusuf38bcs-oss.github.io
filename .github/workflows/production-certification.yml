@@ -284,7 +284,7 @@ jobs:
           test "$deployment_status" = "200"
 
           if grep -q 'lbfl-home-v3-document' "$EVIDENCE_DIR/production-homepage.html"; then
-            grep -q 'class="lbfl-home-v3"' "$EVIDENCE_DIR/production-homepage.html"
+            python3 .github/scripts/validate-homepage-body.py "$EVIDENCE_DIR/production-homepage.html"
             grep -q 'assets/js/home/homepage-v3.js' "$EVIDENCE_DIR/production-homepage.html"
             homepage_contract="v3"
           elif grep -q 'data-homepage-v2' "$EVIDENCE_DIR/production-homepage.html"; then
