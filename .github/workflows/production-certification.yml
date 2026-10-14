@@ -768,7 +768,7 @@ jobs:
         run: |
           if [[ "$EVIDENCE_SAFE" != "true" ]]; then
             {
-              echo "# Production Exact-Head Certification"
+              printf '# Production Exact-Head Certification\n\n- Review only: %s\n- Certification code SHA: %s\n' "$REVIEW_ONLY" "$CERTIFICATION_CODE_SHA"
               echo
               echo "- Requested main SHA: \`$TARGET_MAIN_SHA\`"
               echo "- Evidence safety check: \`false\`; details suppressed"
@@ -832,7 +832,7 @@ jobs:
         if: ${{ always() && steps.evidence_safety.outputs.safe == 'true' }}
         uses: actions/upload-artifact@v4
         with:
-          name: production-certification-${{ env.TARGET_MAIN_SHA }}
+          name: production-certification-${{ env.TARGET_MAIN_SHA }}-code-${{ env.CERTIFICATION_CODE_SHA }}
           path: ${{ env.EVIDENCE_DIR }}
           if-no-files-found: warn
           retention-days: 30
