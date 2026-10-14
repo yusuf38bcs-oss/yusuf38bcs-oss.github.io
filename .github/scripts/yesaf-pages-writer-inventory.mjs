@@ -16,11 +16,17 @@ export function findPagesWriters(files) {
     const directApi = /\b(?:POST|PUT)\b[^\n]*\/pages\/projects\/[^\s]*\/deployments\b/i.test(source);
     if (!wrangler && !directApi) continue;
     const triggers = source.split(/^jobs:[ \t]*$/m)[0];
+    const mainPush = /(^|\n)  push:[ \t]*\n[^\n]*branches:[^\n]*main/m.test(triggers);
+    // Preview classification is heuristic: target-branch safety must be reviewed separately.
+    const previewOnly = !mainPush
+      && /if:[ \t]*\$\{\{[ \t]*github\.event_name[ \t]*==[ \t]*'pull_request'/.test(source)
+      && /--branch[ \t]+["']?\$TARGET_BRANCH\b/.test(source);
     candidates.push({
       path: file.path,
-      main_push_trigger: /(^|\n)  push:[ \t]*\n[^\n]*branches:[^\n]*main/m.test(triggers),
+      main_push_trigger: mainPush,
       manual_trigger: /(^|\n)  workflow_dispatch:[ \t]*$/m.test(triggers),
       credential_reference: /secrets\.CLOUDFLARE_API_TOKEN\b|secrets\.CLOUDFLARE_PAGES_[A-Z_]+\b/.test(source),
+      writer_class: previewOnly ? 'PR_PREVIEW_WRITE_CAPABILITY' : 'PRODUCTION_CAPABLE_WRITE',
       write_capability: wrangler ? 'WRANGLER_PAGES_DEPLOY' : 'DIRECT_PAGES_DEPLOYMENT_API',
     });
   }
@@ -33,12 +39,15 @@ export function report(files) {
     schema: 'yesaf.m1c.pages-writer-shadow.v1',
     scan: 'STATIC_SOURCE_CAPABILITY_ONLY',
     scanned_workflows: files.length,
-    potential_production_writers: candidates.length,
+    pages_write_paths: candidates.length,
+    potential_production_writers: candidates.filter(z => z.writer_class === 'PRODUCTION_CAPABLE_WRITE').length,
+    preview_publish_paths: candidates.filter(z => z.writer_class === 'PR_PREVIEW_WRITE_CAPABILITY').length,
     production_cutover: 'HOLD',
     mandatory_gate: 'NOT_AUTHORIZED_BY_THIS_SHADOW_REPORT',
     limitations: [
       'Does not establish who executed a deploy or what permissions the secret actually has',
       'Does not inventory local Wrangler, dashboard writes, API tokens, or other repositories',
+      'Preview branch targets are not proven safe against a production-branch name collision',
       'Does not parse every possible dynamic shell command or indirect deployment script',
     ],
     candidates,
