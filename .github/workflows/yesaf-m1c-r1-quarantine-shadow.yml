@@ -35,8 +35,9 @@ jobs:
             function verify(source, jobName) {
               const normalized = String(source).replace(/\r\n/g, '\n');
               const jobsAt = normalized.indexOf('\njobs:\n');
-              if (jobsAt < 0) throw new Error('Missing jobs block');
-              const content = normalized.slice(jobsAt + 1);
+              const content = normalized.startsWith('jobs:\n') ? normalized
+                : jobsAt >= 0 ? normalized.slice(jobsAt + 1) : '';
+              if (!content) throw new Error('Missing jobs block');
               const regex = new RegExp('^  ' + jobName + ':[ \\t]*$', 'gm');
               const headers = [...content.matchAll(regex)];
               if (headers.length !== 1) throw new Error('Expected exactly one publisher job');
