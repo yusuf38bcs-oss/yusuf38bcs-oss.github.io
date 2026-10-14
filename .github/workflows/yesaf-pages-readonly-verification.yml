@@ -71,7 +71,7 @@ jobs:
       contents: read
     env:
       EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}
-      YESAF_PAGES_EVIDENCE_OUT: ${{ runner.temp }}/yesaf-m1c-pages-identity.json
+      YESAF_PAGES_EVIDENCE_OUT: ${{ github.workspace }}/yesaf-m1c-pages-identity.json
     steps:
       - name: Checkout immutable requested protected main
         uses: actions/checkout@v5
@@ -122,6 +122,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: yesaf-m1c-pages-readonly-${{ inputs.expected_main_sha }}
-          path: ${{ runner.temp }}/yesaf-m1c-pages-identity.json
+          path: ${{ github.workspace }}/yesaf-m1c-pages-identity.json
           if-no-files-found: ignore
           retention-days: 30
