@@ -48,6 +48,8 @@ jobs:
           node-version: "24"
       - name: Run adversarial test suite in isolated shadow lane
         run: node --test .github/scripts/test-yesaf-production-authority-audit.mjs
+      - name: Test policy control-plane invariants in shadow lane
+        run: node --test .github/scripts/test-yesaf-trusted-boundary.mjs
       - name: Evaluate candidate in shadow lane
         run: node .github/scripts/yesaf-production-authority-audit.mjs .github/workflows/worker-production-deployment.yml
 
@@ -122,7 +124,8 @@ jobs:
           for rel in \
             .github/workflows/yesaf-production-authority-audit.yml \
             .github/scripts/yesaf-production-authority-audit.mjs \
-            .github/scripts/test-yesaf-production-authority-audit.mjs; do
+            .github/scripts/test-yesaf-production-authority-audit.mjs \
+            .github/scripts/test-yesaf-trusted-boundary.mjs; do
             test ! -L "candidate/$rel"
             test -f "trusted/$rel"
             test -f "candidate/$rel"
@@ -139,6 +142,8 @@ jobs:
       - name: Run only trusted protected-main policy tests
         id: policy_tests
         run: node --test trusted/.github/scripts/test-yesaf-production-authority-audit.mjs
+      - name: Test trusted policy control-plane invariants
+        run: node --test trusted/.github/scripts/test-yesaf-trusted-boundary.mjs
       - name: Inspect candidate workflow as data only
         id: authority_audit
         run: node trusted/.github/scripts/yesaf-production-authority-audit.mjs candidate/.github/workflows/worker-production-deployment.yml
