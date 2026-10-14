@@ -117,6 +117,20 @@ jobs:
           test -f trusted/.github/scripts/test-yesaf-production-authority-audit.mjs
           test -f candidate/.github/workflows/worker-production-deployment.yml
           test ! -L candidate/.github/workflows/worker-production-deployment.yml
+          # Fail closed on attempts to alter the gate that evaluates this PR.
+          # Future trusted-policy upgrades require a separate controlled bootstrap.
+          for rel in \
+            .github/workflows/yesaf-production-authority-audit.yml \
+            .github/scripts/yesaf-production-authority-audit.mjs \
+            .github/scripts/test-yesaf-production-authority-audit.mjs; do
+            test ! -L "candidate/$rel"
+            test -f "trusted/$rel"
+            test -f "candidate/$rel"
+            cmp -s "trusted/$rel" "candidate/$rel" || {
+              echo "Candidate modifies YESAF's trusted policy: HOLD" >&2
+              exit 1
+            }
+          done
       - name: Set up trusted Node 24
         id: setup_node
         uses: actions/setup-node@v4
