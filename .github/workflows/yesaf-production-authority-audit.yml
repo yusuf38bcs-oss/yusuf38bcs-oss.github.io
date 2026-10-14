@@ -104,6 +104,7 @@ jobs:
     timeout-minutes: 12
     steps:
       - name: Begin exact-head trusted status (PR only)
+        id: begin_status
         if: ${{ github.event_name == 'pull_request_target' }}
         uses: actions/github-script@v7
         with:
@@ -221,6 +222,7 @@ jobs:
         if: ${{ always() && github.event_name == 'pull_request_target' }}
         uses: actions/github-script@v7
         env:
+          BEGIN_STATUS_OUTCOME: ${{ steps.begin_status.outcome }}
           CHECKOUT_TRUSTED: ${{ steps.checkout_trusted.outcome }}
           CANDIDATE_SOURCE_OUTCOME: ${{ steps.get_candidate.outcome }}
           IDENTITY_OUTCOME: ${{ steps.assert_identity.outcome }}
@@ -234,7 +236,7 @@ jobs:
             const exactBase = String(context.payload.pull_request?.base?.sha || '').toLowerCase();
             if (!/^[0-9a-f]{40}$/.test(exactHead)) throw new Error('Invalid PR HEAD; cannot certify');
             const outcomes = [
-              process.env.CHECKOUT_TRUSTED, process.env.CANDIDATE_SOURCE_OUTCOME,
+              process.env.BEGIN_STATUS_OUTCOME, process.env.CHECKOUT_TRUSTED, process.env.CANDIDATE_SOURCE_OUTCOME,
               process.env.IDENTITY_OUTCOME, process.env.SETUP_OUTCOME,
               process.env.TESTS_OUTCOME, process.env.POLICY_INVARIANTS_OUTCOME,
               process.env.AUDIT_OUTCOME
