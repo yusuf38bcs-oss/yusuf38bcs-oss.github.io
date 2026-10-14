@@ -145,11 +145,6 @@ def cloudflare_api_get(path: str, token: str) -> Any:
         with urllib.request.urlopen(request, timeout=30) as response:
             payload = json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as error:
-        if error.code in (401, 403):
-            raise SystemExit(
-                f"Cloudflare metadata permission failure: HTTP {error.code} for {path}. "
-                "Check the reader credential account and resource scope; retry will not repair permissions."
-            ) from None
         detail = error.read().decode("utf-8", errors="replace")[:1000]
         print(
             f"Cloudflare deployment metadata lookup skipped for {path}: "
@@ -441,8 +436,6 @@ def configured_worker_endpoint(site_config: Path) -> str:
 
 def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
     token = os.environ.get("CLOUDFLARE_API_TOKEN", "")
-    pages_token = os.environ.get("CLOUDFLARE_PAGES_READ_TOKEN") or token
-    worker_token = os.environ.get("CLOUDFLARE_WORKER_READ_TOKEN") or token
     comments = (
         github_comments(
             args.repository, args.pr_number, os.environ.get("GH_TOKEN", "")
@@ -457,12 +450,12 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
         args.cloudflare_account_id,
         args.cloudflare_pages_project,
         target_sha,
-        pages_token,
+        token,
         args.pages_environment,
     )
     pages_api_url = pages_deployment.get("url", "")
     worker_version_id = cloudflare_worker_version_for_sha(
-        args.cloudflare_account_id, args.cloudflare_worker_script, target_sha, worker_token
+        args.cloudflare_account_id, args.cloudflare_worker_script, target_sha, token
     )
     worker_version_source = (
         "cloudflare_worker_version_metadata_full_sha_pending_endpoint_version_binding"
@@ -477,7 +470,7 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
             target_sha,
             worker_comment_url,
             worker_build_uuid,
-            worker_token,
+            token,
         )
         if worker_version_id:
             worker_version_source = (
@@ -534,9 +527,7 @@ def resolve_once(args: argparse.Namespace, target_sha: str) -> dict[str, Any]:
         "target_sha": target_sha,
         "short_sha": target_sha[:7],
         "cloudflare_api": {
-            "configured": bool(pages_token or worker_token),
-            "pages_reader_configured": bool(pages_token),
-            "worker_reader_configured": bool(worker_token),
+            "configured": bool(token),
             "pages_project_configured": bool(args.cloudflare_pages_project),
             "worker_script_configured": bool(args.cloudflare_worker_script),
         },

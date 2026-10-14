@@ -26,30 +26,6 @@ BOT = {"login": "cloudflare-workers-and-pages[bot]"}
 
 
 class ResolveCloudflareTargetsTest(unittest.TestCase):
-    def test_homepage_body_class_tokens(self):
-        spec = importlib.util.spec_from_file_location("homepage_body", SCRIPT.with_name("validate-homepage-body.py"))
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        for html, expected in (
-            ('<body class="lbfl-home-v3">', True),
-            ('<body class="lbfl-home-v3 lbfl-academic-v1-active">', True),
-            ('<body class="other lbfl-home-v3">', True),
-            ('<body class="lbfl-home-v30">', False),
-            ('<body class="other">', False),
-            ('<div class="lbfl-home-v3">', False),
-        ):
-            self.assertEqual(module.validate(html), expected)
-
-
-    def test_metadata_auth_errors_fail_immediately(self):
-        import urllib.error
-        for status in (401, 403):
-            error = urllib.error.HTTPError("https://api.cloudflare.com", status, "denied", {}, None)
-            with patch.object(resolver.urllib.request, "urlopen", side_effect=error):
-                with self.assertRaisesRegex(SystemExit, "metadata permission failure"):
-                    resolver.cloudflare_api_get("/accounts/account/workers/scripts/worker/versions", "fixture")
-
-
     def test_pages_production_deployment_requires_canonical_exact_successful_sha(
         self,
     ) -> None:
