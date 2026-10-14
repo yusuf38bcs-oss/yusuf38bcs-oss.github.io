@@ -26,6 +26,9 @@ concurrency:
 
 jobs:
   production:
+    # YESAF M1.C-R1 quarantine. Production Pages writes are forbidden here.
+    # Await independent GitHub-Pages parity reader, writer inventory and rollback certification.
+    if: ${{ false }}
     name: Exact-main Cloudflare production + Dissection DOM
     runs-on: ubuntu-24.04
     timeout-minutes: 60
