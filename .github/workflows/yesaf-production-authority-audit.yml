@@ -1,9 +1,16 @@
+# YESAF M1: trusted, non-mutating production authority certification.
+# Pull-request-target policy is loaded from protected main, never from a PR branch.
 name: YESAF M1 Production Authority Audit
 
 on:
   pull_request:
     branches: ["main"]
     types: [opened, synchronize, reopened, ready_for_review, edited]
+  pull_request_target:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  push:
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -14,25 +21,84 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  static-audit:
-    name: YESAF M1 read-only authority gate
+  # Non-authorizing premerge confidence check. This runs candidate scripts, so
+  # its successful result MUST NOT be listed in required_status_checks.
+  shadow-audit:
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
+    name: YESAF M1 candidate shadow audit (non-authorizing)
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - name: Checkout exact PR candidate or selected dispatch head
+      - name: Checkout exact candidate with no persisted token
         uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
-      - name: Assert immutable checkout identity
+      - name: Assert exact candidate SHA
         env:
-          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-        run: test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
-      - name: Set up Node
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+      - name: Set up Node 24
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
-      - name: Run adversarial gate fixtures
+          node-version: "24"
+      - name: Run static fixtures (shadow only)
         run: node --test .github/scripts/test-yesaf-production-authority-audit.mjs
-      - name: Audit Worker production workflow without credentials
+      - name: Audit candidate without production tokens (shadow only)
         run: node .github/scripts/yesaf-production-authority-audit.mjs .github/workflows/worker-production-deployment.yml
+
+  # AUTHORITATIVE after the workflow and evaluator land on protected main:
+  # trusted code & tests from main; PR content is inert data in candidate/.
+  trusted-policy:
+    if: ${{ github.event_name == 'pull_request_target' || github.event_name == 'push' }}
+    name: YESAF M1 trusted production authority
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout trusted policy from exact protected base
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          path: trusted
+          persist-credentials: false
+      - name: Checkout candidate as inert data only
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: candidate
+          persist-credentials: false
+      - name: Fail closed on stale base or head identity
+        env:
+          TRUSTED_SHA: ${{ github.event.pull_request.base.sha || github.sha }}
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$TRUSTED_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$CANDIDATE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$BASE_REF" = main
+          test "$(git -C trusted rev-parse HEAD)" = "$TRUSTED_SHA"
+          test "$(git -C candidate rev-parse HEAD)" = "$CANDIDATE_SHA"
+          current_main="$(git -C trusted ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$current_main" = "$TRUSTED_SHA" || {
+            echo "Main moved; discard this stale authority certification" >&2
+            exit 1
+          }
+          test -f candidate/.github/workflows/worker-production-deployment.yml
+          test ! -L candidate/.github/workflows/worker-production-deployment.yml
+          test -f trusted/.github/scripts/yesaf-production-authority-audit.mjs
+          test -f trusted/.github/scripts/test-yesaf-production-authority-audit.mjs
+      - name: Set up trusted Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Test policy from protected main only
+        run: node --test trusted/.github/scripts/test-yesaf-production-authority-audit.mjs
+      - name: Evaluate candidate workflow as data using trusted main policy
+        run: node trusted/.github/scripts/yesaf-production-authority-audit.mjs candidate/.github/workflows/worker-production-deployment.yml
