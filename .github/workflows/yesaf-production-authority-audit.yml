@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened, ready_for_review, edited]
   pull_request_target:
     branches: ["main"]
-    types: [opened, synchronize, reopened, ready_for_review, edited]
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited]
   push:
     branches: ["main"]
   workflow_dispatch:
