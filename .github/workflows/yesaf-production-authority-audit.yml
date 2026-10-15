@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened, ready_for_review, edited]
   pull_request_target:
     branches: ["main"]
-    types: [opened, synchronize, reopened, ready_for_review, edited]
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited]
   push:
     branches: ["main"]
   workflow_dispatch:
@@ -18,7 +18,7 @@ permissions:
 
 concurrency:
   group: yesaf-m1-audit-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  queue: max
 
 jobs:
   # Candidate scripts are executed only in this NON-AUTHORIZING shadow lane.
@@ -111,12 +111,17 @@ jobs:
           script: |
             const sha = String(context.payload.pull_request?.head?.sha || '').toLowerCase();
             if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error('Invalid immutable candidate SHA');
+            const invalidatingTransition =
+              context.payload.action === 'converted_to_draft' ||
+              context.payload.pull_request?.draft === true;
             await github.rest.repos.createCommitStatus({
               ...context.repo,
               sha,
-              state: 'pending',
+              state: invalidatingTransition ? 'failure' : 'pending',
               context: 'YESAF M1 Trusted Static Authority',
-              description: 'Trusted protected-main inspection in progress',
+              description: invalidatingTransition
+                ? 'Draft conversion: trusted authority revoked immediately'
+                : 'Trusted protected-main inspection in progress',
               target_url: context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId
             });
       - name: Checkout protected main policy at exact event base
