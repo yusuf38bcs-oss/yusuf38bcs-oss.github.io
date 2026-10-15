@@ -1,0 +1,55 @@
+name: Worker Production Readiness
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: worker-readiness-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  readiness:
+    name: Worker Production Readiness
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      TARGET_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - name: Check out exact candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          persist-credentials: false
+      - name: Assert candidate and Worker identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          grep -q '"name": "lbfl-socratic-ai"' wrangler.jsonc
+          grep -q '^name = "lbfl-socratic-ai"$' worker/wrangler.toml
+          grep -q '"pattern": "api.learningbiologyforlife.org"' wrangler.jsonc
+          grep -q 'pattern = "api.learningbiologyforlife.org"' worker/wrangler.toml
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install locked dependencies without lifecycle scripts
+        working-directory: worker
+        run: npm ci --ignore-scripts
+      - name: Type-check Worker
+        working-directory: worker
+        run: npx --no-install tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --lib ES2022 --types @cloudflare/workers-types src/index.ts
+      - name: Dry-run both production configurations
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./worker/node_modules/.bin/wrangler deploy --dry-run --config worker/wrangler.toml --outdir "$RUNNER_TEMP/worker-readiness"
+          ./worker/node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/root-readiness"
