@@ -51,7 +51,7 @@ Mouth
 
 Mechanical digestion খাদ্যকে ছোট অংশে ভাঙে, নরম করে, মেশায় এবং সামনের দিকে চালিত করে। উদাহরণ: chewing, churning, peristalsis.
 
-Chemical digestion enzyme, acid, bile এবং intestinal secretion দিয়ে carbohydrate, amino-acid-forming food এবং lipid ভেঙে absorbable molecule তৈরি করে।
+Chemical digestion-এ digestive enzyme খাদ্যের বড় অণুকে তুলনামূলক ছোট, শোষণযোগ্য অণুতে ভাঙে। পাকস্থলীর HCl প্রোটিনের গঠন পরিবর্তন ও pepsin সক্রিয় করতে সাহায্য করে; এটি নিজে digestive enzyme নয়। Bile salt চর্বিকে ছোট ছোট ফোঁটায় ছড়িয়ে (emulsification) lipase-এর কাজ সহজ করে, কিন্তু bile নিজে triglyceride-এর hydrolysis ঘটায় না। পরিপাক ও শোষণ পৃথক প্রক্রিয়া।
 
 ## Key Glands
 
@@ -103,4 +103,4 @@ Cellular use: energy, growth, repair
 
 ## Summary
 
-Digestive system একটি coordinated system। Food প্রথমে mechanically প্রস্তুত হয়, পরে chemically ভাঙে, তারপর intestine থেকে absorbed হয়ে blood বা lymph-এর মাধ্যমে cell-এ পৌঁছায়।
+Digestive system একটি coordinated system। খাদ্য যান্ত্রিকভাবে প্রস্তুত হয় এবং enzyme-এর সাহায্যে উপযুক্ত খাদ্য-অণু ভাঙে। Bile চর্বির emulsification-এ সহায়তা করে; এটি lipase নয়। পরিপাকজাত উপাদান প্রধানত ক্ষুদ্রান্ত্র থেকে শোষিত হয়ে উপাদানভেদে রক্ত বা lymph-এর মাধ্যমে পরিবাহিত হয়।
