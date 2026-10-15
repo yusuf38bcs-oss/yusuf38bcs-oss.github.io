@@ -19,6 +19,43 @@ test('authoritative transition lane includes draft conversion', () => {
   assert.match(trusted, /pr\.data\.state === 'open'/);
 });
 
+
+test('Draft transition revokes trusted status before expensive audit begins', async () => {
+  const marker = '      - name: Begin exact-head trusted status (PR only)\n';
+  const tail = workflow.split(marker)[1];
+  assert.ok(tail, 'initial status publisher missing');
+  const scriptMarker = '          script: |\n';
+  const start = tail.indexOf(scriptMarker);
+  assert.ok(start >= 0);
+  const lines = [];
+  for (const line of tail.slice(start + scriptMarker.length).split('\n')) {
+    if (line.startsWith('            ')) lines.push(line.slice(12));
+    else if (!line.trim()) lines.push('');
+    else break;
+  }
+  const script = new Script('(async () => {\n' + lines.join('\n') + '\n})()');
+  for (const c of [
+    {action: 'ready_for_review', draft: false, result: 'pending'},
+    {action: 'converted_to_draft', draft: true, result: 'failure'},
+    {action: 'edited', draft: true, result: 'failure'},
+    {action: 'converted_to_draft', draft: false, result: 'failure'},
+  ]) {
+    const statuses = [];
+    await script.runInNewContext({
+      context: {
+        payload: {action: c.action, pull_request: {head: {sha: 'a'.repeat(40)}, draft: c.draft}},
+        repo: {owner: 'fixture', repo: 'repo'},
+        serverUrl: 'https://github.example.test', runId: 91
+      },
+      github: {rest: {repos: {createCommitStatus: async s => statuses.push(s)}}}
+    });
+    assert.equal(statuses.length, 1, c.action);
+    assert.equal(statuses[0].sha, 'a'.repeat(40), c.action);
+    assert.equal(statuses[0].context, 'YESAF M1 Trusted Static Authority', c.action);
+    assert.equal(statuses[0].state, c.result, c.action + '/' + c.draft);
+  }
+});
+
 test('PR state transitions publish fail-closed exact-head status', async () => {
   const marker = '      - name: Publish fail-closed exact-head trusted status\n';
   const scriptMarker = '          script: |\n';
@@ -88,8 +125,10 @@ test('PR state transitions publish fail-closed exact-head status', async () => {
     assert.equal(failed, c.result === 'failure', c.label + ': job result');
   }
 });
-test('two trigger types cannot cancel each other by PR concurrency', () => {
+test('trusted transitions queue without workflow cancellation', () => {
   assert.match(workflow, /group:\s*yesaf-m1-audit-\$\{\{ github\.event_name \}\}-/);
+  assert.match(workflow, /\nconcurrency:\s*\n\s+group:[^\n]+\n\s+queue:\s*max\s*\n/);
+  assert.doesNotMatch(workflow, /\nconcurrency:\s*\n\s+group:[^\n]+\n\s+cancel-in-progress:\s*true/);
 });
 test('shadow lane has read-only token; required writer isolated to trusted lane', () => {
   assert.match(shadow, /permissions:\s*\n\s+contents:\s*read/);
