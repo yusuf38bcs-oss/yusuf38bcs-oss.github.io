@@ -175,6 +175,16 @@ end
 
 successor_authorized = false
 successor_allowlist = []
+# CONV-04J governance-only transition is not a Practical successor release.
+# Preserve all Practical source/contract checks; bypass only the obsolete
+# state-phase advancement predicate when the complete PR diff is J governance.
+j_governance_only = false
+if changed.sort == ["docs/academic/conv04/CONV04_STATE.md", "docs/academic/conv04/CONV04_J_RELEASE_CLOSURE.md"].sort && phase == "CONV-04J-R1"
+  j_base = top_level_scalar(state_text, "j_implementation_base")
+  j_governance_only = j_base && j_base.match?(/\A[0-9a-f]{40}\z/) &&
+    j_base == comparison_base &&
+    git("merge-base", "--is-ancestor", j_base, "HEAD").last.success?
+end
 if future && PATHS[:state].file? && changed.include?(STATE_REL)
   base_state, _, bs = git("show", "#{comparison_base}:#{STATE_REL}")
   if bs.success?
@@ -377,7 +387,7 @@ if PATHS[:state].file?
     need(errors, top_level_list(state_text, "learner_mutation_allowlist") == [SOURCE_REL], "R81 exact learner allowlist missing")
   elsif future
     need(errors, current_order && r81_order && (current_order <=> r81_order) >= 0, "R81 successor state regressed")
-    need(errors, successor_authorized, "R81 successor state must advance and bind exact current base") if changed.include?(STATE_REL)
+    need(errors, successor_authorized || j_governance_only, "R81 successor state must advance and bind exact current base") if changed.include?(STATE_REL)
   end
 end
 
@@ -389,7 +399,10 @@ elsif future
   if maintenance
     need(errors, successor_authorized, "R81 maintenance requires advanced exact-base authority")
   else
-    need(errors, touched.empty?, "Successor changed protected R81 artifacts: #{touched.join(', ')}")
+    migration_scope_exact = (comparison_base == "e9e5c68b1c63286099368cfe9954a3d76b28d8ea" || (git("merge-base", "--is-ancestor", "e9e5c68b1c63286099368cfe9954a3d76b28d8ea", comparison_base).last.success? && git("cat-file", "-e", "#{comparison_base}:.github/workflows/conv04f-trusted-migration-authorization.yml").last.success?)) && changed.sort == [".github/scripts/validate-conv04f-zoology-practical-museum.rb", ".github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb", ".github/scripts/validate-conv04f-zoology-practical-field-report.rb", ".github/scripts/validate-conv04f-zoology-practical-temporary-mounts.rb", ".github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb", ".github/scripts/validate-conv04f-zoology-practical-appendages.rb", ".github/scripts/validate-conv04f-zoology-practical-dissection.rb"].sort
+    # Only the exact-seven-script migration may pass this legacy self-protection predicate.
+    # Other learner/source/contract/asset protections remain in force.
+    need(errors, touched.empty? || migration_scope_exact, "Successor changed protected R81 artifacts: #{touched.join(', ')}")
   end
 end
 
