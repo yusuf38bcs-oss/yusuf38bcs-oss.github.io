@@ -61,6 +61,10 @@ jobs:
 
   build:
     needs: authorize
+    permissions:
+      contents: read
+      actions: read
+      pages: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
