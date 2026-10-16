@@ -36,12 +36,12 @@ function defects(pub, verifier) {
   if (!/git rev-parse HEAD/.test(build) || !/git ls-remote origin refs\/heads\/main/.test(build)) issues.push('BUILD_SOURCE_UNVERIFIED');
   if (!/needs: build/.test(deploy) || !/environment:\s*\n\s+name: github-pages/.test(deploy)) issues.push('DEPLOY_ORDER_OR_ENVIRONMENT');
   if (!/pages: write/.test(deploy) || !/id-token: write/.test(deploy) || !/git ls-remote/.test(deploy)) issues.push('DEPLOY_PERMISSION_OR_RECHECK');
-  if (!/DISPATCH_ACTOR.*yusuf38bcs-oss/.test(deploy) || !/RERUN_ACTOR.*yusuf38bcs-oss/.test(deploy) || !/live_main.*EXPECTED_MAIN_SHA/.test(deploy)) issues.push('DEPLOY_AUTHORIZATION_GAP');
+  if (!/DISPATCH_ACTOR.*yusuf38bcs-oss/.test(deploy) || !/RERUN_ACTOR.*yusuf38bcs-oss/.test(deploy) || !/live_main="\$\(git ls-remote/.test(deploy) || !/test "\$live_main" = "\$EXPECTED_MAIN_SHA"/.test(deploy)) issues.push('DEPLOY_AUTHORIZATION_GAP');
   if (!/cancel-in-progress: false/.test(pub) || !/lbfl-g1-github-pages-manual-production/.test(pub)) issues.push('UNSAFE_PUBLISHER_CONCURRENCY');
   const opsHeader = triggers(verifier);
   if (!/^\s{2}workflow_dispatch:\s*$/m.test(opsHeader) || /^\s{2}(push|pull_request|workflow_run):/m.test(opsHeader)) issues.push('OPS_AUTO_TRIGGER');
   if (!/\.event == "workflow_dispatch"/.test(verifier) || /\.event == "push"/.test(verifier)) issues.push('OPS_ACCEPTS_LEGACY_PUSH');
-  if (!/authorize_conclusion/.test(verifier) || !/build_conclusion/.test(verifier) || !/deploy_conclusion/.test(verifier)) issues.push('OPS_NOT_CHECKING_FULL_RELEASE');
+  if (!/authorize_conclusion="\$\(jq -r/.test(verifier) || !/build_conclusion="\$\(jq -r/.test(verifier) || !/deploy_conclusion="\$\(jq -r/.test(verifier)) issues.push('OPS_NOT_CHECKING_FULL_RELEASE');
   if (!/github\.event_name == 'workflow_dispatch' && inputs\.purge_cache/.test(verifier) || !/default: false/.test(verifier)) issues.push('CACHE_PURGE_OPT_IN_LOST');
   return issues;
 }
@@ -97,6 +97,12 @@ test('candidate test lane cannot publish or read production secrets', () => {
   assert.match(runner, /persist-credentials: false/);
   assert.match(runner, /node --test \.github\/scripts\/test-g1-pages-publisher-boundary\.mjs/);
 });
-test('no production mutation in static regression suite', () => {
-  assert.doesNotMatch(readFileSync(new URL(import.meta.url), 'utf8'),/github\.rest\.repos\.createCommitStatus|wrangler deploy|actions\/deploy-pages@v5.+uses:/);
+test('candidate fixture workflow is scoped only to G1 files', () => {
+  for (const path of [
+    '.github/workflows/jekyll-gh-pages.yml',
+    '.github/workflows/ops-verify-pages-artifact.yml',
+    '.github/workflows/yesaf-g1-pages-publisher-tests.yml',
+    '.github/scripts/test-g1-pages-publisher-boundary.mjs',
+  ]) assert.ok(runner.includes(path), 'untracked G1 fixture path: ' + path);
+  assert.doesNotMatch(triggers(runner), /^\s{2}(push|workflow_dispatch|pull_request_target):/m);
 });
