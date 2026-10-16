@@ -12,10 +12,6 @@ on:
         required: true
         default: false
         type: boolean
-  pull_request:
-    branches: [main]
-    paths:
-      - ".github/workflows/ops-verify-pages-artifact.yml"
 
 permissions:
   contents: read
@@ -39,6 +35,18 @@ jobs:
       PURGE_REQUESTED: ${{ inputs.purge_cache || false }}
 
     steps:
+      - name: Require owner-controlled main dispatch before Pages verification
+        shell: bash
+        env:
+          DISPATCH_ACTOR: ${{ github.actor }}
+          RERUN_ACTOR: ${{ github.triggering_actor }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_EVENT_NAME" = "workflow_dispatch"
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$DISPATCH_ACTOR" = "yusuf38bcs-oss"
+          test "$RERUN_ACTOR" = "yusuf38bcs-oss"
+
       - name: Resolve target SHA
         id: target
         shell: bash
@@ -82,7 +90,7 @@ jobs:
             .workflow_runs
             | map(select(
                 .name == "Deploy to GitHub Pages"
-                and (.event == "push" or .event == "workflow_dispatch")
+                and .event == "workflow_dispatch"
                 and .head_branch == "main"
                 and .head_sha == $sha
               ))
@@ -112,6 +120,16 @@ jobs:
 
           jobs_json="$(gh api --paginate \
             "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/jobs?per_page=100")"
+
+          authorize_conclusion="$(jq -r '
+            [.jobs[] | select(.name == "authorize")]
+            | last.conclusion // "missing"
+          ' <<<"$jobs_json")"
+
+          [[ "$authorize_conclusion" == "success" ]] || {
+            echo "GitHub Pages owner/SHA authorize job was not successful."
+            exit 1
+          }
 
           build_conclusion="$(jq -r '
             [.jobs[] | select(.name == "build")]
