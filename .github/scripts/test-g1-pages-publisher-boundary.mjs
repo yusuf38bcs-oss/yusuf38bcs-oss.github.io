@@ -55,10 +55,10 @@ test('restoring automatic main push must fail', () => {
   assert.ok(defects(pages.replace('  workflow_dispatch:', '  push:\n    branches: [main]\n  workflow_dispatch:'),ops).includes('AUTO_PUBLISH_TRIGGER'));
 });
 test('losing deploy-time source recheck must fail', () => {
-  const mutated=pages.replace('      - name: Re-authenticate owner-approved main immediately before deploy','      - name: Re-authenticate owner-approved main immediately before deploy');
-  const index=mutated.indexOf('  deploy:\n');
-  const after=mutated.slice(index).replace('live_main="$(git ls-remote','remote_snapshot="$(git ls-remote');
-  assert.ok(defects(mutated.slice(0,index)+after,ops).includes('DEPLOY_AUTHORIZATION_GAP'));
+  const index=pages.indexOf('  deploy:\n');
+  assert.ok(index >= 0, 'deploy job missing');
+  const after=pages.slice(index).replace('live_main="$(git ls-remote','remote_snapshot="$(git ls-remote');
+  assert.ok(defects(pages.slice(0,index)+after,ops).includes('DEPLOY_AUTHORIZATION_GAP'));
 });
 test('losing current-main approval SHA must fail', () => {
   assert.ok(defects(pages.replace('test "$DISPATCH_SHA" = "$EXPECTED_MAIN_SHA"','test "$DISPATCH_SHA" = "any"'),ops).includes('EXACT_SHA_GUARD_MISSING'));
