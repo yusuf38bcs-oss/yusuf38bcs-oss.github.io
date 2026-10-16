@@ -77,6 +77,14 @@ test('publisher uses least privilege and retains original artifact contract', ()
   assert.match(pages,/actions\/deploy-pages@v5/);
   assert.match(pages,/artifact_name: github-pages-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
 });
+test('build can read GitHub Pages setup but only deploy may write', () => {
+  const build = jobBlock(pages, 'build');
+  const deploy = jobBlock(pages, 'deploy');
+  assert.match(build, /permissions:\s*\n\s+contents: read\s*\n\s+actions: read\s*\n\s+pages: read/);
+  assert.doesNotMatch(build, /pages: write|id-token: write/);
+  assert.match(deploy, /pages: write/);
+  assert.match(deploy, /id-token: write/);
+});
 test('original Jekyll publication content validations stay in scope', () => {
   assert.match(pages, /bundle exec jekyll build --trace/);
   assert.match(pages, /Validate Build Output/);
