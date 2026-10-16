@@ -67,10 +67,11 @@ jobs:
       pages: read
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout immutable workflow event SHA
         uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.expected_main_sha }}
+          # Never use a workflow_dispatch input as a checkout revision.
+          # The event SHA is verified against owner-approved SHA below.
           persist-credentials: false
 
       - name: Re-authenticate exact source before GitHub Pages build

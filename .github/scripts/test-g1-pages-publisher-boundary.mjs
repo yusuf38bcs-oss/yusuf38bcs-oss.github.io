@@ -32,7 +32,13 @@ function defects(pub, verifier) {
   if (!/DISPATCH_ACTOR.*yusuf38bcs-oss/.test(authorize) || !/RERUN_ACTOR.*yusuf38bcs-oss/.test(authorize)) issues.push('OWNER_GATE_MISSING');
   if (!/EXPECTED_MAIN_SHA.*\^\[0-9a-f\]\{40\}\$/.test(authorize) || !/DISPATCH_SHA.*EXPECTED_MAIN_SHA/.test(authorize)) issues.push('EXACT_SHA_GUARD_MISSING');
   if (!/git ls-remote/.test(authorize) || !/live_main.*EXPECTED_MAIN_SHA/.test(authorize)) issues.push('LIVE_MAIN_PRECHECK_MISSING');
-  if (!/needs: authorize/.test(build) || !/ref: \$\{\{ inputs\.expected_main_sha \}\}/.test(build) || !/persist-credentials: false/.test(build)) issues.push('BUILD_UNBOUND');
+  // Important: manual-release source must be the event commit, never an input-controlled ref.
+  const checkout = build.split('      - name: Checkout immutable workflow event SHA\n')[1]?.split('\n      - name:')[0] ?? '';
+  if (!/needs: authorize/.test(build) ||
+      !/uses: actions\/checkout@v4/.test(checkout) ||
+      !/persist-credentials: false/.test(checkout) ||
+      /^\s*ref:/m.test(checkout) ||
+      /git\s+(?:checkout|switch|fetch)[^\n]*\$\{?\{?\s*inputs[.\[]/m.test(build)) issues.push('BUILD_UNBOUND');
   if (!/git rev-parse HEAD/.test(build) || !/git ls-remote origin refs\/heads\/main/.test(build)) issues.push('BUILD_SOURCE_UNVERIFIED');
   if (!/needs: build/.test(deploy) || !/environment:\s*\n\s+name: github-pages/.test(deploy)) issues.push('DEPLOY_ORDER_OR_ENVIRONMENT');
   if (!/pages: write/.test(deploy) || !/id-token: write/.test(deploy) || !/git ls-remote/.test(deploy)) issues.push('DEPLOY_PERMISSION_OR_RECHECK');
@@ -53,6 +59,22 @@ test('removing owner authorization must fail', () => {
 });
 test('restoring automatic main push must fail', () => {
   assert.ok(defects(pages.replace('  workflow_dispatch:', '  push:\n    branches: [main]\n  workflow_dispatch:'),ops).includes('AUTO_PUBLISH_TRIGGER'));
+});
+test('restoring an input-controlled checkout revision must fail', () => {
+  const mutated = pages.replace(
+    '          persist-credentials: false',
+    '          ref: ${{ inputs.expected_main_sha }}\n          persist-credentials: false',
+  );
+  assert.notEqual(mutated, pages, 'test fixture must change the checkout');
+  assert.ok(defects(mutated, ops).includes('BUILD_UNBOUND'));
+});
+test('checkout must not use any arbitrary ref even if hardcoded', () => {
+  const mutated = pages.replace(
+    '          persist-credentials: false',
+    '          ref: main\n          persist-credentials: false',
+  );
+  assert.notEqual(mutated, pages);
+  assert.ok(defects(mutated, ops).includes('BUILD_UNBOUND'));
 });
 test('losing deploy-time source recheck must fail', () => {
   const index=pages.indexOf('  deploy:\n');
