@@ -153,7 +153,7 @@ export async function auditTrustedSuccessor({github,context,core,guardName}) {
       const total=first.data?.total_count;
       guard(Number.isSafeInteger(total)&&total>=0,
         `unverifiable ${status} run total_count`);
-      guard(total<=1000,
+      guard(total<1000,
         `${status} run inventory exceeds GitHub 1000-result cap (${total}); HOLD`);
       const entries=await github.paginate(github.rest.actions.listWorkflowRunsForRepo,
         {owner,repo,status,per_page:100});

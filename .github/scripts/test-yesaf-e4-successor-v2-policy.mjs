@@ -143,3 +143,13 @@ test('negative integration: results omitted despite trusted total_count fail clo
     /FAIL-CLOSED: incomplete requested run inventory/
   );
 });
+
+test('negative integration: exactly 1000 reported workflow runs is ambiguous and denied',async()=>{
+  const github=fakeTrustedGitHub({runTotalsOverride:{in_progress:1000}});
+  const context={repo:{owner:SOLO,repo:'yusuf38bcs-oss.github.io'},sha:base,
+    payload:{pull_request:{number:333}}};
+  await assert.rejects(
+    ()=>auditTrustedSuccessor({github,context,core:{info:()=>{}},guardName:'R91'}),
+    /FAIL-CLOSED: in_progress run inventory exceeds GitHub 1000-result cap/
+  );
+});
