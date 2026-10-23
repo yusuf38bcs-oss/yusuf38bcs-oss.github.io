@@ -37,13 +37,71 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # YESAF E4: no credentialed Cloudflare Pages publisher in a certification job.
-  # All academic/browser tests stay local; preview needs a separate authorized writer.
+  preview:
+    name: Deploy exact-head Cloudflare Pages preview
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+      TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+      CLOUDFLARE_ACCOUNT_ID: "13e317d6883a0f258ad7ed490699f849"
+      CLOUDFLARE_PAGES_PROJECT: "yusuf38bcs-oss-github-io"
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_TOKEN }}
+    steps:
+      - name: Check out immutable candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.CANDIDATE_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Authenticate exact head
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+          test -z "$(git status --porcelain)"
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      - name: Build exact-head Jekyll preview
+        shell: bash
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          bundle install --jobs 4 --retry 3
+          bundle exec jekyll clean
+          bundle exec jekyll build --trace
+          test -f _site/biology/higher-zoology-tree/practical/museum-specimens/index.html
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Deploy immutable preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          npx --yes wrangler@latest pages deploy _site \
+            --project-name "$CLOUDFLARE_PAGES_PROJECT" \
+            --branch "$TARGET_BRANCH" \
+            --commit-hash "$CANDIDATE_SHA" \
+            --commit-message "LBFL F-09 Museum exact-head certification $CANDIDATE_SHA" \
+            --commit-dirty=false
 
   certify:
     name: CONV-04F-09 Museum exact-head certification
-    # Manual exact-main and unprivileged PR academic/browser certification only.
-    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
+    needs: [preview]
+    if: ${{ always() && (needs.preview.result == 'success' || needs.preview.result == 'skipped') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     env:
