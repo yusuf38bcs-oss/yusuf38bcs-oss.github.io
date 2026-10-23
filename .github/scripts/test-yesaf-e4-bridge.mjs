@@ -1,23 +1,41 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {evaluateBridge, POLICY} from './yesaf-e4-bridge.mjs';
+import {evaluateBridge, POLICY, gitBlobSha1, verifySnapshotBoundary} from './yesaf-e4-bridge.mjs';
 
-const notice = `# No production authority.
-name: Legacy Production Parity (Retired)
+const displayNames={
+  appendages:'Appendages', dissection:'Dissection', museum:'Museum',
+  'permanent-slides':'Permanent Slides', 'temporary-mounts':'Temporary Mounts',
+  'whole-mounts':'Whole Mounts',
+};
+function noticeFor(path) {
+  const slug=path.match(/practical-(.+)-production-parity\.yml$/)?.[1];
+  const title=displayNames[slug];
+  assert.ok(title, `Unexpected retirement source ${path}`);
+  return `# YESAF E4 controlled quarantine — ${title} legacy Cloudflare Pages publisher.
+# THIS FILE HAS NO PRODUCTION AUTHORITY. The former workflow and its evidence
+# remain recoverable in Git history at main@3164d2537b4f19381c52bbfb5c9e1b7ee7d15846.
+# Do not restore publishing here. Use a separately certified single-writer lane.
+name: CONV-04F-09 ${title} Production Parity (Retired)
+
 on:
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   retired_notice:
-    name: Non-publishing retirement notice
+    name: Legacy production writer quarantined (no deployment)
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
-      - name: Report retirement
+      - name: Non-publishing retirement evidence
         run: |
-          echo "This workflow is retired."
-          echo "No privileged operation is performed."
+          echo "YESAF E4: ${title} legacy writer retired."
+          echo "No Cloudflare credential is consumed, and no deployment occurs."
 `;
+}
+
 
 function validSnapshot(){
   const six=POLICY.workflows.map(w=>w.path);
@@ -27,18 +45,18 @@ function validSnapshot(){
     schema:POLICY.schema,
     repository:POLICY.repository,
     main_sha:POLICY.mainSha,
-    pr496:{number:496,state:'open',draft:true,merged:false,base_sha:POLICY.mainSha,head_sha:POLICY.pr496,changed_files:six},
-    pr497:{number:497,state:'open',draft:true,merged:false,base_sha:POLICY.mainSha,head_sha:POLICY.pr497,changed_files:two},
-    workflow_registry:paths.map((path,i)=>({path,id:100000+i,state:'disabled_manually'})),
+    pr496:{number:496,state:'open',draft:true,merged:false,base_sha:POLICY.mainSha,head_sha:POLICY.pr496,updated_at:'2026-10-23T00:00:00Z',changed_files:six},
+    pr497:{number:497,state:'open',draft:true,merged:false,base_sha:POLICY.mainSha,head_sha:POLICY.pr497,updated_at:'2026-10-23T00:00:00Z',changed_files:two},
+    workflow_registry:paths.map((path,i)=>({path,id:100000+i,state:'disabled_manually',updated_at:'2026-10-23T00:00:00Z'})),
     blobs:[
-      ...POLICY.workflows.map(w=>({ref:POLICY.pr496,path:w.path,sha:w.candidateBlob,content:notice})),
+      ...POLICY.workflows.map(w=>({ref:POLICY.pr496,path:w.path,sha:w.candidateBlob,content:noticeFor(w.path)})),
       ...POLICY.guarded.flatMap(w=>[
         {ref:POLICY.mainSha,path:w.path,sha:w.mainBlob},
         {ref:POLICY.mainSha,path:w.guardPath,sha:w.guardBlob},
       ]),
       {ref:POLICY.mainSha,path:POLICY.pages.path,sha:POLICY.pages.mainBlob},
     ],
-    active_runs:{queued:[{id:37655524953,workflow_id:999999},{id:26596572982,workflow_id:999998}],in_progress:[],waiting:[],pending:[]},
+    active_runs:{requested:[],queued:[{id:37655524953,workflow_id:999999},{id:26596572982,workflow_id:999998}],in_progress:[],waiting:[],pending:[]},
     guarded_transition:'BLOCKED_BY_IMMUTABILITY_GUARDS',
   };
 }
@@ -84,3 +102,32 @@ negative('retirement has privileged PR trigger',s=>s.blobs[0].content += '\n  pu
 negative('missing candidate source content',s=>delete s.blobs[0].content);
 negative('governance conflict hidden',s=>s.guarded_transition='MIGRATION_APPROVED');
 negative('incomplete or duplicate blob inventory',s=>s.blobs.push(s.blobs[0]));
+
+// A reviewer found a missing GitHub Actions `requested` state: it is not queued yet.
+negative('requested legacy publisher',s=>s.active_runs.requested.push({id:325,workflow_id:s.workflow_registry[0].id}));
+negative('missing requested inventory',s=>delete s.active_runs.requested);
+negative('substituted content with pinned expected blob SHA',s=>{s.blobs[0].content=noticeFor(POLICY.workflows[1].path);});
+negative('single-byte content drift despite pinned blob SHA',s=>{s.blobs[0].content+='\n';});
+test('positive: six retirement Git blob hashes are exactly the pinned PR #496 blobs',()=>{
+  for(const entry of POLICY.workflows) assert.equal(gitBlobSha1(noticeFor(entry.path)),entry.candidateBlob);
+});
+function boundaryNegative(name,mutate){
+  test(`negative boundary: ${name}`,()=>{
+    const before=validSnapshot(),after=clone(before);mutate(after);
+    assert.throws(()=>verifySnapshotBoundary(before,after),/YESAF E4 FAIL-CLOSED/);
+  });
+}
+test('positive boundary: stable controls and all five run inventories',()=>{
+  const before=validSnapshot();assert.doesNotThrow(()=>verifySnapshotBoundary(before,clone(before)));
+});
+boundaryNegative('main moves during fetch',s=>s.main_sha='1'.repeat(40));
+boundaryNegative('PR #496 head changes during fetch',s=>s.pr496.head_sha='2'.repeat(40));
+boundaryNegative('PR #497 draft changes during fetch',s=>s.pr497.draft=false);
+boundaryNegative('PR #497 metadata changes during fetch',s=>s.pr497.updated_at='2026-10-24T00:00:00Z');
+boundaryNegative('R91 enabled during fetch',s=>s.workflow_registry[6].state='active');
+boundaryNegative('workflow ID replaced during fetch',s=>s.workflow_registry[0].id=9);
+boundaryNegative('workflow updated during fetch',s=>s.workflow_registry[0].updated_at='2026-10-24T00:00:00Z');
+boundaryNegative('a publisher enters requested after first read',s=>s.active_runs.requested.push({id:400,workflow_id:s.workflow_registry[1].id}));
+boundaryNegative('an unrelated run appears during fetch',s=>s.active_runs.queued.push({id:401,workflow_id:123456}));
+boundaryNegative('run disappears between reads',s=>s.active_runs.queued.pop());
+boundaryNegative('missing final waiting inventory',s=>delete s.active_runs.waiting);

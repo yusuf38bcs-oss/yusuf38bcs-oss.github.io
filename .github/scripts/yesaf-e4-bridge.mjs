@@ -2,6 +2,7 @@
 // YESAF E4 read-only bridge. This is NOT a trusted status writer, promotion
 // authority, guard exception, approval, or production deployment workflow.
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 
@@ -49,11 +50,41 @@ const publisherPaths = () => [
   POLICY.pages.path,
 ];
 const uniqueSorted = xs => [...new Set(xs)].sort();
+const RUN_STATUSES = Object.freeze(['requested','queued','in_progress','waiting','pending']);
+
+/** Real Git blob SHA-1, including the `blob <size>\0` Git object header. */
+export function gitBlobSha1(content) {
+  const data = Buffer.from(content, 'utf8');
+  const header = Buffer.from(`blob ${data.length}\0`, 'utf8');
+  return createHash('sha1').update(header).update(data).digest('hex');
+}
+
+/** Read-only observation consistency gate; any mutable drift aborts the proof. */
+export function verifySnapshotBoundary(before, after) {
+  requireCondition(after?.main_sha === before.main_sha, 'protected main moved during live observation');
+  for (const number of [496,497]) {
+    const a=before[`pr${number}`], b=after[`pr${number}`];
+    requireCondition(a && b && a.number === b.number && a.state === b.state &&
+      a.draft === b.draft && a.merged === b.merged &&
+      a.head_sha === b.head_sha && a.base_sha === b.base_sha &&
+      a.updated_at === b.updated_at, `PR #${number} changed during live observation`);
+  }
+  const encodeWorkflows = x => x?.workflow_registry?.map(w =>
+    `${w.path}:${w.id}:${w.state}:${w.updated_at}`);
+  requireCondition(sameSet(encodeWorkflows(before), encodeWorkflows(after)),
+    'workflow registry/administrative disablement changed during live observation');
+  for (const status of RUN_STATUSES) {
+    const encodeRuns = x => x?.active_runs?.[status]?.map(w => `${w.id}:${w.workflow_id}`);
+    requireCondition(sameSet(encodeRuns(before), encodeRuns(after)),
+      `${status} run inventory changed during live observation`);
+  }
+}
+
 function requireCondition(ok, message) {
   if (!ok) throw new Error(`YESAF E4 FAIL-CLOSED: ${message}`);
 }
 function sameSet(actual, expected) {
-  return Array.isArray(actual) && actual.length === expected.length &&
+  return Array.isArray(actual) && Array.isArray(expected) && actual.length === expected.length &&
     uniqueSorted(actual).length === actual.length &&
     JSON.stringify([...actual].sort()) === JSON.stringify([...expected].sort());
 }
@@ -114,14 +145,18 @@ export function evaluateBridge(s) {
   for (const expected of expectedFiles) {
     const blob = s.blobs.find(x => x.ref === expected.ref && x.path === expected.path);
     requireCondition(blob.sha === expected.sha, `untrusted source/guard blob drift: ${expected.path}`);
-    if (expected.ref === POLICY.pr496) retiredSourceLooksInert(blob.content, blob.path);
+    if (expected.ref === POLICY.pr496) {
+      requireCondition(typeof blob.content === 'string' && gitBlobSha1(blob.content) === blob.sha,
+        `Git blob digest/content mismatch: ${blob.path}`);
+      retiredSourceLooksInert(blob.content, blob.path);
+    }
   }
 
   // Both old successor guards deliberately protect the guarded writer paths.
   // This state is a security barrier, not a condition to evade.
   requireCondition(s.guarded_transition === 'BLOCKED_BY_IMMUTABILITY_GUARDS',
     'R91/R101 governance conflict must remain explicitly blocked');
-  for (const status of ['queued', 'in_progress', 'waiting', 'pending']) {
+  for (const status of RUN_STATUSES) {
     requireCondition(Array.isArray(s.active_runs?.[status]), `missing ${status} run inventory`);
     for (const run of s.active_runs[status]) {
       requireCondition(Number.isSafeInteger(run.id) && Number.isSafeInteger(run.workflow_id),
@@ -197,7 +232,8 @@ export async function collectLiveBridge() {
     const p=await get(`/pulls/${number}`);
     const files=await pages(`/pulls/${number}/files`);
     const item={number:p.number,state:p.state,draft:p.draft,merged:p.merged,
-      head_sha:p.head?.sha,base_sha:p.base?.sha,changed_files:files.map(x=>x.filename)};
+      head_sha:p.head?.sha,base_sha:p.base?.sha,updated_at:p.updated_at,
+      changed_files:files.map(x=>x.filename)};
     requireCondition(files.length===p.changed_files,`PR #${number} incomplete changed-file metadata`);
     s[`pr${number}`]=item;
   }
@@ -205,7 +241,7 @@ export async function collectLiveBridge() {
   for (const path of publisherPaths()){
     const w=reg.filter(x=>x.path===path);
     requireCondition(w.length===1,`workflow registry missing/ambiguous: ${path}`);
-    s.workflow_registry.push({path,id:w[0].id,state:w[0].state});
+    s.workflow_registry.push({path,id:w[0].id,state:w[0].state,updated_at:w[0].updated_at});
   }
   const contentSpecs=[
     ...POLICY.workflows.map(w=>({ref:POLICY.pr496,path:w.path})),
@@ -219,10 +255,35 @@ export async function collectLiveBridge() {
     s.blobs.push({ref:item.ref,path:item.path,sha:d.sha,
       ...(item.ref===POLICY.pr496?{content:Buffer.from((d.content||'').replace(/\s/g,''),'base64').toString('utf8')}:{})});
   }
-  for(const status of ['queued','in_progress','waiting','pending']){
-    const runs=await countCollection(`/actions/runs?status=${status}`,'workflow_runs');
-    s.active_runs[status]=runs.map(x=>({id:x.id,workflow_id:x.workflow_id}));
+  async function readRunInventories() {
+    const inventory={};
+    for (const status of RUN_STATUSES) {
+      const runs=await countCollection(`/actions/runs?status=${status}`,'workflow_runs');
+      inventory[status]=runs.map(x=>({id:x.id,workflow_id:x.workflow_id}));
+    }
+    return inventory;
   }
+  s.active_runs=await readRunInventories();
+
+  // Second complete observation of mutable authorities after all blob/queue reads.
+  // There is no atomic GitHub API snapshot; bounded drift must fail closed.
+  const afterMain=await get('/branches/main');
+  const after={main_sha:afterMain.commit?.sha,pr496:null,pr497:null,
+    workflow_registry:[],active_runs:{}};
+  for (const number of [496,497]) {
+    const p=await get(`/pulls/${number}`);
+    after[`pr${number}`]={number:p.number,state:p.state,draft:p.draft,merged:p.merged,
+      head_sha:p.head?.sha,base_sha:p.base?.sha,updated_at:p.updated_at};
+  }
+  const updatedRegistry=await countCollection('/actions/workflows','workflows');
+  for (const path of publisherPaths()) {
+    const found=updatedRegistry.filter(x=>x.path===path);
+    requireCondition(found.length===1,`workflow registry changed/disappeared: ${path}`);
+    after.workflow_registry.push({path,id:found[0].id,state:found[0].state,
+      updated_at:found[0].updated_at});
+  }
+  after.active_runs=await readRunInventories();
+  verifySnapshotBoundary(s,after);
   return s;
 }
 
