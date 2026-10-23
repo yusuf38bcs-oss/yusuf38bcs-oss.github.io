@@ -144,9 +144,27 @@ export async function auditTrustedSuccessor({github,context,core,guardName}) {
       ({id:w.id,path:w.path,state:w.state,updated_at:w.updated_at}));
     const runs={};
     for(const status of ACTIVE){
+      // A filtered workflow-runs query is capped by GitHub at 1,000 results.
+      // Pagination alone can return a plausible but incomplete inventory;
+      // require a trustworthy total_count before any candidate is accepted.
+      const first=await github.rest.actions.listWorkflowRunsForRepo({
+        owner,repo,status,per_page:100,page:1
+      });
+      const total=first.data?.total_count;
+      guard(Number.isSafeInteger(total)&&total>=0,
+        `unverifiable ${status} run total_count`);
+      guard(total<=1000,
+        `${status} run inventory exceeds GitHub 1000-result cap (${total}); HOLD`);
       const entries=await github.paginate(github.rest.actions.listWorkflowRunsForRepo,
         {owner,repo,status,per_page:100});
-      guard(entries.length<=3000,`too many ${status} runs to audit`);
+      guard(entries.length===total,
+        `incomplete ${status} run inventory: expected ${total}, observed ${entries.length}`);
+      const observed=new Set();
+      for(const item of entries){
+        guard(Number.isSafeInteger(item.id)&&item.id>0&&!observed.has(item.id),
+          `missing/duplicate ${status} run identifier`);
+        observed.add(item.id);
+      }
       runs[status]=entries.map(r=>({id:r.id,workflow_id:r.workflow_id}));
     }
     return {mainSha,pr:{

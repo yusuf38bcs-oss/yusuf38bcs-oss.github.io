@@ -67,7 +67,7 @@ for(const key of ['mainSha','pr','registry','runs']) {
 }
 
 import { auditTrustedSuccessor } from './yesaf-e4-successor-v2-policy.mjs';
-function fakeTrustedGitHub({flipEnabled=false,shaOverride=base}={}){
+function fakeTrustedGitHub({flipEnabled=false,shaOverride=base,runTotalsOverride={},truncateStatus=null}={}){
   const fixture=packet();
   const x=fixture.pr;
   const apiPr={number:333,state:x.state,draft:x.draft,updated_at:'now',
@@ -77,7 +77,7 @@ function fakeTrustedGitHub({flipEnabled=false,shaOverride=base}={}){
   const fake={readCycles:0,rest:{
     pulls:{get:async()=>({data:structuredClone(apiPr)}),listFiles:()=>{}},
     repos:{getBranch:async()=>({data:{commit:{sha:shaOverride}}})},
-    actions:{listRepoWorkflows:()=>{},listWorkflowRunsForRepo:()=>{}}
+    actions:{listRepoWorkflows:()=>{},listWorkflowRunsForRepo:async options=>({data:{total_count:runTotalsOverride[options.status]??fixture.runs[options.status].length}})}
   }};
   fake.paginate=async (method,options)=>{
     if(method===fake.rest.pulls.listFiles) return fixture.changedFiles.map(y=>({...y}));
@@ -87,7 +87,7 @@ function fakeTrustedGitHub({flipEnabled=false,shaOverride=base}={}){
       if(flipEnabled&&fake.readCycles===2)r[0].state='active';
       return r;
     }
-    if(method===fake.rest.actions.listWorkflowRunsForRepo) return fixture.runs[options.status];
+    if(method===fake.rest.actions.listWorkflowRunsForRepo) return truncateStatus===options.status?[]:fixture.runs[options.status];
     throw new Error('Unexpected method');
   };
   return fake;
@@ -114,4 +114,32 @@ test('integration trusted-main mock: wrong repository denied before API',async()
   const github=fakeTrustedGitHub(),context={repo:{owner:'attacker',repo:'yusuf38bcs-oss.github.io'},sha:base,
     payload:{pull_request:{number:333}}};
   await assert.rejects(()=>auditTrustedSuccessor({github,context,core:{info:()=>{}},guardName:'R91'}),/FAIL-CLOSED/);
+});
+
+test('negative integration: status-filtered workflow run query beyond GitHub 1000-result cap fails closed',async()=>{
+  const github=fakeTrustedGitHub({runTotalsOverride:{queued:1001}});
+  const context={repo:{owner:SOLO,repo:'yusuf38bcs-oss.github.io'},sha:base,
+    payload:{pull_request:{number:333}}};
+  await assert.rejects(
+    ()=>auditTrustedSuccessor({github,context,core:{info:()=>{}},guardName:'R91'}),
+    /FAIL-CLOSED: queued run inventory exceeds GitHub 1000-result cap/
+  );
+});
+test('negative integration: incomplete paginated inventory below cap fails closed',async()=>{
+  const github=fakeTrustedGitHub({runTotalsOverride:{pending:2}});
+  const context={repo:{owner:SOLO,repo:'yusuf38bcs-oss.github.io'},sha:base,
+    payload:{pull_request:{number:333}}};
+  await assert.rejects(
+    ()=>auditTrustedSuccessor({github,context,core:{info:()=>{}},guardName:'R91'}),
+    /FAIL-CLOSED: incomplete pending run inventory/
+  );
+});
+test('negative integration: results omitted despite trusted total_count fail closed',async()=>{
+  const github=fakeTrustedGitHub({runTotalsOverride:{requested:1},truncateStatus:'requested'});
+  const context={repo:{owner:SOLO,repo:'yusuf38bcs-oss.github.io'},sha:base,
+    payload:{pull_request:{number:333}}};
+  await assert.rejects(
+    ()=>auditTrustedSuccessor({github,context,core:{info:()=>{}},guardName:'R91'}),
+    /FAIL-CLOSED: incomplete requested run inventory/
+  );
 });
