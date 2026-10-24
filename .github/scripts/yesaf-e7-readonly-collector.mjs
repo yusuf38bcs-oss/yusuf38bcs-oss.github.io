@@ -26,7 +26,8 @@ function capture(){
   if(!Number.isSafeInteger(w.id)||!w.updated_at)halt('invalid workflow metadata');
   return {id:w.id,path,state:w.state,updated_at:w.updated_at};
  });
- if(workflows.some(w=>w.state!=='disabled_manually'))halt('production-capable workflow enabled');
+ const enabled=workflows.filter(w=>w.state!=='disabled_manually').map(w=>`${w.path} [id=${w.id}; state=${w.state}]`);
+ if(enabled.length)halt('production-capable workflow enabled: '+enabled.join(', '));
  const runs=Object.fromEntries(STATES.map(s=>[s,{}]));
  for(const w of workflows)for(const status of STATES){
   const v=get(root+'/actions/workflows/'+w.id+'/runs?status='+status+'&per_page=1');

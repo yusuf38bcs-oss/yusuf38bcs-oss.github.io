@@ -33,3 +33,29 @@ jobs:
         run: |
           node --check .github/scripts/yesaf-e7-readonly-collector.mjs
           node --test .github/scripts/test-yesaf-e7-containment-policy.mjs
+
+  census-readonly:
+    name: GitHub publisher registry and run census (non-authorizing)
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'security/yesaf-e7-containment-attestor-prototype-20261024' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Checkout exact candidate without persistent credentials
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Fail closed on candidate SHA mismatch
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: GET-only workflow-state census (HOLD on any enabled or active writer)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node .github/scripts/yesaf-e7-readonly-collector.mjs --live
