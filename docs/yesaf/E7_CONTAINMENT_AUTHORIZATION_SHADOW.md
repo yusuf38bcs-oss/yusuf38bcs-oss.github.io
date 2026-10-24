@@ -30,3 +30,7 @@ The production writer must be denied or approved **at deployment time** through 
 6. Only then separately authorize an exact coordinated release. This prototype never issues APPROVED or GO.
 
 **Verdict even after all fixtures PASS: SHADOW EVIDENCE ONLY / RELEASE HOLD.**
+
+
+## Additive protected-main publisher source discovery (2026-10-24)
+The read-only `source-inventory` job checks out the immutable protected-main SHA independently of candidate bytes, scans every `.github/workflows/*.yml` for Cloudflare writer credentials, Wrangler/Page deploy actions, Pages write permissions, and related indicators, and emits an **advisory** exact-source JSON inventory. Lexical detection can generate false positives and miss indirect deployment scripts; no scan can certify absence of writers. This job never uses write credentials, and its successful status remains `production_release=HOLD`. A reviewer must reconcile flagged and unflagged paths against GitHub's actual workflow registry, environment and Cloudflare permissions before any release.

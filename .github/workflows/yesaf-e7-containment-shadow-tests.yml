@@ -8,6 +8,7 @@ on:
       - '.github/scripts/yesaf-e7-containment-policy.mjs'
       - '.github/scripts/test-yesaf-e7-containment-policy.mjs'
       - '.github/scripts/yesaf-e7-readonly-collector.mjs'
+      - '.github/scripts/yesaf-e7-writer-surface-scanner.mjs'
       - '.github/workflows/yesaf-e7-containment-shadow-tests.yml'
       - 'docs/yesaf/E7_CONTAINMENT_AUTHORIZATION_SHADOW.md'
 permissions:
@@ -59,3 +60,35 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: node .github/scripts/yesaf-e7-readonly-collector.mjs --live
+
+  source-inventory:
+    name: Protected-main workflow publisher surface (advisory, read-only)
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 3164d2537b4f19381c52bbfb5c9e1b7ee7d15846
+          path: protected-main
+          persist-credentials: false
+      - name: Verify candidate and trusted source SHA
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          test "$(git -C candidate rev-parse HEAD)" = "$CANDIDATE_SHA"
+          test "$(git -C protected-main rev-parse HEAD)" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test scanner and inventory all protected-main workflows
+        run: |
+          node candidate/.github/scripts/yesaf-e7-writer-surface-scanner.mjs --self-test
+          node candidate/.github/scripts/yesaf-e7-writer-surface-scanner.mjs --scan protected-main
