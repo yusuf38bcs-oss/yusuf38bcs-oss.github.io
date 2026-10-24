@@ -125,12 +125,12 @@ assert workflow.count(
 assert "secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN" not in workflow
 assert "secrets.CLOUDFLARE_API_TOKEN" not in workflow
 
-# The GET-only binding probe must verify account-owned tokens with account API.
+# The GET-only probe must verify Pages as account-owned and Worker as user-owned.
 assert "account_root + '/tokens/verify'" in workflow
 assert workflow.count("metadata_get(pages, '/accounts/' + account + '/tokens/verify')") == 1
-assert workflow.count("metadata_get(worker, '/accounts/' + account + '/tokens/verify')") == 1
+assert workflow.count("metadata_get(worker, '/user/tokens/verify')") == 1
 assert "if path not in allowed_paths:" in workflow
 assert "method='GET'" in workflow
-assert "/user/tokens/verify" not in workflow
+assert workflow.count("'/user/tokens/verify'") == 2
 
 print("Production read-only credential boundary and annotation fallback: PASS")

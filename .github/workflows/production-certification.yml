@@ -919,6 +919,7 @@ jobs:
               account_root = '/accounts/' + account
               allowed_paths = {
                   account_root + '/tokens/verify',
+                  '/user/tokens/verify',
                   account_root + '/pages/projects/yusuf38bcs-oss-github-io',
                   account_root + '/workers/scripts/lbfl-socratic-ai/deployments',
               }
@@ -939,7 +940,7 @@ jobs:
                   raise SystemExit('HOLD: Cloudflare metadata returned success=false')
               return document.get('result')
           p = metadata_get(pages, '/accounts/' + account + '/tokens/verify')
-          w = metadata_get(worker, '/accounts/' + account + '/tokens/verify')
+          w = metadata_get(worker, '/user/tokens/verify')
           if not isinstance(p, dict) or not isinstance(w, dict):
               raise SystemExit('HOLD: Token verify result missing')
           if p.get('id', '').lower() != page_id or w.get('id', '').lower() != worker_id:
