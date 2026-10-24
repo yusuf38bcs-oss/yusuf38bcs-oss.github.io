@@ -1,0 +1,37 @@
+# YESAF E7: read-only secret-scope regression; never a publisher.
+name: YESAF E7 Pages Metadata Reader Scope Fixtures
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/workflows/adsense-browser-certification.yml'
+      - '.github/workflows/ielts-reading-browser-certification.yml'
+      - '.github/workflows/ielts-speaking-browser-certification.yml'
+      - '.github/workflows/ielts-typography-browser-certification.yml'
+      - '.github/workflows/ielts-writing-browser-certification.yml'
+      - '.github/workflows/zoology-practical-browser-certification.yml'
+      - '.github/scripts/test-yesaf-e7-pages-reader-scope.mjs'
+      - '.github/workflows/yesaf-e7-pages-reader-scope-tests.yml'
+      - 'docs/yesaf/E7_PAGES_METADATA_READER_SPLIT.md'
+permissions:
+  contents: read
+jobs:
+  scope-fixtures:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Verify exact candidate commit
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Reject legacy writer secrets on six metadata consumers
+        run: node --test .github/scripts/test-yesaf-e7-pages-reader-scope.mjs
