@@ -70,3 +70,78 @@ test('successor preserves Ruby 3.2, Node 24 and Practical-213106 scientific vali
   assert.match(successor, /ruby scripts\/zoology\/validate_practical_213106\.rb/);
   assert.match(successor, /python3 scripts\/academic\/validate_botany_learner_content\.py/);
 });
+
+
+// P2 regression: original F-09 PR path trigger set is an exact security contract.
+// These checks fail closed if a protected original dependency is not monitored.
+function museumPaths(yaml) {
+  const lines = yaml.split('\n');
+  const index = lines.indexOf('    paths:');
+  if (index < 0) return null;
+  const entries = [];
+  for (const line of lines.slice(index + 1)) {
+    const match = line.match(/^      - "([^"]+)"$/);
+    if (!match) break;
+    entries.push(match[1]);
+  }
+  return entries.length ? entries : null;
+}
+const originalTriggers = museumPaths(legacy);
+const successorYamlPath = '.github/workflows/yesaf-museum-readonly-certification.yml';
+const fixturesScriptPath = '.github/scripts/test-yesaf-museum-no-publisher.mjs';
+const fixturesRunnerPath = '.github/workflows/yesaf-museum-no-publisher-tests.yml';
+function pathCoverageDefects(yaml, expected) {
+  const observed = museumPaths(yaml);
+  if (!observed) return ['MISSING_EXACT_PATH_LIST'];
+  const violations = [];
+  if (observed.length !== expected.length) violations.push('COUNT_MISMATCH');
+  if (new Set(observed).size !== observed.length) violations.push('DUPLICATE_PATH');
+  for (const required of expected) if (!observed.includes(required)) violations.push('MISSING:' + required);
+  for (const actual of observed) if (!expected.includes(actual)) violations.push('UNEXPECTED:' + actual);
+  if (observed.some(x => x.includes('*') || x.endsWith('/'))) violations.push('BROAD_GLOB');
+  return violations;
+}
+const expectedSuccessorTriggers = [...originalTriggers, successorYamlPath];
+const expectedRunnerTriggers = [...originalTriggers, successorYamlPath, fixturesScriptPath, fixturesRunnerPath];
+test('P2 original Museum F-09 trigger inventory remains immutable: 17 exact paths', () => {
+  assert.equal(gitBlobSha(legacy), PINNED_OLD_BLOB);
+  assert.equal(originalTriggers.length, 17);
+  assert.equal(new Set(originalTriggers).size, 17);
+});
+test('P2 academic successor exactly matches all predecessor protected PR triggers', () => {
+  assert.deepEqual(pathCoverageDefects(successor, expectedSuccessorTriggers), []);
+});
+test('P2 security-fixture runner exactly monitors all predecessor protected PR triggers', () => {
+  assert.deepEqual(pathCoverageDefects(runner, expectedRunnerTriggers), []);
+});
+for (const protectedPath of originalTriggers) {
+  for (const [label, contents, expected] of [
+    ['science', successor, expectedSuccessorTriggers],
+    ['fixtures', runner, expectedRunnerTriggers],
+  ]) {
+    const exactLine = '      - "' + protectedPath + '"\n';
+    test('negative: removal of protected ' + label + ' trigger ' + protectedPath, () => {
+      assert.ok(contents.includes(exactLine));
+      assert.ok(pathCoverageDefects(contents.replace(exactLine, ''), expected).some(s => s.startsWith('MISSING:')));
+    });
+    test('negative: rename of protected ' + label + ' trigger ' + protectedPath, () => {
+      assert.ok(contents.includes(exactLine));
+      assert.ok(pathCoverageDefects(contents.replace(exactLine, '      - "untrusted/renamed-path"\n'), expected).length > 0);
+    });
+  }
+}
+for (const [label, contents, expected] of [
+  ['science', successor, expectedSuccessorTriggers],
+  ['fixtures', runner, expectedRunnerTriggers],
+]) {
+  const first = '      - "' + originalTriggers[0] + '"\n';
+  test('negative: duplicate original ' + label + ' trigger', () => {
+    assert.ok(pathCoverageDefects(contents.replace(first, first + first), expected).includes('DUPLICATE_PATH'));
+  });
+  test('negative: wildcard original ' + label + ' trigger', () => {
+    assert.ok(pathCoverageDefects(contents.replace(first, '      - "**"\n'), expected).length > 0);
+  });
+  test('negative: original ' + label + ' paths key disabled', () => {
+    assert.ok(pathCoverageDefects(contents.replace('    paths:\n', '    paths_disabled:\n'), expected).length > 0);
+  });
+}
