@@ -1,0 +1,122 @@
+# E7 prototype: no secrets, no statuses writer, no deploy, no manual dispatch.
+name: YESAF E7 Containment Shadow Fixtures
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/scripts/yesaf-e7-containment-policy.mjs'
+      - '.github/scripts/test-yesaf-e7-containment-policy.mjs'
+      - '.github/scripts/yesaf-e7-readonly-collector.mjs'
+      - '.github/scripts/yesaf-e7-writer-surface-scanner.mjs'
+      - '.github/scripts/yesaf-e7-expanded-writer-census.mjs'
+      - '.github/workflows/yesaf-e7-containment-shadow-tests.yml'
+      - 'docs/yesaf/E7_CONTAINMENT_AUTHORIZATION_SHADOW.md'
+permissions:
+  contents: read
+jobs:
+  shadow-tests:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Confirm exact candidate SHA
+        env:
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run 21 negative and positive containment fixtures
+        run: |
+          node --check .github/scripts/yesaf-e7-readonly-collector.mjs
+          node --test .github/scripts/test-yesaf-e7-containment-policy.mjs
+
+  census-readonly:
+    name: GitHub publisher registry and run census (non-authorizing)
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'security/yesaf-e7-containment-attestor-prototype-20261024' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Checkout exact candidate without persistent credentials
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Fail closed on candidate SHA mismatch
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: GET-only workflow-state census (HOLD on any enabled or active writer)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node .github/scripts/yesaf-e7-readonly-collector.mjs --live
+
+  source-inventory:
+    name: Protected-main workflow publisher surface (advisory, read-only)
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 3164d2537b4f19381c52bbfb5c9e1b7ee7d15846
+          path: protected-main
+          persist-credentials: false
+      - name: Verify candidate and trusted source SHA
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          test "$(git -C candidate rev-parse HEAD)" = "$CANDIDATE_SHA"
+          test "$(git -C protected-main rev-parse HEAD)" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test scanner and inventory all protected-main workflows
+        run: |
+          node candidate/.github/scripts/yesaf-e7-writer-surface-scanner.mjs --self-test
+          node candidate/.github/scripts/yesaf-e7-writer-surface-scanner.mjs --scan protected-main
+
+  expanded-source-census:
+    name: All 26 flagged sources registry/run snapshot (non-authorizing)
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'security/yesaf-e7-containment-attestor-prototype-20261024' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Verify exact candidate SHA
+        env:
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: GET-only expanded registry and run audit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node .github/scripts/yesaf-e7-expanded-writer-census.mjs --self-test
+          node .github/scripts/yesaf-e7-expanded-writer-census.mjs --live
