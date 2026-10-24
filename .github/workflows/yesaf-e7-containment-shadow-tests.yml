@@ -1,0 +1,35 @@
+# E7 prototype: no secrets, no statuses writer, no deploy, no manual dispatch.
+name: YESAF E7 Containment Shadow Fixtures
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/scripts/yesaf-e7-containment-policy.mjs'
+      - '.github/scripts/test-yesaf-e7-containment-policy.mjs'
+      - '.github/scripts/yesaf-e7-readonly-collector.mjs'
+      - '.github/workflows/yesaf-e7-containment-shadow-tests.yml'
+      - 'docs/yesaf/E7_CONTAINMENT_AUTHORIZATION_SHADOW.md'
+permissions:
+  contents: read
+jobs:
+  shadow-tests:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Confirm exact candidate SHA
+        env:
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run 21 negative and positive containment fixtures
+        run: |
+          node --check .github/scripts/yesaf-e7-readonly-collector.mjs
+          node --test .github/scripts/test-yesaf-e7-containment-policy.mjs
