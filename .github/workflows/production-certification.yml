@@ -916,7 +916,13 @@ jobs:
           if page_id == worker_id:
               raise SystemExit('HOLD: Distinct Pages and Worker tokens required')
           def metadata_get(token, path):
-              if path != '/user/tokens/verify' and not path.startswith('/accounts/' + account + '/'):
+              account_root = '/accounts/' + account
+              allowed_paths = {
+                  account_root + '/tokens/verify',
+                  account_root + '/pages/projects/yusuf38bcs-oss-github-io',
+                  account_root + '/workers/scripts/lbfl-socratic-ai/deployments',
+              }
+              if path not in allowed_paths:
                   raise SystemExit('HOLD: Unapproved metadata route')
               req = urllib.request.Request('https://api.cloudflare.com/client/v4' + path,
                   headers={'Accept': 'application/json', 'Authorization': 'Bearer ' + token}, method='GET')
@@ -932,8 +938,8 @@ jobs:
               if document.get('success') is not True:
                   raise SystemExit('HOLD: Cloudflare metadata returned success=false')
               return document.get('result')
-          p = metadata_get(pages, '/user/tokens/verify')
-          w = metadata_get(worker, '/user/tokens/verify')
+          p = metadata_get(pages, '/accounts/' + account + '/tokens/verify')
+          w = metadata_get(worker, '/accounts/' + account + '/tokens/verify')
           if not isinstance(p, dict) or not isinstance(w, dict):
               raise SystemExit('HOLD: Token verify result missing')
           if p.get('id', '').lower() != page_id or w.get('id', '').lower() != worker_id:
