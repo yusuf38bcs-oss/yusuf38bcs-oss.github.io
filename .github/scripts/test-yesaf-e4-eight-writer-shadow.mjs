@@ -13,7 +13,7 @@ const retired = Object.freeze({
   "permanent-slides": "a17d3221cc69dcb4b4760693814eec40d26d719e",
   "temporary-mounts": "07b28127f234d5819e568497d206851230e13810",
   "whole-mounts": "1f8f8ab0b9347a7c1c3e2e66e729ea1427c31a0a",
-  "field-report": "9c5facafde56309951db4e768f7040582c85fe5f9",
+  "field-report": "9c5facafde56309951db4e768f7040582c0aa96c",
   zooplankton: "305b555b153c30719fedcc88164947a2c85fe5f9",
 });
 const academic = Object.freeze({
