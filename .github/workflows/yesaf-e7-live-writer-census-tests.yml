@@ -9,6 +9,8 @@ on:
       - ".github/scripts/test-yesaf-e7-live-writer-census.mjs"
       - ".github/scripts/yesaf-e7-worker-write-time-fence.mjs"
       - ".github/scripts/test-yesaf-e7-worker-write-time-fence.mjs"
+      - ".github/scripts/yesaf-production-authority-audit.mjs"
+      - ".github/scripts/test-yesaf-production-authority-audit.mjs"
       - ".github/workflows/worker-production-deployment.yml"
       - ".github/workflows/yesaf-e7-live-writer-census-tests.yml"
 permissions:
@@ -33,5 +35,11 @@ jobs:
         run: node --test .github/scripts/test-yesaf-e7-live-writer-census.mjs
       - name: Unprivileged write-time attestor and publisher-boundary adversarial fixtures
         run: node --test .github/scripts/test-yesaf-e7-worker-write-time-fence.mjs
+      - name: Validate candidate restricted-step Worker token audit and negative fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test .github/scripts/test-yesaf-production-authority-audit.mjs
+          node .github/scripts/yesaf-production-authority-audit.mjs
       - name: No authority granted
         run: echo 'Mock GET-only fixtures, never a live deploy-time approval.'
