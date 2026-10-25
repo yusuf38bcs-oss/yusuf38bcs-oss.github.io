@@ -1,0 +1,54 @@
+# Additive non-authorizing exact-head academic/publisher separation witness.
+# No production deploy, secret, attestation or write permission.
+name: YESAF E4 Academic Publisher Separation Candidate
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - ".github/scripts/yesaf-e4-academic-publisher-separation.mjs"
+      - ".github/scripts/test-yesaf-e4-academic-publisher-separation.mjs"
+      - ".github/workflows/yesaf-e4-academic-publisher-separation.yml"
+      - "docs/yesaf/E4_ACADEMIC_PUBLISHER_POLICY_MIGRATION_CANDIDATE.md"
+
+permissions:
+  contents: read
+
+jobs:
+  candidate-science-custody:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact PR HEAD without persisted credentials
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Authenticate original main, exact candidate and protected ancestry
+        shell: bash
+        env:
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -euo pipefail
+          test "$BASE_REF" = "main"
+          test "$PR_BASE" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$PR_BASE"
+          test "$(git rev-parse HEAD)" = "$PR_HEAD"
+          git merge-base --is-ancestor "$PR_BASE" "$PR_HEAD"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Test eight original science+browser+academic workflow contracts and negative cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test .github/scripts/test-yesaf-e4-academic-publisher-separation.mjs
+          node .github/scripts/yesaf-e4-academic-publisher-separation.mjs
+      - name: Explicit non-authorizing contract
+        run: |
+          echo 'Static academic source custody only: existing trusted predecessor checks remain in force.'
+          echo 'This green candidate check cannot approve merge or production release.'
