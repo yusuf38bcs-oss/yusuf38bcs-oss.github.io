@@ -2,7 +2,7 @@
 
 ## Authority and status
 
-- Candidate: \`feat/lbfl-homepage-v46-learning-first-20261025\`, based on protected \`main@3164d2537b4f19381c52bbfb5c9e1b7ee7d15846\`.
+- Candidate: `feat/lbfl-homepage-v46-learning-first-20261025`, based on protected `main@3164d2537b4f19381c52bbfb5c9e1b7ee7d15846`.
 - State: **IMPLEMENTATION CANDIDATE — HOLD / NO MERGE / NO PRODUCTION DEPLOY**.
 - Research basis: *LBFL Homepage Expert Code-and-Design Review* (33 pages), especially pages 1–12 and 22–32. The report reviews a V4.5.1 standalone prototype; this implementation intentionally builds on the different existing V3 Jekyll production foundation.
 - No Worker, DNS, Cloudflare, ads, consent, secrets, protection rules, science-course sources or shared-platform files are modified.
@@ -17,15 +17,15 @@ The homepage now asks for a learner decision and a prediction before explaining 
 
 - The plant-cell salt challenge explicitly states its assumptions. Its model is **not** represented as experimental measurements. The answer is net water movement out of the cell under the stated water-potential gradient; sufficient water loss may cause plasmolysis.
 - Linked source lessons: published HSC Botany membrane and cell wall/vacuole lessons.
-- Six spotlight cards are curated from the existing Chapter-01 learning data. They **do not** claim to be the latest or to have a review certification not recorded in metadata. Their named canonical lesson routes must be verified against built \`_site\`.
+- Six spotlight cards are curated from the existing Chapter-01 learning data. They **do not** claim to be the latest or to have a review certification not recorded in metadata. Their named canonical lesson routes must be verified against built `_site`.
 - Prediction and reflection text is processed locally; no telemetry, cookies, storage, user ID or network calls are introduced by V4.6.
 
 ## Progressive enhancement
 
 - Pathways, journey links, spotlight cards and editorial content are rendered by Jekyll and usable with JavaScript disabled.
-- The prediction explanation is native \`<details>\` and available without JavaScript; answer-specific feedback and reset are enhancements.
+- The prediction explanation is native `<details>` and available without JavaScript; answer-specific feedback and reset are enhancements.
 - Motion is nonessential; pause, reduced-motion, Save-Data, page-hidden and offscreen controls are independent of learning actions.
-- English page marks Bangla snippets with \`lang="bn"\`. The existing \`/bn/\` entry has a Bangla explanation and source route.
+- English page marks Bangla snippets with `lang="bn"`. The existing `/bn/` entry has a Bangla explanation and source route.
 
 ## Acceptance and release gates (not yet certified)
 
