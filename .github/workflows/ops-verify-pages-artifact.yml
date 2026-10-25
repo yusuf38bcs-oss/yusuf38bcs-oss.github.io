@@ -185,7 +185,7 @@ jobs:
           import re
           import sys
 
-          EXPECTED_METRICS = [94, 4, 3, 35225]
+          # Derived from independent rendered cards/metadata below, not stale inventory constants.
           SYSTEM_ROUTES = {
               "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/",
               "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/",
@@ -253,6 +253,49 @@ jobs:
           card_route_set = set(card_routes)
           json_ld_text = "\n".join(parser.json_ld_parts)
 
+          # The source layout derives each displayed total from site.biology.
+          # Independently recount rendered cards, pillars, prompts and per-card XP
+          # rather than hard-coding an obsolete historical content inventory.
+          card_articles = re.findall(
+              r'<article class="biology-matrix-card"\\b', html
+          )
+          pillar_sections = re.findall(
+              r'<section\\s+id="biology-pillar-[^"]+"\\s+class="biology-pillar-section\\b',
+              html,
+          )
+          card_metadata = re.findall(
+              r'<div class="biology-card-meta"[^>]*>(.*?)</div>',
+              html,
+              re.DOTALL,
+          )
+          if not card_routes or not pillar_sections:
+              raise SystemExit("Biology Matrix has no learner-facing cards or pillars.")
+          if len(card_articles) != len(card_routes) or len(card_metadata) != len(card_routes):
+              raise SystemExit("Biology Matrix card/link/metadata cardinality mismatch.")
+
+          xp_values = []
+          socratic_badges = 0
+          for card in card_metadata:
+              xp = re.findall(r'<span>\\s*([0-9,]+)\\s+XP\\s*</span>', card)
+              if len(xp) != 1:
+                  raise SystemExit("Biology Matrix card missing unique numeric XP.")
+              value = int(xp[0].replace(",", ""))
+              if value <= 0:
+                  raise SystemExit("Biology Matrix card XP must be positive.")
+              xp_values.append(value)
+              socratic_badges += len(re.findall(
+                  r'<span>\\s*Socratic\\s*</span>', card
+              ))
+          EXPECTED_METRICS = [
+              len(card_routes),
+              len(pillar_sections),
+              socratic_badges,
+              sum(xp_values),
+          ]
+          if len(metrics) != 4:
+              raise SystemExit("Biology Matrix must display four numeric metrics.")
+          print(f"RECALCULATED_FROM_CARDS={EXPECTED_METRICS}")
+
           leaked_cards = sorted(SYSTEM_ROUTES & card_route_set)
           leaked_json_ld = sorted(
               route for route in SYSTEM_ROUTES if route in json_ld_text
@@ -308,5 +351,5 @@ jobs:
             echo "- Direct production curl: intentionally not used"
             echo "- Expired Pages artifact: not required"
             echo "- Cloudflare purge requested: \`$PURGE_REQUESTED\`"
-            echo "- Purge scope: approved Biology URLs only"
+            echo "- Purge policy: prohibited in this verification workflow"
           } >> "$GITHUB_STEP_SUMMARY"
