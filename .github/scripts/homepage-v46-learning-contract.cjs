@@ -15,7 +15,9 @@ const primary = ['/biology/hsc-corner/','/biology/higher-zoology-tree/','/mcq-ar
 
 function verifyRoute(route) {
   assert(route.startsWith('/') && !route.includes('..'), 'Unsafe route: ' + route);
-  assert(fs.existsSync(path.join(site, decodeURIComponent(route), 'index.html')), 'Built lesson missing: ' + route);
+  const relative = decodeURIComponent(route).replace(/^\\/+/, '');
+  const destination = path.join(site, relative, 'index.html');
+  assert(fs.existsSync(destination), 'Built lesson missing: ' + route + ' (checked ' + destination + ')');
 }
 
 (async () => {
