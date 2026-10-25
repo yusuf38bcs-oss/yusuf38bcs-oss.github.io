@@ -122,3 +122,25 @@ test('live-check fixture denies main SHA change during prewrite census',async()=
  await assert.rejects(()=>preWriteCheck({get:simulate(x,{flipAt:10}),
    env:fromInput(x.input),now:()=>now}),/HOLD/);
 });
+
+test('dormant Worker production workflow calls fence twice and isolates the write secret',async()=>{
+  const {readFileSync}=await import('node:fs');
+  const wf=readFileSync('.github/workflows/worker-production-deployment.yml','utf8');
+  const deploy=wf.slice(wf.indexOf('\n  deploy:\n'));
+  assert.match(deploy,/if: \$\{\{ false \}\}/,'Worker deployment must stay explicitly disabled');
+  assert.match(deploy,/permissions:\s*\n\s*contents: read\s*\n\s*actions: read\s*\n\s*checks: read\s*\n\s*statuses: read/);
+  assert.match(deploy,/YESAF_OWNER_GO_SHA: \$\{\{ vars\.YESAF_OWNER_GO_SHA \}\}/);
+  assert.match(deploy,/YESAF_ATTESTOR_APP_ID: \$\{\{ vars\.YESAF_ATTESTOR_APP_ID \}\}/);
+  assert.match(deploy,/node \.github\/scripts\/yesaf-e7-worker-write-time-fence\.mjs/g);
+  const hits=deploy.match(/node \.github\/scripts\/yesaf-e7-worker-write-time-fence\.mjs/g)||[];
+  assert.equal(hits.length,2);
+  const write=deploy.indexOf('- name: Deploy exact main with single designated Cloudflare credential');
+  const pre=deploy.indexOf('- name: Independently attest release');
+  assert.ok(pre>=0&&write>pre);
+  const envPrefix=deploy.slice(0,write);
+  assert.doesNotMatch(envPrefix,/CLOUDFLARE_API_TOKEN:\s*\$\{\{\s*secrets\./);
+  const writer=deploy.slice(write,deploy.indexOf('- name: Resolve exact-main Worker UUID',write));
+  assert.match(writer,/CLOUDFLARE_API_TOKEN:\s*\$\{\{\s*secrets\.CLOUDFLARE_WORKER_DEPLOY_TOKEN\s*\}\}/);
+  assert.ok(writer.indexOf('node .github/scripts/yesaf-e7-worker-write-time-fence.mjs') <
+    writer.indexOf('wrangler deploy'));
+});
