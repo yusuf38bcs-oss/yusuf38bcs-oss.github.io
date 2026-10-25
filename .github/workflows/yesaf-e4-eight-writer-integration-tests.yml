@@ -1,0 +1,55 @@
+# G7 read-only shadow: verifies eight retired writer blobs + six academic successor slots.
+# Authoritative predecessor guards remain unchanged and can correctly fail this PR.
+name: YESAF E4 Eight Writer Six Academic Shadow
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/workflows/conv04f-zoology-practical-*-production-parity.yml'
+      - '.github/workflows/conv04f-zoology-practical-*-successor-guard.yml'
+      - '.github/workflows/yesaf-e4-practical-five-readonly-successors.yml'
+      - '.github/workflows/yesaf-museum-readonly-certification.yml'
+      - '.github/workflows/yesaf-e4-eight-writer-integration-tests.yml'
+      - '.github/scripts/test-yesaf-e4-eight-writer-shadow.mjs'
+      - 'docs/yesaf/E4_G7_8_WRITER_6_ACADEMIC_SHADOW_HOLD.md'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-blob-scope:
+    name: Eight writer retirements / six academic proofs (shadow only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout unprivileged immutable PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Authenticate current protected baseline and exact candidate
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$BASE_REF" = "main"
+          [[ "$EXPECTED_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$BASE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$BASE_SHA"
+          git merge-base --is-ancestor "$BASE_SHA" "$EXPECTED_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Integrated source and negative-case assertions
+        run: node --test .github/scripts/test-yesaf-e4-eight-writer-shadow.mjs
+      - name: Explicit non-authorizing outcome
+        run: |
+          echo 'Integrated source boundary tested; NOT deploy-time authorization.'
+          echo 'Release status remains HOLD until E4/E7 sign-off.'
