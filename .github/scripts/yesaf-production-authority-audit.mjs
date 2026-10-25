@@ -25,12 +25,25 @@ export function auditWorkflow(source) {
   // This source check cannot authorize production: live authentication remains a separate gate.
   const activePreflight = preflight.split('\n').filter(line => !line.trimStart().startsWith('#')).join('\n');
   const liveProof = /--mode\s+preflight\b/.test(activePreflight) && /verify-worker-contract\.mjs/.test(activePreflight);
-  const designatedBindings = [...deploymentJob.matchAll(/^      CLOUDFLARE_API_TOKEN:[ \t]*(.+?)[ \t]*$/gm)]
-    .map(m => m[1].trim());
-  const designated = designatedBindings.length === 1
-    && designatedBindings[0] === '${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}';
-  const otherSecrets = /secrets\.(?:CF_API_TOKEN|CLOUDFLARE_TOKEN|CLOUDFLARE_API_TOKEN)\b/.test(deploymentJob);
-  const fallback = /candidates=\(|trying the next configured credential|for name in "\${candidates\[@\]\}"/.test(deploymentJob);
+  // Historical job-level source and narrower step-level source are both
+  // accepted ONLY with a single designated binding anywhere in the workflow.
+  const assignments = [...source.matchAll(/^([ ]+)CLOUDFLARE_API_TOKEN:[ \t]*(.+?)[ \t]*$/gm)]
+    .map(m=>({indent:m[1].length,value:m[2].trim()}));
+  const expected='${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}';
+  const one=assignments.length===1&&assignments[0].value===expected;
+  const jobScope=one&&assignments[0].indent===6
+    &&/^      CLOUDFLARE_API_TOKEN:[ \t]*\$\{\{ secrets\.CLOUDFLARE_WORKER_DEPLOY_TOKEN \}\}/m.test(deploymentJob);
+  const steps=deploymentJob.split(/(?=^      - name:)/m);
+  const writerStep=steps.find(x=>/^      - name: Deploy exact main with single designated Cloudflare credential[ \t]*$/m.test(x));
+  const stepScope=one&&assignments[0].indent===10&&Boolean(writerStep)
+    &&/^        env:[ \t]*$/m.test(writerStep)
+    &&/^          CLOUDFLARE_API_TOKEN:[ \t]*\$\{\{ secrets\.CLOUDFLARE_WORKER_DEPLOY_TOKEN \}\}[ \t]*$/m.test(writerStep)
+    &&writerStep.indexOf('CLOUDFLARE_API_TOKEN:')>writerStep.indexOf('        env:')
+    &&writerStep.indexOf('CLOUDFLARE_API_TOKEN:')<writerStep.indexOf('        run:');
+  const designated=(jobScope||stepScope)
+    &&(source.match(/secrets\.CLOUDFLARE_WORKER_DEPLOY_TOKEN/g)||[]).length===1;
+  const otherSecrets = /secrets\.(?:CF_API_TOKEN|CLOUDFLARE_TOKEN|CLOUDFLARE_API_TOKEN)\b/.test(source);
+  const fallback = /candidates=\(|trying the next configured credential|for name in "\$\{candidates\[@\]\}"/.test(deploymentJob);
   if (!designated || otherSecrets || fallback) {
     record('CREDENTIAL_FALLBACK', 'Worker deploy must have exactly one designated CLOUDFLARE_WORKER_DEPLOY_TOKEN and no fallback');
   }
