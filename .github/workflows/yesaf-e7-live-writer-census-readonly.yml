@@ -1,0 +1,57 @@
+# Read-only audit. No environment, secrets or deployment privileges.
+name: YESAF E7 Live Writer Census Readonly
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/scripts/yesaf-e7-live-writer-census.mjs'
+      - '.github/scripts/test-yesaf-e7-live-writer-census.mjs'
+      - '.github/scripts/yesaf-e7-live-census-readonly-runner.mjs'
+      - '.github/workflows/yesaf-e7-live-writer-census-readonly.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  live-readonly:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_MAIN_SHA: ${{ github.event.pull_request.base.sha }}
+      EXPECTED_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - name: Check out exact PR commit without persisted checkout token
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Assert exact commit ancestry and frozen base without mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$EXPECTED_MAIN_SHA" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD_SHA"
+          git merge-base --is-ancestor "$EXPECTED_MAIN_SHA" "$EXPECTED_HEAD_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run adversarial API completeness fixtures
+        run: node --test .github/scripts/test-yesaf-e7-live-writer-census.mjs
+      - name: Query ten registered publishers by workflow ID, GET only
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .github/scripts/yesaf-e7-live-census-readonly-runner.mjs
+      - name: Clarify non-release significance
+        shell: bash
+        run: |
+          echo 'Read-only current registry observation is not write-time authorization.'
+          echo 'Known governance and rollback blockers remain HOLD.'
