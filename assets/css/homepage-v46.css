@@ -9,9 +9,13 @@
 .lbfl-home-v3 .lbfl-v3-pathway-card__action { margin-top: 8px; }
 .lbfl-v46-secondary-paths { display:flex; align-items:center; flex-wrap:wrap; gap: 10px 18px; margin-top:26px; font-size: .94rem; }
 .lbfl-v46-secondary-paths > span { color:#3d5355; }
-.lbfl-v46-secondary-paths a { display:inline-flex; align-items:center; padding:8px 12px; border:1px solid #a6bcb9; border-radius:10px; text-decoration:underline; text-underline-offset:3px; }
+.lbfl-v46-secondary-paths a { display:inline-flex; align-items:center; padding:8px 12px; border:1px solid #607e79; border-radius:10px; text-decoration:underline; text-underline-offset:3px; }
 .lbfl-v46-motion-toggle { display:inline-flex; align-items:center; margin-top:14px; padding:9px 12px; border:1px solid #a5c6c4; border-radius:10px; background:rgba(255,255,255,.08); color:#f7f3e9; font-size:.88rem; font-weight:600; font-family:inherit; line-height:1.35; cursor:pointer; }
-.no-js .lbfl-v46-motion-toggle { display:none; }
+.no-js .lbfl-v46-motion-toggle,
+.no-js .lbfl-v46-challenge-actions,
+.no-js .lbfl-v46-confidence-label,
+.no-js [data-v46-confidence],
+.no-js .lbfl-v46-feedback { display:none !important; }
 .lbfl-home-v3[data-v46-motion-paused="true"] .lbfl-v3-hero *,
 .lbfl-home-v3[data-v46-hero-visible="false"] .lbfl-v3-hero *,
 html[data-reduced-motion="true"] .lbfl-home-v3 .lbfl-v3-hero * { animation:none !important; transition:none !important; }
@@ -26,7 +30,7 @@ html[data-reduced-motion="true"] .lbfl-home-v3 .lbfl-v3-hero * { animation:none 
 .lbfl-v46-prediction > p:not(.lbfl-v46-step) { font-size:1rem; line-height:1.6; }
 .lbfl-v46-prediction__choices { min-width:0; margin:22px 0 14px; padding:0; border:0; }
 .lbfl-v46-prediction__choices legend { margin-bottom:12px; font-weight:800; font-size:1.02rem; }
-.lbfl-v46-prediction__option { display:flex; align-items:center; gap:12px; min-height:52px; padding:10px 14px; margin:8px 0; border:1px solid #a7bdb8; border-radius:12px; background:#fff; cursor:pointer; font-size:1rem; }
+.lbfl-v46-prediction__option { display:flex; align-items:center; gap:12px; min-height:52px; padding:10px 14px; margin:8px 0; border:1px solid #607e79; border-radius:12px; background:#fff; cursor:pointer; font-size:1rem; }
 .lbfl-v46-prediction__option:has(input:checked) { background:#e6f2eb; border-color:#0f706d; box-shadow:inset 0 0 0 1px #0f706d; }
 .lbfl-v46-prediction__option input { flex:0 0 auto; width:20px; height:20px; accent-color:#0f706d; }
 .lbfl-v46-confidence-label, .lbfl-v46-revision label { display:block; margin:14px 0 7px; font-weight:750; }
@@ -35,11 +39,11 @@ html[data-reduced-motion="true"] .lbfl-home-v3 .lbfl-v3-hero * { animation:none 
 .lbfl-home-v3 .lbfl-v46-reset { border:1px solid #42665f; background:#fff; color:#06272d; cursor:pointer; }
 .lbfl-v46-challenge-actions button { font:inherit; font-weight:800; cursor:pointer; }
 .lbfl-v46-feedback { min-height:2.5em; margin-top:14px !important; font-size:1rem; font-weight:650; }
-.lbfl-v46-evidence details { border:1px solid #8daea5; border-radius:12px; background:#fffdf9; padding:16px 18px; }
+.lbfl-v46-evidence details { border:1px solid #607e79; border-radius:12px; background:#fffdf9; padding:16px 18px; }
 .lbfl-v46-evidence summary { cursor:pointer; font-weight:800; font-size:1.05rem; min-height:44px; padding:8px 0; }
 .lbfl-v46-evidence details p { margin:12px 0; font-size:1rem; line-height:1.7; }
 .lbfl-v46-water-model { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:center; gap:8px; margin:16px 0; }
-.lbfl-v46-water-model > div { display:flex; flex-direction:column; gap:6px; padding:12px; background:#e7f2ed; border:1px solid #71988d; border-radius:10px; text-align:center; font-size:.9rem; }
+.lbfl-v46-water-model > div { display:flex; flex-direction:column; gap:6px; padding:12px; background:#e7f2ed; border:1px solid #4d7066; border-radius:10px; text-align:center; font-size:.9rem; }
 .lbfl-v46-water-model__arrow { color:#174c43; font-weight:900; text-align:center; }
 .lbfl-v46-water-model figcaption { grid-column:1/-1; color:#34564f; font-size:.88rem; }
 .lbfl-v46-revision textarea { width:100%; min-height:90px; padding:12px; border:1px solid #607e79; border-radius:10px; font:inherit; resize:vertical; }

@@ -6,13 +6,13 @@
       <h2 id="lbfl-v3-journey-title">{{ site.data.homepage.featured_route.title }}</h2>
       <p class="lbfl-v3-journey__accent">{{ site.data.homepage.featured_route.title_accent }}</p>
       <p>{{ site.data.homepage.featured_route.summary }}</p>
-      <a class="lbfl-v3-button lbfl-v3-button--cream lbfl-v3-target" href="{{ site.data.homepage.featured_route.start_url | relative_url }}">Start the connected journey</a>
+      <a class="lbfl-v3-button lbfl-v3-button--cream lbfl-v3-target" href="{{ site.data.homepage.featured_route.start_url | prepend: '/bn' | relative_url }}">Start the connected journey</a>
     </div>
     <ol class="lbfl-v3-journey__steps" aria-label="{{ site.data.homepage.featured_route.lesson_count }} connected cell functions">
       {% for item in site.data.homepage.latest_learning.items %}
         <li>
           <span class="lbfl-v3-journey__index">{{ forloop.index | prepend: '0' }}</span>
-          <div><strong>{{ item.function }}</strong><a href="{{ item.url | relative_url }}">{{ item.title }}</a></div>
+          <div><strong>{{ item.function }}</strong><a href="{{ item.url | prepend: '/bn' | relative_url }}" hreflang="bn">{{ item.title }}</a></div>
         </li>
       {% endfor %}
     </ol>

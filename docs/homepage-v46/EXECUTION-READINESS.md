@@ -40,3 +40,7 @@ The homepage now asks for a learner decision and a prediction before explaining 
 ## Interpretation
 
 This candidate implements the reviewed architecture but does **not** assert improved learning outcomes without evaluation. Track meaningful pathway starts, prediction-to-evidence continuation, misconception repair and connected-lesson continuation; avoid optimizing for clicks alone. No analytics are activated in this candidate.
+
+## Canonical-language route correction
+
+The eight curated Chapter-01 source lessons declare `lang: bn` in their Jekyll front matter. The public unprefixed route redirects to `/bn/biology/...`; V4.6 now links directly to `/bn/biology/...` and marks the destination with `hreflang="bn"`. The read-only browser gate requires the canonical `/bn/` files in the generated `_site`. This corrects an observed build-route mismatch without changing lesson sources or the shared Polyglot configuration.

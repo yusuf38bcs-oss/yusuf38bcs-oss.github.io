@@ -57,6 +57,7 @@ function verifyRoute(route) {
       assert.equal(state.journey,8,'Connected journey must link eight lessons');
       assert.equal(state.sources.length,6,'Six curated source lessons required');
       assert.equal(new Set(state.sources).size,6,'Duplicate source lessons');
+      assert(state.sources.every(route=>route.startsWith('/bn/')),'Bangla source links must use canonical /bn/ routes');
       state.sources.forEach(verifyRoute);
       assert(state.bangla&&state.heroActions&&state.earlyPath,'Learning-first or language requirement missing');
       assert(!state.overflow&&state.control44&&state.noFalseRecency,'Reflow/target/provenance contract failed');
@@ -89,6 +90,7 @@ function verifyRoute(route) {
     await page.locator('[data-v46-evidence] summary').click();
     assert(await page.locator('[data-v46-evidence]').evaluate(n=>n.open),'No-JS explanation not accessible');
     assert(!(await page.locator('[data-v46-motion-toggle]').isVisible()),'No-JS inert control visible');
+    assert(!(await page.locator('[data-v46-check]').isVisible()),'No-JS inert prediction button visible');
     await page.screenshot({path:path.join(output,'390-no-js.png'),fullPage:true});
     await context.close();
     const lab=await browser.newPage();

@@ -18,7 +18,7 @@
       radios[0]?.focus();
       return;
     }
-    const confidence = challenge.querySelector('[data-v46-confidence]')?.value || 'low';
+    const confidence = challenge.querySelector('[data-v46-confidence]')?.value || 'not selected';
     if (selected.value === 'out') {
       feedback.textContent = 'Your prediction matches the water-potential model. Explain why water leaves before you continue. Confidence recorded locally: ' + confidence + '.';
     } else if (selected.value === 'unsure') {
@@ -36,6 +36,10 @@
     if (feedback) feedback.textContent = 'Choose a prediction, then check your reasoning.';
     if (revision) revision.hidden = true;
     if (evidence) evidence.open = false;
+    const revisionText = challenge.querySelector('#lbfl-v46-revision-text');
+    if (revisionText) revisionText.value = '';
+    const confidence = challenge.querySelector('[data-v46-confidence]');
+    if (confidence) confidence.value = '';
     radios[0]?.focus();
   });
 
