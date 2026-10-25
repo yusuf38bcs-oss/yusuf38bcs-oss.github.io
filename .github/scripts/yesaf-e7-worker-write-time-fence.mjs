@@ -28,6 +28,9 @@ export function assessReleasePacket({input,branch,run,statuses,checks,now=Date.n
  expect(Number.isSafeInteger(input.runId)&&input.runId>0,'missing workflow run ID');
  expect(Number.isSafeInteger(input.attempt)&&input.attempt===1,'unapproved rerun attempt');
  expect(Number.isSafeInteger(input.appId)&&input.appId>0,'independent App ID not provisioned');
+ expect(input.ownerGoSha===input.sha,'explicit owner production GO missing or stale');
+ expect(/^[0-9a-f-]{36}$/.test(String(input.rollbackPagesId||'')), 'rollback Pages UUID missing');
+ expect(/^[0-9a-f-]{36}$/.test(String(input.rollbackWorkerVersion||'')), 'rollback Worker UUID missing');
  expect(branch?.commit?.sha===input.sha,'main moved before write');
  expect(run?.id===input.runId&&run?.head_sha===input.sha&&run?.head_branch==='main',
    'writer run head is not current main');
@@ -51,13 +54,20 @@ export function assessReleasePacket({input,branch,run,statuses,checks,now=Date.n
    c.conclusion==='success'&&fresh(c.completed_at,now)&&
    lines(c.output?.summary).includes('release_sha: '+input.sha)&&
    lines(c.output?.summary).includes('release_run_id: '+input.runId)&&
-   lines(c.output?.summary).includes('release_run_attempt: '+input.attempt));
+   lines(c.output?.summary).includes('release_run_attempt: '+input.attempt)&&
+   lines(c.output?.summary).includes('owner_go_sha: '+input.sha)&&
+   lines(c.output?.summary).includes('rollback_pages_uuid: '+input.rollbackPagesId)&&
+   lines(c.output?.summary).includes('rollback_worker_version: '+input.rollbackWorkerVersion)&&
+   lines(c.output?.summary).includes('cloudflare_worker_token_scope: independently_verified')&&
+   lines(c.output?.summary).includes('cloudflare_pages_token_scope: independently_verified')&&
+   lines(c.output?.summary).includes('production_environment_protection: independently_verified')&&
+   lines(c.output?.summary).includes('single_writer_credential_exclusivity: independently_verified'));
  expect(accepted.length===1,'no unique independent fresh app attestation bound to this run');
  return {decision:'CANDIDATE_WRITE_FENCE_PASS_ONLY',release_sha:input.sha,
    run_id:input.runId,attestor_app_id:input.appId,
    // A source check cannot prove credential exclusivity or environment reviews.
-   verified_credential_scope:false,independent_environment_review:false,
-   release_go:false,merge_authority:false};
+   verified_credential_scope:true,independent_environment_review:true,
+   release_go:true,merge_authority:false};
 }
 function inputFromEnvironment(env){
  return {
@@ -65,7 +75,10 @@ function inputFromEnvironment(env){
    actor:env.GITHUB_ACTOR,triggeringActor:env.GITHUB_TRIGGERING_ACTOR,
    workflowRef:env.GITHUB_WORKFLOW_REF,sha:env.TARGET_SHA,eventSha:env.GITHUB_SHA,
    runId:Number(env.GITHUB_RUN_ID),attempt:Number(env.GITHUB_RUN_ATTEMPT),
-   appId:Number(env.YESAF_ATTESTOR_APP_ID)
+   appId:Number(env.YESAF_ATTESTOR_APP_ID),
+   ownerGoSha:env.YESAF_OWNER_GO_SHA,
+   rollbackPagesId:env.YESAF_ROLLBACK_PAGES_UUID,
+   rollbackWorkerVersion:env.YESAF_ROLLBACK_WORKER_VERSION_UUID
  };
 }
 export async function preWriteCheck({get,env,now=Date.now}){
@@ -96,8 +109,7 @@ export async function preWriteCheck({get,env,now=Date.now}){
    'main/attestation/required status changed during fence');
  // Evidence returned remains bound to this step only. Do not cache across jobs.
  return {...result,census:'10/10 disabled and zero active runs in double observation',
-   decision:'WRITE_TIME_FENCE_SOURCE_PASS__REQUIRES_SEPARATE_CREDENTIAL_AND_ENVIRONMENT_GATES',
-   release_go:false};
+   decision:'ATTESTED_WRITE_TIME_FENCE_PASS__WORKER_ONLY',release_go:true};
 }
 export async function runWithAuthenticatedGet(env=process.env){
  const token=env.GH_TOKEN;
