@@ -257,7 +257,7 @@ jobs:
           # Independently recount rendered cards, pillars, prompts and per-card XP
           # rather than hard-coding an obsolete historical content inventory.
           card_articles = re.findall(
-              r'<article class="biology-matrix-card"\b', html
+              r'<article\s+class="biology-matrix-card"(?=\s|>)', html
           )
           pillar_sections = re.findall(
               r'<section\s+id="biology-pillar-[^"]+"\s+class="biology-pillar-section\b',
