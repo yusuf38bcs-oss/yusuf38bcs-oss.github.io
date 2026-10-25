@@ -34,6 +34,26 @@ on:
         required: false
         default: false
         type: boolean
+      reader_probe_only:
+        description: "YESAF M1.C manual GET-only secret identity verifier, no writes"
+        required: false
+        default: false
+        type: boolean
+      expected_probe_sha:
+        description: "Exact 40-character branch commit SHA for verification"
+        required: false
+        default: ""
+        type: string
+      expected_pages_token_id:
+        description: "Non-secret Cloudflare Pages token ID from the policy summary"
+        required: false
+        default: ""
+        type: string
+      expected_worker_token_id:
+        description: "Non-secret Cloudflare Worker token ID from the policy summary"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
@@ -45,7 +65,7 @@ concurrency:
 jobs:
   certification-contract:
     name: Certification contract (exact head)
-    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.reader_probe_only) && (github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
@@ -105,7 +125,7 @@ jobs:
   production-certification:
     name: Main/deployment identity, health, and browser matrix
     needs: certification-contract
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.reader_probe_only) && (github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     env:
@@ -176,8 +196,8 @@ jobs:
         id: production
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN || secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
+          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN }}
+          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN }}
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
         shell: bash
         run: |
@@ -522,8 +542,8 @@ jobs:
         if: ${{ always() }}
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN || secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
+          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN }}
+          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN }}
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
           INITIAL_DEPLOYMENT_ID: ${{ steps.production.outputs.pages_deployment_id }}
           INITIAL_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}
@@ -845,3 +865,96 @@ jobs:
           path: ${{ env.EVIDENCE_DIR }}
           if-no-files-found: warn
           retention-days: 30
+
+  m1c-readonly-binding-probe:
+    name: M1.C GET-only exact token identity and metadata read verifier
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.reader_probe_only && github.ref == 'refs/heads/security/yesaf-m1c-readonly-boundary-20261015' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - name: Authenticate immutable candidate and main before secrets
+        shell: bash
+        env:
+          EXPECTED_PROBE_SHA: ${{ inputs.expected_probe_sha }}
+          EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_PROBE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$EXPECTED_MAIN_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$GITHUB_SHA" = "$EXPECTED_PROBE_SHA"
+          test "$GITHUB_REF" = "refs/heads/security/yesaf-m1c-readonly-boundary-20261015"
+          test "$EXPECTED_MAIN_SHA" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
+          actual_main="$(gh api "repos/${GITHUB_REPOSITORY}/branches/main" --jq .commit.sha)"
+          test "$actual_main" = "$EXPECTED_MAIN_SHA"
+          echo "M1C_EXACT_HEAD_SOURCE_PREFLIGHT=PASS"
+      - name: Verify two GitHub-bound Cloudflare reader identities and GET scopes
+        shell: bash
+        env:
+          PAGES_READER: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN }}
+          WORKER_READER: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN }}
+          PAGES_ID: ${{ inputs.expected_pages_token_id }}
+          WORKER_ID: ${{ inputs.expected_worker_token_id }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          import urllib.error
+          import urllib.request
+          account = "13e317d6883a0f258ad7ed490699f849"
+          pages = os.environ.get('PAGES_READER', '')
+          worker = os.environ.get('WORKER_READER', '')
+          page_id = os.environ.get('PAGES_ID', '').lower()
+          worker_id = os.environ.get('WORKER_ID', '').lower()
+          if not pages or not worker:
+              raise SystemExit('HOLD: Both reader secrets must be nonempty')
+          if not re.fullmatch(r'[0-9a-f]{32}', page_id) or not re.fullmatch(r'[0-9a-f]{32}', worker_id):
+              raise SystemExit('HOLD: Both exact non-secret token IDs are required')
+          if page_id == worker_id:
+              raise SystemExit('HOLD: Distinct Pages and Worker tokens required')
+          def metadata_get(token, path):
+              account_root = '/accounts/' + account
+              allowed_paths = {
+                  account_root + '/tokens/verify',
+                  '/user/tokens/verify',
+                  account_root + '/pages/projects/yusuf38bcs-oss-github-io',
+                  account_root + '/workers/scripts/lbfl-socratic-ai/deployments',
+              }
+              if path not in allowed_paths:
+                  raise SystemExit('HOLD: Unapproved metadata route')
+              req = urllib.request.Request('https://api.cloudflare.com/client/v4' + path,
+                  headers={'Accept': 'application/json', 'Authorization': 'Bearer ' + token}, method='GET')
+              try:
+                  with urllib.request.urlopen(req, timeout=15) as response:
+                      if response.status != 200:
+                          raise SystemExit('HOLD: Unexpected response status')
+                      document = json.load(response)
+              except urllib.error.HTTPError as error:
+                  raise SystemExit('HOLD: Cloudflare metadata HTTP ' + str(error.code)) from None
+              except urllib.error.URLError:
+                  raise SystemExit('HOLD: Cloudflare metadata unreachable') from None
+              if document.get('success') is not True:
+                  raise SystemExit('HOLD: Cloudflare metadata returned success=false')
+              return document.get('result')
+          p = metadata_get(pages, '/accounts/' + account + '/tokens/verify')
+          w = metadata_get(worker, '/user/tokens/verify')
+          if not isinstance(p, dict) or not isinstance(w, dict):
+              raise SystemExit('HOLD: Token verify result missing')
+          if p.get('id', '').lower() != page_id or w.get('id', '').lower() != worker_id:
+              raise SystemExit('HOLD: Stored GitHub reader does not match Cloudflare policy token ID')
+          if p.get('status') != 'active' or w.get('status') != 'active':
+              raise SystemExit('HOLD: Reader token is inactive')
+          project = metadata_get(pages, '/accounts/' + account + '/pages/projects/yusuf38bcs-oss-github-io')
+          workers = metadata_get(worker, '/accounts/' + account + '/workers/scripts/lbfl-socratic-ai/deployments')
+          if not isinstance(project, dict) or project.get('name') != 'yusuf38bcs-oss-github-io':
+              raise SystemExit('HOLD: Pages metadata read failed')
+          if not isinstance(workers, dict) or not workers.get('deployments'):
+              raise SystemExit('HOLD: Worker deployment metadata read failed')
+          print('M1C_GITHUB_SECRET_TO_CLOUDFLARE_TOKEN_IDENTITY=PASS')
+          print('M1C_PAGES_READ_GET=PASS')
+          print('M1C_WORKER_READ_GET=PASS')
+          print('M1C_NO_MUTATION=PASS')
+          PY
