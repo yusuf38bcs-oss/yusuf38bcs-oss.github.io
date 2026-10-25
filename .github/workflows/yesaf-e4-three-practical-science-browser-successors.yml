@@ -79,7 +79,7 @@ jobs:
           ruby scripts/zoology/validate_practical_213106.rb
           ruby .github/scripts/validate-academic-surface-contract.rb
           set +e
-          ruby .github/scripts/validate-conv04f-zoology-practical-gateway.rb
+          PR_BASE_SHA="$BASE_SHA" ruby .github/scripts/validate-conv04f-zoology-practical-gateway.rb
           gateway_status=$?
           set -e
           echo "GATEWAY_STATUS=$gateway_status" >> "$GITHUB_ENV"
