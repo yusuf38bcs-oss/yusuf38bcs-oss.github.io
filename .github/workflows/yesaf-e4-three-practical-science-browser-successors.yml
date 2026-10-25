@@ -72,13 +72,20 @@ jobs:
           )
           test "$(git rev-parse HEAD)" = "$TARGET_SHA"
           node .github/scripts/yesaf-e4-academic-publisher-separation.mjs
-      - name: Check candidate academic Practical contract
+      - name: Check candidate academic Practical contract and retain gateway debt
         shell: bash
         run: |
           set -euo pipefail
           ruby scripts/zoology/validate_practical_213106.rb
           ruby .github/scripts/validate-academic-surface-contract.rb
+          set +e
           ruby .github/scripts/validate-conv04f-zoology-practical-gateway.rb
+          gateway_status=$?
+          set -e
+          echo "GATEWAY_STATUS=$gateway_status" >> "$GITHUB_ENV"
+          if [ "$gateway_status" -ne 0 ]; then
+            echo "::error::Original CONV-04F-08 gateway failed; retain FAIL while collecting independent browser evidence."
+          fi
       - name: Build exact candidate Jekyll output locally
         shell: bash
         run: |
@@ -135,3 +142,11 @@ jobs:
           path: ${{ env.REPORT_DIR }}
           if-no-files-found: warn
           retention-days: 30
+      - name: Preserve original academic-gateway failure after browser audit
+        if: always()
+        shell: bash
+        run: |
+          test "${GATEWAY_STATUS:-missing}" = "0" || {
+            echo "::error::CONV-04F-08 Practical gateway remains FAIL. No academic certification or release."
+            exit 1
+          }
