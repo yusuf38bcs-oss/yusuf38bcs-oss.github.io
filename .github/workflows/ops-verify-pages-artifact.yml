@@ -257,10 +257,10 @@ jobs:
           # Independently recount rendered cards, pillars, prompts and per-card XP
           # rather than hard-coding an obsolete historical content inventory.
           card_articles = re.findall(
-              r'<article class="biology-matrix-card"\\b', html
+              r'<article class="biology-matrix-card"\b', html
           )
           pillar_sections = re.findall(
-              r'<section\\s+id="biology-pillar-[^"]+"\\s+class="biology-pillar-section\\b',
+              r'<section\s+id="biology-pillar-[^"]+"\s+class="biology-pillar-section\b',
               html,
           )
           card_metadata = re.findall(
@@ -276,7 +276,7 @@ jobs:
           xp_values = []
           socratic_badges = 0
           for card in card_metadata:
-              xp = re.findall(r'<span>\\s*([0-9,]+)\\s+XP\\s*</span>', card)
+              xp = re.findall(r'<span>\s*([0-9,]+)\s+XP\s*</span>', card)
               if len(xp) != 1:
                   raise SystemExit("Biology Matrix card missing unique numeric XP.")
               value = int(xp[0].replace(",", ""))
@@ -284,7 +284,7 @@ jobs:
                   raise SystemExit("Biology Matrix card XP must be positive.")
               xp_values.append(value)
               socratic_badges += len(re.findall(
-                  r'<span>\\s*Socratic\\s*</span>', card
+                  r'<span>\s*Socratic\s*</span>', card
               ))
           EXPECTED_METRICS = [
               len(card_routes),
