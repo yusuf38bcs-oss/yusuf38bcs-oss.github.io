@@ -7,6 +7,9 @@ on:
     paths:
       - ".github/scripts/yesaf-e7-live-writer-census.mjs"
       - ".github/scripts/test-yesaf-e7-live-writer-census.mjs"
+      - ".github/scripts/yesaf-e7-worker-write-time-fence.mjs"
+      - ".github/scripts/test-yesaf-e7-worker-write-time-fence.mjs"
+      - ".github/workflows/worker-production-deployment.yml"
       - ".github/workflows/yesaf-e7-live-writer-census-tests.yml"
 permissions:
   contents: read
@@ -28,5 +31,7 @@ jobs:
           node-version: '24'
       - name: Unprivileged adversarial run-census logic
         run: node --test .github/scripts/test-yesaf-e7-live-writer-census.mjs
+      - name: Unprivileged write-time attestor and publisher-boundary adversarial fixtures
+        run: node --test .github/scripts/test-yesaf-e7-worker-write-time-fence.mjs
       - name: No authority granted
         run: echo 'Mock GET-only fixtures, never a live deploy-time approval.'
