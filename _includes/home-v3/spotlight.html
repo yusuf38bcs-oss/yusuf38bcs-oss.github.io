@@ -1,0 +1,20 @@
+<section class="lbfl-v3-section lbfl-v46-spotlight" aria-labelledby="lbfl-v46-spotlight-title">
+  <div class="lbfl-v3-shell">
+    <header class="lbfl-v3-section__head">
+      <p class="lbfl-v3-kicker">05 · LEARN FROM THE SOURCE</p>
+      <h2 id="lbfl-v46-spotlight-title">Selected source lessons</h2>
+      <p>Six chapter-aligned lessons from the curated <em>Inside the Cell</em> sequence. These are not claimed to be the newest publications; every card opens its named source lesson.</p>
+    </header>
+    <div class="lbfl-v46-source-grid">
+      {% for item in site.data.homepage.latest_learning.items limit:6 %}
+        <article class="lbfl-v46-source-card">
+          <p class="lbfl-v46-source-card__meta">{{ item.pathway }} · {{ item.label }} · Curated</p>
+          <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
+          <p>{{ item.question }}</p>
+          <span class="lbfl-v46-source-card__action">Open source lesson <span aria-hidden="true">→</span></span>
+        </article>
+      {% endfor %}
+    </div>
+    <p class="lbfl-v46-source-note">Editorial safeguard: no synthetic dates, automatic “latest” claims, or generic section links. The source route must exist in the built site before release.</p>
+  </div>
+</section>
