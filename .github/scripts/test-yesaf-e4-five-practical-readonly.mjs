@@ -7,7 +7,7 @@ const workflow = readFileSync('.github/workflows/yesaf-e4-practical-five-readonl
 const historical = Object.freeze({
   appendages:'e54ef0b8aa2bd8669cd56c607e4920cbddcd0c6e',
   dissection:'3db9c53ed15106276ac73bc4d5e99bf1727b8cf5',
-  'permanent-slides':'d2da3d58a08bef6c70e27ef17b0d191ed07b07c',
+  'permanent-slides':'d2da3d58a08bef6c70e27ef17b0d191ed07b07c0',
   'temporary-mounts':'c0922971ae0ef6897d7274d0955ab17c8959a7fa',
   'whole-mounts':'71055f8823024d3f32b4cd729608cf197ed9d5bd',
 });
