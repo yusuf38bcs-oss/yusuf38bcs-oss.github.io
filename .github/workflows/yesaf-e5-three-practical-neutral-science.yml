@@ -19,7 +19,8 @@ permissions:
   contents: read
 concurrency:
   group: yesaf-e4-three-academic-${{ github.event.pull_request.number }}
-  cancel-in-progress: false
+  # Superseded exact-head browser runs must not block current PR certification.
+  cancel-in-progress: true
 jobs:
   academic-three:
     name: ${{ matrix.subject }} immutable science + candidate local browser (no writer)
@@ -110,7 +111,18 @@ jobs:
           set -euo pipefail
           node --check ".github/scripts/conv04f-zoology-practical-$SUBJECT-browser-certification.mjs"
           npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
-          npx playwright install --with-deps chromium
+          # Bounded retries fail closed on unstable browser downloads/apt mirrors.
+          # They never skip or replace the original subject browser assertions.
+          for attempt in 1 2; do
+            if timeout --signal=TERM --kill-after=30s 540s npx playwright install --with-deps chromium; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 2 ]; then
+              echo "::error::Chromium runtime installation failed after two bounded attempts"
+              exit 1
+            fi
+            sleep 15
+          done
       - name: Local-only Jekyll server
         shell: bash
         run: |
