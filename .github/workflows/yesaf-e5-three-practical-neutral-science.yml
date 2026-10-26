@@ -1,0 +1,153 @@
+# YESAF E5 — protected-policy-compatible science/browser verification.
+# Original protected publisher source remains unchanged; this suite has NO privileged writers.
+name: YESAF E5 Three Practical Neutral Science Successors
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/workflows/yesaf-e5-three-practical-neutral-science.yml'
+      - '.github/scripts/test-yesaf-e5-predecessor-compatible-source-custody.mjs'
+      - '.github/scripts/yesaf-e5-predecessor-compatible-source-custody.mjs'
+      - '.github/scripts/test-yesaf-e5-predecessor-compatible-source-custody.mjs'
+      - '.github/workflows/conv04f-zoology-practical-*-production-parity.yml'
+      - '_biology/higher-zoology-tree/practical/**'
+      - '_data/academic/**'
+      - 'assets/css/zoology-practical*'
+      - 'assets/js/zoology-practical.js'
+permissions:
+  contents: read
+concurrency:
+  group: yesaf-e4-three-academic-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+jobs:
+  academic-three:
+    name: ${{ matrix.subject }} immutable science + candidate local browser (no writer)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    strategy:
+      fail-fast: false
+      matrix:
+        subject: [museum, zooplankton, field-report]
+    env:
+      TARGET_SHA: ${{ github.event.pull_request.head.sha }}
+      BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      BASE_REF: ${{ github.event.pull_request.base.ref }}
+      SUBJECT: ${{ matrix.subject }}
+      REPORT_DIR: yesaf-e4-three-${{ matrix.subject }}-browser-report
+      JEKYLL_ENV: production
+    steps:
+      - name: Check out exact PR commit, read-only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify original protected main and additive successor custody
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$BASE_REF" = "main"
+          test "$BASE_SHA" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$BASE_SHA"
+          git merge-base --is-ancestor "$BASE_SHA" "$TARGET_SHA"
+          node .github/scripts/yesaf-e5-predecessor-compatible-source-custody.mjs
+      - name: Ruby 3.2 unprivileged science runtime
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
+        with:
+          ruby-version: '3.2'
+          bundler-cache: false
+      - name: Re-run genuine original subject Ruby validator on protected-main sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE_TREE="$RUNNER_TEMP/yesaf-original-science-$SUBJECT"
+          git worktree add --detach "$BASE_TREE" "$BASE_SHA"
+          test "$(git -C "$BASE_TREE" rev-parse HEAD)" = "$BASE_SHA"
+          (
+            cd "$BASE_TREE"
+            export PR_BASE_SHA="$BASE_SHA"
+            ruby -c ".github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb"
+            ruby ".github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb"
+          )
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          node .github/scripts/yesaf-e5-predecessor-compatible-source-custody.mjs
+      - name: Check candidate academic Practical contract and retain gateway debt
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby scripts/zoology/validate_practical_213106.rb
+          ruby .github/scripts/validate-academic-surface-contract.rb
+          set +e
+          PR_BASE_SHA="$BASE_SHA" ruby .github/scripts/validate-conv04f-zoology-practical-gateway.rb
+          gateway_status=$?
+          set -e
+          echo "GATEWAY_STATUS=$gateway_status" >> "$GITHUB_ENV"
+          if [ "$gateway_status" -ne 0 ]; then
+            echo "::error::Original CONV-04F-08 gateway failed; retain FAIL while collecting independent browser evidence."
+          fi
+      - name: Build exact candidate Jekyll output locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle install --jobs 4 --retry 3
+          bundle exec jekyll clean
+          bundle exec jekyll build --trace
+          case "$SUBJECT" in
+            museum) route=museum-specimens ;;
+            zooplankton) route=zooplankton ;;
+            field-report) route=field-report ;;
+            *) echo "::error::Unexpected science subject"; exit 1;;
+          esac
+          test -f "_site/biology/higher-zoology-tree/practical/$route/index.html"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install Playwright / Axe for original browser scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check ".github/scripts/conv04f-zoology-practical-$SUBJECT-browser-certification.mjs"
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+      - name: Local-only Jekyll server
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site >"$RUNNER_TEMP/yesaf-e4-$SUBJECT-http.log" 2>&1 &
+          case "$SUBJECT" in
+            museum) route=museum-specimens ;;
+            zooplankton) route=zooplankton ;;
+            field-report) route=field-report ;;
+          esac
+          for attempt in $(seq 1 30); do
+            if curl -fsS "http://127.0.0.1:4173/biology/higher-zoology-tree/practical/$route/" > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/yesaf-e4-$SUBJECT-http.log"
+          exit 1
+      - name: Execute original subject-specific accessibility and science browser checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node ".github/scripts/conv04f-zoology-practical-$SUBJECT-browser-certification.mjs" \
+            --base-url http://127.0.0.1:4173 --output-dir "$REPORT_DIR"
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          node .github/scripts/yesaf-e5-predecessor-compatible-source-custody.mjs
+      - name: Retain exact-head non-authorizing science/browser reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yesaf-e4-three-${{ matrix.subject }}-${{ github.event.pull_request.head.sha }}
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Preserve original academic-gateway failure after browser audit
+        if: always()
+        shell: bash
+        run: |
+          test "${GATEWAY_STATUS:-missing}" = "0" || {
+            echo "::error::CONV-04F-08 Practical gateway remains FAIL. No academic certification or release."
+            exit 1
+          }
