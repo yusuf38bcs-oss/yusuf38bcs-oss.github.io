@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 // YESAF E7 workflow source freeze. Review-only candidate until trusted migration.
+// Reviewed lineage: website #512 @ 8c966ea9; one dedicated test workflow is
+// explicitly refreshed for the stacked PR. This manifest is not an App signature.
 // At write time, changes to ANY registered workflow require a fresh independently
 // reviewed exact-source manifest, not only the ten previously identified writers.
 // This does not prove Cloudflare credential exclusivity or external publishers.
@@ -81,7 +83,7 @@ export const EXPECTED=Object.freeze({
   ".github/workflows/yesaf-e4-practical-five-readonly-successors.yml": "f9fc4772a82f67ffe9637d2c7e00fe5a353a2de6",
   ".github/workflows/yesaf-e4-three-practical-science-browser-successors.yml": "90f4165e273cf5976a81950246c7796d5ff0de1b",
   ".github/workflows/yesaf-e7-live-writer-census-readonly.yml": "7c2a19242ceeec8a435ccf206ddd8e9c3ac8267e",
-  ".github/workflows/yesaf-e7-live-writer-census-tests.yml": "681a348020232805aa1964ccbcbce8976119740c",
+  ".github/workflows/yesaf-e7-live-writer-census-tests.yml": "bce2b43a75346c00a2cb8d49162f2558154fef54",
   ".github/workflows/yesaf-e7-ops-readonly-boundary-tests.yml": "dab8bd2a210850ae61656a3ef97045290a34acab",
   ".github/workflows/yesaf-museum-no-publisher-tests.yml": "73a419e2ce60c7eac22ee1aff2dbe84ee3a4912e",
   ".github/workflows/yesaf-museum-readonly-certification.yml": "2a17be8742e4530d10e8bb2a63942728d1fceb38",
@@ -111,6 +113,6 @@ export function verifyWorkflowTree(tree,expectedCommit){
     if(seen.get(path)!==blob)fail('new, missing or changed workflow: '+path);
   }
   return {decision:'EXACT_WORKFLOW_SOURCE_MATCH_ONLY',count:expected.length,
-    source_snapshot_commit:SNAPSHOT_BASE,production_authority:false,
+    source_lineage_base:SNAPSHOT_BASE,production_authority:false,
     independent_writer_exclusivity:false,release:'HOLD'};
 }
