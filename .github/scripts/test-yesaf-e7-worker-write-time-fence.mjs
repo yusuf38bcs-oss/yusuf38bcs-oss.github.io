@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {assessReleasePacket,preWriteCheck} from './yesaf-e7-worker-write-time-fence.mjs';
 import {PUBLISHERS} from './yesaf-e7-live-writer-census.mjs';
+import {EXPECTED,verifyWorkflowTree} from './yesaf-e7-workflow-source-freeze.mjs';
 const sha='a'.repeat(40), now=Date.parse('2026-10-25T15:50:00Z');
 const worker='yusuf38bcs-oss/yusuf38bcs-oss.github.io/.github/workflows/worker-production-deployment.yml@refs/heads/main';
 const uuid1='f611cf1d-9a84-4b27-8317-d23446c99fcd';
@@ -46,6 +47,9 @@ function simulate(input,{flipAt=null,enabledId=null,queuedId=null}={}){
  return async path=>{
   ++calls;
   const x=input;
+  if(path===base+'/git/trees/'+sha+'?recursive=1'){
+    return {sha,truncated:false,tree:Object.entries(EXPECTED).map(([path,sha])=>({path,sha,type:'blob'}))};
+  }
   if(path===base+'/branches/main'){
     if(flipAt&&calls>=flipAt)return {commit:{sha:'b'.repeat(40)}};
     return x.branch;
@@ -143,4 +147,28 @@ test('dormant Worker production workflow calls fence twice and isolates the writ
   assert.match(writer,/CLOUDFLARE_API_TOKEN:\s*\$\{\{\s*secrets\.CLOUDFLARE_WORKER_DEPLOY_TOKEN\s*\}\}/);
   assert.ok(writer.indexOf('node .github/scripts/yesaf-e7-worker-write-time-fence.mjs') <
     writer.indexOf('wrangler deploy'));
+});
+
+function treeFixture(){
+  return {sha,truncated:false,
+    tree:Object.entries(EXPECTED).map(([path,sha])=>({path,sha,type:'blob'}))};
+}
+test('E7 full exact workflow tree freezes all candidate workflow blob identities',()=>{
+  const t=treeFixture(),r=verifyWorkflowTree(t,sha);
+  assert.equal(r.count,Object.keys(EXPECTED).length);
+  assert.equal(r.production_authority,false);
+  assert.equal(r.independent_writer_exclusivity,false);
+  assert.equal(r.release,'HOLD');
+});
+for(const [name,mutate] of [
+  ['new publishing workflow',t=>t.tree.push({path:'.github/workflows/rogue-publish.yml',sha:'a'.repeat(40),type:'blob'})],
+  ['changed existing writer',t=>t.tree.find(x=>x.path.includes('worker-production-deployment')).sha='b'.repeat(40)],
+  ['removed legacy writer',t=>t.tree=t.tree.filter(x=>!x.path.includes('museum-production-parity'))],
+  ['duplicate workflow path',t=>t.tree.push({...t.tree[0]})],
+  ['truncated GitHub tree',t=>t.truncated=true],
+  ['wrong immutable tree identity',t=>t.sha='c'.repeat(40)],
+  ['nonblob workflow entry',t=>t.tree[0].type='tree'],
+])test('E7 source freeze negative: '+name,()=>{
+  const x=treeFixture();mutate(x);
+  assert.throws(()=>verifyWorkflowTree(x,sha),/YESAF E7 WORKFLOW-SOURCE HOLD:/);
 });

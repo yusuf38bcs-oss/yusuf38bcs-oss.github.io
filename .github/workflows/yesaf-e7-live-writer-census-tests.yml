@@ -2,12 +2,13 @@
 name: YESAF E7 Workflow Run Census Boundary
 on:
   pull_request:
-    branches: [main]
+    branches: [main, yesaf/e4-three-subject-independent-science-browser-20261025]
     types: [opened, synchronize, reopened]
     paths:
       - ".github/scripts/yesaf-e7-live-writer-census.mjs"
       - ".github/scripts/test-yesaf-e7-live-writer-census.mjs"
       - ".github/scripts/yesaf-e7-worker-write-time-fence.mjs"
+      - ".github/scripts/yesaf-e7-workflow-source-freeze.mjs"
       - ".github/scripts/test-yesaf-e7-worker-write-time-fence.mjs"
       - ".github/scripts/yesaf-production-authority-audit.mjs"
       - ".github/scripts/test-yesaf-production-authority-audit.mjs"
@@ -35,6 +36,20 @@ jobs:
         run: node --test .github/scripts/test-yesaf-e7-live-writer-census.mjs
       - name: Unprivileged write-time attestor and publisher-boundary adversarial fixtures
         run: node --test .github/scripts/test-yesaf-e7-worker-write-time-fence.mjs
+      - name: Live read-only immutable 85-workflow tree proof (not release authority)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXACT_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${GITHUB_REPOSITORY}/git/trees/${EXACT_SHA}?recursive=1" > "$RUNNER_TEMP/yesaf-workflow-tree.json"
+          node --input-type=module -e '
+            import {readFileSync} from "node:fs";
+            import {verifyWorkflowTree} from "./.github/scripts/yesaf-e7-workflow-source-freeze.mjs";
+            const r=verifyWorkflowTree(JSON.parse(readFileSync(process.argv[1],"utf8")),process.env.EXACT_SHA);
+            console.log(JSON.stringify(r));
+          ' "$RUNNER_TEMP/yesaf-workflow-tree.json"
       - name: Validate candidate restricted-step Worker token audit and negative fixtures
         shell: bash
         run: |
