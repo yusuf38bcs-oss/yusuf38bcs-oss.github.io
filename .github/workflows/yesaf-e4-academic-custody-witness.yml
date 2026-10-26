@@ -1,0 +1,52 @@
+# Additive read-only shadow: does NOT bypass existing publisher protection validators.
+name: YESAF E4 Academic Custody Witness
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - ".github/scripts/yesaf-e4-academic-custody-witness.mjs"
+      - ".github/scripts/test-yesaf-e4-academic-custody-witness.mjs"
+      - ".github/workflows/yesaf-e4-academic-custody-witness.yml"
+      - "docs/yesaf/E4_E7_NARROW_PROTECTION_MIGRATION_HOLD.md"
+
+permissions:
+  contents: read
+
+jobs:
+  custody:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Checkout exact unprivileged PR HEAD
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify immutable main baseline, PR head, ancestry, no protection drift
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+          EXPECTED_BASE: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$BASE_REF" = "main"
+          test "$EXPECTED_BASE" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$EXPECTED_BASE"
+          git merge-base --is-ancestor "$EXPECTED_BASE" "$EXPECTED_HEAD"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Read-only academic source custody and adversarial fixtures
+        run: |
+          node --test .github/scripts/test-yesaf-e4-academic-custody-witness.mjs
+          node .github/scripts/yesaf-e4-academic-custody-witness.mjs
+      - name: Explicitly prohibit automatic release authorization
+        shell: bash
+        run: |
+          echo "Academic custody evidence is not trusted promotion authorization."
+          echo "Production remains HOLD; predecessor security check failures must remain red."
