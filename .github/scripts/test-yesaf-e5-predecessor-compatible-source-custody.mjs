@@ -4,10 +4,10 @@ import {readFileSync} from 'node:fs';
 import {BASE,PINNED_FILES,PINNED_TREES,verifyCustody,inspectLive} from './yesaf-e5-predecessor-compatible-source-custody.mjs';
 const h='a'.repeat(40);
 const make=()=>({base:BASE,baseLive:BASE,head:h,ancestor:true,files:{...PINNED_FILES},trees:{...PINNED_TREES}});
-test('frozen inherited 42 artifacts and eight academic trees, never authorization',()=>{
+test('frozen inherited 41 distinct artifacts and eight academic trees, never authorization',()=>{
  const r=verifyCustody(make());
  assert.equal(r.decision,'SOURCE_CUSTODY_PASS');
- assert.equal(r.protected_files,42);assert.equal(r.protected_science_trees,8);
+ assert.equal(r.protected_files,41);assert.equal(r.protected_science_trees,8);
  assert.equal(r.merge_authority,false);assert.equal(r.deploy_authority,false);
  assert.equal(r.independent_attestation,false);assert.equal(r.production_release,'HOLD');
 });
