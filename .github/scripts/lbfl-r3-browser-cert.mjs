@@ -11,7 +11,7 @@ function assert(ok,name,info={}){rows.push({name,pass:Boolean(ok),...info});if(!
 try {
  for(const width of [320,390,768,1024,1440]) {
   const ctx=await browser.newContext({viewport:{width,height:width===320?800:900},reducedMotion:'reduce'});
-  await ctx.route(/sibforms\.com|googletagmanager\.com|google-analytics\.com|googlesyndication\.com/,route=>route.fulfill({status:204,body:''}));
+  await ctx.route(/^https?:\/\/(?:[a-z0-9-]+\.)*(?:sibforms\.com|googletagmanager\.com|google-analytics\.com|googlesyndication\.com)(?::\d+)?(?:[/?#]|$)/i,route=>route.fulfill({status:204,body:''}));
   const page=await ctx.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   for(const route of ['/', `${PREFIX}/labs/lbfl-scientific-review/`, `${PREFIX}/labs/lbfl-scientific-integration/`]) {
    const response=await page.goto(BASE+route,{waitUntil:'domcontentloaded',timeout:60000});
