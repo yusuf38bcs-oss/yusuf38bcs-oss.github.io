@@ -54,7 +54,7 @@ test('13 deployment-consumable Pages artifact denied',()=>{
  assert.match(scan(clone(pages)+'\n      - uses: actions/upload-pages-artifact@v4\n',pages).join(' '),/publisher-consumable/);
 });
 test('14 Museum scientific validator must remain',()=>{
- assert.match(scan(clone(museum).replace('validate-conv04f-zoology-practical-museum.rb','missing-science.rb'),museum).join(' '),/academic\/browser custody missing/);
+ assert.match(scan(clone(museum).replaceAll('validate-conv04f-zoology-practical-museum.rb','missing-science.rb'),museum).join(' '),/academic\/browser custody missing/);
 });
 test('15 Museum browser test must remain',()=>{
  assert.match(scan(clone(museum).replaceAll('conv04f-zoology-practical-museum-browser-certification.mjs','removed-browser.mjs'),museum).join(' '),/browser custody missing/);
