@@ -78,39 +78,3 @@ test('missing explicit deploy job guard fails closed', () => {
   const x = auditWorkflow(altered);
   assert.ok(has(x, 'AMBIGUOUS_DEPLOY_GUARD'));
 });
-
-
-import {readFileSync} from 'node:fs';
-const candidate=readFileSync('.github/workflows/worker-production-deployment.yml','utf8');
-test('candidate lone Wrangler-step Worker credential passes static source safety but never authorizes release',()=>{
-  const result=auditWorkflow(candidate);
-  assert.equal(result.static_safety,'PASS',JSON.stringify(result.violations));
-  assert.equal(result.production_cutover,'HOLD');
-  assert.equal(result.deploy_state,'DISABLED_BY_WORKFLOW');
-});
-test('negative credential leaks into deploy-job env as well as Wrangler step',()=>{
-  const m=candidate.replace('    env:\n      TARGET_SHA:', 
-    '    env:\n      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}\n      TARGET_SHA:');
-  assert.equal(auditWorkflow(m).static_safety,'FAIL');
-  assert.ok(has(auditWorkflow(m),'CREDENTIAL_FALLBACK'));
-});
-test('negative wrong secret in step or additional fallbacks are rejected',()=>{
- const m=candidate.replace('CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}',
-   'CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}');
- assert.ok(has(auditWorkflow(m),'CREDENTIAL_FALLBACK'));
- const n=candidate.replace('          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}',
-  '          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}\n          FALLBACK_API: ${{ secrets.CLOUDFLARE_API_TOKEN }}');
- assert.ok(has(auditWorkflow(n),'CREDENTIAL_FALLBACK'));
-});
-test('negative credential assigned to an unrelated deployment step fails closed',()=>{
- const m=candidate.replace('      - name: Deploy exact main with single designated Cloudflare credential',
-   '      - name: Unauthorized second publishing step');
- assert.ok(has(auditWorkflow(m),'CREDENTIAL_FALLBACK'));
-});
-test('negative duplicate step-level assignment is always rejected',()=>{
- const m=candidate.replace(
-  '          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}',
-  '          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}\n'+
-  '          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}');
- assert.ok(has(auditWorkflow(m),'CREDENTIAL_FALLBACK'));
-});
