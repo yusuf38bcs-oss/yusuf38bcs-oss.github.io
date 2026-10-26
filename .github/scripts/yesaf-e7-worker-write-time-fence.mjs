@@ -2,6 +2,7 @@
 // YESAF E7 Worker at-write-time fence. Enforces fail-closed policy, NEVER deploys.
 // Deliberately non-authorizing unless an independent App attests this RUN + SHA.
 import {stableObservation} from './yesaf-e7-live-writer-census.mjs';
+import {verifyWorkflowTree} from './yesaf-e7-workflow-source-freeze.mjs';
 import {fileURLToPath} from 'node:url';
 
 const REPO='yusuf38bcs-oss/yusuf38bcs-oss.github.io';
@@ -96,6 +97,11 @@ export async function preWriteCheck({get,env,now=Date.now}){
  const first=await read();
  const result=assessReleasePacket({input,branch:first[0],run:first[1],statuses:first[2],
    checks:first[3],now:now()});
+ // Reject any novel, missing or modified GitHub Actions workflow source before
+ // consuming a Cloudflare credential; legacy ID census is a separate runtime gate.
+ // The immutable tree check is not independent production authority by itself.
+ const sourceTree=await get(root+'/git/trees/'+input.sha+'?recursive=1');
+ verifyWorkflowTree(sourceTree,input.sha);
  // Inspect all registered legacy publishers by workflow ID twice; reject API caps,
  // active requests and disabled->enabled races.
  const census=await stableObservation(get,REPO);
