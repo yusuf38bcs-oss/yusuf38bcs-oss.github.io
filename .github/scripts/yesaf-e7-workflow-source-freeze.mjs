@@ -100,7 +100,7 @@ export function verifyWorkflowTree(tree,expectedCommit){
   for(const entry of tree.tree){
     const p=entry?.path;
     if(typeof p!=='string' || !p.startsWith('.github/workflows/'))continue;
-    if(!/\\.ya?ml$/.test(p))continue;
+    if(!/\.ya?ml$/.test(p))continue;
     if(entry.type!=='blob'||!/^[0-9a-f]{40}$/.test(String(entry.sha||''))||seen.has(p))
       fail('invalid, duplicated, or nonblob workflow '+p);
     seen.set(p,entry.sha);
