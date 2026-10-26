@@ -20,7 +20,8 @@ permissions:
 
 concurrency:
   group: yesaf-e4-five-readonly-${{ github.event.pull_request.number }}
-  cancel-in-progress: false
+  # Prior PR-head browser jobs must not hold newer candidate evidence in queue.
+  cancel-in-progress: true
 
 jobs:
   five-subject-readonly:
@@ -88,7 +89,17 @@ jobs:
         run: |
           set -euo pipefail
           npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
-          npx playwright install --with-deps chromium
+          # Browser installation remains mandatory. Network stalls fail closed.
+          for attempt in 1 2; do
+            if timeout --signal=TERM --kill-after=30s 540s npx playwright install --with-deps chromium; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 2 ]; then
+              echo "::error::Chromium dependency installation exhausted bounded retries"
+              exit 1
+            fi
+            sleep 15
+          done
       - name: Start loopback web server, no external deployment
         shell: bash
         run: |
