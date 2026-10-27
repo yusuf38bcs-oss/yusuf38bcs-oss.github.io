@@ -1,0 +1,20 @@
+<section class="lbfl-v3-section lbfl-v46-spotlight" aria-labelledby="lbfl-v46-spotlight-title">
+  <div class="lbfl-v3-shell">
+    <header class="lbfl-v3-section__head">
+      <p class="lbfl-v3-kicker">05 · LEARN FROM THE SOURCE</p>
+      <h2 id="lbfl-v46-spotlight-title">Selected source lessons</h2>
+      <p>Six chapter-aligned lessons from the curated <em>Inside the Cell</em> sequence. These are not claimed to be the newest publications; every card opens its named source lesson.</p>
+    </header>
+    <div class="lbfl-v46-source-grid">
+      {% for item in site.data.homepage.latest_learning.items limit:6 %}
+        <article class="lbfl-v46-source-card">
+          <p class="lbfl-v46-source-card__meta">{{ item.pathway }} · {{ item.label }} · Curated</p>
+          <h3><a href="{{ item.url | prepend: '/bn' | relative_url }}" hreflang="bn">{{ item.title }}</a></h3>
+          <p>{{ item.question }}</p>
+          <span class="lbfl-v46-source-card__action">Open source lesson <span aria-hidden="true">→</span></span>
+        </article>
+      {% endfor %}
+    </div>
+    <p class="lbfl-v46-source-note">These Bangla source lessons are selected to build understanding step by step, not ranked by publication date.</p>
+  </div>
+</section>

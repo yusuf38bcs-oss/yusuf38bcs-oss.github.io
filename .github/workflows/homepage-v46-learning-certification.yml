@@ -1,0 +1,80 @@
+name: LBFL Homepage V4.6 Learning Contract (Read-only)
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "index.bn.html"
+      - "homepage-v3-lab.html"
+      - "_layouts/homepage-v3.html"
+      - "_includes/home-v3/**"
+      - "assets/css/homepage-v46.css"
+      - "assets/js/home/homepage-v46.js"
+      - ".github/scripts/homepage-v46-learning-contract.cjs"
+      - ".github/workflows/homepage-v46-learning-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: homepage-v46-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  learning-contract:
+    name: Exact-head Jekyll + browser + no-JS
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - name: Checkout immutable candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          persist-credentials: false
+      - name: Check exact SHA
+        run: test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0 immutable upstream commit
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+      - name: Install Ruby dependencies
+        run: |
+          bundle config set --local frozen 'false'
+          bundle install
+      - name: Build Jekyll artifact locally (no publish)
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Serve local built artifact
+        run: |
+          python3 -m http.server 4000 --directory _site >/tmp/lbfl-v46-server.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4000/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/lbfl-v46-server.log
+          exit 1
+      - name: Verify learner action, source routes and no-JS
+        env:
+          LBFL_HOMEPAGE_URL: http://127.0.0.1:4000/
+        run: node .github/scripts/homepage-v46-learning-contract.cjs
+      - name: Preserve read-only evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: homepage-v46-${{ env.PR_HEAD_SHA }}
+          path: homepage-v46-report/
+          if-no-files-found: warn
+          retention-days: 21
