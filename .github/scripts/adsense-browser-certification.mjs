@@ -142,7 +142,65 @@ async function runViewport(browser, viewport) {
   try {
     response = await page.goto(previewUrl, { waitUntil: "domcontentloaded", timeout: 60_000 });
     await settle(page);
-    await page.locator("#gdpr-banner[data-cookie-banner]").waitFor({ state: "visible", timeout: 10_000 });
+    try {
+      await page.locator("#gdpr-banner[data-cookie-banner]").waitFor({ state: "visible", timeout: 10_000 });
+    } catch (error) {
+      // Read-only evidence when exact-head visibility fails; preserve the original assertion.
+      // Never set a consent state, weaken verification, or expose cookie/secret values.
+      const diagnosis = await page.evaluate(() => {
+        const nodes = Array.from(document.querySelectorAll("#gdpr-banner, [data-cookie-banner]"));
+        const banners = nodes.map((node) => {
+          const style = getComputedStyle(node);
+          const rect = node.getBoundingClientRect();
+          return {
+            tag: node.tagName.toLowerCase(),
+            id: node.id,
+            hasCookieBannerAttribute: node.hasAttribute("data-cookie-banner"),
+            hidden: node.hidden,
+            classVisible: node.classList.contains("is-visible"),
+            inlineDisplay: node.style.display,
+            display: style.display,
+            visibility: style.visibility,
+            opacity: style.opacity,
+            rectWidth: Math.round(rect.width),
+            rectHeight: Math.round(rect.height),
+          };
+        });
+        let storedChoice = "unknown";
+        try {
+          const choice = localStorage.getItem("cookie-consent");
+          storedChoice = choice === "granted" || choice === "denied" ? "already-set" : choice === null ? "unset" : "unrecognized";
+        } catch {
+          storedChoice = "storage-unavailable";
+        }
+        return {
+          documentReadyState: document.readyState,
+          homepageClassPresent: document.body?.classList.contains("lbfl-home-v3") ?? false,
+          analyticsConsentRuntimeBound: window.__lbflAnalyticsConsentBound === true,
+          consentChoiceCookiePresent: /(?:^|;\\s*)cookie-consent=/.test(document.cookie),
+          storedChoice,
+          bannerCount: banners.length,
+          banners,
+        };
+      }).catch((evaluationError) => ({
+        evaluationFailed: true,
+        errorType: evaluationError?.name || "EvaluationError",
+      }));
+      const evidence = {
+        scope: "read-only-gdpr-visibility-diagnostic",
+        expectedSha,
+        viewport: viewport.name,
+        navigationStatus: response?.status() ?? null,
+        previewHost: new URL(previewUrl).hostname,
+        diagnosis,
+        assertion: "GDPR banner must be visible before accessibility and consent checks",
+        release: "HOLD",
+      };
+      const filename = path.join(outputDir, `gdpr-visibility-diagnostic-${viewport.name}.json`);
+      await fs.writeFile(filename, `${JSON.stringify(evidence, null, 2)}\n`);
+      console.error(`GDPR_VISIBILITY_HOLD: diagnostic saved to ${filename}; assertion remains FAIL`);
+      throw error;
+    }
 
     const layout = await page.evaluate(() => {
       const visible = (selector) => {
