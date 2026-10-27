@@ -177,7 +177,7 @@ async function runViewport(browser, viewport) {
           documentReadyState: document.readyState,
           homepageClassPresent: document.body?.classList.contains("lbfl-home-v3") ?? false,
           analyticsConsentRuntimeBound: window.__lbflAnalyticsConsentBound === true,
-          consentChoiceCookiePresent: /(?:^|;\\s*)cookie-consent=/.test(document.cookie),
+          consentChoiceCookiePresent: /(?:^|;\s*)cookie-consent=/.test(document.cookie),
           storedChoice,
           bannerCount: banners.length,
           banners,
