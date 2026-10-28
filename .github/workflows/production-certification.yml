@@ -29,6 +29,11 @@ on:
         description: "Exact 40-character main SHA expected in Cloudflare production"
         required: true
         type: string
+      review_only:
+        description: "Read-only PR 482 certification against current live main; no deployment"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -44,7 +49,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      CERTIFICATION_HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.event.pull_request.head.sha || inputs.expected_main_sha || github.sha }}
+      CERTIFICATION_HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.event.pull_request.head.sha || (inputs.review_only && github.sha) || inputs.expected_main_sha || github.sha }}
 
     steps:
       - name: Check out the immutable candidate
@@ -63,6 +68,7 @@ jobs:
             .github/scripts/test-resolve-cloudflare-targets.py \
             .github/scripts/verify-cloudflare-jsd-equivalence.py \
             .github/scripts/test-verify-cloudflare-jsd-equivalence.py
+          python3 .github/scripts/test-production-reader-adapter.py
           python3 .github/scripts/test-resolve-cloudflare-targets.py
           python3 .github/scripts/test-verify-cloudflare-jsd-equivalence.py
           node --check .github/scripts/certification-bypass.mjs
@@ -106,15 +112,26 @@ jobs:
       CLOUDFLARE_WORKER_SCRIPT: lbfl-socratic-ai
       EVIDENCE_DIR: production-certification
       PRODUCTION_URL: https://learningbiologyforlife.org
+      CERTIFICATION_CODE_SHA: ${{ inputs.review_only && github.sha || inputs.expected_main_sha || github.event.workflow_run.head_sha }}
+      REVIEW_ONLY: ${{ inputs.review_only || false }}
       TARGET_MAIN_SHA: ${{ inputs.expected_main_sha || github.event.workflow_run.head_sha }}
       WORKER_HEALTH_URL: https://api.learningbiologyforlife.org/api/health
       WORKER_DIRECT_HEALTH_URL: https://lbfl-socratic-ai.yusuf-38bcs.workers.dev/api/health
 
     steps:
       - name: Check out the requested immutable main SHA
+        if: ${{ !inputs.review_only }}
         uses: actions/checkout@v5
         with:
           ref: ${{ env.TARGET_MAIN_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Check out the manually selected review candidate
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.review_only && github.ref == 'refs/heads/fix/production-certification-repair-20261014' }}
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
           fetch-depth: 1
           persist-credentials: false
 
@@ -127,12 +144,17 @@ jobs:
             exit 1
           }
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
-            test "$GITHUB_REF" = "refs/heads/main" || {
-              echo "Dispatch this workflow from the main branch"
-              exit 1
-            }
+            if [[ "$REVIEW_ONLY" == "true" ]]; then
+              test "$GITHUB_REF" = "refs/heads/fix/production-certification-repair-20261014"
+              test "$CERTIFICATION_CODE_SHA" = "$GITHUB_SHA"
+            else
+              test "$GITHUB_REF" = "refs/heads/main" || {
+                echo "Dispatch release certification from the main branch"
+                exit 1
+              }
+            fi
           fi
-          test "$(git rev-parse HEAD)" = "$TARGET_MAIN_SHA"
+          test "$(git rev-parse HEAD)" = "$CERTIFICATION_CODE_SHA"
           git fetch --no-tags --depth=1 origin main
           test "$(git rev-parse origin/main)" = "$TARGET_MAIN_SHA" || {
             echo "main moved before certification began; rerun at the new exact head"
@@ -154,13 +176,15 @@ jobs:
         id: production
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN || secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
         shell: bash
         run: |
           set -euo pipefail
           test -n "$CLOUDFLARE_ACCOUNT_ID"
-          test -n "$CLOUDFLARE_API_TOKEN"
+          test -n "$CLOUDFLARE_PAGES_READ_TOKEN"
+          test -n "$CLOUDFLARE_WORKER_READ_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
           test -n "$CLOUDFLARE_WORKER_SCRIPT"
           test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai" || {
@@ -171,7 +195,7 @@ jobs:
           production_output="$RUNNER_TEMP/cloudflare-production.out"
           for attempt in $(seq 1 40); do
             : > "$production_output"
-            python3 .github/scripts/resolve-cloudflare-targets.py \
+            python3 .github/scripts/resolve-production-targets.py \
               --repository "$GITHUB_REPOSITORY" \
               --sha "$TARGET_MAIN_SHA" \
               --pages-environment production \
@@ -281,7 +305,7 @@ jobs:
           test "$deployment_status" = "200"
 
           if grep -q 'lbfl-home-v3-document' "$EVIDENCE_DIR/production-homepage.html"; then
-            grep -q 'class="lbfl-home-v3"' "$EVIDENCE_DIR/production-homepage.html"
+            python3 .github/scripts/validate-homepage-body.py "$EVIDENCE_DIR/production-homepage.html"
             grep -q 'assets/js/home/homepage-v3.js' "$EVIDENCE_DIR/production-homepage.html"
             homepage_contract="v3"
           elif grep -q 'data-homepage-v2' "$EVIDENCE_DIR/production-homepage.html"; then
@@ -498,7 +522,8 @@ jobs:
         if: ${{ always() }}
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN || secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
           INITIAL_DEPLOYMENT_ID: ${{ steps.production.outputs.pages_deployment_id }}
           INITIAL_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}
@@ -520,13 +545,14 @@ jobs:
 
           check_main
           test -n "$CLOUDFLARE_ACCOUNT_ID"
-          test -n "$CLOUDFLARE_API_TOKEN"
+          test -n "$CLOUDFLARE_PAGES_READ_TOKEN"
+          test -n "$CLOUDFLARE_WORKER_READ_TOKEN"
           test -n "$CLOUDFLARE_PAGES_PROJECT"
           test "$CLOUDFLARE_WORKER_SCRIPT" = "lbfl-socratic-ai"
           test -n "$INITIAL_DEPLOYMENT_ID"
           [[ "$INITIAL_WORKER_VERSION_ID" =~ ^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$ ]]
 
-          python3 .github/scripts/resolve-cloudflare-targets.py \
+          python3 .github/scripts/resolve-production-targets.py \
             --repository "$GITHUB_REPOSITORY" \
             --sha "$TARGET_MAIN_SHA" \
             --pages-environment production \
@@ -751,7 +777,7 @@ jobs:
         run: |
           if [[ "$EVIDENCE_SAFE" != "true" ]]; then
             {
-              echo "# Production Exact-Head Certification"
+              printf '# Production Exact-Head Certification\n\n- Review only: %s\n- Certification code SHA: %s\n' "$REVIEW_ONLY" "$CERTIFICATION_CODE_SHA"
               echo
               echo "- Requested main SHA: \`$TARGET_MAIN_SHA\`"
               echo "- Evidence safety check: \`false\`; details suppressed"
@@ -815,7 +841,7 @@ jobs:
         if: ${{ always() && steps.evidence_safety.outputs.safe == 'true' }}
         uses: actions/upload-artifact@v4
         with:
-          name: production-certification-${{ env.TARGET_MAIN_SHA }}
+          name: production-certification-${{ env.TARGET_MAIN_SHA }}-code-${{ env.CERTIFICATION_CODE_SHA }}
           path: ${{ env.EVIDENCE_DIR }}
           if-no-files-found: warn
           retention-days: 30

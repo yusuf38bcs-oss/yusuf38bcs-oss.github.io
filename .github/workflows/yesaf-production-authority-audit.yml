@@ -1,0 +1,269 @@
+# YESAF M1: trusted, non-mutating production-authority certification.
+# The authoritative evaluator always runs from protected main, never from a PR.
+name: YESAF M1 Production Authority Audit
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  pull_request_target:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yesaf-m1-audit-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Candidate scripts are executed only in this NON-AUTHORIZING shadow lane.
+  shadow-audit:
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
+    name: YESAF M1 candidate shadow audit (non-authorizing)
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout only protected current main for shadow inspection
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Authenticate exact trusted main for shadow inspection
+        shell: bash
+        env:
+          EXPECTED_BASE: ${{ github.event.pull_request.base.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_BASE" || {
+            echo 'Shadow base moved: HOLD' >&2
+            exit 1
+          }
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Fetch exact candidate Worker YAML through read-only API
+        uses: actions/github-script@v7
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        with:
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const crypto = require('node:crypto');
+            const sha = String(process.env.CANDIDATE_SHA || '').toLowerCase();
+            if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error('Candidate SHA missing');
+            const rel = '.github/workflows/worker-production-deployment.yml';
+            const response = await github.rest.repos.getContent({
+              ...context.repo, path: rel, ref: sha
+            });
+            const d = response.data;
+            if (!d || Array.isArray(d) || d.type !== 'file' || d.path !== rel ||
+                d.encoding !== 'base64' || typeof d.content !== 'string') {
+              throw new Error('Expected immutable regular Worker workflow');
+            }
+            const raw = Buffer.from(d.content.replace(/\s/g, ''), 'base64');
+            const hash = crypto.createHash('sha1')
+              .update('blob ' + raw.length + String.fromCharCode(0)).update(raw).digest('hex');
+            if (raw.length !== d.size || raw.length > 200000 || hash !== d.sha) {
+              throw new Error('Candidate Worker workflow blob mismatch');
+            }
+            fs.writeFileSync(path.join(process.env.RUNNER_TEMP,
+              'yesaf-shadow-worker.yml'), raw, {flag: 'wx', mode: 0o600});
+      - name: Run published protected-main Worker policy fixtures
+        run: node --test .github/scripts/test-yesaf-production-authority-audit.mjs
+      - name: Run published trusted-boundary fixtures if already installed
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -f .github/scripts/test-yesaf-trusted-boundary.mjs; then
+            node --test .github/scripts/test-yesaf-trusted-boundary.mjs
+          else
+            echo 'Trusted-boundary fixtures not yet on main; shadow only, no release authority.'
+          fi
+      - name: Audit candidate workflow as inert YAML with published policy
+        run: node .github/scripts/yesaf-production-authority-audit.mjs "$RUNNER_TEMP/yesaf-shadow-worker.yml"
+
+  # Authoritative lane: main-controlled workflow, main-controlled scripts,
+  # read-only candidate source fetched as inert bytes. Never execute candidate scripts.
+  trusted-policy:
+    if: ${{ github.event_name == 'pull_request_target' || github.event_name == 'push' }}
+    name: YESAF M1 trusted authority evaluator
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Begin exact-head trusted status (PR only)
+        id: begin_status
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const sha = String(context.payload.pull_request?.head?.sha || '').toLowerCase();
+            if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error('Invalid immutable candidate SHA');
+            await github.rest.repos.createCommitStatus({
+              ...context.repo,
+              sha,
+              state: 'pending',
+              context: 'YESAF M1 Trusted Static Authority',
+              description: 'Trusted protected-main inspection in progress',
+              target_url: context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId
+            });
+      - name: Checkout protected main policy at exact event base
+        id: checkout_trusted
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository }}
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - name: Download immutable candidate workflow as inert data
+        id: get_candidate
+        uses: actions/github-script@v7
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        with:
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const crypto = require('node:crypto');
+            const sha = String(process.env.CANDIDATE_SHA || '').toLowerCase();
+            if (!/^[a-f0-9]{40}$/.test(sha)) throw new Error('Candidate SHA invalid');
+            const immutableControlPlane = [
+              '.github/workflows/yesaf-production-authority-audit.yml',
+              '.github/scripts/yesaf-production-authority-audit.mjs',
+              '.github/scripts/test-yesaf-production-authority-audit.mjs',
+              '.github/scripts/test-yesaf-trusted-boundary.mjs'
+            ];
+            const all = [...immutableControlPlane, '.github/workflows/worker-production-deployment.yml'];
+            for (const rel of all) {
+              const response = await github.rest.repos.getContent({
+                ...context.repo, path: rel, ref: sha
+              });
+              const data = response.data;
+              if (!data || Array.isArray(data) || data.type !== 'file' ||
+                  data.encoding !== 'base64' || typeof data.content !== 'string' ||
+                  data.path !== rel) {
+                throw new Error('Untrusted content is not an immutable regular file: ' + rel);
+              }
+              const raw = Buffer.from(data.content.replace(/\s/g, ''), 'base64');
+              if (raw.length !== data.size || raw.length > 200000) {
+                throw new Error('Unexpected candidate size: ' + rel);
+              }
+              const blobSha = crypto.createHash('sha1')
+                .update('blob ' + raw.length + String.fromCharCode(0)).update(raw).digest('hex');
+              if (blobSha !== data.sha) {
+                throw new Error('Git blob identity mismatch for ' + rel);
+              }
+              if (immutableControlPlane.includes(rel)) {
+                const trustedBytes = fs.readFileSync(path.join(
+                  process.env.GITHUB_WORKSPACE, 'trusted', rel
+                ));
+                if (!trustedBytes.equals(raw)) {
+                  throw new Error('Candidate changed trusted authority policy: ' + rel);
+                }
+              } else {
+                const out = path.join(process.env.RUNNER_TEMP, 'yesaf-candidate-worker.yml');
+                fs.writeFileSync(out, raw, {flag: 'wx', mode: 0o600});
+                core.info('Downloaded immutable Worker workflow as non-executable data.');
+              }
+            }
+      - name: Authenticate current main, trusted script, and candidate workflow
+        id: assert_identity
+        shell: bash
+        env:
+          TRUSTED_SHA: ${{ github.event.pull_request.base.sha || github.sha }}
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref || 'main' }}
+        run: |
+          set -euo pipefail
+          [[ "$TRUSTED_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$CANDIDATE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$BASE_REF" = main
+          test "$(git -C trusted rev-parse HEAD)" = "$TRUSTED_SHA"
+          live="$(git -C trusted ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$live" = "$TRUSTED_SHA" || {
+            echo 'Stale current-main authority: FAIL' >&2
+            exit 1
+          }
+          test -f trusted/.github/scripts/yesaf-production-authority-audit.mjs
+          test -f trusted/.github/scripts/test-yesaf-production-authority-audit.mjs
+          test -f "$RUNNER_TEMP/yesaf-candidate-worker.yml"
+          test ! -L "$RUNNER_TEMP/yesaf-candidate-worker.yml"
+          # The GitHub API data-only fetch independently compared all four
+          # authority-control files to exact trusted main, byte for byte.
+      - name: Set up trusted Node 24
+        id: setup_node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Run only trusted protected-main policy tests
+        id: policy_tests
+        run: node --test trusted/.github/scripts/test-yesaf-production-authority-audit.mjs
+      - name: Test trusted policy control-plane invariants
+        id: policy_invariants
+        run: node --test trusted/.github/scripts/test-yesaf-trusted-boundary.mjs
+      - name: Inspect candidate workflow as data only
+        id: authority_audit
+        run: node trusted/.github/scripts/yesaf-production-authority-audit.mjs "$RUNNER_TEMP/yesaf-candidate-worker.yml"
+      # Status is explicitly attached to the PR HEAD. GitHub associates
+      # pull_request_target job check runs with the BASE SHA instead.
+      - name: Publish fail-closed exact-head trusted status
+        if: ${{ always() && github.event_name == 'pull_request_target' }}
+        uses: actions/github-script@v7
+        env:
+          BEGIN_STATUS_OUTCOME: ${{ steps.begin_status.outcome }}
+          CHECKOUT_TRUSTED: ${{ steps.checkout_trusted.outcome }}
+          CANDIDATE_SOURCE_OUTCOME: ${{ steps.get_candidate.outcome }}
+          IDENTITY_OUTCOME: ${{ steps.assert_identity.outcome }}
+          SETUP_OUTCOME: ${{ steps.setup_node.outcome }}
+          TESTS_OUTCOME: ${{ steps.policy_tests.outcome }}
+          POLICY_INVARIANTS_OUTCOME: ${{ steps.policy_invariants.outcome }}
+          AUDIT_OUTCOME: ${{ steps.authority_audit.outcome }}
+        with:
+          script: |
+            const exactHead = String(context.payload.pull_request?.head?.sha || '').toLowerCase();
+            const exactBase = String(context.payload.pull_request?.base?.sha || '').toLowerCase();
+            if (!/^[0-9a-f]{40}$/.test(exactHead)) throw new Error('Invalid PR HEAD; cannot certify');
+            const outcomes = [
+              process.env.BEGIN_STATUS_OUTCOME, process.env.CHECKOUT_TRUSTED, process.env.CANDIDATE_SOURCE_OUTCOME,
+              process.env.IDENTITY_OUTCOME, process.env.SETUP_OUTCOME,
+              process.env.TESTS_OUTCOME, process.env.POLICY_INVARIANTS_OUTCOME,
+              process.env.AUDIT_OUTCOME
+            ];
+            let current = false;
+            try {
+              const [pr, main] = await Promise.all([
+                github.rest.pulls.get({...context.repo, pull_number: context.issue.number}),
+                github.rest.repos.getBranch({...context.repo, branch: 'main'})
+              ]);
+              current =
+                pr.data.state === 'open' &&
+                pr.data.draft === false &&
+                pr.data.head.sha === exactHead &&
+                pr.data.base.ref === 'main' &&
+                pr.data.base.sha === exactBase &&
+                main.data.commit.sha === exactBase;
+            } catch (error) {
+              core.warning('Cannot reauthenticate current PR/main identity: ' + String(error.message || error));
+            }
+            const safe = current && outcomes.every(o => o === 'success');
+            await github.rest.repos.createCommitStatus({
+              ...context.repo, sha: exactHead,
+              state: safe ? 'success' : 'failure',
+              context: 'YESAF M1 Trusted Static Authority',
+              description: safe ? 'Trusted static authority PASS; production cutover HOLD'
+                                : 'FAIL: stale identity, draft, or trusted audit failure',
+              target_url: context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId
+            });
+            if (!safe) core.setFailed('Exact-head trusted authority certification failed.');
