@@ -115,5 +115,6 @@ test("Source and advertising controls are unchanged", () => {
   assert.match(v2, /{% if lbfl_gtm_allowed %}/);
   assert.match(def, /mode == 'live' and site\.data\.adsense\.certified_cmp_ready == true/);
   assert.match(source, /data-lbfl-ga4-direct=/);
-  assert.doesNotMatch(source, /googlesyndication|adsbygoogle|\/gtm\.js/);
+  assert.doesNotMatch(source, /googlesyndication|adsbygoogle/);
+  assert.match(source, /script\[src\*=\"googletagmanager\.com\/gtm\.js\"/);
 });
