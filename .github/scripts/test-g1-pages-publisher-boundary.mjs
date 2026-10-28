@@ -136,3 +136,33 @@ test('candidate fixture workflow is scoped only to G1 files', () => {
   ]) assert.ok(runner.includes(path), 'untracked G1 fixture path: ' + path);
   assert.doesNotMatch(triggers(runner), /^\s{2}(push|workflow_dispatch|pull_request_target):/m);
 });
+
+test('verifier never imports Cloudflare credentials or writes cache', () => {
+  for (const forbidden of [
+    /secrets\.(?:CLOUDFLARE_API_TOKEN|CF_API_TOKEN|CLOUDFLARE_TOKEN|CLOUDFLARE_ZONE_ID|CF_ZONE_ID)/,
+    /(?:CF_TOKEN_PRIMARY|CF_TOKEN_ALT|CF_TOKEN_ALT2|CF_ZONE_ID_PRIMARY|CF_ZONE_ID_ALT)/,
+    /curl\s+[^\n]*-X\s+POST/,
+    /\/purge_cache/,
+    /wrangler\s+(?:pages\s+)?deploy/,
+    /Purge approved Biology URLs/,
+  ]) assert.doesNotMatch(ops, forbidden);
+  assert.match(ops, /DENY cache mutation in this read-only verifier/);
+  assert.ok(ops.indexOf('DENY cache mutation') < ops.indexOf('Require owner-controlled main dispatch'));
+  assert.match(ops, /Cache mutation: forbidden/);
+});
+test('verifier denies purge requests before authorizing or verifying a run', () => {
+  assert.match(ops, /github\.event_name == 'workflow_dispatch' && inputs\.purge_cache/);
+  assert.match(ops, /Cache mutation is forbidden/);
+  assert.match(ops, /exit 1/);
+});
+test('verifier requires only main owner dispatch and all three successful release jobs', () => {
+  assert.match(ops, /test "\$GITHUB_EVENT_NAME" = "workflow_dispatch"/);
+  assert.match(ops, /test "\$GITHUB_REF" = "refs\/heads\/main"/);
+  assert.match(ops, /test "\$DISPATCH_ACTOR" = "yusuf38bcs-oss"/);
+  assert.match(ops, /test "\$RERUN_ACTOR" = "yusuf38bcs-oss"/);
+  assert.match(ops, /\.event == "workflow_dispatch"/);
+  assert.doesNotMatch(ops, /\.event == "push"/);
+  assert.match(ops, /authorize_conclusion.*success/s);
+  assert.match(ops, /build_conclusion.*success/s);
+  assert.match(ops, /deploy_conclusion.*success/s);
+});
