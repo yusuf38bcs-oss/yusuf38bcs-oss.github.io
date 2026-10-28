@@ -218,10 +218,10 @@ def cloudflare_pages_deployment(
             batch = as_records(result, "deployments")
             deployments.extend(batch)
             if any(
-                str(
-                    (d.get("deployment_trigger") or {}).get("metadata", {}).get(
-                        "commit_hash", ""
-                    )
+                isinstance(d.get("deployment_trigger"), dict)
+                and isinstance(d["deployment_trigger"].get("metadata"), dict)
+                and str(
+                    d["deployment_trigger"]["metadata"].get("commit_hash") or ""
                 ).lower() == target_sha
                 for d in batch
             ):
