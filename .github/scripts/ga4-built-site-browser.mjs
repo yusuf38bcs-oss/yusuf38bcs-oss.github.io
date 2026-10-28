@@ -1,5 +1,5 @@
 // Candidate browser evidence only: serve an exact-head Jekyll build on loopback.
-// Google libraries execute normally; collection requests are recorded and aborted.
+// Google libraries execute normally; collection requests are intercepted locally, never delivered to Google.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -22,7 +22,8 @@ await context.route('**/*', async route => {
   const url = new URL(request.url());
   if (isGoogle(url.hostname) || isAd(url.hostname)) {
     requests.push({ phase, host: url.hostname, path: url.pathname, query: url.search, body: request.postData() || '' });
-    if (isAd(url.hostname) || url.pathname.endsWith('/collect')) return route.abort();
+    if (isAd(url.hostname)) return route.abort();
+    if (url.pathname.endsWith('/collect')) return route.fulfill({ status: 204, body: '' });
   }
   return route.continue();
 });
@@ -41,7 +42,7 @@ const navigate = async (pathname = '/') => {
   assert.equal(response.status(), 200);
   await page.waitForTimeout(1000);
 };
-const hits = () => requests.filter(r => r.phase === phase && r.path.endsWith('/collect'));
+const hits = () => requests.filter(r => r.phase === phase && (r.host === 'google-analytics.com' || r.host.endsWith('.google-analytics.com')) && r.path.endsWith('/collect'));
 const verifyPageview = async () => {
   await page.waitForFunction(() => window.google_tag_manager, { timeout: 15000 });
   for (let attempt = 0; attempt < 30 && hits().length === 0; attempt++) await page.waitForTimeout(500);
