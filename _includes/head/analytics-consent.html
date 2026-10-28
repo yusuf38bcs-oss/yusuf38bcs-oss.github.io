@@ -5,7 +5,7 @@
   consent and never loads AdSense. Advertising consent, if AdSense is later
   activated, belongs to the configured Google-certified CMP.
 {% endcomment %}
-<script>
+<script data-lbfl-ga4-direct="{% if site.data.adsense.mode == 'live' and site.data.adsense.certified_cmp_ready == true %}false{% else %}true{% endif %}">
   (function () {
     "use strict";
 
@@ -75,6 +75,78 @@
       banner.classList.add("is-visible");
     }
 
+
+    // REVIEW-ONLY: direct GA4 is separate from the advertising-controlled GTM.
+    // In live/CMP mode GTM remains the sole potential tag owner, pending audit.
+    var DIRECT_GA4 = document.currentScript &&
+      document.currentScript.getAttribute("data-lbfl-ga4-direct") === "true";
+    var GA4_ID = "G-2SCLLF93NS";
+    var GA4_DISABLE_KEY = "ga-disable-" + GA4_ID;
+    var ga4Started = false;
+
+    if (DIRECT_GA4) window[GA4_DISABLE_KEY] = true;
+
+    function safePageLocation() {
+      // Never transmit query terms or hash fragments (which can contain learner data).
+      return window.location.origin + window.location.pathname;
+    }
+
+    function startConsentedGa4() {
+      if (!DIRECT_GA4 || ga4Started) return;
+      // Unknown tag-injection paths are an audit failure, not permission to duplicate.
+      if (document.querySelector(
+        'script[src*="googletagmanager.com/gtm.js"], script[src*="googletagmanager.com/gtag/js"]'
+      )) return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+      };
+
+      ga4Started = true;
+      window[GA4_DISABLE_KEY] = false;
+
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
+      script.setAttribute("data-lbfl-ga4-opt-in", "");
+      script.addEventListener("error", function () {
+        // Fail closed if the optional analytics script cannot be loaded.
+        window[GA4_DISABLE_KEY] = true;
+      }, { once: true });
+      document.head.appendChild(script);
+
+      window.gtag("js", new Date());
+      window.gtag("config", GA4_ID, {
+        send_page_view: false,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+        page_location: safePageLocation(),
+        page_referrer: ""
+      });
+      // Exactly one page_view per document, after explicit/stored valid consent.
+      window.gtag("event", "page_view", {
+        send_to: GA4_ID,
+        page_location: safePageLocation(),
+        page_path: window.location.pathname,
+        page_referrer: ""
+      });
+    }
+
+    function updateDirectGa4(state) {
+      if (!DIRECT_GA4) return;
+      if (state !== "granted") {
+        // Denial/withdrawal stops optional hits from this measurement ID.
+        window[GA4_DISABLE_KEY] = true;
+        return;
+      }
+      if (ga4Started) {
+        window[GA4_DISABLE_KEY] = false;
+        return;
+      }
+      startConsentedGa4();
+    }
+
     function pushAnalyticsConsent(state) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
@@ -88,6 +160,7 @@
           analytics_storage: state === "granted" ? "granted" : "denied"
         });
       }
+      updateDirectGa4(state);
     }
 
     function applyConsent(state) {
