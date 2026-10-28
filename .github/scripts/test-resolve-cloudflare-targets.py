@@ -144,6 +144,82 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
 
                 self.assertEqual(actual, {})
 
+    def test_pages_preview_finds_older_exact_head_on_page_six(self) -> None:
+        calls: list[str] = []
+        stale = {
+            "id": "stale",
+            "url": "https://stale.example.pages.dev",
+            "environment": "preview",
+            "deployment_trigger": {
+                "metadata": {
+                    "branch": "staging",
+                    "commit_dirty": False,
+                    "commit_hash": "0" * 40,
+                }
+            },
+            "latest_stage": {"status": "success"},
+            "is_skipped": False,
+        }
+        exact = {
+            "id": "exact-preview",
+            "url": "https://exact.example.pages.dev",
+            "environment": "preview",
+            "deployment_trigger": {
+                "metadata": {
+                    "branch": "candidate",
+                    "commit_dirty": False,
+                    "commit_hash": TARGET_SHA,
+                }
+            },
+            "latest_stage": {"status": "success"},
+            "is_skipped": False,
+        }
+
+        def fake_get(path: str, token: str) -> Any:
+            calls.append(path)
+            self.assertEqual(token, "reader")
+            self.assertIn("env=preview", path)
+            self.assertIn("per_page=25", path)
+            for page in range(1, 7):
+                if f"page={page}" in path:
+                    return {"deployments": [stale] * 25 if page < 6 else [exact]}
+            self.fail(f"Unexpected API page: {path}")
+
+        with patch.object(resolver, "cloudflare_api_get", side_effect=fake_get):
+            actual = resolver.cloudflare_pages_deployment(
+                "account", "project", TARGET_SHA, "reader", "preview"
+            )
+
+        self.assertEqual(len(calls), 6)
+        self.assertEqual(actual["commit_hash"], TARGET_SHA)
+        self.assertEqual(actual["deployment_id"], "exact-preview")
+        self.assertEqual(actual["url"], "https://exact.example.pages.dev")
+        self.assertEqual(actual["environment"], "preview")
+
+    def test_pages_preview_rejects_only_short_sha_even_after_pagination(self) -> None:
+        short_sha_record = {
+            "id": "short",
+            "url": "https://short.example.pages.dev",
+            "environment": "preview",
+            "deployment_trigger": {
+                "metadata": {
+                    "branch": "candidate",
+                    "commit_dirty": False,
+                    "commit_hash": TARGET_SHA[:7],
+                }
+            },
+            "latest_stage": {"status": "success"},
+            "is_skipped": False,
+        }
+        with patch.object(
+            resolver, "cloudflare_api_get",
+            return_value={"deployments": [short_sha_record]},
+        ):
+            actual = resolver.cloudflare_pages_deployment(
+                "account", "project", TARGET_SHA, "reader", "preview"
+            )
+        self.assertEqual(actual, {})
+
     def test_pages_success_fixture_matches_current_head_prefix(self) -> None:
         body = """## Deploying yusuf38bcs-oss-github-io with Cloudflare Pages
 
