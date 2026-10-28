@@ -1,0 +1,57 @@
+name: GA4 Exact-Head Built-Site Browser
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '_includes/head/**'
+      - '_includes/body/gdpr-banner.html'
+      - '_pages/utility/cookie-preferences.md'
+      - '.github/scripts/ga4-built-site-browser.mjs'
+      - '.github/workflows/ga4-built-site-browser.yml'
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      JEKYLL_ENV: production
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Authenticate checked-out source
+        run: test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+      - uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # same revision used in run 40772479531
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+      - name: Build candidate without preview credentials
+        run: bundle exec jekyll build --trace
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install browser
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Test actual built consent flow
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site > /tmp/ga4-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node .github/scripts/ga4-built-site-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ga4-built-site-${{ github.event.pull_request.head.sha }}
+          path: ga4-browser-evidence/
+          if-no-files-found: warn

@@ -1,0 +1,27 @@
+name: LBFL GA4 Consent-Only Candidate Fixtures
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - "_includes/head/analytics-consent.html"
+      - "_pages/utility/cookie-preferences.md"
+      - ".github/scripts/test-ga4-consent-only.mjs"
+      - ".github/workflows/ga4-consent-only-fixtures.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  consent-only:
+    name: GA4 opt-in isolation and privacy fixtures (non-authorizing)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Run credential-free GA4 and privacy tests
+        run: node --test .github/scripts/test-ga4-consent-only.mjs
