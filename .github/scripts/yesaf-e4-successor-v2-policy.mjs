@@ -39,11 +39,12 @@ export const PINNED = Object.freeze({
     ]
   }
 });
-export const NINE_WORKFLOWS = Object.freeze([
+export const TEN_WORKFLOWS = Object.freeze([
   'appendages','dissection','museum','permanent-slides',
   'temporary-mounts','whole-mounts','zooplankton','field-report'
 ].map(n=>`.github/workflows/conv04f-zoology-practical-${n}-production-parity.yml`)
- .concat(['.github/workflows/jekyll-gh-pages.yml']));
+ .concat(['.github/workflows/conv04f-zoology-practical-museum-certification.yml',
+          '.github/workflows/jekyll-gh-pages.yml']));
 export const ACTIVE = Object.freeze(['requested','queued','in_progress','waiting','pending']);
 function guard(test, message) { if (!test) throw new Error(`E4 SUCCESSOR V2 FAIL-CLOSED: ${message}`); }
 const canonical = xs => JSON.stringify([...xs].sort());
@@ -87,8 +88,8 @@ export function evaluateSuccessorV2({guardName,pr,changedFiles,mainSha,registry,
   guard(lines.filter(x=>x.startsWith('SOLO-MAINTAINER-APPROVAL:')).length===1 &&
     lines.includes(`SOLO-MAINTAINER-APPROVAL: ${pr.head_sha}`),
     'no exact-HEAD solo approval marker');
-  guard(sameUnique(registry?.map(x=>x.path),NINE_WORKFLOWS),
-    'incomplete, duplicate or unrecognized nine-writer registry');
+  guard(sameUnique(registry?.map(x=>x.path),TEN_WORKFLOWS),
+    'incomplete, duplicate or unrecognized ten-writer registry');
   const ids=new Set();
   for(const w of registry){
     guard(Number.isSafeInteger(w.id)&&w.id>0&&!ids.has(w.id),'missing/duplicate workflow ID');
@@ -140,7 +141,7 @@ export async function auditTrustedSuccessor({github,context,core,guardName}) {
       github.paginate(github.rest.actions.listRepoWorkflows,{owner,repo,per_page:100})
     ]);
     const pr=prr.data,mainSha=String(mb.data.commit?.sha||'').toLowerCase();
-    const registry=registryAll.filter(w=>NINE_WORKFLOWS.includes(w.path)).map(w=>
+    const registry=registryAll.filter(w=>TEN_WORKFLOWS.includes(w.path)).map(w=>
       ({id:w.id,path:w.path,state:w.state,updated_at:w.updated_at}));
     const runs={};
     for(const status of ACTIVE){
