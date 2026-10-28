@@ -1,6 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SOLO,PINNED,NINE_WORKFLOWS,ACTIVE,evaluateSuccessorV2,requireStableObservation} from './yesaf-e4-successor-v2-policy.mjs';
+import {SOLO,PINNED,TEN_WORKFLOWS,ACTIVE,evaluateSuccessorV2,requireStableObservation} from './yesaf-e4-successor-v2-policy.mjs';
+
+test('all eight parity workflows plus museum certification and GitHub Pages are contained',()=>{
+ assert.equal(TEN_WORKFLOWS.length,10);
+ assert.equal(new Set(TEN_WORKFLOWS).size,10);
+ assert.ok(TEN_WORKFLOWS.includes('.github/workflows/conv04f-zoology-practical-museum-certification.yml'));
+ assert.ok(TEN_WORKFLOWS.includes('.github/workflows/jekyll-gh-pages.yml'));
+});
 const sha='1'.repeat(40),base='2'.repeat(40);
 function packet(guardName='R91'){
  const p=PINNED[guardName];
@@ -9,7 +16,7 @@ function packet(guardName='R91'){
  state:'open',draft:false,author:SOLO,head_owner:SOLO,repo_owner:SOLO,
  body:`SOLO-MAINTAINER-EXCEPTION: LBFL-PERMANENT-SOLO-MAINTAINER\nSOLO-MAINTAINER-APPROVAL: ${sha}`},
  changedFiles:[{filename:p.workflow,status:'modified',sha:p.approvedRetirementBlob}],
- registry:NINE_WORKFLOWS.map((path,i)=>({path,id:i+10,state:'disabled_manually'})),
+ registry:TEN_WORKFLOWS.map((path,i)=>({path,id:i+10,state:'disabled_manually'})),
  runs:Object.fromEntries(ACTIVE.map(s=>[s,[]]))};
 }
 const mutate=(name,fn,pred=/FAIL-CLOSED/)=>test(`negative ${name}`,()=>{
