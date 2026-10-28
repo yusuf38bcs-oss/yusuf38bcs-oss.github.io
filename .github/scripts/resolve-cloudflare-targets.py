@@ -203,12 +203,31 @@ def cloudflare_pages_deployment(
             canonical_deployment.get("id") or ""
         ) if isinstance(canonical_deployment, dict) else ""
     else:
-        query = urllib.parse.urlencode({"env": environment, "per_page": 25})
-        result = cloudflare_api_get(
-            f"/accounts/{account}/pages/projects/{project}/deployments?{query}",
-            token,
-        )
-        deployments = as_records(result, "deployments")
+        # Older exact-head previews may be outside the newest 25 deployments.
+        # Search a bounded number of authenticated metadata pages; never
+        # certify a short SHA from a bot comment as a replacement.
+        deployments = []
+        for page in range(1, 21):
+            query = urllib.parse.urlencode(
+                {"env": environment, "per_page": 25, "page": page}
+            )
+            result = cloudflare_api_get(
+                f"/accounts/{account}/pages/projects/{project}/deployments?{query}",
+                token,
+            )
+            batch = as_records(result, "deployments")
+            deployments.extend(batch)
+            if any(
+                str(
+                    (d.get("deployment_trigger") or {}).get("metadata", {}).get(
+                        "commit_hash", ""
+                    )
+                ).lower() == target_sha
+                for d in batch
+            ):
+                break
+            if len(batch) < 25:
+                break
 
     for deployment in deployments:
         trigger = deployment.get("deployment_trigger")
