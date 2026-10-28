@@ -4,6 +4,7 @@ on:
     paths:
       - 'tools/lbfl-release-attestor-shadow/**'
       - '.github/workflows/lbfl-attestor-shadow-auth-tests.yml'
+      - '.github/workflows/lbfl-shadow-app-auth-manual-gate.yml'
 permissions:
   contents: read
 jobs:
@@ -13,7 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
+      - name: Verify exact-head evidence identity
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
