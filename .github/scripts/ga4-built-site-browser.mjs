@@ -81,7 +81,7 @@ try {
   await verifyPageview();
   phase = 'withdraw';
   await navigate('/cookie-preferences/');
-  await page.locator('[data-gdpr-consent="denied"]').click();
+  await page.getByRole('button', { name: 'Withdraw analytics consent', exact: true }).click();
   assert.equal((await snapshot()).disabled, true);
   // Ignore already-started hits on entering the preferences document.
   requests.splice(0, requests.length, ...requests.filter(request => request.phase !== phase));
