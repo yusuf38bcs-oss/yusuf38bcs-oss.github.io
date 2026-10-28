@@ -14,6 +14,8 @@ on:
       - '.github/scripts/test-yesaf-e7-pages-reader-scope.mjs'
       - '.github/workflows/yesaf-e7-pages-reader-scope-tests.yml'
       - 'docs/yesaf/E7_PAGES_METADATA_READER_SPLIT.md'
+      - '.github/scripts/resolve-cloudflare-targets.py'
+      - '.github/scripts/test-resolve-cloudflare-targets.py'
 permissions:
   contents: read
 jobs:
@@ -35,3 +37,5 @@ jobs:
           node-version: '24'
       - name: Reject legacy writer secrets on six metadata consumers
         run: node --test .github/scripts/test-yesaf-e7-pages-reader-scope.mjs
+      - name: Verify paginated exact-full-SHA Cloudflare preview provenance
+        run: python3 .github/scripts/test-resolve-cloudflare-targets.py
