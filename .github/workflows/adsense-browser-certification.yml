@@ -21,7 +21,6 @@ on:
       - "_life-practices/research-highlights/**"
       - "_data/adsense.yml"
       - "_includes/head/**"
-      - ".github/scripts/resolve-cloudflare-targets.py"
       - ".github/scripts/adsense-browser-certification.mjs"
       - ".github/scripts/hero-motion-temporal-certification.mjs"
       - ".github/scripts/certification-bypass.mjs"
