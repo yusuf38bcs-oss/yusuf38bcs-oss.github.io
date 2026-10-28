@@ -5,6 +5,7 @@ on:
     branches: ["staging", "main"]
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
+      - ".github/scripts/resolve-pages-preview-reader.py"
       - "_config.yml"
       - "_biology/**"
       - "_life-philosophy/**"
@@ -73,7 +74,7 @@ jobs:
           preview_output="$RUNNER_TEMP/cloudflare-preview.out"
           for attempt in $(seq 1 40); do
             : > "$preview_output"
-            python3 .github/scripts/resolve-cloudflare-targets.py \
+            python3 .github/scripts/resolve-pages-preview-reader.py \
               --repository "$GITHUB_REPOSITORY" \
               --sha "$PR_HEAD_SHA" \
               --pr-number "$PR_NUMBER" \

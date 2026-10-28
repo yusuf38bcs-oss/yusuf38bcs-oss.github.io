@@ -13,3 +13,7 @@ This is one isolated engineering improvement only, NOT full YESAF cutover. An au
 Release cannot proceed until production writer-time environment enforcement, certified distinct technical attestor, PR #499 P1, first-main-push containment, and tested rollback are established. This candidate makes no production changes.
 
 Verdict: CANDIDATE ONLY / RELEASE HOLD.
+
+## 29 October candidate pagination repair
+
+The six metadata consumers now use an additive preview-reader adapter. It requests explicit pages of 25 records, stops only on a fully qualified exact-SHA successful clean preview or exhausted results, and fails closed on repeated pages or the 100-page limit. Production canonical lookup and Worker calls are delegated unchanged. The protected legacy resolver is byte-for-byte unchanged. Five adapter fixtures, twelve predecessor resolver fixtures and seven reader-boundary tests passed locally; fresh exact-head CI remains required. Cloudflare Access member login still independently blocks deployed preview browser assertions. No Access policy, token, production source or required status was changed.

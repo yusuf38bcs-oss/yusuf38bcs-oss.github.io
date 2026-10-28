@@ -12,6 +12,8 @@ on:
       - '.github/workflows/ielts-writing-browser-certification.yml'
       - '.github/workflows/zoology-practical-browser-certification.yml'
       - '.github/scripts/test-yesaf-e7-pages-reader-scope.mjs'
+      - '.github/scripts/resolve-pages-preview-reader.py'
+      - '.github/scripts/test-pages-preview-pagination.py'
       - '.github/workflows/yesaf-e7-pages-reader-scope-tests.yml'
       - 'docs/yesaf/E7_PAGES_METADATA_READER_SPLIT.md'
 permissions:
@@ -35,3 +37,8 @@ jobs:
           node-version: '24'
       - name: Reject legacy writer secrets on six metadata consumers
         run: node --test .github/scripts/test-yesaf-e7-pages-reader-scope.mjs
+
+      - name: Verify paginated preview metadata and unchanged legacy resolver
+        run: |
+          python3 .github/scripts/test-pages-preview-pagination.py
+          python3 .github/scripts/test-resolve-cloudflare-targets.py

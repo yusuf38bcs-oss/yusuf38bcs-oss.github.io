@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
+      - ".github/scripts/resolve-pages-preview-reader.py"
       - "_biology/higher-zoology-tree/practical/**"
       - "_biology/higher-zoology-tree/index.md"
       - "_biology/higher-zoology-tree/index.bn.md"
@@ -64,7 +65,7 @@ jobs:
           preview_output="$RUNNER_TEMP/cloudflare-preview.out"
           for attempt in $(seq 1 40); do
             : > "$preview_output"
-            python3 .github/scripts/resolve-cloudflare-targets.py               --repository "$GITHUB_REPOSITORY"               --sha "$PR_HEAD_SHA"               --pr-number "$PR_NUMBER"               --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID"               --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT"               --wait-seconds 0               --site-config _data/ai.yml               --output "$EVIDENCE_DIR/cloudflare-targets.json"               --github-output "$preview_output"
+            python3 .github/scripts/resolve-pages-preview-reader.py               --repository "$GITHUB_REPOSITORY"               --sha "$PR_HEAD_SHA"               --pr-number "$PR_NUMBER"               --cloudflare-account-id "$CLOUDFLARE_ACCOUNT_ID"               --cloudflare-pages-project "$CLOUDFLARE_PAGES_PROJECT"               --wait-seconds 0               --site-config _data/ai.yml               --output "$EVIDENCE_DIR/cloudflare-targets.json"               --github-output "$preview_output"
             if python3 -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); sys.exit(0 if d["pages"]["exact_head"] and d["pages"]["deployment_id"] else 1)' "$EVIDENCE_DIR/cloudflare-targets.json"; then
               cat "$preview_output" >> "$GITHUB_OUTPUT"
               exit 0
