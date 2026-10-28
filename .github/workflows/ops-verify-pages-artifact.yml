@@ -95,6 +95,7 @@ jobs:
                 and .event == "workflow_dispatch"
                 and .head_branch == "main"
                 and .head_sha == $sha
+                and .run_attempt == 1
               ))
             | sort_by(.run_number)
             | last // empty

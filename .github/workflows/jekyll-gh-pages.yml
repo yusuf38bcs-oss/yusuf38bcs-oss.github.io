@@ -40,6 +40,7 @@ jobs:
           RERUN_ACTOR: ${{ github.triggering_actor }}
         run: |
           set -euo pipefail
+          test "$GITHUB_RUN_ATTEMPT" = "1"
           test "$GITHUB_EVENT_NAME" = "workflow_dispatch"
           test "$GITHUB_REF" = "refs/heads/main"
           test "$DISPATCH_ACTOR" = "yusuf38bcs-oss"
@@ -80,6 +81,7 @@ jobs:
           EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}
         run: |
           set -euo pipefail
+          test "$GITHUB_RUN_ATTEMPT" = "1"
           [[ "$EXPECTED_MAIN_SHA" =~ ^[0-9a-f]{40}$ ]]
           test "$(git rev-parse HEAD)" = "$EXPECTED_MAIN_SHA"
           live_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
@@ -355,7 +357,7 @@ jobs:
           retention-days: 1
 
   deploy:
-    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.run_attempt == 1 }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -376,6 +378,7 @@ jobs:
           RERUN_ACTOR: ${{ github.triggering_actor }}
         run: |
           set -euo pipefail
+          test "$GITHUB_RUN_ATTEMPT" = "1"
           test "$GITHUB_EVENT_NAME" = "workflow_dispatch"
           test "$GITHUB_REF" = "refs/heads/main"
           test "$DISPATCH_ACTOR" = "yusuf38bcs-oss"

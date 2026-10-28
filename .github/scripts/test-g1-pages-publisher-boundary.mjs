@@ -26,6 +26,10 @@ function defects(pub, verifier) {
   const authorize = jobBlock(pub, 'authorize');
   const build = jobBlock(pub, 'build');
   const deploy = jobBlock(pub, 'deploy');
+  const firstAttempt = 'test "$GITHUB_RUN_ATTEMPT" = "1"';
+  if (!authorize.includes(firstAttempt)) issues.push('AUTHORIZE_RERUN_UNGUARDED');
+  if (!build.includes(firstAttempt)) issues.push('BUILD_RERUN_UNGUARDED');
+  if (!deploy.includes(firstAttempt) || !deploy.includes('github.run_attempt == 1')) issues.push('DEPLOY_RERUN_UNGUARDED');
   if (!/^\s{2}workflow_dispatch:\s*$/m.test(header)) issues.push('MISSING_MANUAL_EVENT');
   if (/^\s{2}(push|pull_request|pull_request_target|workflow_run|schedule):/m.test(header)) issues.push('AUTO_PUBLISH_TRIGGER');
   if (!/expected_main_sha:\n\s+description:.*\n\s+required: true\n\s+type: string/m.test(header)) issues.push('MISSING_EXACT_SHA_INPUT');
@@ -45,6 +49,7 @@ function defects(pub, verifier) {
   if (!/pages: write/.test(deploy) || !/id-token: write/.test(deploy) || !/git ls-remote/.test(deploy)) issues.push('DEPLOY_PERMISSION_OR_RECHECK');
   if (!/DISPATCH_ACTOR.*yusuf38bcs-oss/.test(deploy) || !/RERUN_ACTOR.*yusuf38bcs-oss/.test(deploy) || !/live_main="\$\(git ls-remote/.test(deploy) || !/test "\$live_main" = "\$EXPECTED_MAIN_SHA"/.test(deploy)) issues.push('DEPLOY_AUTHORIZATION_GAP');
   if (!/cancel-in-progress: false/.test(pub) || !/lbfl-g1-github-pages-manual-production/.test(pub)) issues.push('UNSAFE_PUBLISHER_CONCURRENCY');
+  if (!/and \.run_attempt == 1/.test(verifier)) issues.push('OPS_RERUN_PROOF_ACCEPTED');
   const opsHeader = triggers(verifier);
   if (!/^\s{2}workflow_dispatch:\s*$/m.test(opsHeader) || /^\s{2}(push|pull_request|workflow_run):/m.test(opsHeader)) issues.push('OPS_AUTO_TRIGGER');
   if (!/\.event == "workflow_dispatch"/.test(verifier) || /\.event == "push"/.test(verifier)) issues.push('OPS_ACCEPTS_LEGACY_PUSH');
@@ -189,4 +194,27 @@ test('legacy Cloudflare writer-token fallback in a read-only certificate is reje
   );
   assert.deepEqual(readerCredentialViolations(oldPages), ['secrets.CLOUDFLARE_API_TOKEN']);
   assert.deepEqual(readerCredentialViolations(oldWorker), ['secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN']);
+});
+
+test('replayed publisher runs fail the authorization, build and deploy gates', () => {
+  const guard = 'test "$GITHUB_RUN_ATTEMPT" = "1"';
+  const brokenAuthorize = pages.replace(guard, 'test "$GITHUB_RUN_ATTEMPT" = "2"');
+  assert.ok(defects(brokenAuthorize, ops).includes('AUTHORIZE_RERUN_UNGUARDED'));
+  const buildStart = pages.indexOf('\n  build:\n');
+  assert.ok(buildStart >= 0);
+  const brokenBuild = pages.slice(0,buildStart) +
+    pages.slice(buildStart).replace(guard, 'test "$GITHUB_RUN_ATTEMPT" = "2"');
+  assert.ok(defects(brokenBuild, ops).includes('BUILD_RERUN_UNGUARDED'));
+  const deployStart = pages.indexOf('\n  deploy:\n');
+  assert.ok(deployStart >= 0);
+  const brokenDeploy = pages.slice(0,deployStart) +
+    pages.slice(deployStart).replace(guard, 'test "$GITHUB_RUN_ATTEMPT" = "2"');
+  assert.ok(defects(brokenDeploy, ops).includes('DEPLOY_RERUN_UNGUARDED'));
+  const brokenJobCondition = pages.replace('&& github.run_attempt == 1', '');
+  assert.ok(defects(brokenJobCondition, ops).includes('DEPLOY_RERUN_UNGUARDED'));
+});
+test('read-only Pages verifier must not accept a second-attempt deployment as first-attempt proof', () => {
+  const broken = ops.replace('and .run_attempt == 1', 'and .run_attempt >= 1');
+  assert.notEqual(broken, ops);
+  assert.ok(defects(pages, broken).includes('OPS_RERUN_PROOF_ACCEPTED'));
 });
