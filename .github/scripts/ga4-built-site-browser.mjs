@@ -36,7 +36,8 @@ const state = () => page.evaluate(() => ({
 }));
 const snapshot = async () => { const result = await state(); report.phases.push({ phase, ...result }); return result; };
 const navigate = async (pathname = '/') => {
-  const response = await page.goto(origin + pathname + '?test_private_query=must_not_collect#test_private_fragment');
+  const target = origin + pathname + '?test_private_query=must_not_collect#test_private_fragment';
+  const response = page.url() === target ? await page.reload() : await page.goto(target);
   assert.equal(response.status(), 200);
   await page.waitForTimeout(1000);
 };
