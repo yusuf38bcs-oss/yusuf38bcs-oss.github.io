@@ -55,6 +55,25 @@ class Pagination(unittest.TestCase):
             self.assertEqual(result, {'original': True})
             self.assertEqual(calls, [(path, 'fixture')])
 
+    def test_scan_limit_remains_pending_for_outer_poll(self):
+        calls = []
+        def get(path, token):
+            calls.append(path)
+            return [deployment(len(calls) * 25 + i) for i in range(25)]
+        self.assertEqual(reader.preview_records(get, PATH, 'fixture', SHA), [])
+        self.assertEqual(len(calls), 100)
+
+    def test_full_sha_comment_cannot_substitute_for_api_metadata(self):
+        result = {'pages': {'exact_head': True, 'source': 'cloudflare_full_sha_commit_comment', 'commit_claim': SHA}}
+        self.assertFalse(reader.enforce_api_identity(result, SHA)['pages']['exact_head'])
+
+    def test_api_metadata_requires_all_identity_fields(self):
+        fields = {'source': 'cloudflare_pages_preview_deployment_api_full_sha', 'deployed_sha': SHA, 'deployment_id': 'uuid', 'environment': 'preview', 'status': 'success'}
+        self.assertTrue(reader.enforce_api_identity({'pages': dict(fields)}, SHA)['pages']['exact_head'])
+        for key in fields:
+            missing = dict(fields); missing.pop(key)
+            self.assertFalse(reader.enforce_api_identity({'pages': missing}, SHA)['pages']['exact_head'])
+
 
 if __name__ == '__main__':
     unittest.main()

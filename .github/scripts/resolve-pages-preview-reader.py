@@ -37,7 +37,20 @@ def preview_records(get, path, token, sha):
                 return records
         if len(current) < 25:
             return records
-    raise SystemExit('Preview metadata pagination exceeded 100 pages; no certification issued.')
+    # A new preview may not exist yet. Leave it pending so the workflow can poll
+    # again, rather than terminating before Cloudflare finishes the build.
+    print('Preview metadata scan limit reached; exact preview remains pending.', file=sys.stderr)
+    return []
+
+
+def enforce_api_identity(result, sha):
+    pages = result['pages']
+    pages['exact_head'] = bool(
+        pages.get('source') == 'cloudflare_pages_preview_deployment_api_full_sha'
+        and pages.get('deployed_sha') == sha and pages.get('deployment_id')
+        and pages.get('environment') == 'preview' and pages.get('status') == 'success'
+    )
+    return result
 
 
 def main():
@@ -47,7 +60,12 @@ def main():
     if not resolver.FULL_SHA_RE.fullmatch(sha):
         raise SystemExit('An exact 40-character lowercase --sha is required.')
     original_get = resolver.cloudflare_api_get
+    original_once = resolver.resolve_once
     resolver.cloudflare_api_get = lambda path, token: preview_records(original_get, path, token, sha)
+    resolver.resolve_once = lambda args, target: (
+        enforce_api_identity(original_once(args, target), target)
+        if args.pages_environment == 'preview' else original_once(args, target)
+    )
     return resolver.main()
 
 
