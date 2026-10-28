@@ -180,9 +180,11 @@ class ResolveCloudflareTargetsTest(unittest.TestCase):
             self.assertEqual(token, "reader")
             self.assertIn("env=preview", path)
             self.assertIn("per_page=25", path)
-            for page in range(1, 7):
-                if f"page={page}" in path:
-                    return {"deployments": [stale] * 25 if page < 6 else [exact]}
+            from urllib.parse import parse_qs, urlsplit
+
+            actual_page = int(parse_qs(urlsplit(path).query)["page"][0])
+            if 1 <= actual_page <= 6:
+                return {"deployments": [stale] * 25 if actual_page < 6 else [exact]}
             self.fail(f"Unexpected API page: {path}")
 
         with patch.object(resolver, "cloudflare_api_get", side_effect=fake_get):
