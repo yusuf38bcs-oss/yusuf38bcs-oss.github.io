@@ -5,6 +5,7 @@ on:
     branches: ["staging"]
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
+      - ".github/scripts/resolve-pages-preview-reader.py"
       - "_data/ielts_reading_sets.yml"
       - "_pages/ielts/reading.md"
       - "assets/css/ielts-reading-trainer.css"
@@ -42,7 +43,7 @@ jobs:
         id: preview
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN }}
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -52,7 +53,7 @@ jobs:
           preview_output="$RUNNER_TEMP/cloudflare-preview.out"
           for attempt in $(seq 1 40); do
             : > "$preview_output"
-            python3 .github/scripts/resolve-cloudflare-targets.py \
+            python3 .github/scripts/resolve-pages-preview-reader.py \
               --repository "$GITHUB_REPOSITORY" \
               --sha "$PR_HEAD_SHA" \
               --pr-number "$PR_NUMBER" \
