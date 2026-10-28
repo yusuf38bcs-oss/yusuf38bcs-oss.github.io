@@ -1,6 +1,6 @@
 # YESAF E4 — Predecessor successor-guard v2 controlled migration candidate
 
-**Scope:** isolated successor-guard code preparation and offline tests, not protected-main merge or production rollout. The predecessor R91/R101 `pull_request_target` checks on current protected main intentionally deny edits to **their own guard workflow files and their publisher workflow files**. This branch cannot be merged as a normal green predecessor-guard change. Never call a failed predecessor check SUCCESS.
+**Scope:** additive successor-policy code and unprivileged tests only. Protected predecessor guards and production parity workflows are kept byte-identical to protected main. No protected-main merge or production rollout. The predecessor R91/R101 `pull_request_target` checks on current protected main intentionally deny edits to **their own guard workflow files and their publisher workflow files**. A combined successor-guard/publisher replacement cannot be merged as an ordinary predecessor-compatible change; this Draft has therefore been converted to additive-only work with the four protected workflow files restored. Never call a failed predecessor check SUCCESS.
 
 ## Proposed stronger durable successor, after a specifically approved one-time policy transition
 
@@ -39,3 +39,11 @@ This candidate's Node.js positive/negative tests verify exact retirement SHA, so
 - A safe transition requires an independently reviewed, owner-authorized one-time *protected policy migration procedure*. Existing required checks must remain effective or the transition stops. No automatic bypass, unconditional guard disable, token/permission change, merge or production dispatch is justified by this handoff.
 
 **Next acceptance evidence (not yet established):** protected successor policy equivalence review; authenticated complete live workflow inventory and write-time lease; explicit one-time migration authority; source-level and actual read-only adversarial tests; a safe rollback path; fresh exact-head statuses on the resulting new protected main.
+
+## 29 October — Additive-only correction and two-phase acceptance boundary
+
+- Restored the R91 and R101 production-parity workflows and successor-guard workflows to the **exact original protected-main blob IDs**: R91 production `5b113398e59bc0dde9dfba6827aa4b88ccd6bed4`, guard `1142d9c341f34d5926a5855cfc06c54a46a82d13`; R101 production `3919de0d39b2e316cd8511e283b6d15fcf5197dd`, guard `e92f4f9bec9d4e2db51bcbeb65da958cfa3a1114`.
+- Added `.github/workflows/yesaf-e4-additive-bootstrap-tests.yml`. This **read-only** PR test fails if any of the four protected files differ from the authenticated PR base, then exercises the successor-policy adversarial suite. Its successful result would be candidate code proof, **not** production writer retirement or trusted authority.
+- Keep this Draft as a **predecessor-compatible additive staging candidate**. The proposed successor guard is NOT installed on protected main and does NOT currently authorize editing old publisher files. Actual R91/R101 retirement remains blocked until a separately certified one-time transition; do not use apparent required-context absence to justify a merge.
+- Phase A (this PR): additive policy/tests and exact preserved predecessor blobs, independently verify old R91/R101 certification and original trusted checks on the current head.
+- Phase B (separate, specifically authorized): compare old/new policy invariants; establish a legitimate protected policy handover while retaining enforceable equivalent security, precise owner authorization, transition/rollback and independent verification. Then use the pinned retired publisher blobs only under a trusted, live successor, and re-check live registration/run/credential controls **at the write boundary**.
