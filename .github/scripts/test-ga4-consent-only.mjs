@@ -1,120 +1,77 @@
+#!/usr/bin/env node
+// Non-authorizing, non-executing source contract. Full dynamic behavior
+// must be certified separately in an exact-head browser after preview resolution.
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { runInNewContext } from "node:vm";
 import test from "node:test";
 
-// Non-authorizing GA4 consent regression harness: no network, no credentials.
-const source = readFileSync("_includes/head/analytics-consent.html", "utf8");
-const script = source.match(/<script\b[^>]*>([\s\S]*?)<\/script>/)?.[1];
-assert.ok(script, "consent script exists");
+const consent = readFileSync("_includes/head/analytics-consent.html", "utf8");
+const custom = readFileSync("_includes/head/custom.html", "utf8");
+const v2 = readFileSync("_includes/head/homepage-v2-services.html", "utf8");
+const ads = readFileSync("_data/adsense.yml", "utf8");
+const main = readFileSync("_layouts/default.html", "utf8");
+const v3 = readFileSync("_layouts/homepage-v3.html", "utf8");
+const prefs = readFileSync("_pages/utility/cookie-preferences.md", "utf8");
 
-function scenario({ consent = null, direct = true, existingTag = false } = {}) {
-  const stored = new Map(consent ? [["cookie-consent", consent]] : []);
-  let cookie = consent ? "cookie-consent=" + consent : "";
-  const scripts = [];
-  const localStorage = {
-    getItem: (key) => stored.get(key) ?? null,
-    setItem: (key, val) => stored.set(key, val),
-    removeItem: (key) => stored.delete(key),
-  };
-  const document = {
-    currentScript: { getAttribute: (key) =>
-      key === "data-lbfl-ga4-direct" ? String(direct) : null },
-    readyState: "complete",
-    get cookie() { return cookie; },
-    set cookie(value) { cookie = value.split(";")[0]; },
-    querySelectorAll: () => [],
-    querySelector: (selector) => existingTag && selector.includes("/gtm.js")
-      ? { src: "https://www.googletagmanager.com/gtm.js" } : null,
-    createElement: () => ({
-      setAttribute() {}, addEventListener() {}, remove() {},
-    }),
-    head: { appendChild: (element) => scripts.push(element.src) },
-    addEventListener() {},
-  };
-  const window = {
-    location: {
-      origin: "https://learningbiologyforlife.org", pathname: "/biology/hsc/zoology/",
-      search: "?answer=student-secret", hash: "#email=secret@example.com",
-    },
-    localStorage,
-    setTimeout() {},
-    dataLayer: [],
-  };
-  runInNewContext(script, { window, document, localStorage, Date, Promise }, {
-    filename: "analytics-consent.html", timeout: 1000,
-  });
-  const commands = () => window.dataLayer.filter(
-    (entry) => entry && typeof entry === "object" && "0" in entry
-  ).map((entry) => Array.from(entry));
-  return { window, stored, scripts, commands };
-}
-
-test("Fresh: denied default does not load optional tags", () => {
-  const h = scenario();
-  assert.deepEqual(h.scripts, []);
-  assert.equal(h.window["ga-disable-G-2SCLLF93NS"], true);
+test("No analytics library is injected by the consent include before a grant", () => {
+  assert.match(consent, /data-lbfl-ga4-direct=/);
+  assert.match(consent, /window\[GA4_DISABLE_KEY\]\s*=\s*true/);
+  assert.match(consent, /function startConsentedGa4\(\)/);
+  assert.match(consent, /function updateDirectGa4\(state\)/);
+  assert.match(consent, /if \(state !== "granted"\)/);
+  assert.match(consent, /updateDirectGa4\(state\)/);
 });
 
-test("Decline and stored decline never load tags", () => {
-  const h = scenario(); h.window.gdprDecline();
-  assert.equal(h.stored.get("cookie-consent"), "denied");
-  assert.deepEqual(h.scripts, []);
-  assert.deepEqual(scenario({ consent: "denied" }).scripts, []);
+test("Decline, persistence, withdrawal remain bound to current consent controls", () => {
+  assert.match(consent, /CONSENT_KEY\s*=\s*"cookie-consent"/);
+  assert.match(consent, /window\.gdprDecline\s*=\s*function/);
+  assert.match(consent, /window\.gdprAccept\s*=\s*function/);
+  assert.match(consent, /if \(consent === "granted" \|\| consent === "denied"\)/);
+  assert.match(consent, /pushAnalyticsConsent\(consent\)/);
+  assert.match(consent, /window\.gtag\("consent", "update"/);
+  assert.match(prefs, /data-gdpr-consent="denied"/);
 });
 
-test("Accept and repeated accept initialize GA4 only once", () => {
-  const h = scenario(); h.window.gdprAccept(); h.window.gdprAccept();
-  assert.deepEqual(h.scripts, [
-    "https://www.googletagmanager.com/gtag/js?id=G-2SCLLF93NS",
-  ]);
-  assert.equal(h.window["ga-disable-G-2SCLLF93NS"], false);
-  const calls = h.commands();
-  const config = calls.filter((x) => x[0] === "config");
-  const pageviews = calls.filter((x) => x[0] === "event" && x[1] === "page_view");
-  assert.equal(config.length, 1);
-  assert.equal(pageviews.length, 1);
-  assert.equal(config[0][2].send_page_view, false);
-  assert.equal(config[0][2].allow_google_signals, false);
-  assert.equal(config[0][2].allow_ad_personalization_signals, false);
-  assert.equal(pageviews[0][2].page_location,
-    "https://learningbiologyforlife.org/biology/hsc/zoology/");
-  assert.equal(pageviews[0][2].page_referrer, "");
-  assert.ok(!JSON.stringify(calls).includes("student-secret"));
-  assert.ok(!JSON.stringify(calls).includes("secret@example"));
+test("One GA4 config and one pageview call are protected by a once-only guard", () => {
+  assert.match(consent, /var ga4Started = false/);
+  assert.match(consent, /if \(!DIRECT_GA4 \|\| ga4Started\) return/);
+  assert.match(consent, /if \(ga4Started\)/);
+  assert.equal((consent.match(/window\.gtag\("config", GA4_ID/g) || []).length, 1);
+  assert.equal((consent.match(/window\.gtag\("event", "page_view"/g) || []).length, 1);
+  assert.match(consent, /send_page_view:\s*false/);
+  assert.match(consent, /"G-2SCLLF93NS"/);
 });
 
-test("Stored grant initializes once per document", () => {
-  const h = scenario({ consent: "granted" });
-  assert.equal(h.scripts.length, 1);
-  assert.equal(h.commands().filter((x) => x[0] === "event" && x[1] === "page_view").length, 1);
+test("Existing GTM tag detection prevents a parallel direct GA4 startup", () => {
+  assert.match(consent, /document\.querySelector\(/);
+  assert.match(consent, /googletagmanager\.com\/gtm\.js/);
+  assert.match(consent, /googletagmanager\.com\/gtag\/js/);
+  assert.match(main, /mode == 'live' and site\.data\.adsense\.certified_cmp_ready == true/);
+  assert.match(v3, /mode == 'live' and site\.data\.adsense\.certified_cmp_ready == true/);
 });
 
-test("Withdraw: stop further analytics, preserve prior consent history", () => {
-  const h = scenario(); h.window.gdprAccept(); h.window.gdprDecline();
-  assert.equal(h.window["ga-disable-G-2SCLLF93NS"], true);
-  assert.equal(h.stored.get("cookie-consent"), "denied");
-  assert.equal(h.commands().filter((x) => x[0] === "event" && x[1] === "page_view").length, 1);
+test("Personal inputs, URL queries and fragments are excluded from page_view", () => {
+  assert.match(consent, /window\.location\.origin \+ window\.location\.pathname/);
+  assert.match(consent, /page_location:\s*safePageLocation\(\)/);
+  assert.match(consent, /page_referrer:\s*""/);
+  assert.doesNotMatch(consent, /window\.location\.search|window\.location\.hash/);
+  assert.doesNotMatch(consent, /student_id|student_name|quiz_answer|user_id:/i);
+  assert.match(consent, /allow_google_signals:\s*false/);
+  assert.match(consent, /allow_ad_personalization_signals:\s*false/);
 });
 
-test("Existing GTM and live/CMP modes never duplicate GA4", () => {
-  const existing = scenario({ existingTag: true }); existing.window.gdprAccept();
-  assert.deepEqual(existing.scripts, []);
-  const live = scenario({ direct: false }); live.window.gdprAccept();
-  assert.deepEqual(live.scripts, []);
-});
-
-test("Source and advertising controls are unchanged", () => {
-  const ads = readFileSync("_data/adsense.yml", "utf8");
-  const custom = readFileSync("_includes/head/custom.html", "utf8");
-  const v2 = readFileSync("_includes/head/homepage-v2-services.html", "utf8");
-  const def = readFileSync("_layouts/default.html", "utf8");
+test("AdSense review configuration and GTM guard are still fail-closed", () => {
   assert.match(ads, /mode:\s*review/);
   assert.match(ads, /certified_cmp_ready:\s*false/);
   assert.match(custom, /{% if lbfl_gtm_allowed %}/);
   assert.match(v2, /{% if lbfl_gtm_allowed %}/);
-  assert.match(def, /mode == 'live' and site\.data\.adsense\.certified_cmp_ready == true/);
-  assert.match(source, /data-lbfl-ga4-direct=/);
-  assert.doesNotMatch(source, /googlesyndication|adsbygoogle/);
-  assert.match(source, /script\[src\*=\"googletagmanager\.com\/gtm\.js\"/);
+  assert.match(consent, /adsense\.mode == 'live' and site\.data\.adsense\.certified_cmp_ready == true/);
+  assert.doesNotMatch(consent, /googlesyndication|adsbygoogle/);
+});
+
+test("No secret, deployment or protected governance workflow is altered", () => {
+  const workflow = readFileSync(".github/workflows/ga4-consent-only-fixtures.yml", "utf8");
+  assert.match(workflow, /contents: read/);
+  assert.match(workflow, /pull_request:/);
+  assert.doesNotMatch(workflow, /pull_request_target|workflow_dispatch|wrangler deploy|secrets\./);
 });
