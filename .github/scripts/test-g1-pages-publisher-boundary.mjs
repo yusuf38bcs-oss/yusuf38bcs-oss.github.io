@@ -49,6 +49,20 @@ function defects(pub, verifier) {
   if (!/\.event == "workflow_dispatch"/.test(verifier) || /\.event == "push"/.test(verifier)) issues.push('OPS_ACCEPTS_LEGACY_PUSH');
   if (!/authorize_conclusion="\$\(jq -r/.test(verifier) || !/build_conclusion="\$\(jq -r/.test(verifier) || !/deploy_conclusion="\$\(jq -r/.test(verifier)) issues.push('OPS_NOT_CHECKING_FULL_RELEASE');
   if (!/github\.event_name == 'workflow_dispatch' && inputs\.purge_cache/.test(verifier) || !/default: false/.test(verifier)) issues.push('CACHE_PURGE_OPT_IN_LOST');
+  const denyName = '      - name: DENY cache purge mutation in verification workflow';
+  const denial = verifier.split(denyName)[1]?.split('\n      - name:')[0] ?? '';
+  if (!denial.includes("github.event_name == 'workflow_dispatch' && inputs.purge_cache") ||
+      !/exit 1/.test(denial) ||
+      verifier.indexOf(denyName) < 0 ||
+      verifier.indexOf(denyName) > verifier.indexOf('      - name: Require owner-controlled main dispatch')) {
+    issues.push('OPS_PURGE_NOT_DENIED');
+  }
+  const forbiddenWriteRefs = [
+    'secrets.CLOUDFLARE_API_TOKEN', 'secrets.CF_API_TOKEN', 'secrets.CLOUDFLARE_TOKEN',
+    'secrets.CLOUDFLARE_ZONE_ID', 'secrets.CF_ZONE_ID', '/purge_cache',
+    'curl -fsS -X POST', 'cf_token=', 'wrangler pages deploy',
+  ];
+  if (forbiddenWriteRefs.some(value => verifier.includes(value))) issues.push('OPS_WRITER_LEAK');
   return issues;
 }
 test('G1 publisher and verifier satisfy fail-closed static boundary', () => {
@@ -135,4 +149,21 @@ test('candidate fixture workflow is scoped only to G1 files', () => {
     '.github/scripts/test-g1-pages-publisher-boundary.mjs',
   ]) assert.ok(runner.includes(path), 'untracked G1 fixture path: ' + path);
   assert.doesNotMatch(triggers(runner), /^\s{2}(push|workflow_dispatch|pull_request_target):/m);
+});
+
+test('removing purge denial must fail the verifier contract', () => {
+  const mutated = ops.replace('      - name: DENY cache purge mutation in verification workflow',
+                              '      - name: UNSAFE: purge allowed');
+  assert.notEqual(mutated, ops);
+  assert.ok(defects(pages, mutated).includes('OPS_PURGE_NOT_DENIED'));
+});
+test('reintroducing Cloudflare write token must fail the verifier contract', () => {
+  const mutated = ops.replace('      GH_TOKEN: ${{ github.token }}',
+      '      GH_TOKEN: ${{ github.token }}\n      CF_TOKEN_PRIMARY: ${{ secrets.CLOUDFLARE_API_TOKEN }}');
+  assert.notEqual(mutated, ops);
+  assert.ok(defects(pages, mutated).includes('OPS_WRITER_LEAK'));
+});
+test('reintroducing Cloudflare cache mutation must fail', () => {
+  const mutated = ops + '\n      - name: unsafe-cache-write\n        run: curl -fsS -X POST https://api.cloudflare.com/client/v4/zones/placeholder/purge_cache\n';
+  assert.ok(defects(pages, mutated).includes('OPS_WRITER_LEAK'));
 });
