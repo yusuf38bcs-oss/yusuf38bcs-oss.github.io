@@ -8,6 +8,7 @@ import { readFileSync } from 'node:fs';
 const pages = readFileSync(new URL('../workflows/jekyll-gh-pages.yml', import.meta.url), 'utf8');
 const ops = readFileSync(new URL('../workflows/ops-verify-pages-artifact.yml', import.meta.url), 'utf8');
 const runner = readFileSync(new URL('../workflows/yesaf-g1-pages-publisher-tests.yml', import.meta.url), 'utf8');
+const productionCert = readFileSync(new URL('../workflows/production-certification.yml', import.meta.url), 'utf8');
 
 function jobBlock(doc, name) {
   const start = doc.indexOf('\n  ' + name + ':\n');
@@ -166,4 +167,26 @@ test('reintroducing Cloudflare write token must fail the verifier contract', () 
 test('reintroducing Cloudflare cache mutation must fail', () => {
   const mutated = ops + '\n      - name: unsafe-cache-write\n        run: curl -fsS -X POST https://api.cloudflare.com/client/v4/zones/placeholder/purge_cache\n';
   assert.ok(defects(pages, mutated).includes('OPS_WRITER_LEAK'));
+});
+
+function readerCredentialViolations(source) {
+  const denied = ['secrets.CLOUDFLARE_API_TOKEN', 'secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN'];
+  return denied.filter(ref => source.includes(ref));
+}
+test('production certification uses only named read-only Cloudflare secrets', () => {
+  assert.deepEqual(readerCredentialViolations(productionCert), []);
+  assert.equal(productionCert.split('secrets.CLOUDFLARE_PAGES_READ_TOKEN').length - 1, 2);
+  assert.equal(productionCert.split('secrets.CLOUDFLARE_WORKER_READ_TOKEN').length - 1, 2);
+});
+test('legacy Cloudflare writer-token fallback in a read-only certificate is rejected', () => {
+  const oldPages = productionCert.replace(
+    'secrets.CLOUDFLARE_PAGES_READ_TOKEN',
+    'secrets.CLOUDFLARE_PAGES_READ_TOKEN || secrets.CLOUDFLARE_API_TOKEN'
+  );
+  const oldWorker = productionCert.replace(
+    'secrets.CLOUDFLARE_WORKER_READ_TOKEN',
+    'secrets.CLOUDFLARE_WORKER_READ_TOKEN || secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN'
+  );
+  assert.deepEqual(readerCredentialViolations(oldPages), ['secrets.CLOUDFLARE_API_TOKEN']);
+  assert.deepEqual(readerCredentialViolations(oldWorker), ['secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN']);
 });
