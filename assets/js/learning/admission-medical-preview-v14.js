@@ -4,23 +4,46 @@
   if (!root) return;
   const escapeHtml = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const STORAGE_KEY = 'lbfl-medical-stage1-v14-progress';
-  const EMPTY = () => ({schema:1, blocks:{}, attempts:{}, errors:{}, updated:null});
-  let state = EMPTY(), persistAvailable = true;
-  try {
-    const raw=localStorage.getItem(STORAGE_KEY);
-    const old=raw ? JSON.parse(raw) : null;
-    if (old && old.schema === 1 && ['blocks','attempts','errors'].every(k => old[k] && typeof old[k] === 'object' && !Array.isArray(old[k]))) state=old;
-  } catch (_) { persistAvailable=false; }
-  const save=()=>{state.updated=new Date().toISOString();try {localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(_){persistAvailable=false;showStorageWarning();}};
+  // Persist only whitelisted completion flags and missed question IDs, never choices, grades, timestamps or learner text.
+  const EMPTY = () => ({schema:2,blocks:{},attempts:{},errors:{}});
+  let state=EMPTY(), persistAvailable=true;
   function showStorageWarning(){const n=root.querySelector('#med-storage-status');if(n)n.textContent='এই ব্রাউজারে অগ্রগতি সংরক্ষণ হচ্ছে না। পরীক্ষা চালানো যাবে, কিন্তু পৃষ্ঠা বন্ধ করলে তথ্য হারাতে পারে।';}
-  const now=()=>new Date().toISOString();
+  const save=()=>{
+    const safe=EMPTY();
+    for(const d of DB.study_days)for(const b of d.blocks)if(state.blocks[b.id]===true)safe.blocks[b.id]=true;
+    for(const t of DB.tests)if(state.attempts[t.id]===true)safe.attempts[t.id]=true;
+    for(const q of DB.questions)if(state.errors[q.id]===true)safe.errors[q.id]=true;
+    try{localStorage.setItem(STORAGE_KEY,JSON.stringify(safe));}
+    catch(_){persistAvailable=false;showStorageWarning();}
+  };
   let DB, qmap, active, answers={}, submitted=false;
+  function restore(){
+    try{
+      const raw=localStorage.getItem(STORAGE_KEY);
+      if(!raw)return;
+      const parsed=JSON.parse(raw);
+      if(!parsed || (parsed.schema!==1 && parsed.schema!==2))return;
+      const own=(o,k)=>o && typeof o==='object' && Object.prototype.hasOwnProperty.call(o,k);
+      for(const d of DB.study_days)for(const b of d.blocks)
+        if(own(parsed.blocks,b.id) && parsed.blocks[b.id]===true)state.blocks[b.id]=true;
+      for(const t of DB.tests)if(own(parsed.attempts,t.id)){
+        const v=parsed.attempts[t.id];
+        if(v===true || (parsed.schema===1 && v && typeof v==='object' && !Array.isArray(v)))state.attempts[t.id]=true;
+      }
+      for(const q of DB.questions)if(own(parsed.errors,q.id)){
+        const v=parsed.errors[q.id];
+        if(v===true || (parsed.schema===1 && v && typeof v==='object' && !Array.isArray(v)))state.errors[q.id]=true;
+      }
+      // Migrate legacy schema by replacing detailed results with bounded boolean flags.
+      if(parsed.schema===1)save();
+    }catch(_){persistAvailable=false;}
+  }
   function launch(db){
     if (!db || db.version!=='stage1-v14-isolated-preview' || !Array.isArray(db.questions) || !Array.isArray(db.tests) || !Array.isArray(db.study_days)) throw Error('Unsupported question bank');
-    DB=db;qmap=new Map(db.questions.map(q=>[q.id,q]));
+    DB=db;qmap=new Map(db.questions.map(q=>[q.id,q]));restore();
     root.innerHTML=`<h1>২১ দিনের মেডিকেল প্রস্তুতি — নিয়ন্ত্রিত প্রিভিউ</h1>
       <p class="med-note"><strong>অভ্যন্তরীণ প্রিভিউ:</strong> প্রশ্ন শিক্ষক-প্রস্তুত; মেডিকেলের মূল পূর্ববর্তী প্রশ্নপত্র নয়। ২০২৫–২৬ নম্বরবণ্টন কেবল পরিকল্পনার ভিত্তি; এটি পূর্ণ ১০০ নম্বরের মেডিকেল মক নয়।</p>
-      <p id="med-storage-status" class="med-storage" role="status">অগ্রগতি এই ব্রাউজারে সংরক্ষিত হয়; অন্য যন্ত্রে সিঙ্ক হয় না।</p>
+      <p id="med-storage-status" class="med-storage" role="status">এই ব্রাউজারে শুধু সম্পন্ন কাজ, পরীক্ষা দেওয়া এবং আগে ভুল/ফাঁকা প্রশ্নের ID থাকে; উত্তর বা নম্বর সংরক্ষিত হয় না।</p>
       <nav class="med-tabs" aria-label="প্রস্তুতির বিভাগ"><button type="button" data-tab="plan" aria-pressed="true">পড়ার অগ্রগতি</button><button type="button" data-tab="quiz" aria-pressed="false">MCQ পরীক্ষা</button><button type="button" data-tab="errors" aria-pressed="false">ভুল-প্রশ্ন রিভিশন</button></nav>
       <section id="med-panel-plan" aria-labelledby="med-plan-title"><h2 id="med-plan-title">দিনভিত্তিক পড়ার অগ্রগতি</h2><label for="med-day">দিন নির্বাচন</label><select id="med-day"></select><div id="med-summary" aria-live="polite"></div><div id="med-blocks" class="med-grid"></div></section>
       <section id="med-panel-quiz" aria-labelledby="med-quiz-title" hidden><h2 id="med-quiz-title">পরীক্ষা</h2><label for="med-test">প্রশ্নসেট নির্বাচন</label><select id="med-test"></select><div class="med-actions"><button id="med-submit" type="button">উত্তর জমা দিন</button><button id="med-reset" type="button" class="med-secondary">এই চেষ্টা নতুন করে শুরু</button></div><p class="med-muted">উত্তর জমা দেওয়ার আগে সঠিক উত্তর ও ব্যাখ্যা দেখানো হবে না। সঠিক +১, ভুল −০.২৫, ফাঁকা ০।</p><div id="med-score" role="status" aria-live="polite" tabindex="-1"></div><div id="med-questions"></div></section>
@@ -90,9 +113,7 @@
       });
       const feedback=card.querySelector('.med-feedback');feedback.hidden=false;
       feedback.innerHTML=`<strong>${isCorrect?'সঠিক':ans?'ভুল':'উত্তর দেওয়া হয়নি'} · উত্তর ${escapeHtml(q.correct_option)}: ${escapeHtml(q.options[q.correct_option])}</strong><p>${escapeHtml(q.explanation_bn)}</p><details><summary>চারটি অপশনের ব্যাখ্যা</summary><ul>${Object.keys(q.options).map(k=>`<li><strong>${escapeHtml(k)}:</strong> ${escapeHtml(q.option_analysis_bn[k]||'পৃথক ব্যাখ্যা অনুপস্থিত')}</li>`).join('')}</ul></details>`;
-      const old=state.errors[id];
-      if(!isCorrect){state.errors[id]={count:(old?.count||0)+1,last_choice:ans||'',last_seen:now(),last_correct:old?.last_correct||null,subject:q.subject,chapter:q.chapter_title};}
-      else if(old){old.last_correct=now();old.last_seen=now();old.review_note='সাম্প্রতিক রিভিশনে সঠিক; স্থায়ী mastery দাবি নয়';}
+      if(!isCorrect)state.errors[id]=true; // Never persist individual answers, grades or timestamps.
     });
     const raw=Object.values(pts).reduce((a,b)=>a+b,0);const max=active.question_ids.length;
     const den=active.subject_count||{},weighted=['Physics','Chemistry','Biology'].reduce((acc,s)=>acc+(den[s]?pts[s]/den[s]*DB.marks_baseline[s]:0),0);
@@ -101,14 +122,14 @@
     const score=root.querySelector('#med-score');
     score.innerHTML=`<div class="med-result"><strong>স্কোর ${raw.toFixed(2)} / ${max}</strong><p>উত্তর দেওয়া ${answered}, সঠিক ${Object.values(correct).reduce((a,b)=>a+b,0)}, ভুল/ফাঁকা ${wrong}</p><p>${escapeHtml(label)}</p></div>`;
     score.focus();root.querySelector('#med-submit').disabled=true;
-    if(active.kind!=='REVISION')state.attempts[active.id]={at:now(),score:raw,max,answered};
+    if(active.kind!=='REVISION')state.attempts[active.id]=true;
     save();renderErrors();renderPlan();
   }
   function renderErrors(){
-    const items=Object.entries(state.errors).filter(([id,e])=>qmap.has(id));
-    root.querySelector('#med-errors-summary').textContent=`${items.length}টি স্বতন্ত্র প্রশ্নে ভুল বা ফাঁকা উত্তর নথিভুক্ত। রিভিশনে একবার সঠিক হলেও তা স্থায়ী আয়ত্তের প্রমাণ নয়।`;
-    root.querySelector('#med-retest').disabled=items.length===0;
-    root.querySelector('#med-errors-list').innerHTML=items.length?`<ol>${items.map(([id,e])=>`<li><strong>${escapeHtml(e.subject)}</strong> · ${escapeHtml(e.chapter)} · ভুল/ফাঁকা ${Number(e.count)||0} বার${e.last_correct?' · পরে সঠিক হয়েছে':''}</li>`).join('')}</ol>`:'<p>এখনো কোনো ভুল প্রশ্ন নথিভুক্ত হয়নি।</p>';
+    const ids=Object.keys(state.errors).filter(id=>state.errors[id]===true && qmap.has(id));
+    root.querySelector('#med-errors-summary').textContent=`${ids.length}টি স্বতন্ত্র প্রশ্নে আগে ভুল বা ফাঁকা উত্তর দেওয়া হয়েছে। রিভিশনে একবার সঠিক হলেই স্থায়ী আয়ত্তের দাবি নয়।`;
+    root.querySelector('#med-retest').disabled=ids.length===0;
+    root.querySelector('#med-errors-list').innerHTML=ids.length?`<ol>${ids.map(id=>{const q=qmap.get(id);return `<li><strong>${escapeHtml(q.subject)}</strong> · ${escapeHtml(q.chapter_title)} · রিভিশনের জন্য সংরক্ষিত</li>`;}).join('')}</ol>`:'<p>এখনো কোনো ভুল প্রশ্ন নথিভুক্ত হয়নি।</p>';
   }
   function beginRevision(){
     const ids=Object.keys(state.errors).filter(id=>qmap.has(id));if(!ids.length)return;
