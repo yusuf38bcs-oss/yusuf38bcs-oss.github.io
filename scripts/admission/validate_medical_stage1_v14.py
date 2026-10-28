@@ -63,8 +63,10 @@ def check():
     assert 'admission-medical-preview-v14.js' in page
     assert 'stage1-v14.json' in page
     js=JS.read_text(encoding='utf8')
-    for token in ['localStorage','med-retest','aria-live','med-blocks','escapeHtml','correct_option']:
+    for token in ['localStorage','med-retest','aria-live','med-blocks','escapeHtml','correct_option','schema:2','function restore()','safe.errors[q.id]=true']:
         assert token in js
+    for forbidden in ['state=old', 'last_choice:', 'last_seen:', 'last_correct:', 'score:raw,max,answered', 'state.updated=', 'schema:1, blocks:']:
+        assert forbidden not in js, f'unsafe persisted learner detail: {forbidden}'
     print('PASS: 21-day/270-MCQ/22-test contract; 6-paper times; provenance and draft route')
     print('NOTE: This is structural QA, not a full Jekyll build, end-to-end CI or new scientific certification.')
 
