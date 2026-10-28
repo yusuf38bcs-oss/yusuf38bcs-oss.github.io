@@ -24,7 +24,7 @@ jobs:
           persist-credentials: false
       - name: Authenticate checked-out source
         run: test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # same revision used in run 40772479531
         with:
           ruby-version: '3.2'
           bundler-cache: true
