@@ -44,8 +44,8 @@ test("One GA4 config and one pageview call are protected by a once-only guard", 
 
 test("Existing GTM tag detection prevents a parallel direct GA4 startup", () => {
   assert.match(consent, /document\.querySelector\(/);
-  assert.match(consent, /googletagmanager\.com\/gtm\.js/);
-  assert.match(consent, /googletagmanager\.com\/gtag\/js/);
+  assert.ok(consent.includes("googletagmanager.com/gtm.js"));
+  assert.ok(consent.includes("googletagmanager.com/gtag/js"));
   assert.match(main, /mode == 'live' and site\.data\.adsense\.certified_cmp_ready == true/);
   assert.match(v3, /mode == 'live' and site\.data\.adsense\.certified_cmp_ready == true/);
 });
