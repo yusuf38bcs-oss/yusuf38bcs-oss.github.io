@@ -1,0 +1,71 @@
+# Additive non-authorizing protected policy transition observer.
+# Never overrides existing predecessor checks or writes GitHub statuses.
+name: YESAF E5 Protected Policy Bridge (review only)
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - '.github/scripts/yesaf-e4e5-trusted-policy-bridge.mjs'
+      - '.github/scripts/test-yesaf-e4e5-trusted-policy-bridge.mjs'
+      - '.github/workflows/yesaf-e4e5-policy-bridge.yml'
+      - 'docs/yesaf/E4E5_TRUSTED_POLICY_BRIDGE_20261029.md'
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+permissions:
+  contents: read
+  pull-requests: read
+  actions: read
+jobs:
+  candidate-regression:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Adversarial and policy-scope tests (NO AUTHORITY)
+        run: node --test .github/scripts/test-yesaf-e4e5-trusted-policy-bridge.mjs
+      - name: Preserve old required and predecessor guards
+        run: echo 'This candidate did not issue trusted status, approval, merge or deployment.'
+  trusted-observation:
+    # Can run only after a separate policy-protected merge of this additive bridge.
+    # Execution uses ONLY main source bytes, never checks out or executes PR source.
+    if: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.number == 520 }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Checkout immutable trusted base only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Independently authenticate protected main and script identity
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_MAIN: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'yusuf38bcs-oss/yusuf38bcs-oss.github.io'
+          test "$(git rev-parse HEAD)" = "$EXPECTED_MAIN"
+          test "$(gh api --method GET repos/$GITHUB_REPOSITORY/branches/main --jq '.commit.sha')" = "$EXPECTED_MAIN"
+          test -f .github/scripts/yesaf-e4e5-trusted-policy-bridge.mjs
+      - name: Inspect exact historic science evidence with read-only GitHub REST
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          node --input-type=module -e "import {inspectLive} from './.github/scripts/yesaf-e4e5-trusted-policy-bridge.mjs'; const result=await inspectLive({token:process.env.GH_TOKEN}); console.log(JSON.stringify(result));"
+      - name: Never issue status, approval, or writer capability
+        run: echo 'Evidence only. Original R91/R101 guard failures remain binding. RELEASE HOLD.'
