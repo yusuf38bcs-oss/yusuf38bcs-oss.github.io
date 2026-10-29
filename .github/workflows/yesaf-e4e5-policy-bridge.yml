@@ -20,13 +20,32 @@ permissions:
 jobs:
   candidate-regression:
     if: ${{ github.event_name == 'pull_request' }}
+    # Untrusted test-only job: no Actions, PR, status or deployment authority.
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
+      # Standard pull_request merge checkout avoids explicit untrusted-head ref.
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 2
           persist-credentials: false
+      - name: Authenticate merge parents against exact event head and base
+        shell: bash
+        env:
+          EXPECTED_BASE: ${{ github.event.pull_request.base.sha }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_BASE" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$EXPECTED_HEAD" =~ ^[0-9a-f]{40}$ ]]
+          read -r merge base head <<< "$(git rev-list --parents -n 1 HEAD)"
+          [[ "$merge" =~ ^[0-9a-f]{40}$ ]]
+          if [[ "$base" != "$EXPECTED_BASE" || "$head" != "$EXPECTED_HEAD" ]]; then
+            echo 'Untrusted PR merge-parent identity mismatch; refuse regression pass.' >&2
+            exit 1
+          fi
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
