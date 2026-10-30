@@ -94,3 +94,52 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  console.log(JSON.stringify(r,null,2));
  if(r.decision!=='SOURCE_CUSTODY_PASS')process.exitCode=1;
 }
+
+// V2.1 is a separate prospective successor. The original verifyCustody above
+// remains byte-for-byte in behavior and continues to report the V1 drift.
+// This function has no App key, status publisher, merge or deployment authority.
+export const V21_RETIRED_BLOBS=Object.freeze({
+  '.github/workflows/conv04f-zoology-practical-appendages-production-parity.yml':'a28bf51cac8e4ec07a9228d16d636b1a5af73972',
+  '.github/workflows/conv04f-zoology-practical-dissection-production-parity.yml':'68e11e232a437823258f5f74530db51017ce5de4',
+  '.github/workflows/conv04f-zoology-practical-field-report-production-parity.yml':'9c5facafde56309951db4e768f7040582c0aa96c',
+  '.github/workflows/conv04f-zoology-practical-museum-production-parity.yml':'bf91156ff62791c21f90c880e72838f2843c3926',
+  '.github/workflows/conv04f-zoology-practical-permanent-slides-production-parity.yml':'a17d3221cc69dcb4b4760693814eec40d26d719e',
+  '.github/workflows/conv04f-zoology-practical-temporary-mounts-production-parity.yml':'07b28127f234d5819e568497d206851230e13810',
+  '.github/workflows/conv04f-zoology-practical-whole-mounts-production-parity.yml':'1f8f8ab0b9347a7c1c3e2e66e729ea1427c31a0a',
+  '.github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml':'305b555b153c30719fedcc88164947a2c85fe5f9'
+});
+export function verifyV21Custody({policy,policyBlob,main,head,base,
+  candidateFiles,baselineFiles,candidateTrees,baselineTrees,activation}){
+ const errors=[];
+ const put=(ok,msg)=>{if(!ok)errors.push(msg)};
+ const retired=Object.keys(V21_RETIRED_BLOBS);
+ put(policy?.version==='YESAF_E5_V2_1_PREDICATE_TRANSITION_2026_10_30' &&
+   policy?.scope==='SOURCE_ONLY' && policy?.production_write_allowed===false &&
+   policy?.production_release_authorized===false &&
+   policy?.original_V1_results_preserved===true &&
+   policy?.original_five_status_contexts_preserved===true,'V21_POLICY_SCOPE');
+ put(isSha(policyBlob) && main?.protected===true && main?.commit?.sha===base &&
+   main?.policy_blob===policyBlob && isSha(head) && head!==base,'V21_MAIN_OR_POLICY_IDENTITY');
+ put(activation?.app?.id===5266418 && activation?.head_sha===base &&
+   activation?.policy_blob===policyBlob && activation?.scope==='PROTECTED_MAIN_V2_1_ACTIVATION_ONLY' &&
+   activation?.conclusion==='success' && activation?.expires_at>Date.now(),
+   'V21_APP_ACTIVATION_MISSING');
+ put(retired.length===8 && Object.keys(PINNED_FILES).length===41 &&
+   Object.keys(PINNED_TREES).length===8,'V21_ORIGINAL_MANIFEST_DRIFT');
+ for(const p of retired){
+   put(policy?.retirement_blobs?.[p]===V21_RETIRED_BLOBS[p] &&
+     policy?.original_publisher_blobs?.[p]===PINNED_FILES[p] &&
+     baselineFiles?.[p]===PINNED_FILES[p] && candidateFiles?.[p]===V21_RETIRED_BLOBS[p],
+     'V21_PUBLISHER_BLOB:'+p);
+ }
+ for(const [p,sha] of Object.entries(PINNED_FILES).filter(([p])=>!retired.includes(p)))
+   put(policy?.other_protected_blobs?.[p]===sha &&
+     baselineFiles?.[p]===sha && candidateFiles?.[p]===sha,'V21_OTHER_SOURCE:'+p);
+ for(const [p,sha] of Object.entries(PINNED_TREES))
+   put(policy?.academic_trees?.[p]===sha && baselineTrees?.[p]===sha &&
+     candidateTrees?.[p]===sha,'V21_ACADEMIC_TREE:'+p);
+ return Object.freeze({decision:errors.length?'V21_CUSTODY_HOLD':'V21_CUSTODY_ELIGIBLE_ONLY',
+   errors,head,base,policyBlob,originalV1VerdictUnchanged:true,
+   candidateScienceCurrentHeadVerified:false,certificateIssued:false,
+   mergeAuthority:false,productionWriteAllowed:false});
+}
