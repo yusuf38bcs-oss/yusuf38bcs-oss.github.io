@@ -1,0 +1,177 @@
+# Independent PR-only E4/E5 migration. No trusted status, production credentials or writes.
+name: YESAF E4E5 Authorized Source-Preserving Migration Science
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/workflows/conv04f-zoology-practical-*-production-parity.yml"
+      - ".github/scripts/yesaf-e4e5-source-migration-witness.mjs"
+      - ".github/scripts/test-yesaf-e4e5-source-migration-witness.mjs"
+      - ".github/scripts/yesaf-e5-v21-live-source-witness.mjs"
+      - ".github/workflows/yesaf-e4e5-migration-science.yml"
+      - "_biology/higher-zoology-tree/practical/**"
+      - "_data/academic/**"
+permissions:
+  contents: read
+  checks: read
+  issues: read
+concurrency:
+  group: yesaf-e4e5-migration-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  source-migration:
+    name: All eight retirement source blobs and original scientific custody
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Assert immutable main and exact candidate
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$HEAD_SHA"
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$BASE_SHA"
+          git merge-base --is-ancestor "$BASE_SHA" "$HEAD_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Run genuine source custody and adversarial migration tests
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test .github/scripts/test-yesaf-e4e5-source-migration-witness.mjs
+          if [ "$BASE_SHA" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          else
+            node .github/scripts/yesaf-e5-v21-live-source-witness.mjs
+          fi
+          node --test .github/scripts/test-yesaf-museum-no-publisher.mjs
+          node --test .github/scripts/test-yesaf-e4-five-practical-readonly.mjs
+          ruby -ryaml -e 'YAML.parse_file(ARGV.fetch(0))' .github/workflows/yesaf-e4e5-migration-science.yml
+      - name: Preserve HOLD, do not promote protected precedent
+        run: echo 'Source-only migration evidence. Historic predecessor guards remain authoritative and may be RED. NO MERGE OR DEPLOY.'
+  eight-science:
+    name: ${{ matrix.subject }} original Ruby and exact-head browser (no writer)
+    needs: source-migration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    strategy:
+      fail-fast: false
+      matrix:
+        subject: [appendages, dissection, museum, permanent-slides, temporary-mounts, whole-mounts, zooplankton, field-report]
+    env:
+      SUBJECT: ${{ matrix.subject }}
+      HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      GITHUB_TOKEN: ${{ github.token }}
+      JEKYLL_ENV: production
+      REPORT_DIR: yesaf-e4e5-${{ matrix.subject }}-browser
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Re-verify exact source custody
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$HEAD_SHA"
+          if [ "$BASE_SHA" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          else
+            node .github/scripts/yesaf-e5-v21-live-source-witness.mjs
+          fi
+      - uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
+        with:
+          ruby-version: '3.2'
+          bundler-cache: false
+      - name: Verify immutable original subject validator on actual protected source
+        shell: bash
+        run: |
+          set -euo pipefail
+          ORIGINAL_DIR="$RUNNER_TEMP/original-science-$SUBJECT"
+          git worktree add --detach "$ORIGINAL_DIR" '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846'
+          test "$(git -C "$ORIGINAL_DIR" rev-parse HEAD)" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846'
+          if [ "$BASE_SHA" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            (cd "$ORIGINAL_DIR" && export PR_BASE_SHA="$BASE_SHA" &&
+              ruby -c ".github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb" &&
+              ruby ".github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb")
+            node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          else
+            ruby -c "$ORIGINAL_DIR/.github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb"
+            node .github/scripts/yesaf-e5-v21-live-source-witness.mjs
+          fi
+      - name: Validate current academic content and build exact candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby scripts/zoology/validate_practical_213106.rb
+          if [ "$BASE_SHA" != '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            ruby .github/scripts/validate-conv04f-zoology-practical-gateway.rb
+          fi
+          ruby .github/scripts/validate-academic-surface-contract.rb
+          bundle install --jobs 4 --retry 3
+          bundle exec jekyll clean
+          bundle exec jekyll build --trace
+          route="$SUBJECT"
+          if [ "$SUBJECT" = museum ]; then route=museum-specimens; fi
+          test -f "_site/biology/higher-zoology-tree/practical/$route/index.html"
+      - name: Install original Playwright and Axe runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check ".github/scripts/conv04f-zoology-practical-$SUBJECT-browser-certification.mjs"
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          for attempt in 1 2; do
+            if timeout --signal=TERM --kill-after=30s 540s npx playwright install --with-deps chromium; then break; fi
+            if [ "$attempt" = 2 ]; then exit 1; fi
+            sleep 15
+          done
+      - name: Serve candidate only on loopback
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site >"$RUNNER_TEMP/e4e5-http.log" 2>&1 &
+          route="$SUBJECT"
+          if [ "$SUBJECT" = museum ]; then route=museum-specimens; fi
+          for attempt in $(seq 1 30); do
+            if curl -fsS "http://127.0.0.1:4173/biology/higher-zoology-tree/practical/$route/" >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/e4e5-http.log"
+          exit 1
+      - name: Run unchanged subject-specific browser and accessibility assertions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node ".github/scripts/conv04f-zoology-practical-$SUBJECT-browser-certification.mjs" --base-url http://127.0.0.1:4173 --output-dir "$REPORT_DIR"
+          test "$(git rev-parse HEAD)" = "$HEAD_SHA"
+          if [ "$BASE_SHA" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          else
+            node .github/scripts/yesaf-e5-v21-live-source-witness.mjs
+          fi
+      - name: Preserve real browser report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yesaf-e4e5-${{ matrix.subject }}-${{ github.event.pull_request.head.sha }}
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
