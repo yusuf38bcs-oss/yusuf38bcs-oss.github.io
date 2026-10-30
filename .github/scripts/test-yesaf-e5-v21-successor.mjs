@@ -15,7 +15,7 @@ function fixture(){
  return {policy:structuredClone(policy),policyBlob:M,
    installedMain:{protected:true,commit:{sha:B},policy_blob:M},
    pr:{number:520,state:'open',draft:false,head:{sha:H,repo:{full_name:SITE}},
-     base:{ref:'main',sha:B},changed_files:28},
+     base:{ref:'main',sha:B},changed_files:29},
    comparison:{merge_base_commit:{sha:B},behind_by:0},
    tree:{truncated:false,tree},baselineTree:{truncated:false,tree:old},
    changedFiles:[...Object.entries(RETIREMENT).map(([filename,sha])=>
@@ -50,7 +50,7 @@ for(const [name,edit] of [
  ['missing accessibility',x=>x.science.accessibilityVerified=false],
  ['missing practical gateway',x=>x.science.practicalGatewayVerified=false],
  ['renamed publisher',x=>x.changedFiles[0].previous_filename='old'],
- ['partial retirement',x=>{x.changedFiles.shift();x.pr.changed_files=27}]
+ ['partial retirement',x=>{x.changedFiles.shift();x.pr.changed_files=28}]
 ])test('fail closed: '+name,()=>{
  const x=fixture();edit(x);assert.throws(()=>evaluateV21Source(x),/V21_SOURCE_HOLD/)
 });
