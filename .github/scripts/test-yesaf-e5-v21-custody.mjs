@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {PINNED_FILES,PINNED_TREES,verifyCustody,verifyV21Custody,
   V21_RETIRED_BLOBS,BASE} from './yesaf-e5-predecessor-compatible-source-custody.mjs';
+import {verifyChangedScope} from './yesaf-e5-v21-live-source-witness.mjs';
 const A='a'.repeat(40),B='b'.repeat(40);
 function sample(){
  const others=Object.fromEntries(Object.entries(PINNED_FILES).filter(([p])=>
@@ -40,4 +41,15 @@ for(const [name,change] of [
  ['production enabled',x=>x.policy.production_write_allowed=true]
 ])test('V2.1 custody fails closed: '+name,()=>{
  const x=sample();change(x);assert.equal(verifyV21Custody(x).decision,'V21_CUSTODY_HOLD');
+});
+test('live witness accepts only exact current reviewed paths and bytes',()=>{
+ const x=sample(),added=Object.fromEntries(Array.from({length:21},(_,i)=>['new'+i,A]));
+ const policy={retirement_blobs:x.policy.retirement_blobs,additive_witness_blobs:added};
+ const blobs={...policy.retirement_blobs,...added},changed=Object.keys(blobs);
+ const objectAt=(ref,p)=>ref===A?blobs[p]:p in added?'MISSING':PINNED_FILES[p];
+ verifyChangedScope({changed,policy,head:A,base:B,objectAt});
+ assert.throws(()=>verifyChangedScope({changed:[...changed.slice(1),'evil'],policy,
+   head:A,base:B,objectAt}),/V21_LIVE_SOURCE_HOLD/);
+ assert.throws(()=>verifyChangedScope({changed,policy,head:A,base:B,
+   objectAt:(ref,p)=>p===changed[0]?'bad':objectAt(ref,p)}),/V21_LIVE_SOURCE_HOLD/);
 });
