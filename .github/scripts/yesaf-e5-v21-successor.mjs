@@ -33,7 +33,7 @@ export function evaluateV21Source({policy,policyBlob,installedMain,pr,comparison
    Object.keys(policy.other_protected_blobs||{}).length===33 &&
    Object.keys(policy.original_publisher_blobs||{}).length===8 &&
    Object.keys(policy.academic_trees||{}).length===8 &&
-   Object.keys(policy.additive_witness_blobs||{}).length===20,'scope/pin drift');
+   Object.keys(policy.additive_witness_blobs||{}).length===21,'scope/pin drift');
  need(SHA.test(policyBlob) && installedMain?.protected===true &&
    SHA.test(installedMain?.commit?.sha) &&
    installedMain.policy_blob===policyBlob,'policy not loaded from protected main');
@@ -81,7 +81,7 @@ export function evaluateV21Source({policy,policyBlob,installedMain,pr,comparison
  const touched=changedFiles.filter(f=>Object.hasOwn(RETIREMENT,f.filename));
  need(touched.length===8 && touched.every(f=>f.status==='modified' &&
    f.sha===RETIREMENT[f.filename]),'publisher diff not exact eight');
- need(changedFiles.length===28 && changedFiles.every(f=>
+ need(changedFiles.length===29 && changedFiles.every(f=>
    Object.hasOwn(RETIREMENT,f.filename) ||
    (Object.hasOwn(policy.additive_witness_blobs,f.filename) &&
      f.status==='added' && f.sha===policy.additive_witness_blobs[f.filename])),
