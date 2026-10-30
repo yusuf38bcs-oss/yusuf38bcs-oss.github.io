@@ -11,6 +11,9 @@ on:
       - 'docs/yesaf/E5_VERSIONED_PROSPECTIVE_POLICY_V2.json'
       - '.github/scripts/test-yesaf-e5-v2-source-continuity.mjs'
       - '.github/workflows/yesaf-e5-v2-candidate-preflight.yml'
+      - '.github/scripts/yesaf-e5-v21-successor.mjs'
+      - '.github/scripts/test-yesaf-e5-v21-successor.mjs'
+      - 'docs/yesaf/E5_VERSIONED_PROSPECTIVE_POLICY_V2_1.json'
 permissions:
   contents: read
 jobs:
@@ -39,6 +42,6 @@ jobs:
         with:
           node-version: '24'
       - name: Test V2 source-only continuity and fail-closed cases
-        run: node --test .github/scripts/test-yesaf-e5-v2-source-continuity.mjs .github/scripts/test-yesaf-e5-v2-policy.mjs
+        run: node --test .github/scripts/test-yesaf-e5-v2-source-continuity.mjs .github/scripts/test-yesaf-e5-v2-policy.mjs .github/scripts/test-yesaf-e5-v21-successor.mjs
       - name: Explicitly deny any trust or production capability
         run: echo 'Candidate-only tests. No issuer, status writes, secrets, merge or deployment. E5 HOLD.'
