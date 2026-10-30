@@ -98,5 +98,27 @@
     ".github/workflows/conv04f-zoology-practical-temporary-mounts-production-parity.yml": "b91b4010b0b9ff2a22a1399986d032278180a151",
     ".github/workflows/conv04f-zoology-practical-whole-mounts-production-parity.yml": "a91e6cef9a98e9da34cb4c84bdbe712b5935c408",
     ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml": "5b113398e59bc0dde9dfba6827aa4b88ccd6bed4"
+  },
+  "additive_witness_blobs": {
+    ".github/scripts/test-yesaf-e4-five-practical-readonly.mjs": "2fcda10b9386b8a7535cd9bdb8c4970142eab7fd",
+    ".github/scripts/test-yesaf-e4e5-source-migration-witness.mjs": "01739f528843f8f60fa19c6332f55065833b12a8",
+    ".github/scripts/test-yesaf-e5-predecessor-compatible-source-custody.mjs": "e3f33c824944fdda94a128b7455ac952eed822cd",
+    ".github/scripts/test-yesaf-e5-v21-custody.mjs": "35c67fc14dc1cba8d0a02582ea6d12f2edb4e926",
+    ".github/scripts/test-yesaf-e7-live-writer-census.mjs": "f2ed67b421c3b0443a64a948799347ef6d510241",
+    ".github/scripts/test-yesaf-museum-no-publisher.mjs": "e34dbf19588a732fe7ac2d76193ffcad0a1557ec",
+    ".github/scripts/yesaf-e4e5-source-migration-witness.mjs": "42d7ded8917118a2b9ecec41234964304f050e8b",
+    ".github/scripts/yesaf-e5-predecessor-compatible-source-custody.mjs": "6e26d6c9bac04342be404eeec1297084ac771a5d",
+    ".github/scripts/yesaf-e7-live-census-readonly-runner.mjs": "af9b3f2d577b87a8b796e624d6e295bc4cfd312f",
+    ".github/scripts/yesaf-e7-live-writer-census.mjs": "5171e90a3a69d0eeec9ffe12fbacb5bc4bcdc3eb",
+    ".github/workflows/yesaf-e4-practical-five-readonly-successors.yml": "dedc5919344476036774aa2c9476d2c2d7df07a5",
+    ".github/workflows/yesaf-e4e5-migration-science.yml": "2413a95aaf62708625ab20778a2393d3ebac1427",
+    ".github/workflows/yesaf-e5-predecessor-bootstrap-checks.yml": "4b3db26b44c3b929376b41ccc1af35625f2c5fe0",
+    ".github/workflows/yesaf-e5-three-practical-neutral-science.yml": "3c823c7d47c5e19d169b95dc85873f7c29b6fa89",
+    ".github/workflows/yesaf-e5-v21-custody-candidate.yml": "c8870b97eb92e2a8d06423574eb2bdd3bdf5ecf2",
+    ".github/workflows/yesaf-e7-live-writer-census-readonly.yml": "7c2a19242ceeec8a435ccf206ddd8e9c3ac8267e",
+    ".github/workflows/yesaf-museum-no-publisher-tests.yml": "73a419e2ce60c7eac22ee1aff2dbe84ee3a4912e",
+    ".github/workflows/yesaf-museum-readonly-certification.yml": "2a17be8742e4530d10e8bb2a63942728d1fceb38",
+    "docs/yesaf/E4E5_OWNER_AUTHORIZED_SOURCE_MIGRATION_20261029.md": "04fb291cff8c11b357033247f154dc71f757cdc1",
+    "docs/yesaf/E5_V2_1_PREDICATE_DISPOSITION.csv": "e1cd0545f73b5627273d7d4405c883ae6195a97e"
   }
 }
