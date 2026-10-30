@@ -8,11 +8,14 @@ on:
       - ".github/workflows/conv04f-zoology-practical-*-production-parity.yml"
       - ".github/scripts/yesaf-e4e5-source-migration-witness.mjs"
       - ".github/scripts/test-yesaf-e4e5-source-migration-witness.mjs"
+      - ".github/scripts/yesaf-e5-v21-live-source-witness.mjs"
       - ".github/workflows/yesaf-e4e5-migration-science.yml"
       - "_biology/higher-zoology-tree/practical/**"
       - "_data/academic/**"
 permissions:
   contents: read
+  checks: read
+  issues: read
 concurrency:
   group: yesaf-e4e5-migration-${{ github.event.pull_request.number }}
   cancel-in-progress: true
@@ -34,7 +37,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$BASE_SHA" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
           test "$(git rev-parse HEAD)" = "$HEAD_SHA"
           test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$BASE_SHA"
           git merge-base --is-ancestor "$BASE_SHA" "$HEAD_SHA"
@@ -42,11 +44,19 @@ jobs:
         with:
           node-version: "24"
       - name: Run genuine source custody and adversarial migration tests
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          GITHUB_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           node --test .github/scripts/test-yesaf-e4e5-source-migration-witness.mjs
-          node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          if [ "$BASE_SHA" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          else
+            node .github/scripts/yesaf-e5-v21-live-source-witness.mjs
+          fi
           node --test .github/scripts/test-yesaf-museum-no-publisher.mjs
           node --test .github/scripts/test-yesaf-e4-five-practical-readonly.mjs
           ruby -ryaml -e 'YAML.parse_file(ARGV.fetch(0))' .github/workflows/yesaf-e4e5-migration-science.yml
@@ -65,6 +75,7 @@ jobs:
       SUBJECT: ${{ matrix.subject }}
       HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      GITHUB_TOKEN: ${{ github.token }}
       JEKYLL_ENV: production
       REPORT_DIR: yesaf-e4e5-${{ matrix.subject }}-browser
     steps:
@@ -81,8 +92,11 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$HEAD_SHA"
-          test "$BASE_SHA" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
-          node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          if [ "$BASE_SHA" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          else
+            node .github/scripts/yesaf-e5-v21-live-source-witness.mjs
+          fi
       - uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
         with:
           ruby-version: '3.2'
@@ -92,20 +106,25 @@ jobs:
         run: |
           set -euo pipefail
           ORIGINAL_DIR="$RUNNER_TEMP/original-science-$SUBJECT"
-          git worktree add --detach "$ORIGINAL_DIR" "$BASE_SHA"
-          test "$(git -C "$ORIGINAL_DIR" rev-parse HEAD)" = "$BASE_SHA"
-          (
-            cd "$ORIGINAL_DIR"
-            export PR_BASE_SHA="$BASE_SHA"
-            ruby -c ".github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb"
-            ruby ".github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb"
-          )
-          node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          git worktree add --detach "$ORIGINAL_DIR" '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846'
+          test "$(git -C "$ORIGINAL_DIR" rev-parse HEAD)" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846'
+          if [ "$BASE_SHA" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            (cd "$ORIGINAL_DIR" && export PR_BASE_SHA="$BASE_SHA" &&
+              ruby -c ".github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb" &&
+              ruby ".github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb")
+            node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          else
+            ruby -c "$ORIGINAL_DIR/.github/scripts/validate-conv04f-zoology-practical-${SUBJECT}.rb"
+            node .github/scripts/yesaf-e5-v21-live-source-witness.mjs
+          fi
       - name: Validate current academic content and build exact candidate
         shell: bash
         run: |
           set -euo pipefail
           ruby scripts/zoology/validate_practical_213106.rb
+          if [ "$BASE_SHA" != '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            ruby .github/scripts/validate-conv04f-zoology-practical-gateway.rb
+          fi
           ruby .github/scripts/validate-academic-surface-contract.rb
           bundle install --jobs 4 --retry 3
           bundle exec jekyll clean
@@ -143,7 +162,11 @@ jobs:
           set -euo pipefail
           node ".github/scripts/conv04f-zoology-practical-$SUBJECT-browser-certification.mjs" --base-url http://127.0.0.1:4173 --output-dir "$REPORT_DIR"
           test "$(git rev-parse HEAD)" = "$HEAD_SHA"
-          node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          if [ "$BASE_SHA" = '3164d2537b4f19381c52bbfb5c9e1b7ee7d15846' ]; then
+            node .github/scripts/yesaf-e4e5-source-migration-witness.mjs
+          else
+            node .github/scripts/yesaf-e5-v21-live-source-witness.mjs
+          fi
       - name: Preserve real browser report
         if: always()
         uses: actions/upload-artifact@v4
