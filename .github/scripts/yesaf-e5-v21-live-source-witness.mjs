@@ -13,7 +13,7 @@ const must=(x,m)=>{if(!x)fail(m)};
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const object=(ref,path)=>{try{return git('rev-parse',ref+':'+path)}catch{return 'MISSING'}};
 async function api(path,token){
- must(/^\/repos\/yusuf38bcs-oss\/yusuf38bcs-oss\.github\.io\/(?:commits\/[a-f0-9]{40}\/check-runs\?per_page=100|issues\/495\/comments\?per_page=100)$/.test(path),
+ must(/^\/repos\/yusuf38bcs-oss\/yusuf38bcs-oss\.github\.io\/(?:branches\/main|commits\/[a-f0-9]{40}\/check-runs\?per_page=100|issues\/495\/comments\?per_page=100)$/.test(path),
    'unexpected GitHub route');
  const r=await fetch('https://api.github.com'+path,{method:'GET',redirect:'error',
    signal:AbortSignal.timeout(20000),headers:{Authorization:'Bearer '+token,
@@ -22,6 +22,12 @@ async function api(path,token){
  const next=String(r.headers.get('link')||'');
  must(!/rel="next"/.test(next),'unread pagination');
  return r.json();
+}
+// Fail closed if the provider no longer reports the exact protected base.
+export function verifyProviderMain(main,base){
+ must(sha(base) && main?.commit?.sha===base && main?.protected===true,
+   'protected main provider truth missing or changed');
+ return main;
 }
 export function verifyChangedScope({changed,policy,head,base,objectAt=object}){
  const expected={...policy.retirement_blobs,...policy.additive_witness_blobs};
@@ -47,7 +53,11 @@ export async function inspectLiveV21(env=process.env){
  const blob=object(base,policyPath);
  must(sha(blob),'V2.1 not installed on protected main');
  const policy=JSON.parse(git('show',base+':'+policyPath));
- const checks=await api('/repos/'+SITE+'/commits/'+base+'/check-runs?per_page=100',env.GITHUB_TOKEN);
+ const [main,checks]=await Promise.all([
+   api('/repos/'+SITE+'/branches/main',env.GITHUB_TOKEN),
+   api('/repos/'+SITE+'/commits/'+base+'/check-runs?per_page=100',env.GITHUB_TOKEN)
+ ]);
+ verifyProviderMain(main,base);
  must(checks?.total_count===checks?.check_runs?.length,'activation check inventory incomplete');
  const matches=checks.check_runs.filter(c=>c.app?.id===5266418 &&
    c.name==='LBFL Independent E5 V2.1 Source Attestation' &&
@@ -64,7 +74,7 @@ export async function inspectLiveV21(env=process.env){
  const files=ref=>Object.fromEntries(Object.keys(PINNED_FILES).map(p=>[p,object(ref,p)]));
  const trees=ref=>Object.fromEntries(Object.keys(PINNED_TREES).map(p=>[p,object(ref,p)]));
  const result=verifyV21Custody({policy,policyBlob:blob,
-   main:{protected:true,commit:{sha:base},policy_blob:blob},head,base,
+   main:{protected:main.protected,commit:{sha:main.commit.sha},policy_blob:blob},head,base,
    candidateFiles:files(head),baselineFiles:files(BASE),
    candidateTrees:trees(head),baselineTrees:trees(BASE),activation});
  must(result.decision==='V21_CUSTODY_ELIGIBLE_ONLY',result.errors.join('; '));

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {PINNED_FILES,PINNED_TREES,verifyCustody,verifyV21Custody,
   V21_RETIRED_BLOBS,BASE} from './yesaf-e5-predecessor-compatible-source-custody.mjs';
-import {verifyChangedScope} from './yesaf-e5-v21-live-source-witness.mjs';
+import {verifyChangedScope,verifyProviderMain} from './yesaf-e5-v21-live-source-witness.mjs';
 const A='a'.repeat(40),B='b'.repeat(40);
 function sample(){
  const others=Object.fromEntries(Object.entries(PINNED_FILES).filter(([p])=>
@@ -41,6 +41,12 @@ for(const [name,change] of [
  ['production enabled',x=>x.policy.production_write_allowed=true]
 ])test('V2.1 custody fails closed: '+name,()=>{
  const x=sample();change(x);assert.equal(verifyV21Custody(x).decision,'V21_CUSTODY_HOLD');
+});
+test('provider protected-main truth must match the exact required SHA',()=>{
+ assert.equal(verifyProviderMain({commit:{sha:B},protected:true},B).protected,true);
+ for(const v of [{commit:{sha:B},protected:false},
+    {commit:{sha:A},protected:true},{commit:{sha:B}}])
+  assert.throws(()=>verifyProviderMain(v,B),/V21_LIVE_SOURCE_HOLD/);
 });
 test('live witness accepts only exact current reviewed paths and bytes',()=>{
  const x=sample(),added=Object.fromEntries(Array.from({length:21},(_,i)=>['new'+i,A]));

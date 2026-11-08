@@ -138,11 +138,10 @@ jobs:
           set -euo pipefail
           node --check ".github/scripts/conv04f-zoology-practical-$SUBJECT-browser-certification.mjs"
           npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
-          for attempt in 1 2; do
-            if timeout --signal=TERM --kill-after=30s 540s npx playwright install --with-deps chromium; then break; fi
-            if [ "$attempt" = 2 ]; then exit 1; fi
-            sleep 15
-          done
+          # Install OS dependencies and browser binary separately. Never retry apt/dpkg
+          # while a timed-out package manager still holds the system lock.
+          sudo env DEBIAN_FRONTEND=noninteractive npx playwright install-deps chromium
+          npx playwright install chromium
       - name: Serve candidate only on loopback
         shell: bash
         run: |

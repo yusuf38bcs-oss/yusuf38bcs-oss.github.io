@@ -48,7 +48,11 @@ const negatives=[
 for(const [label,change] of negatives) test('fail closed: '+label,()=>{
  const v=fixture();change(v);assert.throws(()=>inspectMigration(v),/E4E5_MIGRATION_HOLD/);
 });
-test('live candidate repository has all eight exact retirement blobs and untouched science',()=>{
- const r=inspectMigration(inspectGit());
- assert.equal(r.decision,'EIGHT_SOURCE_RETIREMENTS_VERIFIED_NON_AUTHORIZING');
-});
+// Historical live-base assertion is meaningful only at the original protected base.
+// Successor-base live checks are performed by inspectLiveV21 in the workflow.
+if(process.env.BASE_SHA===BASE){
+ test('historical-base live candidate has eight exact retirements',()=>{
+   const r=inspectMigration(inspectGit());
+   assert.equal(r.decision,'EIGHT_SOURCE_RETIREMENTS_VERIFIED_NON_AUTHORIZING');
+ });
+}
