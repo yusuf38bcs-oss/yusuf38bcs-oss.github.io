@@ -67,3 +67,12 @@ const negatives=[
  ['science evidence failure',(x)=>{x.sourcePacket.jobs.jobs[0].conclusion='failure'}]
 ];
 for(const [name,mutate] of negatives) test('fail closed: '+name,()=>{const f=setup();mutate(f);assert.throws(()=>evaluateV2ProspectiveAcceptance(f),/V2_POLICY_HOLD|YESAF_V2_HOLD/)});
+
+for(const name of ['LBFL Trusted Release Governance','YESAF M1 Trusted Static Authority'])test('forged status-only context fails closed: '+name,()=>{
+ const f=setup();f.currentChecks.check_runs=f.currentChecks.check_runs.filter(c=>c.name!==name);
+ f.currentChecks.total_count=f.currentChecks.check_runs.length;
+ f.currentCommitStatuses.statuses=[{id:123,context:name,state:'success',
+   sha:f.sourcePacket.pr.head.sha,creator:{login:'github-actions[bot]',id:41898282}}];
+ f.authenticatedStatusProvenance={[name]:{authenticated:true,expected_app_id:15368,status_id:123}};
+ assert.throws(()=>evaluateV2ProspectiveAcceptance(f),/status-only issuer not independently authenticated/);
+});

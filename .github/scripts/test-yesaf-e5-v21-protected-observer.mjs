@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {verifyActivation,verifyInvocation,verifyScienceRun}
+import {verifyActivation,verifyInvocation,verifyScienceRun,awaitCurrentScienceRun}
   from './yesaf-e5-v21-protected-observer.mjs';
 
 const head='a'.repeat(40),base='b'.repeat(40),blob='c'.repeat(40);
@@ -60,4 +60,23 @@ test('nine current science jobs and eight browser artifacts are required',()=>{
    i===1?{...j,steps:[]}:j)},artifacts,head,base));
  assert.throws(()=>verifyScienceRun(run,jobs,{...artifacts,artifacts:[
    {...artifacts.artifacts[0],expired:true},...artifacts.artifacts.slice(1)]},head,base));
+});
+
+test('bounded observer resamples absent/running science and holds failure or drift',async()=>{
+ const waiting={...run,status:'in_progress',conclusion:null};
+ const completed={...run,status:'completed',conclusion:'success'};
+ let scans=0;
+ const v=await awaitCurrentScienceRun(async()=>({total_count:++scans===1?0:1,
+   workflow_runs:scans===1?[]:[waiting]}),async()=>completed,head,
+   {attempts:2,pause:async()=>{}});
+ assert.equal(v.id,run.id);assert.equal(scans,2);
+ const list=async()=>({total_count:1,workflow_runs:[waiting]});
+ await assert.rejects(()=>awaitCurrentScienceRun(list,async()=>({...completed,conclusion:'failure'}),
+   head,{attempts:1}),/terminal non-success/);
+ await assert.rejects(()=>awaitCurrentScienceRun(list,async()=>({...completed,head_sha:base}),
+   head,{attempts:1}),/identity drift/);
+ await assert.rejects(()=>awaitCurrentScienceRun(async()=>({total_count:0,workflow_runs:[]}),
+   async()=>completed,head,{attempts:2,pause:async()=>{}}),/incomplete after bounded/);
+ await assert.rejects(()=>awaitCurrentScienceRun(async()=>({total_count:2,workflow_runs:[waiting,waiting]}),
+   async()=>completed,head,{attempts:1}),/ambiguous current/);
 });

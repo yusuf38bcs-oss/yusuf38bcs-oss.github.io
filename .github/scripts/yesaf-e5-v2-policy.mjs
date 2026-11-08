@@ -70,9 +70,10 @@ export function evaluateV2ProspectiveAcceptance({sourcePacket, originalManifest,
     requireTrue((!!c)!==(statuses.length>0),'duplicate/missing required status '+name);
     if(c) requireTrue(c.status==='completed' && c.conclusion==='success' && c.app?.id===app,
       'required check not successful '+name);
-    else requireTrue(statuses.length===1 && statuses[0].state==='success' &&
-      (!statuses[0].sha || statuses[0].sha===source.currentCandidate),
-      'required status not successful '+name);
+    // GitHub's status API does not expose an App-issuer identity.
+    // A bot name, matching context, target URL or caller assertion is not proof.
+    // The independent V2.1 App check is the positive attestation route.
+    else requireTrue(false,'status-only issuer not independently authenticated '+name);
   }
   requireTrue(oldGuardFindings?.R91==='failure' && oldGuardFindings?.R101==='failure' &&
     oldGuardFindings?.historical_results_preserved===true &&

@@ -59,6 +59,40 @@ export function verifyScienceRun(run,jobs,artifacts,head,base){
    practicalGatewayVerified:true,museumVerified:true,runId:run.id};
 }
 
+
+/* Read-only bounded re-observation on the existing pull_request_target event.
+ * No workflow_run privilege addition, candidate checkout or status write.
+ */
+export async function awaitCurrentScienceRun(listRuns,readRun,head,{
+ attempts=70,pause=ms=>new Promise(resolve=>setTimeout(resolve,ms))
+}={}){
+ need(SHA.test(head) && Number.isInteger(attempts) && attempts>0 && attempts<=80,
+   'invalid bounded science observation');
+ for(let i=0;i<attempts;i++){
+   const page=await listRuns();
+   need(Array.isArray(page?.workflow_runs) &&
+     page.total_count===page.workflow_runs.length,'incomplete science run census');
+   const candidates=page.workflow_runs.filter(r=>r.workflow_id===400121489 &&
+     r.head_sha===head && r.run_attempt===1);
+   need(candidates.length<=1,'ambiguous current science run');
+   if(candidates.length===1){
+     const r=await readRun(candidates[0].id);
+     need(r?.id===candidates[0].id && r.workflow_id===400121489 &&
+       r.path==='.github/workflows/yesaf-e4e5-migration-science.yml' &&
+       r.event==='pull_request' && r.head_sha===head && r.run_attempt===1,
+       'current science run identity drift');
+     if(r.status==='completed'){
+       need(r.conclusion==='success','current science run terminal non-success');
+       return r;
+     }
+     need(['queued','in_progress','waiting','pending','requested'].includes(r.status),
+       'unexpected current science run state');
+   }
+   if(i+1<attempts)await pause(10000);
+ }
+ fail('current science incomplete after bounded observation');
+}
+
 export function verifyActivation(c,comments,base,blob){
  need(c?.app?.id===5266418 && c.name===NAME && c.head_sha===base &&
    c.status==='completed' && c.conclusion==='success' &&
@@ -103,9 +137,10 @@ export async function observe(e=process.env,request=fetch){
    get(ROOT+'/issues/495/comments?per_page=100'),
    get(ROOT+'/actions/runs?head_sha='+head+'&event=pull_request&per_page=100')
  ]);
- need(main?.commit?.sha===base && pr?.head?.sha===head &&
-   pr.base?.sha===base && content?.encoding==='base64' &&
-   SHA.test(content.sha),'stale main/PR/policy');
+ need(main?.commit?.sha===base && main?.protected===true &&
+   pr?.head?.sha===head && pr.base?.sha===base &&
+   content?.encoding==='base64' && SHA.test(content.sha),
+   'stale or unprotected main/PR/policy');
  const bytes=Buffer.from(content.content.replace(/\s/g,''),'base64');
  need(hash(bytes)===content.sha,'policy Git blob mismatch');
  need(checks?.total_count===checks.check_runs?.length &&
@@ -117,17 +152,18 @@ export async function observe(e=process.env,request=fetch){
    c.name===NAME && c.conclusion==='success');
  need(matched.length===1,'ambiguous independent activation');
  const activation=verifyActivation(matched[0],comments,base,content.sha);
- const candidates=runs.workflow_runs.filter(r=>r.workflow_id===400121489 &&
-   r.head_sha===head && r.conclusion==='success');
- need(candidates.length===1,'ambiguous/missing current science run');
- const run=candidates[0];
+ let firstScan=true;
+ const run=await awaitCurrentScienceRun(async()=>{
+   if(firstScan){firstScan=false;return runs}
+   return get(ROOT+'/actions/runs?head_sha='+head+'&event=pull_request&per_page=100');
+ },id=>get(ROOT+'/actions/runs/'+id),head);
  const [jobs,artifacts]=await Promise.all([
    get(ROOT+'/actions/runs/'+run.id+'/jobs?per_page=100'),
    get(ROOT+'/actions/runs/'+run.id+'/artifacts?per_page=100')
  ]);
  const science=verifyScienceRun(run,jobs,artifacts,head,base);
  const decision=evaluateV21Source({policy:JSON.parse(bytes),policyBlob:content.sha,
-   installedMain:{protected:true,commit:main.commit,policy_blob:content.sha},
+   installedMain:{protected:main.protected,commit:main.commit,policy_blob:content.sha},
    pr,comparison,tree,baselineTree,changedFiles:files,science,activation});
  return {...decision,scienceRun:run.id,appActivationCheck:matched[0].id,
    observerMain:base,certificateIssued:false,productionWriteAllowed:false};
