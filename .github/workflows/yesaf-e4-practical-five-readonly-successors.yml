@@ -1,0 +1,121 @@
+# YESAF E4 — five additive credential-free Practical browser certificates.
+# Historical legacy publishers remain unchanged; production promotion remains HOLD.
+name: YESAF E4 Five Practical Read-Only Browser Successors
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/workflows/yesaf-e4-practical-five-readonly-successors.yml"
+      - ".github/scripts/test-yesaf-e4-five-practical-readonly.mjs"
+      - ".github/scripts/conv04f-zoology-practical-appendages-browser-certification.mjs"
+      - ".github/scripts/conv04f-zoology-practical-dissection-browser-certification.mjs"
+      - ".github/scripts/conv04f-zoology-practical-permanent-slides-browser-certification.mjs"
+      - ".github/scripts/conv04f-zoology-practical-temporary-mounts-browser-certification.mjs"
+      - ".github/scripts/conv04f-zoology-practical-whole-mounts-browser-certification.mjs"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yesaf-e4-five-readonly-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  five-subject-readonly:
+    name: Practical ${{ matrix.subject }} local browser and science contract (no publisher)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        subject: [appendages, dissection, permanent-slides, temporary-mounts, whole-mounts]
+    env:
+      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+      EXPECTED_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+      SUBJECT: ${{ matrix.subject }}
+      REPORT_DIR: yesaf-e4-practical-${{ matrix.subject }}-browser-report
+    steps:
+      - name: Check out exact unprivileged candidate
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Authenticate exact head and current protected base
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$PR_BASE_REF" = "main"
+          [[ "$CANDIDATE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$EXPECTED_BASE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$EXPECTED_BASE_SHA"
+          git merge-base --is-ancestor "$EXPECTED_BASE_SHA" "$CANDIDATE_SHA"
+          test -f ".github/scripts/conv04f-zoology-practical-${SUBJECT}-browser-certification.mjs"
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Verify read-only boundary and retained subject assertions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test .github/scripts/test-yesaf-e4-five-practical-readonly.mjs
+          node --check ".github/scripts/conv04f-zoology-practical-${SUBJECT}-browser-certification.mjs"
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+      - name: Build exact-head Jekyll site without publication
+        env:
+          JEKYLL_ENV: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle install --jobs 4 --retry 3
+          bundle exec jekyll clean
+          bundle exec jekyll build --trace
+          test -f "_site/biology/higher-zoology-tree/practical/${SUBJECT}/index.html"
+          ruby scripts/zoology/validate_practical_213106.rb
+      - name: Install browser dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --ignore-scripts playwright@1.62.1 axe-core@4.13.0
+          npx playwright install --with-deps chromium
+      - name: Start loopback web server, no external deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site >"$RUNNER_TEMP/yesaf-e4-http.log" 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent "http://127.0.0.1:4173/biology/higher-zoology-tree/practical/${SUBJECT}/" >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/yesaf-e4-http.log"
+          exit 1
+      - name: Execute unchanged subject-specific Playwright and Axe assertions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node ".github/scripts/conv04f-zoology-practical-${SUBJECT}-browser-certification.mjs" \
+            --base-url "http://127.0.0.1:4173" \
+            --output-dir "$REPORT_DIR"
+          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$EXPECTED_BASE_SHA"
+      - name: Preserve non-authorizing academic/browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yesaf-e4-five-readonly-${{ matrix.subject }}-${{ github.event.pull_request.head.sha }}
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: warn
+          retention-days: 30
