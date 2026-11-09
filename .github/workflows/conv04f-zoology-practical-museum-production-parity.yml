@@ -95,7 +95,9 @@ jobs:
   deploy-and-certify:
     name: Exact-main Cloudflare production + Museum DOM
     needs: contract
-    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    # YESAF M1.C-R1 quarantine. Production Pages writes are forbidden here.
+    # Await independent GitHub-Pages parity reader, writer inventory and rollback certification.
+    if: ${{ false }}
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:

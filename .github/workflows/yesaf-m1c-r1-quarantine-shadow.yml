@@ -1,0 +1,104 @@
+# M1.C-R1: inspect quarantined Pages parity publishers as inert bytes.
+# This check is never a required release authority and uses no Cloudflare secrets.
+name: YESAF M1.C-R1 Quarantine Shadow
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quarantine-source-test:
+    name: YESAF M1.C-R1 eight writer job guard audit (non-authorizing)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Verify all eight candidate job guards at exact SHA
+        uses: actions/github-script@v7
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        with:
+          script: |
+            const crypto = require('node:crypto');
+            // Construct Actions syntax in JS: never interpolate fixture guards.
+            const falseGuard = String.fromCharCode(36) + '{{ false }}';
+            const trueGuard = String.fromCharCode(36) + '{{ true }}';
+            const sha = String(process.env.CANDIDATE_SHA || '').toLowerCase();
+            if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error('Candidate SHA invalid');
+            const kinds = [
+              'appendages', 'dissection', 'field-report', 'museum',
+              'permanent-slides', 'temporary-mounts', 'whole-mounts', 'zooplankton'
+            ];
+            function verify(source, jobName) {
+              const normalized = String(source).replace(/\r\n/g, '\n');
+              const jobsAt = normalized.indexOf('\njobs:\n');
+              const content = normalized.startsWith('jobs:\n') ? normalized
+                : jobsAt >= 0 ? normalized.slice(jobsAt + 1) : '';
+              if (!content) throw new Error('Missing jobs block');
+              const regex = new RegExp('^  ' + jobName + ':[ \\t]*$', 'gm');
+              const headers = [...content.matchAll(regex)];
+              if (headers.length !== 1) throw new Error('Expected exactly one publisher job');
+              const begin = headers[0].index + headers[0][0].length;
+              const tail = content.slice(begin);
+              const next = tail.search(/^  [a-zA-Z][a-zA-Z0-9_-]*:[ \t]*$/m);
+              const block = next < 0 ? tail : tail.slice(0, next);
+              const guards = [...block.matchAll(/^    if:[ \t]*(.+?)[ \t]*$/gm)]
+                .map(x => x[1].trim());
+              if (guards.length !== 1 || guards[0] !== falseGuard) {
+                throw new Error('Writer job is not uniquely fail-closed');
+              }
+              if (!/\bpages[ \t]+deploy\b/.test(block)) {
+                throw new Error('No recognizable legacy publisher within disabled job');
+              }
+              const outside = content.slice(0, headers[0].index) + tail.slice(block.length);
+              if (/\bpages[ \t]+deploy\b/.test(outside)) {
+                throw new Error('Possible unguarded second Pages publisher');
+              }
+              return true;
+            }
+            const fixture = [
+              'jobs:', '  production:', '    if: ' + falseGuard,
+              '    steps:', '      - run: wrangler pages deploy _site --branch main'
+            ].join('\n');
+            const negatives = [
+              fixture.replace('    if: ' + falseGuard, '    if: ' + trueGuard),
+              fixture.replace('    if: ' + falseGuard + '\n', ''),
+              fixture.replace('    if: ' + falseGuard, '    if: ' + falseGuard + '\n    if: ' + trueGuard),
+              fixture + '\n  unguarded:\n    steps:\n      - run: wrangler pages deploy _site --branch main'
+            ];
+            if (!verify(fixture, 'production')) throw new Error('Positive fixture rejected');
+            for (const altered of negatives) {
+              let rejected = false;
+              try { verify(altered, 'production'); } catch { rejected = true; }
+              if (!rejected) throw new Error('Unsafe negative fixture falsely passed');
+            }
+            const validated = [];
+            for (const kind of kinds) {
+              const rel = '.github/workflows/conv04f-zoology-practical-' +
+                kind + '-production-parity.yml';
+              const response = await github.rest.repos.getContent({
+                ...context.repo, path: rel, ref: sha
+              });
+              const d = response.data;
+              if (!d || Array.isArray(d) || d.type !== 'file' ||
+                  d.encoding !== 'base64' || d.path !== rel ||
+                  typeof d.content !== 'string') throw new Error('Missing regular file: ' + rel);
+              const bytes = Buffer.from(d.content.replace(/\s/g, ''), 'base64');
+              const hash = crypto.createHash('sha1')
+                .update('blob ' + bytes.length + String.fromCharCode(0))
+                .update(bytes).digest('hex');
+              if (bytes.length !== d.size || bytes.length > 120000 || hash !== d.sha) {
+                throw new Error('Invalid immutable blob ' + rel);
+              }
+              verify(bytes.toString('utf8'), kind === 'museum' ? 'deploy-and-certify' : 'production');
+              validated.push(kind);
+            }
+            if (validated.length !== 8) throw new Error('Not all writers quarantined');
+            core.info('YESAF M1.C-R1: 8/8 source job guards PASS; 4/4 negative fixtures REJECTED.');
+            core.info('Static diagnostic only. Production cutover HOLD; no job or credential altered by this run.');
