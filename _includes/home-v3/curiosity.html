@@ -1,0 +1,60 @@
+<section id="curiosity-challenge" class="lbfl-v3-section lbfl-v46-curiosity" aria-labelledby="lbfl-v46-curiosity-title">
+  <div class="lbfl-v3-shell">
+    <header class="lbfl-v3-section__head">
+      <p class="lbfl-v3-kicker">02 · PREDICT</p>
+      <h2 id="lbfl-v46-curiosity-title">What do you think happens next?</h2>
+      <p>Make a prediction before reading the explanation. An uncertain answer is welcome: the goal is to examine your reasoning, not to guess quickly.</p>
+      <p lang="bn" class="lbfl-v46-bn-summary">আগে নিজের ধারণা তৈরি করুন, তারপর বৈজ্ঞানিক ব্যাখ্যার সঙ্গে মিলিয়ে দেখুন।</p>
+    </header>
+    <div class="lbfl-v46-challenge-grid" data-v46-challenge>
+      <div class="lbfl-v46-prediction">
+        <p class="lbfl-v46-step">OBSERVE · A hypothetical experiment</p>
+        <h3>A living plant cell is placed in a concentrated salt solution.</h3>
+        <p>Assume the surrounding solution has lower water potential than the cell interior, and the plasma membrane is intact.</p>
+        <fieldset class="lbfl-v46-prediction__choices" data-v46-choices>
+          <legend>Predict the net movement of water.</legend>
+          <label class="lbfl-v46-prediction__option"><input type="radio" name="lbfl-v46-prediction" value="in"><span>Water enters the cell</span></label>
+          <label class="lbfl-v46-prediction__option"><input type="radio" name="lbfl-v46-prediction" value="out"><span>Water leaves the cell</span></label>
+          <label class="lbfl-v46-prediction__option"><input type="radio" name="lbfl-v46-prediction" value="none"><span>No net movement of water</span></label>
+          <label class="lbfl-v46-prediction__option"><input type="radio" name="lbfl-v46-prediction" value="unsure"><span>I am not sure yet</span></label>
+        </fieldset>
+        <label class="lbfl-v46-confidence-label" for="lbfl-v46-confidence">How confident are you?</label>
+        <select id="lbfl-v46-confidence" data-v46-confidence>
+          <option value="">Choose confidence (optional)</option>
+          <option value="low">Low confidence</option>
+          <option value="medium">Medium confidence</option>
+          <option value="high">High confidence</option>
+        </select>
+        <div class="lbfl-v46-challenge-actions">
+          <button class="lbfl-v3-button lbfl-v3-button--primary lbfl-v3-target" type="button" data-v46-check>Check my prediction</button>
+          <button class="lbfl-v3-button lbfl-v46-reset lbfl-v3-target" type="button" data-v46-reset hidden>Predict again</button>
+        </div>
+        <p class="lbfl-v46-feedback" data-v46-feedback role="status" aria-live="polite" aria-atomic="true">Choose a prediction, then check your reasoning.</p>
+        <noscript><p>Interactive checking needs JavaScript. You can still make a prediction and open the explanation on the right.</p></noscript>
+      </div>
+      <div class="lbfl-v46-evidence">
+        <p class="lbfl-v46-step">EVIDENCE · EXPLAIN · REVISE</p>
+        <details id="lbfl-v46-evidence-details" data-v46-evidence>
+          <summary>Inspect the water-potential model</summary>
+          <p><strong>Expected direction: water leaves the cell.</strong> Water moves by osmosis from higher to lower water potential across a selectively permeable membrane.</p>
+          <figure class="lbfl-v46-water-model" role="group" aria-label="Conceptual model of net water movement">
+            <div><strong>Cell interior</strong><span>Higher water potential</span></div>
+            <span class="lbfl-v46-water-model__arrow" aria-hidden="true">H₂O →</span>
+            <div><strong>Salt solution</strong><span>Lower water potential</span></div>
+            <figcaption>This is a model-based prediction, not measured experimental data.</figcaption>
+          </figure>
+          <p>If enough water leaves, the vacuole can shrink and the plasma membrane may pull away from the cell wall (plasmolysis). The extent depends on the gradient, exposure and membrane properties.</p>
+          <p><strong>What would count as evidence?</strong> Compare cell images before and after exposure, document the change, and test a less concentrated solution as a comparison.</p>
+        </details>
+        <div class="lbfl-v46-revision" data-v46-revision hidden>
+          <label for="lbfl-v46-revision-text">Explain or revise your model in your own words (optional; not sent or saved).</label>
+          <textarea id="lbfl-v46-revision-text" rows="3" placeholder="I now think water moves … because …"></textarea>
+        </div>
+        <nav class="lbfl-v46-evidence__sources" aria-label="Source lessons for this challenge">
+          <a class="lbfl-v3-target" href="{{ '/bn/biology/hsc-corner/botany/lecture-02-plasma-membrane-fluid-mosaic-model/' | relative_url }}" hreflang="bn">Read the membrane lesson</a>
+          <a class="lbfl-v3-target" href="{{ '/bn/biology/hsc-corner/botany/lecture-07-cell-wall-vacuole/' | relative_url }}" hreflang="bn">Connect to cell wall and vacuole</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>

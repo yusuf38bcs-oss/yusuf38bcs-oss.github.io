@@ -1,0 +1,82 @@
+/* LBFL V4.6 learner-action layer. V3 remains the visual and shared-service foundation. */
+.lbfl-home-v3 #learning-pathways,
+.lbfl-home-v3 #curiosity-challenge { scroll-margin-top: 86px; }
+.lbfl-home-v3 .lbfl-v3-hero { min-height: 0; padding-block: clamp(32px, 4vw, 58px); }
+.lbfl-home-v3 .lbfl-v3-hero__grid { min-height: min(510px, 58svh); }
+.lbfl-home-v3 .lbfl-v3-pathways { padding-block: clamp(34px, 5vw, 68px); }
+.lbfl-home-v3 .lbfl-v3-pathway-card { min-height: 0; padding: clamp(18px, 2vw, 24px); }
+.lbfl-home-v3 .lbfl-v3-pathway-card::before { margin-bottom: 12px; }
+.lbfl-home-v3 .lbfl-v3-pathway-card__action { margin-top: 8px; }
+.lbfl-v46-secondary-paths { display:flex; align-items:center; flex-wrap:wrap; gap: 10px 18px; margin-top:26px; font-size: .94rem; }
+.lbfl-v46-secondary-paths > span { color:#3d5355; }
+.lbfl-v46-secondary-paths a { display:inline-flex; align-items:center; padding:8px 12px; border:1px solid #607e79; border-radius:10px; text-decoration:underline; text-underline-offset:3px; }
+.lbfl-v46-motion-toggle { display:inline-flex; align-items:center; margin-top:14px; padding:9px 12px; border:1px solid #a5c6c4; border-radius:10px; background:rgba(255,255,255,.08); color:#f7f3e9; font-size:.88rem; font-weight:600; font-family:inherit; line-height:1.35; cursor:pointer; }
+.no-js .lbfl-v46-motion-toggle,
+.no-js .lbfl-v46-challenge-actions,
+.no-js .lbfl-v46-confidence-label,
+.no-js [data-v46-confidence],
+.no-js .lbfl-v46-feedback { display:none !important; }
+.lbfl-home-v3[data-v46-motion-paused="true"] .lbfl-v3-hero *,
+.lbfl-home-v3[data-v46-hero-visible="false"] .lbfl-v3-hero *,
+html[data-reduced-motion="true"] .lbfl-home-v3 .lbfl-v3-hero * { animation:none !important; transition:none !important; }
+.lbfl-v46-curiosity { background:#f1f6f3; }
+.lbfl-v46-curiosity .lbfl-v3-section__head { max-width:780px; }
+.lbfl-v46-bn-summary { margin-top:12px !important; font-size:1rem; line-height:1.8; letter-spacing:normal; color:#244e4b; }
+.lbfl-v46-challenge-grid { display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap:20px; align-items:stretch; }
+.lbfl-v46-prediction, .lbfl-v46-evidence { min-width:0; padding:clamp(20px,3vw,34px); border:1px solid #b9ccc7; border-radius:20px; background:#fffdf9; box-shadow:0 12px 30px rgba(3,29,35,.05); }
+.lbfl-v46-evidence { background:#e8f1ec; }
+.lbfl-v46-step { margin-bottom:14px !important; color:#225c55; font-size:.83rem; font-weight:800; letter-spacing:.055em; }
+.lbfl-v46-prediction h3 { margin-bottom:12px; font-size:clamp(1.25rem,2vw,1.65rem); line-height:1.32; }
+.lbfl-v46-prediction > p:not(.lbfl-v46-step) { font-size:1rem; line-height:1.6; }
+.lbfl-v46-prediction__choices { min-width:0; margin:22px 0 14px; padding:0; border:0; }
+.lbfl-v46-prediction__choices legend { margin-bottom:12px; font-weight:800; font-size:1.02rem; }
+.lbfl-v46-prediction__option { display:flex; align-items:center; gap:12px; min-height:52px; padding:10px 14px; margin:8px 0; border:1px solid #607e79; border-radius:12px; background:#fff; cursor:pointer; font-size:1rem; }
+.lbfl-v46-prediction__option:has(input:checked) { background:#e6f2eb; border-color:#0f706d; box-shadow:inset 0 0 0 1px #0f706d; }
+.lbfl-v46-prediction__option input { flex:0 0 auto; width:20px; height:20px; accent-color:#0f706d; }
+.lbfl-v46-confidence-label, .lbfl-v46-revision label { display:block; margin:14px 0 7px; font-weight:750; }
+.lbfl-v46-prediction select { display:block; width:100%; min-height:48px; padding:10px 12px; border:1px solid #607e79; border-radius:10px; background:#fff; color:#06272d; font:inherit; }
+.lbfl-v46-challenge-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.lbfl-home-v3 .lbfl-v46-reset { border:1px solid #42665f; background:#fff; color:#06272d; cursor:pointer; }
+.lbfl-v46-challenge-actions button { font:inherit; font-weight:800; cursor:pointer; }
+.lbfl-v46-feedback { min-height:2.5em; margin-top:14px !important; font-size:1rem; font-weight:650; }
+.lbfl-v46-evidence details { border:1px solid #607e79; border-radius:12px; background:#fffdf9; padding:16px 18px; }
+.lbfl-v46-evidence summary { cursor:pointer; font-weight:800; font-size:1.05rem; min-height:44px; padding:8px 0; }
+.lbfl-v46-evidence details p { margin:12px 0; font-size:1rem; line-height:1.7; }
+.lbfl-v46-water-model { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:center; gap:8px; margin:16px 0; }
+.lbfl-v46-water-model > div { display:flex; flex-direction:column; gap:6px; padding:12px; background:#e7f2ed; border:1px solid #4d7066; border-radius:10px; text-align:center; font-size:.9rem; }
+.lbfl-v46-water-model__arrow { color:#174c43; font-weight:900; text-align:center; }
+.lbfl-v46-water-model figcaption { grid-column:1/-1; color:#34564f; font-size:.88rem; }
+.lbfl-v46-revision textarea { width:100%; min-height:90px; padding:12px; border:1px solid #607e79; border-radius:10px; font:inherit; resize:vertical; }
+.lbfl-v46-evidence__sources { display:flex; flex-direction:column; gap:8px; margin-top:18px; }
+.lbfl-v46-evidence__sources a { display:inline-flex; align-items:center; padding:10px 0; color:#084b49; text-decoration:underline; text-underline-offset:3px; font-weight:750; }
+.lbfl-v46-repair-action { margin-top:22px !important; }
+.lbfl-v46-spotlight { background:#fffdf9; }
+.lbfl-v46-source-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.lbfl-v46-source-card { display:flex; flex-direction:column; min-width:0; padding:24px; border:1px solid #bdccc6; border-radius:16px; background:#fff; }
+.lbfl-v46-source-card__meta { color:#3d5355; font-size:.86rem; font-weight:700; }
+.lbfl-v46-source-card h3 { margin:12px 0; font-size:1.16rem; line-height:1.35; }
+.lbfl-v46-source-card h3 a { text-decoration:underline; text-underline-offset:3px; }
+.lbfl-v46-source-card p { line-height:1.55; }
+.lbfl-v46-source-card__action { margin-top:auto; padding-top:20px; font-weight:800; color:#0f706d; }
+.lbfl-v46-source-note { margin-top:20px !important; font-size:.94rem; color:#3d5355; }
+.lbfl-v46-philosophy { margin-top:16px !important; line-height:1.65; }
+.lbfl-v3-journey__steps a { display:inline-block; color:#fff; text-decoration:underline; text-underline-offset:3px; }
+.lbfl-home-v3 :lang(bn) { line-height:1.75; letter-spacing:normal; }
+@media (max-width: 900px) { .lbfl-v46-source-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width: 700px) {
+  .lbfl-home-v3 .lbfl-v3-hero { padding-block:32px 26px; }
+  .lbfl-home-v3 .lbfl-v3-hero__grid { min-height:0; }
+  .lbfl-home-v3 .lbfl-v3-pathways { padding-block:34px 46px; }
+  .lbfl-home-v3 .lbfl-v3-pathway-card { padding:18px; }
+  .lbfl-v46-challenge-grid, .lbfl-v46-source-grid { grid-template-columns:minmax(0,1fr); }
+  .lbfl-v46-water-model { grid-template-columns:minmax(0,1fr); }
+  .lbfl-v46-water-model__arrow { transform:rotate(90deg); }
+  .lbfl-v46-water-model figcaption { grid-column:1; }
+}
+@media (max-width: 360px) {
+  .lbfl-v46-prediction, .lbfl-v46-evidence { padding:16px; }
+  .lbfl-v46-challenge-actions button { width:100%; }
+}
+@media (prefers-reduced-motion: reduce) { .lbfl-v46-curiosity *, .lbfl-v46-spotlight * { animation:none !important; transition:none !important; } }
+@media (forced-colors: active) { .lbfl-v46-prediction__option:has(input:checked) { outline:2px solid Highlight; } .lbfl-v46-water-model > div { border:1px solid CanvasText; } }
+@media print { .lbfl-v46-motion-toggle { display:none !important; } .lbfl-v46-evidence details { display:block; } }
