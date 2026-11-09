@@ -8,7 +8,7 @@ on:
         required: false
         type: string
       purge_cache:
-        description: "Purge approved Biology URLs after build verification"
+        description: "Deprecated; requests fail closed. Cache writes require separate authorized workflow."
         required: true
         default: false
         type: boolean
@@ -31,14 +31,15 @@ jobs:
     timeout-minutes: 25
     env:
       GH_TOKEN: ${{ github.token }}
-      CF_TOKEN_PRIMARY: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CF_TOKEN_ALT: ${{ secrets.CF_API_TOKEN }}
-      CF_TOKEN_ALT2: ${{ secrets.CLOUDFLARE_TOKEN }}
-      CF_ZONE_ID_PRIMARY: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-      CF_ZONE_ID_ALT: ${{ secrets.CF_ZONE_ID }}
       PURGE_REQUESTED: ${{ inputs.purge_cache || false }}
 
     steps:
+      - name: DENY cache purge mutation in verification workflow
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.purge_cache }}
+        shell: bash
+        run: |
+          echo "::error::Cache purging is prohibited here; use a separately approved production writer."
+          exit 1
       - name: Resolve target SHA
         id: target
         shell: bash
@@ -290,59 +291,6 @@ jobs:
 
           print("Exact deployed commit Matrix verification passed.")
           PY
-
-      - name: Purge approved Biology URLs
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.purge_cache }}
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          cf_token="${CF_TOKEN_PRIMARY:-}"
-          [[ -n "$cf_token" ]] || cf_token="${CF_TOKEN_ALT:-}"
-          [[ -n "$cf_token" ]] || cf_token="${CF_TOKEN_ALT2:-}"
-
-          [[ -n "$cf_token" ]] || {
-            echo "Cache purge was requested, but no supported Cloudflare API token secret is configured."
-            echo "Configure one of: CLOUDFLARE_API_TOKEN, CF_API_TOKEN, CLOUDFLARE_TOKEN."
-            exit 1
-          }
-
-          zone_id="${CF_ZONE_ID_PRIMARY:-}"
-          [[ -n "$zone_id" ]] || zone_id="${CF_ZONE_ID_ALT:-}"
-
-          if [[ -z "$zone_id" ]]; then
-            zone_response="$(curl -fsS \
-              -H "Authorization: Bearer ${cf_token}" \
-              -H 'Content-Type: application/json' \
-              'https://api.cloudflare.com/client/v4/zones?name=learningbiologyforlife.org&status=active')"
-
-            [[ "$(jq -r '.success' <<<"$zone_response")" == "true" ]] || {
-              echo "Cloudflare zone lookup failed."
-              jq -c '{success, errors}' <<<"$zone_response"
-              exit 1
-            }
-
-            zone_id="$(jq -r '.result[0].id // empty' <<<"$zone_response")"
-          fi
-
-          [[ -n "$zone_id" ]] || {
-            echo "Could not resolve the Cloudflare zone ID."
-            exit 1
-          }
-
-          purge_response="$(curl -fsS -X POST \
-            -H "Authorization: Bearer ${cf_token}" \
-            -H 'Content-Type: application/json' \
-            --data '{"files":["https://learningbiologyforlife.org/biology/","https://learningbiologyforlife.org/biology/index.html"]}' \
-            "https://api.cloudflare.com/client/v4/zones/${zone_id}/purge_cache")"
-
-          [[ "$(jq -r '.success' <<<"$purge_response")" == "true" ]] || {
-            echo "Cloudflare targeted cache purge failed."
-            jq -c '{success, errors}' <<<"$purge_response"
-            exit 1
-          }
-
-          echo "Targeted Biology cache purge succeeded."
 
       - name: Summary
         shell: bash
