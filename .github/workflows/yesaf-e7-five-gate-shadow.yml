@@ -1,0 +1,30 @@
+# E7 candidate: read-only fixtures, no production access or trusted status.
+name: YESAF E7 Five Gate Shadow
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/scripts/yesaf-e7-five-gate-shadow.mjs'
+      - '.github/scripts/test-yesaf-e7-five-gate-shadow.mjs'
+      - '.github/workflows/yesaf-e7-five-gate-shadow.yml'
+      - 'docs/yesaf/E7_FIVE_GATE_SHADOW_HANDOFF.md'
+permissions:
+  contents: read
+jobs:
+  fail-closed-fixtures:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Exact candidate identity
+        env:
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test .github/scripts/test-yesaf-e7-five-gate-shadow.mjs
