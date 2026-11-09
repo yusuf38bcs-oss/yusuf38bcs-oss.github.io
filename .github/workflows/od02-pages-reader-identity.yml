@@ -1,0 +1,98 @@
+name: OD-02 Pages reader identity
+'on':
+  workflow_dispatch:
+    inputs:
+      authorized_sha:
+        description: Exact owner-authorized protected main commit
+        required: true
+        type: string
+
+permissions: {}
+
+jobs:
+  verify-pages-reader-identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Check owner, protected source and exact dispatch SHA
+        shell: bash
+        env:
+          AUTHORIZED_SHA: ${{ inputs.authorized_sha }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" != workflow_dispatch ||
+                "$GITHUB_REPOSITORY_ID" != 1229937389 ||
+                "$GITHUB_REPOSITORY_OWNER_ID" != 275960644 ||
+                "$GITHUB_ACTOR_ID" != 275960644 ||
+                "$GITHUB_TRIGGERING_ACTOR" != "$GITHUB_ACTOR" ||
+                "$GITHUB_REF" != refs/heads/main ||
+                "$GITHUB_REF_PROTECTED" != true ||
+                "$GITHUB_RUN_ATTEMPT" != 1 ||
+                "$GITHUB_WORKFLOW_REF" != "$GITHUB_REPOSITORY/.github/workflows/od02-pages-reader-identity.yml@refs/heads/main" ||
+                ! "$AUTHORIZED_SHA" =~ ^[0-9a-f]{40}$ ||
+                "$AUTHORIZED_SHA" != "$GITHUB_SHA" ||
+                "$AUTHORIZED_SHA" != "$GITHUB_WORKFLOW_SHA" ]]; then
+            echo "OD02_HOLD: invocation did not match the authorized scope"
+            exit 1
+          fi
+
+      - name: Verify the named Cloudflare reader identity
+        shell: bash
+        env:
+          PAGES_READER_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import http.client
+          import json
+          import os
+          from datetime import datetime, timezone
+
+          account = "13e317d6883a0f258ad7ed490699f849"
+          # SHA-256 of the exact token ID in the 2026-11-09 provider readback.
+          expected_id_digest = "626f15157bca4a772cb5ed30b4547d6f5fcd48d4a63d79729da3fe0290fe2355"
+          token = os.environ.pop("PAGES_READER_TOKEN", "")
+          if not token:
+              raise SystemExit("OD02_HOLD: named reader secret unavailable")
+
+          connection = http.client.HTTPSConnection("api.cloudflare.com", timeout=15)
+          try:
+              connection.request("GET", f"/client/v4/accounts/{account}/tokens/verify", headers={
+                  "Accept": "application/json",
+                  "Authorization": "Bearer " + token,
+              })
+              response = connection.getresponse()
+              if response.status != 200:
+                  raise SystemExit("OD02_HOLD: Cloudflare verification returned non-200")
+              body = response.read(32769)
+              if len(body) > 32768:
+                  raise SystemExit("OD02_HOLD: oversized Cloudflare verification response")
+              envelope = json.loads(body)
+              result = envelope["result"]
+              token_id_digest = hashlib.sha256(result["id"].encode("utf-8")).hexdigest()
+              matched = (
+                  envelope["success"] is True
+                  and result["status"] == "active"
+                  and token_id_digest == expected_id_digest
+              )
+          except (OSError, http.client.HTTPException, ValueError, KeyError, TypeError, AttributeError):
+              raise SystemExit("OD02_HOLD: Cloudflare verification request or response invalid") from None
+          finally:
+              connection.close()
+
+          if not matched:
+              raise SystemExit("OD02_HOLD: Cloudflare did not confirm the expected active reader identity")
+
+          print(json.dumps({
+              "decision": "VERIFIED_RUNTIME_BINDING",
+              "observed_utc": datetime.now(timezone.utc).isoformat(),
+              "repository": os.environ["GITHUB_REPOSITORY"],
+              "repository_id": os.environ["GITHUB_REPOSITORY_ID"],
+              "source_sha": os.environ["GITHUB_WORKFLOW_SHA"],
+              "run_id": os.environ["GITHUB_RUN_ID"],
+              "attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "job": os.environ["GITHUB_JOB"],
+              "repository_secret": "CLOUDFLARE_PAGES_READ_TOKEN",
+              "cloudflare_status": "active",
+              "cloudflare_token_id_sha256": token_id_digest,
+          }, sort_keys=True))
+          PY
