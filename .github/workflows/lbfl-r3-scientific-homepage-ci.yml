@@ -1,0 +1,125 @@
+name: LBFL R3 Scientific Homepage Isolated Exact-Head CI
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'labs/lbfl-scientific-review/**'
+      - 'labs/lbfl-scientific-integration/**'
+      - 'assets/lbfl-homepage-r2/**'
+      - '.github/scripts/lbfl-r3-**'
+      - '.github/workflows/lbfl-r3-scientific-homepage-ci.yml'
+      - 'docs/lbfl-homepage-r3/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lbfl-r3-home-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: Exact-head Jekyll + shared-shell browser certification (read only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    env:
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+    steps:
+      - name: Check out exact, immutable PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PR_HEAD_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Exact-head and additive-only guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+          test -n "$PR_BASE_SHA"
+          git merge-base --is-ancestor "$PR_BASE_SHA" "$PR_HEAD_SHA"
+          git diff --check "$PR_BASE_SHA...$PR_HEAD_SHA"
+          python3 .github/scripts/lbfl-r3-source-gate.py --base "$PR_BASE_SHA"
+
+      - name: Configure repository-pinned Ruby
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073
+        with:
+          ruby-version: '3.2'
+          bundler-cache: false
+
+      - name: Install repository dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle config set --local frozen 'false'
+          bundle install
+
+      - name: Retain Homepage academic and visual contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby .github/scripts/validate-academic-surface-contract.rb
+          ruby .github/scripts/validate-academic-design-system.rb
+          ruby .github/scripts/validate-platform-visual-system.rb
+          CERTIFICATION_MODE=asset_digest ruby .github/scripts/validate-conv04-i02-homepage-integration.rb
+
+      - name: Build actual production-configured Jekyll site
+        shell: bash
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ github.token }}
+        run: bundle exec jekyll build --trace
+
+      - name: Verify generated routes and immutable lecture contract
+        run: python3 .github/scripts/lbfl-r3-source-gate.py --built _site
+
+      - name: Configure browser runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install Chromium for actual built pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          for attempt in 1 2; do
+            if timeout --signal=TERM --kill-after=30s 540s npx playwright install --with-deps chromium; then exit 0; fi
+            if [ "$attempt" = 2 ]; then echo 'Browser install could not be certified'; exit 1; fi
+            sleep 15
+          done
+
+      - name: Serve this exact Jekyll build, no external publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          LAB_PREFIX="$(cat lbfl-r3-prefix.txt)"
+          echo "LBFL_R3_PREFIX=$LAB_PREFIX" >> "$GITHUB_ENV"
+          python3 -m http.server 4000 --bind 127.0.0.1 --directory _site > /tmp/lbfl-r3-static-server.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error "http://127.0.0.1:4000${LAB_PREFIX}/labs/lbfl-scientific-integration/" >/dev/null 2>&1; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/lbfl-r3-static-server.log
+          exit 1
+
+      - name: Browser certify lab, real Homepage V3 coexistence and eight lesson routes
+        env:
+          LBFL_R3_URL: http://127.0.0.1:4000
+          LBFL_R3_REPORT: lbfl-r3-browser-report
+        run: node .github/scripts/lbfl-r3-browser-cert.mjs
+
+      - name: Preserve review artifacts; no deployment or release mutation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lbfl-r3-lab-${{ env.PR_HEAD_SHA }}
+          path: |
+            lbfl-r3-source-gate.json
+            lbfl-r3-browser-report/
+          if-no-files-found: warn
+          retention-days: 21

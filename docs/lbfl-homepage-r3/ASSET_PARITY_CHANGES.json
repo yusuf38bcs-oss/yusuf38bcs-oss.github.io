@@ -1,0 +1,22 @@
+{
+  "plant": {
+    "original_separated_sha256": "f0a333b6d19cbfebba185deb29a00f406d39d072bc688278a1546f156844370a",
+    "standalone_embedded_sha256": "04dec2e66f742ad1ad52041fc4c961c4b9ee3e660e09a4f5655159b55ae7adaa"
+  },
+  "digestive": {
+    "original_separated_sha256": "3d1203d7bc1a8e0256b8d93dbb4b82315e42a68ac41e70ea7e3e7c65286cc807",
+    "standalone_embedded_sha256": "a79c89280af56083b3b4729ffd44e45c303a8b082d60d5e68461525c892ed20a"
+  },
+  "ecology": {
+    "original_separated_sha256": "5a8b7adce6cceecbd0a9fac24158451d48191d5b5b81296934ed7cf8e02947e7",
+    "standalone_embedded_sha256": "eb09b06bbb5e5f6f2ecd96e6a867afeeef20107e3d7cb0116ffa209c26b27f20"
+  },
+  "heart": {
+    "original_separated_sha256": "7b50e97cb97c2d08780fe29cd508c6a9339f77868060682934df9eb0d7cca3b4",
+    "standalone_embedded_sha256": "9b3555d978bc562aceb6b3d404c27d5c701f8e3b5958dddd3e8a866909280dbc"
+  },
+  "spread": {
+    "original_separated_sha256": "bae1687090d57c686879dd02ac193c56865ee39b282ebe0b2802a2dbf5a3ad1d",
+    "standalone_embedded_sha256": "4e9b286c4c8fab349902411c1beec305a57877c382f7251496e22566317e5e11"
+  }
+}

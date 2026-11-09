@@ -1,0 +1,30 @@
+/* REVIEW-ONLY: nested R2 content inside unchanged Homepage V3 shared shell. */
+/* The production site continues owning masthead, navigation, search, footer and consent. */
+#lbfl-science-review{display:block;width:100%;isolation:isolate;position:relative;margin:0 auto;scroll-margin-top:2rem}
+#lbfl-science-review .lbfl-r2-contextbar{background:#e9eee6;color:#16463f;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px clamp(20px,6.8vw,100px);font:600 13px/1.5 var(--lbfl-r2-font,Arial,sans-serif);border-bottom:1px solid #cedbd1}
+#lbfl-science-review .lbfl-r2-contextbar button{border:1px solid #65958a;color:#103c37;background:#fffefa;border-radius:999px;padding:6px 16px;min-height:44px;min-width:54px;font-weight:800}
+#lbfl-science-review .lbfl-r2-contextbar button:focus-visible{outline:3px solid #b76a10;outline-offset:3px}
+#lbfl-science-review #lbfl-r2-main{display:block}
+#lbfl-science-review .lbfl-r2-pre-evidence{width:min(100% - 2rem,1240px);margin:22px auto 10px;background:#fffefa;color:#142e37;border:1px solid #d3dace;border-radius:14px;padding:clamp(16px,2vw,26px)}
+#lbfl-science-review .lbfl-r2-pre-evidence .writing-label{display:block;font-weight:750;color:#153b35;margin-bottom:10px}
+#lbfl-science-review .lbfl-r2-pre-evidence textarea{display:block;width:100%;min-height:112px;border:1px solid #718c7e;border-radius:12px;padding:12px 16px;font-size:16px;line-height:1.5;background:#fff;color:#142e37;resize:vertical}
+#lbfl-science-review .lbfl-r2-pre-evidence .privacy{margin-top:8px;font-size:13px;color:#415e59}
+#lbfl-science-review .hero{background:#061b23;color:#f9f7ec}
+#lbfl-science-review .lab{background:#e9eee6}
+/* Editorial legibility refinement: the inherited R2 metadata (9-12px) was too small. */
+#lbfl-science-review .source .eyebrow{font-size:11px;letter-spacing:.13em;font-weight:800}
+#lbfl-science-review .source .source-body>p:not(.eyebrow){font-size:14px;line-height:1.55}
+#lbfl-science-review .lab .assumption{font-size:14px;line-height:1.65}
+#lbfl-science-review .lab .visual-caption{font-size:14px;line-height:1.65}
+#lbfl-science-review .lab .plate-credit{font-size:13px;line-height:1.6}
+#lbfl-science-review .lab .privacy{line-height:1.5}
+@layer lbfl-science-review { #lbfl-science-review .lab .privacy{font-size:13px!important} }
+#lbfl-science-review .shelf-note{font-size:14px;line-height:1.6}
+#lbfl-science-review .trust-list p{font-size:14px;line-height:1.6}
+#lbfl-science-review .journey{background:#09252d;color:#f7f5ed}
+#lbfl-science-review .final{background:#176456;color:#fffefa}
+#lbfl-science-review .section{max-width:100%;}
+#lbfl-science-review .shell{width:min(100% - 2rem,1240px);margin-inline:auto}
+@media(max-width:390px){#lbfl-science-review .lbfl-r2-contextbar{padding-inline:16px;font-size:12px;}}
+@media(prefers-reduced-motion:reduce){#lbfl-science-review *,#lbfl-science-review *::before,#lbfl-science-review *::after{scroll-behavior:auto;animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+@media print{#lbfl-science-review .lbfl-r2-contextbar{display:none}#lbfl-science-review .hero,#lbfl-science-review .journey,#lbfl-science-review .final{background:#fff!important;color:#000!important}}
