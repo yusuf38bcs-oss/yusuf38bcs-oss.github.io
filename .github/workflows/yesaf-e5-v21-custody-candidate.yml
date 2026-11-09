@@ -1,0 +1,37 @@
+# Unprivileged prospective V2.1 source-contract fixtures. Original V1 jobs
+# remain enabled and may correctly fail on retired producer bytes.
+name: YESAF E5 V2.1 Custody Candidate Tests
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/scripts/yesaf-e5-predecessor-compatible-source-custody.mjs'
+      - '.github/scripts/test-yesaf-e5-v21-custody.mjs'
+      - '.github/workflows/yesaf-e5-v21-custody-candidate.yml'
+permissions:
+  contents: read
+jobs:
+  v21-custody-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Authenticate unprivileged PR merge parents
+        shell: bash
+        env:
+          EXPECTED_BASE: ${{ github.event.pull_request.base.sha }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          read -r merge base head <<< "$(git rev-list --parents -n 1 HEAD)"
+          test "$base" = "$EXPECTED_BASE"
+          test "$head" = "$EXPECTED_HEAD"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test versioned custody without App credentials or status writes
+        run: node --test .github/scripts/test-yesaf-e5-v21-custody.mjs

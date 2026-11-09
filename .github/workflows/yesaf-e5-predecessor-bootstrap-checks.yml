@@ -1,0 +1,65 @@
+# Independent candidate-only evidence. Does NOT publish trusted status or deploy.
+name: YESAF E5 Predecessor Compatible Bootstrap Tests
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/scripts/yesaf-e5-predecessor-compatible-source-custody.mjs"
+      - ".github/scripts/test-yesaf-e5-predecessor-compatible-source-custody.mjs"
+      - ".github/workflows/yesaf-e5-three-practical-neutral-science.yml"
+      - ".github/workflows/yesaf-e5-predecessor-bootstrap-checks.yml"
+      - ".github/workflows/yesaf-e4-practical-five-readonly-successors.yml"
+      - ".github/workflows/yesaf-museum-readonly-certification.yml"
+permissions:
+  contents: read
+jobs:
+  source-custody-tests:
+    name: Protected M1 + R91/R101 + eight-science source custody (review only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Check out exact candidate without persistent token
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Authenticate exact current main and SHA lineage
+        shell: bash
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+          EXPECTED_BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          test "$EXPECTED_BASE" = "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$EXPECTED_BASE"
+          git merge-base --is-ancestor "$EXPECTED_BASE" "$EXPECTED_HEAD"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test all original protected policy and source custody assertions
+        run: |
+          node --test .github/scripts/test-yesaf-e5-predecessor-compatible-source-custody.mjs
+          node .github/scripts/yesaf-e5-predecessor-compatible-source-custody.mjs
+          node --test .github/scripts/test-yesaf-production-authority-audit.mjs
+          node --test .github/scripts/test-yesaf-trusted-boundary.mjs
+          node .github/scripts/yesaf-production-authority-audit.mjs
+      - name: Exercise Museum and five independent science read-only boundary tests
+        run: |
+          node --test .github/scripts/test-yesaf-museum-no-publisher.mjs
+          node --test .github/scripts/test-yesaf-e4-five-practical-readonly.mjs
+      - name: Parse added workflow YAML
+        shell: bash
+        run: |
+          ruby -ryaml -e 'ARGV.each { |p| YAML.parse_file(p) }' \
+            .github/workflows/yesaf-e5-predecessor-bootstrap-checks.yml \
+            .github/workflows/yesaf-e5-three-practical-neutral-science.yml \
+            .github/workflows/yesaf-e4-practical-five-readonly-successors.yml \
+            .github/workflows/yesaf-museum-readonly-certification.yml
+      - name: Never confer trusted release authority
+        run: |
+          echo 'Candidate predecessor-compatible science evidence only.'
+          echo 'Original required M1 and governance statuses remain independently authoritative.'
+          echo 'NO MERGE / NO DEPLOY / NO RELEASE GO.'
