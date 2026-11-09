@@ -1,0 +1,50 @@
+# Unprivileged source continuity candidate test only. NOT trusted V2 activation.
+name: YESAF E5 V2 Candidate Source Continuity
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/scripts/yesaf-e5-v2-source-continuity.mjs'
+      - '.github/scripts/yesaf-e5-v2-policy.mjs'
+      - '.github/scripts/test-yesaf-e5-v2-policy.mjs'
+      - 'docs/yesaf/E5_VERSIONED_PROSPECTIVE_POLICY_V2.json'
+      - '.github/scripts/test-yesaf-e5-v2-source-continuity.mjs'
+      - '.github/workflows/yesaf-e5-v2-candidate-preflight.yml'
+      - '.github/scripts/yesaf-e5-v21-successor.mjs'
+      - '.github/scripts/test-yesaf-e5-v21-successor.mjs'
+      - 'docs/yesaf/E5_VERSIONED_PROSPECTIVE_POLICY_V2_1.json'
+      - '.github/scripts/yesaf-e5-v21-protected-observer.mjs'
+      - '.github/scripts/test-yesaf-e5-v21-protected-observer.mjs'
+      - '.github/workflows/yesaf-e5-v21-protected-observer.yml'
+permissions:
+  contents: read
+jobs:
+  v2-candidate-only:
+    name: V2 source continuity negative cases (NO AUTHORITY)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Authenticate unprivileged PR merge parents
+        shell: bash
+        env:
+          EXPECTED_BASE: ${{ github.event.pull_request.base.sha }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_BASE" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$EXPECTED_HEAD" =~ ^[0-9a-f]{40}$ ]]
+          read -r merge base head <<< "$(git rev-list --parents -n 1 HEAD)"
+          test "$base" = "$EXPECTED_BASE"
+          test "$head" = "$EXPECTED_HEAD"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test V2 source-only continuity and fail-closed cases
+        run: node --test .github/scripts/test-yesaf-e5-v2-source-continuity.mjs .github/scripts/test-yesaf-e5-v2-policy.mjs .github/scripts/test-yesaf-e5-v21-successor.mjs .github/scripts/test-yesaf-e5-v21-protected-observer.mjs
+      - name: Explicitly deny any trust or production capability
+        run: echo 'Candidate-only tests. No issuer, status writes, secrets, merge or deployment. E5 HOLD.'

@@ -1,0 +1,29 @@
+{
+  "version": "YESAF_E5_V2_2026_10_29",
+  "state": "PROPOSAL_NOT_INSTALLED",
+  "scope": "SOURCE_ONLY",
+  "historical_base": "3164d2537b4f19381c52bbfb5c9e1b7ee7d15846",
+  "historical_head": "ab762c7d9ab82f397e37244014753c913f4eb966",
+  "historical_run": 40806678033,
+  "retirement_paths": [
+    ".github/workflows/conv04f-zoology-practical-appendages-production-parity.yml",
+    ".github/workflows/conv04f-zoology-practical-dissection-production-parity.yml",
+    ".github/workflows/conv04f-zoology-practical-field-report-production-parity.yml",
+    ".github/workflows/conv04f-zoology-practical-museum-production-parity.yml",
+    ".github/workflows/conv04f-zoology-practical-permanent-slides-production-parity.yml",
+    ".github/workflows/conv04f-zoology-practical-temporary-mounts-production-parity.yml",
+    ".github/workflows/conv04f-zoology-practical-whole-mounts-production-parity.yml",
+    ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
+  ],
+  "superseded_future_obligations": [
+    "R91 publisher-YAML immutability",
+    "R101 publisher-YAML immutability"
+  ],
+  "preserve_old_guard_failures": true,
+  "preserve_scientific_content_and_browser_checks": true,
+  "production_write_allowed": false,
+  "production_release_authorized": false,
+  "owner_approval": "PENDING_EXACT_SHA_AND_POLICY_BLOB",
+  "independent_attestation": "PENDING",
+  "main_push_writer_containment": "NOT_YET_CERTIFIED"
+}

@@ -1,0 +1,48 @@
+# Installed policy only. pull_request_target loads protected-main bytes, then
+# reads PR #520 GitHub evidence. No candidate checkout, secrets or status writes.
+name: YESAF E5 V2.1 Protected Source Observer
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/workflows/conv04f-zoology-practical-*-production-parity.yml"
+      - ".github/scripts/yesaf-e5-v21-live-source-witness.mjs"
+      - ".github/workflows/yesaf-e4e5-migration-science.yml"
+permissions:
+  contents: read
+  pull-requests: read
+  actions: read
+  checks: read
+  issues: read
+concurrency:
+  group: yesaf-e5-v21-observer-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  protected-source-observer:
+    if: github.event.pull_request.number == 520
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout protected main only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+      - name: Assert protected source SHA
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$BASE_SHA"
+          test "$GITHUB_SHA" = "$BASE_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Read exact-head App, source, science and browser evidence
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          TARGET_HEAD: ${{ github.event.pull_request.head.sha }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node .github/scripts/yesaf-e5-v21-protected-observer.mjs
