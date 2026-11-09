@@ -64,12 +64,16 @@ The intended consent model is:
 
 - Essential and security storage: available for basic site function.
 - Analytics storage: denied by default, granted after user acceptance where applicable.
-- Advertising storage: denied by default, granted after user acceptance where applicable.
-- Ad user data and ad personalization: denied by default, granted only after acceptance where applicable.
+- Advertising storage: denied throughout AdSense review; the analytics-choice banner does not authorize advertising.
+- Ad user data and ad personalization: remain denied. Any future advertising activation requires separate approval and a certified consent-management platform.
 
 ## 7. How to Manage Cookies
 
-Users can manage cookies by:
+You can withdraw optional analytics consent at any time, including after previously accepting. The action updates this browser's stored choice and stops future optional GA4 activity; it cannot erase data already sent before withdrawal.
+
+<button type="button" data-gdpr-consent="denied" data-cookie-consent-action="decline">Withdraw analytics consent</button>
+
+Users can also manage cookies by:
 
 - Using the cookie banner.
 - Clearing browser cookies and site data.

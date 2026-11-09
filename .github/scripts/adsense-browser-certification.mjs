@@ -79,6 +79,21 @@ function adRequests(requests, start = 0) {
 
 async function settle(page) {
   await page.waitForLoadState("domcontentloaded");
+  const actual = new URL(page.url());
+  const expected = new URL(previewUrl);
+  if (actual.origin !== expected.origin || actual.pathname.startsWith("/cdn-cgi/access/")) {
+    // Never persist Access login query strings, cookies, or authentication headers.
+    const diagnostic = {
+      expectedSha,
+      passed: false,
+      reason: "PREVIEW_ACCESS_BLOCKED_BEFORE_SITE_ASSERTIONS",
+      expectedOrigin: expected.origin,
+      actualOrigin: actual.origin,
+      actualPath: actual.pathname,
+    };
+    await fs.writeFile(path.join(outputDir, "navigation-blocker.json"), JSON.stringify(diagnostic, null, 2));
+    throw new Error("Preview navigation left the certified origin or reached an Access login. Browser assertions have not run; authorized preview access is required.");
+  }
   await page.waitForTimeout(2600);
 }
 
