@@ -1,0 +1,46 @@
+# Unprivileged additive migration tests. No deploy credentials or release status writes.
+name: YESAF E4 Additive Successor Bootstrap (Non-Authorizing)
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/scripts/yesaf-e4-successor-v2-policy.mjs"
+      - ".github/scripts/test-yesaf-e4-successor-v2-policy.mjs"
+      - ".github/workflows/yesaf-e4-additive-bootstrap-tests.yml"
+      - "docs/yesaf/E4_GUARD_V2_POLICY_TRANSITION.md"
+      - ".github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml"
+      - ".github/workflows/conv04f-zoology-practical-zooplankton-successor-guard.yml"
+      - ".github/workflows/conv04f-zoology-practical-field-report-production-parity.yml"
+      - ".github/workflows/conv04f-zoology-practical-field-report-successor-guard.yml"
+permissions:
+  contents: read
+jobs:
+  additive_bootstrap:
+    name: No protected predecessor mutation + adversarial successor tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Reject edits to all four protected predecessor enforcement files
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          [[ "$BASE_SHA" =~ ^[a-f0-9]{40}$ ]]
+          git fetch --no-tags --depth=1 origin "$BASE_SHA"
+          git diff --exit-code "$BASE_SHA" HEAD -- \
+            .github/workflows/conv04f-zoology-practical-zooplankton-production-parity.yml \
+            .github/workflows/conv04f-zoology-practical-zooplankton-successor-guard.yml \
+            .github/workflows/conv04f-zoology-practical-field-report-production-parity.yml \
+            .github/workflows/conv04f-zoology-practical-field-report-successor-guard.yml
+      - name: Adversarial successor-v2 tests (advisory only)
+        run: node --test .github/scripts/test-yesaf-e4-successor-v2-policy.mjs
+      - name: Publish non-authorizing test result
+        run: echo 'E4 additive bootstrap test PASS is NOT trusted migration approval, production GO, or a positive App attestation.'
