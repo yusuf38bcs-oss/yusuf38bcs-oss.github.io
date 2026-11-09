@@ -176,8 +176,8 @@ jobs:
         id: production
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN || secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
+          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN }}
+          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN }}
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
         shell: bash
         run: |
@@ -522,8 +522,8 @@ jobs:
         if: ${{ always() }}
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN || secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
+          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN }}
+          CLOUDFLARE_WORKER_READ_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_READ_TOKEN }}
           CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
           INITIAL_DEPLOYMENT_ID: ${{ steps.production.outputs.pages_deployment_id }}
           INITIAL_WORKER_VERSION_ID: ${{ steps.production.outputs.worker_version_id }}

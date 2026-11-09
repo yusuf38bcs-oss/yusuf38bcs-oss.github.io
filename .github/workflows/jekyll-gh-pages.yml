@@ -6,26 +6,90 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
+    inputs:
+      expected_main_sha:
+        description: "Full 40-character protected main SHA for this owner-approved GitHub Pages publication"
+        required: true
+        type: string
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
   actions: read
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  # One serial publisher lane. Never cancel an active production release.
+  group: "lbfl-g1-github-pages-manual-production"
+  cancel-in-progress: false
 
 jobs:
+  authorize:
+    # This is a release-boundary check, not a security reviewer approval.
+    name: authorize
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Reject non-owner, non-main or stale GitHub Pages publication
+        shell: bash
+        env:
+          EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}
+          DISPATCH_SHA: ${{ github.sha }}
+          DISPATCH_ACTOR: ${{ github.actor }}
+          RERUN_ACTOR: ${{ github.triggering_actor }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_RUN_ATTEMPT" = "1"
+          test "$GITHUB_EVENT_NAME" = "workflow_dispatch"
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$DISPATCH_ACTOR" = "yusuf38bcs-oss"
+          test "$RERUN_ACTOR" = "yusuf38bcs-oss"
+          [[ "$EXPECTED_MAIN_SHA" =~ ^[0-9a-f]{40}$ ]] || {
+            echo 'Full lowercase main SHA required; rejecting GitHub Pages publication.' >&2
+            exit 1
+          }
+          test "$DISPATCH_SHA" = "$EXPECTED_MAIN_SHA" || {
+            echo 'Dispatch SHA differs from owner-approved exact main; HOLD.' >&2
+            exit 1
+          }
+          live_main="$(git ls-remote "https://github.com/${GITHUB_REPOSITORY}.git" refs/heads/main | awk '{print $1}')"
+          test -n "$live_main"
+          test "$live_main" = "$EXPECTED_MAIN_SHA" || {
+            echo 'Protected main moved before publication; HOLD.' >&2
+            exit 1
+          }
+
   build:
+    needs: authorize
+    permissions:
+      contents: read
+      actions: read
+      pages: read
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout immutable workflow event SHA
         uses: actions/checkout@v4
+        with:
+          # Never use a workflow_dispatch input as a checkout revision.
+          # The event SHA is verified against owner-approved SHA below.
+          persist-credentials: false
+
+      - name: Re-authenticate exact source before GitHub Pages build
+        shell: bash
+        env:
+          EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_RUN_ATTEMPT" = "1"
+          [[ "$EXPECTED_MAIN_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$(git rev-parse HEAD)" = "$EXPECTED_MAIN_SHA"
+          live_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          test -n "$live_main"
+          test "$live_main" = "$EXPECTED_MAIN_SHA" || {
+            echo 'Main moved before GitHub Pages build; HOLD.' >&2
+            exit 1
+          }
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -293,14 +357,41 @@ jobs:
           retention-days: 1
 
   deploy:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.run_attempt == 1 }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     needs: build
     timeout-minutes: 20
     steps:
+      - name: Re-authenticate owner-approved main immediately before deploy
+        shell: bash
+        env:
+          EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}
+          DISPATCH_SHA: ${{ github.sha }}
+          DISPATCH_ACTOR: ${{ github.actor }}
+          RERUN_ACTOR: ${{ github.triggering_actor }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_RUN_ATTEMPT" = "1"
+          test "$GITHUB_EVENT_NAME" = "workflow_dispatch"
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$DISPATCH_ACTOR" = "yusuf38bcs-oss"
+          test "$RERUN_ACTOR" = "yusuf38bcs-oss"
+          [[ "$EXPECTED_MAIN_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$DISPATCH_SHA" = "$EXPECTED_MAIN_SHA"
+          live_main="$(git ls-remote "https://github.com/${GITHUB_REPOSITORY}.git" refs/heads/main | awk '{print $1}')"
+          test -n "$live_main"
+          test "$live_main" = "$EXPECTED_MAIN_SHA" || {
+            echo 'Main moved before GitHub Pages deploy; HOLD.' >&2
+            exit 1
+          }
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
