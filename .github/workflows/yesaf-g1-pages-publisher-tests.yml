@@ -1,0 +1,45 @@
+# Unprivileged candidate-authored static fixtures, NOT production authorization.
+name: YESAF G1 GitHub Pages Manual Publisher Fixtures
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/workflows/jekyll-gh-pages.yml"
+      - ".github/workflows/ops-verify-pages-artifact.yml"
+      - ".github/workflows/yesaf-g1-pages-publisher-tests.yml"
+      - ".github/scripts/test-g1-pages-publisher-boundary.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  g1-candidate-fixtures:
+    name: G1 manual publisher safety fixtures (non-authorizing)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout immutable candidate SHA without stored credentials
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Confirm exact candidate HEAD
+        shell: bash
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Setup Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Run adversarial G1 publisher and verifier boundary tests
+        shell: bash
+        run: node --test .github/scripts/test-g1-pages-publisher-boundary.mjs
+      - name: State non-authorizing scope
+        run: echo "PASS means static candidate fixtures only. No owner approval, merge or publication."

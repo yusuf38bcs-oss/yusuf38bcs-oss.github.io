@@ -1,4 +1,4 @@
-name: Verify Pages Build and Optional Cache Purge
+name: Verify Pages Build (Read-Only)
 
 on:
   workflow_dispatch:
@@ -8,14 +8,10 @@ on:
         required: false
         type: string
       purge_cache:
-        description: "Purge approved Biology URLs after build verification"
+        description: "Deprecated: true is rejected; cache mutation is prohibited"
         required: true
         default: false
         type: boolean
-  pull_request:
-    branches: [main]
-    paths:
-      - ".github/workflows/ops-verify-pages-artifact.yml"
 
 permissions:
   contents: read
@@ -31,14 +27,28 @@ jobs:
     timeout-minutes: 25
     env:
       GH_TOKEN: ${{ github.token }}
-      CF_TOKEN_PRIMARY: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CF_TOKEN_ALT: ${{ secrets.CF_API_TOKEN }}
-      CF_TOKEN_ALT2: ${{ secrets.CLOUDFLARE_TOKEN }}
-      CF_ZONE_ID_PRIMARY: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-      CF_ZONE_ID_ALT: ${{ secrets.CF_ZONE_ID }}
       PURGE_REQUESTED: ${{ inputs.purge_cache || false }}
 
     steps:
+      - name: DENY cache mutation in this read-only verifier
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.purge_cache }}
+        shell: bash
+        run: |
+          echo '::error::Cache mutation is forbidden in this verifier; no cache purge is authorized.'
+          exit 1
+
+      - name: Require owner-controlled main dispatch before Pages verification
+        shell: bash
+        env:
+          DISPATCH_ACTOR: ${{ github.actor }}
+          RERUN_ACTOR: ${{ github.triggering_actor }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_EVENT_NAME" = "workflow_dispatch"
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$DISPATCH_ACTOR" = "yusuf38bcs-oss"
+          test "$RERUN_ACTOR" = "yusuf38bcs-oss"
+
       - name: Resolve target SHA
         id: target
         shell: bash
@@ -53,8 +63,6 @@ jobs:
 
           if [[ -n "$requested_sha" ]]; then
             target_sha="$requested_sha"
-          elif [[ "$EVENT_NAME" == "pull_request" ]]; then
-            target_sha="$PR_BASE_SHA"
           else
             target_sha="$(gh api "repos/${GITHUB_REPOSITORY}/commits/main" --jq '.sha')"
           fi
@@ -82,7 +90,7 @@ jobs:
             .workflow_runs
             | map(select(
                 .name == "Deploy to GitHub Pages"
-                and (.event == "push" or .event == "workflow_dispatch")
+                and .event == "workflow_dispatch"
                 and .head_branch == "main"
                 and .head_sha == $sha
               ))
@@ -112,6 +120,16 @@ jobs:
 
           jobs_json="$(gh api --paginate \
             "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/jobs?per_page=100")"
+
+          authorize_conclusion="$(jq -r '
+            [.jobs[] | select(.name == "authorize")]
+            | last.conclusion // "missing"
+          ' <<<"$jobs_json")"
+
+          [[ "$authorize_conclusion" == "success" ]] || {
+            echo "GitHub Pages owner/SHA authorize job was not successful."
+            exit 1
+          }
 
           build_conclusion="$(jq -r '
             [.jobs[] | select(.name == "build")]
@@ -291,59 +309,6 @@ jobs:
           print("Exact deployed commit Matrix verification passed.")
           PY
 
-      - name: Purge approved Biology URLs
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.purge_cache }}
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          cf_token="${CF_TOKEN_PRIMARY:-}"
-          [[ -n "$cf_token" ]] || cf_token="${CF_TOKEN_ALT:-}"
-          [[ -n "$cf_token" ]] || cf_token="${CF_TOKEN_ALT2:-}"
-
-          [[ -n "$cf_token" ]] || {
-            echo "Cache purge was requested, but no supported Cloudflare API token secret is configured."
-            echo "Configure one of: CLOUDFLARE_API_TOKEN, CF_API_TOKEN, CLOUDFLARE_TOKEN."
-            exit 1
-          }
-
-          zone_id="${CF_ZONE_ID_PRIMARY:-}"
-          [[ -n "$zone_id" ]] || zone_id="${CF_ZONE_ID_ALT:-}"
-
-          if [[ -z "$zone_id" ]]; then
-            zone_response="$(curl -fsS \
-              -H "Authorization: Bearer ${cf_token}" \
-              -H 'Content-Type: application/json' \
-              'https://api.cloudflare.com/client/v4/zones?name=learningbiologyforlife.org&status=active')"
-
-            [[ "$(jq -r '.success' <<<"$zone_response")" == "true" ]] || {
-              echo "Cloudflare zone lookup failed."
-              jq -c '{success, errors}' <<<"$zone_response"
-              exit 1
-            }
-
-            zone_id="$(jq -r '.result[0].id // empty' <<<"$zone_response")"
-          fi
-
-          [[ -n "$zone_id" ]] || {
-            echo "Could not resolve the Cloudflare zone ID."
-            exit 1
-          }
-
-          purge_response="$(curl -fsS -X POST \
-            -H "Authorization: Bearer ${cf_token}" \
-            -H 'Content-Type: application/json' \
-            --data '{"files":["https://learningbiologyforlife.org/biology/","https://learningbiologyforlife.org/biology/index.html"]}' \
-            "https://api.cloudflare.com/client/v4/zones/${zone_id}/purge_cache")"
-
-          [[ "$(jq -r '.success' <<<"$purge_response")" == "true" ]] || {
-            echo "Cloudflare targeted cache purge failed."
-            jq -c '{success, errors}' <<<"$purge_response"
-            exit 1
-          }
-
-          echo "Targeted Biology cache purge succeeded."
-
       - name: Summary
         shell: bash
         env:
@@ -359,6 +324,6 @@ jobs:
             echo "- Learner-facing card and ItemList JSON-LD checks: passed"
             echo "- Direct production curl: intentionally not used"
             echo "- Expired Pages artifact: not required"
-            echo "- Cloudflare purge requested: \`$PURGE_REQUESTED\`"
-            echo "- Purge scope: approved Biology URLs only"
+            echo "- Cache mutation: forbidden (no purge credentials or write operations)"
+            echo "- Deprecated purge input: \`$PURGE_REQUESTED\` (true fails before verification)"
           } >> "$GITHUB_STEP_SUMMARY"
