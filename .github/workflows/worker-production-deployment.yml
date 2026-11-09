@@ -123,10 +123,18 @@ jobs:
     if: ${{ false }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    permissions:
+      contents: read
+      actions: read
+      checks: read
+      statuses: read
     env:
       TARGET_SHA: ${{ inputs.expected_main_sha || github.sha }}
       CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
+      YESAF_ATTESTOR_APP_ID: ${{ vars.YESAF_ATTESTOR_APP_ID }}
+      YESAF_OWNER_GO_SHA: ${{ vars.YESAF_OWNER_GO_SHA }}
+      YESAF_ROLLBACK_PAGES_UUID: ${{ vars.YESAF_ROLLBACK_PAGES_UUID }}
+      YESAF_ROLLBACK_WORKER_VERSION_UUID: ${{ vars.YESAF_ROLLBACK_WORKER_VERSION_UUID }}
       EVIDENCE_DIR: worker-production-evidence
 
     steps:
@@ -157,11 +165,25 @@ jobs:
         shell: bash
         run: npm ci --ignore-scripts
 
+      - name: Independently attest release and census before accessing Worker credential
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          node .github/scripts/yesaf-e7-worker-write-time-fence.mjs
+
       - name: Deploy exact main with single designated Cloudflare credential
         id: wrangler
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_DEPLOY_TOKEN }}
         run: |
           set -euo pipefail
+          # Fresh attestation, exact-main statuses and live writer inventory
+          # must still hold at the actual Wrangler write boundary.
+          node .github/scripts/yesaf-e7-worker-write-time-fence.mjs
           if [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
             echo 'CLOUDFLARE_WORKER_DEPLOY_TOKEN is required; no fallback credentials permitted.' >&2
             exit 1

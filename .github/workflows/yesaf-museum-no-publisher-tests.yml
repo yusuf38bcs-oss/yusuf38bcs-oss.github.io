@@ -1,0 +1,52 @@
+# Unprivileged, additive Museum successor regression; not production approval.
+name: YESAF E4 Museum Read-Only Successor Fixtures
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "_biology/higher-zoology-tree/practical/01-museum-specimens-complete.bn.md"
+      - "_data/zoology-practical-213106-coverage.json"
+      - "_data/zoology-practical-museum-figures.json"
+      - "_data/academic/course_contract_v1.json"
+      - "_data/academic/conv04f_zoology_practical_museum_v1.json"
+      - "assets/css/zoology-practical.css"
+      - "assets/js/zoology-practical.js"
+      - "assets/css/academic-design-system.css"
+      - "assets/css/zoology-practical-museum-f09.css"
+      - "docs/academic/conv04/ACADEMIC_ROUTE_LEDGER.json"
+      - "docs/academic/conv04/CONV04_STATE.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_AUTHORIZATION.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R1_PRODUCTION_PARITY.md"
+      - "docs/academic/conv04/ZOOLOGY_PRACTICAL_MUSEUM_F09_R2_YAML_REPAIR.md"
+      - ".github/scripts/validate-conv04f-zoology-practical-museum.rb"
+      - ".github/scripts/conv04f-zoology-practical-museum-browser-certification.mjs"
+      - ".github/workflows/conv04f-zoology-practical-museum-certification.yml"
+      - ".github/workflows/yesaf-museum-readonly-certification.yml"
+      - ".github/scripts/test-yesaf-museum-no-publisher.mjs"
+      - ".github/workflows/yesaf-museum-no-publisher-tests.yml"
+permissions:
+  contents: read
+jobs:
+  museum-readonly-successor:
+    name: Museum immutable legacy + successor read-only fixtures
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Check out exact candidate with no stored credentials
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Confirm immutable candidate HEAD
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+      - name: Setup Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Execute fail-closed successor and predecessor source tests
+        run: node --test .github/scripts/test-yesaf-museum-no-publisher.mjs
