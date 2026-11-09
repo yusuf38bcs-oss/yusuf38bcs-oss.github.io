@@ -1,0 +1,28 @@
+# Additive shadow test only; this has no publication or privileged authority.
+name: YESAF E7 Ops Readonly Credential Boundary
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/workflows/ops-verify-pages-artifact.yml'
+      - '.github/scripts/test-yesaf-e7-ops-readonly.py'
+      - '.github/workflows/yesaf-e7-ops-readonly-boundary-tests.yml'
+permissions:
+  contents: read
+jobs:
+  verify-readonly:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Check exact HEAD
+        env:
+          EXACT_SHA: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXACT_SHA"
+      - name: Enforce no cache-purge writer credentials
+        run: python3 .github/scripts/test-yesaf-e7-ops-readonly.py

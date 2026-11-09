@@ -8,7 +8,7 @@ on:
         required: false
         type: string
       purge_cache:
-        description: "Purge approved Biology URLs after build verification"
+        description: "Deprecated; requests fail closed. Cache writes require separate authorized workflow."
         required: true
         default: false
         type: boolean
@@ -31,14 +31,15 @@ jobs:
     timeout-minutes: 25
     env:
       GH_TOKEN: ${{ github.token }}
-      CF_TOKEN_PRIMARY: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CF_TOKEN_ALT: ${{ secrets.CF_API_TOKEN }}
-      CF_TOKEN_ALT2: ${{ secrets.CLOUDFLARE_TOKEN }}
-      CF_ZONE_ID_PRIMARY: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-      CF_ZONE_ID_ALT: ${{ secrets.CF_ZONE_ID }}
       PURGE_REQUESTED: ${{ inputs.purge_cache || false }}
 
     steps:
+      - name: DENY cache purge mutation in verification workflow
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.purge_cache }}
+        shell: bash
+        run: |
+          echo "::error::Cache purging is prohibited here; use a separately approved production writer."
+          exit 1
       - name: Resolve target SHA
         id: target
         shell: bash
@@ -184,7 +185,7 @@ jobs:
           import re
           import sys
 
-          EXPECTED_METRICS = [94, 4, 3, 35225]
+          # Derived from independent rendered cards/metadata below, not stale inventory constants.
           SYSTEM_ROUTES = {
               "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-1/",
               "/biology/hsc-corner/botany/structures-functions-cell-organelles-part-2/",
@@ -252,6 +253,49 @@ jobs:
           card_route_set = set(card_routes)
           json_ld_text = "\n".join(parser.json_ld_parts)
 
+          # The source layout derives each displayed total from site.biology.
+          # Independently recount rendered cards, pillars, prompts and per-card XP
+          # rather than hard-coding an obsolete historical content inventory.
+          card_articles = re.findall(
+              r'<article\s+class="biology-matrix-card"(?=\s|>)', html
+          )
+          pillar_sections = re.findall(
+              r'<section\s+id="biology-pillar-[^"]+"\s+class="biology-pillar-section\b',
+              html,
+          )
+          card_metadata = re.findall(
+              r'<div class="biology-card-meta"[^>]*>(.*?)</div>',
+              html,
+              re.DOTALL,
+          )
+          if not card_routes or not pillar_sections:
+              raise SystemExit("Biology Matrix has no learner-facing cards or pillars.")
+          if len(card_articles) != len(card_routes) or len(card_metadata) != len(card_routes):
+              raise SystemExit("Biology Matrix card/link/metadata cardinality mismatch.")
+
+          xp_values = []
+          socratic_badges = 0
+          for card in card_metadata:
+              xp = re.findall(r'<span>\s*([0-9,]+)\s+XP\s*</span>', card)
+              if len(xp) != 1:
+                  raise SystemExit("Biology Matrix card missing unique numeric XP.")
+              value = int(xp[0].replace(",", ""))
+              if value <= 0:
+                  raise SystemExit("Biology Matrix card XP must be positive.")
+              xp_values.append(value)
+              socratic_badges += len(re.findall(
+                  r'<span>\s*Socratic\s*</span>', card
+              ))
+          EXPECTED_METRICS = [
+              len(card_routes),
+              len(pillar_sections),
+              socratic_badges,
+              sum(xp_values),
+          ]
+          if len(metrics) != 4:
+              raise SystemExit("Biology Matrix must display four numeric metrics.")
+          print(f"RECALCULATED_FROM_CARDS={EXPECTED_METRICS}")
+
           leaked_cards = sorted(SYSTEM_ROUTES & card_route_set)
           leaked_json_ld = sorted(
               route for route in SYSTEM_ROUTES if route in json_ld_text
@@ -291,59 +335,6 @@ jobs:
           print("Exact deployed commit Matrix verification passed.")
           PY
 
-      - name: Purge approved Biology URLs
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.purge_cache }}
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          cf_token="${CF_TOKEN_PRIMARY:-}"
-          [[ -n "$cf_token" ]] || cf_token="${CF_TOKEN_ALT:-}"
-          [[ -n "$cf_token" ]] || cf_token="${CF_TOKEN_ALT2:-}"
-
-          [[ -n "$cf_token" ]] || {
-            echo "Cache purge was requested, but no supported Cloudflare API token secret is configured."
-            echo "Configure one of: CLOUDFLARE_API_TOKEN, CF_API_TOKEN, CLOUDFLARE_TOKEN."
-            exit 1
-          }
-
-          zone_id="${CF_ZONE_ID_PRIMARY:-}"
-          [[ -n "$zone_id" ]] || zone_id="${CF_ZONE_ID_ALT:-}"
-
-          if [[ -z "$zone_id" ]]; then
-            zone_response="$(curl -fsS \
-              -H "Authorization: Bearer ${cf_token}" \
-              -H 'Content-Type: application/json' \
-              'https://api.cloudflare.com/client/v4/zones?name=learningbiologyforlife.org&status=active')"
-
-            [[ "$(jq -r '.success' <<<"$zone_response")" == "true" ]] || {
-              echo "Cloudflare zone lookup failed."
-              jq -c '{success, errors}' <<<"$zone_response"
-              exit 1
-            }
-
-            zone_id="$(jq -r '.result[0].id // empty' <<<"$zone_response")"
-          fi
-
-          [[ -n "$zone_id" ]] || {
-            echo "Could not resolve the Cloudflare zone ID."
-            exit 1
-          }
-
-          purge_response="$(curl -fsS -X POST \
-            -H "Authorization: Bearer ${cf_token}" \
-            -H 'Content-Type: application/json' \
-            --data '{"files":["https://learningbiologyforlife.org/biology/","https://learningbiologyforlife.org/biology/index.html"]}' \
-            "https://api.cloudflare.com/client/v4/zones/${zone_id}/purge_cache")"
-
-          [[ "$(jq -r '.success' <<<"$purge_response")" == "true" ]] || {
-            echo "Cloudflare targeted cache purge failed."
-            jq -c '{success, errors}' <<<"$purge_response"
-            exit 1
-          }
-
-          echo "Targeted Biology cache purge succeeded."
-
       - name: Summary
         shell: bash
         env:
@@ -360,5 +351,5 @@ jobs:
             echo "- Direct production curl: intentionally not used"
             echo "- Expired Pages artifact: not required"
             echo "- Cloudflare purge requested: \`$PURGE_REQUESTED\`"
-            echo "- Purge scope: approved Biology URLs only"
+            echo "- Purge policy: prohibited in this verification workflow"
           } >> "$GITHUB_STEP_SUMMARY"
