@@ -1,0 +1,143 @@
+# STAGED SOURCE ONLY. Live authentication is hard-disabled.
+# Do not authorize Cloudflare credentials, enable the live job, or merge
+# without a separate owner decision and independently verified protection.
+name: LBFL Shadow App Auth - Manual Gate (LIVE DISABLED)
+
+on:
+  workflow_dispatch:
+    inputs:
+      reviewed_head_sha:
+        description: "Exact 40-character reviewed PR #476 HEAD SHA"
+        required: true
+        type: string
+      authorization_reference:
+        description: "Owner-approved reference ID, never a secret"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: read
+  actions: read
+
+concurrency:
+  group: lbfl-shadow-app-auth-manual
+  cancel-in-progress: false
+
+jobs:
+  source-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Verify trusted dispatch and exact unchanged Draft PR HEAD
+        shell: bash
+        env:
+          REVIEWED_HEAD: ${{ inputs.reviewed_head_sha }}
+          AUTH_REFERENCE: ${{ inputs.authorization_reference }}
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]
+          [[ "$GITHUB_REF" == "refs/heads/main" ]]
+          [[ "$REPOSITORY" == "yusuf38bcs-oss/yusuf38bcs-oss.github.io" ]]
+          [[ "$REVIEWED_HEAD" == "0df178d625e278e629e864077c0963f09b2a9660" ]]
+          [[ "$AUTH_REFERENCE" =~ ^[A-Za-z0-9._-]{8,80}$ ]]
+          pr="$(gh api "repos/$REPOSITORY/pulls/476")"
+          jq -e --arg sha "$REVIEWED_HEAD" \
+            '.state == "open" and .number == 476 and .head.sha == $sha and .draft == true and .merged == false and .base.ref == "main" and .head.repo.full_name == "yusuf38bcs-oss/yusuf38bcs-oss.github.io"' \
+            <<< "$pr" >/dev/null
+          echo 'PASS: manual default-branch dispatch, PR identity and exact SHA.'
+      - name: Verify four exact-head PR CI runs without checking out or executing PR code
+        shell: bash
+        env:
+          REVIEWED_HEAD: ${{ inputs.reviewed_head_sha }}
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          # Use only GitHub's read-only Actions API. No checkout, install, test,
+          # cache, arbitrary code execution, or untrusted artifacts in this job.
+          pr="$(gh api "repos/$REPOSITORY/pulls/476")"
+          [[ "$REVIEWED_HEAD" == "0df178d625e278e629e864077c0963f09b2a9660" ]]
+          head_ref="$(jq -er '.head.ref' <<< "$pr")"
+          base_sha="$(gh api "repos/$REPOSITORY/git/ref/heads/main" --jq .object.sha)"
+          jq -e --arg base "$base_sha" '.base.sha == $base' <<< "$pr" > /dev/null
+          jq -e --arg sha "$REVIEWED_HEAD" \
+            '.state == "open" and .number == 476 and .head.sha == $sha and .draft == true and .merged == false and .base.ref == "main"' \
+            <<< "$pr" > /dev/null
+          runs="$(gh api "repos/$REPOSITORY/actions/runs?event=pull_request&head_sha=$REVIEWED_HEAD&per_page=100")"
+          jq -e --arg sha "$REVIEWED_HEAD" --arg repo "$REPOSITORY" \
+            --arg head_ref "$head_ref" --arg base "$base_sha" '
+              . as $root |
+              ($root.total_count | type == "number" and . <= 100) and
+              ($root.workflow_runs | type == "array") and
+              ([
+                {name:"LBFL Attestor Shadow Authentication Tests", id:380813901, run:38112206848, path:".github/workflows/lbfl-attestor-shadow-auth-tests.yml"},
+                {name:"CodeQL Exact-Head Security Scan", id:347431559, run:38112206853, path:".github/workflows/codeql-exact-head.yml"},
+                {name:"Validate Jekyll PR", id:309407614, run:38112206894, path:".github/workflows/validate-jekyll-pr.yml"},
+                {name:"Sovereign Site Audit v4", id:305284928, run:38112206854, path:".github/workflows/sovereign-site-audit.yml"}
+              ] | all(.[]; . as $required |
+                ([ $root.workflow_runs[] | select(
+                    .name == $required.name and
+                    .workflow_id == $required.id and
+                    .id == $required.run and
+                    .path == $required.path and
+                    (.pull_requests | length == 1) and
+                    .pull_requests[0].number == 476 and
+                    .pull_requests[0].head.sha == $sha and
+                    .pull_requests[0].base.sha == $base and
+                    .head_sha == $sha and
+                    .event == "pull_request" and
+                    .head_branch == $head_ref and
+                    .head_repository.full_name == $repo and
+                    .status == "completed" and
+                    .conclusion == "success"
+                  ) ] | length == 1)
+              ))
+            ' <<< "$runs" > /dev/null
+          final_pr="$(gh api "repos/$REPOSITORY/pulls/476")"
+          jq -e --arg sha "$REVIEWED_HEAD" --arg base "$base_sha" \
+            '.state == "open" and .draft == true and .merged == false and .head.sha == $sha and .base.ref == "main" and .base.sha == $base and .head.repo.full_name == "yusuf38bcs-oss/yusuf38bcs-oss.github.io"' <<< "$final_pr" > /dev/null
+          [[ "$(gh api "repos/$REPOSITORY/git/ref/heads/main" --jq .object.sha)" == "$base_sha" ]]
+          echo 'PASS: four unique successful GitHub Actions workflow runs at the frozen PR HEAD; no PR code executed.'
+      - name: Retain non-secret preflight evidence
+        if: always()
+        shell: bash
+        env:
+          REVIEWED_HEAD: ${{ inputs.reviewed_head_sha }}
+          AUTH_REFERENCE: ${{ inputs.authorization_reference }}
+          PREFLIGHT_RESULT: ${{ job.status }}
+        run: |
+          mkdir -p shadow-preflight-evidence
+          jq -n --arg sha "$REVIEWED_HEAD" --arg auth_ref "$AUTH_REFERENCE" \
+            --arg status "$PREFLIGHT_RESULT" --arg utc "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            '{kind:"source-preflight-only",reviewed_sha:$sha,authorization_reference:$auth_ref,job_status:$status,utc:$utc,live_authentication:"NOT_RUN",credential_access:false,workflow_mode:"LIVE_DISABLED"}' \
+            > shadow-preflight-evidence/receipt.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lbfl-shadow-preflight-only
+          path: shadow-preflight-evidence/receipt.json
+          retention-days: 30
+          if-no-files-found: error
+
+  # Deliberately inert. Environment is not created or verified by this branch.
+  # If a referenced environment does not exist, GitHub can create one WITHOUT
+  # required reviewers. Never remove this guard until a separate authorization.
+  # A real live-execution harness also requires separate independent review.
+  live-authentication:
+    if: ${{ false }}
+    needs: source-preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: lbfl-shadow-app-auth-protected
+    permissions:
+      contents: read
+    steps:
+      - name: Block access and execution pending independent live authorization
+        shell: bash
+        run: |
+          echo 'HOLD: live authentication intentionally disabled by source.'
+          exit 1

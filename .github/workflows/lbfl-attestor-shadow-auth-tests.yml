@@ -1,0 +1,43 @@
+name: LBFL Attestor Shadow Authentication Tests
+on:
+  pull_request:
+    paths:
+      - 'tools/lbfl-release-attestor-shadow/**'
+      - '.github/workflows/lbfl-attestor-shadow-auth-tests.yml'
+      - '.github/workflows/lbfl-shadow-app-auth-manual-gate.yml'
+permissions:
+  contents: read
+jobs:
+  offline-security-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Verify exact-head evidence identity
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run mocked non-authorizing tests (no secret access)
+        working-directory: tools/lbfl-release-attestor-shadow
+        run: npm test
+      - name: Retain non-secret CI evidence
+        if: always()
+        env:
+          CI_CONCLUSION: ${{ job.status }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          mkdir -p attestor-ci-evidence
+          printf '{"kind":"mocked-ci-only","head_sha":"%s","job_status":"%s","live_authentication":"NOT_RUN"}\n' "$HEAD_SHA" "$CI_CONCLUSION" > attestor-ci-evidence/result.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lbfl-attestor-mocked-evidence
+          path: attestor-ci-evidence/result.json
+          if-no-files-found: error
+          retention-days: 30
