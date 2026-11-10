@@ -11,8 +11,124 @@ test('trusted authority runs on protected-main workflow event', () => {
   assert.match(workflow, /\n  pull_request_target:\s*\n/);
   assert.match(workflow, /\n  push:\s*\n    branches:\s*\["main"\]/);
 });
-test('two trigger types cannot cancel each other by PR concurrency', () => {
+test('authoritative transition lane includes draft conversion', () => {
+  const target = workflow.match(/\n  pull_request_target:\s*\n    branches: \["main"\]\s*\n    types: \[([^\]]+)\]/);
+  assert.ok(target, 'main-scoped pull_request_target trigger missing');
+  assert.match(target[1], /\bconverted_to_draft\b/);
+  assert.match(trusted, /pr\.data\.draft === false/);
+  assert.match(trusted, /pr\.data\.state === 'open'/);
+});
+
+
+test('Draft transition revokes trusted status before expensive audit begins', async () => {
+  const marker = '      - name: Begin exact-head trusted status (PR only)\n';
+  const tail = workflow.split(marker)[1];
+  assert.ok(tail, 'initial status publisher missing');
+  const scriptMarker = '          script: |\n';
+  const start = tail.indexOf(scriptMarker);
+  assert.ok(start >= 0);
+  const lines = [];
+  for (const line of tail.slice(start + scriptMarker.length).split('\n')) {
+    if (line.startsWith('            ')) lines.push(line.slice(12));
+    else if (!line.trim()) lines.push('');
+    else break;
+  }
+  const script = new Script('(async () => {\n' + lines.join('\n') + '\n})()');
+  for (const c of [
+    {action: 'ready_for_review', draft: false, result: 'pending'},
+    {action: 'converted_to_draft', draft: true, result: 'failure'},
+    {action: 'edited', draft: true, result: 'failure'},
+    {action: 'converted_to_draft', draft: false, result: 'failure'},
+  ]) {
+    const statuses = [];
+    await script.runInNewContext({
+      context: {
+        payload: {action: c.action, pull_request: {head: {sha: 'a'.repeat(40)}, draft: c.draft}},
+        repo: {owner: 'fixture', repo: 'repo'},
+        serverUrl: 'https://github.example.test', runId: 91
+      },
+      github: {rest: {repos: {createCommitStatus: async s => statuses.push(s)}}}
+    });
+    assert.equal(statuses.length, 1, c.action);
+    assert.equal(statuses[0].sha, 'a'.repeat(40), c.action);
+    assert.equal(statuses[0].context, 'YESAF M1 Trusted Static Authority', c.action);
+    assert.equal(statuses[0].state, c.result, c.action + '/' + c.draft);
+  }
+});
+
+test('PR state transitions publish fail-closed exact-head status', async () => {
+  const marker = '      - name: Publish fail-closed exact-head trusted status\n';
+  const scriptMarker = '          script: |\n';
+  const tail = workflow.split(marker)[1];
+  assert.ok(tail, 'trusted final status publisher missing');
+  const start = tail.indexOf(scriptMarker);
+  assert.ok(start >= 0, 'trusted final status script missing');
+  const lines = [];
+  for (const line of tail.slice(start + scriptMarker.length).split('\n')) {
+    if (line.startsWith('            ')) lines.push(line.slice(12));
+    else if (!line.trim()) lines.push('');
+    else break;
+  }
+  const script = new Script('(async () => {\n' + lines.join('\n') + '\n})()');
+  const sha = 'a'.repeat(40);
+  const base = 'b'.repeat(40);
+  const allOK = {
+    BEGIN_STATUS_OUTCOME: 'success',
+    CHECKOUT_TRUSTED: 'success',
+    CANDIDATE_SOURCE_OUTCOME: 'success',
+    IDENTITY_OUTCOME: 'success',
+    SETUP_OUTCOME: 'success',
+    TESTS_OUTCOME: 'success',
+    POLICY_INVARIANTS_OUTCOME: 'success',
+    AUDIT_OUTCOME: 'success',
+  };
+  const cases = [
+    {label: 'eligible ready PR', draft: false, state: 'open', result: 'success'},
+    {label: 'Ready -> Draft', draft: true, state: 'open', result: 'failure'},
+    {label: 'closed unmerged PR', draft: false, state: 'closed', result: 'failure'},
+    {label: 'moved candidate HEAD', draft: false, state: 'open', head: 'c'.repeat(40), result: 'failure'},
+    {label: 'stale PR base', draft: false, state: 'open', liveBase: 'c'.repeat(40), result: 'failure'},
+    {label: 'moved main', draft: false, state: 'open', main: 'c'.repeat(40), result: 'failure'},
+    {label: 'lookup failure', draft: false, state: 'open', lookupError: true, result: 'failure'},
+    {label: 'test failure', draft: false, state: 'open', failTest: true, result: 'failure'},
+  ];
+  for (const c of cases) {
+    const statuses = [];
+    let failed = false;
+    const env = {...allOK, ...(c.failTest ? {TESTS_OUTCOME: 'failure'} : {})};
+    const sandbox = {
+      process: {env},
+      context: {
+        payload: {pull_request: {head: {sha}, base: {sha: base}}},
+        issue: {number: 491}, repo: {owner: 'fixture', repo: 'repo'},
+        serverUrl: 'https://github.example.test', runId: 52,
+      },
+      github: {rest: {
+        pulls: {get: async () => {
+          if (c.lookupError) throw new Error('unavailable');
+          return {data: {
+            state: c.state, draft: c.draft, head: {sha: c.head ?? sha},
+            base: {ref: 'main', sha: c.liveBase ?? base},
+          }};
+        }},
+        repos: {
+          getBranch: async () => ({data: {commit: {sha: c.main ?? base}}}),
+          createCommitStatus: async status => statuses.push(status),
+        },
+      }},
+      core: {warning: () => {}, setFailed: () => {failed = true;}},
+    };
+    await script.runInNewContext(sandbox);
+    assert.equal(statuses.length, 1, c.label + ': one final status');
+    assert.equal(statuses[0].sha, sha, c.label + ': exact head');
+    assert.equal(statuses[0].state, c.result, c.label + ': status');
+    assert.equal(failed, c.result === 'failure', c.label + ': job result');
+  }
+});
+test('trusted transitions queue without workflow cancellation', () => {
   assert.match(workflow, /group:\s*yesaf-m1-audit-\$\{\{ github\.event_name \}\}-/);
+  assert.match(workflow, /\nconcurrency:\s*\n\s+group:[^\n]+\n\s+queue:\s*max\s*\n/);
+  assert.doesNotMatch(workflow, /\nconcurrency:\s*\n\s+group:[^\n]+\n\s+cancel-in-progress:\s*true/);
 });
 test('shadow lane has read-only token; required writer isolated to trusted lane', () => {
   assert.match(shadow, /permissions:\s*\n\s+contents:\s*read/);
