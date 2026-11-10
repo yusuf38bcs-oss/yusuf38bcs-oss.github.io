@@ -1,0 +1,127 @@
+# YESAF M1.C-R2: explicit read-only Cloudflare Pages provenance check.
+# No pages deploy, no production writer, no status-write or release authority.
+name: YESAF M1.C Pages Read-only Provenance
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/workflows/yesaf-pages-readonly-verification.yml"
+      - ".github/scripts/yesaf-pages-readonly-verifier.mjs"
+      - ".github/scripts/test-yesaf-pages-readonly-verifier.mjs"
+  workflow_dispatch:
+    inputs:
+      expected_main_sha:
+        description: "Full exact current main commit SHA to check against canonical Cloudflare Pages"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yesaf-pages-readonly-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  negative-fixtures:
+    name: YESAF M1.C Pages offline adversarial fixtures (non-authorizing)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Check out only exact candidate for unprivileged offline fixtures
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Verify candidate checkout identity
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - name: Configure Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Syntax and fail-closed policy fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check .github/scripts/yesaf-pages-readonly-verifier.mjs
+          node --check .github/scripts/test-yesaf-pages-readonly-verifier.mjs
+          node --test .github/scripts/test-yesaf-pages-readonly-verifier.mjs
+      - name: State non-authorizing shadow scope
+        run: |
+          echo "Pages source identity fixtures passed; live provider READ NOT RUN"
+          echo "PRODUCTION_CUTOVER=HOLD"
+
+  live-provider-readonly:
+    # Dispatch-only from current protected main; NEVER triggered by PR code.
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' }}
+    name: YESAF M1.C canonical Pages SHA and UUID (read-only, HOLD)
+    needs: negative-fixtures
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    env:
+      EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}
+      YESAF_PAGES_EVIDENCE_OUT: ${{ github.workspace }}/yesaf-m1c-pages-identity.json
+    steps:
+      - name: Checkout immutable requested protected main
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.expected_main_sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Authenticate protected current main and exact dispatch SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_MAIN_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$GITHUB_REPOSITORY" = "yusuf38bcs-oss/yusuf38bcs-oss.github.io"
+          test "$GITHUB_SHA" = "$EXPECTED_MAIN_SHA"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_MAIN_SHA"
+          git fetch --no-tags --depth=1 origin main
+          test "$(git rev-parse origin/main)" = "$EXPECTED_MAIN_SHA" || {
+            echo "Current main moved: NO production identity certification" >&2
+            exit 1
+          }
+      - name: Configure trusted Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Read Cloudflare canonical Pages deployment via scoped READ credential
+        shell: bash
+        env:
+          CLOUDFLARE_PAGES_READ_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_READ_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_PAGES_READ_TOKEN" || {
+            echo "A separately scoped CLOUDFLARE_PAGES_READ_TOKEN is required; HOLD" >&2
+            exit 1
+          }
+          node .github/scripts/yesaf-pages-readonly-verifier.mjs \
+            --expected-main-sha "$EXPECTED_MAIN_SHA"
+      - name: Reauthenticate current main after provider reads
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "$EXPECTED_MAIN_SHA" || {
+            echo "Main advanced during provider evidence capture: HOLD" >&2
+            exit 1
+          }
+      - name: Preserve non-authorizing provider identity evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: yesaf-m1c-pages-readonly-${{ inputs.expected_main_sha }}
+          path: ${{ github.workspace }}/yesaf-m1c-pages-identity.json
+          if-no-files-found: ignore
+          retention-days: 30
