@@ -1,0 +1,16 @@
+name: CONV-04F Migration Compatibility — Non-authorizing
+# This pathname is retained temporarily for historical Practical validator
+# successor-base compatibility. Authorization is NOT delegated to this file.
+# The required trusted Release Governance Gate contains
+# CONV04F_TRUSTED_MIGRATION_POLICY_V1 for PR #468's seven exact files.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-trusted-governance-owner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Confirm canonical trusted policy is present
+        run: grep -q 'CONV04F_TRUSTED_MIGRATION_POLICY_V1' .github/workflows/release-governance-gate.yml
