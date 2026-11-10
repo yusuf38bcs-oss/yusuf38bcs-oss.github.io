@@ -56,7 +56,7 @@ status: "Active"
 
 মানব **শ্বসনতন্ত্র** শুধু বাতাস ঢোকা-বের করার নলপথ নয়; এটি একটি সমন্বিত **air-conditioning, filtration, ventilation, gas-exchange, acid-base balance, defence and emergency-awareness system**। নাকের সম্মুখ নাসারন্ধ্র থেকে শুরু করে অ্যালভিওলাই পর্যন্ত প্রতিটি অংশের নির্দিষ্ট কাজ আছে। একদিকে নাসাগহ্বর বাতাসকে ছেঁকে, উষ্ণ ও সিক্ত করে; অন্যদিকে অ্যালভিওলাই অক্সিজেনকে রক্তে প্রবেশ করায় এবং কার্বন ডাই-অক্সাইডকে রক্ত থেকে বের করে দেয়।
 
-এই সিরিজটি আগের একক, ভারী ও ডিজাইন-সমস্যাযুক্ত respiratory lecture-কে পুনর্গঠন করে তিনটি পূর্ণাঙ্গ lecture-এ ভাগ করেছে। উদ্দেশ্য হলো: শিক্ষার্থী যেন শুধু সংজ্ঞা মুখস্থ না করে, বরং **structure → mechanism → regulation → disease-awareness → prevention** এই সম্পূর্ণ যুক্তিশৃঙ্খল বুঝতে পারে।
+এই সিরিজে শ্বসনতন্ত্রের পাঠ তিনটি পূর্ণাঙ্গ lecture-এ সাজানো হয়েছে। শিক্ষার্থী যেন শুধু সংজ্ঞা মুখস্থ না করে, বরং **structure → mechanism → regulation → disease-awareness → prevention** এই যুক্তিশৃঙ্খল ব্যাখ্যা করতে পারে—এটাই লক্ষ্য।
 
 > **Learning boundary:** এই সিরিজ শিক্ষামূলক। রোগ, চিকিৎসা, CPR, শ্বাসকষ্ট বা ওষুধ সম্পর্কিত অংশগুলো clinical advice নয়। বাস্তব উপসর্গ থাকলে qualified physician/healthcare provider-এর পরামর্শ নিতে হবে। CPR শেখার জন্য certified first-aid/CPR training প্রয়োজন।
 
