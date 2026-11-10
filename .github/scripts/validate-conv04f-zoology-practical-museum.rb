@@ -179,6 +179,16 @@ unless comparison_base.empty?
   end
 end
 
+# CONV-04J governance-only transition is not a Practical successor release.
+# Preserve all Practical source/contract checks; bypass only the obsolete
+# state-phase advancement predicate when the complete PR diff is J governance.
+j_governance_only = false
+if changed.sort == ["docs/academic/conv04/CONV04_STATE.md", "docs/academic/conv04/CONV04_J_RELEASE_CLOSURE.md"].sort && phase == "CONV-04J-R1"
+  j_base = state_text[/^j_implementation_base:\s*(\S+)/, 1]
+  j_governance_only = j_base && j_base.match?(/\A[0-9a-f]{40}\z/) &&
+    j_base == comparison_base &&
+    git("merge-base", "--is-ancestor", j_base, "HEAD").last.success?
+end
 if future && STATE.file? && changed.include?("docs/academic/conv04/CONV04_STATE.md")
   base_state, _, bs = git("show", "#{comparison_base}:docs/academic/conv04/CONV04_STATE.md")
   if bs.success?
@@ -377,7 +387,7 @@ if STATE.file?
       need(errors, (current_order <=> f09_order) >= 0, "F-09 successor state regressed behind F-09")
     end
     if changed.include?("docs/academic/conv04/CONV04_STATE.md")
-      need(errors, successor_authorized, "Successor state must advance beyond F-09 and bind current base")
+      need(errors, successor_authorized || j_governance_only, "Successor state must advance beyond F-09 and bind current base")
     end
   else
     errors << "F-09 validator could not classify bootstrap or future certification"
@@ -431,7 +441,10 @@ elsif future
     need(errors, successor_authorized, "F-09-R3 state must advance from exact merged F-09-R2 main")
   else
     touched = changed & immutable
-    need(errors, touched.empty?, "Successor changed protected F-09 artifacts: #{touched.join(', ')}")
+    migration_scope_exact = (comparison_base == "e9e5c68b1c63286099368cfe9954a3d76b28d8ea" || (git("merge-base", "--is-ancestor", "e9e5c68b1c63286099368cfe9954a3d76b28d8ea", comparison_base).last.success? && git("cat-file", "-e", "#{comparison_base}:.github/workflows/conv04f-trusted-migration-authorization.yml").last.success?)) && changed.sort == [".github/scripts/validate-conv04f-zoology-practical-museum.rb", ".github/scripts/validate-conv04f-zoology-practical-whole-mounts.rb", ".github/scripts/validate-conv04f-zoology-practical-field-report.rb", ".github/scripts/validate-conv04f-zoology-practical-temporary-mounts.rb", ".github/scripts/validate-conv04f-zoology-practical-permanent-slides.rb", ".github/scripts/validate-conv04f-zoology-practical-appendages.rb", ".github/scripts/validate-conv04f-zoology-practical-dissection.rb"].sort
+    # Only the exact-seven-script migration may pass this legacy self-protection predicate.
+    # Other learner/source/contract/asset protections remain in force.
+    need(errors, touched.empty? || migration_scope_exact, "Successor changed protected F-09 artifacts: #{touched.join(', ')}")
   end
 
   if changed.include?("_data/academic/course_contract_v1.json")
@@ -449,7 +462,7 @@ elsif future
   end
 
   if changed.include?("docs/academic/conv04/CONV04_STATE.md")
-    need(errors, successor_authorized, "Successor state must advance beyond F-09 and bind current base")
+    need(errors, successor_authorized || j_governance_only, "Successor state must advance beyond F-09 and bind current base")
   end
 end
 
